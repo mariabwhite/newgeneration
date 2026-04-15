@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Generation English — Кейсы и отзывы</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --accent: #F28C28;
+      --bg: #0F0F10;
+      --card: #1A1A1D;
+      --text: #FFFFFF;
+      --muted: #A0A0A0;
+      --border: #2a2a2a;
+      --border-light: #3a3a3a;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 20px 30px rgba(242, 140, 40, 0.12);
+    }
+
+    [data-theme="light"] {
+      --bg: #F5F7FA;
+      --card: #FFFFFF;
+      --text: #1A1A1D;
+      --muted: #6B6B6B;
+      --border: #E5E5E5;
+      --border-light: #D0D0D0;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 20px 30px rgba(242, 140, 40, 0.08);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .demo-header {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .theme-toggle, .lang-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover, .lang-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .cases-hero {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .cases-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      height: 380px;
+      perspective: 1000px;
+      cursor: pointer;
+      animation: fadeInUp 0.5s ease backwards;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s ease, transform 0.2s;
+      border-radius: 1.25rem;
+    }
+
+    .flip-card:nth-child(1) { animation-delay: 0.05s; }
+    .flip-card:nth-child(2) { animation-delay: 0.1s; }
+    .flip-card:nth-child(3) { animation-delay: 0.15s; }
+    .flip-card:nth-child(4) { animation-delay: 0.2s; }
+
+    .flip-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      border-radius: 1.25rem;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .flip-card:hover .flip-front,
+    .flip-card:hover .flip-back {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .flip-front {
+      transform: rotateY(0deg);
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      text-align: left;
+      overflow-y: auto;
+    }
+
+    .flip-front h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .flip-front .result-badge {
+      display: inline-block;
+      background: rgba(242, 140, 40, 0.15);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      backdrop-filter: blur(2px);
+    }
+
+    .flip-back .case-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .flip-back p {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .flip-back .quote {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--border-light);
+    }
+
+    .teacher-block {
+      flex: 0 0 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .teacher-photo {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+    }
+
+    .teacher-photo:hover {
+      transform: translateY(-4px);
+    }
+
+    .teacher-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .teacher-caption {
+      text-align: center;
+    }
+
+    .teacher-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+
+    .teacher-title {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+
+    .results-showcase {
+      background: var(--card);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+    }
+
+    .results-showcase:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .results-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .results-grid {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .result-badge-img {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      width: 100px;
+      text-align: center;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .result-badge-img:hover {
+      transform: scale(1.03);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .result-badge-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Сопроводительные презентации (2 элемента) */
+    .presentations-block {
+      background: var(--card);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+      animation: fadeInUp 0.5s ease backwards 0.25s;
+    }
+
+    .presentations-block:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .presentations-header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .presentations-header h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .presentations-header p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .presentations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      justify-content: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .presentation-item {
+      background: var(--bg);
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      text-align: center;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .presentation-item:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .presentation-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .presentation-item span {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Результаты 2020–2024 */
+    .results-old-block {
+      background: var(--card);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+      animation: fadeInUp 0.5s ease backwards 0.3s;
+    }
+
+    .results-old-block:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .results-old-header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .results-old-header h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .results-old-header p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .results-old-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .old-result-item {
+      background: var(--bg);
+      border-radius: 0.8rem;
+      padding: 0.5rem;
+      text-align: center;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .old-result-item:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .old-result-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .old-result-item span {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .reviews-section {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      padding: 0 2rem 2rem;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .reviews-header h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
+      animation: fadeInUp 0.4s ease backwards;
+    }
+
+    .review-card:nth-child(1) { animation-delay: 0.05s; }
+    .review-card:nth-child(2) { animation-delay: 0.1s; }
+    .review-card:nth-child(3) { animation-delay: 0.15s; }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #0F0F10;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .review-meta {
+      flex: 1;
+    }
+
+    .review-author {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .review-date {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .review-text {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .verify-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .verify-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.5rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .verify-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .gallery-section {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      padding: 0 2rem 2rem;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-header h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
+      animation: fadeInUp 0.4s ease backwards;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .cases-cta {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--card);
+      border-radius: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
+    }
+
+    .cases-cta:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #0F0F10;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+    }
+
+    .modal img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 1rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 1000px) {
+      .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .results-old-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cases-hero {
+        flex-direction: column;
+      }
+      .teacher-block {
+        flex: auto;
+        max-width: 250px;
+        margin: 0 auto;
+      }
+      .cases-grid {
+        grid-template-columns: 1fr;
+      }
+      .flip-card {
+        height: 420px;
+      }
+      .presentations-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .results-old-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-header">
+    <button class="theme-toggle" id="themeToggle">Тёмная</button>
+    <button class="lang-toggle" id="langToggle">English</button>
+  </div>
+
+  <div class="cases-hero">
+    <div class="cases-content">
+      <div class="section-header">
+        <h2 id="cases-title">Кейсы учеников</h2>
+        <p id="cases-subtitle">Реальные результаты 2020–2025 годов</p>
+      </div>
+      <div class="cases-grid" id="cases-grid"></div>
+
+      <!-- Результаты ОГЭ 2025 -->
+      <div class="results-showcase">
+        <div class="results-title" id="results-title">Результаты ОГЭ 2025</div>
+        <div class="results-grid" id="results-grid"></div>
+      </div>
+
+      <!-- Сопроводительные презентации (BRICS + TENET) -->
+      <div class="presentations-block">
+        <div class="presentations-header">
+          <h3>Сопроводительные презентации</h3>
+          <p>Перевод и сопровождение профессиональных мероприятий</p>
+        </div>
+        <div class="presentations-grid" id="presentations-grid"></div>
+      </div>
+
+      <!-- Результаты 2020–2024 -->
+      <div class="results-old-block">
+        <div class="results-old-header">
+          <h3>Результаты 2020–2024</h3>
+          <p>Экзамены, олимпиады, языковой прогресс</p>
+        </div>
+        <div class="results-old-grid" id="results-old-grid"></div>
+      </div>
+    </div>
+
+    <div class="teacher-block">
+      <div class="teacher-photo">
+        <img src="https://i.ibb.co/xqRZjGsf/IMG-6134.jpg" alt="Мария Витальевна">
+      </div>
+      <div class="teacher-caption">
+        <div class="teacher-name">Мария Витальевна</div>
+        <div class="teacher-title">Преподаватель английского языка</div>
+        <div class="teacher-title" style="font-size: 0.65rem;">New Generation English</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОТЗЫВЫ -->
+  <div class="reviews-section" id="reviews">
+    <div class="reviews-header">
+      <h2 id="reviews-title">Отзывы</h2>
+      <p id="reviews-subtitle">Что говорят ученики и их родители</p>
+    </div>
+    <div class="verify-buttons">
+      <a href="https://uslugi.yandex.ru/profile/MariyaBurceva-2775099" target="_blank" class="verify-btn">Проверить на Яндекс Услугах</a>
+      <a href="https://vk.com/new_generation_english?w=wall-30223781_154" target="_blank" class="verify-btn">Проверить в VK</a>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </div>
+
+  <!-- ФОТОГАЛЕРЕЯ (11 фото: 10 старых + RIS) -->
+  <div class="gallery-section" id="gallery">
+    <div class="gallery-header">
+      <h2 id="gallery-title">Фотогалерея</h2>
+      <p id="gallery-subtitle">Моменты занятий, результаты и вдохновение</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+
+  <div class="reviews-section" style="padding-top: 0;">
+    <div class="cases-cta">
+      <button class="btn" id="cases-cta-btn">Записаться на консультацию</button>
+      <p id="cta-note" style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--muted);">Разберём ваш запрос — подберём формат</p>
+    </div>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <img id="modalImage" src="">
+  </div>
+
+  <script>
+    // КЕЙСЫ (4 штуки)
+    const casesData = {
+      ru: [
+        { name: "Варвара, 17 лет", result: "98 баллов ЕГЭ → МГУ", problem: "Нужен был высокий балл и глубокое знание языка", action: "6 лет занятий, разбор пробелов, сериалы, книги Пратчетта в оригинале", quote: "Мария Витальевна научила любить английский" },
+        { name: "Таисия, 17 лет", result: "92% → бюджет МПГУ", problem: "Провал экзамена, потерян год, низкая уверенность", action: "1 год индивидуальной подготовки, полный разбор формата", quote: "Без вас не получилось бы! Проскочила чудом" },
+        { name: "Маша, 11 лет", result: "Призёр двух олимпиад → 2 школы", problem: "Подготовка к языковым экзаменам", action: "1 год занятий, индивидуальный подход, интересные уроки", quote: "Отличный учитель, умеет сделать урок интересным" },
+        { name: "Екатерина, 28 лет", result: "A2 → B2 за 4 месяца", problem: "После вуза английский забылся, нужен для работы", action: "Разговорная практика, современные материалы, полное погружение", quote: "Стала увереннее говорить, смотрю фильмы без озвучки" }
+      ],
+      en: [
+        { name: "Varvara, 17", result: "98 points → MSU", problem: "Needed high score", action: "6 years of lessons", quote: "Maria taught me to love English" },
+        { name: "Taisia, 17", result: "92% → budget MPGU", problem: "Failed exam", action: "1 year individual prep", quote: "Couldn't have done it without you" },
+        { name: "Masha, 11", result: "2 Olympiads → 2 schools", problem: "Language exams", action: "1 year engaging lessons", quote: "Excellent teacher" },
+        { name: "Ekaterina, 28", result: "A2 → B2 in 4 months", problem: "Forgotten English", action: "Speaking practice", quote: "More confident now" }
+      ]
+    };
+
+    // Сопроводительные презентации (BRICS + TENET)
+    const presentationsData = [
+      { src: "https://i.ibb.co/hJ6hp4Rj/70714d31-22ec-4677-9073-6338b8e6aaab.png", caption: "BRICS — перевод лекций и переговоров" },
+      { src: "https://i.ibb.co/2YyXT6t6/Chat-GPT-Image-20-2026-21-18-01.png", caption: "TENET — перевод и сопровождение презентации" }
+    ];
+
+    // Результаты 2020–2024 (6 скриншотов)
+    const oldResultsData = [
+      { src: "https://i.ibb.co/chL2QP9v/067c47ab-f957-461c-8b82-ad9542858c96.png", caption: "Кейс №12: A2→B2" },
+      { src: "https://i.ibb.co/B5qcmS7k/7cf30bb4-d19e-4c8b-8bb6-afc93208cd9d-1.png", caption: "Кейс №18: 0→базовый" },
+      { src: "https://i.ibb.co/d4Dwy5vZ/Chat-GPT-Image-20-2026-19-31-18.png", caption: "Кейс №3: 94%" },
+      { src: "https://i.ibb.co/k6QYRsK1/Chat-GPT-Image-20-2026-18-29-53.png", caption: "Результаты олимпиад" },
+      { src: "https://i.ibb.co/JFrPSrxN/Chat-GPT-Image-20-2026-18-24-24.png", caption: "Кейс №3: скриншот" },
+      { src: "https://i.ibb.co/hJ6hp4Rj/70714d31-22ec-4677-9073-6338b8e6aaab.png", caption: "Кейс №8: BRICS" }
+    ];
+
+    const reviewsData = {
+      ru: [
+        { author: "Света", date: "02.02.2025", text: "Занимались с сентября 2024 по январь 2025. С задачей справились успешно. Мария грамотный педагог, умеет расположить к себе ребёнка.", avatar: "С" },
+        { author: "Красивая девочка", date: "31.01.2025", text: "За несколько месяцев подняла уровень с A2 до B2. Уроки в лёгкой атмосфере, без скучных учебников. 100% рекомендую!", avatar: "КД" },
+        { author: "Екатерина М.", date: "16.01.2025", text: "Мария Витальевна отличный преподаватель. Всё чётко и понятно объясняет. Восполнили пробелы, стала увереннее говорить.", avatar: "ЕМ" },
+        { author: "Анастасия Б.", date: "01.12.2024", text: "С 0 выучила более 150 слов, начала составлять предложения. Обязательно вернусь. Спасибо за знания.", avatar: "АБ" },
+        { author: "Анастасия Журавлева", date: "23.11.2024", text: "Племянник сам заинтересовался процессом. ЕГЭ сдан без трудностей. Это главный успех.", avatar: "АЖ" },
+        { author: "Oksana", date: "17.10.2024", text: "Самый лучший, квалифицированный педагог! Уникальная способность найти ключики к каждому ученику.", avatar: "О" },
+        { author: "Варвара С.", date: "26.09.2024", text: "6 лет занятий, ЕГЭ 98 баллов, МГУ. Смотрели Друзей, читали Пратчетта. Спасибо за любовь к языку.", avatar: "ВС" },
+        { author: "Дмитрий", date: "18.09.2024", text: "Двое детей не имели желания заниматься. Через 2 года сын выбрал английский на ОГЭ.", avatar: "Д" },
+        { author: "Елена Аксиненко", date: "06.09.2024", text: "Мария готовила сына к ЕГЭ. Всегда на связи, помогала внеурочно. Однозначно рекомендую.", avatar: "ЕА" },
+        { author: "Татьяна П", date: "02.09.2024", text: "Оба ребёнка занимаются. Прогресс на лицо. Мониторинг знаний чуткий, занятия интересные.", avatar: "ТП" }
+      ],
+      en: [
+        { author: "Sveta", date: "02.02.2025", text: "Task completed successfully. Competent teacher.", avatar: "S" },
+        { author: "Beautiful Girl", date: "31.01.2025", text: "Raised level from A2 to B2. 100% recommend!", avatar: "BG" },
+        { author: "Ekaterina M.", date: "16.01.2025", text: "Excellent teacher. More confident now.", avatar: "EM" }
+      ]
+    };
+
+    // Фотогалерея (11 фото: 10 старых + RIS)
+    const galleryImages = [
+      { src: "https://i.ibb.co/JRxggNBG/photo-2024-07-29-17-52-29.jpg", caption: "Маша поступила в Летово", link: null },
+      { src: "https://i.ibb.co/wN9s0ZRW/image.png", caption: "Варя — учится с 7 лет и до сих пор", link: null },
+      { src: "https://i.ibb.co/mC47gF5G/3-Tdb9-If-SADwgat-P2-Bj-Gl5rn4h-Edo-Bop-Mz-Oq-RDFsrg793n-MIpu5w-Lk-J-NWXP1-Xrlc-I0-RVK7-NDjob1vv3de-Rv-Vi.jpg", caption: "Лингвистический класс", link: null },
+      { src: "https://i.ibb.co/PZVPSym7/3aru-Put8s-Yib0-XJ2-I8a-I30d-Mki-YB3-GX6l4-Bi-Es-BHbrm-OY0-Mr27-J9-L7-MPll6v-VY3-Tlkq-Kfbs-CF6q0y-F5-Ufh-XOl-M.jpg", caption: "Жарко и в школе ремонт — с углубленной группой на траве", link: null },
+      { src: "https://i.ibb.co/mCwzBtK5/mwfrv-BXxo-GMr1c5-Vno-Qj-X8-XIQ2-L-g-Wcfby-NSp7-A-F80-IXagg9-LJJpdp0t-Du-LZDNWOm9-KJLbb-Ffa-BSrw-Xka-LC3m-V.jpg", caption: "Лингвистический класс, углубленные группы", link: null },
+      { src: "https://i.ibb.co/fYHwJzCB/VMu-g-W-d-ZT7td-P7ch-DNS-spmg-Qx-Qlp-A8gc2-Wgeryr-G-Ukuf-UTGN6w-V269qob-FMv-U3-LY3-IGm73-Va79-On-Ya-Zcus.jpg", caption: "Классное руководство, день учителя", link: null },
+      { src: "https://i.ibb.co/nNtgw64L/image.png", caption: "Я и Варя — 98 баллов, это вам не шутки", link: null },
+      { src: "https://i.ibb.co/VYfzh0tT/photo-2025-12-17-11-10-19.jpg", caption: "Шри-Ланка, летний курс в школе", link: null },
+      { src: "https://i.ibb.co/kVZsYDvv/photo-2025-09-08-23-43-06.jpg", caption: "Зима, концерт перед Рождеством", link: null },
+      { src: "https://i.ibb.co/LdYzGjn1/photo-2025-09-08-23-05-46.jpg", caption: "5 класс Б перед коронавирусом", link: null },
+      { src: "https://i.ibb.co/Y4R9Cygx/My-Collages.jpg", caption: "Russian International School", link: "https://rischool.info/" }
+    ];
+
+    const resultsImages = [
+      "https://i.ibb.co/6RfxbKf5/Chat-GPT-Image-26-2026-15-35-03.png",
+      "https://i.ibb.co/388KxPL/Chat-GPT-Image-26-2026-14-48-02.png",
+      "https://i.ibb.co/zhzdHwBp/Chat-GPT-Image-26-2026-14-40-14.png",
+      "https://i.ibb.co/cXtnRyNC/Chat-GPT-Image-26-2026-15-03-14.png"
+    ];
+
+    let currentLang = 'ru';
+
+    function renderCases(lang) {
+      const grid = document.getElementById('cases-grid');
+      const data = casesData[lang];
+      grid.innerHTML = '';
+      data.forEach((item) => {
+        const flipCard = document.createElement('div');
+        flipCard.className = 'flip-card';
+        flipCard.innerHTML = `
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <h3>${item.name}</h3>
+              <div class="result-badge">${item.result}</div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <div class="case-label">${lang === 'ru' ? 'Запрос' : 'Challenge'}</div>
+                <p>${item.problem}</p>
+                <div class="case-label">${lang === 'ru' ? 'Что делали' : 'Approach'}</div>
+                <p>${item.action}</p>
+                ${item.quote ? `<div class="quote">«${item.quote}»</div>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+        flipCard.addEventListener('click', () => flipCard.classList.toggle('flipped'));
+        grid.appendChild(flipCard);
+      });
+    }
+
+    function renderPresentations() {
+      const container = document.getElementById('presentations-grid');
+      container.innerHTML = '';
+      presentationsData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'presentation-item';
+        div.innerHTML = `
+          <img src="${item.src}" alt="${item.caption}">
+          <span>${item.caption}</span>
+        `;
+        div.addEventListener('click', () => {
+          document.getElementById('imageModal').style.display = 'block';
+          document.getElementById('modalImage').src = item.src;
+        });
+        container.appendChild(div);
+      });
+    }
+
+    function renderOldResults() {
+      const container = document.getElementById('results-old-grid');
+      container.innerHTML = '';
+      oldResultsData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'old-result-item';
+        div.innerHTML = `
+          <img src="${item.src}" alt="${item.caption}">
+          <span>${item.caption}</span>
+        `;
+        div.addEventListener('click', () => {
+          document.getElementById('imageModal').style.display = 'block';
+          document.getElementById('modalImage').src = item.src;
+        });
+        container.appendChild(div);
+      });
+    }
+
+    function renderReviews(lang) {
+      const container = document.getElementById('reviews-grid');
+      const data = reviewsData[lang];
+      container.innerHTML = '';
+      data.forEach((review) => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <div class="review-header">
+            <div class="review-avatar">${review.avatar}</div>
+            <div class="review-meta">
+              <div class="review-author">${review.author}</div>
+              <div class="review-date">${review.date}</div>
+            </div>
+          </div>
+          <div class="review-text">${review.text}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderGallery() {
+      const container = document.getElementById('gallery-grid');
+      container.innerHTML = '';
+      galleryImages.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `
+          <img src="${item.src}" alt="галерея">
+          <div class="gallery-caption">${item.caption}</div>
+        `;
+        if (item.link) {
+          div.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(item.link, '_blank');
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = item.src;
+          });
+        } else {
+          div.addEventListener('click', () => {
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = item.src;
+          });
+        }
+        container.appendChild(div);
+      });
+    }
+
+    function renderResults() {
+      const container = document.getElementById('results-grid');
+      container.innerHTML = '';
+      resultsImages.forEach(src => {
+        const div = document.createElement('div');
+        div.className = 'result-badge-img';
+        div.innerHTML = `<img src="${src}" alt="результат"><span>${currentLang === 'ru' ? 'Оценка 5' : 'Grade 5'}</span>`;
+        div.addEventListener('click', () => {
+          document.getElementById('imageModal').style.display = 'block';
+          document.getElementById('modalImage').src = src;
+        });
+        container.appendChild(div);
+      });
+    }
+
+    function updateTexts(lang) {
+      const texts = {
+        ru: { 
+          title: 'Кейсы учеников', 
+          subtitle: 'Реальные результаты 2020–2025 годов', 
+          resultsTitle: 'Результаты ОГЭ 2025',
+          reviewsTitle: 'Отзывы',
+          reviewsSubtitle: 'Что говорят ученики и их родители',
+          galleryTitle: 'Фотогалерея',
+          gallerySubtitle: 'Моменты занятий, результаты и вдохновение',
+          cta: 'Записаться на консультацию', 
+          note: 'Разберём ваш запрос — подберём формат' 
+        },
+        en: { 
+          title: 'Student Success Stories', 
+          subtitle: 'Real results 2020–2025', 
+          resultsTitle: 'OGE 2025 Results',
+          reviewsTitle: 'Testimonials',
+          reviewsSubtitle: 'What students and parents say',
+          galleryTitle: 'Photo Gallery',
+          gallerySubtitle: 'Class moments, results and inspiration',
+          cta: 'Book a consultation', 
+          note: 'We\'ll analyze your needs — choose the right format' 
+        }
+      };
+      document.getElementById('cases-title').textContent = texts[lang].title;
+      document.getElementById('cases-subtitle').textContent = texts[lang].subtitle;
+      document.getElementById('results-title').textContent = texts[lang].resultsTitle;
+      document.getElementById('reviews-title').textContent = texts[lang].reviewsTitle;
+      document.getElementById('reviews-subtitle').textContent = texts[lang].reviewsSubtitle;
+      document.getElementById('gallery-title').textContent = texts[lang].galleryTitle;
+      document.getElementById('gallery-subtitle').textContent = texts[lang].gallerySubtitle;
+      document.getElementById('cases-cta-btn').textContent = texts[lang].cta;
+      document.getElementById('cta-note').textContent = texts[lang].note;
+    }
+
+    renderCases('ru');
+    renderPresentations();
+    renderOldResults();
+    renderReviews('ru');
+    renderGallery();
+    renderResults();
+    updateTexts('ru');
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'ru' ? 'en' : 'ru';
+      renderCases(currentLang);
+      renderReviews(currentLang);
+      renderResults();
+      updateTexts(currentLang);
+      document.getElementById('langToggle').textContent = currentLang === 'ru' ? 'English' : 'Русский';
+    });
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        document.getElementById('themeToggle').textContent = 'Тёмная';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById('themeToggle').textContent = 'Светлая';
+      }
+    });
+
+    document.getElementById('cases-cta-btn').addEventListener('click', () => {
+      alert(currentLang === 'ru' ? 'Свяжемся с вами для консультации' : 'We will contact you for a consultation');
+    });
+
+    document.getElementById('imageModal').addEventListener('click', () => {
+      document.getElementById('imageModal').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
