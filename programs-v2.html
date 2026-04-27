@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Программы обучения New Generation English: экзамены, общий английский, профессиональные направления и ускоренные форматы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Программы · New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* Typography */
+
+h2, .content-block-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+/* Hero section (smooth full-bleed background image) */
+body[data-page="programs"] .hero-inner {
+  position: relative;
+}
+
+body[data-page="programs"] .hero-tag,
+body[data-page="programs"] .hero-stats,
+body[data-page="programs"] .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+body[data-page="programs"] .hero-bg-wrap {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  max-width: 900px;
+  pointer-events: none;
+  z-index: 1;
+  aspect-ratio: 1623 / 969;
+  isolation: isolate;
+}
+
+body[data-page="programs"] .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+body[data-page="programs"] .hero-bg-base {
+  z-index: 1;
+  opacity: 0.92;
+  filter: saturate(1.02) contrast(1.02);
+
+  mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 30%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 30%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+body[data-page="programs"] .hero-bg-edge {
+  z-index: 0;
+  inset: -28px -42px -28px -28px;
+  border-radius: 44px;
+  filter: blur(26px) saturate(1.05);
+  opacity: 0.14;
+
+  mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 70%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 70%
+  );
+}
+
+body.light[data-page="programs"] .hero-bg-base {
+  opacity: 0.86;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+body.light[data-page="programs"] .hero-bg-edge {
+  opacity: 0.22;
+  filter: blur(28px) saturate(1.05);
+}
+
+body[data-page="programs"] .hero-bg-light { display: none; }
+body.light[data-page="programs"] .hero-bg-dark { display: none; }
+body.light[data-page="programs"] .hero-bg-light { display: block; }
+
+/* Remove boxed hero image container on Programs */
+body[data-page="programs"] .hero-media { display: none !important; }
+
+@media (max-width: 900px) {
+  body[data-page="programs"] .hero-bg-wrap {
+    left: 50%;
+    right: auto;
+    width: min(100%, 920px);
+    top: 58%;
+    transform: translate(-50%, -50%);
+  }
+
+  body[data-page="programs"] .hero-bg-base {
+    opacity: 0.22;
+    filter: saturate(1.02) contrast(1.02);
+  }
+
+  body[data-page="programs"] .hero-bg-edge {
+    opacity: 0;
+  }
+}
+
+/* Subnav */
+.subnav {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0 48px;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.subnav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 12px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.subnav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Program summary */
+.program-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.program-summary-card {
+  padding: 24px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.program-summary-card strong {
+  display: block;
+  margin-bottom: 12px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.program-summary-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Program sections */
+.program-section {
+  padding: 48px 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.program-section::before {
+  content: attr(data-section-number);
+  position: absolute;
+  top: 48px;
+  right: 0;
+  z-index: 2;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.program-section:nth-of-type(1)::before { content: "01"; }
+.program-section:nth-of-type(2)::before { content: "02"; }
+.program-section:nth-of-type(3)::before { content: "03"; }
+.program-section:nth-of-type(4)::before { content: "04"; }
+
+.program-intro {
+  margin: 0 0 32px;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Program grid */
+.program-grid {
+  display: grid;
+  gap: 0;
+  margin-top: 32px;
+}
+
+/* ============================================================
+   PROGRAMS: 6-CARD FLIP CATALOG (3x2)
+   ============================================================ */
+body[data-page="programs"] .programs-catalog {
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-page="programs"] .programs-catalog::after {
+  content: "";
+  position: absolute;
+  inset: -140px;
+  z-index: 0;
+  background: url("assets/image.png") center / cover no-repeat;
+  opacity: 0.08;
+  filter: saturate(1.1) contrast(1.05);
+  pointer-events: none;
+}
+
+body.light[data-page="programs"] .programs-catalog::after {
+  opacity: 0.05;
+  filter: saturate(1.05) contrast(1) brightness(1.12);
+}
+
+body[data-page="programs"] .programs-catalog > * {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-page="programs"] .flip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+body[data-page="programs"] .flip-card {
+  background: transparent;
+  perspective: 1600px;
+  height: 480px;
+  cursor: pointer;
+  outline: none;
+}
+
+body[data-page="programs"] .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  border-radius: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="programs"] .flip-card-inner { transition: none; }
+}
+
+body[data-page="programs"] .flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+body[data-page="programs"] .flip-front,
+body[data-page="programs"] .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+body[data-page="programs"] .flip-front::-webkit-scrollbar,
+body[data-page="programs"] .flip-back::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body[data-page="programs"] .flip-back {
+  transform: rotateY(180deg);
+  background: var(--bg-2);
+  padding-bottom: 40px;
+}
+
+body[data-page="programs"] .flip-front::after {
+  content: "↻";
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+body[data-page="programs"] .flip-front:hover::after { opacity: 1; }
+
+body[data-page="programs"] .program-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: var(--accent);
+  color: #000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+body[data-page="programs"] .program-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+body[data-page="programs"] .program-sub {
+  font-size: 13px;
+  color: var(--text-2);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+  border-left: 2px solid var(--accent);
+  padding-left: 12px;
+}
+
+body[data-page="programs"] .program-front-essence {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body[data-page="programs"] .program-front-highlights {
+  margin-top: 16px;
+  padding-left: 18px;
+  color: var(--text);
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+}
+
+body[data-page="programs"] .fallback-img {
+  place-items: center;
+  text-align: center;
+  padding: 32px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  background: radial-gradient(circle at 30% 10%, rgba(255,90,31,0.18), transparent 55%);
+}
+
+body[data-page="programs"] .program-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 20px 0 12px 0;
+}
+body[data-page="programs"] .program-section-label:first-of-type { margin-top: 0; }
+
+body[data-page="programs"] .program-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+body[data-page="programs"] .program-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+body[data-page="programs"] .program-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+body[data-page="programs"] .program-result {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg-3);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border-left: 3px solid var(--accent);
+  font-weight: 500;
+}
+
+body[data-page="programs"] .program-front-outcome {
+  margin-top: 16px;
+}
+
+body[data-page="programs"] .flip-front .program-front-outcome .program-section-label {
+  margin: 0 0 10px 0;
+}
+
+body[data-page="programs"] #intensive .content-block-header {
+  text-align: center;
+}
+
+body[data-page="programs"] #intensive .program-intro {
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+body[data-page="programs"] #intensive .content-block-title {
+  color: var(--text);
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  line-height: 0.96;
+  margin-bottom: 18px;
+}
+
+body[data-page="programs"] #intensive .content-block-title .line {
+  display: block;
+}
+
+body[data-page="programs"] #intensive .intensives-grid {
+  justify-items: center;
+}
+
+body[data-page="programs"] #intensive .intensive-card {
+  width: 100%;
+  max-width: 640px;
+}
+
+body[data-page="programs"] .back-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+  border-bottom: 1px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+body[data-page="programs"] .back-detail-list {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+body[data-page="programs"] .back-detail-list li {
+  margin-bottom: 14px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+body[data-page="programs"] .back-detail-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+body[data-page="programs"] .back-cta {
+  margin-top: auto;
+  background: var(--accent);
+  color: #000;
+  text-align: center;
+  padding: 12px;
+  border-radius: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+body[data-page="programs"] .back-cta:hover { background: var(--accent-2); }
+
+@media (max-width: 980px) {
+  body[data-page="programs"] .flip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body[data-page="programs"] .flip-card { height: 520px; }
+}
+
+@media (max-width: 640px) {
+  body[data-page="programs"] .flip-grid { grid-template-columns: 1fr; }
+  body[data-page="programs"] .flip-card { height: 520px; }
+}
+
+.flip-mobile-hint { display: none; }
+@media (max-width: 640px) {
+  .programs-catalog .flip-grid .flip-front::after { display: none; }
+  .programs-catalog .flip-mobile-hint {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+}
+
+/* ============================================================
+   PROGRAMS: INTENSIVES GRID
+   ============================================================ */
+body[data-page="programs"] .intensives-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+body[data-page="programs"] .intensive-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px 28px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+body[data-page="programs"] .intensive-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+body[data-page="programs"] .intensive-card h4 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+body[data-page="programs"] .intensive-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+body[data-page="programs"] .intensive-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+body[data-page="programs"] .intensive-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+body[data-page="programs"] .intensive-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+body[data-page="programs"] .intensive-result {
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-2);
+  padding: 14px 18px;
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  body[data-page="programs"] .intensives-grid { grid-template-columns: 1fr; }
+}
+
+/* Program card */
+.program-card {
+  background: transparent;
+  border-radius: 0;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.program-card:last-child {
+  border-bottom: none;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* Program list */
+.program-list {
+  margin: 0 0 24px;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.program-list li {
+  margin-bottom: 8px;
+}
+
+.program-list li::marker {
+  color: var(--accent);
+}
+
+/* Program result */
+.program-result {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* CTA band */
+.cta-band {
+  padding: 110px 0;
+  text-align: center;
+  background: transparent;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cta-band .cta-head {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  width: 100%;
+}
+.cta-band .cta-head::before,
+.cta-band .cta-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.cta-band h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+
+.cta-band p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  line-height: 1.55;
+}
+
+
+
+/* Header */
+
+
+
+
+
+
+
+
+
+
+
+
+/* .footer, .footer-links — defined in system.css */
+
+/* Responsive */
+@media (max-width: 980px) {
+  .page-shell {
+    padding: 0 20px;
+  }  
+  h2, .content-block-title {
+    font-size: 28px;
+  }
+  
+  .program-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding: 0 16px;
+  }  
+  .program-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .program-section {
+    padding: 32px 0;
+  }
+  
+  .footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+/* Light mode overrides */
+
+
+
+
+body.light .tag {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="programs">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О системе" data-en="About">О системе</a>
+    <a class="topnav-link" href="programs-v2.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы" data-en="Cases">Кейсы</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" style="height:34px; padding:0 16px; font-size:12px;" data-ru="Записаться" data-en="Enroll">Записаться</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+<main>
+    <section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Программы · New Generation English" data-en="Programs · New Generation English">Программы · New Generation English</span>
+      <span class="bar"></span>
+      <span data-ru="№ 003" data-en="NO. 003">№ 003</span>
+    </div>
+    <div class="hero-bg-wrap" aria-hidden="true">
+      <img class="hero-bg hero-bg-edge hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-edge hero-bg-light" src="assets/programs-hero-dashboard-light.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-base hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-base hero-bg-light" src="assets/programs-hero-dashboard-light.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="Программы обучения" data-en="Learning programs">Программы обучения</div>
+        <div class="hero-kicker-secondary" data-ru="Маршруты под живые задачи" data-en="Routes for real goals">Маршруты под живые задачи</div>
+
+        <h1>
+          <span class="line" data-ru="Программы" data-en="Programs">Программы</span>
+          <span class="line accent" data-ru="обучения" data-en="of study">обучения</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Шесть направлений — от ЕГЭ до медицинского английского. Каждая программа собирается под конкретного человека и его цель. Цены и форматы занятий — на странице Условий." data-en="Six directions—from EGE to Medical English. Each program is built for a specific person and goal. Pricing and lesson formats are on the Terms page.">Шесть направлений — от ЕГЭ до медицинского английского. Каждая программа собирается под конкретного человека и его цель. Цены и форматы занятий — на странице Условий.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#tracks" data-ru="Смотреть программы →" data-en="View programs →">Смотреть программы →</a>
+          <a class="btn btn-ghost" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Написать в Telegram ↗" data-en="Write on Telegram ↗">Написать в Telegram ↗</a>
+        </div>
+
+        <p class="hero-students-link"><span data-ru="Цены на занятия:" data-en="Lesson prices:">Цены на занятия:</span> <a href="conditions.html" data-ru="смотреть условия →" data-en="view terms →">смотреть условия →</a></p>
+      </div>
+
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num">6</div><div class="lbl" data-ru="направлений" data-en="directions">направлений</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num" data-ru="ЕГЭ" data-en="EGE">ЕГЭ</div><div class="lbl" data-ru="ОГЭ · IELTS · TOEFL" data-en="OGE · IELTS · TOEFL">ОГЭ · IELTS · TOEFL</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">500+</div><div class="lbl" data-ru="учеников в системе" data-en="students in the system">учеников в системе</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">1:1</div><div class="lbl" data-ru="каждый маршрут — ваш" data-en="each route is yours">каждый маршрут — ваш</div></div>
+    </div>
+  </div>
+</section>
+
+  <div class="page-shell">
+    <div class="subnav">
+        <a class="subnav-link" href="#tracks" data-ru="Программы" data-en="Programs">Программы</a>
+        <a class="subnav-link" href="#intensive" data-ru="Ускоренные курсы" data-en="Intensives">Ускоренные курсы</a>
+        <a class="subnav-link" href="#cta-section" style="color: var(--accent); border-bottom-color: var(--accent);" data-ru="Записаться" data-en="Enroll">Записаться</a>
+      </div>
+
+    <section class="content-block program-section programs-catalog" id="tracks">
+      <div class="content-block-header">
+        <h2 class="content-block-title" data-ru="Программы обучения" data-en="Learning programs">Программы обучения</h2>
+        <p class="program-intro" data-ru="Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели." data-en="Each program is a thought-out system that helps you reach a concrete result. Choose a direction that fits your goals.">Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели.</p>
+      </div>
+
+      <div id="price-anchor" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 22px; margin-bottom:28px; border:1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-2);">
+        <div>
+          <div style="font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.02em;" data-ru="от 2 000 ₽ / 60 мин" data-en="from ₽2,000 / 60 min">от 2 000 ₽ / 60 мин</div>
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3);" data-ru="индивидуально · онлайн · по договорённости" data-en="1:1 · online · by arrangement">индивидуально · онлайн · по договорённости</div>
+        </div>
+        <a href="conditions.html" class="btn btn-ghost" style="height:36px; padding:0 14px; font-size:12px;" data-ru="Подробнее об условиях →" data-en="Full pricing →">Подробнее об условиях →</a>
+      </div>
+
+      <div class="flip-grid" aria-label="Программы обучения (карточки)">
+        <article class="flip-card" tabindex="0" role="button" aria-label="ОГЭ / ЕГЭ">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="ОГЭ / ЕГЭ" data-en="OGE / EGE">ОГЭ / ЕГЭ</div>
+              <div class="program-title" data-ru="Госэкзамены" data-en="State exams">Госэкзамены</div>
+              <div class="program-sub" data-ru="Подготовка к государственным экзаменам" data-en="Preparation for state exams">Подготовка к государственным экзаменам</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Уверенность на экзамене и высокий балл" data-en="Confidence and a strong score">Уверенность на экзамене и высокий балл</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Собираем подготовку под формат ОГЭ/ЕГЭ: структура, стратегия и регулярная практика." data-en="A structured OGE/EGE prep: format, strategy, and regular practice.">Собираем подготовку под формат ОГЭ/ЕГЭ: структура, стратегия и регулярная практика.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Пробные варианты с подробным разбором" data-en="Full mocks with detailed review">Пробные варианты с подробным разбором</li>
+                <li data-ru="Устная часть и тайминг без стресса" data-en="Speaking part and timing without stress">Устная часть и тайминг без стресса</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали программы" data-en="Program details">Детали программы</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Изучение структуры экзамена" data-en="Exam structure">Изучение структуры экзамена</li>
+                <li data-ru="Практика всех заданий" data-en="Practice all tasks">Практика всех заданий</li>
+                <li data-ru="Грамматика и лексика" data-en="Grammar & vocabulary">Грамматика и лексика</li>
+                <li data-ru="Устная часть + пробники" data-en="Speaking + mock exams">Устная часть + пробники</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Индивидуальная стратегия под ваш уровень" data-en="Individual strategy for your level">Индивидуальная стратегия под ваш уровень</li>
+                <li data-ru="Полные пробные экзамены с разбором" data-en="Full mocks with review">Полные пробные экзамены с разбором</li>
+                <li data-ru="Отработка тайминга и стрессоустойчивости" data-en="Timing and stress control">Отработка тайминга и стрессоустойчивости</li>
+                <li data-ru="Лексика из кодификатора ФИПИ" data-en="FIPI vocabulary list">Лексика из кодификатора ФИПИ</li>
+                <li data-ru="Поддержка между занятиями" data-en="Support between lessons">Поддержка между занятиями</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="flip-card" tabindex="0" role="button" aria-label="Международные экзамены">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="IELTS · TOEFL · CEFR" data-en="IELTS · TOEFL · CEFR">IELTS · TOEFL · CEFR</div>
+              <div class="program-title" data-ru="Международные" data-en="International">Международные</div>
+              <div class="program-sub" data-ru="Подготовка к экзаменам для учёбы и работы" data-en="Preparation for study & work exams">Подготовка к экзаменам для учёбы и работы</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Нужный балл для поступления или визы" data-en="The score you need for admission or a visa">Нужный балл для поступления или визы</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Подготовка к международным экзаменам с фокусом на письмо, устную часть и стратегию выполнения заданий." data-en="TOEFL prep with a focus on writing, speaking, and task strategy.">Подготовка к международным экзаменам с фокусом на письмо, устную часть и стратегию выполнения заданий.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Академическое письмо и разбор эссе" data-en="Academic writing and essay review">Академическое письмо и разбор эссе</li>
+                <li data-ru="Чтение и понимание на слух: стратегии" data-en="Reading and listening strategies">Чтение и понимание на слух: стратегии</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали программы" data-en="Program details">Детали программы</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Академическое письмо" data-en="Academic Writing">Академическое письмо</li>
+                <li data-ru="Структура устной части" data-en="Speaking structure">Структура устной части</li>
+                <li data-ru="Понимание на слух" data-en="Listening practice">Понимание на слух</li>
+                <li data-ru="Стратегии чтения" data-en="Reading strategies">Стратегии чтения</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Тайминг и индивидуальный план подготовки" data-en="Timing + personal plan">Тайминг и индивидуальный план подготовки</li>
+                <li data-ru="Регулярные пробные тесты по всем секциям" data-en="Regular full-section mocks">Регулярные пробные тесты по всем секциям</li>
+                <li data-ru="Критический разбор эссе и устных ответов" data-en="Deep review of essays and speaking">Критический разбор эссе и устных ответов</li>
+                <li data-ru="Академическая лексика (Кембридж / Оксфорд)" data-en="Cambridge/Oxford academic vocab">Академическая лексика (Кембридж / Оксфорд)</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="flip-card" tabindex="0" role="button" aria-label="Английский для взрослых">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="Английский для взрослых" data-en="Adult English">Английский для взрослых</div>
+              <div class="program-title" data-ru="Для взрослых" data-en="For adults">Для взрослых</div>
+              <div class="program-sub" data-ru="Практический английский для жизни и работы" data-en="Practical English for life and work">Практический английский для жизни и работы</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Говорю, не переключаясь на Google Translate" data-en="I speak without switching to Google Translate">Говорю, не переключаясь на Google Translate</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Практический английский для жизни и работы: устная речь, лексика и грамматика в живом контексте." data-en="Practical English for life and work: speaking, vocabulary, and grammar in context.">Практический английский для жизни и работы: устная речь, лексика и грамматика в живом контексте.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Разговорная речь без барьера" data-en="Barrier-free speaking">Разговорная речь без барьера</li>
+                <li data-ru="Диалоги, ситуации, медиа" data-en="Dialogues, scenarios, media">Диалоги, ситуации, медиа</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали программы" data-en="Program details">Детали программы</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Разговорная практика" data-en="Speaking practice">Разговорная практика</li>
+                <li data-ru="Грамматика в контексте" data-en="Grammar in context">Грамматика в контексте</li>
+                <li data-ru="Актуальная лексика" data-en="Relevant vocabulary">Актуальная лексика</li>
+                <li data-ru="Аудирование и чтение" data-en="Listening and reading">Аудирование и чтение</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Преодоление языкового барьера без стресса" data-en="Break the barrier without stress">Преодоление языкового барьера без стресса</li>
+                <li data-ru="Работа с реальными диалогами и медиа" data-en="Real dialogues and media">Работа с реальными диалогами и медиа</li>
+                <li data-ru="Грамматика без зубрёжки — через живые примеры" data-en="Grammar via real examples">Грамматика без зубрёжки — через живые примеры</li>
+                <li data-ru="Домашние задания с обратной связью" data-en="Homework with feedback">Домашние задания с обратной связью</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="flip-card" tabindex="0" role="button" aria-label="Разговорный клуб">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="Разговорный клуб" data-en="Speaking club">Разговорный клуб</div><div class="program-badge" style="background:transparent; color:var(--accent); border:1px solid var(--accent); margin-left:8px;" data-ru="группа · до 6 чел." data-en="group · up to 6">группа · до 6 чел.</div>
+              <div class="program-title" data-ru="Разговорный клуб" data-en="Speaking club">Разговорный клуб</div>
+              <div class="program-sub" data-ru="Практика речи в дружелюбной среде" data-en="Speaking practice in a friendly space">Практика речи в дружелюбной среде</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Говорю, не молчу — даже когда не знаю слова" data-en="I speak and don’t freeze—even when I don’t know a word">Говорю, не молчу — даже когда не знаю слова</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Регулярные встречи для развития разговорной уверенности: обсуждения, игры и практика живой речи." data-en="Regular meetups to build speaking confidence: discussions, games, and live practice.">Регулярные встречи для развития разговорной уверенности: обсуждения, игры и практика живой речи.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Тематические обсуждения и новые темы" data-en="Theme-based discussions">Тематические обсуждения и новые темы</li>
+                <li data-ru="Дебаты и ролевые игры" data-en="Debates and roleplays">Дебаты и ролевые игры</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали клуба" data-en="Club details">Детали клуба</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Тематические встречи" data-en="Theme-based sessions">Тематические встречи</li>
+                <li data-ru="Обсуждение актуальных тем" data-en="Discuss current topics">Обсуждение актуальных тем</li>
+                <li data-ru="Практика спонтанной речи" data-en="Spontaneous speaking">Практика спонтанной речи</li>
+                <li data-ru="Новая лексика и игры" data-en="New vocab and games">Новая лексика и игры</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Группы до 6 человек одного уровня" data-en="Groups up to 6 learners">Группы до 6 человек одного уровня</li>
+                <li data-ru="Актуальные темы: кино, технологии, искусство" data-en="Themes: film, tech, art">Актуальные темы: кино, технологии, искусство</li>
+                <li data-ru="Дебаты и ролевые игры" data-en="Debates and roleplays">Дебаты и ролевые игры</li>
+                <li data-ru="Разбор типичных ошибок после каждой встречи" data-en="Review common mistakes">Разбор типичных ошибок после каждой встречи</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="flip-card" tabindex="0" role="button" aria-label="Медицинский английский">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="Медицинский английский" data-en="Medical English">Медицинский английский</div>
+              <div class="program-title" data-ru="Медицинский" data-en="Medical">Медицинский</div>
+              <div class="program-sub" data-ru="Английский для врачей и медработников" data-en="English for healthcare professionals">Английский для врачей и медработников</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Работаю с пациентами и статьями на английском" data-en="I work with patients and papers in English">Работаю с пациентами и статьями на английском</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Для врачей и медработников: коммуникация с пациентами, чтение статей, клинические случаи и документация." data-en="For healthcare professionals: patient communication, papers, cases, and documentation.">Для врачей и медработников: коммуникация с пациентами, чтение статей, клинические случаи и документация.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Диалоги и протоколы приёма" data-en="Dialogues and appointment scripts">Диалоги и протоколы приёма</li>
+                <li data-ru="Статьи и клинические случаи" data-en="Papers and clinical cases">Статьи и клинические случаи</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали программы" data-en="Program details">Детали программы</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Медицинская лексика" data-en="Medical vocabulary">Медицинская лексика</li>
+                <li data-ru="Чтение статей и клинические кейсы" data-en="Papers and clinical cases">Чтение статей и клинические кейсы</li>
+                <li data-ru="Диалоги с пациентами" data-en="Patient dialogues">Диалоги с пациентами</li>
+                <li data-ru="Документация" data-en="Documentation">Документация</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Протоколы общения с пациентами на приёме" data-en="Patient appointment scripts">Протоколы общения с пациентами на приёме</li>
+                <li data-ru="Разбор реальных клинических случаев из ведущих медицинских журналов" data-en="Real cases from NEJM">Разбор реальных клинических случаев из ведущих медицинских журналов</li>
+                <li data-ru="Подготовка к профильным международным экзаменам для медиков" data-en="Prep for OET / PLAB">Подготовка к профильным международным экзаменам для медиков</li>
+                <li data-ru="Адаптация под вашу специализацию" data-en="Adaptation to your specialty">Адаптация под вашу специализацию</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="flip-card" tabindex="0" role="button" aria-label="Бизнес-английский">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="program-badge" data-ru="Английский для бизнеса" data-en="Business English">Английский для бизнеса</div>
+              <div class="program-title" data-ru="Бизнес-английский" data-en="Business English">Бизнес-английский</div>
+              <div class="program-sub" data-ru="Английский для работы и карьеры" data-en="English for work and career">Английский для работы и карьеры</div>
+
+              <div class="program-front-outcome">
+                <div class="program-section-label" data-ru="Результат" data-en="Outcome">Результат</div>
+                <div class="program-result" data-ru="Провожу переговоры без языкового барьера" data-en="I negotiate without a language barrier">Провожу переговоры без языкового барьера</div>
+              </div>
+
+              <p class="program-front-essence" data-ru="Для работы и карьеры: переписка, встречи, презентации и переговоры без языковой скованности." data-en="For work and career: writing, meetings, presentations, and negotiations with confidence.">Для работы и карьеры: переписка, встречи, презентации и переговоры без языковой скованности.</p>
+              <ul class="program-front-highlights">
+                <li data-ru="Переговоры, презентации, созвоны" data-en="Negotiations, presentations, calls">Переговоры, презентации, созвоны</li>
+                <li data-ru="Собеседования и деловые знакомства" data-en="Interviews and networking">Собеседования и деловые знакомства</li>
+              </ul>
+              <div class="flip-mobile-hint" data-ru="нажмите для деталей" data-en="tap for details">нажмите для деталей</div>
+            </div>
+
+            <div class="flip-back">
+              <div class="back-title" data-ru="Детали программы" data-en="Program details">Детали программы</div>
+
+              <div class="program-section-label" data-ru="Что входит" data-en="Included">Что входит</div>
+              <ul class="program-list">
+                <li data-ru="Деловая переписка" data-en="Business writing">Деловая переписка</li>
+                <li data-ru="Переговоры и презентации" data-en="Negotiations and presentations">Переговоры и презентации</li>
+                <li data-ru="Встречи и созвоны" data-en="Meetings and calls">Встречи и созвоны</li>
+                <li data-ru="Финансовая лексика" data-en="Financial vocabulary">Финансовая лексика</li>
+              </ul>
+
+              <div class="program-section-label" data-ru="Дополнительно" data-en="More">Дополнительно</div>
+              <ul class="back-detail-list">
+                <li data-ru="Анализ реальных бизнес-кейсов" data-en="Real business cases">Анализ реальных бизнес-кейсов</li>
+                <li data-ru="Деловые знакомства и лёгкая беседа" data-en="Networking and small talk">Деловые знакомства и лёгкая беседа</li>
+                <li data-ru="Подготовка к собеседованиям на английском" data-en="Interview prep in English">Подготовка к собеседованиям на английском</li>
+                <li data-ru="Проведение переговоров в ролевых играх" data-en="Roleplay negotiations">Проведение переговоров в ролевых играх</li>
+              </ul>
+              <a class="back-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div id="cta-inline-programs" style="display:flex; justify-content:space-between; align-items:center; gap:16px; padding:24px 28px; margin-top:36px; border:1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-2);">
+        <div>
+          <div style="font-size:16px; font-weight:600; color: var(--text);" data-ru="Нашли нужную программу?" data-en="Found the right program?">Нашли нужную программу?</div>
+          <div style="font-size:14px; color: var(--muted);" data-ru="Напишите — обсудим детали и составим маршрут." data-en="Write — we'll discuss and build your route.">Напишите — обсудим детали и составим маршрут.</div>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener" data-ru="Написать в Telegram →" data-en="Write on Telegram →">Написать в Telegram →</a>
+      </div>
+    </section>
+
+    <section class="content-block program-section" id="intensive">
+      <div class="content-block-header">
+        <h2 class="content-block-title">
+          <span class="line" data-ru="Ускоренные" data-en="Intensive">Ускоренные</span>
+          <span class="line accent" data-ru="курсы" data-en="courses">курсы</span>
+        </h2>
+        <p class="program-intro" data-ru="Ускоренный формат нужен не всем и не под каждую задачу, но иногда именно он помогает собрать язык в короткий срок. Здесь важны темп, дисциплина и чётко ограниченная цель." data-en="The intensive format is not for everyone or for every goal, but sometimes it helps to organise the language in a short period of time. Here pace, discipline, and a clearly limited target matter.">Ускоренный формат нужен не всем и не под каждую задачу, но иногда именно он помогает собрать язык в короткий срок. Здесь важны темп, дисциплина и чётко ограниченная цель.</p>
+      </div>
+      <div class="intensives-grid">
+        <div class="intensive-card">
+          <div style="display:inline-block; padding:3px 12px; background:var(--accent); color:#000; font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-radius:20px; margin-bottom:12px;" data-ru="Быстрый старт" data-en="Quick start">Быстрый старт</div>
+          <h4 data-ru="Английский для путешествий" data-en="English for travel">Английский для путешествий</h4>
+          <div class="intensive-desc" data-ru="Быстрый старт для комфортных поездок" data-en="A quick start for comfortable travel">Быстрый старт для комфортных поездок</div>
+          <ul class="intensive-list">
+            <li data-ru="аэропорт, отель, ориентирование, бытовые ситуации" data-en="airport, hotel, orientation, everyday situations">аэропорт, отель, ориентирование, бытовые ситуации</li>
+            <li data-ru="практичные речевые формулы, которые реально нужны в поездке" data-en="practical phrases you actually need on a trip">практичные речевые формулы, которые реально нужны в поездке</li>
+            <li data-ru="сборка уверенности перед поездкой" data-en="confidence-building before travel">сборка уверенности перед поездкой</li>
+          </ul>
+          <div class="intensive-result" data-ru="Результат: за 8–10 занятий: аэропорт, отель, маршруты — без переводчика." data-en="Result: in 8–10 lessons: airport, hotel, routes — without a translator.">Результат: за 8–10 занятий: аэропорт, отель, маршруты — без переводчика.</div>
+        </div>
+
+        <div class="intensive-card">
+          <h4 data-ru="Ускоренный курс B1 → B2" data-en="Intensive B1 → B2">Ускоренный курс B1 → B2</h4>
+          <div class="intensive-desc" data-ru="Укрепление системы языка за ограниченный срок" data-en="Strengthen the language system in a limited time">Укрепление системы языка за ограниченный срок</div>
+          <ul class="intensive-list">
+            <li data-ru="расширение устной и письменной речи" data-en="expand spoken and written output">расширение устной и письменной речи</li>
+            <li data-ru="собранная работа на переход к более уверенному среднему уровню" data-en="focused work toward a more confident intermediate level">собранная работа на переход к более уверенному среднему уровню</li>
+            <li data-ru="практика ключевых тем под ваши задачи" data-en="practice key topics for your goals">практика ключевых тем под ваши задачи</li>
+          </ul>
+          <div class="intensive-result" data-ru="Результат: ощутимый рывок в уровне: от неуверенного B1 к стабильному B2." data-en="Result: a real level-up—from shaky B1 to stable B2.">Результат: ощутимый рывок в уровне: от неуверенного B1 к стабильному B2.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" id="cta-section">
+      <div class="cta-head"><span data-ru="04 · Запись" data-en="04 · Enrollment">04 · Запись</span></div>
+      <h2>
+        <span class="line" data-ru="Если пока неясно," data-en="If you are not sure">Если пока неясно,</span>
+        <span class="line accent" data-ru="какой формат подойдёт" data-en="which format fits">какой формат подойдёт</span>
+      </h2>
+      <p data-ru="Можно написать мне и коротко описать задачу: экзамен, разговорная речь, восстановление базы, профессиональный английский или ускоренный курс. Дальше маршрут можно будет собрать уже под вас." data-en="You can write to me and briefly describe the goal: an exam, speaking, rebuilding the basics, professional English, or an intensive. Then the route can be assembled specifically for you.">Можно написать мне и коротко описать задачу: экзамен, разговорная речь, восстановление базы, профессиональный английский или ускоренный курс. Дальше маршрут можно будет собрать уже под вас.</p>
+      <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" data-ru="Написать в Telegram →" data-en="Write on Telegram →">Написать в Telegram →</a>
+    </section>
+  </div>
+  </main>
+
+<footer class="footer">
+  <div class="footer-copy">© New Generation English · <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></div>
+  <div class="footer-links">
+    <a class="footer-link" href="index.html" data-ru="На главную" data-en="Home">На главную</a>
+    <a class="footer-link" href="about-project.html" data-ru="О системе" data-en="About">О системе</a>
+    <a class="footer-link" href="conditions.html" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="footer-link" href="https://t.me/MariaBurceva_English" target="_blank" data-ru="Telegram" data-en="Telegram">Telegram</a>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("light");
+  localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+  const btn = document.querySelector(".control-btn");
+  if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+}
+function toggleLang() {
+  const cur = document.documentElement.getAttribute("lang") || "ru";
+  const next = cur === "ru" ? "en" : "ru";
+  document.documentElement.setAttribute("lang", next);
+  document.querySelectorAll("[data-ru]").forEach(el => {
+    const val = el.getAttribute("data-" + next);
+    if (val) el.textContent = val;
+  });
+  const btn = document.getElementById("langBtn");
+  if (btn) btn.textContent = next.toUpperCase();
+  localStorage.setItem("nge-lang", next);
+}
+function markActiveNav() {
+  const page = document.body.dataset.page;
+  if (!page) return;
+  document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+    l.classList.toggle("active", l.dataset.nav === page);
+  });
+}
+(function restore() {
+  try {
+    if (localStorage.getItem("nge-theme") === "light") {
+      document.body.classList.add("light");
+      const btn = document.querySelector(".control-btn");
+      if (btn) btn.textContent = "☀";
+    }
+    const savedLang = localStorage.getItem("nge-lang");
+    if (savedLang === "en") toggleLang();
+  } catch (e) {}
+  markActiveNav();
+  initProgramFlips();
+})();
+
+function initProgramFlips() {
+  const cards = document.querySelectorAll('body[data-page="programs"] .flip-card');
+  if (!cards.length) return;
+
+  const toggle = (card) => card.classList.toggle("flipped");
+
+  cards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      const t = e.target;
+      if (t && t.closest && t.closest("a")) return;
+      toggle(card);
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle(card);
+      }
+      if (e.key === "Escape") {
+        card.classList.remove("flipped");
+      }
+    });
+  });
+}
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>

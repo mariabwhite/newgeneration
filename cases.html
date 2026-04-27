@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Кейсы, отзывы, результаты и учебная среда New Generation English.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Кейсы и видео · New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="site.js" defer></script>
+<style>
+/* ============================================================
+   DEEPSEEK STYLE · CASES PAGE
+   FLAT · DARK · NO GRADIENTS · NO BLUR · NO SHADOWS
+   ============================================================ */
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a, button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* .wrap base (max-width, margin, h-padding) comes from system.css; page adds bottom padding */
+.wrap {
+  padding-bottom: 48px !important; /* page-specific extra bottom clearance */
+}
+
+.hero-students-link {
+  display: none;
+}
+
+body[data-page="cases"] section.hero .hero-media {
+  --hero-media-x: 50%;
+  --hero-media-y: 50%;
+}
+
+.results-showcase,
+.presentations-block,
+.results-old-block,
+.review-card,
+.gallery-item,
+.cases-cta,
+.footer-panel,
+.video-placeholder,
+.teacher-photo,
+.teacher-caption {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 64px;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+  background: var(--bg);
+}
+
+body.light .topbar {
+  background: rgba(244, 241, 236, 0.98);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.brand-logo-light {
+  display: none;
+}
+
+body.light .brand-logo-dark {
+  display: none;
+}
+
+body.light .brand-logo-light {
+  display: block;
+}
+
+.brand-name {
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  flex-wrap: nowrap;
+}
+
+.topnav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.topnav-link:hover,
+.topnav-link.active {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.control-btn {
+  min-width: 46px;
+  height: auto;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.control-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--surface-3);
+}
+
+.lang-btn {
+  min-width: 58px;
+  font-weight: 700;
+}
+
+.content-flow {
+  display: grid;
+  gap: 24px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-family: var(--mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.page-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn,
+.btn-secondary,
+.verify-btn,
+.media-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.btn,
+.btn-secondary {
+  padding: 12px 22px;
+  border: 1px solid transparent;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000000;
+  font-weight: 700;
+}
+
+.btn:hover {
+  background: var(--accent-2);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cases-hero {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.cases-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-header,
+.reviews-header,
+.gallery-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2,
+.reviews-header h2,
+.gallery-header h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.section-header p,
+.reviews-header p,
+.gallery-header p {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.case-tile {
+  position: relative;
+  min-height: 540px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: #0a0a0a;
+  overflow: hidden;
+  isolation: isolate;
+  perspective: 1200px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.case-tile:hover,
+.case-tile:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent) inset, 0 0 28px rgba(255,90,31,0.18);
+  transform: translateY(-2px);
+}
+
+.case-tile::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.75) 55%, rgba(10,10,10,1) 100%),
+    radial-gradient(circle at 50% 60%, rgba(255,90,31,0.18), transparent 70%);
+  z-index: -1;
+  opacity: 0.65;
+}
+
+.case-card-inner {
+  position: relative;
+  min-height: inherit;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.case-tile:hover .case-card-inner,
+.case-tile:focus-within .case-card-inner {
+  transform: rotateY(180deg);
+}
+
+.case-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 0;
+  backface-visibility: hidden;
+}
+
+.case-back {
+  transform: rotateY(180deg);
+}
+
+.case-badge {
+  display: inline-block;
+  align-self: flex-start;
+  min-height: 26px;
+  margin-bottom: 22px;
+  padding: 5px 10px;
+  border: 1px solid var(--accent);
+  background: rgba(255,90,31,0.1);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.case-tile h3 {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.case-label {
+  margin: 0 0 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.case-text {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.quote {
+  margin: 2px 0 20px;
+  color: var(--text-3);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.case-result {
+  margin-top: auto;
+  padding: 14px 0 22px;
+  border-top: 1px solid var(--border);
+}
+
+.case-result .k {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.case-result .v {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.case-story {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+body.light .case-tile {
+  background: #fffaf4;
+  border-color: rgba(42, 31, 24, 0.16);
+  box-shadow: 0 18px 38px rgba(42, 31, 24, 0.08);
+}
+
+body.light .case-tile:hover,
+body.light .case-tile:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.3) inset, 0 22px 42px rgba(42, 31, 24, 0.12);
+}
+
+body.light .case-tile::after {
+  background:
+    linear-gradient(180deg, rgba(255,250,244,0) 0%, rgba(255,250,244,0.72) 55%, #fffaf4 100%),
+    radial-gradient(circle at 50% 65%, rgba(255,90,31,0.16), transparent 70%);
+  opacity: 0.9;
+}
+
+body.light .case-tile h3,
+body.light .case-text,
+body.light .case-story,
+body.light .case-result .v {
+  color: #1f1712;
+}
+
+body.light .case-label,
+body.light .case-result {
+  border-color: rgba(42, 31, 24, 0.14);
+}
+
+body.light .case-label,
+body.light .quote {
+  color: #6f6258;
+}
+
+body.light .case-badge {
+  background: rgba(255, 90, 31, 0.08);
+}
+
+.teacher-block {
+  width: 300px;
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: 18px;
+}
+
+.cases-hero .teacher-block {
+  display: none;
+}
+
+.teacher-photo,
+.teacher-caption,
+.video-placeholder {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.teacher-photo img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.teacher-caption,
+.video-placeholder {
+  padding: 18px;
+}
+
+.teacher-name {
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.teacher-title {
+  margin-top: 6px;
+  color: var(--text-2);
+  font-size: 0.85rem;
+}
+
+.media-switch {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.media-chip {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text);
+}
+
+.media-chip.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.media-chip:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.video-placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.video-placeholder p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.92rem;
+}
+
+.results-showcase,
+.presentations-block,
+.results-old-block,
+.reviews-section,
+.gallery-section {
+  border-radius: var(--radius-lg);
+}
+
+.results-showcase,
+.presentations-block,
+.results-old-block {
+  padding: 20px;
+}
+
+.presentations-block,
+.results-old-block {
+  margin-top: 34px;
+}
+
+.results-title,
+.presentations-header h3,
+.results-old-header h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: var(--accent);
+  text-align: center;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.presentations-header p,
+.results-old-header p {
+  margin: 0 0 16px;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.results-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.result-badge-img,
+.presentation-item,
+.old-result-item {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.presentation-item {
+  overflow: hidden;
+  border-color: transparent;
+  background: transparent;
+}
+
+body.light .presentation-item {
+  background: transparent;
+  border-color: transparent;
+}
+
+body.light .presentation-item span {
+  color: #514c47;
+}
+
+.result-badge-img:hover,
+.presentation-item:hover,
+.old-result-item:hover,
+.gallery-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.presentation-item:hover {
+  border-color: transparent;
+}
+
+.result-badge-img {
+  width: 106px;
+  text-align: center;
+}
+
+.result-badge-img img {
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.result-badge-img span,
+.presentation-item span,
+.old-result-item span {
+  font-size: 0.72rem;
+  color: var(--text-2);
+}
+
+.presentations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.results-old-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.other-cases-control {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 0;
+}
+
+.other-cases-toggle {
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 90, 26, 0.7);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--accent);
+}
+
+.other-cases-toggle:hover,
+.other-cases-toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.other-cases-panel {
+  margin-top: 14px;
+}
+
+.other-cases-panel[hidden] {
+  display: none;
+}
+
+.presentation-item img,
+.old-result-item img {
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.reviews-section,
+.gallery-section {
+  padding: 4px 0 0;
+}
+
+.verify-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 18px 0 20px;
+}
+
+.verify-btn {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+
+.verify-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.warm-words-control {
+  display: flex;
+  justify-content: stretch;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.warm-words-toggle {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 100%;
+  padding: 0 34px;
+  border: 1px solid rgba(255, 90, 26, 0.78);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: clamp(1rem, 1.5vw, 1.28rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 26, 0.18), 0 16px 38px rgba(255, 90, 26, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.warm-words-toggle:hover,
+.warm-words-toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: rgba(255, 90, 26, 0.08);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 26, 0.28), 0 18px 42px rgba(255, 90, 26, 0.12);
+}
+
+.warm-words-toggle:focus-visible {
+  outline: 2px solid rgba(255, 90, 26, 0.55);
+  outline-offset: 3px;
+}
+
+body.light .warm-words-toggle {
+  background: #fffaf3;
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 26, 0.14), 0 14px 30px rgba(32, 24, 16, 0.07);
+}
+
+body.light .warm-words-toggle:hover,
+body.light .warm-words-toggle[aria-expanded="true"] {
+  background: rgba(255, 90, 26, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 26, 0.25), 0 18px 38px rgba(32, 24, 16, 0.1);
+}
+
+.warm-words-tile {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.warm-words-panel {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+body.light .warm-words-panel {
+  border-color: rgba(22, 18, 15, 0.1);
+  background: rgba(255, 252, 247, 0.78);
+  box-shadow: 0 18px 48px rgba(32, 24, 16, 0.08);
+}
+
+.warm-words-panel[hidden] {
+  display: none;
+}
+
+.warm-words-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.warm-word-card {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #090909;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.light .warm-word-card {
+  border-color: rgba(22, 18, 15, 0.1);
+  background: #fffaf3;
+  box-shadow: 0 14px 30px rgba(32, 24, 16, 0.08);
+}
+
+.warm-word-card:hover,
+.warm-word-card:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+body.light .warm-word-card:hover,
+body.light .warm-word-card:focus-visible {
+  box-shadow: 0 18px 38px rgba(32, 24, 16, 0.13);
+}
+
+.warm-word-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.review-card {
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: var(--mono);
+}
+
+.review-author {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.review-date {
+  font-size: 0.72rem;
+  color: var(--text-3);
+}
+
+.review-text {
+  color: var(--text-2);
+  font-size: 0.94rem;
+}
+
+.media-library {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 20px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: #070707;
+}
+
+body.light .media-library {
+  border-color: rgba(22, 18, 15, 0.12);
+  background: #f4efe8;
+  box-shadow: 0 22px 60px rgba(32, 24, 16, 0.08);
+}
+
+.media-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+body.light .media-panel {
+  border-color: rgba(22, 18, 15, 0.1);
+  background: rgba(255, 252, 247, 0.82);
+}
+
+.video-gallery {
+  padding-left: 16px;
+}
+
+.media-panel-header {
+  min-height: 98px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+body.light .media-panel-header {
+  border-bottom-color: rgba(22, 18, 15, 0.12);
+}
+
+.media-panel-header h2,
+.media-panel-header h3 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(1.55rem, 2.4vw, 2.18rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.media-panel-header h2::before,
+.media-panel-header h3::before {
+  content: "MEDIA ARCHIVE";
+  display: block;
+  margin-bottom: 9px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.media-panel-header p {
+  margin: 0;
+  max-width: 520px;
+  color: var(--text-3);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+body.light .media-panel-header p {
+  color: rgba(22, 18, 15, 0.62);
+}
+
+.video-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.video-card {
+  display: grid;
+  gap: 11px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0b0b0b;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+body.light .video-card {
+  border-color: rgba(22, 18, 15, 0.1);
+  background: #fffaf3;
+  box-shadow: 0 12px 30px rgba(32, 24, 16, 0.07);
+}
+
+.video-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+body.light .video-card:hover {
+  border-color: rgba(255, 90, 26, 0.42);
+  box-shadow: 0 16px 34px rgba(32, 24, 16, 0.1);
+}
+
+.video-card video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: #050505;
+  object-fit: cover;
+  opacity: 0.86;
+  filter: grayscale(0.45) saturate(0.72) contrast(0.98) brightness(0.88);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+body.light .video-card video {
+  border-color: rgba(22, 18, 15, 0.12);
+  background: #eee6dc;
+  opacity: 1;
+  filter: grayscale(0.18) saturate(0.86) contrast(0.98) brightness(0.97);
+}
+
+.video-card:hover video,
+.video-card:focus-within video {
+  opacity: 1;
+  filter: grayscale(0.25) saturate(0.82) contrast(1) brightness(0.94);
+}
+
+body.light .video-card:hover video,
+body.light .video-card:focus-within video {
+  filter: grayscale(0.08) saturate(0.96) contrast(1) brightness(1);
+}
+
+.video-card h4 {
+  margin: 0 0 5px;
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+body.light .video-card h4 {
+  color: #18130f;
+}
+
+.video-card p {
+  margin: 0;
+  color: var(--text-3);
+  font-size: 0.73rem;
+  line-height: 1.45;
+}
+
+body.light .video-card p {
+  color: rgba(22, 18, 15, 0.6);
+}
+
+.video-status {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.gallery-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 78px;
+  gap: 10px;
+  align-items: stretch;
+  overflow: visible;
+}
+
+.gallery-grid.has-popout::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(0, 0, 0, 0.74);
+}
+
+body.light .gallery-grid.has-popout::before {
+  background: rgba(22, 18, 15, 0.62);
+}
+
+.gallery-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.tiktok-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tiktok-link:hover {
+  background: rgba(255, 90, 26, 0.08);
+}
+
+.gallery-item {
+  position: relative;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transform-origin: center;
+  transition: border-color 0.25s ease, transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1), box-shadow 0.28s ease;
+}
+
+body.light .gallery-item {
+  border-color: rgba(22, 18, 15, 0.1);
+  background: #eee6dc;
+}
+
+.gallery-item:nth-child(n) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(2) { grid-column: span 3; grid-row: span 3; }
+.gallery-item:nth-child(6),
+.gallery-item:nth-child(7) { grid-column: span 3; grid-row: span 2; }
+.gallery-item:nth-child(11) { grid-column: span 6; grid-row: span 2; }
+.gallery-item:hover,
+.gallery-item:focus-visible {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  z-index: 20;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.38);
+}
+
+body.light .gallery-item:hover,
+body.light .gallery-item:focus-visible {
+  border-color: rgba(255, 90, 26, 0.4);
+  box-shadow: 0 18px 34px rgba(32, 24, 16, 0.14);
+}
+
+.gallery-item:hover img,
+.gallery-item:focus-visible img {
+  opacity: 0.94;
+  filter: grayscale(0.34) saturate(0.78) contrast(0.98) brightness(0.92);
+}
+
+body.light .gallery-item:hover img,
+body.light .gallery-item:focus-visible img {
+  opacity: 1;
+  filter: grayscale(0.18) saturate(1) contrast(1) brightness(1.04);
+}
+
+.gallery-item.is-active {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: min(86vw, 980px);
+  height: min(78vh, 720px);
+  border-color: var(--accent);
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 1000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.62);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  opacity: 0.86;
+  filter: grayscale(0.5) saturate(0.7) contrast(0.98) brightness(0.88);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+body.light .gallery-item img {
+  opacity: 0.95;
+  filter: grayscale(0.32) saturate(0.92) contrast(1) brightness(1.02);
+}
+
+.gallery-item.is-active img {
+  opacity: 1;
+  filter: saturate(0.96) contrast(1) brightness(1);
+  object-fit: contain;
+  background: #050505;
+}
+
+body.light .gallery-item.is-active img {
+  background: #18130f;
+}
+
+.gallery-caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(245, 245, 245, 0.86);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.35;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(8px);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.gallery-item:hover .gallery-caption,
+.gallery-item:focus-visible .gallery-caption,
+.gallery-item.is-active .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cases-cta {
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  text-align: center;
+}
+
+.cases-cta h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+.cases-cta p {
+  margin: 0 auto 18px;
+  max-width: 760px;
+  color: var(--text-2);
+}
+
+.footer-panel {
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-top: 6px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.footer-brand {
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.footer-copy {
+  color: var(--text-2);
+  max-width: 440px;
+}
+
+.footer-copy a {
+  color: inherit;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--text-2);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.modal img {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  max-width: min(92vw, 1100px);
+  max-height: 88vh;
+  border-radius: 16px;
+}
+
+@media (max-width: 1100px) {
+  .cases-hero {
+    flex-direction: column;
+  }
+
+  .cases-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teacher-block {
+    position: static;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .teacher-photo {
+    grid-row: span 2;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-library {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 76px;
+  }
+
+  .gallery-item:nth-child(n) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+
+  .gallery-item:nth-child(6),
+  .gallery-item:nth-child(7) {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .gallery-item:nth-child(11) {
+    grid-column: span 6;
+    grid-row: span 2;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .video-card {
+    align-content: start;
+  }
+
+}
+
+@media (max-width: 860px) {
+  .video-gallery {
+    padding-left: 0;
+  }
+
+  .topnav {
+    order: 3;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .topbar-tools {
+    margin-left: 0;
+  }
+
+  .cases-grid,
+  .presentations-grid,
+  .results-old-grid,
+  .reviews-grid,
+  .warm-words-grid,
+  .teacher-block {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-photo {
+    grid-row: auto;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: 62px;
+  }
+
+  .gallery-item:nth-child(n) {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(11) {
+    grid-column: span 6;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .wrap {
+    padding: 14px 14px 36px;
+  }
+  .results-showcase,
+  .presentations-block,
+  .results-old-block,
+  .cases-cta,
+  .footer-panel {
+    border-radius: var(--radius-lg);
+  }
+
+  .case-tile {
+    min-height: 460px;
+  }
+
+  .section-header h2,
+  .reviews-header h2,
+  .gallery-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .media-library {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .media-panel {
+    padding: 12px;
+  }
+
+  .media-panel-header {
+    min-height: auto;
+  }
+
+  .media-panel-header h2,
+  .media-panel-header h3 {
+    font-size: 1.45rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .gallery-item:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-item.is-active {
+    width: calc(100vw - 24px);
+    height: min(74vh, 560px);
+  }
+}
+
+.cases-cta {
+  padding: 80px 24px;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  text-align: center;
+}
+.cases-cta .cta-head {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.cases-cta .cta-head::before,
+.cases-cta .cta-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.cases-cta h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+.cases-cta h2 .accent {
+  color: var(--accent);
+}
+.cases-cta h2 .cta-real {
+  color: var(--text);
+}
+.cases-cta p {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.cases-cta .btn {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 640px) {
+  .cases-cta h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}
+.footer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  max-width: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: var(--bg-3); }
+
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="cases">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+<main class="content-flow">
+    <section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Кейсы и видео · New Generation English" data-en="Cases and video · New Generation English">Кейсы и видео · New Generation English</span>
+      <span class="bar"></span>
+      <span>NO. 004</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="Кейсы и учебная среда" data-en="Cases and learning environment">Кейсы и учебная среда</div>
+        <div class="hero-kicker-secondary" data-ru="Результаты · отзывы · видео" data-en="Results · reviews · video">Результаты · отзывы · видео</div>
+
+        <h1>
+          <span class="line" data-ru="Кейсы" data-en="Cases">Кейсы</span>
+          <span class="line accent" data-ru="и видео" data-en="and video">и видео</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Здесь собраны реальные кейсы учеников, результаты экзаменов, отзывы, учебные материалы и визуальная среда проекта. Это не рекламный шум, а рабочее портфолио преподавателя." data-en="Here you can see real student cases, exam results, reviews, learning materials, and the project’s learning environment. This is a working portfolio, not marketing noise.">Здесь собраны реальные кейсы учеников, результаты экзаменов, отзывы, учебные материалы и визуальная среда проекта. Это не рекламный шум, а рабочее портфолио преподавателя.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="programs.html" data-ru="Смотреть программы" data-en="View programs">Смотреть программы</a>
+          <a class="btn btn-ghost" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Написать в Telegram" data-en="Message me on Telegram">Написать в Telegram</a>
+        </div>
+
+        <p class="hero-students-link"><span data-ru="Рабочее портфолио:" data-en="Working portfolio:">Рабочее портфолио:</span> <a href="cases.html" data-ru="кейсы и видео" data-en="cases and video">кейсы и видео</a></p>
+      </div>
+
+      <div class="hero-media">
+        <img src="assets/maria-cases-sidebar.jpg" alt="New Generation English cases"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+        <div class="fallback-img" style="display:none; position:absolute; inset:0;">NGE · CASES<br>RESULTS & VIDEO<br>3 : 4</div>
+        <div class="hero-media-frame"></div>
+        <div class="hero-media-caption">
+          <span class="dot"></span><span data-ru="cases archive" data-en="cases archive">cases archive</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num">ОГЭ</div><div class="lbl" data-ru="экзамены" data-en="exams">экзамены</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num">5</div><div class="lbl" data-ru="результаты" data-en="results">результаты</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">VK</div><div class="lbl" data-ru="отзывы" data-en="reviews">отзывы</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">VIDEO</div><div class="lbl" data-ru="среда" data-en="environment">среда</div></div>
+    </div>
+  </div>
+</section>
+
+    <div class="wrap">
+    <section class="cases-hero">
+      <div class="cases-content">
+        <div class="section-header">
+          <h2 id="cases-title">Кейсы учеников</h2>
+          <p id="cases-subtitle">Реальные результаты 2020–2025 годов</p>
+        </div>
+
+        <div class="cases-grid" id="cases-grid"></div>
+
+        <div class="results-showcase">
+          <div class="results-title" id="results-title">Результаты ОГЭ 2025</div>
+          <div class="results-grid" id="results-grid"></div>
+        </div>
+
+        <div class="presentations-block">
+          <div class="presentations-header">
+            <h3 data-ru="Сопроводительные презентации" data-en="Supporting presentations">Сопроводительные презентации</h3>
+            <p data-ru="Перевод и сопровождение профессиональных мероприятий" data-en="Translation and support for professional events">Перевод и сопровождение профессиональных мероприятий</p>
+          </div>
+          <div class="presentations-grid" id="presentations-grid"></div>
+        </div>
+
+        <div class="results-old-block">
+          <div class="results-old-header">
+            <h3 data-ru="Сильные кейсы" data-en="Strong Cases">Сильные кейсы</h3>
+            <p data-ru="ЕГЭ, поступления, академические задачи и долгосрочная динамика" data-en="EGE, admissions, academic work, and long-term progress">ЕГЭ, поступления, академические задачи и долгосрочная динамика</p>
+          </div>
+          <div class="results-old-grid" id="results-old-grid"></div>
+          <div class="other-cases-control">
+            <button class="other-cases-toggle" id="other-cases-toggle" type="button" aria-expanded="false" aria-controls="other-cases-panel" data-ru="Остальные кейсы" data-en="More cases">Остальные кейсы</button>
+          </div>
+          <div class="other-cases-panel" id="other-cases-panel" hidden>
+            <div class="results-old-grid" id="other-cases-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="teacher-block">
+        <div class="teacher-photo">
+          <img src="assets/maria-cases-sidebar.jpg" alt="Мария Витальевна Бурцева">
+        </div>
+
+        <div class="teacher-caption">
+          <div class="teacher-name">Мария Витальевна Бурцева</div>
+          <div class="teacher-title" data-ru="Преподаватель английского языка" data-en="English teacher">Преподаватель английского языка</div>
+          <div class="teacher-title">New Generation English</div>
+        </div>
+
+        <div class="video-placeholder">
+          <div class="media-switch">
+            <button class="media-chip active" type="button" disabled data-ru="Кейсы" data-en="Cases">Кейсы</button>
+            <button class="media-chip" type="button" disabled data-ru="Видео" data-en="Video">Видео</button>
+          </div>
+          <h3 data-ru="Видео" data-en="Video">Видео</h3>
+          <p data-ru="Здесь будет отдельный видео-блок: фрагменты занятий, рабочая среда и короткие материалы, связанные с кейсами." data-en="A dedicated video block will appear here: lesson fragments, working environment, and short materials connected with the cases.">Здесь будет отдельный видео-блок: фрагменты занятий, рабочая среда и короткие материалы, связанные с кейсами.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="reviews-section">
+      <div class="reviews-header">
+        <h2 id="reviews-title">Отзывы</h2>
+        <p id="reviews-subtitle">Что говорят ученики и их родители</p>
+      </div>
+      <div class="verify-buttons">
+        <a href="https://uslugi.yandex.ru/profile/MariyaBurceva-2775099" target="_blank" rel="noreferrer" class="verify-btn" data-ru="Проверить на Яндекс Услугах" data-en="Check on Yandex Services">Проверить на Яндекс Услугах</a>
+        <a href="https://vk.com/new_generation_english?w=wall-30223781_154" target="_blank" rel="noreferrer" class="verify-btn" data-ru="Проверить в VK" data-en="Check on VK">Проверить в VK</a>
+      </div>
+      <div class="reviews-grid" id="reviews-grid"></div>
+      <div class="warm-words-panel" id="warm-words-panel" hidden>
+        <div class="warm-words-grid" id="warm-words-grid"></div>
+      </div>
+    </section>
+
+    <section class="media-library" aria-label="Медиаархив">
+      <div class="media-panel gallery-section">
+        <div class="media-panel-header gallery-header">
+          <h2 id="gallery-title">Фотогалерея</h2>
+          <p id="gallery-subtitle">Приглушенный архив: фото раскрываются цветом поверх мозаики</p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+        <div class="gallery-actions">
+          <a class="tiktok-link" href="https://www.tiktok.com/@white_nois?_r=1&_t=ZS-95s0hVFfFcS" target="_blank" rel="noreferrer" data-ru="TikTok канал" data-en="TikTok channel">TikTok канал</a>
+        </div>
+      </div>
+
+      <aside class="media-panel video-gallery" aria-label="Видео-галерея">
+        <div class="media-panel-header">
+          <h3 data-ru="Видео-галерея" data-en="Video gallery">Видео-галерея</h3>
+          <p data-ru="Сюда можно положить фрагменты занятий, разборы и короткие истории результатов." data-en="A space for lesson fragments, walkthroughs, and short stories behind the results.">Сюда можно положить фрагменты занятий, разборы и короткие истории результатов.</p>
+        </div>
+        <div class="video-grid">
+          <article class="video-card">
+            <video controls preload="metadata" playsinline>
+              <source src="assets/video/general-practice-card.mp4" type="video/mp4">
+            </video>
+            <div><h4 data-ru="Визитка General Practice" data-en="General Practice intro">Визитка General Practice</h4><p data-ru="Короткое видео с преподавателем для знакомства и доверия." data-en="A short teacher intro for context and trust.">Короткое видео с преподавателем для знакомства и доверия.</p><span class="video-status" data-ru="mp4" data-en="mp4">mp4</span></div>
+          </article>
+          <article class="video-card">
+            <video controls preload="metadata" playsinline>
+              <source src="assets/video/kids-lesson-01.mp4" type="video/mp4">
+            </video>
+            <div><h4 data-ru="Фрагмент занятия 01" data-en="Lesson fragment 01">Фрагмент занятия 01</h4><p data-ru="Живой эпизод учебной среды: дети, речь, динамика занятия." data-en="A live learning moment: children, speaking, lesson rhythm.">Живой эпизод учебной среды: дети, речь, динамика занятия.</p><span class="video-status" data-ru="mp4 · 48 МБ" data-en="mp4 · 48 MB">mp4 · 48 МБ</span></div>
+          </article>
+          <article class="video-card">
+            <video controls preload="metadata" playsinline>
+              <source src="assets/video/kids-lesson-02.mp4" type="video/mp4">
+            </video>
+            <div><h4 data-ru="Фрагмент занятия 02" data-en="Lesson fragment 02">Фрагмент занятия 02</h4><p data-ru="Еще один короткий фрагмент для ощущения атмосферы и формата." data-en="Another short fragment showing the atmosphere and format.">Еще один короткий фрагмент для ощущения атмосферы и формата.</p><span class="video-status" data-ru="mp4 · 32 МБ" data-en="mp4 · 32 MB">mp4 · 32 МБ</span></div>
+          </article>
+        </div>
+      </aside>
+    </section>
+
+    <section class="cases-cta" aria-label="Записаться на консультацию">
+      <div class="cta-head"><span data-ru="04 · Запись" data-en="04 · Enrollment">04 · Запись</span></div>
+      <h2>
+        <span data-ru="Если вам важны" data-en="If">Если вам важны</span>
+        <span class="cta-real" data-ru="реальные" data-en="real">реальные</span> <span class="accent" data-ru="учебные результаты" data-en="learning results matter to you">учебные результаты</span>
+      </h2>
+      <p id="cta-note" data-ru="Разберём ваш запрос, посмотрим на текущую точку и подберём формат, в котором будет движение." data-en="We’ll discuss your request, look at where you are now, and choose a format that can create real progress.">Разберём ваш запрос, посмотрим на текущую точку и подберём формат, в котором будет движение.</p>
+      <button class="btn btn-primary" id="cases-cta-btn" type="button" data-ru="Записаться на консультацию →" data-en="Book a consultation →">Записаться на консультацию →</button>
+    </section>
+    </div>
+  </main>
+
+<footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+
+<div id="imageModal" class="modal" aria-hidden="true">
+  <img id="modalImage" src="" alt="">
+</div>
+
+<script>
+const casesData = {
+  ru: [
+    { name: "Варвара, 17 лет", result: "98 баллов ЕГЭ → МГУ", problem: "Высокий балл и глубокое владение языком", action: "С 5 класса: пробелы, экзамен, Пратчетт в оригинале, сериалы", quote: "Мария Витальевна научила любить английский", story: "Когда я познакомилась с Варей, ей было 10 или 11 лет. Сначала она пришла просто заниматься, а потом поняла, что может глубоко копать язык. Мы годами собирали систему: закрывали пробелы, тренировали экзамен, качали живую речь через книги и сериалы. К 11 классу я говорила ей, что она станет интересным билингвальным человеком. Так и вышло: ЕГЭ Варя сдала на 98 баллов." },
+    { name: "Таисия, 17 лет", result: "92% → бюджет МПГУ", problem: "Провал экзамена, потерянный год и низкая уверенность", action: "1 год индивидуальной подготовки, стратегия и полный разбор формата", quote: "Без вас не получилось бы! Проскочила чудом", story: "Таисия была сильной, но не дотянула на экзамене пару баллов и потеряла год. Нужно было пройти путь заново: без паники, с ясной стратегией и полным пониманием формата. Мы разобрали задания, собрали план и отдельно поработали с тревогой. В итоге Тася получила 92% и прошла на бюджет в МПГУ." },
+    { name: "Маша, 11 лет", result: "Призёр двух олимпиад → 2 школы", problem: "Поступление в Академию Летово и языковые экзамены", action: "1,5 года занятий, английская речь, игровые элементы и точная подготовка", quote: "Отличный учитель, умеет сделать урок интересным", story: "Маша очень хотела поступить в Академию Летово, а мама нашла меня по отзывам и рекомендациям. Мы готовились к языковым экзаменам около полутора лет: ставили понятные цели, добавляли игровые элементы и много говорили на английском. После нескольких попыток Маша поступила туда, куда хотела, стала призёром двух олимпиад и прошла сразу в две школы." },
+    { name: "Екатерина, 22 года", result: "8/10 за дипломный проект", problem: "Помощь с эссе и подлинностью текста после школы", action: "Ревизии текста, разговорная практика, антиплагиат и академический стиль", quote: "Получила 8 баллов из 10", story: "Катя была моей ученицей ещё в школе, а после выпуска вернулась за помощью с дипломным проектом. Нужно было написать эссе живым академическим языком и пройти проверку на подлинность. Мы делали ревизии, усиливали формулировки, логику и разговорную практику. В итоге вышли на 60+% подлинности, а Екатерина получила 8 баллов из 10." }
+  ],
+  en: [
+    { name: "Varvara, 17", result: "98 points in the EGE → MSU", problem: "A high score and a deep command of English.", action: "From year 5: gaps, exam format, Terry Pratchett in the original, and series.", quote: "Maria Vitalyevna taught me to love English.", story: "When I met Varya, she was only 10 or 11. At first she simply came for English lessons, and then she realised she could understand the language deeply. For years we built the system: closed gaps, trained the exam format, and kept live speech growing through books and series. By year 11 I was telling her she would become a genuinely interesting bilingual person. That is exactly what happened: Varya scored 98 in the EGE." },
+    { name: "Taisia, 17", result: "92% → state-funded place at MPGU", problem: "A failed exam, a lost year, and low confidence.", action: "One year of individual preparation, strategy, and a full format breakdown.", quote: "It wouldn’t have worked without you. I made it by a miracle.", story: "Taisia was strong, but she missed the threshold by a couple of points and lost a year. We had to go through the path again: without panic, with a clear strategy and a full understanding of the format. We analysed the tasks, built a plan, and worked separately with anxiety. In the end, Tasya scored 92% and got a state-funded place at MPGU." },
+    { name: "Masha, 11", result: "Prize winner in two Olympiads → 2 schools", problem: "Admission to Letovo Academy and language exams.", action: "1.5 years of lessons, English speech, playful elements, and precise preparation.", quote: "An excellent teacher who knows how to make a lesson interesting.", story: "Masha really wanted to get into Letovo Academy, and her mother found me through reviews and recommendations. We prepared for the language exams for about a year and a half: set clear goals, added playful elements, and spoke a lot of English. After several attempts, Masha got into the school she wanted, became a prize winner in two Olympiads, and was accepted by two schools at once." },
+    { name: "Ekaterina, 22", result: "8/10 for a graduation project", problem: "Help with an essay and text authenticity after school.", action: "Text revisions, speaking practice, anti-plagiarism work, and academic style.", quote: "I received 8 out of 10.", story: "Katya had been my student at school, and after graduation she came back for help with her final project. The task was to write an essay in natural academic English and pass the authenticity check. We revised the text, strengthened the phrasing, logic, and speaking practice. In the end, the text reached 60%+ authenticity, and Ekaterina received 8 out of 10." }
+  ]
+};
+
+const presentationsData = [
+  { src: "assets/presentations/brics.png", caption: "BRICS — перевод лекций и переговоров" },
+  { src: "assets/presentations/medical-oncology.png", caption: "Медицинский английский — онколог, 10 консультаций" },
+  { src: "assets/presentations/tenet.png", caption: "TENET — перевод и сопровождение презентации" }
+];
+
+const oldResultsData = [
+  { src: "assets/case-library/front-01-aliev.png", caption: "Кейс №1: МГИМО, 94 балла ЕГЭ" },
+  { src: "assets/case-library/front-02-canada.png", caption: "Кейс №15: 98% на ЕГЭ, поступление в Канаду" },
+  { src: "assets/case-library/front-03-system.png", caption: "Кейс №20: ЕГЭ → международные экзамены" },
+  { src: "assets/case-library/front-04-ivan-kylchik.png", caption: "Кейс №15: Иван, подготовка к ЕГЭ" },
+  { src: "assets/case-library/front-05-ege.png", caption: "Кейс №3: ЕГЭ 2024 — 94 балла" },
+  { src: "assets/case-library/front-06-above-level.png", caption: "Кейс №14: от слабого уровня к сдаче ЕГЭ" }
+];
+
+const otherCasesData = [
+  { src: "assets/case-library/academic-8-10.png", caption: "Кейс №7: академический экзамен 8/10" },
+  { src: "assets/case-library/ege-session.png", caption: "Кейс №3: стратегическая сессия по ЕГЭ" },
+  { src: "assets/case-library/long-term.png", caption: "Кейс №17: долгосрочный прогресс" },
+  { src: "assets/case-library/system-work.png", caption: "Кейс №20: ЕГЭ → международные экзамены" },
+  { src: "assets/case-library/speaking-fear.png", caption: "Кейс №19: от страха говорить к уверенности" },
+  { src: "assets/case-library/above-level.png", caption: "Кейс №14: от слабого уровня к сдаче ЕГЭ" },
+  { src: "assets/case-library/review-progress.png", caption: "Кейс №11: успеваемость за 5 месяцев" },
+  { src: "assets/case-library/junior-level.png", caption: "Кейс №12: A2 → B2" },
+  { src: "assets/case-library/methodical-materials.png", caption: "Кейс №18: методические материалы" }
+];
+
+const reviewsData = {
+  ru: [
+    { author: "Света", date: "02.02.2025", text: "Занимались с сентября 2024 по январь 2025. С задачей справились успешно. Мария грамотный педагог, умеет расположить к себе ребёнка.", avatar: "С" },
+    { author: "Красивая девочка", date: "31.01.2025", text: "За несколько месяцев подняла уровень с A2 до B2. Уроки в лёгкой атмосфере, без скучных учебников. 100% рекомендую!", avatar: "КД" },
+    { author: "Екатерина М.", date: "16.01.2025", text: "Мария Витальевна отличный преподаватель. Всё чётко и понятно объясняет. Восполнили пробелы, стала увереннее говорить.", avatar: "ЕМ" },
+    { author: "Анастасия Б.", date: "01.12.2024", text: "С 0 выучила более 150 слов, начала составлять предложения. Обязательно вернусь. Спасибо за знания.", avatar: "АБ" },
+    { author: "Анастасия Журавлева", date: "23.11.2024", text: "Племянник сам заинтересовался процессом. ЕГЭ сдан без трудностей. Это главный успех.", avatar: "АЖ" },
+    { author: "Oksana", date: "17.10.2024", text: "Самый лучший, квалифицированный педагог. Уникальная способность найти ключики к каждому ученику.", avatar: "О" },
+    { author: "Варвара С.", date: "26.09.2024", text: "6 лет занятий, ЕГЭ 98 баллов, МГУ. Смотрели Друзей, читали Пратчетта. Спасибо за любовь к языку.", avatar: "ВС" },
+    { author: "Дмитрий", date: "18.09.2024", text: "Двое детей не имели желания заниматься. Через 2 года сын выбрал английский на ОГЭ.", avatar: "Д" },
+    { author: "Елена Аксиненко", date: "06.09.2024", text: "Мария готовила сына к ЕГЭ. Всегда на связи, помогала внеурочно. Однозначно рекомендую.", avatar: "ЕА" },
+    { author: "Татьяна П", date: "02.09.2024", text: "Оба ребёнка занимаются. Прогресс налицо. Мониторинг знаний чуткий, занятия интересные.", avatar: "ТП" }
+  ],
+  en: [
+    { author: "Sveta", date: "02.02.2025", text: "We worked from September 2024 to January 2025 and completed the task successfully. Maria is a competent teacher who knows how to connect with a child.", avatar: "S" },
+    { author: "Student review", date: "31.01.2025", text: "In a few months my level rose from A2 to B2. The lessons were light, clear, and never boring. I definitely recommend her.", avatar: "SR" },
+    { author: "Ekaterina M.", date: "16.01.2025", text: "Maria is an excellent teacher. Everything is explained clearly and calmly. We filled the gaps and I became more confident in speaking.", avatar: "EM" },
+    { author: "Anastasia B.", date: "01.12.2024", text: "Starting from zero, I learned more than 150 words and began making sentences. I will definitely come back. Thank you for the knowledge.", avatar: "AB" },
+    { author: "Anastasia Zhuravleva", date: "23.11.2024", text: "My nephew became genuinely interested in the process. He passed the EGE without difficulty. That is the main success.", avatar: "AZ" },
+    { author: "Oksana", date: "17.10.2024", text: "A highly qualified teacher. Maria has a rare ability to find the right approach to every student.", avatar: "O" },
+    { author: "Varvara S.", date: "26.09.2024", text: "Six years of lessons, 98 points in the EGE, and MSU. We watched Friends and read Pratchett. Thank you for teaching me to love the language.", avatar: "VS" },
+    { author: "Dmitry", date: "18.09.2024", text: "My two children had no desire to study. Two years later, my son chose English for the OGE.", avatar: "D" },
+    { author: "Elena Aksinenko", date: "06.09.2024", text: "Maria prepared my son for the EGE. She was always in touch and helped outside lesson time. I definitely recommend her.", avatar: "EA" },
+    { author: "Tatiana P.", date: "02.09.2024", text: "Both of my children study with Maria. The progress is clear. Knowledge is monitored carefully, and the lessons are interesting.", avatar: "TP" }
+  ]
+};
+
+const warmWordsData = [
+  { src: "assets/warm-words/warm-word-dasha.png", caption: "Даша: практика и системная работа" },
+  { src: "assets/warm-words/warm-word-olesya.png", caption: "Олеся: теплые слова после выпускного" },
+  { src: "assets/warm-words/warm-word-elizaveta.png", caption: "Елизавета Цветкова: подготовка к ЕГЭ" },
+  { src: "assets/warm-words/warm-word-extra-01.png", caption: "Дополнительный отзыв из архива теплых слов" },
+  { src: "assets/warm-words/warm-word-extra-03.png", caption: "Теплый отзыв из архива" },
+  { src: "assets/warm-words/warm-word-extra-04.png", caption: "Аня: системная подготовка к ОГЭ" }
+];
+
+const galleryImages = [
+  { src: "https://i.ibb.co/JRxggNBG/photo-2024-07-29-17-52-29.jpg", caption: "Маша поступила в Летово", tag: "результат", link: null },
+  { src: "https://i.ibb.co/wN9s0ZRW/image.png", caption: "Варя — учится с 7 лет и до сих пор", tag: "98 ЕГЭ", link: null },
+  { src: "https://i.ibb.co/mC47gF5G/3-Tdb9-If-SADwgat-P2-Bj-Gl5rn4h-Edo-Bop-Mz-Oq-RDFsrg793n-MIpu5w-Lk-J-NWXP1-Xrlc-I0-RVK7-NDjob1vv3de-Rv-Vi.jpg", caption: "Лингвистический класс", tag: "класс", link: null },
+  { src: "https://i.ibb.co/PZVPSym7/3aru-Put8s-Yib0-XJ2-I8a-I30d-Mki-YB3-GX6l4-Bi-Es-BHbrm-OY0-Mr27-J9-L7-MPll6v-VY3-Tlkq-Kfbs-CF6q0y-F5-Ufh-XOl-M.jpg", caption: "Жарко и в школе ремонт — с углубленной группой на траве", tag: "урок", link: null },
+  { src: "https://i.ibb.co/mCwzBtK5/mwfrv-BXxo-GMr1c5-Vno-Qj-X8-XIQ2-L-g-Wcfby-NSp7-A-F80-IXagg9-LJJpdp0t-Du-LZDNWOm9-KJLbb-Ffa-BSrw-Xka-LC3m-V.jpg", caption: "Лингвистический класс, углубленные группы", tag: "группа", link: null },
+  { src: "https://i.ibb.co/fYHwJzCB/VMu-g-W-d-ZT7td-P7ch-DNS-spmg-Qx-Qlp-A8gc2-Wgeryr-G-Ukuf-UTGN6w-V269qob-FMv-U3-LY3-IGm73-Va79-On-Ya-Zcus.jpg", caption: "Классное руководство, день учителя", tag: "школа", link: null },
+  { src: "https://i.ibb.co/nNtgw64L/image.png", caption: "Я и Варя — 98 баллов, это вам не шутки", tag: "98 баллов", link: null },
+  { src: "https://i.ibb.co/VYfzh0tT/photo-2025-12-17-11-10-19.jpg", caption: "Шри-Ланка, летний курс в школе", tag: "курс", link: null },
+  { src: "https://i.ibb.co/kVZsYDvv/photo-2025-09-08-23-43-06.jpg", caption: "Зима, концерт перед Рождеством", tag: "событие", link: null },
+  { src: "https://i.ibb.co/LdYzGjn1/photo-2025-09-08-23-05-46.jpg", caption: "5 класс Б перед коронавирусом", tag: "архив", link: null },
+  { src: "https://i.ibb.co/Y4R9Cygx/My-Collages.jpg", caption: "Russian International School", tag: "RIS", link: "https://rischool.info/" }
+];
+
+const resultsImages = [
+  "assets/results-oge-2025/girl.png",
+  "assets/results-oge-2025/vanya.png",
+  "assets/results-oge-2025/dana.png",
+  "assets/results-oge-2025/eva.png"
+];
+
+let currentLang = "ru";
+
+function openModal(src, alt = "") {
+  const modal = document.getElementById("imageModal");
+  const image = document.getElementById("modalImage");
+  image.src = src;
+  image.alt = alt;
+  modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  const image = document.getElementById("modalImage");
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  image.src = "";
+}
+
+function renderCases(lang) {
+  const grid = document.getElementById("cases-grid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  casesData[lang].forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "case-tile";
+    card.tabIndex = 0;
+    card.innerHTML = `
+      <div class="case-card-inner">
+        <div class="case-face case-front">
+          <span class="case-badge">${lang === "ru" ? "Кейс" : "Case"}</span>
+          <h3>${item.name}</h3>
+          <div class="case-label">${lang === "ru" ? "Запрос" : "Challenge"}</div>
+          <p class="case-text">${item.problem}</p>
+          <div class="case-label">${lang === "ru" ? "Что делали" : "Approach"}</div>
+          <p class="case-text">${item.action}</p>
+          <div class="case-result">
+            <span class="k">${lang === "ru" ? "Результат" : "Result"}</span>
+            <span class="v">${item.result}</span>
+          </div>
+        </div>
+        <div class="case-face case-back">
+          <span class="case-badge">${lang === "ru" ? "История" : "Story"}</span>
+          <h3>${item.name}</h3>
+          <p class="case-story">${item.story}</p>
+          <div class="quote">«${item.quote}»</div>
+          <div class="case-result">
+            <span class="k">${lang === "ru" ? "Итог" : "Outcome"}</span>
+            <span class="v">${item.result}</span>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderResults() {
+  const container = document.getElementById("results-grid");
+  if (!container) return;
+
+  container.innerHTML = "";
+  resultsImages.forEach((src, index) => {
+    const item = document.createElement("div");
+    const grade = index === 2 ? 4 : 5;
+    item.className = "result-badge-img";
+    item.innerHTML = `<img src="${src}" alt="Результат"><span>${currentLang === "ru" ? `Оценка ${grade}` : `Grade ${grade}`}</span>`;
+    item.addEventListener("click", () => openModal(src, "Результат"));
+    container.appendChild(item);
+  });
+}
+
+function renderPresentations() {
+  const container = document.getElementById("presentations-grid");
+  if (!container) return;
+
+  container.innerHTML = "";
+  presentationsData.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "presentation-item";
+    card.innerHTML = `<img src="${item.src}" alt="${item.caption}"><span>${item.caption}</span>`;
+    card.addEventListener("click", () => openModal(item.src, item.caption));
+    container.appendChild(card);
+  });
+}
+
+function renderOldResults() {
+  const container = document.getElementById("results-old-grid");
+  if (!container) return;
+
+  const renderCaseCards = (target, data) => {
+    target.innerHTML = "";
+    data.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "old-result-item";
+      card.innerHTML = `<img src="${item.src}" alt="${item.caption}"><span>${item.caption}</span>`;
+      card.addEventListener("click", () => openModal(item.src, item.caption));
+      target.appendChild(card);
+    });
+  };
+
+  renderCaseCards(container, oldResultsData);
+
+  const otherContainer = document.getElementById("other-cases-grid");
+  if (otherContainer) {
+    renderCaseCards(otherContainer, otherCasesData);
+  }
+
+  const otherToggle = document.getElementById("other-cases-toggle");
+  const otherPanel = document.getElementById("other-cases-panel");
+  if (otherToggle && otherPanel && !otherToggle.dataset.bound) {
+    otherToggle.dataset.bound = "true";
+    otherToggle.addEventListener("click", () => {
+      const isOpen = otherToggle.getAttribute("aria-expanded") === "true";
+      otherToggle.setAttribute("aria-expanded", String(!isOpen));
+      otherPanel.hidden = isOpen;
+    });
+  }
+
+  if (!otherCasesData.length && otherToggle && otherPanel) {
+    otherToggle.hidden = true;
+    otherPanel.hidden = true;
+  }
+}
+
+function renderReviews(lang) {
+  const container = document.getElementById("reviews-grid");
+  if (!container) return;
+
+  container.innerHTML = "";
+  reviewsData[lang].forEach((review) => {
+    const card = document.createElement("div");
+    card.className = "review-card";
+    card.innerHTML = `
+      <div class="review-header">
+        <div class="review-avatar">${review.avatar}</div>
+        <div>
+          <div class="review-author">${review.author}</div>
+          <div class="review-date">${review.date}</div>
+        </div>
+      </div>
+      <div class="review-text">${review.text}</div>
+    `;
+    container.appendChild(card);
+  });
+
+  const warmWordsTile = document.createElement("article");
+  warmWordsTile.className = "review-card warm-words-tile";
+  warmWordsTile.innerHTML = `
+    <div class="warm-words-control">
+      <button class="btn warm-words-toggle" id="warm-words-toggle" type="button" aria-expanded="false" aria-controls="warm-words-panel">${lang === "ru" ? "Архив теплых слов" : "Archive of Warm Words"}</button>
+    </div>
+  `;
+  const warmWordsToggle = warmWordsTile.querySelector("#warm-words-toggle");
+  const warmWordsPanel = document.getElementById("warm-words-panel");
+  if (warmWordsToggle && warmWordsPanel) {
+    warmWordsToggle.addEventListener("click", () => {
+      const isOpen = warmWordsToggle.getAttribute("aria-expanded") === "true";
+      warmWordsToggle.setAttribute("aria-expanded", String(!isOpen));
+      warmWordsPanel.hidden = isOpen;
+    });
+  }
+  container.appendChild(warmWordsTile);
+}
+
+function renderWarmWords() {
+  const container = document.getElementById("warm-words-grid");
+  if (!container) return;
+
+  container.innerHTML = "";
+  warmWordsData.forEach((item) => {
+    const card = document.createElement("button");
+    card.className = "warm-word-card";
+    card.type = "button";
+    card.innerHTML = `<img src="${item.src}" alt="${item.caption}">`;
+    card.addEventListener("click", () => openModal(item.src, item.caption));
+    container.appendChild(card);
+  });
+}
+
+function renderGallery() {
+  const container = document.getElementById("gallery-grid");
+  if (!container) return;
+
+  const closePopout = () => {
+    container.classList.remove("has-popout");
+    container.querySelectorAll(".gallery-item").forEach((node) => node.classList.remove("is-active"));
+  };
+
+  container.innerHTML = "";
+  galleryImages.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "gallery-item";
+    card.tabIndex = 0;
+    card.innerHTML = `<img src="${item.src}" alt="${item.caption}"><div class="gallery-caption">${item.caption}</div>`;
+    card.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = card.classList.contains("is-active");
+      closePopout();
+      if (!isOpen) {
+        container.classList.add("has-popout");
+        card.classList.add("is-active");
+      }
+    });
+    card.addEventListener("dblclick", () => {
+      if (item.link) {
+        window.open(item.link, "_blank", "noopener");
+      }
+    });
+    container.appendChild(card);
+  });
+
+  document.addEventListener("click", closePopout);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closePopout();
+  });
+}
+
+function updateTexts(lang) {
+  const texts = {
+    ru: {
+      casesTitle: "Кейсы учеников",
+      casesSubtitle: "Реальные результаты 2020–2025 годов",
+      resultsTitle: "Результаты ОГЭ 2025",
+      reviewsTitle: "Отзывы",
+      reviewsSubtitle: "Что говорят ученики и их родители",
+      galleryTitle: "Фотогалерея",
+      gallerySubtitle: "Приглушенный архив: фото раскрываются цветом поверх мозаики"
+    },
+    en: {
+      casesTitle: "Student Cases",
+      casesSubtitle: "Real results from 2020–2025",
+      resultsTitle: "OGE 2025 Results",
+      reviewsTitle: "Testimonials",
+      reviewsSubtitle: "What students and parents say",
+      galleryTitle: "Photo Gallery",
+      gallerySubtitle: "Muted archive: photos open in color above the mosaic"
+    }
+  };
+
+  const t = texts[lang];
+  document.getElementById("cases-title").textContent = t.casesTitle;
+  document.getElementById("cases-subtitle").textContent = t.casesSubtitle;
+  document.getElementById("results-title").textContent = t.resultsTitle;
+  document.getElementById("reviews-title").textContent = t.reviewsTitle;
+  document.getElementById("reviews-subtitle").textContent = t.reviewsSubtitle;
+  document.getElementById("gallery-title").textContent = t.galleryTitle;
+  document.getElementById("gallery-subtitle").textContent = t.gallerySubtitle;
+}
+
+function applyCasesLanguage(lang) {
+  currentLang = lang;
+  renderCases(lang);
+  renderReviews(lang);
+  renderResults();
+  updateTexts(lang);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderPresentations();
+  renderOldResults();
+  renderGallery();
+  renderWarmWords();
+
+  const lang = localStorage.getItem("nge-lang") || "ru";
+  applyCasesLanguage(lang);
+
+  const originalSetLanguage = window.setLanguage;
+  if (typeof originalSetLanguage === "function") {
+    window.setLanguage = function(langToSet) {
+      originalSetLanguage(langToSet);
+      applyCasesLanguage(langToSet);
+    };
+  }
+
+  const ctaBtn = document.getElementById("cases-cta-btn");
+  if (ctaBtn) {
+    ctaBtn.addEventListener("click", () => {
+      window.open("https://t.me/MariaBurceva_English", "_blank", "noopener");
+    });
+  }
+
+  document.getElementById("imageModal").addEventListener("click", closeModal);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+  });
+});
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

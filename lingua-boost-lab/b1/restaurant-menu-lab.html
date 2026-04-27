@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Restaurant Menu Lab | LinguaBoost Studio</title>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --bg-soft: #fffaf4;
+      --card: rgba(255, 252, 247, 0.96);
+      --line: #ead9c5;
+      --line-strong: #d8b892;
+      --text: #2c241a;
+      --muted: #6c5a47;
+      --accent: #b45f2b;
+      --accent-soft: rgba(180, 95, 43, 0.12);
+      --accent-strong: #8f4319;
+      --shadow: 0 18px 34px rgba(68, 39, 14, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at top right, rgba(180, 95, 43, 0.08), transparent 22%),
+        linear-gradient(180deg, #fbf6ef 0%, #f2ebe1 100%);
+      color: var(--text);
+      font-family: "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+      padding: 20px 16px 44px;
+      line-height: 1.55;
+    }
+
+    .page-shell {
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .hero-card,
+    .module-card {
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .hero-points {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .hero-note {
+      padding: 16px 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 248, 239, 0.98);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .module-grid {
+      display: grid;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .module-card {
+      padding: 24px;
+      min-width: 0;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      min-width: 0;
+    }
+
+    .card-head > div,
+    .hero-card > div,
+    .hero-points,
+    .pool-wrap,
+    .pool-toolbar,
+    .category-filter,
+    .ingredient-pool,
+    .menu-grid,
+    .support-card,
+    .sample-card,
+    .step-grid,
+    .rubric-grid {
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 1.55rem;
+      line-height: 1.15;
+    }
+
+    .card-copy {
+      margin: 10px 0 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    .pill-row,
+    .category-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fbf5ec;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .category-chip:hover,
+    .category-chip.is-active {
+      border-color: var(--line-strong);
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+    }
+
+    .category-chip.is-active {
+      box-shadow: inset 0 0 0 1px rgba(180, 95, 43, 0.08);
+    }
+
+    .pool-wrap {
+      padding: 18px;
+      border-radius: 28px;
+      border: 1px dashed var(--line-strong);
+      background: #fbf3e9;
+    }
+
+    .pool-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .pool-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .pool-hint {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      max-width: 720px;
+    }
+
+    .ingredient-pool {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .drag-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      box-shadow: 0 8px 18px rgba(95, 61, 30, 0.05);
+      cursor: grab;
+      user-select: none;
+      transition: 0.18s ease;
+    }
+
+    .drag-item:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+    }
+
+    .drag-item:active {
+      cursor: grabbing;
+    }
+
+    .drag-item__type {
+      color: var(--accent-strong);
+      font-size: 0.73rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .drag-item__name {
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .grid-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .menu-category {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: #fff9f1;
+      padding: 16px 14px;
+      transition: 0.18s ease;
+    }
+
+    .menu-category.is-active {
+      border-color: var(--line-strong);
+      box-shadow: inset 0 0 0 1px rgba(180, 95, 43, 0.08);
+      background: #fff6eb;
+    }
+
+    .menu-category h3 {
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .dropzone {
+      min-height: 180px;
+      padding: 12px;
+      border-radius: 22px;
+      border: 1px dashed var(--line-strong);
+      background: rgba(255, 255, 255, 0.72);
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      transition: 0.18s ease;
+    }
+
+    .dropzone.drag-over {
+      background: #fff0dd;
+      border-color: var(--accent);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: white;
+      box-shadow: 0 6px 12px rgba(82, 56, 27, 0.04);
+    }
+
+    .menu-item span {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .remove-btn {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 50%;
+      background: #f6ece1;
+      color: var(--accent-strong);
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background: #f2dfcb;
+    }
+
+    .empty-message {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #fffaf4;
+      border-color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.97);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--line-strong);
+      color: var(--accent-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-soft);
+    }
+
+    .speaking-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+
+    .support-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: #fcf6ee;
+    }
+
+    .support-card h3 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .support-card p,
+    .support-card li {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .support-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      padding: 12px 14px;
+      font: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+
+    .live-preview {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: white;
+      font-size: 0.96rem;
+      line-height: 1.75;
+    }
+
+    .live-preview strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .step-card {
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .rubric-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rubric-card {
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: #fcf6ee;
+    }
+
+    .rubric-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .rubric-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin: 0 0 12px;
+    }
+
+    .rubric-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rubric-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .rubric-option input {
+      margin-top: 2px;
+    }
+
+    .rubric-option span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .score-band {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 245, 233, 0.9);
+    }
+
+    .score-total {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-strong);
+    }
+
+    .score-grade {
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .note-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 1120px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .step-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-card,
+      .speaking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 16px 12px 36px;
+      }
+
+      .hero-card,
+      .module-card {
+        border-radius: 24px;
+        padding: 18px 16px;
+      }
+
+      .form-grid,
+      .note-row,
+      .menu-grid,
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drag-item {
+        min-height: 44px;
+        padding: 10px 16px;
+      }
+
+      .dropzone {
+        min-height: 120px;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+  <div class="lbs-ribbon">
+    <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+    <div class="lbs-ribbon__meta">
+      <span class="lbs-pill">B1</span>
+      <span class="lbs-pill">Teens / adults</span>
+      <span class="lbs-pill">Speaking and rubric</span>
+    </div>
+    <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+  </div>
+
+  <div class="page-shell">
+    <section class="hero-card">
+      <div>
+        <div class="eyebrow" data-ru="LinguaBoost Studio · Новый модуль" data-en="LinguaBoost Studio · New module">LinguaBoost Studio · Новый модуль</div>
+        <h1 data-ru="Restaurant Menu Lab" data-en="Restaurant Menu Lab">Restaurant Menu Lab</h1>
+        <p class="lead" data-ru="Модуль собирает в одну систему food vocabulary, speaking practice и готовую рубрику. Ученик конструирует меню, проговаривает его как владелец ресторана и получает понятную рамку для оценки устного ответа." data-en="This module brings food vocabulary, speaking practice, and a ready-made rubric into one system. The learner builds a menu, presents it as a restaurant owner, and gets a clear frame for oral assessment.">Модуль собирает в одну систему food vocabulary, speaking practice и готовую рубрику. Ученик конструирует меню, проговаривает его как владелец ресторана и получает понятную рамку для оценки устного ответа.</p>
+      </div>
+      <div class="hero-points">
+        <div class="hero-note">
+          <strong data-ru="Как работать" data-en="How to use it">Как работать</strong>
+          <p data-ru="Можно перетаскивать блюда мышкой, а на телефоне или планшете сначала выбрать категорию, а потом добавить блюдо касанием." data-en="On desktop you can drag the dishes with a mouse. On phones and tablets, select a category first and then add a dish with a tap.">Можно перетаскивать блюда мышкой, а на телефоне или планшете сначала выбрать категорию, а потом добавить блюдо касанием.</p>
+        </div>
+        <div class="hero-note">
+          <strong data-ru="Что внутри" data-en="What is inside">Что внутри</strong>
+          <p data-ru="Конструктор меню, speaking task, live sample, чек-лист и рубрика на 20 баллов без внешних зависимостей." data-en="A menu builder, speaking task, live sample, checklist, and a 20-point rubric with no external dependencies.">Конструктор меню, speaking task, live sample, чек-лист и рубрика на 20 баллов без внешних зависимостей.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="module-grid">
+      <section class="module-card">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title" data-ru="Соберите меню" data-en="Build the menu">Соберите меню</h2>
+            <p class="card-copy" data-ru="Выберите блюда для пяти категорий: appetizer, soup, main course, side dish и dessert. Для speaking можно оставить по одному блюду в каждой категории, а для обсуждения — собрать более широкий вариант." data-en="Choose dishes for five categories: appetizer, soup, main course, side dish, and dessert. For speaking you can leave one dish in each category; for discussion you can build a fuller menu.">Выберите блюда для пяти категорий: appetizer, soup, main course, side dish и dessert. Для speaking можно оставить по одному блюду в каждой категории, а для обсуждения — собрать более широкий вариант.</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill" data-ru="Food English" data-en="Food English">Food English</span>
+            <span class="pill" data-ru="Speaking" data-en="Speaking">Speaking</span>
+            <span class="pill" data-ru="Assessment" data-en="Assessment">Assessment</span>
+          </div>
+        </div>
+
+        <div class="category-filter" id="categoryFilter"></div>
+
+        <div class="pool-wrap">
+          <div class="pool-toolbar">
+            <div>
+              <div class="pool-title" data-ru="Библиотека блюд" data-en="Dish library">Библиотека блюд</div>
+              <div class="pool-hint" id="poolHint"></div>
+            </div>
+          </div>
+          <div class="ingredient-pool" id="ingredientPool"></div>
+          <div class="grid-note" data-ru="Если работаете с планшета, можно сначала выбрать категорию сверху, а затем добавить блюдо касанием." data-en="If you work on a tablet, you can select a category above first and then add a dish with a tap.">Если работаете с планшета, можно сначала выбрать категорию сверху, а затем добавить блюдо касанием.</div>
+        </div>
+
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <div class="action-row">
+          <button class="btn" type="button" id="resetMenuBtn" data-ru="Сбросить меню" data-en="Reset menu">Сбросить меню</button>
+          <button class="btn-secondary" type="button" id="fillSampleBtn" data-ru="Заполнить пример" data-en="Load sample menu">Заполнить пример</button>
+        </div>
+      </section>
+
+      <section class="module-card">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title" data-ru="Speaking task" data-en="Speaking task">Speaking task</h2>
+            <p class="card-copy" data-ru="Ученик представляет себя владельцем ресторана и объясняет концепцию меню. Ниже собраны sentence starters, рабочий пример и короткий маршрут выступления." data-en="The learner presents themselves as a restaurant owner and explains the menu concept. Below you will find sentence starters, a working sample, and a short presentation route.">Ученик представляет себя владельцем ресторана и объясняет концепцию меню. Ниже собраны sentence starters, рабочий пример и короткий маршрут выступления.</p>
+          </div>
+        </div>
+
+        <div class="speaking-grid">
+          <div class="support-card">
+            <h3 data-ru="Sentence starters" data-en="Sentence starters">Sentence starters</h3>
+            <ul id="starterList"></ul>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="restaurantName" data-ru="Название ресторана" data-en="Restaurant name">Название ресторана</label>
+                <input id="restaurantName" type="text" value="Studio Table" data-placeholder-ru="Например: Studio Table" data-placeholder-en="For example: Studio Table">
+              </div>
+              <div class="field">
+                <label for="cuisineInput" data-ru="Кухня / стиль" data-en="Cuisine style">Кухня / стиль</label>
+                <input id="cuisineInput" type="text" value="Mediterranean" data-placeholder-ru="Например: Mediterranean" data-placeholder-en="For example: Mediterranean">
+              </div>
+            </div>
+
+            <div class="live-preview">
+              <strong data-ru="Живой пример ответа" data-en="Live sample answer">Живой пример ответа</strong>
+              <div id="liveExampleText"></div>
+            </div>
+          </div>
+
+          <div class="support-card">
+            <h3 data-ru="Маршрут выступления" data-en="Presentation route">Маршрут выступления</h3>
+            <div class="step-grid">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <p data-ru="Назовите ресторан и кухню. Объясните, на чём строится концепция меню." data-en="Name the restaurant and cuisine. Explain what the menu concept is based on.">Назовите ресторан и кухню. Объясните, на чём строится концепция меню.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <p data-ru="Покажите структуру меню: starter, soup, main, side dish, dessert." data-en="Show the menu structure: starter, soup, main, side dish, dessert.">Покажите структуру меню: starter, soup, main, side dish, dessert.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <p data-ru="Подчеркните signature dish и используйте cooking language: ingredients, prepared using, served with." data-en="Highlight the signature dish and use cooking language: ingredients, prepared using, served with.">Подчеркните signature dish и используйте cooking language: ingredients, prepared using, served with.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">4</div>
+                <p data-ru="Завершите короткой рекомендацией: кому это меню подойдёт и почему." data-en="Finish with a short recommendation: who this menu is for and why.">Завершите короткой рекомендацией: кому это меню подойдёт и почему.</p>
+              </div>
+            </div>
+
+            <div class="support-card" style="margin-top:16px; background:white;">
+              <h3 data-ru="Чек-лист слушателя" data-en="Listener checklist">Чек-лист слушателя</h3>
+              <ul id="listenerChecklist"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="module-card">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title" data-ru="Рубрика оценивания" data-en="Assessment rubric">Рубрика оценивания</h2>
+            <p class="card-copy" data-ru="Готовая рубрика позволяет быстро оценить task achievement, использование фраз, language control и fluency. Общий максимум — 20 баллов." data-en="The ready-made rubric helps you assess task achievement, phrase use, language control, and fluency quickly. The total maximum is 20 points.">Готовая рубрика позволяет быстро оценить task achievement, использование фраз, language control и fluency. Общий максимум — 20 баллов.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="studentName" data-ru="Имя ученика" data-en="Student name">Имя ученика</label>
+            <input id="studentName" type="text" data-placeholder-ru="Например: Анна" data-placeholder-en="For example: Anna">
+          </div>
+          <div class="field">
+            <label for="teacherNote" data-ru="Краткая пометка" data-en="Short note">Краткая пометка</label>
+            <input id="teacherNote" type="text" data-placeholder-ru="Например: уверенный B1" data-placeholder-en="For example: confident B1">
+          </div>
+        </div>
+
+        <div class="rubric-stack" id="rubricStack"></div>
+
+        <div class="score-band">
+          <div>
+            <div class="score-total" id="scoreTotal">0 / 20</div>
+            <div class="score-grade" id="scoreGrade"></div>
+          </div>
+          <div class="action-row" style="margin-top:0;">
+            <button class="btn" type="button" id="calculateBtn" data-ru="Посчитать итог" data-en="Calculate score">Посчитать итог</button>
+            <button class="btn-secondary" type="button" id="resetRubricBtn" data-ru="Сбросить оценивание" data-en="Reset rubric">Сбросить оценивание</button>
+          </div>
+        </div>
+
+        <div class="note-row">
+          <div class="field">
+            <label for="strengthsField" data-ru="Сильные стороны" data-en="Strengths">Сильные стороны</label>
+            <textarea id="strengthsField" rows="4" data-placeholder-ru="Например: уверенная логика, хорошая тематическая лексика, устойчивый темп" data-placeholder-en="For example: clear structure, good topic vocabulary, steady pace"></textarea>
+          </div>
+          <div class="field">
+            <label for="improveField" data-ru="Что улучшить" data-en="Areas to improve">Что улучшить</label>
+            <textarea id="improveField" rows="4" data-placeholder-ru="Например: больше связок, точнее работать с cooking verbs, добавить подробности" data-placeholder-en="For example: use more linking phrases, work on cooking verbs, add more detail"></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const langKey = "nge-linguaboost-lang";
+
+    const moduleTexts = {
+      ru: {
+        poolHint: "Перетаскивайте блюда в нужную колонку или добавляйте касанием в выбранную категорию.",
+        empty: "Категория пока пустая. Перетащите сюда блюдо или выберите категорию и добавьте его касанием.",
+        resetMenu: "Меню сброшено.",
+        sampleLoaded: "Примерное меню загружено.",
+        sampleAnswerLabel: "Пробный устный ответ",
+        checklist: [
+          "Названы ресторан и кухня.",
+          "Показаны все ключевые части меню.",
+          "Выделено signature dish.",
+          "Использованы phrases about ingredients and cooking.",
+          "Есть финальная рекомендация."
+        ],
+        categories: {
+          appetizer: "Закуска",
+          soup: "Суп",
+          main: "Основное",
+          side: "Гарнир",
+          dessert: "Десерт"
+        },
+        categoryHints: {
+          appetizer: "Выбрана категория «Закуска». Теперь можно добавить блюдо касанием.",
+          soup: "Выбрана категория «Суп». Теперь можно добавить блюдо касанием.",
+          main: "Выбрана категория «Основное». Теперь можно добавить блюдо касанием.",
+          side: "Выбрана категория «Гарнир». Теперь можно добавить блюдо касанием.",
+          dessert: "Выбрана категория «Десерт». Теперь можно добавить блюдо касанием."
+        },
+        starters: [
+          "Our restaurant is called {restaurant}.",
+          "Our restaurant focuses on {cuisine} cuisine.",
+          "As a starter, we serve {appetizer}.",
+          "Our soup of the day is {soup}.",
+          "Our signature dish is {main}.",
+          "It is served with {side} and finished with {dessert}."
+        ],
+        previewTemplate: "Our restaurant is called {restaurant}. We focus on {cuisine} cuisine. As a starter, we serve {appetizer}, and our soup of the day is {soup}. Our signature dish is {main}; it is prepared using fresh ingredients and served with {side}. To complete the meal, we offer {dessert}. This menu is designed for guests who enjoy balanced, memorable food with a clear concept.",
+        rubric: [
+          {
+            title: "1. Выполнение задачи",
+            description: "Есть ли в ответе структура меню, логика презентации и понимание роли говорящего?",
+            name: "task",
+            options: [
+              { value: 8, label: "Полная и уверенная презентация меню; структура ясна, роль выдержана." },
+              { value: 6, label: "Основные части есть, но некоторые элементы раскрыты кратко." },
+              { value: 4, label: "Часть структуры потеряна, ответ неполный." },
+              { value: 2, label: "Задача выполнена слабо, идея меню почти не оформлена." },
+              { value: 0, label: "Ответ не сформирован как speaking task." }
+            ]
+          },
+          {
+            title: "2. Sentence starters и функциональные фразы",
+            description: "Использованы ли рабочие формулы про cuisine, signature dish, ingredients и serving style?",
+            name: "phrases",
+            options: [
+              { value: 4, label: "Фразы используются свободно и по делу." },
+              { value: 3, label: "Есть большинство нужных формул." },
+              { value: 2, label: "Использованы только отдельные выражения." },
+              { value: 1, label: "Фраз мало, опора почти не использована." },
+              { value: 0, label: "Функциональные формулы отсутствуют." }
+            ]
+          },
+          {
+            title: "3. Лексика и грамматическая точность",
+            description: "Насколько уверенно ученик удерживает food vocabulary и строит понятные фразы?",
+            name: "language",
+            options: [
+              { value: 4, label: "Лексика уместная, ошибок немного, ответ звучит уверенно." },
+              { value: 3, label: "Есть отдельные ошибки, но речь понятна." },
+              { value: 2, label: "Ошибок много, ответ требует догадки." },
+              { value: 1, label: "Языковой контроль слабый, речь сильно распадается." },
+              { value: 0, label: "Понять высказывание почти невозможно." }
+            ]
+          },
+          {
+            title: "4. Беглость и произношение",
+            description: "Насколько связно и естественно звучит выступление?",
+            name: "fluency",
+            options: [
+              { value: 4, label: "Речь связная, темп устойчивый, произношение комфортное для слушателя." },
+              { value: 3, label: "В целом уверенно, но есть паузы и самокоррекция." },
+              { value: 2, label: "Много остановок, речь неровная." },
+              { value: 1, label: "Очень медленно и фрагментарно." },
+              { value: 0, label: "Связного устного ответа не получилось." }
+            ]
+          }
+        ],
+        grades: [
+          { min: 18, label: "Уровень ответа: strong A" },
+          { min: 15, label: "Уровень ответа: solid B" },
+          { min: 12, label: "Уровень ответа: working C" },
+          { min: 9, label: "Уровень ответа: fragile D" },
+          { min: 0, label: "Уровень ответа: needs rebuilding" }
+        ]
+      },
+      en: {
+        poolHint: "Drag the dishes into the right column or add them with a tap to the selected category.",
+        empty: "This category is empty for now. Drag a dish here or select the category and add one with a tap.",
+        resetMenu: "The menu has been reset.",
+        sampleLoaded: "A sample menu has been loaded.",
+        sampleAnswerLabel: "Sample oral response",
+        checklist: [
+          "The restaurant and cuisine are named.",
+          "All key menu parts are covered.",
+          "A signature dish is highlighted.",
+          "Ingredients and cooking phrases are used.",
+          "There is a short final recommendation."
+        ],
+        categories: {
+          appetizer: "Starter",
+          soup: "Soup",
+          main: "Main course",
+          side: "Side dish",
+          dessert: "Dessert"
+        },
+        categoryHints: {
+          appetizer: "The starter category is selected. You can now add a dish with a tap.",
+          soup: "The soup category is selected. You can now add a dish with a tap.",
+          main: "The main course category is selected. You can now add a dish with a tap.",
+          side: "The side dish category is selected. You can now add a dish with a tap.",
+          dessert: "The dessert category is selected. You can now add a dish with a tap."
+        },
+        starters: [
+          "Our restaurant is called {restaurant}.",
+          "Our restaurant focuses on {cuisine} cuisine.",
+          "As a starter, we serve {appetizer}.",
+          "Our soup of the day is {soup}.",
+          "Our signature dish is {main}.",
+          "It is served with {side} and finished with {dessert}."
+        ],
+        previewTemplate: "Our restaurant is called {restaurant}. We focus on {cuisine} cuisine. As a starter, we serve {appetizer}, and our soup of the day is {soup}. Our signature dish is {main}; it is prepared using fresh ingredients and served with {side}. To complete the meal, we offer {dessert}. This menu is designed for guests who enjoy balanced, memorable food with a clear concept.",
+        rubric: [
+          {
+            title: "1. Task achievement",
+            description: "Does the student present a clear menu structure and stay in the role of a restaurant owner?",
+            name: "task",
+            options: [
+              { value: 8, label: "A full and confident menu presentation with a clear structure and role." },
+              { value: 6, label: "Most elements are present, but some parts are brief." },
+              { value: 4, label: "Part of the structure is missing and the answer feels incomplete." },
+              { value: 2, label: "The task is handled weakly and the menu idea is barely built." },
+              { value: 0, label: "The response is not presented as a speaking task." }
+            ]
+          },
+          {
+            title: "2. Sentence starters and functional phrases",
+            description: "Are the working phrases about cuisine, signature dish, ingredients, and serving used?",
+            name: "phrases",
+            options: [
+              { value: 4, label: "The phrases are used naturally and effectively." },
+              { value: 3, label: "Most of the target formulas are present." },
+              { value: 2, label: "Only a few useful expressions are used." },
+              { value: 1, label: "The support phrases are barely used." },
+              { value: 0, label: "No functional phrases are used." }
+            ]
+          },
+          {
+            title: "3. Vocabulary and language control",
+            description: "How confidently does the learner handle food vocabulary and sentence building?",
+            name: "language",
+            options: [
+              { value: 4, label: "The vocabulary is appropriate and there are few errors." },
+              { value: 3, label: "There are some errors, but the message is clear." },
+              { value: 2, label: "There are many errors and the answer often needs guessing." },
+              { value: 1, label: "Language control is weak and the answer breaks down." },
+              { value: 0, label: "The response is almost impossible to understand." }
+            ]
+          },
+          {
+            title: "4. Fluency and pronunciation",
+            description: "How connected and natural does the presentation sound?",
+            name: "fluency",
+            options: [
+              { value: 4, label: "The speech is connected, steady, and easy to follow." },
+              { value: 3, label: "Mostly confident, though there are pauses and corrections." },
+              { value: 2, label: "There are many stops and the speech is uneven." },
+              { value: 1, label: "The response is very slow and fragmented." },
+              { value: 0, label: "A connected oral response does not appear." }
+            ]
+          }
+        ],
+        grades: [
+          { min: 18, label: "Performance band: strong A" },
+          { min: 15, label: "Performance band: solid B" },
+          { min: 12, label: "Performance band: working C" },
+          { min: 9, label: "Performance band: fragile D" },
+          { min: 0, label: "Performance band: needs rebuilding" }
+        ]
+      }
+    };
+
+    const categoryOrder = ["appetizer", "soup", "main", "side", "dessert"];
+
+    const extensiveMenu = {
+      appetizer: ["Bruschetta", "Spring Rolls", "Stuffed Mushrooms", "Fried Calamari", "Hummus and Pita", "Caprese Salad", "Shrimp Cocktail", "Spinach Dip"],
+      soup: ["Tomato Basil Soup", "French Onion Soup", "Miso Soup", "Pumpkin Cream Soup", "Lentil Soup", "Chicken Noodle Soup", "Tom Yum", "Cream of Mushroom"],
+      main: ["Grilled Salmon", "Mushroom Risotto", "Chicken Tikka Masala", "Seafood Paella", "Vegetable Curry", "Margherita Pizza", "Stuffed Peppers", "Fish and Chips"],
+      side: ["Garlic Bread", "Roasted Vegetables", "French Fries", "Rice Pilaf", "Mashed Potatoes", "Grilled Asparagus", "Sweet Potato Wedges", "Cucumber Salad"],
+      dessert: ["Tiramisu", "Cheesecake", "Chocolate Lava Cake", "Gelato", "Apple Pie", "Panna Cotta", "Baklava", "Lemon Tart"]
+    };
+
+    const sampleMenu = {
+      appetizer: ["Bruschetta"],
+      soup: ["Tomato Basil Soup"],
+      main: ["Grilled Salmon"],
+      side: ["Roasted Vegetables"],
+      dessert: ["Tiramisu"]
+    };
+
+    let selectedCategory = "main";
+    let menuState = createEmptyMenu();
+
+    function createEmptyMenu() {
+      return {
+        appetizer: [],
+        soup: [],
+        main: [],
+        side: [],
+        dessert: []
+      };
+    }
+
+    function getLang() {
+      return localStorage.getItem(langKey) || "ru";
+    }
+
+    function t() {
+      return moduleTexts[getLang()] || moduleTexts.ru;
+    }
+
+    function categoryName(key) {
+      return t().categories[key];
+    }
+
+    function replaceTokens(template, values) {
+      return template.replace(/\{(.*?)\}/g, (_, key) => values[key] || "");
+    }
+
+    function createDishToken(category, dish) {
+      const token = document.createElement("button");
+      token.type = "button";
+      token.className = "drag-item";
+      token.dataset.type = category;
+      token.dataset.name = dish;
+      token.draggable = true;
+      token.innerHTML = `<span class="drag-item__type">${categoryName(category)}</span><span class="drag-item__name">${dish}</span>`;
+      token.addEventListener("dragstart", (event) => {
+        event.dataTransfer.setData("application/json", JSON.stringify({ category, dish }));
+        event.dataTransfer.setData("text/plain", dish);
+      });
+      token.addEventListener("click", () => {
+        addDish(selectedCategory, dish);
+      });
+      return token;
+    }
+
+    function addDish(category, dish) {
+      if (!category || !dish) return;
+      if (!menuState[category].includes(dish)) {
+        menuState[category].push(dish);
+        renderMenu();
+        updateSpeakingPreview();
+      }
+    }
+
+    function removeDish(category, dish) {
+      menuState[category] = menuState[category].filter((item) => item !== dish);
+      renderMenu();
+      updateSpeakingPreview();
+    }
+
+    function renderCategoryFilter() {
+      const filter = document.getElementById("categoryFilter");
+      filter.innerHTML = "";
+      categoryOrder.forEach((category) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "category-chip";
+        button.textContent = categoryName(category);
+        if (category === selectedCategory) {
+          button.classList.add("is-active");
+        }
+        button.addEventListener("click", () => {
+          selectedCategory = category;
+          renderCategoryFilter();
+          renderMenu();
+          updatePoolHint();
+        });
+        filter.appendChild(button);
+      });
+    }
+
+    function updatePoolHint() {
+      const hint = document.getElementById("poolHint");
+      hint.textContent = t().categoryHints[selectedCategory];
+    }
+
+    function renderPool() {
+      const pool = document.getElementById("ingredientPool");
+      pool.innerHTML = "";
+      categoryOrder.forEach((category) => {
+        extensiveMenu[category].forEach((dish) => {
+          pool.appendChild(createDishToken(category, dish));
+        });
+      });
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById("menuGrid");
+      grid.innerHTML = "";
+
+      categoryOrder.forEach((category) => {
+        const wrap = document.createElement("section");
+        wrap.className = "menu-category";
+        if (category === selectedCategory) {
+          wrap.classList.add("is-active");
+        }
+
+        const title = document.createElement("h3");
+        title.textContent = categoryName(category);
+        wrap.appendChild(title);
+
+        const zone = document.createElement("div");
+        zone.className = "dropzone";
+        zone.dataset.category = category;
+
+        zone.addEventListener("click", () => {
+          selectedCategory = category;
+          renderCategoryFilter();
+          renderMenu();
+          updatePoolHint();
+        });
+
+        zone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          zone.classList.add("drag-over");
+        });
+
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("drag-over");
+        });
+
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          zone.classList.remove("drag-over");
+          let payload = null;
+          try {
+            payload = JSON.parse(event.dataTransfer.getData("application/json"));
+          } catch (error) {
+            payload = null;
+          }
+          const dish = payload?.dish || event.dataTransfer.getData("text/plain");
+          addDish(category, dish);
+        });
+
+        if (menuState[category].length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-message";
+          empty.textContent = t().empty;
+          zone.appendChild(empty);
+        } else {
+          menuState[category].forEach((dish) => {
+            const item = document.createElement("div");
+            item.className = "menu-item";
+
+            const text = document.createElement("span");
+            text.textContent = dish;
+
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "remove-btn";
+            remove.setAttribute("aria-label", "Remove");
+            remove.textContent = "×";
+            remove.addEventListener("click", (event) => {
+              event.stopPropagation();
+              removeDish(category, dish);
+            });
+
+            item.append(text, remove);
+            zone.appendChild(item);
+          });
+        }
+
+        wrap.appendChild(zone);
+        grid.appendChild(wrap);
+      });
+    }
+
+    function menuValue(category) {
+      return menuState[category][0] || "________";
+    }
+
+    function updateStarters() {
+      const list = document.getElementById("starterList");
+      const restaurant = document.getElementById("restaurantName").value.trim() || "Studio Table";
+      const cuisine = document.getElementById("cuisineInput").value.trim() || "Mediterranean";
+      const values = {
+        restaurant,
+        cuisine,
+        appetizer: menuValue("appetizer"),
+        soup: menuValue("soup"),
+        main: menuValue("main"),
+        side: menuValue("side"),
+        dessert: menuValue("dessert")
+      };
+
+      list.innerHTML = "";
+      t().starters.forEach((line) => {
+        const li = document.createElement("li");
+        li.textContent = replaceTokens(line, values);
+        list.appendChild(li);
+      });
+    }
+
+    function updateChecklist() {
+      const list = document.getElementById("listenerChecklist");
+      list.innerHTML = "";
+      t().checklist.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    function updateSpeakingPreview() {
+      updateStarters();
+      const preview = document.getElementById("liveExampleText");
+      const restaurant = document.getElementById("restaurantName").value.trim() || "Studio Table";
+      const cuisine = document.getElementById("cuisineInput").value.trim() || "Mediterranean";
+      const values = {
+        restaurant,
+        cuisine,
+        appetizer: menuValue("appetizer"),
+        soup: menuValue("soup"),
+        main: menuValue("main"),
+        side: menuValue("side"),
+        dessert: menuValue("dessert")
+      };
+      preview.textContent = replaceTokens(t().previewTemplate, values);
+    }
+
+    function renderRubric() {
+      const stack = document.getElementById("rubricStack");
+      stack.innerHTML = "";
+
+      t().rubric.forEach((block) => {
+        const card = document.createElement("div");
+        card.className = "rubric-card";
+
+        const head = document.createElement("div");
+        head.className = "rubric-head";
+        head.innerHTML = `<h3>${block.title}</h3>`;
+
+        const desc = document.createElement("p");
+        desc.className = "rubric-desc";
+        desc.textContent = block.description;
+
+        const options = document.createElement("div");
+        options.className = "rubric-options";
+
+        block.options.forEach((option, index) => {
+          const label = document.createElement("label");
+          label.className = "rubric-option";
+          label.innerHTML = `
+            <input type="radio" name="${block.name}" value="${option.value}">
+            <div>
+              <strong>${option.value}</strong>
+              <span>${option.label}</span>
+            </div>
+          `;
+          options.appendChild(label);
+        });
+
+        card.append(head, desc, options);
+        stack.appendChild(card);
+      });
+    }
+
+    function gradeLabel(total) {
+      const hit = t().grades.find((item) => total >= item.min);
+      return hit ? hit.label : "";
+    }
+
+    function calculateRubric() {
+      let total = 0;
+      document.querySelectorAll("#rubricStack input[type='radio']:checked").forEach((input) => {
+        total += Number(input.value || 0);
+      });
+      document.getElementById("scoreTotal").textContent = `${total} / 20`;
+      document.getElementById("scoreGrade").textContent = gradeLabel(total);
+    }
+
+    function resetRubric() {
+      document.querySelectorAll("#rubricStack input[type='radio']").forEach((input) => {
+        input.checked = false;
+      });
+      document.getElementById("studentName").value = "";
+      document.getElementById("teacherNote").value = "";
+      document.getElementById("strengthsField").value = "";
+      document.getElementById("improveField").value = "";
+      document.getElementById("scoreTotal").textContent = "0 / 20";
+      document.getElementById("scoreGrade").textContent = "";
+    }
+
+    function applySampleMenu() {
+      menuState = JSON.parse(JSON.stringify(sampleMenu));
+      renderMenu();
+      updateSpeakingPreview();
+    }
+
+    function applyModuleLanguage() {
+      const lang = getLang();
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-placeholder-ru]").forEach((input) => {
+        input.placeholder = lang === "en" ? input.dataset.placeholderEn : input.dataset.placeholderRu;
+      });
+      renderCategoryFilter();
+      updatePoolHint();
+      renderPool();
+      renderMenu();
+      updateChecklist();
+      updateSpeakingPreview();
+      renderRubric();
+      calculateRubric();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCategoryFilter();
+      updatePoolHint();
+      renderPool();
+      renderMenu();
+      updateChecklist();
+      updateSpeakingPreview();
+      renderRubric();
+
+      document.getElementById("restaurantName").addEventListener("input", updateSpeakingPreview);
+      document.getElementById("cuisineInput").addEventListener("input", updateSpeakingPreview);
+      document.getElementById("calculateBtn").addEventListener("click", calculateRubric);
+      document.getElementById("resetRubricBtn").addEventListener("click", resetRubric);
+      document.getElementById("resetMenuBtn").addEventListener("click", () => {
+        menuState = createEmptyMenu();
+        renderMenu();
+        updateSpeakingPreview();
+      });
+      document.getElementById("fillSampleBtn").addEventListener("click", applySampleMenu);
+
+      applyModuleLanguage();
+    });
+
+    window.addEventListener("lb-language-change", applyModuleLanguage);
+  </script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>

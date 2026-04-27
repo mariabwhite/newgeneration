@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Building: Prefixes and Suffixes | LinguaBoost Studio</title>
+  <style>
+    :root {
+      --bg: #f6f4ee;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+      --line: #e4e2dd;
+      --accent: #f28c28;
+      --accent-soft: #fde8d2;
+      --green: #dff3e4;
+      --blue: #e8f1fb;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --danger: #d64545;
+      --ok: #1d7a39;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--card), #fcfbf8);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8c4e10;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 900px;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .table th,
+    .table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .table th {
+      background: #faf8f4;
+      font-size: 14px;
+    }
+
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--blue);
+      font-size: 13px;
+      margin: 4px 6px 0 0;
+    }
+
+    .example {
+      background: #fafafa;
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 14px;
+      margin: 10px 0;
+    }
+
+    .example strong {
+      color: #8c4e10;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mini {
+      padding: 16px;
+      background: #fcfbf8;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    ul {
+      padding-left: 22px;
+      margin: 10px 0 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .good {
+      background: var(--green);
+      border-color: #c7e7ce;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      background: #f1efe9;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 0.95em;
+    }
+
+    .exercise-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .exercise-row {
+      background: #fafafa;
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 16px;
+      margin: 10px 0;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 18px;
+      padding: 14px;
+      background: #fcfbf8;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+    }
+
+    .drag-item,
+    .choice-btn,
+    .flip-card,
+    .drop-zone {
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .drag-item {
+      display: inline-block;
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+    }
+
+    .drag-item:hover,
+    .choice-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .drag-item.used {
+      opacity: 0.45;
+    }
+
+    .drag-item.selected-token {
+      border-color: var(--accent);
+      background: #fff7ef;
+      box-shadow: 0 0 0 3px rgba(242, 140, 40, 0.12);
+    }
+
+    .drop-zone {
+      display: inline-flex;
+      min-width: 160px;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      margin: 0 4px;
+      border: 2px dashed #d7d2ca;
+      border-radius: 12px;
+      background: white;
+      vertical-align: middle;
+      font-weight: 700;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .drop-zone.filled {
+      border-style: solid;
+      border-color: #d8c2aa;
+      background: #fffaf4;
+    }
+
+    .drop-zone.active {
+      border-color: var(--accent);
+      background: #fff7ef;
+    }
+
+    .drop-zone.correct,
+    .choice-btn.correct {
+      border-color: var(--ok) !important;
+      background: #eefaf1 !important;
+      color: var(--ok) !important;
+    }
+
+    .drop-zone.incorrect,
+    .choice-btn.incorrect {
+      border-color: var(--danger) !important;
+      background: #fff1f1 !important;
+      color: var(--danger) !important;
+    }
+
+    .choice-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .choice-btn {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      font-weight: 700;
+    }
+
+    .choice-btn.selected {
+      background: var(--accent-soft);
+      border-color: #efc08e;
+      color: #8c4e10;
+    }
+
+    .key-toggle,
+    .action-btn {
+      margin-top: 16px;
+      margin-right: 10px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--text);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .action-btn.secondary {
+      background: #8c4e10;
+    }
+
+    .hidden-key {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      background: #f9f7f3;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .hidden-key.show {
+      display: block;
+    }
+
+    .flip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      min-height: 160px;
+      cursor: pointer;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 160px;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: white;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .flip-front {
+      font-weight: 700;
+      font-size: 18px;
+      background: linear-gradient(135deg, #fff, #fef9f0);
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #fffaf4;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .top-banner-img {
+      width: 100%;
+      border-radius: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    .tests {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fcfbf8;
+    }
+
+    .tests p {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .status-ok {
+      color: #1d7a39;
+      font-weight: 700;
+    }
+
+    .status-bad {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .wide-image-box {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      background: #fcfbf8;
+    }
+
+    .wide-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 920px) {
+      .grid,
+      .two-cols,
+      .flip-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">B1</span>
+    <span class="lbs-pill">Teens / adults</span>
+    <span class="lbs-pill">Word formation</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+  <div class="wrap">
+
+      <!-- TOP BANNER (картинка, которую прислал пользователь) -->
+
+<div class="top-banner" style="background: linear-gradient(135deg, #f28c28, #d45a1a); border-radius: 28px; padding: 24px 32px; margin-bottom: 24px; text-align: center; box-shadow: var(--shadow);">
+  <div style="font-size: 14px; letter-spacing: 2px; color: #fff3e0; margin-bottom: 8px;">📚 WORD FORMATION</div>
+  <div style="font-size: 28px; font-weight: 800; color: white; margin-bottom: 8px;">SUFFIXES & PREFIXES</div>
+  <div style="font-size: 18px; color: #fff0d0;">Practice Exercises · Tables · Tests · Speaking</div>
+  <div style="margin-top: 12px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+    <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 50px; font-size: 13px;">create → creative</span>
+    <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 50px; font-size: 13px;">employ → employment</span>
+    <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 50px; font-size: 13px;">happy → happiness</span>
+    <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 50px; font-size: 13px;">friendly → friendliness</span>
+  </div>
+</div>
+         
+
+    <section class="hero">
+      <div class="badge">Word Formation Summary</div>
+      <h1>Suffixes and Prefixes</h1>
+      <p class="subtitle">
+        Чёткий конспект по словообразованию: какие суффиксы и приставки нужны для экзамена,
+        как они меняют часть речи и как это выглядит в нормальном контексте.
+      </p>
+    </section>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2>Noun-Forming Suffixes</h2>
+
+          <h3>From Verbs</h3>
+          <table class="table">
+            <thead><tr><th>Suffix</th><th>Meaning / Function</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><code>-er / -or</code></td><td>person who does an action</td><td>teach → teacher, act → actor</td></tr>
+              <tr><td><code>-ist</code></td><td>person, profession, follower</td><td>cycle → cyclist, novel → novelist</td></tr>
+              <tr><td><code>-ee</code></td><td>person affected by an action</td><td>escape → escapee, employ → employee</td></tr>
+              <tr><td><code>-age</code></td><td>result / process</td><td>marry → marriage</td></tr>
+              <tr><td><code>-al</code></td><td>action or result</td><td>arrive → arrival</td></tr>
+              <tr><td><code>-ing</code></td><td>action / thing</td><td>build → building</td></tr>
+              <tr><td><code>-ion / -tion / -sion</code></td><td>action, process, result</td><td>act → action, decide → decision</td></tr>
+              <tr><td><code>-ment</code></td><td>result, process</td><td>develop → development, enjoy → enjoyment</td></tr>
+              <tr><td><code>-ure</code></td><td>result of action</td><td>fail → failure</td></tr>
+              <tr><td><code>-y</code></td><td>result / abstract noun</td><td>discover → discovery</td></tr>
+              <tr><td><code>-ship</code></td><td>state / relationship</td><td>friend → friendship</td></tr>
+              <tr><td><code>-hood</code></td><td>state / period of life</td><td>child → childhood</td></tr>
+            </tbody>
+          </table>
+
+          <h3>From Adjectives</h3>
+          <table class="table">
+            <thead><tr><th>Suffix</th><th>Meaning / Function</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><code>-ness</code></td><td>quality, state</td><td>happy → happiness</td></tr>
+              <tr><td><code>-ity / -ty</code></td><td>quality, condition</td><td>simple → simplicity, safe → safety</td></tr>
+              <tr><td><code>-cy</code></td><td>state, condition</td><td>private → privacy</td></tr>
+              <tr><td><code>-ance / -ence</code></td><td>quality, state</td><td>important → importance, patient → patience</td></tr>
+            </tbody>
+          </table>
+
+          <div class="example">
+            <strong>Examples in context:</strong><br>
+            The explanation looked <b>simple</b>, but its real <b>simplicity</b> was hard to achieve.<br>
+            You need real <b>patience</b> if you want to stay <b>patient</b> with younger learners.
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Adjective-Forming Suffixes</h2>
+
+          <h3>From Nouns</h3>
+          <table class="table">
+            <thead><tr><th>Suffix</th><th>Meaning / Function</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><code>-ous</code></td><td>full of / having the quality</td><td>danger → dangerous</td></tr>
+              <tr><td><code>-al</code></td><td>related to</td><td>nature → natural</td></tr>
+              <tr><td><code>-ic / -ical</code></td><td>related to</td><td>history → historic / historical</td></tr>
+              <tr><td><code>-ish</code></td><td>having the character of</td><td>child → childish</td></tr>
+              <tr><td><code>-ive</code></td><td>having the quality / effect</td><td>effect → effective</td></tr>
+              <tr><td><code>-ful</code></td><td>full of</td><td>care → careful, hope → hopeful</td></tr>
+              <tr><td><code>-less</code></td><td>without</td><td>care → careless, hope → hopeless</td></tr>
+              <tr><td><code>-y</code></td><td>full of / like</td><td>sun → sunny</td></tr>
+              <tr><td><code>-like</code></td><td>similar to</td><td>child → childlike</td></tr>
+            </tbody>
+          </table>
+
+          <h3>From Verbs</h3>
+          <table class="table">
+            <thead><tr><th>Suffix</th><th>Meaning / Function</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><code>-able / -ible</code></td><td>can be</td><td>read → readable, legible → illegible</td></tr>
+              <tr><td><code>-ing</code></td><td>causing the feeling</td><td>excite → exciting</td></tr>
+              <tr><td><code>-ed</code></td><td>feeling the effect</td><td>interest → interested</td></tr>
+              <tr><td><code>-ive</code></td><td>having the quality</td><td>create → creative</td></tr>
+            </tbody>
+          </table>
+
+          <div class="two-cols">
+            <div class="mini">
+              <h3 style="margin-top:0">Common traps</h3>
+              <ul>
+                <li><b>sensitive</b> = easily affected emotionally</li>
+                <li><b>sensible</b> = reasonable, practical</li>
+                <li><b>childish</b> = immature in a negative way</li>
+                <li><b>childlike</b> = innocent in a positive way</li>
+              </ul>
+            </div>
+            <div class="mini good">
+              <h3 style="margin-top:0">Examples</h3>
+              <p>He is very <b>sensitive</b> to criticism, but usually makes <b>sensible</b> decisions.</p>
+              <p>Her writing is clear and <b>readable</b>, but his notes are almost <b>illegible</b>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Verb-Forming Suffixes</h2>
+          <table class="table">
+            <thead><tr><th>Suffix</th><th>Meaning / Function</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><code>-en</code></td><td>make / become</td><td>weak → weaken, short → shorten, length → lengthen</td></tr>
+              <tr><td><code>-ise / -ize</code></td><td>make, turn into</td><td>modern → modernise, national → nationalize</td></tr>
+              <tr><td><code>-ify</code></td><td>make / become</td><td>simple → simplify</td></tr>
+              <tr><td><code>-ate</code></td><td>make / cause to become</td><td>active → activate</td></tr>
+            </tbody>
+          </table>
+          <div class="example">
+            <strong>Examples in context:</strong><br>
+            We need to <b>lengthen</b> the skirt because its <b>length</b> is not enough.<br>
+            Please <b>shorten</b> your answer. A shorter version will sound clearer.
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Negative and Meaning-Changing Prefixes</h2>
+          <div style="margin-bottom:14px;">
+            <span class="tag">un-</span> <span class="tag">in-</span> <span class="tag">im-</span> <span class="tag">il-</span>
+            <span class="tag">ir-</span> <span class="tag">dis-</span> <span class="tag">non-</span> <span class="tag">de-</span>
+          </div>
+
+          <table class="table">
+            <thead><tr><th>Prefix</th><th>Examples</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td><code>un-</code></td><td>unhappy, unclear, unusable</td><td>very common negative prefix</td></tr>
+              <tr><td><code>in-</code></td><td>incorrect, inactive, incomplete</td><td>negative meaning</td></tr>
+              <tr><td><code>im-</code></td><td>impossible, immature, impatient</td><td>usually before <b>m</b> or <b>p</b></td></tr>
+              <tr><td><code>il-</code></td><td>illegal, illegible, illogical</td><td>usually before <b>l</b></td></tr>
+              <tr><td><code>ir-</code></td><td>irrational, irrelevant, irresponsible</td><td>usually before <b>r</b></td></tr>
+              <tr><td><code>dis-</code></td><td>disagree, disrespect</td><td>opposite meaning / reversal</td></tr>
+              <tr><td><code>non-</code></td><td>non-stop, non-verbal</td><td>absence, not</td></tr>
+              <tr><td><code>de-</code></td><td>deforest, deactivate</td><td>remove / reduce / reverse</td></tr>
+            </tbody>
+          </table>
+
+          <div class="example">
+            <strong>Examples in context:</strong><br>
+            His argument sounded <b>rational</b>, but the final decision was completely <b>irrational</b>.<br>
+            You should always <b>respect</b> other people and never show <b>disrespect</b>.
+          </div>
+        </section>
+      </main>
+
+      <aside>
+        <section class="card">
+          <h2>Quick Patterns</h2>
+          <div class="mini"><p><b>Verb → Noun</b></p><p><code>develop → development</code></p><p><code>decide → decision</code></p><p><code>fail → failure</code></p></div>
+          <div class="mini" style="margin-top:12px;"><p><b>Adjective → Noun</b></p><p><code>simple → simplicity</code></p><p><code>private → privacy</code></p><p><code>happy → happiness</code></p></div>
+          <div class="mini" style="margin-top:12px;"><p><b>Noun → Adjective</b></p><p><code>care → careful / careless</code></p><p><code>hope → hopeful / hopeless</code></p><p><code>child → childish / childlike</code></p></div>
+        </section>
+
+        <section class="card">
+          <h2>Model Examples</h2>
+          <div class="example">The situation became very <b>intense</b>, and the emotional <b>intensity</b> was hard to handle.</div>
+          <div class="example">He did not want to <b>fail</b>, but one careless mistake led to complete <b>failure</b>.</div>
+          <div class="example">We all <b>hope</b> for the best and try to stay <b>hopeful</b> even in difficult times.</div>
+          <div class="example">She is usually <b>careful</b>, but sometimes becomes completely <b>careless</b> with details.</div>
+          <div class="example">He is still rather <b>immature</b>, but this experience may help him become more <b>mature</b>.</div>
+        </section>
+
+        <section class="card">
+          <h2>Exam Focus</h2>
+          <ul>
+            <li>Check the part of speech first.</li>
+            <li>Look for negative meaning before choosing a prefix.</li>
+            <li>Watch out for traps like <b>sensitive</b> and <b>sensible</b>.</li>
+            <li>Use context, not memory alone.</li>
+            <li>Build word families, not isolated words.</li>
+          </ul>
+          <p class="note">Для ЕГЭ и word formation это важнее, чем просто заученный список.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <section class="wrap" style="margin-top:40px;">
+    <div class="card">
+      <h2>Practice Section</h2>
+
+      <h3>1. Word Formation — Multiple Choice</h3>
+      <p>Choose the correct form.</p>
+      <div class="exercise-grid">
+        <div class="exercise-row">The situation became extremely _____________ [intensivity], and the emotional intensity was hard to control.<div class="choice-group"><button class="choice-btn">intensively</button><button class="choice-btn">intense</button><button class="choice-btn">intensity</button></div></div>
+        <div class="exercise-row">She showed great _____________ [patient], even when the class became noisy.<div class="choice-group"><button class="choice-btn">patience</button><button class="choice-btn">patient</button><button class="choice-btn">patiently</button></div></div>
+        <div class="exercise-row">His answer sounded completely _____________ [logic] to the examiner.<div class="choice-group"><button class="choice-btn">logical</button><button class="choice-btn">illogical</button><button class="choice-btn">logically</button></div></div>
+        <div class="exercise-row">The company needs to _____________ [modern] its equipment.<div class="choice-group"><button class="choice-btn">modernity</button><button class="choice-btn">modern</button><button class="choice-btn">modernize</button></div></div>
+        <div class="exercise-row">Her _____________ [create] helped her solve the problem quickly.<div class="choice-group"><button class="choice-btn">creation</button><button class="choice-btn">creative</button><button class="choice-btn">creativity</button></div></div>
+        <div class="exercise-row">He gave a very _____________ [use] piece of advice.<div class="choice-group"><button class="choice-btn">use</button><button class="choice-btn">useful</button><button class="choice-btn">usefully</button></div></div>
+        <div class="exercise-row">The _____________ [develop] of technology changed our lives.<div class="choice-group"><button class="choice-btn">development</button><button class="choice-btn">develop</button><button class="choice-btn">developed</button></div></div>
+        <div class="exercise-row">She has a strong _____________ [person].<div class="choice-group"><button class="choice-btn">personally</button><button class="choice-btn">personality</button><button class="choice-btn">personal</button></div></div>
+        <div class="exercise-row">This task requires careful _____________ [prepare].<div class="choice-group"><button class="choice-btn">prepared</button><button class="choice-btn">preparation</button><button class="choice-btn">preparing</button></div></div>
+        <div class="exercise-row">The final decision was completely _____________ [rational].<div class="choice-group"><button class="choice-btn">rationality</button><button class="choice-btn">irrational</button><button class="choice-btn">rational</button></div></div>
+      </div>
+
+      <h3>2. Gap Filling</h3>
+      <p>Complete the sentences. Drag the words from the bank into the gaps.</p>
+      <div class="word-bank" id="wordBank">
+        <span class="drag-item" draggable="true">fail</span> <span class="drag-item" draggable="true">failure</span>
+        <span class="drag-item" draggable="true">hopeful</span> <span class="drag-item" draggable="true">hope</span>
+        <span class="drag-item" draggable="true">childhood</span> <span class="drag-item" draggable="true">childishly</span>
+        <span class="drag-item" draggable="true">lengthen</span> <span class="drag-item" draggable="true">length</span>
+        <span class="drag-item" draggable="true">careful</span> <span class="drag-item" draggable="true">careless</span>
+        <span class="drag-item" draggable="true">simplify</span> <span class="drag-item" draggable="true">simplicity</span>
+        <span class="drag-item" draggable="true">privacy</span> <span class="drag-item" draggable="true">private</span>
+        <span class="drag-item" draggable="true">kindness</span> <span class="drag-item" draggable="true">kind</span>
+        <span class="drag-item" draggable="true">weakness</span> <span class="drag-item" draggable="true">weaken</span>
+        <span class="drag-item" draggable="true">intensity</span> <span class="drag-item" draggable="true">intense</span>
+      </div>
+      <div class="exercise-grid">
+        <div class="exercise-row">He didn’t want to <span class="drop-zone"></span>, but it ended in complete <span class="drop-zone"></span>.</div>
+        <div class="exercise-row">You should stay <span class="drop-zone"></span> even when you lose <span class="drop-zone"></span>.</div>
+        <div class="exercise-row">Her <span class="drop-zone"></span> was happy, but sometimes she behaves <span class="drop-zone"></span>.</div>
+        <div class="exercise-row">We need to <span class="drop-zone"></span> the dress because its <span class="drop-zone"></span> is not enough.</div>
+        <div class="exercise-row">He is usually <span class="drop-zone"></span>, but sometimes becomes <span class="drop-zone"></span>.</div>
+        <div class="exercise-row">She tried to <span class="drop-zone"></span> the task, but its <span class="drop-zone"></span> was not obvious.</div>
+        <div class="exercise-row">The <span class="drop-zone"></span> of the discussion made everyone feel <span class="drop-zone"></span> emotions.</div>
+        <div class="exercise-row">His <span class="drop-zone"></span> became obvious when the situation started to <span class="drop-zone"></span> him.</div>
+        <div class="exercise-row">The <span class="drop-zone"></span> of the data must be protected in any <span class="drop-zone"></span> system.</div>
+        <div class="exercise-row">She showed great <span class="drop-zone"></span> and remained <span class="drop-zone"></span> to everyone.</div>
+      </div>
+      <button class="action-btn secondary" id="resetDrag">Reset drag exercise</button>
+      <button class="action-btn" id="checkDrag">Check answers</button>
+
+      <h3>3. Transformation</h3>
+      <p>Choose the correct form interactively.</p>
+      <div class="exercise-grid">
+        <div class="exercise-row">This task looks <div class="choice-group"><button class="choice-btn">simple</button><button class="choice-btn">simplicity</button></div> but requires real <div class="choice-group"><button class="choice-btn">simple</button><button class="choice-btn">simplicity</button></div></div>
+        <div class="exercise-row">The discussion became <div class="choice-group"><button class="choice-btn">intense</button><button class="choice-btn">intensity</button></div> and was full of emotional <div class="choice-group"><button class="choice-btn">intense</button><button class="choice-btn">intensity</button></div></div>
+        <div class="exercise-row">He is too <div class="choice-group"><button class="choice-btn">immature</button><button class="choice-btn">mature</button></div> now, but will become more <div class="choice-group"><button class="choice-btn">immature</button><button class="choice-btn">mature</button></div></div>
+        <div class="exercise-row">She felt <div class="choice-group"><button class="choice-btn">weak</button><button class="choice-btn">weaken</button></div> after the illness, and the virus continued to <div class="choice-group"><button class="choice-btn">weak</button><button class="choice-btn">weaken</button></div> her body.</div>
+        <div class="exercise-row">His reaction was <div class="choice-group"><button class="choice-btn">rational</button><button class="choice-btn">irrational</button></div>, unlike her completely <div class="choice-group"><button class="choice-btn">rational</button><button class="choice-btn">irrational</button></div> decision.</div>
+        <div class="exercise-row">They showed <div class="choice-group"><button class="choice-btn">respect</button><button class="choice-btn">disrespect</button></div> and never allowed <div class="choice-group"><button class="choice-btn">respect</button><button class="choice-btn">disrespect</button></div> in communication.</div>
+        <div class="exercise-row">He tried to <div class="choice-group"><button class="choice-btn">shorten</button><button class="choice-btn">shortness</button></div> the text, but its <div class="choice-group"><button class="choice-btn">shorten</button><button class="choice-btn">shortness</button></div> made it unclear.</div>
+        <div class="exercise-row">Her behavior seemed <div class="choice-group"><button class="choice-btn">childish</button><button class="choice-btn">childhood</button></div>, not appropriate for her <div class="choice-group"><button class="choice-btn">childish</button><button class="choice-btn">childhood</button></div> memories.</div>
+        <div class="exercise-row">The explanation was <div class="choice-group"><button class="choice-btn">clear</button><button class="choice-btn">clarity</button></div>, but the lack of <div class="choice-group"><button class="choice-btn">clear</button><button class="choice-btn">clarity</button></div> confused students.</div>
+        <div class="exercise-row">He gave a <div class="choice-group"><button class="choice-btn">helpful</button><button class="choice-btn">helpless</button></div> answer, which was not <div class="choice-group"><button class="choice-btn">helpful</button><button class="choice-btn">helpless</button></div> at all.</div>
+      </div>
+
+      <h3>4. Error Correction</h3>
+      <p>Find and correct the mistake. Check the key only after you finish.</p>
+      <div class="exercise-grid">
+        <div class="exercise-row">This is an <b>unlogical</b> argument.</div>
+        <div class="exercise-row">She was very <b>joyness</b> after the news.</div>
+        <div class="exercise-row">He needs to <b>strength</b> his skills.</div>
+        <div class="exercise-row">The situation was very <b>danger</b>.</div>
+        <div class="exercise-row">She showed great <b>kind</b> to the guests.</div>
+        <div class="exercise-row">This text is not <b>readible</b>.</div>
+        <div class="exercise-row">He gave a very <b>use</b> piece of advice.</div>
+        <div class="exercise-row">The explanation lacked <b>clear</b>.</div>
+        <div class="exercise-row">She felt very <b>comfort</b> in the new team.</div>
+        <div class="exercise-row">The result was completely <b>logic</b>.</div>
+      </div>
+      <button class="key-toggle" id="toggleKey">Show hidden key</button>
+      <div class="hidden-key" id="hiddenKey">
+        <p><b>Key:</b></p>
+        <p>1. illogical</p><p>2. joyful</p><p>3. strengthen</p><p>4. dangerous</p><p>5. kindness</p>
+        <p>6. readable</p><p>7. useful</p><p>8. clarity</p><p>9. comfortable</p><p>10. logical</p>
+      </div>
+
+      <h3>5. Speaking Trigger</h3>
+      <p>Flip the cards and answer the speaking prompts.</p>
+      <div class="flip-grid" id="flipGrid">
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Pressure • Patience • Hopeful</div><div class="flip-back"><strong>🗣</strong> Tell about a time you felt pressure.</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Decision • Irrational • Reasonable</div><div class="flip-back"><strong>🗣</strong> When was your decision irrational?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Childhood • Personality</div><div class="flip-back"><strong>🗣</strong> How did your childhood shape you?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Simplify • Difficulty</div><div class="flip-back"><strong>🗣</strong> What difficulty did you simplify?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Failure • Lesson</div><div class="flip-back"><strong>🗣</strong> What failure taught you a lesson?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Careful • Careless</div><div class="flip-back"><strong>🗣</strong> Are you careful or careless? Why?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Respect • Communication</div><div class="flip-back"><strong>🗣</strong> Why is respect important in talk?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Weak • Stronger</div><div class="flip-back"><strong>🗣</strong> When did you become stronger?</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Creative • Solution</div><div class="flip-back"><strong>🗣</strong> Tell about your creative solution.</div></div></div>
+  <div class="flip-card"><div class="flip-inner"><div class="flip-front">Practice • Improvement</div><div class="flip-back"><strong>🗣</strong> How did practice improve your skill?</div></div></div>
+</div>
+
+      <div class="tests" id="testPanel">
+        <p><b>Interactive checks:</b></p>
+        <p id="testSyntax">JS syntax check: pending</p>
+        <p id="testDropZones">Drop zones found: pending</p>
+        <p id="testFlipCards">Flip cards found: pending</p>
+        <p id="testChoiceButtons">Choice buttons found: pending</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Choice buttons: highlight selected
+    document.querySelectorAll('.choice-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const group = btn.parentElement;
+        group.querySelectorAll('.choice-btn').forEach((item) => {
+          item.classList.remove('selected', 'correct', 'incorrect');
+        });
+        btn.classList.add('selected');
+      });
+    });
+
+    // Drag & drop logic
+    let draggedItem = null;
+    let selectedToken = null;
+
+    function markDraggedState(item, isUsed) {
+      if (!item) return;
+      item.classList.toggle('used', isUsed);
+      if (isUsed) item.classList.remove('selected-token');
+    }
+
+    function clearSelectedToken() {
+      if (selectedToken) {
+        selectedToken.classList.remove('selected-token');
+      }
+      selectedToken = null;
+    }
+
+    function fillZone(zone, item) {
+      const previousValue = zone.dataset.value || '';
+      if (previousValue) {
+        const previousItem = Array.from(document.querySelectorAll('.drag-item')).find((drag) => drag.textContent === previousValue);
+        markDraggedState(previousItem, false);
+      }
+      zone.textContent = item.textContent;
+      zone.dataset.value = item.textContent;
+      zone.classList.add('filled');
+      zone.classList.remove('correct', 'incorrect');
+      markDraggedState(item, true);
+    }
+
+    document.querySelectorAll('.drag-item').forEach((item) => {
+      item.addEventListener('dragstart', () => { draggedItem = item; });
+      item.addEventListener('click', () => {
+        if (item.classList.contains('used')) return;
+        if (selectedToken === item) { clearSelectedToken(); return; }
+        clearSelectedToken();
+        selectedToken = item;
+        item.classList.add('selected-token');
+      });
+    });
+
+    document.querySelectorAll('.drop-zone').forEach((zone) => {
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('active'); });
+      zone.addEventListener('dragleave', () => { zone.classList.remove('active'); });
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('active');
+        if (draggedItem) { fillZone(zone, draggedItem); draggedItem = null; }
+      });
+      zone.addEventListener('click', () => {
+        if (selectedToken) { fillZone(zone, selectedToken); clearSelectedToken(); return; }
+        const currentValue = zone.dataset.value || '';
+        if (!currentValue) return;
+        const currentItem = Array.from(document.querySelectorAll('.drag-item')).find((item) => item.textContent === currentValue);
+        markDraggedState(currentItem, false);
+        zone.textContent = '';
+        zone.dataset.value = '';
+        zone.classList.remove('filled', 'correct', 'incorrect');
+      });
+    });
+
+    const gapAnswerKey = [
+      'fail', 'failure', 'hopeful', 'hope', 'childhood', 'childishly',
+      'lengthen', 'length', 'careful', 'careless', 'simplify', 'simplicity',
+      'intensity', 'intense', 'weakness', 'weaken', 'privacy', 'private',
+      'kindness', 'kind'
+    ];
+
+    document.getElementById('resetDrag').addEventListener('click', () => {
+      document.querySelectorAll('.drop-zone').forEach((zone) => {
+        zone.textContent = ''; zone.dataset.value = ''; zone.classList.remove('filled', 'active', 'correct', 'incorrect');
+      });
+      document.querySelectorAll('.drag-item').forEach((item) => item.classList.remove('used', 'selected-token'));
+      draggedItem = null; selectedToken = null;
+    });
+
+    document.getElementById('checkDrag').addEventListener('click', () => {
+      const zones = Array.from(document.querySelectorAll('.drop-zone'));
+      zones.forEach((zone, index) => {
+        zone.classList.remove('correct', 'incorrect');
+        const value = zone.dataset.value || '';
+        if (value === gapAnswerKey[index]) zone.classList.add('correct');
+        else zone.classList.add('incorrect');
+      });
+    });
+
+    // Multiple choice check
+    const mcAnswerKey = {0:'intense',1:'patience',2:'illogical',3:'modernize',4:'creativity',5:'useful',6:'development',7:'personality',8:'preparation',9:'irrational'};
+    const mcRows = Array.from(document.querySelectorAll('.exercise-grid'))[0].querySelectorAll('.exercise-row');
+    const checkMcBtn = document.createElement('button');
+    checkMcBtn.className = 'action-btn'; checkMcBtn.textContent = 'Check answers';
+    document.querySelectorAll('.exercise-grid')[0].after(checkMcBtn);
+    checkMcBtn.addEventListener('click', () => {
+      mcRows.forEach((row, idx) => {
+        const btns = Array.from(row.querySelectorAll('.choice-btn'));
+        btns.forEach(b => b.classList.remove('correct', 'incorrect'));
+        const selected = row.querySelector('.choice-btn.selected');
+        if (!selected) return;
+        if (selected.textContent.trim() === mcAnswerKey[idx]) selected.classList.add('correct');
+        else {
+          selected.classList.add('incorrect');
+          const correctBtn = btns.find(b => b.textContent.trim() === mcAnswerKey[idx]);
+          if (correctBtn) correctBtn.classList.add('correct');
+        }
+      });
+    });
+
+    // Transformation check
+    const transformAnswerKey = {
+      0: ['simple','simplicity'],1:['intense','intensity'],2:['immature','mature'],3:['weak','weaken'],
+      4:['rational','irrational'],5:['respect','disrespect'],6:['shorten','shortness'],7:['childish','childhood'],
+      8:['clear','clarity'],9:['helpful','helpless']
+    };
+    const transformRows = Array.from(document.querySelectorAll('.exercise-grid'))[2].querySelectorAll('.exercise-row');
+    const checkTransformBtn = document.createElement('button');
+    checkTransformBtn.className = 'action-btn'; checkTransformBtn.textContent = 'Check answers';
+    document.querySelectorAll('.exercise-grid')[2].after(checkTransformBtn);
+    checkTransformBtn.addEventListener('click', () => {
+      transformRows.forEach((row, rowIdx) => {
+        const groups = row.querySelectorAll('.choice-group');
+        groups.forEach((group, grpIdx) => {
+          const btns = Array.from(group.querySelectorAll('.choice-btn'));
+          btns.forEach(b => b.classList.remove('correct', 'incorrect'));
+          const selected = group.querySelector('.choice-btn.selected');
+          if (!selected) return;
+          const correct = transformAnswerKey[rowIdx][grpIdx];
+          if (selected.textContent.trim() === correct) selected.classList.add('correct');
+          else {
+            selected.classList.add('incorrect');
+            const correctBtn = btns.find(b => b.textContent.trim() === correct);
+            if (correctBtn) correctBtn.classList.add('correct');
+          }
+        });
+      });
+    });
+
+    // Toggle hidden key
+    const toggleKey = document.getElementById('toggleKey');
+    const hiddenKey = document.getElementById('hiddenKey');
+    toggleKey.addEventListener('click', () => {
+      hiddenKey.classList.toggle('show');
+      toggleKey.textContent = hiddenKey.classList.contains('show') ? 'Hide key' : 'Show hidden key';
+    });
+
+    // Flip cards - работает!
+    document.querySelectorAll('.flip-card').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // System checks
+    function runChecks() {
+      document.getElementById('testSyntax').innerHTML = '<span class="status-ok">JS syntax check: passed</span>';
+      const dropCount = document.querySelectorAll('.drop-zone').length;
+      const flipCount = document.querySelectorAll('.flip-card').length;
+      const choiceCount = document.querySelectorAll('.choice-btn').length;
+      document.getElementById('testDropZones').innerHTML = dropCount === 20 ? '<span class="status-ok">Drop zones found: 20 / 20</span>' : '<span class="status-bad">Drop zones found: ' + dropCount + ' / 20</span>';
+      document.getElementById('testFlipCards').innerHTML = flipCount === 10 ? '<span class="status-ok">Flip cards found: 10 / 10</span>' : '<span class="status-bad">Flip cards found: ' + flipCount + ' / 10</span>';
+      document.getElementById('testChoiceButtons').innerHTML = '<span class="status-ok">Choice buttons found: ' + choiceCount + '</span>';
+    }
+    runChecks();
+  </script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Prepositions World | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #F9E7B3 0%, #F5BC7A 100%);
+            font-family: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI Emoji', cursive, sans-serif;
+            padding: 20px 16px 60px;
+            min-height: 100vh;
+        }
+
+        .world {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .hero {
+            background: #FFF9E0;
+            border-radius: 64px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: center;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+            border: 3px solid #FFB347;
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #E67E22, #D35400);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .sub {
+            font-size: 1.3rem;
+            background: #FFE0A3;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            color: #B64926;
+            font-weight: bold;
+        }
+
+        /* cards */
+        .card {
+            background: white;
+            border-radius: 48px;
+            padding: 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 18px 28px rgba(0,0,0,0.15);
+            border: 2px solid #FFC48A;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #FFE0A3;
+            display: inline-block;
+            padding: 6px 28px;
+            border-radius: 60px;
+            color: #A1412B;
+            margin-bottom: 20px;
+        }
+
+        /* flip cards grid */
+        .grid-flip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .flip-card {
+            background: transparent;
+            width: 140px;
+            height: 140px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            border-radius: 30px;
+        }
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+        .flip-front {
+            background: #FFB347;
+            color: white;
+        }
+        .flip-back {
+            background: #6AB04C;
+            color: white;
+            transform: rotateY(180deg);
+        }
+        .emoji-big {
+            font-size: 2.5rem;
+        }
+
+        /* drag matching */
+        .match-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .drag-col, .drop-col {
+            flex: 1;
+            min-width: 180px;
+            background: #FFF3CF;
+            border-radius: 48px;
+            padding: 20px;
+        }
+        .drag-item {
+            background: #F9CA7F;
+            margin: 12px;
+            padding: 16px;
+            text-align: center;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: grab;
+            box-shadow: 0 5px 0 #B97F3A;
+            display: inline-block;
+            width: 130px;
+        }
+        .drop-zone {
+            background: #FFB347;
+            margin: 12px;
+            padding: 16px;
+            text-align: center;
+            border-radius: 60px;
+            color: white;
+            display: inline-block;
+            width: 160px;
+        }
+        .matched {
+            background: #78E08F;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* buttons */
+        .btn {
+            background: #FFB347;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            margin: 10px 5px;
+            box-shadow: 0 5px 0 #A05E2A;
+            transition: 0.05s linear;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #A05E2A;
+        }
+
+        .opt-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .opt-btn {
+            background: #FFE0A3;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid #E28C3A;
+        }
+
+        .sentence-builder {
+            background: #FFF3CF;
+            border-radius: 40px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .word-pool {
+            margin: 12px 0;
+        }
+        .word-tile {
+            background: #F9CA7F;
+            display: inline-block;
+            padding: 10px 18px;
+            margin: 6px;
+            border-radius: 40px;
+            cursor: grab;
+            font-size: 1.1rem;
+        }
+        .slot {
+            background: white;
+            border-radius: 50px;
+            min-height: 60px;
+            padding: 12px;
+            border: 3px dashed #FFA559;
+            margin-top: 10px;
+        }
+
+        .score-board {
+            text-align: center;
+            background: gold;
+            padding: 16px;
+            border-radius: 80px;
+            font-size: 2rem;
+            font-weight: bold;
+            position: sticky;
+            bottom: 10px;
+            margin-top: 20px;
+        }
+        @media (max-width: 700px) {
+            .flip-card { width: 110px; height: 110px; }
+            .drag-item, .drop-zone { width: 110px; font-size: 1rem; }
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">A1</span>
+    <span class="lbs-pill">Kids / beginners</span>
+    <span class="lbs-pill">Grammar trainer</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="world">
+    <div class="hero">
+        <h1>📦 PREPOSITIONS WORLD 📦</h1>
+        <div class="sub">🐱 Where is the cat? Tap, drag & learn!</div>
+    </div>
+
+    <!-- 2. FLIP MAP -->
+    <div class="card">
+        <div class="section-title">🗺️ Flip & learn!</div>
+        <div class="grid-flip" id="flipMap"></div>
+    </div>
+
+    <!-- 3. MATCHING DRAG & DROP -->
+    <div class="card">
+        <div class="section-title">🧩 Match preposition → meaning</div>
+        <div class="match-area" id="matchingArea"></div>
+        <button class="btn" id="checkMatchBtn">✅ Check matching + points</button>
+    </div>
+
+    <!-- 4. CHOOSE (click options) 8 sentences -->
+    <div class="card">
+        <div class="section-title">🤔 Choose the right preposition!</div>
+        <div id="chooseQuiz"></div>
+        <button class="btn" id="checkChooseBtn">✨ Check choices</button>
+    </div>
+
+    <!-- 5. DRAG preposition into gap -->
+    <div class="card">
+        <div class="section-title">🖱️ Drag preposition into the gap</div>
+        <div id="gapFillArea"></div>
+        <button class="btn" id="checkGapBtn">🏆 Check gap fill</button>
+    </div>
+
+    <!-- 6. Story + TRUE/FALSE -->
+    <div class="card">
+        <div class="section-title">📖 Story time & True/False</div>
+        <div id="storyText" style="background:#FFF6E0; border-radius:40px; padding:20px; margin-bottom:20px;"></div>
+        <div id="truefalseQuiz"></div>
+        <button class="btn" id="checkTFBtn">⭐ Check True/False</button>
+    </div>
+
+    <!-- 7. DRAG object to picture -->
+    <div class="card">
+        <div class="section-title">🎯 Drag the object to the correct place</div>
+        <div id="pictureDragArea" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;"></div>
+        <button class="btn" id="checkPicDragBtn">🏅 Check picture drag</button>
+    </div>
+
+    <!-- 8. Pattern drill (click transform) -->
+    <div class="card">
+        <div class="section-title">🔄 Pattern drill: change preposition</div>
+        <div style="font-size:1.8rem;" id="patternSentence">The ball is ___ the box.</div>
+        <div id="patternButtons"></div>
+        <div id="patternFeedback" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- 9. Memory cards (RU -> EN) -->
+    <div class="card">
+        <div class="section-title">🧠 Memory cards (русский → English)</div>
+        <div class="grid-flip" id="memoryGrid"></div>
+        <button class="btn" id="resetMemoryBtn">🔄 Reset memory cards</button>
+    </div>
+
+    <!-- FINAL SCORE -->
+    <div class="score-board">
+        ⭐ TOTAL SCORE: <span id="scoreValue">0</span> points ⭐
+    </div>
+</div>
+
+<script>
+    // ---------- PREPOSITIONS DATA ----------
+    const preps = [
+        { name: "in", example: "🐱 in 📦", emoji: "📦", ru: "внутри" },
+        { name: "on", example: "🐱 on 🪑", emoji: "🪑", ru: "на" },
+        { name: "under", example: "🐱 under 📦", emoji: "📦", ru: "под" },
+        { name: "behind", example: "🐱 behind 🌳", emoji: "🌳", ru: "за" },
+        { name: "in front of", example: "🐱 in front of 🏠", emoji: "🏠", ru: "перед" },
+        { name: "between", example: "🐱 between 📦📦", emoji: "📦", ru: "между" },
+        { name: "next to", example: "🐱 next to 🪑", emoji: "🪑", ru: "рядом" },
+        { name: "above", example: "🐱 above 📦", emoji: "📦", ru: "над" },
+        { name: "below", example: "🐱 below 📦", emoji: "📦", ru: "ниже" }
+    ];
+
+    let totalScore = 0;
+    function addPoints(p) { totalScore += p; document.getElementById('scoreValue').innerText = totalScore; }
+
+    // 2. FLIP MAP
+    function renderFlipMap() {
+        const container = document.getElementById('flipMap');
+        container.innerHTML = '';
+        preps.forEach(p => {
+            const flip = document.createElement('div');
+            flip.className = 'flip-card';
+            flip.innerHTML = `<div class="flip-inner"><div class="flip-front">${p.name}<div class="emoji-big">❓</div></div><div class="flip-back">${p.example}</div></div>`;
+            flip.addEventListener('click', () => flip.classList.toggle('flipped'));
+            container.appendChild(flip);
+        });
+    }
+
+    // 3. MATCHING DRAG DROP
+    let matchStatus = new Array(8).fill(false);
+    let matchPairs = preps.slice(0,8).map(p => ({ prep: p.name, meaning: p.example }));
+    function renderMatching() {
+        const area = document.getElementById('matchingArea');
+        area.innerHTML = `<div class="drag-col"><h3>📌 DRAG preposition</h3><div id="dragList"></div></div><div class="drop-col"><h3>🎯 Drop to match</h3><div id="dropList"></div></div>`;
+        const dragList = document.getElementById('dragList');
+        const dropList = document.getElementById('dropList');
+        matchPairs.forEach((item, idx) => {
+            const dragEl = document.createElement('div');
+            dragEl.className = 'drag-item';
+            dragEl.setAttribute('draggable', 'true');
+            dragEl.setAttribute('data-prep', item.prep);
+            dragEl.innerText = item.prep;
+            dragEl.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', item.prep));
+            dragList.appendChild(dragEl);
+
+            const dropEl = document.createElement('div');
+            dropEl.className = 'drop-zone';
+            dropEl.setAttribute('data-expected', item.prep);
+            dropEl.innerText = matchStatus[idx] ? `✅ ${item.meaning}` : item.meaning;
+            if(matchStatus[idx]) dropEl.classList.add('matched');
+            dropEl.addEventListener('dragover', e => e.preventDefault());
+            dropEl.addEventListener('drop', e => {
+                e.preventDefault();
+                const draggedPrep = e.dataTransfer.getData('text/plain');
+                if(draggedPrep === item.prep && !matchStatus[idx]) {
+                    matchStatus[idx] = true;
+                    addPoints(2);
+                    renderMatching();
+                }
+            });
+            dropList.appendChild(dropEl);
+        });
+    }
+    document.getElementById('checkMatchBtn').addEventListener('click', () => {
+        let correctCount = matchStatus.filter(v=>v===true).length;
+        addPoints(correctCount);
+        alert(`Matching: ${correctCount}/${matchPairs.length} correct! +${correctCount} points`);
+    });
+
+    // 4. CHOOSE QUIZ (8 sentences)
+    const chooseQuestions = [
+        { text: "The cat is ___ the box.", options: ["in", "on", "under"], correct: "in" },
+        { text: "The book is ___ the table.", options: ["under", "on", "behind"], correct: "on" },
+        { text: "The ball is ___ the chair.", options: ["above", "under", "next to"], correct: "under" },
+        { text: "The dog is ___ the tree.", options: ["behind", "in front of", "between"], correct: "behind" },
+        { text: "The girl is standing ___ the house.", options: ["between", "in front of", "below"], correct: "in front of" },
+        { text: "The park is ___ the school and the library.", options: ["next to", "between", "above"], correct: "between" },
+        { text: "My house is ___ the supermarket.", options: ["next to", "under", "behind"], correct: "next to" },
+        { text: "The clouds are ___ the mountains.", options: ["below", "above", "under"], correct: "above" }
+    ];
+    let chooseAnswers = new Array(8).fill(null);
+    function renderChoose() {
+        const container = document.getElementById('chooseQuiz');
+        container.innerHTML = '';
+        chooseQuestions.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.style.marginBottom = '20px';
+            div.innerHTML = `<div>${idx+1}. ${q.text}</div><div class="opt-group" id="optgroup-${idx}"></div>`;
+            container.appendChild(div);
+            const optDiv = div.querySelector(`.opt-group`);
+            const shuffled = [...q.options];
+            for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+            shuffled.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'opt-btn';
+                btn.innerText = opt;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll(`#optgroup-${idx} .opt-btn`).forEach(b=>b.style.background="#FFE0A3");
+                    btn.style.background="#C3E6A5";
+                    chooseAnswers[idx] = opt;
+                });
+                optDiv.appendChild(btn);
+            });
+        });
+    }
+    function checkChoose() {
+        let correct = 0;
+        chooseQuestions.forEach((q,i) => { if(chooseAnswers[i] === q.correct) correct++; });
+        addPoints(correct * 2);
+        alert(`Choose: ${correct}/${chooseQuestions.length} correct! +${correct*2} points`);
+    }
+
+    // 5. GAP FILL DRAG
+    const gapSentences = [
+        { text: "The cat is ___ the box.", correct: "in" },
+        { text: "The mouse ran ___ the table.", correct: "under" },
+        { text: "The bird flew ___ the house.", correct: "above" },
+        { text: "The car is parked ___ the tree.", correct: "behind" },
+        { text: "The boy is standing ___ his parents.", correct: "between" },
+        { text: "The lamp is ___ the sofa.", correct: "next to" },
+        { text: "The picture is ___ the wall.", correct: "on" },
+        { text: "The cat is hiding ___ the door.", correct: "behind" }
+    ];
+    let gapValues = new Array(8).fill("");
+    function renderGapFill() {
+        const container = document.getElementById('gapFillArea');
+        container.innerHTML = '';
+        gapSentences.forEach((s, idx) => {
+            const div = document.createElement('div');
+            div.className = 'sentence-builder';
+            div.innerHTML = `<div>${idx+1}. ${s.text.replace("___", `<span class="slot" id="slot-${idx}" style="display:inline-block; min-width:100px; background:#FFF0C0;">________</span>`)}</div>
+            <div class="word-pool" id="pool-${idx}"></div>`;
+            container.appendChild(div);
+            const pool = document.getElementById(`pool-${idx}`);
+            const prepositionsList = ["in","on","under","behind","in front of","between","next to","above"];
+            prepositionsList.forEach(prep => {
+                const tile = document.createElement('span');
+                tile.className = 'word-tile';
+                tile.innerText = prep;
+                tile.setAttribute('draggable','true');
+                tile.setAttribute('data-prep', prep);
+                tile.setAttribute('data-idx', idx);
+                tile.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', prep));
+                pool.appendChild(tile);
+            });
+            const slotSpan = document.getElementById(`slot-${idx}`);
+            slotSpan.addEventListener('dragover', e=>e.preventDefault());
+            slotSpan.addEventListener('drop', e => {
+                e.preventDefault();
+                const prep = e.dataTransfer.getData('text/plain');
+                gapValues[idx] = prep;
+                slotSpan.innerText = prep;
+                slotSpan.style.background = "#C8E6C9";
+            });
+        });
+    }
+    function checkGapFill() {
+        let correct = 0;
+        gapSentences.forEach((s,i) => { if(gapValues[i] === s.correct) correct++; });
+        addPoints(correct * 3);
+        alert(`Gap fill: ${correct}/${gapSentences.length} correct! +${correct*3} points`);
+    }
+
+    // 6. STORY + TRUE/FALSE
+    const story = "Tommy the cat loves adventures. One day, he climbed into a big box. Then he jumped onto the sofa. He hid under the table. He ran behind the curtain. He stood in front of the mirror. He sat between two cushions. He rested next to his owner. He looked above at the ceiling fan. Everything was fun!";
+    const tfStatements = [
+        "Tommy climbed into a box.", "He jumped under the sofa.", "He hid under the table.", "He ran behind the curtain.",
+        "He stood behind the mirror.", "He sat between two cushions.", "He rested next to his owner.", "He looked below at the floor."
+    ];
+    const tfAnswers = [true, false, true, true, false, true, true, false];
+    let tfUser = new Array(8).fill(null);
+    function renderTrueFalse() {
+        const container = document.getElementById('truefalseQuiz');
+        container.innerHTML = '';
+        tfStatements.forEach((stmt,i) => {
+            const div = document.createElement('div');
+            div.style.margin = "12px 0";
+            div.innerHTML = `<div>${i+1}. ${stmt}</div><div><button class="opt-btn tf-btn" data-idx="${i}" data-val="true">✅ TRUE</button> <button class="opt-btn tf-btn" data-idx="${i}" data-val="false">❌ FALSE</button></div>`;
+            container.appendChild(div);
+        });
+        document.querySelectorAll('.tf-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const idx = parseInt(btn.dataset.idx);
+                const val = btn.dataset.val === 'true';
+                tfUser[idx] = val;
+                btn.style.background = "#B0E57C";
+            });
+        });
+    }
+    function checkTF() {
+        let correct = 0;
+        tfUser.forEach((ans,i) => { if(ans === tfAnswers[i]) correct++; });
+        addPoints(correct * 2);
+        alert(`True/False: ${correct}/8 correct! +${correct*2} points`);
+    }
+
+    // 7. PICTURE DRAG (objects)
+    const pictureItems = [
+        { label: "📦 BOX", correctPrep: "in", obj: "⚽ ball" },
+        { label: "🪑 CHAIR", correctPrep: "under", obj: "🐱 cat" },
+        { label: "🌳 TREE", correctPrep: "behind", obj: "🐕 dog" },
+        { label: "🏠 HOUSE", correctPrep: "in front of", obj: "🚗 car" }
+    ];
+    let picMatches = [false,false,false,false];
+    function renderPictureDrag() {
+        const area = document.getElementById('pictureDragArea');
+        area.innerHTML = '';
+        pictureItems.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'drag-col';
+            card.style.width = "150px";
+            card.innerHTML = `<div style="font-size:2.5rem;">${item.label}</div><div class="drop-zone-pic" style="background:#F2C94C; padding:10px; border-radius:30px;">⬅️ drop ${item.obj}</div>`;
+            area.appendChild(card);
+        });
+        const objects = ["⚽ ball", "🐱 cat", "🐕 dog", "🚗 car"];
+        const toolbar = document.createElement('div');
+        toolbar.style.marginTop = "20px";
+        toolbar.style.display = "flex";
+        toolbar.style.gap = "15px";
+        objects.forEach(obj => {
+            const badge = document.createElement('div');
+            badge.className = 'drag-item';
+            badge.innerText = obj;
+            badge.setAttribute('draggable','true');
+            badge.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', obj));
+            toolbar.appendChild(badge);
+        });
+        area.appendChild(toolbar);
+        document.querySelectorAll('.drop-zone-pic').forEach((zone, i) => {
+            zone.addEventListener('dragover', e=>e.preventDefault());
+            zone.addEventListener('drop', e => {
+                const obj = e.dataTransfer.getData('text/plain');
+                if(!picMatches[i] && obj.includes(pictureItems[i].obj.split(' ')[1])) {
+                    picMatches[i] = true;
+                    zone.innerHTML = `✅ ${obj} is ${pictureItems[i].correctPrep}`;
+                    addPoints(3);
+                } else if(!picMatches[i]) zone.innerHTML = "❌ try again";
+                setTimeout(()=>{ if(!picMatches[i]) zone.innerHTML = "⬅️ drop object"; },800);
+            });
+        });
+    }
+    function checkPicDrag() { let c = picMatches.filter(v=>v).length; alert(`Picture matches: ${c}/4`); }
+
+    // 8. PATTERN DRILL
+    const patternPreps = ["in","on","under","behind","in front of","between"];
+    function renderPatternButtons() {
+        const container = document.getElementById('patternButtons');
+        container.innerHTML = '';
+        patternPreps.forEach(prep => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = prep;
+            btn.style.margin = "5px";
+            btn.addEventListener('click', () => {
+                document.getElementById('patternSentence').innerHTML = `The ball is ${prep} the box.`;
+                addPoints(2);
+                document.getElementById('patternFeedback').innerHTML = `✨ Great! +2 points`;
+                setTimeout(()=>document.getElementById('patternFeedback').innerHTML="",1500);
+            });
+            container.appendChild(btn);
+        });
+    }
+
+    // 9. MEMORY CARDS (Russian -> English)
+    const rusPreps = [
+        { ru: "внутри", en: "in" }, { ru: "на", en: "on" }, { ru: "под", en: "under" }, { ru: "за", en: "behind" },
+        { ru: "перед", en: "in front of" }, { ru: "между", en: "between" }, { ru: "рядом", en: "next to" }, { ru: "над", en: "above" }
+    ];
+    let memFlipped = new Array(8).fill(false);
+    function renderMemory() {
+        const grid = document.getElementById('memoryGrid');
+        grid.innerHTML = '';
+        rusPreps.forEach((item, idx) => {
+            const flip = document.createElement('div');
+            flip.className = 'flip-card';
+            if(memFlipped[idx]) flip.classList.add('flipped');
+            flip.innerHTML = `<div class="flip-inner"><div class="flip-front">🇷🇺 ${item.ru}</div><div class="flip-back">🇬🇧 ${item.en}</div></div>`;
+            flip.addEventListener('click', () => {
+                memFlipped[idx] = !memFlipped[idx];
+                renderMemory();
+                if(memFlipped[idx]) addPoints(1);
+            });
+            grid.appendChild(flip);
+        });
+    }
+
+    // INIT
+    renderFlipMap();
+    renderMatching();
+    renderChoose();
+    renderGapFill();
+    document.getElementById('storyText').innerText = story;
+    renderTrueFalse();
+    renderPictureDrag();
+    renderPatternButtons();
+    renderMemory();
+
+    document.getElementById('checkChooseBtn').onclick = checkChoose;
+    document.getElementById('checkGapBtn').onclick = checkGapFill;
+    document.getElementById('checkTFBtn').onclick = checkTF;
+    document.getElementById('checkPicDragBtn').onclick = checkPicDrag;
+    document.getElementById('resetMemoryBtn').onclick = () => { memFlipped.fill(false); renderMemory(); };
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

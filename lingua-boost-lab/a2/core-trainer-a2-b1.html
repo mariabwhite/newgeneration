@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Core Trainer A2-B1 | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9eef7 0%, #e8eefc 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* main container */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* header + score */
+        .header-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 16px 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #B23C8E, #5B4B8A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .score-panel {
+            background: white;
+            border-radius: 60px;
+            padding: 10px 22px;
+            display: flex;
+            gap: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .score-panel span {
+            color: #4b3b6e;
+        }
+
+        .score-panel .score-value {
+            color: #D96C9E;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .progress-bar-bg {
+            width: 180px;
+            height: 10px;
+            background: #e2d5e8;
+            border-radius: 20px;
+            overflow: hidden;
+            align-self: center;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #E9A6C3, #B86B9E);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        /* TABS */
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,240,0.8);
+            border: none;
+            padding: 12px 26px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4a3b6b;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn.active {
+            background: #9c6bb5;
+            color: white;
+            box-shadow: 0 8px 18px rgba(156,107,181,0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* card style */
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .grid-2col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .question-item {
+            background: #faf7fc;
+            border-radius: 28px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border-left: 6px solid #D96C9E;
+        }
+
+        button {
+            background: #7f62b3;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background: #9a7bcb;
+            transform: scale(0.97);
+        }
+
+        .correct-feedback {
+            background: #d9f0e1;
+            color: #1f6e43;
+            border-radius: 24px;
+            padding: 8px 16px;
+        }
+        .wrong-feedback {
+            background: #ffe1e1;
+            color: #bc4e6c;
+        }
+        .drag-drop-area {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .drag-item, .drop-zone {
+            background: #f0e9f5;
+            border-radius: 50px;
+            padding: 12px 18px;
+            margin: 6px;
+            cursor: grab;
+            transition: 0.1s;
+            user-select: none;
+        }
+        .drop-zone {
+            background: #fdf4f9;
+            border: 2px dashed #cfa6d4;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .matched {
+            background: #cbe6d9;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .speak-btn {
+            background: #f0bbd4;
+            border-radius: 60px;
+            padding: 6px 14px;
+            margin-left: 12px;
+            font-size: 0.8rem;
+        }
+        .flip-card {
+            background-color: transparent;
+            width: 220px;
+            height: 150px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 28px;
+        }
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #f8eff4;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .flip-back {
+            transform: rotateY(180deg);
+            background: #cdb5e3;
+            color: white;
+        }
+        @media (max-width: 700px) {
+            .card { padding: 18px; }
+            .tab-btn { padding: 8px 18px; font-size: 0.75rem;}
+        }
+        input, select {
+            padding: 12px;
+            border-radius: 28px;
+            border: 1px solid #ddd;
+            margin: 8px 0;
+        }
+        .timer-box {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: monospace;
+            background: #ece3f5;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">A2-B1</span>
+    <span class="lbs-pill">Teens / adults</span>
+    <span class="lbs-pill">Mixed trainer</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="app-container">
+    <div class="header-stats">
+        <h1>Core Trainer A2-B1</h1>
+        <div class="score-panel">
+            <div>🏆 Score: <span class="score-value" id="globalScore">0</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" id="globalProgress"></div></div>
+        </div>
+    </div>
+
+    <div class="tabs-nav" id="tabsNav"></div>
+
+    <!-- 9 секций -->
+    <div id="tensesTab" class="tab-content"> <div class="card"><h3>📅 Drag & Drop — Tenses</h3><div id="tensesGameArea"></div><button id="checkTensesBtn">✅ Check Tenses</button><div id="tensesResult"></div></div> </div>
+    <div id="gerundTab" class="tab-content"> <div class="card"><h3>📌 Gerund / Infinitive</h3><div id="gerundQuiz"></div></div> </div>
+    <div id="usedToTab" class="tab-content"> <div class="card"><h3>🔄 Used to / Would / Be used to / Get used to</h3><div id="usedToGapFill"></div><button id="checkUsedToBtn">Check answers</button><div id="usedToResult"></div></div> </div>
+    <div id="thereIsTab" class="tab-content"> <div class="card"><h3>🔗 Matching: There is / Would like / Let’s</h3><div id="matchingGame"></div><button id="checkMatchingBtn">Check Matching</button><div id="matchingResult"></div></div> </div>
+    <div id="comparativesTab" class="tab-content"> <div class="card"><h3>⚖️ Comparatives (fill in)</h3><div id="comparativesInput"></div><button id="checkComparativesBtn">Check</button><div id="comparativesResult"></div></div> </div>
+    <div id="conditionalsTab" class="tab-content"> <div class="card"><h3>🌀 Conditionals (MCQ)</h3><div id="conditionalsQuiz"></div><button id="checkConditionalsBtn">Submit Conditionals</button><div id="condResult"></div></div> </div>
+    <div id="futureTab" class="tab-content"> <div class="card"><h3>🔮 Future Forms (will/going to/present cont/present simple)</h3><div id="futureQuiz"></div><button id="checkFutureBtn">Check Future</button><div id="futureResult"></div></div> </div>
+    <div id="vocabTab" class="tab-content"> <div class="card"><h3>📚 Vocabulary Zone — Flip + Drag & Drop + Classification</h3><div><h4>🃏 Flip Cards (click to reveal)</h4><div id="flipCardsContainer" style="display:flex; flex-wrap:wrap; gap:20px; margin-bottom:30px;"></div></div><div><h4>🖱️ Drag & Drop (match word-translation)</h4><div id="vocabDragDropArea" class="drag-drop-area"></div><button id="resetVocabDrag">⟳ Reset Drag & Drop</button><div id="dragResultMsg"></div></div><div><h4>📂 Classification: Household / Technology / Travel</h4><div id="classificationGame"></div><button id="checkClassifyBtn">Check Classification</button><div id="classifyResult"></div></div></div> </div>
+    <div id="speakingTab" class="tab-content"> <div class="card"><h3>🗣️ Speaking Builder</h3><div><p><strong>Template:</strong> I think... First,... Also,... Because,... So,...</p><button id="genTopicBtn">🎲 Generate Topic</button> <span id="currentTopicDisplay" style="margin-left: 20px;font-weight:bold;"></span></div><div><textarea id="speechAnswer" rows="4" cols="50" placeholder="Write your answer here..." style="width:100%; margin:15px 0; border-radius:24px; padding:12px;"></textarea></div><div><button id="startTimerBtn">⏱️ Start 30s Timer</button> <span class="timer-box" id="timerDisplay">00:00</span></div><button id="submitSpeechBtn">💬 Submit Speaking</button><div id="speechFeedback"></div></div> </div>
+</div>
+
+<script>
+    // ---------- GLOBAL SCORE ----------
+    let totalScore = 0;
+    function updateScoreUI() { document.getElementById('globalScore').innerText = totalScore; let percent = Math.min(100, (totalScore/450)*100); document.getElementById('globalProgress').style.width = percent+"%"; }
+    function addPoints(p) { totalScore += p; updateScoreUI(); }
+
+    // ---------- VOCAB DATA (from specification) ----------
+    const householdWords = [ { en: "do the washing-up", ru: "мыть посуду" },{ en: "do the laundry", ru: "стирать" },{ en: "make the bed", ru: "застилать кровать" },{ en: "tidy the room", ru: "убирать комнату" },{ en: "take out the rubbish", ru: "выносить мусор" },{ en: "vacuum the floor", ru: "пылесосить пол" },{ en: "mop the floor", ru: "мыть пол" },{ en: "dust the furniture", ru: "вытирать пыль" },{ en: "clean the windows", ru: "мыть окна" },{ en: "cook dinner", ru: "готовить ужин" },{ en: "clean the kitchen", ru: "убирать кухню" },{ en: "clean the bathroom", ru: "убирать ванную" },{ en: "fold clothes", ru: "складывать одежду" },{ en: "iron clothes", ru: "гладить одежду" } ];
+    const chorePhrases = [ { en: "share responsibilities", ru: "делить обязанности" },{ en: "divide chores", ru: "распределять обязанности" },{ en: "plan tasks", ru: "планировать задачи" },{ en: "maintain order", ru: "поддерживать порядок" },{ en: "argue about chores", ru: "спорить о домашних делах" },{ en: "complain about doing chores", ru: "жаловаться на домашние дела" },{ en: "blame someone for leaving a mess", ru: "винить кого-то за беспорядок" },{ en: "be tired of washing dishes", ru: "устать мыть посуду" },{ en: "be capable of cleaning", ru: "быть способным убираться" },{ en: "look forward to finishing chores", ru: "ждать окончания дел" },{ en: "object to doing everything alone", ru: "возражать делать всё одному" } ];
+    const techWords = [ { en: "use a robotic vacuum cleaner", ru: "использовать робот-пылесос" },{ en: "use a dishwasher", ru: "использовать посудомоечную машину" },{ en: "rely on technology", ru: "полагаться на технологии" },{ en: "reduce time spent on cleaning", ru: "сокращать время на уборку" } ];
+    const travelWords = [ { en: "travel", ru: "путешествовать" },{ en: "transport", ru: "транспорт" },{ en: "tourism", ru: "туризм" },{ en: "tourists", ru: "туристы" },{ en: "destination", ru: "пункт назначения" },{ en: "journey", ru: "путешествие (процесс)" },{ en: "trip", ru: "поездка" },{ en: "on foot", ru: "пешком" },{ en: "amusement park", ru: "парк развлечений" },{ en: "cable car", ru: "канатная дорога" },{ en: "balloon", ru: "воздушный шар" },{ en: "exhibition", ru: "выставка" },{ en: "cathedral", ru: "собор" },{ en: "river", ru: "река" },{ en: "boats", ru: "лодки" },{ en: "ferries", ru: "паромы" },{ en: "suitcase", ru: "чемодан" } ];
+    const extraWords = [ { en: "emotions", ru: "эмоции" },{ en: "religion", ru: "религия" },{ en: "art", ru: "искусство" },{ en: "design", ru: "дизайн" },{ en: "minimalist", ru: "минималистичный" },{ en: "modern", ru: "современный" },{ en: "vintage", ru: "винтажный" },{ en: "layout", ru: "структура / макет" },{ en: "website design", ru: "дизайн сайта" },{ en: "stylish", ru: "стильный" },{ en: "function vs appearance", ru: "функция и внешний вид" } ];
+    const allVocab = [...householdWords, ...chorePhrases, ...techWords, ...travelWords, ...extraWords];
+
+    // ---------- UTILS ----------
+    function speakWord(word) { if('speechSynthesis' in window) { let utterance = new SpeechSynthesisUtterance(word); utterance.lang = 'en-US'; speechSynthesis.cancel(); speechSynthesis.speak(utterance); } }
+
+    // ---------- 1. TENSES DRAG & DROP ----------
+    const tenseSentences = [
+        { text: "She usually ___ to school by bus.", correct: "goes", tense: "Present Simple" },
+        { text: "Yesterday at 5pm I ___ dinner.", correct: "was cooking", tense: "Past Continuous" },
+        { text: "They ___ the project already.", correct: "have finished", tense: "Present Perfect" },
+        { text: "I think it ___ rain tomorrow.", correct: "will", tense: "Future Simple (will)" },
+        { text: "While I was reading, he ___.", correct: "arrived", tense: "Past Simple" },
+        { text: "We ___ to Paris next summer (plan).", correct: "are going", tense: "going to" },
+        { text: "By 2025 she ___ here for 10 years.", correct: "will have worked", tense: "Future Perfect" },
+        { text: "She ___ the piano since she was six.", correct: "has been playing", tense: "Present Perfect Continuous" }
+    ];
+    let tensesUserMatches = new Array(8).fill(null);
+    function renderTenses() { let html = `<div class="drag-drop-area"><div>${tenseSentences.map((s,i)=>`<div class="question-item">${s.text} <br><strong>Drop tense →</strong> <span class="drop-zone" data-idx="${i}" id="dropZone${i}">${tensesUserMatches[i] || '_______'}</span></div>`).join('')}</div><div>${['Present Simple','Past Continuous','Present Perfect','Future Simple (will)','Past Simple','going to','Future Perfect','Present Perfect Continuous'].map(t=>`<div class="drag-item" draggable="true" data-tense="${t}">${t}</div>`).join('')}</div></div>`;
+        document.getElementById('tensesGameArea').innerHTML = html; attachDragEvents(); }
+    function attachDragEvents() { document.querySelectorAll('.drag-item').forEach(el=>{ el.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text/plain', e.target.getAttribute('data-tense')); }); }); document.querySelectorAll('.drop-zone').forEach(zone=>{ zone.addEventListener('dragover',e=>e.preventDefault()); zone.addEventListener('drop',e=>{ e.preventDefault(); let tense = e.dataTransfer.getData('text/plain'); let idx = zone.getAttribute('data-idx'); tensesUserMatches[idx]=tense; renderTenses(); }); }); }
+    function checkTenses() { let correctCount=0; tensesUserMatches.forEach((m,i)=>{ if(m===tenseSentences[i].tense) correctCount++; }); let points = correctCount*5; addPoints(points); document.getElementById('tensesResult').innerHTML = `<div class="correct-feedback">Tenses: ${correctCount}/8 correct. +${points} pts</div>`; }
+    
+    // ---------- 2. GERUND/INFINITIVE 15 MCQ ----------
+    const gerundData = [
+        { q: "I enjoy ___ to music.", opts:["listen","to listen","listening"], ans:2},{ q: "She refused ___ me.", opts:["help","to help","helping"], ans:1},{ q: "It's no use ___ about it.", opts:["to worry","worry","worrying"], ans:2},{ q: "He suggested ___ to the cinema.", opts:["go","going","to go"], ans:1},{ q: "They decided ___ the game.", opts:["to cancel","cancelling","cancel"], ans:0},{ q: "I can't stand ___ in queues.", opts:["wait","to wait","waiting"], ans:2},{ q: "We hope ___ soon.", opts:["to arrive","arriving","arrive"], ans:0},{ q: "She admitted ___ the window.", opts:["to break","breaking","break"], ans:1},{ q: "It's important ___ early.", opts:["arrive","arriving","to arrive"], ans:2},{ q: "He is interested in ___ a new language.", opts:["learn","learning","to learn"], ans:1},{ q: "Avoid ___ mistakes.", opts:["make","making","to make"], ans:1},{ q: "I'm looking forward to ___ you.", opts:["see","seeing","to see"], ans:1},{ q: "She promised ___ on time.", opts:["be","being","to be"], ans:2},{ q: "They keep ___ the same problem.", opts:["discuss","discussing","to discuss"], ans:1},{ q: "I'd love ___ with you.", opts:["dance","dancing","to dance"], ans:2}
+    ];
+    let gerundAnswers = new Array(15).fill(null);
+    function renderGerund() { let html=''; gerundData.forEach((item,i)=>{ html+=`<div class="question-item">${item.q}<br>${item.opts.map((opt,idx)=>`<label style="margin-right:15px"><input type="radio" name="g${i}" value="${idx}"> ${opt}</label>`).join('')}</div>`; }); document.getElementById('gerundQuiz').innerHTML = html; }
+    function checkGerundAuto() { let correct=0; gerundData.forEach((item,i)=>{ let sel = document.querySelector(`input[name="g${i}"]:checked`); if(sel && parseInt(sel.value)===item.ans) correct++; }); let pts=correct*3; addPoints(pts); alert(`Gerund/Infinitive: ${correct}/15 correct, +${pts} points`); }
+    document.addEventListener('change', (e)=> { if(e.target && e.target.type==='radio' && e.target.name?.startsWith('g')) checkGerundAuto(); });
+
+    // ---------- 3. Used To Gap Fill ----------
+    const usedToSentences = [
+        { text:"When I was a child, I ___ (play) outside every day.", answer:"used to play"},{ text:"She ___ (live) in London, but now she lives in Paris.", answer:"used to live"},{ text:"People ___ (think) the earth was flat.", answer:"used to think"},{ text:"I am getting used to ___ (wake) up early.", answer:"waking"},{ text:"He will soon get used to ___ (work) here.", answer:"working"},{ text:"They ___ (be) close friends, but not anymore.", answer:"used to be"},{ text:"My grandmother ___ (tell) us stories every evening.", answer:"would tell"},{ text:"I'm not used to ___ (eat) spicy food.", answer:"eating"},{ text:"After a month, she got used to ___ (drive) on the left.", answer:"driving"},{ text:"He ___ (smoke) but he quit.", answer:"used to smoke"},{ text:"We would often ___ (go) to the beach.", answer:"go"},{ text:"She is used to ___ (get) up late.", answer:"getting"}
+    ];
+    let usedInputs = [];
+    function renderUsedTo() { let html=''; usedToSentences.forEach((s,i)=>{ html+=`<div class="question-item">${s.text} <br><input type="text" id="used${i}" placeholder="your answer" style="width:70%"></div>`; }); document.getElementById('usedToGapFill').innerHTML=html; usedInputs=usedToSentences.map((_,i)=>document.getElementById(`used${i}`)); }
+    function checkUsedTo() { let correct=0; usedToSentences.forEach((s,i)=>{ let val=document.getElementById(`used${i}`).value.trim().toLowerCase(); if(val===s.answer.toLowerCase()) correct++; }); let pts=correct*4; addPoints(pts); document.getElementById('usedToResult').innerHTML=`<div class="correct-feedback">Used to: ${correct}/12 correct. +${pts}</div>`; }
+
+    // ---------- 4. Matching (There is/Would like/Let's) ----------
+    const matchLeft = ["There is a cat ___", "I would like ___", "Let's ___", "There are many ___"];
+    const matchRight = ["under the table.", "to visit Paris.", "go swimming!", "books on the shelf."];
+    let matchPairs = new Array(4).fill(null);
+    function renderMatching() { let html=`<div class="grid-2col"><div>${matchLeft.map((l,i)=>`<div class="drag-item" draggable="true" data-mleft="${i}">${l}</div>`).join('')}</div><div>${matchRight.map((r,i)=>`<div class="drop-zone" data-mright="${i}">${r}</div>`).join('')}</div></div>`; document.getElementById('matchingGame').innerHTML=html; attachMatchingEvents(); }
+    function attachMatchingEvents() { let dragData=null; document.querySelectorAll('[data-mleft]').forEach(el=>{ el.addEventListener('dragstart',e=>{ dragData={type:'left',idx:e.target.getAttribute('data-mleft')}; e.dataTransfer.setData('text/plain',dragData.idx); }); }); document.querySelectorAll('[data-mright]').forEach(zone=>{ zone.addEventListener('dragover',e=>e.preventDefault()); zone.addEventListener('drop',e=>{ e.preventDefault(); let leftIdx=e.dataTransfer.getData('text/plain'); let rightIdx=zone.getAttribute('data-mright'); matchPairs[leftIdx]=rightIdx; renderMatching(); }); }); }
+    function checkMatching() { let correct=0; matchPairs.forEach((val,idx)=>{ if(val && matchRight[parseInt(val)]===matchRight[idx]) correct++; }); addPoints(correct*5); document.getElementById('matchingResult').innerHTML=`<div>Matching: ${correct}/4 correct. +${correct*5} pts</div>`; }
+
+    // ---------- 5. Comparatives ----------
+    const compData = [{ text:"This test is ___ (easy) than the last one.", answer:"easier"},{ text:"She is the ___ (smart) student in class.", answer:"smartest"},{ text:"My house is ___ (big) than yours.", answer:"bigger"},{ text:"This book is ___ (interesting) than that film.", answer:"more interesting"},{ text:"He runs ___ (fast) than me.", answer:"faster"}];
+    function renderComparatives(){ let html=''; compData.forEach((c,i)=>{ html+=`<div class="question-item">${c.text} <input id="comp${i}" placeholder="comparative form"></div>`; }); document.getElementById('comparativesInput').innerHTML=html; }
+    function checkComparatives(){ let correct=0; compData.forEach((c,i)=>{ let val=document.getElementById(`comp${i}`).value.trim().toLowerCase(); if(val===c.answer) correct++; }); addPoints(correct*4); document.getElementById('comparativesResult').innerHTML=`<div>Comparatives: ${correct}/${compData.length} correct. +${correct*4}</div>`; }
+
+    // ---------- 6. Conditionals MCQ ----------
+    const condData = [ {q:"If it rains, we ___ the match.", opts:["cancel","will cancel","cancelled"], ans:1},{q:"If I had known, I ___ you.", opts:["would tell","told","would have told"], ans:2},{q:"If she studies, she ___ the exam.", opts:["passes","will pass","passed"], ans:1},{q:"If I were you, I ___ that.", opts:["won't do","wouldn't do","don't do"], ans:1},{q:"Unless you hurry, you ___ late.", opts:["are","will be","were"], ans:1},{q:"If he had saved money, he ___ a car.", opts:["would buy","would have bought","buys"], ans:1},{q:"When it gets cold, I ___ the heater.", opts:["turn on","would turn on","turned"], ans:0},{q:"If they ___ earlier, they wouldn't miss the bus.", opts:["leave","left","had left"], ans:1},{q:"If you heat ice, it ___ .", opts:["melts","melted","will melt"], ans:0},{q:"She would travel if she ___ more time.", opts:["has","had","have"], ans:1}];
+    let condSelections = new Array(10).fill(null);
+    function renderConditionals(){ let h=''; condData.forEach((c,i)=>{ h+=`<div class="question-item">${c.q}<br>${c.opts.map((o,idx)=>`<label><input type="radio" name="cond${i}" value="${idx}"> ${o}</label> `).join('')}</div>`; }); document.getElementById('conditionalsQuiz').innerHTML=h; }
+    function checkConditionals(){ let corr=0; condData.forEach((c,i)=>{ let sel=document.querySelector(`input[name="cond${i}"]:checked`); if(sel && parseInt(sel.value)===c.ans) corr++; }); addPoints(corr*5); document.getElementById('condResult').innerHTML=`<div>Conditionals: ${corr}/10 +${corr*5} pts</div>`; }
+
+    // 7. Future Forms simplified
+    const futureData = [ {q:"Look at those clouds! It ___ rain.", opts:["will","is going to","shall"], ans:1},{q:"The train ___ at 8pm tonight.", opts:["leaves","is leaving","will leave"], ans:0},{q:"I promise I ___ call you.", opts:["will","am going to","shall"], ans:0},{q:"We ___ to the cinema tomorrow evening (plan).", opts:["go","are going","will go"], ans:1},{q:"She ___ her grandmother next week (arrangement).", opts:["is visiting","visits","will visit"], ans:0},{q:"I think they ___ win.", opts:["will","going to","are"], ans:0},{q:"The concert ___ at 7.", opts:["starts","is starting","will start"], ans:0},{q:"He ___ buy a new phone next month (intention).", opts:["is going to","will","shall"], ans:0}];
+    function renderFuture(){ let h=''; futureData.forEach((f,i)=>{ h+=`<div>${f.q}<br>${f.opts.map((opt,idx)=>`<label><input type="radio" name="fut${i}" value="${idx}"> ${opt}</label> `).join('')}</div>`; }); document.getElementById('futureQuiz').innerHTML=h; }
+    function checkFuture(){ let corr=0; futureData.forEach((f,i)=>{ let s=document.querySelector(`input[name="fut${i}"]:checked`); if(s && parseInt(s.value)===f.ans) corr++; }); addPoints(corr*4); document.getElementById('futureResult').innerHTML=`<div>Future: ${corr}/${futureData.length} +${corr*4}</div>`; }
+
+    // Vocabulary Flip
+    function renderFlipCards(){ let shuffleVoc = [...allVocab].slice(0,12); let html=''; shuffleVoc.forEach(v=>{ html+=`<div class="flip-card" data-word="${v.en}" data-trans="${v.ru}"><div class="flip-inner"><div class="flip-front">📖 ${v.en}<br><button class="speak-btn">🔊</button></div><div class="flip-back">🇷🇺 ${v.ru}</div></div></div>`; }); document.getElementById('flipCardsContainer').innerHTML=html; document.querySelectorAll('.flip-card').forEach(card=>{ card.addEventListener('click',(e)=>{ if(e.target.classList.contains('speak-btn')){ e.stopPropagation(); let word=card.getAttribute('data-word'); speakWord(word); } else card.classList.toggle('flipped'); }); }); }
+
+    // DragDrop Vocabulary simple
+    let vocabMatch = [];
+    function renderVocabDrag(){ let items = allVocab.slice(0,8); let shuffled = [...items]; let left = shuffled.map(v=>v.en); let right = shuffled.map(v=>v.ru); vocabMatch = new Array(left.length).fill(null); let html=`<div>${left.map((l,i)=>`<div class="drag-item" draggable="true" data-dragIdx="${i}">${l}</div>`).join('')}</div><div>${right.map((r,i)=>`<div class="drop-zone" data-dropIdx="${i}">${r}</div>`).join('')}</div>`; document.getElementById('vocabDragDropArea').innerHTML=html; attachVocabDragEvents(); }
+    function attachVocabDragEvents(){ let dragIdx=null; document.querySelectorAll('[data-dragIdx]').forEach(el=>{ el.addEventListener('dragstart',e=>{ dragIdx=e.target.getAttribute('data-dragIdx'); e.dataTransfer.setData('text/plain',dragIdx); }); }); document.querySelectorAll('[data-dropIdx]').forEach(zone=>{ zone.addEventListener('dragover',e=>e.preventDefault()); zone.addEventListener('drop',e=>{ let leftIdx=e.dataTransfer.getData('text/plain'); let rightIdx=zone.getAttribute('data-dropIdx'); if(allVocab[leftIdx]?.en && allVocab[rightIdx]?.ru && allVocab[leftIdx].ru===allVocab[rightIdx].ru) { zone.style.background="#b8e0cc"; addPoints(2); document.getElementById('dragResultMsg').innerHTML="✔ matched +2"; } else { document.getElementById('dragResultMsg').innerHTML="❌ wrong match"; } }); }); }
+
+    // Classification
+    const classifyWords = [{word:"vacuum the floor",cat:"Household"},{word:"use a dishwasher",cat:"Technology"},{word:"travel",cat:"Travel"},{word:"do the laundry",cat:"Household"},{word:"rely on technology",cat:"Technology"},{word:"suitcase",cat:"Travel"}];
+    function renderClassification(){ let html='<div>'; classifyWords.forEach((w,i)=>{ html+=`<div>${w.word} → <select id="classSel${i}"><option>Household</option><option>Technology</option><option>Travel</option></select></div>`; }); html+='</div>'; document.getElementById('classificationGame').innerHTML=html; }
+    function checkClassify(){ let correct=0; classifyWords.forEach((w,i)=>{ let sel=document.getElementById(`classSel${i}`).value; if(sel===w.cat) correct++; }); addPoints(correct*3); document.getElementById('classifyResult').innerHTML=`Classification: ${correct}/${classifyWords.length} +${correct*3}`; }
+
+    // Speaking Builder
+    let topics = ["household chores and technology","best travel memory","using smart home devices","planning a weekend trip"];
+    let currentTopic = "";
+    let timerInterval;
+    function generateTopic(){ currentTopic = topics[Math.floor(Math.random()*topics.length)]; document.getElementById('currentTopicDisplay').innerText = currentTopic; }
+    function startTimer(){ if(timerInterval) clearInterval(timerInterval); let seconds=30; let disp=document.getElementById('timerDisplay'); let update=()=>{ let mins=Math.floor(seconds/60); let secs=seconds%60; disp.innerText=`${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`; if(seconds<=0){ clearInterval(timerInterval); disp.innerText="TIME'S UP"; } seconds--; }; update(); timerInterval=setInterval(update,1000); }
+    function submitSpeaking(){ let answer=document.getElementById('speechAnswer').value.trim(); if(answer.length>20) addPoints(10); document.getElementById('speechFeedback').innerHTML="✨ Speaking saved! +10 points (if meaningful)"; addPoints(10); }
+
+    // Tabs + initial
+    const tabs = ["tenses","gerund","usedTo","thereIs","comparatives","conditionals","future","vocab","speaking"];
+    function initTabs(){ let nav=document.getElementById('tabsNav'); tabs.forEach(t=>{ let btn=document.createElement('button'); btn.innerText=t.charAt(0).toUpperCase()+t.slice(1).replace(/([A-Z])/g,' $1'); btn.classList.add('tab-btn'); btn.dataset.tab=t; btn.onclick=()=>{ document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active')); document.getElementById(t+"Tab").classList.add('active'); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }; nav.appendChild(btn); }); document.querySelector('.tab-btn').click(); }
+
+    renderTenses(); renderGerund(); renderUsedTo(); renderMatching(); renderComparatives(); renderConditionals(); renderFuture(); renderFlipCards(); renderVocabDrag(); renderClassification(); generateTopic();
+    document.getElementById('checkTensesBtn').onclick=checkTenses;
+    document.getElementById('checkUsedToBtn').onclick=checkUsedTo;
+    document.getElementById('checkMatchingBtn').onclick=checkMatching;
+    document.getElementById('checkComparativesBtn').onclick=checkComparatives;
+    document.getElementById('checkConditionalsBtn').onclick=checkConditionals;
+    document.getElementById('checkFutureBtn').onclick=checkFuture;
+    document.getElementById('resetVocabDrag').onclick=()=>{ renderVocabDrag(); };
+    document.getElementById('checkClassifyBtn').onclick=checkClassify;
+    document.getElementById('genTopicBtn').onclick=generateTopic;
+    document.getElementById('startTimerBtn').onclick=startTimer;
+    document.getElementById('submitSpeechBtn').onclick=submitSpeaking;
+    initTabs();
+    updateScoreUI();
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

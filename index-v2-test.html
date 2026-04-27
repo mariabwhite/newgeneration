@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="New Generation English — преподаватель, который строит систему. ОГЭ/ЕГЭ, IELTS, деловой английский, взрослые ученики.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   NEW GENERATION ENGLISH · index-v2-test
+   Dev Brief rebuild — структура, контент, конверсия
+   CSS-система из index.html, добавлены новые компоненты
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--text-font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 2rem;
+  height: 64px; padding: 0 24px;
+  background: rgba(0,0,0,0.88);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+body.light .topbar { background: rgba(244,241,236,0.9); }
+
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-mark {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  background: var(--accent); color: #000;
+  font-family: var(--display); font-weight: 900; font-size: 20px;
+  border-radius: 10px; letter-spacing: -0.04em;
+}
+.brand-name {
+  font-family: var(--display); font-weight: 800; font-size: 15px;
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.brand-sub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-3); margin-top: 2px;
+}
+
+.topnav { display: flex; gap: 2px; flex: 1; margin-left: 1rem; }
+.topnav-link {
+  padding: 7px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+  white-space: nowrap; transition: color .15s, background .15s;
+}
+.topnav-link:hover, .topnav-link.active { color: var(--text); background: var(--bg-3); }
+
+.topbar-tools { display: flex; align-items: center; gap: 6px; flex-shrink: 0; margin-left: auto; }
+
+/* ── NAV CTA — малая кнопка записи ── */
+.nav-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 34px; padding: 0 16px;
+  border-radius: 8px;
+  background: var(--accent); color: #000;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0;
+  transition: background .15s;
+}
+.nav-cta:hover { background: var(--accent-2); }
+
+.control-btn {
+  height: 34px; min-width: 34px; padding: 0 10px;
+  border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--text-2); cursor: pointer;
+  font-size: 12px; font-family: var(--mono); font-weight: 500;
+  transition: all .15s;
+}
+.control-btn:hover { color: var(--text); border-color: var(--line-2); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 56px 24px 32px;
+  overflow: hidden;
+}
+.hero-inner { max-width: 1240px; margin: 0 auto; }
+
+.hero-tag {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.hero-tag .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+.hero-tag .bar { flex: 1; height: 1px; background: var(--line); }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 340px);
+  gap: 40px;
+  align-items: end;
+}
+.hero-copy { min-width: 0; }
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+.hero-kicker::before {
+  content: ""; width: 18px; height: 1px; background: var(--accent);
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.75rem, 7.5vw, 6rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+.hero h1 .line { display: block; }
+.hero h1 .accent { color: var(--accent); }
+.hero h1 .outline {
+  -webkit-text-stroke: 2px var(--text);
+  color: transparent;
+}
+body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
+
+.hero-lead {
+  max-width: 640px;
+  margin-bottom: 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 54px; padding: 0 26px;
+  border-radius: 10px;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  transition: transform .15s, background .15s, border-color .15s, color .15s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #000; }
+.btn-primary:hover { background: var(--accent-2); }
+.btn-ghost { background: transparent; border-color: var(--line-2); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn .arrow { font-family: var(--mono); font-weight: 700; }
+
+/* ── MICRO-TESTIMONIAL ── */
+.micro-testimonial {
+  margin-top: 20px;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--mono); font-size: 13px;
+  color: var(--text-3); line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* ── HERO MEDIA ── */
+.hero-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-media .fallback-img {
+  display: none;
+  width: 100%; height: 100%;
+  place-items: center;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 10px, transparent 10px 20px), var(--bg-2);
+  color: var(--text-3);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; text-align: center; padding: 20px;
+}
+.hero-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+.hero-media-frame {
+  position: absolute; inset: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: calc(var(--radius-lg) - 10px);
+  pointer-events: none; z-index: 2;
+}
+.hero-media-caption {
+  position: absolute; left: 14px; bottom: 14px; z-index: 3;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+}
+.hero-media-caption .dot { display:inline-block; width:6px; height:6px; background: var(--accent); border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+/* ── HERO STATS ── */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin-top: 56px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.hero-stats .cell {
+  padding: 22px 20px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.hero-stats .cell:last-child { border-right: none; }
+.hero-stats .num {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800; line-height: 1; letter-spacing: -0.035em;
+  color: var(--text);
+}
+.hero-stats .num em { font-style: normal; color: var(--accent); }
+.hero-stats .lbl {
+  margin-top: 10px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.hero-stats .idx {
+  position: absolute; top: 10px; right: 12px;
+  font-family: var(--mono); font-size: 10px; color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+/* ── ABOUT ── */
+.about {
+  padding: 80px 24px;
+  max-width: 1240px; margin: 0 auto;
+}
+.about-head {
+  display: grid; grid-template-columns: 140px minmax(0, 1fr);
+  gap: 40px; margin-bottom: 40px;
+  align-items: start;
+}
+.about-index {
+  font-family: var(--display);
+  font-size: 80px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em; color: var(--accent);
+}
+.about-index small {
+  display: block; margin-top: 6px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3);
+}
+.about-title {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.035em; max-width: 720px;
+}
+.about-title .accent { color: var(--accent); }
+
+.about-body {
+  display: grid; grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+}
+.about-body .spacer { display: block; }
+.about-text p {
+  margin-bottom: 18px;
+  font-size: 16px; line-height: 1.65; color: var(--text-2);
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+
+/* ── SECTION PRIMITIVES ── */
+.section { padding: 80px 24px; max-width: 1240px; margin: 0 auto; }
+.sect-head {
+  display: grid; grid-template-columns: 140px minmax(0, 1fr);
+  gap: 40px; margin-bottom: 48px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  -webkit-text-stroke: 1px var(--text); color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  -webkit-text-stroke: 0; color: var(--text-3); margin-top: 8px;
+}
+.sect-title {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line-2) 50%, transparent 50%);
+  background-size: 12px 1px; background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ── HOW (3 steps) ── */
+.how-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden; background: var(--bg-2);
+}
+.how-card {
+  position: relative;
+  padding: 32px 28px 28px;
+  border-right: 1px solid var(--line);
+  transition: background .2s;
+}
+.how-card:last-child { border-right: none; }
+.how-card:hover { background: var(--bg-3); }
+.how-num {
+  font-family: var(--display);
+  font-size: 64px; font-weight: 800; line-height: 0.9;
+  letter-spacing: -0.05em; color: var(--accent); margin-bottom: 16px;
+}
+.how-tag {
+  position: absolute; top: 28px; right: 24px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.how-card h3 {
+  font-family: var(--display);
+  font-size: 22px; font-weight: 700; line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text);
+}
+.how-card p { font-size: 15px; line-height: 1.6; color: var(--text-2); }
+.how-card .bar { margin-top: 22px; display: flex; gap: 4px; }
+.how-card .bar i { display: block; flex: 1; height: 3px; background: var(--line); }
+.how-card .bar i.on { background: var(--accent); }
+
+/* ── HOW INLINE-CTA ── */
+.how-inline-cta {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 28px; gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  margin-top: 24px;
+}
+.how-inline-cta-text {
+  font-size: 15px; color: var(--text-2);
+}
+
+/* ── FORMATS ── */
+.fmt-tagline {
+  font-size: 17px; color: var(--text-2);
+  margin-bottom: 28px;
+}
+.fmt-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.fmt {
+  position: relative;
+  padding: 28px 24px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  min-height: 340px;
+  display: flex; flex-direction: column;
+  transition: border-color .2s, transform .2s;
+  overflow: hidden;
+}
+.fmt:hover { border-color: var(--accent); transform: translateY(-2px); }
+.fmt-num {
+  position: absolute; top: 20px; right: 20px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; color: var(--text-3);
+}
+.fmt-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--accent); color: var(--accent);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  border-radius: 4px; margin-bottom: 18px; align-self: flex-start;
+}
+.fmt-title {
+  font-family: var(--display);
+  font-size: 26px; font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.03em; margin-bottom: 20px; color: var(--text);
+}
+.fmt-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.fmt-price .n {
+  font-family: var(--display);
+  font-size: 42px; font-weight: 800; line-height: 1;
+  letter-spacing: -0.04em; color: var(--text);
+}
+.fmt-price .u {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--text-3); letter-spacing: 0.08em;
+}
+.fmt-note {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.04em; color: var(--text-3); margin-bottom: 22px;
+}
+.fmt-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.fmt-list li {
+  position: relative; padding-left: 20px;
+  font-size: 13px; color: var(--text-2); line-height: 1.5;
+}
+.fmt-list li::before {
+  content: "→"; position: absolute; left: 0;
+  font-family: var(--mono); color: var(--accent); font-weight: 700;
+}
+.fmt-cta {
+  margin-top: auto;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 44px; padding: 0 18px;
+  background: var(--accent); color: #000;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 8px;
+  transition: background .15s, transform .15s;
+}
+.fmt-cta:hover { background: var(--accent-2); transform: translateY(-1px); }
+
+/* ── FORMAT POPULAR BADGE ── */
+.fmt-popular-badge {
+  display: block;
+  background: var(--accent); color: #000;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 14px;
+  margin: -28px -24px 18px;
+  text-align: center;
+}
+
+/* ── CTA BAND ── */
+.cta {
+  margin: 0; padding: 96px 24px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.cta-inner {
+  max-width: 1240px; margin: 0 auto; position: relative;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center; width: 100%;
+}
+.cta-head::before,
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.cta h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800; line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 1000px; margin-bottom: 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px; margin-bottom: 36px;
+  font-size: 17px; line-height: 1.55; color: var(--text-2);
+}
+
+/* ── FOOTER-CONTACTS ── */
+.footer-contacts {
+  max-width: 1240px; margin: 0 auto;
+  padding: 48px 24px;
+  display: flex; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-contacts-group { min-width: 160px; }
+.footer-contacts-title {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-contacts-title.is-accent { color: var(--accent); }
+.footer-contacts-title.is-muted { color: var(--text-3); }
+.footer-contacts-links { display: flex; flex-direction: column; gap: 2px; }
+.contact-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px; color: var(--text);
+  transition: color .15s, padding .15s;
+}
+.contact-link:last-child { border-bottom: none; }
+.contact-link::after {
+  content: "↗"; font-family: var(--mono); font-size: 13px;
+  color: var(--text-3); transition: color .15s, transform .15s;
+}
+.contact-link:hover { color: var(--accent); padding-left: 8px; }
+.contact-link:hover::after { color: var(--accent); transform: translateX(2px) translateY(-2px); }
+
+/* ── FOOTER ── */
+.footer {
+  max-width: 1240px; margin: 0 auto;
+  padding: 40px 24px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-disclaimer {
+  font-size: 11px; color: var(--text-3);
+  font-family: var(--mono); letter-spacing: 0.03em;
+  line-height: 1.6; margin-top: 8px;
+  max-width: 560px;
+}
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: var(--bg-3); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-media { max-width: 420px; margin: 0 auto; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats .cell:nth-child(2) { border-right: none; }
+  .hero-stats .cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .how-grid, .fmt-grid { grid-template-columns: 1fr; }
+  .how-card { border-right: none; border-bottom: 1px solid var(--line); }
+  .how-card:last-child { border-bottom: none; }
+  .sect-head, .about-head, .about-body { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 768px) {
+  .topbar { padding: 0 16px; gap: 12px; }
+  .topnav { display: none; }
+  .brand-name { font-size: 13px; }
+  .brand-sub { font-size: 9px; }
+  .hero { padding: 32px 16px 24px; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); line-height: 1.0; }
+  .section, .about, .cta { padding: 56px 16px; }
+  .cta h2 { font-size: clamp(2rem, 9vw, 3rem); }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats .cell:nth-child(2) { border-right: none; }
+  .hero-stats .cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .btn-row { flex-direction: column; }
+  .btn { width: 100%; }
+  .how-inline-cta { flex-direction: column; gap: 12px; text-align: center; }
+  .micro-testimonial { font-size: 12px; }
+  .footer-contacts { gap: 24px; padding: 40px 16px; }
+}
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+
+<body data-page="home">
+
+<!-- ── TOPBAR ── -->
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О системе" data-en="About the system">О системе</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы" data-en="Cases">Кейсы</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <a class="nav-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться" data-en="Book now">Записаться</a>
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Преподаватель английского · Москва · 15+ лет" data-en="English teacher · Moscow · 15+ years">Преподаватель английского · Москва · 15+ лет</span>
+      <span class="bar"></span>
+      <span>NO. 001</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="500+ учеников · ОГЭ/ЕГЭ · IELTS · Деловой английский" data-en="500+ students · OGE/EGE · IELTS · Business English">500+ учеников · ОГЭ/ЕГЭ · IELTS · Деловой английский</div>
+
+        <h1>
+          <span class="line" data-ru="Преподаватель," data-en="A teacher">Преподаватель,</span>
+          <span class="line accent" data-ru="который строит систему." data-en="who builds a system.">который строит систему.</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Ко мне приходят с конкретной целью — экзамен, переезд, деловая речь, школьная программа. Я строю маршрут под вас и веду до результата — без воды, без шаблонов." data-en="People come with a specific goal — exam, relocation, business English, school program. I build a route around you and guide you to a result — no fluff, no templates.">Ко мне приходят с конкретной целью — экзамен, переезд, деловая речь, школьная программа. Я строю маршрут под вас и веду до результата — без воды, без шаблонов.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">
+            <span data-ru="Написать в Telegram" data-en="Write in Telegram">Написать в Telegram</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn btn-ghost" href="programs.html">
+            <span data-ru="Выбрать программу" data-en="Choose a program">Выбрать программу</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <div class="micro-testimonial" data-ru="Сдала IELTS 7.0 с нуля за 8 месяцев — Анна К., 2024" data-en="Achieved IELTS 7.0 from scratch in 8 months — Anna K., 2024">Сдала IELTS 7.0 с нуля за 8 месяцев — Анна К., 2024</div>
+      </div>
+
+      <div class="hero-media">
+        <img src="assets/maria-hero-premium.jpg" alt="Мария Витальевна Бурцева"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+        <div class="fallback-img" style="display:none; position:absolute; inset:0;">MARIA · HERO<br>PREMIUM PORTRAIT<br>3 : 4</div>
+        <div class="hero-media-frame"></div>
+        <div class="hero-media-caption">
+          <span class="dot"></span>
+          <span data-ru="Мария Бурцева · Москва" data-en="Maria Burtseva · Moscow">Мария Бурцева · Москва</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num"><em>15+</em></div><div class="lbl" data-ru="лет практики" data-en="years of practice">лет практики</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num"><em>500+</em></div><div class="lbl" data-ru="учеников прошли через систему" data-en="students through the system">учеников прошли через систему</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">ЕГЭ·IELTS</div><div class="lbl" data-ru="экзаменационная подготовка" data-en="exam preparation">экзаменационная подготовка</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">1:1</div><div class="lbl" data-ru="маршрут под каждого" data-en="personal route">маршрут под каждого</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="dash">
+
+<!-- ── HOW IT WORKS (01) ── -->
+<section class="section" aria-label="Как я работаю">
+  <div class="sect-head">
+    <div class="sect-index">01<small data-ru="Система работы" data-en="System">Система работы</small></div>
+    <div>
+      <div class="sect-eyebrow" data-ru="Как я работаю" data-en="How I work">Как я работаю</div>
+      <h2 class="sect-title" data-ru="Три шага до результата" data-en="Three steps to the result">Три шага до результата</h2>
+    </div>
+  </div>
+  <div class="how-grid">
+    <article class="how-card"><div class="how-tag" data-ru="Шаг · 01" data-en="Step · 01">Шаг · 01</div><div class="how-num">01</div><h3 data-ru="Сначала — точка Б" data-en="First, point B">Сначала — точка Б</h3><p data-ru="Смотрю на уровень, цель и сроки. Экзамен, переговоры, переезд — неважно что. Важно, куда вам нужно." data-en="I look at your level, goal, and timing. Exam, negotiations, relocation — the exact task matters less than where you need to get.">Смотрю на уровень, цель и сроки. Экзамен, переговоры, переезд — неважно что. Важно, куда вам нужно.</p><div class="bar"><i class="on"></i><i></i><i></i></div></article>
+    <article class="how-card"><div class="how-tag" data-ru="Шаг · 02" data-en="Step · 02">Шаг · 02</div><div class="how-num">02</div><h3 data-ru="Потом — маршрут" data-en="Then, the route">Потом — маршрут</h3><p data-ru="Составляю карту под вас. Не общий курс — а конкретный путь с учётом того, что мешает прямо сейчас." data-en="I build a route around you. Not a generic course, but a concrete path that considers what is blocking progress right now.">Составляю карту под вас. Не общий курс — а конкретный путь с учётом того, что мешает прямо сейчас.</p><div class="bar"><i class="on"></i><i class="on"></i><i></i></div></article>
+    <article class="how-card"><div class="how-tag" data-ru="Шаг · 03" data-en="Step · 03">Шаг · 03</div><div class="how-num">03</div><h3 data-ru="Дальше — идём" data-en="Then, we move">Дальше — идём</h3><p data-ru="Материал живёт за пределами урока. Задания, самостоятельная работа и модули LinguaBoost Lab." data-en="The material lives beyond the lesson itself: assignments, independent work, and LinguaBoost Lab modules.">Материал живёт за пределами урока. Задания, самостоятельная работа и модули LinguaBoost Lab.</p><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i></div></article>
+  </div>
+  <div class="how-inline-cta">
+    <span class="how-inline-cta-text" data-ru="Готовы начать? Расскажите свою задачу." data-en="Ready to start? Tell me your goal.">Готовы начать? Расскажите свою задачу.</span>
+    <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Написать →" data-en="Write →">Написать →</a>
+  </div>
+</section>
+
+<hr class="dash">
+
+<!-- ── ABOUT (02) ── -->
+<section class="about" aria-label="О преподавателе">
+  <div class="about-head">
+    <div class="about-index">02<small data-ru="О системе" data-en="About the system">О системе</small></div>
+    <h2 class="about-title" data-ru="Кто стоит за системой" data-en="Who is behind the system">Кто стоит за системой</h2>
+  </div>
+  <div class="about-body">
+    <div class="spacer"></div>
+    <div class="about-text">
+      <p data-ru="Я — Мария Бурцева. Более 15 лет я преподаю английский как управляемую систему: вы понимаете, что делаете, зачем — и как измеряется результат." data-en="I'm Maria Burtseva. For more than 15 years I've been teaching English as a manageable system: you understand what you're doing, why — and how results are measured.">Я — Мария Бурцева. Более 15 лет я преподаю английский как управляемую систему: вы понимаете, что делаете, зачем — и как измеряется результат.</p>
+    </div>
+    <div class="about-text">
+      <p data-ru="Специализация — задачи с конкретным результатом: ЕГЭ, IELTS, TOEFL, деловой и медицинский английский, учёба и работа за рубежом." data-en="Specialization: goal-driven tasks — EGE, IELTS, TOEFL, business and medical English, study and work abroad.">Специализация — задачи с конкретным результатом: ЕГЭ, IELTS, TOEFL, деловой и медицинский английский, учёба и работа за рубежом.</p>
+      <p data-ru="500+ учеников прошли через систему. Каждый маршрут строится под конкретного человека — не под программу." data-en="500+ students have gone through the system. Each route is built for a specific person — not for a program.">500+ учеников прошли через систему. Каждый маршрут строится под конкретного человека — не под программу.</p>
+      <p data-ru="В работе — материалы Longman, Cambridge, Oxford и AI-тренажёры. Академическая точность плюс гибкость подачи." data-en="In practice — Longman, Cambridge, Oxford materials and AI trainers. Academic precision plus delivery flexibility.">В работе — материалы Longman, Cambridge, Oxford и AI-тренажёры. Академическая точность плюс гибкость подачи.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="dash">
+
+<!-- ── FORMATS (03) ── -->
+<section class="section" aria-label="Форматы">
+  <div class="sect-head">
+    <div class="sect-index">03<small data-ru="Форматы" data-en="Formats">Форматы</small></div>
+    <div>
+      <div class="sect-eyebrow" data-ru="Форматы занятий" data-en="Lesson formats">Форматы занятий</div>
+      <h2 class="sect-title" data-ru="Выберите свой маршрут" data-en="Choose your route">Выберите свой маршрут</h2>
+    </div>
+  </div>
+  <p class="fmt-tagline" data-ru="Вы платите не за урок, а за систему, которая ведёт к результату." data-en="You pay not for a lesson, but for a system that leads to results.">Вы платите не за урок, а за систему, которая ведёт к результату.</p>
+  <div class="fmt-grid">
+    <article class="fmt" style="border-color: var(--accent);">
+      <span class="fmt-popular-badge" data-ru="Популярный выбор" data-en="Popular choice">Популярный выбор</span>
+      <div class="fmt-num">01 / 03</div>
+      <div class="fmt-tag" data-ru="Индивидуально" data-en="Individual">Индивидуально</div>
+      <h3 class="fmt-title" data-ru="Один на один" data-en="One to one">Один на один</h3>
+      <div class="fmt-price"><span class="n">3&nbsp;500&nbsp;₽</span><span class="u" data-ru="/ 60 мин" data-en="/ 60 min">/ 60 мин</span></div>
+      <div class="fmt-note" data-ru="Индивидуальная работа с полной настройкой маршрута под ученика и его цель." data-en="One-to-one work with a fully tailored route for your goal.">Индивидуальная работа с полной настройкой маршрута под ученика и его цель.</div>
+      <ul class="fmt-list">
+        <li data-ru="Маршрутная карта под вас" data-en="A route built around your task">Маршрутная карта под вас</li>
+        <li data-ru="Работа с вашим материалом" data-en="Work with your material">Работа с вашим материалом</li>
+        <li data-ru="Контроль прогресса и обратная связь" data-en="Progress control and feedback">Контроль прогресса и обратная связь</li>
+        <li data-ru="Доступ к LinguaBoost Lab" data-en="Access to LinguaBoost Lab">Доступ к LinguaBoost Lab</li>
+      </ul>
+      <a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+    </article>
+    <article class="fmt">
+      <div class="fmt-num">02 / 03</div>
+      <div class="fmt-tag" data-ru="Пара" data-en="Pair">Пара</div>
+      <h3 class="fmt-title" data-ru="Работа в паре" data-en="Pair work">Работа в паре</h3>
+      <div class="fmt-price"><span class="n">2&nbsp;500&nbsp;₽</span><span class="u" data-ru="/ 60 мин · за человека" data-en="/ 60 min · per person">/ 60 мин · за человека</span></div>
+      <div class="fmt-note" data-ru="Подходит, если у вас есть партнёр — коллега, друг или ребёнок одного уровня. Экономия без потери качества." data-en="Suitable if you have a partner — a colleague, friend, or child at the same level. Save money without losing quality.">Подходит, если у вас есть партнёр — коллега, друг или ребёнок одного уровня. Экономия без потери качества.</div>
+      <ul class="fmt-list">
+        <li data-ru="Уровень и цели согласованы заранее" data-en="Level and goals are aligned in advance">Уровень и цели согласованы заранее</li>
+        <li data-ru="Маршрут сохраняет индивидуальные акценты" data-en="The route keeps individual focus points">Маршрут сохраняет индивидуальные акценты</li>
+        <li data-ru="Больше практики и темпа без потери структуры" data-en="More practice and pace without losing structure">Больше практики и темпа без потери структуры</li>
+      </ul>
+      <a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+    </article>
+    <article class="fmt">
+      <div class="fmt-num">03 / 03</div>
+      <div class="fmt-tag" data-ru="Группа" data-en="Group">Группа</div>
+      <h3 class="fmt-title" data-ru="Групповой формат" data-en="Group format">Групповой формат</h3>
+      <div class="fmt-price"><span class="n">2&nbsp;000&nbsp;₽</span><span class="u" data-ru="/ 60 мин · за человека" data-en="/ 60 min · per person">/ 60 мин · за человека</span></div>
+      <div class="fmt-note" data-ru="Групповой формат с общей системой и контролем прогресса." data-en="A group format with a shared system and progress control.">Групповой формат с общей системой и контролем прогресса.</div>
+      <ul class="fmt-list">
+        <li data-ru="До 4 человек одного уровня" data-en="Up to 4 learners of the same level">До 4 человек одного уровня</li>
+        <li data-ru="Общий маршрут и единые ориентиры" data-en="A shared route and shared checkpoints">Общий маршрут и единые ориентиры</li>
+        <li data-ru="Контроль прогресса и регулярная обратная связь" data-en="Progress control and regular feedback">Контроль прогресса и регулярная обратная связь</li>
+      </ul>
+      <a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a>
+    </article>
+  </div>
+</section>
+
+<!-- ── CTA BAND (04) ── -->
+<section class="cta" aria-label="Записаться на урок">
+  <div class="cta-inner">
+    <div class="cta-head"><span data-ru="04 · Запись" data-en="04 · Enrollment">04 · Запись</span></div>
+    <h2>
+      <span class="line" data-ru="Напишите мне задачу." data-en="Tell me your goal.">Напишите мне задачу.</span>
+      <span class="line accent" data-ru="Остальное — моя работа." data-en="The rest is my work.">Остальное — моя работа.</span>
+    </h2>
+    <p data-ru="Экзамен, переезд, деловая речь, школьная программа — скажите, куда вам нужно." data-en="Exam, relocation, business English, school program — tell me where you need to get.">Экзамен, переезд, деловая речь, школьная программа — скажите, куда вам нужно.</p>
+    <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">
+      <span data-ru="Написать в Telegram" data-en="Write in Telegram">Написать в Telegram</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER-CONTACTS (05) ── -->
+<div class="footer-contacts">
+  <div class="footer-contacts-group">
+    <div class="footer-contacts-title is-accent" data-ru="Прямая связь" data-en="Direct contact">Прямая связь</div>
+    <div class="footer-contacts-links">
+      <a class="contact-link" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">Telegram</a>
+      <a class="contact-link" href="https://vk.com/new_generation_english" target="_blank" rel="noreferrer">VK сообщество</a>
+    </div>
+  </div>
+  <div class="footer-contacts-group">
+    <div class="footer-contacts-title is-muted" data-ru="Также" data-en="Also">Также</div>
+    <div class="footer-contacts-links">
+      <a class="contact-link" href="https://www.youtube.com/@mariaburtseva9300" target="_blank" rel="noreferrer">YouTube</a>
+      <a class="contact-link" href="https://dzen.ru/newgenerationenglish" target="_blank" rel="noreferrer">Дзен</a>
+      <a class="contact-link" href="https://t.me/+E8rkdxWSD2E3NzIy" target="_blank" rel="noreferrer">Telegram-группа</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER (08) ── -->
+<footer class="footer">
+  <div>
+    <div class="footer-copy">© New Generation English · <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></div>
+    <div class="footer-disclaimer" data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция." data-en="In this project, the term 'neuro-school' is used as a working definition of a learning system built around the learner's perception logic, not as neuropsychological correction.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция.</div>
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="footer-link" href="programs.html" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="footer-link" href="conditions.html" data-ru="Условия" data-en="Terms">Условия</a>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+    const btn = document.querySelector(".control-btn");
+    if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute("lang") || "ru";
+    const next = cur === "ru" ? "en" : "ru";
+    document.documentElement.setAttribute("lang", next);
+    document.querySelectorAll("[data-ru]").forEach(el => {
+      const val = el.getAttribute("data-" + next);
+      if (val) el.textContent = val;
+    });
+    const btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = next.toUpperCase();
+    localStorage.setItem("nge-lang", next);
+  }
+  (function restore() {
+    try {
+      if (localStorage.getItem("nge-theme") === "light") {
+        document.body.classList.add("light");
+        const btn = document.querySelector(".control-btn");
+        if (btn) btn.textContent = "☀";
+      }
+      const savedLang = localStorage.getItem("nge-lang");
+      if (savedLang === "en") toggleLang();
+    } catch (e) {}
+  })();
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>

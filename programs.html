@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Программы обучения New Generation English: экзамены, общий английский, профессиональные направления и ускоренные форматы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Программы · New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* Typography */
+
+h2, .content-block-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+/* Hero section (smooth full-bleed background image) */
+body[data-page="programs"] .hero-inner {
+  position: relative;
+}
+
+body[data-page="programs"] .hero-tag,
+body[data-page="programs"] .hero-stats,
+body[data-page="programs"] .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+body[data-page="programs"] .hero-bg-wrap {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  max-width: 900px;
+  pointer-events: none;
+  z-index: 1;
+  aspect-ratio: 1623 / 969;
+  isolation: isolate;
+}
+
+body[data-page="programs"] .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+body[data-page="programs"] .hero-bg-base {
+  z-index: 1;
+  opacity: 0.92;
+  filter: saturate(1.02) contrast(1.02);
+
+  mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 30%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 30%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+body[data-page="programs"] .hero-bg-edge {
+  z-index: 0;
+  inset: -28px -42px -28px -28px;
+  border-radius: 44px;
+  filter: blur(26px) saturate(1.05);
+  opacity: 0.14;
+
+  mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 70%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 70%
+  );
+}
+
+body.light[data-page="programs"] .hero-bg-base {
+  opacity: 0.86;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+body.light[data-page="programs"] .hero-bg-edge {
+  opacity: 0.22;
+  filter: blur(28px) saturate(1.05);
+}
+
+body[data-page="programs"] .hero-bg-light { display: none; }
+body.light[data-page="programs"] .hero-bg-dark { display: none; }
+body.light[data-page="programs"] .hero-bg-light { display: block; }
+
+/* Remove boxed hero image container on Programs */
+body[data-page="programs"] .hero-media { display: none !important; }
+
+@media (max-width: 900px) {
+  body[data-page="programs"] .hero-bg-wrap {
+    left: 50%;
+    right: auto;
+    width: min(100%, 920px);
+    top: 58%;
+    transform: translate(-50%, -50%);
+  }
+
+  body[data-page="programs"] .hero-bg-base {
+    opacity: 0.22;
+    filter: saturate(1.02) contrast(1.02);
+  }
+
+  body[data-page="programs"] .hero-bg-edge {
+    opacity: 0;
+  }
+}
+
+/* Subnav */
+.subnav {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0 48px;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.subnav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 12px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.subnav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Program summary */
+.program-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.program-summary-card {
+  padding: 24px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.program-summary-card strong {
+  display: block;
+  margin-bottom: 12px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.program-summary-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Program sections */
+.program-section {
+  padding: 48px 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  position: relative;
+  min-width: 0;
+}
+
+.program-section::before {
+  content: attr(data-section-number);
+  position: absolute;
+  top: 48px;
+  right: 0;
+  z-index: 2;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.program-section:nth-of-type(1)::before { content: "01"; }
+.program-section:nth-of-type(2)::before { content: "02"; }
+.program-section:nth-of-type(3)::before { content: "03"; }
+.program-section:nth-of-type(4)::before { content: "04"; }
+
+.program-intro {
+  margin: 0 0 32px;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Program tiles */
+.program-tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin: 32px 0 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.p-tile {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 620px;
+  padding: 22px 20px 0;
+  background: #0a0a0a;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  isolation: isolate;
+}
+.p-tile.is-main {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+
+.p-tile::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 38%;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.75) 55%, rgba(10,10,10,1) 100%),
+    var(--tile-bg, radial-gradient(circle at 50% 60%, rgba(255,90,31,0.18), transparent 70%));
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.55;
+}
+.p-tile.has-img::after {
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.6) 40%, rgba(10,10,10,0.92) 80%, #0a0a0a 100%),
+    var(--tile-img) center/cover no-repeat;
+  opacity: 1;
+}
+
+.p-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 5px 10px;
+  background: rgba(255,90,31,0.1);
+  border: 1px solid var(--accent);
+  margin-bottom: 22px;
+  min-height: 26px;
+}
+.p-badge.ghost { visibility: hidden; }
+
+.p-icon {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.p-icon svg { width: 100%; height: 100%; }
+
+.p-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(18px, 1.28vw, 21px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+  margin: 0 0 12px;
+  color: var(--text);
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.p-sub {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 22px;
+  min-height: 48px;
+}
+
+.p-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.p-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.p-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.p-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent);
+}
+
+.p-result {
+  margin-top: auto;
+  padding: 14px 0 22px;
+  border-top: 1px solid var(--border);
+}
+.p-result .k {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.p-result .v {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* tile background tints (acts as placeholder "photo" moods) */
+.p-tile.t-exam   { --tile-img: linear-gradient(180deg, #1a0c04 0%, #2a1608 60%, #140800 100%); }
+.p-tile.t-int    { --tile-img: linear-gradient(180deg, #0a0f18 0%, #18120a 60%, #0a0604 100%); }
+.p-tile.t-adult  { --tile-img: linear-gradient(180deg, #140d08 0%, #241610 60%, #0e0804 100%); }
+.p-tile.t-club   { --tile-img: linear-gradient(180deg, #180a06 0%, #2a1208 60%, #0f0502 100%); }
+.p-tile.t-med    { --tile-img: linear-gradient(180deg, #0a0d12 0%, #1a1a1a 60%, #0a0a0a 100%); }
+.p-tile.t-biz    { --tile-img: linear-gradient(180deg, #100a06 0%, #1e130a 60%, #0c0604 100%); }
+.p-tile.has-img { }
+.p-tile.t-club { display: none; }
+.p-tile.t-biz { order: 4; }
+.p-tile.t-med { order: 5; }
+
+body.light[data-page="programs"] .p-tile {
+  background: #fffdf9;
+  border-color: rgba(255, 90, 31, 0.18);
+  box-shadow: 0 14px 34px rgba(37, 30, 24, 0.06);
+}
+
+body.light[data-page="programs"] .p-title,
+body.light[data-page="programs"] .p-list li,
+body.light[data-page="programs"] .p-result .v {
+  color: #12100e;
+}
+
+body.light[data-page="programs"] .p-sub,
+body.light[data-page="programs"] .p-section-label {
+  color: #706963;
+}
+
+body.light[data-page="programs"] .p-tile.is-main {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.32) inset;
+}
+
+body.light[data-page="programs"] .p-tile::after {
+  background:
+    linear-gradient(180deg, rgba(255,253,249,0) 0%, rgba(255,253,249,0.78) 60%, #fffdf9 100%),
+    var(--tile-bg, radial-gradient(circle at 50% 60%, rgba(255,90,31,0.08), transparent 70%));
+  opacity: 0.42;
+}
+
+body.light[data-page="programs"] .p-tile.has-img::after {
+  background:
+    linear-gradient(180deg, rgba(255,253,249,0.7) 0%, rgba(255,253,249,0.86) 46%, rgba(255,253,249,0.96) 78%, #fffdf9 100%),
+    var(--tile-img) center/cover no-repeat;
+  opacity: 0.48;
+  filter: saturate(0.58) contrast(0.92) brightness(1.35);
+}
+
+body.light[data-page="programs"] .p-tile.t-exam,
+body.light[data-page="programs"] .p-tile.t-int,
+body.light[data-page="programs"] .p-tile.t-adult,
+body.light[data-page="programs"] .p-tile.t-club,
+body.light[data-page="programs"] .p-tile.t-med,
+body.light[data-page="programs"] .p-tile.t-biz {
+  --tile-img: linear-gradient(180deg, rgba(255,90,31,0.08) 0%, rgba(248,246,242,0.92) 62%, rgba(248,246,242,1) 100%);
+}
+
+@media (max-width: 1200px) {
+  .program-tiles { grid-template-columns: repeat(3, minmax(220px, 1fr)); }
+  .p-tile { min-height: 560px; }
+}
+
+@media (max-width: 900px) {
+  .program-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .program-tiles { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .p-tile { min-height: 480px; }
+}
+
+/* ============================================================
+   PROGRAMS: 6-CARD FLIP CATALOG (3x2)
+   ============================================================ */
+body[data-page="programs"] .programs-catalog {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+body[data-page="programs"] .programs-catalog > * {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+body[data-page="programs"] .flip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+
+body[data-page="programs"] .flip-card {
+  background: transparent;
+  perspective: 1600px;
+  height: 480px;
+  cursor: pointer;
+  outline: none;
+}
+
+body[data-page="programs"] .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  border-radius: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="programs"] .flip-card-inner { transition: none; }
+}
+
+body[data-page="programs"] .flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+body[data-page="programs"] .flip-front,
+body[data-page="programs"] .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+body.light[data-page="programs"] .flip-front,
+body.light[data-page="programs"] .flip-back {
+  background: #fffdf9;
+  border-color: rgba(255, 90, 31, 0.16);
+  box-shadow: 0 16px 36px rgba(37, 30, 24, 0.07);
+}
+
+body.light[data-page="programs"] .flip-back {
+  background: #f7f3ec;
+}
+
+body[data-page="programs"] .flip-front::-webkit-scrollbar,
+body[data-page="programs"] .flip-back::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body[data-page="programs"] .flip-back {
+  transform: rotateY(180deg);
+  background: var(--bg-2);
+  padding-bottom: 40px;
+}
+
+body[data-page="programs"] .flip-front::after {
+  content: "↻";
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+body[data-page="programs"] .flip-front:hover::after { opacity: 1; }
+
+body[data-page="programs"] .program-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: var(--accent);
+  color: #000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+body[data-page="programs"] .program-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(22px, 1.72vw, 25px);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--text);
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+body.light[data-page="programs"] .program-title,
+body.light[data-page="programs"] .program-front-highlights,
+body.light[data-page="programs"] .program-result,
+body.light[data-page="programs"] .back-title {
+  color: #12100e;
+}
+
+body.light[data-page="programs"] .program-sub,
+body.light[data-page="programs"] .program-front-essence,
+body.light[data-page="programs"] .program-list li,
+body.light[data-page="programs"] .back-detail-list li {
+  color: #625b55;
+}
+
+body[data-page="programs"] .program-sub {
+  font-size: 13px;
+  color: var(--text-2);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+  border-left: 2px solid var(--accent);
+  padding-left: 12px;
+}
+
+body[data-page="programs"] .program-front-essence {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body[data-page="programs"] .program-front-highlights {
+  margin-top: 16px;
+  padding-left: 18px;
+  color: var(--text);
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+}
+
+body[data-page="programs"] .fallback-img {
+  place-items: center;
+  text-align: center;
+  padding: 32px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  background: radial-gradient(circle at 30% 10%, rgba(255,90,31,0.18), transparent 55%);
+}
+
+body[data-page="programs"] .program-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 20px 0 12px 0;
+}
+body[data-page="programs"] .program-section-label:first-of-type { margin-top: 0; }
+
+body[data-page="programs"] .program-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+body[data-page="programs"] .program-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+body[data-page="programs"] .program-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+body[data-page="programs"] .program-result {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg-3);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border-left: 3px solid var(--accent);
+  font-weight: 500;
+}
+
+body[data-page="programs"] .program-front-outcome {
+  margin-top: 16px;
+}
+
+body[data-page="programs"] .flip-front .program-front-outcome .program-section-label {
+  margin: 0 0 10px 0;
+}
+
+body[data-page="programs"] .back-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+  border-bottom: 1px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+body[data-page="programs"] .back-detail-list {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+body[data-page="programs"] .back-detail-list li {
+  margin-bottom: 14px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+body[data-page="programs"] .back-detail-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+body[data-page="programs"] .back-cta {
+  margin-top: auto;
+  background: var(--accent);
+  color: #000;
+  text-align: center;
+  padding: 12px;
+  border-radius: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+body[data-page="programs"] .back-cta:hover { background: var(--accent-2); }
+
+@media (max-width: 980px) {
+  body[data-page="programs"] .flip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body[data-page="programs"] .flip-card { height: 520px; }
+}
+
+@media (max-width: 640px) {
+  body[data-page="programs"] .flip-grid { grid-template-columns: 1fr; }
+  body[data-page="programs"] .flip-card { height: 520px; }
+}
+
+/* CTA band */
+.cta-band {
+  padding: 110px 0;
+  text-align: center;
+  background: transparent;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cta-band .cta-head {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  width: 100%;
+}
+.cta-band .cta-head::before,
+.cta-band .cta-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.cta-band h2 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+
+.cta-band p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  line-height: 1.55;
+}
+
+
+
+/* Header */
+
+
+
+
+
+
+
+
+
+
+
+
+/* .footer, .footer-links — defined in system.css */
+
+/* Responsive */
+@media (max-width: 980px) {
+  .page-shell {
+    padding: 0 20px;
+  }  
+  h2, .content-block-title {
+    font-size: 28px;
+  }
+  
+  .program-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding: 0 16px;
+  }  
+  .program-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .program-section {
+    padding: 32px 0;
+  }
+  
+  .footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+/* Light mode overrides */
+
+
+
+
+body.light .tag {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="programs">
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+<main>
+    <section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Программы · New Generation English" data-en="Programs · New Generation English">Программы · New Generation English</span>
+      <span class="bar"></span>
+      <span data-ru="№ 003" data-en="NO. 003">№ 003</span>
+    </div>
+    <div class="hero-bg-wrap" aria-hidden="true">
+      <img class="hero-bg hero-bg-edge hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-edge hero-bg-light" src="assets/210e40cc-6a17-4465-ae8c-4bdbf8d29110%20%281%29.png%20%20-%20%D0%9F%D0%9E%D0%94%D0%9E%D0%93%D0%9D%D0%90%D0%9D%20%D0%A6%D0%92%D0%95%D0%A2.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-base hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-base hero-bg-light" src="assets/210e40cc-6a17-4465-ae8c-4bdbf8d29110%20%281%29.png%20%20-%20%D0%9F%D0%9E%D0%94%D0%9E%D0%93%D0%9D%D0%90%D0%9D%20%D0%A6%D0%92%D0%95%D0%A2.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="Программы обучения" data-en="Learning programs">Программы обучения</div>
+        <div class="hero-kicker-secondary" data-ru="Маршруты под живые задачи" data-en="Routes for real goals">Маршруты под живые задачи</div>
+
+        <h1>
+          <span class="line" data-ru="Программы" data-en="Programs">Программы</span>
+          <span class="line accent" data-ru="обучения" data-en="of study">обучения</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Основные направления работы: экзамены, общий английский, профессиональные задачи и короткие ускоренные форматы. Это рабочая карта того, как можно выстроить обучение под конкретную цель." data-en="The main areas of work: exams, general English, professional goals, and short intensive formats. This is a working map of how learning can be built around a specific goal.">Основные направления работы: экзамены, общий английский, профессиональные задачи и короткие ускоренные форматы. Это рабочая карта того, как можно выстроить обучение под конкретную цель.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#tracks" data-ru="Смотреть направления" data-en="View tracks">Смотреть направления</a>
+          <a class="btn btn-ghost" href="conditions.html" data-ru="Условия работы" data-en="Work terms">Условия работы</a>
+        </div>
+
+        <p class="hero-students-link"><span data-ru="Раздел программ:" data-en="Programs section:">Раздел программ:</span> <a href="programs.html" data-ru="программы" data-en="programs">программы</a></p>
+      </div>
+
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num">ОГЭ</div><div class="lbl" data-ru="экзамены" data-en="exams">экзамены</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num" data-ru="TOEFL" data-en="TOEFL">TOEFL</div><div class="lbl" data-ru="международные" data-en="international">международные</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">1:1</div><div class="lbl" data-ru="формат" data-en="format">формат</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num" data-ru="КУРСЫ" data-en="INT">КУРСЫ</div><div class="lbl" data-ru="ускоренные" data-en="intensives">ускоренные</div></div>
+    </div>
+  </div>
+</section>
+
+  <div class="page-shell">
+    <div class="subnav">
+        <a class="subnav-link" href="#tracks" data-ru="Программы" data-en="Programs">Программы</a>
+      </div>
+
+    <section class="content-block program-section programs-catalog" id="tracks">
+      <div class="content-block-header">
+        <h2 class="content-block-title" data-ru="Программы обучения" data-en="Learning programs">Программы обучения</h2>
+        <p class="program-intro" data-ru="Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели." data-en="Each program is a carefully designed system that helps you reach a specific result. Choose the direction that fits your goals.">Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели.</p>
+      </div>
+
+      <div class="program-tiles">
+
+        <!-- 1 · ОГЭ / ЕГЭ (main) -->
+        <article class="p-tile is-main t-exam has-img">
+          <span class="p-badge" data-ru="Основная программа" data-en="Main program">Основная программа</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 L24 8 L44 18 L24 28 Z"/><path d="M12 22 V32 C12 34 17 38 24 38 C31 38 36 34 36 32 V22"/><path d="M44 18 V30"/></svg>
+          </div>
+          <h3 class="p-title">ОГЭ / ЕГЭ</h3>
+          <p class="p-sub" data-ru="Подготовка к государственным экзаменам" data-en="Preparation for national school exams">Подготовка к государственным экзаменам</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="разбор структуры экзамена и логики заданий" data-en="clear work on exam structure and task logic">разбор структуры экзамена и логики заданий</li>
+            <li data-ru="устная и письменная практика без перегруза шаблонами" data-en="speaking and writing practice without overreliance on templates">устная и письменная практика без перегруза шаблонами</li>
+            <li data-ru="системное повторение грамматики и лексики" data-en="systematic grammar and vocabulary revision">системное повторение грамматики и лексики</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="понимание структуры экзамена и устойчивый рост баллов" data-en="a clear understanding of the exam format and steady score growth">понимание структуры экзамена и устойчивый рост баллов</span>
+          </div>
+        </article>
+
+        <!-- 2 · IELTS / TOEFL (main) -->
+        <article class="p-tile is-main t-int has-img">
+          <span class="p-badge" data-ru="Основная программа" data-en="Main program">Основная программа</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><ellipse cx="24" cy="24" rx="8" ry="18"/><path d="M6 24 H42"/><path d="M10 14 H38"/><path d="M10 34 H38"/></svg>
+          </div>
+          <h3 class="p-title">IELTS / TOEFL</h3>
+          <p class="p-sub" data-ru="Подготовка к международным экзаменам" data-en="Preparation for international exams">Подготовка к международным экзаменам</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="отработка reading, listening, writing и speaking" data-en="training in reading, listening, writing, and speaking">отработка reading, listening, writing и speaking</li>
+            <li data-ru="работа с таймингом и академической логикой ответа" data-en="time management and academic response structure">работа с таймингом и академической логикой ответа</li>
+            <li data-ru="практика на реальных типах заданий" data-en="practice with authentic task types">практика на реальных типах заданий</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="более уверенное выполнение speaking и writing и контроль времени" data-en="more confident speaking and writing performance with better time control">более уверенное выполнение speaking и writing и контроль времени</span>
+          </div>
+        </article>
+
+        <!-- 3 · Английский для взрослых -->
+        <article class="p-tile t-adult has-img">
+          <span class="p-badge ghost">—</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="8"/><path d="M10 42 C10 33 16 28 24 28 C32 28 38 33 38 42"/></svg>
+          </div>
+          <h3 class="p-title" data-ru="Английский для взрослых" data-en="English for adults">Английский для взрослых</h3>
+          <p class="p-sub" data-ru="Практический английский для жизни и работы" data-en="Practical English for life and work">Практический английский для жизни и работы</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="разговорная практика и системное закрепление базы" data-en="speaking practice with systematic work on the basics">разговорная практика и системное закрепление базы</li>
+            <li data-ru="понятная грамматика без механического заучивания" data-en="clear grammar without mechanical memorisation">понятная грамматика без механического заучивания</li>
+            <li data-ru="темы, связанные с реальными задачами ученика" data-en="topics connected with the learner's real-life goals">темы, связанные с реальными задачами ученика</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="способность говорить в повседневных и рабочих ситуациях увереннее" data-en="more confident communication in everyday and work situations">способность говорить в повседневных и рабочих ситуациях увереннее</span>
+          </div>
+        </article>
+
+        <!-- 4 · Разговорный клуб -->
+        <article class="p-tile t-club has-img">
+          <span class="p-badge ghost">—</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10 H32 C34 10 36 12 36 14 V26 C36 28 34 30 32 30 H22 L14 36 V30 H12 C10 30 8 28 8 26 Z"/><path d="M20 18 H28"/><path d="M20 22 H26"/></svg>
+          </div>
+          <h3 class="p-title" data-ru="Разговорный клуб" data-en="Speaking club">Разговорный клуб</h3>
+          <p class="p-sub" data-ru="Практика речи в мини-группах" data-en="Speaking practice in mini-groups">Практика речи в мини-группах</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="регулярная практика в мини-группах" data-en="regular practice in mini-groups">регулярная практика в мини-группах</li>
+            <li data-ru="речевые модели, вопросы, темы и дискуссии" data-en="speech patterns, questions, topics, and discussions">речевые модели, вопросы, темы и дискуссии</li>
+            <li data-ru="работа на снятие языкового барьера" data-en="focused work on reducing the language barrier">работа на снятие языкового барьера</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="более свободная речь без постоянного страха ошибки" data-en="freer speech without constant fear of making mistakes">более свободная речь без постоянного страха ошибки</span>
+          </div>
+        </article>
+
+        <!-- 5 · Медицинский английский -->
+        <article class="p-tile t-med has-img">
+          <span class="p-badge ghost">—</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6 V20 C14 26 18 30 24 30 C30 30 34 26 34 20 V6"/><path d="M10 6 H18"/><path d="M30 6 H38"/><path d="M24 30 V38 C24 41 26 44 30 44 C34 44 36 41 36 38 V34"/><circle cx="36" cy="32" r="2.5"/></svg>
+          </div>
+          <h3 class="p-title" data-ru="Медицинский английский" data-en="Medical English">Медицинский английский</h3>
+          <p class="p-sub" data-ru="Английский для врачей и медработников" data-en="English for doctors and medical staff">Английский для врачей и медработников</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="профессиональная лексика и работа с профильными текстами" data-en="professional vocabulary and work with field-specific texts">профессиональная лексика и работа с профильными текстами</li>
+            <li data-ru="модели общения с пациентом и коллегами" data-en="communication patterns for patients and colleagues">модели общения с пациентом и коллегами</li>
+            <li data-ru="точность формулировок и терминологии" data-en="precision in phrasing and terminology">точность формулировок и терминологии</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="более уверенное использование языка в профессиональной практике" data-en="more confident use of English in professional practice">более уверенное использование языка в профессиональной практике</span>
+          </div>
+        </article>
+
+        <!-- 6 · Бизнес-английский -->
+        <article class="p-tile t-biz has-img">
+          <span class="p-badge ghost">—</span>
+          <div class="p-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="36" height="26" rx="1"/><path d="M18 14 V10 C18 9 19 8 20 8 H28 C29 8 30 9 30 10 V14"/><path d="M6 24 H42"/><path d="M22 22 V26"/></svg>
+          </div>
+          <h3 class="p-title" data-ru="Бизнес-английский" data-en="Business English">Бизнес-английский</h3>
+          <p class="p-sub" data-ru="Английский для работы и карьеры" data-en="English for work and career">Английский для работы и карьеры</p>
+          <div class="p-section-label" data-ru="Что входит в программу:" data-en="What's included:">Что входит в программу:</div>
+          <ul class="p-list">
+            <li data-ru="переговоры, переписка и рабочие встречи" data-en="negotiations, correspondence, and work meetings">переговоры, переписка и рабочие встречи</li>
+            <li data-ru="деловые формулировки и языковая точность" data-en="business phrasing and language accuracy">деловые формулировки и языковая точность</li>
+            <li data-ru="поддержка рабочих сценариев, а не только темы учебника" data-en="support for real work scenarios rather than textbook-only topics">поддержка рабочих сценариев, а не только темы учебника</li>
+          </ul>
+          <div class="p-result">
+            <span class="k" data-ru="Результат:" data-en="Result:">Результат:</span>
+            <span class="v" data-ru="более спокойное и уверенное деловое общение" data-en="calmer and more confident business communication">более спокойное и уверенное деловое общение</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="cta-head"><span data-ru="04 · Запись" data-en="04 · Enrollment">04 · Запись</span></div>
+      <h2>
+        <span class="line" data-ru="Если пока неясно," data-en="If you are not sure">Если пока неясно,</span>
+        <span class="line accent" data-ru="какой формат подойдёт" data-en="which format fits">какой формат подойдёт</span>
+      </h2>
+      <p data-ru="Можно написать мне и коротко описать задачу: экзамен, разговорная речь, восстановление базы, профессиональный английский или ускоренный курс. Дальше маршрут можно будет собрать уже под вас." data-en="You can message me and briefly describe the goal: an exam, speaking, rebuilding the basics, professional English, or an intensive format. Then I can build the route around you.">Можно написать мне и коротко описать задачу: экзамен, разговорная речь, восстановление базы, профессиональный английский или ускоренный курс. Дальше маршрут можно будет собрать уже под вас.</p>
+      <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" data-ru="Обсудить формат" data-en="Discuss the format">Обсудить формат</a>
+    </section>
+  </div>
+  </main>
+
+<footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("light");
+  localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+  const btn = document.querySelector(".control-btn");
+  if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+}
+function toggleLang() {
+  const cur = document.documentElement.getAttribute("lang") || "ru";
+  const next = cur === "ru" ? "en" : "ru";
+  document.documentElement.setAttribute("lang", next);
+  document.querySelectorAll("[data-ru]").forEach(el => {
+    const val = el.getAttribute("data-" + next);
+    if (val) el.textContent = val;
+  });
+  const btn = document.getElementById("langBtn");
+  if (btn) btn.textContent = next.toUpperCase();
+  localStorage.setItem("nge-lang", next);
+}
+function markActiveNav() {
+  const page = document.body.dataset.page;
+  if (!page) return;
+  document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+    l.classList.toggle("active", l.dataset.nav === page);
+  });
+}
+(function restore() {
+  try {
+    if (localStorage.getItem("nge-theme") === "light") {
+      document.body.classList.add("light");
+      const btn = document.querySelector(".control-btn");
+      if (btn) btn.textContent = "☀";
+    }
+    const savedLang = localStorage.getItem("nge-lang");
+    if (savedLang === "en") toggleLang();
+  } catch (e) {}
+  markActiveNav();
+  initProgramFlips();
+})();
+
+function initProgramFlips() {
+  const cards = document.querySelectorAll('body[data-page="programs"] .flip-card');
+  if (!cards.length) return;
+
+  const toggle = (card) => card.classList.toggle("flipped");
+
+  cards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      const t = e.target;
+      if (t && t.closest && t.closest("a")) return;
+      toggle(card);
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle(card);
+      }
+      if (e.key === "Escape") {
+        card.classList.remove("flipped");
+      }
+    });
+  });
+}
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Дневник и блог преподавателя английского языка — Дзен-канал про английский, путешествия, нейронки, авторство, мой путь и педагогическая династия.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Дневник и блог — New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — STRICT SYSTEM FROM INDEX.HTML
+   ============================================================ */
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* ============================================================
+   TOPBAR (сохранен)
+   ============================================================ */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 2rem;
+  height: 64px; padding: 0 24px;
+  background: rgba(0,0,0,0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+body.light .topbar { background: rgba(244,241,236,0.9); }
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-mark {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  background: var(--accent); color: #000;
+  font-family: var(--display); font-weight: 900; font-size: 20px;
+  border-radius: 10px; letter-spacing: -0.04em;
+}
+.brand-name {
+  font-family: var(--display); font-weight: 800; font-size: 15px;
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.brand-sub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-3); margin-top: 2px;
+}
+.topnav { display: flex; gap: 2px; flex: 1; margin-left: 1rem; }
+.topnav-link {
+  padding: 7px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+  white-space: nowrap; transition: color .15s, background .15s;
+}
+.topnav-link:hover, .topnav-link.active { color: var(--text); background: var(--bg-3); }
+.topbar-tools { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.control-btn {
+  height: 34px; min-width: 34px; padding: 0 10px;
+  border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--text-2); cursor: pointer;
+  font-size: 12px; font-family: var(--mono); font-weight: 500;
+  transition: all .15s;
+}
+.control-btn:hover { color: var(--text); border-color: var(--line-strong); }
+
+/* ============================================================
+   WRAP
+   ============================================================ */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+/* ============================================================
+   SECTION PRIMITIVES
+   ============================================================ */
+.section { padding: 80px 0; }
+.sect-head {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 40px; margin-bottom: 56px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-3);
+  -webkit-text-stroke: 0;
+  color: var(--text-3);
+  margin-top: 8px;
+}
+.sect-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ============================================================
+   HERO (переделан под систему)
+   ============================================================ */
+.hero {
+  position: relative;
+  padding: 56px 24px 32px;
+  overflow: hidden;
+}
+.hero-inner { max-width: 1240px; margin: 0 auto; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 340px);
+  gap: 40px;
+  align-items: end;
+}
+.hero-copy { min-width: 0; }
+.hero-tag {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.hero-tag .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+.hero-tag .bar { flex: 1; height: 1px; background: var(--line); }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+.hero-kicker::before {
+  content: ""; width: 18px; height: 1px; background: var(--accent);
+}
+.hero-kicker-secondary {
+  margin-bottom: 28px;
+  font-size: 14px; color: var(--text-2);
+  font-family: var(--mono); letter-spacing: 0.08em;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.75rem, 7.5vw, 6rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0 0 28px;
+  color: var(--text);
+}
+.hero h1 .accent { color: var(--accent); }
+.hero-lead {
+  max-width: 640px;
+  margin: 0 0 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   SECTION PICKER
+   ============================================================ */
+.section-picker {
+  padding: 34px 0 44px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.section-picker-label {
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.subnav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.subnav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color .15s, background .15s, border-color .15s;
+}
+.subnav-link:hover, .subnav-link.active {
+  color: #000;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   BLOG GRID (3 колонки, без карточек)
+   ============================================================ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.blog-entry {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.entry-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.entry-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.neural-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 36px;
+  align-items: center;
+  margin-top: 42px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.neural-showcase-copy {
+  max-width: 640px;
+}
+.neural-showcase-kicker {
+  margin-bottom: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.neural-showcase h3 {
+  max-width: 620px;
+  margin-bottom: 16px;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.neural-showcase p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.neural-showcase .hero-media {
+  --hero-media-x: 50%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1;
+  width: 100%;
+}
+.neural-showcase .hero-media .img-light {
+  --hero-media-x: 19%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1.04;
+}
+.neural-showcase .hero-media .img-light {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-dark {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-light {
+  display: block;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+}
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.cta h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px;
+  margin-bottom: 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px;
+  border-radius: var(--btn);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: all .15s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--accent);
+  color: #000;
+}
+.btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  max-width: 1240px; margin: 0 auto;
+  padding: 40px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: var(--bg-3); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .neural-showcase { grid-template-columns: 1fr; }
+  .neural-showcase .hero-media { max-width: 340px; }
+}
+@media (max-width: 768px) {
+  .topbar { padding: 0 16px; gap: 12px; }
+  .hero { padding: 32px 0 24px; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
+  .section { padding: 56px 0; }
+  .blog-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cta { padding: 56px 0; }
+  .subnav { gap: 12px; }
+  .neural-showcase { gap: 24px; margin-top: 32px; }
+}
+</style>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+    const btn = document.querySelector(".control-btn");
+    if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute("lang") || "ru";
+    const next = cur === "ru" ? "en" : "ru";
+    document.documentElement.setAttribute("lang", next);
+    document.querySelectorAll("[data-ru]").forEach(el => {
+      const val = el.getAttribute("data-" + next);
+      if (val) el.textContent = val;
+    });
+    const btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = next.toUpperCase();
+    localStorage.setItem("nge-lang", next);
+  }
+  function markActiveNav() {
+    const page = document.body.dataset.page;
+    if (!page) return;
+    document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+      l.classList.toggle("active", l.dataset.nav === page);
+    });
+  }
+  (function restore() {
+    try {
+      if (localStorage.getItem("nge-theme") === "light") {
+        document.body.classList.add("light");
+        const btn = document.querySelector(".control-btn");
+        if (btn) btn.textContent = "☀";
+      }
+      const savedLang = localStorage.getItem("nge-lang");
+      if (savedLang === "en") toggleLang();
+    } catch (e) {}
+    markActiveNav();
+  })();
+</script>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="blog">
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+<div class="wrap">
+  <!-- HEADER (сохранен) -->
+  
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Дневник и блог · New Generation English" data-en="Journal and blog · New Generation English">Дневник и блог · New Generation English</span>
+      <span class="bar"></span>
+      <span>NO. 005</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="Язык · преподавание · жизнь" data-en="Language · teaching · life">Язык · преподавание · жизнь</div>
+        <div class="hero-kicker-secondary" data-ru="Заметки и практические тексты" data-en="Notes and practical texts">Заметки и практические тексты</div>
+
+        <h1>
+          <span class="line" data-ru="Дневник" data-en="Journal">Дневник</span>
+          <span class="line accent" data-ru="и блог" data-en="and blog">и блог</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Заметки, размышления и практические тексты: Дзен-канал про английский, путешествия, нейронки, мой путь, авторство и педагогическая династия." data-en="Notes, reflections, and practical texts: a Zen channel about English, travel, neural tools, my path, authorship, and a teaching dynasty.">Заметки, размышления и практические тексты: Дзен-канал про английский, путешествия, нейронки, мой путь, авторство и педагогическая династия.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="lingua-boost-lab/index.html" data-ru="Открыть лабораторию" data-en="Open the lab">Открыть лабораторию</a>
+          <a class="btn btn-ghost" href="cases.html" data-ru="Смотреть кейсы" data-en="View cases">Смотреть кейсы</a>
+        </div>
+
+        <p class="hero-students-link"><span data-ru="Все записи собраны здесь:" data-en="All posts are collected here:">Все записи собраны здесь:</span> <a href="blog.html" data-ru="дневник и блог" data-en="journal and blog">дневник и блог</a></p>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num"><em>6</em></div><div class="lbl" data-ru="рубрик" data-en="sections">рубрик</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num">AI</div><div class="lbl" data-ru="нейронки" data-en="AI tools">нейронки</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">ROAD</div><div class="lbl" data-ru="путешествия" data-en="travel">путешествия</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">TEXT</div><div class="lbl" data-ru="авторство" data-en="authorship">авторство</div></div>
+    </div>
+  </div>
+</section>
+
+    <hr class="dash">
+
+    <!-- SECTION PICKER -->
+    <div class="section-picker">
+      <div class="section-picker-label" data-ru="Про что пишем" data-en="What we write about">Про что пишем</div>
+      <div class="subnav">
+        <a href="#zen-channel" class="subnav-link active" data-ru="Дзен · английский" data-en="Zen · English">Дзен · английский</a>
+        <a href="#travel" class="subnav-link" data-ru="Путешествия" data-en="Travel">Путешествия</a>
+        <a href="#neural-tools" class="subnav-link" data-ru="Нейронки" data-en="AI tools">Нейронки</a>
+        <a href="#my-path" class="subnav-link" data-ru="Мой путь" data-en="My path">Мой путь</a>
+        <a href="#authorship" class="subnav-link" data-ru="Авторство" data-en="Authorship">Авторство</a>
+        <a href="#dynasty" class="subnav-link" data-ru="Педагогическая династия" data-en="Teaching dynasty">Педагогическая династия</a>
+      </div>
+    </div>
+
+    <!-- SECTION 01: ДЗЕН-КАНАЛ ПРО АНГЛИЙСКИЙ -->
+    <section class="cta" id="zen-channel">
+      <div class="cta-head"><span data-ru="01 · Дзен-канал" data-en="01 · Zen channel">01 · Дзен-канал</span></div>
+      <h2><span data-ru="Канал про" data-en="A channel about">Канал про</span> <span class="accent" data-ru="английский" data-en="English">английский</span></h2>
+      <p data-ru="Если хочется читать статьи на английском и больше практиковаться через живые тексты, переходите в мой Яндекс Дзен: там собраны заметки, материалы и идеи для тех, кто учит язык через смысл." data-en="If you want to read articles in English and practise more through real texts, visit my Yandex Zen: it collects notes, materials, and ideas for learners who study language through meaning.">Если хочется читать статьи на английском и больше практиковаться через живые тексты, переходите в мой Яндекс Дзен: там собраны заметки, материалы и идеи для тех, кто учит язык через смысл.</p>
+      <a href="https://dzen.ru/newgenerationenglish" target="_blank" rel="noreferrer" class="btn-primary" data-ru="Открыть Яндекс Дзен →" data-en="Open Yandex Zen →">Открыть Яндекс Дзен →</a>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 02: ПУТЕШЕСТВИЯ -->
+    <section class="section" id="travel">
+      <div class="sect-head">
+        <div class="sect-index">02<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Английский вне класса" data-en="English beyond the classroom">Английский вне класса</div><h2 class="sect-title" data-ru="Про путешествия" data-en="About travel">Про путешествия</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="18 апреля 2025 · 5 мин чтения" data-en="Apr 18, 2025 · 5 min read">18 апреля 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Почему путешествия меняют отношение к языку" data-en="Why travel changes your attitude to language">Почему путешествия меняют отношение к языку</h3>
+          <p class="entry-text" data-ru="В дороге английский перестаёт быть упражнением и становится инструментом: спросить дорогу, решить проблему, понять человека и не испугаться ошибки." data-en="On the road, English stops being an exercise and becomes a tool: asking for directions, solving a problem, understanding someone, and not being afraid of mistakes.">В дороге английский перестаёт быть упражнением и становится инструментом: спросить дорогу, решить проблему, понять человека и не испугаться ошибки.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="9 апреля 2025 · 4 мин чтения" data-en="Apr 9, 2025 · 4 min read">9 апреля 2025 · 4 мин чтения</div>
+          <h3 class="entry-title" data-ru="Живой английский в аэропорту и отеле" data-en="Real English at the airport and hotel">Живой английский в аэропорту и отеле</h3>
+          <p class="entry-text" data-ru="Наблюдения о фразах, объявлениях, сервисе и ситуациях, где важнее ясность и спокойствие, чем идеальная грамматика." data-en="Notes on phrases, announcements, service, and situations where clarity and calm matter more than perfect grammar.">Наблюдения о фразах, объявлениях, сервисе и ситуациях, где важнее ясность и спокойствие, чем идеальная грамматика.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 03: НЕЙРОНКИ -->
+    <section class="section" id="neural-tools">
+      <div class="sect-head">
+        <div class="sect-index">03<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="ИИ в обучении" data-en="AI in learning">ИИ в обучении</div><h2 class="sect-title" data-ru="Про нейронки" data-en="About AI tools">Про нейронки</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="7 апреля 2025 · 6 мин чтения" data-en="Apr 7, 2025 · 6 min read">7 апреля 2025 · 6 мин чтения</div>
+          <h3 class="entry-title" data-ru="Нейронки как ассистент преподавателя" data-en="AI tools as a teacher's assistant">Нейронки как ассистент преподавателя</h3>
+          <p class="entry-text" data-ru="Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика." data-en="How I use AI for ideas, lesson structure, practice tasks, and quick adaptation of materials for a specific learner.">Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="29 марта 2025 · 5 мин чтения" data-en="Mar 29, 2025 · 5 min read">29 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Где ИИ помогает, а где нужен человек" data-en="Where AI helps and where a person is needed">Где ИИ помогает, а где нужен человек</h3>
+          <p class="entry-text" data-ru="Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры." data-en="AI speeds up preparation, but the teaching decision still belongs to the teacher: pace, tone, motivation, and a sense of proportion.">Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры.</p>
+        </article>
+      </div>
+      <div class="neural-showcase" id="neural-visual">
+        <div class="neural-showcase-copy">
+          <div class="neural-showcase-kicker" data-ru="Подраздел · визуальный образ" data-en="Subsection · visual image">Подраздел · визуальный образ</div>
+          <h3 data-ru="Красивый робот — сюда: как символ нейронок, а не всей школы" data-en="The beautiful robot belongs here: a symbol of AI tools, not the whole school">Красивый робот — сюда: как символ нейронок, а не всей школы</h3>
+          <p data-ru="Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение." data-en="This image stays inside the AI topic: neural tools help create materials, adapt tasks, and see more options, while the centre of the system remains the person and the teaching decision.">Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение.</p>
+        </div>
+        <div class="hero-media">
+          <img class="img-dark" src="assets/Без%20имени.png" alt="Визуальный образ раздела про нейронки"
+               onerror="if(!document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
+          <img class="img-light" src="assets/hero-cyborg-light.png" alt="Визуальный образ раздела про нейронки"
+               onerror="if(document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
+          <div class="fallback-img" style="display:none; position:absolute; inset:0;">AI · TOOLS<br>NEURAL NOTES<br>3 : 4</div>
+          <div class="hero-media-frame"></div>
+          <div class="hero-media-caption">
+            <span class="dot"></span>
+            <span data-ru="нейронки · инструменты" data-en="AI tools · instruments">нейронки · инструменты</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 04: МОЙ ПУТЬ -->
+    <section class="section" id="my-path">
+      <div class="sect-head">
+        <div class="sect-index">04<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Личный маршрут" data-en="Personal route">Личный маршрут</div><h2 class="sect-title" data-ru="Про мой путь" data-en="About my path">Про мой путь</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="1 апреля 2025 · 6 мин чтения" data-en="Apr 1, 2025 · 6 min read">1 апреля 2025 · 6 мин чтения</div>
+          <h3 class="entry-title" data-ru="Почему я выбрала преподавание" data-en="Why I chose teaching">Почему я выбрала преподавание</h3>
+          <p class="entry-text" data-ru="Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми." data-en="A short story about how English became my profession: what helped, what got in the way, and what decisions mattered.">Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="12 марта 2025 · 5 мин чтения" data-en="Mar 12, 2025 · 5 min read">12 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Как я училась учить" data-en="How I learned to teach">Как я училась учить</h3>
+          <p class="entry-text" data-ru="Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом." data-en="About experience, mistakes, and lessons: how my system formed, why I prefer clear routes, and what I consider a real outcome.">Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 05: АВТОРСТВО -->
+    <section class="section" id="authorship">
+      <div class="sect-head">
+        <div class="sect-index">05<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Тексты и методика" data-en="Texts and methodology">Тексты и методика</div><h2 class="sect-title" data-ru="Про авторство" data-en="About authorship">Про авторство</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="24 марта 2025 · 5 мин чтения" data-en="Mar 24, 2025 · 5 min read">24 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Зачем преподавателю авторские материалы" data-en="Why a teacher needs original materials">Зачем преподавателю авторские материалы</h3>
+          <p class="entry-text" data-ru="Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес." data-en="A textbook gives a foundation, while original material helps reach the learner more precisely: their goal, level, pace, and living interest.">Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="16 марта 2025 · 4 мин чтения" data-en="Mar 16, 2025 · 4 min read">16 марта 2025 · 4 мин чтения</div>
+          <h3 class="entry-title" data-ru="Как рождается урок" data-en="How a lesson is born">Как рождается урок</h3>
+          <p class="entry-text" data-ru="От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться." data-en="From idea to task: observation, topic logic, the needed language skill, and a format that makes the learner want to engage.">От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 06: ПЕДАГОГИЧЕСКАЯ ДИНАСТИЯ -->
+    <section class="section" id="dynasty">
+      <div class="sect-head">
+        <div class="sect-index">06<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Семейная линия" data-en="Family line">Семейная линия</div><h2 class="sect-title" data-ru="Про педагогическую династию" data-en="About the teaching dynasty">Про педагогическую династию</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="5 марта 2025 · 6 мин чтения" data-en="Mar 5, 2025 · 6 min read">5 марта 2025 · 6 мин чтения</div>
+          <h3 class="entry-title" data-ru="Педагогика как семейная оптика" data-en="Teaching as a family lens">Педагогика как семейная оптика</h3>
+          <p class="entry-text" data-ru="О том, как уважение к знаниям, дисциплина и внимание к человеку становятся не профессией на время, а семейной культурой." data-en="How respect for knowledge, discipline, and attention to the person become not a temporary profession, but a family culture.">О том, как уважение к знаниям, дисциплина и внимание к человеку становятся не профессией на время, а семейной культурой.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="21 февраля 2025 · 5 мин чтения" data-en="Feb 21, 2025 · 5 min read">21 февраля 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Что передаётся от учителя к учителю" data-en="What passes from teacher to teacher">Что передаётся от учителя к учителю</h3>
+          <p class="entry-text" data-ru="Не только методики и приёмы, но и профессиональная честность: видеть ученика, держать планку и не упрощать смысл." data-en="Not only methods and techniques, but professional honesty: seeing the learner, keeping the standard, and not simplifying meaning.">Не только методики и приёмы, но и профессиональная честность: видеть ученика, держать планку и не упрощать смысл.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (минимальный) -->
+  <footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+</div>
+
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>
