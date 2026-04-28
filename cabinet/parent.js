@@ -1,6 +1,7 @@
 import {
   formatDateTime,
   getProgress,
+  getStudentMeta,
   getUser,
   listLessonsForStudent,
   listPaymentsForStudent,
@@ -222,12 +223,101 @@ function renderNotifications(state, parentId) {
   });
 }
 
+function buildProgressReport(state, parentUser, studentId) {
+  const student = getUser(state, studentId);
+  const progress = getProgress(state, studentId) || {};
+  const meta = getStudentMeta(state, studentId) || {};
+  const lessons = listLessonsForStudent(state, studentId);
+  const payments = listPaymentsForStudent(state, studentId);
+  const materials = listStudentItems(state, studentId, "material");
+  const practice = listStudentItems(state, studentId, "practice");
+  const doneItems = [...materials, ...practice].filter((x) => x.done);
+  const practiceMinutes = practice.reduce((sum, item) => sum + (item.done ? Number(item.minutes || 0) : 0), 0);
+
+  const lines = [
+    "Отчёт об успеваемости New Generation English",
+    `Дата выгрузки: ${formatDateTime(new Date().toISOString())}`,
+    `Родитель: ${parentUser.name || "—"}`,
+    `Ученик: ${student?.name || "—"}`,
+    "",
+    "Профиль",
+    `Уровень: ${progress.level || "—"}`,
+    `Абонемент: ${meta.tariff || "—"}`,
+    `План занятий: ${meta.plan || "—"}`,
+    "",
+    "Цели и комментарии преподавателя",
+    `Цели: ${progress.goals || "—"}`,
+    `Комментарий: ${progress.comments || "—"}`,
+    "",
+    "Посещаемость",
+    `Запланировано: ${lessons.filter((l) => l.status === "planned").length}`,
+    `Проведено: ${lessons.filter((l) => l.status === "done").length}`,
+    `Пропуски: ${lessons.filter((l) => l.status === "missed").length}`,
+    "",
+    "Уроки",
+    ...(lessons.length
+      ? lessons.slice(-12).reverse().map((l) => `- ${formatDateTime(l.date)} · ${l.status} · ${l.homework || "без домашки"}`)
+      : ["- уроков пока нет"]),
+    "",
+    "Материалы",
+    ...(materials.length
+      ? materials.map((m) => `- ${m.done ? "[x]" : "[ ]"} ${m.title}${m.details ? ` — ${m.details}` : ""}`)
+      : ["- материалов пока нет"]),
+    "",
+    "Практика и тренажёры",
+    ...(practice.length
+      ? practice.map((p) => `- ${p.done ? "[x]" : "[ ]"} ${p.title}${p.minutes ? ` · ${p.minutes} мин` : ""}${p.details ? ` — ${p.details}` : ""}`)
+      : ["- практики пока нет"]),
+    "",
+    "Итоги",
+    `Выполнено заданий: ${doneItems.length}`,
+    `Минут практики: ${practiceMinutes}`,
+    "",
+    "Оплаты",
+    ...(payments.length
+      ? payments.map((p) => `- ${formatDateTime(p.date)} · ${p.amount} ₽ · ${p.status}${p.comment ? ` · ${p.comment}` : ""}`)
+      : ["- оплат пока нет"]),
+  ];
+
+  return lines.join("\n");
+}
+
+function downloadProgressReport(state, parentUser, studentId) {
+  const student = getUser(state, studentId);
+  const report = buildProgressReport(state, parentUser, studentId);
+  const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `nge-progress-${safeName}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function ensureReportButton(parentUser, getStudentId) {
+  const host = byId("parentProgressBox")?.closest(".panel")?.querySelector(".panel-head");
+  if (!host || byId("downloadParentReportBtn")) return;
+  const actions = document.createElement("div");
+  actions.className = "actions";
+  actions.innerHTML = `<button class="btn-mini" id="downloadParentReportBtn" type="button" data-primary>Скачать отчёт</button>`;
+  host.appendChild(actions);
+  byId("downloadParentReportBtn")?.addEventListener("click", () => {
+    const studentId = getStudentId();
+    if (!studentId) return;
+    downloadProgressReport(loadState(), parentUser, studentId);
+  });
+}
+
 export function initParentCabinet(ctx) {
   const state = loadState();
   renderChildOptions(state, ctx.me);
 
   const select = /** @type {HTMLSelectElement|null} */ (byId("childSelect"));
   const first = select?.value || (ctx.me.linkedStudents && ctx.me.linkedStudents[0]);
+  ensureReportButton(ctx.me, () => select?.value || first || "");
 
   function renderAll(studentId) {
     const fresh = loadState();
