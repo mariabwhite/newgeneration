@@ -1,6 +1,22 @@
 const STORAGE_KEY = "nge_os_v1";
 const SESSION_KEY = "nge_os_session_v1";
 
+export const PAYMENT_DETAILS = {
+  url: "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143",
+  telegramUrl: "https://t.me/MariaBurceva_English",
+  phone: "89165101792",
+  recipient: "Бурцева Мария Витальевна",
+  contract: "5181572792",
+  account: "40817810200014652973",
+  purpose: "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается",
+  bik: "044525974",
+  bank: "АО \"ТБанк\"",
+  correspondentAccount: "30101810145250000974",
+  inn: "7710140679",
+  kpp: "771301001",
+  method: "Т-Банк",
+};
+
 /**
  * @typedef {"student"|"teacher"|"parent"} Role
  *
@@ -32,6 +48,13 @@ const SESSION_KEY = "nge_os_session_v1";
  *  status: "pending"|"paid"|"overdue";
  *  date: string; // ISO
  *  comment?: string;
+ *  paidReportedAt?: string;
+ *  confirmedAt?: string;
+ *  receiptUrl?: string;
+ *  receiptNumber?: string;
+ *  receiptIssuedAt?: string;
+ *  lessonsAdded?: number;
+ *  lessonsAppliedAt?: string;
  * }} Payment
  *
  * @typedef {{
@@ -63,6 +86,7 @@ const SESSION_KEY = "nge_os_session_v1";
  *  studentId: string;
  *  tariff: string;
  *  plan?: string;
+ *  remainingLessons?: number;
  * }} StudentMeta
  *
  * @typedef {{
@@ -244,6 +268,18 @@ export function loadState() {
       ...p,
       studentGoals: p.studentGoals || "",
       studentNotes: p.studentNotes || "",
+    }));
+
+    s.studentMeta = s.studentMeta.map((m) => ({
+      ...m,
+      remainingLessons: Number.isFinite(Number(m.remainingLessons)) ? Number(m.remainingLessons) : 0,
+    }));
+
+    s.payments = s.payments.map((p) => ({
+      ...p,
+      lessonsAdded: Number.isFinite(Number(p.lessonsAdded)) ? Number(p.lessonsAdded) : 0,
+      receiptUrl: p.receiptUrl || "",
+      receiptNumber: p.receiptNumber || "",
     }));
 
     return s;
@@ -457,6 +493,7 @@ export function upsertStudentMeta(state, studentId, patch) {
       studentId,
       tariff: (patch.tariff || "").trim() || "—",
       plan: (patch.plan || "").trim() || "",
+      remainingLessons: Number.isFinite(Number(patch.remainingLessons)) ? Number(patch.remainingLessons) : 0,
     };
     state.studentMeta.push(created);
     saveState(state);

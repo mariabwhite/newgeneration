@@ -18,6 +18,7 @@ import {
   listTeacherTasks,
   listStudents,
   loadState,
+  PAYMENT_DETAILS,
   queueNotification,
   saveState,
   updateTeacherTask,
@@ -71,6 +72,17 @@ function getLang() {
 
 function t(ru, en) {
   return getLang() === "ru" ? ru : en;
+}
+
+function applyLessonsAfterPayment(state, payment) {
+  const lessonsToAdd = Number(payment.lessonsAdded || 0);
+  if (!lessonsToAdd || payment.lessonsAppliedAt) return;
+  const meta = getStudentMeta(state, payment.studentId) || { studentId: payment.studentId, tariff: "", plan: "", remainingLessons: 0 };
+  upsertStudentMeta(state, payment.studentId, {
+    ...meta,
+    remainingLessons: Number(meta.remainingLessons || 0) + lessonsToAdd,
+  });
+  updatePayment(state, payment.id, { lessonsAppliedAt: new Date().toISOString() });
 }
 
 function computeKPIs(state, teacherId) {
@@ -747,23 +759,54 @@ function renderLessonCreator(state, teacherId) {
 
 function renderPayments(state) {
   const usersById = new Map(state.users.map((u) => [u.id, u]));
+  const paymentGuide = `
+    <div class="payment-guide">
+      <div>
+        <div class="panel-kicker">${escapeHtml(t("Ссылка для родителей", "Parent payment link"))}</div>
+        <strong>${escapeHtml(PAYMENT_DETAILS.method)} · ${escapeHtml(PAYMENT_DETAILS.recipient)}</strong>
+        <div class="muted">${escapeHtml(t("Телефон", "Phone"))}: ${escapeHtml(PAYMENT_DETAILS.phone)}</div>
+        <div class="muted">${escapeHtml(t("Назначение", "Purpose"))}: ${escapeHtml(PAYMENT_DETAILS.purpose)}</div>
+      </div>
+      <div class="payment-guide-actions">
+        <a class="btn-mini" data-primary href="${escapeHtml(PAYMENT_DETAILS.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть", "Open"))}</a>
+      </div>
+    </div>
+  `;
 
-  const items = state.payments
+  const items = paymentGuide + state.payments
     .slice()
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 8)
     .map((p) => {
       const student = usersById.get(p.studentId);
       return `
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <div class="payment-card" data-payment-card="${escapeHtml(p.id)}">
           <div>
             <div class="panel-kicker">${escapeHtml(formatDateTime(p.date))}</div>
+            ${p.paidReportedAt ? `<div class="muted">${escapeHtml(t("Родитель отметил оплату", "Parent reported payment"))}: ${escapeHtml(formatDateTime(p.paidReportedAt))}</div>` : ""}
+            ${p.confirmedAt ? `<div class="muted">${escapeHtml(t("Подтверждено", "Confirmed"))}: ${escapeHtml(formatDateTime(p.confirmedAt))}</div>` : ""}
+            ${p.receiptIssuedAt ? `<div class="muted">${escapeHtml(t("Чек выдан", "Receipt issued"))}: ${escapeHtml(formatDateTime(p.receiptIssuedAt))}</div>` : ""}
             <div><strong>${escapeHtml(student?.name || "—")}</strong> · <span class="muted">${escapeHtml(p.comment || "")}</span></div>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
             <span class="mono"><strong>${escapeHtml(String(p.amount))} ₽</strong></span>
             ${pill(p.status)}
             <button class="btn-mini" type="button" data-pay-id="${escapeHtml(p.id)}">${escapeHtml(t("Статус", "Status"))}</button>
+          </div>
+          <div class="payment-edit">
+            <label>${escapeHtml(t("Занятий добавить", "Lessons to add"))}
+              <input type="number" min="0" step="1" value="${escapeHtml(String(p.lessonsAdded || 0))}" data-lessons-added="${escapeHtml(p.id)}">
+            </label>
+            <label>${escapeHtml(t("Номер чека", "Receipt number"))}
+              <input value="${escapeHtml(p.receiptNumber || "")}" placeholder="${escapeHtml(t("по желанию", "optional"))}" data-receipt-number="${escapeHtml(p.id)}">
+            </label>
+            <label>${escapeHtml(t("Ссылка на чек", "Receipt link"))}
+              <input value="${escapeHtml(p.receiptUrl || "")}" placeholder="https://..." data-receipt-url="${escapeHtml(p.id)}">
+            </label>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" data-primary type="button" data-confirm-pay="${escapeHtml(p.id)}">${escapeHtml(t("Подтвердить оплату", "Confirm payment"))}</button>
+            <button class="btn-mini" type="button" data-save-receipt="${escapeHtml(p.id)}">${escapeHtml(t("Сохранить чек", "Save receipt"))}</button>
           </div>
         </div>`;
     })
@@ -781,6 +824,49 @@ function renderPayments(state) {
       updatePayment(state, id, { status: next });
       saveState(state);
       renderPayments(loadState());
+    });
+  });
+
+  byId("paymentsList")?.querySelectorAll("[data-save-receipt]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-save-receipt");
+      if (!id) return;
+      const receiptUrl = /** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-receipt-url="${CSS.escape(id)}"]`))?.value || "";
+      const receiptNumber = /** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-receipt-number="${CSS.escape(id)}"]`))?.value || "";
+      const lessonsAdded = Number((/** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-lessons-added="${CSS.escape(id)}"]`))?.value || "0").trim());
+      updatePayment(state, id, {
+        receiptUrl: receiptUrl.trim(),
+        receiptNumber: receiptNumber.trim(),
+        receiptIssuedAt: receiptUrl.trim() || receiptNumber.trim() ? new Date().toISOString() : undefined,
+        lessonsAdded: Number.isFinite(lessonsAdded) ? lessonsAdded : 0,
+      });
+      renderPayments(loadState());
+    });
+  });
+
+  byId("paymentsList")?.querySelectorAll("[data-confirm-pay]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-confirm-pay");
+      if (!id) return;
+      const fresh = loadState();
+      const payment = fresh.payments.find((x) => x.id === id);
+      if (!payment) return;
+      const lessonsAdded = Number((/** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-lessons-added="${CSS.escape(id)}"]`))?.value || "0").trim());
+      const receiptUrl = /** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-receipt-url="${CSS.escape(id)}"]`))?.value || "";
+      const receiptNumber = /** @type {HTMLInputElement|null} */ (byId("paymentsList")?.querySelector(`[data-receipt-number="${CSS.escape(id)}"]`))?.value || "";
+      updatePayment(fresh, id, {
+        status: "paid",
+        confirmedAt: new Date().toISOString(),
+        lessonsAdded: Number.isFinite(lessonsAdded) ? lessonsAdded : 0,
+        receiptUrl: receiptUrl.trim(),
+        receiptNumber: receiptNumber.trim(),
+        receiptIssuedAt: receiptUrl.trim() || receiptNumber.trim() ? new Date().toISOString() : payment.receiptIssuedAt,
+      });
+      const updated = loadState().payments.find((x) => x.id === id);
+      if (updated) applyLessonsAfterPayment(loadState(), updated);
+      renderPayments(loadState());
+      renderStudents(loadState());
+      renderKpis(loadState(), document.body.dataset.teacherId || "u_teacher_1");
     });
   });
 }

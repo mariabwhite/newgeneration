@@ -1,5 +1,6 @@
 import {
   formatDateTime,
+  getStudentMeta,
   getProgress,
   getStudentMeta,
   getUser,
@@ -8,6 +9,8 @@ import {
   listPendingNotificationsForUser,
   listStudentItems,
   loadState,
+  PAYMENT_DETAILS,
+  updatePayment,
 } from "./core.js";
 
 function escapeHtml(text) {
@@ -41,6 +44,16 @@ function pill(status) {
   };
   const v = map[status] || { tone: "", ru: status, en: status };
   return `<span class="pill" data-tone="${escapeHtml(v.tone)}">${escapeHtml(getLang() === "ru" ? v.ru : v.en)}</span>`;
+}
+
+async function copyText(text, btn) {
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = t("Скопировано", "Copied");
+    setTimeout(() => (btn.textContent = btn.dataset.label || t("Копировать", "Copy")), 1200);
+  } catch {
+    btn.textContent = t("Не скопировалось", "Copy failed");
+  }
 }
 
 function renderChildOptions(state, parentUser) {
@@ -166,14 +179,69 @@ function renderProgress(state, studentId) {
 }
 
 function renderPayments(state, studentId) {
+  const meta = getStudentMeta(state, studentId);
+  const student = getUser(state, studentId);
   const payments = listPaymentsForStudent(state, studentId).slice(0, 10);
+  const paymentGuide = `
+    <div class="payment-guide">
+      <div>
+        <div class="panel-kicker">${escapeHtml(t("Оплата", "Payment"))}</div>
+        <strong>${escapeHtml(PAYMENT_DETAILS.method)} · ${escapeHtml(PAYMENT_DETAILS.recipient)}</strong>
+        <div class="muted">${escapeHtml(t("Телефон для перевода", "Transfer phone"))}: ${escapeHtml(PAYMENT_DETAILS.phone)}</div>
+        <div class="muted">${escapeHtml(t("Назначение", "Purpose"))}: ${escapeHtml(PAYMENT_DETAILS.purpose)}</div>
+      </div>
+      <div class="payment-guide-actions">
+        <a class="btn-mini" data-primary href="${escapeHtml(PAYMENT_DETAILS.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть оплату", "Open payment"))}</a>
+        <button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.phone)}" data-label="${escapeHtml(t("Скопировать телефон", "Copy phone"))}">${escapeHtml(t("Скопировать телефон", "Copy phone"))}</button>
+        <button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.url)}" data-label="${escapeHtml(t("Скопировать ссылку", "Copy link"))}">${escapeHtml(t("Скопировать ссылку", "Copy link"))}</button>
+      </div>
+    </div>
+    <details class="payment-details">
+      <summary>${escapeHtml(t("Реквизиты для перевода", "Bank details"))}</summary>
+      <div class="payment-details-grid">
+        <span>${escapeHtml(t("Получатель", "Recipient"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.recipient)}" data-label="${escapeHtml(PAYMENT_DETAILS.recipient)}">${escapeHtml(PAYMENT_DETAILS.recipient)}</button>
+        <span>${escapeHtml(t("Счёт", "Account"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.account)}" data-label="${escapeHtml(PAYMENT_DETAILS.account)}">${escapeHtml(PAYMENT_DETAILS.account)}</button>
+        <span>${escapeHtml(t("Банк", "Bank"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.bank)}" data-label="${escapeHtml(PAYMENT_DETAILS.bank)}">${escapeHtml(PAYMENT_DETAILS.bank)}</button>
+        <span>${escapeHtml(t("БИК", "BIK"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.bik)}" data-label="${escapeHtml(PAYMENT_DETAILS.bik)}">${escapeHtml(PAYMENT_DETAILS.bik)}</button>
+        <span>${escapeHtml(t("Корр. счёт", "Corr. account"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}" data-label="${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}">${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}</button>
+        <span>${escapeHtml(t("ИНН", "INN"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.inn)}" data-label="${escapeHtml(PAYMENT_DETAILS.inn)}">${escapeHtml(PAYMENT_DETAILS.inn)}</button>
+        <span>${escapeHtml(t("КПП", "KPP"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.kpp)}" data-label="${escapeHtml(PAYMENT_DETAILS.kpp)}">${escapeHtml(PAYMENT_DETAILS.kpp)}</button>
+        <span>${escapeHtml(t("Назначение", "Purpose"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.purpose)}" data-label="${escapeHtml(t("Скопировать назначение", "Copy purpose"))}">${escapeHtml(t("Скопировать назначение", "Copy purpose"))}</button>
+      </div>
+    </details>
+    <div class="payment-balance">
+      <span>${escapeHtml(t("Остаток занятий", "Lessons left"))}</span>
+      <strong>${escapeHtml(String(meta?.remainingLessons ?? 0))}</strong>
+    </div>
+  `;
   const html = payments.length
     ? payments
         .map((p) => {
-          return `<div style="display:flex; justify-content:space-between; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+          const receiptReady = p.receiptUrl || p.receiptNumber || p.receiptIssuedAt;
+          const canReport = p.status !== "paid" && !p.paidReportedAt;
+          const notifyText = [
+            "Мария Витальевна, здравствуйте!",
+            "Я оплатил(а) абонемент.",
+            `Ученик: ${student?.name || ""}`,
+            `Сумма: ${p.amount} руб.`,
+            `Дата оплаты: ${new Date().toLocaleDateString("ru-RU")}`,
+            `Назначение: ${PAYMENT_DETAILS.purpose}`,
+          ].join("\n");
+          return `<div class="payment-row">
             <div>
               <div class="panel-kicker">${escapeHtml(formatDateTime(p.date))}</div>
               <div class="muted">${escapeHtml(p.comment || "")}</div>
+              ${p.paidReportedAt ? `<div class="muted">${escapeHtml(t("Вы отметили оплату", "Payment reported"))}: ${escapeHtml(formatDateTime(p.paidReportedAt))}</div>` : ""}
+              ${
+                receiptReady
+                  ? `<div class="muted">${escapeHtml(t("Чек", "Receipt"))}: ${escapeHtml(p.receiptNumber || t("выдан", "issued"))}</div>`
+                  : `<div class="muted">${escapeHtml(t("Чек появится после подтверждения оплаты", "Receipt appears after confirmation"))}</div>`
+              }
+              <div class="actions">
+                ${canReport ? `<button class="btn-mini" type="button" data-report-pay="${escapeHtml(p.id)}">${escapeHtml(t("Я оплатил(а)", "I paid"))}</button>` : ""}
+                ${canReport ? `<button class="btn-mini" type="button" data-telegram-pay="${escapeHtml(notifyText)}" data-label="${escapeHtml(t("Сообщить Марии", "Message Maria"))}">${escapeHtml(t("Сообщить Марии", "Message Maria"))}</button>` : ""}
+                ${p.receiptUrl ? `<a class="btn-mini" href="${escapeHtml(p.receiptUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть чек", "Open receipt"))}</a>` : ""}
+              </div>
             </div>
             <div class="mono"><strong>${escapeHtml(String(p.amount))} ₽</strong> · ${pill(p.status)}</div>
           </div>`;
@@ -181,7 +249,29 @@ function renderPayments(state, studentId) {
         .join("")
     : `<div class="muted">${escapeHtml(t("Пока нет оплат", "No payments yet"))}</div>`;
   const el = byId("parentPaymentsList");
-  if (el) el.innerHTML = html;
+  if (!el) return;
+  el.innerHTML = `${paymentGuide}${html}`;
+
+  el.querySelectorAll("[data-copy-pay]").forEach((btn) => {
+    btn.addEventListener("click", () => copyText(btn.getAttribute("data-copy-pay") || "", btn));
+  });
+
+  el.querySelectorAll("[data-report-pay]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-report-pay");
+      if (!id) return;
+      const fresh = loadState();
+      updatePayment(fresh, id, { paidReportedAt: new Date().toISOString() });
+      renderPayments(loadState(), studentId);
+    });
+  });
+
+  el.querySelectorAll("[data-telegram-pay]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await copyText(btn.getAttribute("data-telegram-pay") || "", btn);
+      window.open(PAYMENT_DETAILS.telegramUrl, "_blank", "noopener,noreferrer");
+    });
+  });
 }
 
 function renderNotifications(state, parentId) {

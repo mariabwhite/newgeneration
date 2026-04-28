@@ -473,6 +473,98 @@ textarea:focus { border-color: var(--accent); }
   justify-content: flex-end;
 }
 
+.payment-guide,
+.payment-row,
+.payment-card {
+  display: grid;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.payment-guide {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 14px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-card) 82%, transparent);
+}
+
+.payment-guide-actions,
+.payment-row-actions,
+.payment-edit {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.payment-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.payment-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.payment-edit {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 0.7fr 0.9fr 1.4fr;
+}
+
+.payment-balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 14px;
+  color: var(--text-2);
+}
+
+.payment-balance strong {
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.payment-details {
+  margin: 8px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.payment-details summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.payment-details-grid {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.35fr) minmax(0, 1fr);
+  gap: 8px 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.payment-details-grid span {
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.payment-details-grid .btn-mini {
+  justify-self: start;
+  max-width: 100%;
+  height: auto;
+  min-height: 34px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  white-space: normal;
+  text-align: left;
+}
+
 body.light .timeline-body,
 body.light .lab-card {
   background: #ffffff;
@@ -483,6 +575,13 @@ body.light .lab-card {
   .cabinet-panels { grid-template-columns: 1fr; }
   .kv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .overview-card { min-height: 0; }
+  .payment-guide,
+  .payment-row,
+  .payment-card,
+  .payment-edit,
+  .payment-details-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
