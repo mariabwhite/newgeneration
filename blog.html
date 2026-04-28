@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -195,7 +195,7 @@ body.light .topbar { background: rgba(244,241,236,0.9); }
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #fff;
 }
 .subnav {
   display: flex;
@@ -255,6 +255,411 @@ body.light .topbar { background: rgba(244,241,236,0.9); }
   font-size: 15px;
   line-height: 1.6;
   color: var(--text-2);
+}
+.dynasty-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+  max-width: 920px;
+}
+.dynasty-epigraph {
+  max-width: 920px;
+  margin: -18px 0 34px;
+  padding: 18px 22px 18px 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-2);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-style: italic;
+  line-height: 1.62;
+}
+.dynasty-epigraph p {
+  margin: 0;
+}
+body.light .dynasty-epigraph {
+  background: rgba(20, 18, 15, 0.04);
+  color: var(--text-2);
+}
+.dynasty-feature {
+  display: block;
+  margin-bottom: 48px;
+  border: 0;
+  width: 100%;
+}
+.dynasty-list .dynasty-feature {
+  margin-bottom: 0;
+}
+.dynasty-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.dynasty-feature summary::-webkit-details-marker {
+  display: none;
+}
+.dynasty-cover {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: none;
+  padding: 30px 26px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dynasty-cover-hook {
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.dynasty-cover-title {
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0;
+  color: #fff;
+}
+.dynasty-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,90,31,0.82);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform .15s, background .15s;
+}
+.dynasty-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.dynasty-feature[open] .dynasty-toggle::after {
+  content: "−";
+}
+.dynasty-feature summary:hover .dynasty-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.dynasty-feature summary:hover .dynasty-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.dynasty-feature[open] .dynasty-cover {
+  border-bottom-color: var(--line);
+}
+.dynasty-panel {
+  clear: both;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 38px;
+  align-items: start;
+  width: 100%;
+  margin-top: 34px;
+  padding: 42px 0;
+}
+.dynasty-list .dynasty-panel {
+  width: calc(200% + 24px);
+}
+.dynasty-list .dynasty-feature:nth-child(even) .dynasty-panel {
+  margin-left: calc(-100% - 24px);
+}
+.dynasty-copy {
+  max-width: 680px;
+}
+.dynasty-kicker {
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-title {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.3rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+.dynasty-lead,
+.dynasty-copy p {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.dynasty-lead {
+  color: var(--text);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.dynasty-line {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.dynasty-line div {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 18px;
+  align-items: baseline;
+}
+.dynasty-line strong {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-line span {
+  color: var(--text-2);
+}
+.dynasty-note {
+  margin-top: 20px;
+  padding-left: 18px;
+  border-left: 2px solid var(--accent);
+}
+.neural-article-feature {
+  display: block;
+  margin: 44px 0 0;
+  width: 100%;
+}
+.neural-article-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.neural-article-feature summary::-webkit-details-marker {
+  display: none;
+}
+.neural-article-cover {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 420px;
+  padding: 42px 34px 36px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  max-width: 520px;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.neural-article-hook {
+  max-width: 390px;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+.neural-article-title {
+  align-self: center;
+  justify-self: start;
+  max-width: min(390px, 100%);
+  font-family: var(--display);
+  font-size: clamp(2.05rem, 3.8vw, 3.45rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+.neural-article-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 24px;
+  border: 1px solid rgba(255,90,31,0.92);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background .15s;
+}
+.neural-article-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.neural-article-feature[open] .neural-article-toggle::after {
+  content: "−";
+}
+.neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.neural-article-feature summary:hover .neural-article-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.neural-article-panel {
+  clear: both;
+  max-width: 880px;
+  margin: 42px auto 0;
+  padding: clamp(24px, 4vw, 46px);
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+.neural-article-panel h3 {
+  max-width: 760px;
+  margin-bottom: 22px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.neural-article-panel p {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.72;
+}
+.neural-article-panel p:last-child {
+  margin-bottom: 0;
+}
+.neural-article-shot {
+  max-width: 760px;
+  margin: 26px 0 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.neural-article-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.neural-article-shot figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.dynasty-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dynasty-photo {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+.dynasty-photo.wide {
+  grid-column: 1 / -1;
+  min-height: 310px;
+}
+.dynasty-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  filter: grayscale(0.18) contrast(1.04);
+}
+.dynasty-photo figcaption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.74);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+body.light .dynasty-photo figcaption {
+  background: rgba(20,18,15,0.78);
+}
+body.light .dynasty-cover,
+body.light .neural-article-cover {
+  background: #fffaf2;
+  color: var(--text);
+  border-color: rgba(20,18,15,0.22);
+  box-shadow: 0 22px 60px rgba(20,18,15,0.08);
+}
+body.light .dynasty-cover-hook {
+  color: var(--text-2);
+}
+body.light .dynasty-cover-title,
+body.light .neural-article-title {
+  color: var(--text);
+}
+body.light .dynasty-toggle,
+body.light .neural-article-toggle {
+  color: var(--text);
+  border-color: rgba(255,90,31,0.92);
+  background: rgba(255,255,255,0.36);
+}
+body.light .dynasty-feature summary:hover .dynasty-toggle,
+body.light .neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.12);
+}
+body.light .dynasty-feature summary:hover .dynasty-cover,
+body.light .neural-article-feature summary:hover .neural-article-cover {
+  border-color: rgba(255,90,31,0.72);
+  box-shadow: 0 28px 76px rgba(20,18,15,0.12);
 }
 .neural-showcase {
   display: grid;
@@ -384,6 +789,7 @@ body.light .neural-showcase .hero-media .img-light {
 @media (max-width: 1024px) {
   .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .dynasty-panel { grid-template-columns: 1fr; }
   .neural-showcase { grid-template-columns: 1fr; }
   .neural-showcase .hero-media { max-width: 340px; }
 }
@@ -393,11 +799,69 @@ body.light .neural-showcase .hero-media .img-light {
   .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
   .section { padding: 56px 0; }
   .blog-grid { grid-template-columns: 1fr; gap: 32px; }
+  .dynasty-list {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+  .dynasty-feature { margin-bottom: 34px; }
+  .dynasty-cover {
+    min-height: 360px;
+  }
+  .dynasty-toggle { width: 100%; padding: 0 16px; }
+  .dynasty-panel { gap: 26px; padding: 0 0 34px; }
+  .dynasty-list .dynasty-panel {
+    width: 100%;
+    margin-left: 0;
+  }
+  .dynasty-line { padding: 18px; }
+  .dynasty-line div { grid-template-columns: 1fr; gap: 4px; }
+  .dynasty-gallery { grid-template-columns: 1fr; }
+  .dynasty-photo,
+  .dynasty-photo.wide { min-height: 260px; }
   .cta { padding: 56px 0; }
   .subnav { gap: 12px; }
   .neural-showcase { gap: 24px; margin-top: 32px; }
 }
-</style>
+
+/* Align the neural feature card with the section 06 archive cards. */
+.neural-article-cover {
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: 520px;
+  padding: 30px 26px;
+  aspect-ratio: auto;
+}
+.neural-article-title {
+  order: 1;
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  line-height: 1.04;
+}
+.neural-article-hook {
+  order: 2;
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.neural-article-toggle {
+  order: 4;
+  min-height: 48px;
+  padding: 0 20px;
+}
+body.light .neural-article-hook {
+  color: var(--text-2);
+}
+
+  </style>
 <script>
   function toggleTheme() {
     document.body.classList.toggle("light");
@@ -575,6 +1039,32 @@ body.light .neural-showcase .hero-media .img-light {
           <p class="entry-text" data-ru="Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры." data-en="AI speeds up preparation, but the teaching decision still belongs to the teacher: pace, tone, motivation, and a sense of proportion.">Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры.</p>
         </article>
       </div>
+      <details class="neural-article-feature">
+        <summary>
+          <div class="neural-article-cover">
+            <div class="neural-article-hook" data-ru="Интересно, к чему всё это приведёт?" data-en="I wonder where all this will lead?">Интересно, к чему всё это приведёт?</div>
+            <div class="neural-article-title" data-ru="Нейросети как соавторы" data-en="AI as co-authors">Нейросети как соавторы</div>
+            <span class="neural-article-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="neural-article-panel">
+          <h3 data-ru="От первого HTML-документика до сайта, который можно выложить на GitHub" data-en="From the first HTML file to a site ready for GitHub">От первого HTML-документика до сайта, который можно выложить на GitHub</h3>
+          <p>Мой сайт начался не с идеальной структуры и не с большого технического плана. Он начался с одного маленького HTML-документа: Grammar - Present Continuous and Present Perfect - copy 1.html. Это была первая самостоятельная страница, первый “кодик”, первый момент, когда учебный материал по английской грамматике перестал быть просто текстом и превратился в интерактивную веб-страницу.</p>
+          <figure class="neural-article-shot">
+            <img src="assets/first-html-page-screenshot.png" alt="Скриншот первой HTML-страницы Grammar - Present Continuous and Present Perfect">
+            <figcaption data-ru="Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect" data-en="The very first HTML file: Grammar - Present Continuous and Present Perfect">Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect</figcaption>
+          </figure>
+          <p>Там ещё не было большой экосистемы, личных кабинетов, лаборатории, версий, аудитов и GitHub-логики. Была одна страница: Present Continuous и Present Perfect, карточки, стили, структура, попытка красиво и понятно подать грамматику. Но именно с неё началось главное: я увидела, что могу не только преподавать английский, но и собирать собственные цифровые материалы.</p>
+          <p>Потом появился DeepSeek. В нём я создала одну страницу, потом вторую. Сначала каждая жила отдельно, как маленький самостоятельный остров. Потом пришло понимание: если страницы можно создавать по одной, значит, их можно соединять. Так начался переход от отдельных HTML-файлов к сайту.</p>
+          <p>Важным этапом стало знакомство с “песочницей”. Я узнала, что можно не бояться экспериментировать: пробовать дизайн, ломать, чинить, сохранять версии, возвращаться назад, сравнивать варианты. Песочница стала местом, где сайт рос без страха. Там появлялись версии 9, 10, 11, 12, 13, 14, 15, 16, 17, 18; были рабочие копии, бэкапы, папки “работать будем только тут”, архивы и сборки. Это уже был не один файл, а настоящий процесс разработки.</p>
+          <p>Постепенно отдельные страницы начали складываться в систему New Generation English. Появились главная страница, раздел “О проекте”, программы, условия, кейсы, блог, страница про путешествия, визуальные материалы и общая навигация. Потом выросла LinguaBoost Lab — интерактивная лаборатория с модулями по уровням от Pre-A1 до B2+: грамматика, лексика, карточки, квизы, тренажёры, задания на говорение и повторение.</p>
+          <p>Следующим большим шагом стали кабинеты. Сайт перестал быть просто витриной и начал превращаться в образовательную платформу. Появился кабинет ученика с расписанием, домашними заданиями, материалами и прогрессом. Появился кабинет преподавателя с уроками, учениками, оплатами, задачами и отчётностью. Появился кабинет родителя, где можно видеть посещаемость, прогресс, уведомления и финансовый блок.</p>
+          <p>Нейросети на этом пути стали не заменой автора, а рабочей командой. DeepSeek помог начать. Claude помогал с дизайном и формулировками. GPT помогал собирать смысл, тексты и структуру. Codex помогал разбираться в коде, объединять страницы, чинить ошибки, делать бэкапы, проверять мобильную версию, править CSS и превращать набор файлов в более аккуратный проект.</p>
+          <p>Отдельная часть пути — это визуальная доводка. Мы проверяли светлую и тёмную тему, мобильную адаптацию, меню, отступы, карточки, контраст, изображения, подписи, порядок разделов. Появились аудит-скриншоты, VISUAL_AUDIT_TODO.md, резервные копии перед правками и отдельные версии после исправлений. То есть сайт создавался не “одной кнопкой”, а через десятки маленьких решений.</p>
+          <p>И самое важное: я училась вместе с проектом. Сначала я просто хотела сделать красивую страницу. Потом поняла, что такое песочница. Потом научилась создавать несколько страниц. Потом — объединять их. Потом — думать версиями. Потом — видеть сайт как систему. А потом стало понятно: это уже не черновик, а проект, который не стыдно привести в порядок, документировать и выложить на GitHub.</p>
+          <p>Так путь от первого HTML-документика стал историей не только про сайт, но и про рост. От “я сделала одну страничку в DeepSeek” до “у меня есть образовательная экосистема”. От первого кодика до сети страниц, лаборатории, кабинетов и живого проекта New Generation English.</p>
+        </article>
+      </details>
       <div class="neural-showcase" id="neural-visual">
         <div class="neural-showcase-copy">
           <div class="neural-showcase-kicker" data-ru="Подраздел · визуальный образ" data-en="Subsection · visual image">Подраздел · визуальный образ</div>
@@ -648,20 +1138,111 @@ body.light .neural-showcase .hero-media .img-light {
         <div class="sect-index">06<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
         <div><div class="sect-eyebrow" data-ru="Семейная линия" data-en="Family line">Семейная линия</div><h2 class="sect-title" data-ru="Про педагогическую династию" data-en="About the teaching dynasty">Про педагогическую династию</h2></div>
       </div>
-      <div class="blog-grid">
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="5 марта 2025 · 6 мин чтения" data-en="Mar 5, 2025 · 6 min read">5 марта 2025 · 6 мин чтения</div>
-          <h3 class="entry-title" data-ru="Педагогика как семейная оптика" data-en="Teaching as a family lens">Педагогика как семейная оптика</h3>
-          <p class="entry-text" data-ru="О том, как уважение к знаниям, дисциплина и внимание к человеку становятся не профессией на время, а семейной культурой." data-en="How respect for knowledge, discipline, and attention to the person become not a temporary profession, but a family culture.">О том, как уважение к знаниям, дисциплина и внимание к человеку становятся не профессией на время, а семейной культурой.</p>
+      <blockquote class="dynasty-epigraph">
+        <p>“Я — наследница двух дорог: дороги знания и дороги движения. По одной линии в моей семье держали школу, профессию, память и образование. По другой — путь, ритм, музыку, труд и ответственность. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла.”</p>
+      </blockquote>
+      <div class="dynasty-list">
+            <details class="dynasty-feature">
+        <summary>
+          <div class="dynasty-cover">
+            <div class="dynasty-cover-title" data-ru="От железной дороги к дороге знаний" data-en="From the railway to the road of knowledge">От железной дороги к дороге знаний</div>
+            <div class="dynasty-cover-hook" data-ru="4 поколения у доски" data-en="4 generations at the board">4 поколения у доски</div>
+            <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="dynasty-panel">
+        <div class="dynasty-copy">
+          <div class="dynasty-kicker" data-ru="Семейный архив · материал подготовлен моим папой" data-en="Family archive · prepared by my father">Семейный архив · материал подготовлен моим папой</div>
+          <h3 class="dynasty-title" data-ru="Педагогическая династия Духиных" data-en="The Dukhin teaching dynasty">Педагогическая династия Духиных</h3>
+          <p class="dynasty-lead" data-ru="В моей семье педагогическая линия выросла рядом с другой сильной традицией — железнодорожной службой. Одни соединяли города и станции, другие соединяли поколения через язык, науку и школу." data-en="In my family, the teaching line grew beside another strong tradition: railway service. Some connected cities and stations; others connected generations through language, science, and school.">В моей семье педагогическая линия выросла рядом с другой сильной традицией — железнодорожной службой. Одни соединяли города и станции, другие соединяли поколения через язык, науку и школу.</p>
+          <p data-ru="Родоначальницей педагогической династии стала Елена Филаретовна Духина, урожденная Наркевич. Она получила гимназическое и педагогическое образование, преподавала русский язык, работала в школах грамоты для взрослых и призывников, участвовала в ликвидации безграмотности, а затем стала директором школы." data-en="The founder of the teaching dynasty was Elena Filaretovna Dukhina, nee Narkevich. She received a classical and pedagogical education, taught Russian, worked in literacy schools for adults and recruits, took part in the campaign against illiteracy, and later became a school principal.">Родоначальницей педагогической династии стала Елена Филаретовна Духина, урожденная Наркевич. Она получила гимназическое и педагогическое образование, преподавала русский язык, работала в школах грамоты для взрослых и призывников, участвовала в ликвидации безграмотности, а затем стала директором школы.</p>
+          <div class="dynasty-line">
+            <div><strong data-ru="Прапрадеды" data-en="Ancestors">Прапрадеды</strong><span data-ru="Иван Иванович Духин и Елена Филаретовна Наркевич / Духина — железнодорожная среда, Екатеринослав, Синельниково, школа." data-en="Ivan Ivanovich Dukhin and Elena Filaretovna Narkevich / Dukhina: railway world, Ekaterinoslav, Sinelnikovo, school.">Иван Иванович Духин и Елена Филаретовна Наркевич / Духина — железнодорожная среда, Екатеринослав, Синельниково, школа.</span></div>
+            <div><strong data-ru="Дедушка" data-en="Grandfather">Дедушка</strong><span data-ru="Анатолий Иванович Духин — преподавал физику и математику, затем стал ученым, кандидатом физико-математических наук." data-en="Anatoly Ivanovich Dukhin taught physics and mathematics and later became a scientist, Candidate of Physical and Mathematical Sciences.">Анатолий Иванович Духин — преподавал физику и математику, затем стал ученым, кандидатом физико-математических наук.</span></div>
+            <div><strong data-ru="Бабушка" data-en="Grandmother">Бабушка</strong><span data-ru="Екатерина Ивановна Ожогина / Духина — учитель русского языка и литературы, директор вечерних школ, отличник народного образования." data-en="Ekaterina Ivanovna Ozhogina / Dukhina was a teacher of Russian language and literature, principal of evening schools, and an honored educator.">Екатерина Ивановна Ожогина / Духина — учитель русского языка и литературы, директор вечерних школ, отличник народного образования.</span></div>
+            <div><strong data-ru="Папа" data-en="Father">Папа</strong><span data-ru="Виталий Анатольевич Духин — учитель английского и французского языков, директор школы, педагог с многолетним стажем." data-en="Vitaly Anatolyevich Dukhin taught English and French, worked as a school principal, and built a long teaching career.">Виталий Анатольевич Духин — учитель английского и французского языков, директор школы, педагог с многолетним стажем.</span></div>
+            <div><strong data-ru="Я" data-en="Me">Я</strong><span data-ru="Мария Витальевна Духина — новое поколение этой линии, связанное с английским языком, обучением и живой семейной памятью." data-en="Maria Vitalyevna Dukhina: the new generation of this line, connected with English, teaching, and living family memory.">Мария Витальевна Духина — новое поколение этой линии, связанное с английским языком, обучением и живой семейной памятью.</span></div>
+          </div>
+          <p class="dynasty-note" data-ru="Я называю эту линию железнодорожной не по современному названию компании, а по самой семейной памяти: по ведомственным книжкам, дороге, технике, службе, старым словам «железнодорожное ведомство», «Екатерининская железная дорога», «Приднепровская железная дорога». Важно не подменить прошлое сегодняшним языком, а услышать его в собственной точности." data-en="A note: for older generations it is more accurate to say railway department, Catherine Railway, or Prydniprovska Railway rather than modern Russian Railways. The modern name appeared much later, but the railway family line is clear in the archive.">Я называю эту линию железнодорожной не по современному названию компании, а по самой семейной памяти: по ведомственным книжкам, дороге, технике, службе, старым словам «железнодорожное ведомство», «Екатерининская железная дорога», «Приднепровская железная дорога». Важно не подменить прошлое сегодняшним языком, а услышать его в собственной точности.</p>
+        </div>
+        <div class="dynasty-gallery" aria-label="Фотографии семейного архива Духиных">
+          <figure class="dynasty-photo wide">
+            <img src="assets/dynasty/literacy-school-1930s.jpg" alt="Елена Филаретовна Духина преподает в школе грамоты" loading="lazy">
+            <figcaption data-ru="Школа грамоты, 1930-е: Елена Филаретовна у доски" data-en="Literacy school, 1930s: Elena Filaretovna at the board">Школа грамоты, 1930-е: Елена Филаретовна у доски</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/dukhiny-family-early.jpg" alt="Семейная фотография Наркевичей из архива Духиных" loading="lazy">
+            <figcaption data-ru="Семейная фотография Наркевичей, конец XIX века" data-en="Narkevich family photograph, late 19th century">Семейная фотография Наркевичей, конец XIX века</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/elena-narkevich-and-ivan-portraits.jpg" alt="Портреты Елены Наркевич и Ивана Духина" loading="lazy">
+            <figcaption data-ru="Елена Наркевич и Иван Духин: две ветви одной истории" data-en="Elena Narkevich and Ivan Dukhin: two branches of one story">Елена Наркевич и Иван Духин: две ветви одной истории</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/dukhiny-family-1909.jpg" alt="Семейная фотография Духиных 1909 года" loading="lazy">
+            <figcaption data-ru="Семья Духиных, 1909 год: линия, из которой выросла династия" data-en="The Dukhin family, 1909: the line from which the dynasty grew">Семья Духиных, 1909 год: линия, из которой выросла династия</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/school-archive-lesson.jpg" alt="Архивная фотография урока из семейного архива" loading="lazy">
+            <figcaption data-ru="Школьный архив: обучение как семейная память" data-en="School archive: teaching as family memory">Школьный архив: обучение как семейная память</figcaption>
+          </figure>
+        </div>
         </article>
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="21 февраля 2025 · 5 мин чтения" data-en="Feb 21, 2025 · 5 min read">21 февраля 2025 · 5 мин чтения</div>
-          <h3 class="entry-title" data-ru="Что передаётся от учителя к учителю" data-en="What passes from teacher to teacher">Что передаётся от учителя к учителю</h3>
-          <p class="entry-text" data-ru="Не только методики и приёмы, но и профессиональная честность: видеть ученика, держать планку и не упрощать смысл." data-en="Not only methods and techniques, but professional honesty: seeing the learner, keeping the standard, and not simplifying meaning.">Не только методики и приёмы, но и профессиональная честность: видеть ученика, держать планку и не упрощать смысл.</p>
+      </details>
+      <details class="dynasty-feature">
+        <summary>
+          <div class="dynasty-cover">
+            <div class="dynasty-cover-title" data-ru="От Бологое к Москве" data-en="From Bologoye to Moscow">От Бологое к Москве</div>
+            <div class="dynasty-cover-hook" data-ru="Железнодорожная история семьи Даниловых" data-en="The railway story of the Danilov family">Железнодорожная история семьи Даниловых</div>
+            <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="dynasty-panel">
+          <div class="dynasty-copy">
+            <div class="dynasty-kicker" data-ru="Семейный архив · линия Даниловых" data-en="Family archive · the Danilov line">Семейный архив · линия Даниловых</div>
+            <h3 class="dynasty-title" data-ru="От Бологое к Москве: железнодорожная история семьи Даниловых" data-en="From Bologoye to Moscow: the railway story of the Danilov family">От Бологое к Москве: железнодорожная история семьи Даниловых</h3>
+            <p class="dynasty-lead" data-ru="Я — наследница линии Даниловых, где соединились железная дорога, техника, дисциплина и музыкально-педагогическая культура." data-en="I am an heir to the Danilov line, where railway, technology, discipline, and musical-pedagogical culture came together.">Я — наследница линии Даниловых, где соединились железная дорога, техника, дисциплина и музыкально-педагогическая культура.</p>
+            <p data-ru="В семейной истории иногда важнее всего не громкие легенды, а тихие, упрямо сохранившиеся следы: старая книжка, фотография, грамота, медаль, подпись на документе, знакомое отчество. Из этих следов постепенно проступает линия Даниловых — семья, в которой дорога и музыка оказались не случайными словами, а двумя способами держать мир в порядке." data-en="In family history, the most important things are sometimes not loud legends, but quiet traces that have stubbornly survived: an old booklet, a photograph, a certificate, a medal, a signature, a familiar patronymic. From these traces the Danilov line gradually appears: a family in which railway and music became two ways of keeping the world in order.">В семейной истории иногда важнее всего не громкие легенды, а тихие, упрямо сохранившиеся следы: старая книжка, фотография, грамота, медаль, подпись на документе, знакомое отчество. Из этих следов постепенно проступает линия Даниловых — семья, в которой дорога и музыка оказались не случайными словами, а двумя способами держать мир в порядке.</p>
+            <p data-ru="Старшее поколение этой истории связано с Даниловым Алексеем Власовичем — железнодорожником, машинистом, человеком Министерства путей сообщения. Его жизнь была связана с техникой, расписанием, ответственностью и дорогой. В семейном архиве сохранились его документы: пенсионные книжки МПС, профсоюзные документы рабочих центральных железных дорог, удостоверения технических экзаменов, военный билет, орденская книжка, медали, в том числе «Ветеран труда». Это не просто перечень бумаг, а след жизни человека, чей труд был частью большой инфраструктуры страны." data-en="The older generation of this story is connected with Alexey Vlasovich Danilov, a railway worker, driver, and man of the Ministry of Railways. His life was tied to technology, schedules, responsibility, and the road. The family archive preserves his documents: railway pension booklets, trade-union papers, technical exam certificates, military ID, award booklet, and medals. These are not just papers, but the trace of a life that belonged to a large infrastructure.">Старшее поколение этой истории связано с <strong>Даниловым Алексеем Власовичем</strong> — железнодорожником, машинистом, человеком Министерства путей сообщения. Его жизнь была связана с техникой, расписанием, ответственностью и дорогой. В семейном архиве сохранились его документы: пенсионные книжки МПС, профсоюзные документы рабочих центральных железных дорог, удостоверения технических экзаменов, военный билет, орденская книжка, медали, в том числе «Ветеран труда». Это не просто перечень бумаг, а след жизни человека, чей труд был частью большой инфраструктуры страны.</p>
+            <p data-ru="Рядом с Алексеем Власовичем стоит Данилова Елизавета Ивановна, 1907 года рождения, его жена. На семейном снимке она появляется в окружении близких: не как безымянная фигура фона, а как человек, вокруг которого собирается и удерживается семейная биография. Её история пока раскрыта не полностью, но именно такие женщины часто держат семейную память изнутри." data-en="Beside Alexey Vlasovich stands Elizaveta Ivanovna Danilova, born in 1907, his wife. In a family photograph she appears surrounded by relatives: not as an anonymous background figure, but as someone around whom family biography gathers.">Рядом с Алексеем Власовичем стоит <strong>Данилова Елизавета Ивановна</strong>, 1907 года рождения, его жена. На семейном снимке она появляется в окружении близких: не как безымянная фигура фона, а как человек, вокруг которого собирается и удерживается семейная биография. Её история пока раскрыта не полностью, но именно такие женщины часто держат семейную память изнутри.</p>
+            <p data-ru="Их дочь, Данилова Валентина Алексеевна, 1926 года рождения, продолжила эту линию уже в другой сфере — в образовании и культуре. Она была преподавателем музыки; в семейной памяти с ней связана и Таруса. И в этом есть внутренняя рифма: после дороги, расписания и локомотивного ритма в семье появляется музыка — тоже ритм, тоже дисциплина, тоже умение слышать порядок, только уже внутри человека." data-en="Their daughter, Valentina Alexeevna Danilova, born in 1926, continued this line in education and culture. She was a music teacher; Tarusa is also connected with her in family memory.">Их дочь, <strong>Данилова Валентина Алексеевна</strong>, 1926 года рождения, продолжила эту линию уже в другой сфере — в образовании и культуре. Она была преподавателем музыки; в семейной памяти с ней связана и Таруса. И в этом есть внутренняя рифма: после дороги, расписания и локомотивного ритма в семье появляется музыка — тоже ритм, тоже дисциплина, тоже умение слышать порядок, только уже внутри человека.</p>
+            <p data-ru="И, наконец, моя мама — Данилова Елизавета Евгеньевна, 1960 года рождения. Её жизнь связана с позднесоветской и московской профессиональной средой: она работала во В/О «Машиноимпорт», была лингвистом и экономистом. Через неё линия Даниловых входит в городскую культуру языком образования, международных связей, деловой точности и семейной требовательности к себе." data-en="And finally, my mother, Elizaveta Evgenyevna Danilova, born in 1960. Her life belongs to late Soviet and Moscow professional culture: she worked at Mashinoimport and was a linguist and economist. Through her, the Danilov line enters urban culture through education, international connections, business precision, and family self-discipline.">И, наконец, моя мама — <strong>Данилова Елизавета Евгеньевна</strong>, 1960 года рождения. Её жизнь связана с позднесоветской и московской профессиональной средой: она работала во В/О «Машиноимпорт», была лингвистом и экономистом. Через неё линия Даниловых входит в городскую культуру языком образования, международных связей, деловой точности и семейной требовательности к себе.</p>
+            <div class="dynasty-line">
+              <div><strong data-ru="Прадед" data-en="Great-grandfather">Прадед</strong><span data-ru="Данилов Алексей Власович — железнодорожник, машинист, Министерство путей сообщения." data-en="Alexey Vlasovich Danilov: railway worker, driver, Ministry of Railways.">Данилов Алексей Власович — железнодорожник, машинист, Министерство путей сообщения.</span></div>
+              <div><strong data-ru="Прабабушка" data-en="Great-grandmother">Прабабушка</strong><span data-ru="Данилова Елизавета Ивановна, 1907 г.р. — жена Алексея Власовича, женская основа этой семейной ветви." data-en="Elizaveta Ivanovna Danilova, born 1907: Alexey Vlasovich's wife and the female foundation of this branch.">Данилова Елизавета Ивановна, 1907 г.р. — жена Алексея Власовича, женская основа этой семейной ветви.</span></div>
+              <div><strong data-ru="Бабушка" data-en="Grandmother">Бабушка</strong><span data-ru="Данилова Валентина Алексеевна, 1926 г.р. — преподаватель музыки; Таруса." data-en="Valentina Alexeevna Danilova, born 1926: music teacher; Tarusa.">Данилова Валентина Алексеевна, 1926 г.р. — преподаватель музыки; Таруса.</span></div>
+              <div><strong data-ru="Мама" data-en="Mother">Мама</strong><span data-ru="Данилова Елизавета Евгеньевна, 1960 г.р. — лингвист, экономист, В/О «Машиноимпорт»." data-en="Elizaveta Evgenyevna Danilova, born 1960: linguist, economist, Mashinoimport.">Данилова Елизавета Евгеньевна, 1960 г.р. — лингвист, экономист, В/О «Машиноимпорт».</span></div>
+              <div><strong data-ru="Я" data-en="Me">Я</strong><span data-ru="Мария Витальевна Бурцева-Духина — наследница линии Даниловых." data-en="Maria Vitalyevna Burtseva-Dukhina: heir to the Danilov line.">Мария Витальевна Бурцева-Духина — наследница линии Даниловых.</span></div>
+            </div>
+            <p class="dynasty-lead" data-ru="Я — правнучка железной дороги и внучка музыки." data-en="I am a great-granddaughter of the railway and a granddaughter of music.">Я — правнучка железной дороги и внучка музыки.</p>
+            <p data-ru="А если глубже: это делает меня человеком из рода, где ценились ритм, дисциплина, образование, слух к миру, ответственность и умение держать путь. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла." data-en="More deeply, it makes me a person from a family where rhythm, discipline, education, attentiveness to the world, responsibility, and the ability to keep the path mattered. For my great-grandfather it was the path of the locomotive. For my grandmother, the path of music and pupils. For me, the path of memory, language, image, and meaning.">А если глубже: это делает меня человеком из рода, где ценились ритм, дисциплина, образование, слух к миру, ответственность и умение держать путь. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла.</p>
+          </div>
+          <div class="dynasty-gallery" aria-label="Фотографии семейного архива Даниловых">
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/valentina-tarusa.jpg" alt="Данилова Валентина Алексеевна, преподаватель музыки; Таруса" loading="lazy">
+              <figcaption data-ru="Данилова Валентина Алексеевна — преподаватель музыки; Таруса" data-en="Valentina Alexeevna Danilova: music teacher; Tarusa">Данилова Валентина Алексеевна — преподаватель музыки; Таруса</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/elizaveta-family.jpg" alt="Данилова Елизавета Ивановна в окружении семьи" loading="lazy">
+              <figcaption data-ru="Данилова Елизавета Ивановна в окружении семьи: биографический след старшего поколения" data-en="Elizaveta Ivanovna Danilova surrounded by family: a biographical trace of the older generation">Данилова Елизавета Ивановна в окружении семьи: биографический след старшего поколения</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/bologoe-postcard.jpg" alt="Старинная открытка «Собор в селе Бологое»" loading="lazy">
+              <figcaption data-ru="Бологое: открытка «Собор в с. Бологое № 66»" data-en="Bologoye: postcard 'Cathedral in the village of Bologoye No. 66'">Бологое: открытка «Собор в с. Бологое № 66»</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/alexey-elizaveta.jpg" alt="Алексей и Елизавета Даниловы на альбомной фотографии" loading="lazy">
+              <figcaption data-ru="Алексей и Елизавета Даниловы: крайний снимок на альбомной странице" data-en="Alexey and Elizaveta Danilov: the edge photograph on the album page">Алексей и Елизавета Даниловы: крайний снимок на альбомной странице</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/danilov-military.jpg" alt="Военная фотография из семейного альбома Даниловых" loading="lazy">
+              <figcaption data-ru="Военные снимки из семейного альбома Даниловых" data-en="Military photographs from the Danilov family album">Военные снимки из семейного альбома Даниловых</figcaption>
+            </figure>
+          </div>
         </article>
+      </details>
       </div>
     </section>
-
   </main>
 
   <!-- FOOTER (минимальный) -->
@@ -680,3 +1261,8 @@ body.light .neural-showcase .hero-media .img-light {
 <script defer src="./assets/visitor-counter.js"></script>
 </body>
 </html>
+
+
+
+
+
