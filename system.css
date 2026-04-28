@@ -1468,3 +1468,88 @@ body[data-page="blog"] .entry-title {
     font-size: 15px;
   }
 }
+
+/* Final mobile topbar lock: iOS Safari jitters fixed headers, so keep it sticky and bounded. */
+@media (max-width: 760px) {
+  html,
+  body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  body {
+    padding-top: 0 !important;
+  }
+
+  .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 1000 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    padding: 10px 14px 8px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+    contain: layout paint !important;
+    background: color-mix(in srgb, var(--bg) 96%, transparent) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  body.light .topbar {
+    background: rgba(255, 255, 255, 0.96) !important;
+  }
+
+  .topbar .brand {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 120px) !important;
+  }
+
+  .topbar-tools {
+    display: none !important;
+  }
+
+  .topbar .control-btn,
+  .topbar .theme-toggle,
+  .topbar .lang-btn {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+  }
+
+  .topbar .topnav {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    order: initial !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 8px 0 0 !important;
+    padding: 8px 0 2px !important;
+    border-top: 1px solid var(--line) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    overscroll-behavior-inline: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  .topbar .topnav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .topbar .topnav-link {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+}
