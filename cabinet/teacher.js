@@ -104,6 +104,152 @@ function renderKpis(state, teacherId) {
   setHTML("kpiGrid", html);
 }
 
+function teacherUid(prefix) {
+  return `${prefix}_${Math.random().toString(16).slice(2)}_${Date.now().toString(16)}`;
+}
+
+function ensureTeacherCollections(state) {
+  if (!Array.isArray(state.reports)) state.reports = [];
+  return state;
+}
+
+function downloadTextFile(filename, text) {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escapeICS(text) {
+  return String(text || "")
+    .replaceAll("\\", "\\\\")
+    .replaceAll(";", "\\;")
+    .replaceAll(",", "\\,")
+    .replaceAll("\n", "\\n");
+}
+
+function toICSDate(iso) {
+  return new Date(iso).toISOString().replaceAll("-", "").replaceAll(":", "").replace(/\.\d{3}Z$/, "Z");
+}
+
+function downloadGoogleCalendarICS(state, teacherId) {
+  const usersById = new Map(state.users.map((u) => [u.id, u]));
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//New Generation English//Teacher Cabinet//RU",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+  ];
+
+  listLessonsForTeacher(state, teacherId).forEach((lesson) => {
+    const start = new Date(lesson.date);
+    const end = new Date(start);
+    end.setMinutes(end.getMinutes() + 60);
+    const student = usersById.get(lesson.studentId);
+    lines.push(
+      "BEGIN:VEVENT",
+      `UID:${lesson.id}@new-generation-english`,
+      `DTSTAMP:${toICSDate(new Date().toISOString())}`,
+      `DTSTART:${toICSDate(start.toISOString())}`,
+      `DTEND:${toICSDate(end.toISOString())}`,
+      `SUMMARY:${escapeICS(`Урок английского · ${student?.name || "ученик"}`)}`,
+      `DESCRIPTION:${escapeICS(`Статус: ${lesson.status}\nДомашка: ${lesson.homework || "—"}\nЗаметки: ${lesson.notes || "—"}${lesson.progressMeUrl ? `\nProgressMe: ${lesson.progressMeUrl}` : ""}`)}`,
+      lesson.progressMeUrl ? `URL:${escapeICS(lesson.progressMeUrl)}` : "",
+      "END:VEVENT"
+    );
+  });
+
+  lines.push("END:VCALENDAR");
+  downloadTextFile("nge-google-calendar.ics", lines.filter(Boolean).join("\r\n"));
+}
+
+function renderStudentCreator(state, teacherId) {
+  const el = byId("studentCreator");
+  const editor = byId("studentEditor");
+  if (editor) editor.style.display = "none";
+  if (!el) return;
+
+  el.style.display = "block";
+  el.innerHTML = `
+    <div class="panel" style="padding:14px; border-radius:16px; border-color:var(--line-2);">
+      <div class="panel-kicker">${escapeHtml(t("Новый ученик", "New student"))}</div>
+      <div class="form-row">
+        <label>${escapeHtml(t("Имя ученика", "Student name"))}
+          <input id="newStudentName" placeholder="${escapeHtml(t("Напр.: Анна", "e.g. Anna"))}">
+        </label>
+        <label>${escapeHtml(t("Email ученика", "Student email"))}
+          <input id="newStudentEmail" placeholder="student@example.com">
+        </label>
+      </div>
+      <div class="form-row">
+        <label>${escapeHtml(t("Имя родителя", "Parent name"))}
+          <input id="newParentName" placeholder="${escapeHtml(t("Можно оставить пустым", "Optional"))}">
+        </label>
+        <label>${escapeHtml(t("Email родителя", "Parent email"))}
+          <input id="newParentEmail" placeholder="parent@example.com">
+        </label>
+      </div>
+      <div class="form-row">
+        <label>${escapeHtml(t("Уровень", "Level"))}
+          <input id="newStudentLevel" placeholder="A1/A2/B1">
+        </label>
+        <label>${escapeHtml(t("Абонемент", "Subscription"))}
+          <input id="newStudentTariff" placeholder="${escapeHtml(t("Индивидуально · 3500 ₽", "1:1 · 3500 ₽"))}">
+        </label>
+      </div>
+      <div class="form-row" style="grid-template-columns: 1fr;">
+        <label>${escapeHtml(t("План", "Plan"))}
+          <input id="newStudentPlan" placeholder="${escapeHtml(t("1×/нед, вторник 14:00", "1×/week, Tue 14:00"))}">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="btn-mini" data-primary id="createStudentBtn" type="button">${escapeHtml(t("Создать ученика", "Create student"))}</button>
+        <button class="btn-mini" id="cancelStudentBtn" type="button">${escapeHtml(t("Отмена", "Cancel"))}</button>
+      </div>
+    </div>
+  `;
+
+  byId("cancelStudentBtn")?.addEventListener("click", () => {
+    el.style.display = "none";
+  });
+
+  byId("createStudentBtn")?.addEventListener("click", () => {
+    const name = /** @type {HTMLInputElement|null} */ (byId("newStudentName"))?.value.trim() || "";
+    if (!name) return;
+    const email = /** @type {HTMLInputElement|null} */ (byId("newStudentEmail"))?.value.trim() || `${teacherUid("student")}@example.com`;
+    const parentName = /** @type {HTMLInputElement|null} */ (byId("newParentName"))?.value.trim() || "";
+    const parentEmail = /** @type {HTMLInputElement|null} */ (byId("newParentEmail"))?.value.trim() || "";
+    const level = /** @type {HTMLInputElement|null} */ (byId("newStudentLevel"))?.value.trim() || "";
+    const tariff = /** @type {HTMLInputElement|null} */ (byId("newStudentTariff"))?.value.trim() || "";
+    const plan = /** @type {HTMLInputElement|null} */ (byId("newStudentPlan"))?.value.trim() || "";
+
+    const fresh = ensureTeacherCollections(loadState());
+    const studentId = teacherUid("u_student");
+    fresh.users.push({ id: studentId, role: "student", name, email });
+    if (parentName || parentEmail) {
+      fresh.users.push({
+        id: teacherUid("u_parent"),
+        role: "parent",
+        name: parentName || "Родитель",
+        email: parentEmail || `${teacherUid("parent")}@example.com`,
+        linkedStudents: [studentId],
+      });
+    }
+    upsertProgress(fresh, studentId, { level, goals: "", comments: "" });
+    upsertStudentMeta(fresh, studentId, { tariff, plan });
+    saveState(fresh);
+    el.style.display = "none";
+    renderStudents(loadState());
+    renderKpis(loadState(), teacherId);
+  });
+}
+
 function ensureTeacherControlNotice() {
   if (byId("teacherControlNotice")) return;
   const scopePanel = document.querySelector("#kpiGrid")?.closest("section")?.previousElementSibling?.querySelector(".panel");
@@ -859,6 +1005,148 @@ function renderNotifications(state) {
   });
 }
 
+function buildTeacherReportText(state, report) {
+  const student = getUser(state, report.studentId);
+  const progress = getProgress(state, report.studentId) || {};
+  const meta = getStudentMeta(state, report.studentId) || {};
+  return [
+    "Отчёт преподавателя New Generation English",
+    `Дата: ${formatDateTime(report.createdAt)}`,
+    `Ученик: ${student?.name || "—"}`,
+    `Уровень: ${progress.level || "—"}`,
+    `Абонемент: ${meta.tariff || "—"}`,
+    "",
+    report.title || "Отчёт",
+    "",
+    report.body || "",
+    "",
+    "Комментарий преподавателя",
+    progress.comments || "—",
+  ].join("\n");
+}
+
+function renderReports(state) {
+  ensureTeacherCollections(state);
+  const usersById = new Map(state.users.map((u) => [u.id, u]));
+  const html = state.reports
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 6)
+    .map((report) => {
+      const student = usersById.get(report.studentId);
+      return `
+        <div class="student-item-row">
+          <div>
+            <div class="panel-kicker">${escapeHtml(formatDateTime(report.createdAt))} · ${escapeHtml(student?.name || "—")}</div>
+            <div><strong>${escapeHtml(report.title || "Отчёт")}</strong></div>
+            <div class="muted">${escapeHtml((report.body || "").slice(0, 120))}</div>
+          </div>
+          <div class="student-item-actions">
+            <button class="btn-mini" type="button" data-download-report="${escapeHtml(report.id)}">${escapeHtml(t("Скачать", "Download"))}</button>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  setHTML("reportsList", html || `<div class="muted">${escapeHtml(t("Отчётов пока нет", "No reports yet"))}</div>`);
+
+  byId("reportsList")?.querySelectorAll("[data-download-report]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-download-report");
+      const fresh = ensureTeacherCollections(loadState());
+      const report = fresh.reports.find((x) => x.id === id);
+      if (!report) return;
+      const student = getUser(fresh, report.studentId);
+      const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
+      downloadTextFile(`nge-teacher-report-${safeName}.txt`, buildTeacherReportText(fresh, report));
+    });
+  });
+}
+
+function renderReportCreator(state) {
+  const el = byId("reportCreator");
+  if (!el) return;
+  const students = listStudents(state);
+  const options = students.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.name)}</option>`).join("");
+
+  el.style.display = "block";
+  el.innerHTML = `
+    <div class="panel" style="padding:14px; border-radius:16px; border-color:var(--line-2);">
+      <div class="panel-kicker">${escapeHtml(t("Новый отчёт", "New report"))}</div>
+      <div class="form-row">
+        <label>${escapeHtml(t("Ученик", "Student"))}
+          <select id="reportStudent">${options}</select>
+        </label>
+        <label>${escapeHtml(t("Название отчёта", "Report title"))}
+          <input id="reportTitle" value="${escapeHtml(t("Отчёт об успеваемости", "Progress report"))}">
+        </label>
+      </div>
+      <div class="form-row" style="grid-template-columns: 1fr;">
+        <label>${escapeHtml(t("Текст отчёта", "Report text"))}
+          <textarea id="reportBody" placeholder="${escapeHtml(t("Что получилось, где сложность, что делаем дальше…", "What worked, what is hard, what comes next…"))}"></textarea>
+        </label>
+      </div>
+      <div class="actions">
+        <button class="btn-mini" data-primary id="saveReportBtn" type="button">${escapeHtml(t("Сохранить и уведомить", "Save and notify"))}</button>
+        <button class="btn-mini" id="downloadDraftReportBtn" type="button">${escapeHtml(t("Скачать черновик", "Download draft"))}</button>
+        <button class="btn-mini" id="cancelReportBtn" type="button">${escapeHtml(t("Отмена", "Cancel"))}</button>
+      </div>
+    </div>
+  `;
+
+  byId("cancelReportBtn")?.addEventListener("click", () => {
+    el.style.display = "none";
+  });
+
+  byId("downloadDraftReportBtn")?.addEventListener("click", () => {
+    const studentId = /** @type {HTMLSelectElement|null} */ (byId("reportStudent"))?.value || "";
+    const report = {
+      id: "draft",
+      studentId,
+      title: /** @type {HTMLInputElement|null} */ (byId("reportTitle"))?.value.trim() || "Отчёт",
+      body: /** @type {HTMLTextAreaElement|null} */ (byId("reportBody"))?.value.trim() || "",
+      createdAt: new Date().toISOString(),
+    };
+    downloadTextFile("nge-teacher-report-draft.txt", buildTeacherReportText(loadState(), report));
+  });
+
+  byId("saveReportBtn")?.addEventListener("click", () => {
+    const studentId = /** @type {HTMLSelectElement|null} */ (byId("reportStudent"))?.value || "";
+    const title = /** @type {HTMLInputElement|null} */ (byId("reportTitle"))?.value.trim() || "Отчёт";
+    const body = /** @type {HTMLTextAreaElement|null} */ (byId("reportBody"))?.value.trim() || "";
+    if (!studentId || !body) return;
+    const fresh = ensureTeacherCollections(loadState());
+    const report = { id: teacherUid("report"), studentId, title, body, createdAt: new Date().toISOString() };
+    fresh.reports.push(report);
+    addStudentItem(fresh, {
+      studentId,
+      kind: "material",
+      title,
+      details: body,
+      url: "",
+      done: false,
+      at: report.createdAt,
+    });
+    const student = getUser(fresh, studentId);
+    listParentsForStudent(fresh, studentId).forEach((parent) => {
+      queueNotification(fresh, {
+        userId: parent.id,
+        channel: "telegram",
+        payload: {
+          title: "Новый отчёт преподавателя",
+          text: `${student?.name || "Ученик"}: ${title}\n\n${body}`,
+        },
+        sendAt: new Date().toISOString(),
+      });
+    });
+    saveState(fresh);
+    el.style.display = "none";
+    renderReports(loadState());
+    renderNotifications(loadState());
+  });
+}
+
 export function initTeacherCabinet(ctx) {
   const { me } = ctx;
 
@@ -869,11 +1157,20 @@ export function initTeacherCabinet(ctx) {
   renderLessons(state, me.id);
   renderPayments(state);
   renderTasks(state, me.id);
+  renderReports(state);
   renderNotifications(state);
+
+  byId("exportCalendarBtn")?.addEventListener("click", () => {
+    downloadGoogleCalendarICS(loadState(), me.id);
+  });
 
   byId("addLessonBtn")?.addEventListener("click", () => {
     const fresh = loadState();
     renderLessonCreator(fresh, me.id);
+  });
+
+  byId("addStudentBtn")?.addEventListener("click", () => {
+    renderStudentCreator(loadState(), me.id);
   });
 
   byId("addPaymentBtn")?.addEventListener("click", () => {
@@ -894,6 +1191,10 @@ export function initTeacherCabinet(ctx) {
     }
   });
 
+  byId("addReportBtn")?.addEventListener("click", () => {
+    renderReportCreator(loadState());
+  });
+
   // Re-render when language toggles (simple approach)
   const langBtn = byId("langBtn");
   langBtn?.addEventListener("click", () => {
@@ -903,6 +1204,7 @@ export function initTeacherCabinet(ctx) {
     renderLessons(fresh, me.id);
     renderPayments(fresh);
     renderTasks(fresh, me.id);
+    renderReports(fresh);
     renderNotifications(fresh);
   });
 }

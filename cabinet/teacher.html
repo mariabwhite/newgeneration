@@ -99,15 +99,16 @@
 
   <section class="cabinet-panels" style="padding: 18px 0 0;">
     <div class="panel" id="lessonsPanel">
-      <div class="panel-head">
-        <div>
-          <div class="panel-kicker" data-ru="Расписание" data-en="Schedule">Расписание</div>
-          <h2 class="panel-title" data-ru="Уроки" data-en="Lessons">Уроки</h2>
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Расписание" data-en="Schedule">Расписание</div>
+            <h2 class="panel-title" data-ru="Уроки" data-en="Lessons">Уроки</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="exportCalendarBtn" type="button" data-ru="Google .ics" data-en="Google .ics">Google .ics</button>
+            <button class="btn-mini" id="addLessonBtn" type="button" data-primary data-ru="Новый урок" data-en="New lesson">Новый урок</button>
+          </div>
         </div>
-        <div class="actions">
-          <button class="btn-mini" id="addLessonBtn" type="button" data-primary data-ru="Новый урок" data-en="New lesson">Новый урок</button>
-        </div>
-      </div>
       <p class="panel-sub"
          data-ru="Клик по строке — редактирование статуса, домашки, заметок + ссылка на ProgressMe."
          data-en="Click a row to edit status, homework, notes + ProgressMe link.">
@@ -128,10 +129,14 @@
             <div class="panel-kicker" data-ru="Люди" data-en="People">Люди</div>
             <h2 class="panel-title" data-ru="Ученики (и тарифы)" data-en="Students (and tariffs)">Ученики (и тарифы)</h2>
           </div>
+          <div class="actions">
+            <button class="btn-mini" id="addStudentBtn" type="button" data-primary data-ru="Добавить ученика" data-en="Add student">Добавить ученика</button>
+          </div>
         </div>
         <div style="overflow:auto;">
           <table class="table" id="studentsTable" aria-label="Таблица учеников"></table>
         </div>
+        <div id="studentCreator" style="margin-top: 12px; display:none;"></div>
         <div id="studentEditor" style="margin-top: 12px; display:none;"></div>
       </div>
 
@@ -161,6 +166,21 @@
         </div>
         <div id="tasksList"></div>
         <div id="taskCreator" style="margin-top: 12px; display:none;"></div>
+      </div>
+
+      <div class="panel" id="reportsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Отчёты" data-en="Reports">Отчёты</div>
+            <h2 class="panel-title" data-ru="Мои отчёты по ученикам" data-en="Student reports">Мои отчёты по ученикам</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="addReportBtn" type="button" data-primary data-ru="Написать отчёт" data-en="Write report">Написать отчёт</button>
+          </div>
+        </div>
+        <p class="panel-sub" data-ru="Здесь преподаватель пишет отчёты: их можно скачать, сохранить в историю ученика и отправить родителю уведомлением." data-en="The teacher writes reports here: they can be downloaded, saved to student history, and sent to parents as notifications.">Здесь преподаватель пишет отчёты: их можно скачать, сохранить в историю ученика и отправить родителю уведомлением.</p>
+        <div id="reportsList"></div>
+        <div id="reportCreator" style="margin-top: 12px; display:none;"></div>
       </div>
 
       <div class="panel" id="notificationsPanel">
