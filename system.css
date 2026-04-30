@@ -1,10 +1,10 @@
-/* ============================================================
-   NEW GENERATION ENGLISH — SYSTEM.CSS
+﻿/* ============================================================
+   NEW GENERATION ENGLISH вЂ” SYSTEM.CSS
    Single source of truth. All pages load this last.
-   Tokens · Aliases · Topbar · Typography · Cards · Buttons
+   Tokens В· Aliases В· Topbar В· Typography В· Cards В· Buttons
    ============================================================ */
 
-/* ─── CANONICAL TOKENS ─── */
+/* в”Ђв”Ђв”Ђ CANONICAL TOKENS в”Ђв”Ђв”Ђ */
 :root {
   /* backgrounds */
   --bg:        #000000;
@@ -35,7 +35,7 @@
   --text-font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:      "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* ── ALIAS BRIDGE (legacy tokens → canonical) ── */
+  /* в”Ђв”Ђ ALIAS BRIDGE (legacy tokens в†’ canonical) в”Ђв”Ђ */
   --border:        var(--line);
   --border-strong: var(--line-2);
   --border-light:  rgba(255, 255, 255, 0.05);
@@ -71,7 +71,34 @@ body.light {
   --card-bg:   #f8f6f2;
 }
 
-/* ─── BASE ─── */
+body.sky {
+  --bg:        #F5F8FC;
+  --bg-2:      #FFFFFF;
+  --bg-3:      #EEF5FF;
+  --bg-card:   #FFFFFF;
+  --line:      rgba(79, 174, 216, 0.18);
+  --line-2:    rgba(79, 174, 216, 0.32);
+  --text:      #23A8E0;
+  --text-2:    #23A8E0;
+  --text-3:    #23A8E0;
+  --accent:    #FF8A3D;
+  --accent-2:  #FF9B45;
+  --accent-hi: #23A8E0;
+  --accent-soft: rgba(255, 138, 61, 0.12);
+  --accent-border: rgba(255, 138, 61, 0.28);
+  --border-light: rgba(79, 174, 216, 0.10);
+  --surface:   #FFFFFF;
+  --surface-2: #EEF5FF;
+  --surface-3: #F8FBFF;
+  --card-bg:   #FFFFFF;
+  --blue:      #23A8E0;
+  --blue-soft: #E7F6FC;
+  --success:   #58D68D;
+  --danger:    #FF6B7A;
+  --shadow:    0 18px 50px rgba(38, 50, 74, 0.08);
+}
+
+/* в”Ђв”Ђв”Ђ BASE в”Ђв”Ђв”Ђ */
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -94,7 +121,7 @@ canvas {
 svg { max-width: 100%; }
 pre { overflow-x: auto; }
 
-/* ─── TOPBAR ─── */
+/* в”Ђв”Ђв”Ђ TOPBAR в”Ђв”Ђв”Ђ */
 .topbar {
   position: sticky;
   top: 0;
@@ -120,8 +147,13 @@ body.light .topbar {
   background: var(--bg);
   border-bottom-color: var(--line);
 }
+body.sky .topbar {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: rgba(79, 174, 216, 0.16);
+  box-shadow: 0 10px 30px rgba(38, 50, 74, 0.04);
+}
 
-/* ─── BRAND ─── */
+/* в”Ђв”Ђв”Ђ BRAND в”Ђв”Ђв”Ђ */
 .brand {
   display: flex;
   align-items: center;
@@ -143,6 +175,10 @@ body.light .topbar {
   border-radius: 8px;
   letter-spacing: -0.04em;
   flex-shrink: 0;
+}
+body.sky .brand-mark {
+  background: var(--blue);
+  color: #ffffff;
 }
 .brand-name {
   font-family: var(--display);
@@ -179,7 +215,7 @@ body.light .brand--logo .brand-logo-light { display: block; }
 .brand--logo .brand-name,
 .brand--logo .brand-sub { display: none; }
 
-/* ─── NAV ─── */
+/* в”Ђв”Ђв”Ђ NAV в”Ђв”Ђв”Ђ */
 .topnav {
   display: flex;
   gap: 24px;
@@ -230,6 +266,10 @@ body.light .brand--logo .brand-logo-light { display: block; }
   color: var(--text) !important;
   opacity: 1 !important;
 }
+body.sky .topbar .topnav-link:hover,
+body.sky .topbar .topnav-link.active {
+  color: var(--blue) !important;
+}
 
 .topbar .brand {
   gap: 8px !important;
@@ -261,7 +301,7 @@ body.light .brand--logo .brand-logo-light { display: block; }
   margin-top: 4px !important;
 }
 
-/* ─── TOPBAR TOOLS ─── */
+/* в”Ђв”Ђв”Ђ TOPBAR TOOLS в”Ђв”Ђв”Ђ */
 .topbar-tools {
   display: flex;
   align-items: center;
@@ -290,8 +330,18 @@ body.light .brand--logo .brand-logo-light { display: block; }
   color: var(--text);
   border-color: var(--line-2);
 }
+body.sky .control-btn {
+  background: #ffffff;
+  border-color: rgba(79, 174, 216, 0.22);
+  color: var(--text-2);
+}
+body.sky .control-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+}
 
-/* ─── BUTTONS ─── */
+/* в”Ђв”Ђв”Ђ BUTTONS в”Ђв”Ђв”Ђ */
 .btn,
 .btn-primary,
 .btn-secondary,
@@ -331,6 +381,18 @@ body.light .brand--logo .brand-logo-light { display: block; }
   border-color: var(--text-2);
   color: var(--text);
 }
+body.sky .btn-secondary,
+body.sky .btn-ghost {
+  background: #ffffff;
+  border-color: rgba(79, 174, 216, 0.28);
+  color: var(--blue);
+}
+body.sky .btn-secondary:hover,
+body.sky .btn-ghost:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
 .btn-ghost {
   background: transparent;
   color: var(--text-2);
@@ -341,7 +403,7 @@ body.light .brand--logo .brand-logo-light { display: block; }
   border-color: var(--line-2);
 }
 
-/* ─── CARDS ─── */
+/* в”Ђв”Ђв”Ђ CARDS в”Ђв”Ђв”Ђ */
 .program-card,
 .entry-card,
 .blog-entry,
@@ -367,8 +429,32 @@ body.light .brand--logo .brand-logo-light { display: block; }
 .review-card:hover {
   border-color: var(--accent);
 }
+body.sky .program-card,
+body.sky .entry-card,
+body.sky .blog-entry,
+body.sky .cabinet-card,
+body.sky .article-card,
+body.sky .resource-card,
+body.sky .format-card,
+body.sky .case-card,
+body.sky .review-card {
+  background: #ffffff;
+  border-color: rgba(79, 174, 216, 0.18);
+  box-shadow: var(--shadow);
+}
+body.sky .program-card:hover,
+body.sky .entry-card:hover,
+body.sky .blog-entry:hover,
+body.sky .cabinet-card:hover,
+body.sky .article-card:hover,
+body.sky .resource-card:hover,
+body.sky .format-card:hover,
+body.sky .case-card:hover,
+body.sky .review-card:hover {
+  border-color: var(--blue);
+}
 
-/* ─── TYPOGRAPHY — 3 LEVELS ─── */
+/* в”Ђв”Ђв”Ђ TYPOGRAPHY вЂ” 3 LEVELS в”Ђв”Ђв”Ђ */
 
 /* kicker: mono uppercase label above hero */
 .kicker,
@@ -445,7 +531,7 @@ h2 {
   color: var(--text-3);
 }
 
-/* ─── LAYOUT HELPERS ─── */
+/* в”Ђв”Ђв”Ђ LAYOUT HELPERS в”Ђв”Ђв”Ђ */
 .shell { max-width: 1200px; margin: 0 auto; }
 .wrap {
   max-width: 1200px;
@@ -461,7 +547,7 @@ section {
   padding: 64px 0;
 }
 
-/* ─── FOOTER ─── */
+/* в”Ђв”Ђв”Ђ FOOTER в”Ђв”Ђв”Ђ */
 .footer {
   max-width: 1200px;
   margin: 0 auto;
@@ -513,7 +599,7 @@ section {
 }
 .footer-link:hover { color: var(--text); background: var(--bg-3); }
 
-/* ─── MOBILE ─── */
+/* в”Ђв”Ђв”Ђ MOBILE в”Ђв”Ђв”Ђ */
 @media (max-width: 980px) {
   .topnav {
     display: flex !important; /* override legacy per-page rules that hide nav on iPad/iPhone */
@@ -767,7 +853,7 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }
   .btn { width: 100%; }
 }
 /* Mobile safeguard: restore horizontal padding removed by the container-hero fix above.
-   At ≤640px the hero is still full-bleed (100vw) so content needs its own edge buffer. */
+   At в‰¤640px the hero is still full-bleed (100vw) so content needs its own edge buffer. */
 @media (max-width: 640px) {
   .page-shell .hero,
   .wrap .hero {
@@ -798,7 +884,7 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }
   margin-right: auto;
 }
 
-/* ─── RESPONSIVE: iPAD / iPHONE ─── */
+/* в”Ђв”Ђв”Ђ RESPONSIVE: iPAD / iPHONE в”Ђв”Ђв”Ђ */
 @media (max-width: 960px) {
   .fmt-grid,
   .cabinet-grid,
@@ -1074,13 +1160,7 @@ body[data-page="blog"] .entry-title {
   }
 
   .hero-grid {
-    grid-template-columns: 1fr !important;
     gap: 28px;
-  }
-
-  .hero-copy {
-    min-width: 0 !important;
-    width: 100% !important;
   }
 
   .hero-media {
@@ -1090,49 +1170,6 @@ body[data-page="blog"] .entry-title {
 
   .hero-students-link {
     overflow-wrap: anywhere;
-  }
-
-  body[data-page="conditions"] .hero-grid,
-  body[data-page="blog"] .hero-grid,
-  body[data-page="cases"] .hero-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  body[data-page="conditions"] .hero h1,
-  body[data-page="conditions"] .hero h1 .line {
-    display: block !important;
-    width: auto !important;
-    max-width: min(12ch, calc(100vw - 48px)) !important;
-    white-space: normal !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    hyphens: none !important;
-  }
-
-  body[data-page="conditions"] .hero-kicker,
-  body[data-page="conditions"] .hero-kicker-secondary {
-    max-width: min(28ch, calc(100vw - 48px)) !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-  }
-
-  body[data-page="conditions"] .page-shell > .subnav {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    gap: 16px !important;
-    margin: 18px 0 0 !important;
-    padding-bottom: 8px !important;
-    scrollbar-width: none !important;
-  }
-
-  body[data-page="conditions"] .page-shell > .subnav::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  body[data-page="conditions"] .page-shell > .subnav .subnav-link {
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
   }
 }
 
@@ -1602,3 +1639,600 @@ body[data-page="blog"] .entry-title {
     white-space: nowrap !important;
   }
 }
+
+/* Sky Orange theme: white + blue + orange, with no black surfaces. */
+body.sky {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(79, 174, 216, 0.12), transparent 28vw),
+    radial-gradient(circle at 86% 18%, rgba(255, 138, 61, 0.10), transparent 24vw),
+    linear-gradient(180deg, #ffffff 0%, #f5f9ff 52%, #eef6ff 100%) !important;
+  color: var(--text) !important;
+}
+
+body.sky ::selection {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+}
+
+body.sky .topbar {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: rgba(79, 174, 216, 0.18) !important;
+  box-shadow: 0 12px 34px rgba(79, 174, 216, 0.08) !important;
+}
+
+body.sky .brand-mark,
+body.sky .topbar .brand-mark {
+  background: linear-gradient(135deg, #4FAED8 0%, #50c8f2 100%) !important;
+  border-color: rgba(79, 174, 216, 0.36) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 24px rgba(79, 174, 216, 0.18) !important;
+}
+
+body.sky .brand-name,
+body.sky .topbar .brand-name,
+body.sky .hero-title,
+body.sky .hero h1,
+body.sky h1,
+body.sky h2,
+body.sky h3 {
+  color: #23A8E0 !important;
+}
+
+body.sky .brand-sub,
+body.sky .topbar .brand-sub,
+body.sky .topnav-link,
+body.sky .topbar .topnav-link,
+body.sky .hero-lead,
+body.sky p,
+body.sky li {
+  color: #23A8E0 !important;
+}
+
+body.sky .topbar .topnav-link:hover,
+body.sky .topbar .topnav-link.active {
+  color: #23A8E0 !important;
+}
+
+body.sky .control-btn,
+body.sky .topbar .control-btn,
+body.sky .theme-toggle,
+body.sky .lang-btn {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.28) !important;
+  color: #23A8E0 !important;
+  box-shadow: 0 8px 22px rgba(79, 174, 216, 0.08) !important;
+}
+
+body.sky #theme-toggle,
+body.sky #labThemeToggle,
+body.sky .topbar .theme-toggle {
+  width: auto !important;
+  min-width: 54px !important;
+  padding: 0 12px !important;
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
+}
+
+body.sky .lang-btn,
+body.sky .topbar .lang-btn {
+  width: auto !important;
+  min-width: 44px !important;
+  padding: 0 12px !important;
+}
+
+body.sky .control-btn:hover,
+body.sky .topbar .control-btn:hover,
+body.sky .theme-toggle:hover,
+body.sky .lang-btn:hover {
+  background: rgba(255, 138, 61, 0.12) !important;
+  border-color: rgba(255, 138, 61, 0.42) !important;
+  color: #23A8E0 !important;
+}
+
+body.sky .hero,
+body.sky .section,
+body.sky .about,
+body.sky .cta,
+body.sky .contacts,
+body.sky .footer,
+body.sky main {
+  background-color: transparent !important;
+}
+
+body.sky .hero-tag .bar,
+body.sky .cta-head::after,
+body.sky .section-line {
+  background: rgba(79, 174, 216, 0.22) !important;
+}
+
+body.sky .hero-tag .dot,
+body.sky .hero-kicker::before,
+body.sky .hero-media-caption .dot {
+  background: #23A8E0 !important;
+}
+
+body.sky .hero h1 .accent,
+body.sky .num em,
+body.sky .kicker,
+body.sky .eyebrow,
+body.sky .hero-kicker {
+  color: #23A8E0 !important;
+}
+
+body.sky .hero h1 .outline {
+  color: transparent !important;
+  -webkit-text-stroke-color: #23A8E0 !important;
+}
+
+body.sky .hero-media,
+body.sky .format-card,
+body.sky .how-card,
+body.sky .contacts-col,
+body.sky .program-card,
+body.sky .entry-card,
+body.sky .blog-entry,
+body.sky .cabinet-card,
+body.sky .article-card,
+body.sky .resource-card,
+body.sky .case-card,
+body.sky .review-card,
+body.sky .panel,
+body.sky .overview-card,
+body.sky .kv {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.20) !important;
+  box-shadow: 0 18px 50px rgba(38, 50, 74, 0.08) !important;
+}
+
+body.sky .hero-media::after {
+  background: linear-gradient(180deg, transparent 55%, rgba(79, 174, 216, 0.22)) !important;
+}
+
+body.sky .hero-media-frame {
+  border-color: rgba(255, 255, 255, 0.58) !important;
+}
+
+body.sky .hero-media-caption {
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(38, 50, 74, 0.38) !important;
+}
+
+body.sky .btn-primary,
+body.sky .btn[data-primary],
+body.sky .fmt-cta,
+body.sky .overview-open {
+  background: #ff8a3d !important;
+  border-color: #ff8a3d !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 30px rgba(255, 138, 61, 0.22) !important;
+}
+
+body.sky .btn-primary:hover,
+body.sky .btn[data-primary]:hover,
+body.sky .fmt-cta:hover,
+body.sky .overview-open:hover {
+  background: #ff9b45 !important;
+  border-color: #ff9b45 !important;
+}
+
+body.sky .btn-secondary,
+body.sky .btn-ghost,
+body.sky .hero-students-link a,
+body.sky .footer-link {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.28) !important;
+  color: #23A8E0 !important;
+}
+
+body.sky .btn-secondary:hover,
+body.sky .btn-ghost:hover,
+body.sky .hero-students-link a:hover,
+body.sky .footer-link:hover {
+  background: rgba(255, 138, 61, 0.12) !important;
+  border-color: rgba(255, 138, 61, 0.42) !important;
+  color: #23A8E0 !important;
+}
+
+body.sky .eco-btn {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 251, 255, 0.96)) !important;
+  border-color: rgba(79, 174, 216, 0.26) !important;
+  color: #23A8E0 !important;
+  box-shadow: 0 14px 34px rgba(79, 174, 216, 0.10) !important;
+}
+
+body.sky .eco-btn-label,
+body.sky .eco-btn-arrow {
+  color: #23A8E0 !important;
+}
+
+body.sky .eco-btn:hover,
+body.sky .eco-btn.is-active {
+  background: rgba(255, 138, 61, 0.10) !important;
+  border-color: rgba(255, 138, 61, 0.42) !important;
+  box-shadow: 0 16px 36px rgba(255, 138, 61, 0.12) !important;
+}
+
+body.sky .eco-btn:hover .eco-btn-label,
+body.sky .eco-btn:hover .eco-btn-arrow,
+body.sky .eco-btn.is-active .eco-btn-label,
+body.sky .eco-btn.is-active .eco-btn-arrow {
+  color: #23A8E0 !important;
+}
+
+@media (max-width: 760px) {
+  body.sky .topbar {
+    background: rgba(255, 255, 255, 0.98) !important;
+  }
+}
+
+/* Sky calm pass: make the home hero feel like an app surface, not a poster. */
+body.sky .hero {
+  padding: clamp(34px, 5vw, 56px) 24px 28px !important;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(79, 174, 216, 0.08), transparent 26vw),
+    linear-gradient(180deg, #ffffff 0%, #f7fbff 100%) !important;
+}
+
+body.sky .hero-inner {
+  max-width: 1180px !important;
+}
+
+body.sky .hero-grid {
+  grid-template-columns: minmax(0, 0.94fr) minmax(280px, 330px) !important;
+  gap: clamp(34px, 6vw, 72px) !important;
+  align-items: center !important;
+}
+
+body.sky .hero h1 {
+  max-width: 780px !important;
+  font-size: clamp(2.85rem, 5.1vw, 4.6rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+  color: #23A8E0 !important;
+}
+
+body.sky .hero h1 .accent {
+  color: #23A8E0 !important;
+}
+
+body.sky .hero h1 .line {
+  margin-bottom: 0.04em !important;
+}
+
+body.sky .hero-lead {
+  max-width: 560px !important;
+  margin-bottom: 28px !important;
+  color: #23A8E0 !important;
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+}
+
+body.sky .hero-kicker,
+body.sky .hero-kicker-secondary,
+body.sky .hero-tag {
+  color: #23A8E0 !important;
+}
+
+body.sky .hero-media {
+  max-width: 330px !important;
+  justify-self: end !important;
+  border-radius: 18px !important;
+  border-color: rgba(79, 174, 216, 0.22) !important;
+  box-shadow: 0 22px 60px rgba(79, 174, 216, 0.14) !important;
+}
+
+body.sky .btn-row {
+  gap: 12px !important;
+}
+
+body.sky .btn,
+body.sky .btn-primary,
+body.sky .btn-secondary,
+body.sky .btn-ghost {
+  min-height: 48px !important;
+  border-radius: 12px !important;
+  padding-inline: 24px !important;
+  font-size: 13px !important;
+}
+
+body.sky .hero-stats {
+  margin-top: 42px !important;
+  border-color: rgba(79, 174, 216, 0.16) !important;
+}
+
+body.sky .hero-stats .cell {
+  border-color: rgba(50, 202, 252, 0.26) !important;
+}
+
+body.sky .hero-stats .num,
+body.sky .hero-stats .num em,
+body.sky .hero-stats .lbl,
+body.sky .hero-stats .idx {
+  color: #23A8E0 !important;
+}
+
+@media (max-width: 980px) {
+  body.sky .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.sky .hero-media {
+    justify-self: start !important;
+    max-width: min(360px, 100%) !important;
+  }
+}
+
+/* Page-specific cleanup after the Sky pass. */
+body.sky[data-page="about"] .neuro-definition,
+body.sky[data-page="about"] .important-box {
+  background: linear-gradient(180deg, rgba(231, 246, 252, 0.96), rgba(255, 255, 255, 0.92)) !important;
+  border-color: rgba(79, 174, 216, 0.32) !important;
+  box-shadow: 0 18px 44px rgba(79, 174, 216, 0.10) !important;
+}
+
+body.sky[data-page="about"] .neuro-definition::before {
+  background: linear-gradient(to right, transparent, #4FAED8, transparent) !important;
+}
+
+body.sky[data-page="about"] .neuro-definition .document-heading,
+body.sky[data-page="about"] .neuro-definition strong,
+body.sky[data-page="about"] .important-box strong {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="about"] .neuro-definition .note,
+body.sky[data-page="about"] .important-box p {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="about"] .hero-stars-bg .img-dark {
+  display: none !important;
+}
+
+body.sky[data-page="about"] .hero-stars-bg .img-light {
+  display: block !important;
+}
+
+body.sky[data-page="about"] .hero-stars-bg {
+  border-radius: 0 !important;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.12) 7%, rgba(0, 0, 0, 0.66) 19%, #000 38%, #000 88%, rgba(0, 0, 0, 0.88) 94%, transparent 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.74) 0%, #000 18%, #000 72%, rgba(0, 0, 0, 0.28) 90%, transparent 100%) !important;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.12) 7%, rgba(0, 0, 0, 0.66) 19%, #000 38%, #000 88%, rgba(0, 0, 0, 0.88) 94%, transparent 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.74) 0%, #000 18%, #000 72%, rgba(0, 0, 0, 0.28) 90%, transparent 100%) !important;
+  -webkit-mask-composite: source-in !important;
+  mask-composite: intersect !important;
+}
+
+body.sky[data-page="about"] .hero-stars-bg::after {
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 16%, rgba(255, 255, 255, 0.36) 42%, transparent 76%) !important;
+}
+
+body[data-page="programs"] .hero-bg-wrap {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-dark {
+  display: none !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-light {
+  display: block !important;
+}
+
+body.sky[data-page="programs"] .hero-bg,
+body.light[data-page="programs"] .hero-bg {
+  border-radius: 0 !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-base {
+  opacity: 0.94 !important;
+  filter: saturate(1.08) contrast(1.04) !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-base,
+body.light[data-page="programs"] .hero-bg-base {
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.36) 8%, rgba(0, 0, 0, 0.86) 18%, #000 32%, #000 78%, rgba(0, 0, 0, 0.58) 92%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.46) 8%, rgba(0, 0, 0, 0.92) 18%, #000 36%, #000 74%, rgba(0, 0, 0, 0.52) 91%, transparent 100%) !important;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.36) 8%, rgba(0, 0, 0, 0.86) 18%, #000 32%, #000 78%, rgba(0, 0, 0, 0.58) 92%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.46) 8%, rgba(0, 0, 0, 0.92) 18%, #000 36%, #000 74%, rgba(0, 0, 0, 0.52) 91%, transparent 100%) !important;
+  -webkit-mask-composite: source-in !important;
+  mask-composite: intersect !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-edge,
+body.light[data-page="programs"] .hero-bg-edge {
+  opacity: 0 !important;
+}
+
+body[data-page="programs"] .hero-bg-edge {
+  opacity: 0.16 !important;
+}
+
+body.sky[data-page="programs"] .hero-bg-edge,
+body.light[data-page="programs"] .hero-bg-edge {
+  opacity: 0 !important;
+}
+
+body.sky[data-page="programs"] .p-tile,
+body.light[data-page="programs"] .p-tile {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.22) !important;
+  box-shadow: 0 16px 36px rgba(79, 174, 216, 0.08) !important;
+}
+
+body.sky[data-page="programs"] .p-tile::after,
+body.light[data-page="programs"] .p-tile::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.82) 56%, #ffffff 100%),
+    radial-gradient(circle at 50% 76%, rgba(79, 174, 216, 0.12), transparent 68%) !important;
+  opacity: 0.66 !important;
+  filter: none !important;
+}
+
+body.sky[data-page="programs"] .p-title,
+body.sky[data-page="programs"] .p-list li,
+body.sky[data-page="programs"] .p-result .v {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="programs"] .p-sub,
+body.sky[data-page="programs"] .p-section-label {
+  color: #23A8E0 !important;
+}
+
+body[data-page="cases"] .video-card video,
+body[data-page="cases"] .video-card:hover video,
+body[data-page="cases"] .video-card:focus-within video,
+body[data-page="cases"] .gallery-item img,
+body[data-page="cases"] .gallery-item:hover img,
+body[data-page="cases"] .gallery-item:focus-visible img,
+body[data-page="cases"] .gallery-item.is-active img {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+body.sky[data-page="blog"] .dynasty-cover {
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%) !important;
+  color: #23A8E0 !important;
+  border-color: rgba(79, 174, 216, 0.26) !important;
+  box-shadow: 0 22px 56px rgba(79, 174, 216, 0.10) !important;
+  opacity: 1 !important;
+}
+
+body.sky[data-page="blog"] {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(79, 174, 216, 0.12), transparent 28vw),
+    linear-gradient(180deg, #ffffff 0%, #f5f9ff 52%, #eef6ff 100%) !important;
+}
+
+body.sky[data-page="blog"] .dynasty-cover-title,
+body.sky[data-page="blog"] .dynasty-cover-hook,
+body.sky[data-page="blog"] .dynasty-toggle {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="blog"] .dynasty-toggle {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(255, 138, 61, 0.58) !important;
+}
+
+body.sky[data-page="blog"] .section-picker {
+  border-color: rgba(79, 174, 216, 0.24) !important;
+}
+
+body.sky[data-page="blog"] .section-picker-label {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="blog"] .subnav-link {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.30) !important;
+  color: #23A8E0 !important;
+  box-shadow: 0 10px 24px rgba(79, 174, 216, 0.08) !important;
+}
+
+body.sky[data-page="blog"] .subnav-link:hover,
+body.sky[data-page="blog"] .subnav-link.active {
+  background: #ff8a3d !important;
+  border-color: #ff8a3d !important;
+  color: #ffffff !important;
+}
+
+body.sky[data-page="blog"] .hero-students-link a {
+  background: transparent !important;
+  border-color: rgba(79, 174, 216, 0.24) !important;
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="cases"] .case-card,
+body.sky[data-page="cases"] .case-card-inner,
+body.sky[data-page="cases"] .video-card,
+body.sky[data-page="cases"] .results-showcase,
+body.sky[data-page="cases"] .presentations-block,
+body.sky[data-page="cases"] .results-old-block,
+body.sky[data-page="cases"] .result-badge-img,
+body.sky[data-page="cases"] .presentation-item,
+body.sky[data-page="cases"] .old-result-item,
+body.sky[data-page="cases"] .gallery-item {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.24) !important;
+  box-shadow: 0 18px 48px rgba(79, 174, 216, 0.10) !important;
+}
+
+body.sky[data-page="cases"] .video-card video,
+body.sky[data-page="cases"] iframe,
+body.sky[data-page="cases"] .gallery-item.is-active img {
+  background: #eef8fd !important;
+  border-color: rgba(79, 174, 216, 0.26) !important;
+}
+
+body.sky[data-page="cases"] .case-card h3,
+body.sky[data-page="cases"] .case-card h4,
+body.sky[data-page="cases"] .video-card h4,
+body.sky[data-page="cases"] .results-title,
+body.sky[data-page="cases"] .presentations-header h3,
+body.sky[data-page="cases"] .results-old-header h3,
+body.sky[data-page="cases"] .case-result .v {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="cases"] .case-card p,
+body.sky[data-page="cases"] .case-card li,
+body.sky[data-page="cases"] .video-card p,
+body.sky[data-page="cases"] .presentations-header p,
+body.sky[data-page="cases"] .results-old-header p {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="blog"] .neural-article-cover,
+body.sky[data-page="blog"] .neural-article-panel,
+body.sky[data-page="blog"] #neural-tools .neural-article-cover,
+body.sky[data-page="blog"] #neural-tools .neural-article-panel {
+  background: #ffffff !important;
+  border-color: rgba(79, 174, 216, 0.26) !important;
+  box-shadow: 0 22px 56px rgba(79, 174, 216, 0.10) !important;
+}
+
+body.sky[data-page="blog"] .neural-article-title,
+body.sky[data-page="blog"] .neural-article-hook,
+body.sky[data-page="blog"] .neural-article-toggle,
+body.sky[data-page="blog"] #neural-tools .neural-article-title,
+body.sky[data-page="blog"] #neural-tools .neural-article-hook,
+body.sky[data-page="blog"] #neural-tools .neural-article-toggle {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="blog"] .neural-article-toggle,
+body.sky[data-page="blog"] #neural-tools .neural-article-toggle {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(255, 138, 61, 0.58) !important;
+}
+
+/* Highest-priority Sky hero color pass. */
+body.sky[data-page="home"] .hero-kicker,
+body.sky[data-page="home"] .hero-kicker-secondary,
+body.sky[data-page="home"] .hero h1,
+body.sky[data-page="home"] .hero h1 .line,
+body.sky[data-page="home"] .hero h1 .accent,
+body.sky[data-page="home"] .hero-lead,
+body.sky[data-page="about"] .hero-kicker,
+body.sky[data-page="about"] .hero-kicker-secondary,
+body.sky[data-page="about"] .hero h1,
+body.sky[data-page="about"] .hero h1 .line,
+body.sky[data-page="about"] .hero h1 .accent,
+body.sky[data-page="about"] .hero-lead {
+  color: #23A8E0 !important;
+}
+
+body.sky[data-page="home"] .hero-kicker::before,
+body.sky[data-page="about"] .hero-kicker::before {
+  background: #23A8E0 !important;
+}
+

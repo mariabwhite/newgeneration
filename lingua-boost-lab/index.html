@@ -81,6 +81,40 @@
   --ghost-fill: rgba(122,95,207,0.07);
 }
 
+[data-theme="sky"] {
+  --bg:        #f5faff;
+  --bg-2:      #edf8ff;
+  --bg-card:   #ffffff;
+  --bg-card-2: #f7fcff;
+  --text:      #23A8E0;
+  --muted:     #43a9d2;
+  --faint:     #7cb8d3;
+  --plum:      #23A8E0;
+  --plum-2:    #23A8E0;
+  --accent:    #ff8a3d;
+  --success:   #23A8E0;
+  --line:      rgba(45,183,234,0.18);
+  --line-2:    rgba(45,183,234,0.30);
+  --line-dot:  rgba(45,183,234,0.34);
+  --topbar-bg: rgba(255,255,255,0.97);
+  --module-bg: rgba(255,255,255,0.90);
+  --bg-radial-1: rgba(45,183,234,0.14);
+  --bg-radial-2: rgba(255,138,61,0.11);
+  --bg-radial-3: rgba(45,183,234,0.08);
+  --hero-glow: rgba(45,183,234,0.12);
+  --title-glow: transparent;
+  --title-accent-shadow: transparent;
+  --quick-hover: rgba(45,183,234,0.10);
+  --accent-soft: rgba(255,138,61,0.12);
+  --accent-soft-2: rgba(255,138,61,0.18);
+  --accent-border: rgba(255,138,61,0.38);
+  --accent-on: #ffffff;
+  --accent-hover: #ff9b45;
+  --accent-hover-text: #ff8a3d;
+  --ghost-stroke: rgba(45,183,234,0.28);
+  --ghost-fill: rgba(45,183,234,0.08);
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -133,6 +167,10 @@ h1, h2, h3 { margin: 0; }
 }
 
 .brand-logo-light {
+  display: none;
+}
+
+.brand-logo-sky {
   display: none;
 }
 
@@ -554,21 +592,37 @@ h1 {
 .theme-toggle {
   display: inline-grid;
   place-items: center;
-  width: 32px;
+  width: auto;
+  min-width: 54px;
   height: 32px;
-  flex: 0 0 32px;
+  flex: 0 0 auto;
+  padding: 0 12px;
   border: 1px solid var(--line-2);
   border-radius: 8px;
   background: var(--bg-card);
   color: var(--accent);
   cursor: pointer;
-  font: 800 15px/1 var(--body-font);
+  font: 800 11px/1 var(--mono);
+  letter-spacing: 0;
   transition: background 0.16s, border-color 0.16s, color 0.16s;
 }
 
 .theme-toggle:hover {
   background: var(--accent-soft);
   border-color: var(--accent);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: #171022;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  color: #ff9b45;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: #21162f;
+  border-color: #ffffff;
+  color: #ff9b45;
 }
 
 .lb-catalog-lang {
@@ -703,11 +757,14 @@ h1 {
 }
 
 .theme-toggle {
-  width: 34px;
+  width: auto;
+  min-width: 58px;
   height: 34px;
-  flex-basis: 34px;
+  flex: 0 0 auto;
+  padding: 0 12px;
   border-radius: 8px;
-  font: 500 14px/1 var(--body-font);
+  font: 800 11px/1 var(--mono);
+  letter-spacing: 0;
 }
 
 .lbs-lang-btn {
@@ -759,14 +816,7 @@ h1 {
 }
 
 .hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(62px, 7.45vh, 80px);
-  border-top: 1px dashed var(--line-dot);
-  opacity: 0.55;
-  pointer-events: none;
+  content: none;
 }
 
 .hero-inner,
@@ -807,7 +857,8 @@ h1 {
   mask-size: 100% 100%;
 }
 
-.img-light { display: none; }
+.img-light,
+.img-sky { display: none; }
 body.light .img-dark { display: none; }
 body.light .img-light { display: block; }
 
@@ -1154,10 +1205,21 @@ body.light .top-link {
 
 .theme-toggle,
 .lang-btn {
-  min-width: 36px;
+  min-width: 58px;
   min-height: 36px;
-  border-radius: 8px;
+  border-radius: 10px;
   border-color: var(--line-2);
+  padding: 0 12px;
+  font: 800 11px/1 var(--mono);
+  letter-spacing: 0;
+}
+
+.lang-btn,
+.lbs-lang-btn {
+  min-width: 44px;
+  border-radius: 10px;
+  font: 800 11px/1 var(--mono);
+  letter-spacing: 0;
 }
 
 .hero {
@@ -1280,6 +1342,10 @@ body.light .hero-banner img.hero-bg {
 }
 
 .hero-banner img.img-light {
+  display: none;
+}
+
+.hero-banner img.img-sky {
   display: none;
 }
 
@@ -1458,6 +1524,171 @@ body.light .level-grid {
     justify-content: center;
   }
 }
+
+[data-theme="sky"],
+[data-theme="sky"] body,
+[data-theme="sky"] .wrap,
+[data-theme="sky"] .level-grid {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbff 54%, #eef7ff 100%) !important;
+}
+
+[data-theme="sky"] .topbar {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom-color: rgba(45, 183, 234, 0.20) !important;
+  box-shadow: 0 12px 34px rgba(45, 183, 234, 0.08) !important;
+}
+
+[data-theme="sky"] .brand-logo-dark,
+[data-theme="sky"] .brand-logo-light {
+  display: none !important;
+}
+
+[data-theme="sky"] .brand-logo-sky {
+  display: block !important;
+}
+
+[data-theme="sky"] h1,
+[data-theme="sky"] h2,
+[data-theme="sky"] h3,
+[data-theme="sky"] .module-title,
+[data-theme="sky"] .brand-title {
+  color: #23A8E0 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="sky"] p,
+[data-theme="sky"] .lead,
+[data-theme="sky"] .section-copy,
+[data-theme="sky"] .module-copy,
+[data-theme="sky"] .top-link,
+[data-theme="sky"] .brand small {
+  color: #43a9d2 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="sky"] .accent-purple,
+[data-theme="sky"] .section-kicker,
+[data-theme="sky"] .level-count,
+[data-theme="sky"] .hero-badge,
+[data-theme="sky"] .term .p {
+  color: #ff8a3d !important;
+  text-shadow: none !important;
+}
+
+[data-theme="sky"] .hero {
+  background:
+    radial-gradient(circle at 68% 22%, rgba(45, 183, 234, 0.10), transparent 30vw),
+    linear-gradient(135deg, #ffffff 0%, #f6fbff 56%, #eaf7ff 100%) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+[data-theme="sky"] .hero::before {
+  background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(246,251,255,0.92) 38%, rgba(238,247,255,0.52) 64%, transparent 86%) !important;
+}
+
+[data-theme="sky"] .hero-bg,
+[data-theme="sky"] .hero-banner img.hero-bg {
+  opacity: 0.66 !important;
+  filter: saturate(0.86) contrast(0.98) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.62) 9%, #000 22%, #000 80%, rgba(0, 0, 0, 0.58) 91%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 10%, #000 70%, rgba(0, 0, 0, 0.40) 84%, transparent 100%) !important;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.62) 9%, #000 22%, #000 80%, rgba(0, 0, 0, 0.58) 91%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 10%, #000 70%, rgba(0, 0, 0, 0.40) 84%, transparent 100%) !important;
+  -webkit-mask-composite: source-in !important;
+  mask-composite: intersect !important;
+}
+
+[data-theme="sky"] .hero-banner img.img-dark {
+  display: none !important;
+}
+
+[data-theme="sky"] .hero-banner img.img-light {
+  display: none !important;
+}
+
+[data-theme="sky"] .hero-banner img.img-sky {
+  display: block !important;
+}
+
+[data-theme="sky"] .hero-link.primary,
+[data-theme="sky"] .module-link {
+  background: #23A8E0 !important;
+  border-color: rgba(45, 183, 234, 0.42) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(45, 183, 234, 0.18) !important;
+}
+
+[data-theme="sky"] .hero-link.secondary,
+[data-theme="sky"] .quick-link,
+[data-theme="sky"] .level,
+[data-theme="sky"] .module-pill,
+[data-theme="sky"] .theme-toggle,
+[data-theme="sky"] .lang-btn,
+[data-theme="sky"] .lbs-lang-btn {
+  background: #ffffff !important;
+  border-color: rgba(45, 183, 234, 0.28) !important;
+  color: #23A8E0 !important;
+  box-shadow: 0 8px 22px rgba(45, 183, 234, 0.06) !important;
+}
+
+[data-theme="sky"] .theme-toggle,
+[data-theme="sky"] .lang-btn,
+[data-theme="sky"] .lbs-lang-btn {
+  width: auto !important;
+  min-width: 54px !important;
+  padding: 0 12px !important;
+  min-height: 36px !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(45, 183, 234, 0.34) !important;
+  color: #23A8E0 !important;
+  box-shadow: 0 8px 20px rgba(45, 183, 234, 0.08) !important;
+}
+
+[data-theme="sky"] .lang-btn,
+[data-theme="sky"] .lbs-lang-btn {
+  min-width: 44px !important;
+}
+
+[data-theme="sky"] .level.active,
+[data-theme="sky"] .level:hover,
+[data-theme="sky"] .hero-link.secondary:hover,
+[data-theme="sky"] .quick-link:hover {
+  background: rgba(45, 183, 234, 0.10) !important;
+  border-color: rgba(45, 183, 234, 0.42) !important;
+  color: #23A8E0 !important;
+}
+
+[data-theme="sky"] .theme-toggle:hover,
+[data-theme="sky"] .lang-btn:hover,
+[data-theme="sky"] .lbs-lang-btn:hover,
+[data-theme="sky"] .lbs-lang-btn.is-active {
+  background: rgba(45, 183, 234, 0.10) !important;
+  border-color: rgba(45, 183, 234, 0.48) !important;
+  color: #23A8E0 !important;
+}
+
+[data-theme="sky"] .level-section,
+[data-theme="sky"] .module-card,
+[data-theme="sky"] .term,
+[data-theme="sky"] .footer-note {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(45, 183, 234, 0.20) !important;
+  box-shadow: 0 18px 50px rgba(45, 183, 234, 0.08) !important;
+}
+
+[data-theme="sky"] .level-section::before,
+[data-theme="sky"] .level-section::after {
+  color: rgba(45, 183, 234, 0.12) !important;
+}
 </style>
 </head>
 <body>
@@ -1466,6 +1697,7 @@ body.light .level-grid {
   <a class="brand" href="./index.html" aria-label="LinguaBoost Studio">
     <img class="brand-logo brand-logo-dark" src="./assets/linguaboost-logo-dark-lockup.png" alt="LinguaBoost Studio">
     <img class="brand-logo brand-logo-light" src="./assets/linguaboost-logo-light-lockup-purple.png" alt="LinguaBoost Studio">
+    <img class="brand-logo brand-logo-sky" src="./assets/linguaboost-logo-light-lockup.png" alt="LinguaBoost Studio">
   </a>
   <nav class="topbar-links">
     <a class="top-link" href="../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
@@ -1474,7 +1706,7 @@ body.light .level-grid {
     <a class="top-link" href="../conditions.html" data-ru="Условия" data-en="Terms">Условия</a>
     <a class="top-link" href="../blog.html" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
     <a class="top-link" href="index.html" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
-    <button id="labThemeToggle" class="theme-toggle" type="button" aria-label="Включить светлую тему" aria-pressed="false">☾</button>
+    <button id="labThemeToggle" class="theme-toggle" type="button" aria-label="Theme: DARK" aria-pressed="true">DARK</button>
   </nav>
 </header>
 
@@ -1484,6 +1716,7 @@ body.light .level-grid {
     <div class="hero-banner">
       <img class="hero-bg img-dark" src="../assets/LAB%202.png" alt="">
       <img class="hero-bg img-light" src="../assets/LAB.png" alt="">
+      <img class="hero-bg img-sky" src="../assets/%D0%93%D0%9E%D0%9B%D0%A3%D0%91%D0%AB%D0%95%20%D0%90%D0%A1%D0%A1%D0%95%D0%A2%D0%AB.png" alt="">
     </div>
     <div class="hero-copy">
       <span class="hero-badge" data-ru="lab --level" data-en="lab --level">lab --level</span>
@@ -1731,7 +1964,7 @@ body.light .level-grid {
   </main>
 
   <section class="footer-note">
-    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
   </section>
 
 </div>
@@ -1739,45 +1972,49 @@ body.light .level-grid {
 <script>
 (function () {
   var storageKey = "nge-theme";
-  var darkIcon = "☾";
-  var lightIcon = "☀";
+  var themes = ["light", "sky", "dark"];
 
   function syncButton(theme) {
     var button = document.getElementById("labThemeToggle");
     if (!button) return;
-    var isLight = theme === "light";
-    button.textContent = isLight ? lightIcon : darkIcon;
-    button.setAttribute("aria-pressed", String(isLight));
-    button.setAttribute("aria-label", isLight ? "Включить темную тему" : "Включить светлую тему");
-    button.title = isLight ? "Dark theme" : "Light theme";
+    var label = theme === "sky" ? "SKY" : (theme === "light" ? "LITE" : "DARK");
+    button.textContent = label;
+    button.setAttribute("aria-pressed", String(theme !== "light"));
+    button.setAttribute("aria-label", "Theme: " + label);
+    button.title = "Theme: " + label;
   }
 
   function syncBanner(theme) {
     var banner = document.getElementById("labHeroBanner");
     if (!banner) return;
-    var nextSrc = theme === "light" ? banner.dataset.lightSrc : banner.dataset.darkSrc;
+    var nextSrc = theme === "dark" ? banner.dataset.darkSrc : banner.dataset.lightSrc;
     if (nextSrc && banner.getAttribute("src") !== nextSrc) {
       banner.setAttribute("src", nextSrc);
     }
   }
 
   function applyLabTheme(theme) {
-    var nextTheme = theme === "light" ? "light" : "dark";
+    var nextTheme = themes.indexOf(theme) >= 0 ? theme : "light";
     document.documentElement.dataset.theme = nextTheme;
     document.body.classList.toggle("light", nextTheme === "light");
+    document.body.classList.toggle("sky", nextTheme === "sky");
     localStorage.setItem(storageKey, nextTheme);
     syncButton(nextTheme);
     syncBanner(nextTheme);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    var params = new URLSearchParams(window.location.search);
+    var requestedTheme = params.get("theme");
     var storedTheme = localStorage.getItem(storageKey);
-    applyLabTheme(storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark");
+    applyLabTheme(themes.indexOf(requestedTheme) >= 0 ? requestedTheme : (themes.indexOf(storedTheme) >= 0 ? storedTheme : "light"));
 
     var button = document.getElementById("labThemeToggle");
     if (!button) return;
     button.addEventListener("click", function () {
-      applyLabTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+      var current = document.documentElement.dataset.theme || "light";
+      var currentIndex = themes.indexOf(current);
+      applyLabTheme(themes[(currentIndex + 1) % themes.length]);
     });
   });
 })();
