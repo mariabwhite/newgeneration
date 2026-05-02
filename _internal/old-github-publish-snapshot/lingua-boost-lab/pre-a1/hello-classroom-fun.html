@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Hello! Classroom Fun | LinguaBoost Studio</title>
+    <!-- Google Fonts & simple reset -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* avoid accidental text selection on buttons */
+        }
+
+        body {
+            background: linear-gradient(145deg, #FFE9B0 0%, #FFD6A0 100%);
+            font-family: 'Quicksand', sans-serif;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header / score */
+        .star-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFF1D6;
+            padding: 10px 20px;
+            border-radius: 60px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 0 #E2B87A;
+        }
+        .stars span {
+            font-size: 28px;
+            margin-right: 8px;
+            opacity: 0.4;
+            transition: 0.2s;
+        }
+        .stars span.active {
+            opacity: 1;
+            text-shadow: 0 0 6px gold;
+        }
+        .score-text {
+            background: #FFB347;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #3b2a1f;
+        }
+
+        /* main cards */
+        .lesson-card {
+            background: rgba(255, 252, 235, 0.96);
+            border-radius: 56px;
+            padding: 24px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            border: 2px solid #FFD966;
+            transition: all 0.2s;
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: #FEE3A0;
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            color: #AA6F20;
+        }
+
+        /* Buttons & actions */
+        .big-button {
+            background: #F2B84E;
+            border: none;
+            padding: 14px 28px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 80px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #A6531E;
+            transition: 0.05s linear;
+            font-family: inherit;
+        }
+        .big-button:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #A6531E;
+        }
+
+        .action-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .action-card {
+            background: #FCE2B4;
+            border-radius: 70px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.1s;
+        }
+        .action-card:active { transform: scale(0.96); }
+
+        /* demonstratives interactive */
+        .demo-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        .demo-card {
+            background: #FFFAEC;
+            border-radius: 48px;
+            padding: 18px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            border: 3px solid #EABE7C;
+        }
+        .demo-emoji {
+            font-size: 70px;
+        }
+
+        /* whack-a-mole (pronouns) */
+        .mole-game {
+            background: #7BAA5C;
+            border-radius: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+        .mole-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .mole-hole {
+            background: #4B2E1A;
+            height: 100px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 38px;
+            font-weight: bold;
+            color: white;
+            transition: 0.05s linear;
+        }
+        .mole-active {
+            background: #FFB347;
+            transform: scale(1.05);
+            cursor: pointer;
+            box-shadow: 0 0 0 4px yellow;
+        }
+        .mole-timer {
+            font-size: 32px;
+            font-weight: bold;
+            background: #2D2B1F;
+            display: inline-block;
+            padding: 5px 25px;
+            border-radius: 60px;
+            color: #FFD966;
+        }
+
+        /* classroom objects */
+        .classroom-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .obj-item {
+            background: #FCE8C1;
+            border-radius: 48px;
+            padding: 8px 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .this-that-quiz {
+            background: #FFE2B5;
+            border-radius: 50px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+        button {
+            font-family: inherit;
+        }
+        @media (max-width: 650px) {
+            .action-card { font-size: 18px; padding: 8px 16px; }
+            .card-title { font-size: 24px; }
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: 500;
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">Pre-A1</span>
+    <span class="lbs-pill">5+ / early starters</span>
+    <span class="lbs-pill">Kids starter</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <!-- star progress (simple gamification) -->
+    <div class="star-progress">
+        <div class="stars" id="starArea">
+            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+        <div class="score-text" id="taskCounter">🌟 0/5 tasks done</div>
+    </div>
+
+    <!-- BLOCK 1: HELLO & WHAT'S YOUR NAME? (Super Simple Style) -->
+    <div class="lesson-card" id="helloSection">
+        <div class="card-title">🎤 1. Hello! What's your name?</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
+            <div>
+                <button class="big-button" id="sayHelloBtn">🐣 Say Hello!</button>
+                <button class="big-button" id="whatsNameBtn" style="background:#69B0E0;">❓ What's your name?</button>
+                <div style="margin-top: 16px;">
+                    <input type="text" id="kidNameInput" placeholder="Your name..." style="font-size: 20px; padding: 12px; border-radius: 60px; border: 2px solid #F3B33D; text-align: center;">
+                    <button id="submitNameBtn">👉 Answer</button>
+                </div>
+            </div>
+            <div style="font-size: 70px;">🦒🎵</div>
+        </div>
+        <p id="greetingMessage" style="margin-top: 16px; font-size: 22px; font-weight: bold; background: #FFF0CC; border-radius: 50px; padding: 10px;"></p>
+    </div>
+
+    <!-- BLOCK 2: ACTION SONGS (movement) -->
+    <div class="lesson-card">
+        <div class="card-title">🏃‍♀️ 2. Move & Sing! Actions</div>
+        <div class="action-grid" id="actionsGrid"></div>
+        <div style="text-align: center; margin: 10px 0;">
+            <button id="randomActionBtn" class="big-button" style="background: #E09D32;">🎲 Show me a random action!</button>
+        </div>
+        <div id="actionMessage" style="font-size: 28px; font-weight: bold; text-align: center; margin-top: 10px;"></div>
+    </div>
+
+    <!-- BLOCK 3: DEMONSTRATIVES (THIS/THAT, THESE/THOSE) -->
+    <div class="lesson-card">
+        <div class="card-title">👇 3. This / That / These / Those</div>
+        <div class="demo-area" id="demoArea"></div>
+        <div style="text-align: center;">
+            <button id="speakDemoBtn" class="big-button" style="background:#9B7B4C;">🔊 Listen & learn</button>
+        </div>
+    </div>
+
+    <!-- BLOCK 4: PRONOUNS WHACK-A-MOLE GAME (he/she/it/we/they/you) -->
+    <div class="lesson-card">
+        <div class="card-title">🐭 4. Whack-a-Mole! Pronouns</div>
+        <div class="mole-game">
+            <div class="mole-timer" id="moleTimerDisplay">⏱️ 0:30</div>
+            <div class="mole-grid" id="moleGrid"></div>
+            <div>Score: <span id="moleScore">0</span></div>
+            <button id="startMoleGame" class="big-button" style="background:#3C9E3C;">▶️ Start Whack!</button>
+            <p style="margin-top: 10px;">👂 Listen: <strong id="currentPronounPrompt">Click START</strong> → hit the correct mole!</p>
+        </div>
+    </div>
+
+    <!-- BLOCK 5: CLASSROOM OBJECTS + THIS/THAT interactive -->
+    <div class="lesson-card">
+        <div class="card-title">📚 5. Classroom Objects + This / That</div>
+        <div class="classroom-grid" id="classroomGrid"></div>
+        <div class="this-that-quiz" id="thisThatQuizArea">
+            <p><strong>⭐ Quick quiz: This or That?</strong> (click on object first)</p>
+            <div id="quizQuestion" style="font-size: 20px;">Select an object above 👆</div>
+            <div style="margin-top: 12px;">
+                <button id="thisChoiceBtn" style="background:#F7B05E; padding:8px 25px; border-radius: 60px;">👉 This is ...</button>
+                <button id="thatChoiceBtn" style="background:#F7B05E; padding:8px 25px; border-radius: 60px;">👉 That is ...</button>
+                <span id="quizFeedback"></span>
+            </div>
+        </div>
+    </div>
+
+    <footer>🎉 Great job, superstar! 🎉  Keep learning English!</footer>
+</div>
+
+<script>
+    // ----- TASK COUNTER (5 main tasks) -----
+    let tasksCompleted = 0;
+    const starSpans = document.querySelectorAll('#starArea span');
+    const taskCounterSpan = document.getElementById('taskCounter');
+    function completeTask(taskId) {
+        // prevent duplicate if already completed (simple)
+        if(window[`task_${taskId}`]) return;
+        window[`task_${taskId}`] = true;
+        tasksCompleted = Math.min(tasksCompleted+1, 5);
+        for(let i=0; i<starSpans.length; i++) {
+            if(i < tasksCompleted) starSpans[i].classList.add('active');
+            else starSpans[i].classList.remove('active');
+        }
+        taskCounterSpan.innerText = `🌟 ${tasksCompleted}/5 tasks done`;
+    }
+
+    // Text-to-speech helper (kid-friendly, slow)
+    function speak(text, rate=0.85) {
+        if(!window.speechSynthesis) return alert("Your browser doesn't support speech");
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = rate;
+        utterance.pitch = 1.2;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // ----- 1. Hello section -----
+    const helloBtn = document.getElementById('sayHelloBtn');
+    const whatsName = document.getElementById('whatsNameBtn');
+    const submitName = document.getElementById('submitNameBtn');
+    const nameInput = document.getElementById('kidNameInput');
+    const greetingP = document.getElementById('greetingMessage');
+    helloBtn.onclick = () => { speak("Hello!"); };
+    whatsName.onclick = () => { speak("What's your name?"); };
+    submitName.onclick = () => {
+        let name = nameInput.value.trim();
+        if(name === "") name = "friend";
+        speak(`Nice to meet you, ${name}!`);
+        greetingP.innerHTML = `🦒 Giraffe says: "Nice to meet you, ${name}! 🌟"`;
+        completeTask('hello');
+    };
+
+    // ----- 2. Actions array -----
+    const actionsList = [
+        { word: "Stand up", emoji: "🧍" }, { word: "Sit down", emoji: "🪑" },
+        { word: "Clap your hands", emoji: "👏" }, { word: "Touch your head", emoji: "🙆" },
+        { word: "Turn around", emoji: "🔄" }, { word: "Jump", emoji: "🤸" },
+        { word: "Show me your hands", emoji: "🖐️" }
+    ];
+    const actionsGrid = document.getElementById('actionsGrid');
+    actionsList.forEach(action => {
+        const card = document.createElement('div');
+        card.className = 'action-card';
+        card.innerHTML = `<span style="font-size:38px;">${action.emoji}</span> <span>${action.word}</span> 🔊`;
+        card.onclick = () => speak(action.word);
+        actionsGrid.appendChild(card);
+    });
+    const randomBtn = document.getElementById('randomActionBtn');
+    const actionMsg = document.getElementById('actionMessage');
+    randomBtn.onclick = () => {
+        const rand = actionsList[Math.floor(Math.random() * actionsList.length)];
+        actionMsg.innerHTML = `✨ Now: ${rand.word} ${rand.emoji} ✨`;
+        speak(rand.word);
+        completeTask('actions');
+    };
+
+    // ----- 3. Demonstratives (visual) This/That/These/Those with items -----
+    const demoItems = [
+        { name: "apple", near: "🍎", far: "🍏", type: "singular", thisText: "This is an apple", thatText: "That is an apple" },
+        { name: "ball", near: "⚽", far: "⚾", type: "singular", thisText: "This is a ball", thatText: "That is a ball" },
+        { name: "eggs (plural)", near: "🥚🥚", far: "🥚🥚", type: "plural", theseText: "These are eggs", thoseText: "Those are eggs" },
+        { name: "cars", near: "🚗🚙", far: "🚗🚙", type: "plural", theseText: "These are cars", thoseText: "Those are cars" }
+    ];
+    const demoArea = document.getElementById('demoArea');
+    function renderDemonstratives() {
+        demoArea.innerHTML = '';
+        demoItems.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'demo-card';
+            if(item.type === 'singular') {
+                card.innerHTML = `<div class="demo-emoji">👈 ${item.near}</div><div><strong>THIS</strong> (near)</div>
+                                  <div class="demo-emoji">👉 ${item.far}</div><div><strong>THAT</strong> (far)</div>`;
+                card.onclick = () => speak(`${item.thisText}. ${item.thatText}`);
+            } else {
+                card.innerHTML = `<div class="demo-emoji">👈 ${item.near}</div><div><strong>THESE</strong> (near)</div>
+                                  <div class="demo-emoji">👉 ${item.far}</div><div><strong>THOSE</strong> (far)</div>`;
+                card.onclick = () => speak(`${item.theseText}. ${item.thoseText}`);
+            }
+            demoArea.appendChild(card);
+        });
+    }
+    renderDemonstratives();
+    document.getElementById('speakDemoBtn').onclick = () => speak("This near, That far. These near plural, Those far plural.");
+    
+    // ----- 4. Whack a Mole (Pronouns) he, she, it, we, they, you
+    const pronouns = ["he", "she", "it", "we", "they", "you"];
+    let moleActiveIndex = -1;
+    let moleInterval = null;
+    let gameActive = false;
+    let moleScore = 0;
+    let timeLeft = 30;
+    let timerInterval = null;
+    const moleGrid = document.getElementById('moleGrid');
+    const moleScoreSpan = document.getElementById('moleScore');
+    const moleTimerDisplay = document.getElementById('moleTimerDisplay');
+    const pronounPromptSpan = document.getElementById('currentPronounPrompt');
+    
+    function buildMoleHoles() {
+        moleGrid.innerHTML = '';
+        for(let i=0; i<6; i++) {
+            const hole = document.createElement('div');
+            hole.className = 'mole-hole';
+            hole.dataset.index = i;
+            hole.innerText = '🕳️';
+            hole.addEventListener('click', () => {
+                if(!gameActive) return;
+                if(moleActiveIndex === i) {
+                    // correct whack
+                    const targetPronoun = pronouns[i % pronouns.length];
+                    moleScore++;
+                    moleScoreSpan.innerText = moleScore;
+                    speak(`Good! ${targetPronoun}`, 0.9);
+                    // show quick celebration
+                    hole.style.backgroundColor = "#FFD966";
+                    setTimeout(() => { if(hole) hole.style.backgroundColor = "#4B2E1A"; }, 200);
+                    // deactivate mole after hit
+                    if(moleActiveIndex !== -1) {
+                        const prev = document.querySelector(`.mole-hole[data-index='${moleActiveIndex}']`);
+                        if(prev) prev.innerText = '🕳️';
+                        moleActiveIndex = -1;
+                    }
+                    // remove current active
+                    clearActiveMole();
+                    scheduleMole();
+                } else {
+                    speak("Try again!");
+                }
+            });
+            moleGrid.appendChild(hole);
+        }
+    }
+    function clearActiveMole() {
+        if(moleActiveIndex !== -1) {
+            const oldHole = document.querySelector(`.mole-hole[data-index='${moleActiveIndex}']`);
+            if(oldHole) {
+                oldHole.innerText = '🕳️';
+                oldHole.classList.remove('mole-active');
+            }
+            moleActiveIndex = -1;
+        }
+    }
+    function scheduleMole() {
+        if(!gameActive) return;
+        clearActiveMole();
+        const randomIdx = Math.floor(Math.random() * 6);
+        moleActiveIndex = randomIdx;
+        const hole = document.querySelector(`.mole-hole[data-index='${randomIdx}']`);
+        if(hole) {
+            const pronoun = pronouns[randomIdx % pronouns.length];
+            hole.innerText = `${pronoun} 🐭`;
+            hole.classList.add('mole-active');
+            pronounPromptSpan.innerText = `🔊 Hit the mole with pronoun: ${pronoun.toUpperCase()}`;
+        }
+        // set timeout to hide mole after 1.5 seconds
+        if(moleInterval) clearTimeout(moleInterval);
+        moleInterval = setTimeout(() => {
+            if(gameActive && moleActiveIndex === randomIdx) {
+                clearActiveMole();
+                scheduleMole();
+            }
+        }, 1500);
+    }
+    function stopMoleGame() {
+        if(timerInterval) clearInterval(timerInterval);
+        if(moleInterval) clearTimeout(moleInterval);
+        gameActive = false;
+        clearActiveMole();
+        pronounPromptSpan.innerText = "Game stopped. Press Start!";
+    }
+    function startMoleGame() {
+        if(gameActive) stopMoleGame();
+        moleScore = 0;
+        moleScoreSpan.innerText = "0";
+        timeLeft = 30;
+        moleTimerDisplay.innerText = "⏱️ 0:30";
+        gameActive = true;
+        clearActiveMole();
+        buildMoleHoles(); // reset
+        timerInterval = setInterval(() => {
+            if(!gameActive) return;
+            if(timeLeft <= 1) {
+                clearInterval(timerInterval);
+                gameActive = false;
+                clearActiveMole();
+                moleTimerDisplay.innerText = "⏱️ TIME'S UP!";
+                pronounPromptSpan.innerText = `Game over! Score: ${moleScore}`;
+                if(moleInterval) clearTimeout(moleInterval);
+                if(moleScore > 0) completeTask('pronouns');
+            } else {
+                timeLeft--;
+                moleTimerDisplay.innerText = `⏱️ 0:${timeLeft < 10 ? '0'+timeLeft : timeLeft}`;
+            }
+        }, 1000);
+        scheduleMole();
+    }
+    document.getElementById('startMoleGame').onclick = () => startMoleGame();
+    buildMoleHoles();
+
+    // ----- 5. Classroom objects + This/That mini game
+    const classroomObjects = [
+        "pencil", "eraser", "ruler", "notebook", "scissors", "glue", "pen", "pencil case", "clock", "desk", "chair", "board"
+    ];
+    const objGrid = document.getElementById('classroomGrid');
+    let currentSelectedObject = null;
+    classroomObjects.forEach(obj => {
+        const objDiv = document.createElement('div');
+        objDiv.className = 'obj-item';
+        let emoji = "📎";
+        if(obj === "pencil") emoji = "✏️";
+        else if(obj === "eraser") emoji = "🧽";
+        else if(obj === "ruler") emoji = "📏";
+        else if(obj === "notebook") emoji = "📓";
+        else if(obj === "scissors") emoji = "✂️";
+        else if(obj === "glue") emoji = "🩹";
+        else if(obj === "pen") emoji = "🖊️";
+        else if(obj === "pencil case") emoji = "📁";
+        else if(obj === "clock") emoji = "⏰";
+        else if(obj === "desk") emoji = "🪑";
+        else if(obj === "chair") emoji = "💺";
+        else if(obj === "board") emoji = "⬛";
+        objDiv.innerHTML = `${emoji} ${obj} 🔊`;
+        objDiv.onclick = () => {
+            currentSelectedObject = obj;
+            speak(obj);
+            document.getElementById('quizQuestion').innerHTML = `✨ Selected: <strong style="font-size:28px;">${obj}</strong> → Is it THIS (near) or THAT (far)?`;
+            document.getElementById('quizFeedback').innerHTML = "";
+        };
+        objGrid.appendChild(objDiv);
+    });
+    // This/That quiz logic
+    const thisBtn = document.getElementById('thisChoiceBtn');
+    const thatBtn = document.getElementById('thatChoiceBtn');
+    const quizFeedbackSpan = document.getElementById('quizFeedback');
+    function checkThisThat(choice) { // choice 'this' or 'that'
+        if(!currentSelectedObject) {
+            quizFeedbackSpan.innerHTML = "❓ First click on a classroom object!";
+            return;
+        }
+        // For a kid, both options are fine as long as they understand meaning, we give positive feedback
+        if(choice === 'this') {
+            speak(`This is a ${currentSelectedObject}`);
+            quizFeedbackSpan.innerHTML = `✅ Good! "This is a ${currentSelectedObject}" (near you) 🌟`;
+        } else {
+            speak(`That is a ${currentSelectedObject}`);
+            quizFeedbackSpan.innerHTML = `✅ Great! "That is a ${currentSelectedObject}" (far away) 🌟`;
+        }
+        completeTask('objects');
+        // optional extra star
+    }
+    thisBtn.onclick = () => checkThisThat('this');
+    thatBtn.onclick = () => checkThisThat('that');
+    
+    // add extra task completion for seeing at least 3 tasks done? but we already trigger on specific actions
+    // Also add a small progress from demonstratives? not mandatory but user can get star from "hello, actions, pronouns, objects" and we also give extra for demo area click? let's allow demo click to finish task as well if they interact.
+    let demoTaskCompleted = false;
+    demoArea.addEventListener('click', (e) => {
+        if(!demoTaskCompleted) {
+            demoTaskCompleted = true;
+            completeTask('demo');
+        }
+    });
+    // finally, friendly initial voice
+    window.addEventListener('load', () => {
+        setTimeout(() => speak("Hello little explorer! Let's learn English!"), 500);
+    });
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

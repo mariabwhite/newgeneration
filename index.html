@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -629,7 +629,6 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 }
 </style>
 <link rel="stylesheet" href="./system.css">
-<link rel="stylesheet" href="./assets/visitor-counter.css">
 </head>
 
 <body data-page="home">
@@ -652,7 +651,7 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   </nav>
 
   <div class="topbar-tools">
-    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Theme: DARK">DARK</button>
     <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
   </div>
 </header>
@@ -783,49 +782,57 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 
 <footer class="footer legal-footer">
   <div class="footer-legal">
-    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
-    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+    <p class=”footer-copy”>&copy; New Generation English &middot; <a href=”mailto:whitenois@mail.ru”>whitenois@mail.ru</a></p>
+    <p>Самозанятая Бурцева Мария Витальевна &middot; Российская Федерация &middot; Реквизиты указаны в договоре на оказание услуг.</p>
+    <p data-ru=”Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.” data-en=”This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.”>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru=”В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.” data-en=”In this project, the term ‘neuro-school’ is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.”>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+    <p data-ru=”Услуги оказываются в формате индивидуальных занятий и не являются лицензируемой образовательной деятельностью в соответствии с Федеральным законом № 273-ФЗ «Об образовании в Российской Федерации».” data-en=”Services are provided as individual tutoring sessions and do not constitute licensed educational activity under Federal Law No. 273-FZ.”>Услуги оказываются в формате индивидуальных занятий и не являются лицензируемой образовательной деятельностью в соответствии с Федеральным законом № 273-ФЗ «Об образовании в Российской Федерации».</p>
   </div>
 </footer>
 
 <script>
   /* ========== THEME TOGGLE ========== */
   function toggleTheme() {
-    document.body.classList.toggle("light");
-    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
-    const btn = document.querySelector(".control-btn");
-    if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+    if (window.NGETheme && typeof window.NGETheme.toggleTheme === "function") {
+      window.NGETheme.toggleTheme();
+    }
   }
+
   /* ========== LANG TOGGLE (data-ru/en) ========== */
   function toggleLang() {
-    const cur = document.documentElement.getAttribute("lang") || "ru";
-    const next = cur === "ru" ? "en" : "ru";
-    document.documentElement.setAttribute("lang", next);
-    document.querySelectorAll("[data-ru]").forEach(el => {
-      const val = el.getAttribute("data-" + next);
-      if (val) el.textContent = val;
-    });
-    const btn = document.getElementById("langBtn");
-    if (btn) btn.textContent = next.toUpperCase();
-    localStorage.setItem("nge-lang", next);
-  }
-  /* restore saved state */
-  (function restore() {
-    try {
-      if (localStorage.getItem("nge-theme") === "light") {
-        document.body.classList.add("light");
-        const btn = document.querySelector(".control-btn");
-        if (btn) btn.textContent = "☀";
-      }
-      const savedLang = localStorage.getItem("nge-lang");
-      if (savedLang === "en") toggleLang();
-    } catch (e) {}
+    if (window.toggleLang && window.toggleLang !== toggleLang) window.toggleLang();
+  } catch (e) {}
   })();
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
+  <script defer src="./site.js"></script>
+  <script defer src="./theme-cycle.js"></script>
+
+<!-- Cookie banner -->
+<div id="cookie-banner" style="
+  position:fixed; top:64px; left:0; right:0;
+  z-index:9998;
+  background:rgba(5,5,5,0.98); border-bottom:1px solid rgba(255,247,232,0.14);
+  padding:10px 24px;
+  display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap;
+  font-family:'Manrope',sans-serif; font-size:12px; line-height:1.5; color:rgba(240,235,255,0.82);
+  backdrop-filter:blur(8px);
+">
+  <span>
+    Сайт использует cookies для сохранения настроек (язык, тема). Шрифты — Google Fonts.
+    <a href="conditions.html#organisation" style="color:var(--accent,#ff5a1f); white-space:nowrap; margin-left:4px;">Подробнее →</a>
+  </span>
+  <button onclick="document.getElementById('cookie-banner').remove(); try{localStorage.setItem('nge-cookie-ok','1')}catch(e){}" style="
+    background:var(--accent,#ff5a1f); color:#000; border:none; border-radius:6px;
+    padding:5px 14px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap;
+    font-family:inherit; flex-shrink:0;
+  ">Понятно</button>
 </div>
-<script defer src="./assets/visitor-counter.js"></script>
+<script>
+  (function(){
+    try{ if(localStorage.getItem('nge-cookie-ok')) return; } catch(e){}
+    var b = document.getElementById('cookie-banner');
+    if(b){ b.style.display='flex'; }
+  })();
+</script>
 </body>
 </html>

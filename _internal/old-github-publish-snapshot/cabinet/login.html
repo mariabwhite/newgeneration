@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Вход в кабинеты New Generation English.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+  <title>Вход · Кабинеты</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../system.css">
+  <link rel="stylesheet" href="./cabinet.css">
+  <style>
+    .login-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+    .login-card { padding: 22px; }
+    .login-card h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -0.02em; }
+    .login-card p { margin: 0 0 14px; color: var(--text-2); font-size: 14px; line-height: 1.65; }
+    .login-card .actions { margin-top: 10px; }
+    .login-hint { margin-top: 14px; color: var(--text-2); font-size: 14px; line-height: 1.7; }
+    @media (max-width: 860px) { .login-grid { grid-template-columns: 1fr; } }
+  </style>
+<link rel="stylesheet" href="../assets/visitor-counter.css">
+</head>
+<body data-page="cabinet-login">
+<script>
+  (function () {
+    var KEY = "nge-cabinet-theme";
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === "light") document.body.classList.add("light");
+    } catch (e) {}
+
+    function initThemeToggle() {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      if (window.__NGE_CABINET_THEME_WIRED__) return;
+      window.__NGE_CABINET_THEME_WIRED__ = true;
+
+      function sync() {
+        btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+      }
+      sync();
+      btn.addEventListener("click", function () {
+        document.body.classList.toggle("light");
+        try {
+          localStorage.setItem(KEY, document.body.classList.contains("light") ? "light" : "dark");
+        } catch (e) {}
+        sync();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initThemeToggle, { once: true });
+    } else {
+      initThemeToggle();
+    }
+  })();
+</script>
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">cabinet · entry</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Навигация кабинетов">
+    <a class="topnav-link" href="../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="../programs.html" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="../conditions.html" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="../blog.html" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="../lingua-boost-lab/index.html" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn">RU</button>
+  </div>
+</header>
+
+<main class="page-shell cabinet-main">
+  <section class="cabinet-hero">
+    <span class="kicker" data-ru="Кабинеты" data-en="Cabinets">Кабинеты</span>
+    <h1 data-ru="Вход в систему" data-en="System entry">Вход в систему</h1>
+    <p class="lead"
+       data-ru="Выберите роль, чтобы открыть нужный вид кабинета. Данные демонстрационного кабинета сохраняются прямо в браузере."
+       data-en="Choose a role to open the right cabinet view. Demo cabinet data is stored in this browser.">
+      Выберите роль, чтобы открыть нужный вид кабинета. Данные демонстрационного кабинета сохраняются прямо в браузере.
+    </p>
+  </section>
+
+  <section style="padding: 28px 0;">
+    <div class="login-grid">
+      <a class="cabinet-card login-card" href="teacher.html" id="loginTeacher" style="display:block; text-decoration:none; color:inherit;">
+        <div class="panel-kicker" data-ru="Роль" data-en="Role">Роль</div>
+        <h3 data-ru="Преподаватель" data-en="Teacher">Преподаватель</h3>
+        <p data-ru="Расписание, ученики, уроки, оплаты, отчётность."
+           data-en="Schedule, students, lessons, payments, reporting.">Расписание, ученики, уроки, оплаты, отчётность.</p>
+        <div class="actions">
+          <span class="btn-mini" data-primary style="pointer-events:none;" data-ru="Войти" data-en="Sign in">Войти</span>
+          <span class="pill" data-tone="ok" data-ru="Рабочий вид" data-en="Working view">Рабочий вид</span>
+        </div>
+      </a>
+
+      <a class="cabinet-card login-card" href="student.html" id="loginStudent" style="display:block; text-decoration:none; color:inherit;">
+        <div class="panel-kicker" data-ru="Роль" data-en="Role">Роль</div>
+        <h3 data-ru="Ученик" data-en="Student">Ученик</h3>
+        <p data-ru="Ближайшие уроки, домашка, материалы, прогресс."
+           data-en="Upcoming lessons, homework, materials, progress.">Ближайшие уроки, домашка, материалы, прогресс.</p>
+        <div class="actions">
+          <span class="btn-mini" style="pointer-events:none;" data-ru="Войти" data-en="Sign in">Войти</span>
+          <span class="pill" data-ru="Для ученика" data-en="For student">Для ученика</span>
+        </div>
+      </a>
+
+      <a class="cabinet-card login-card" href="parent.html" id="loginParent" style="display:block; text-decoration:none; color:inherit;">
+        <div class="panel-kicker" data-ru="Роль" data-en="Role">Роль</div>
+        <h3 data-ru="Родитель" data-en="Parent">Родитель</h3>
+        <p data-ru="Посещаемость, прогресс, оплаты, уведомления."
+           data-en="Attendance, progress, payments, notifications.">Посещаемость, прогресс, оплаты, уведомления.</p>
+        <div class="actions">
+          <span class="btn-mini" style="pointer-events:none;" data-ru="Войти" data-en="Sign in">Войти</span>
+          <span class="pill" data-ru="Для родителей" data-en="For parents">Для родителей</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="login-hint"
+       data-ru="Подсказка: демонстрационные данные можно обновить кнопкой «Сброс данных» в кабинете преподавателя."
+       data-en="Tip: demo data can be refreshed with “Reset data” in the teacher cabinet.">
+      Подсказка: демонстрационные данные можно обновить кнопкой «Сброс данных» в кабинете преподавателя.
+    </p>
+  </section>
+</main>
+
+<script type="module">
+  import { bootThemeAndLang, signInMock, wireTopbarActions } from "./app.js";
+  import { getSession } from "./core.js";
+
+  bootThemeAndLang();
+  wireTopbarActions();
+
+  const params = new URLSearchParams(location.search);
+  const forcedRole = params.get("role");
+  const returnTo = params.get("return");
+  const session = getSession();
+  if (session && returnTo) {
+    location.href = returnTo;
+  }
+
+  function wire(cardId, role, target) {
+    const el = document.getElementById(cardId);
+    if (!el) return;
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      signInMock(role);
+      location.href = target;
+    });
+  }
+
+  wire("loginTeacher", "teacher", "teacher.html");
+  wire("loginStudent", "student", "student.html");
+  wire("loginParent", "parent", "parent.html");
+  if (forcedRole === "teacher") wire("loginTeacher", "teacher", returnTo || "teacher.html");
+  if (forcedRole === "student") wire("loginStudent", "student", returnTo || "student.html");
+  if (forcedRole === "parent") wire("loginParent", "parent", returnTo || "parent.html");
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../assets/visitor-counter.js"></script>
+<footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+</body>
+</html>

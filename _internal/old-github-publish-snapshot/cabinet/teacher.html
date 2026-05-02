@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Кабинет преподавателя New Generation English — расписание, ученики, оплаты и отчётность.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+  <title>Кабинет учителя · NGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../system.css">
+  <link rel="stylesheet" href="./cabinet.css">
+<link rel="stylesheet" href="../assets/visitor-counter.css">
+</head>
+<body data-page="cabinet-teacher">
+<script>
+  (function () {
+    var KEY = "nge-cabinet-theme";
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === "light") document.body.classList.add("light");
+    } catch (e) {}
+
+    function initThemeToggle() {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      if (window.__NGE_CABINET_THEME_WIRED__) return;
+      window.__NGE_CABINET_THEME_WIRED__ = true;
+
+      function sync() {
+        btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+      }
+      sync();
+      btn.addEventListener("click", function () {
+        document.body.classList.toggle("light");
+        try {
+          localStorage.setItem(KEY, document.body.classList.contains("light") ? "light" : "dark");
+        } catch (e) {}
+        sync();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initThemeToggle, { once: true });
+    } else {
+      initThemeToggle();
+    }
+  })();
+</script>
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub" data-ru="Кабинет учителя" data-en="Teacher cabinet">Кабинет учителя</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Навигация">
+    <a class="topnav-link" href="teacher.html" data-nav="cabinet-teacher" data-ru="Учитель" data-en="Teacher">Учитель</a>
+    <a class="topnav-link" href="../index.html" data-ru="На главную" data-en="Home">На главную</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <span class="control-btn" id="whoami" style="cursor: default;">—</span>
+    <button class="control-btn" id="signOutBtn" type="button" data-ru="Выйти" data-en="Sign out">Выйти</button>
+    <button class="control-btn" id="theme-toggle" type="button" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" type="button">RU</button>
+  </div>
+</header>
+
+<main class="page-shell cabinet-main">
+  <section class="cabinet-hero">
+    <span class="kicker" data-ru="Кабинет учителя" data-en="Teacher cabinet">Кабинет учителя</span>
+    <h1 data-ru="Расписание · ученики · оплаты · планы" data-en="Schedule · students · payments · plans">Расписание · ученики · оплаты · планы</h1>
+    <p class="lead"
+       data-ru="Рабочая панель преподавателя: расписание, ученики, оплаты и задачи собраны в одном месте. Изменения сохраняются в этом браузере."
+       data-en="Teacher workspace: schedule, students, payments, and tasks are collected in one place. Changes are saved in this browser.">
+      Рабочая панель преподавателя: расписание, ученики, оплаты и задачи собраны в одном месте. Изменения сохраняются в этом браузере.
+    </p>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Состав кабинета" data-en="Cabinet scope">Состав кабинета</div>
+          <h2 class="panel-title" data-ru="Что здесь есть" data-en="What is here">Что здесь есть</h2>
+        </div>
+      </div>
+      <p class="panel-sub" data-ru="Кабинет преподавателя нужен для управления процессом: расписание, переносы, статусы уроков, карточки учеников, домашние задания, абонементы, оплаты, методический планер, материалы и отчёты для родителей." data-en="The teacher cabinet manages the process: schedule, rescheduling, lesson statuses, student cards, homework, subscriptions, payments, teaching planner, materials, and parent reports.">Кабинет преподавателя нужен для управления процессом: расписание, переносы, статусы уроков, карточки учеников, домашние задания, абонементы, оплаты, методический планер, материалы и отчёты для родителей.</p>
+    </div>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="kv-grid" id="kpiGrid" aria-label="KPI"></div>
+  </section>
+
+  <section class="cabinet-panels" style="padding: 18px 0 0;">
+    <div class="panel" id="lessonsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Расписание" data-en="Schedule">Расписание</div>
+            <h2 class="panel-title" data-ru="Уроки" data-en="Lessons">Уроки</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="exportCalendarBtn" type="button" data-ru="Google .ics" data-en="Google .ics">Google .ics</button>
+            <button class="btn-mini" id="addLessonBtn" type="button" data-primary data-ru="Новый урок" data-en="New lesson">Новый урок</button>
+          </div>
+        </div>
+      <p class="panel-sub"
+         data-ru="Клик по строке — редактирование статуса, домашки, заметок + ссылка на ProgressMe."
+         data-en="Click a row to edit status, homework, notes + ProgressMe link.">
+        Клик по строке — редактирование статуса, домашки, заметок + ссылка на ProgressMe.
+      </p>
+      <div style="overflow:auto;">
+        <table class="table" id="lessonsTable" aria-label="Таблица уроков"></table>
+      </div>
+
+      <div id="lessonEditor" style="margin-top: 14px; display:none;"></div>
+      <div id="lessonCreator" style="margin-top: 14px; display:none;"></div>
+    </div>
+
+    <div style="display:grid; gap: 16px;">
+      <div class="panel" id="studentsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Люди" data-en="People">Люди</div>
+            <h2 class="panel-title" data-ru="Ученики (и тарифы)" data-en="Students (and tariffs)">Ученики (и тарифы)</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="addStudentBtn" type="button" data-primary data-ru="Добавить ученика" data-en="Add student">Добавить ученика</button>
+          </div>
+        </div>
+        <div style="overflow:auto;">
+          <table class="table" id="studentsTable" aria-label="Таблица учеников"></table>
+        </div>
+        <div id="studentCreator" style="margin-top: 12px; display:none;"></div>
+        <div id="studentEditor" style="margin-top: 12px; display:none;"></div>
+      </div>
+
+      <div class="panel" id="paymentsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Деньги" data-en="Money">Деньги</div>
+            <h2 class="panel-title" data-ru="Абонементы и оплаты" data-en="Subscriptions & payments">Абонементы и оплаты</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="addPaymentBtn" type="button" data-ru="Добавить" data-en="Add">Добавить</button>
+          </div>
+        </div>
+        <div id="paymentsList"></div>
+        <div id="paymentCreator" style="margin-top: 12px; display:none;"></div>
+      </div>
+
+      <div class="panel" id="tasksPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Планер" data-en="Planner">Планер</div>
+            <h2 class="panel-title" data-ru="Задачи и рабочие дела" data-en="Tasks & work">Задачи и рабочие дела</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="addTaskBtn" type="button" data-primary data-ru="Новая задача" data-en="New task">Новая задача</button>
+          </div>
+        </div>
+        <div id="tasksList"></div>
+        <div id="taskCreator" style="margin-top: 12px; display:none;"></div>
+      </div>
+
+      <div class="panel" id="reportsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Отчёты" data-en="Reports">Отчёты</div>
+            <h2 class="panel-title" data-ru="Мои отчёты по ученикам" data-en="Student reports">Мои отчёты по ученикам</h2>
+          </div>
+          <div class="actions">
+            <button class="btn-mini" id="addReportBtn" type="button" data-primary data-ru="Написать отчёт" data-en="Write report">Написать отчёт</button>
+          </div>
+        </div>
+        <p class="panel-sub" data-ru="Здесь преподаватель пишет отчёты: их можно скачать, сохранить в историю ученика и отправить родителю уведомлением." data-en="The teacher writes reports here: they can be downloaded, saved to student history, and sent to parents as notifications.">Здесь преподаватель пишет отчёты: их можно скачать, сохранить в историю ученика и отправить родителю уведомлением.</p>
+        <div id="reportsList"></div>
+        <div id="reportCreator" style="margin-top: 12px; display:none;"></div>
+      </div>
+
+      <div class="panel" id="notificationsPanel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Уведомления" data-en="Notifications">Уведомления</div>
+            <h2 class="panel-title" data-ru="Очередь уведомлений" data-en="Notification queue">Очередь уведомлений</h2>
+          </div>
+        </div>
+        <p class="panel-sub"
+           data-ru="События создаются автоматически (например, когда урок отмечен как done). Далее это подключается к Telegram/email."
+           data-en="Events are auto-created (e.g., when a lesson is marked done). Next step: Telegram/email integration.">
+          События создаются автоматически (например, когда урок отмечен как done). Далее это подключается к Telegram/email.
+        </p>
+        <div id="notifList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+</main>
+
+<script src="./teacher-standalone.js"></script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../assets/visitor-counter.js"></script>
+</body>
+</html>

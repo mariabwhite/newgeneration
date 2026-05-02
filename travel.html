@@ -4,11 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Путешествия и английский: заметки о поездках, языке, культуре и впечатлениях. New Generation English.">
+
+<!-- Open Graph / Twitter Card -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="New Generation English">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Путешествия · New Generation English">
+<meta property="og:description" content="Заметки о поездках, языке, культуре и впечатлениях.">
+<meta property="og:image" content="https://newgeneration-english.ru/assets/maria-hero-premium.jpg">
+<meta property="og:url" content="https://newgeneration-english.ru/travel.html">
+<link rel="canonical" href="https://newgeneration-english.ru/travel.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Путешествия · New Generation English">
+<meta name="twitter:description" content="Заметки о поездках, языке, культуре и впечатлениях.">
+<meta name="twitter:image" content="https://newgeneration-english.ru/assets/maria-hero-premium.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
 <title>Путешествия · New Generation English</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
 <style>
 
 
@@ -261,8 +277,6 @@ body.light .program-card:hover {
   border-color: var(--accent);
 }
 </style>
-<link rel="stylesheet" href="./system.css">
-<link rel="stylesheet" href="./assets/visitor-counter.css">
 </head>
 <body data-page="travel">
 <header class="topbar">
@@ -421,53 +435,13 @@ body.light .program-card:hover {
 <footer class="footer legal-footer">
   <div class="footer-legal">
     <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
-    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
+    <p data-ru="Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга." data-en="The term “neuro-school” is used as the author’s working description of a learning approach, not as a medical, neuropsychological, or corrective service.">Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
   </div>
 </footer>
 
-<script>
-function toggleTheme() {
-  document.body.classList.toggle("light");
-  localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
-  const btn = document.querySelector(".control-btn");
-  if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
-}
-function toggleLang() {
-  const cur = document.documentElement.getAttribute("lang") || "ru";
-  const next = cur === "ru" ? "en" : "ru";
-  document.documentElement.setAttribute("lang", next);
-  document.querySelectorAll("[data-ru]").forEach(el => {
-    const val = el.getAttribute("data-" + next);
-    if (val) el.textContent = val;
-  });
-  const btn = document.getElementById("langBtn");
-  if (btn) btn.textContent = next.toUpperCase();
-  localStorage.setItem("nge-lang", next);
-}
-function markActiveNav() {
-  const page = document.body.dataset.page;
-  if (!page) return;
-  document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
-    l.classList.toggle("active", l.dataset.nav === page);
-  });
-}
-(function restore() {
-  try {
-    if (localStorage.getItem("nge-theme") === "light") {
-      document.body.classList.add("light");
-      const btn = document.querySelector(".control-btn");
-      if (btn) btn.textContent = "☀";
-    }
-    const savedLang = localStorage.getItem("nge-lang");
-    if (savedLang === "en") toggleLang();
-  } catch (e) {}
-  markActiveNav();
-})();
-</script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
 <script defer src="./assets/visitor-counter.js"></script>
+<script defer src="./site.js"></script>
+<script defer src="./theme-cycle.js"></script>
 </body>
 </html>

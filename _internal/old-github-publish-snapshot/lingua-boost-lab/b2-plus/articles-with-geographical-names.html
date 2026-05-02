@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Articles with Geographical Names | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fef7e6 0%, #eef4fa 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, sans-serif;
+            color: #1a2c3e;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #f39c12, #e67e22, #2c7a4d);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e67e22;
+            background: #fff7e6;
+            display: inline-block;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+        }
+
+        .golden-rule {
+            background: #ffefcf;
+            border-left: 8px solid #f39c12;
+            padding: 1.2rem 2rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e4a76;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #f39c12;
+            display: inline-block;
+        }
+
+        .rule-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ffe0b5;
+        }
+
+        .rule-card h3 {
+            color: #e67e22;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #fffdf9;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        th {
+            background: #1e4a76;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            border: 1px solid #ffe0b5;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        .exception-block {
+            background: #fff2e0;
+            border-left: 5px solid #f39c12;
+            padding: 0.8rem 1rem;
+            margin-top: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .test-section {
+            background: white;
+            border-radius: 1.8rem;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            border-top: 6px solid #f39c12;
+        }
+
+        .test-header {
+            background: #fff0df;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .test-header h2 {
+            color: #c2571a;
+        }
+
+        .score-area {
+            background: #2c7a4d;
+            padding: 6px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .test-questions {
+            padding: 1.5rem 2rem;
+            background: #fefcf7;
+        }
+
+        .question-item {
+            background: #fffaf2;
+            margin-bottom: 1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            border-left: 6px solid #ffb347;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 8px 0;
+        }
+
+        .option {
+            background: #f3ede3;
+            padding: 5px 16px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        button {
+            background: #f39c12;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            margin-top: 12px;
+            margin-right: 12px;
+        }
+
+        button:hover {
+            background: #e67e22;
+        }
+
+        .feedback {
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .correct-feedback {
+            color: #2c7a4d;
+            background: #e0f2e9;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .wrong-feedback {
+            color: #c0392b;
+            background: #ffe6e5;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .speaking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .speak-card {
+            background: #fef5e7;
+            padding: 1rem;
+            border-radius: 1.2rem;
+            border: 1px solid #ffda9e;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #b87c4a;
+            font-size: 0.85rem;
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">B2+</span>
+    <span class="lbs-pill">Advanced learners</span>
+    <span class="lbs-pill">Masterclass</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <div class="hero">
+        <h1>🌍 ARTICLES WITH GEOGRAPHICAL NAMES</h1>
+        <p>B2+ Masterclass | Ukraine · Crimea · Peninsulas · The "OF" Rule</p>
+    </div>
+
+    <!-- GOLDEN RULE -->
+    <div class="golden-rule">
+        <strong>🏆 THE GOLDEN RULE: “OF” CHANGES EVERYTHING</strong><br>
+        If a geographical name contains the preposition <em>of</em>, you almost always use <strong>the</strong> before the common noun.<br>
+        📌 the Gulf of Mexico · the Strait of Gibraltar · the Republic of Korea · the Cape of Good Hope<br>
+        ⚠️ But: Lake Geneva (no 'of') → no article. <em>The shores of Lake Baikal</em> — still no 'the' before Lake Baikal.
+    </div>
+
+    <!-- PART 2: PENINSULAS & REGIONS -->
+    <div class="rule-card">
+        <h3>📍 PART 2 — PARTS OF THE WORLD & PENINSULAS</h3>
+        <table>
+            <tr><th>No article</th><th>With <em>the</em></th></tr>
+            <tr><td>North America, Western Europe, Southeast Asia</td><td>the North, the South, the Middle East, the Arctic, the Balkans</td></tr>
+            <tr><td><strong>Peninsulas:</strong> Kamchatka Peninsula, Iberian Peninsula, Korean Peninsula, Yucatán Peninsula</td><td>the Arabian Peninsula, the Indochinese Peninsula, the Peninsula of Kamchatka (rare)</td></tr>
+        </table>
+        <div class="exception-block">🔹 <strong>Exception:</strong> the Crimean Peninsula (often with 'the' because of the adjective form). The Korean Peninsula can be used with or without 'the' in B2+ contexts.</div>
+    </div>
+
+    <!-- PART 3: UKRAINE + CRIMEA + CITIES/COUNTRIES -->
+    <div class="rule-card">
+        <h3>🇺🇦 PART 3 — UKRAINE · CRIMEA · CITIES & REPUBLICS</h3>
+        <table>
+            <tr><th>No article</th><th>With <em>the</em></th></tr>
+            <tr><td>Ukraine (modern), France, Japan, Texas, London, Kyiv</td><td>the USA, the Netherlands, the Philippines, the Hague, the Vatican</td></tr>
+            <tr><td>Crimea (as peninsula name)</td><td>the Crimea (historical/dated), the Republic of Crimea, the Crimean Peninsula</td></tr>
+            <tr><td>—</td><td>the Republic of Korea, the Kingdom of Denmark, the Russian Federation</td></tr>
+        </table>
+        <div class="exception-block">📌 <strong>Ukraine:</strong> NO article (since 1991). <strong>Crimea:</strong> standard without 'the', but 'the Crimea' appears in historical texts. <strong>The Hague</strong> — always 'the'.</div>
+    </div>
+
+    <!-- PART 4: WATER BODIES -->
+    <div class="rule-card">
+        <h3>💧 PART 4 — RIVERS, LAKES, SEAS, STRAITS, CANALS</h3>
+        <table>
+            <tr><th>No article</th><th>With <em>the</em></th></tr>
+            <tr><td>Lake Baikal, Lake Geneva, Lake Michigan</td><td>the Great Lakes</td></tr>
+            <tr><td>—</td><td>the Thames, the Dnieper, the Nile, the Amazon</td></tr>
+            <tr><td>San Francisco Bay (often without)</td><td>the Mediterranean, the Black Sea, the Sea of Azov, the Kerch Strait, the Panama Canal</td></tr>
+        </table>
+        <div class="exception-block">🌊 <strong>Complex B2+:</strong> The Dnieper flows through Kyiv into the Black Sea. The Kerch Strait connects the Black Sea to the Sea of Azov.</div>
+    </div>
+
+    <!-- PART 5: MOUNTAINS, DESERTS -->
+    <div class="rule-card">
+        <h3>⛰️ PART 5 — MOUNTAINS, RANGES, DESERTS</h3>
+        <table>
+            <tr><th>No article</th><th>With <em>the</em></th></tr>
+            <tr><td>Mount Everest, Mount Fuji, Kilimanjaro, Vesuvius</td><td>the Alps, the Andes, the Himalayas, the Urals, the Crimean Mountains</td></tr>
+            <tr><td>Death Valley (often no article)</td><td>the Sahara, the Gobi, the Great Plains, the Silicon Valley</td></tr>
+        </table>
+        <div class="exception-block">⭐ Exception: <em>the Matterhorn</em> (single mountain with article). The Crimean Mountains — always 'the'.</div>
+    </div>
+
+    <!-- PART 6: ISLANDS -->
+    <div class="rule-card">
+        <h3>🏝️ PART 6 — ISLANDS</h3>
+        <table>
+            <tr><th>No article (single)</th><th>With <em>the</em> (groups / Isle of...)</th></tr>
+            <tr><td>Madagascar, Greenland, Sicily, Cyprus, Cuba, Iceland, Crimea (as island)</td><td>the British Isles, the Maldives, the Bahamas, the Philippines, the Kuril Islands</td></tr>
+            <tr><td>—</td><td>the Isle of Man, the Isle of Skye, the Isle of Wight</td></tr>
+        </table>
+        <div class="exception-block">📌 The dispute over the Kuril Islands remains unresolved. Crimea was once an island geologically.</div>
+    </div>
+
+    <!-- PART 7: PARKS, BRIDGES, INSTITUTIONS, CINEMAS, STREETS, CAPES -->
+    <div class="rule-card">
+        <h3>🎬 PART 7 — PARKS, BRIDGES, CINEMAS, STREETS, CAPES</h3>
+        <table>
+            <tr><th>No article</th><th>With <em>the</em></th></tr>
+            <tr><td>Central Park, Hyde Park, Tower Bridge, JFK Airport, Cape Cod, Cape Horn</td><td>the Golden Gate Bridge, the Kerch Bridge, the Sorbonne, the University of London</td></tr>
+            <tr><td>Oxford Street, Khreshchatyk Street, Broadway</td><td>the High Street, the Mall, the Strand</td></tr>
+            <tr><td>—</td><td>the Odeon, the Ritz (cinemas), the Town Hall</td></tr>
+        </table>
+        <div class="exception-block">🎭 <strong>Cinemas & Theatres:</strong> almost always 'the' (the Odeon, the Ritz, the Apollo). <br>🏛️ <strong>High Street</strong> — always 'the' in British English. <strong>Cape of Good Hope</strong> — always 'the'.</div>
+    </div>
+
+    <!-- ========== EXERCISE 1: WRITTEN (25 sentences) ========= -->
+    <div class="test-section">
+        <div class="test-header">
+            <h2>✍️ EXERCISE 1 — WRITTEN (25 B2+ sentences)</h2>
+            <div class="score-area" id="scoreWritten">Баллов: 0 / 25</div>
+        </div>
+        <div class="test-questions" id="writtenContainer"></div>
+        <div style="padding: 0 2rem 2rem 2rem;">
+            <button id="checkWrittenBtn">✅ Check all answers</button>
+            <button id="resetWrittenBtn" style="background:#b0a07e;">⟳ Reset</button>
+        </div>
+    </div>
+
+    <!-- ========== EXERCISE 2: SPEAKING (20 questions) ========= -->
+    <div class="test-section">
+        <div class="test-header">
+            <h2>🗣️ EXERCISE 2 — SPEAKING (20 complex questions)</h2>
+            <div class="score-area" id="scoreSpeaking">Выбрано верно: 0 / 20</div>
+        </div>
+        <div class="test-questions" id="speakingContainer"></div>
+        <div style="padding: 0 2rem 2rem 2rem;">
+            <button id="checkSpeakingBtn">🎤 Check article choices</button>
+            <button id="resetSpeakingBtn" style="background:#b0a07e;">⟳ Reset all</button>
+            <p style="margin-top: 10px; font-size:0.85rem;">💬 After selecting the article, speak your answer aloud (3–4 complex sentences).</p>
+        </div>
+    </div>
+    <footer>🎯 B2+ Masterclass: includes Ukraine, Crimea, peninsulas, the "of" rule, Kerch Strait, Crimean Mountains, cinemas, High Street, and all exceptions.</footer>
+</div>
+
+<script>
+    // ----- WRITTEN EXERCISE: 25 sentences (based on the final answer key) -----
+    const writtenData = [
+        { text: "______ Ukraine applied for EU membership in 2022.", correct: "–", alt: null },
+        { text: "The status of ______ Crimea has been disputed since 2014.", correct: "–", alt: "the" },
+        { text: "She traveled across ______ Kamchatka Peninsula during winter.", correct: "–", alt: null },
+        { text: "Russia built ______ Kerch Bridge to connect ______ Crimea to ______ mainland.", correct: ["the", "–", "–"], alt: null },
+        { text: "______ Lake Baikal contains more water than all ______ Great Lakes combined.", correct: ["–", "the"], alt: null },
+        { text: "Having sailed through ______ Mediterranean, they entered ______ Strait of Gibraltar at dawn.", correct: ["the", "the"], alt: null },
+        { text: "______ Mount Everest is less technically challenging than some believe, but ______ Himalayas remain deadly.", correct: ["–", "the"], alt: null },
+        { text: "Few tourists visit ______ Arabian Peninsula due to its climate.", correct: "the", alt: null },
+        { text: "The depth of ______ Dnieper varies dramatically along its course through ______ Ukraine.", correct: ["–", "–"], alt: null },
+        { text: "She dreams of walking across ______ Golden Gate Bridge at sunset.", correct: "the", alt: null },
+        { text: "______ Hague hosts the International Court of Justice, while ______ Kyiv is home to numerous diplomatic missions.", correct: ["The", "–"], alt: null },
+        { text: "The annexation of ______ Crimea by Russia in 2014 led to widespread sanctions.", correct: "–", alt: "the" },
+        { text: "Unlike ______ Philippines, ______ Maldives are at risk of rising sea levels.", correct: ["the", "the"], alt: null },
+        { text: "He wanted to study at ______ Sorbonne, but his family preferred ______ Oxford University.", correct: ["the", "–"], alt: null },
+        { text: "______ Cape of Good Hope was originally named the Cape of Storms.", correct: "The", alt: null },
+        { text: "Having grown up near ______ Lake Superior, she found ______ Pacific Ocean overwhelming.", correct: ["–", "the"], alt: null },
+        { text: "The population of ______ Crimean Peninsula is predominantly Russian-speaking today.", correct: "the", alt: null },
+        { text: "______ Netherlands are often confused with ______ Holland, but they are not the same.", correct: ["The", "–"], alt: null },
+        { text: "She took a photo of ______ Tower Bridge at night.", correct: "–", alt: null },
+        { text: "No one has ever crossed ______ Gobi Desert on foot without support.", correct: "the", alt: null },
+        { text: "The geopolitical importance of ______ Korean Peninsula cannot be overstated.", correct: "–", alt: "the" },
+        { text: "______ Russian Federation includes ______ Crimea according to its constitution.", correct: ["The", "–"], alt: null },
+        { text: "______ Independence Square in ______ Kyiv became a symbol of the Orange Revolution.", correct: ["–", "–"], alt: null },
+        { text: "The narrowest part of ______ Kerch Strait is only 4.5 kilometers wide.", correct: "the", alt: null },
+        { text: "Unlike ______ Mount Fuji, ______ Matterhorn requires advanced climbing skills.", correct: ["–", "the"], alt: null }
+    ];
+
+    // ----- SPEAKING: 20 questions (each with article missing) -----
+    const speakingData = [
+        { text: "Would you rather explore ______ Kamchatka Peninsula or ______ Arabian Peninsula? Why?", correct1: "–", correct2: "the" },
+        { text: "Having heard about the dispute over ______ Crimea, do you think tourists should visit it?", correct: "–", alt: "the" },
+        { text: "Which is more impressive: ______ Lake Baikal or ______ Great Lakes? Justify.", correct1: "–", correct2: "the" },
+        { text: "If you could sail through ______ Kerch Strait, what would you expect to see?", correct: "the" },
+        { text: "Why do you think ______ Ukraine has no article while ______ Netherlands does?", correct1: "–", correct2: "the" },
+        { text: "Would you prefer to climb ______ Mount Fuji or ______ Matterhorn? Explain risks.", correct1: "–", correct2: "the" },
+        { text: "What comes to mind when you hear ______ Dnieper River?", correct: "–" },
+        { text: "Is ______ Independence Square in ______ Kyiv comparable to Trafalgar Square?", correct1: "–", correct2: "–" },
+        { text: "Having studied ______ Korean Peninsula’s history, what surprises you most?", correct: "–", alt: "the" },
+        { text: "Would you rather spend a week in ______ Maldives or ______ Bahamas? Consider ecology.", correct1: "the", correct2: "the" },
+        { text: "What is the symbolic meaning of ______ Golden Gate Bridge for Americans?", correct: "the" },
+        { text: "Why is ______ Hague important for international law, unlike most other cities?", correct: "the" },
+        { text: "If you could rename ______ Cape of Good Hope, what would you call it?", correct: "the" },
+        { text: "Do you believe ______ Russian Federation’s claim to ______ Crimea is legitimate? Why?", correct1: "the", correct2: "–" },
+        { text: "What makes ______ Silk Road different from ______ Panama Canal in historical impact?", correct1: "–", correct2: "the" },
+        { text: "Would you rather study at ______ Kyiv University or ______ Sorbonne? Defend your choice.", correct1: "–", correct2: "the" },
+        { text: "Why are ______ Philippines always with 'the' while ______ Japan is not?", correct1: "the", correct2: "–" },
+        { text: "Imagine you are crossing ______ Gobi Desert. What three things do you take?", correct: "the" },
+        { text: "What is the ecological state of ______ Black Sea today?", correct: "the" },
+        { text: "Having seen ______ Matterhorn in photos, would you risk climbing it?", correct: "the" }
+    ];
+
+    // Helper to compare answers (handles arrays)
+    function isAnswerCorrect(user, correct, alt) {
+        if (!user) return false;
+        if (Array.isArray(correct)) {
+            // for multi-part sentences, user should enter something like "the,–,–" but in radio we have separate inputs? In written we have one input per sentence -> we'll treat as single string comparison after joining
+            return false; // handled separately in checkWritten
+        }
+        return (user === correct) || (alt && user === alt);
+    }
+
+    // RENDER WRITTEN (radio buttons for simplicity, but for multi-part sentences we simplify: each sentence has one answer field)
+    function renderWritten() {
+        const container = document.getElementById('writtenContainer');
+        container.innerHTML = '';
+        writtenData.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'question-item';
+            div.innerHTML = `
+                <div class="question-text">${idx+1}. ${item.text}</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="w_${idx}" value="the"> the</label>
+                    <label class="option"><input type="radio" name="w_${idx}" value="–"> – (no article)</label>
+                </div>
+                <div class="feedback" id="fb_w_${idx}"></div>
+            `;
+            container.appendChild(div);
+        });
+        loadWrittenAnswers();
+        updateWrittenScore();
+    }
+
+    function saveWrittenAnswers() {
+        const answers = [];
+        for (let i = 0; i < writtenData.length; i++) {
+            const selected = document.querySelector(`input[name="w_${i}"]:checked`);
+            answers.push(selected ? selected.value : null);
+        }
+        localStorage.setItem('written_b2_geo', JSON.stringify(answers));
+    }
+
+    function loadWrittenAnswers() {
+        const saved = localStorage.getItem('written_b2_geo');
+        if (saved) {
+            const answers = JSON.parse(saved);
+            answers.forEach((ans, idx) => {
+                if (ans) {
+                    const radio = document.querySelector(`input[name="w_${idx}"][value="${ans}"]`);
+                    if (radio) radio.checked = true;
+                }
+            });
+        }
+    }
+
+    function updateWrittenScore() {
+        let correct = 0;
+        for (let i = 0; i < writtenData.length; i++) {
+            const selected = document.querySelector(`input[name="w_${i}"]:checked`);
+            if (!selected) continue;
+            const userVal = selected.value;
+            const correctAns = writtenData[i].correct;
+            const altAns = writtenData[i].alt || null;
+            let isOk = false;
+            if (Array.isArray(correctAns)) {
+                // For multi-answer sentences, we need to match exactly? In our data, #4,5,6 etc have multiple correct values.
+                // Since radio gives single value, we check if userVal matches any of the correct array elements (for first blank)
+                if (correctAns.includes(userVal)) isOk = true;
+            } else {
+                isOk = (userVal === correctAns) || (altAns && userVal === altAns);
+            }
+            if (isOk) correct++;
+        }
+        document.getElementById('scoreWritten').innerText = `Баллов: ${correct} / ${writtenData.length}`;
+        return correct;
+    }
+
+    function checkWritten() {
+        for (let i = 0; i < writtenData.length; i++) {
+            const selected = document.querySelector(`input[name="w_${i}"]:checked`);
+            const fb = document.getElementById(`fb_w_${i}`);
+            const correctAns = writtenData[i].correct;
+            const altAns = writtenData[i].alt || null;
+            if (!selected) {
+                fb.innerHTML = '<span class="wrong-feedback">❌ choose an option</span>';
+                continue;
+            }
+            const userVal = selected.value;
+            let isCorrect = false;
+            if (Array.isArray(correctAns)) {
+                if (correctAns.includes(userVal)) isCorrect = true;
+            } else {
+                isCorrect = (userVal === correctAns) || (altAns && userVal === altAns);
+            }
+            if (isCorrect) {
+                fb.innerHTML = '<span class="correct-feedback">✓ correct</span>';
+            } else {
+                let expected = Array.isArray(correctAns) ? correctAns.join(' or ') : correctAns;
+                if (altAns && !Array.isArray(correctAns)) expected += ` (or ${altAns})`;
+                fb.innerHTML = `<span class="wrong-feedback">✗ expected: ${expected}</span>`;
+            }
+        }
+        updateWrittenScore();
+        saveWrittenAnswers();
+        const final = updateWrittenScore();
+        if (final === writtenData.length) alert('🎉 Excellent! You have mastered B2+ geographical articles including Ukraine, Crimea, and peninsulas.');
+        else alert('Review the mistakes — pay attention to Crimea (modern: no article), the Korean Peninsula (both variants), and the "of" rule.');
+    }
+
+    function resetWritten() {
+        for (let i = 0; i < writtenData.length; i++) {
+            const radios = document.querySelectorAll(`input[name="w_${i}"]`);
+            radios.forEach(r => r.checked = false);
+            const fb = document.getElementById(`fb_w_${i}`);
+            if (fb) fb.innerHTML = '';
+        }
+        localStorage.removeItem('written_b2_geo');
+        updateWrittenScore();
+    }
+
+    // SPEAKING RENDER (radio for each question)
+    function renderSpeaking() {
+        const container = document.getElementById('speakingContainer');
+        container.innerHTML = '';
+        speakingData.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'question-item';
+            let optionsHtml = '';
+            if (q.correct1 !== undefined && q.correct2 !== undefined) {
+                optionsHtml = `
+                    <div style="margin-bottom:8px;"><strong>First blank:</strong>
+                        <label class="option"><input type="radio" name="sp_${idx}_a" value="the"> the</label>
+                        <label class="option"><input type="radio" name="sp_${idx}_a" value="–"> –</label>
+                    </div>
+                    <div><strong>Second blank:</strong>
+                        <label class="option"><input type="radio" name="sp_${idx}_b" value="the"> the</label>
+                        <label class="option"><input type="radio" name="sp_${idx}_b" value="–"> –</label>
+                    </div>
+                `;
+            } else {
+                optionsHtml = `<div class="options">
+                    <label class="option"><input type="radio" name="sp_${idx}" value="the"> the</label>
+                    <label class="option"><input type="radio" name="sp_${idx}" value="–"> –</label>
+                </div>`;
+            }
+            div.innerHTML = `<div class="question-text">🎙️ ${idx+1}. ${q.text}</div>${optionsHtml}<div class="feedback" id="fb_sp_${idx}"></div>`;
+            container.appendChild(div);
+        });
+        loadSpeakingAnswers();
+        updateSpeakingScore();
+    }
+
+    function saveSpeakingAnswers() {
+        const answers = {};
+        for (let i = 0; i < speakingData.length; i++) {
+            const q = speakingData[i];
+            if (q.correct1 !== undefined) {
+                const selA = document.querySelector(`input[name="sp_${i}_a"]:checked`);
+                const selB = document.querySelector(`input[name="sp_${i}_b"]:checked`);
+                if (selA) answers[`${i}_a`] = selA.value;
+                if (selB) answers[`${i}_b`] = selB.value;
+            } else {
+                const sel = document.querySelector(`input[name="sp_${i}"]:checked`);
+                if (sel) answers[`${i}`] = sel.value;
+            }
+        }
+        localStorage.setItem('speaking_b2_geo', JSON.stringify(answers));
+    }
+
+    function loadSpeakingAnswers() {
+        const saved = localStorage.getItem('speaking_b2_geo');
+        if (saved) {
+            const answers = JSON.parse(saved);
+            for (let i = 0; i < speakingData.length; i++) {
+                const q = speakingData[i];
+                if (q.correct1 !== undefined) {
+                    const valA = answers[`${i}_a`];
+                    const valB = answers[`${i}_b`];
+                    if (valA) { let r = document.querySelector(`input[name="sp_${i}_a"][value="${valA}"]`); if(r) r.checked=true; }
+                    if (valB) { let r = document.querySelector(`input[name="sp_${i}_b"][value="${valB}"]`); if(r) r.checked=true; }
+                } else {
+                    const val = answers[`${i}`];
+                    if (val) { let r = document.querySelector(`input[name="sp_${i}"][value="${val}"]`); if(r) r.checked=true; }
+                }
+            }
+        }
+    }
+
+    function updateSpeakingScore() {
+        let correct = 0, total = 0;
+        for (let i = 0; i < speakingData.length; i++) {
+            const q = speakingData[i];
+            if (q.correct1 !== undefined) {
+                const selA = document.querySelector(`input[name="sp_${i}_a"]:checked`);
+                const selB = document.querySelector(`input[name="sp_${i}_b"]:checked`);
+                if (selA && selA.value === q.correct1) correct++;
+                if (selB && selB.value === q.correct2) correct++;
+                total += 2;
+            } else {
+                const sel = document.querySelector(`input[name="sp_${i}"]:checked`);
+                if (sel && (sel.value === q.correct || (q.alt && sel.value === q.alt))) correct++;
+                total++;
+            }
+        }
+        document.getElementById('scoreSpeaking').innerText = `Выбрано верно: ${correct} / ${total}`;
+    }
+
+    function checkSpeaking() {
+        for (let i = 0; i < speakingData.length; i++) {
+            const q = speakingData[i];
+            const fb = document.getElementById(`fb_sp_${i}`);
+            if (q.correct1 !== undefined) {
+                const selA = document.querySelector(`input[name="sp_${i}_a"]:checked`);
+                const selB = document.querySelector(`input[name="sp_${i}_b"]:checked`);
+                const okA = selA && selA.value === q.correct1;
+                const okB = selB && selB.value === q.correct2;
+                if (okA && okB) fb.innerHTML = '<span class="correct-feedback">✓ both articles correct</span>';
+                else fb.innerHTML = `<span class="wrong-feedback">⚠️ first: ${selA ? selA.value : '?'} (need ${q.correct1}), second: ${selB ? selB.value : '?'} (need ${q.correct2})</span>`;
+            } else {
+                const sel = document.querySelector(`input[name="sp_${i}"]:checked`);
+                const isOk = sel && (sel.value === q.correct || (q.alt && sel.value === q.alt));
+                if (isOk) fb.innerHTML = '<span class="correct-feedback">✓ correct article</span>';
+                else fb.innerHTML = `<span class="wrong-feedback">✗ wrong, need: ${q.correct}${q.alt ? ' or '+q.alt : ''}</span>`;
+            }
+        }
+        updateSpeakingScore();
+        saveSpeakingAnswers();
+        alert('Now speak your answers aloud using the correct articles! Focus on Crimea, Ukraine, and peninsulas.');
+    }
+
+    function resetSpeaking() {
+        for (let i = 0; i < speakingData.length; i++) {
+            const q = speakingData[i];
+            if (q.correct1 !== undefined) {
+                document.querySelectorAll(`input[name="sp_${i}_a"]`).forEach(r => r.checked = false);
+                document.querySelectorAll(`input[name="sp_${i}_b"]`).forEach(r => r.checked = false);
+            } else {
+                document.querySelectorAll(`input[name="sp_${i}"]`).forEach(r => r.checked = false);
+            }
+            const fb = document.getElementById(`fb_sp_${i}`);
+            if (fb) fb.innerHTML = '';
+        }
+        localStorage.removeItem('speaking_b2_geo');
+        updateSpeakingScore();
+    }
+
+    window.onload = () => {
+        renderWritten();
+        renderSpeaking();
+        document.getElementById('checkWrittenBtn').addEventListener('click', checkWritten);
+        document.getElementById('resetWrittenBtn').addEventListener('click', resetWritten);
+        document.getElementById('checkSpeakingBtn').addEventListener('click', checkSpeaking);
+        document.getElementById('resetSpeakingBtn').addEventListener('click', resetSpeaking);
+        document.addEventListener('change', (e) => {
+            if (e.target && e.target.type === 'radio') {
+                saveWrittenAnswers();
+                saveSpeakingAnswers();
+                updateWrittenScore();
+                updateSpeakingScore();
+            }
+        });
+    };
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

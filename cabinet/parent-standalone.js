@@ -1,4 +1,6 @@
-/* Standalone parent cabinet for file:// usage. Generated from core.js + app.js + parent.js. */
+﻿(function () {
+
+  "use strict";
 
 const STORAGE_KEY = "nge_os_v1";
 const SESSION_KEY = "nge_os_session_v1";
@@ -34,6 +36,10 @@ const SESSION_KEY = "nge_os_session_v1";
  *  status: "pending"|"paid"|"overdue";
  *  date: string; // ISO
  *  comment?: string;
+ *  lessonsTotal?: number;
+ *  lessonsLeft?: number;
+ *  paidAt?: string;
+ *  remindAt?: string;
  * }} Payment
  *
  * @typedef {{
@@ -87,6 +93,14 @@ const SESSION_KEY = "nge_os_session_v1";
  * }} Notification
  *
  * @typedef {{
+ *  id: string;
+ *  studentId: string;
+ *  title: string;
+ *  body: string;
+ *  createdAt: string;
+ * }} StudentReport
+ *
+ * @typedef {{
  *  users: User[];
  *  lessons: Lesson[];
  *  payments: Payment[];
@@ -95,6 +109,7 @@ const SESSION_KEY = "nge_os_session_v1";
  *  studentMeta: StudentMeta[];
  *  teacherTasks: TeacherTask[];
  *  notifications: Notification[];
+ *  reports?: StudentReport[];
  * }} State
  */
 
@@ -124,10 +139,10 @@ function seed() {
 
   return {
     users: [
-      { id: teacherId, role: "teacher", name: "Мария (Учитель)", email: "teacher@example.com" },
-      { id: studentA, role: "student", name: "Ученик А", email: "student.a@example.com" },
-      { id: studentB, role: "student", name: "Ученик Б", email: "student.b@example.com" },
-      { id: parentId, role: "parent", name: "Родитель", email: "parent@example.com", linkedStudents: [studentA, studentB] },
+      { id: teacherId, role: "teacher", name: "РњР°СЂРёСЏ (РЈС‡РёС‚РµР»СЊ)", email: "teacher@example.com" },
+      { id: studentA, role: "student", name: "РЈС‡РµРЅРёРє Рђ", email: "student.a@example.com" },
+      { id: studentB, role: "student", name: "РЈС‡РµРЅРёРє Р‘", email: "student.b@example.com" },
+      { id: parentId, role: "parent", name: "Р РѕРґРёС‚РµР»СЊ", email: "parent@example.com", linkedStudents: [studentA, studentB] },
     ],
     lessons: [
       {
@@ -136,7 +151,7 @@ function seed() {
         teacherId,
         date: plusDays(0),
         status: "planned",
-        homework: "Повторить Past Simple (10 примеров) + 15 минут чтения.",
+        homework: "РџРѕРІС‚РѕСЂРёС‚СЊ Past Simple (10 РїСЂРёРјРµСЂРѕРІ) + 15 РјРёРЅСѓС‚ С‡С‚РµРЅРёСЏ.",
         notes: "",
         progressMeUrl: "https://progressme.ru/",
       },
@@ -146,7 +161,7 @@ function seed() {
         teacherId,
         date: plusDays(1),
         status: "planned",
-        homework: "Аудирование: 1 короткое видео, выписать 10 слов.",
+        homework: "РђСѓРґРёСЂРѕРІР°РЅРёРµ: 1 РєРѕСЂРѕС‚РєРѕРµ РІРёРґРµРѕ, РІС‹РїРёСЃР°С‚СЊ 10 СЃР»РѕРІ.",
         notes: "",
       },
       {
@@ -155,20 +170,41 @@ function seed() {
         teacherId,
         date: plusDays(-2),
         status: "done",
-        homework: "Закрепить лексику по теме «Travel».",
-        notes: "Сильная динамика, держит темп. Следующий шаг: speaking drills.",
+        homework: "Р—Р°РєСЂРµРїРёС‚СЊ Р»РµРєСЃРёРєСѓ РїРѕ С‚РµРјРµ В«TravelВ».",
+        notes: "РЎРёР»СЊРЅР°СЏ РґРёРЅР°РјРёРєР°, РґРµСЂР¶РёС‚ С‚РµРјРї. РЎР»РµРґСѓСЋС‰РёР№ С€Р°Рі: speaking drills.",
       },
     ],
     payments: [
-      { id: "p_1", studentId: studentA, amount: 3500, status: "paid", date: plusDays(-7), comment: "Индивидуально" },
-      { id: "p_2", studentId: studentB, amount: 3000, status: "pending", date: plusDays(-3), comment: "Индивидуально" },
+      {
+        id: "p_1",
+        studentId: studentA,
+        amount: 3500,
+        status: "paid",
+        date: plusDays(-7),
+        paidAt: plusDays(-7),
+        remindAt: plusDays(21),
+        lessonsTotal: 4,
+        lessonsLeft: 3,
+        comment: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ",
+      },
+      {
+        id: "p_2",
+        studentId: studentB,
+        amount: 3000,
+        status: "pending",
+        date: plusDays(-3),
+        remindAt: plusDays(4),
+        lessonsTotal: 4,
+        lessonsLeft: 1,
+        comment: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ",
+      },
     ],
     progress: [
       {
         studentId: studentA,
         level: "A2",
         goals: "Speaking + travel vocabulary",
-        comments: "Плавно растёт уверенность.",
+        comments: "РџР»Р°РІРЅРѕ СЂР°СЃС‚С‘С‚ СѓРІРµСЂРµРЅРЅРѕСЃС‚СЊ.",
         studentGoals: "",
         studentNotes: "",
       },
@@ -176,7 +212,7 @@ function seed() {
         studentId: studentB,
         level: "B1",
         goals: "Grammar + fluency",
-        comments: "Нужен режим домашки 3×/нед.",
+        comments: "РќСѓР¶РµРЅ СЂРµР¶РёРј РґРѕРјР°С€РєРё 3Г—/РЅРµРґ.",
         studentGoals: "",
         studentNotes: "",
       },
@@ -187,7 +223,7 @@ function seed() {
         studentId: studentA,
         kind: "practice",
         title: "Speaking drill",
-        details: "10 минут — вопросы/ответы по теме Travel.",
+        details: "10 РјРёРЅСѓС‚ вЂ” РІРѕРїСЂРѕСЃС‹/РѕС‚РІРµС‚С‹ РїРѕ С‚РµРјРµ Travel.",
         minutes: 10,
         at: plusDays(-1),
         done: true,
@@ -197,29 +233,30 @@ function seed() {
         id: "si_2",
         studentId: studentA,
         kind: "material",
-        title: "Список слов: Travel (10)",
-        details: "Повторить + 10 примеров в Past Simple.",
+        title: "РЎРїРёСЃРѕРє СЃР»РѕРІ: Travel (10)",
+        details: "РџРѕРІС‚РѕСЂРёС‚СЊ + 10 РїСЂРёРјРµСЂРѕРІ РІ Past Simple.",
         url: "",
         done: false,
         createdAt: new Date().toISOString(),
       },
     ],
     studentMeta: [
-      { studentId: studentA, tariff: "Индивидуально · 3500 ₽", plan: "1×/нед" },
-      { studentId: studentB, tariff: "Индивидуально · 3000 ₽", plan: "2×/нед" },
+      { studentId: studentA, tariff: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ В· 3500 в‚Ѕ", plan: "1Г—/РЅРµРґ" },
+      { studentId: studentB, tariff: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ В· 3000 в‚Ѕ", plan: "2Г—/РЅРµРґ" },
     ],
     teacherTasks: [
       {
         id: "t_1",
         teacherId,
-        title: "Проверить домашку (Ученик А)",
-        notes: "Past Simple (10 примеров) + лексика Travel.",
+        title: "РџСЂРѕРІРµСЂРёС‚СЊ РґРѕРјР°С€РєСѓ (РЈС‡РµРЅРёРє Рђ)",
+        notes: "Past Simple (10 РїСЂРёРјРµСЂРѕРІ) + Р»РµРєСЃРёРєР° Travel.",
         due: todayISODate(),
         status: "open",
         createdAt: new Date().toISOString(),
       },
     ],
     notifications: [],
+    reports: [],
   };
 }
 
@@ -238,6 +275,7 @@ function loadState() {
     if (!Array.isArray(s.payments)) s.payments = [];
     if (!Array.isArray(s.progress)) s.progress = [];
     if (!Array.isArray(s.notifications)) s.notifications = [];
+    if (!Array.isArray(s.reports)) s.reports = [];
     if (!Array.isArray(s.studentItems)) s.studentItems = [];
     if (!Array.isArray(s.studentMeta)) s.studentMeta = [];
     if (!Array.isArray(s.teacherTasks)) s.teacherTasks = [];
@@ -246,6 +284,18 @@ function loadState() {
       ...p,
       studentGoals: p.studentGoals || "",
       studentNotes: p.studentNotes || "",
+    }));
+    s.payments = s.payments.map((p) => ({
+      ...p,
+      lessonsTotal: Number.isFinite(Number(p.lessonsTotal)) ? Number(p.lessonsTotal) : 0,
+      lessonsLeft: Number.isFinite(Number(p.lessonsLeft)) ? Number(p.lessonsLeft) : 0,
+      paidAt: p.paidAt || (p.status === "paid" ? p.date : ""),
+      remindAt: p.remindAt || "",
+      paymentUrl: p.paymentUrl || "",
+      paymentProvider: p.paymentProvider || "tbank",
+      payerMarkedAt: p.payerMarkedAt || "",
+      receiptNumber: p.receiptNumber || "",
+      receiptUrl: p.receiptUrl || "",
     }));
 
     return s;
@@ -327,7 +377,7 @@ function upsertProgress(state, studentId, patch) {
   if (idx === -1) {
     const created = {
       studentId,
-      level: patch.level || "—",
+      level: patch.level || "вЂ”",
       goals: patch.goals || "",
       comments: patch.comments || "",
     };
@@ -368,6 +418,15 @@ function updateLesson(state, lessonId, patch) {
   return state.lessons[idx];
 }
 
+/** @param {State} state @param {string} lessonId */
+function deleteLesson(state, lessonId) {
+  const idx = state.lessons.findIndex((l) => l.id === lessonId);
+  if (idx === -1) return false;
+  state.lessons.splice(idx, 1);
+  saveState(state);
+  return true;
+}
+
 /**
  * @param {State} state
  * @param {Omit<Payment, "id">} input
@@ -388,6 +447,15 @@ function updatePayment(state, paymentId, patch) {
   return state.payments[idx];
 }
 
+/** @param {State} state @param {string} paymentId */
+function deletePayment(state, paymentId) {
+  const idx = state.payments.findIndex((p) => p.id === paymentId);
+  if (idx === -1) return false;
+  state.payments.splice(idx, 1);
+  saveState(state);
+  return true;
+}
+
 /**
  * @param {State} state
  * @param {Omit<Notification, "id">} input
@@ -404,7 +472,7 @@ function listPendingNotifications(state) {
   return state.notifications
     .filter((n) => !n.sentAt)
     .slice()
-    .sort((a, b) => new Date(a.sendAt) - new Date(b.sendAt));
+    .sort((a, b) => new Date(b.sendAt) - new Date(a.sendAt));
 }
 
 /** @param {State} state @param {string} userId */
@@ -457,7 +525,7 @@ function upsertStudentMeta(state, studentId, patch) {
   if (idx === -1) {
     const created = {
       studentId,
-      tariff: (patch.tariff || "").trim() || "—",
+      tariff: (patch.tariff || "").trim() || "вЂ”",
       plan: (patch.plan || "").trim() || "",
     };
     state.studentMeta.push(created);
@@ -554,8 +622,8 @@ function deleteTeacherTask(state, taskId) {
 
 
 const CABINET_THEME_KEY = "nge-cabinet-theme";
-const SUN_ICON = "\u2600"; // ☀
-const MOON_ICON = "\u263E"; // ☾
+const SUN_ICON = "\u2600"; // вЂ
+const MOON_ICON = "\u263E"; // вѕ
 const THEME_WIRED_FLAG = "__NGE_CABINET_THEME_WIRED__";
 
 function qs(sel) {
@@ -728,6 +796,38 @@ function t(ru, en) {
   return getLang() === "ru" ? ru : en;
 }
 
+const PAYMENT_SETTINGS_KEY = "nge_payment_settings_v1";
+const DEFAULT_TBANK_PAYMENT_URL = "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143";
+const TBANK_PAYMENT_DETAILS = [
+  ["РџРѕР»СѓС‡Р°С‚РµР»СЊ", "Р‘СѓСЂС†РµРІР° РњР°СЂРёСЏ Р’РёС‚Р°Р»СЊРµРІРЅР°"],
+  ["РЎС‡РµС‚", "40817810200014652973"],
+  ["РќР°Р·РЅР°С‡РµРЅРёРµ", "РџРµСЂРµРІРѕРґ СЃСЂРµРґСЃС‚РІ РїРѕ РґРѕРіРѕРІРѕСЂСѓ в„– 5181572792 Р‘СѓСЂС†РµРІР° РњР°СЂРёСЏ Р’РёС‚Р°Р»СЊРµРІРЅР° РќР”РЎ РЅРµ РѕР±Р»Р°РіР°РµС‚СЃСЏ"],
+  ["Р‘РРљ", "044525974"],
+  ["Р‘Р°РЅРє", "РђРћ \"РўР‘Р°РЅРє\""],
+  ["РљРѕСЂСЂ. СЃС‡РµС‚", "30101810145250000974"],
+  ["РРќРќ", "7710140679"],
+  ["РљРџРџ", "771301001"],
+];
+
+function getPaymentSettings() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(PAYMENT_SETTINGS_KEY) || "{}");
+    return {
+      tbankUrl: typeof parsed.tbankUrl === "string" && parsed.tbankUrl.trim() ? parsed.tbankUrl.trim() : DEFAULT_TBANK_PAYMENT_URL,
+    };
+  } catch {
+    return { tbankUrl: DEFAULT_TBANK_PAYMENT_URL };
+  }
+}
+
+function getPaymentUrl(payment) {
+  return (payment.paymentUrl || "").trim() || getPaymentSettings().tbankUrl;
+}
+
+function renderTbankDetails() {
+  return TBANK_PAYMENT_DETAILS.map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("");
+}
+
 function pill(status) {
   const map = {
     planned: { tone: "warn", ru: "planned", en: "planned" },
@@ -751,7 +851,7 @@ function renderChildOptions(state, parentUser) {
       return u ? `<option value="${escapeHtml(id)}">${escapeHtml(u.name)}</option>` : "";
     })
     .join("");
-  select.innerHTML = options || `<option value="">${escapeHtml(t("Нет привязанных учеников", "No linked students"))}</option>`;
+  select.innerHTML = options || `<option value="">${escapeHtml(t("РќРµС‚ РїСЂРёРІСЏР·Р°РЅРЅС‹С… СѓС‡РµРЅРёРєРѕРІ", "No linked students"))}</option>`;
 }
 
 function renderAttendanceKpis(lessons) {
@@ -778,7 +878,7 @@ function renderLessons(state, studentId) {
       return `
         <tr>
           <td><div class="panel-kicker">${escapeHtml(formatDateTime(l.date))}</div>${pill(l.status)}</td>
-          <td class="muted">${escapeHtml((l.homework || "").slice(0, 110) || "—")}</td>
+          <td class="muted">${escapeHtml((l.homework || "").slice(0, 110) || "вЂ”")}</td>
         </tr>`;
     })
     .join("");
@@ -788,11 +888,11 @@ function renderLessons(state, studentId) {
     table.innerHTML = `
       <thead>
         <tr>
-          <th>${escapeHtml(t("Дата", "Date"))}</th>
-          <th>${escapeHtml(t("Домашка", "Homework"))}</th>
+          <th>${escapeHtml(t("Р”Р°С‚Р°", "Date"))}</th>
+          <th>${escapeHtml(t("Р”РѕРјР°С€РєР°", "Homework"))}</th>
         </tr>
       </thead>
-      <tbody>${rows || `<tr><td colspan="2" class="muted">${escapeHtml(t("Нет уроков", "No lessons"))}</td></tr>`}</tbody>
+      <tbody>${rows || `<tr><td colspan="2" class="muted">${escapeHtml(t("РќРµС‚ СѓСЂРѕРєРѕРІ", "No lessons"))}</td></tr>`}</tbody>
     `;
   }
 }
@@ -815,19 +915,19 @@ function renderHomework(state, studentId) {
           `
         )
         .join("")
-    : `<div class="muted">${escapeHtml(t("Пока нет домашки", "No homework yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґРѕРјР°С€РєРё", "No homework yet"))}</div>`;
 
   const materials = listStudentItems(state, studentId, "material").slice(0, 6);
   const materialsHtml = materials.length
     ? `
       <div style="margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px;">
-        <div class="panel-kicker">${escapeHtml(t("Материалы ученика", "Student materials"))}</div>
+        <div class="panel-kicker">${escapeHtml(t("РњР°С‚РµСЂРёР°Р»С‹ СѓС‡РµРЅРёРєР°", "Student materials"))}</div>
         ${materials
           .map((m) => {
             const link = m.url
               ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
                   m.url
-                )}" target="_blank" rel="noopener noreferrer">↗</a>`
+                )}" target="_blank" rel="noopener noreferrer">в†—</a>`
               : "";
             return `
               <div style="display:flex; justify-content:space-between; gap:12px; padding: 8px 0; border-bottom: 1px solid var(--line);">
@@ -844,7 +944,37 @@ function renderHomework(state, studentId) {
     `
     : "";
 
-  const html = `${homeworkHtml}${materialsHtml}`;
+  const practice = listStudentItems(state, studentId, "practice").slice(0, 6);
+  const practiceHtml = practice.length
+    ? `
+      <div style="margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px;">
+        <div class="panel-kicker">${escapeHtml(t("РўСЂРµРЅР°Р¶С‘СЂС‹ Рё РїСЂР°РєС‚РёРєР°", "Practice and trainers"))}</div>
+        ${practice
+          .map((p) => {
+            const link = p.url
+              ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
+                  p.url
+                )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ", "Open"))}</a>`
+              : "";
+            return `
+              <div style="display:flex; justify-content:space-between; gap:12px; padding: 8px 0; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div><strong>${escapeHtml(p.title)}</strong> ${p.done ? pill("paid") : ""}</div>
+                  ${p.details ? `<div class="muted" style="margin-top:4px;">${escapeHtml(p.details)}</div>` : ""}
+                  <div class="muted" style="margin-top:4px;">${escapeHtml(
+                    [p.level, p.minutes ? `${p.minutes} ${t("РјРёРЅ", "min")}` : ""].filter(Boolean).join(" В· ")
+                  )}</div>
+                </div>
+                <div>${link}</div>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    `
+    : "";
+
+  const html = `${homeworkHtml}${materialsHtml}${practiceHtml}`;
   const el = byId("parentHomeworkList");
   if (el) el.innerHTML = html;
 }
@@ -856,11 +986,101 @@ function renderProgress(state, studentId) {
   el.innerHTML = prog
     ? `
       <div style="display:grid; gap: 10px;">
-        <div><span class="panel-kicker">${escapeHtml(t("Уровень", "Level"))}</span><div><strong>${escapeHtml(prog.level)}</strong></div></div>
-        <div><span class="panel-kicker">${escapeHtml(t("Цели", "Goals"))}</span><div class="muted">${escapeHtml(prog.goals)}</div></div>
-        <div><span class="panel-kicker">${escapeHtml(t("Комментарий преподавателя", "Teacher comment"))}</span><div class="muted">${escapeHtml(prog.comments)}</div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("РЈСЂРѕРІРµРЅСЊ", "Level"))}</span><div><strong>${escapeHtml(prog.level)}</strong></div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("Р¦РµР»Рё", "Goals"))}</span><div class="muted">${escapeHtml(prog.goals)}</div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ", "Teacher comment"))}</span><div class="muted">${escapeHtml(prog.comments)}</div></div>
       </div>`
-    : `<div class="muted">${escapeHtml(t("Пока нет данных", "No data yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґР°РЅРЅС‹С…", "No data yet"))}</div>`;
+}
+
+function buildTeacherSavedReportText(state, report) {
+  const student = getUser(state, report.studentId);
+  const progress = getProgress(state, report.studentId) || {};
+  const meta = getStudentMeta(state, report.studentId) || {};
+  const lessons = listLessonsForStudent(state, report.studentId).slice(-8).reverse();
+  const builder = window.NGEReportDocs?.buildReportDocument;
+  if (!builder) return report.body || "";
+  return builder({
+    title: report.title || "РћС‚С‡С‘С‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ",
+    studentName: student?.name || "вЂ”",
+    generatedLabel: formatDateTime(report.createdAt),
+    level: progress.level || "вЂ”",
+    subscription: meta.tariff || "вЂ”",
+    totalLessons: meta.lessonsTotal || lessons.length,
+    lessonsLeft: meta.lessonsLeft ?? "вЂ”",
+    focus: progress.goals || progress.comments || "Р Р°Р±РѕС‡РёР№ С„РѕРєСѓСЃ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ.",
+    body: report.body || progress.comments || "",
+    homework: lessons.find((l) => l.homework)?.homework || "",
+    nextStep: meta.plan || progress.goals || "РџСЂРѕРґРѕР»Р¶Р°РµРј РїРѕ РїР»Р°РЅСѓ Р·Р°РЅСЏС‚РёР№.",
+    lessons: lessons.map((l) => ({
+      date: formatDateTime(l.date),
+      status: l.status,
+      topic: "РЈСЂРѕРє Р°РЅРіР»РёР№СЃРєРѕРіРѕ",
+      homework: l.homework || l.notes || "",
+    })),
+  });
+}
+
+function renderParentReports(state, studentId) {
+  const el = byId("parentReportsBox");
+  if (!el) return;
+  const reports = (state.reports || [])
+    .filter((r) => r.studentId === studentId)
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 4);
+
+  if (!reports.length) {
+    el.innerHTML = `
+      <div style="border-top:1px solid var(--line); padding-top:12px;">
+        <div class="panel-kicker">${escapeHtml(t("РћС‚С‡С‘С‚С‹", "Reports"))}</div>
+        <div class="muted">${escapeHtml(t("РћС‚С‡С‘С‚РѕРІ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ РїРѕРєР° РЅРµС‚", "No teacher reports yet"))}</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = `
+    <div style="border-top:1px solid var(--line); padding-top:12px;">
+      <div class="panel-kicker">${escapeHtml(t("РћС‚С‡С‘С‚С‹", "Reports"))}</div>
+      ${reports.map((report) => `
+        <div class="student-item-row">
+          <div>
+            <div class="panel-kicker">${escapeHtml(formatDateTime(report.createdAt))}</div>
+            <div><strong>${escapeHtml(report.title || t("РћС‚С‡С‘С‚", "Report"))}</strong></div>
+            <div class="muted">${escapeHtml((report.body || "").slice(0, 120))}</div>
+          </div>
+          <div class="student-item-actions">
+            <button class="btn-mini" type="button" data-parent-report="${escapeHtml(report.id)}">${escapeHtml(t("PDF", "PDF"))}</button>
+          </div>
+        </div>`).join("")}
+    </div>`;
+
+  el.querySelectorAll("[data-parent-report]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-parent-report");
+      const fresh = loadState();
+      const report = (fresh.reports || []).find((x) => x.id === id);
+      if (!report) return;
+      const student = getUser(fresh, report.studentId);
+      const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
+      const html = buildTeacherSavedReportText(fresh, report);
+      window.NGEReportDocs?.openPdfPrint
+        ? window.NGEReportDocs.openPdfPrint(
+ge-teacher-report-${safeName}.pdf`, html)
+        : (() => {
+            const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = 
+ge-teacher-report-${safeName}.html`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+          })();
+    });
+  });
 }
 
 function renderPayments(state, studentId) {
@@ -868,18 +1088,66 @@ function renderPayments(state, studentId) {
   const html = payments.length
     ? payments
         .map((p) => {
-          return `<div style="display:flex; justify-content:space-between; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+          const total = Number(p.lessonsTotal || 0);
+          const left = Number(p.lessonsLeft || 0);
+          const paidAt = p.paidAt ? formatDateTime(p.paidAt) : t("РЅРµ РѕРїР»Р°С‡РµРЅРѕ", "not paid");
+          const remindAt = p.remindAt ? formatDateTime(p.remindAt) : t("РЅРµ Р·Р°РґР°РЅРѕ", "not set");
+          const paymentUrl = getPaymentUrl(p);
+          const markedAt = p.payerMarkedAt ? formatDateTime(p.payerMarkedAt) : "";
+          const receiptNumber = (p.receiptNumber || "").trim();
+          const receiptUrl = (p.receiptUrl || "").trim();
+          return `<div class="payment-row">
             <div>
               <div class="panel-kicker">${escapeHtml(formatDateTime(p.date))}</div>
               <div class="muted">${escapeHtml(p.comment || "")}</div>
+              <div style="margin-top:6px;"><strong>${escapeHtml(total ? `${left}/${total}` : "вЂ”")}</strong> <span class="muted">${escapeHtml(t("Р·Р°РЅСЏС‚РёР№ РѕСЃС‚Р°Р»РѕСЃСЊ / РІСЃРµРіРѕ", "lessons left / total"))}</span></div>
+              <div class="muted" style="margin-top:4px;">${escapeHtml(t("РћРїР»Р°С‡РµРЅРѕ", "Paid"))}: ${escapeHtml(paidAt)} В· ${escapeHtml(t("РќР°РїРѕРјРЅРёС‚СЊ", "Remind"))}: ${escapeHtml(remindAt)}</div>
+              <div class="payment-placeholder">
+                <strong>${escapeHtml(t("РћРїР»Р°С‚Р° С‡РµСЂРµР· Рў-Р‘Р°РЅРє", "T-Bank payment"))}</strong>
+                <div class="muted" style="margin-top:4px;">${escapeHtml(markedAt ? t(`Р РѕРґРёС‚РµР»СЊ РѕС‚РјРµС‚РёР» РѕРїР»Р°С‚Сѓ: ${markedAt}`, `Payment marked by parent: ${markedAt}`) : t("РџРѕСЃР»Рµ РѕРїР»Р°С‚С‹ РЅР°Р¶РјРёС‚Рµ В«РЇ РѕРїР»Р°С‚РёР»(Р°)В»: РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ РїРѕРґС‚РІРµСЂРґРёС‚ РїР»Р°С‚С‘Р¶ Рё РѕР±РЅРѕРІРёС‚ РѕСЃС‚Р°С‚РѕРє Р·Р°РЅСЏС‚РёР№.", "After payment, click вЂњI paidвЂќ: the teacher will confirm it and update the lesson balance."))}</div>
+                <div class="muted" style="margin-top:8px;">${renderTbankDetails()}</div>
+                <div class="actions" style="margin-top:10px;">
+                  ${paymentUrl ? `<a class="btn-mini" data-primary href="${escapeHtml(paymentUrl)}" target="_blank" rel="noopener">РћРїР»Р°С‚РёС‚СЊ С‡РµСЂРµР· Рў-Р‘Р°РЅРє</a>` : `<span class="btn-mini" aria-disabled="true">${escapeHtml(t("РЎСЃС‹Р»РєР° Рў-Р‘Р°РЅРєР° РіРѕС‚РѕРІРёС‚СЃСЏ", "T-Bank link pending"))}</span>`}
+                  ${paymentUrl ? `<button class="btn-mini" type="button" data-parent-pay-confirm="${escapeHtml(p.id)}">${escapeHtml(t("РЇ РѕРїР»Р°С‚РёР»(Р°)", "I paid"))}</button>` : ""}
+                </div>
+              </div>
+              ${receiptUrl ? `<div class="actions" style="margin-top:8px;"><a class="btn-mini" href="${escapeHtml(receiptUrl)}" target="_blank" rel="noopener">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ С‡РµРє", "Open receipt"))}</a></div>` : ""}
+              ${receiptNumber && !receiptUrl ? `<div class="muted" style="margin-top:8px;">${escapeHtml(t("Р§РµРє", "Receipt"))}: ${escapeHtml(receiptNumber)}</div>` : ""}
             </div>
-            <div class="mono"><strong>${escapeHtml(String(p.amount))} ₽</strong> · ${pill(p.status)}</div>
+            <div class="payment-actions mono"><strong>${escapeHtml(String(p.amount))} в‚Ѕ</strong> ${pill(p.status)}</div>
           </div>`;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("Пока нет оплат", "No payments yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РѕРїР»Р°С‚", "No payments yet"))}</div>`;
   const el = byId("parentPaymentsList");
   if (el) el.innerHTML = html;
+  el?.querySelectorAll("[data-parent-pay-confirm]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const paymentId = btn.getAttribute("data-parent-pay-confirm") || "";
+      const fresh = loadState();
+      const payment = fresh.payments.find((x) => x.id === paymentId);
+      if (!payment) return;
+      if (!getPaymentUrl(payment)) return;
+      updatePayment(fresh, paymentId, { status: "pending", payerMarkedAt: new Date().toISOString() });
+      const student = getUser(fresh, payment.studentId);
+      (fresh.users || [])
+        .filter((u) => u.role === "teacher")
+        .forEach((teacher) => {
+          queueNotification(fresh, {
+            userId: teacher.id,
+            channel: "telegram",
+            payload: {
+              title: "Р РѕРґРёС‚РµР»СЊ РѕС‚РјРµС‚РёР» РѕРїР»Р°С‚Сѓ",
+              text: `${student?.name || "РЈС‡РµРЅРёРє"}: ${payment.amount} в‚Ѕ В· Рў-Р‘Р°РЅРє В· Р¶РґС‘С‚ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ`,
+              link: payment.paymentUrl || "",
+            },
+            sendAt: new Date().toISOString(),
+          });
+        });
+      saveState(fresh);
+      renderPayments(loadState(), studentId);
+    });
+  });
 }
 
 function renderNotifications(state, parentId) {
@@ -887,7 +1155,7 @@ function renderNotifications(state, parentId) {
   const el = byId("parentNotifList");
   if (!el) return;
   if (!items.length) {
-    el.innerHTML = `<div class="muted">${escapeHtml(t("Пока нет уведомлений", "No notifications yet"))}</div>`;
+    el.innerHTML = `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ СѓРІРµРґРѕРјР»РµРЅРёР№", "No notifications yet"))}</div>`;
     return;
   }
   el.innerHTML = items
@@ -900,7 +1168,7 @@ function renderNotifications(state, parentId) {
               <div class="panel-kicker">${escapeHtml(formatDateTime(n.sendAt))}</div>
               <div><strong>${escapeHtml(n.payload.title)}</strong></div>
             </div>
-            <button class="btn-mini" type="button" data-copy="${escapeHtml(payload)}">${escapeHtml(t("Копировать", "Copy"))}</button>
+            <button class="btn-mini" type="button" data-copy="${escapeHtml(payload)}">${escapeHtml(t("РљРѕРїРёСЂРѕРІР°С‚СЊ", "Copy"))}</button>
           </div>
           <div class="muted" style="margin-top: 8px; white-space: pre-wrap;">${escapeHtml(n.payload.text)}</div>
         </div>`;
@@ -912,8 +1180,8 @@ function renderNotifications(state, parentId) {
       const text = btn.getAttribute("data-copy") || "";
       try {
         await navigator.clipboard.writeText(text);
-        btn.textContent = t("Скопировано", "Copied");
-        setTimeout(() => (btn.textContent = t("Копировать", "Copy")), 1200);
+        btn.textContent = t("РЎРєРѕРїРёСЂРѕРІР°РЅРѕ", "Copied");
+        setTimeout(() => (btn.textContent = t("РљРѕРїРёСЂРѕРІР°С‚СЊ", "Copy")), 1200);
       } catch {
         // noop
       }
@@ -931,64 +1199,72 @@ function buildProgressReport(state, parentUser, studentId) {
   const practice = listStudentItems(state, studentId, "practice");
   const doneItems = [...materials, ...practice].filter((x) => x.done);
   const practiceMinutes = practice.reduce((sum, item) => sum + (item.done ? Number(item.minutes || 0) : 0), 0);
-
-  const lines = [
-    "Отчёт об успеваемости New Generation English",
-    `Дата выгрузки: ${formatDateTime(new Date().toISOString())}`,
-    `Родитель: ${parentUser.name || "—"}`,
-    `Ученик: ${student?.name || "—"}`,
-    "",
-    "Профиль",
-    `Уровень: ${progress.level || "—"}`,
-    `Абонемент: ${meta.tariff || "—"}`,
-    `План занятий: ${meta.plan || "—"}`,
-    "",
-    "Цели и комментарии преподавателя",
-    `Цели: ${progress.goals || "—"}`,
-    `Комментарий: ${progress.comments || "—"}`,
-    "",
-    "Посещаемость",
-    `Запланировано: ${lessons.filter((l) => l.status === "planned").length}`,
-    `Проведено: ${lessons.filter((l) => l.status === "done").length}`,
-    `Пропуски: ${lessons.filter((l) => l.status === "missed").length}`,
-    "",
-    "Уроки",
-    ...(lessons.length
-      ? lessons.slice(-12).reverse().map((l) => `- ${formatDateTime(l.date)} · ${l.status} · ${l.homework || "без домашки"}`)
-      : ["- уроков пока нет"]),
-    "",
-    "Материалы",
-    ...(materials.length
-      ? materials.map((m) => `- ${m.done ? "[x]" : "[ ]"} ${m.title}${m.details ? ` — ${m.details}` : ""}`)
-      : ["- материалов пока нет"]),
-    "",
-    "Практика и тренажёры",
-    ...(practice.length
-      ? practice.map((p) => `- ${p.done ? "[x]" : "[ ]"} ${p.title}${p.minutes ? ` · ${p.minutes} мин` : ""}${p.details ? ` — ${p.details}` : ""}`)
-      : ["- практики пока нет"]),
-    "",
-    "Итоги",
-    `Выполнено заданий: ${doneItems.length}`,
-    `Минут практики: ${practiceMinutes}`,
-    "",
-    "Оплаты",
-    ...(payments.length
-      ? payments.map((p) => `- ${formatDateTime(p.date)} · ${p.amount} ₽ · ${p.status}${p.comment ? ` · ${p.comment}` : ""}`)
-      : ["- оплат пока нет"]),
-  ];
-
-  return lines.join("\n");
+  const latestHomework = lessons.slice().reverse().find((l) => l.homework)?.homework || "";
+  const builder = window.NGEReportDocs?.buildReportDocument;
+  if (!builder) return `РћС‚С‡С‘С‚ РѕР± СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё New Generation English\nРЈС‡РµРЅРёРє: ${student?.name || "вЂ”"}`;
+  return builder({
+    title: "Р РѕРґРёС‚РµР»СЊСЃРєРёР№ РѕС‚С‡С‘С‚ РѕР± СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё",
+    studentName: student?.name || "вЂ”",
+    parentName: parentUser.name || "",
+    generatedLabel: formatDateTime(new Date().toISOString()),
+    level: progress.level || "вЂ”",
+    subscription: meta.tariff || "вЂ”",
+    totalLessons: meta.lessonsTotal || lessons.length,
+    lessonsLeft: meta.lessonsLeft ?? "вЂ”",
+    focus: progress.goals || progress.comments || "РџСЂРѕРґРѕР»Р¶Р°РµРј СЂР°Р±РѕС‚Сѓ РїРѕ С‚РµРєСѓС‰РµРјСѓ СѓС‡РµР±РЅРѕРјСѓ РїР»Р°РЅСѓ.",
+    body: [
+      progress.comments || "",
+      `Р’С‹РїРѕР»РЅРµРЅРѕ Р·Р°РґР°РЅРёР№: ${doneItems.length}.`,
+      practiceMinutes ? `Р—Р°РєСЂС‹С‚Рѕ ${practiceMinutes} РјРёРЅСѓС‚ РїСЂР°РєС‚РёРєРё.` : "",
+    ].filter(Boolean).join("\n"),
+    homework: latestHomework,
+    nextStep: meta.plan || progress.goals || "РЎР»РµРґРёС‚СЊ Р·Р° РґРѕРјР°С€РєРѕР№ Рё Р±Р»РёР¶Р°Р№С€РёРјРё РјР°С‚РµСЂРёР°Р»Р°РјРё.",
+    lessons: lessons.slice(-12).reverse().map((l) => ({
+      date: formatDateTime(l.date),
+      status: l.status,
+      topic: "РЈСЂРѕРє Р°РЅРіР»РёР№СЃРєРѕРіРѕ",
+      homework: l.homework || l.notes || "",
+    })),
+    materials: materials.map((m) => ({
+      title: m.title,
+      details: m.details || m.url || "",
+      done: Boolean(m.done),
+      date: m.at ? formatDateTime(m.at) : "",
+    })),
+    practice: practice.map((p) => ({
+      title: p.title,
+      details: p.details || p.level || p.url || "",
+      done: Boolean(p.done),
+      minutes: p.minutes || "",
+    })),
+    payments: payments.map((p) => {
+      const total = Number(p.lessonsTotal || 0);
+      const left = Number(p.lessonsLeft || 0);
+      return {
+        date: formatDateTime(p.date),
+        amount: p.amount,
+        status: p.status,
+        comment: `${total ? `РћСЃС‚Р°Р»РѕСЃСЊ Р·Р°РЅСЏС‚РёР№: ${left}/${total}. ` : ""}${p.remindAt ? `РќР°РїРѕРјРЅРёС‚СЊ: ${formatDateTime(p.remindAt)}. ` : ""}${p.comment || ""}`.trim(),
+      };
+    }),
+  });
 }
 
 function downloadProgressReport(state, parentUser, studentId) {
   const student = getUser(state, studentId);
   const report = buildProgressReport(state, parentUser, studentId);
-  const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
   const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
+  if (window.NGEReportDocs?.openPdfPrint) {
+    window.NGEReportDocs.openPdfPrint(
+ge-progress-${safeName}.pdf`, report);
+    return;
+  }
+  const blob = new Blob([report], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `nge-progress-${safeName}.txt`;
+  a.download = 
+ge-progress-${safeName}.html`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -1000,7 +1276,7 @@ function ensureReportButton(parentUser, getStudentId) {
   if (!host || byId("downloadParentReportBtn")) return;
   const actions = document.createElement("div");
   actions.className = "actions";
-  actions.innerHTML = `<button class="btn-mini" id="downloadParentReportBtn" type="button" data-primary>Скачать отчёт</button>`;
+  actions.innerHTML = `<button class="btn-mini" id="downloadParentReportBtn" type="button" data-primary>PDF-РѕС‚С‡С‘С‚</button>`;
   host.appendChild(actions);
   byId("downloadParentReportBtn")?.addEventListener("click", () => {
     const studentId = getStudentId();
@@ -1023,6 +1299,7 @@ function initParentCabinet(ctx) {
     renderLessons(fresh, studentId);
     renderHomework(fresh, studentId);
     renderProgress(fresh, studentId);
+    renderParentReports(fresh, studentId);
     renderPayments(fresh, studentId);
     renderNotifications(fresh, ctx.me.id);
   }
@@ -1040,9 +1317,11 @@ function initParentCabinet(ctx) {
   });
 }
 
-(function () {
+
+
   bootThemeAndLang();
   var ctx = ensureRole("parent");
   wireTopbarActions();
   if (ctx) initParentCabinet(ctx);
+
 })();

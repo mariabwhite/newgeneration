@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -140,7 +140,7 @@ body.light[data-page="programs"] .hero-bg-edge {
   filter: blur(28px) saturate(1.05);
 }
 
-body[data-page="programs"] .hero-bg-light { display: none; }
+body[data-page="programs"] .hero-bg-light,
 body.light[data-page="programs"] .hero-bg-dark { display: none; }
 body.light[data-page="programs"] .hero-bg-light { display: block; }
 
@@ -894,7 +894,7 @@ body.light .tag {
   </nav>
 
   <div class="topbar-tools">
-    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Theme: DARK">DARK</button>
     <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
   </div>
 </header>
@@ -909,10 +909,10 @@ body.light .tag {
     </div>
     <div class="hero-bg-wrap" aria-hidden="true">
       <img class="hero-bg hero-bg-edge hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
-      <img class="hero-bg hero-bg-edge hero-bg-light" src="assets/BLUE%20ASSETS.png" alt="" aria-hidden="true" decoding="async" loading="eager">
-      <img class="hero-bg hero-bg-base hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
-      <img class="hero-bg hero-bg-base hero-bg-light" src="assets/BLUE%20ASSETS.png" alt="" aria-hidden="true" decoding="async" loading="eager">
-    </div>
+      <img class="hero-bg hero-bg-edge hero-bg-light" src="assets/programs-hero-dashboard-light.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+<img class="hero-bg hero-bg-base hero-bg-dark" src="assets/programs-hero-dashboard-dark.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+      <img class="hero-bg hero-bg-base hero-bg-light" src="assets/programs-hero-dashboard-light.png" alt="" aria-hidden="true" decoding="async" loading="eager">
+</div>
 
     <div class="hero-grid">
       <div class="hero-copy">
@@ -1103,22 +1103,11 @@ body.light .tag {
 
 <script>
 function toggleTheme() {
-  document.body.classList.toggle("light");
-  localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
-  const btn = document.querySelector(".control-btn");
-  if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+  if (window.NGETheme) window.NGETheme.toggleTheme();
 }
 function toggleLang() {
-  const cur = document.documentElement.getAttribute("lang") || "ru";
-  const next = cur === "ru" ? "en" : "ru";
-  document.documentElement.setAttribute("lang", next);
-  document.querySelectorAll("[data-ru]").forEach(el => {
-    const val = el.getAttribute("data-" + next);
-    if (val) el.textContent = val;
-  });
-  const btn = document.getElementById("langBtn");
-  if (btn) btn.textContent = next.toUpperCase();
-  localStorage.setItem("nge-lang", next);
+  if (typeof window.toggleLang === "function" && window.toggleLang !== toggleLang)
+    window.toggleLang();
 }
 function markActiveNav() {
   const page = document.body.dataset.page;
@@ -1127,19 +1116,10 @@ function markActiveNav() {
     l.classList.toggle("active", l.dataset.nav === page);
   });
 }
-(function restore() {
-  try {
-    if (localStorage.getItem("nge-theme") === "light") {
-      document.body.classList.add("light");
-      const btn = document.querySelector(".control-btn");
-      if (btn) btn.textContent = "☀";
-    }
-    const savedLang = localStorage.getItem("nge-lang");
-    if (savedLang === "en") toggleLang();
-  } catch (e) {}
+document.addEventListener("DOMContentLoaded", function () {
   markActiveNav();
   initProgramFlips();
-})();
+});
 
 function initProgramFlips() {
   const cards = document.querySelectorAll('body[data-page="programs"] .flip-card');
@@ -1170,6 +1150,7 @@ function initProgramFlips() {
   <span id="counterValue">1243</span>
 </div>
 <script defer src="./assets/visitor-counter.js"></script>
+<script defer src="./site.js"></script>
 <script defer src="./theme-cycle.js"></script>
 </body>
 </html>

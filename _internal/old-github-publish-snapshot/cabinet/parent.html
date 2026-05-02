@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Кабинет родителя New Generation English — посещаемость, прогресс и оплаты.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+  <title>Кабинет родителя · NGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../system.css">
+  <link rel="stylesheet" href="./cabinet.css">
+<link rel="stylesheet" href="../assets/visitor-counter.css">
+</head>
+<body data-page="cabinet-parent">
+<script>
+  (function () {
+    var KEY = "nge-cabinet-theme";
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === "light") document.body.classList.add("light");
+    } catch (e) {}
+
+    function initThemeToggle() {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      if (window.__NGE_CABINET_THEME_WIRED__) return;
+      window.__NGE_CABINET_THEME_WIRED__ = true;
+
+      function sync() {
+        btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+      }
+      sync();
+      btn.addEventListener("click", function () {
+        document.body.classList.toggle("light");
+        try {
+          localStorage.setItem(KEY, document.body.classList.contains("light") ? "light" : "dark");
+        } catch (e) {}
+        sync();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initThemeToggle, { once: true });
+    } else {
+      initThemeToggle();
+    }
+  })();
+</script>
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub" data-ru="Кабинет родителя" data-en="Parent cabinet">Кабинет родителя</div>
+    </div>
+  </a>
+  <nav class="topnav" aria-label="Навигация">
+    <a class="topnav-link" href="parent.html" data-nav="cabinet-parent" data-ru="Родитель" data-en="Parent">Родитель</a>
+    <a class="topnav-link" href="../index.html" data-ru="На главную" data-en="Home">На главную</a>
+  </nav>
+  <div class="topbar-tools">
+    <span class="control-btn" id="whoami" style="cursor: default;">—</span>
+    <button class="control-btn" id="signOutBtn" type="button" data-ru="Выйти" data-en="Sign out">Выйти</button>
+    <button class="control-btn" id="theme-toggle" type="button" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" type="button">RU</button>
+  </div>
+</header>
+
+<main class="page-shell cabinet-main">
+  <section class="cabinet-hero">
+    <span class="kicker" data-ru="Кабинет родителей" data-en="Parent cabinet">Кабинет родителей</span>
+    <h1 data-ru="Посещаемость · материалы · уведомления" data-en="Attendance · materials · notifications">Посещаемость · материалы · уведомления</h1>
+    <p class="lead"
+       data-ru="Здесь вы видите процесс обучения: расписание, домашние задания, прогресс и оплаты."
+       data-en="Here you see the learning process: schedule, homework, progress, and payments.">
+      Здесь вы видите процесс обучения: расписание, домашние задания, прогресс и оплаты.
+    </p>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Состав кабинета" data-en="Cabinet scope">Состав кабинета</div>
+          <h2 class="panel-title" data-ru="Что здесь есть" data-en="What is here">Что здесь есть</h2>
+        </div>
+      </div>
+      <p class="panel-sub" data-ru="Кабинет родителей нужен для спокойного контроля: расписание и посещаемость ребёнка, домашние задания, важные материалы, прогресс, комментарии преподавателя, абонемент, оплаты и напоминания." data-en="The parent cabinet is for calm oversight: child schedule and attendance, homework, important materials, progress, teacher comments, subscription, payments, and reminders.">Кабинет родителей нужен для спокойного контроля: расписание и посещаемость ребёнка, домашние задания, важные материалы, прогресс, комментарии преподавателя, абонемент, оплаты и напоминания.</p>
+    </div>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Выбор" data-en="Select">Выбор</div>
+          <h2 class="panel-title" data-ru="Ребёнок" data-en="Child">Ребёнок</h2>
+        </div>
+      </div>
+      <div class="form-row" style="grid-template-columns: 1fr;">
+        <label data-ru="Профиль ученика" data-en="Student profile">Профиль ученика
+          <select id="childSelect"></select>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="cabinet-panels" style="padding: 16px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Уроки" data-en="Lessons">Уроки</div>
+          <h2 class="panel-title" data-ru="Расписание и посещаемость ребёнка" data-en="Child schedule & attendance">Расписание и посещаемость ребёнка</h2>
+        </div>
+      </div>
+      <div id="attendanceKpis" style="margin-bottom: 10px;"></div>
+      <div style="overflow:auto;">
+        <table class="table" id="parentLessonsTable" aria-label="Таблица уроков"></table>
+      </div>
+    </div>
+
+    <div style="display:grid; gap: 16px;">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Материалы" data-en="Materials">Материалы</div>
+            <h2 class="panel-title" data-ru="Домашние задания и важные материалы" data-en="Homework & important materials">Домашние задания и важные материалы</h2>
+          </div>
+        </div>
+        <div id="parentHomeworkList"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Прогресс" data-en="Progress">Прогресс</div>
+            <h2 class="panel-title" data-ru="Прогресс и комментарии преподавателя" data-en="Progress & teacher comments">Прогресс и комментарии преподавателя</h2>
+          </div>
+        </div>
+        <div id="parentProgressBox" class="muted"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-ru="Финансы" data-en="Finance">Финансы</div>
+            <h2 class="panel-title" data-ru="Абонемент, оплата и уведомления" data-en="Subscription, payments & notifications">Абонемент, оплата и уведомления</h2>
+          </div>
+        </div>
+        <div id="parentPaymentsList"></div>
+        <div style="margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px;">
+          <div class="panel-kicker" data-ru="Уведомления" data-en="Notifications">Уведомления</div>
+          <div id="parentNotifList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+</main>
+
+<script src="./parent-standalone.js"></script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../assets/visitor-counter.js"></script>
+</body>
+</html>

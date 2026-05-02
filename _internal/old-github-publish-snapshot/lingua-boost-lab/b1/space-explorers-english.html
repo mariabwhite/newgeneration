@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Space Explorers English | LinguaBoost Studio</title>
+    <!-- Google Fonts & simple CSS reset -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0b0f2a 0%, #0a0c22 100%);
+            color: #eef5ff;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.7rem;
+            background: linear-gradient(135deg, #FFD166, #6C9FFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .sub {
+            color: #a0b3e0;
+            border-left: 4px solid #FFB347;
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* section styles */
+        .section-card {
+            background: rgba(18, 25, 55, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(108, 159, 255, 0.3);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+            transition: all 0.2s;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #3a4c8c;
+            padding-bottom: 8px;
+        }
+
+        /* FLASHCARDS */
+        .flashcard-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .flashcard {
+            background-color: transparent;
+            width: 220px;
+            height: 270px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background: #1e2a5e;
+            background-image: radial-gradient(circle at 10% 30%, #2a3a70, #121b3f);
+            border: 1px solid #6c9fff;
+        }
+        .flashcard-front {
+            background: linear-gradient(145deg, #1e2f6e, #0e1a42);
+        }
+        .flashcard-back {
+            background: linear-gradient(145deg, #261f45, #18122e);
+            transform: rotateY(180deg);
+            font-weight: 500;
+        }
+        .card-word {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .card-trans {
+            font-size: 1.2rem;
+            color: #FFD966;
+        }
+        .sound-btn {
+            margin-top: 15px;
+            background: #3b5bb0;
+            border: none;
+            border-radius: 40px;
+            padding: 6px 14px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .sound-btn:hover {
+            background: #5f7edb;
+            transform: scale(1.02);
+        }
+
+        /* pop-up tooltip (hover definition) */
+        .popup-term {
+            border-bottom: 2px dotted #ffb347;
+            cursor: help;
+            position: relative;
+            font-weight: 600;
+        }
+        .popup-term:hover::after {
+            content: attr(data-def);
+            position: absolute;
+            background: #111c3f;
+            color: #ffde9c;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            top: -28px;
+            left: 0;
+            z-index: 20;
+            box-shadow: 0 5px 12px black;
+            border: 1px solid gold;
+            font-weight: normal;
+        }
+
+        /* грамматические цвета */
+        .gram-present-perfect {
+            color: #6fcf97;
+            font-weight: 600;
+            background: rgba(111,207,151,0.15);
+            border-radius: 6px;
+            padding: 0 2px;
+        }
+        .gram-past-simple {
+            color: #5dade2;
+            font-weight: 600;
+            background: rgba(93,173,226,0.15);
+            border-radius: 6px;
+            padding: 0 2px;
+        }
+
+        /* word wall */
+        .wordwall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .word-tag {
+            background: #242f62;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: default;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .word-tag:hover {
+            transform: scale(1.05);
+            background: #3e51a0;
+        }
+
+        /* matching game */
+        .matching-pairs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+        .match-column {
+            flex: 1;
+            min-width: 180px;
+        }
+        .match-item {
+            background: #111a36;
+            margin: 12px 0;
+            padding: 14px;
+            border-radius: 60px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.1s;
+            border: 1px solid #4a6bc0;
+            font-weight: 500;
+        }
+        .match-item.selected {
+            background: #ffb347;
+            color: #0a0c22;
+            border-color: white;
+            transform: scale(1.01);
+        }
+        .match-item.matched {
+            visibility: hidden;
+            display: none;
+        }
+        .match-feedback {
+            font-size: 1rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* hangman */
+        .hangman-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        .hangman-drawing {
+            font-family: monospace;
+            font-size: 1.3rem;
+            background: #00000040;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .word-display {
+            font-size: 2rem;
+            letter-spacing: 8px;
+            font-weight: bold;
+        }
+        .hangman-letters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 400px;
+        }
+        .letter-btn {
+            background: #2f4172;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .letter-btn.disabled {
+            background: #444;
+            opacity: 0.5;
+            cursor: default;
+        }
+        .reset-game {
+            background: #ff8c42;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* спектрограмма (визуализация микрофона) */
+        .spectrum-container {
+            background: #010017;
+            border-radius: 28px;
+            padding: 15px;
+            text-align: center;
+        }
+        canvas {
+            background: #050a1f;
+            border-radius: 20px;
+            width: 100%;
+            height: 150px;
+            display: block;
+            margin-top: 10px;
+        }
+        .mic-btn {
+            background: #6c9fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            margin: 10px 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* аудиоплеер */
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .listening-quiz {
+            background: #0b102b;
+            padding: 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+        }
+
+        /* транскрипция */
+        .transcript-word {
+            cursor: pointer;
+            font-weight: bold;
+            border-bottom: 1px dashed #ffaa55;
+            margin-right: 5px;
+        }
+        .ipa-badge {
+            background: #2e3c6e;
+            border-radius: 16px;
+            padding: 2px 8px;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+        button {
+            font-family: inherit;
+        }
+        @media (max-width: 800px) {
+            .flashcard-grid { gap: 12px; }
+            .flashcard { width: 170px; height: 220px; }
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">B1</span>
+    <span class="lbs-pill">Teens</span>
+    <span class="lbs-pill">Theme lesson</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <h1>🚀 Beyond Earth: Space Explorers</h1>
+    <div class="sub">B1+ Interactive lesson | Vocabulary, Listening, Grammar & Games</div>
+
+    <!-- 1. FLASHCARDS с переворотом и озвучиванием -->
+    <div class="section-card">
+        <div class="section-title">🪐 1. Flip & Listen | Flashcards</div>
+        <div class="flashcard-grid" id="flashcardGrid"></div>
+    </div>
+
+    <!-- 2. Текст с pop-up переводом + выделение грамматики (Present Perfect / Past Simple) -->
+    <div class="section-card">
+        <div class="section-title">📖 2. Reading: Mars Mission Diary</div>
+        <div id="readingText" style="font-size: 1.1rem; line-height: 1.6;"></div>
+        <p style="margin-top: 12px; font-size:0.9rem;">💡 <em>Hover on <span class="popup-term" data-def="unusual or amazing">remarkable</span> words to see translation or definition.</em></p>
+    </div>
+
+    <!-- 3. СТЕНА СЛОВ (Word Wall) -->
+    <div class="section-card">
+        <div class="section-title">📌 3. Space Word Wall</div>
+        <div id="wordWallContainer" class="wordwall"></div>
+    </div>
+
+    <!-- 4. СОПОСТАВЬ слово и картинку (текстово-иконки) + подсветка -->
+    <div class="section-card">
+        <div class="section-title">🔗 4. Match: Word & Picture</div>
+        <div class="matching-pairs" id="matchingGameArea"></div>
+        <div class="match-feedback" id="matchFeedback"></div>
+    </div>
+
+    <!-- 5. Аудирование + плеер + задание -->
+    <div class="section-card">
+        <div class="section-title">🎧 5. Listening: Cosmic Discovery</div>
+        <div class="lb-inline-audio">
+    <button id="playCosmicAudio" type="button">Play audio passage</button>
+    <button id="stopCosmicAudio" type="button">Stop</button>
+</div>
+<div class="lb-audio-note">Local browser speech is used here instead of an external audio file, so the module stays autonomous.</div>
+        <p style="margin: 8px 0;">🎙️ <em>Аудио пример (имитация новости космоса). Послушайте и ответьте:</em></p>
+        <div class="listening-quiz">
+            <p>❓ <strong>Listening task:</strong> What did the astronaut describe as "the most breathtaking view"?</p>
+            <label><input type="radio" name="listenQ" value="stars"> The Milky Way stars</label><br>
+            <label><input type="radio" name="listenQ" value="earth"> Earth rising over the Moon</label><br>
+            <label><input type="radio" name="listenQ" value="nebula"> The Orion Nebula</label><br>
+            <button id="checkListenBtn" style="margin-top: 12px; background:#ffae70; border:none; border-radius:30px; padding:6px 18px;">Check answer</button>
+            <span id="listenResult" style="margin-left: 15px;"></span>
+            <p class="popup-term" data-def="Correct answer hint: Earthrise">💡 Подсказка: Earthrise is iconic</p>
+        </div>
+    </div>
+
+    <!-- 6. Спектрограмма звука (визуализация голоса ученика) -->
+    <div class="section-card">
+        <div class="section-title">🎤 6. Voice Visualizer (Intonation & Stress)</div>
+        <div class="spectrum-container">
+            <button id="micAccessBtn" class="mic-btn">🎙️ Allow mic & see waveform</button>
+            <canvas id="spectrumCanvas" width="600" height="120" style="width:100%; height:120px"></canvas>
+            <p style="font-size:0.8rem;">Говорите слово "astronaut" или "galaxy" – наблюдайте динамику звука.</p>
+        </div>
+    </div>
+
+    <!-- 7. Виселица (Hangman) -->
+    <div class="section-card">
+        <div class="section-title">🕹️ 7. Hangman: Space Edition</div>
+        <div class="hangman-area">
+            <div class="hangman-drawing" id="hangmanArt">_____</div>
+            <div>
+                <div class="word-display" id="hangmanWord">_ _ _ _ _</div>
+                <div id="hangmanMessage" style="margin: 12px 0;">Guess the space word!</div>
+                <div class="hangman-letters" id="lettersContainer"></div>
+                <button class="reset-game" id="resetHangman">🔄 New Word</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Кнопки транскрипции IPA + TTS -->
+    <div class="section-card">
+        <div class="section-title">🔊 8. Transcription & Pronunciation</div>
+        <p>Click on any word below to see IPA transcription and hear pronunciation:</p>
+        <div id="transcriptWords" style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px;"></div>
+    </div>
+</div>
+<footer>✨ Interactive ESL B1 – Space Theme | Flip, match, speak, guess</footer>
+
+<script>
+    // ---------- 1. FLASHCARDS (8 космических слов) ----------
+    const flashcardsData = [
+        { word: "orbit", translation: "орбита", audioPhrase: "orbit" },
+        { word: "asteroid", translation: "астероид", audioPhrase: "asteroid" },
+        { word: "galaxy", translation: "галактика", audioPhrase: "galaxy" },
+        { word: "launch", translation: "запуск / запускать", audioPhrase: "launch" },
+        { word: "satellite", translation: "спутник", audioPhrase: "satellite" },
+        { word: "gravity", translation: "гравитация", audioPhrase: "gravity" },
+        { word: "telescope", translation: "телескоп", audioPhrase: "telescope" },
+        { word: "black hole", translation: "черная дыра", audioPhrase: "black hole" }
+    ];
+
+    function speakText(text) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        } else alert("Text-to-Speech not supported");
+    }
+
+    function renderFlashcards() {
+        const grid = document.getElementById('flashcardGrid');
+        grid.innerHTML = '';
+        flashcardsData.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'flashcard';
+            card.setAttribute('data-idx', idx);
+            const inner = document.createElement('div');
+            inner.className = 'flashcard-inner';
+            inner.innerHTML = `
+                <div class="flashcard-front">
+                    <div class="card-word">${item.word}</div>
+                    <button class="sound-btn" data-word="${item.word}">🔊 Pronounce</button>
+                </div>
+                <div class="flashcard-back">
+                    <div class="card-trans">📖 ${item.translation}</div>
+                    <button class="sound-btn" data-word="${item.word}">🔊 Listen</button>
+                </div>
+            `;
+            card.appendChild(inner);
+            card.addEventListener('click', (e) => {
+                if(e.target.classList.contains('sound-btn')) {
+                    e.stopPropagation();
+                    speakText(item.word);
+                } else {
+                    card.classList.toggle('flipped');
+                }
+            });
+            grid.appendChild(card);
+        });
+    }
+    renderFlashcards();
+
+    // 2. Текст с pop-up переводом и выделение грамматики
+    const rawText = `Last year, astronauts <span class="gram-past-simple">completed</span> a historic mission to Mars. They <span class="gram-past-simple">spent</span> 300 days in space. Recently, scientists <span class="gram-present-perfect">have discovered</span> frozen water beneath the surface. "We <span class="gram-present-perfect">have never seen</span> such <span class="popup-term" data-def="great, impressive">remarkable</span> evidence before," said Dr. Elena. The team <span class="gram-past-simple">used</span> a powerful <span class="popup-term" data-def="device for observing distant objects">telescope</span> to find <span class="popup-term" data-def="small rocky bodies">asteroids</span> in the belt.`;
+    document.getElementById('readingText').innerHTML = rawText;
+
+    // 3. Word Wall (облако)
+    const spaceWords = ["astronaut", "comet", "nebula", "spacewalk", "rocket", "cosmonaut", "exoplanet", "supernova"];
+    const wordWallDiv = document.getElementById('wordWallContainer');
+    spaceWords.forEach(w => {
+        const tag = document.createElement('div');
+        tag.className = 'word-tag';
+        tag.innerText = w;
+        tag.addEventListener('click', () => speakText(w));
+        wordWallDiv.appendChild(tag);
+    });
+
+    // 4. Matching game (слово - описание/картинка эмодзи)
+    const matchItems = [
+        { word: "orbit", matchId: "path", desc: "🪐 Path around a planet" },
+        { word: "telescope", matchId: "scope", desc: "🔭 Tool to see stars" },
+        { word: "asteroid", matchId: "rock", desc: "🪨 Rocky space object" },
+        { word: "galaxy", matchId: "milky", desc: "🌌 Huge star system" }
+    ];
+    let selectedMatchType = null; // 'word' or 'desc'
+    let selectedValue = null;
+    let matchedPairs = 0;
+    function renderMatching() {
+        const container = document.getElementById('matchingGameArea');
+        container.innerHTML = `
+            <div class="match-column"><h4>🌟 WORDS</h4><div id="wordList"></div></div>
+            <div class="match-column"><h4>🖼️ DESCRIPTION</h4><div id="descList"></div></div>
+        `;
+        const wordDiv = document.getElementById('wordList');
+        const descDiv = document.getElementById('descList');
+        matchItems.forEach((item, idx) => {
+            const wordBtn = document.createElement('div');
+            wordBtn.className = 'match-item';
+            wordBtn.innerText = item.word;
+            wordBtn.dataset.type = 'word';
+            wordBtn.dataset.value = item.word;
+            wordBtn.dataset.matchId = item.matchId;
+            wordBtn.addEventListener('click', () => handleMatch('word', item.word, item.matchId, wordBtn));
+            wordDiv.appendChild(wordBtn);
+            const descBtn = document.createElement('div');
+            descBtn.className = 'match-item';
+            descBtn.innerText = item.desc;
+            descBtn.dataset.type = 'desc';
+            descBtn.dataset.value = item.desc;
+            descBtn.dataset.matchId = item.matchId;
+            descBtn.addEventListener('click', () => handleMatch('desc', item.desc, item.matchId, descBtn));
+            descDiv.appendChild(descBtn);
+        });
+    }
+    function handleMatch(type, value, matchId, element) {
+        if (element.classList.contains('matched')) return;
+        if (selectedMatchType === null) {
+            // first selection
+            selectedMatchType = type;
+            selectedValue = { value, matchId, element };
+            element.classList.add('selected');
+        } else {
+            // second selection
+            const first = selectedValue;
+            if (first.matchId === matchId && first.element !== element) {
+                // correct match
+                first.element.classList.add('matched');
+                element.classList.add('matched');
+                matchedPairs++;
+                document.getElementById('matchFeedback').innerHTML = '✅ Correct match! Great!';
+                if (matchedPairs === matchItems.length) document.getElementById('matchFeedback').innerHTML = '🏆 Perfect! All pairs matched!';
+            } else {
+                document.getElementById('matchFeedback').innerHTML = '❌ Wrong match. Try again!';
+            }
+            // clear selection
+            if (first.element) first.element.classList.remove('selected');
+            selectedMatchType = null;
+            selectedValue = null;
+        }
+    }
+    renderMatching();
+
+    // 5. Аудирование - простой ответ (имитация Earthrise)
+    document.getElementById('checkListenBtn').addEventListener('click', () => {
+        const selected = document.querySelector('input[name="listenQ"]:checked');
+        const resultSpan = document.getElementById('listenResult');
+        if (selected && selected.value === 'earth') {
+            resultSpan.innerHTML = '✅ Correct! The astronaut described "Earth rising over the Moon".';
+        } else {
+            resultSpan.innerHTML = '❌ Not exactly. Listen again: Earthrise is the answer!';
+        }
+    });
+
+    // 6. Спектрограмма через микрофон
+    let audioContext = null;
+    let mediaStream = null;
+    let animationId = null;
+    const canvas = document.getElementById('spectrumCanvas');
+    const ctx = canvas.getContext('2d');
+    function initMicrophone() {
+        if (audioContext && mediaStream) {
+            // close previous
+            audioContext.close();
+            if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+        }
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+            mediaStream = stream;
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioContext.createMediaStreamSource(stream);
+            const analyser = audioContext.createAnalyser();
+            analyser.fftSize = 256;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            source.connect(analyser);
+            audioContext.resume();
+            function drawSpectrum() {
+                if (!audioContext) return;
+                analyser.getByteFrequencyData(dataArray);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#0f1a3a";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                let barWidth = (canvas.width / bufferLength) * 2.5;
+                let x = 0;
+                for (let i = 0; i < bufferLength; i++) {
+                    let barHeight = dataArray[i] / 2;
+                    ctx.fillStyle = `rgb(100, 150, ${200 + dataArray[i] / 3})`;
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                    x += barWidth + 1;
+                }
+                animationId = requestAnimationFrame(drawSpectrum);
+            }
+            if (animationId) cancelAnimationFrame(animationId);
+            drawSpectrum();
+        }).catch(err => alert("Microphone access needed for voice visualizer: " + err));
+    }
+    document.getElementById('micAccessBtn').addEventListener('click', initMicrophone);
+
+    // 7. Виселица
+    const hangmanWords = ["ASTEROID", "GALAXY", "TELESCOPE", "ORBIT", "SATELLITE", "COSMONAUT"];
+    let currentWord = "";
+    let guessedLetters = [];
+    let wrongGuesses = 0;
+    const maxWrong = 6;
+    function updateHangmanDisplay() {
+        const wordDisplay = document.getElementById('hangmanWord');
+        const displayWord = currentWord.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
+        wordDisplay.innerText = displayWord;
+        const hangmanArtElem = document.getElementById('hangmanArt');
+        const stages = ["⚡️ 0/6", "💀 1/6", "👽 2/6", "🪐 3/6", "🚀 4/6", "🌕 5/6", "💥 GAME OVER"];
+        hangmanArtElem.innerText = stages[wrongGuesses];
+        if (!displayWord.includes('_') && currentWord) {
+            document.getElementById('hangmanMessage').innerHTML = "🎉 You won! Great job!";
+        } else if (wrongGuesses >= maxWrong) {
+            document.getElementById('hangmanMessage').innerHTML = `😵 Game over! Word was ${currentWord}.`;
+        } else {
+            document.getElementById('hangmanMessage').innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrong}`;
+        }
+    }
+    function initHangman() {
+        currentWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
+        guessedLetters = [];
+        wrongGuesses = 0;
+        generateLetterButtons();
+        updateHangmanDisplay();
+    }
+    function generateLetterButtons() {
+        const container = document.getElementById('lettersContainer');
+        container.innerHTML = '';
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        alphabet.split('').forEach(letter => {
+            const btn = document.createElement('button');
+            btn.innerText = letter;
+            btn.className = 'letter-btn';
+            btn.addEventListener('click', () => {
+                if (guessedLetters.includes(letter) || wrongGuesses >= maxWrong) return;
+                guessedLetters.push(letter);
+                if (!currentWord.includes(letter)) {
+                    wrongGuesses++;
+                }
+                updateHangmanDisplay();
+                btn.classList.add('disabled');
+                btn.disabled = true;
+                const currentDisplay = document.getElementById('hangmanWord').innerText;
+                if (!currentDisplay.includes('_') && currentWord) {
+                    document.getElementById('hangmanMessage').innerHTML = "🏆 Victory!";
+                } else if (wrongGuesses >= maxWrong) updateHangmanDisplay();
+            });
+            container.appendChild(btn);
+        });
+    }
+    document.getElementById('resetHangman').addEventListener('click', () => { initHangman(); });
+    initHangman();
+
+    // 8. Транскрипция IPA + TTS клик
+    const vocabIPA = [
+        { word: "astronaut", ipa: "/ˈæstrənɔːt/" },
+        { word: "galaxy", ipa: "/ˈɡæləksi/" },
+        { word: "orbit", ipa: "/ˈɔːrbɪt/" },
+        { word: "telescope", ipa: "/ˈtelɪskoʊp/" },
+        { word: "nebula", ipa: "/ˈnebjələ/" }
+    ];
+    const transDiv = document.getElementById('transcriptWords');
+    vocabIPA.forEach(v => {
+        const span = document.createElement('span');
+        span.className = 'transcript-word';
+        span.innerText = v.word;
+        const ipaSpan = document.createElement('span');
+        ipaSpan.className = 'ipa-badge';
+        ipaSpan.innerText = v.ipa;
+        span.appendChild(ipaSpan);
+        span.addEventListener('click', (e) => {
+            e.stopPropagation();
+            alert(`IPA: ${v.ipa}`);
+            speakText(v.word);
+        });
+        transDiv.appendChild(span);
+    });
+
+    // Cleanup microphone on page unload
+    window.addEventListener('beforeunload', () => {
+        if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+        if (audioContext) audioContext.close();
+    });
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

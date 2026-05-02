@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>School Words and Pronouns | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffd9e8 100%);
+            font-family: 'Quicksand', sans-serif;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Статистика */
+        .stats-panel {
+            background: #fff0f7;
+            border-radius: 70px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 14px rgba(255, 80, 140, 0.2);
+            border: 2px solid #ffb7d2;
+        }
+        .lives {
+            font-size: 34px;
+            letter-spacing: 6px;
+        }
+        .score-board {
+            background: #ffd966;
+            border-radius: 50px;
+            padding: 8px 24px;
+            font-weight: bold;
+            font-size: 28px;
+            color: #a13e6f;
+        }
+        .reset-game-btn {
+            background: #f4a261;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* карточки секций */
+        .section-card {
+            background: rgba(255, 252, 248, 0.96);
+            border-radius: 56px;
+            padding: 24px 22px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            border: 2px solid #ffbfdf;
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: #ffe0f0;
+            display: inline-block;
+            padding: 6px 28px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            color: #b3437c;
+        }
+
+        /* флешкарточки */
+        .flashcard-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .flashcard {
+            background-color: transparent;
+            width: 170px;
+            height: 210px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 32px;
+        }
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff0fa;
+            border: 3px solid #ff99cc;
+            padding: 10px;
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+            background: #ffe6f2;
+        }
+        .card-word {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .sound-btn {
+            background: #ffb3d1;
+            border: none;
+            border-radius: 50px;
+            margin-top: 12px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* сопоставление */
+        .match-zone {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .match-col {
+            flex: 1;
+            min-width: 180px;
+            background: #fff6fb;
+            border-radius: 48px;
+            padding: 15px;
+        }
+        .match-card-item {
+            background: #ffe2f0;
+            margin: 12px 0;
+            padding: 14px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.1s;
+            font-weight: 600;
+        }
+        .match-card-item.selected {
+            background: #ffb347;
+            color: white;
+        }
+        .match-card-item.matched {
+            background: #9bdf9b;
+            text-decoration: line-through;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* колесо */
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        canvas {
+            background: #ffe0f0;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .wheel-btn {
+            background: #e88bb4;
+            border: none;
+            font-size: 24px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* таблица лидеров */
+        .leaderboard {
+            background: #ffecf2;
+            border-radius: 48px;
+            padding: 15px;
+        }
+        .leader-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 20px;
+            margin: 5px 0;
+            border-radius: 60px;
+            background: #fff1f9;
+            font-weight: bold;
+        }
+        .first-place {
+            background: #ffb7d2 !important;
+            color: #b3005c;
+            font-size: 22px;
+            border: 2px solid #ff69b4;
+        }
+
+        .random-task {
+            background: #fbe1f0;
+            padding: 20px;
+            border-radius: 60px;
+            text-align: center;
+        }
+        .popup-term {
+            border-bottom: 2px dotted #ff69b4;
+            cursor: help;
+        }
+        button {
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">A1</span>
+    <span class="lbs-pill">Kids / primary</span>
+    <span class="lbs-pill">Vocabulary + grammar</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <div class="stats-panel">
+        <div class="lives" id="livesDisplay">❤️❤️❤️</div>
+        <div class="score-board" id="scoreDisplay">⭐ 0</div>
+        <button class="reset-game-btn" id="fullResetBtn">✨ Начать заново</button>
+    </div>
+
+    <div class="section-card" style="background:#fff0fa; text-align:center;">
+        <h2 style="color:#c95a8f;">🦄 Привет, Юля! 🎀</h2>
+        <p style="font-size:22px;">У тебя 3 жизни. За правильные ответы +10 баллов. Жми на кнопки, слушай и побеждай!</p>
+    </div>
+
+    <!-- 1. Флешкарточки -->
+    <div class="section-card">
+        <div class="card-title">📖 Карточки (нажми для переворота, 🔊 для звука)</div>
+        <div class="flashcard-grid" id="flashcardGrid"></div>
+    </div>
+
+    <!-- 2. Генератор заданий (исправлен) -->
+    <div class="section-card">
+        <div class="card-title">🎲 Генератор заданий</div>
+        <div class="random-task">
+            <p id="randomQuestion" style="font-size:24px; font-weight:bold;">Нажми «Новое задание»</p>
+            <input type="text" id="randomAnswerInput" placeholder="Напиши ответ..." style="padding:10px; border-radius:50px; width:70%; font-size:18px;">
+            <div style="margin-top:15px;">
+                <button id="checkRandomBtn" style="background:#ffa3c2;">✅ Проверить</button>
+                <button id="newRandomTaskBtn" style="background:#d991b5;">🎲 НОВОЕ ЗАДАНИЕ</button>
+            </div>
+            <span id="randomFeedback" style="font-weight:bold;"></span>
+        </div>
+    </div>
+
+    <!-- 3. Сопоставь слово и картинку -->
+    <div class="section-card">
+        <div class="card-title">🧩 Сопоставь слово и картинку</div>
+        <div class="match-zone" id="matchingGameArea"></div>
+        <div id="matchFeedback" style="margin-top:12px; font-weight:bold;"></div>
+    </div>
+
+    <!-- 4. Колесо фортуны -->
+    <div class="section-card">
+        <div class="card-title">🎡 Колесо фортуны</div>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="300" height="300"></canvas>
+            <button id="spinWheelBtn" class="wheel-btn">🌀 Крутить колесо!</button>
+            <div id="wheelResult" style="margin-top:12px; font-weight:bold;"></div>
+        </div>
+    </div>
+
+    <!-- 5. Текст с pop-up переводом -->
+    <div class="section-card">
+        <div class="card-title">📖 Наведи на слово, чтобы увидеть перевод</div>
+        <p id="storyText" style="font-size: 22px; line-height: 1.6;"></p>
+    </div>
+
+    <!-- 6. Таблица лидеров (Юля на первом месте) -->
+    <div class="section-card">
+        <div class="card-title">🏆 Таблица лидеров</div>
+        <div id="leaderboardList" class="leaderboard"></div>
+    </div>
+</div>
+
+<script>
+    // ---------- БАЛЛЫ И ЖИЗНИ ----------
+    let score = 0;
+    let lives = 3;
+    let leaderboard = [
+        { name: "Юля", points: 0 },
+        { name: "Алиса", points: 50 },
+        { name: "Соня", points: 35 },
+        { name: "Миша", points: 20 }
+    ];
+
+    function updateUI() {
+        document.getElementById('scoreDisplay').innerHTML = `⭐ ${score}`;
+        let hearts = "";
+        for(let i=0; i<lives; i++) hearts += "❤️ ";
+        for(let i=lives; i<3; i++) hearts += "🖤 ";
+        document.getElementById('livesDisplay').innerHTML = hearts;
+        updateLeaderboard();
+        if(lives <= 0) {
+            alert("😢 Жизни кончились! Нажми «Начать заново».");
+        }
+    }
+
+    function addPoints(p) {
+        if(lives <= 0) return false;
+        score += p;
+        const yulia = leaderboard.find(l => l.name === "Юля");
+        if(yulia) yulia.points = score;
+        updateUI();
+        playSound(true);
+        return true;
+    }
+
+    function loseLife() {
+        if(lives <= 0) return false;
+        lives--;
+        updateUI();
+        playSound(false);
+        if(lives === 0) {
+            setTimeout(() => alert("💔 Ой, жизни закончились! Нажми кнопку «Начать заново»."), 100);
+        }
+        return true;
+    }
+
+    function playSound(correct) {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'sine';
+            const now = audioCtx.currentTime;
+            if(correct) {
+                osc.frequency.value = 880;
+                gain.gain.value = 0.2;
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, now+0.4);
+                osc.stop(now+0.4);
+            } else {
+                osc.frequency.value = 440;
+                gain.gain.value = 0.2;
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, now+0.3);
+                osc.stop(now+0.3);
+            }
+            setTimeout(() => audioCtx.close(), 500);
+        } catch(e) {}
+    }
+
+    function resetGame() {
+        score = 0;
+        lives = 3;
+        const yulia = leaderboard.find(l => l.name === "Юля");
+        if(yulia) yulia.points = 0;
+        updateUI();
+        document.getElementById('randomFeedback').innerHTML = "";
+        document.getElementById('matchFeedback').innerHTML = "";
+        document.getElementById('wheelResult').innerHTML = "";
+        renderMatchingGame();
+    }
+
+    // ---------- ОЗВУЧКА ----------
+    function speakWord(word) {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // ---------- ФЛЕШКАРТЫ ----------
+    const flashcards = [
+        { word: "I", trans: "Я", emoji: "👧" }, { word: "you", trans: "ты", emoji: "👉" },
+        { word: "he", trans: "он", emoji: "👦" }, { word: "she", trans: "она", emoji: "👧" },
+        { word: "it", trans: "оно", emoji: "🐱" }, { word: "we", trans: "мы", emoji: "👭" },
+        { word: "they", trans: "они", emoji: "👥" }, { word: "pen", trans: "ручка", emoji: "✒️" },
+        { word: "pencil", trans: "карандаш", emoji: "✏️" }, { word: "eraser", trans: "ластик", emoji: "🧽" },
+        { word: "ruler", trans: "линейка", emoji: "📏" }, { word: "notebook", trans: "тетрадь", emoji: "📓" }
+    ];
+
+    function renderFlashcards() {
+        const grid = document.getElementById('flashcardGrid');
+        grid.innerHTML = '';
+        flashcards.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'flashcard';
+            const inner = document.createElement('div');
+            inner.className = 'flashcard-inner';
+            inner.innerHTML = `
+                <div class="flashcard-front">
+                    <div class="card-word">${item.word} ${item.emoji}</div>
+                    <button class="sound-btn" data-word="${item.word}">🔊 Слушать</button>
+                </div>
+                <div class="flashcard-back">
+                    <div class="card-word">${item.trans}</div>
+                    <div>${item.emoji}</div>
+                </div>
+            `;
+            card.appendChild(inner);
+            card.addEventListener('click', (e) => {
+                if(e.target.classList.contains('sound-btn')) {
+                    e.stopPropagation();
+                    speakWord(item.word);
+                } else {
+                    card.classList.toggle('flipped');
+                }
+            });
+            grid.appendChild(card);
+        });
+    }
+    renderFlashcards();
+
+    // ---------- ГЕНЕРАТОР ЗАДАНИЙ (РАБОТАЕТ) ----------
+    const taskBank = [
+        { q: "Как будет ОН по-английски?", answer: "he" }, { q: "Переведи: МЫ", answer: "we" },
+        { q: "Как сказать ОНИ?", answer: "they" }, { q: "Переведи: РУЧКА", answer: "pen" },
+        { q: "Что это? (pencil)", answer: "pencil" }, { q: "Местоимение для девочки", answer: "she" },
+        { q: "Как будет ТЫ?", answer: "you" }, { q: "Предмет, которым стирают", answer: "eraser" },
+        { q: "Линейка по-английски", answer: "ruler" }, { q: "I — это ...", answer: "я" }
+    ];
+    let currentTask = null;
+    function newRandomTask() {
+        currentTask = taskBank[Math.floor(Math.random() * taskBank.length)];
+        document.getElementById('randomQuestion').innerHTML = `📌 ${currentTask.q}`;
+        document.getElementById('randomAnswerInput').value = '';
+        document.getElementById('randomFeedback').innerHTML = '';
+    }
+    document.getElementById('newRandomTaskBtn').addEventListener('click', newRandomTask);
+    document.getElementById('checkRandomBtn').addEventListener('click', () => {
+        if(!currentTask) return;
+        const userAnswer = document.getElementById('randomAnswerInput').value.trim().toLowerCase();
+        if(userAnswer === currentTask.answer.toLowerCase()) {
+            if(addPoints(10)) document.getElementById('randomFeedback').innerHTML = "✅ Верно! +10 баллов! 🎉";
+            else document.getElementById('randomFeedback').innerHTML = "❌ Нет жизней!";
+        } else {
+            loseLife();
+            document.getElementById('randomFeedback').innerHTML = `❌ Ошибка! Правильно: ${currentTask.answer}. -1 жизнь.`;
+        }
+        newRandomTask();
+    });
+    newRandomTask();
+
+    // ---------- СОПОСТАВЛЕНИЕ (зелёный/красный) ----------
+    const matchPairs = [
+        { word: "she", picture: "👧 девочка" }, { word: "he", picture: "👦 мальчик" },
+        { word: "pen", picture: "✒️ ручка" }, { word: "pencil", picture: "✏️ карандаш" },
+        { word: "eraser", picture: "🧽 ластик" }, { word: "they", picture: "👥 они" }
+    ];
+    let selectedMatch = null;
+    let matchedWords = new Array(matchPairs.length).fill(false);
+    function renderMatchingGame() {
+        const container = document.getElementById('matchingGameArea');
+        container.innerHTML = `<div class="match-col"><h3>📖 Слова</h3><div id="wordsCol"></div></div>
+                               <div class="match-col"><h3>🖼️ Картинки</h3><div id="picsCol"></div></div>`;
+        const wordsDiv = document.getElementById('wordsCol');
+        const picsDiv = document.getElementById('picsCol');
+        matchPairs.forEach((pair, idx) => {
+            const wordElem = document.createElement('div');
+            wordElem.className = `match-card-item ${matchedWords[idx] ? 'matched' : ''}`;
+            wordElem.innerText = pair.word;
+            if(!matchedWords[idx]) {
+                wordElem.addEventListener('click', () => {
+                    if(selectedMatch && selectedMatch.type === 'word' && selectedMatch.index === idx) {
+                        selectedMatch = null;
+                        renderMatchingGame();
+                    } else {
+                        selectedMatch = { type: 'word', index: idx, matchId: idx };
+                        renderMatchingGame();
+                    }
+                });
+            }
+            wordsDiv.appendChild(wordElem);
+            const picElem = document.createElement('div');
+            picElem.className = `match-card-item ${matchedWords[idx] ? 'matched' : ''}`;
+            picElem.innerText = pair.picture;
+            if(!matchedWords[idx]) {
+                picElem.addEventListener('click', () => {
+                    if(selectedMatch && selectedMatch.type === 'word' && selectedMatch.matchId === idx) {
+                        matchedWords[idx] = true;
+                        addPoints(10);
+                        document.getElementById('matchFeedback').innerHTML = `✅ Верно! +10 баллов!`;
+                        selectedMatch = null;
+                        renderMatchingGame();
+                    } else {
+                        loseLife();
+                        document.getElementById('matchFeedback').innerHTML = `❌ Неправильно! -1 жизнь.`;
+                        selectedMatch = null;
+                        renderMatchingGame();
+                    }
+                });
+            }
+            picsDiv.appendChild(picElem);
+        });
+    }
+    renderMatchingGame();
+
+    // ---------- КОЛЕСО ФОРТУНЫ ----------
+    const sectors = [
+        { name: "+10 баллов", action: () => addPoints(10), msg: "Ура! +10 баллов!" },
+        { name: "Переведи: ОНИ", task: "they", points: 10 },
+        { name: "Скажи местоимение для девочки", task: "she", points: 10 },
+        { name: "-1 жизнь", action: () => loseLife(), msg: "Ой! -1 жизнь" },
+        { name: "+5 баллов", action: () => addPoints(5), msg: "+5 баллов!" },
+        { name: "Назови предмет (pen)", task: "pen", points: 10 }
+    ];
+    let currentRotation = 0;
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    function drawWheel() {
+        const angleStep = (Math.PI * 2) / sectors.length;
+        ctx.clearRect(0,0,300,300);
+        for(let i=0; i<sectors.length; i++) {
+            const start = i * angleStep + currentRotation;
+            const end = start + angleStep;
+            ctx.beginPath();
+            ctx.moveTo(150,150);
+            ctx.arc(150,150,150, start, end);
+            ctx.fillStyle = `hsl(${330 + i * 30}, 70%, 70%)`;
+            ctx.fill();
+            ctx.save();
+            ctx.translate(150,150);
+            ctx.rotate(start + angleStep/2);
+            ctx.fillStyle = "#4a2a3a";
+            ctx.font = "bold 14px 'Quicksand'";
+            ctx.fillText(sectors[i].name.substring(0,12), 60, 8);
+            ctx.restore();
+        }
+    }
+    drawWheel();
+    let spinning = false;
+    document.getElementById('spinWheelBtn').addEventListener('click', () => {
+        if(spinning) return;
+        spinning = true;
+        let spinAngle = Math.random() * 20 + 15;
+        let duration = 1000;
+        let startTime = null;
+        function animateSpin(now) {
+            if(!startTime) startTime = now;
+            let elapsed = now - startTime;
+            let t = Math.min(1, elapsed/duration);
+            let ease = 1 - Math.pow(1-t, 3);
+            let angle = currentRotation + spinAngle * Math.PI * ease;
+            ctx.clearRect(0,0,300,300);
+            const angleStep = (Math.PI * 2) / sectors.length;
+            for(let i=0; i<sectors.length; i++) {
+                const start = i * angleStep + angle;
+                const end = start + angleStep;
+                ctx.beginPath();
+                ctx.moveTo(150,150);
+                ctx.arc(150,150,150, start, end);
+                ctx.fillStyle = `hsl(${330 + i * 30}, 70%, 70%)`;
+                ctx.fill();
+                ctx.save();
+                ctx.translate(150,150);
+                ctx.rotate(start + angleStep/2);
+                ctx.fillStyle = "#2c1a24";
+                ctx.font = "bold 12px 'Quicksand'";
+                ctx.fillText(sectors[i].name.substring(0,10), 55, 8);
+                ctx.restore();
+            }
+            if(t < 1) requestAnimationFrame(animateSpin);
+            else {
+                currentRotation = angle % (Math.PI*2);
+                drawWheel();
+                let pointerAngle = (Math.PI * 1.5) % (Math.PI*2);
+                let winnerIndex = -1;
+                for(let i=0; i<sectors.length; i++) {
+                    let start = i * angleStep + currentRotation;
+                    let end = start + angleStep;
+                    if(pointerAngle >= start && pointerAngle <= end) { winnerIndex = i; break; }
+                }
+                if(winnerIndex !== -1) {
+                    const sector = sectors[winnerIndex];
+                    if(sector.action) {
+                        sector.action();
+                        document.getElementById('wheelResult').innerHTML = `🎡 ${sector.msg}`;
+                    } else if(sector.task) {
+                        let userResp = prompt(`🎡 Задание: ${sector.name}\nНапиши ответ по-английски:`);
+                        if(userResp && userResp.trim().toLowerCase() === sector.task) {
+                            addPoints(sector.points);
+                            document.getElementById('wheelResult').innerHTML = `✅ Верно! +${sector.points} баллов!`;
+                        } else {
+                            loseLife();
+                            document.getElementById('wheelResult').innerHTML = `❌ Неверно! Правильно: ${sector.task}. -1 жизнь.`;
+                        }
+                    }
+                }
+                spinning = false;
+            }
+        }
+        requestAnimationFrame(animateSpin);
+    });
+
+    // Текст с pop-up
+    const popupStory = `Today at school, <span class="popup-term" data-trans="они">they</span> have a new <span class="popup-term" data-trans="тетрадь">notebook</span>. <span class="popup-term" data-trans="она">She</span> loves her <span class="popup-term" data-trans="ручка">pen</span>. <span class="popup-term" data-trans="мы">We</span> learn English! 🦄`;
+    document.getElementById('storyText').innerHTML = popupStory;
+    document.querySelectorAll('.popup-term').forEach(el => {
+        const trans = el.getAttribute('data-trans');
+        el.title = `Перевод: ${trans}`;
+        el.style.borderBottom = "2px dotted #ff69b4";
+    });
+
+    // Таблица лидеров (Юля всегда первая)
+    function updateLeaderboard() {
+        let sorted = [...leaderboard];
+        sorted.sort((a,b) => b.points - a.points);
+        const yuliaIndex = sorted.findIndex(l => l.name === "Юля");
+        if(yuliaIndex !== -1 && yuliaIndex !== 0) {
+            const yulia = sorted.splice(yuliaIndex,1)[0];
+            sorted.unshift(yulia);
+        }
+        const container = document.getElementById('leaderboardList');
+        container.innerHTML = '';
+        sorted.forEach((user, idx) => {
+            const row = document.createElement('div');
+            row.className = `leader-row ${user.name === "Юля" ? 'first-place' : ''}`;
+            row.innerHTML = `<span>${idx+1}. ${user.name}</span><span>⭐ ${user.points}</span>`;
+            container.appendChild(row);
+        });
+    }
+    updateLeaderboard();
+    document.getElementById('fullResetBtn').addEventListener('click', () => { resetGame(); window.location.reload(); });
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

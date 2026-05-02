@@ -1,4 +1,4 @@
-import {
+﻿import {
   addStudentItem,
   deleteStudentItem,
   formatDateTime,
@@ -49,11 +49,11 @@ function dateDistanceLabel(iso) {
   const target = new Date(iso);
   target.setHours(0, 0, 0, 0);
   const days = Math.round((target - start) / 86400000);
-  if (days === 0) return t("сегодня", "today");
-  if (days === 1) return t("завтра", "tomorrow");
-  if (days > 1) return t(`через ${days} дн.`, `in ${days} days`);
-  if (days === -1) return t("вчера", "yesterday");
-  return t(`${Math.abs(days)} дн. назад`, `${Math.abs(days)} days ago`);
+  if (days === 0) return t("СЃРµРіРѕРґРЅСЏ", "today");
+  if (days === 1) return t("Р·Р°РІС‚СЂР°", "tomorrow");
+  if (days > 1) return t(`С‡РµСЂРµР· ${days} РґРЅ.`, `in ${days} days`);
+  if (days === -1) return t("РІС‡РµСЂР°", "yesterday");
+  return t(`${Math.abs(days)} РґРЅ. РЅР°Р·Р°Рґ`, `${Math.abs(days)} days ago`);
 }
 
 function renderScheduleTimeline(state, studentId) {
@@ -64,9 +64,9 @@ function renderScheduleTimeline(state, studentId) {
   const items = [
     ...lessons.map((l) => ({
       type: "lesson",
-      title: t("Урок с преподавателем", "Lesson with teacher"),
+      title: t("РЈСЂРѕРє СЃ РїСЂРµРїРѕРґР°РІР°С‚РµР»РµРј", "Lesson with teacher"),
       at: l.date,
-      details: l.homework || t("Домашка появится после урока.", "Homework will appear after the lesson."),
+      details: l.homework || t("Р”РѕРјР°С€РєР° РїРѕСЏРІРёС‚СЃСЏ РїРѕСЃР»Рµ СѓСЂРѕРєР°.", "Homework will appear after the lesson."),
       status: l.status,
       url: l.progressMeUrl || "",
     })),
@@ -88,13 +88,13 @@ function renderScheduleTimeline(state, studentId) {
     ? items
         .map((x, index) => {
           const link = x.url
-            ? `<a class="btn-mini timeline-open" href="${escapeHtml(x.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть", "Open"))}</a>`
+            ? `<a class="btn-mini timeline-open" href="${escapeHtml(x.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ", "Open"))}</a>`
             : "";
           return `
             <article class="timeline-item" style="--i:${index}">
               <div class="timeline-dot"></div>
               <div class="timeline-body">
-                <div class="timeline-meta">${escapeHtml(formatDateTime(x.at))} · ${escapeHtml(dateDistanceLabel(x.at))}</div>
+                <div class="timeline-meta">${escapeHtml(formatDateTime(x.at))} В· ${escapeHtml(dateDistanceLabel(x.at))}</div>
                 <div class="timeline-title">${escapeHtml(x.title)}</div>
                 ${x.details ? `<div class="timeline-text">${escapeHtml(x.details)}</div>` : ""}
                 <div class="timeline-actions">${pill(x.status)}${link}</div>
@@ -103,7 +103,7 @@ function renderScheduleTimeline(state, studentId) {
           `;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("Ближайших событий пока нет.", "No upcoming events yet."))}</div>`;
+    : `<div class="muted">${escapeHtml(t("Р‘Р»РёР¶Р°Р№С€РёС… СЃРѕР±С‹С‚РёР№ РїРѕРєР° РЅРµС‚.", "No upcoming events yet."))}</div>`;
 }
 
 function renderLessonsTable(state, studentId) {
@@ -113,12 +113,12 @@ function renderLessonsTable(state, studentId) {
       const link = l.progressMeUrl
         ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
             l.progressMeUrl
-          )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Урок", "Lesson"))} ↗</a>`
-        : `<span class="muted">—</span>`;
+          )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РЈСЂРѕРє", "Lesson"))} в†—</a>`
+        : `<span class="muted">вЂ”</span>`;
       return `
         <tr>
           <td><div class="panel-kicker">${escapeHtml(formatDateTime(l.date))}</div><strong>${escapeHtml(l.status)}</strong></td>
-          <td class="muted">${escapeHtml((l.homework || "").slice(0, 90) || "—")}</td>
+          <td class="muted">${escapeHtml((l.homework || "").slice(0, 90) || "вЂ”")}</td>
           <td>${link}</td>
         </tr>`;
     })
@@ -129,12 +129,12 @@ function renderLessonsTable(state, studentId) {
   table.innerHTML = `
     <thead>
       <tr>
-        <th>${escapeHtml(t("Дата", "Date"))}</th>
-        <th>${escapeHtml(t("Домашка", "Homework"))}</th>
+        <th>${escapeHtml(t("Р”Р°С‚Р°", "Date"))}</th>
+        <th>${escapeHtml(t("Р”РѕРјР°С€РєР°", "Homework"))}</th>
         <th>${escapeHtml(t("ProgressMe", "ProgressMe"))}</th>
       </tr>
     </thead>
-    <tbody>${rows || `<tr><td colspan="3" class="muted">${escapeHtml(t("Нет уроков", "No lessons"))}</td></tr>`}</tbody>
+    <tbody>${rows || `<tr><td colspan="3" class="muted">${escapeHtml(t("РќРµС‚ СѓСЂРѕРєРѕРІ", "No lessons"))}</td></tr>`}</tbody>
   `;
 }
 
@@ -155,7 +155,7 @@ function renderHomeworkFromLessons(state, studentId) {
           `
         )
         .join("")
-    : `<div class="muted">${escapeHtml(t("Пока нет домашки от преподавателя", "No teacher homework yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґРѕРјР°С€РєРё РѕС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ", "No teacher homework yet"))}</div>`;
   const el = byId("homeworkList");
   if (el) el.innerHTML = html;
 }
@@ -168,11 +168,11 @@ function renderStudentItems(state, studentId) {
   const eventsHtml = events.length
     ? events
         .map((x) => {
-          const when = x.at ? formatDateTime(x.at) : "—";
+          const when = x.at ? formatDateTime(x.at) : "вЂ”";
           const link = x.url
             ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
                 x.url
-              )}" target="_blank" rel="noopener noreferrer">↗</a>`
+              )}" target="_blank" rel="noopener noreferrer">в†—</a>`
             : "";
           return `
             <div style="display:flex; justify-content:space-between; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
@@ -185,13 +185,13 @@ function renderStudentItems(state, studentId) {
                 ${link}
                 <button class="btn-mini" style="min-height:32px; padding: 0 10px;" type="button" data-del-event="${escapeHtml(
                   x.id
-                )}">×</button>
+                )}">Г—</button>
               </div>
             </div>
           `;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("Событий пока нет", "No events yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РЎРѕР±С‹С‚РёР№ РїРѕРєР° РЅРµС‚", "No events yet"))}</div>`;
   const eventsEl = byId("eventsList");
   if (eventsEl) eventsEl.innerHTML = eventsHtml;
 
@@ -201,7 +201,7 @@ function renderStudentItems(state, studentId) {
           const link = x.url
             ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
                 x.url
-              )}" target="_blank" rel="noopener noreferrer">↗</a>`
+              )}" target="_blank" rel="noopener noreferrer">в†—</a>`
             : "";
           const done = x.done ? ` style="opacity:.7; text-decoration: line-through;"` : "";
           return `
@@ -214,35 +214,35 @@ function renderStudentItems(state, studentId) {
                 ${link}
                 <button class="btn-mini" style="min-height:32px; padding: 0 10px;" type="button" data-toggle-material="${escapeHtml(
                   x.id
-                )}">${escapeHtml(x.done ? "↺" : "✓")}</button>
+                )}">${escapeHtml(x.done ? "в†є" : "вњ“")}</button>
                 <button class="btn-mini" style="min-height:32px; padding: 0 10px;" type="button" data-del-material="${escapeHtml(
                   x.id
-                )}">×</button>
+                )}">Г—</button>
               </div>
             </div>
           `;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("Материалов пока нет", "No materials yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РњР°С‚РµСЂРёР°Р»РѕРІ РїРѕРєР° РЅРµС‚", "No materials yet"))}</div>`;
   const matEl = byId("materialsList");
   if (matEl) matEl.innerHTML = materialsHtml;
 
   const practiceHtml = practice.length
     ? practice
         .map((x) => {
-          const when = x.at ? formatDateTime(x.at) : "—";
+          const when = x.at ? formatDateTime(x.at) : "вЂ”";
           const mins = x.minutes ? `${x.minutes}m` : "";
           const done = x.done ? ` style="opacity:.7; text-decoration: line-through;"` : "";
           const source = x.source === "linguaboost" ? `<span class="pill" data-tone="warn">${escapeHtml(x.level || "LAB")}</span>` : "";
           const link = x.url
             ? `<a class="btn-mini" style="min-height:32px; padding: 0 10px;" href="${escapeHtml(
                 x.url
-              )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть", "Open"))}</a>`
+              )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ", "Open"))}</a>`
             : "";
           return `
             <div style="display:flex; justify-content:space-between; gap:12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
               <div${done}>
-                <div class="panel-kicker">${escapeHtml([when, mins].filter(Boolean).join(" · "))}</div>
+                <div class="panel-kicker">${escapeHtml([when, mins].filter(Boolean).join(" В· "))}</div>
                 <div><strong>${escapeHtml(x.title)}</strong> ${source}</div>
                 ${x.details ? `<div class="muted" style="margin-top:4px;">${escapeHtml(x.details)}</div>` : ""}
               </div>
@@ -250,16 +250,16 @@ function renderStudentItems(state, studentId) {
                 ${link}
                 <button class="btn-mini" style="min-height:32px; padding: 0 10px;" type="button" data-toggle-practice="${escapeHtml(
                   x.id
-                )}">${escapeHtml(x.done ? "↺" : "✓")}</button>
+                )}">${escapeHtml(x.done ? "в†є" : "вњ“")}</button>
                 <button class="btn-mini" style="min-height:32px; padding: 0 10px;" type="button" data-del-practice="${escapeHtml(
                   x.id
-                )}">×</button>
+                )}">Г—</button>
               </div>
             </div>
           `;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("Практики пока нет", "No practice yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("РџСЂР°РєС‚РёРєРё РїРѕРєР° РЅРµС‚", "No practice yet"))}</div>`;
   const prEl = byId("practiceList");
   if (prEl) prEl.innerHTML = practiceHtml;
 
@@ -268,6 +268,7 @@ function renderStudentItems(state, studentId) {
       const id = btn.getAttribute("data-del-event") || "";
       const s = loadState();
       deleteStudentItem(s, id);
+      saveState(s);
       renderStudentItems(loadState(), studentId);
     });
   });
@@ -276,6 +277,7 @@ function renderStudentItems(state, studentId) {
       const id = btn.getAttribute("data-del-material") || "";
       const s = loadState();
       deleteStudentItem(s, id);
+      saveState(s);
       renderStudentItems(loadState(), studentId);
     });
   });
@@ -286,6 +288,7 @@ function renderStudentItems(state, studentId) {
       const cur = s.studentItems.find((x) => x.id === id);
       if (!cur) return;
       updateStudentItem(s, id, { done: !cur.done });
+      saveState(s);
       renderStudentItems(loadState(), studentId);
     });
   });
@@ -294,6 +297,7 @@ function renderStudentItems(state, studentId) {
       const id = btn.getAttribute("data-del-practice") || "";
       const s = loadState();
       deleteStudentItem(s, id);
+      saveState(s);
       renderStudentItems(loadState(), studentId);
     });
   });
@@ -304,6 +308,7 @@ function renderStudentItems(state, studentId) {
       const cur = s.studentItems.find((x) => x.id === id);
       if (!cur) return;
       updateStudentItem(s, id, { done: !cur.done });
+      saveState(s);
       renderStudentItems(loadState(), studentId);
     });
   });
@@ -314,29 +319,29 @@ function renderProgressBox(state, studentId) {
   const el = byId("progressBox");
   if (!el) return;
   if (!p) {
-    el.innerHTML = `<div class="muted">${escapeHtml(t("Пока нет данных", "No data yet"))}</div>`;
+    el.innerHTML = `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґР°РЅРЅС‹С…", "No data yet"))}</div>`;
     return;
   }
 
   el.innerHTML = `
     <div style="display:grid; gap: 10px;">
-      <div><span class="panel-kicker">${escapeHtml(t("Уровень", "Level"))}</span><div><strong>${escapeHtml(p.level)}</strong></div></div>
-      <div><span class="panel-kicker">${escapeHtml(t("Цели (от преподавателя)", "Goals (teacher)"))}</span><div class="muted">${escapeHtml(
+      <div><span class="panel-kicker">${escapeHtml(t("РЈСЂРѕРІРµРЅСЊ", "Level"))}</span><div><strong>${escapeHtml(p.level)}</strong></div></div>
+      <div><span class="panel-kicker">${escapeHtml(t("Р¦РµР»Рё (РѕС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ)", "Goals (teacher)"))}</span><div class="muted">${escapeHtml(
         p.goals
       )}</div></div>
-      <div><span class="panel-kicker">${escapeHtml(t("Комментарий (от преподавателя)", "Comment (teacher)"))}</span><div class="muted">${escapeHtml(
+      <div><span class="panel-kicker">${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№ (РѕС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ)", "Comment (teacher)"))}</span><div class="muted">${escapeHtml(
         p.comments
       )}</div></div>
 
       <div style="padding-top: 8px; border-top: 1px solid var(--line);">
-        <span class="panel-kicker">${escapeHtml(t("Мои цели", "My goals"))}</span>
-        <textarea id="studentGoals" placeholder="${escapeHtml(t("Например: 2×/нед speaking…", "e.g. 2×/week speaking…"))}">${escapeHtml(
+        <span class="panel-kicker">${escapeHtml(t("РњРѕРё С†РµР»Рё", "My goals"))}</span>
+        <textarea id="studentGoals" placeholder="${escapeHtml(t("РќР°РїСЂРёРјРµСЂ: 2Г—/РЅРµРґ speakingвЂ¦", "e.g. 2Г—/week speakingвЂ¦"))}">${escapeHtml(
           p.studentGoals || ""
         )}</textarea>
       </div>
       <div>
-        <span class="panel-kicker">${escapeHtml(t("Мои заметки", "My notes"))}</span>
-        <textarea id="studentNotes" placeholder="${escapeHtml(t("Что получается / что сложно…", "What works / what’s hard…"))}">${escapeHtml(
+        <span class="panel-kicker">${escapeHtml(t("РњРѕРё Р·Р°РјРµС‚РєРё", "My notes"))}</span>
+        <textarea id="studentNotes" placeholder="${escapeHtml(t("Р§С‚Рѕ РїРѕР»СѓС‡Р°РµС‚СЃСЏ / С‡С‚Рѕ СЃР»РѕР¶РЅРѕвЂ¦", "What works / whatвЂ™s hardвЂ¦"))}">${escapeHtml(
           p.studentNotes || ""
         )}</textarea>
       </div>
@@ -352,27 +357,27 @@ function renderEventCreator(open) {
   const today = new Date().toISOString().slice(0, 10);
   el.innerHTML = `
     <div class="form-row" style="grid-template-columns: 1fr 140px 120px;">
-      <label>${escapeHtml(t("Событие", "Event"))}
-        <input id="evTitle" placeholder="${escapeHtml(t("Название…", "Title…"))}">
+      <label>${escapeHtml(t("РЎРѕР±С‹С‚РёРµ", "Event"))}
+        <input id="evTitle" placeholder="${escapeHtml(t("РќР°Р·РІР°РЅРёРµвЂ¦", "TitleвЂ¦"))}">
       </label>
-      <label>${escapeHtml(t("Дата", "Date"))}
+      <label>${escapeHtml(t("Р”Р°С‚Р°", "Date"))}
         <input id="evDate" type="date" value="${escapeHtml(today)}">
       </label>
-      <label>${escapeHtml(t("Время", "Time"))}
+      <label>${escapeHtml(t("Р’СЂРµРјСЏ", "Time"))}
         <input id="evTime" type="time" value="12:00">
       </label>
     </div>
     <div class="form-row" style="grid-template-columns: 1fr;">
-      <label>${escapeHtml(t("Ссылка (опционально)", "Link (optional)"))}
+      <label>${escapeHtml(t("РЎСЃС‹Р»РєР° (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)", "Link (optional)"))}
         <input id="evLink" placeholder="https://...">
       </label>
-      <label>${escapeHtml(t("Комментарий (опционально)", "Note (optional)"))}
-        <textarea id="evDetails" placeholder="${escapeHtml(t("Коротко…", "Short…"))}"></textarea>
+      <label>${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№ (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)", "Note (optional)"))}
+        <textarea id="evDetails" placeholder="${escapeHtml(t("РљРѕСЂРѕС‚РєРѕвЂ¦", "ShortвЂ¦"))}"></textarea>
       </label>
     </div>
     <div class="actions">
-      <button class="btn-mini" id="evSaveBtn" type="button" data-primary>${escapeHtml(t("Добавить", "Add"))}</button>
-      <button class="btn-mini" id="evCancelBtn" type="button">${escapeHtml(t("Отмена", "Cancel"))}</button>
+      <button class="btn-mini" id="evSaveBtn" type="button" data-primary>${escapeHtml(t("Р”РѕР±Р°РІРёС‚СЊ", "Add"))}</button>
+      <button class="btn-mini" id="evCancelBtn" type="button">${escapeHtml(t("РћС‚РјРµРЅР°", "Cancel"))}</button>
     </div>
   `;
 }
@@ -384,21 +389,21 @@ function renderMaterialCreator(open) {
   if (!open) return;
   el.innerHTML = `
     <div class="form-row" style="grid-template-columns: 1fr 1fr;">
-      <label>${escapeHtml(t("Материал", "Material"))}
-        <input id="matTitle" placeholder="${escapeHtml(t("Название…", "Title…"))}">
+      <label>${escapeHtml(t("РњР°С‚РµСЂРёР°Р»", "Material"))}
+        <input id="matTitle" placeholder="${escapeHtml(t("РќР°Р·РІР°РЅРёРµвЂ¦", "TitleвЂ¦"))}">
       </label>
-      <label>${escapeHtml(t("Ссылка", "Link"))}
+      <label>${escapeHtml(t("РЎСЃС‹Р»РєР°", "Link"))}
         <input id="matUrl" placeholder="https://...">
       </label>
     </div>
     <div class="form-row" style="grid-template-columns: 1fr;">
-      <label>${escapeHtml(t("Комментарий", "Note"))}
-        <textarea id="matDetails" placeholder="${escapeHtml(t("Что это и зачем…", "What is it and why…"))}"></textarea>
+      <label>${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№", "Note"))}
+        <textarea id="matDetails" placeholder="${escapeHtml(t("Р§С‚Рѕ СЌС‚Рѕ Рё Р·Р°С‡РµРјвЂ¦", "What is it and whyвЂ¦"))}"></textarea>
       </label>
     </div>
     <div class="actions">
-      <button class="btn-mini" id="matSaveBtn" type="button" data-primary>${escapeHtml(t("Добавить", "Add"))}</button>
-      <button class="btn-mini" id="matCancelBtn" type="button">${escapeHtml(t("Отмена", "Cancel"))}</button>
+      <button class="btn-mini" id="matSaveBtn" type="button" data-primary>${escapeHtml(t("Р”РѕР±Р°РІРёС‚СЊ", "Add"))}</button>
+      <button class="btn-mini" id="matCancelBtn" type="button">${escapeHtml(t("РћС‚РјРµРЅР°", "Cancel"))}</button>
     </div>
   `;
 }
@@ -411,24 +416,24 @@ function renderPracticeCreator(open) {
   const today = new Date().toISOString().slice(0, 10);
   el.innerHTML = `
     <div class="form-row" style="grid-template-columns: 1fr 120px 140px;">
-      <label>${escapeHtml(t("Практика", "Practice"))}
-        <input id="prTitle" placeholder="${escapeHtml(t("Например: Listening…", "e.g. Listening…"))}">
+      <label>${escapeHtml(t("РџСЂР°РєС‚РёРєР°", "Practice"))}
+        <input id="prTitle" placeholder="${escapeHtml(t("РќР°РїСЂРёРјРµСЂ: ListeningвЂ¦", "e.g. ListeningвЂ¦"))}">
       </label>
-      <label>${escapeHtml(t("Минут", "Minutes"))}
+      <label>${escapeHtml(t("РњРёРЅСѓС‚", "Minutes"))}
         <input id="prMinutes" type="number" min="1" value="10">
       </label>
-      <label>${escapeHtml(t("Дата", "Date"))}
+      <label>${escapeHtml(t("Р”Р°С‚Р°", "Date"))}
         <input id="prDate" type="date" value="${escapeHtml(today)}">
       </label>
     </div>
     <div class="form-row" style="grid-template-columns: 1fr;">
-      <label>${escapeHtml(t("Комментарий", "Note"))}
-        <textarea id="prDetails" placeholder="${escapeHtml(t("Что делали…", "What did you do…"))}"></textarea>
+      <label>${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№", "Note"))}
+        <textarea id="prDetails" placeholder="${escapeHtml(t("Р§С‚Рѕ РґРµР»Р°Р»РёвЂ¦", "What did you doвЂ¦"))}"></textarea>
       </label>
     </div>
     <div class="actions">
-      <button class="btn-mini" id="prSaveBtn" type="button" data-primary>${escapeHtml(t("Добавить", "Add"))}</button>
-      <button class="btn-mini" id="prCancelBtn" type="button">${escapeHtml(t("Отмена", "Cancel"))}</button>
+      <button class="btn-mini" id="prSaveBtn" type="button" data-primary>${escapeHtml(t("Р”РѕР±Р°РІРёС‚СЊ", "Add"))}</button>
+      <button class="btn-mini" id="prCancelBtn" type="button">${escapeHtml(t("РћС‚РјРµРЅР°", "Cancel"))}</button>
     </div>
   `;
 }
@@ -440,23 +445,23 @@ function renderLabPicker() {
   el.innerHTML = `
     <div class="lab-picker">
       <div class="form-row lab-picker-row">
-        <label>${escapeHtml(t("Уровень", "Level"))}
+        <label>${escapeHtml(t("РЈСЂРѕРІРµРЅСЊ", "Level"))}
           <select id="labLevelSelect">
-            <option value="">${escapeHtml(t("Все уровни", "All levels"))}</option>
+            <option value="">${escapeHtml(t("Р’СЃРµ СѓСЂРѕРІРЅРё", "All levels"))}</option>
             ${levels.map((level) => `<option value="${escapeHtml(level)}">${escapeHtml(level)}</option>`).join("")}
           </select>
         </label>
-        <label>${escapeHtml(t("Тренажёр", "Trainer"))}
+        <label>${escapeHtml(t("РўСЂРµРЅР°Р¶С‘СЂ", "Trainer"))}
           <select id="labModuleSelect"></select>
         </label>
-        <label>${escapeHtml(t("Когда сделать", "Due date"))}
+        <label>${escapeHtml(t("РљРѕРіРґР° СЃРґРµР»Р°С‚СЊ", "Due date"))}
           <input id="labDueDate" type="date" value="${escapeHtml(new Date().toISOString().slice(0, 10))}">
         </label>
       </div>
       <div id="labModulePreview" class="lab-module-preview"></div>
       <div class="actions">
-        <button class="btn-mini" id="addLabModuleBtn" type="button" data-primary>${escapeHtml(t("Добавить в домашку", "Add to homework"))}</button>
-        <a class="btn-mini" href="../lingua-boost-lab/index.html" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть лабораторию", "Open lab"))}</a>
+        <button class="btn-mini" id="addLabModuleBtn" type="button" data-primary>${escapeHtml(t("Р”РѕР±Р°РІРёС‚СЊ РІ РґРѕРјР°С€РєСѓ", "Add to homework"))}</button>
+        <a class="btn-mini" href="../lingua-boost-lab/index.html" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ Р»Р°Р±РѕСЂР°С‚РѕСЂРёСЋ", "Open lab"))}</a>
       </div>
     </div>
   `;
@@ -482,17 +487,17 @@ function renderLabPicker() {
     if (!preview || !moduleSelect) return;
     const module = LAB_MODULES.find((m) => m.id === moduleSelect.value) || filteredModules()[0];
     if (!module) {
-      preview.innerHTML = `<div class="muted">${escapeHtml(t("В лаборатории пока нет модулей.", "No modules yet."))}</div>`;
+      preview.innerHTML = `<div class="muted">${escapeHtml(t("Р’ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё РїРѕРєР° РЅРµС‚ РјРѕРґСѓР»РµР№.", "No modules yet."))}</div>`;
       return;
     }
     preview.innerHTML = `
       <div class="lab-card">
-        <div class="panel-kicker">${escapeHtml(module.level)} · ${escapeHtml(module.topic)}</div>
+        <div class="panel-kicker">${escapeHtml(module.level)} В· ${escapeHtml(module.topic)}</div>
         <strong>${escapeHtml(module.title)}</strong>
         <p class="muted">${escapeHtml(module.description)}</p>
         <div class="lab-card-meta">
           <span class="pill">${escapeHtml(module.audience)}</span>
-          <span class="pill">${escapeHtml(module.minutes)} ${escapeHtml(t("мин", "min"))}</span>
+          <span class="pill">${escapeHtml(module.minutes)} ${escapeHtml(t("РјРёРЅ", "min"))}</span>
         </div>
       </div>
     `;
@@ -523,44 +528,50 @@ function buildStudentReport(state, studentId, studentName) {
   const progress = getProgress(state, studentId);
   const donePractice = practice.filter((x) => x.done).length;
   const totalMinutes = practice.reduce((sum, x) => sum + (Number(x.minutes) || 0), 0);
-
-  const line = (label, value = "") => `${label}: ${value}`.trim();
-  return [
-    "New Generation English",
-    `Отчёт ученика: ${studentName}`,
-    `Дата выгрузки: ${new Intl.DateTimeFormat("ru-RU", { dateStyle: "long", timeStyle: "short" }).format(new Date())}`,
-    "",
-    "Прогресс",
-    line("Уровень", progress?.level || "—"),
-    line("Цели преподавателя", progress?.goals || "—"),
-    line("Комментарий преподавателя", progress?.comments || "—"),
-    line("Мои цели", progress?.studentGoals || "—"),
-    line("Мои заметки", progress?.studentNotes || "—"),
-    "",
-    "Сводка",
-    line("Ближайших/последних уроков", String(lessons.length)),
-    line("Материалов", String(materials.length)),
-    line("Практик и тренажёров", String(practice.length)),
-    line("Готово практик", String(donePractice)),
-    line("Минут практики", String(totalMinutes)),
-    line("Личных событий", String(events.length)),
-    "",
-    "Уроки",
-    ...(lessons.length
-      ? lessons.map((l) => `- ${formatDateTime(l.date)} · ${l.status} · ${l.homework || "без домашки"}`)
-      : ["- пока нет уроков"]),
-    "",
-    "Домашние материалы",
-    ...(materials.length
-      ? materials.map((x) => `- ${x.done ? "[готово]" : "[в работе]"} ${x.title}${x.url ? ` · ${x.url}` : ""}`)
-      : ["- пока нет материалов"]),
-    "",
-    "Тренажёры и практика",
-    ...(practice.length
-      ? practice.map((x) => `- ${x.done ? "[готово]" : "[в работе]"} ${x.title}${x.level ? ` · ${x.level}` : ""}${x.url ? ` · ${x.url}` : ""}`)
-      : ["- пока нет практики"]),
-    "",
-  ].join("\n");
+  const latestHomework = lessons.find((l) => l.homework)?.homework || "";
+  const generatedLabel = new Intl.DateTimeFormat("ru-RU", { dateStyle: "long", timeStyle: "short" }).format(new Date());
+  const builder = window.NGEReportDocs?.buildReportDocument;
+  if (!builder) {
+    return 
+ew Generation English\nРћС‚С‡С‘С‚ СѓС‡РµРЅРёРєР°: ${studentName}\nР”Р°С‚Р° РІС‹РіСЂСѓР·РєРё: ${generatedLabel}`;
+  }
+  return builder({
+    title: "Р›РёС‡РЅС‹Р№ РѕС‚С‡С‘С‚ СѓС‡РµРЅРёРєР°",
+    studentName,
+    generatedLabel,
+    level: progress?.level || "вЂ”",
+    subscription: "РЈС‡РµР±РЅС‹Р№ С‚СЂРµРє",
+    totalLessons: lessons.length,
+    lessonsLeft: events.length,
+    focus: progress?.goals || progress?.comments || "РџСЂРѕРґРѕР»Р¶Р°РµРј РёРґС‚Рё РїРѕ СѓС‡РµР±РЅРѕРјСѓ РїР»Р°РЅСѓ Рё РѕС‚РјРµС‡Р°С‚СЊ РІС‹РїРѕР»РЅРµРЅРЅСѓСЋ РїСЂР°РєС‚РёРєСѓ.",
+    body: [
+      progress?.comments ? `РљРѕРјРјРµРЅС‚Р°СЂРёР№ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ: ${progress.comments}` : "",
+      progress?.studentGoals ? `РњРѕРё С†РµР»Рё: ${progress.studentGoals}` : "",
+      progress?.studentNotes ? `РњРѕРё Р·Р°РјРµС‚РєРё: ${progress.studentNotes}` : "",
+      `РЎРµР№С‡Р°СЃ РІ РєР°Р±РёРЅРµС‚Рµ ${materials.length} РјР°С‚РµСЂРёР°Р»РѕРІ, ${practice.length} С‚СЂРµРЅР°Р¶С‘СЂРѕРІ Рё ${donePractice} РІС‹РїРѕР»РЅРµРЅРЅС‹С… РїСЂР°РєС‚РёРє.`,
+      totalMinutes ? `РЎСѓРјРјР°СЂРЅРѕ РІ РїСЂР°РєС‚РёРєРµ Р·Р°РїР»Р°РЅРёСЂРѕРІР°РЅРѕ ${totalMinutes} РјРёРЅСѓС‚.` : "",
+    ].filter(Boolean).join("\n"),
+    homework: latestHomework,
+    nextStep: progress?.studentGoals || progress?.goals || "РћС‚РєСЂС‹С‚СЊ Р±Р»РёР¶Р°Р№С€РёРµ РјР°С‚РµСЂРёР°Р»С‹ Рё Р·Р°РєСЂС‹С‚СЊ РїСЂР°РєС‚РёРєСѓ РїРѕ РїР»Р°РЅСѓ.",
+    lessons: lessons.map((l) => ({
+      date: formatDateTime(l.date),
+      status: l.status,
+      topic: "РЈСЂРѕРє Р°РЅРіР»РёР№СЃРєРѕРіРѕ",
+      homework: l.homework || l.notes || "",
+    })),
+    materials: materials.map((x) => ({
+      title: x.title,
+      details: x.details || x.url || "",
+      done: Boolean(x.done),
+      date: x.at ? formatDateTime(x.at) : "",
+    })),
+    practice: practice.map((x) => ({
+      title: x.title,
+      details: x.details || x.level || x.url || "",
+      done: Boolean(x.done),
+      minutes: x.minutes || "",
+    })),
+  });
 }
 
 export function initStudentCabinet(ctx) {
@@ -603,6 +614,7 @@ export function initStudentCabinet(ctx) {
         if (!title) return;
         const state = loadState();
         addStudentItem(state, { studentId: me.id, kind: "schedule", title, details, url, at: getISOForLocalDateTime(date, time) });
+        saveState(state);
         eventOpen = false;
         renderEventCreator(false);
         renderAll();
@@ -625,6 +637,7 @@ export function initStudentCabinet(ctx) {
         if (!title) return;
         const state = loadState();
         addStudentItem(state, { studentId: me.id, kind: "material", title, details, url, done: false });
+        saveState(state);
         materialOpen = false;
         renderMaterialCreator(false);
         renderAll();
@@ -656,6 +669,7 @@ export function initStudentCabinet(ctx) {
           at: getISOForLocalDateTime(date, "12:00"),
           done: false,
         });
+        saveState(state);
         practiceOpen = false;
         renderPracticeCreator(false);
         renderAll();
@@ -673,7 +687,7 @@ export function initStudentCabinet(ctx) {
       studentId: me.id,
       kind: "practice",
       title: module.title,
-      details: `${module.description} ${t("Добавлено из LinguaBoost Лаб.", "Added from LinguaBoost Lab.")}`,
+      details: `${module.description} ${t("Р”РѕР±Р°РІР»РµРЅРѕ РёР· LinguaBoost Р›Р°Р±.", "Added from LinguaBoost Lab.")}`,
       url: module.href,
       minutes: module.minutes,
       at: getISOForLocalDateTime(due, "12:00"),
@@ -682,6 +696,7 @@ export function initStudentCabinet(ctx) {
       moduleId: module.id,
       level: module.level,
     });
+    saveState(state);
     renderAll();
   });
 
@@ -697,7 +712,11 @@ export function initStudentCabinet(ctx) {
   byId("downloadProgressBtn")?.addEventListener("click", () => {
     const state = loadState();
     const stamp = new Date().toISOString().slice(0, 10);
-    downloadTextFile(`nge-student-progress-${stamp}.txt`, buildStudentReport(state, me.id, me.name));
+    const filename = 
+ge-student-progress-${window.NGEReportDocs?.safeName?.(me.name) || "student"}-${stamp}.html`;
+    window.NGEReportDocs?.downloadHtml
+      ? window.NGEReportDocs.downloadHtml(filename, buildStudentReport(state, me.id, me.name))
+      : downloadTextFile(filename, buildStudentReport(state, me.id, me.name), "text/html;charset=utf-8");
   });
 
   const langBtn = byId("langBtn");

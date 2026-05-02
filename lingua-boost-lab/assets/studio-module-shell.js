@@ -210,15 +210,15 @@
     const wrap = document.createElement("div");
     wrap.className = "lbs-ribbon__lang lb-catalog-lang";
 
-    ["ru", "en"].forEach((lang) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "lbs-lang-btn";
-      button.dataset.lang = lang;
-      button.textContent = lang.toUpperCase();
-      button.addEventListener("click", () => applyLanguage(lang));
-      wrap.appendChild(button);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "lbs-lang-btn is-active";
+    button.dataset.langToggle = "true";
+    button.addEventListener("click", () => {
+      const currentLang = document.documentElement.lang === "en" ? "en" : "ru";
+      applyLanguage(currentLang === "ru" ? "en" : "ru");
     });
+    wrap.appendChild(button);
 
     return wrap;
   }
@@ -233,7 +233,10 @@
 
   function updateLangButtons(lang) {
     document.querySelectorAll(".lbs-lang-btn").forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.lang === lang);
+      button.classList.add("is-active");
+      button.dataset.lang = lang;
+      button.textContent = lang.toUpperCase();
+      button.setAttribute("aria-label", lang === "ru" ? "Switch to English" : "Переключить на русский");
     });
   }
 

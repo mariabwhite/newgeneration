@@ -1,0 +1,1556 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light-lab">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>There is / There are · A1 · LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+[data-theme="light-lab"] {
+  --bg: #f7f5ff; --bg-2: #efeaff; --card: #ffffff; --card-2: #f4f0ff;
+  --text: #1a1326; --muted: #4a4358; --faint: #756d86;
+  --accent: #ff5a1f; --accent-2: #ff6d38; --accent-on: #1a1326;
+  --brand: #7a5fcf; --brand-2: #4f3ea5;
+  --line: rgba(122,95,207,0.18); --line-2: rgba(122,95,207,0.30); --line-dot: rgba(122,95,207,0.42);
+  --hero-glow1: rgba(122,95,207,0.18); --hero-glow2: rgba(255,90,31,0.10);
+  --term-bg: rgba(122,95,207,0.06); --soft: rgba(122,95,207,0.08); --ok: #16a06b; --warn: #b7791f;
+}
+[data-theme="peach"] {
+  --bg: #f6ede7; --bg-2: #f1e2d6; --card: #fdf7f2; --card-2: #f9eee5;
+  --text: #2b1c12; --muted: #6b4f3c; --faint: #997558;
+  --accent: #e26a2c; --accent-2: #f08240; --accent-on: #fff8f3;
+  --brand: #b8542a; --brand-2: #8a3c1c;
+  --line: rgba(184,84,42,0.18); --line-2: rgba(184,84,42,0.30); --line-dot: rgba(184,84,42,0.40);
+  --hero-glow1: rgba(226,106,44,0.16); --hero-glow2: rgba(184,84,42,0.10);
+  --term-bg: rgba(184,84,42,0.06); --soft: rgba(226,106,44,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="green"] {
+  --bg: #eaf3ec; --bg-2: #dbe9de; --card: #f4faf5; --card-2: #e6f1e8;
+  --text: #102218; --muted: #3e5648; --faint: #6a8275;
+  --accent: #1f8f5a; --accent-2: #29a96a; --accent-on: #f4faf5;
+  --brand: #2f7d52; --brand-2: #1d5e3b;
+  --line: rgba(31,143,90,0.18); --line-2: rgba(31,143,90,0.30); --line-dot: rgba(31,143,90,0.40);
+  --hero-glow1: rgba(31,143,90,0.16); --hero-glow2: rgba(255,155,47,0.06);
+  --term-bg: rgba(31,143,90,0.06); --soft: rgba(31,143,90,0.08); --ok: #1f8f5a; --warn: #98791d;
+}
+[data-theme="rose"] {
+  --bg: #f5eef3; --bg-2: #ecdfe7; --card: #fbf5f9; --card-2: #f1e3ec;
+  --text: #2a1622; --muted: #6c4659; --faint: #936e82;
+  --accent: #c84d80; --accent-2: #d96796; --accent-on: #fbf5f9;
+  --brand: #a13a6c; --brand-2: #7a2851;
+  --line: rgba(161,58,108,0.18); --line-2: rgba(161,58,108,0.30); --line-dot: rgba(161,58,108,0.40);
+  --hero-glow1: rgba(200,77,128,0.16); --hero-glow2: rgba(161,58,108,0.08);
+  --term-bg: rgba(161,58,108,0.06); --soft: rgba(200,77,128,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="cyan"] {
+  --bg: #eaf8fb; --bg-2: #d9f0f6; --card: #f7fdff; --card-2: #e7f6fb;
+  --text: #08242c; --muted: #365c66; --faint: #6b8d96;
+  --accent: #0f9ec4; --accent-2: #18b8df; --accent-on: #f7fdff;
+  --brand: #167c9b; --brand-2: #0f5f78;
+  --line: rgba(15,158,196,0.18); --line-2: rgba(15,158,196,0.32); --line-dot: rgba(15,158,196,0.42);
+  --hero-glow1: rgba(15,158,196,0.14); --hero-glow2: rgba(22,124,155,0.08);
+  --term-bg: rgba(15,158,196,0.06); --soft: rgba(15,158,196,0.08); --ok: #15885f; --warn: #9a6618;
+}
+[data-theme="amber"] {
+  --bg: #fff7e8; --bg-2: #f7ead2; --card: #fffdf8; --card-2: #fbf0da;
+  --text: #2b2111; --muted: #665336; --faint: #927a55;
+  --accent: #d88916; --accent-2: #eba12a; --accent-on: #fff9ed;
+  --brand: #a86513; --brand-2: #7b4a0c;
+  --line: rgba(168,101,19,0.18); --line-2: rgba(168,101,19,0.30); --line-dot: rgba(168,101,19,0.40);
+  --hero-glow1: rgba(216,137,22,0.16); --hero-glow2: rgba(168,101,19,0.08);
+  --term-bg: rgba(216,137,22,0.06); --soft: rgba(216,137,22,0.10); --ok: #2f7d52; --warn: #8f5d12;
+}
+[data-theme="white"] {
+  --bg: #f8fafc; --bg-2: #edf2f7; --card: #ffffff; --card-2: #f1f5f9;
+  --text: #172033; --muted: #4b5871; --faint: #7d899f;
+  --accent: #315ee8; --accent-2: #5f83ff; --accent-on: #ffffff;
+  --brand: #6c4fd8; --brand-2: #2d3f8f;
+  --line: rgba(49,94,232,0.16); --line-2: rgba(49,94,232,0.28); --line-dot: rgba(108,79,216,0.38);
+  --hero-glow1: rgba(49,94,232,0.12); --hero-glow2: rgba(108,79,216,0.08);
+  --term-bg: rgba(49,94,232,0.05); --soft: rgba(49,94,232,0.07); --ok: #16875a; --warn: #9a6618;
+}
+[data-theme="black-lab"] {
+  --bg: #030305; --bg-2: #08070d; --card: #0d0b14; --card-2: #15101f;
+  --text: #f7f3ff; --muted: #c8bddc; --faint: #8c7da5;
+  --accent: #ff7a1a; --accent-2: #ff9b2f; --accent-on: #080503;
+  --brand: #9a7ad9; --brand-2: #c8b4ff;
+  --line: rgba(196,174,240,0.16); --line-2: rgba(196,174,240,0.30); --line-dot: rgba(196,174,240,0.42);
+  --hero-glow1: rgba(122,76,220,0.30); --hero-glow2: rgba(255,122,26,0.14);
+  --term-bg: rgba(154,122,217,0.08); --soft: rgba(154,122,217,0.10); --ok: #46c487; --warn: #f2a43b;
+}
+[data-theme="violet"] {
+  --bg: #130d24; --bg-2: #1d1433; --card: #201731; --card-2: #2b2142;
+  --text: #f7f2ff; --muted: #d0c3ee; --faint: #a999c7;
+  --accent: #b993ff; --accent-2: #d2bcff; --accent-on: #171025;
+  --brand: #ff8a2a; --brand-2: #c8b4ff;
+  --line: rgba(198,177,255,0.18); --line-2: rgba(198,177,255,0.32); --line-dot: rgba(198,177,255,0.45);
+  --hero-glow1: rgba(157,116,255,0.28); --hero-glow2: rgba(255,138,42,0.12);
+  --term-bg: rgba(198,177,255,0.08); --soft: rgba(198,177,255,0.10); --ok: #54c58f; --warn: #f0aa45;
+}
+:root {
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh; font-family: var(--body); color: var(--text);
+  background:
+    radial-gradient(circle at 82% 4%, var(--hero-glow1), transparent 38%),
+    radial-gradient(circle at 8% 38%, var(--hero-glow2), transparent 32%),
+    var(--bg);
+  background-attachment: fixed;
+  transition: background 0.3s, color 0.3s;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font: inherit; }
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  min-height: 56px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px;
+  display: grid; place-items: center; background: var(--soft); position: relative;
+}
+.brand-mark::before {
+  content: "L"; font-family: var(--display); font-size: 20px; font-weight: 900;
+  color: var(--accent); line-height: 1; letter-spacing: -0.04em;
+}
+.brand-mark::after {
+  content: ""; position: absolute; right: 4px; bottom: 4px; width: 5px; height: 5px;
+  border-radius: 50%; background: var(--brand);
+}
+.brand-copy { display: grid; gap: 2px; }
+.brand-name { font-family: var(--display); font-size: 14px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.brand-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+.topbar-nav { display: flex; gap: clamp(12px, 2vw, 22px); margin-left: 12px; flex-wrap: wrap; }
+.top-link {
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); transition: color 0.18s;
+}
+.top-link:hover, .top-link.active { color: var(--accent); }
+.topbar-tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.btn-tool {
+  height: 32px; min-width: 38px; padding: 0 10px; border: 1px solid var(--line-2);
+  border-radius: 8px; background: var(--card); color: var(--muted);
+  font: 800 11px/1 var(--mono); letter-spacing: 0.08em; cursor: pointer;
+  display: inline-grid; place-items: center; transition: all 0.16s;
+}
+select.btn-tool { width: 118px; }
+.btn-tool:hover { border-color: var(--accent); color: var(--accent); }
+.btn-tool.is-active { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 32px clamp(16px, 3vw, 28px) 80px; }
+.crumbs {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 22px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--faint);
+}
+.crumbs a { color: var(--muted); transition: color 0.18s; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs .sep { color: var(--line-dot); }
+.crumbs .here { color: var(--brand); }
+.hero {
+  position: relative; border: 1px solid var(--line); border-radius: 18px;
+  padding: clamp(26px, 5vw, 56px); margin-bottom: 18px;
+  background:
+    radial-gradient(circle at 88% 14%, var(--hero-glow1), transparent 42%),
+    radial-gradient(circle at 8% 88%, var(--hero-glow2), transparent 50%),
+    var(--card);
+  overflow: hidden;
+}
+.hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.28fr 0.92fr; gap: 40px; align-items: center; }
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--brand); margin-bottom: 16px;
+}
+.hero-eyebrow::before { content: "$ "; color: var(--accent); }
+.hero-title {
+  font-family: var(--display); font-size: clamp(2.05rem, 5vw, 4.25rem); line-height: 0.96;
+  letter-spacing: -0.05em; margin-bottom: 18px;
+}
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-lead { color: var(--muted); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.7; max-width: 760px; margin-bottom: 20px; }
+.hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill {
+  display: inline-grid; place-items: center; min-height: 28px; padding: 6px 10px;
+  border: 1px solid var(--line-2); border-radius: 999px; background: var(--soft);
+  color: var(--muted); font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-grid; place-items: center; min-height: 42px; padding: 0 18px; border-radius: 8px;
+  border: 1px solid var(--line-2); font-family: var(--mono); font-size: 11px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; transition: transform 0.16s, border-color 0.16s, background 0.16s;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.btn.ghost { background: var(--soft); color: var(--text); }
+.hero-photo {
+  position: relative; min-height: 320px; border-radius: 16px; border: 1px solid var(--line-2);
+  overflow: hidden; background: var(--card-2);
+  box-shadow: 0 30px 80px -28px var(--hero-glow1);
+}
+.hero-img {
+  width: 100%; height: 100%; min-height: inherit; object-fit: cover; display: block;
+}
+.flip-grid { perspective: 1200px; }
+.vocab-card {
+  min-height: 196px; padding: 0; background: transparent; border: none; transform-style: preserve-3d;
+}
+.vocab-card:hover { transform: none; }
+.vocab-card.is-flipped .vocab-inner { transform: rotateY(180deg); }
+.vocab-inner {
+  position: relative; min-height: 196px; transition: transform 0.45s ease; transform-style: preserve-3d;
+}
+.vocab-face {
+  position: absolute; inset: 0; display: grid; align-content: space-between; gap: 12px;
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+  backface-visibility: hidden;
+}
+.vocab-back { transform: rotateY(180deg); }
+.vocab-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.icon-btn {
+  width: 34px; height: 34px; display: inline-grid; place-items: center; border: 1px solid var(--line-2);
+  border-radius: 8px; background: var(--soft); color: var(--text); cursor: pointer;
+  font-family: var(--mono); font-weight: 900;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+.flip-note { font-family: var(--mono); font-size: 10px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; }
+.grammar-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
+.grammar-table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--card-2); }
+.grammar-table th, .grammar-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); vertical-align: top; text-align: left; }
+.grammar-table th:last-child, .grammar-table td:last-child { border-right: none; }
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table th { font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; color: var(--text); }
+.grammar-table .formula { color: var(--accent); font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.grammar-table .sample { color: var(--muted); line-height: 1.55; }
+.choice[data-state="correct"] { border-color: var(--ok); color: var(--ok); }
+.choice[data-state="wrong"] { border-color: var(--warn); color: var(--warn); }
+.scene-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.scene-card {
+  min-height: 188px; border: 1px solid var(--line); border-radius: 14px; background: var(--card-2);
+  display: grid; align-content: end; position: relative; overflow: hidden;
+  box-shadow: 0 18px 34px rgba(8,19,50,0.08);
+}
+.scene-card img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.22s ease, filter 0.22s ease;
+}
+.scene-card:hover img { transform: scale(1.03); }
+.scene-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 46%, rgba(0,0,0,0.58) 100%);
+}
+.scene-card span {
+  position: relative; z-index: 1; margin: 12px; width: fit-content;
+  border-radius: 999px; padding: 7px 10px; background: rgba(255,255,255,0.9);
+  font-family: var(--mono); font-size: 10px; color: #081332; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.prompt-card {
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2);
+  display: grid; gap: 8px;
+}
+.prompt-card label { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; color: var(--text); }
+.prompt-card input[type="checkbox"] { margin-top: 3px; accent-color: var(--accent); }
+.now-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.now-item {
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2);
+}
+.now-item label { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); line-height: 1.45; }
+.now-item input { margin-top: 3px; accent-color: var(--ok); }
+.step-tracker {
+  position: sticky; top: 56px; z-index: 20; display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+  align-items: center; padding: 12px 14px; margin: 0 0 18px; border: 1px solid var(--line);
+  border-radius: 12px; background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(14px);
+}
+.step-count { font-family: var(--mono); font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; }
+.step-track { height: 8px; border-radius: 999px; background: var(--soft); overflow: hidden; }
+.step-fill { height: 100%; width: 12.5%; background: var(--accent); border-radius: inherit; transition: width 0.2s; }
+.step-name { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.block-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.bank.interactive { gap: 10px; margin-bottom: 18px; }
+.word-chip {
+  display: inline-grid; place-items: center; min-height: 32px; padding: 7px 11px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--card-2); color: var(--text);
+  font-family: var(--mono); font-size: 11px; font-weight: 800; cursor: grab;
+}
+.word-chip.is-selected { border-color: var(--accent); color: var(--accent); }
+.drop-slot {
+  display: inline-grid; place-items: center; min-width: 128px; min-height: 30px; padding: 3px 10px;
+  border: 1px dashed var(--accent); border-radius: 999px; color: var(--faint);
+}
+.drop-slot.filled { border-style: solid; color: var(--text); background: var(--soft); }
+.recorder {
+  display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+  margin-top: 14px;
+}
+.recorder-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.record-dot {
+  width: 10px; height: 10px; border-radius: 50%; background: var(--faint); display: inline-block;
+}
+.record-dot.is-recording { background: #ff4d5f; box-shadow: 0 0 0 6px rgba(255,77,95,0.16); }
+.block {
+  position: relative; border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 30px);
+  margin: 18px 0; background: color-mix(in srgb, var(--card) 92%, transparent);
+}
+.block-head { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.block-num {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line-2);
+  display: grid; place-items: center; background: var(--soft); color: var(--accent);
+  font-family: var(--mono); font-size: 13px; font-weight: 800;
+}
+.block-title-wrap { flex: 1; min-width: 0; }
+.block-kicker {
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--brand); margin-bottom: 5px;
+}
+.block-title { font-family: var(--display); font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.05; letter-spacing: -0.04em; }
+.block-time {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px;
+}
+.block-intro { color: var(--muted); font-size: 15px; line-height: 1.66; margin-bottom: 18px; max-width: 860px; }
+.goal-grid, .focus-grid, .output-grid, .check-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.info-card, .example, .error-card, .text-card {
+  border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--card-2);
+}
+.info-card h3, .text-card h3, .error-card h3 {
+  font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.info-card p, .text-card p, .error-card p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+.info-card ul, .text-card ul, .error-card ul { margin: 8px 0 0 18px; padding: 0; color: var(--muted); line-height: 1.65; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.vocab-card {
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+  transition: transform 0.16s, border-color 0.16s;
+}
+.vocab-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.vocab-en { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.vocab-word { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.vocab-ipa { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.vocab-ru { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.vocab-example { margin-top: 10px; color: var(--text); font-size: 13px; line-height: 1.5; }
+.grammar-rule {
+  border-left: 3px solid var(--accent); padding: 14px 18px; background: var(--term-bg);
+  border-radius: 0 12px 12px 0; color: var(--muted); line-height: 1.65; margin-bottom: 14px;
+}
+.grammar-rule strong { color: var(--accent); font-weight: 800; }
+.example-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.example-label { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+.example-text { color: var(--text); line-height: 1.55; }
+.error-card { border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.bad { color: var(--warn); }
+.good { color: var(--ok); }
+.practice-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.practice-item {
+  display: grid; grid-template-columns: 34px 1fr auto; gap: 14px; align-items: center;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+}
+.practice-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+.practice-q { font-size: 15px; line-height: 1.5; }
+.blank {
+  display: inline-block; min-width: 105px; padding: 2px 8px; border: none; border-bottom: 2px dashed var(--accent);
+  background: transparent; color: var(--text); outline: none;
+}
+.blank:focus { border-bottom-color: var(--brand); }
+.choice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.choice {
+  border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 11px; background: var(--soft);
+  color: var(--muted); cursor: pointer; font-family: var(--mono); font-size: 11px; font-weight: 800;
+}
+.choice:hover, .choice.is-picked { border-color: var(--accent); color: var(--accent); }
+.practice-hint {
+  border: 1px dashed var(--line-2); background: transparent; color: var(--faint); border-radius: 999px;
+  padding: 7px 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer;
+}
+.practice-hint:hover { color: var(--brand); border-color: var(--brand); }
+.practice-hint.shown { color: var(--ok); border-color: var(--ok); border-style: solid; }
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.bank span {
+  display: inline-grid; place-items: center; min-height: 28px; padding: 5px 10px; border: 1px solid var(--line);
+  border-radius: 999px; color: var(--muted); background: var(--soft); font-family: var(--mono); font-size: 11px;
+}
+.text-card { margin-bottom: 14px; }
+.text-card-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
+.text-card-head h3 { margin: 0; }
+.text-card-actions { display: flex; align-items: center; gap: 8px; }
+.listen-btn { min-width: 112px; height: 38px; border-radius: 999px; }
+.eye-btn { width: 42px; height: 38px; border-radius: 999px; padding: 0; font-size: 18px; }
+.reading-script[hidden] { display: none; }
+.text-card p + p { margin-top: 10px; }
+.speaking-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.speaking-item {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; padding: 14px 18px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+}
+.speaking-mark {
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-on); font-family: var(--mono); font-weight: 900;
+}
+.speaking-q { font-size: 15px; line-height: 1.55; padding-top: 2px; }
+.speaking-q .clue { display: block; margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.write-box {
+  width: 100%; min-height: 138px; resize: vertical; border: 1px solid var(--line-2); border-radius: 12px;
+  padding: 14px 16px; background: var(--term-bg); color: var(--text); outline: none; line-height: 1.55;
+}
+.write-box:focus { border-color: var(--accent); }
+.minitask {
+  display: grid; gap: 14px; border: 1px solid var(--line-2); border-radius: 14px; padding: 18px;
+  background: radial-gradient(circle at 92% 8%, var(--hero-glow1), transparent 50%), var(--card-2);
+}
+.minitask-title { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.minitask-detail { color: var(--muted); line-height: 1.65; }
+.minitask-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.lesson-foot {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px;
+}
+.foot-link {
+  border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--card);
+  display: grid; gap: 6px; transition: border-color 0.16s, transform 0.16s;
+}
+.foot-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+.foot-link.next { text-align: right; }
+.foot-meta { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); }
+.foot-title { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.copyright { margin-top: 24px; color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+
+/* Friendly Lab Shell */
+body { background: #fffaf5; color: #081332; }
+.friendly-topbar { min-height: 70px; padding: 10px clamp(18px, 3vw, 34px); background: rgba(255,255,255,0.92); border-bottom: 1px solid rgba(8,19,50,0.10); box-shadow: 0 10px 30px rgba(8,19,50,0.05); }
+.friendly-brand { gap: 10px; }
+.lab-flask { width: 38px; height: 38px; border: 0; background: rgba(255,105,10,0.10); border-radius: 12px; }
+.lab-flask::before { content: "⚗"; color: #ff690a; font-family: var(--body); font-size: 26px; letter-spacing: 0; }
+.lab-flask::after { display: none; }
+.friendly-brand-copy { display: flex; align-items: center; gap: 8px; }
+.friendly-brand .brand-name { font-family: var(--body); font-size: 24px; font-weight: 900; color: #081332; letter-spacing: -0.04em; }
+.lab-tag { display: inline-grid; place-items: center; min-height: 24px; padding: 0 7px; border: 2px solid #ff690a; border-radius: 6px; color: #ff690a; font-size: 13px; letter-spacing: 0.06em; }
+.friendly-nav { margin-left: clamp(20px, 5vw, 70px); gap: clamp(22px, 4vw, 54px); }
+.friendly-nav .top-link { font-family: var(--body); font-size: 16px; font-weight: 750; letter-spacing: 0; text-transform: none; color: #111827; }
+.friendly-nav .top-link:hover, .friendly-nav .top-link.active { color: #ff690a; }
+.audience-switch { margin-left: auto; display: flex; align-items: center; gap: 4px; min-width: 218px; height: 48px; padding: 5px; border: 2px solid rgba(8,19,50,0.13); border-radius: 999px; background: #fff; }
+.audience-btn { flex: 1; height: 38px; border: 0; border-radius: 999px; background: transparent; color: #111827; font: 850 16px/1 var(--body); cursor: pointer; }
+.audience-btn.is-active { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+.friendly-tools { margin-left: 18px; }
+.friendly-tools .btn-tool { height: 34px; border-radius: 999px; background: #fff; color: #111827; letter-spacing: 0; }
+.level-bubble { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(8,19,50,0.13); border-radius: 50%; background: #fff; color: #081332; font-weight: 900; }
+.menu-btn { width: 42px; height: 42px; border: 0; background: transparent; display: grid; gap: 5px; align-content: center; cursor: pointer; }
+.menu-btn span { display: block; height: 3px; border-radius: 999px; background: #081332; }
+.wrap { max-width: none; padding: 0 0 78px; }
+.crumbs { display: none; }
+.friendly-hero { border: 0; border-radius: 0; margin: 0; padding: 0; min-height: 480px; background: #fff; overflow: hidden; }
+.friendly-hero-inner { display: grid; grid-template-columns: minmax(390px, 0.82fr) 1.18fr; gap: 0; min-height: 480px; }
+.hero-copy-panel { position: relative; z-index: 2; padding: clamp(42px, 6vw, 72px) 28px clamp(42px, 5vw, 64px) clamp(28px, 4vw, 56px); background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.98) 58%, rgba(255,255,255,0.48) 76%, rgba(255,255,255,0) 100%); }
+.friendly-eyebrow { color: #ff690a; font-family: var(--body); font-size: 19px; font-weight: 900; letter-spacing: 0; text-transform: none; margin-bottom: 12px; }
+.friendly-eyebrow::before { content: ""; }
+.friendly-title { max-width: 560px; font-family: var(--body); font-size: clamp(3rem, 5.8vw, 5.3rem); line-height: 0.96; letter-spacing: -0.075em; color: #071433; }
+.friendly-title em { color: #071433; }
+.friendly-lead { max-width: 520px; color: #3d465d; font-size: 20px; line-height: 1.46; margin-bottom: 28px; }
+.friendly-meta { display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 16px; max-width: 470px; margin-bottom: 26px; }
+.info-pill { display: grid; grid-template-columns: 46px 1fr; align-items: center; gap: 12px; min-height: 78px; padding: 12px 16px; border: 1px solid rgba(8,19,50,0.11); border-radius: 14px; background: rgba(255,255,255,0.82); box-shadow: 0 16px 34px rgba(8,19,50,0.06); color: #081332; }
+.info-pill strong { font-size: 14px; }
+.info-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 3px solid #7790bf; border-radius: 50%; color: #36578c; font-weight: 900; }
+.friendly-photo { min-height: 480px; border: 0; border-radius: 0; box-shadow: none; background: #fff3e7; }
+.friendly-photo::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 18%; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.58) 34%, rgba(255,255,255,0) 100%); }
+.friendly-photo .hero-img { min-height: 480px; object-fit: cover; object-position: center; }
+.btn { border-radius: 14px; font-family: var(--body); letter-spacing: 0; text-transform: none; font-size: 15px; font-weight: 850; min-height: 48px; padding: 0 20px; }
+.btn.primary { background: #ff690a; border-color: #ff690a; color: #fff; box-shadow: 0 16px 26px rgba(255,105,10,0.20); }
+.btn.ghost { background: #fff; color: #081332; border-color: rgba(8,19,50,0.14); }
+.lesson-flow, .learn-panel { width: min(100% - 56px, 1440px); margin: -32px auto 22px; position: relative; z-index: 5; border: 1px solid rgba(8,19,50,0.10); border-radius: 22px; background: rgba(255,255,255,0.94); box-shadow: 0 24px 70px rgba(8,19,50,0.08); padding: 26px 28px; }
+.lesson-flow h2, .learn-panel h2 { font-family: var(--body); font-size: 18px; letter-spacing: 0; color: #081332; margin-bottom: 16px; }
+.flow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px; }
+.flow-card { position: relative; min-height: 132px; border: 1px solid rgba(8,19,50,0.10); border-radius: 16px; background: #fff; padding: 28px 18px 18px 86px; display: grid; align-content: center; gap: 8px; color: #081332; }
+.flow-card:not(:last-child)::after { content: "→"; position: absolute; right: -34px; top: 50%; transform: translateY(-50%); color: #617291; font-size: 30px; }
+.flow-num { position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-weight: 900; }
+.flow-icon { position: absolute; left: 28px; bottom: 24px; color: #ffb21a; font-size: 42px; line-height: 1; }
+.flow-card strong { font-size: 15px; }
+.flow-card small { color: #374151; line-height: 1.45; }
+.learn-panel { margin-top: 0; display: grid; grid-template-columns: 1fr 390px; gap: 28px; background: linear-gradient(135deg, #fff 0%, #fff3e8 100%); }
+.learn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
+.learn-grid span { position: relative; padding-left: 30px; color: #081332; line-height: 1.45; }
+.learn-grid span::before { content: "✓"; position: absolute; left: 0; top: 0; color: #ff690a; font-weight: 900; }
+.certificate-card { align-self: center; min-height: 96px; border: 1px solid rgba(255,105,10,0.18); border-radius: 18px; background: #fff; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding: 18px; }
+.cert-star { grid-row: span 2; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-size: 32px; }
+.certificate-card small { color: #374151; }
+.step-tracker { width: min(100% - 56px, 1440px); margin: 0 auto 18px; top: 70px; }
+.block, .lesson-foot, .copyright { width: min(100% - 56px, 1180px); margin-left: auto; margin-right: auto; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="kids"] { background: transparent; color: #111827; box-shadow: none; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+body[data-audience="adults"] .friendly-photo .hero-img { filter: saturate(0.9) contrast(0.98); }
+
+/* Dark friendly variants */
+[data-theme="black-lab"] body,
+[data-theme="violet"] body {
+  background:
+    radial-gradient(circle at 78% 4%, var(--hero-glow1), transparent 40%),
+    radial-gradient(circle at 12% 42%, var(--hero-glow2), transparent 36%),
+    var(--bg);
+  color: var(--text);
+}
+[data-theme="black-lab"] .friendly-topbar,
+[data-theme="violet"] .friendly-topbar {
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  border-bottom-color: var(--line);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+}
+[data-theme="black-lab"] .friendly-brand .brand-name,
+[data-theme="violet"] .friendly-brand .brand-name,
+[data-theme="black-lab"] .friendly-nav .top-link,
+[data-theme="violet"] .friendly-nav .top-link,
+[data-theme="black-lab"] .level-bubble,
+[data-theme="violet"] .level-bubble,
+[data-theme="black-lab"] .menu-btn span,
+[data-theme="violet"] .menu-btn span {
+  color: var(--text);
+}
+[data-theme="black-lab"] .menu-btn span,
+[data-theme="violet"] .menu-btn span { background: var(--text); }
+[data-theme="black-lab"] .audience-switch,
+[data-theme="violet"] .audience-switch,
+[data-theme="black-lab"] .friendly-tools .btn-tool,
+[data-theme="violet"] .friendly-tools .btn-tool,
+[data-theme="black-lab"] .level-bubble,
+[data-theme="violet"] .level-bubble {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border-color: var(--line-2);
+  color: var(--text);
+}
+[data-theme="black-lab"] .friendly-hero,
+[data-theme="violet"] .friendly-hero {
+  background: var(--bg);
+}
+[data-theme="black-lab"] .hero-copy-panel,
+[data-theme="violet"] .hero-copy-panel {
+  background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 94%, transparent) 72%, transparent 100%);
+}
+[data-theme="black-lab"] .friendly-title,
+[data-theme="violet"] .friendly-title,
+[data-theme="black-lab"] .friendly-title em,
+[data-theme="violet"] .friendly-title em,
+[data-theme="black-lab"] .lesson-flow h2,
+[data-theme="violet"] .lesson-flow h2,
+[data-theme="black-lab"] .learn-panel h2,
+[data-theme="violet"] .learn-panel h2 {
+  color: var(--text);
+}
+[data-theme="black-lab"] .friendly-lead,
+[data-theme="violet"] .friendly-lead { color: var(--muted); }
+[data-theme="black-lab"] .friendly-photo,
+[data-theme="violet"] .friendly-photo { background: var(--card); }
+[data-theme="black-lab"] .friendly-photo::before,
+[data-theme="violet"] .friendly-photo::before {
+  background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 76%, transparent) 34%, transparent 100%);
+}
+[data-theme="black-lab"] .info-pill,
+[data-theme="violet"] .info-pill,
+[data-theme="black-lab"] .lesson-flow,
+[data-theme="violet"] .lesson-flow,
+[data-theme="black-lab"] .flow-card,
+[data-theme="violet"] .flow-card,
+[data-theme="black-lab"] .certificate-card,
+[data-theme="violet"] .certificate-card {
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border-color: var(--line);
+  color: var(--text);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.26);
+}
+[data-theme="black-lab"] .learn-panel,
+[data-theme="violet"] .learn-panel {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--card) 96%, transparent) 0%, color-mix(in srgb, var(--card-2) 94%, transparent) 100%);
+  border-color: var(--line);
+}
+[data-theme="black-lab"] .flow-card small,
+[data-theme="violet"] .flow-card small,
+[data-theme="black-lab"] .learn-grid span,
+[data-theme="violet"] .learn-grid span,
+[data-theme="black-lab"] .certificate-card small,
+[data-theme="violet"] .certificate-card small { color: var(--muted); }
+
+
+/* Shared LinguaBoost Logo */
+.brand-logo-mark {
+  width: 42px; height: 42px; border: 0; border-radius: 8px; background: #05050a;
+  position: relative; display: block; overflow: hidden; flex: 0 0 auto;
+}
+.brand-logo-mark::before,
+.brand-logo-mark::after { display: none !important; }
+.logo-l-stem,
+.logo-l-foot,
+.logo-l-cut,
+.logo-l-dot { position: absolute; display: block; }
+.logo-l-stem { left: 12px; top: 8px; width: 11px; height: 27px; border-radius: 6px; background: #ff5a1f; }
+.logo-l-foot { left: 12px; bottom: 8px; width: 24px; height: 11px; border-radius: 6px; background: #ff5a1f; }
+.logo-l-cut { left: 23px; top: 8px; width: 14px; height: 18px; border-radius: 6px; background: #05050a; }
+.logo-l-dot { left: 24px; bottom: 10px; width: 6px; height: 3px; border-radius: 999px; background: #22c55e; }
+.friendly-brand { gap: 12px; }
+.friendly-brand-copy { gap: 9px; }
+.lab-flask,
+.lab-flask::before,
+.lab-flask::after { all: unset; }
+[data-theme="black-lab"] .brand-logo-mark,
+[data-theme="violet"] .brand-logo-mark { background: #05050a; box-shadow: 0 0 0 1px rgba(255,255,255,0.08); }
+[data-theme="black-lab"] .logo-l-cut,
+[data-theme="violet"] .logo-l-cut { background: #05050a; }
+
+/* LinguaBoost Flame Logo */
+.boost-logo-mark {
+  width: 42px; height: 42px; display: inline-grid; place-items: center; flex: 0 0 auto;
+  background: transparent; border: 0; border-radius: 0; overflow: visible;
+}
+.boost-flame { width: 42px; height: 42px; display: block; filter: drop-shadow(0 9px 14px rgba(255,105,10,0.20)); }
+.friendly-brand .brand-name { display: inline-flex; align-items: baseline; gap: 0; color: #081332; }
+.brand-boost { color: var(--accent); }
+.lab-tag { margin-left: 2px; }
+[data-theme="black-lab"] .friendly-brand .brand-name,
+[data-theme="violet"] .friendly-brand .brand-name { color: var(--text); }
+[data-theme="black-lab"] .brand-boost { color: #ff7a1a; }
+[data-theme="violet"] .brand-boost { color: #a855f7; }
+[data-theme="cyan"] .brand-boost,
+[data-theme="white"] .brand-boost { color: #2384e8; }
+[data-theme="green"] .brand-boost { color: #1f8f5a; }
+[data-theme="rose"] .brand-boost { color: #c84d80; }
+[data-theme="black-lab"] .boost-flame,
+[data-theme="violet"] .boost-flame { filter: drop-shadow(0 10px 18px rgba(168,85,247,0.25)); }
+.brand-logo-mark,
+.logo-l-stem,
+.logo-l-foot,
+.logo-l-cut,
+.logo-l-dot { display: none !important; }
+/* Lab Square Refinement */
+.friendly-topbar { border-radius: 0; }
+.lab-flask { border-radius: 6px; }
+.lab-tag { border-radius: 4px; font-family: var(--mono); }
+.friendly-brand .brand-name,
+.friendly-title,
+.lesson-flow h2,
+.learn-panel h2,
+.flow-card strong,
+.certificate-card strong,
+.block-title,
+.info-card h3,
+.text-card h3,
+.error-card h3,
+.minitask-title,
+.foot-title {
+  font-family: var(--display);
+  letter-spacing: -0.05em;
+}
+.friendly-brand .brand-name { font-size: 22px; letter-spacing: -0.055em; }
+.friendly-nav .top-link { font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase; }
+.audience-switch { border-radius: 14px; }
+.audience-btn { border-radius: 9px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.level-bubble { border-radius: 10px; font-family: var(--display); }
+.menu-btn { border: 1px solid rgba(8,19,50,0.12); border-radius: 10px; }
+.friendly-tools .btn-tool,
+.palette-select,
+.btn,
+.info-pill,
+.lesson-flow,
+.learn-panel,
+.flow-card,
+.certificate-card,
+.step-tracker,
+.block,
+.info-card,
+.example,
+.error-card,
+.text-card,
+.vocab-face,
+.grammar-table-wrap,
+.practice-item,
+.prompt-card,
+.now-item,
+.recorder,
+.minitask,
+.foot-link,
+.write-box {
+  border-radius: 8px !important;
+}
+.friendly-hero { min-height: 500px; }
+.friendly-hero-inner { min-height: 500px; }
+.hero-copy-panel { padding-left: clamp(32px, 4.3vw, 64px); }
+.friendly-title { letter-spacing: -0.08em; }
+.friendly-photo,
+.friendly-photo .hero-img { min-height: 500px; }
+.lesson-flow, .learn-panel { box-shadow: 0 18px 54px rgba(8,19,50,0.07); }
+.flow-card { padding-left: 82px; }
+.flow-num { border-radius: 7px; font-family: var(--mono); }
+.flow-icon { font-family: var(--display); }
+.cert-star { border-radius: 8px; font-family: var(--display); }
+.block-num { border-radius: 8px; }
+.pill { border-radius: 7px; }
+.choice,
+.word-chip,
+.drop-slot,
+.practice-hint,
+.block-time { border-radius: 7px; }
+.icon-btn { border-radius: 7px; }
+
+/* Unified Lab Bridge */
+body {
+  background:
+    radial-gradient(circle at 82% 6%, var(--hero-glow1), transparent 38%),
+    radial-gradient(circle at 8% 44%, var(--hero-glow2), transparent 34%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+}
+.friendly-topbar {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border-bottom-color: var(--line);
+  box-shadow: 0 16px 42px color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.friendly-nav .top-link,
+.friendly-brand .brand-name,
+.level-bubble {
+  color: var(--text);
+}
+.menu-btn {
+  border-color: var(--line-2);
+  background: var(--card);
+}
+.menu-btn span {
+  background: var(--text);
+}
+.audience-switch {
+  border-color: var(--line-2);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--bg) 58%, transparent);
+}
+.audience-btn {
+  color: var(--muted);
+}
+.audience-btn.is-active,
+body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+body[data-audience="adults"] .audience-btn[data-audience-btn="kids"],
+body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+}
+.friendly-tools .btn-tool,
+.palette-select,
+.level-bubble {
+  background: var(--card);
+  border-color: var(--line-2);
+  color: var(--text);
+}
+.friendly-tools .btn-tool:hover,
+.palette-select:hover {
+  color: var(--accent);
+}
+.friendly-tools .btn-tool.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn.ghost {
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border-color: var(--line-2);
+  color: var(--text);
+}
+.btn.ghost:hover {
+  background: var(--soft);
+}
+.palette-select option {
+  background: var(--card);
+  color: var(--text);
+}
+.friendly-hero {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.hero-copy-panel {
+  background: linear-gradient(90deg, var(--card) 0%, color-mix(in srgb, var(--card) 96%, transparent) 58%, color-mix(in srgb, var(--card) 48%, transparent) 76%, transparent 100%);
+}
+.friendly-title,
+.friendly-title em {
+  color: var(--text);
+}
+.friendly-lead,
+.info-pill {
+  color: var(--muted);
+}
+.info-pill,
+.lesson-flow,
+.learn-panel,
+.flow-card,
+.certificate-card,
+.step-tracker,
+.block,
+.info-card,
+.example,
+.error-card,
+.text-card,
+.prompt-card,
+.now-item,
+.practice-item,
+.recorder,
+.minitask,
+.foot-link,
+.grammar-table,
+.vocab-face {
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  border-color: var(--line);
+  color: var(--text);
+}
+.lesson-flow,
+.learn-panel {
+  box-shadow: 0 22px 62px color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.learn-panel {
+  background:
+    radial-gradient(circle at 92% 6%, var(--hero-glow2), transparent 42%),
+    color-mix(in srgb, var(--card) 94%, transparent);
+}
+.lesson-flow h2,
+.learn-panel h2,
+.flow-card strong,
+.certificate-card strong {
+  color: var(--text);
+}
+.flow-card small,
+.learn-grid span,
+.certificate-card small {
+  color: var(--muted);
+}
+.module-progress-card,
+.lesson-score-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 18px;
+}
+.module-progress-head,
+.lesson-score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.module-progress-track,
+.lesson-score-track {
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 20%, transparent);
+}
+.module-progress-fill,
+.lesson-score-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  transition: width 0.25s ease;
+}
+.module-progress-meta,
+.lesson-score-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.lesson-score-card.is-complete {
+  border-color: color-mix(in srgb, #22c55e 54%, var(--line));
+  box-shadow: 0 18px 46px color-mix(in srgb, #22c55e 16%, transparent);
+}
+.certificate-card.is-earned .cert-star {
+  background: #16a34a;
+}
+.certificate-card.is-earned strong::after {
+  content: " earned";
+  color: #16a34a;
+}
+.choice[data-state="correct"],
+.drop-slot.is-correct {
+  border-color: color-mix(in srgb, #16a34a 70%, var(--line));
+  background: color-mix(in srgb, #22c55e 16%, var(--card));
+}
+.choice[data-state="wrong"],
+.drop-slot.is-wrong {
+  border-color: color-mix(in srgb, #ef4444 70%, var(--line));
+  background: color-mix(in srgb, #ef4444 12%, var(--card));
+}
+.flow-card:not(:last-child)::after {
+  color: var(--brand);
+}
+.info-icon {
+  border-color: color-mix(in srgb, var(--brand) 70%, var(--line-2));
+  color: var(--brand);
+}
+.flow-num,
+.cert-star {
+  background: var(--accent);
+  color: #fff;
+}
+.flow-icon,
+.learn-grid span::before {
+  color: var(--accent);
+}
+.block {
+  box-shadow: 0 18px 46px color-mix(in srgb, var(--brand) 8%, transparent);
+}
+.step-tracker {
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--brand) 10%, transparent);
+}
+[data-theme="black-lab"] .friendly-photo::before,
+[data-theme="violet"] .friendly-photo::before {
+  background: linear-gradient(90deg, var(--card) 0%, color-mix(in srgb, var(--card) 54%, transparent) 34%, transparent 100%);
+}
+[data-theme="black-lab"] .boost-logo-mark,
+[data-theme="violet"] .boost-logo-mark,
+[data-theme="black-lab"] .logo-l-cut,
+[data-theme="violet"] .logo-l-cut {
+  background: transparent;
+}
+[data-theme="black-lab"] .friendly-tools .btn-tool,
+[data-theme="violet"] .friendly-tools .btn-tool,
+[data-theme="black-lab"] .palette-select,
+[data-theme="violet"] .palette-select,
+[data-theme="black-lab"] .level-bubble,
+[data-theme="violet"] .level-bubble {
+  background: color-mix(in srgb, var(--card) 86%, transparent);
+  color: var(--text);
+}
+[data-theme="black-lab"] .audience-switch,
+[data-theme="violet"] .audience-switch {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border-color: color-mix(in srgb, var(--brand-2) 42%, var(--line));
+}
+[data-theme="black-lab"] .audience-btn,
+[data-theme="violet"] .audience-btn,
+[data-theme="black-lab"] body[data-audience="adults"] .audience-btn[data-audience-btn="kids"],
+[data-theme="violet"] body[data-audience="adults"] .audience-btn[data-audience-btn="kids"] {
+  color: var(--muted);
+}
+
+/* Logo Fit Fix */
+.friendly-topbar { overflow-x: clip; }
+.boost-logo-mark { width: 34px; height: 42px; }
+.boost-flame { width: 34px; height: 34px; }
+.friendly-brand .brand-name { font-size: clamp(18px, 2vw, 22px); line-height: 1; white-space: nowrap; }
+.lab-tag { min-height: 22px; padding: 0 6px; font-size: 12px; }
+@media (max-width: 980px) {
+  .friendly-brand-copy { gap: 6px; }
+  .friendly-brand .brand-name { font-size: 18px; }
+  .boost-logo-mark { width: 30px; height: 38px; }
+  .boost-flame { width: 30px; height: 30px; }
+  .palette-select { max-width: 108px; }
+}
+@media (max-width: 720px) {
+  .lab-tag { display: none; }
+  .audience-switch { order: 3; width: 100%; margin-left: 0; }
+  .friendly-topbar { flex-wrap: wrap; }
+}
+
+/* Hero boundary blend: shared tuning for kids/adults and light/dark assets. */
+.friendly-photo::before {
+  left: -1px;
+  width: clamp(180px, 30%, 320px);
+  background: linear-gradient(90deg,
+    var(--card) 0%,
+    color-mix(in srgb, var(--card) 82%, transparent) 12%,
+    color-mix(in srgb, var(--card) 34%, transparent) 42%,
+    transparent 100%);
+  pointer-events: none;
+}
+.hero-copy-panel {
+  background: linear-gradient(90deg,
+    var(--card) 0%,
+    color-mix(in srgb, var(--card) 98%, transparent) 58%,
+    color-mix(in srgb, var(--card) 52%, transparent) 82%,
+    transparent 100%);
+}
+[data-theme="black-lab"] .friendly-photo,
+[data-theme="violet"] .friendly-photo {
+  background: var(--bg);
+}
+[data-theme="black-lab"] .friendly-photo::before,
+[data-theme="violet"] .friendly-photo::before {
+  background: linear-gradient(90deg,
+    var(--bg) 0%,
+    color-mix(in srgb, var(--bg) 84%, transparent) 12%,
+    color-mix(in srgb, var(--bg) 36%, transparent) 42%,
+    transparent 100%);
+}
+[data-theme="black-lab"] .hero-copy-panel,
+[data-theme="violet"] .hero-copy-panel {
+  background: linear-gradient(90deg,
+    var(--bg) 0%,
+    color-mix(in srgb, var(--bg) 98%, transparent) 58%,
+    color-mix(in srgb, var(--bg) 52%, transparent) 82%,
+    transparent 100%);
+}
+/* Full-width lesson flow: keep it below the hero image with 1cm side gutters. */
+.lesson-flow,
+.step-tracker {
+  box-sizing: border-box;
+  width: calc(100% - 2cm);
+  max-width: none;
+}
+.lesson-flow {
+  margin: 24px auto 22px;
+}
+.step-tracker {
+  margin: 0 auto 18px;
+}
+@media (max-width: 1100px) { .friendly-nav { display: none; } .flow-grid { grid-template-columns: 1fr; gap: 12px; } .flow-card:not(:last-child)::after { display: none; } .learn-panel { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .friendly-hero-inner { grid-template-columns: 1fr; } .hero-copy-panel { background: var(--card); } .friendly-photo { min-height: 300px; order: -1; } .friendly-photo .hero-img { min-height: 300px; } .friendly-meta, .learn-grid { grid-template-columns: 1fr; } .lesson-flow, .learn-panel, .step-tracker, .block, .lesson-foot, .copyright { width: min(100% - 28px, 1180px); } .audience-switch { min-width: 168px; } .friendly-tools .btn-tool { display: none; } }
+@media (max-width: 980px) {
+  .hero-inner, .goal-grid, .focus-grid, .output-grid, .check-grid { grid-template-columns: 1fr; }
+  .hero-photo { min-height: 260px; }
+  .scene-strip, .prompt-grid, .now-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .brand-tag, .topbar-nav { display: none; }
+  .topbar { gap: 10px; }
+  .topbar-tools { gap: 5px; }
+  select.btn-tool { width: 92px; }
+  .block-head { flex-wrap: wrap; }
+  .block-time { order: 3; }
+  .practice-item { grid-template-columns: 28px 1fr; }
+  .practice-hint { grid-column: 2; justify-self: start; }
+  .lesson-foot { grid-template-columns: 1fr; }
+  .foot-link.next { text-align: left; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar friendly-topbar">
+    <a class="brand friendly-brand" href="../index.html" aria-label="LinguaBoost Lab">
+      <span class="boost-logo-mark" aria-hidden="true">
+        <svg class="boost-flame" viewBox="0 0 64 64" focusable="false">
+          <defs>
+            <linearGradient id="boostFlameA" x1="14" y1="58" x2="48" y2="6" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#ffb31a"/>
+              <stop offset="0.52" stop-color="#ff6a00"/>
+              <stop offset="1" stop-color="#ff2d55"/>
+            </linearGradient>
+            <linearGradient id="boostFlameB" x1="24" y1="52" x2="44" y2="20" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fff1a8"/>
+              <stop offset="1" stop-color="#ff7a1a"/>
+            </linearGradient>
+          </defs>
+          <path class="flame-main" d="M33 4c7 11 20 20 20 35 0 12-9 21-21 21S11 52 11 40c0-9 6-16 11-22 3-4 7-8 11-14Z" fill="url(#boostFlameA)"/>
+          <path class="flame-inner" d="M34 24c5 6 10 10 10 18 0 7-5 12-12 12s-12-5-12-12c0-5 3-9 7-13 2-2 5-4 7-5Z" fill="url(#boostFlameB)" opacity="0.92"/>
+          <path class="flame-shine" d="M25 18c-5 6-8 12-8 20 0 5 2 9 5 12-1-9 4-14 10-21 3-4 4-7 3-12-3 4-6 6-10 1Z" fill="#ffffff" opacity="0.22"/>
+        </svg>
+      </span>
+      <span class="brand-copy friendly-brand-copy">
+        <span class="brand-name"><span>Lingua</span><span class="brand-boost">Boost</span></span>
+        <span class="brand-tag lab-tag">LAB</span>
+      </span>
+    </a>
+    <nav class="topbar-nav friendly-nav" aria-label="main navigation">
+      <a class="top-link active" href="../index.html">Modules</a>
+      <a class="top-link" href="#final-task">Progress</a>
+      <a class="top-link" href="#input">My Lab</a>
+      <a class="top-link" href="#focus">Resources</a>
+    </nav>
+    <div class="audience-switch" aria-label="lesson audience">
+      <button class="audience-btn is-active" type="button" data-audience-btn="kids">Kids</button>
+      <button class="audience-btn" type="button" data-audience-btn="adults">Adults</button>
+    </div>
+    <div class="topbar-tools friendly-tools">
+      <button class="btn-tool" type="button" data-lang-btn="ru">RU</button>
+      <button class="btn-tool is-active" type="button" data-lang-btn="en">EN</button>
+      <select class="btn-tool palette-select" data-palette aria-label="palette picker">
+        <option value="light-lab">light-lab</option>
+        <option value="peach">peach</option>
+        <option value="green">green</option>
+        <option value="rose">rose</option>
+        <option value="cyan">cyan</option>
+        <option value="amber">amber</option>
+        <option value="white">white</option>
+        <option value="black-lab">black-lab</option>
+        <option value="violet">violet</option>
+      </select>      <span class="level-bubble">A1</span>
+      <button class="menu-btn" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+    <main class="wrap">
+    <nav class="crumbs" aria-label="breadcrumbs">
+      <a href="../index.html">Lab</a><span class="sep">/</span>
+      <a href="../index.html#a1">A1</a><span class="sep">/</span>
+      <span class="here" data-ru="Module 03 · There is / There are" data-en="Module 03 · There is / There are">Module 03 · There is / There are</span>
+    </nav>
+
+    <section class="hero friendly-hero">
+      <div class="hero-inner friendly-hero-inner">
+        <div class="hero-copy-panel">
+          <div class="hero-eyebrow friendly-eyebrow">A1-03</div>
+          <h1 class="hero-title friendly-title" data-ru="There is / There are: <em>Places & Things</em>" data-en="There is / There are: <em>Places & Things</em>">There is / There are: <em>Places & Things</em></h1>
+          <p class="hero-lead friendly-lead audience-copy" data-kids="Look at a room or classroom. Say what is there: There is a desk. There are books. Ask: Is there a lamp?" data-adults="Describe a workspace or apartment. Say what is there, what is not there, and ask clear questions about a place.">Look at a room or classroom. Say what is there: There is a desk. There are books. Ask: Is there a lamp?</p>
+          <div class="hero-meta friendly-meta">
+            <span class="info-pill"><span class="info-icon">□</span><span><strong>Grammar Focus</strong><br>There is / There are</span></span>
+            <span class="info-pill"><span class="info-icon">◷</span><span><strong>Lesson Time</strong><br>45-60 min</span></span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#goal">Start lesson</a>
+            <a class="btn ghost" href="#final-task">Final task</a>
+          </div>
+        </div>
+        <div class="hero-photo friendly-photo">
+          <img class="hero-img" data-hero-img src="../assets/a1-03-hero-kids-light.png" alt="A room for practising there is and there are">
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-flow" aria-label="Lesson flow">
+      <h2>Lesson Flow</h2>
+      <div class="flow-grid">
+        <a class="flow-card" href="#guided"><span class="flow-num">1</span><span class="flow-icon">?</span><strong>Guided Tasks</strong><small>Choose is or are</small></a>
+        <a class="flow-card" href="#active"><span class="flow-num">2</span><span class="flow-icon">✎</span><strong>Active Tasks</strong><small>Build sentences</small></a>
+        <a class="flow-card" href="#text"><span class="flow-num">3</span><span class="flow-icon">▤</span><strong>Listening Check</strong><small>Listen and check</small></a>
+        <a class="flow-card" href="#output"><span class="flow-num">4</span><span class="flow-icon">☰</span><strong>Output</strong><small>Describe a place</small></a>
+        <a class="flow-card" href="#final-task"><span class="flow-num">5</span><span class="flow-icon">☆</span><strong>Final Task</strong><small>Show your place</small></a>
+      </div>
+    </section>
+
+    <div class="step-tracker" aria-label="lesson progress">
+      <span class="step-count">Step <span data-step-current>01</span>/08</span>
+      <span class="step-track"><span class="step-fill" data-step-fill></span></span>
+      <span class="step-name" data-step-name>Goal</span>
+    </div>
+
+    <section class="lesson-score-card" aria-label="lesson auto score" data-lesson-score-card>
+      <div class="lesson-score-head"><span>Auto score</span><strong data-lesson-score>0%</strong></div>
+      <div class="lesson-score-track"><span class="lesson-score-fill" data-lesson-score-fill></span></div>
+      <div class="lesson-score-meta"><span data-lesson-score-note>Complete guided tasks, build tasks, checklist, and final draft.</span><span>Module progress: <strong data-module-progress-count>0 / 8</strong></span></div>
+    </section>
+
+    <section class="block" id="goal">
+      <header class="block-head"><div class="block-num">01</div><div class="block-title-wrap"><div class="block-kicker">Goal</div><h2 class="block-title">What you will do in this lesson</h2></div><div class="block-time">≈ 3 min</div></header>
+      <p class="block-intro">In this lesson, you will describe places, rooms, and objects with <strong>there is</strong> and <strong>there are</strong>. You will also make questions and negatives.</p>
+      <div class="goal-grid"><article class="info-card"><h3>Start</h3><p>Name things you can see in a room: a desk, books, a lamp, chairs.</p></article><article class="info-card"><h3>Route</h3><p>Use <strong>there is</strong> for one thing and <strong>there are</strong> for two or more things.</p></article><article class="info-card"><h3>Finish</h3><p>Describe your room, classroom, workspace, or apartment in 6-8 sentences.</p></article></div>
+      <div class="block-nav"><a class="btn primary" href="#input">Next: grammar</a></div>
+    </section>
+
+    <section class="block learn-panel" id="input">
+      <header class="block-head"><div class="block-num">02</div><div class="block-title-wrap"><div class="block-kicker">Language Focus</div><h2 class="block-title">There is / There are</h2></div><div class="block-time">≈ 6 min</div></header>
+      <p class="block-intro">Use <strong>there is</strong> for one thing. Use <strong>there are</strong> for two or more things. In questions, put <strong>is / are</strong> first.</p>
+      <div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Form</th><th>One thing</th><th>Two or more</th></tr></thead><tbody><tr><td class="formula">Positive</td><td class="sample">There is a desk.<br>There is a lamp.</td><td class="sample">There are two books.<br>There are some pencils.</td></tr><tr><td class="formula">Negative</td><td class="sample">There isn't a TV.<br>There isn't a printer.</td><td class="sample">There aren't any toys.<br>There aren't many chairs.</td></tr><tr><td class="formula">Question</td><td class="sample">Is there a bed?<br>Is there a laptop?</td><td class="sample">Are there any plants?<br>Are there two windows?</td></tr><tr><td class="formula">Short answer</td><td class="sample">Yes, there is.<br>No, there isn't.</td><td class="sample">Yes, there are.<br>No, there aren't.</td></tr></tbody></table></div>
+      <div class="error-card"><h3>Typical mistake</h3><p><span class="bad">Wrong:</span> There are a desk. / Is there two chairs?<br><span class="good">Right:</span> There is a desk. / Are there two chairs?</p></div>
+      <div class="block-nav"><a class="btn primary" href="#focus">Next: map</a></div>
+    </section>
+
+    <section class="block" id="focus">
+      <header class="block-head"><div class="block-num">03</div><div class="block-title-wrap"><div class="block-kicker">Grammar map</div><h2 class="block-title">Positive, negative, question</h2></div><div class="block-time">≈ 4 min</div></header>
+      <div class="goal-grid"><article class="info-card"><h3>One thing</h3><p><strong>There is</strong> a chair. <strong>There isn't</strong> a TV. <strong>Is there</strong> a lamp?</p></article><article class="info-card"><h3>Many things</h3><p><strong>There are</strong> books. <strong>There aren't</strong> any bags. <strong>Are there</strong> plants?</p></article><article class="info-card"><h3>Place words</h3><p>Use simple prepositions: <strong>on</strong> the desk, <strong>under</strong> the chair, <strong>next to</strong> the bed.</p></article></div>
+      <div class="block-nav"><a class="btn primary" href="#guided">Next: choose</a></div>
+    </section>
+
+    <section class="block" id="guided"><header class="block-head"><div class="block-num">04</div><div class="block-title-wrap"><div class="block-kicker">Guided Practice</div><h2 class="block-title">Choose the correct option</h2></div><div class="block-time">≈ 10 min</div></header><p class="block-intro">Choose the correct option. The score updates automatically.</p><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">There ___ a desk near the window.<span class="choice-row"><button class="choice" type="button" data-correct="true">is</button><button class="choice" type="button">are</button></span></span><button class="practice-hint" type="button" data-answer="There is a desk near the window.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">There ___ two books on the table.<span class="choice-row"><button class="choice" type="button" data-correct="true">are</button><button class="choice" type="button">is</button></span></span><button class="practice-hint" type="button" data-answer="There are two books on the table.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">There ___ a lamp on the desk.<span class="choice-row"><button class="choice" type="button" data-correct="true">is</button><button class="choice" type="button">are</button></span></span><button class="practice-hint" type="button" data-answer="There is a lamp on the desk.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">There ___ three pencils in the cup.<span class="choice-row"><button class="choice" type="button" data-correct="true">are</button><button class="choice" type="button">is</button></span></span><button class="practice-hint" type="button" data-answer="There are three pencils in the cup.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">There ___ a chair next to the desk.<span class="choice-row"><button class="choice" type="button" data-correct="true">is</button><button class="choice" type="button">are</button></span></span><button class="practice-hint" type="button" data-answer="There is a chair next to the desk.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">There ___ some plants near the window.<span class="choice-row"><button class="choice" type="button" data-correct="true">are</button><button class="choice" type="button">is</button></span></span><button class="practice-hint" type="button" data-answer="There are some plants near the window.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">There ___ a notebook under the book.<span class="choice-row"><button class="choice" type="button" data-correct="true">is</button><button class="choice" type="button">are</button></span></span><button class="practice-hint" type="button" data-answer="There is a notebook under the book.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">There ___ two bags by the door.<span class="choice-row"><button class="choice" type="button" data-correct="true">are</button><button class="choice" type="button">is</button></span></span><button class="practice-hint" type="button" data-answer="There are two bags by the door.">hint</button></li><li class="practice-item"><span class="practice-num">09</span><span class="practice-q">There ___ a TV in the room.<span class="choice-row"><button class="choice" type="button" data-correct="true">isn't</button><button class="choice" type="button">aren't</button></span></span><button class="practice-hint" type="button" data-answer="There isn't a TV in the room.">hint</button></li><li class="practice-item"><span class="practice-num">10</span><span class="practice-q">There ___ any toys on the adult desk.<span class="choice-row"><button class="choice" type="button">isn't</button><button class="choice" type="button" data-correct="true">aren't</button></span></span><button class="practice-hint" type="button" data-answer="There aren't any toys on the adult desk.">hint</button></li><li class="practice-item"><span class="practice-num">11</span><span class="practice-q">___ there a computer on the desk?<span class="choice-row"><button class="choice" type="button" data-correct="true">Is</button><button class="choice" type="button">Are</button></span></span><button class="practice-hint" type="button" data-answer="Is there a computer on the desk?">hint</button></li><li class="practice-item"><span class="practice-num">12</span><span class="practice-q">___ there two windows in the room?<span class="choice-row"><button class="choice" type="button">Is</button><button class="choice" type="button" data-correct="true">Are</button></span></span><button class="practice-hint" type="button" data-answer="Are there two windows in the room?">hint</button></li><li class="practice-item"><span class="practice-num">13</span><span class="practice-q">There ___ a calendar on the wall.<span class="choice-row"><button class="choice" type="button" data-correct="true">is</button><button class="choice" type="button">are</button></span></span><button class="practice-hint" type="button" data-answer="There is a calendar on the wall.">hint</button></li><li class="practice-item"><span class="practice-num">14</span><span class="practice-q">There ___ any books on the floor.<span class="choice-row"><button class="choice" type="button">isn't</button><button class="choice" type="button" data-correct="true">aren't</button></span></span><button class="practice-hint" type="button" data-answer="There aren't any books on the floor.">hint</button></li><li class="practice-item"><span class="practice-num">15</span><span class="practice-q">___ there a lamp next to the bed?<span class="choice-row"><button class="choice" type="button" data-correct="true">Is</button><button class="choice" type="button">Are</button></span></span><button class="practice-hint" type="button" data-answer="Is there a lamp next to the bed?">hint</button></li><li class="practice-item"><span class="practice-num">16</span><span class="practice-q">___ there any chairs near the table?<span class="choice-row"><button class="choice" type="button">Is</button><button class="choice" type="button" data-correct="true">Are</button></span></span><button class="practice-hint" type="button" data-answer="Are there any chairs near the table?">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#active">Next: build</a></div></section>
+
+    
+
+    <section class="block" id="active">
+      <header class="block-head"><div class="block-num">05</div><div class="block-title-wrap"><div class="block-kicker">Active Practice</div><h2 class="block-title">Build place sentences</h2></div><div class="block-time">≈ 7 min</div></header>
+      <p class="block-intro">Click a phrase, then click the drop zone to complete each sentence.</p>
+      <div class="bank interactive"><button class="word-chip" type="button" draggable="true">There is</button><button class="word-chip" type="button" draggable="true">There are</button><button class="word-chip" type="button" draggable="true">There isn't</button><button class="word-chip" type="button" draggable="true">There aren't</button><button class="word-chip" type="button" draggable="true">Is there</button><button class="word-chip" type="button" draggable="true">Are there</button><button class="word-chip" type="button" draggable="true">on</button><button class="word-chip" type="button" draggable="true">under</button></div>
+      <ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="There is">drop</span> a laptop on the desk.</span><button class="practice-hint" type="button" data-answer="There is a laptop on the desk.">model</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="There are">drop</span> two books on the shelf.</span><button class="practice-hint" type="button" data-answer="There are two books on the shelf.">model</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="There isn't">drop</span> a TV in the room.</span><button class="practice-hint" type="button" data-answer="There isn't a TV in the room.">model</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="There aren't">drop</span> any bags under the table.</span><button class="practice-hint" type="button" data-answer="There aren't any bags under the table.">model</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Is there">drop</span> a lamp near the bed?</span><button class="practice-hint" type="button" data-answer="Is there a lamp near the bed?">model</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Are there">drop</span> any plants in the room?</span><button class="practice-hint" type="button" data-answer="Are there any plants in the room?">model</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">The notebook is <span class="drop-slot" data-drop data-expected="on">drop</span> the desk.</span><button class="practice-hint" type="button" data-answer="The notebook is on the desk.">model</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">The bag is <span class="drop-slot" data-drop data-expected="under">drop</span> the chair.</span><button class="practice-hint" type="button" data-answer="The bag is under the chair.">model</button></li></ol>
+      <div class="block-nav"><a class="btn primary" href="#text">Next: listening</a></div>
+    </section>
+
+    <section class="block" id="text">
+      <header class="block-head"><div class="block-num">06</div><div class="block-title-wrap"><div class="block-kicker">Listening</div><h2 class="block-title">Alex's room</h2></div><div class="block-time">≈ 5 min</div></header>
+      <div class="text-card"><div class="text-card-head"><h3>One speaker</h3><div class="text-card-actions"><button class="btn ghost speak-btn listen-btn" type="button" data-voice="female" data-say="Alex has a small room. There is a bed near the window. There is a desk next to the bed. There are two books on the desk. There are some pencils in a cup. There isn't a TV in the room. There aren't many toys on the floor. Alex likes his room because it is clean and bright.">▶ Listen</button><button class="btn ghost eye-btn" type="button" data-script-toggle aria-controls="readingScript" aria-expanded="false" aria-label="Show script" title="Show script">👁</button></div></div><p class="reading-script" id="readingScript" hidden>Alex has a small room. There is a bed near the window. There is a desk next to the bed. There are two books on the desk. There are some pencils in a cup. There isn't a TV in the room. There aren't many toys on the floor. Alex likes his room because it is clean and bright.</p></div>
+      <ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Is there a desk near the window? <span class="choice-row"><button class="choice" type="button" data-correct="true">Yes</button><button class="choice" type="button">No</button></span></span><button class="practice-hint" type="button" data-answer="Yes, there is.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Are there two books or notebooks? <span class="choice-row"><button class="choice" type="button" data-correct="true">Yes</button><button class="choice" type="button">No</button></span></span><button class="practice-hint" type="button" data-answer="Yes, there are.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Is there a TV or printer? <span class="choice-row"><button class="choice" type="button">Yes</button><button class="choice" type="button" data-correct="true">No</button></span></span><button class="practice-hint" type="button" data-answer="No, there isn't.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Are there many things on the floor/table? <span class="choice-row"><button class="choice" type="button">Yes</button><button class="choice" type="button" data-correct="true">No</button></span></span><button class="practice-hint" type="button" data-answer="No, there aren't.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Is there a lamp? <span class="choice-row"><button class="choice" type="button" data-correct="true">Yes</button><button class="choice" type="button">No</button></span></span><button class="practice-hint" type="button" data-answer="Yes, there is.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Are there pencils or notebooks? <span class="choice-row"><button class="choice" type="button" data-correct="true">Yes</button><button class="choice" type="button">No</button></span></span><button class="practice-hint" type="button" data-answer="Yes, there are.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Is the place clean/simple? <span class="choice-row"><button class="choice" type="button" data-correct="true">Yes</button><button class="choice" type="button">No</button></span></span><button class="practice-hint" type="button" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Are there three beds in the room? <span class="choice-row"><button class="choice" type="button">Yes</button><button class="choice" type="button" data-correct="true">No</button></span></span><button class="practice-hint" type="button" data-answer="No, there aren't.">hint</button></li></ol>
+      <div class="block-nav"><a class="btn primary" href="#output">Next: speak</a></div>
+    </section>
+
+    <section class="block" id="output">
+      <header class="block-head"><div class="block-num">07</div><div class="block-title-wrap"><div class="block-kicker">Speaking / Writing</div><h2 class="block-title">Describe your place</h2></div><div class="block-time">≈ 7 min</div></header>
+      <div class="prompt-grid"><article class="prompt-card"><label><input type="checkbox" data-speak>Say one thing in your room/workspace.</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Say two things in your room/workspace.</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Say one thing that is not there.</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Ask: Is there ...?</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Ask: Are there ...?</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Answer: Yes, there is / No, there isn't.</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Use one preposition: on / under / next to.</label></article><article class="prompt-card"><label><input type="checkbox" data-speak>Compare kids/adults scene: What is different?</label></article></div>
+      <textarea class="write-box" data-final-draft placeholder="Write 6-8 sentences: There is ... There are ... There isn't ... There aren't ... Is there ...? Are there ...?"></textarea>
+      <div class="block-nav"><a class="btn primary" href="#final-task">Final task</a></div>
+    </section>
+
+    <section class="block" id="final-task">
+      <header class="block-head"><div class="block-num">08</div><div class="block-title-wrap"><div class="block-kicker">Final Task</div><h2 class="block-title">My place description</h2></div><div class="block-time">≈ 8 min</div></header>
+      <div class="recorder"><div class="minitask-title">Record or write</div><p class="minitask-detail">Record 30-45 seconds or write 6-8 sentences: 2 with There is, 2 with There are, 1 with There isn't, 1 with There aren't, and 2 questions.</p><div class="recorder-controls"><span class="record-dot" data-record-dot></span><button class="btn primary" type="button" data-record-start>Start recording</button><button class="btn ghost" type="button" data-record-stop disabled>Stop</button><audio controls data-record-audio></audio></div></div>
+      <div class="check-grid"><article class="info-card"><h3>Now I can</h3><div class="now-grid"><div class="now-item"><label><input type="checkbox">I can say one thing: There is ...</label></div><div class="now-item"><label><input type="checkbox">I can say many things: There are ...</label></div><div class="now-item"><label><input type="checkbox">I can ask Is there ...?</label></div><div class="now-item"><label><input type="checkbox">I can ask Are there ...?</label></div><div class="now-item"><label><input type="checkbox">I can say There isn't ...</label></div><div class="now-item"><label><input type="checkbox">I can say There aren't ...</label></div><div class="now-item"><label><input type="checkbox">I can use on / under / next to.</label></div><div class="now-item"><label><input type="checkbox">I can describe a simple place.</label></div></div></article><article class="info-card"><h3>What to send</h3><p>6-8 sentences about your room, classroom, workspace, or apartment. Use there is / there are, negatives, and two questions.</p></article><article class="info-card"><h3>If it is hard</h3><p>Go back to Grammar map, then Language Focus, then do Guided Practice again.</p></article></div>
+    </section>
+
+    <nav class="lesson-foot" aria-label="lesson navigation">
+      <a class="foot-link prev" href="a1-02-present-simple-questions-negatives.html"><span class="foot-meta">Previous lesson</span><span class="foot-title">Questions + Negatives</span></a>
+      <a class="foot-link" href="#focus"><span class="foot-meta">Review</span><span class="foot-title">There is / There are</span></a>
+      <a class="foot-link next" href="a1-04-have-has-my-things.html"><span class="foot-meta">Next lesson</span><span class="foot-title">Have / Has</span></a>
+    </nav>
+
+    <p class="copyright">LinguaBoost Lab · A1 Module 03 · There is / There are</p>
+  </main>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const paletteKey = "lesson-palette";
+  const langKey = "lesson-lang-v2";
+  const labProgressKey = "linguaboost.lab.progress.v1";
+  const lessonId = "a1-03";
+  const moduleId = "a1";
+  const moduleLessonTotal = 8;
+  const palettes = ["light-lab", "peach", "green", "rose", "cyan", "amber", "white", "black-lab", "violet"];
+  const paletteSelect = document.querySelector("[data-palette]");
+  const langButtons = document.querySelectorAll("[data-lang-btn]");
+  const heroImg = document.querySelector("[data-hero-img]");
+  const darkHeroThemes = new Set(["black-lab", "violet"]);
+  const heroAssets = {
+    kids: {
+      light: {
+        src: "../assets/a1-03-hero-kids-light.png",
+        alt: "Kids looking at a room and practising there is and there are"
+      },
+      dark: {
+        src: "../assets/a1-03-hero-kids-dark.png",
+        alt: "Kids looking at a room and practising there is and there are at night"
+      }
+    },
+    adults: {
+      light: {
+        src: "../assets/a1-03-hero-adults-light.png",
+        alt: "Adults describing a workspace with there is and there are"
+      },
+      dark: {
+        src: "../assets/a1-03-hero-adults-dark.png",
+        alt: "Adults describing a workspace with there is and there are at night"
+      }
+    }
+  };
+  function getVisualMode() {
+    const theme = root.getAttribute("data-theme") || "light-lab";
+    return darkHeroThemes.has(theme) ? "dark" : "light";
+  }
+
+  function updateHeroImage() {
+    if (!heroImg) return;
+    const audience = document.body.dataset.audience === "adults" ? "adults" : "kids";
+    const mode = getVisualMode();
+    const asset = heroAssets[audience][mode];
+    heroImg.src = asset.src;
+    heroImg.alt = asset.alt;
+  }
+
+  function applyPalette(palette) {
+    const safe = palettes.includes(palette) ? palette : "light-lab";
+    root.setAttribute("data-theme", safe);
+    if (paletteSelect) paletteSelect.value = safe;
+    localStorage.setItem(paletteKey, safe);
+    updateHeroImage();
+  }
+
+  function applyLang(lang) {
+    const safe = lang === "en" ? "en" : "ru";
+    root.setAttribute("lang", safe);
+    document.querySelectorAll("[data-ru][data-en]").forEach(node => {
+      node.innerHTML = node.dataset.i18nScope === "task" ? node.dataset[safe] : node.dataset.en;
+    });
+    langButtons.forEach(btn => btn.classList.toggle("is-active", btn.dataset.langBtn === safe));
+    localStorage.setItem(langKey, safe);
+  }
+
+  function readLabProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(labProgressKey) || "{}");
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function writeLabProgress(progress) {
+    localStorage.setItem(labProgressKey, JSON.stringify(progress));
+    window.dispatchEvent(new CustomEvent("linguaboost:progress", { detail: progress }));
+  }
+
+  function getModuleProgress() {
+    const progress = readLabProgress();
+    const moduleProgress = progress[moduleId] || { lessons: {} };
+    const completedLessons = Object.values(moduleProgress.lessons || {}).filter(item => item && item.completed).length;
+    return { progress, moduleProgress, completedLessons };
+  }
+
+  function sentenceCount(value) {
+    return (value.trim().match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []).filter(sentence => sentence.trim().split(/\s+/).length >= 3).length;
+  }
+
+  function calculateLessonScore() {
+    const choiceItems = [...document.querySelectorAll("#guided .practice-item")];
+    const correctChoices = choiceItems.filter(item => item.querySelector(".choice.is-picked[data-correct='true']")).length;
+    const dropSlots = [...document.querySelectorAll("[data-drop][data-expected]")];
+    const correctDrops = dropSlots.filter(slot => slot.textContent.trim().toLowerCase() === slot.dataset.expected.toLowerCase()).length;
+    const promptChecks = [...document.querySelectorAll("#output .prompt-card input[type='checkbox']")].filter(input => input.checked).length;
+    const nowChecks = [...document.querySelectorAll("#final-task .now-item input[type='checkbox']")].filter(input => input.checked).length;
+    const draft = document.querySelector("[data-final-draft]")?.value || "";
+    const draftDone = sentenceCount(draft) >= 5 || document.body.dataset.recorded === "true";
+    const points = correctChoices + correctDrops + Math.min(promptChecks, 4) + nowChecks + (draftDone ? 4 : 0);
+    const maxPoints = choiceItems.length + dropSlots.length + 4 + 4 + 4;
+    return Math.round((points / maxPoints) * 100);
+  }
+
+  function updateLessonScore() {
+    const score = calculateLessonScore();
+    const completed = score >= 80;
+    const scoreText = document.querySelector("[data-lesson-score]");
+    const scoreFill = document.querySelector("[data-lesson-score-fill]");
+    const scoreCard = document.querySelector("[data-lesson-score-card]");
+    const scoreNote = document.querySelector("[data-lesson-score-note]");
+    const countText = document.querySelector("[data-module-progress-count]");
+    const certCard = document.querySelector("[data-module-certificate]");
+
+    const state = getModuleProgress();
+    const moduleProgress = state.progress[moduleId] || { lessons: {} };
+    moduleProgress.lessons = moduleProgress.lessons || {};
+    moduleProgress.lessons[lessonId] = {
+      score,
+      completed,
+      updatedAt: new Date().toISOString()
+    };
+    state.progress[moduleId] = moduleProgress;
+    writeLabProgress(state.progress);
+
+    const completedLessons = Object.values(moduleProgress.lessons).filter(item => item && item.completed).length;
+    const moduleComplete = completedLessons >= moduleLessonTotal;
+    if (scoreText) scoreText.textContent = `${score}%`;
+    if (scoreFill) scoreFill.style.width = `${score}%`;
+    scoreCard?.classList.toggle("is-complete", completed);
+    if (scoreNote) scoreNote.textContent = completed ? "Lesson complete. Your module progress is saved." : "Reach 80% to complete this lesson.";
+    if (countText) countText.textContent = `${completedLessons} / ${moduleLessonTotal}`;
+    certCard?.classList.toggle("is-earned", moduleComplete);
+  }
+
+  document.body.dataset.audience = localStorage.getItem("lesson-audience") || "kids";
+  applyPalette(localStorage.getItem(paletteKey) || root.getAttribute("data-theme") || "light-lab");
+  applyLang(localStorage.getItem(langKey) || "en");
+
+  paletteSelect?.addEventListener("change", event => applyPalette(event.target.value));
+  document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || "light-lab";
+    applyPalette(current === "black-lab" ? "light-lab" : "black-lab");
+  });
+  langButtons.forEach(btn => btn.addEventListener("click", () => applyLang(btn.dataset.langBtn)));
+
+  function applyAudience(audience) {
+    const safe = audience === "adults" ? "adults" : "kids";
+    document.body.dataset.audience = safe;
+    document.querySelectorAll("[data-audience-btn]").forEach(btn => btn.classList.toggle("is-active", btn.dataset.audienceBtn === safe));
+    document.querySelectorAll("[data-kids][data-adults]").forEach(node => {
+      node.textContent = node.dataset[safe];
+    });
+    localStorage.setItem("lesson-audience", safe);
+    updateHeroImage();
+  }
+  applyAudience(document.body.dataset.audience || "kids");
+  document.querySelectorAll("[data-audience-btn]").forEach(btn => btn.addEventListener("click", () => applyAudience(btn.dataset.audienceBtn)));
+
+  document.querySelectorAll(".practice-hint").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const answer = btn.dataset.answer || "";
+      btn.textContent = answer;
+      btn.classList.add("shown");
+    });
+  });
+
+  document.querySelectorAll(".choice").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const row = btn.closest(".choice-row");
+      row?.querySelectorAll(".choice").forEach(item => {
+        item.classList.remove("is-picked");
+        item.removeAttribute("data-state");
+      });
+      btn.classList.add("is-picked");
+      btn.dataset.state = btn.dataset.correct === "true" ? "correct" : "wrong";
+      updateLessonScore();
+    });
+  });
+
+  document.querySelectorAll(".vocab-card").forEach(card => {
+    card.addEventListener("click", event => {
+      if (event.target.closest(".speak-btn")) return;
+      card.classList.toggle("is-flipped");
+    });
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        card.classList.toggle("is-flipped");
+      }
+    });
+  });
+
+  document.querySelectorAll(".speak-btn").forEach(btn => {
+    btn.addEventListener("click", event => {
+      event.stopPropagation();
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(btn.dataset.say || btn.textContent || "");
+      utterance.lang = "en-US";
+      utterance.rate = 0.86;
+      if (btn.dataset.voice === "female") {
+        const voices = window.speechSynthesis.getVoices();
+        utterance.voice = voices.find(voice => /zira|jenny|aria|samantha|female|woman/i.test(voice.name)) || voices.find(voice => voice.lang && voice.lang.startsWith("en")) || null;
+      }
+      window.speechSynthesis.speak(utterance);
+    });
+  });
+
+  document.querySelectorAll("[data-script-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!target) return;
+      const willShow = target.hasAttribute("hidden");
+      target.toggleAttribute("hidden", !willShow);
+      btn.setAttribute("aria-expanded", String(willShow));
+      btn.setAttribute("aria-label", willShow ? "Hide script" : "Show script");
+      btn.title = willShow ? "Hide script" : "Show script";
+    });
+  });
+
+  const stepBlocks = [
+    ["goal", "Goal"],
+    ["input", "Words"],
+    ["focus", "Grammar"],
+    ["guided", "Practice"],
+    ["active", "Build"],
+    ["text", "Alex"],
+    ["output", "Speak / write"],
+    ["final-task", "Final"]
+  ];
+  const currentEl = document.querySelector("[data-step-current]");
+  const fillEl = document.querySelector("[data-step-fill]");
+  const nameEl = document.querySelector("[data-step-name]");
+  function updateStep() {
+    let activeIndex = 0;
+    stepBlocks.forEach(([id], index) => {
+      const block = document.getElementById(id);
+      if (block && block.getBoundingClientRect().top < window.innerHeight * 0.42) activeIndex = index;
+    });
+    if (currentEl) currentEl.textContent = String(activeIndex + 1).padStart(2, "0");
+    if (fillEl) fillEl.style.width = `${((activeIndex + 1) / stepBlocks.length) * 100}%`;
+    if (nameEl) nameEl.textContent = stepBlocks[activeIndex][1];
+  }
+  updateStep();
+  window.addEventListener("scroll", updateStep, { passive: true });
+
+  let flipIndex = 0;
+  document.querySelector("[data-flip-next]")?.addEventListener("click", () => {
+    const cards = [...document.querySelectorAll(".vocab-card")];
+    if (!cards.length) return;
+    cards.forEach((card, index) => card.classList.toggle("is-flipped", index === flipIndex));
+    cards[flipIndex].scrollIntoView({ behavior: "smooth", block: "center" });
+    flipIndex = (flipIndex + 1) % cards.length;
+  });
+
+  let selectedWord = "";
+  document.querySelectorAll(".word-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".word-chip").forEach(item => item.classList.remove("is-selected"));
+      chip.classList.add("is-selected");
+      selectedWord = chip.textContent.trim();
+    });
+    chip.addEventListener("dragstart", event => {
+      selectedWord = chip.textContent.trim();
+      event.dataTransfer?.setData("text/plain", selectedWord);
+    });
+  });
+  document.querySelectorAll("[data-drop]").forEach(slot => {
+    function fillSlot(value) {
+      if (!value) return;
+      slot.textContent = value;
+      slot.classList.add("filled");
+      const isCorrect = slot.dataset.expected && value.trim().toLowerCase() === slot.dataset.expected.toLowerCase();
+      slot.classList.toggle("is-correct", isCorrect);
+      slot.classList.toggle("is-wrong", Boolean(slot.dataset.expected) && !isCorrect);
+      updateLessonScore();
+    }
+    slot.addEventListener("click", () => fillSlot(selectedWord));
+    slot.addEventListener("dragover", event => event.preventDefault());
+    slot.addEventListener("drop", event => {
+      event.preventDefault();
+      fillSlot(event.dataTransfer?.getData("text/plain") || selectedWord);
+    });
+  });
+
+  let mediaRecorder;
+  let audioChunks = [];
+  const startBtn = document.querySelector("[data-record-start]");
+  const stopBtn = document.querySelector("[data-record-stop]");
+  const audioEl = document.querySelector("[data-record-audio]");
+  const recordDot = document.querySelector("[data-record-dot]");
+  startBtn?.addEventListener("click", async () => {
+    if (!navigator.mediaDevices?.getUserMedia) return;
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.addEventListener("dataavailable", event => {
+      if (event.data.size > 0) audioChunks.push(event.data);
+    });
+    mediaRecorder.addEventListener("stop", () => {
+      const blob = new Blob(audioChunks, { type: "audio/webm" });
+      if (audioEl) audioEl.src = URL.createObjectURL(blob);
+      document.body.dataset.recorded = "true";
+      updateLessonScore();
+      stream.getTracks().forEach(track => track.stop());
+    });
+    mediaRecorder.start();
+    startBtn.setAttribute("disabled", "true");
+    stopBtn?.removeAttribute("disabled");
+    recordDot?.classList.add("is-recording");
+  });
+  stopBtn?.addEventListener("click", () => {
+    mediaRecorder?.stop();
+    stopBtn.setAttribute("disabled", "true");
+    startBtn?.removeAttribute("disabled");
+    recordDot?.classList.remove("is-recording");
+  });
+
+  document.querySelectorAll("input[type='checkbox']").forEach(input => input.addEventListener("change", updateLessonScore));
+  document.querySelector("[data-final-draft]")?.addEventListener("input", updateLessonScore);
+  updateLessonScore();
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

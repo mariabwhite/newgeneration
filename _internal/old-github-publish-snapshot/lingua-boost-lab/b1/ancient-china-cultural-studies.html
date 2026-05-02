@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Ancient China: Cultural Studies | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #F9E7B3 0%, #F5BC7A 100%);
+            font-family: 'Segoe UI', 'Roboto', 'Comic Neue', system-ui, sans-serif;
+            padding: 20px 16px 60px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .hero {
+            background: #FFF9E0;
+            border-radius: 64px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: center;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+            border: 3px solid #FFB347;
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #E67E22, #D35400);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .sub {
+            font-size: 1.1rem;
+            background: #FFE0A3;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            color: #B64926;
+            font-weight: bold;
+        }
+        .score-panel {
+            background: #FFD966;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 12px;
+            color: #A1412B;
+        }
+
+        /* cards */
+        .card {
+            background: white;
+            border-radius: 48px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 18px 28px rgba(0,0,0,0.15);
+            border: 2px solid #FFC48A;
+        }
+        .section-title {
+            font-size: 1.7rem;
+            background: #FFE0A3;
+            display: inline-block;
+            padding: 6px 28px;
+            border-radius: 60px;
+            color: #A1412B;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* flip cards grid */
+        .grid-flip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: flex-start;
+        }
+        .flip-card {
+            background: transparent;
+            width: 150px;
+            height: 130px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            border-radius: 20px;
+        }
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 8px;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+        .flip-front {
+            background: #FFB347;
+            color: white;
+            border: 2px solid #D35400;
+        }
+        .flip-back {
+            background: #6AB04C;
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid #FFD966;
+        }
+        .speak-btn {
+            background: #FFD966;
+            border: none;
+            border-radius: 30px;
+            padding: 5px 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #A1412B;
+        }
+
+        /* quiz options */
+        .quiz-item {
+            background: #FFF8E7;
+            border-radius: 32px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #FFC48A;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .opt {
+            background: #FFB347;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .opt.correct-highlight {
+            background: #2E8B57;
+            box-shadow: 0 0 0 2px #FFD966;
+        }
+        .opt.wrong-highlight {
+            background: #CD5C5C;
+            text-decoration: line-through;
+        }
+        .btn {
+            background: #FFB347;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            margin-top: 12px;
+            margin-right: 8px;
+            box-shadow: 0 4px 0 #A05E2A;
+            transition: 0.05s linear;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #A05E2A;
+        }
+        .btn-outline {
+            background: #FFE0A3;
+            color: #A1412B;
+            box-shadow: none;
+            border: 1px solid #FFB347;
+        }
+        textarea {
+            width: 100%;
+            background: #FFF8E7;
+            border: 2px solid #FFC48A;
+            border-radius: 24px;
+            padding: 12px;
+            font-size: 0.9rem;
+            margin: 12px 0;
+            font-family: inherit;
+        }
+        .panda-card {
+            background: linear-gradient(135deg, #FFF8E7, #FFE0A3);
+            border-radius: 48px;
+            padding: 24px;
+            margin-top: 20px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 2px solid #FFB347;
+        }
+        .panda-emoji {
+            font-size: 5rem;
+            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
+        }
+        @media (max-width: 700px) {
+            .flip-card { width: 130px; height: 110px; }
+            .section-title { font-size: 1.3rem; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">B1</span>
+    <span class="lbs-pill">School learners / teens</span>
+    <span class="lbs-pill">Culture + reading</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <div class="hero">
+        <h1>🏯 Ancient China · Cultural Studies</h1>
+        <div class="sub">Intermediate Level · A2–B1</div>
+        <div class="score-panel">🏆 SCORE: <span id="totalScore">0</span> points</div>
+    </div>
+
+    <!-- 1. FLIP CARDS (28 vocabulary) -->
+    <div class="card">
+        <div class="section-title">📖 Vocabulary · 28 terms</div>
+        <div class="grid-flip" id="vocabGrid"></div>
+    </div>
+
+    <!-- 2. GAP FILL · 10 sentences -->
+    <div class="card">
+        <div class="section-title">✍️ Exercise 1 · Choose the correct word</div>
+        <div id="gapQuizContainer"></div>
+        <button class="btn" id="checkGapBtn">✅ Check & get points</button>
+    </div>
+
+    <!-- 3. SPEAKING · 5 questions -->
+    <div class="card">
+        <div class="section-title">🎤 Speaking practice · Answer the questions</div>
+        <div id="speakingQuestions"></div>
+        <button class="btn" id="checkSpeakingBtn">📝 Submit speaking answers</button>
+    </div>
+
+    <!-- 4. LISTENING · 3 texts with quizzes -->
+    <div class="card">
+        <div class="section-title">🎧 Listening comprehension</div>
+        <div id="listeningSection"></div>
+        <button class="btn" id="checkListeningBtn">🔊 Check listening answers</button>
+    </div>
+
+    <!-- 5. READING · 6 texts TRUE/FALSE -->
+    <div class="card">
+        <div class="section-title">📚 Reading · 6 landmarks</div>
+        <div id="readingSection"></div>
+        <button class="btn" id="checkReadingBtn">📖 Check reading answers</button>
+    </div>
+
+    <!-- 6. PANDA TEXT + image -->
+    <div class="card">
+        <div class="section-title">🐼 Giant Pandas · National Treasure</div>
+        <div class="panda-card">
+            <div class="panda-emoji">🐼🎋</div>
+            <div style="flex:1">
+                <p><strong>Giant pandas live only in China. Fewer than 2,000 remain in the wild. They spend 12 hours daily eating bamboo. China has established special reserves to protect them. Pandas are a global symbol of wildlife conservation.</strong></p>
+                <div id="pandaQuiz"></div>
+                <button class="btn btn-outline" id="checkPandaBtn">🐼 Check panda quiz</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------- VOCABULARY (28 items) ----------
+    const vocabList = [
+        { ru: "Великая стена", en: "the Great Wall" }, { ru: "Запретный город", en: "the Forbidden City" },
+        { ru: "Терракотовая армия", en: "the Terracotta Army" }, { ru: "древние храмы", en: "ancient temples" },
+        { ru: "императорские дворцы", en: "imperial palaces" }, { ru: "пагоды", en: "pagodas" },
+        { ru: "каменные мосты", en: "stone bridges" }, { ru: "городские стены", en: "city walls" },
+        { ru: "традиционные сады", en: "traditional gardens" }, { ru: "старые ворота", en: "old gates" },
+        { ru: "панды", en: "pandas" }, { ru: "бамбук", en: "bamboo" }, { ru: "рис", en: "rice" },
+        { ru: "лапша", en: "noodles" }, { ru: "чай", en: "tea" }, { ru: "чайная культура", en: "tea culture" },
+        { ru: "уличная еда", en: "street food" }, { ru: "Китайский новый год", en: "Chinese New Year" },
+        { ru: "Пекин", en: "Beijing" }, { ru: "Шанхай", en: "Shanghai" }, { ru: "многолюдные улицы", en: "crowded streets" },
+        { ru: "фабрики", en: "factories" }, { ru: "технологии", en: "technology" }, { ru: "императоры", en: "emperors" },
+        { ru: "империя", en: "empire" }, { ru: "шёлк", en: "silk" }, { ru: "бумага", en: "paper" }, { ru: "торговля", en: "trade" }
+    ];
+    let totalPoints = 0;
+    function addPoints(p) { totalPoints += p; document.getElementById('totalScore').innerText = totalPoints; }
+
+    // Speech function
+    function speak(word) { let u = new SpeechSynthesisUtterance(word); u.lang = 'en-US'; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+
+    // 1. FLIP CARDS
+    function renderFlip() {
+        const grid = document.getElementById('vocabGrid');
+        grid.innerHTML = '';
+        vocabList.forEach(item => {
+            const flip = document.createElement('div');
+            flip.className = 'flip-card';
+            flip.innerHTML = `<div class="flip-inner">
+                <div class="flip-front">🇷🇺 ${item.ru}</div>
+                <div class="flip-back">🇬🇧 ${item.en}<br><button class="speak-btn" data-word="${item.en}">🔊 Pronounce</button></div>
+            </div>`;
+            flip.addEventListener('click', (e) => {
+                if (e.target.classList.contains('speak-btn')) {
+                    e.stopPropagation();
+                    speak(e.target.dataset.word);
+                } else {
+                    flip.classList.toggle('flipped');
+                }
+            });
+            grid.appendChild(flip);
+        });
+    }
+
+    // 2. GAP FILL (10 sentences)
+    const gapData = [
+        { text: "China is a very __________ country.", options: ["interesting", "boring", "small"], correct: "interesting" },
+        { text: "There are many big __________ like Beijing and Shanghai.", options: ["cities", "rivers", "mountains"], correct: "cities" },
+        { text: "The streets are often very __________.", options: ["crowded", "empty", "quiet"], correct: "crowded" },
+        { text: "China is famous for the Great Wall and __________.", options: ["pandas", "tigers", "elephants"], correct: "pandas" },
+        { text: "People eat __________ and noodles.", options: ["rice", "bread", "pizza"], correct: "rice" },
+        { text: "__________ food is very popular in China.", options: ["Street", "Fast", "Frozen"], correct: "Street" },
+        { text: "__________ culture is an important part of life.", options: ["Tea", "Coffee", "Milk"], correct: "Tea" },
+        { text: "Chinese __________ Year is a big holiday.", options: ["New", "Old", "Lunar"], correct: "New" },
+        { text: "China has many __________ and produces a lot of goods.", options: ["factories", "farms", "schools"], correct: "factories" },
+        { text: "China is very modern because of __________.", options: ["technology", "nature", "history"], correct: "technology" }
+    ];
+    let gapSelections = new Array(10).fill(null);
+    function renderGap() {
+        const cont = document.getElementById('gapQuizContainer');
+        cont.innerHTML = '';
+        gapData.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div><strong>${idx+1}.</strong> ${item.text}</div><div class="options" id="gapOpts-${idx}"></div>`;
+            cont.appendChild(div);
+            const optsDiv = div.querySelector(`.options`);
+            item.options.forEach(opt => {
+                const optBtn = document.createElement('div');
+                optBtn.className = 'opt';
+                optBtn.innerText = opt;
+                optBtn.addEventListener('click', () => {
+                    document.querySelectorAll(`#gapOpts-${idx} .opt`).forEach(b => b.classList.remove('correct-highlight', 'wrong-highlight'));
+                    if (opt === item.correct) {
+                        optBtn.classList.add('correct-highlight');
+                    } else {
+                        optBtn.classList.add('wrong-highlight');
+                    }
+                    gapSelections[idx] = opt;
+                });
+                optsDiv.appendChild(optBtn);
+            });
+        });
+    }
+    function checkGap() {
+        let correct = 0;
+        gapData.forEach((item, i) => { if (gapSelections[i] === item.correct) correct++; });
+        addPoints(correct * 2);
+        alert(`Exercise 1: ${correct}/${gapData.length} correct. +${correct*2} points`);
+    }
+
+    // 3. SPEAKING 5 questions
+    const speakQuestions = [
+        "What would you like to see in China and why? (Great Wall / Forbidden City / Terracotta Army)",
+        "What Chinese food do you know? Would you like to try it?",
+        "Why are pandas important for China?",
+        "Do you think technology helps China today? Give one example.",
+        "If you could travel to ancient China, what would you do?"
+    ];
+    let speakAnswers = new Array(5).fill('');
+    function renderSpeaking() {
+        const cont = document.getElementById('speakingQuestions');
+        cont.innerHTML = '';
+        const hints = [
+            "💡 I'd like to see the Great Wall because it's an ancient wonder and very long.",
+            "💡 I know noodles and dumplings. I'd love to try real Chinese street food.",
+            "💡 Pandas are a symbol of conservation and only live in China.",
+            "💡 Mobile payments and high-speed trains are great examples of Chinese technology.",
+            "💡 I would visit the emperor's palace and learn about silk production."
+        ];
+        speakQuestions.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div><strong>${idx+1}. ${q}</strong></div>
+            <textarea id="speakAns${idx}" rows="2" placeholder="Write your answer here..."></textarea>
+            <button class="btn-outline hintBtn" data-idx="${idx}" style="padding:6px 16px; font-size:0.8rem;">💡 Hint</button>
+            <div id="hint${idx}" style="font-size:0.85rem; color:#D35400; margin-top:8px;"></div>`;
+            cont.appendChild(div);
+            document.getElementById(`speakAns${idx}`).addEventListener('input', (e) => speakAnswers[idx] = e.target.value);
+            div.querySelector('.hintBtn').addEventListener('click', () => {
+                document.getElementById(`hint${idx}`).innerHTML = hints[idx];
+            });
+        });
+    }
+    function checkSpeaking() {
+        let answered = 0;
+        for (let i = 0; i < speakAnswers.length; i++) {
+            if (speakAnswers[i] && speakAnswers[i].trim().length > 15) answered++;
+        }
+        addPoints(answered * 4);
+        alert(`Speaking: ${answered} detailed answers (min 15 chars). +${answered*4} points. Try to write more for full points!`);
+    }
+
+    // 4. LISTENING 3 texts with quizzes
+    const listenData = [
+        { text: "The Silk Road was an ancient trade route. Chinese merchants sold silk, tea, and porcelain. They travelled for months to reach other countries.",
+          questions: [
+              { q: "What did Chinese merchants sell?", opts: ["Cotton", "Silk and tea", "Gold"], correct: "Silk and tea" },
+              { q: "How long did they travel?", opts: ["Weeks", "Months", "Years"], correct: "Months" },
+              { q: "What was the Silk Road?", opts: ["A wall", "A trade route", "A temple"], correct: "A trade route" }
+          ] },
+        { text: "Ancient China invented paper, printing, gunpowder, and the compass. These inventions changed the world forever.",
+          questions: [
+              { q: "Which invention is mentioned first?", opts: ["Printing", "Gunpowder", "Paper"], correct: "Paper" },
+              { q: "What did the compass help with?", opts: ["Navigation", "Writing", "Cooking"], correct: "Navigation" },
+              { q: "How did these inventions affect the world?", opts: ["They changed it forever", "They were forgotten", "Only China used them"], correct: "They changed it forever" }
+          ] },
+        { text: "The emperor lived in the Forbidden City. He had many servants and advisors. People had to follow strict rules.",
+          questions: [
+              { q: "Where did the emperor live?", opts: ["Great Wall", "Forbidden City", "Terracotta Army"], correct: "Forbidden City" },
+              { q: "Who helped the emperor?", opts: ["Soldiers", "Servants and advisors", "Farmers"], correct: "Servants and advisors" },
+              { q: "What did people have to follow?", opts: ["Strict rules", "No rules", "Only traditions"], correct: "Strict rules" }
+          ] }
+    ];
+    let listenAnswers = [[null,null,null],[null,null,null],[null,null,null]];
+    function renderListening() {
+        const cont = document.getElementById('listeningSection');
+        cont.innerHTML = '';
+        listenData.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div><strong>🎧 Text ${idx+1}:</strong> ${item.text}</div>
+            <button class="btn-outline listenBtn" data-idx="${idx}" style="margin:10px 0;">🔊 Listen to this text</button>`;
+            cont.appendChild(div);
+            item.questions.forEach((q, qIdx) => {
+                const qDiv = document.createElement('div');
+                qDiv.style.marginTop = '12px';
+                qDiv.innerHTML = `<div><strong>${qIdx+1}.</strong> ${q.q}</div><div class="options" id="listOpts-${idx}-${qIdx}"></div>`;
+                div.appendChild(qDiv);
+                const optDiv = qDiv.querySelector(`.options`);
+                q.opts.forEach(opt => {
+                    const optBtn = document.createElement('div');
+                    optBtn.className = 'opt';
+                    optBtn.innerText = opt;
+                    optBtn.addEventListener('click', () => {
+                        document.querySelectorAll(`#listOpts-${idx}-${qIdx} .opt`).forEach(b => b.classList.remove('correct-highlight', 'wrong-highlight'));
+                        if (opt === q.correct) {
+                            optBtn.classList.add('correct-highlight');
+                        } else {
+                            optBtn.classList.add('wrong-highlight');
+                        }
+                        listenAnswers[idx][qIdx] = opt;
+                    });
+                    optDiv.appendChild(optBtn);
+                });
+            });
+        });
+        document.querySelectorAll('.listenBtn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let idx = parseInt(btn.dataset.idx);
+                speak(listenData[idx].text);
+            });
+        });
+    }
+    function checkListening() {
+        let totalCorrect = 0;
+        listenData.forEach((item, i) => {
+            item.questions.forEach((q, j) => { if (listenAnswers[i][j] === q.correct) totalCorrect++; });
+        });
+        addPoints(totalCorrect * 2);
+        alert(`Listening: ${totalCorrect}/9 correct. +${totalCorrect*2} points`);
+    }
+
+    // 5. READING 6 texts TRUE/FALSE
+    const readingItems = [
+        { title: "Summer Palace", text: "Located in Beijing, the Summer Palace has lakes and gardens. Emperors used it as a summer retreat.", statement: "The Summer Palace is in Shanghai.", answer: false },
+        { title: "Li River", text: "The Li River in Guilin is famous for karst mountains. Tourists take bamboo rafts.", statement: "The Li River is famous for karst mountains.", answer: true },
+        { title: "Giant Buddha of Leshan", text: "This 71-metre statue was carved in the 8th century.", statement: "The Giant Buddha is 71 metres tall.", answer: true },
+        { title: "Potala Palace", text: "Located in Lhasa, Tibet, it has over 1,000 rooms.", statement: "Potala Palace has fewer than 500 rooms.", answer: false },
+        { title: "Mogao Caves", text: "Also known as the Thousand Buddha Grottoes, they contain Buddhist art.", statement: "Mogao Caves are a UNESCO site.", answer: true },
+        { title: "Huangshan", text: "Famous for pine trees and granite peaks. Many poets were inspired.", statement: "Huangshan is famous for its beaches.", answer: false }
+    ];
+    let readingAnswers = new Array(6).fill(null);
+    function renderReading() {
+        const cont = document.getElementById('readingSection');
+        cont.innerHTML = '';
+        readingItems.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div><strong>${item.title}</strong><br>${item.text}</div>
+            <div style="margin:12px 0"><strong>❓ Statement:</strong> ${item.statement}</div>
+            <div class="options"><div class="opt" data-ridx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-ridx="${idx}" data-val="false">❌ FALSE</div></div>`;
+            cont.appendChild(div);
+        });
+        document.querySelectorAll('[data-ridx]').forEach(el => {
+            el.addEventListener('click', () => {
+                const idx = parseInt(el.dataset.ridx);
+                const val = el.dataset.val === 'true';
+                readingAnswers[idx] = val;
+                document.querySelectorAll(`[data-ridx="${idx}"]`).forEach(b => b.classList.remove('correct-highlight'));
+                el.classList.add('correct-highlight');
+            });
+        });
+    }
+    function checkReading() {
+        let correct = 0;
+        readingItems.forEach((item, i) => { if (readingAnswers[i] === item.answer) correct++; });
+        addPoints(correct * 2);
+        alert(`Reading: ${correct}/6 correct. +${correct*2} points`);
+    }
+
+    // 6. PANDA QUIZ
+    const pandaQuestions = [
+        { q: "Giant pandas live only in China.", correct: true },
+        { q: "There are more than 10,000 pandas in the wild.", correct: false },
+        { q: "Pandas eat bamboo for 12 hours a day.", correct: true }
+    ];
+    let pandaSelections = [null, null, null];
+    function renderPandaQuiz() {
+        const cont = document.getElementById('pandaQuiz');
+        cont.innerHTML = '';
+        pandaQuestions.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.style.margin = "12px 0";
+            div.innerHTML = `<div><strong>${idx+1}.</strong> ${q.q}</div><div class="options"><div class="opt" data-pidx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-pidx="${idx}" data-val="false">❌ FALSE</div></div>`;
+            cont.appendChild(div);
+        });
+        document.querySelectorAll('[data-pidx]').forEach(el => {
+            el.addEventListener('click', () => {
+                const idx = parseInt(el.dataset.pidx);
+                const val = el.dataset.val === 'true';
+                pandaSelections[idx] = val;
+                document.querySelectorAll(`[data-pidx="${idx}"]`).forEach(b => b.classList.remove('correct-highlight'));
+                el.classList.add('correct-highlight');
+            });
+        });
+    }
+    function checkPanda() {
+        let correct = 0;
+        pandaQuestions.forEach((q, i) => { if (pandaSelections[i] === q.correct) correct++; });
+        addPoints(correct * 2);
+        alert(`Panda quiz: ${correct}/3 correct. +${correct*2} points`);
+    }
+
+    // INIT ALL
+    renderFlip();
+    renderGap();
+    renderSpeaking();
+    renderListening();
+    renderReading();
+    renderPandaQuiz();
+
+    document.getElementById('checkGapBtn').onclick = checkGap;
+    document.getElementById('checkSpeakingBtn').onclick = checkSpeaking;
+    document.getElementById('checkListeningBtn').onclick = checkListening;
+    document.getElementById('checkReadingBtn').onclick = checkReading;
+    document.getElementById('checkPandaBtn').onclick = checkPanda;
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

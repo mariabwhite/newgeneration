@@ -1,0 +1,3577 @@
+<!doctype html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Generation English · Diagnostic Test</title>
+  <style>
+    :root {
+      --bg: #f7f5ff;
+      --bg-2: #efeaff;
+      --card: #ffffff;
+      --card-2: #f4f0ff;
+      --text: #1a1326;
+      --muted: #4a4358;
+      --faint: #756d86;
+      --accent: #ff9b2f;
+      --accent-2: #ffb055;
+      --brand: #7a5fcf;
+      --brand-2: #4f3ea5;
+      --blue: #4bacc6;
+      --ok: #2ee59d;
+      --bad: #d64545;
+      --line: rgba(122,95,207,.18);
+      --line-2: rgba(122,95,207,.30);
+      --shadow: 0 20px 54px rgba(40,32,76,.10);
+      --font: Inter, Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --display: "Arial Black", Impact, Inter, system-ui, sans-serif;
+      --brand-font: Inter, Manrope, Arial, system-ui, sans-serif;
+      --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--font);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(122,95,207,.16), transparent 34%),
+        radial-gradient(circle at 8% 28%, rgba(255,155,47,.10), transparent 32%),
+        linear-gradient(180deg, #f7f5ff 0%, #ffffff 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, textarea { font: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 14px 26px;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #120904;
+      background: var(--accent);
+      font-family: var(--brand-font);
+      font-weight: 900;
+      font-size: 25px;
+      letter-spacing: 0;
+    }
+
+    .brand-name {
+      font-family: var(--brand-font);
+      font-size: 24px;
+      line-height: 1.02;
+      letter-spacing: .035em;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      margin-top: 9px;
+      color: var(--muted);
+      font: 11px var(--mono);
+      letter-spacing: .46em;
+      text-transform: uppercase;
+    }
+
+    .topnav {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-chip,
+    .lang-btn {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: transparent;
+      font: 11px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-chip:hover,
+    .nav-chip.active,
+    .lang-btn:hover {
+      color: var(--accent);
+      border-color: rgba(255,155,47,.45);
+    }
+
+    .page {
+      width: min(1480px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(36px, 6vw, 86px) 0 68px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+      gap: clamp(28px, 5vw, 76px);
+      align-items: end;
+      min-height: calc(100vh - 120px);
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font: 700 12px var(--mono);
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(54px, 9vw, 142px);
+      line-height: .86;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .lead {
+      max-width: 740px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: var(--accent);
+      color: #160904;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero-panel {
+      max-width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(122,95,207,.08), transparent 44%),
+        #ffffff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font: 11px var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .aspect-list {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .aspect-list li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      min-height: 76px;
+      padding: 0 22px;
+      background:
+        linear-gradient(90deg, var(--aspect-soft), transparent 72%),
+        #ffffff;
+      border-left: 4px solid var(--aspect);
+    }
+
+    .aspect-list li:nth-child(1) { --aspect: #e26a2c; --aspect-soft: rgba(226,106,44,.12); }
+    .aspect-list li:nth-child(2) { --aspect: #31849b; --aspect-soft: rgba(49,132,155,.12); }
+    .aspect-list li:nth-child(3) { --aspect: #8064a2; --aspect-soft: rgba(128,100,162,.12); }
+    .aspect-list li:nth-child(4) { --aspect: #76923c; --aspect-soft: rgba(118,146,60,.12); }
+    .aspect-list li:nth-child(5) { --aspect: #c0504d; --aspect-soft: rgba(192,80,77,.12); }
+
+    .aspect-list b {
+      color: var(--aspect);
+      font-family: var(--display);
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: .82;
+      letter-spacing: -.07em;
+    }
+
+    .aspect-list span {
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .section {
+      padding: clamp(54px, 7vw, 94px) 0 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 210px minmax(0, .82fr) minmax(280px, .55fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .index-badge {
+      display: inline-grid;
+      gap: 8px;
+      align-content: end;
+      min-width: 150px;
+    }
+
+    .index-badge strong {
+      display: block;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(76px, 9vw, 132px);
+      line-height: .78;
+      letter-spacing: -.08em;
+    }
+
+    .index-badge small {
+      display: block;
+      color: var(--muted);
+      font: 700 11px var(--mono);
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      padding-left: 4px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font: 700 12px var(--mono);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(36px, 5.6vw, 86px);
+      line-height: .94;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .level-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 28px 0;
+    }
+
+    .level-jump {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      min-height: 44px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      font: 700 12px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .level-jump.active,
+    .level-jump:hover {
+      color: var(--accent);
+      border-color: rgba(255,155,47,.5);
+      background: rgba(255,155,47,.08);
+    }
+
+    .level-stack { display: grid; gap: 18px; }
+
+    .level-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(122,95,207,.07), transparent 42%),
+        #ffffff;
+      overflow: hidden;
+    }
+
+    .level-card.open {
+      border-color: rgba(255,155,47,.38);
+      box-shadow: 0 24px 70px rgba(40,32,76,.12);
+    }
+
+    .level-head {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: clamp(18px, 3vw, 30px);
+    }
+
+    .level-index {
+      display: grid;
+      gap: 8px;
+      align-content: center;
+      min-height: 110px;
+    }
+
+    .level-index span {
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(72px, 7vw, 116px);
+      line-height: .78;
+      letter-spacing: -.08em;
+    }
+
+    .level-index small {
+      color: var(--muted);
+      font: 700 10px var(--mono);
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      padding-left: 4px;
+    }
+
+    .level-title {
+      margin: 0 0 8px;
+      font-family: var(--display);
+      font-size: clamp(26px, 3.5vw, 52px);
+      line-height: .95;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+    }
+
+    .level-desc {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .start-btn {
+      min-height: 46px;
+      border: 0;
+      border-radius: 12px;
+      padding: 0 18px;
+      background: var(--accent);
+      color: #150803;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .test-body {
+      display: none;
+      padding: 0 clamp(18px, 3vw, 30px) clamp(20px, 3vw, 32px);
+      border-top: 1px solid var(--line);
+    }
+
+    .level-card.open .test-body { display: block; }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 18px;
+      padding-top: 22px;
+      --skill: var(--accent);
+      --skill-soft: rgba(255,155,47,.08);
+    }
+
+    .section-grid.skill-reading {
+      --skill: #e26a2c;
+      --skill-bg: #fff5ee;
+      --skill-bg-2: #ffe7d6;
+      --skill-line: rgba(226,106,44,.28);
+      --skill-soft: rgba(226,106,44,.10);
+    }
+
+    .section-grid.skill-listening {
+      --skill: #31849b;
+      --skill-bg: #eef9fc;
+      --skill-bg-2: #ddf2f7;
+      --skill-line: rgba(49,132,155,.28);
+      --skill-soft: rgba(49,132,155,.12);
+    }
+
+    .section-grid.skill-writing {
+      --skill: #8064a2;
+      --skill-bg: #f6f0ff;
+      --skill-bg-2: #eadfff;
+      --skill-line: rgba(128,100,162,.28);
+      --skill-soft: rgba(128,100,162,.12);
+    }
+
+    .section-grid.skill-speaking {
+      --skill: #76923c;
+      --skill-bg: #f3f8e8;
+      --skill-bg-2: #e6f0ce;
+      --skill-line: rgba(118,146,60,.28);
+      --skill-soft: rgba(118,146,60,.12);
+    }
+
+    .section-grid.skill-grammar {
+      --skill: #c0504d;
+      --skill-bg: #fff0ef;
+      --skill-bg-2: #f8dcda;
+      --skill-line: rgba(192,80,77,.30);
+      --skill-soft: rgba(192,80,77,.12);
+    }
+
+    .skill-label {
+      display: grid;
+      gap: 8px;
+      padding-top: 18px;
+    }
+
+    .skill-num {
+      color: var(--skill);
+      font-family: var(--display);
+      font-size: clamp(52px, 6vw, 92px);
+      line-height: .78;
+      letter-spacing: -.08em;
+    }
+
+    .skill-name {
+      color: var(--skill);
+      font: 700 11px var(--mono);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      padding-left: 2px;
+    }
+
+    .task-card {
+      border: 1px solid var(--skill-line);
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, var(--skill-bg-2), transparent 46%),
+        var(--skill-bg);
+      padding: clamp(18px, 3vw, 28px);
+    }
+
+    .task-card h3 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 2.2vw, 34px);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+
+    .task-card p,
+    .reading-text,
+    .listening-panel {
+      color: #312b3c;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .reading-text,
+    .listening-panel {
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid var(--skill-line);
+      background: rgba(255,255,255,.68);
+      margin-bottom: 18px;
+    }
+
+    ol, ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+      color: #40384f;
+      line-height: 1.65;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .question-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .question-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.62);
+    }
+
+    .question-card strong,
+    .answer-field span {
+      color: var(--skill);
+      font: 700 12px var(--mono);
+      letter-spacing: .08em;
+    }
+
+    .question-card p {
+      margin: 0;
+    }
+
+    .answer-field input {
+      min-height: 42px;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 12px;
+      color: var(--text);
+      background: rgba(255,255,255,.82);
+      outline: none;
+    }
+
+    .answer-field input:focus {
+      border-color: var(--skill);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--text);
+      background: rgba(255,255,255,.82);
+      outline: none;
+    }
+
+    textarea:focus { border-color: var(--accent); }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice-option,
+    .audio-btn,
+    .record-btn,
+    .pdf-link,
+    .finish-btn {
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .choice-option.is-selected,
+    .grammar-option.is-selected,
+    .audio-btn:hover,
+    .record-btn:hover,
+    .pdf-link:hover,
+    .finish-btn:hover {
+      border-color: var(--skill);
+      background: var(--skill-soft);
+    }
+
+    .answer-note {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 12px;
+      background: rgba(255,255,255,.82);
+      outline: none;
+    }
+
+    .task-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--skill);
+      text-decoration: none;
+    }
+
+    .listening-panel {
+      display: grid;
+      gap: 12px;
+    }
+
+    .listening-meta {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .recording-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .recording-status {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .speaking-note {
+      margin-top: 14px;
+      border-left: 3px solid var(--skill);
+      padding: 12px 14px;
+      color: var(--text);
+      background: var(--skill-soft);
+      border-radius: 0 12px 12px 0;
+      font-weight: 800;
+    }
+
+    .grammar-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .grammar-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.62);
+    }
+
+    .grammar-item p {
+      margin: 0 0 12px;
+      color: #312b3c;
+      line-height: 1.5;
+    }
+
+    .grammar-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .grammar-option {
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .score-line {
+      margin-top: 18px;
+      color: var(--muted);
+      font: 700 12px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .finish-panel {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.74);
+    }
+
+    .finish-panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .after-test {
+      margin-top: 42px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: clamp(28px, 5vw, 58px);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(122,95,207,.12), transparent 34%),
+        #ffffff;
+      text-align: center;
+    }
+
+    .after-test h2 {
+      font-size: clamp(34px, 5vw, 72px);
+    }
+
+    .after-test p {
+      max-width: 860px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+    }
+
+    footer {
+      width: min(1480px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 54px;
+      color: var(--faint);
+      border-top: 1px solid var(--line);
+      font: 11px var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    [data-en-text] { display: none; }
+    html[data-lang="en"] [data-ru-text] { display: none; }
+    html[data-lang="en"] [data-en-text] { display: initial; }
+
+    /* Academic diagnostic interface */
+    body {
+      background: var(--bg);
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 48px));
+      padding-top: 42px;
+    }
+
+    .hero {
+      min-height: 0;
+      grid-template-columns: minmax(0, .95fr) minmax(340px, .58fr);
+      align-items: stretch;
+      gap: 28px;
+      padding: 48px 0 52px;
+    }
+
+    .hero > div {
+      border: 1px solid var(--line);
+      border-radius: 0;
+      padding: clamp(28px, 4vw, 46px);
+      background: #ffffff;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      letter-spacing: .18em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: .94;
+      letter-spacing: -.045em;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 26px;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+    }
+
+    .btn,
+    .start-btn,
+    .grammar-option,
+    .answer-field input,
+    textarea {
+      border-radius: 4px;
+    }
+
+    .hero-panel {
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .aspect-list li {
+      grid-template-columns: 54px minmax(0, 1fr);
+      min-height: 68px;
+    }
+
+    .aspect-list b {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: .12em;
+    }
+
+    .aspect-list span {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding-top: 56px;
+    }
+
+    .section-head {
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .section-copy {
+      grid-column: 2;
+      max-width: 760px;
+    }
+
+    .index-badge strong {
+      font-size: clamp(54px, 7vw, 86px);
+    }
+
+    h2 {
+      font-size: clamp(30px, 3.2vw, 48px);
+      line-height: .98;
+    }
+
+    .level-card,
+    .task-card,
+    .after-test {
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .level-head {
+      grid-template-columns: 104px minmax(0, 1fr) auto;
+      align-items: start;
+    }
+
+    .level-index {
+      min-height: auto;
+      gap: 6px;
+    }
+
+    .level-index span {
+      font-size: clamp(46px, 4.5vw, 68px);
+      line-height: .86;
+    }
+
+    .level-title {
+      font-size: clamp(24px, 2.6vw, 38px);
+      line-height: 1.05;
+    }
+
+    .level-desc {
+      max-width: 700px;
+    }
+
+    .section-grid {
+      grid-template-columns: 130px minmax(0, 1fr);
+    }
+
+    .skill-num {
+      font-size: clamp(36px, 3.8vw, 54px);
+      line-height: .88;
+    }
+
+    .skill-name {
+      letter-spacing: .18em;
+    }
+
+    .task-card h3 {
+      font-size: clamp(21px, 1.8vw, 28px);
+    }
+
+    .reading-text,
+    .listening-panel {
+      border-radius: 0;
+      background: rgba(255,255,255,.74);
+    }
+
+    .after-test {
+      text-align: left;
+    }
+
+    .after-test h2 {
+      font-size: clamp(30px, 3.6vw, 52px);
+    }
+
+    .after-test p {
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .section-head {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .level-head {
+        grid-template-columns: 112px 1fr;
+      }
+
+      .start-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-label { padding-top: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 16px;
+      }
+
+      .brand-mark {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .brand-sub {
+        font-size: 9px;
+        letter-spacing: .28em;
+      }
+
+      .topnav {
+        margin-left: 0;
+        justify-content: flex-start;
+      }
+
+      .page {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 28px;
+      }
+
+      .hero {
+        display: block;
+      }
+
+      h1 {
+        max-width: 9ch;
+        font-size: clamp(46px, 12.6vw, 58px);
+        overflow-wrap: normal;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: .16em;
+        overflow-wrap: anywhere;
+      }
+
+      .lead {
+        max-width: 100%;
+        font-size: 18px;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .btn { width: 100%; }
+
+      .hero-panel-head,
+      .aspect-list li,
+      .level-head,
+      .task-card {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .aspect-list li {
+        grid-template-columns: 84px minmax(0, 1fr);
+      }
+
+      .aspect-list b {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="New Generation English">
+      <div class="brand-mark">N</div>
+      <div>
+        <div class="brand-name">New Generation English</div>
+        <div class="brand-sub">Diagnostic system</div>
+      </div>
+    </a>
+    <nav class="topnav" id="topNav" aria-label="CEFR levels"></nav>
+    <button class="lang-btn" type="button" id="langBtn">RU / EN</button>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">New Generation English · Diagnostic Test</div>
+        <h1>
+          Diagnostic Test <span>A1-C2</span>
+        </h1>
+        <p class="lead">
+          <span data-ru-text>Академическая входная диагностика по международной шкале CEFR. Каждый уровень проверяется по пяти областям: Reading, Listening, Writing, Speaking и Grammatical Range & Accuracy.</span>
+          <span data-en-text>The diagnostic test checks 5 core language dimensions: reading, listening, writing, speaking, and grammatical range/accuracy. It is not a test for pressure; it is a route map.</span>
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#levels">
+            <span data-ru-text>Начать диагностику</span>
+            <span data-en-text>Start diagnostic</span>
+          </a>
+          <a class="btn" href="conditions.html">
+            <span data-ru-text>К условиям работы</span>
+            <span data-en-text>Work conditions</span>
+          </a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="Diagnostic aspects">
+        <div class="hero-panel-head">
+          <span>Test structure</span>
+          <span>A1-C2</span>
+        </div>
+        <ul class="aspect-list">
+          <li><b>01</b><span>Reading</span></li>
+          <li><b>02</b><span>Listening</span></li>
+          <li><b>03</b><span>Writing</span></li>
+          <li><b>04</b><span>Speaking</span></li>
+          <li><b>05</b><span>Grammatical Range & Accuracy</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section" id="levels">
+      <div class="section-head">
+        <div class="index-badge">
+          <strong>01</strong>
+          <small data-ru-text>диагностика</small>
+          <small data-en-text>diagnostic</small>
+        </div>
+        <div>
+          <div class="section-kicker">CEFR levels</div>
+          <h2>
+            <span data-ru-text>Выберите уровень для проверки</span>
+            <span data-en-text>Choose a level to test</span>
+          </h2>
+        </div>
+        <p class="section-copy">
+          <span data-ru-text>Можно начать с предполагаемого уровня. Если задания слишком лёгкие или слишком тяжёлые, откройте соседний уровень и сравните результат по пяти аспектам.</span>
+          <span data-en-text>Start with the level you expect. If the tasks feel too easy or too demanding, open the next level and compare your performance across the five aspects.</span>
+        </p>
+      </div>
+      <div class="level-nav" id="levelNav"></div>
+      <div class="level-stack" id="levelStack"></div>
+
+      <section class="after-test">
+        <h2>After the test</h2>
+        <p>
+          <span data-ru-text>После прохождения диагностики преподаватель анализирует ответы по пяти аспектам, видит сильные и слабые зоны и предлагает индивидуальный маршрут: формат, ритм, материалы и ближайшие учебные задачи.</span>
+          <span data-en-text>After the diagnostic test, the teacher reviews the answers across five aspects, identifies strengths and gaps, and suggests an individual route: format, rhythm, materials, and the next learning priorities.</span>
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer>New Generation English · Diagnostic Test · CEFR A1-C2</footer>
+
+  <script>
+    const levels = [
+      {
+            "code": "A1",
+            "name": "Beginner Plus",
+            "desc": "A demanding beginner diagnostic: basic meaning, word order, simple tenses, articles, pronouns, prepositions and careful listening.",
+            "reading": {
+                  "title": "Anna's first month at an English club",
+                  "text": "Anna is twelve, but she does not feel like a very small learner. She lives in a quiet town with her parents and her older brother. Twice a week she goes to an English club after school. The classroom is small, and there are only six students, so everyone has to speak. Anna likes this because she wants to understand songs and short videos without translating every word.\n\nAt the club, the teacher gives the students small projects. On Monday they describe their rooms, families and favourite places. On Wednesday they read short messages and answer questions. Anna is not afraid of speaking, but writing is slower for her. She often forgets articles and the letter s in he likes or she plays. At home she keeps a vocabulary notebook. Every evening she writes five new words and one example sentence.",
+                  "questions": [
+                        {
+                              "text": "How old is Anna?",
+                              "options": [
+                                    "She is ten.",
+                                    "She is twelve.",
+                                    "She is sixteen."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "Why does Anna like the small group?",
+                              "options": [
+                                    "Everyone has to speak.",
+                                    "There is no homework.",
+                                    "The lessons are shorter."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does Anna want to understand?",
+                              "options": [
+                                    "Songs and short videos.",
+                                    "Long novels.",
+                                    "Maths problems."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What do students do on Monday?",
+                              "options": [
+                                    "Describe rooms, families and favourite places.",
+                                    "Write exams.",
+                                    "Watch films only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is difficult for Anna?",
+                              "options": [
+                                    "Speaking.",
+                                    "Writing.",
+                                    "Listening to songs."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "Which grammar problem is mentioned?",
+                              "options": [
+                                    "Past perfect.",
+                                    "Articles and third-person s.",
+                                    "Reported speech."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "What does Anna write every evening?",
+                              "options": [
+                                    "Five words and one example sentence.",
+                                    "A long story.",
+                                    "A letter to her teacher."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the best title for the text?",
+                              "options": [
+                                    "A difficult exam",
+                                    "Anna's English routine",
+                                    "A family holiday"
+                              ],
+                              "answer": 1
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "A careful first lesson",
+                  "script": "Teacher: Good afternoon. Before we open the book, I want to know how you learn at home.\nStudent: I usually watch short videos, but I do not always write the new words.\nTeacher: That is useful, but today I want you to write examples, not only translations.\nStudent: Should I write full sentences?\nTeacher: Yes. For example, not just 'library', but 'I go to the library after school on Friday.'\nStudent: I understand. Can I use a small notebook?\nTeacher: Yes, and bring it every lesson. We will check five words each week.\nStudent: I like that. It is easier when the words are in my own sentences.",
+                  "questions": [
+                        {
+                              "text": "What does the teacher want to know first?",
+                              "options": [
+                                    "How the student learns at home.",
+                                    "What the student ate.",
+                                    "Where the student lives."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does the student usually watch?",
+                              "options": [
+                                    "Long lectures.",
+                                    "Short videos.",
+                                    "News programmes."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "What should the student write?",
+                              "options": [
+                                    "Only translations.",
+                                    "Examples, not only translations.",
+                                    "Nothing at home."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "Which example does the teacher give?",
+                              "options": [
+                                    "I go to the library after school on Friday.",
+                                    "I play football every morning.",
+                                    "I read a novel in summer."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should the student bring every lesson?",
+                              "options": [
+                                    "A small notebook.",
+                                    "A dictionary.",
+                                    "A tablet."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "How many words will they check each week?",
+                              "options": [
+                                    "Three.",
+                                    "Five.",
+                                    "Ten."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "Why does the student like the idea?",
+                              "options": [
+                                    "Words are easier in personal sentences.",
+                                    "There is less homework.",
+                                    "The teacher will not check it."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What skill is the teacher mainly training?",
+                              "options": [
+                                    "Mechanical copying.",
+                                    "Vocabulary in context.",
+                                    "Pronunciation only."
+                              ],
+                              "answer": 1
+                        }
+                  ]
+            },
+            "writing": "Extended school diagnostic task. Write 80-100 words about your English learning routine. Include: where you study, what is easy, what is difficult, and one concrete habit that can help you improve.",
+            "speaking": "Record a 60-75 second answer. Introduce yourself, describe one school day, explain what is difficult in English, and give one example of how you practise at home.",
+            "grammar": [
+                  [
+                        "Anna ___ twelve years old.",
+                        [
+                              "is",
+                              "are",
+                              "am"
+                        ],
+                        0
+                  ],
+                  [
+                        "She ___ in a quiet town.",
+                        [
+                              "live",
+                              "lives",
+                              "living"
+                        ],
+                        1
+                  ],
+                  [
+                        "There ___ six students in the group.",
+                        [
+                              "is",
+                              "are",
+                              "am"
+                        ],
+                        1
+                  ],
+                  [
+                        "She writes ___ example sentence every evening.",
+                        [
+                              "a",
+                              "an",
+                              "the"
+                        ],
+                        1
+                  ],
+                  [
+                        "My brother ___ English videos.",
+                        [
+                              "watch",
+                              "watches",
+                              "watching"
+                        ],
+                        1
+                  ],
+                  [
+                        "I ___ afraid of speaking.",
+                        [
+                              "am not",
+                              "do not",
+                              "does not"
+                        ],
+                        0
+                  ],
+                  [
+                        "___ your teacher check notebooks?",
+                        [
+                              "Do",
+                              "Does",
+                              "Is"
+                        ],
+                        1
+                  ],
+                  [
+                        "We have English ___ Monday and Wednesday.",
+                        [
+                              "in",
+                              "on",
+                              "at"
+                        ],
+                        1
+                  ],
+                  [
+                        "These are ___ new words.",
+                        [
+                              "Anna",
+                              "Annas",
+                              "Anna's"
+                        ],
+                        2
+                  ],
+                  [
+                        "I like songs, ___ writing is difficult.",
+                        [
+                              "but",
+                              "because",
+                              "or"
+                        ],
+                        0
+                  ],
+                  [
+                        "Choose the best question.",
+                        [
+                              "Where Anna lives?",
+                              "Where does Anna live?",
+                              "Where do Anna live?"
+                        ],
+                        1
+                  ],
+                  [
+                        "The students ___ short messages now.",
+                        [
+                              "read",
+                              "are reading",
+                              "reads"
+                        ],
+                        1
+                  ]
+            ]
+      },
+      {
+            "code": "A2",
+            "name": "Elementary Strong",
+            "desc": "Checks everyday comprehension with more demanding detail, past and future forms, quantifiers, comparison, modal verbs and connected speech.",
+            "reading": {
+                  "title": "A weekend that did not go exactly as planned",
+                  "text": "Last weekend Pavel travelled to Saint Petersburg with his parents. They left Moscow by train on Friday evening because tickets were cheaper at night. Pavel wanted to sleep, but the carriage was noisy, and a little girl across the aisle was asking her grandmother questions about every station. When the family arrived on Saturday morning, the weather was cold but bright, so they walked along the river before visiting a museum.\n\nIn the afternoon they planned to eat in a famous cafe, but it was full. Instead, they found a small place in a side street. Pavel was disappointed at first, yet the food was excellent, and the owner told them a story about the old building. On Sunday they bought presents for friends and returned home. Pavel was tired, but he decided that unexpected changes can make a trip more interesting.",
+                  "questions": [
+                        {
+                              "text": "Why did the family travel at night?",
+                              "options": [
+                                    "The tickets were cheaper.",
+                                    "They wanted to see the sunrise.",
+                                    "The museum opened at night."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why could Pavel not sleep easily?",
+                              "options": [
+                                    "The carriage was noisy.",
+                                    "He lost his ticket.",
+                                    "He was afraid of trains."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What was the weather like on Saturday morning?",
+                              "options": [
+                                    "Cold but bright.",
+                                    "Rainy and dark.",
+                                    "Hot and windy."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why did they not eat in the famous cafe?",
+                              "options": [
+                                    "It was closed forever.",
+                                    "It was full.",
+                                    "It was too far from the station."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "How did Pavel feel at first about the small cafe?",
+                              "options": [
+                                    "Disappointed.",
+                                    "Angry with his parents.",
+                                    "Completely indifferent."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What made the small cafe interesting?",
+                              "options": [
+                                    "The owner told a story.",
+                                    "A singer performed.",
+                                    "They met Pavel's teacher."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What lesson did Pavel learn?",
+                              "options": [
+                                    "Changes can make a trip interesting.",
+                                    "Trains are always uncomfortable.",
+                                    "Museums are boring."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Which word is closest to unexpected?",
+                              "options": [
+                                    "Planned",
+                                    "Surprising",
+                                    "Expensive"
+                              ],
+                              "answer": 1
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "Changing a weekend plan",
+                  "script": "Mother: Pavel, the museum tickets for Saturday morning are sold out, so we need a different plan.\nPavel: Does that mean we are not going to the museum at all?\nMother: No, we can go after lunch. In the morning, we can walk near the river and take photos.\nPavel: That sounds fine. What about the cafe you wanted to visit?\nMother: I called them. There are no tables before four o'clock.\nPavel: Maybe we can find a smaller place. Sometimes those are better.\nMother: Exactly. Also, remember to take your notebook. Your teacher asked you to write ten travel words.\nPavel: I forgot about that. I will write them on the train.",
+                  "questions": [
+                        {
+                              "text": "What problem do they have with the museum?",
+                              "options": [
+                                    "Tickets are sold out in the morning.",
+                                    "It is closed all weekend.",
+                                    "It moved to another city."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "When can they go to the museum?",
+                              "options": [
+                                    "After lunch.",
+                                    "Before breakfast.",
+                                    "Next month only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What will they do in the morning?",
+                              "options": [
+                                    "Walk near the river and take photos.",
+                                    "Sleep in the hotel.",
+                                    "Buy school books."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What time are cafe tables available?",
+                              "options": [
+                                    "Before ten.",
+                                    "After four.",
+                                    "At noon exactly."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "What does Pavel suggest?",
+                              "options": [
+                                    "Find a smaller place.",
+                                    "Cancel the trip.",
+                                    "Eat on the train only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What must Pavel take?",
+                              "options": [
+                                    "His notebook.",
+                                    "A sports bag.",
+                                    "A camera charger."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "How many travel words should Pavel write?",
+                              "options": [
+                                    "Five.",
+                                    "Ten.",
+                                    "Twenty."
+                              ],
+                              "answer": 1
+                        },
+                        {
+                              "text": "Where will he write them?",
+                              "options": [
+                                    "On the train.",
+                                    "At the museum desk.",
+                                    "After returning home."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "writing": "School email diagnostic task. Write 100-120 words to a friend about a weekend plan that changed. Explain what changed, how you felt, and why the final result was useful or interesting.",
+            "speaking": "Record 90 seconds. Describe a trip or school event that changed unexpectedly. Use past forms, at least one comparison, and one sentence about a future plan.",
+            "grammar": [
+                  [
+                        "We ___ to Saint Petersburg last weekend.",
+                        [
+                              "go",
+                              "went",
+                              "gone"
+                        ],
+                        1
+                  ],
+                  [
+                        "They ___ by train because it was cheaper.",
+                        [
+                              "travelled",
+                              "were travelling",
+                              "travels"
+                        ],
+                        0
+                  ],
+                  [
+                        "The cafe was ___ than they expected.",
+                        [
+                              "good",
+                              "better",
+                              "best"
+                        ],
+                        1
+                  ],
+                  [
+                        "There were not ___ tables before four.",
+                        [
+                              "some",
+                              "any",
+                              "much"
+                        ],
+                        1
+                  ],
+                  [
+                        "Pavel has ___ travel words to write.",
+                        [
+                              "a few",
+                              "much",
+                              "many of"
+                        ],
+                        0
+                  ],
+                  [
+                        "He ___ write them on the train.",
+                        [
+                              "is going to",
+                              "went to",
+                              "goes to"
+                        ],
+                        0
+                  ],
+                  [
+                        "You ___ take your notebook.",
+                        [
+                              "must",
+                              "must to",
+                              "musting"
+                        ],
+                        0
+                  ],
+                  [
+                        "The tickets ___ sold out.",
+                        [
+                              "was",
+                              "were",
+                              "did"
+                        ],
+                        1
+                  ],
+                  [
+                        "They found a cafe ___ a side street.",
+                        [
+                              "on",
+                              "in",
+                              "at"
+                        ],
+                        1
+                  ],
+                  [
+                        "The owner told ___ a story.",
+                        [
+                              "they",
+                              "them",
+                              "their"
+                        ],
+                        1
+                  ],
+                  [
+                        "If the cafe is full, we ___ another place.",
+                        [
+                              "find",
+                              "will find",
+                              "found"
+                        ],
+                        1
+                  ],
+                  [
+                        "He was tired, ___ he enjoyed the trip.",
+                        [
+                              "but",
+                              "so",
+                              "because"
+                        ],
+                        0
+                  ],
+                  [
+                        "Have you ___ been to Saint Petersburg?",
+                        [
+                              "ever",
+                              "already",
+                              "yet"
+                        ],
+                        0
+                  ],
+                  [
+                        "This is the place ___ we ate lunch.",
+                        [
+                              "where",
+                              "which",
+                              "who"
+                        ],
+                        0
+                  ]
+            ]
+      },
+      {
+            "code": "B1",
+            "name": "Intermediate Academic",
+            "desc": "Tests narrative detail, inference, connected grammar, passive voice, conditionals, reported speech and early academic explanation.",
+            "reading": {
+                  "title": "Why confidence is not the same as comfort",
+                  "text": "When Sofia joined an online English group, she expected the lessons to feel easier than school. She imagined that speaking from her room would be less stressful than speaking in front of classmates. The first lesson proved the opposite. Because the group was small, the teacher asked everyone to respond several times. Sofia knew many grammar rules, but she paused whenever she had to express a personal opinion.\n\nAfter a month, she noticed a pattern. Her problem was not a lack of knowledge; it was the habit of waiting until a sentence was perfect. The teacher began giving tasks with time limits: thirty seconds to prepare, one minute to speak, and then a short correction. Sofia still made mistakes, but she became more willing to try. By the end of the course, she understood that confidence grows through repeated controlled difficulty, not through avoiding uncomfortable tasks.",
+                  "questions": [
+                        {
+                              "text": "What did Sofia expect before joining the group?",
+                              "options": [
+                                    "Online lessons would feel easier.",
+                                    "The teacher would ignore her.",
+                                    "There would be no speaking."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why was the first lesson difficult?",
+                              "options": [
+                                    "Everyone had to respond several times.",
+                                    "The internet failed.",
+                                    "The text was too long."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What was Sofia's real problem?",
+                              "options": [
+                                    "Waiting for perfect sentences.",
+                                    "Not knowing any grammar.",
+                                    "Refusing to do homework."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What kind of tasks did the teacher introduce?",
+                              "options": [
+                                    "Timed speaking tasks.",
+                                    "Only translation tasks.",
+                                    "Silent reading tasks."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What changed by the end?",
+                              "options": [
+                                    "Sofia became more willing to try.",
+                                    "She stopped making mistakes completely.",
+                                    "She left the group."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does controlled difficulty mean here?",
+                              "options": [
+                                    "A challenge with structure and support.",
+                                    "A task with no help.",
+                                    "An exam with no time limit."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Which statement is closest to the main idea?",
+                              "options": [
+                                    "Confidence develops through practice under pressure.",
+                                    "Comfort is always the best learning condition.",
+                                    "Grammar rules are unnecessary."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can be inferred about the teacher?",
+                              "options": [
+                                    "The teacher used pressure carefully.",
+                                    "The teacher disliked mistakes.",
+                                    "The teacher avoided feedback."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "Teacher feedback after a trial lesson",
+                  "script": "Teacher: Sofia, your reading is stronger than your speaking, but that is not unusual.\nStudent: I felt slow when I had to answer without writing first.\nTeacher: Yes, because you are trying to edit every sentence before you say it. That makes your speech accurate, but hesitant.\nStudent: Should I stop thinking about grammar?\nTeacher: Not exactly. You need two modes: a fluency mode, where you keep speaking, and an accuracy mode, where we correct patterns later.\nStudent: So mistakes are not the main problem?\nTeacher: Repeated mistakes matter, but silence can hide even more. Next week we will use short timed responses and then analyse three grammar patterns.\nStudent: That sounds difficult, but clear.",
+                  "questions": [
+                        {
+                              "text": "Which skill is stronger for Sofia?",
+                              "options": [
+                                    "Reading.",
+                                    "Speaking.",
+                                    "Writing."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why does she speak slowly?",
+                              "options": [
+                                    "She edits every sentence before speaking.",
+                                    "She does not hear the teacher.",
+                                    "She has no vocabulary at all."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What are the two modes?",
+                              "options": [
+                                    "Fluency and accuracy.",
+                                    "Reading and drawing.",
+                                    "Listening and copying."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can silence hide?",
+                              "options": [
+                                    "Problems that need diagnosis.",
+                                    "Perfect grammar.",
+                                    "A completed task."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What will they do next week?",
+                              "options": [
+                                    "Timed responses and grammar analysis.",
+                                    "Only vocabulary dictation.",
+                                    "A final exam."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "How does the student react?",
+                              "options": [
+                                    "She thinks it is difficult but clear.",
+                                    "She refuses.",
+                                    "She says it is too easy."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the teacher's attitude to mistakes?",
+                              "options": [
+                                    "Repeated mistakes matter, but they can be analysed.",
+                                    "Mistakes are forbidden.",
+                                    "Mistakes are never important."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What kind of feedback is this?",
+                              "options": [
+                                    "Diagnostic and practical.",
+                                    "Purely emotional.",
+                                    "Unrelated to learning."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "writing": "Structured opinion diagnostic task. Write 130-160 words: Some students wait until they can speak perfectly; others believe they should speak even with mistakes. Which approach is better for progress? Explain with examples.",
+            "speaking": "Record 2 minutes. Explain a skill you improved through uncomfortable practice. Give the situation, the difficulty, the strategy and the result.",
+            "grammar": [
+                  [
+                        "Sofia ___ many grammar rules before she joined the group.",
+                        [
+                              "had known",
+                              "has known",
+                              "knows"
+                        ],
+                        0
+                  ],
+                  [
+                        "She expected online lessons ___ easier.",
+                        [
+                              "to be",
+                              "being",
+                              "be"
+                        ],
+                        0
+                  ],
+                  [
+                        "The teacher asked everyone ___ several times.",
+                        [
+                              "respond",
+                              "to respond",
+                              "responding"
+                        ],
+                        1
+                  ],
+                  [
+                        "If she waits for perfection, she ___ fluency.",
+                        [
+                              "will lose",
+                              "lost",
+                              "would have lost"
+                        ],
+                        0
+                  ],
+                  [
+                        "The tasks ___ by the teacher with time limits.",
+                        [
+                              "were designed",
+                              "designed",
+                              "have designing"
+                        ],
+                        0
+                  ],
+                  [
+                        "She became more willing ___ mistakes.",
+                        [
+                              "make",
+                              "to make",
+                              "making"
+                        ],
+                        1
+                  ],
+                  [
+                        "Although the task was stressful, she ___ it useful.",
+                        [
+                              "found",
+                              "has found",
+                              "was found"
+                        ],
+                        0
+                  ],
+                  [
+                        "The teacher said that silence ___ problems.",
+                        [
+                              "can hide",
+                              "could hide",
+                              "will hiding"
+                        ],
+                        1
+                  ],
+                  [
+                        "By the end of the course, she ___ more confident.",
+                        [
+                              "had become",
+                              "has become",
+                              "becomes"
+                        ],
+                        0
+                  ],
+                  [
+                        "She used to ___ before speaking.",
+                        [
+                              "pause",
+                              "pausing",
+                              "paused"
+                        ],
+                        0
+                  ],
+                  [
+                        "A learner ___ avoids difficulty may stop progressing.",
+                        [
+                              "who",
+                              "which",
+                              "where"
+                        ],
+                        0
+                  ],
+                  [
+                        "The more she practised, ___ fluent she became.",
+                        [
+                              "more",
+                              "the more",
+                              "the most"
+                        ],
+                        1
+                  ],
+                  [
+                        "Despite ___ nervous, she answered.",
+                        [
+                              "being",
+                              "be",
+                              "to be"
+                        ],
+                        0
+                  ],
+                  [
+                        "I wish I ___ speaking earlier.",
+                        [
+                              "started",
+                              "had started",
+                              "start"
+                        ],
+                        1
+                  ],
+                  [
+                        "Neither comfort nor speed ___ enough for progress.",
+                        [
+                              "are",
+                              "is",
+                              "were"
+                        ],
+                        1
+                  ],
+                  [
+                        "Her answer was clear, ___ not completely accurate.",
+                        [
+                              "although",
+                              "despite",
+                              "because"
+                        ],
+                        0
+                  ]
+            ]
+      },
+      {
+            "code": "B2",
+            "name": "Upper-Intermediate Exam Route",
+            "desc": "A hard B2 diagnostic: inference, argument, cohesive writing, complex clauses, inversion, passive structures and exam-style judgement.",
+            "reading": {
+                  "title": "Digital attention and the illusion of productivity",
+                  "text": "Schools often introduce digital platforms with the promise of efficiency. Assignments can be submitted instantly, feedback can be stored, and parents can see progress without waiting for a meeting. Yet efficiency is not the same as learning. A student may move quickly through online tasks while paying only partial attention. Notifications, open tabs and the habit of checking messages can turn a thirty-minute assignment into a sequence of interruptions.\n\nThe problem is not technology itself but the absence of attention training. Students are often told to be responsible online, but they are rarely taught what responsibility looks like in practical terms. A well-designed digital task should include a goal, a time limit, a pause for checking understanding and a short reflection. Without these elements, a platform may produce the appearance of independent work while quietly weakening concentration. The most successful learners are not those who use the most tools, but those who know when to close them.",
+                  "questions": [
+                        {
+                              "text": "What distinction does the text make?",
+                              "options": [
+                                    "Efficiency is not the same as learning.",
+                                    "Parents dislike digital platforms.",
+                                    "Online tasks are always useless."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can interrupt online work?",
+                              "options": [
+                                    "Notifications and open tabs.",
+                                    "Books and pencils.",
+                                    "Teacher feedback."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the central problem?",
+                              "options": [
+                                    "Lack of attention training.",
+                                    "Technology itself.",
+                                    "Too much handwriting."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should a digital task include?",
+                              "options": [
+                                    "Goal, time limit, checking and reflection.",
+                                    "Only speed and points.",
+                                    "A long list of apps."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does appearance of independent work mean?",
+                              "options": [
+                                    "It may look productive without deep focus.",
+                                    "It is always excellent.",
+                                    "It is impossible to observe."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Who are the most successful learners?",
+                              "options": [
+                                    "Those who know when to close tools.",
+                                    "Those with the newest devices.",
+                                    "Those who never use technology."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Which tone best describes the text?",
+                              "options": [
+                                    "Balanced and critical.",
+                                    "Angry and dismissive.",
+                                    "Purely promotional."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can be inferred about digital platforms?",
+                              "options": [
+                                    "They need method, not blind use.",
+                                    "They should be banned.",
+                                    "They replace teachers completely."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "Interview on online learning",
+                  "script": "Interviewer: Many schools say digital platforms make students more independent. Do you agree?\nTeacher: Partly. A platform can support independence, but it can also disguise passive behaviour. Clicking through tasks is not the same as thinking.\nInterviewer: What should teachers do differently?\nTeacher: They should make the strategy visible. For example, tell students how long to work, what to ignore, when to stop and how to check whether they understood anything.\nInterviewer: So the tool is not enough.\nTeacher: Exactly. The tool creates access. The method creates learning. If the method is weak, the platform simply records weak habits more efficiently.\nInterviewer: That is a rather uncomfortable conclusion.\nTeacher: It is, but it is useful. Technology exposes planning. A careless lesson becomes careless faster online.",
+                  "questions": [
+                        {
+                              "text": "What does the teacher partly agree with?",
+                              "options": [
+                                    "Platforms can support independence.",
+                                    "Platforms always damage learning.",
+                                    "Schools should remove all technology."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can platforms disguise?",
+                              "options": [
+                                    "Passive behaviour.",
+                                    "Excellent handwriting.",
+                                    "Parent meetings."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is not the same as thinking?",
+                              "options": [
+                                    "Clicking through tasks.",
+                                    "Reading deeply.",
+                                    "Asking questions."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should be made visible?",
+                              "options": [
+                                    "The learning strategy.",
+                                    "The teacher's private notes.",
+                                    "The school budget."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does the tool create?",
+                              "options": [
+                                    "Access.",
+                                    "Learning by itself.",
+                                    "Motivation automatically."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What creates learning?",
+                              "options": [
+                                    "Method.",
+                                    "Speed.",
+                                    "Decoration."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does technology expose?",
+                              "options": [
+                                    "Planning.",
+                                    "Personality.",
+                                    "Marks only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the speaker's overall view?",
+                              "options": [
+                                    "Conditional and analytical.",
+                                    "Naively enthusiastic.",
+                                    "Completely negative."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "writing": "IELTS Task 2 / TOEFL independent hybrid. Write 180-220 words: Digital tools improve education only when students are explicitly taught how to manage attention. To what extent do you agree?",
+            "speaking": "Record 2-3 minutes. Defend a position on online learning. Include one concession, one example from school practice, and one condition under which your argument might be wrong.",
+            "grammar": [
+                  [
+                        "Had students been trained properly, they ___ fewer distractions.",
+                        [
+                              "would face",
+                              "would have faced",
+                              "will face"
+                        ],
+                        1
+                  ],
+                  [
+                        "Not only ___ tasks faster, but they also submitted better reflections.",
+                        [
+                              "they completed",
+                              "did they complete",
+                              "they did complete"
+                        ],
+                        1
+                  ],
+                  [
+                        "The platform ___ to support independent work.",
+                        [
+                              "is designed",
+                              "designs",
+                              "is designing itself"
+                        ],
+                        0
+                  ],
+                  [
+                        "Students need to know when ___ tools.",
+                        [
+                              "closing",
+                              "to close",
+                              "close"
+                        ],
+                        1
+                  ],
+                  [
+                        "The issue is not whether tools are used, ___ how they are used.",
+                        [
+                              "but",
+                              "whereas",
+                              "despite"
+                        ],
+                        0
+                  ],
+                  [
+                        "A lesson that lacks structure is likely ___ online.",
+                        [
+                              "to fail",
+                              "failing",
+                              "fail"
+                        ],
+                        0
+                  ],
+                  [
+                        "The more interruptions students face, ___ their attention becomes.",
+                        [
+                              "weaker",
+                              "the weaker",
+                              "the weakest"
+                        ],
+                        1
+                  ],
+                  [
+                        "It is essential that each learner ___ a clear goal.",
+                        [
+                              "has",
+                              "have",
+                              "will have"
+                        ],
+                        1
+                  ],
+                  [
+                        "The teacher explained how the task ___ completed.",
+                        [
+                              "should be",
+                              "should",
+                              "has being"
+                        ],
+                        0
+                  ],
+                  [
+                        "If the method were stronger, the result ___ different.",
+                        [
+                              "will be",
+                              "would be",
+                              "would have been"
+                        ],
+                        1
+                  ],
+                  [
+                        "The claim, ___ attractive, is incomplete.",
+                        [
+                              "although",
+                              "despite",
+                              "because"
+                        ],
+                        0
+                  ],
+                  [
+                        "Students are rarely taught ___ responsibility looks like.",
+                        [
+                              "what",
+                              "that",
+                              "which"
+                        ],
+                        0
+                  ],
+                  [
+                        "The task was completed, but the reflection ___ superficial.",
+                        [
+                              "remained",
+                              "remaining",
+                              "has remained to"
+                        ],
+                        0
+                  ],
+                  [
+                        "This is the habit ___ teachers should train explicitly.",
+                        [
+                              "which",
+                              "who",
+                              "where"
+                        ],
+                        0
+                  ],
+                  [
+                        "No sooner had the lesson started ___ messages appeared.",
+                        [
+                              "than",
+                              "then",
+                              "that"
+                        ],
+                        0
+                  ],
+                  [
+                        "The platform records habits, ___ it does not necessarily improve them.",
+                        [
+                              "yet",
+                              "despite",
+                              "whereby"
+                        ],
+                        0
+                  ],
+                  [
+                        "Students should be prevented ___ multitasking during the first attempt.",
+                        [
+                              "from",
+                              "to",
+                              "of"
+                        ],
+                        0
+                  ],
+                  [
+                        "The feedback was detailed enough ___ useful.",
+                        [
+                              "being",
+                              "to be",
+                              "be"
+                        ],
+                        1
+                  ]
+            ]
+      },
+      {
+            "code": "C1",
+            "name": "Advanced Academic",
+            "desc": "Advanced diagnostic for nuanced reading, argument structure, register, academic lexis, reduced clauses, inversion, modality and precision.",
+            "reading": {
+                  "title": "Assessment as interpretation rather than measurement",
+                  "text": "Educational progress is often treated as if it must be visible, numerical and immediate. Test scores, attendance charts and completion rates are attractive because they create the impression of control. Yet the most important changes in learning may be indirect: a student begins to tolerate uncertainty, notices patterns, asks better questions or becomes less dependent on translation. These shifts are difficult to measure, but they often explain later improvement.\n\nThis does not mean that assessment is useless. On the contrary, careful assessment can make invisible progress easier to discuss. The danger appears when numbers become the aim rather than the evidence. A diagnostic test should therefore be read as a map, not a verdict. It shows where the learner is now, which strategies are available and what kind of support is likely to be productive. A strong diagnostic process also accepts asymmetry. One learner may write accurately but speak cautiously; another may understand sophisticated texts yet produce repetitive grammar.\n\nThe teacher's task is to interpret these patterns without turning them into a fixed identity. Feedback should be specific enough to guide action and humane enough to keep the learner moving. In this sense, diagnosis is not a gatekeeping ritual. It is a professional conversation about direction.",
+                  "questions": [
+                        {
+                              "text": "What does the author criticise?",
+                              "options": [
+                                    "The obsession with immediately visible measurement.",
+                                    "All forms of assessment.",
+                                    "Students who ask questions."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Which example of invisible progress is mentioned?",
+                              "options": [
+                                    "Tolerating uncertainty.",
+                                    "Winning a prize.",
+                                    "Memorising all rules."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the danger of numbers?",
+                              "options": [
+                                    "They can become the aim rather than evidence.",
+                                    "They are always inaccurate.",
+                                    "They cannot be discussed."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does map, not a verdict imply?",
+                              "options": [
+                                    "Diagnostics should guide routes, not define identity.",
+                                    "Maps are more beautiful than scores.",
+                                    "Tests should be removed."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is asymmetry in this context?",
+                              "options": [
+                                    "Different strengths across skills.",
+                                    "A mathematical concept only.",
+                                    "A sign of failure."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should feedback do?",
+                              "options": [
+                                    "Guide action and keep the learner moving.",
+                                    "Sound severe and final.",
+                                    "Avoid concrete comments."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the author's view of assessment?",
+                              "options": [
+                                    "Useful when interpreted carefully.",
+                                    "Completely useless.",
+                                    "Only useful for attendance."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What genre is the text closest to?",
+                              "options": [
+                                    "Reflective academic argument.",
+                                    "Personal diary.",
+                                    "Advertisement."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "Academic discussion of diagnostic labels",
+                  "script": "Lecturer: The word level is convenient, but convenience can become dangerous if we forget what it hides.\nStudent: Do you mean that a B2 learner may not really be B2?\nLecturer: Not exactly. The label may be broadly accurate, but it is never a full description. Two learners can share a level and require entirely different routes.\nStudent: For example, one may speak fluently but write inaccurately?\nLecturer: Precisely. Another may read complex texts but avoid spontaneous interaction. The diagnostic question is not simply where the learner belongs, but what kind of support the pattern suggests.\nStudent: So the result is a starting point.\nLecturer: Yes, and a responsible teacher keeps the label provisional. It helps us begin the conversation; it should not end it.",
+                  "questions": [
+                        {
+                              "text": "Why can the word level be dangerous?",
+                              "options": [
+                                    "It hides important differences.",
+                                    "It is never convenient.",
+                                    "It has no practical use."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does the lecturer say about labels?",
+                              "options": [
+                                    "They may be broadly accurate but incomplete.",
+                                    "They are always false.",
+                                    "They replace diagnosis."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What example does the student give?",
+                              "options": [
+                                    "Fluent speaking but inaccurate writing.",
+                                    "Perfect writing and no reading.",
+                                    "No vocabulary at all."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the diagnostic question?",
+                              "options": [
+                                    "What support the pattern suggests.",
+                                    "Which label sounds better.",
+                                    "How fast the test can end."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should a responsible teacher do?",
+                              "options": [
+                                    "Keep the label provisional.",
+                                    "Never use labels.",
+                                    "Give only a score."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does provisional mean here?",
+                              "options": [
+                                    "Open to revision.",
+                                    "Completely random.",
+                                    "Officially certified."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the relationship between label and conversation?",
+                              "options": [
+                                    "The label begins it; it should not end it.",
+                                    "The label replaces it.",
+                                    "The conversation should avoid evidence."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the tone?",
+                              "options": [
+                                    "Nuanced and analytical.",
+                                    "Sarcastic and hostile.",
+                                    "Purely narrative."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "writing": "TOEFL Integrated/IELTS academic-style task. Write 240-300 words: A diagnostic score should be treated as a route map rather than a verdict. Discuss the advantages and risks of this view, using examples from language learning.",
+            "speaking": "Record 3 minutes. Explain why two learners with the same CEFR label may need different learning routes. Include examples across reading, listening, writing, speaking and grammar.",
+            "grammar": [
+                  [
+                        "Had the assessment been interpreted narrowly, it ___ the learner's confidence.",
+                        [
+                              "might damage",
+                              "might have damaged",
+                              "will damage"
+                        ],
+                        1
+                  ],
+                  [
+                        "The label is useful, ___ incomplete.",
+                        [
+                              "albeit",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "It is vital that feedback ___ actionable.",
+                        [
+                              "is",
+                              "be",
+                              "will be"
+                        ],
+                        1
+                  ],
+                  [
+                        "What matters most ___ the pattern behind the score.",
+                        [
+                              "is",
+                              "are",
+                              "being"
+                        ],
+                        0
+                  ],
+                  [
+                        "The learner appears ___ stronger control in writing.",
+                        [
+                              "to have developed",
+                              "having developed",
+                              "to developing"
+                        ],
+                        0
+                  ],
+                  [
+                        "Given the limited sample, conclusions should ___ cautiously.",
+                        [
+                              "interpret",
+                              "be interpreted",
+                              "interpreting"
+                        ],
+                        1
+                  ],
+                  [
+                        "Not until later ___ the asymmetry.",
+                        [
+                              "we noticed",
+                              "did we notice",
+                              "we did notice"
+                        ],
+                        1
+                  ],
+                  [
+                        "The teacher's role is less to classify ___ to interpret.",
+                        [
+                              "than",
+                              "rather",
+                              "instead"
+                        ],
+                        0
+                  ],
+                  [
+                        "A score may obscure differences, ___ convenient it seems.",
+                        [
+                              "however",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "The task, ___ designed for advanced learners, was accessible.",
+                        [
+                              "although",
+                              "despite",
+                              "because"
+                        ],
+                        0
+                  ],
+                  [
+                        "Learners differ in the extent ___ they tolerate uncertainty.",
+                        [
+                              "to which",
+                              "where",
+                              "what"
+                        ],
+                        0
+                  ],
+                  [
+                        "The feedback was specific enough ___ action.",
+                        [
+                              "guiding",
+                              "to guide",
+                              "guide"
+                        ],
+                        1
+                  ],
+                  [
+                        "Far from being useless, assessment ___ discussion.",
+                        [
+                              "enables",
+                              "is enabling to",
+                              "enable"
+                        ],
+                        0
+                  ],
+                  [
+                        "The more nuanced the feedback, ___ useful the route.",
+                        [
+                              "more",
+                              "the more",
+                              "most"
+                        ],
+                        1
+                  ],
+                  [
+                        "No single task can account ___ the whole learner.",
+                        [
+                              "for",
+                              "about",
+                              "of"
+                        ],
+                        0
+                  ],
+                  [
+                        "The result should not be mistaken ___ identity.",
+                        [
+                              "for",
+                              "as",
+                              "to"
+                        ],
+                        0
+                  ],
+                  [
+                        "The student wrote accurately, ___ cautiously.",
+                        [
+                              "yet spoke",
+                              "despite spoke",
+                              "whereby speaking"
+                        ],
+                        0
+                  ],
+                  [
+                        "If numbers become the aim, evidence ___ distorted.",
+                        [
+                              "becomes",
+                              "will have",
+                              "would have been"
+                        ],
+                        0
+                  ],
+                  [
+                        "The process requires not only measurement ___ interpretation.",
+                        [
+                              "but also",
+                              "and also",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "A learner may understand complex texts while ___ repetitive grammar.",
+                        [
+                              "producing",
+                              "produce",
+                              "to produce"
+                        ],
+                        0
+                  ],
+                  [
+                        "The conclusion is tentative, ___ still useful.",
+                        [
+                              "yet",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "Teachers should avoid ___ patterns into fixed identities.",
+                        [
+                              "turning",
+                              "to turn",
+                              "turn"
+                        ],
+                        0
+                  ]
+            ]
+      },
+      {
+            "code": "C2",
+            "name": "Proficiency Diagnostic",
+            "desc": "A long advanced diagnostic for precision, register, rhetorical judgement, implication, stance, syntactic control and academic argument.",
+            "reading": {
+                  "title": "Proficiency, judgement and the problem of excessive language",
+                  "text": "At the highest levels, language proficiency is rarely a matter of knowing more grammar in a simple quantitative sense. The learner's challenge becomes rhetorical: choosing how direct to be, deciding which implication can be left unstated, recognising when precision becomes pedantry, and when fluency begins to conceal vagueness. A speaker may produce complex sentences and still fail to sound intellectually controlled if every idea is overstated or every qualification is treated as a decorative flourish.\n\nThis is why advanced diagnostics should not merely ask whether a structure is correct. Correctness remains necessary, but it is no longer sufficient. The stronger question is whether the language is proportionate to the situation. A complaint to an institution, an academic response, a seminar intervention and a personal reflection may all require accurate grammar, yet they demand different degrees of compression, tact and explicitness. The advanced learner must therefore demonstrate not just range, but restraint.\n\nTask design can distort this judgement. A simplistic prompt may reward speed while concealing weak interpretation; an excessively academic prompt may reward familiarity with a genre rather than genuine control. A responsible C2 diagnostic uses several lenses: dense reading, layered listening, extended writing, spontaneous speaking and grammar items that test judgement as well as form. It should ask not only whether an answer is correct, but whether it is purposeful, responsive to context and stylistically mature.\n\nThe best feedback at this level sounds less like a verdict and more like an editorial conversation. It notices when complexity becomes ornament, when caution becomes evasion, and when fluency loses precision. It does not punish ambition, but it asks the learner to choose. At C2, excellence is often the capacity to use less language more exactly.",
+                  "questions": [
+                        {
+                              "text": "What is the main claim about highest-level proficiency?",
+                              "options": [
+                                    "It depends on rhetorical judgement, not just more grammar.",
+                                    "It is mainly vocabulary quantity.",
+                                    "It removes the need for accuracy."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "When can fluency become a problem?",
+                              "options": [
+                                    "When it conceals vagueness.",
+                                    "When it is too slow.",
+                                    "When it uses simple words."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why is correctness insufficient?",
+                              "options": [
+                                    "Different contexts require different rhetorical choices.",
+                                    "Correctness is irrelevant.",
+                                    "Grammar cannot be assessed."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does proportionate language mean?",
+                              "options": [
+                                    "Language suited to situation and purpose.",
+                                    "The longest possible answer.",
+                                    "Language without nuance."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can a simplistic prompt conceal?",
+                              "options": [
+                                    "Weak interpretation.",
+                                    "Excellent handwriting.",
+                                    "Fast reading only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What risk does an excessively academic prompt create?",
+                              "options": [
+                                    "It may reward genre familiarity rather than control.",
+                                    "It makes grammar impossible.",
+                                    "It removes vocabulary."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should C2 grammar items test?",
+                              "options": [
+                                    "Judgement as well as form.",
+                                    "Only spelling.",
+                                    "Only speed."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does editorial conversation imply?",
+                              "options": [
+                                    "Precise developmental feedback.",
+                                    "A final punishment.",
+                                    "A casual chat without standards."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What does complexity becomes ornament mean?",
+                              "options": [
+                                    "Complex language used decoratively rather than purposefully.",
+                                    "All complex language is wrong.",
+                                    "Ornament improves clarity."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is excellence at C2 often described as?",
+                              "options": [
+                                    "Using less language more exactly.",
+                                    "Speaking as fast as possible.",
+                                    "Avoiding all risk."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "listening": {
+                  "title": "Seminar exchange on advanced assessment",
+                  "script": "Speaker: I would argue that advanced assessment often over-rewards visible complexity.\nInterlocutor: Do you mean long sentences and rare vocabulary?\nSpeaker: Partly, but not only that. The problem is that complexity can imitate thought. A learner may sound impressive while avoiding a precise commitment.\nInterlocutor: So the diagnostic task should force a position?\nSpeaker: It should invite a position and then test whether the learner can qualify it without retreating into vagueness. That is a subtle difference.\nInterlocutor: How would you design such a task?\nSpeaker: I would combine a dense text, a listening extract with competing viewpoints, and a writing prompt that requires judgement rather than summary.\nInterlocutor: And grammar?\nSpeaker: Grammar should test control under pressure: concession, inversion, reduced clauses, register, and the ability to revise a sentence without flattening its meaning.\nInterlocutor: That sounds closer to editing than testing.\nSpeaker: Exactly. At this level, diagnosis is partly editorial. We are not asking whether language exists; we are asking whether it does the right work.",
+                  "questions": [
+                        {
+                              "text": "What does advanced assessment over-reward?",
+                              "options": [
+                                    "Visible complexity.",
+                                    "Silence.",
+                                    "Short answers only."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What can complexity imitate?",
+                              "options": [
+                                    "Thought.",
+                                    "Pronunciation.",
+                                    "Attendance."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the subtle difference about position?",
+                              "options": [
+                                    "Qualifying a position without becoming vague.",
+                                    "Avoiding any position.",
+                                    "Changing the topic."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What should the writing prompt require?",
+                              "options": [
+                                    "Judgement rather than summary.",
+                                    "Only copying.",
+                                    "A list of definitions."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Which grammar areas are named?",
+                              "options": [
+                                    "Concession, inversion, reduced clauses and register.",
+                                    "Alphabet and numbers.",
+                                    "Only present simple."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "Why is diagnosis partly editorial?",
+                              "options": [
+                                    "It checks whether language does the right work.",
+                                    "It ignores grammar.",
+                                    "It is only about punctuation."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is meant by flattening meaning?",
+                              "options": [
+                                    "Losing nuance while simplifying.",
+                                    "Improving precision.",
+                                    "Adding evidence."
+                              ],
+                              "answer": 0
+                        },
+                        {
+                              "text": "What is the speaker's attitude?",
+                              "options": [
+                                    "Demanding but principled.",
+                                    "Dismissive of advanced learners.",
+                                    "Opposed to testing."
+                              ],
+                              "answer": 0
+                        }
+                  ]
+            },
+            "writing": "IELTS Academic/TOEFL advanced hybrid. Write 350-450 words: At the highest levels, language assessment should focus less on visible complexity and more on judgement, register and rhetorical control. Discuss this claim and qualify your position.",
+            "speaking": "Record 4 minutes as if responding in an academic interview. Compare two views of advanced assessment: one based on measurable accuracy, the other on rhetorical judgement. Include concession, counterexample, and a final refined position.",
+            "grammar": [
+                  [
+                        "Visible complexity may be impressive, ___ it is not necessarily precise.",
+                        [
+                              "yet",
+                              "despite",
+                              "whereby"
+                        ],
+                        0
+                  ],
+                  [
+                        "Were the prompt simplified too far, it ___ weak interpretation.",
+                        [
+                              "would conceal",
+                              "will conceal",
+                              "concealed"
+                        ],
+                        0
+                  ],
+                  [
+                        "The learner sounded fluent, if ___ evasive.",
+                        [
+                              "some",
+                              "somewhat",
+                              "something"
+                        ],
+                        1
+                  ],
+                  [
+                        "No sooner ___ a position than he qualified it.",
+                        [
+                              "he stated",
+                              "had he stated",
+                              "he had stated"
+                        ],
+                        1
+                  ],
+                  [
+                        "The issue is not so much accuracy ___ rhetorical control.",
+                        [
+                              "as",
+                              "than",
+                              "but"
+                        ],
+                        0
+                  ],
+                  [
+                        "Complexity should be treated as useful ___ purposeful.",
+                        [
+                              "provided it is",
+                              "despite it is",
+                              "whereby it"
+                        ],
+                        0
+                  ],
+                  [
+                        "The feedback, ___ severe, was productive.",
+                        [
+                              "though",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "A sentence may be correct without ___ appropriate.",
+                        [
+                              "being",
+                              "be",
+                              "to be"
+                        ],
+                        0
+                  ],
+                  [
+                        "It is crucial that register ___ assessed explicitly.",
+                        [
+                              "is",
+                              "be",
+                              "will be"
+                        ],
+                        1
+                  ],
+                  [
+                        "The task requires judgement, ___ mere summary.",
+                        [
+                              "rather than",
+                              "instead to",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "Had the learner used fewer qualifiers, the argument ___ stronger.",
+                        [
+                              "might have sounded",
+                              "might sound",
+                              "will sound"
+                        ],
+                        0
+                  ],
+                  [
+                        "The phrase was precise, ___ slightly pedantic.",
+                        [
+                              "albeit",
+                              "despite",
+                              "whereby"
+                        ],
+                        0
+                  ],
+                  [
+                        "Not only ___ the claim, but she refined it.",
+                        [
+                              "she defended",
+                              "did she defend",
+                              "she did defend"
+                        ],
+                        1
+                  ],
+                  [
+                        "The prompt was designed ___ evasive answers.",
+                        [
+                              "to expose",
+                              "exposing",
+                              "expose"
+                        ],
+                        0
+                  ],
+                  [
+                        "The response lacked the restraint ___ C2 writing often requires.",
+                        [
+                              "that",
+                              "who",
+                              "where"
+                        ],
+                        0
+                  ],
+                  [
+                        "The more advanced the learner, ___ subtle the feedback must be.",
+                        [
+                              "more",
+                              "the more",
+                              "most"
+                        ],
+                        1
+                  ],
+                  [
+                        "The argument was not wrong; ___, it was underdeveloped.",
+                        [
+                              "rather",
+                              "despite",
+                              "whereby"
+                        ],
+                        0
+                  ],
+                  [
+                        "A diagnostic should account ___ register and implication.",
+                        [
+                              "for",
+                              "about",
+                              "of"
+                        ],
+                        0
+                  ],
+                  [
+                        "The sentence was revised without ___ its nuance.",
+                        [
+                              "losing",
+                              "to lose",
+                              "lose"
+                        ],
+                        0
+                  ],
+                  [
+                        "The speaker avoided commitment, ___ weakening the answer.",
+                        [
+                              "thereby",
+                              "whereas",
+                              "despite"
+                        ],
+                        0
+                  ],
+                  [
+                        "Useful ___ the framework is, it has limits.",
+                        [
+                              "though",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "The learner's control appears ___ under timed conditions.",
+                        [
+                              "to have improved",
+                              "having improved",
+                              "to improving"
+                        ],
+                        0
+                  ],
+                  [
+                        "The distinction is subtle, ___ pedagogically significant.",
+                        [
+                              "yet",
+                              "despite",
+                              "whereas"
+                        ],
+                        0
+                  ],
+                  [
+                        "The answer was proportionate ___ the task.",
+                        [
+                              "to",
+                              "for",
+                              "with"
+                        ],
+                        0
+                  ],
+                  [
+                        "If feedback becomes too general, it ___ diagnostic value.",
+                        [
+                              "loses",
+                              "would have lost",
+                              "had lost"
+                        ],
+                        0
+                  ],
+                  [
+                        "The evaluator asked whether the register ___ the purpose.",
+                        [
+                              "served",
+                              "has served",
+                              "is serve"
+                        ],
+                        0
+                  ]
+            ]
+      }
+];
+
+    const levelNav = document.getElementById("levelNav");
+    const topNav = document.getElementById("topNav");
+    const levelStack = document.getElementById("levelStack");
+    const correctPositionPlan = (() => {
+      const keyedCount = levels.reduce((sum, level) => {
+        const reading = level.reading.questions.filter(question => typeof question === "object" && Number.isInteger(question.answer)).length;
+        const listening = level.listening.questions.filter(question => typeof question === "object" && Number.isInteger(question.answer)).length;
+        return sum + reading + listening + level.grammar.length;
+      }, 0);
+      const first = Math.round(keyedCount * 0.1);
+      const second = Math.round(keyedCount * 0.3);
+      return [
+        ...Array(first).fill(0),
+        ...Array(second).fill(1),
+        ...Array(Math.max(0, keyedCount - first - second)).fill(2)
+      ];
+    })();
+
+    function esc(text) {
+      return String(text).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    const teacherEmail = "maria.v.burtseva@gmail.com";
+    const skillNames = ["reading", "listening", "writing", "speaking", "grammar"];
+
+    function pdfPath(level, skill) {
+      return `assets/diagnostic-pdfs/${level.code}-full-test.pdf`;
+    }
+
+    function defaultOptions(question) {
+      return ["Answer 1", "Answer 2", "Answer 3"];
+    }
+
+    function moveCorrectOption(options, answer, target) {
+      if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) {
+        return { options, answer };
+      }
+      const next = [...options];
+      const correct = next.splice(answer, 1)[0];
+      next.splice(target, 0, correct);
+      return { options: next, answer: target };
+    }
+
+    function normalizeAnswerDistribution() {
+      let cursor = 0;
+      levels.forEach(level => {
+        ["reading", "listening"].forEach(skill => {
+          level[skill].questions = level[skill].questions.map(question => {
+            if (typeof question !== "object" || !Number.isInteger(question.answer)) return question;
+            const moved = moveCorrectOption(question.options, question.answer, correctPositionPlan[cursor++] ?? 2);
+            return { ...question, options: moved.options, answer: moved.answer };
+          });
+        });
+        level.grammar = level.grammar.map(item => {
+          const moved = moveCorrectOption(item[1], item[2], correctPositionPlan[cursor++] ?? 2);
+          return [item[0], moved.options, moved.answer];
+        });
+      });
+    }
+
+    normalizeAnswerDistribution();
+
+    function normalizeQuestion(question) {
+      return typeof question === "string"
+        ? { text: question, options: defaultOptions(question) }
+        : question;
+    }
+
+    function renderQuestionList(questions, level, skill) {
+      return `
+        <div class="question-grid">
+          ${questions.map((question, index) => `
+            ${(() => {
+              const item = normalizeQuestion(question);
+              return `
+                <div class="question-card" data-question="${index + 1}">
+                  <strong>${String(index + 1).padStart(2, "0")}</strong>
+                  <p>${esc(item.text)}</p>
+                  <div class="choice-row">
+                    ${item.options.map((option, optionIndex) => `
+                      <button class="choice-option" type="button" data-option="${optionIndex + 1}">${esc(option)}</button>
+                    `).join("")}
+                  </div>
+                  <input class="answer-note" type="text" placeholder="Short note / короткий комментарий">
+                </div>
+              `;
+            })()}
+          `).join("")}
+        </div>
+        <div class="task-actions">
+          <a class="pdf-link" href="${pdfPath(level, skill)}" target="_blank" rel="noreferrer">PDF version</a>
+        </div>
+      `;
+    }
+
+    function renderGrammar(level) {
+      return `
+        <div class="grammar-grid">
+          ${level.grammar.map((item, index) => `
+            <div class="grammar-item">
+              <p>${index + 1}. ${esc(item[0])}</p>
+              <div class="grammar-options">
+                ${item[1].map((option, optionIndex) => `
+                  <button class="grammar-option" type="button" data-option="${optionIndex}">${esc(option)}</button>
+                `).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <div class="score-line" data-score-for="${level.code}">Grammar answers are saved for teacher review.</div>
+        <div class="task-actions">
+          <a class="pdf-link" href="${pdfPath(level, "grammar")}" target="_blank" rel="noreferrer">PDF version</a>
+        </div>
+      `;
+    }
+
+    function renderListeningPanel(level) {
+      return `
+        <div class="listening-panel">
+          <div class="listening-meta">Listen to the dialogue. The transcript is hidden from the student.</div>
+          <button class="audio-btn" type="button" data-listen-level="${level.code}">Play audio: female / male voices</button>
+        </div>
+      `;
+    }
+
+    function renderRecording(level) {
+      return `
+        <div class="recording-controls">
+          <button class="record-btn" type="button" data-record-level="${level.code}">Start recording</button>
+          <span class="recording-status" data-record-status="${level.code}">No recording yet</span>
+        </div>
+      `;
+    }
+
+    function renderFinish(level) {
+      return `
+        <div class="finish-panel">
+          <p>When the level is complete, send the diagnostic summary to the teacher.</p>
+          <button class="finish-btn" type="button" data-finish-level="${level.code}">Finish and send by email</button>
+        </div>
+      `;
+    }
+
+    function skillLabel(num, name) {
+      return `<div class="skill-label"><span class="skill-num">${num}</span><span class="skill-name">${name}</span></div>`;
+    }
+
+    function renderLevel(level, index) {
+      const visualIndex = String(index + 1).padStart(2, "0");
+      return `
+        <section class="level-card ${index === 0 ? "open" : ""}" id="${level.code.toLowerCase()}" data-level="${level.code}">
+          <div class="level-head">
+            <div class="level-index">
+              <span>${visualIndex}</span>
+              <small>${level.code} · ${level.name}</small>
+            </div>
+            <div>
+              <h2 class="level-title">${level.code} · ${level.name}</h2>
+              <p class="level-desc">${level.desc}</p>
+            </div>
+            <button class="start-btn" type="button">Start ${level.code} Test / Начать тест ${level.code}</button>
+          </div>
+          <div class="test-body">
+            <div class="section-grid skill-reading">
+              ${skillLabel("01", "Reading")}
+              <div class="task-card">
+                <h3>${esc(level.reading.title)}</h3>
+                <div class="reading-text">${esc(level.reading.text)}</div>
+                ${renderQuestionList(level.reading.questions, level, "reading")}
+              </div>
+            </div>
+            <div class="section-grid skill-listening">
+              ${skillLabel("02", "Listening")}
+              <div class="task-card">
+                <h3>${esc(level.listening.title)}</h3>
+                ${renderListeningPanel(level)}
+                ${renderQuestionList(level.listening.questions, level, "listening")}
+              </div>
+            </div>
+            <div class="section-grid skill-writing">
+              ${skillLabel("03", "Writing")}
+              <div class="task-card">
+                <h3>Writing task</h3>
+                <p>${esc(level.writing)}</p>
+                <textarea placeholder="Write your answer here..."></textarea>
+                <div class="task-actions">
+                  <a class="pdf-link" href="${pdfPath(level, "writing")}" target="_blank" rel="noreferrer">PDF version</a>
+                </div>
+              </div>
+            </div>
+            <div class="section-grid skill-speaking">
+              ${skillLabel("04", "Speaking")}
+              <div class="task-card">
+                <h3>Speaking prompt</h3>
+                <p>${esc(level.speaking)}</p>
+                <div class="speaking-note">Record your answer before sending the diagnostic summary.</div>
+                ${renderRecording(level)}
+                <div class="task-actions">
+                  <a class="pdf-link" href="${pdfPath(level, "speaking")}" target="_blank" rel="noreferrer">PDF version</a>
+                </div>
+              </div>
+            </div>
+            <div class="section-grid skill-grammar">
+              ${skillLabel("05", "Grammar")}
+              <div class="task-card">
+                <h3>Grammatical Range & Accuracy</h3>
+                <p>Choose the best answer. The correct answer is not shown on the page.</p>
+                ${renderGrammar(level)}
+              </div>
+            </div>
+            ${renderFinish(level)}
+          </div>
+        </section>
+      `;
+    }
+
+    levelNav.innerHTML = levels.map((level, index) => `
+      <a class="level-jump ${index === 0 ? "active" : ""}" href="#${level.code.toLowerCase()}">${level.code} ${level.name}</a>
+    `).join("");
+
+    topNav.innerHTML = levels.map((level, index) => `
+      <a class="nav-chip ${index === 0 ? "active" : ""}" href="#${level.code.toLowerCase()}">${level.code}</a>
+    `).join("");
+
+    levelStack.innerHTML = levels.map(renderLevel).join("");
+
+    const cards = [...document.querySelectorAll(".level-card")];
+    const jumps = [...document.querySelectorAll(".level-jump, .nav-chip")];
+
+    function openCard(card) {
+      cards.forEach(item => item.classList.toggle("open", item === card));
+      jumps.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + card.id));
+    }
+
+    document.querySelectorAll(".start-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".level-card");
+        openCard(card);
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    jumps.forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        openCard(target);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    document.querySelectorAll(".choice-option").forEach(option => {
+      option.addEventListener("click", () => {
+        const group = option.closest(".choice-row");
+        group.querySelectorAll(".choice-option").forEach(btn => btn.classList.remove("is-selected"));
+        option.classList.add("is-selected");
+      });
+    });
+
+    document.querySelectorAll(".grammar-option").forEach(option => {
+      option.addEventListener("click", () => {
+        const item = option.closest(".grammar-item");
+        const level = option.closest(".level-card").dataset.level;
+        item.querySelectorAll(".grammar-option").forEach(btn => {
+          btn.classList.remove("is-selected");
+        });
+        option.classList.add("is-selected");
+        updateScore(level);
+      });
+    });
+
+    function updateScore(level) {
+      const card = document.querySelector(`[data-level="${level}"]`);
+      const total = card.querySelectorAll(".grammar-item").length;
+      const answered = card.querySelectorAll(".grammar-option.is-selected").length;
+      const score = card.querySelector(`[data-score-for="${level}"]`);
+      score.textContent = `Grammar answers selected: ${answered} / ${total}`;
+    }
+
+    function splitListeningScript(script) {
+      const lines = script.split("\n").map(line => line.trim()).filter(Boolean);
+      if (lines.length > 1) return lines;
+      return script
+        .split(/(?<=[.!?])\s+/)
+        .map(line => line.trim())
+        .filter(Boolean);
+    }
+
+    function speakDialogue(script) {
+      if (!("speechSynthesis" in window)) {
+        alert("Audio playback is not supported in this browser.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoices = voices.filter(voice => /^en/i.test(voice.lang || ""));
+      const female = englishVoices.find(voice => /female|samantha|victoria|zira|kate|susan|aria/i.test(voice.name)) || englishVoices[0] || voices[0];
+      const male = englishVoices.find(voice => /male|daniel|david|mark|george|alex/i.test(voice.name) && voice !== female) || englishVoices[1] || female;
+      splitListeningScript(script).forEach((line, index) => {
+        const utterance = new SpeechSynthesisUtterance(line.replace(/^[^:]+:\s*/, ""));
+        utterance.lang = "en-US";
+        utterance.rate = 0.88;
+        utterance.pitch = index % 2 === 0 ? 1.08 : 0.86;
+        utterance.voice = index % 2 === 0 ? female : male;
+        window.speechSynthesis.speak(utterance);
+      });
+    }
+
+    document.querySelectorAll("[data-listen-level]").forEach(button => {
+      button.addEventListener("click", () => {
+        const level = levels.find(item => item.code === button.dataset.listenLevel);
+        if (level) speakDialogue(level.listening.script);
+      });
+    });
+
+    const recordings = {};
+
+    document.querySelectorAll("[data-record-level]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const level = button.dataset.recordLevel;
+        const status = document.querySelector(`[data-record-status="${level}"]`);
+        if (button.mediaRecorder && button.mediaRecorder.state === "recording") {
+          button.mediaRecorder.stop();
+          button.textContent = "Start recording";
+          return;
+        }
+        if (!navigator.mediaDevices || !window.MediaRecorder) {
+          status.textContent = "Recording is not supported in this browser.";
+          return;
+        }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const chunks = [];
+          const recorder = new MediaRecorder(stream);
+          button.mediaRecorder = recorder;
+          recorder.ondataavailable = event => chunks.push(event.data);
+          recorder.onstop = () => {
+            stream.getTracks().forEach(track => track.stop());
+            recordings[level] = new Blob(chunks, { type: "audio/webm" });
+            status.textContent = "Recording saved in this browser. Attach it manually if needed.";
+          };
+          recorder.start();
+          button.textContent = "Stop recording";
+          status.textContent = "Recording...";
+        } catch (error) {
+          status.textContent = "Microphone permission was not granted.";
+        }
+      });
+    });
+
+    function collectLevelSummary(levelCode) {
+      const card = document.querySelector(`[data-level="${levelCode}"]`);
+      const lines = [`Diagnostic level: ${levelCode}`];
+      card.querySelectorAll(".section-grid").forEach(section => {
+        const title = section.querySelector(".skill-name")?.textContent || "Section";
+        lines.push(`\n${title}`);
+        section.querySelectorAll(".question-card").forEach((question, index) => {
+          const prompt = question.querySelector("p")?.textContent || "";
+          const selected = question.querySelector(".choice-option.is-selected")?.textContent || "No option selected";
+          const note = question.querySelector(".answer-note")?.value || "";
+          lines.push(`${index + 1}. ${prompt} -> ${selected}${note ? " / " + note : ""}`);
+        });
+        const textarea = section.querySelector("textarea");
+        if (textarea) lines.push(textarea.value || "No written answer.");
+        section.querySelectorAll(".grammar-item").forEach((item, index) => {
+          const prompt = item.querySelector("p")?.textContent || "";
+          const selected = item.querySelector(".grammar-option.is-selected")?.textContent || "No option selected";
+          lines.push(`${index + 1}. ${prompt} -> ${selected}`);
+        });
+      });
+      if (recordings[levelCode]) {
+        lines.push("\nSpeaking recording: saved locally in the browser; attach the file manually if the mail client supports it.");
+      }
+      return lines.join("\n");
+    }
+
+    function openPrintableResult(levelCode, summary) {
+      const popup = window.open("", "_blank");
+      if (!popup) return;
+      popup.document.write(`<!doctype html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>New Generation English Test ${esc(levelCode)}</title>
+          <style>
+            body { font-family: Arial, sans-serif; color: #1a1326; margin: 28px; line-height: 1.45; }
+            h1 { color: #1f4e79; font-size: 25px; margin: 0 0 4px; text-align: center; }
+            h2 { color: #555; font-size: 13px; font-weight: 400; margin: 0 0 22px; text-align: center; }
+            pre { white-space: pre-wrap; border: 1px solid #9fb6c8; background: #eef5fa; padding: 16px; font: 11px/1.5 Arial, sans-serif; }
+          </style>
+        </head>
+        <body>
+          <h1>New Generation English Test</h1>
+          <h2>Completed diagnostic - ${esc(levelCode)}</h2>
+          <pre>${esc(summary)}</pre>
+        </body>
+        </html>`);
+      popup.document.close();
+      popup.focus();
+      setTimeout(() => popup.print(), 350);
+    }
+
+    document.querySelectorAll("[data-finish-level]").forEach(button => {
+      button.addEventListener("click", () => {
+        const level = button.dataset.finishLevel;
+        const subject = encodeURIComponent(`Diagnostic completed - ${level}`);
+        const summary = collectLevelSummary(level);
+        openPrintableResult(level, summary);
+        const body = encodeURIComponent(summary);
+        window.location.href = `mailto:${teacherEmail}?subject=${subject}&body=${body}`;
+      });
+    });
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      const root = document.documentElement;
+      root.dataset.lang = root.dataset.lang === "en" ? "ru" : "en";
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      jumps.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id));
+    }, { threshold: [0.2, 0.45, 0.7] });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
+

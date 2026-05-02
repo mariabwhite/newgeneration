@@ -4,14 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Дневник и блог преподавателя английского языка — Дзен-канал про английский, путешествия, нейронки, авторство, мой путь и педагогическая династия.">
+
+<!-- Open Graph / Twitter Card -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="New Generation English">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Дневник и блог · New Generation English">
+<meta property="og:description" content="Дневник преподавателя — про английский, путешествия, нейронки, авторство, мой путь и педагогическую династию.">
+<meta property="og:image" content="https://newgeneration-english.ru/assets/maria-hero-premium.jpg">
+<meta property="og:url" content="https://newgeneration-english.ru/blog.html">
+<link rel="canonical" href="https://newgeneration-english.ru/blog.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Дневник и блог · New Generation English">
+<meta name="twitter:description" content="Дневник преподавателя — про английский, путешествия, нейронки, авторство, мой путь и педагогическую династию.">
+<meta name="twitter:image" content="https://newgeneration-english.ru/assets/maria-hero-premium.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
 <title>Дневник и блог — New Generation English</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
 <style>
 /* ============================================================
-   TOKENS — STRICT SYSTEM FROM INDEX.HTML
+   Page-specific styles for blog.
+   system.css is loaded ABOVE so page rules win cascade naturally.
+   No !important needed — kept the file clean as of last refactor.
    ============================================================ */
 
 
@@ -34,49 +52,7 @@ img { display: block; max-width: 100%; }
 button { font: inherit; }
 ::selection { background: var(--accent); color: #000; }
 
-/* ============================================================
-   TOPBAR (сохранен)
-   ============================================================ */
-.topbar {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; gap: 2rem;
-  height: 64px; padding: 0 24px;
-  background: rgba(0,0,0,0.92);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-}
-body.light .topbar { background: rgba(244,241,236,0.9); }
-.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.brand-mark {
-  width: 38px; height: 38px; display: grid; place-items: center;
-  background: var(--accent); color: #000;
-  font-family: var(--display); font-weight: 900; font-size: 20px;
-  border-radius: 10px; letter-spacing: -0.04em;
-}
-.brand-name {
-  font-family: var(--display); font-weight: 800; font-size: 15px;
-  letter-spacing: -0.02em; line-height: 1.1;
-}
-.brand-sub {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--text-3); margin-top: 2px;
-}
-.topnav { display: flex; gap: 2px; flex: 1; margin-left: 1rem; }
-.topnav-link {
-  padding: 7px 12px; border-radius: 8px;
-  font-size: 13px; font-weight: 500; color: var(--text-2);
-  white-space: nowrap; transition: color .15s, background .15s;
-}
-.topnav-link:hover, .topnav-link.active { color: var(--text); background: var(--bg-3); }
-.topbar-tools { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.control-btn {
-  height: 34px; min-width: 34px; padding: 0 10px;
-  border-radius: 8px; border: 1px solid var(--line);
-  background: transparent; color: var(--text-2); cursor: pointer;
-  font-size: 12px; font-family: var(--mono); font-weight: 500;
-  transition: all .15s;
-}
-.control-btn:hover { color: var(--text); border-color: var(--line-strong); }
+/* Topbar / brand / topnav / control-btn — canonical in system.css */
 
 /* ============================================================
    WRAP
@@ -340,6 +316,10 @@ body.light .dynasty-epigraph {
   letter-spacing: 0;
   color: #fff;
 }
+.dynasty-cover-title span,
+.neural-article-title span {
+  display: block;
+}
 .dynasty-toggle {
   align-self: end;
   justify-self: stretch;
@@ -514,6 +494,46 @@ body.light .dynasty-epigraph {
   display: block;
   margin: 44px 0 0;
   width: 100%;
+}
+.neural-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 44px 0 0;
+}
+.neural-feature-grid .neural-article-feature {
+  display: contents;
+  margin: 0;
+}
+.neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  max-width: none;
+}
+.neural-feature-grid .neural-article-panel {
+  grid-column: 1 / -1;
+}
+.neural-placeholder-card {
+  opacity: 0.62;
+}
+.neural-placeholder-card .neural-article-title {
+  color: rgba(255,255,255,0.78);
+}
+.neural-placeholder-card .neural-article-toggle {
+  border-color: rgba(255,255,255,0.24);
+  color: rgba(255,255,255,0.62);
+}
+.journal-placeholder .dynasty-cover {
+  opacity: 0.78;
+}
+.journal-placeholder .dynasty-cover-title {
+  color: rgba(255,255,255,0.86);
+}
+.journal-placeholder .dynasty-cover-hook {
+  color: rgba(255,255,255,0.64);
+}
+.journal-placeholder .dynasty-toggle {
+  border-color: rgba(255,255,255,0.24);
+  color: rgba(255,255,255,0.62);
 }
 .neural-article-feature summary {
   display: block;
@@ -813,30 +833,7 @@ body.light .neural-showcase .hero-media .img-light {
 }
 .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer {
-  max-width: 1240px; margin: 0 auto;
-  padding: 40px 24px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-}
-.footer-copy {
-  font-family: var(--mono); font-size: 11px;
-  letter-spacing: 0.08em; color: var(--text-3);
-}
-.footer-copy a { color: var(--text-2); }
-.footer-copy a:hover { color: var(--accent); }
-.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
-.footer-link {
-  padding: 6px 12px; border-radius: 6px;
-  font-family: var(--mono); font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-3); transition: all .15s;
-}
-.footer-link:hover { color: var(--text); background: var(--bg-3); }
+/* Footer / .footer-copy / .footer-links / .footer-link — canonical in system.css */
 
 
 .family-tree-panel {
@@ -905,22 +902,41 @@ body.light .family-tree-text strong {
   .neural-showcase .hero-media { max-width: 340px; }
 }
 @media (max-width: 768px) {
-  .topbar { padding: 0 16px; gap: 12px; }
+  /* Topbar mobile sizing — canonical in system.css */
   .hero { padding: 32px 0 24px; }
   .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
   .section { padding: 56px 0; }
   .blog-grid { grid-template-columns: 1fr; gap: 32px; }
   .dynasty-list {
     grid-template-columns: 1fr;
-    max-width: none;
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
   }
-  .dynasty-feature { margin-bottom: 34px; }
+  .dynasty-feature {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 34px;
+  }
   .dynasty-feature summary {
     width: 100%;
   }
   .dynasty-cover {
     aspect-ratio: auto;
     min-height: 360px;
+    padding: 26px 26px 28px;
+  }
+  .dynasty-cover-title,
+  .neural-article-title {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+  }
+  .dynasty-cover-hook,
+  .neural-article-hook {
+    max-width: 100%;
   }
   .dynasty-toggle { width: 100%; padding: 0 16px; }
   .dynasty-panel {
@@ -942,11 +958,107 @@ body.light .family-tree-text strong {
   .dynasty-photo.wide { min-height: 260px; }
   .cta { padding: 56px 0; }
   .subnav { gap: 12px; }
+  .neural-feature-grid { grid-template-columns: 1fr; gap: 16px; }
+  .neural-feature-grid,
+  #neural-tools .neural-feature-grid {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
   .neural-showcase { gap: 24px; margin-top: 32px; }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .dynasty-list,
+  .neural-feature-grid,
+  #neural-tools .neural-feature-grid {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+  .dynasty-feature,
+  .neural-article-feature,
+  #neural-tools .neural-feature-grid .neural-article-feature {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .dynasty-cover,
+  .neural-article-cover {
+    width: 100%;
+    max-width: 100%;
+    min-height: 340px;
+    padding: 24px 26px;
+  }
+  .dynasty-cover-title,
+  .neural-article-title,
+  #neural-tools .neural-feature-grid .neural-article-title {
+    font-size: clamp(1.45rem, 8.2vw, 2rem);
+    line-height: 1.05;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .dynasty-cover-hook,
+  .neural-article-hook,
+  #neural-tools .neural-feature-grid .neural-article-hook {
+    font-size: 8.5px;
+    line-height: 1.45;
+    max-width: 100%;
+  }
+  .dynasty-toggle,
+  .neural-article-toggle,
+  #neural-tools .neural-feature-grid .neural-article-toggle {
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
 }
 
 
 
+/* Neural section: keep the three archive cards in one desktop row. */
+.neural-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 22px);
+}
+.neural-feature-grid .neural-article-feature {
+  display: block;
+  margin: 0;
+  min-width: 0;
+}
+.neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  min-width: 0;
+}
+.neural-article-feature summary {
+  width: 100%;
+}
+.neural-article-cover {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(330px, 28vw, 390px);
+  padding: clamp(24px, 2.6vw, 32px);
+  aspect-ratio: auto;
+}
+.neural-article-title {
+  max-width: 100%;
+  font-size: clamp(1.85rem, 2.65vw, 2.8rem);
+  line-height: 0.98;
+}
+.neural-article-hook {
+  max-width: 100%;
+  font-size: clamp(0.78rem, 0.9vw, 1rem);
+}
+.neural-article-toggle {
+  min-height: 50px;
+  padding: 0 16px;
+}
 /* Align the neural feature card with the section 06 archive cards. */
 .neural-article-cover {
   grid-template-rows: auto auto 1fr auto;
@@ -984,14 +1096,195 @@ body.light .family-tree-text strong {
 body.light .neural-article-hook {
   color: var(--text-2);
 }
+body.light .neural-placeholder-card .neural-article-title {
+  color: var(--text-2);
+}
+body.light .neural-placeholder-card .neural-article-toggle {
+  border-color: var(--line);
+  color: var(--text-3);
+}
+body.light .journal-placeholder .dynasty-cover-title,
+body.light .journal-placeholder .dynasty-cover-hook,
+body.light .journal-placeholder .dynasty-toggle {
+  color: var(--text-2);
+}
 
-  </style>
+body.light .journal-placeholder .dynasty-cover {
+  background: #fffaf2;
+  border-color: rgba(20,18,15,0.22);
+  box-shadow: 0 22px 60px rgba(20,18,15,0.08);
+}
+
+body.light .journal-placeholder .dynasty-toggle {
+  background: rgba(255,255,255,0.36);
+  border-color: rgba(255,90,31,0.92);
+}
+
+  /* Final neural row override. */
+#neural-tools .neural-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.7vw, 20px);
+}
+#neural-tools .neural-feature-grid .neural-article-feature {
+  display: block;
+  min-width: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  min-width: 0;
+}
+#neural-tools .neural-article-cover {
+  max-width: none;
+  min-height: clamp(320px, 27vw, 380px);
+  padding: clamp(22px, 2.3vw, 30px);
+}
+#neural-tools .neural-article-title {
+  font-size: clamp(1.72rem, 2.35vw, 2.55rem);
+  line-height: 1;
+}
+#neural-tools .neural-article-toggle {
+  min-height: 48px;
+}
+@media (max-width: 900px) {
+  #neural-tools .neural-feature-grid { grid-template-columns: 1fr; }
+}
+/* Readable article panel inside neural cards. */
+#neural-tools .neural-article-panel {
+  max-width: 920px;
+  margin: 32px auto 0;
+  padding: clamp(24px, 4vw, 44px);
+}
+#neural-tools .neural-article-panel h3 {
+  max-width: 780px;
+  margin: 0 0 18px;
+  font-family: var(--display);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+#neural-tools .neural-article-panel p {
+  max-width: 760px;
+  font-size: 16px;
+  line-height: 1.72;
+}
+#neural-tools .neural-article-shot {
+  max-width: 760px;
+}
+/* Full-width opened neural article panel. */
+#neural-tools .neural-feature-grid .neural-article-panel {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 34px 0 0;
+  padding: clamp(28px, 4vw, 56px);
+}
+#neural-tools .neural-article-panel h3,
+#neural-tools .neural-article-panel p,
+#neural-tools .neural-article-panel .neural-article-shot {
+  max-width: 860px;
+}
+#neural-tools .neural-article-panel h3,
+#neural-tools .neural-article-panel p {
+  margin-left: 0;
+  margin-right: auto;
+}
+/* Neural section grid:
+   - Three details cards in a row at desktop.
+   - When one is open, it spans the full grid; siblings hide.
+   - Single column on narrow phones.
+   Specificity (#neural-tools .neural-feature-grid …) wins over upstream
+   .neural-feature-grid rules without needing !important. */
+#neural-tools .neural-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+#neural-tools .neural-feature-grid .neural-article-feature {
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature > summary {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-cover {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(260px, 26vw, 340px);
+  padding: clamp(18px, 2vw, 24px);
+}
+#neural-tools .neural-feature-grid .neural-article-title {
+  max-width: 100%;
+  font-size: clamp(1.35rem, 2.25vw, 2.05rem);
+  line-height: 1.02;
+}
+#neural-tools .neural-feature-grid .neural-article-hook {
+  max-width: 100%;
+  font-size: 9px;
+  line-height: 1.45;
+}
+#neural-tools .neural-feature-grid .neural-article-toggle {
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 9px;
+}
+
+/* Open state: card spans full grid, siblings hide, panel expands. */
+#neural-tools .neural-feature-grid:has(.neural-article-feature[open]) {
+  grid-template-columns: 1fr;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  justify-items: start;
+}
+#neural-tools .neural-feature-grid:has(.neural-article-feature[open]) .neural-article-feature:not([open]) {
+  display: none;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] > summary {
+  width: min(360px, 100%);
+  max-width: 360px;
+  margin-left: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] > .neural-article-panel {
+  width: 100%;
+  max-width: none;
+  margin: 20px 0 0;
+  padding: clamp(24px, 3vw, 40px);
+  box-sizing: border-box;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] .neural-article-panel h3 {
+  max-width: 820px;
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  line-height: 1.08;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] .neural-article-panel p {
+  max-width: 820px;
+}
+
+@media (max-width: 640px) {
+  #neural-tools .neural-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  #neural-tools .neural-feature-grid .neural-article-feature[open] > summary {
+    max-width: none;
+  }
+}
+</style>
 <script>
   function toggleTheme() {
-    document.body.classList.toggle("light");
-    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
-    const btn = document.querySelector(".control-btn");
-    if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+    if (window.NGETheme && typeof window.NGETheme.toggleTheme === "function") {
+      window.NGETheme.toggleTheme();
+    }
   }
   function toggleLang() {
     const cur = document.documentElement.getAttribute("lang") || "ru";
@@ -1014,19 +1307,12 @@ body.light .neural-article-hook {
   }
   (function restore() {
     try {
-      if (localStorage.getItem("nge-theme") === "light") {
-        document.body.classList.add("light");
-        const btn = document.querySelector(".control-btn");
-        if (btn) btn.textContent = "☀";
-      }
       const savedLang = localStorage.getItem("nge-lang");
       if (savedLang === "en") toggleLang();
     } catch (e) {}
     markActiveNav();
   })();
 </script>
-<link rel="stylesheet" href="./system.css">
-<link rel="stylesheet" href="./assets/visitor-counter.css">
 </head>
 <body data-page="blog">
 
@@ -1195,18 +1481,18 @@ body.light .neural-article-hook {
             </div>
           </article>
         </details>
-        <details class="dynasty-feature travel-feature">
+        <details class="dynasty-feature travel-feature journal-placeholder">
           <summary>
             <div class="dynasty-cover">
-              <div class="dynasty-cover-title" data-ru="Yet to decide" data-en="Yet to decide">Yet to decide</div>
-              <div class="dynasty-cover-hook" data-ru="Место для следующей дорожной истории" data-en="A place for the next travel story">Место для следующей дорожной истории</div>
+              <div class="dynasty-cover-title"><span data-ru="Здесь будет" data-en="A new entry">Здесь будет</span><span data-ru="новая запись" data-en="will be here">новая запись</span></div>
+              <div class="dynasty-cover-hook" data-ru="Место для нового текста о языке в поездке" data-en="A place for a new story about language in travel">Место для нового текста о языке в поездке</div>
               <span class="dynasty-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
             </div>
           </summary>
           <article class="dynasty-panel">
             <div class="dynasty-copy">
-              <div class="dynasty-kicker" data-ru="Черновик · будет выбрано позже" data-en="Draft · to be chosen later">Черновик · будет выбрано позже</div>
-              <h3 class="dynasty-title" data-ru="Yet to decide" data-en="Yet to decide">Yet to decide</h3>
+              <div class="dynasty-kicker" data-ru="Черновик · будущая заметка" data-en="Draft · future note">Черновик · будущая заметка</div>
+              <h3 class="dynasty-title" data-ru="Здесь будет новая запись" data-en="A new entry will be here">Здесь будет новая запись</h3>
               <p class="dynasty-lead" data-ru="Третья дорожная история пока остаётся открытой: сюда можно поставить следующий текст про страну, маршрут, языковую ситуацию или маленькое приключение, которое лучше всего дополнит раздел." data-en="The third travel story stays open for now: it can hold the next text about a country, a route, a language situation, or a small adventure that best completes the section.">Третья дорожная история пока остаётся открытой: сюда можно поставить следующий текст про страну, маршрут, языковую ситуацию или маленькое приключение, которое лучше всего дополнит раздел.</p>
             </div>
           </article>
@@ -1222,67 +1508,59 @@ body.light .neural-article-hook {
         <div class="sect-index">03<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
         <div><div class="sect-eyebrow" data-ru="ИИ в обучении" data-en="AI in learning">ИИ в обучении</div><h2 class="sect-title" data-ru="Про нейронки" data-en="About AI tools">Про нейронки</h2></div>
       </div>
-      <div class="blog-grid">
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="7 апреля 2025 · 6 мин чтения" data-en="Apr 7, 2025 · 6 min read">7 апреля 2025 · 6 мин чтения</div>
-          <h3 class="entry-title" data-ru="Нейронки как ассистент преподавателя" data-en="AI tools as a teacher's assistant">Нейронки как ассистент преподавателя</h3>
-          <p class="entry-text" data-ru="Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика." data-en="How I use AI for ideas, lesson structure, practice tasks, and quick adaptation of materials for a specific learner.">Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика.</p>
-        </article>
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="29 марта 2025 · 5 мин чтения" data-en="Mar 29, 2025 · 5 min read">29 марта 2025 · 5 мин чтения</div>
-          <h3 class="entry-title" data-ru="Где ИИ помогает, а где нужен человек" data-en="Where AI helps and where a person is needed">Где ИИ помогает, а где нужен человек</h3>
-          <p class="entry-text" data-ru="Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры." data-en="AI speeds up preparation, but the teaching decision still belongs to the teacher: pace, tone, motivation, and a sense of proportion.">Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры.</p>
-        </article>
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="15 марта 2025 · 5 мин чтения" data-en="Mar 15, 2025 · 5 min read">15 марта 2025 · 5 мин чтения</div>
-          <h3 class="entry-title" data-ru="Нейросети как соавторы" data-en="Neural tools as co-authors">Нейросети как соавторы</h3>
-          <p class="entry-text" data-ru="Где нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но не заменяют автора и педагогический выбор." data-en="Where neural tools help create materials, adapt tasks, and see more options, without replacing authorship or the teaching choice.">Где нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но не заменяют автора и педагогический выбор.</p>
-        </article>
-      </div>
-      <details class="neural-article-feature">
-        <summary>
-          <div class="neural-article-cover">
-            <div class="neural-article-hook" data-ru="Интересно, к чему всё это приведёт?" data-en="I wonder where all this will lead?">Интересно, к чему всё это приведёт?</div>
-            <div class="neural-article-title" data-ru="Нейросети как соавторы" data-en="AI as co-authors">Нейросети как соавторы</div>
-            <span class="neural-article-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
-          </div>
-        </summary>
-        <article class="neural-article-panel">
-          <h3 data-ru="От первого HTML-документика до сайта, который можно выложить на GitHub" data-en="From the first HTML file to a site ready for GitHub">От первого HTML-документика до сайта, который можно выложить на GitHub</h3>
-          <p>Мой сайт начался не с идеальной структуры и не с большого технического плана. Он начался с одного маленького HTML-документа: Grammar - Present Continuous and Present Perfect - copy 1.html. Это была первая самостоятельная страница, первый “кодик”, первый момент, когда учебный материал по английской грамматике перестал быть просто текстом и превратился в интерактивную веб-страницу.</p>
-          <figure class="neural-article-shot">
-            <img src="assets/first-html-page-screenshot.png" alt="Скриншот первой HTML-страницы Grammar - Present Continuous and Present Perfect">
-            <figcaption data-ru="Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect" data-en="The very first HTML file: Grammar - Present Continuous and Present Perfect">Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect</figcaption>
-          </figure>
-          <p>Там ещё не было большой экосистемы, личных кабинетов, лаборатории, версий, аудитов и GitHub-логики. Была одна страница: Present Continuous и Present Perfect, карточки, стили, структура, попытка красиво и понятно подать грамматику. Но именно с неё началось главное: я увидела, что могу не только преподавать английский, но и собирать собственные цифровые материалы.</p>
-          <p>Потом появился DeepSeek. В нём я создала одну страницу, потом вторую. Сначала каждая жила отдельно, как маленький самостоятельный остров. Потом пришло понимание: если страницы можно создавать по одной, значит, их можно соединять. Так начался переход от отдельных HTML-файлов к сайту.</p>
-          <p>Важным этапом стало знакомство с “песочницей”. Я узнала, что можно не бояться экспериментировать: пробовать дизайн, ломать, чинить, сохранять версии, возвращаться назад, сравнивать варианты. Песочница стала местом, где сайт рос без страха. Там появлялись версии 9, 10, 11, 12, 13, 14, 15, 16, 17, 18; были рабочие копии, бэкапы, папки “работать будем только тут”, архивы и сборки. Это уже был не один файл, а настоящий процесс разработки.</p>
-          <p>Постепенно отдельные страницы начали складываться в систему New Generation English. Появились главная страница, раздел “О проекте”, программы, условия, кейсы, блог, страница про путешествия, визуальные материалы и общая навигация. Потом выросла LinguaBoost Lab — интерактивная лаборатория с модулями по уровням от Pre-A1 до B2+: грамматика, лексика, карточки, квизы, тренажёры, задания на говорение и повторение.</p>
-          <p>Следующим большим шагом стали кабинеты. Сайт перестал быть просто витриной и начал превращаться в образовательную платформу. Появился кабинет ученика с расписанием, домашними заданиями, материалами и прогрессом. Появился кабинет преподавателя с уроками, учениками, оплатами, задачами и отчётностью. Появился кабинет родителя, где можно видеть посещаемость, прогресс, уведомления и финансовый блок.</p>
-          <p>Нейросети на этом пути стали не заменой автора, а рабочей командой. DeepSeek помог начать. Claude помогал с дизайном и формулировками. GPT помогал собирать смысл, тексты и структуру. Codex помогал разбираться в коде, объединять страницы, чинить ошибки, делать бэкапы, проверять мобильную версию, править CSS и превращать набор файлов в более аккуратный проект.</p>
-          <p>Отдельная часть пути — это визуальная доводка. Мы проверяли светлую и тёмную тему, мобильную адаптацию, меню, отступы, карточки, контраст, изображения, подписи, порядок разделов. Появились аудит-скриншоты, VISUAL_AUDIT_TODO.md, резервные копии перед правками и отдельные версии после исправлений. То есть сайт создавался не “одной кнопкой”, а через десятки маленьких решений.</p>
-          <p>И самое важное: я училась вместе с проектом. Сначала я просто хотела сделать красивую страницу. Потом поняла, что такое песочница. Потом научилась создавать несколько страниц. Потом — объединять их. Потом — думать версиями. Потом — видеть сайт как систему. А потом стало понятно: это уже не черновик, а проект, который не стыдно привести в порядок, документировать и выложить на GitHub.</p>
-          <p>Так путь от первого HTML-документика стал историей не только про сайт, но и про рост. От “я сделала одну страничку в DeepSeek” до “у меня есть образовательная экосистема”. От первого кодика до сети страниц, лаборатории, кабинетов и живого проекта New Generation English.</p>
-        </article>
-      </details>
-      <div class="neural-showcase" id="neural-visual">
-        <div class="neural-showcase-copy">
-          <div class="neural-showcase-kicker" data-ru="Подраздел · визуальный образ" data-en="Subsection · visual image">Подраздел · визуальный образ</div>
-          <h3 data-ru="Красивый робот — сюда: как символ нейронок, а не всей школы" data-en="The beautiful robot belongs here: a symbol of AI tools, not the whole school">Красивый робот — сюда: как символ нейронок, а не всей школы</h3>
-          <p data-ru="Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение." data-en="This image stays inside the AI topic: neural tools help create materials, adapt tasks, and see more options, while the centre of the system remains the person and the teaching decision.">Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение.</p>
-        </div>
-        <div class="hero-media">
-          <img class="img-dark" src="assets/Без%20имени.png" alt="Визуальный образ раздела про нейронки"
-               onerror="if(!document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
-          <img class="img-light" src="assets/hero-cyborg-light.png" alt="Визуальный образ раздела про нейронки"
-               onerror="if(document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
-          <div class="fallback-img" style="display:none; position:absolute; inset:0;">AI · TOOLS<br>NEURAL NOTES<br>3 : 4</div>
-          <div class="hero-media-frame"></div>
-          <div class="hero-media-caption">
-            <span class="dot"></span>
-            <span data-ru="нейронки · инструменты" data-en="AI tools · instruments">нейронки · инструменты</span>
-          </div>
-        </div>
+      <div class="neural-feature-grid">
+        <details class="neural-article-feature">
+          <summary>
+            <div class="neural-article-cover">
+              <div class="neural-article-hook" data-ru="Интересно, к чему всё это приведёт?" data-en="I wonder where all this will lead?">Интересно, к чему всё это приведёт?</div>
+              <div class="neural-article-title"><span data-ru="Нейросети как" data-en="AI as">Нейросети как</span><span data-ru="соавторы" data-en="co-authors">соавторы</span></div>
+              <span class="neural-article-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+            </div>
+          </summary>
+          <article class="neural-article-panel">
+            <h3 data-ru="От первого HTML-документика до сайта, который можно выложить на GitHub" data-en="From the first HTML file to a site ready for GitHub">От первого HTML-документика до сайта, который можно выложить на GitHub</h3>
+            <p>Мой сайт начался не с идеальной структуры и не с большого технического плана. Он начался с одного маленького HTML-документа: Grammar - Present Continuous and Present Perfect - copy 1.html. Это была первая самостоятельная страница, первый кодик, первый момент, когда учебный материал по английской грамматике перестал быть просто текстом и превратился в интерактивную веб-страницу.</p>
+            <figure class="neural-article-shot">
+              <img src="assets/first-html-page-screenshot.png" alt="Скриншот первой HTML-страницы Grammar - Present Continuous and Present Perfect">
+              <figcaption data-ru="Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect" data-en="The very first HTML file: Grammar - Present Continuous and Present Perfect">Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect</figcaption>
+            </figure>
+            <p>Там ещё не было большой экосистемы, личных кабинетов, лаборатории, версий, аудитов и GitHub-логики. Была одна страница: Present Continuous и Present Perfect, карточки, стили, структура, попытка красиво и понятно подать грамматику. Но именно с неё началось главное: я увидела, что могу не только преподавать английский, но и собирать собственные цифровые материалы.</p>
+            <p>Потом появился DeepSeek. В нём я создала одну страницу, потом вторую. Сначала каждая жила отдельно, как маленький самостоятельный остров. Потом пришло понимание: если страницы можно создавать по одной, значит, их можно соединять. Так начался переход от отдельных HTML-файлов к сайту.</p>
+            <p>Важным этапом стало знакомство с песочницей. Я узнала, что можно не бояться экспериментировать: пробовать дизайн, ломать, чинить, сохранять версии, возвращаться назад, сравнивать варианты. Песочница стала местом, где сайт рос без страха. Там появлялись версии 9, 10, 11, 12, 13, 14, 15, 16, 17, 18; были рабочие копии, бэкапы, папки “работать будем только тут”, архивы и сборки. Это уже был не один файл, а настоящий процесс разработки.</p>
+            <p>Постепенно отдельные страницы начали складываться в систему New Generation English. Появились главная страница, раздел “О проекте”, программы, условия, кейсы, блог, страница про путешествия, визуальные материалы и общая навигация. Потом выросла LinguaBoost Lab — интерактивная лаборатория с модулями по уровням от Pre-A1 до B2+: грамматика, лексика, карточки, квизы, тренажёры, задания на говорение и повторение.</p>
+            <p>Следующим большим шагом стали кабинеты. Сайт перестал быть просто витриной и начал превращаться в образовательную платформу. Появился кабинет ученика с расписанием, домашними заданиями, материалами и прогрессом. Появился кабинет преподавателя с уроками, учениками, оплатами, задачами и отчётностью. Появился кабинет родителя, где можно видеть посещаемость, прогресс, уведомления и финансовый блок.</p>
+            <p>Нейросети на этом пути стали не заменой автора, а рабочей командой. DeepSeek помог начать. Claude помогал с дизайном и формулировками. GPT помогал собирать смысл, тексты и структуру. Codex помогал разбираться в коде, объединять страницы, чинить ошибки, делать бэкапы, проверять мобильную версию, править CSS и превращать набор файлов в более аккуратный проект.</p>
+            <p>Отдельная часть пути — это визуальная доводка. Мы проверяли светлую и тёмную тему, мобильную адаптацию, меню, отступы, карточки, контраст, изображения, подписи, порядок разделов. Появились аудит-скриншоты, VISUAL_AUDIT_TODO.md, резервные копии перед правками и отдельные версии после исправлений. То есть сайт создавался не одной кнопкой, а через десятки маленьких решений.</p>
+            <p>И самое важное: я училась вместе с проектом. Сначала я просто хотела сделать красивую страницу. Потом поняла, что такое песочница. Потом научилась создавать несколько страниц. Потом — объединять их. Потом — думать версиями. Потом — видеть сайт как систему. А потом стало понятно: это уже не черновик, а проект, который не стыдно привести в порядок, документировать и выложить на GitHub.</p>
+            <p>Так путь от первого HTML-документика стал историей не только про сайт, но и про рост. От “я сделала одну страничку в DeepSeek” до “у меня есть образовательная экосистема”. От первого кодика до сети страниц, лаборатории, кабинетов и живого проекта New Generation English.</p>
+          </article>
+        </details>
+        <details class="neural-article-feature neural-placeholder-card">
+          <summary>
+            <div class="neural-article-cover">
+              <div class="neural-article-hook" data-ru="Место для будущего текста про уроки и технологии" data-en="A place for a future text about lessons and technology">Место для будущего текста про уроки и технологии</div>
+              <div class="neural-article-title"><span data-ru="Здесь будет" data-en="A new entry">Здесь будет</span><span data-ru="новая запись" data-en="will be here">новая запись</span></div>
+              <span class="neural-article-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
+            </div>
+          </summary>
+          <article class="neural-article-panel">
+            <h3 data-ru="Здесь будет новая запись" data-en="A new entry will be here">Здесь будет новая запись</h3>
+            <p data-ru="Сюда можно поставить следующий текст про то, как нейронки помогают в подготовке уроков, адаптации заданий и личной образовательной системе." data-en="This place can hold the next text about how AI tools help with lesson preparation, task adaptation, and a personal learning system.">Сюда можно поставить следующий текст про то, как нейронки помогают в подготовке уроков, адаптации заданий и личной образовательной системе.</p>
+          </article>
+        </details>
+        <details class="neural-article-feature neural-placeholder-card">
+          <summary>
+            <div class="neural-article-cover">
+              <div class="neural-article-hook" data-ru="Место для нового текста о границах ИИ" data-en="A place for a new text about AI boundaries">Место для нового текста о границах ИИ</div>
+              <div class="neural-article-title"><span data-ru="Здесь будет" data-en="A new entry">Здесь будет</span><span data-ru="новая запись" data-en="will be here">новая запись</span></div>
+              <span class="neural-article-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
+            </div>
+          </summary>
+          <article class="neural-article-panel">
+            <h3 data-ru="Здесь будет новая запись" data-en="A new entry will be here">Здесь будет новая запись</h3>
+            <p data-ru="Здесь появится отдельная заметка о том, где технологии помогают, а где всё равно остаётся живое педагогическое решение." data-en="A separate note will appear here about where technology helps and where live teaching judgment still matters.">Здесь появится отдельная заметка о том, где технологии помогают, а где всё равно остаётся живое педагогическое решение.</p>
+          </article>
+        </details>
       </div>
     </section>
 
@@ -1294,17 +1572,55 @@ body.light .neural-article-hook {
         <div class="sect-index">04<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
         <div><div class="sect-eyebrow" data-ru="Личный маршрут" data-en="Personal route">Личный маршрут</div><h2 class="sect-title" data-ru="Про мой путь" data-en="About my path">Про мой путь</h2></div>
       </div>
-      <div class="blog-grid">
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="1 апреля 2025 · 6 мин чтения" data-en="Apr 1, 2025 · 6 min read">1 апреля 2025 · 6 мин чтения</div>
-          <h3 class="entry-title" data-ru="Почему я выбрала преподавание" data-en="Why I chose teaching">Почему я выбрала преподавание</h3>
-          <p class="entry-text" data-ru="Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми." data-en="A short story about how English became my profession: what helped, what got in the way, and what decisions mattered.">Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми.</p>
-        </article>
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="12 марта 2025 · 5 мин чтения" data-en="Mar 12, 2025 · 5 min read">12 марта 2025 · 5 мин чтения</div>
-          <h3 class="entry-title" data-ru="Как я училась учить" data-en="How I learned to teach">Как я училась учить</h3>
-          <p class="entry-text" data-ru="Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом." data-en="About experience, mistakes, and lessons: how my system formed, why I prefer clear routes, and what I consider a real outcome.">Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом.</p>
-        </article>
+      <div class="dynasty-list">
+        <details class="dynasty-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Почему я выбрала преподавание" data-en="Why I chose teaching">Почему я выбрала преподавание</div>
+              <div class="dynasty-cover-hook" data-ru="1 апреля 2025 · 6 мин чтения" data-en="Apr 1, 2025 · 6 min read">1 апреля 2025 · 6 мин чтения</div>
+              <span class="dynasty-toggle" data-ru="Открыть заметку" data-en="Open note">Открыть заметку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Личный маршрут" data-en="Personal route">Личный маршрут</div>
+              <h3 class="dynasty-title" data-ru="Почему я выбрала преподавание" data-en="Why I chose teaching">Почему я выбрала преподавание</h3>
+              <p class="dynasty-lead" data-ru="Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми." data-en="A short story about how English became my profession: what helped, what got in the way, and what decisions mattered.">Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми.</p>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Как я училась учить" data-en="How I learned to teach">Как я училась учить</div>
+              <div class="dynasty-cover-hook" data-ru="12 марта 2025 · 5 мин чтения" data-en="Mar 12, 2025 · 5 min read">12 марта 2025 · 5 мин чтения</div>
+              <span class="dynasty-toggle" data-ru="Открыть заметку" data-en="Open note">Открыть заметку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Личный маршрут" data-en="Personal route">Личный маршрут</div>
+              <h3 class="dynasty-title" data-ru="Как я училась учить" data-en="How I learned to teach">Как я училась учить</h3>
+              <p class="dynasty-lead" data-ru="Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом." data-en="About experience, mistakes, and lessons: how my system formed, why I prefer clear routes, and what I consider a real outcome.">Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом.</p>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature journal-placeholder">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title"><span data-ru="Здесь будет" data-en="A new entry">Здесь будет</span><span data-ru="новая запись" data-en="will be here">новая запись</span></div>
+              <div class="dynasty-cover-hook" data-ru="Место для следующей личной заметки" data-en="A place for the next personal note">Место для следующей личной заметки</div>
+              <span class="dynasty-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Черновик · будущая заметка" data-en="Draft · future note">Черновик · будущая заметка</div>
+              <h3 class="dynasty-title" data-ru="Здесь будет новая запись" data-en="A new entry will be here">Здесь будет новая запись</h3>
+              <p class="dynasty-lead" data-ru="Здесь появится следующий текст о личном профессиональном пути, решениях, опыте и точках роста." data-en="The next text about a personal professional path, decisions, experience, and growth points will appear here.">Здесь появится следующий текст о личном профессиональном пути, решениях, опыте и точках роста.</p>
+            </div>
+          </article>
+        </details>
       </div>
     </section>
 
@@ -1316,17 +1632,55 @@ body.light .neural-article-hook {
         <div class="sect-index">05<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
         <div><div class="sect-eyebrow" data-ru="Тексты и методика" data-en="Texts and methodology">Тексты и методика</div><h2 class="sect-title" data-ru="Про авторство" data-en="About authorship">Про авторство</h2></div>
       </div>
-      <div class="blog-grid">
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="24 марта 2025 · 5 мин чтения" data-en="Mar 24, 2025 · 5 min read">24 марта 2025 · 5 мин чтения</div>
-          <h3 class="entry-title" data-ru="Зачем преподавателю авторские материалы" data-en="Why a teacher needs original materials">Зачем преподавателю авторские материалы</h3>
-          <p class="entry-text" data-ru="Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес." data-en="A textbook gives a foundation, while original material helps reach the learner more precisely: their goal, level, pace, and living interest.">Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес.</p>
-        </article>
-        <article class="blog-entry">
-          <div class="entry-meta" data-ru="16 марта 2025 · 4 мин чтения" data-en="Mar 16, 2025 · 4 min read">16 марта 2025 · 4 мин чтения</div>
-          <h3 class="entry-title" data-ru="Как рождается урок" data-en="How a lesson is born">Как рождается урок</h3>
-          <p class="entry-text" data-ru="От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться." data-en="From idea to task: observation, topic logic, the needed language skill, and a format that makes the learner want to engage.">От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться.</p>
-        </article>
+      <div class="dynasty-list">
+        <details class="dynasty-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Зачем преподавателю авторские материалы" data-en="Why a teacher needs original materials">Зачем преподавателю авторские материалы</div>
+              <div class="dynasty-cover-hook" data-ru="24 марта 2025 · 5 мин чтения" data-en="Mar 24, 2025 · 5 min read">24 марта 2025 · 5 мин чтения</div>
+              <span class="dynasty-toggle" data-ru="Открыть заметку" data-en="Open note">Открыть заметку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Тексты и методика" data-en="Texts and methodology">Тексты и методика</div>
+              <h3 class="dynasty-title" data-ru="Зачем преподавателю авторские материалы" data-en="Why a teacher needs original materials">Зачем преподавателю авторские материалы</h3>
+              <p class="dynasty-lead" data-ru="Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес." data-en="A textbook gives a foundation, while original material helps reach the learner more precisely: their goal, level, pace, and living interest.">Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес.</p>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Как рождается урок" data-en="How a lesson is born">Как рождается урок</div>
+              <div class="dynasty-cover-hook" data-ru="16 марта 2025 · 4 мин чтения" data-en="Mar 16, 2025 · 4 min read">16 марта 2025 · 4 мин чтения</div>
+              <span class="dynasty-toggle" data-ru="Открыть заметку" data-en="Open note">Открыть заметку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Тексты и методика" data-en="Texts and methodology">Тексты и методика</div>
+              <h3 class="dynasty-title" data-ru="Как рождается урок" data-en="How a lesson is born">Как рождается урок</h3>
+              <p class="dynasty-lead" data-ru="От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться." data-en="From idea to task: observation, topic logic, the needed language skill, and a format that makes the learner want to engage.">От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться.</p>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature journal-placeholder">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title"><span data-ru="Здесь будет" data-en="A new entry">Здесь будет</span><span data-ru="новая запись" data-en="will be here">новая запись</span></div>
+              <div class="dynasty-cover-hook" data-ru="Место для следующего текста об авторстве" data-en="A place for the next text about authorship">Место для следующего текста об авторстве</div>
+              <span class="dynasty-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Черновик · будущая заметка" data-en="Draft · future note">Черновик · будущая заметка</div>
+              <h3 class="dynasty-title" data-ru="Здесь будет новая запись" data-en="A new entry will be here">Здесь будет новая запись</h3>
+              <p class="dynasty-lead" data-ru="Сюда можно добавить новый текст про методику, авторские материалы, учебные находки или внутреннюю кухню урока." data-en="A new text about methodology, original materials, teaching discoveries, or the inner life of a lesson can be added here.">Сюда можно добавить новый текст про методику, авторские материалы, учебные находки или внутреннюю кухню урока.</p>
+            </div>
+          </article>
+        </details>
       </div>
     </section>
 
@@ -1540,31 +1894,12 @@ body.light .neural-article-hook {
   <footer class="footer legal-footer">
   <div class="footer-legal">
     <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
-    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
+    <p data-ru="Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга." data-en="The term “neuro-school” is used as the author’s working description of a learning approach, not as a medical, neuropsychological, or corrective service.">Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
   </div>
 </footer>
-</div>
 
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-  <script>
-    document.querySelectorAll('.dynasty-list').forEach((list) => {
-      list.addEventListener('toggle', (event) => {
-        const opened = event.target;
-        if (!(opened instanceof HTMLDetailsElement) || !opened.open || !opened.classList.contains('dynasty-feature')) return;
-        list.querySelectorAll('.dynasty-feature[open]').forEach((item) => {
-          if (item !== opened) item.removeAttribute('open');
-        });
-      }, true);
-    });
-  </script>
-<script defer src="./assets/visitor-counter.js"></script>
+<script defer src="./site.js"></script>
+<script defer src="./theme-cycle.js"></script>
 </body>
 </html>
-
-
-
-
-

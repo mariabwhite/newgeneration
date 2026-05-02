@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Ancient China Explorer | LinguaBoost Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #8B0000 0%, #2C1810 100%);
+            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Noto Sans CJK SC', cursive, sans-serif;
+            padding: 20px 16px 60px;
+            min-height: 100vh;
+        }
+
+        /* китайский орнамент */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            border-radius: 64px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: center;
+            border: 3px solid #FF4500;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .hero::before {
+            content: "🐉";
+            font-size: 3rem;
+            position: absolute;
+            left: 15px;
+            top: -10px;
+            opacity: 0.5;
+        }
+        .hero::after {
+            content: "🐲";
+            font-size: 3rem;
+            position: absolute;
+            right: 15px;
+            bottom: -10px;
+            opacity: 0.5;
+        }
+        h1 {
+            font-size: 2.3rem;
+            color: #2C1810;
+            text-shadow: 2px 2px 0 #FFD700;
+        }
+        .sub {
+            font-size: 1.2rem;
+            background: #2C1810;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 60px;
+            color: #FFD700;
+        }
+
+        .card {
+            background: rgba(255,248,225,0.95);
+            border-radius: 48px;
+            padding: 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 18px 28px rgba(0,0,0,0.2);
+            border-left: 8px solid #DAA520;
+            border-right: 2px solid #DAA520;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            background: #8B0000;
+            display: inline-block;
+            padding: 6px 28px;
+            border-radius: 60px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* flip cards */
+        .grid-flip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .flip-card {
+            background: transparent;
+            width: 150px;
+            height: 130px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            border-radius: 20px;
+        }
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+        .flip-front {
+            background: #DAA520;
+            color: #2C1810;
+            border: 2px solid #8B0000;
+        }
+        .flip-back {
+            background: #2C1810;
+            color: #FFD700;
+            transform: rotateY(180deg);
+            border: 2px solid #DAA520;
+        }
+        .speak-btn {
+            background: #FFD700;
+            border: none;
+            border-radius: 30px;
+            padding: 5px 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* упражнения */
+        .quiz-item {
+            background: #FFF8E7;
+            border-radius: 32px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #DAA520;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .opt {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.1s;
+        }
+        .opt.correct-selected {
+            background: #228B22;
+        }
+        .opt.wrong-selected {
+            background: #8B0000;
+            opacity: 0.6;
+        }
+
+        .btn {
+            background: #DAA520;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2C1810;
+            cursor: pointer;
+            margin: 8px 5px;
+            box-shadow: 0 4px 0 #8B0000;
+            transition: 0.05s linear;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #8B0000;
+        }
+
+        .timer-box {
+            font-family: monospace;
+            font-size: 1.5rem;
+            background: #2C1810;
+            color: #FFD700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        textarea {
+            width: 100%;
+            border-radius: 28px;
+            padding: 12px;
+            border: 2px solid #DAA520;
+            font-size: 1rem;
+            margin: 12px 0;
+        }
+        .score-board {
+            text-align: center;
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            padding: 16px;
+            border-radius: 80px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            position: sticky;
+            bottom: 10px;
+            color: #2C1810;
+        }
+        @media (max-width: 700px) {
+            .flip-card { width: 130px; height: 110px; }
+        }
+    </style>
+  <link rel="stylesheet" href="../assets/studio-badge.css">
+  <link rel="stylesheet" href="../assets/studio-module-patch.css">
+  <script defer src="../assets/studio-module-shell.js"></script>
+<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<style>
+.legal-footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  color: rgba(235,238,245,0.52);
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.legal-footer p { margin: 0 0 8px; }
+.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
+.legal-footer a:hover { color: #ff8a3d; }
+</style>
+</head>
+<body>
+<div class="lbs-ribbon">
+  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
+  <div class="lbs-ribbon__meta">
+    <span class="lbs-pill">A2</span>
+    <span class="lbs-pill">School learners</span>
+    <span class="lbs-pill">Culture lesson</span>
+  </div>
+  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+</div>
+<div class="container">
+    <div class="hero">
+        <h1>🇨🇳 Древний Китай 🇨🇳</h1>
+        <div class="sub">🐼 Учимся играя с Федей! 🎋</div>
+    </div>
+
+    <!-- 1. FLIP CARDS словарь -->
+    <div class="card">
+        <div class="section-title">📖 Словарик · переверни карточку</div>
+        <div class="grid-flip" id="vocabGrid"></div>
+    </div>
+
+    <!-- 2. Упражнение fill gap (10 предложений) -->
+    <div class="card">
+        <div class="section-title">✏️ Выбери правильное слово</div>
+        <div id="gapQuiz"></div>
+        <button class="btn" id="checkGapBtn">✅ Проверить упражнение</button>
+    </div>
+
+    <!-- 3. Speaking задание -->
+    <div class="card">
+        <div class="section-title">🗣️ Speaking · Моё путешествие в Китай</div>
+        <p><strong>Шаблон:</strong> I want to visit... First, I will see... Then I will eat... Because...</p>
+        <button class="btn" id="showIdeasBtn">📋 Показать идеи</button>
+        <button class="btn" id="startTimerBtn">🎤 Start speaking (30 sec)</button>
+        <span class="timer-box" id="timerDisplay">00:00</span>
+        <textarea id="speechAnswer" rows="3" placeholder="Напиши или скажи свой ответ..."></textarea>
+        <button class="btn" id="submitSpeechBtn">🏆 Отправить ответ +10 очков</button>
+        <div id="speechFeedback" style="margin-top:8px;"></div>
+    </div>
+
+    <!-- 4. Аудирование -->
+    <div class="card">
+        <div class="section-title">🎧 Аудирование · Послушай Мэй</div>
+        <button class="btn" id="listenBtn">🔊 Listen: My city Beijing</button>
+        <div id="audioQuiz"></div>
+        <button class="btn" id="checkAudioBtn">Проверить аудирование</button>
+    </div>
+
+    <!-- 5. Три текста о достопримечательностях -->
+    <div class="card">
+        <div class="section-title">🏯 Новые места Китая</div>
+        <div id="textsReading"></div>
+        <button class="btn" id="checkReadingBtn">✅ Проверить TRUE/FALSE</button>
+    </div>
+
+    <!-- ФИНАЛЬНЫЙ СЧЁТ -->
+    <div class="score-board">
+        🎋 ИТОГО: <span id="scoreValue">0</span> очков 🐉
+    </div>
+</div>
+
+<script>
+    // ---------- СЛОВАРЬ (все категории) ----------
+    const vocab = [
+        { ru: "Великая стена", en: "the Great Wall" }, { ru: "Запретный город", en: "the Forbidden City" },
+        { ru: "Терракотовая армия", en: "the Terracotta Army" }, { ru: "древние храмы", en: "ancient temples" },
+        { ru: "императорские дворцы", en: "imperial palaces" }, { ru: "пагоды", en: "pagodas" },
+        { ru: "каменные мосты", en: "stone bridges" }, { ru: "городские стены", en: "city walls" },
+        { ru: "традиционные сады", en: "traditional gardens" }, { ru: "старые ворота", en: "old gates" },
+        { ru: "панды", en: "pandas" }, { ru: "бамбук", en: "bamboo" }, { ru: "рис", en: "rice" },
+        { ru: "лапша", en: "noodles" }, { ru: "чай", en: "tea" }, { ru: "чайная культура", en: "tea culture" },
+        { ru: "уличная еда", en: "street food" }, { ru: "Китайский новый год", en: "Chinese New Year" },
+        { ru: "Пекин", en: "Beijing" }, { ru: "Шанхай", en: "Shanghai" }, { ru: "многолюдные улицы", en: "crowded streets" },
+        { ru: "фабрики", en: "factories" }, { ru: "технологии", en: "technology" }, { ru: "императоры", en: "emperors" },
+        { ru: "империя", en: "empire" }, { ru: "шёлк", en: "silk" }, { ru: "бумага", en: "paper" }, { ru: "торговля", en: "trade" }
+    ];
+
+    let totalScore = 0;
+    function addPoints(p) { totalScore += p; document.getElementById('scoreValue').innerText = totalScore; }
+
+    // 1. FLIP CARDS с озвучкой
+    function renderFlipCards() {
+        const container = document.getElementById('vocabGrid');
+        container.innerHTML = '';
+        vocab.forEach((item, idx) => {
+            const flipDiv = document.createElement('div');
+            flipDiv.className = 'flip-card';
+            flipDiv.innerHTML = `<div class="flip-inner">
+                <div class="flip-front">🇷🇺 ${item.ru}</div>
+                <div class="flip-back">🇬🇧 ${item.en}<br><button class="speak-btn" data-word="${item.en}">🔊 Произнести</button></div>
+            </div>`;
+            flipDiv.addEventListener('click', (e) => {
+                if(e.target.classList.contains('speak-btn')) {
+                    e.stopPropagation();
+                    speakWord(e.target.getAttribute('data-word'));
+                } else flipDiv.classList.toggle('flipped');
+            });
+            container.appendChild(flipDiv);
+        });
+    }
+    function speakWord(word) { if(window.speechSynthesis) { let u = new SpeechSynthesisUtterance(word); u.lang='en-US'; speechSynthesis.cancel(); speechSynthesis.speak(u); } }
+
+    // 2. GAP FILL (10 предложений)
+    const gapSentences = [
+        { text: "China is a very __________ country.", options: ["interesting", "boring", "small"], correct: "interesting" },
+        { text: "There are many big __________ like Beijing and Shanghai.", options: ["rivers", "cities", "mountains"], correct: "cities" },
+        { text: "The streets are often very __________.", options: ["empty", "crowded", "quiet"], correct: "crowded" },
+        { text: "China is famous for the Great Wall and __________.", options: ["pandas", "tigers", "elephants"], correct: "pandas" },
+        { text: "People eat __________ and noodles.", options: ["bread", "rice", "pizza"], correct: "rice" },
+        { text: "__________ food is also very popular.", options: ["Street", "Fast", "Frozen"], correct: "Street" },
+        { text: "__________ culture is important in China.", options: ["Coffee", "Tea", "Milk"], correct: "Tea" },
+        { text: "Chinese __________ Year is a big holiday.", options: ["Old", "New", "Lunar"], correct: "New" },
+        { text: "China has many __________ and produces a lot of things.", options: ["factories", "farms", "schools"], correct: "factories" },
+        { text: "It is also very modern because of __________.", options: ["nature", "technology", "animals"], correct: "technology" }
+    ];
+    let gapAnswers = new Array(10).fill(null);
+    function renderGapQuiz() {
+        const container = document.getElementById('gapQuiz');
+        container.innerHTML = '';
+        gapSentences.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div>${idx+1}. ${item.text}</div><div class="options" id="gapOpts-${idx}"></div>`;
+            container.appendChild(div);
+            const optsDiv = div.querySelector(`.options`);
+            const shuffled = [...item.options];
+            shuffled.forEach(opt => {
+                const optBtn = document.createElement('div');
+                optBtn.className = 'opt';
+                optBtn.innerText = opt;
+                optBtn.addEventListener('click', () => {
+                    document.querySelectorAll(`#gapOpts-${idx} .opt`).forEach(b => { b.style.background = "#8B0000"; b.style.opacity = "0.7"; });
+                    optBtn.style.background = "#DAA520";
+                    optBtn.style.opacity = "1";
+                    gapAnswers[idx] = opt;
+                });
+                optsDiv.appendChild(optBtn);
+            });
+        });
+    }
+    function checkGap() {
+        let correct = 0;
+        gapSentences.forEach((item, i) => { if(gapAnswers[i] === item.correct) correct++; });
+        addPoints(correct * 3);
+        alert(`Правильных ответов: ${correct}/${gapSentences.length}\n+${correct*3} очков!`);
+    }
+
+    // 3. Speaking
+    document.getElementById('showIdeasBtn').onclick = () => { document.getElementById('speechFeedback').innerHTML = "💡 Идеи: Great Wall, pandas, Beijing noodles, Forbidden City, terracotta warriors!"; };
+    let timerInterval;
+    document.getElementById('startTimerBtn').onclick = () => {
+        if(timerInterval) clearInterval(timerInterval);
+        let seconds = 30;
+        const disp = document.getElementById('timerDisplay');
+        const update = () => {
+            let m = Math.floor(seconds/60);
+            let s = seconds%60;
+            disp.innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            if(seconds<=0) { clearInterval(timerInterval); disp.innerText = "TIME'S UP!"; }
+            seconds--;
+        };
+        update();
+        timerInterval = setInterval(update,1000);
+    };
+    document.getElementById('submitSpeechBtn').onclick = () => {
+        let answer = document.getElementById('speechAnswer').value.trim();
+        if(answer.length > 15) { addPoints(10); document.getElementById('speechFeedback').innerHTML = "✨ Отличная речь! +10 очков"; }
+        else { document.getElementById('speechFeedback').innerHTML = "📝 Напиши подлиннее (минимум 15 символов)"; }
+    };
+
+    // 4. Аудирование
+    const audioText = "Hello! My name is Mei. I live in Beijing. The Forbidden City is very old and beautiful. Many tourists visit it every year. I want to go there with my family.";
+    const audioQuestions = [
+        { q: "What is the girl's name?", opts: ["Li", "Mei", "Zhou"], correct: "Mei" },
+        { q: "Where does she live?", opts: ["Shanghai", "Beijing", "Guilin"], correct: "Beijing" },
+        { q: "What place does she want to visit?", opts: ["Great Wall", "Forbidden City", "Terracotta Army"], correct: "Forbidden City" }
+    ];
+    let audioAnswers = new Array(3).fill(null);
+    function renderAudioQuiz() {
+        const container = document.getElementById('audioQuiz');
+        container.innerHTML = '';
+        audioQuestions.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div>${idx+1}. ${item.q}</div><div class="options" id="audioOpts-${idx}"></div>`;
+            container.appendChild(div);
+            item.opts.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'opt';
+                btn.innerText = opt;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll(`#audioOpts-${idx} .opt`).forEach(b => b.style.background = "#8B0000");
+                    btn.style.background = "#228B22";
+                    audioAnswers[idx] = opt;
+                });
+                div.querySelector(`.options`).appendChild(btn);
+            });
+        });
+    }
+    document.getElementById('listenBtn').onclick = () => { speakWord(audioText); };
+    function checkAudio() {
+        let correct = 0;
+        audioQuestions.forEach((q,i) => { if(audioAnswers[i] === q.correct) correct++; });
+        addPoints(correct * 3);
+        alert(`Аудирование: ${correct}/3 правильных! +${correct*3} очков`);
+    }
+
+    // 5. Три текста + TRUE/FALSE
+    const readingItems = [
+        { title: "🏯 The Summer Palace", text: "The Summer Palace is in Beijing. It has a big lake and many gardens. Emperors liked to rest there in summer.", statement: "The Summer Palace has a big lake.", answer: true },
+        { title: "🏞️ The Li River", text: "The Li River is in Guilin. The mountains near the river look like paintings. Many people take a boat trip there.", statement: "The Li River is near Beijing.", answer: false },
+        { title: "🗿 The Giant Buddha of Leshan", text: "The Giant Buddha is a huge stone statue carved into a mountain. It is over 70 metres tall.", statement: "The Giant Buddha is more than 70 metres tall.", answer: true }
+    ];
+    let readingUser = new Array(3).fill(null);
+    function renderReading() {
+        const container = document.getElementById('textsReading');
+        container.innerHTML = '';
+        readingItems.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-item';
+            div.innerHTML = `<div><strong>${item.title}</strong><br>${item.text}</div>
+            <div style="margin-top:12px;"><strong>❓ TRUE or FALSE:</strong> ${item.statement}</div>
+            <div class="options"><div class="opt" data-r-idx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-r-idx="${idx}" data-val="false">❌ FALSE</div></div>`;
+            container.appendChild(div);
+        });
+        document.querySelectorAll('[data-r-idx]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                const idx = parseInt(el.dataset.rIdx);
+                const val = el.dataset.val === 'true';
+                readingUser[idx] = val;
+                el.style.background = "#228B22";
+                document.querySelectorAll(`[data-r-idx="${idx}"]`).forEach(b => { if(b !== el) b.style.background = "#8B0000"; });
+            });
+        });
+    }
+    function checkReading() {
+        let correct = 0;
+        readingItems.forEach((item, i) => { if(readingUser[i] === item.answer) correct++; });
+        addPoints(correct * 4);
+        alert(`Чтение: ${correct}/${readingItems.length} правильных! +${correct*4} очков`);
+    }
+
+    // Инициализация
+    renderFlipCards();
+    renderGapQuiz();
+    renderAudioQuiz();
+    renderReading();
+
+    document.getElementById('checkGapBtn').onclick = checkGap;
+    document.getElementById('checkAudioBtn').onclick = checkAudio;
+    document.getElementById('checkReadingBtn').onclick = checkReading;
+</script>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="../../assets/visitor-counter.js"></script>
+<footer class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+  <p>В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+</footer>
+</body>
+</html>
+

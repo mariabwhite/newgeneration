@@ -1,25 +1,33 @@
-function setTheme(theme) {
-  const nextTheme = theme === "light" ? "light" : "dark";
-  document.documentElement.dataset.theme = nextTheme;
+﻿function setTheme(theme) {
+  const themes = ["dark", "light"];
+  const nextTheme = themes.includes(theme) ? theme : "dark";
+  if (window.NGETheme && typeof window.NGETheme.setTheme === "function") {
+    window.NGETheme.setTheme(nextTheme);
+    return;
+  }
+    document.documentElement.dataset.theme = nextTheme;
   document.body.classList.toggle("light", nextTheme === "light");
-
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
-    const isLight = nextTheme === "light";
-    themeToggle.textContent = isLight ? "☀" : "☾";
-    themeToggle.setAttribute("aria-pressed", String(isLight));
-    themeToggle.setAttribute(
-      "aria-label",
-      isLight ? "Включить темную тему" : "Включить светлую тему"
-    );
+    const labels = { light: "LIGHT", dark: "DARK" };
+    themeToggle.textContent = labels[nextTheme];
+    themeToggle.setAttribute("aria-pressed", String(nextTheme !== "light"));
+    themeToggle.setAttribute("aria-label", `Переключить тему: сейчас ${labels[nextTheme]}`);
+    themeToggle.dataset.themeCurrent = nextTheme;
   }
 
   localStorage.setItem("nge-theme", nextTheme);
 }
 
 function toggleTheme() {
-  const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
-  setTheme(nextTheme);
+  if (window.NGETheme && typeof window.NGETheme.toggleTheme === "function") {
+    window.NGETheme.toggleTheme();
+    return;
+  }
+  const themes = ["dark", "light"];
+  const current = document.documentElement.dataset.theme || (document.body.classList.contains("light") ? "light" : "dark");
+  const currentIndex = themes.indexOf(current);
+  setTheme(themes[(currentIndex + 1) % themes.length]);
 }
 
 function setLanguage(lang) {
@@ -56,10 +64,7 @@ function markActiveNav() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const storedTheme = localStorage.getItem("nge-theme");
-  if (storedTheme === "light") {
-    setTheme("light");
-  }
+  setTheme(localStorage.getItem("nge-theme") || "dark");
 
   const storedLang = localStorage.getItem("nge-lang");
   if (storedLang === "en") {

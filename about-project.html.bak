@@ -1,0 +1,876 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Рћ РїСЂРѕРµРєС‚Рµ New Generation English: Р±РёРѕРіСЂР°С„РёСЏ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ, РёРґРµСЏ РЅРµР№СЂРѕС€РєРѕР»С‹, РґРѕРєСѓРјРµРЅС‚С‹ Рё РєР°Р±РёРЅРµС‚С‹ РІРЅСѓС‚СЂРё РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅРѕР№ СЌРєРѕСЃРёСЃС‚РµРјС‹.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Рћ РїСЂРѕРµРєС‚Рµ New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="./system.css" as="style">
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+    const btn = document.querySelector(".control-btn");
+    if (btn) btn.textContent = document.body.classList.contains("light") ? "вЂ" : "вѕ";
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute("lang") || "ru";
+    const next = cur === "ru" ? "en" : "ru";
+    document.documentElement.setAttribute("lang", next);
+    document.querySelectorAll("[data-ru]").forEach(el => {
+      const val = el.getAttribute("data-" + next);
+      if (val) el.textContent = val;
+    });
+    const btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = next.toUpperCase();
+    localStorage.setItem("nge-lang", next);
+  }
+
+  function updateExperienceCounter() {
+    const el = document.getElementById("expCounter");
+    if (!el) return;
+
+    // Teacher experience counter: since 2009-09-01.
+    const start = new Date(2009, 8, 1); // months are 0-based
+    const now = new Date();
+
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+      months -= 1;
+      const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonthDays;
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    el.textContent = years + "+";
+    const lang = document.documentElement.getAttribute("lang") || "ru";
+    el.title = lang === "en"
+      ? `${years}y ${months}m ${days}d since Sep 1, 2009`
+      : `${years} Р»РµС‚ ${months} РјРµСЃ ${days} РґРЅ СЃ 1 СЃРµРЅС‚СЏР±СЂСЏ 2009`;
+  }
+
+  function updateExperienceTicker() {
+    const ticker = document.getElementById("expTicker");
+    if (!ticker) return;
+
+    const start = new Date(2009, 8, 1);
+    const now = new Date();
+
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+      months -= 1;
+      const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonthDays;
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const hh = pad2(now.getHours());
+    const mm = pad2(now.getMinutes());
+    const ss = pad2(now.getSeconds());
+    const digits = `${years}y ${pad2(months)}m ${pad2(days)}d ${hh}:${mm}:${ss}`;
+
+    const lang = document.documentElement.getAttribute("lang") || "ru";
+    ticker.textContent = (lang === "en" ? "EXP: " : "РЎРўРђР–: ") + digits;
+    ticker.title = lang === "en"
+      ? `${years}y ${months}m ${days}d since Sep 1, 2009`
+      : `${years} Р»РµС‚ ${months} РјРµСЃ ${days} РґРЅ СЃ 1 СЃРµРЅС‚СЏР±СЂСЏ 2009`;
+  }
+  function markActiveNav() {
+    const page = document.body.dataset.page;
+    if (!page) return;
+    document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+      l.classList.toggle("active", l.dataset.nav === page);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function restore() {
+    try {
+      const savedLang = localStorage.getItem("nge-lang");
+      if (savedLang === "en") toggleLang();
+    } catch (e) {}
+
+    markActiveNav();
+    updateExperienceCounter();
+    updateExperienceTicker();
+    // About-me ticker: update once per second without touching the hero counter.
+    setInterval(updateExperienceTicker, 1000);
+  });
+</script>
+<style>
+/* ============================================================
+   TOKENS вЂ” STRICT SYSTEM FROM INDEX.HTML
+   ============================================================ */
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* ============================================================
+   TOPBAR (СЃРѕС…СЂР°РЅРµРЅ РёР· about)
+   ============================================================ */
+/* ============================================================
+   SECTION PRIMITIVES
+   ============================================================ */
+.sect-head {
+  display: grid; grid-template-columns: 140px minmax(0, 1fr);
+  gap: 40px; margin-bottom: 48px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-3);
+  -webkit-text-stroke: 0;
+  color: var(--text-3);
+  margin-top: 8px;
+}
+.sect-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.section { padding: 80px 24px; max-width: 1240px; margin: 0 auto; }
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ============================================================
+   ECOSYSTEM BUTTON STRIP (top shortcuts)
+   ============================================================ */
+.ecosystem-strip {
+  max-width: 1240px;
+  margin: 18px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.eco-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 60%),
+    rgba(0,0,0,0.78);
+  color: var(--text);
+  border: 1px solid rgba(255,90,31,0.55);
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 10px 26px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  min-height: 40px;
+}
+.eco-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 86%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+.eco-btn:active { transform: translateY(0); }
+.eco-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* Light theme: avoid dark pills on cream background */
+body.light .eco-btn {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%),
+    rgba(255,255,255,0.92);
+  border-color: color-mix(in srgb, var(--accent) 42%, rgba(0,0,0,0.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 0 0 1px rgba(0,0,0,0.02),
+    0 14px 30px rgba(16, 12, 8, 0.14);
+}
+body.light .eco-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, rgba(0,0,0,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 14%, transparent),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+body.light .eco-btn:focus-visible {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent),
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+.eco-btn-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.eco-btn-arrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.9;
+}
+@media (max-width: 980px) {
+  .ecosystem-strip { grid-template-columns: 1fr; }
+  .eco-btn { justify-content: center; }
+  .eco-btn-arrow { display: none; }
+}
+
+.eco-btn.is-active {
+  border-color: color-mix(in srgb, var(--accent) 86%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+body.light .eco-btn.is-active {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 14%, transparent),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+
+.eco-cabinets {
+  padding-top: 34px;
+  padding-bottom: 10px;
+  scroll-margin-top: 86px;
+}
+.eco-cabinets .sect-head { position: relative; margin-bottom: 18px; }
+.eco-cabinets-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-2) 70%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+body.light .eco-cabinets-close {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.10);
+  color: var(--text);
+}
+
+.cabinet-card.is-active {
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 16px 34px rgba(0,0,0,0.55);
+}
+body.light .cabinet-card.is-active {
+  border-color: color-mix(in srgb, var(--accent) 55%, rgba(0,0,0,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 18px 38px rgba(16, 12, 8, 0.14);
+}
+
+/* ============================================================
+   HERO (РїРµСЂРµРґРµР»Р°РЅ РїРѕРґ СЃРёСЃС‚РµРјСѓ)
+   ============================================================ */
+/* ============================================================
+   ABOUT GRID (2 РєРѕР»РѕРЅРєРё С‚РµРєСЃС‚Р°)
+   ============================================================ */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.about-text p {
+  margin-bottom: 18px;
+  font-size: 16px; line-height: 1.65;
+  color: var(--text-2);
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+
+/* ============================================================
+   CABINET GRID
+   ============================================================ */
+.cabinet-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cabinet-card {
+  position: relative;
+  padding: 28px 24px 24px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.cabinet-num {
+  position: absolute; top: 20px; right: 20px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; color: var(--text-3);
+}
+.cabinet-title {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.cabinet-list {
+  list-style: none; margin-bottom: 20px;
+}
+.cabinet-list li {
+  position: relative; padding-left: 20px;
+  font-size: 14px; color: var(--text-2); line-height: 1.6;
+  margin-bottom: 8px;
+}
+.cabinet-list li::before {
+  content: "в†’"; position: absolute; left: 0;
+  font-family: var(--mono); color: var(--accent); font-weight: 700;
+}
+.cabinet-status {
+  display: block;
+  width: fit-content;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 4px;
+  margin: 14px auto 0;
+}
+
+/* Cabinets emphasis (about page only) */
+.cabinet-card::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 16px;
+  height: 1px;
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+  opacity: .85;
+  pointer-events: none;
+}
+.cabinet-lead {
+  max-width: 980px;
+  margin: 0 auto 28px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-2);
+}
+
+/* Experience counter */
+
+/* Neuro-school clarification note (Section 01) */
+.neuro-definition {
+  position: relative;
+  padding: 28px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 90, 31, 0.10), rgba(255, 90, 31, 0.03));
+  border: 1px solid rgba(255, 90, 31, 0.25);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin: 24px 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.neuro-definition p { margin: 0; }
+.neuro-definition .note { margin-top: 10px; color: var(--text-2); }
+.neuro-definition strong { color: var(--text); }
+
+.neuro-definition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0.6;
+}
+
+.neuro-definition .document-heading {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  margin-bottom: 14px;
+}
+
+.neuro-definition:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 90, 31, 0.4);
+}
+
+/* Dark theme only: IMPORTANT (вЂњР’РђР–РќРћвЂќ) block styling */
+body:not(.light) .important-box,
+body:not(.light) .neuro-definition {
+  background: linear-gradient(180deg, rgba(255, 90, 31, 0.15), rgba(255, 90, 31, 0.05));
+  border: 1px solid rgba(255, 90, 31, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(255, 90, 31, 0.2),
+    0 12px 40px rgba(255, 90, 31, 0.1);
+}
+
+body:not(.light) .important-box p,
+body:not(.light) .neuro-definition .note {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body:not(.light) .important-box strong,
+body:not(.light) .neuro-definition strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ============================================================
+   ARTICLES GRID
+   ============================================================ */
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.article-card {
+  padding: 40px 36px;
+}
+.article-card h3 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.article-card p {
+  font-size: 17px; line-height: 1.65;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.article-card p:last-child { margin-bottom: 0; }
+.bio-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto 28px;
+}
+.document-box {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.document-heading {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.doc-list {
+  list-style: none; margin-bottom: 12px;
+}
+.doc-list li {
+  position: relative; padding-left: 18px;
+  font-size: 14px; color: var(--text-2); line-height: 1.55;
+  margin-bottom: 6px;
+}
+.doc-list li::before {
+  content: "вЂў"; position: absolute; left: 0;
+  color: var(--accent);
+}
+.document-note {
+  font-size: 13px; color: var(--text-3);
+  font-family: var(--mono);
+}
+.note {
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center;
+}
+.cta-head::before,
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.cta h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  max-width: 1240px; margin: 0 auto;
+  padding: 40px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: color-mix(in srgb, var(--text) 8%, transparent); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .cabinet-grid, .articles-grid { grid-template-columns: 1fr; }
+  .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .bio-layout { grid-template-columns: 1fr; }
+  .bio-photo { max-width: 360px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .cta { padding: 56px 0; }
+}
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="about">
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge В· since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="РћСЃРЅРѕРІРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="Рћ РїСЂРѕРµРєС‚Рµ" data-en="About">Рћ РїСЂРѕРµРєС‚Рµ</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="РџСЂРѕРіСЂР°РјРјС‹" data-en="Programs">РџСЂРѕРіСЂР°РјРјС‹</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="РљРµР№СЃС‹ Рё РІРёРґРµРѕ" data-en="Cases &amp; Video">РљРµР№СЃС‹ Рё РІРёРґРµРѕ</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="РЈСЃР»РѕРІРёСЏ" data-en="Terms">РЈСЃР»РѕРІРёСЏ</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Р”РЅРµРІРЅРёРє Рё Р±Р»РѕРі" data-en="Journal and blog">Р”РЅРµРІРЅРёРє Рё Р±Р»РѕРі</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Р›Р°Р±РѕСЂР°С‚РѕСЂРёСЏ" data-en="Lab">Р›Р°Р±РѕСЂР°С‚РѕСЂРёСЏ</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Theme: DARK">DARK</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+
+<main>
+
+    <div class="ecosystem-strip" aria-label="РљР°Р±РёРЅРµС‚С‹ СЌРєРѕСЃРёСЃС‚РµРјС‹">
+      <a class="eco-btn" href="cabinet/student.html" aria-label="РљР°Р±РёРЅРµС‚ СѓС‡РµРЅРёРєР°">
+        <span class="eco-btn-label" data-ru="РљР°Р±РёРЅРµС‚ СѓС‡РµРЅРёРєР°" data-en="Student cabinet">РљР°Р±РёРЅРµС‚ СѓС‡РµРЅРёРєР°</span>
+        <span class="eco-btn-arrow">в†’</span>
+      </a>
+      <a class="eco-btn" href="cabinet/parent.html" aria-label="РљР°Р±РёРЅРµС‚ СЂРѕРґРёС‚РµР»РµР№">
+        <span class="eco-btn-label" data-ru="РљР°Р±РёРЅРµС‚ СЂРѕРґРёС‚РµР»РµР№" data-en="Parent cabinet">РљР°Р±РёРЅРµС‚ СЂРѕРґРёС‚РµР»РµР№</span>
+        <span class="eco-btn-arrow">в†’</span>
+      </a>
+      <a class="eco-btn" href="cabinet/teacher.html" aria-label="РљР°Р±РёРЅРµС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ">
+        <span class="eco-btn-label" data-ru="РљР°Р±РёРЅРµС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ" data-en="Teacher cabinet">РљР°Р±РёРЅРµС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ</span>
+        <span class="eco-btn-arrow">в†’</span>
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+  <div class="hero-stars-bg" aria-hidden="true">
+    <img class="img-dark" src="assets/2b6113f9-60e3-4068-8396-cc913336484c.png" alt="">
+    <img class="img-light" src="assets/b7902a11-3511-4d56-ab78-1ba0c1b8a42b.png" alt="">
+</div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Рћ РїСЂРѕРµРєС‚Рµ В· New Generation English" data-en="About В· New Generation English">Рћ РїСЂРѕРµРєС‚Рµ В· New Generation English</span>
+      <span class="bar"></span>
+      <span>в„– 002</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="New Generation English" data-en="New Generation English">New Generation English</div>
+        <div class="hero-kicker-secondary" data-ru="РђРІС‚РѕСЂСЃРєР°СЏ РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°" data-en="A personally designed learning environment">РђРІС‚РѕСЂСЃРєР°СЏ РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°</div>
+
+        <h1>
+          <span class="line" data-ru="РђРЅРіР»РёР№СЃРєРёР№ вЂ”" data-en="English is">РђРЅРіР»РёР№СЃРєРёР№ вЂ”</span>
+          <span class="line accent" data-ru="СѓРїСЂР°РІР»СЏРµРјР°СЏ СЃРёСЃС‚РµРјР°." data-en="a manageable system.">СѓРїСЂР°РІР»СЏРµРјР°СЏ СЃРёСЃС‚РµРјР°.</span>
+        </h1>
+
+        <p class="hero-lead"
+           data-ru="Р”Р»СЏ С‚РµС…, РєС‚Рѕ С…РѕС‡РµС‚ РїРѕРЅРёРјР°С‚СЊ, С‡С‚Рѕ РґРµР»Р°РµС‚, вЂ” Р° РЅРµ РїСЂРѕСЃС‚Рѕ В«СѓС‡РёС‚СЊ СЏР·С‹РєВ». РђРІС‚РѕСЂСЃРєР°СЏ РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°: СѓСЂРѕРєРё РїРѕРґ РІР°С€Сѓ С†РµР»СЊ, С‚РµРјРї Рё С‚РѕС‡РєСѓ РІС…РѕРґР°."
+           data-en="For those who want to understand what they are doing, not just вЂњlearn a languageвЂќ. A personally designed learning environment: lessons built around your goal, pace, and starting point.">
+          Р”Р»СЏ С‚РµС…, РєС‚Рѕ С…РѕС‡РµС‚ РїРѕРЅРёРјР°С‚СЊ, С‡С‚Рѕ РґРµР»Р°РµС‚, вЂ” Р° РЅРµ РїСЂРѕСЃС‚Рѕ В«СѓС‡РёС‚СЊ СЏР·С‹РєВ».<br>
+          РђРІС‚РѕСЂСЃРєР°СЏ РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°: СѓСЂРѕРєРё РїРѕРґ РІР°С€Сѓ С†РµР»СЊ, С‚РµРјРї Рё С‚РѕС‡РєСѓ РІС…РѕРґР°.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="index.html">
+            <span data-ru="Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° РіР»Р°РІРЅСѓСЋ" data-en="Back to home">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° РіР»Р°РІРЅСѓСЋ</span>
+            <span class="arrow">в†’</span>
+          </a>
+          <a class="btn btn-ghost" href="programs.html">
+            <span data-ru="РЎРјРѕС‚СЂРµС‚СЊ РїСЂРѕРіСЂР°РјРјС‹" data-en="View programs">РЎРјРѕС‚СЂРµС‚СЊ РїСЂРѕРіСЂР°РјРјС‹</span>
+            <span class="arrow">в†—</span>
+          </a>
+        </div>
+
+        <div class="hero-students-link">
+          <span data-ru="РІС‚РѕСЂР°СЏ РІРєР»Р°РґРєР° РЅР°РІРёРіР°С†РёРё" data-en="second navigation item">РІС‚РѕСЂР°СЏ РІРєР»Р°РґРєР° РЅР°РІРёРіР°С†РёРё</span>
+          вЂ”
+          <a href="about-project.html" data-ru="Рћ РїСЂРѕРµРєС‚Рµ" data-en="About">Рћ РїСЂРѕРµРєС‚Рµ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num"><em id="expCounter" class="exp-counter">16+</em></div><div class="lbl" data-ru="Р»РµС‚ РѕРїС‹С‚Р°" data-en="years of experience">Р»РµС‚ РѕРїС‹С‚Р°</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num">NGE</div><div class="lbl" data-ru="СЌРєРѕСЃРёСЃС‚РµРјР°" data-en="ecosystem">СЌРєРѕСЃРёСЃС‚РµРјР°</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">500+</div><div class="lbl" data-ru="СѓС‡РµРЅРёРєРѕРІ" data-en="students">СѓС‡РµРЅРёРєРѕРІ</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">LAB</div><div class="lbl" data-ru="РјРѕРґСѓР»Рё" data-en="modules">РјРѕРґСѓР»Рё</div></div>
+    </div>
+  </div>
+</section>
+
+      <hr class="dash">
+    <!-- SECTION 01: РљС‚Рѕ СЃС‚РѕРёС‚ Р·Р° СЃРёСЃС‚РµРјРѕР№ -->
+    <section class="section" id="about-author">
+      <div class="sect-head">
+        <div class="sect-index">01<small data-ru="РћР±Рѕ РјРЅРµ" data-en="About me">РћР±Рѕ РјРЅРµ</small></div>
+        <div><div class="sect-eyebrow" data-ru="Рћ РїСЂРѕРµРєС‚Рµ" data-en="About project">Рћ РїСЂРѕРµРєС‚Рµ</div><h2 class="sect-title" data-ru="РљС‚Рѕ СЃС‚РѕРёС‚ Р·Р° СЃРёСЃС‚РµРјРѕР№" data-en="Who is behind the system">РљС‚Рѕ СЃС‚РѕРёС‚ Р·Р° СЃРёСЃС‚РµРјРѕР№</h2></div>
+      </div>
+      <div class="articles-grid">
+        <div class="article-card">
+          <h3 data-ru="РћР± Р°РІС‚РѕСЂРµ СЃРёСЃС‚РµРјС‹" data-en="About the author of the system">РћР± Р°РІС‚РѕСЂРµ СЃРёСЃС‚РµРјС‹</h3>
+          <div class="bio-layout" style="grid-template-columns: minmax(260px, 420px) 1fr; align-items: center; gap: 28px;">
+            <div class="bio-photo hero-media">
+              <img src="assets/maria-teacher.jpg" alt="РњР°СЂРёСЏ Р’РёС‚Р°Р»СЊРµРІРЅР°" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 240%27%3E%3Crect width=%27200%27 height=%27240%27 fill=%27%23141414%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-size=%2714%27 fill=%27%236a6a6a%27 text-anchor=%27middle%27%3EMARIA%3C/text%3E%3C/svg%3E'">
+              <div class="hero-media-frame"></div>
+              <div class="hero-media-caption">
+                <span class="dot"></span>
+                <span data-ru="РњР°СЂРёСЏ В· РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ" data-en="Maria В· teacher">РњР°СЂРёСЏ В· РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ</span>
+              </div>
+            </div>
+            <div>
+              <div id="expTicker"
+                   style="margin: 2px 0 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; color: #2ee59d; text-transform: uppercase;">
+                РЎРўРђР–: --
+              </div>
+
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="РЇ вЂ” РњР°СЂРёСЏ Р‘СѓСЂС†РµРІР°. РЇ РЅРµ РїСЂРѕСЃС‚Рѕ РїСЂРµРїРѕРґР°СЋ Р°РЅРіР»РёР№СЃРєРёР№ вЂ” СЏ СЃС‚СЂРѕСЋ СЃРёСЃС‚РµРјСѓ, РІ РєРѕС‚РѕСЂРѕР№ РѕР±СѓС‡РµРЅРёРµ СЂР°Р±РѕС‚Р°РµС‚ РєР°Рє СѓРїСЂР°РІР»СЏРµРјС‹Р№ РїСЂРѕС†РµСЃСЃ, Р° РЅРµ РЅР°Р±РѕСЂ СѓСЂРѕРєРѕРІ."
+                 data-en="IвЂ™m Maria Burtseva. I donвЂ™t just teach English вЂ” I build a system where learning works as a manageable process, not a random set of lessons.">
+ РЇ вЂ” РњР°СЂРёСЏ Р‘СѓСЂС†РµРІР°. РЇ РЅРµ РїСЂРѕСЃС‚Рѕ РїСЂРµРїРѕРґР°СЋ Р°РЅРіР»РёР№СЃРєРёР№ вЂ” СЏ СЃС‚СЂРѕСЋ СЃРёСЃС‚РµРјСѓ, РІ РєРѕС‚РѕСЂРѕР№ РѕР±СѓС‡РµРЅРёРµ СЂР°Р±РѕС‚Р°РµС‚ РєР°Рє СѓРїСЂР°РІР»СЏРµРјС‹Р№ РїСЂРѕС†РµСЃСЃ, Р° РЅРµ РЅР°Р±РѕСЂ СѓСЂРѕРєРѕРІ.
+              </p>
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="РџСЂРµРїРѕРґР°СЋ СЃ 2009 РіРѕРґР°. Р Р°Р±РѕС‚Р°СЋ СЃ Р·Р°РґР°С‡Р°РјРё, РіРґРµ РІР°Р¶РЅР° РєРѕРЅРєСЂРµС‚РёРєР°: СЌРєР·Р°РјРµРЅС‹, РїРѕСЃС‚СѓРїР»РµРЅРёРµ Рё СѓС‡С‘Р±Р° Р·Р° СЂСѓР±РµР¶РѕРј, РјРµРґРёС†РёРЅСЃРєРёР№ Рё РґРµР»РѕРІРѕР№ Р°РЅРіР»РёР№СЃРєРёР№, РІР·СЂРѕСЃР»С‹Рµ СѓС‡РµРЅРёРєРё Р±РµР· В«С€РєРѕР»СЊРЅРѕР№ РІРѕРґС‹В»."
+                 data-en="IвЂ™ve been teaching since 2009. I work with goals where clarity matters: exams, admissions and study abroad, medical and business English, and adult learning without school-style filler.">
+ РџСЂРµРїРѕРґР°СЋ СЃ 2009 РіРѕРґР°. Р Р°Р±РѕС‚Р°СЋ СЃ Р·Р°РґР°С‡Р°РјРё, РіРґРµ РІР°Р¶РЅР° РєРѕРЅРєСЂРµС‚РёРєР°: СЌРєР·Р°РјРµРЅС‹, РїРѕСЃС‚СѓРїР»РµРЅРёРµ Рё СѓС‡С‘Р±Р° Р·Р° СЂСѓР±РµР¶РѕРј, РјРµРґРёС†РёРЅСЃРєРёР№ Рё РґРµР»РѕРІРѕР№ Р°РЅРіР»РёР№СЃРєРёР№, РІР·СЂРѕСЃР»С‹Рµ СѓС‡РµРЅРёРєРё Р±РµР· В«С€РєРѕР»СЊРЅРѕР№ РІРѕРґС‹В».
+              </p>
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="Р—Р° РІСЂРµРјСЏ РїСЂР°РєС‚РёРєРё С‡РµСЂРµР· СЃРёСЃС‚РµРјСѓ РїСЂРѕС€Р»Рё 500+ СѓС‡РµРЅРёРєРѕРІ. Р­С‚Рѕ РЅРµ РїРѕС‚РѕРє: РјР°СЂС€СЂСѓС‚ СЃС‚СЂРѕРёС‚СЃСЏ РїРѕРґ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ С‡РµР»РѕРІРµРєР° Рё РµРіРѕ С†РµР»СЊ."
+                 data-en="Over time, 500+ students have gone through the system. This is not an assembly line: each route is built for a specific person and goal.">
+ Р—Р° РІСЂРµРјСЏ РїСЂР°РєС‚РёРєРё С‡РµСЂРµР· СЃРёСЃС‚РµРјСѓ РїСЂРѕС€Р»Рё 500+ СѓС‡РµРЅРёРєРѕРІ. Р­С‚Рѕ РЅРµ РїРѕС‚РѕРє: РјР°СЂС€СЂСѓС‚ СЃС‚СЂРѕРёС‚СЃСЏ РїРѕРґ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ С‡РµР»РѕРІРµРєР° Рё РµРіРѕ С†РµР»СЊ.
+              </p>
+              <p style="font-size: 17px; line-height: 1.65; margin-bottom: 0;"
+                 data-ru="РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№ С„РѕРЅ РІРєР»СЋС‡Р°РµС‚ РїРµСЂРµРІРѕРґ (С‚РµС…РЅРёС‡РµСЃРєРёР№, СЋСЂРёРґРёС‡РµСЃРєРёР№, РјРµРґРёС†РёРЅСЃРєРёР№, РґРµР»РѕРІРѕР№) Рё СЂР°Р·СЂР°Р±РѕС‚РєСѓ СѓС‡РµР±РЅС‹С… РјР°С‚РµСЂРёР°Р»РѕРІ. РџРѕСЌС‚РѕРјСѓ СЏ РґРµСЂР¶Сѓ С‚РѕС‡РЅРѕСЃС‚СЊ, СЃС‚СЂСѓРєС‚СѓСЂСѓ Рё РїРѕРЅСЏС‚РЅС‹Рµ С‚СЂР°РµРєС‚РѕСЂРёРё вЂ” Рё РёСЃРїРѕР»СЊР·СѓСЋ СЃРѕРІСЂРµРјРµРЅРЅС‹Рµ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ С‚РѕР»СЊРєРѕ С‚Р°Рј, РіРґРµ РѕРЅРё РґРµР»Р°СЋС‚ РїСЂРѕРіСЂРµСЃСЃ РїСЂРѕР·СЂР°С‡РЅРµРµ."
+                 data-en="My background includes translation (technical, legal, medical, business) and educational content development. ThatвЂ™s why I keep precision, structure, and clear trajectories вЂ” and use modern tools only where they make progress more transparent.">
+ РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№ С„РѕРЅ РІРєР»СЋС‡Р°РµС‚ РїРµСЂРµРІРѕРґ (С‚РµС…РЅРёС‡РµСЃРєРёР№, СЋСЂРёРґРёС‡РµСЃРєРёР№, РјРµРґРёС†РёРЅСЃРєРёР№, РґРµР»РѕРІРѕР№) Рё СЂР°Р·СЂР°Р±РѕС‚РєСѓ СѓС‡РµР±РЅС‹С… РјР°С‚РµСЂРёР°Р»РѕРІ. РџРѕСЌС‚РѕРјСѓ СЏ РґРµСЂР¶Сѓ С‚РѕС‡РЅРѕСЃС‚СЊ, СЃС‚СЂСѓРєС‚СѓСЂСѓ Рё РїРѕРЅСЏС‚РЅС‹Рµ С‚СЂР°РµРєС‚РѕСЂРёРё вЂ” Рё РёСЃРїРѕР»СЊР·СѓСЋ СЃРѕРІСЂРµРјРµРЅРЅС‹Рµ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ С‚РѕР»СЊРєРѕ С‚Р°Рј, РіРґРµ РѕРЅРё РґРµР»Р°СЋС‚ РїСЂРѕРіСЂРµСЃСЃ РїСЂРѕР·СЂР°С‡РЅРµРµ.
+              </p>
+
+              <div style="display:flex; justify-content:center;">
+                <a class="btn btn-primary" href="conditions.html#documents" style="margin-top: 18px;"
+                   data-ru="Р”РѕРєСѓРјРµРЅС‚С‹ Рё СЃРµСЂС‚РёС„РёРєР°С‚С‹ в†’" data-en="Documents & certificates в†’">Р”РѕРєСѓРјРµРЅС‚С‹ Рё СЃРµСЂС‚РёС„РёРєР°С‚С‹ в†’</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <hr class="dash">
+
+    <!-- SECTION 02: Рћ С€РєРѕР»Рµ / РЅРµР№СЂРѕС€РєРѕР»Р° / РѕС‚Р»РёС‡РёРµ -->
+    <section class="section" id="neuro-school">
+      <div class="sect-head">
+        <div class="sect-index">02<small data-ru="Рћ С€РєРѕР»Рµ" data-en="About school">Рћ С€РєРѕР»Рµ</small></div>
+        <div><div class="sect-eyebrow" data-ru="New Generation English" data-en="New Generation English">New Generation English</div><h2 class="sect-title" data-ru="РќРµР№СЂРѕС€РєРѕР»Р° Рё РѕС‚Р»РёС‡РёРµ" data-en="Neuro-school and the difference">РќРµР№СЂРѕС€РєРѕР»Р° Рё РѕС‚Р»РёС‡РёРµ</h2></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p
+            data-ru="New Generation English вЂ” СЌС‚Рѕ РЅРµ РїСЂРѕСЃС‚Рѕ Р·Р°РЅСЏС‚РёСЏ, Р° РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°, РІ РєРѕС‚РѕСЂРѕР№ Р°РЅРіР»РёР№СЃРєРёР№ СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїРѕРЅСЏС‚РЅРѕР№ Рё СѓРїСЂР°РІР»СЏРµРјРѕР№ СЃРёСЃС‚РµРјРѕР№."
+            data-en="New Generation English is not just lessons, but an educational environment where English becomes a clear and manageable system.">
+New Generation English вЂ” СЌС‚Рѕ РЅРµ РїСЂРѕСЃС‚Рѕ Р·Р°РЅСЏС‚РёСЏ, Р° РѕР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅР°СЏ СЃСЂРµРґР°, РІ РєРѕС‚РѕСЂРѕР№ Р°РЅРіР»РёР№СЃРєРёР№ СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїРѕРЅСЏС‚РЅРѕР№ Рё СѓРїСЂР°РІР»СЏРµРјРѕР№ СЃРёСЃС‚РµРјРѕР№.
+          </p>
+          <p
+            data-ru="РќРµР№СЂРѕС€РєРѕР»Р° РІ СЂР°РјРєР°С… РїСЂРѕРµРєС‚Р° вЂ” СЌС‚Рѕ СЃРїРѕСЃРѕР± РІС‹СЃС‚СЂРѕРёС‚СЊ РѕР±СѓС‡РµРЅРёРµ РІРѕРєСЂСѓРі РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СѓС‡РµРЅРёРєР°, РЅРµ СЂР°Р·СЂСѓС€Р°СЏ СЃС‚СЂСѓРєС‚СѓСЂСѓ, Р° СѓС‚РѕС‡РЅСЏСЏ РµС‘."
+            data-en="In this project, a neuro-school is a way to build learning around a specific student: not by breaking the structure, but by refining it.">
+РќРµР№СЂРѕС€РєРѕР»Р° РІ СЂР°РјРєР°С… РїСЂРѕРµРєС‚Р° вЂ” СЌС‚Рѕ СЃРїРѕСЃРѕР± РІС‹СЃС‚СЂРѕРёС‚СЊ РѕР±СѓС‡РµРЅРёРµ РІРѕРєСЂСѓРі РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СѓС‡РµРЅРёРєР°, РЅРµ СЂР°Р·СЂСѓС€Р°СЏ СЃС‚СЂСѓРєС‚СѓСЂСѓ, Р° СѓС‚РѕС‡РЅСЏСЏ РµС‘.
+          </p>
+          <div class="document-box neuro-definition" role="note">
+            <p class="document-heading" data-ru="Р’РђР–РќРћ" data-en="IMPORTANT">Р’РђР–РќРћ</p>
+            <p class="note"
+               data-ru="Р’ РґР°РЅРЅРѕРј РїСЂРѕРµРєС‚Рµ С‚РµСЂРјРёРЅ В«РЅРµР№СЂРѕС€РєРѕР»Р°В» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє СЂР°Р±РѕС‡РµРµ РѕРїСЂРµРґРµР»РµРЅРёРµ СЃРёСЃС‚РµРјС‹ РѕР±СѓС‡РµРЅРёСЏ, РІС‹СЃС‚СЂРѕРµРЅРЅРѕР№ РІРѕРєСЂСѓРі Р»РѕРіРёРєРё РІРѕСЃРїСЂРёСЏС‚РёСЏ СѓС‡РµРЅРёРєР°, Р° РЅРµ РєР°Рє РЅРµР№СЂРѕРїСЃРёС…РѕР»РѕРіРёС‡РµСЃРєР°СЏ РєРѕСЂСЂРµРєС†РёСЏ."
+               data-en="In this project, the term вЂњneuro-schoolвЂќ is used as a working definition of a learning system built around the learnerвЂ™s perception logic, not as neuropsychological correction.">
+ Р’ РґР°РЅРЅРѕРј РїСЂРѕРµРєС‚Рµ С‚РµСЂРјРёРЅ В«РЅРµР№СЂРѕС€РєРѕР»Р°В» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє <strong>СЂР°Р±РѕС‡РµРµ РѕРїСЂРµРґРµР»РµРЅРёРµ</strong> СЃРёСЃС‚РµРјС‹ РѕР±СѓС‡РµРЅРёСЏ, РІС‹СЃС‚СЂРѕРµРЅРЅРѕР№ РІРѕРєСЂСѓРі Р»РѕРіРёРєРё РІРѕСЃРїСЂРёСЏС‚РёСЏ СѓС‡РµРЅРёРєР°, Р° РЅРµ РєР°Рє <strong>РЅРµР№СЂРѕРїСЃРёС…РѕР»РѕРіРёС‡РµСЃРєР°СЏ РєРѕСЂСЂРµРєС†РёСЏ</strong>.
+            </p>
+          </div>
+          <p
+            data-ru="РЈСЂРѕРєРё РІ С‚Р°РєРѕР№ СЃРёСЃС‚РµРјРµ РЅРµ РёРґСѓС‚ РїРѕ С€Р°Р±Р»РѕРЅСѓ. РћРЅРё СЃРѕР±РёСЂР°СЋС‚СЃСЏ РїРѕРґ РєР°Р¶РґРѕРіРѕ СѓС‡РµРЅРёРєР° РєР°Рє РјР°СЂС€СЂСѓС‚РЅС‹Рµ РєР°СЂС‚С‹: СЃ СѓС‡С‘С‚РѕРј СѓСЂРѕРІРЅСЏ, С†РµР»РµР№ Рё С‚РµРјРїР°."
+            data-en="Lessons in this system do not follow a template. They are built for each student as route maps, with level, goals, and pace taken into account.">
+РЈСЂРѕРєРё РІ С‚Р°РєРѕР№ СЃРёСЃС‚РµРјРµ РЅРµ РёРґСѓС‚ РїРѕ С€Р°Р±Р»РѕРЅСѓ. РћРЅРё СЃРѕР±РёСЂР°СЋС‚СЃСЏ РїРѕРґ РєР°Р¶РґРѕРіРѕ СѓС‡РµРЅРёРєР° РєР°Рє РјР°СЂС€СЂСѓС‚РЅС‹Рµ РєР°СЂС‚С‹: СЃ СѓС‡С‘С‚РѕРј СѓСЂРѕРІРЅСЏ, С†РµР»РµР№ Рё С‚РµРјРїР°.
+          </p>
+          <p
+            data-ru="Р’ СЂР°Р±РѕС‚Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РєР°Рє СЃРѕРІСЂРµРјРµРЅРЅС‹Рµ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ (РІРєР»СЋС‡Р°СЏ РЅРµР№СЂРѕСЃРµС‚Рё), С‚Р°Рє Рё РїСЂРѕРІРµСЂРµРЅРЅС‹Рµ РјРµР¶РґСѓРЅР°СЂРѕРґРЅС‹Рµ РјР°С‚РµСЂРёР°Р»С‹ вЂ” Р›РѕРЅРіРјР°РЅ, РљРµРјР±СЂРёРґР¶, РћРєСЃС„РѕСЂРґ. Р­С‚Рѕ РїРѕР·РІРѕР»СЏРµС‚ СЃРѕС‡РµС‚Р°С‚СЊ РіРёР±РєРѕСЃС‚СЊ Рё Р°РєР°РґРµРјРёС‡РµСЃРєСѓСЋ РЅР°РґС‘Р¶РЅРѕСЃС‚СЊ."
+            data-en="We use both modern tools (including neural networks) and proven international materials such as Longman, Cambridge, and Oxford. This allows us to combine flexibility with academic reliability.">
+Р’ СЂР°Р±РѕС‚Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РєР°Рє СЃРѕРІСЂРµРјРµРЅРЅС‹Рµ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ (РІРєР»СЋС‡Р°СЏ РЅРµР№СЂРѕСЃРµС‚Рё), С‚Р°Рє Рё РїСЂРѕРІРµСЂРµРЅРЅС‹Рµ РјРµР¶РґСѓРЅР°СЂРѕРґРЅС‹Рµ РјР°С‚РµСЂРёР°Р»С‹ вЂ” Р›РѕРЅРіРјР°РЅ, РљРµРјР±СЂРёРґР¶, РћРєСЃС„РѕСЂРґ. Р­С‚Рѕ РїРѕР·РІРѕР»СЏРµС‚ СЃРѕС‡РµС‚Р°С‚СЊ РіРёР±РєРѕСЃС‚СЊ Рё Р°РєР°РґРµРјРёС‡РµСЃРєСѓСЋ РЅР°РґС‘Р¶РЅРѕСЃС‚СЊ.
+          </p>
+        </div>
+        <div class="about-text">
+          <p
+            data-ru="РћР±С‹С‡РЅР°СЏ С€РєРѕР»Р° РґР°С‘С‚ РѕРґРёРЅ РјР°СЂС€СЂСѓС‚ РґР»СЏ РІСЃРµС…: РµРґРёРЅС‹Р№ С‚РµРјРї, РµРґРёРЅС‹Р№ С„РѕСЂРјР°С‚, РµРґРёРЅРѕРµ РѕР±СЉСЏСЃРЅРµРЅРёРµ."
+            data-en="A traditional school provides one route for everyone: one pace, one format, one explanation.">
+РћР±С‹С‡РЅР°СЏ С€РєРѕР»Р° РґР°С‘С‚ РѕРґРёРЅ РјР°СЂС€СЂСѓС‚ РґР»СЏ РІСЃРµС…: РµРґРёРЅС‹Р№ С‚РµРјРї, РµРґРёРЅС‹Р№ С„РѕСЂРјР°С‚, РµРґРёРЅРѕРµ РѕР±СЉСЏСЃРЅРµРЅРёРµ.
+          </p>
+          <p
+            data-ru="РќРµР№СЂРѕС€РєРѕР»Р° СЂР°Р±РѕС‚Р°РµС‚ РёРЅР°С‡Рµ: РѕРЅР° СЃРѕС…СЂР°РЅСЏРµС‚ СЃРёСЃС‚РµРјСѓ, РЅРѕ Р°РґР°РїС‚РёСЂСѓРµС‚ РїРѕРґР°С‡Сѓ, СЂРёС‚Рј Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ РїРѕРґ С‡РµР»РѕРІРµРєР°."
+            data-en="A neuro-school works differently: it keeps the system, but adapts delivery, rhythm, and tools to the person.">
+РќРµР№СЂРѕС€РєРѕР»Р° СЂР°Р±РѕС‚Р°РµС‚ РёРЅР°С‡Рµ: РѕРЅР° СЃРѕС…СЂР°РЅСЏРµС‚ СЃРёСЃС‚РµРјСѓ, РЅРѕ Р°РґР°РїС‚РёСЂСѓРµС‚ РїРѕРґР°С‡Сѓ, СЂРёС‚Рј Рё РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ РїРѕРґ С‡РµР»РѕРІРµРєР°.
+          </p>
+          <p
+            data-ru="РўРµС…РЅРѕР»РѕРіРёРё Р·РґРµСЃСЊ РЅРµ Р·Р°РјРµРЅСЏСЋС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ, Р° РїРѕРјРѕРіР°СЋС‚ СЃРґРµР»Р°С‚СЊ РїСЂРѕС†РµСЃСЃ Р±РѕР»РµРµ РїСЂРѕР·СЂР°С‡РЅС‹Рј Рё СѓРїСЂР°РІР»СЏРµРјС‹Рј."
+            data-en="Technology here does not replace the teacher; it helps make the process more transparent and manageable.">
+РўРµС…РЅРѕР»РѕРіРёРё Р·РґРµСЃСЊ РЅРµ Р·Р°РјРµРЅСЏСЋС‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ, Р° РїРѕРјРѕРіР°СЋС‚ СЃРґРµР»Р°С‚СЊ РїСЂРѕС†РµСЃСЃ Р±РѕР»РµРµ РїСЂРѕР·СЂР°С‡РЅС‹Рј Рё СѓРїСЂР°РІР»СЏРµРјС‹Рј.
+          </p>
+        </div>
+      </div>
+    </section>
+
+      <hr class="dash">
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-head"><span data-ru="04 В· Р—Р°РїРёСЃСЊ" data-en="04 В· Enrollment">04 В· Р—Р°РїРёСЃСЊ</span></div>
+        <h2>
+          <span data-ru="Р•СЃР»Рё РІС‹ С…РѕС‚РёС‚Рµ СЃРёСЃС‚РµРјСѓ," data-en="If you want a system,">Р•СЃР»Рё РІС‹ С…РѕС‚РёС‚Рµ СЃРёСЃС‚РµРјСѓ,</span>
+          <span class="accent" data-ru="Р° РЅРµ РїСЂРѕСЃС‚Рѕ СѓСЂРѕРєРё вЂ”" data-en="not just lessons вЂ”">Р° РЅРµ РїСЂРѕСЃС‚Рѕ СѓСЂРѕРєРё вЂ”</span>
+        </h2>
+        <p
+          data-ru="РќР°РїРёС€РёС‚Рµ РјРЅРµ РІ РўРµР»РµРіСЂР°Рј. Р Р°Р·Р±РµСЂС‘Рј, РєР°РєРѕР№ С„РѕСЂРјР°С‚ РѕР±СѓС‡РµРЅРёСЏ РЅСѓР¶РµРЅ СЃРµР№С‡Р°СЃ, РєР°РєР°СЏ С†РµР»СЊ СЃС‚РѕРёС‚ РїРµСЂРµРґ РІР°РјРё, Рё РєР°Рє РІС‹СЃС‚СЂРѕРёС‚СЊ РјР°СЂС€СЂСѓС‚ РІРЅСѓС‚СЂРё СЌС‚РѕР№ СЃРёСЃС‚РµРјС‹."
+          data-en="Message me on Telegram. WeвЂ™ll clarify which format you need now, what goal you are working towards, and how to build the best route within this system.">
+РќР°РїРёС€РёС‚Рµ РјРЅРµ РІ РўРµР»РµРіСЂР°Рј. Р Р°Р·Р±РµСЂС‘Рј, РєР°РєРѕР№ С„РѕСЂРјР°С‚ РѕР±СѓС‡РµРЅРёСЏ РЅСѓР¶РµРЅ СЃРµР№С‡Р°СЃ, РєР°РєР°СЏ С†РµР»СЊ СЃС‚РѕРёС‚ РїРµСЂРµРґ РІР°РјРё, Рё РєР°Рє РІС‹СЃС‚СЂРѕРёС‚СЊ РјР°СЂС€СЂСѓС‚ РІРЅСѓС‚СЂРё СЌС‚РѕР№ СЃРёСЃС‚РµРјС‹.
+        </p>
+        <div style="display:flex; justify-content:center;">
+          <a href="https://t.me/MariaBurceva_English" target="_blank" class="btn btn-primary" data-ru="РќР°РїРёСЃР°С‚СЊ РІ РўРµР»РµРіСЂР°Рј" data-en="Message me on Telegram">РќР°РїРёСЃР°С‚СЊ РІ РўРµР»РµРіСЂР°Рј в†’</a>
+        </div>
+    </section>
+
+  </main>
+
+<!-- FOOTER -->
+<footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="РЎР°Р№С‚ СЃРѕР·РґР°РЅ РњР°СЂРёРµР№ Р’РёС‚Р°Р»СЊРµРІРЅРѕР№ Р‘СѓСЂС†РµРІРѕР№ РїСЂРё РїРѕРґРґРµСЂР¶РєРµ Claude, DeepSeek, GPT Рё РїР»Р°РіРёРЅР° Codex Design. РЈРїРѕРјРёРЅР°РЅРёРµ СЌС‚РёС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РЅРµ РѕР·РЅР°С‡Р°РµС‚ РїР°СЂС‚РЅС‘СЂСЃС‚РІРѕ РёР»Рё РѕС„РёС†РёР°Р»СЊРЅРѕРµ РѕРґРѕР±СЂРµРЅРёРµ." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">РЎР°Р№С‚ СЃРѕР·РґР°РЅ РњР°СЂРёРµР№ Р’РёС‚Р°Р»СЊРµРІРЅРѕР№ Р‘СѓСЂС†РµРІРѕР№ РїСЂРё РїРѕРґРґРµСЂР¶РєРµ Claude, DeepSeek, GPT Рё РїР»Р°РіРёРЅР° Codex Design. РЈРїРѕРјРёРЅР°РЅРёРµ СЌС‚РёС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РЅРµ РѕР·РЅР°С‡Р°РµС‚ РїР°СЂС‚РЅС‘СЂСЃС‚РІРѕ РёР»Рё РѕС„РёС†РёР°Р»СЊРЅРѕРµ РѕРґРѕР±СЂРµРЅРёРµ.</p>
+    <p data-ru="РўРµСЂРјРёРЅ В«РЅРµР№СЂРѕС€РєРѕР»Р°В» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє Р°РІС‚РѕСЂСЃРєРѕРµ СЂР°Р±РѕС‡РµРµ РѕРїРёСЃР°РЅРёРµ РїРѕРґС…РѕРґР° Рє РѕР±СѓС‡РµРЅРёСЋ, Р° РЅРµ РєР°Рє РјРµРґРёС†РёРЅСЃРєР°СЏ, РЅРµР№СЂРѕРїСЃРёС…РѕР»РѕРіРёС‡РµСЃРєР°СЏ РёР»Рё РєРѕСЂСЂРµРєС†РёРѕРЅРЅР°СЏ СѓСЃР»СѓРіР°." data-en="The term вЂњneuro-schoolвЂќ is used as the authorвЂ™s working description of a learning approach, not as a medical, neuropsychological, or corrective service.">РўРµСЂРјРёРЅ В«РЅРµР№СЂРѕС€РєРѕР»Р°В» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє Р°РІС‚РѕСЂСЃРєРѕРµ СЂР°Р±РѕС‡РµРµ РѕРїРёСЃР°РЅРёРµ РїРѕРґС…РѕРґР° Рє РѕР±СѓС‡РµРЅРёСЋ, Р° РЅРµ РєР°Рє РјРµРґРёС†РёРЅСЃРєР°СЏ, РЅРµР№СЂРѕРїСЃРёС…РѕР»РѕРіРёС‡РµСЃРєР°СЏ РёР»Рё РєРѕСЂСЂРµРєС†РёРѕРЅРЅР°СЏ СѓСЃР»СѓРіР°.</p>
+  </div>
+</footer>
+
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+<script defer src="./assets/visitor-counter.js"></script>
+<script defer src="./theme-cycle.js"></script>
+</body>
+</html>

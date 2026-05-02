@@ -1,22 +1,6 @@
 const STORAGE_KEY = "nge_os_v1";
 const SESSION_KEY = "nge_os_session_v1";
 
-export const PAYMENT_DETAILS = {
-  url: "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143",
-  telegramUrl: "https://t.me/MariaBurceva_English",
-  phone: "89165101792",
-  recipient: "Бурцева Мария Витальевна",
-  contract: "5181572792",
-  account: "40817810200014652973",
-  purpose: "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается",
-  bik: "044525974",
-  bank: "АО \"ТБанк\"",
-  correspondentAccount: "30101810145250000974",
-  inn: "7710140679",
-  kpp: "771301001",
-  method: "Т-Банк",
-};
-
 /**
  * @typedef {"student"|"teacher"|"parent"} Role
  *
@@ -48,13 +32,13 @@ export const PAYMENT_DETAILS = {
  *  status: "pending"|"paid"|"overdue";
  *  date: string; // ISO
  *  comment?: string;
- *  paidReportedAt?: string;
- *  confirmedAt?: string;
- *  receiptUrl?: string;
- *  receiptNumber?: string;
- *  receiptIssuedAt?: string;
- *  lessonsAdded?: number;
- *  lessonsAppliedAt?: string;
+ *  lessonsTotal?: number;
+ *  lessonsLeft?: number;
+ *  paidAt?: string;
+ *  remindAt?: string;
+ *  paymentUrl?: string;
+ *  paymentProvider?: string;
+ *  payerMarkedAt?: string;
  * }} Payment
  *
  * @typedef {{
@@ -86,7 +70,6 @@ export const PAYMENT_DETAILS = {
  *  studentId: string;
  *  tariff: string;
  *  plan?: string;
- *  remainingLessons?: number;
  * }} StudentMeta
  *
  * @typedef {{
@@ -109,6 +92,14 @@ export const PAYMENT_DETAILS = {
  * }} Notification
  *
  * @typedef {{
+ *  id: string;
+ *  studentId: string;
+ *  title: string;
+ *  body: string;
+ *  createdAt: string;
+ * }} StudentReport
+ *
+ * @typedef {{
  *  users: User[];
  *  lessons: Lesson[];
  *  payments: Payment[];
@@ -117,6 +108,7 @@ export const PAYMENT_DETAILS = {
  *  studentMeta: StudentMeta[];
  *  teacherTasks: TeacherTask[];
  *  notifications: Notification[];
+ *  reports?: StudentReport[];
  * }} State
  */
 
@@ -182,8 +174,33 @@ function seed() {
       },
     ],
     payments: [
-      { id: "p_1", studentId: studentA, amount: 3500, status: "paid", date: plusDays(-7), comment: "Индивидуально" },
-      { id: "p_2", studentId: studentB, amount: 3000, status: "pending", date: plusDays(-3), comment: "Индивидуально" },
+      {
+        id: "p_1",
+        studentId: studentA,
+        amount: 3500,
+        status: "paid",
+        date: plusDays(-7),
+        paidAt: plusDays(-7),
+        remindAt: plusDays(21),
+        lessonsTotal: 4,
+        lessonsLeft: 3,
+        paymentProvider: "tbank",
+        paymentUrl: "",
+        comment: "Индивидуально",
+      },
+      {
+        id: "p_2",
+        studentId: studentB,
+        amount: 3000,
+        status: "pending",
+        date: plusDays(-3),
+        remindAt: plusDays(4),
+        lessonsTotal: 4,
+        lessonsLeft: 1,
+        paymentProvider: "tbank",
+        paymentUrl: "",
+        comment: "Индивидуально",
+      },
     ],
     progress: [
       {
@@ -242,6 +259,7 @@ function seed() {
       },
     ],
     notifications: [],
+    reports: [],
   };
 }
 
@@ -260,6 +278,7 @@ export function loadState() {
     if (!Array.isArray(s.payments)) s.payments = [];
     if (!Array.isArray(s.progress)) s.progress = [];
     if (!Array.isArray(s.notifications)) s.notifications = [];
+    if (!Array.isArray(s.reports)) s.reports = [];
     if (!Array.isArray(s.studentItems)) s.studentItems = [];
     if (!Array.isArray(s.studentMeta)) s.studentMeta = [];
     if (!Array.isArray(s.teacherTasks)) s.teacherTasks = [];
@@ -269,17 +288,17 @@ export function loadState() {
       studentGoals: p.studentGoals || "",
       studentNotes: p.studentNotes || "",
     }));
-
-    s.studentMeta = s.studentMeta.map((m) => ({
-      ...m,
-      remainingLessons: Number.isFinite(Number(m.remainingLessons)) ? Number(m.remainingLessons) : 0,
-    }));
-
     s.payments = s.payments.map((p) => ({
       ...p,
-      lessonsAdded: Number.isFinite(Number(p.lessonsAdded)) ? Number(p.lessonsAdded) : 0,
-      receiptUrl: p.receiptUrl || "",
+      lessonsTotal: Number.isFinite(Number(p.lessonsTotal)) ? Number(p.lessonsTotal) : 0,
+      lessonsLeft: Number.isFinite(Number(p.lessonsLeft)) ? Number(p.lessonsLeft) : 0,
+      paidAt: p.paidAt || (p.status === "paid" ? p.date : ""),
+      remindAt: p.remindAt || "",
+      paymentUrl: p.paymentUrl || "",
+      paymentProvider: p.paymentProvider || "tbank",
+      payerMarkedAt: p.payerMarkedAt || "",
       receiptNumber: p.receiptNumber || "",
+      receiptUrl: p.receiptUrl || "",
     }));
 
     return s;
@@ -402,6 +421,15 @@ export function updateLesson(state, lessonId, patch) {
   return state.lessons[idx];
 }
 
+/** @param {State} state @param {string} lessonId */
+export function deleteLesson(state, lessonId) {
+  const idx = state.lessons.findIndex((l) => l.id === lessonId);
+  if (idx === -1) return false;
+  state.lessons.splice(idx, 1);
+  saveState(state);
+  return true;
+}
+
 /**
  * @param {State} state
  * @param {Omit<Payment, "id">} input
@@ -422,6 +450,15 @@ export function updatePayment(state, paymentId, patch) {
   return state.payments[idx];
 }
 
+/** @param {State} state @param {string} paymentId */
+export function deletePayment(state, paymentId) {
+  const idx = state.payments.findIndex((p) => p.id === paymentId);
+  if (idx === -1) return false;
+  state.payments.splice(idx, 1);
+  saveState(state);
+  return true;
+}
+
 /**
  * @param {State} state
  * @param {Omit<Notification, "id">} input
@@ -438,7 +475,7 @@ export function listPendingNotifications(state) {
   return state.notifications
     .filter((n) => !n.sentAt)
     .slice()
-    .sort((a, b) => new Date(a.sendAt) - new Date(b.sendAt));
+    .sort((a, b) => new Date(b.sendAt) - new Date(a.sendAt));
 }
 
 /** @param {State} state @param {string} userId */
@@ -493,7 +530,6 @@ export function upsertStudentMeta(state, studentId, patch) {
       studentId,
       tariff: (patch.tariff || "").trim() || "—",
       plan: (patch.plan || "").trim() || "",
-      remainingLessons: Number.isFinite(Number(patch.remainingLessons)) ? Number(patch.remainingLessons) : 0,
     };
     state.studentMeta.push(created);
     saveState(state);

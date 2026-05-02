@@ -1,0 +1,1570 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Дневник и блог преподавателя английского языка — Дзен-канал про английский, путешествия, нейронки, авторство, мой путь и педагогическая династия.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>Дневник и блог — New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — STRICT SYSTEM FROM INDEX.HTML
+   ============================================================ */
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* ============================================================
+   TOPBAR (сохранен)
+   ============================================================ */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 2rem;
+  height: 64px; padding: 0 24px;
+  background: rgba(0,0,0,0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+body.light .topbar { background: rgba(244,241,236,0.9); }
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-mark {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  background: var(--accent); color: #000;
+  font-family: var(--display); font-weight: 900; font-size: 20px;
+  border-radius: 10px; letter-spacing: -0.04em;
+}
+.brand-name {
+  font-family: var(--display); font-weight: 800; font-size: 15px;
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.brand-sub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-3); margin-top: 2px;
+}
+.topnav { display: flex; gap: 2px; flex: 1; margin-left: 1rem; }
+.topnav-link {
+  padding: 7px 12px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+  white-space: nowrap; transition: color .15s, background .15s;
+}
+.topnav-link:hover, .topnav-link.active { color: var(--text); background: var(--bg-3); }
+.topbar-tools { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.control-btn {
+  height: 34px; min-width: 34px; padding: 0 10px;
+  border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--text-2); cursor: pointer;
+  font-size: 12px; font-family: var(--mono); font-weight: 500;
+  transition: all .15s;
+}
+.control-btn:hover { color: var(--text); border-color: var(--line-strong); }
+
+/* ============================================================
+   WRAP
+   ============================================================ */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+/* ============================================================
+   SECTION PRIMITIVES
+   ============================================================ */
+.section { padding: 80px 0; }
+.sect-head {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 40px; margin-bottom: 56px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-3);
+  -webkit-text-stroke: 0;
+  color: var(--text-3);
+  margin-top: 8px;
+}
+.sect-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ============================================================
+   HERO (переделан под систему)
+   ============================================================ */
+.hero {
+  position: relative;
+  padding: 56px 24px 32px;
+  overflow: hidden;
+}
+.hero-inner { max-width: 1240px; margin: 0 auto; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 340px);
+  gap: 40px;
+  align-items: end;
+}
+.hero-copy { min-width: 0; }
+.hero-tag {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.hero-tag .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+.hero-tag .bar { flex: 1; height: 1px; background: var(--line); }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+.hero-kicker::before {
+  content: ""; width: 18px; height: 1px; background: var(--accent);
+}
+.hero-kicker-secondary {
+  margin-bottom: 28px;
+  font-size: 14px; color: var(--text-2);
+  font-family: var(--mono); letter-spacing: 0.08em;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.75rem, 7.5vw, 6rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0 0 28px;
+  color: var(--text);
+}
+.hero h1 .accent { color: var(--accent); }
+.hero-lead {
+  max-width: 640px;
+  margin: 0 0 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   SECTION PICKER
+   ============================================================ */
+.section-picker {
+  padding: 34px 0 44px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.section-picker-label {
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.subnav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.subnav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color .15s, background .15s, border-color .15s;
+}
+.subnav-link:hover, .subnav-link.active {
+  color: #000;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   BLOG GRID (3 колонки, без карточек)
+   ============================================================ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.blog-entry {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.entry-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.entry-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.dynasty-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+  width: 100%;
+  max-width: 1180px;
+}
+.dynasty-epigraph {
+  max-width: 920px;
+  margin: -18px 0 34px;
+  padding: 18px 22px 18px 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-2);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-style: italic;
+  line-height: 1.62;
+}
+.dynasty-epigraph p {
+  margin: 0;
+}
+body.light .dynasty-epigraph {
+  background: rgba(20, 18, 15, 0.04);
+  color: var(--text-2);
+}
+.dynasty-feature {
+  display: block;
+  margin-bottom: 48px;
+  border: 0;
+  width: 100%;
+}
+.dynasty-list .dynasty-feature {
+  margin-bottom: 0;
+}
+.dynasty-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.dynasty-feature summary::-webkit-details-marker {
+  display: none;
+}
+.dynasty-cover {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: none;
+  padding: 30px 26px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dynasty-cover-hook {
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.dynasty-cover-title {
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0;
+  color: #fff;
+}
+.dynasty-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,90,31,0.82);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform .15s, background .15s;
+}
+.dynasty-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.dynasty-feature[open] .dynasty-toggle::after {
+  content: "−";
+}
+.dynasty-feature summary:hover .dynasty-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.dynasty-feature summary:hover .dynasty-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.dynasty-feature[open] .dynasty-cover {
+  border-bottom-color: var(--line);
+}
+.dynasty-panel {
+  clear: both;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 38px;
+  align-items: start;
+  width: 100%;
+  margin-top: 34px;
+  padding: 42px 0;
+}
+.dynasty-list .dynasty-panel {
+  width: calc(300% + 36px);
+}
+.dynasty-list .dynasty-feature:nth-child(3n + 2) .dynasty-panel {
+  margin-left: calc(-100% - 18px);
+}
+.dynasty-list .dynasty-feature:nth-child(3n) .dynasty-panel {
+  margin-left: calc(-200% - 36px);
+}
+.dynasty-list .dynasty-cover {
+  min-height: 340px;
+  padding: 26px;
+}
+.dynasty-list .dynasty-cover-title {
+  max-width: 280px;
+  font-size: clamp(1.45rem, 2.55vw, 2.05rem);
+}
+.dynasty-list .dynasty-cover-hook {
+  max-width: 260px;
+  font-size: 9px;
+  line-height: 1.5;
+}
+.dynasty-list .dynasty-toggle {
+  min-height: 46px;
+  padding: 0 16px;
+  font-size: 10px;
+}
+.dynasty-copy {
+  max-width: 680px;
+}
+.dynasty-kicker {
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-title {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.3rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+.dynasty-lead,
+.dynasty-copy p {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.dynasty-lead {
+  color: var(--text);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.dynasty-line {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.dynasty-line div {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 18px;
+  align-items: baseline;
+}
+.dynasty-line strong {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-line span {
+  color: var(--text-2);
+}
+.dynasty-note {
+  margin-top: 20px;
+  padding-left: 18px;
+  border-left: 2px solid var(--accent);
+}
+.travel-read-more {
+  margin-top: 24px;
+}
+.travel-read-more summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,90,31,0.82);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+.travel-read-more summary::-webkit-details-marker {
+  display: none;
+}
+.travel-read-more summary::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.travel-read-more[open] summary::after {
+  content: "−";
+}
+.travel-read-more-body {
+  margin-top: 22px;
+}
+.neural-article-feature {
+  display: block;
+  margin: 44px 0 0;
+  width: 100%;
+}
+.neural-article-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.neural-article-feature summary::-webkit-details-marker {
+  display: none;
+}
+.neural-article-cover {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 420px;
+  padding: 42px 34px 36px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  max-width: 520px;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.neural-article-hook {
+  max-width: 390px;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+.neural-article-title {
+  align-self: center;
+  justify-self: start;
+  max-width: min(390px, 100%);
+  font-family: var(--display);
+  font-size: clamp(2.05rem, 3.8vw, 3.45rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+.neural-article-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 24px;
+  border: 1px solid rgba(255,90,31,0.92);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background .15s;
+}
+.neural-article-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.neural-article-feature[open] .neural-article-toggle::after {
+  content: "−";
+}
+.neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.neural-article-feature summary:hover .neural-article-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.neural-article-panel {
+  clear: both;
+  max-width: 880px;
+  margin: 42px auto 0;
+  padding: clamp(24px, 4vw, 46px);
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+.neural-article-panel h3 {
+  max-width: 760px;
+  margin-bottom: 22px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.neural-article-panel p {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.72;
+}
+.neural-article-panel p:last-child {
+  margin-bottom: 0;
+}
+.neural-article-shot {
+  max-width: 760px;
+  margin: 26px 0 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.neural-article-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.neural-article-shot figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.dynasty-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dynasty-photo {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+.dynasty-photo.wide {
+  grid-column: 1 / -1;
+  min-height: 310px;
+}
+.dynasty-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  filter: grayscale(0.18) contrast(1.04);
+}
+.dynasty-photo figcaption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.74);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+body.light .dynasty-photo figcaption {
+  background: rgba(20,18,15,0.78);
+}
+body.light .dynasty-cover,
+body.light .neural-article-cover {
+  background: #fffaf2;
+  color: var(--text);
+  border-color: rgba(20,18,15,0.22);
+  box-shadow: 0 22px 60px rgba(20,18,15,0.08);
+}
+body.light .dynasty-cover-hook {
+  color: var(--text-2);
+}
+body.light .dynasty-cover-title,
+body.light .neural-article-title {
+  color: var(--text);
+}
+body.light .dynasty-toggle,
+body.light .neural-article-toggle {
+  color: var(--text);
+  border-color: rgba(255,90,31,0.92);
+  background: rgba(255,255,255,0.36);
+}
+body.light .dynasty-feature summary:hover .dynasty-toggle,
+body.light .neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.12);
+}
+body.light .dynasty-feature summary:hover .dynasty-cover,
+body.light .neural-article-feature summary:hover .neural-article-cover {
+  border-color: rgba(255,90,31,0.72);
+  box-shadow: 0 28px 76px rgba(20,18,15,0.12);
+}
+.neural-showcase {
+  display: none;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 36px;
+  align-items: center;
+  margin-top: 42px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.neural-showcase-copy {
+  max-width: 640px;
+}
+.neural-showcase-kicker {
+  margin-bottom: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.neural-showcase h3 {
+  max-width: 620px;
+  margin-bottom: 16px;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.neural-showcase p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.neural-showcase .hero-media {
+  --hero-media-x: 50%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1;
+  width: 100%;
+}
+.neural-showcase .hero-media .img-light {
+  --hero-media-x: 19%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1.04;
+}
+.neural-showcase .hero-media .img-light {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-dark {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-light {
+  display: block;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+}
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.cta h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px;
+  margin-bottom: 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px;
+  border-radius: var(--btn);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: all .15s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--accent);
+  color: #000;
+}
+.btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  max-width: 1240px; margin: 0 auto;
+  padding: 40px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: var(--bg-3); }
+
+
+.family-tree-panel {
+  grid-template-columns: 1fr;
+}
+.family-tree-article {
+  max-width: 980px;
+}
+.family-tree-text {
+  margin: 28px 0 0;
+  padding: 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.035);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.05vw, 14px);
+  line-height: 1.72;
+  white-space: pre-wrap;
+}
+.family-tree-text strong {
+  color: #fff;
+  font-family: var(--display);
+  font-size: 1.12em;
+  letter-spacing: 0;
+}
+.family-tree-text .family-role {
+  color: var(--accent);
+  font-weight: 700;
+}
+.family-tree-note {
+  margin-top: 18px;
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+body.light .family-tree-text {
+  background: rgba(20,18,15,0.035);
+  border-color: rgba(20,18,15,0.14);
+}
+body.light .family-tree-text strong {
+  color: var(--text);
+}
+
+
+.dynasty-list .dynasty-feature:nth-child(3) .dynasty-cover-title {
+  max-width: 100%;
+  font-size: clamp(1.35rem, 2.05vw, 1.72rem);
+  line-height: 1.04;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .dynasty-panel { grid-template-columns: 1fr; }
+  .dynasty-list .dynasty-panel {
+    width: 100%;
+    margin-left: 0;
+  }
+  .neural-showcase { grid-template-columns: 1fr; }
+  .neural-showcase .hero-media { max-width: 340px; }
+}
+@media (max-width: 768px) {
+  .topbar { padding: 0 16px; gap: 12px; }
+  .hero { padding: 32px 0 24px; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
+  .section { padding: 56px 0; }
+  .blog-grid { grid-template-columns: 1fr; gap: 32px; }
+  .dynasty-list {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+  .dynasty-feature { margin-bottom: 34px; }
+  .dynasty-feature summary {
+    width: 100%;
+  }
+  .dynasty-cover {
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+  .dynasty-toggle { width: 100%; padding: 0 16px; }
+  .dynasty-panel {
+    gap: 26px;
+    margin-top: 24px;
+    padding: 0 0 34px;
+  }
+  .dynasty-list .dynasty-panel {
+    width: 100%;
+    margin-left: 0;
+  }
+  .dynasty-copy {
+    max-width: none;
+  }
+  .dynasty-line { padding: 18px; }
+  .dynasty-line div { grid-template-columns: 1fr; gap: 4px; }
+  .dynasty-gallery { grid-template-columns: 1fr; }
+  .dynasty-photo,
+  .dynasty-photo.wide { min-height: 260px; }
+  .cta { padding: 56px 0; }
+  .subnav { gap: 12px; }
+  .neural-showcase { gap: 24px; margin-top: 32px; }
+}
+
+
+
+/* Align the neural feature card with the section 06 archive cards. */
+.neural-article-cover {
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: 520px;
+  padding: 30px 26px;
+  aspect-ratio: auto;
+}
+.neural-article-title {
+  order: 1;
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  line-height: 1.04;
+}
+.neural-article-hook {
+  order: 2;
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.neural-article-toggle {
+  order: 4;
+  min-height: 48px;
+  padding: 0 20px;
+}
+body.light .neural-article-hook {
+  color: var(--text-2);
+}
+
+  </style>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("nge-theme", document.body.classList.contains("light") ? "light" : "dark");
+    const btn = document.querySelector(".control-btn");
+    if (btn) btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute("lang") || "ru";
+    const next = cur === "ru" ? "en" : "ru";
+    document.documentElement.setAttribute("lang", next);
+    document.querySelectorAll("[data-ru]").forEach(el => {
+      const val = el.getAttribute("data-" + next);
+      if (val) el.textContent = val;
+    });
+    const btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = next.toUpperCase();
+    localStorage.setItem("nge-lang", next);
+  }
+  function markActiveNav() {
+    const page = document.body.dataset.page;
+    if (!page) return;
+    document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+      l.classList.toggle("active", l.dataset.nav === page);
+    });
+  }
+  (function restore() {
+    try {
+      if (localStorage.getItem("nge-theme") === "light") {
+        document.body.classList.add("light");
+        const btn = document.querySelector(".control-btn");
+        if (btn) btn.textContent = "☀";
+      }
+      const savedLang = localStorage.getItem("nge-lang");
+      if (savedLang === "en") toggleLang();
+    } catch (e) {}
+    markActiveNav();
+  })();
+</script>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="blog">
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+<div class="wrap">
+  <!-- HEADER (сохранен) -->
+  
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="Дневник и блог · New Generation English" data-en="Journal and blog · New Generation English">Дневник и блог · New Generation English</span>
+      <span class="bar"></span>
+      <span>NO. 005</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="Язык · преподавание · жизнь" data-en="Language · teaching · life">Язык · преподавание · жизнь</div>
+        <div class="hero-kicker-secondary" data-ru="Заметки и практические тексты" data-en="Notes and practical texts">Заметки и практические тексты</div>
+
+        <h1>
+          <span class="line" data-ru="Дневник" data-en="Journal">Дневник</span>
+          <span class="line accent" data-ru="и блог" data-en="and blog">и блог</span>
+        </h1>
+
+        <p class="hero-lead" data-ru="Заметки, размышления и практические тексты: Дзен-канал про английский, путешествия, нейронки, мой путь, авторство и педагогическая династия." data-en="Notes, reflections, and practical texts: a Zen channel about English, travel, neural tools, my path, authorship, and a teaching dynasty.">Заметки, размышления и практические тексты: Дзен-канал про английский, путешествия, нейронки, мой путь, авторство и педагогическая династия.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="lingua-boost-lab/index.html" data-ru="Открыть лабораторию" data-en="Open the lab">Открыть лабораторию</a>
+          <a class="btn btn-ghost" href="cases.html" data-ru="Смотреть кейсы" data-en="View cases">Смотреть кейсы</a>
+        </div>
+
+        <p class="hero-students-link"><span data-ru="Все записи собраны здесь:" data-en="All posts are collected here:">Все записи собраны здесь:</span> <a href="blog.html" data-ru="дневник и блог" data-en="journal and blog">дневник и блог</a></p>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num"><em>6</em></div><div class="lbl" data-ru="рубрик" data-en="sections">рубрик</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num">AI</div><div class="lbl" data-ru="нейронки" data-en="AI tools">нейронки</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">ROAD</div><div class="lbl" data-ru="путешествия" data-en="travel">путешествия</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">TEXT</div><div class="lbl" data-ru="авторство" data-en="authorship">авторство</div></div>
+    </div>
+  </div>
+</section>
+
+    <hr class="dash">
+
+    <!-- SECTION PICKER -->
+    <div class="section-picker">
+      <div class="section-picker-label" data-ru="Про что пишем" data-en="What we write about">Про что пишем</div>
+      <div class="subnav">
+        <a href="#zen-channel" class="subnav-link active" data-ru="Дзен · английский" data-en="Zen · English">Дзен · английский</a>
+        <a href="#travel" class="subnav-link" data-ru="Путешествия" data-en="Travel">Путешествия</a>
+        <a href="#neural-tools" class="subnav-link" data-ru="Нейронки" data-en="AI tools">Нейронки</a>
+        <a href="#my-path" class="subnav-link" data-ru="Мой путь" data-en="My path">Мой путь</a>
+        <a href="#authorship" class="subnav-link" data-ru="Авторство" data-en="Authorship">Авторство</a>
+        <a href="#dynasty" class="subnav-link" data-ru="Педагогическая династия" data-en="Teaching dynasty">Педагогическая династия</a>
+      </div>
+    </div>
+
+    <!-- SECTION 01: ДЗЕН-КАНАЛ ПРО АНГЛИЙСКИЙ -->
+    <section class="cta" id="zen-channel">
+      <div class="cta-head"><span data-ru="01 · Дзен-канал" data-en="01 · Zen channel">01 · Дзен-канал</span></div>
+      <h2><span data-ru="Канал про" data-en="A channel about">Канал про</span> <span class="accent" data-ru="английский" data-en="English">английский</span></h2>
+      <p data-ru="Если хочется читать статьи на английском и больше практиковаться через живые тексты, переходите в мой Яндекс Дзен: там собраны заметки, материалы и идеи для тех, кто учит язык через смысл." data-en="If you want to read articles in English and practise more through real texts, visit my Yandex Zen: it collects notes, materials, and ideas for learners who study language through meaning.">Если хочется читать статьи на английском и больше практиковаться через живые тексты, переходите в мой Яндекс Дзен: там собраны заметки, материалы и идеи для тех, кто учит язык через смысл.</p>
+      <a href="https://dzen.ru/newgenerationenglish" target="_blank" rel="noreferrer" class="btn-primary" data-ru="Открыть Яндекс Дзен →" data-en="Open Yandex Zen →">Открыть Яндекс Дзен →</a>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 02: ПУТЕШЕСТВИЯ -->
+    <section class="section" id="travel">
+      <div class="sect-head">
+        <div class="sect-index">02<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Английский вне класса" data-en="English beyond the classroom">Английский вне класса</div><h2 class="sect-title" data-ru="Про путешествия" data-en="About travel">Про путешествия</h2></div>
+      </div>
+      <div class="dynasty-list travel-list">
+        <details class="dynasty-feature travel-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Сколько стран я посетила" data-en="How many countries I have visited">Сколько стран я посетила</div>
+              <div class="dynasty-cover-hook" data-ru="35 стран и несколько возвращений" data-en="35 countries and several returns">35 стран и несколько возвращений</div>
+              <span class="dynasty-toggle" data-ru="Открыть заметку" data-en="Open note">Открыть заметку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Путешествия · маршрутная память" data-en="Travel · route memory">Путешествия · маршрутная память</div>
+              <h3 class="dynasty-title" data-ru="Сколько стран я посетила" data-en="How many countries I have visited">Сколько стран я посетила</h3>
+              <p class="dynasty-lead" data-ru="Моя география началась очень рано: Испания в 1994 году, Турция в 1996-м. Потом был большой северный поворот: Дания, Швеция и Финляндия в 2008-2009 годах. Постепенно поездки перестали быть просто отдыхом и превратились в личную карту мира." data-en="My travel map started early: Spain in 1994 and Turkey in 1996. Then came the northern route: Denmark, Sweden, and Finland in 2008-2009. Gradually, trips stopped being just holidays and became my personal map of the world.">Моя география началась очень рано: Испания в 1994 году, Турция в 1996-м. Потом был большой северный поворот: Дания, Швеция и Финляндия в 2008-2009 годах. Постепенно поездки перестали быть просто отдыхом и превратились в личную карту мира.</p>
+              <p data-ru="В 2011-2015 годах к ней добавились Нидерланды, Латвия, Эстония, Чехия, Австрия, Германия, Бельгия, Люксембург, Англия, Шотландия, Беларусь и Литва. Это была Европа с разными скоростями: где-то музейная, где-то северная, где-то очень городская, но почти везде английский становился способом не потеряться и не молчать." data-en="From 2011 to 2015, the map expanded with the Netherlands, Latvia, Estonia, Czechia, Austria, Germany, Belgium, Luxembourg, England, Scotland, Belarus, and Lithuania. It was Europe at different speeds: museum-like, northern, urban, and almost everywhere English became a way not to get lost or stay silent.">В 2011-2015 годах к ней добавились Нидерланды, Латвия, Эстония, Чехия, Австрия, Германия, Бельгия, Люксембург, Англия, Шотландия, Беларусь и Литва. Это была Европа с разными скоростями: где-то музейная, где-то северная, где-то очень городская, но почти везде английский становился способом не потеряться и не молчать.</p>
+              <p data-ru="В 2016-2019 годах маршрут стал шире: США, Венгрия, Сербия, Италия, Ватикан, Португалия, Грузия, Польша, Франция и снова Эстония, Германия, Испания, Италия и Америка. Мне нравится, что в этом списке есть возвращения: иногда страна открывается только со второго или третьего раза." data-en="In 2016-2019, the route became wider: the United States, Hungary, Serbia, Italy, Vatican City, Portugal, Georgia, Poland, France, and returns to Estonia, Germany, Spain, Italy, and America. I like that this list has returns: sometimes a country opens only on the second or third visit.">В 2016-2019 годах маршрут стал шире: США, Венгрия, Сербия, Италия, Ватикан, Португалия, Грузия, Польша, Франция и снова Эстония, Германия, Испания, Италия и Америка. Мне нравится, что в этом списке есть возвращения: иногда страна открывается только со второго или третьего раза.</p>
+              <p data-ru="После паузы снова пошли новые точки: Турция в 2021-м, Египет, Грузия и Армения в 2022-м, Казахстан и ОАЭ в 2023-м. Внутри России в эту же личную карту легли Мурманск, Сочи и Домбай: это не страны, но это тоже сильные маршруты, которые меняют внутреннюю оптику." data-en="After a pause, new points appeared again: Turkey in 2021, Egypt, Georgia, and Armenia in 2022, Kazakhstan and the UAE in 2023. Inside Russia, Murmansk, Sochi, and Dombay also belong on this personal map: not countries, but strong routes that change the inner lens.">После паузы снова пошли новые точки: Турция в 2021-м, Египет, Грузия и Армения в 2022-м, Казахстан и ОАЭ в 2023-м. Внутри России в эту же личную карту легли Мурманск, Сочи и Домбай: это не страны, но это тоже сильные маршруты, которые меняют внутреннюю оптику.</p>
+              <p data-ru="2024 год получился особенно насыщенным: Куба, Узбекистан, Турция, Сербия, Египет, Иордания и Шри-Ланка. В 2025-м были Вьетнам, Сочи, Домбай и снова Шри-Ланка. В 2026-м карта продолжилась Марокко, Турцией и Казахстаном." data-en="The year 2024 was especially full: Cuba, Uzbekistan, Turkey, Serbia, Egypt, Jordan, and Sri Lanka. In 2025 there were Vietnam, Sochi, Dombay, and Sri Lanka again. In 2026 the map continued with Morocco, Turkey, and Kazakhstan.">2024 год получился особенно насыщенным: Куба, Узбекистан, Турция, Сербия, Египет, Иордания и Шри-Ланка. В 2025-м были Вьетнам, Сочи, Домбай и снова Шри-Ланка. В 2026-м карта продолжилась Марокко, Турцией и Казахстаном.</p>
+              <p class="dynasty-note" data-ru="Если считать Великобританию одной страной, получается около 35 стран. Если оставить Англию и Шотландию отдельными строками личного маршрута, получается 36 направлений. Но главный итог не в цифре: каждая поездка добавляла новый способ разговаривать с миром." data-en="If the United Kingdom is counted as one country, the total is about 35 countries. If England and Scotland stay as separate lines of the personal route, it becomes 36 destinations. But the main result is not the number: every trip added a new way to speak with the world.">Если считать Великобританию одной страной, получается около 35 стран. Если оставить Англию и Шотландию отдельными строками личного маршрута, получается 36 направлений. Но главный итог не в цифре: каждая поездка добавляла новый способ разговаривать с миром.</p>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature travel-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Соло-путешествие на Кубу" data-en="Solo trip to Cuba">Соло-путешествие на Кубу</div>
+              <div class="dynasty-cover-hook" data-ru="Как я проехала остров одна" data-en="How I crossed the island on my own">Как я проехала остров одна</div>
+              <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Личная история · Куба" data-en="Personal story · Cuba">Личная история · Куба</div>
+              <h3 class="dynasty-title" data-ru="Теоретически, это может быть Куба" data-en="Theoretically, this could be Cuba">Теоретически, это может быть Куба</h3>
+              <p class="dynasty-lead" data-ru="Я давно мечтала о Кубе: старые машины, яркие улицы, сигары, коктейли и ощущение другого мира. Но ещё до вылета поездка почти сорвалась: отель оказался далеко, транспорта было мало, гиды не хотели связываться с одной туристкой, а в чатах меня в основном отговаривали." data-en="I had dreamed of Cuba for a long time: old cars, bright streets, cigars, cocktails, and the feeling of another world. But before the flight, the trip almost collapsed: the hotel was far away, transport was scarce, guides did not want to deal with one solo traveller, and travel chats mostly tried to talk me out of it.">Я давно мечтала о Кубе: старые машины, яркие улицы, сигары, коктейли и ощущение другого мира. Но ещё до вылета поездка почти сорвалась: отель оказался далеко, транспорта было мало, гиды не хотели связываться с одной туристкой, а в чатах меня в основном отговаривали.</p>
+              <p data-ru="В какой-то момент стало ясно: если я останусь в отеле, путешествия не получится. Значит, надо действовать аккуратно, но всё-таки своим маршрутом." data-en="At some point it became clear: if I stayed at the hotel, there would be no real journey. So I had to move carefully, but still follow my own route.">В какой-то момент стало ясно: если я останусь в отеле, путешествия не получится. Значит, надо действовать аккуратно, но всё-таки своим маршрутом.</p>
+              <details class="travel-read-more">
+                <summary data-ru="Читать полностью" data-en="Read full story">Читать полностью</summary>
+                <div class="travel-read-more-body">
+                  <p data-ru="Сначала я пыталась найти попутчиков заранее. И вот тут началась самая неприятная часть: вместо поддержки я услышала много скепсиса. Мне говорили, что я выбрала слишком дальний отель, что по острову не проехать, что без компании и испанского языка лучше даже не пытаться. Несколько дней такого общения почти убедили меня сдать билеты." data-en="First I tried to find travel companions in advance. That was the most unpleasant part: instead of support, I heard a lot of scepticism. People told me I had chosen a hotel that was too far away, that crossing the island was impossible, and that without company or Spanish I should not even try. Several days of this almost made me return the tickets.">Сначала я пыталась найти попутчиков заранее. И вот тут началась самая неприятная часть: вместо поддержки я услышала много скепсиса. Мне говорили, что я выбрала слишком дальний отель, что по острову не проехать, что без компании и испанского языка лучше даже не пытаться. Несколько дней такого общения почти убедили меня сдать билеты.</p>
+                  <p data-ru="Русскоязычные туристические чаты оказались отдельным испытанием. Одни спрашивали, понимаю ли я вообще, куда еду. Другие советовали срочно менять билет на Варадеро. Третьи просто проходили мимо с любопытством зрителей. Самым обидным было не то, что никто не хотел ехать со мной, а то, что почти никто не пытался предложить рабочее решение." data-en="Russian-speaking travel chats became a separate trial. Some asked whether I even understood where I was going. Others told me to change the ticket to Varadero immediately. Some simply watched with curiosity. The most upsetting thing was not that nobody wanted to go with me, but that almost nobody tried to offer a practical solution.">Русскоязычные туристические чаты оказались отдельным испытанием. Одни спрашивали, понимаю ли я вообще, куда еду. Другие советовали срочно менять билет на Варадеро. Третьи просто проходили мимо с любопытством зрителей. Самым обидным было не то, что никто не хотел ехать со мной, а то, что почти никто не пытался предложить рабочее решение.</p>
+                  <p data-ru="Гиды тоже не вдохновляли. Я была одна, далеко, не готова платить космические деньги, а на Кубе ещё и был бензиновый кризис. С точки зрения организованных экскурсий я была нерентабельным клиентом: слишком много хлопот ради одного человека. Поэтому мне снова отвечали: далеко, сложно, никто за вами не поедет." data-en="Guides were not encouraging either. I was alone, far away, not ready to pay absurd money, and Cuba was also dealing with a fuel crisis. From the point of view of organized tours, I was an unprofitable client: too much trouble for one person. So I kept hearing the same answer: too far, too complicated, nobody will come for you.">Гиды тоже не вдохновляли. Я была одна, далеко, не готова платить космические деньги, а на Кубе ещё и был бензиновый кризис. С точки зрения организованных экскурсий я была нерентабельным клиентом: слишком много хлопот ради одного человека. Поэтому мне снова отвечали: далеко, сложно, никто за вами не поедет.</p>
+                  <p data-ru="Меня удержали подруги. Они сказали простую вещь: приедешь и разберёшься на месте. Сейчас я понимаю, что это была не легкомысленность, а нормальная дорожная мудрость. Иногда невозможно просчитать всё заранее, особенно в стране, где транспорт, деньги, маршруты и бытовая логика устроены совсем иначе." data-en="My friends kept me steady. They said a simple thing: arrive first, then figure it out on the spot. Now I understand that this was not carelessness, but real travel wisdom. Sometimes you cannot calculate everything in advance, especially in a country where transport, money, routes, and everyday logic work differently.">Меня удержали подруги. Они сказали простую вещь: приедешь и разберёшься на месте. Сейчас я понимаю, что это была не легкомысленность, а нормальная дорожная мудрость. Иногда невозможно просчитать всё заранее, особенно в стране, где транспорт, деньги, маршруты и бытовая логика устроены совсем иначе.</p>
+                  <p data-ru="К моменту вылета настроение было уже подпорчено, но билет был куплен, чемодан собран, а отступать стало как-то странно. В Шереметьево я увидела тот самый полный чартер: много туристов, все летят на пляжный отдых, и почти никто не собирается устраивать себе самостоятельный квест по стране. Я уже тогда поняла, что мой маршрут будет существовать отдельно от общего настроения самолёта." data-en="By the time of departure, my mood was already spoiled, but the ticket was bought, the suitcase was packed, and retreating felt strange. At Sheremetyevo I saw the full charter: many tourists, everyone heading for a beach holiday, and almost nobody planning an independent quest across the country. I understood even then that my route would exist separately from the general mood of the plane.">К моменту вылета настроение было уже подпорчено, но билет был куплен, чемодан собран, а отступать стало как-то странно. В Шереметьево я увидела тот самый полный чартер: много туристов, все летят на пляжный отдых, и почти никто не собирается устраивать себе самостоятельный квест по стране. Я уже тогда поняла, что мой маршрут будет существовать отдельно от общего настроения самолёта.</p>
+                  <p data-ru="Сам перелёт был долгим: чартер до Кайо-Коко, задержка, почти сутки дороги и резкая смена мира. В Москве было около минус тридцати, на Кубе — те же тридцать, только плюс. Пальмы, жара, улыбки, бедность, автобус до отеля и дорога, вдоль которой стояли люди. Они голосовали у трассы, потому что иногда попутка — единственный способ куда-то добраться." data-en="The flight itself was long: a charter to Cayo Coco, a delay, almost a full day on the road, and a sharp change of worlds. Moscow was around minus thirty; Cuba was the same thirty, but above zero. Palms, heat, smiles, poverty, a bus to the hotel, and a road lined with people. They were hitching rides because sometimes a passing car is the only way to get anywhere.">Сам перелёт был долгим: чартер до Кайо-Коко, задержка, почти сутки дороги и резкая смена мира. В Москве было около минус тридцати, на Кубе — те же тридцать, только плюс. Пальмы, жара, улыбки, бедность, автобус до отеля и дорога, вдоль которой стояли люди. Они голосовали у трассы, потому что иногда попутка — единственный способ куда-то добраться.</p>
+                  <p data-ru="Дорога от аэропорта до отеля сама по себе была уроком. Туристический автобус ехал как отдельная капсула благополучия, а за окном стояла настоящая страна: маленькие посёлки, люди у дороги, ожидание транспорта, отсутствие привычного изобилия. В такие моменты быстро понимаешь, что путешествие не обязано быть удобным, чтобы быть важным." data-en="The road from the airport to the hotel was a lesson on its own. The tourist bus moved like a separate capsule of comfort, while the real country stood outside the window: small villages, people by the road, waiting for transport, the absence of familiar abundance. In moments like that, you quickly understand that a journey does not have to be convenient to be meaningful.">Дорога от аэропорта до отеля сама по себе была уроком. Туристический автобус ехал как отдельная капсула благополучия, а за окном стояла настоящая страна: маленькие посёлки, люди у дороги, ожидание транспорта, отсутствие привычного изобилия. В такие моменты быстро понимаешь, что путешествие не обязано быть удобным, чтобы быть важным.</p>
+                  <p data-ru="В отеле быстро стало ясно: если я останусь на территории, моей Кубы не случится. Экскурсий было мало, вариантов ещё меньше. Я выбрала поездку в Камагуэй и придумала план: доехать с группой, а потом остаться в городе, найти ночлег и разбираться дальше. План звучал тревожно даже для меня, но он был единственным, в котором появлялась свобода." data-en="At the hotel it quickly became clear: if I stayed on the property, my Cuba would not happen. There were few excursions and even fewer options. I chose a trip to Camaguey and made a plan: go with the group, then stay in the city, find a place to sleep, and figure out the rest. The plan sounded alarming even to me, but it was the only one that contained freedom.">В отеле быстро стало ясно: если я останусь на территории, моей Кубы не случится. Экскурсий было мало, вариантов ещё меньше. Я выбрала поездку в Камагуэй и придумала план: доехать с группой, а потом остаться в городе, найти ночлег и разбираться дальше. План звучал тревожно даже для меня, но он был единственным, в котором появлялась свобода.</p>
+                  <p data-ru="Идея была простая и чуть авантюрная: выйти из экскурсионного сценария и дальше двигаться городами. В одном месте найти жильё, в другом — транспорт, в третьем — людей, которые подскажут следующий шаг. Я не учла только одного: даже в больших городах на Кубе не всё работает по привычной туристической логике. Экскурсионных бюро мало, билетов мало, информации мало. Зато людей и случайных возможностей оказалось больше, чем я думала." data-en="The idea was simple and slightly adventurous: step out of the excursion script and continue city by city. In one place find lodging, in another transport, in a third people who would suggest the next step. I had not accounted for one thing: even in large Cuban cities, not everything works according to familiar tourist logic. Few tour offices, few tickets, little information. But there were more people and accidental opportunities than I had expected.">Идея была простая и чуть авантюрная: выйти из экскурсионного сценария и дальше двигаться городами. В одном месте найти жильё, в другом — транспорт, в третьем — людей, которые подскажут следующий шаг. Я не учла только одного: даже в больших городах на Кубе не всё работает по привычной туристической логике. Экскурсионных бюро мало, билетов мало, информации мало. Зато людей и случайных возможностей оказалось больше, чем я думала.</p>
+                  <p data-ru="В самой экскурсии мне повезло встретить людей, которые наконец не стали пугать. Две девушки объяснили мне про голубые якоря на домах. Если на доме есть такой знак, значит, там официально сдают комнату. Это был ключ. Не абстрактный совет «будь осторожна», а конкретная инструкция, как выжить и не переплатить." data-en="During the excursion I was lucky to meet people who finally did not try to scare me. Two girls explained the blue anchors on houses. If a house has that sign, it officially rents rooms. That was the key: not a vague 'be careful', but a concrete instruction for staying safe and not overpaying.">В самой экскурсии мне повезло встретить людей, которые наконец не стали пугать. Две девушки объяснили мне про голубые якоря на домах. Если на доме есть такой знак, значит, там официально сдают комнату. Это был ключ. Не абстрактный совет «будь осторожна», а конкретная инструкция, как выжить и не переплатить.</p>
+                  <p data-ru="Когда экскурсионный автобус уехал, я осталась в городе с вещами и очень ясным ощущением: назад пути нет, значит, нужно идти вперёд. Я нашла дом, где меня приняли, и с этого момента началась не гостиничная, а настоящая Куба: террасы, хозяева, закрывающиеся на ночь двери, разговоры, бытовые мелочи и люди, которые помогали без ощущения подвига." data-en="When the tour bus left, I stayed in the city with my things and a very clear feeling: there was no way back, so I had to go forward. I found a house that took me in, and from that moment hotel Cuba ended and real Cuba began: terraces, hosts, doors locked at night, conversations, everyday details, and people who helped without making a drama of it.">Когда экскурсионный автобус уехал, я осталась в городе с вещами и очень ясным ощущением: назад пути нет, значит, нужно идти вперёд. Я нашла дом, где меня приняли, и с этого момента началась не гостиничная, а настоящая Куба: террасы, хозяева, закрывающиеся на ночь двери, разговоры, бытовые мелочи и люди, которые помогали без ощущения подвига.</p>
+                  <p data-ru="Дом, где меня приняли, стал первой точкой спокойствия. После всех чужих «не получится» вдруг появились люди, которые просто открыли дверь, показали комнату и объяснили, как всё устроено. Это очень меняет состояние: ты ещё не знаешь, что будет завтра, но у тебя уже есть кровать, крыша и человек, которому можно задать вопрос." data-en="The house that took me in became the first point of calm. After all the outside 'you cannot', suddenly there were people who simply opened the door, showed me a room, and explained how things worked. That changes your state: you still do not know what tomorrow will bring, but you already have a bed, a roof, and a person you can ask a question.">Дом, где меня приняли, стал первой точкой спокойствия. После всех чужих «не получится» вдруг появились люди, которые просто открыли дверь, показали комнату и объяснили, как всё устроено. Это очень меняет состояние: ты ещё не знаешь, что будет завтра, но у тебя уже есть кровать, крыша и человек, которому можно задать вопрос.</p>
+                  <p data-ru="Дальше были автобусы, Камагуэй, Гавана, новые знакомства, старые машины, жара, усталость, радость и постоянное чувство, что я всё время немного на границе своего комфорта. Но именно там путешествие ожило. Я говорила с кубинцами, слушала истории, искала транспорт, покупала сувениры, договаривалась, ждала, ошибалась и снова договаривалась." data-en="Then came buses, Camaguey, Havana, new acquaintances, old cars, heat, tiredness, joy, and the constant feeling that I was just beyond my comfort zone. But that was where the journey came alive. I spoke with Cubans, listened to stories, looked for transport, bought souvenirs, negotiated, waited, made mistakes, and negotiated again.">Дальше были автобусы, Камагуэй, Гавана, новые знакомства, старые машины, жара, усталость, радость и постоянное чувство, что я всё время немного на границе своего комфорта. Но именно там путешествие ожило. Я говорила с кубинцами, слушала истории, искала транспорт, покупала сувениры, договаривалась, ждала, ошибалась и снова договаривалась.</p>
+                  <p data-ru="В Гаване всё оказалось не таким, как на картинках. Да, были машины, цвета, улицы, старая красота и тот самый образ Кубы, ради которого обычно едут. Но рядом с этим была усталость города, бытовая сложность, люди, которые живут совсем не в туристической открытке. Мне не всегда было легко, зато было очень честно." data-en="Havana was not exactly like the pictures. Yes, there were cars, colours, streets, old beauty, and the iconic image of Cuba people travel for. But beside that there was the tiredness of the city, everyday difficulty, and people who do not live inside a tourist postcard. It was not always easy for me, but it was very honest.">В Гаване всё оказалось не таким, как на картинках. Да, были машины, цвета, улицы, старая красота и тот самый образ Кубы, ради которого обычно едут. Но рядом с этим была усталость города, бытовая сложность, люди, которые живут совсем не в туристической открытке. Мне не всегда было легко, зато было очень честно.</p>
+                  <p data-ru="Отдельной линией стали люди, которые будто появлялись в нужный момент. Роберто помог с фотографией, Тони рассказывал истории на прекрасном русском, Юни водил по магазинам за сувенирами, Стас и Артём провожали на вокзал и незаметно покупали воду и бутерброд. В какой-то момент я перестала быть одинокой туристкой и стала человеком, которого узнают и провожают." data-en="A separate line of the story was the people who seemed to appear at the right moment. Roberto helped with a photograph, Tony told stories in beautiful Russian, Yuni walked with me through shops for souvenirs, Stas and Artyom saw me off at the station and quietly bought water and a sandwich. At some point I stopped being a lonely tourist and became someone people recognized and saw off.">Отдельной линией стали люди, которые будто появлялись в нужный момент. Роберто помог с фотографией, Тони рассказывал истории на прекрасном русском, Юни водил по магазинам за сувенирами, Стас и Артём провожали на вокзал и незаметно покупали воду и бутерброд. В какой-то момент я перестала быть одинокой туристкой и стала человеком, которого узнают и провожают.</p>
+                  <p data-ru="Испанского языка у меня почти не было, зато работали английский, жесты, наблюдательность и спокойствие. В ночном автобусе ко мне подсел канадец, осторожно спросил, говорю ли я по-английски, и буквально выдохнул: наконец-то. Так я снова убедилась, что язык в дороге — не школьный предмет, а способ найти своих даже там, где ты вроде бы совсем одна." data-en="I barely had Spanish, but English, gestures, observation, and calm worked. On a night bus, a Canadian sat next to me, carefully asked if I spoke English, and visibly relaxed: finally. That was another reminder that language on the road is not a school subject, but a way to find your people even when you seem to be completely alone.">Испанского языка у меня почти не было, зато работали английский, жесты, наблюдательность и спокойствие. В ночном автобусе ко мне подсел канадец, осторожно спросил, говорю ли я по-английски, и буквально выдохнул: наконец-то. Так я снова убедилась, что язык в дороге — не школьный предмет, а способ найти своих даже там, где ты вроде бы совсем одна.</p>
+                  <p data-ru="Самое смешное, что иногда понимание вообще появлялось без нормального общего языка. Часть разговора держалась на английском, часть на русском, часть на испанских словах, которые я угадывала по ситуации, часть на интонации и жестах. И это тоже языковой опыт: понять, что коммуникация шире грамматики, но грамматика и словарь дают тебе опору, когда всё остальное плывёт." data-en="The funny thing is that sometimes understanding appeared without a proper shared language at all. Part of the conversation rested on English, part on Russian, part on Spanish words I guessed from context, part on tone and gestures. That is also a language experience: realizing that communication is wider than grammar, but grammar and vocabulary give you support when everything else is unstable.">Самое смешное, что иногда понимание вообще появлялось без нормального общего языка. Часть разговора держалась на английском, часть на русском, часть на испанских словах, которые я угадывала по ситуации, часть на интонации и жестах. И это тоже языковой опыт: понять, что коммуникация шире грамматики, но грамматика и словарь дают тебе опору, когда всё остальное плывёт.</p>
+                  <p data-ru="Особенно запомнились люди. Кто-то встречал меня ночью на вокзале, кто-то помогал купить сувениры, кто-то объяснял дорогу, кто-то просто сидел рядом на террасе и создавал ощущение дома. Я уезжала с Кубы с чувством, будто летом прощаешься с бабушкой: немного грустно, тепло и не хочется закрывать дверь." data-en="The people are what I remember most. Someone met me at the station at night, someone helped me buy souvenirs, someone explained the road, someone simply sat nearby on a terrace and made the place feel like home. Leaving Cuba felt like saying goodbye to your grandmother at the end of summer: a little sad, warm, and hard to close the door.">Особенно запомнились люди. Кто-то встречал меня ночью на вокзале, кто-то помогал купить сувениры, кто-то объяснял дорогу, кто-то просто сидел рядом на террасе и создавал ощущение дома. Я уезжала с Кубы с чувством, будто летом прощаешься с бабушкой: немного грустно, тепло и не хочется закрывать дверь.</p>
+                  <p data-ru="К финалу я уже знала, кому написать, где искать автобус, как спросить, где жильё, к кому обратиться за помощью и где купить подарки. Это было удивительное превращение: за несколько дней незнакомая страна из набора страшилок стала системой связей, лиц, маршрутов и маленьких привычек." data-en="By the end, I already knew whom to message, where to look for a bus, how to ask about lodging, whom to ask for help, and where to buy gifts. It was a surprising transformation: in a few days, an unfamiliar country made of warnings became a system of connections, faces, routes, and small habits.">К финалу я уже знала, кому написать, где искать автобус, как спросить, где жильё, к кому обратиться за помощью и где купить подарки. Это было удивительное превращение: за несколько дней незнакомая страна из набора страшилок стала системой связей, лиц, маршрутов и маленьких привычек.</p>
+                  <p data-ru="Когда я вернулась в отель, оказалось, что меня там всю неделю обсуждали: доедет, не доедет, где она, жива ли. А я просто пришла к ужину и поняла, что за эти двенадцать дней стала немного другим человеком. Не потому, что совершила подвиг, а потому что перестала верить каждому «не получится»." data-en="When I returned to the hotel, it turned out that people had been discussing me all week: would I get there, where was I, was I alive. I simply came back for dinner and realized that in those twelve days I had become a slightly different person. Not because I had done something heroic, but because I had stopped believing every 'you cannot'.">Когда я вернулась в отель, оказалось, что меня там всю неделю обсуждали: доедет, не доедет, где она, жива ли. А я просто пришла к ужину и поняла, что за эти двенадцать дней стала немного другим человеком. Не потому, что совершила подвиг, а потому что перестала верить каждому «не получится».</p>
+                  <p data-ru="В этой истории есть ещё один важный итог: я была рада, что в итоге никто из случайных попутчиков со мной не поехал. Нужные люди нашлись там. А лишние, возможно, только мешали бы слышать страну, принимать решения и проживать всё своим темпом." data-en="There is one more important result in this story: in the end, I was glad that no random companions came with me. The right people were found there. Extra people might only have made it harder to hear the country, make decisions, and live everything at my own pace.">В этой истории есть ещё один важный итог: я была рада, что в итоге никто из случайных попутчиков со мной не поехал. Нужные люди нашлись там. А лишние, возможно, только мешали бы слышать страну, принимать решения и проживать всё своим темпом.</p>
+                  <p data-ru="В итоге все предупреждения перевернулись: «не доедешь» — доехала; «опасно» — не пропала; «дорого» — оказалось намного разумнее, чем пугали; «одна не сможешь» — смогла. Куба стала для меня историей не про риск ради риска, а про внимательность, коммуникацию и право идти своим маршрутом." data-en="In the end, every warning turned around: 'you will not get there' — I did; 'it is dangerous' — I stayed safe; 'too expensive' — it was far more reasonable than I had been told; 'you cannot do it alone' — I could. Cuba became a story not about risk for its own sake, but about attention, communication, and the right to follow your own route.">В итоге все предупреждения перевернулись: «не доедешь» — доехала; «опасно» — не пропала; «дорого» — оказалось намного разумнее, чем пугали; «одна не сможешь» — смогла. Куба стала для меня историей не про риск ради риска, а про внимательность, коммуникацию и право идти своим маршрутом.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </details>
+        <details class="dynasty-feature travel-feature">
+          <summary>
+            <div class="dynasty-cover">
+              <div class="dynasty-cover-title" data-ru="Yet to decide" data-en="Yet to decide">Yet to decide</div>
+              <div class="dynasty-cover-hook" data-ru="Место для следующей дорожной истории" data-en="A place for the next travel story">Место для следующей дорожной истории</div>
+              <span class="dynasty-toggle" data-ru="Открыть заготовку" data-en="Open draft">Открыть заготовку</span>
+            </div>
+          </summary>
+          <article class="dynasty-panel">
+            <div class="dynasty-copy">
+              <div class="dynasty-kicker" data-ru="Черновик · будет выбрано позже" data-en="Draft · to be chosen later">Черновик · будет выбрано позже</div>
+              <h3 class="dynasty-title" data-ru="Yet to decide" data-en="Yet to decide">Yet to decide</h3>
+              <p class="dynasty-lead" data-ru="Третья дорожная история пока остаётся открытой: сюда можно поставить следующий текст про страну, маршрут, языковую ситуацию или маленькое приключение, которое лучше всего дополнит раздел." data-en="The third travel story stays open for now: it can hold the next text about a country, a route, a language situation, or a small adventure that best completes the section.">Третья дорожная история пока остаётся открытой: сюда можно поставить следующий текст про страну, маршрут, языковую ситуацию или маленькое приключение, которое лучше всего дополнит раздел.</p>
+            </div>
+          </article>
+        </details>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 03: НЕЙРОНКИ -->
+    <section class="section" id="neural-tools">
+      <div class="sect-head">
+        <div class="sect-index">03<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="ИИ в обучении" data-en="AI in learning">ИИ в обучении</div><h2 class="sect-title" data-ru="Про нейронки" data-en="About AI tools">Про нейронки</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="7 апреля 2025 · 6 мин чтения" data-en="Apr 7, 2025 · 6 min read">7 апреля 2025 · 6 мин чтения</div>
+          <h3 class="entry-title" data-ru="Нейронки как ассистент преподавателя" data-en="AI tools as a teacher's assistant">Нейронки как ассистент преподавателя</h3>
+          <p class="entry-text" data-ru="Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика." data-en="How I use AI for ideas, lesson structure, practice tasks, and quick adaptation of materials for a specific learner.">Как я использую ИИ для идей, структуры урока, тренировочных заданий и быстрой адаптации материалов под конкретного ученика.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="29 марта 2025 · 5 мин чтения" data-en="Mar 29, 2025 · 5 min read">29 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Где ИИ помогает, а где нужен человек" data-en="Where AI helps and where a person is needed">Где ИИ помогает, а где нужен человек</h3>
+          <p class="entry-text" data-ru="Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры." data-en="AI speeds up preparation, but the teaching decision still belongs to the teacher: pace, tone, motivation, and a sense of proportion.">Нейронка ускоряет подготовку, но педагогическое решение всё равно остаётся за учителем: темп, интонация, мотивация и чувство меры.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="15 марта 2025 · 5 мин чтения" data-en="Mar 15, 2025 · 5 min read">15 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Нейросети как соавторы" data-en="Neural tools as co-authors">Нейросети как соавторы</h3>
+          <p class="entry-text" data-ru="Где нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но не заменяют автора и педагогический выбор." data-en="Where neural tools help create materials, adapt tasks, and see more options, without replacing authorship or the teaching choice.">Где нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но не заменяют автора и педагогический выбор.</p>
+        </article>
+      </div>
+      <details class="neural-article-feature">
+        <summary>
+          <div class="neural-article-cover">
+            <div class="neural-article-hook" data-ru="Интересно, к чему всё это приведёт?" data-en="I wonder where all this will lead?">Интересно, к чему всё это приведёт?</div>
+            <div class="neural-article-title" data-ru="Нейросети как соавторы" data-en="AI as co-authors">Нейросети как соавторы</div>
+            <span class="neural-article-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="neural-article-panel">
+          <h3 data-ru="От первого HTML-документика до сайта, который можно выложить на GitHub" data-en="From the first HTML file to a site ready for GitHub">От первого HTML-документика до сайта, который можно выложить на GitHub</h3>
+          <p>Мой сайт начался не с идеальной структуры и не с большого технического плана. Он начался с одного маленького HTML-документа: Grammar - Present Continuous and Present Perfect - copy 1.html. Это была первая самостоятельная страница, первый “кодик”, первый момент, когда учебный материал по английской грамматике перестал быть просто текстом и превратился в интерактивную веб-страницу.</p>
+          <figure class="neural-article-shot">
+            <img src="assets/first-html-page-screenshot.png" alt="Скриншот первой HTML-страницы Grammar - Present Continuous and Present Perfect">
+            <figcaption data-ru="Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect" data-en="The very first HTML file: Grammar - Present Continuous and Present Perfect">Тот самый первый HTML-документик: Grammar - Present Continuous and Present Perfect</figcaption>
+          </figure>
+          <p>Там ещё не было большой экосистемы, личных кабинетов, лаборатории, версий, аудитов и GitHub-логики. Была одна страница: Present Continuous и Present Perfect, карточки, стили, структура, попытка красиво и понятно подать грамматику. Но именно с неё началось главное: я увидела, что могу не только преподавать английский, но и собирать собственные цифровые материалы.</p>
+          <p>Потом появился DeepSeek. В нём я создала одну страницу, потом вторую. Сначала каждая жила отдельно, как маленький самостоятельный остров. Потом пришло понимание: если страницы можно создавать по одной, значит, их можно соединять. Так начался переход от отдельных HTML-файлов к сайту.</p>
+          <p>Важным этапом стало знакомство с “песочницей”. Я узнала, что можно не бояться экспериментировать: пробовать дизайн, ломать, чинить, сохранять версии, возвращаться назад, сравнивать варианты. Песочница стала местом, где сайт рос без страха. Там появлялись версии 9, 10, 11, 12, 13, 14, 15, 16, 17, 18; были рабочие копии, бэкапы, папки “работать будем только тут”, архивы и сборки. Это уже был не один файл, а настоящий процесс разработки.</p>
+          <p>Постепенно отдельные страницы начали складываться в систему New Generation English. Появились главная страница, раздел “О проекте”, программы, условия, кейсы, блог, страница про путешествия, визуальные материалы и общая навигация. Потом выросла LinguaBoost Lab — интерактивная лаборатория с модулями по уровням от Pre-A1 до B2+: грамматика, лексика, карточки, квизы, тренажёры, задания на говорение и повторение.</p>
+          <p>Следующим большим шагом стали кабинеты. Сайт перестал быть просто витриной и начал превращаться в образовательную платформу. Появился кабинет ученика с расписанием, домашними заданиями, материалами и прогрессом. Появился кабинет преподавателя с уроками, учениками, оплатами, задачами и отчётностью. Появился кабинет родителя, где можно видеть посещаемость, прогресс, уведомления и финансовый блок.</p>
+          <p>Нейросети на этом пути стали не заменой автора, а рабочей командой. DeepSeek помог начать. Claude помогал с дизайном и формулировками. GPT помогал собирать смысл, тексты и структуру. Codex помогал разбираться в коде, объединять страницы, чинить ошибки, делать бэкапы, проверять мобильную версию, править CSS и превращать набор файлов в более аккуратный проект.</p>
+          <p>Отдельная часть пути — это визуальная доводка. Мы проверяли светлую и тёмную тему, мобильную адаптацию, меню, отступы, карточки, контраст, изображения, подписи, порядок разделов. Появились аудит-скриншоты, VISUAL_AUDIT_TODO.md, резервные копии перед правками и отдельные версии после исправлений. То есть сайт создавался не “одной кнопкой”, а через десятки маленьких решений.</p>
+          <p>И самое важное: я училась вместе с проектом. Сначала я просто хотела сделать красивую страницу. Потом поняла, что такое песочница. Потом научилась создавать несколько страниц. Потом — объединять их. Потом — думать версиями. Потом — видеть сайт как систему. А потом стало понятно: это уже не черновик, а проект, который не стыдно привести в порядок, документировать и выложить на GitHub.</p>
+          <p>Так путь от первого HTML-документика стал историей не только про сайт, но и про рост. От “я сделала одну страничку в DeepSeek” до “у меня есть образовательная экосистема”. От первого кодика до сети страниц, лаборатории, кабинетов и живого проекта New Generation English.</p>
+        </article>
+      </details>
+      <div class="neural-showcase" id="neural-visual">
+        <div class="neural-showcase-copy">
+          <div class="neural-showcase-kicker" data-ru="Подраздел · визуальный образ" data-en="Subsection · visual image">Подраздел · визуальный образ</div>
+          <h3 data-ru="Красивый робот — сюда: как символ нейронок, а не всей школы" data-en="The beautiful robot belongs here: a symbol of AI tools, not the whole school">Красивый робот — сюда: как символ нейронок, а не всей школы</h3>
+          <p data-ru="Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение." data-en="This image stays inside the AI topic: neural tools help create materials, adapt tasks, and see more options, while the centre of the system remains the person and the teaching decision.">Этот образ оставляем внутри темы про ИИ: нейронки помогают собирать материалы, адаптировать задания и видеть больше вариантов, но центр системы всё равно человек и педагогическое решение.</p>
+        </div>
+        <div class="hero-media">
+          <img class="img-dark" src="assets/Без%20имени.png" alt="Визуальный образ раздела про нейронки"
+               onerror="if(!document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
+          <img class="img-light" src="assets/hero-cyborg-light.png" alt="Визуальный образ раздела про нейронки"
+               onerror="if(document.body.classList.contains('light')){this.style.display='none';var fb=this.parentElement.querySelector('.fallback-img');if(fb)fb.style.display='grid';}">
+          <div class="fallback-img" style="display:none; position:absolute; inset:0;">AI · TOOLS<br>NEURAL NOTES<br>3 : 4</div>
+          <div class="hero-media-frame"></div>
+          <div class="hero-media-caption">
+            <span class="dot"></span>
+            <span data-ru="нейронки · инструменты" data-en="AI tools · instruments">нейронки · инструменты</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 04: МОЙ ПУТЬ -->
+    <section class="section" id="my-path">
+      <div class="sect-head">
+        <div class="sect-index">04<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Личный маршрут" data-en="Personal route">Личный маршрут</div><h2 class="sect-title" data-ru="Про мой путь" data-en="About my path">Про мой путь</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="1 апреля 2025 · 6 мин чтения" data-en="Apr 1, 2025 · 6 min read">1 апреля 2025 · 6 мин чтения</div>
+          <h3 class="entry-title" data-ru="Почему я выбрала преподавание" data-en="Why I chose teaching">Почему я выбрала преподавание</h3>
+          <p class="entry-text" data-ru="Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми." data-en="A short story about how English became my profession: what helped, what got in the way, and what decisions mattered.">Короткая история про то, как язык стал профессией: что помогло, что мешало и какие решения оказались ключевыми.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="12 марта 2025 · 5 мин чтения" data-en="Mar 12, 2025 · 5 min read">12 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Как я училась учить" data-en="How I learned to teach">Как я училась учить</h3>
+          <p class="entry-text" data-ru="Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом." data-en="About experience, mistakes, and lessons: how my system formed, why I prefer clear routes, and what I consider a real outcome.">Про опыт, ошибки и находки: как складывалась система, почему я люблю ясные маршруты и что считаю настоящим результатом.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 05: АВТОРСТВО -->
+    <section class="section" id="authorship">
+      <div class="sect-head">
+        <div class="sect-index">05<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Тексты и методика" data-en="Texts and methodology">Тексты и методика</div><h2 class="sect-title" data-ru="Про авторство" data-en="About authorship">Про авторство</h2></div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="24 марта 2025 · 5 мин чтения" data-en="Mar 24, 2025 · 5 min read">24 марта 2025 · 5 мин чтения</div>
+          <h3 class="entry-title" data-ru="Зачем преподавателю авторские материалы" data-en="Why a teacher needs original materials">Зачем преподавателю авторские материалы</h3>
+          <p class="entry-text" data-ru="Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес." data-en="A textbook gives a foundation, while original material helps reach the learner more precisely: their goal, level, pace, and living interest.">Учебник даёт основу, а авторский материал позволяет точнее попасть в ученика: его цель, уровень, темп и живой интерес.</p>
+        </article>
+        <article class="blog-entry">
+          <div class="entry-meta" data-ru="16 марта 2025 · 4 мин чтения" data-en="Mar 16, 2025 · 4 min read">16 марта 2025 · 4 мин чтения</div>
+          <h3 class="entry-title" data-ru="Как рождается урок" data-en="How a lesson is born">Как рождается урок</h3>
+          <p class="entry-text" data-ru="От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться." data-en="From idea to task: observation, topic logic, the needed language skill, and a format that makes the learner want to engage.">От идеи до задания: наблюдение, логика темы, нужный языковой навык и форма, в которой ученику захочется включиться.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="dash">
+
+    <!-- SECTION 06: ПЕДАГОГИЧЕСКАЯ ДИНАСТИЯ -->
+    <section class="section" id="dynasty">
+      <div class="sect-head">
+        <div class="sect-index">06<small data-ru="Рубрика" data-en="Category">Рубрика</small></div>
+        <div><div class="sect-eyebrow" data-ru="Семейная линия" data-en="Family line">Семейная линия</div><h2 class="sect-title" data-ru="Про педагогическую династию" data-en="About the teaching dynasty">Про педагогическую династию</h2></div>
+      </div>
+      <blockquote class="dynasty-epigraph">
+        <p>“Я — наследница двух дорог: дороги знания и дороги движения. По одной линии в моей семье держали школу, профессию, память и образование. По другой — путь, ритм, музыку, труд и ответственность. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла.”</p>
+      </blockquote>
+      <div class="dynasty-list">
+            <details class="dynasty-feature">
+        <summary>
+          <div class="dynasty-cover">
+            <div class="dynasty-cover-title" data-ru="От железной дороги к дороге знаний" data-en="From the railway to the road of knowledge">От железной дороги к дороге знаний</div>
+            <div class="dynasty-cover-hook" data-ru="4 поколения у доски" data-en="4 generations at the board">4 поколения у доски</div>
+            <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="dynasty-panel">
+        <div class="dynasty-copy">
+          <div class="dynasty-kicker" data-ru="Семейный архив · материал подготовлен моим папой" data-en="Family archive · prepared by my father">Семейный архив · материал подготовлен моим папой</div>
+          <h3 class="dynasty-title" data-ru="Педагогическая династия Духиных" data-en="The Dukhin teaching dynasty">Педагогическая династия Духиных</h3>
+          <p class="dynasty-lead" data-ru="В моей семье педагогическая линия выросла рядом с другой сильной традицией — железнодорожной службой. Одни соединяли города и станции, другие соединяли поколения через язык, науку и школу." data-en="In my family, the teaching line grew beside another strong tradition: railway service. Some connected cities and stations; others connected generations through language, science, and school.">В моей семье педагогическая линия выросла рядом с другой сильной традицией — железнодорожной службой. Одни соединяли города и станции, другие соединяли поколения через язык, науку и школу.</p>
+          <p data-ru="Родоначальницей педагогической династии стала Елена Филаретовна Духина, урожденная Наркевич. Она получила гимназическое и педагогическое образование, преподавала русский язык, работала в школах грамоты для взрослых и призывников, участвовала в ликвидации безграмотности, а затем стала директором школы." data-en="The founder of the teaching dynasty was Elena Filaretovna Dukhina, nee Narkevich. She received a classical and pedagogical education, taught Russian, worked in literacy schools for adults and recruits, took part in the campaign against illiteracy, and later became a school principal.">Родоначальницей педагогической династии стала Елена Филаретовна Духина, урожденная Наркевич. Она получила гимназическое и педагогическое образование, преподавала русский язык, работала в школах грамоты для взрослых и призывников, участвовала в ликвидации безграмотности, а затем стала директором школы.</p>
+          <div class="dynasty-line">
+            <div><strong data-ru="Прапрадеды" data-en="Ancestors">Прапрадеды</strong><span data-ru="Иван Иванович Духин и Елена Филаретовна Наркевич / Духина — железнодорожная среда, Екатеринослав, Синельниково, школа." data-en="Ivan Ivanovich Dukhin and Elena Filaretovna Narkevich / Dukhina: railway world, Ekaterinoslav, Sinelnikovo, school.">Иван Иванович Духин и Елена Филаретовна Наркевич / Духина — железнодорожная среда, Екатеринослав, Синельниково, школа.</span></div>
+            <div><strong data-ru="Дедушка" data-en="Grandfather">Дедушка</strong><span data-ru="Анатолий Иванович Духин — преподавал физику и математику, затем стал ученым, кандидатом физико-математических наук." data-en="Anatoly Ivanovich Dukhin taught physics and mathematics and later became a scientist, Candidate of Physical and Mathematical Sciences.">Анатолий Иванович Духин — преподавал физику и математику, затем стал ученым, кандидатом физико-математических наук.</span></div>
+            <div><strong data-ru="Бабушка" data-en="Grandmother">Бабушка</strong><span data-ru="Екатерина Ивановна Ожогина / Духина — учитель русского языка и литературы, директор вечерних школ, отличник народного образования." data-en="Ekaterina Ivanovna Ozhogina / Dukhina was a teacher of Russian language and literature, principal of evening schools, and an honored educator.">Екатерина Ивановна Ожогина / Духина — учитель русского языка и литературы, директор вечерних школ, отличник народного образования.</span></div>
+            <div><strong data-ru="Папа" data-en="Father">Папа</strong><span data-ru="Виталий Анатольевич Духин — учитель английского и французского языков, директор школы, педагог с многолетним стажем." data-en="Vitaly Anatolyevich Dukhin taught English and French, worked as a school principal, and built a long teaching career.">Виталий Анатольевич Духин — учитель английского и французского языков, директор школы, педагог с многолетним стажем.</span></div>
+            <div><strong data-ru="Я" data-en="Me">Я</strong><span data-ru="Мария Витальевна Духина — новое поколение этой линии, связанное с английским языком, обучением и живой семейной памятью." data-en="Maria Vitalyevna Dukhina: the new generation of this line, connected with English, teaching, and living family memory.">Мария Витальевна Духина — новое поколение этой линии, связанное с английским языком, обучением и живой семейной памятью.</span></div>
+          </div>
+          <p class="dynasty-note" data-ru="Я называю эту линию железнодорожной не по современному названию компании, а по самой семейной памяти: по ведомственным книжкам, дороге, технике, службе, старым словам «железнодорожное ведомство», «Екатерининская железная дорога», «Приднепровская железная дорога». Важно не подменить прошлое сегодняшним языком, а услышать его в собственной точности." data-en="A note: for older generations it is more accurate to say railway department, Catherine Railway, or Prydniprovska Railway rather than modern Russian Railways. The modern name appeared much later, but the railway family line is clear in the archive.">Я называю эту линию железнодорожной не по современному названию компании, а по самой семейной памяти: по ведомственным книжкам, дороге, технике, службе, старым словам «железнодорожное ведомство», «Екатерининская железная дорога», «Приднепровская железная дорога». Важно не подменить прошлое сегодняшним языком, а услышать его в собственной точности.</p>
+        </div>
+        <div class="dynasty-gallery" aria-label="Фотографии семейного архива Духиных">
+          <figure class="dynasty-photo wide">
+            <img src="assets/dynasty/literacy-school-1930s.jpg" alt="Елена Филаретовна Духина преподает в школе грамоты" loading="lazy">
+            <figcaption data-ru="Школа грамоты, 1930-е: Елена Филаретовна у доски" data-en="Literacy school, 1930s: Elena Filaretovna at the board">Школа грамоты, 1930-е: Елена Филаретовна у доски</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/dukhiny-family-early.jpg" alt="Семейная фотография Наркевичей из архива Духиных" loading="lazy">
+            <figcaption data-ru="Семейная фотография Наркевичей, конец XIX века" data-en="Narkevich family photograph, late 19th century">Семейная фотография Наркевичей, конец XIX века</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/elena-narkevich-and-ivan-portraits.jpg" alt="Портреты Елены Наркевич и Ивана Духина" loading="lazy">
+            <figcaption data-ru="Елена Наркевич и Иван Духин: две ветви одной истории" data-en="Elena Narkevich and Ivan Dukhin: two branches of one story">Елена Наркевич и Иван Духин: две ветви одной истории</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/dukhiny-family-1909.jpg" alt="Семейная фотография Духиных 1909 года" loading="lazy">
+            <figcaption data-ru="Семья Духиных, 1909 год: линия, из которой выросла династия" data-en="The Dukhin family, 1909: the line from which the dynasty grew">Семья Духиных, 1909 год: линия, из которой выросла династия</figcaption>
+          </figure>
+          <figure class="dynasty-photo">
+            <img src="assets/dynasty/school-archive-lesson.jpg" alt="Архивная фотография урока из семейного архива" loading="lazy">
+            <figcaption data-ru="Школьный архив: обучение как семейная память" data-en="School archive: teaching as family memory">Школьный архив: обучение как семейная память</figcaption>
+          </figure>
+        </div>
+        </article>
+      </details>
+      <details class="dynasty-feature">
+        <summary>
+          <div class="dynasty-cover">
+            <div class="dynasty-cover-title" data-ru="От Бологое к Москве" data-en="From Bologoye to Moscow">От Бологое к Москве</div>
+            <div class="dynasty-cover-hook" data-ru="Железнодорожная история семьи Даниловых" data-en="The railway story of the Danilov family">Железнодорожная история семьи Даниловых</div>
+            <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="dynasty-panel">
+          <div class="dynasty-copy">
+            <div class="dynasty-kicker" data-ru="Семейный архив · линия Даниловых" data-en="Family archive · the Danilov line">Семейный архив · линия Даниловых</div>
+            <h3 class="dynasty-title" data-ru="От Бологое к Москве: железнодорожная история семьи Даниловых" data-en="From Bologoye to Moscow: the railway story of the Danilov family">От Бологое к Москве: железнодорожная история семьи Даниловых</h3>
+            <p class="dynasty-lead" data-ru="Я — наследница линии Даниловых, где соединились железная дорога, техника, дисциплина и музыкально-педагогическая культура." data-en="I am an heir to the Danilov line, where railway, technology, discipline, and musical-pedagogical culture came together.">Я — наследница линии Даниловых, где соединились железная дорога, техника, дисциплина и музыкально-педагогическая культура.</p>
+            <p data-ru="В семейной истории иногда важнее всего не громкие легенды, а тихие, упрямо сохранившиеся следы: старая книжка, фотография, грамота, медаль, подпись на документе, знакомое отчество. Из этих следов постепенно проступает линия Даниловых — семья, в которой дорога и музыка оказались не случайными словами, а двумя способами держать мир в порядке." data-en="In family history, the most important things are sometimes not loud legends, but quiet traces that have stubbornly survived: an old booklet, a photograph, a certificate, a medal, a signature, a familiar patronymic. From these traces the Danilov line gradually appears: a family in which railway and music became two ways of keeping the world in order.">В семейной истории иногда важнее всего не громкие легенды, а тихие, упрямо сохранившиеся следы: старая книжка, фотография, грамота, медаль, подпись на документе, знакомое отчество. Из этих следов постепенно проступает линия Даниловых — семья, в которой дорога и музыка оказались не случайными словами, а двумя способами держать мир в порядке.</p>
+            <p data-ru="Старшее поколение этой истории связано с Даниловым Алексеем Власовичем — железнодорожником, машинистом, человеком Министерства путей сообщения. Его жизнь была связана с техникой, расписанием, ответственностью и дорогой. В семейном архиве сохранились его документы: пенсионные книжки МПС, профсоюзные документы рабочих центральных железных дорог, удостоверения технических экзаменов, военный билет, орденская книжка, медали, в том числе «Ветеран труда». Это не просто перечень бумаг, а след жизни человека, чей труд был частью большой инфраструктуры страны." data-en="The older generation of this story is connected with Alexey Vlasovich Danilov, a railway worker, driver, and man of the Ministry of Railways. His life was tied to technology, schedules, responsibility, and the road. The family archive preserves his documents: railway pension booklets, trade-union papers, technical exam certificates, military ID, award booklet, and medals. These are not just papers, but the trace of a life that belonged to a large infrastructure.">Старшее поколение этой истории связано с <strong>Даниловым Алексеем Власовичем</strong> — железнодорожником, машинистом, человеком Министерства путей сообщения. Его жизнь была связана с техникой, расписанием, ответственностью и дорогой. В семейном архиве сохранились его документы: пенсионные книжки МПС, профсоюзные документы рабочих центральных железных дорог, удостоверения технических экзаменов, военный билет, орденская книжка, медали, в том числе «Ветеран труда». Это не просто перечень бумаг, а след жизни человека, чей труд был частью большой инфраструктуры страны.</p>
+            <p data-ru="Рядом с Алексеем Власовичем стоит Данилова Елизавета Ивановна, 1907 года рождения, его жена. На семейном снимке она появляется в окружении близких: не как безымянная фигура фона, а как человек, вокруг которого собирается и удерживается семейная биография. Её история пока раскрыта не полностью, но именно такие женщины часто держат семейную память изнутри." data-en="Beside Alexey Vlasovich stands Elizaveta Ivanovna Danilova, born in 1907, his wife. In a family photograph she appears surrounded by relatives: not as an anonymous background figure, but as someone around whom family biography gathers.">Рядом с Алексеем Власовичем стоит <strong>Данилова Елизавета Ивановна</strong>, 1907 года рождения, его жена. На семейном снимке она появляется в окружении близких: не как безымянная фигура фона, а как человек, вокруг которого собирается и удерживается семейная биография. Её история пока раскрыта не полностью, но именно такие женщины часто держат семейную память изнутри.</p>
+            <p data-ru="Их дочь, Данилова Валентина Алексеевна, 1926 года рождения, продолжила эту линию уже в другой сфере — в образовании и культуре. Она была преподавателем музыки; в семейной памяти с ней связана и Таруса. И в этом есть внутренняя рифма: после дороги, расписания и локомотивного ритма в семье появляется музыка — тоже ритм, тоже дисциплина, тоже умение слышать порядок, только уже внутри человека." data-en="Their daughter, Valentina Alexeevna Danilova, born in 1926, continued this line in education and culture. She was a music teacher; Tarusa is also connected with her in family memory.">Их дочь, <strong>Данилова Валентина Алексеевна</strong>, 1926 года рождения, продолжила эту линию уже в другой сфере — в образовании и культуре. Она была преподавателем музыки; в семейной памяти с ней связана и Таруса. И в этом есть внутренняя рифма: после дороги, расписания и локомотивного ритма в семье появляется музыка — тоже ритм, тоже дисциплина, тоже умение слышать порядок, только уже внутри человека.</p>
+            <p data-ru="И, наконец, моя мама — Данилова Елизавета Евгеньевна, 1960 года рождения. Её жизнь связана с позднесоветской и московской профессиональной средой: она работала во В/О «Машиноимпорт», была лингвистом и экономистом. Через неё линия Даниловых входит в городскую культуру языком образования, международных связей, деловой точности и семейной требовательности к себе." data-en="And finally, my mother, Elizaveta Evgenyevna Danilova, born in 1960. Her life belongs to late Soviet and Moscow professional culture: she worked at Mashinoimport and was a linguist and economist. Through her, the Danilov line enters urban culture through education, international connections, business precision, and family self-discipline.">И, наконец, моя мама — <strong>Данилова Елизавета Евгеньевна</strong>, 1960 года рождения. Её жизнь связана с позднесоветской и московской профессиональной средой: она работала во В/О «Машиноимпорт», была лингвистом и экономистом. Через неё линия Даниловых входит в городскую культуру языком образования, международных связей, деловой точности и семейной требовательности к себе.</p>
+            <div class="dynasty-line">
+              <div><strong data-ru="Прадед" data-en="Great-grandfather">Прадед</strong><span data-ru="Данилов Алексей Власович — железнодорожник, машинист, Министерство путей сообщения." data-en="Alexey Vlasovich Danilov: railway worker, driver, Ministry of Railways.">Данилов Алексей Власович — железнодорожник, машинист, Министерство путей сообщения.</span></div>
+              <div><strong data-ru="Прабабушка" data-en="Great-grandmother">Прабабушка</strong><span data-ru="Данилова Елизавета Ивановна, 1907 г.р. — жена Алексея Власовича, женская основа этой семейной ветви." data-en="Elizaveta Ivanovna Danilova, born 1907: Alexey Vlasovich's wife and the female foundation of this branch.">Данилова Елизавета Ивановна, 1907 г.р. — жена Алексея Власовича, женская основа этой семейной ветви.</span></div>
+              <div><strong data-ru="Бабушка" data-en="Grandmother">Бабушка</strong><span data-ru="Данилова Валентина Алексеевна, 1926 г.р. — преподаватель музыки; Таруса." data-en="Valentina Alexeevna Danilova, born 1926: music teacher; Tarusa.">Данилова Валентина Алексеевна, 1926 г.р. — преподаватель музыки; Таруса.</span></div>
+              <div><strong data-ru="Мама" data-en="Mother">Мама</strong><span data-ru="Данилова Елизавета Евгеньевна, 1960 г.р. — лингвист, экономист, В/О «Машиноимпорт»." data-en="Elizaveta Evgenyevna Danilova, born 1960: linguist, economist, Mashinoimport.">Данилова Елизавета Евгеньевна, 1960 г.р. — лингвист, экономист, В/О «Машиноимпорт».</span></div>
+              <div><strong data-ru="Я" data-en="Me">Я</strong><span data-ru="Мария Витальевна Бурцева-Духина — наследница линии Даниловых." data-en="Maria Vitalyevna Burtseva-Dukhina: heir to the Danilov line.">Мария Витальевна Бурцева-Духина — наследница линии Даниловых.</span></div>
+            </div>
+            <p class="dynasty-lead" data-ru="Я — правнучка железной дороги и внучка музыки." data-en="I am a great-granddaughter of the railway and a granddaughter of music.">Я — правнучка железной дороги и внучка музыки.</p>
+            <p data-ru="А если глубже: это делает меня человеком из рода, где ценились ритм, дисциплина, образование, слух к миру, ответственность и умение держать путь. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла." data-en="More deeply, it makes me a person from a family where rhythm, discipline, education, attentiveness to the world, responsibility, and the ability to keep the path mattered. For my great-grandfather it was the path of the locomotive. For my grandmother, the path of music and pupils. For me, the path of memory, language, image, and meaning.">А если глубже: это делает меня человеком из рода, где ценились ритм, дисциплина, образование, слух к миру, ответственность и умение держать путь. У прадеда это был путь локомотива. У бабушки — путь музыки и учеников. У меня — путь памяти, языка, образа и смысла.</p>
+          </div>
+          <div class="dynasty-gallery" aria-label="Фотографии семейного архива Даниловых">
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/valentina-tarusa.jpg" alt="Данилова Валентина Алексеевна, преподаватель музыки; Таруса" loading="lazy">
+              <figcaption data-ru="Данилова Валентина Алексеевна — преподаватель музыки; Таруса" data-en="Valentina Alexeevna Danilova: music teacher; Tarusa">Данилова Валентина Алексеевна — преподаватель музыки; Таруса</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/elizaveta-family.jpg" alt="Данилова Елизавета Ивановна в окружении семьи" loading="lazy">
+              <figcaption data-ru="Данилова Елизавета Ивановна в окружении семьи: биографический след старшего поколения" data-en="Elizaveta Ivanovna Danilova surrounded by family: a biographical trace of the older generation">Данилова Елизавета Ивановна в окружении семьи: биографический след старшего поколения</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/bologoe-postcard.jpg" alt="Старинная открытка «Собор в селе Бологое»" loading="lazy">
+              <figcaption data-ru="Бологое: открытка «Собор в с. Бологое № 66»" data-en="Bologoye: postcard 'Cathedral in the village of Bologoye No. 66'">Бологое: открытка «Собор в с. Бологое № 66»</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/alexey-elizaveta.jpg" alt="Алексей и Елизавета Даниловы на альбомной фотографии" loading="lazy">
+              <figcaption data-ru="Алексей и Елизавета Даниловы: крайний снимок на альбомной странице" data-en="Alexey and Elizaveta Danilov: the edge photograph on the album page">Алексей и Елизавета Даниловы: крайний снимок на альбомной странице</figcaption>
+            </figure>
+            <figure class="dynasty-photo">
+              <img src="assets/danilovy/danilov-military.jpg" alt="Военная фотография из семейного альбома Даниловых" loading="lazy">
+              <figcaption data-ru="Военные снимки из семейного альбома Даниловых" data-en="Military photographs from the Danilov family album">Военные снимки из семейного альбома Даниловых</figcaption>
+            </figure>
+          </div>
+        </article>
+      </details>
+      <details class="dynasty-feature">
+        <summary>
+          <div class="dynasty-cover">
+            <div class="dynasty-cover-title" data-ru="Преподаватели семьи" data-en="Teachers of the family">Преподаватели семьи</div>
+            <div class="dynasty-cover-hook" data-ru="Фотографии тех, кто держал школу, язык и музыку" data-en="Photographs of those who carried school, language, and music">Фотографии тех, кто держал школу, язык и музыку</div>
+            <span class="dynasty-toggle" data-ru="Прочитать статью" data-en="Read the article">Прочитать статью</span>
+          </div>
+        </summary>
+        <article class="dynasty-panel family-tree-panel">
+          <div class="dynasty-copy family-tree-article">
+            <div class="dynasty-kicker" data-ru="Семейный архив · текстовое дерево" data-en="Family archive · textual tree">Семейный архив · текстовое дерево</div>
+            <h3 class="dynasty-title" data-ru="Преподаватели семьи: полное дерево" data-en="Family teachers: full tree">Преподаватели семьи: полное дерево</h3>
+            <p class="dynasty-lead" data-ru="Это основа для будущей статьи с фотографиями мамы, бабушки и всех преподавателей семьи. Пока здесь собрана текстовая схема: даты, линии родства и занятия, чтобы педагогическая и культурная линия читалась сразу." data-en="This is the basis for a future article with photographs of my mother, grandmother, and all the family's teachers. For now, it gathers the textual structure: dates, family lines, and work.">Это основа для будущей статьи с фотографиями мамы, бабушки и всех преподавателей семьи. Пока здесь собрана текстовая схема: даты, линии родства и занятия, чтобы педагогическая и культурная линия читалась сразу.</p>
+            <div class="family-tree-text" role="text"><strong>Мария Витальевна Бурцева-Духина / Духина</strong>
+род. 26.07.1989
+<span class="family-role">преподаватель, автор образовательного проекта, работа с языком, текстом и семейной памятью</span>
+
+<strong>Родители</strong>
+
+├─ <strong>Отец: Виталий Анатольевич Духин</strong>
+│  18.12.1957 — 17.04.2015
+│  <span class="family-role">преподавательская линия: учитель английского и французского языков, директор школы, педагог</span>
+│
+└─ <strong>Мама: Елизавета Евгеньевна Данилова / Духина</strong>
+   1960 — 26.07.2006
+   <span class="family-role">лингвист, экономист, работала во В/О «Машиноимпорт»</span>
+
+<strong>Отцовская ветвь: Духины / Наркевичи / Ожогины</strong>
+
+Виталий Анатольевич Духин
+├─ <strong>Отец: Анатолий Иванович Духин</strong>
+│  род. 19.01.1914 — дата смерти уточняется
+│  <span class="family-role">преподавательская линия: физик, преподаватель физики и математики, учёный, кандидат физико-математических наук</span>
+│
+└─ <strong>Мать: Екатерина Ивановна Ожогина / Духина</strong>
+   род. 22.12.1922 — дата смерти уточняется
+   <span class="family-role">учитель русского языка и литературы, директор вечерних школ, отличник народного образования</span>
+
+Анатолий Иванович Духин
+├─ <strong>Отец: Иван Иванович Духин</strong>
+│  даты жизни уточняются
+│  <span class="family-role">связан с железнодорожным ведомством, инженер</span>
+│
+└─ <strong>Мать: Елена Филаретовна Наркевич / Духина</strong>
+   1885 — 1952
+   <span class="family-role">преподаватель русского языка, школы грамоты, ликвидация безграмотности, директор школы</span>
+
+Иван Иванович Духин
+└─ <strong>Отец: Иван Духин</strong>
+   даты жизни уточняются
+   <span class="family-role">предположительно связан с железной дорогой, начальник станции</span>
+
+Елена Филаретовна Наркевич / Духина
+└─ <strong>Отец: Филарет Ульянович Наркевич</strong>
+   даты жизни уточняются
+   <span class="family-role">крупный чиновник железнодорожного ведомства, Екатерининская / Приднепровская железная дорога</span>
+
+Боковая ветвь:
+<strong>Галина Ивановна Духина</strong>
+даты жизни и профессия уточняются
+сестра Анатолия Ивановича Духина
+
+<strong>Материнская ветвь: Даниловы</strong>
+
+Елизавета Евгеньевна Данилова / Духина
+└─ <strong>Мать: Валентина Алексеевна Данилова</strong>
+   род. 1926 — дата смерти уточняется
+   <span class="family-role">преподаватель музыки, школьная и образовательная среда</span>
+
+Валентина Алексеевна Данилова
+├─ <strong>Отец: Алексей Власович Данилов</strong>
+│  даты жизни уточняются
+│  <span class="family-role">железнодорожник, машинист, человек Министерства путей сообщения</span>
+│  сохранились пенсионные, профсоюзные, технические, военные и наградные документы
+│
+└─ <strong>Мать: Елизавета Ивановна Данилова</strong>
+   род. 1907 — дата смерти уточняется
+   <span class="family-role">конторская служащая, представительница городской служебной среды начала XX века</span>
+   жена Алексея Власовича
+   девичья фамилия, место рождения, родители и биография требуют уточнения
+
+<strong>Основные семейные линии</strong>
+
+<strong>Духины</strong> — <span class="family-role">педагогика, школа, иностранные языки, наука, директорская и учительская линия</span>.
+<strong>Наркевичи</strong> — <span class="family-role">железнодорожное ведомство, дореволюционная служебная культура</span>.
+<strong>Ожогины</strong> — <span class="family-role">педагогическая линия по Екатерине Ивановне</span>.
+<strong>Даниловы</strong> — <span class="family-role">железная дорога, техника, дисциплина, музыка, московская профессиональная культура</span>.</div>
+            <p class="family-tree-note" data-ru="Фотографии мамы, бабушки и других преподавателей добавим сюда следующим слоем." data-en="Photographs of my mother, grandmother, and other teachers will be added here next.">Фотографии мамы, бабушки и других преподавателей добавим сюда следующим слоем.</p>
+          </div>
+        </article>
+      </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (минимальный) -->
+  <footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
+  </div>
+</footer>
+</div>
+
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
+</div>
+  <script>
+    document.querySelectorAll('.dynasty-list').forEach((list) => {
+      list.addEventListener('toggle', (event) => {
+        const opened = event.target;
+        if (!(opened instanceof HTMLDetailsElement) || !opened.open || !opened.classList.contains('dynasty-feature')) return;
+        list.querySelectorAll('.dynasty-feature[open]').forEach((item) => {
+          if (item !== opened) item.removeAttribute('open');
+        });
+      }, true);
+    });
+  </script>
+<script defer src="./assets/visitor-counter.js"></script>
+</body>
+</html>
+
+
+
+
+
