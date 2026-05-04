@@ -1,617 +1,1015 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Hello! Classroom Fun | LinguaBoost Studio</title>
-    <!-- Google Fonts & simple reset -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none; /* avoid accidental text selection on buttons */
-        }
-
-        body {
-            background: linear-gradient(145deg, #FFE9B0 0%, #FFD6A0 100%);
-            font-family: 'Quicksand', sans-serif;
-            padding: 20px 16px 40px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* header / score */
-        .star-progress {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #FFF1D6;
-            padding: 10px 20px;
-            border-radius: 60px;
-            margin-bottom: 25px;
-            box-shadow: 0 6px 0 #E2B87A;
-        }
-        .stars span {
-            font-size: 28px;
-            margin-right: 8px;
-            opacity: 0.4;
-            transition: 0.2s;
-        }
-        .stars span.active {
-            opacity: 1;
-            text-shadow: 0 0 6px gold;
-        }
-        .score-text {
-            background: #FFB347;
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-weight: bold;
-            color: #3b2a1f;
-        }
-
-        /* main cards */
-        .lesson-card {
-            background: rgba(255, 252, 235, 0.96);
-            border-radius: 56px;
-            padding: 24px 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
-            border: 2px solid #FFD966;
-            transition: all 0.2s;
-        }
-
-        .card-title {
-            font-size: 28px;
-            font-weight: 700;
-            background: #FEE3A0;
-            display: inline-block;
-            padding: 6px 24px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            color: #AA6F20;
-        }
-
-        /* Buttons & actions */
-        .big-button {
-            background: #F2B84E;
-            border: none;
-            padding: 14px 28px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 80px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 6px 0 #A6531E;
-            transition: 0.05s linear;
-            font-family: inherit;
-        }
-        .big-button:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 #A6531E;
-        }
-
-        .action-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .action-card {
-            background: #FCE2B4;
-            border-radius: 70px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 22px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: 0.1s;
-        }
-        .action-card:active { transform: scale(0.96); }
-
-        /* demonstratives interactive */
-        .demo-area {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        .demo-card {
-            background: #FFFAEC;
-            border-radius: 48px;
-            padding: 18px;
-            width: 200px;
-            text-align: center;
-            cursor: pointer;
-            border: 3px solid #EABE7C;
-        }
-        .demo-emoji {
-            font-size: 70px;
-        }
-
-        /* whack-a-mole (pronouns) */
-        .mole-game {
-            background: #7BAA5C;
-            border-radius: 80px;
-            padding: 20px;
-            text-align: center;
-        }
-        .mole-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        .mole-hole {
-            background: #4B2E1A;
-            height: 100px;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 38px;
-            font-weight: bold;
-            color: white;
-            transition: 0.05s linear;
-        }
-        .mole-active {
-            background: #FFB347;
-            transform: scale(1.05);
-            cursor: pointer;
-            box-shadow: 0 0 0 4px yellow;
-        }
-        .mole-timer {
-            font-size: 32px;
-            font-weight: bold;
-            background: #2D2B1F;
-            display: inline-block;
-            padding: 5px 25px;
-            border-radius: 60px;
-            color: #FFD966;
-        }
-
-        /* classroom objects */
-        .classroom-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .obj-item {
-            background: #FCE8C1;
-            border-radius: 48px;
-            padding: 8px 20px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .this-that-quiz {
-            background: #FFE2B5;
-            border-radius: 50px;
-            padding: 18px;
-            margin-top: 20px;
-        }
-        button {
-            font-family: inherit;
-        }
-        @media (max-width: 650px) {
-            .action-card { font-size: 18px; padding: 8px 16px; }
-            .card-title { font-size: 24px; }
-        }
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-weight: 500;
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hello! Classroom Fun — Pre-A1 | LinguaBoost Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+:root{
+  --bg:#fff8e7;--surface:#fffdf5;--accent:#f2a822;--accent2:#e06b00;--accent3:#ffd54f;
+  --text:#2d1a00;--muted:#8a6a30;--ok:#3aaa5c;--miss:#e53935;
+  --radius:1.4rem;--shadow:0 4px 22px rgba(230,150,0,.13);
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Manrope',sans-serif;color:var(--text);min-height:100vh}
+
+/* TOPBAR */
+.topbar{background:var(--accent2);color:#fff;padding:.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.topbar-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:.02em}
+.topbar-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.topbar-btn{background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:.3rem .85rem;border-radius:2rem;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:'Manrope',sans-serif}
+.topbar-btn:hover{background:rgba(255,255,255,.32)}
+
+/* HERO */
+.hero{text-align:center;padding:2.2rem 1.2rem 1rem}
+.breadcrumb{font-size:.75rem;color:var(--muted);margin-bottom:.5rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,5.5vw,3rem);
+  background:linear-gradient(135deg,var(--accent2),var(--accent),#f9c846);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.15;margin-bottom:.55rem}
+.hero p{color:var(--muted);font-size:clamp(.88rem,2.5vw,1.05rem);max-width:560px;margin:0 auto}
+
+/* STAR BAR */
+.star-bar{display:flex;justify-content:center;gap:.5rem;padding:.5rem 1rem;flex-wrap:wrap}
+.star{font-size:1.6rem;opacity:.22;transition:all .4s}
+.star.lit{opacity:1;filter:drop-shadow(0 0 8px gold);transform:scale(1.12)}
+
+/* PROGRESS RAIL */
+.rail{display:flex;align-items:center;justify-content:center;gap:0;padding:.4rem 1rem 1.4rem;flex-wrap:nowrap;overflow-x:auto}
+.rail-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:2.5rem;position:relative}
+.rail-step::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:4px;background:#ead9a8;z-index:0;transition:background .4s}
+.rail-step:last-child::after{display:none}
+.rail-dot{width:28px;height:28px;border-radius:50%;background:#ead9a8;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#bfa060;position:relative;z-index:1;transition:all .4s}
+.rail-step.done .rail-dot{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rail-step.done::after{background:var(--accent)}
+.rail-label{font-size:.6rem;color:var(--muted);margin-top:.3rem;text-align:center;max-width:3.5rem;line-height:1.2}
+
+/* SECTION */
+.section{background:var(--surface);border-radius:1.8rem;margin:1.2rem auto;max-width:900px;overflow:hidden;box-shadow:var(--shadow);border-top:6px solid var(--accent)}
+.section-head{background:linear-gradient(135deg,var(--accent2),#c45200);color:#fff;padding:1.1rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.section-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1rem,3vw,1.35rem)}
+.section-badge{background:var(--accent3);color:var(--text);border-radius:2rem;padding:.25rem .9rem;font-size:.78rem;font-weight:700}
+.section-body{padding:1.4rem}
+
+/* BUTTONS */
+.btn{padding:.55rem 1.4rem;border-radius:2rem;font-weight:700;font-size:.88rem;border:none;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif}
+.btn-primary{background:var(--accent2);color:#fff}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-secondary{background:#f0e6cc;color:var(--text)}
+.btn-secondary:hover{background:#e0d0aa}
+
+/* GREETING GRID */
+.greet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:1rem}
+.greet-card{background:linear-gradient(135deg,var(--accent3),#fff8e7);border:2px solid var(--accent);border-radius:1.2rem;padding:1rem 1.1rem;text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.greet-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(230,150,0,.22)}
+.greet-card .en{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;color:var(--accent2);margin-bottom:.2rem}
+.greet-card .ru{font-size:.82rem;color:var(--muted);font-weight:600}
+.greet-card .speak-icon{font-size:1.4rem;margin-bottom:.3rem}
+
+/* TPR */
+.tpr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin-bottom:1rem}
+.tpr-btn{background:var(--accent);color:#fff;border:none;border-radius:1.2rem;padding:.9rem .8rem;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;cursor:pointer;transition:all .2s;text-align:center}
+.tpr-btn:hover{transform:scale(1.06);background:var(--accent2)}
+.tpr-btn .tpr-icon{font-size:1.6rem;display:block;margin-bottom:.3rem}
+.tpr-btn.done-tpr{background:var(--ok);transform:scale(1.06)}
+.tpr-progress{text-align:center;font-weight:700;font-size:.9rem;color:var(--muted);margin-top:.5rem}
+
+/* FLIP CARDS */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.9rem;margin-bottom:1rem}
+.flip-wrap{height:110px;cursor:pointer;perspective:600px}
+.flip-inner{width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;position:relative}
+.flip-wrap.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;border-radius:1rem;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+.flip-front{background:var(--accent);color:#fff;font-weight:700;font-size:1.1rem;font-family:'Nunito',sans-serif}
+.flip-front .f-tap{font-size:.6rem;opacity:.7;margin-top:.3rem;font-family:'Manrope',sans-serif;font-weight:400}
+.flip-back{background:#fff7e0;color:var(--text);transform:rotateY(180deg);font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;border:2px solid var(--accent)}
+.flip-counter{text-align:center;font-weight:700;font-size:.9rem;color:var(--muted);margin-top:.3rem}
+
+/* MEMORY GAME */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:500px;margin:0 auto 1rem}
+.mem-card{height:70px;cursor:pointer;perspective:600px}
+.mem-inner{width:100%;height:100%;transition:transform .35s;transform-style:preserve-3d;position:relative}
+.mem-card.flipped .mem-inner,.mem-card.matched .mem-inner{transform:rotateY(180deg)}
+.mem-front,.mem-back{position:absolute;width:100%;height:100%;border-radius:.9rem;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;text-align:center;padding:.3rem}
+.mem-front{background:var(--accent2);color:#fff}
+.mem-back{background:#fff7e0;color:var(--text);transform:rotateY(180deg);border:2px solid var(--accent);font-family:'Nunito',sans-serif;font-size:.82rem}
+.mem-card.matched .mem-back{background:var(--ok);color:#fff;border-color:var(--ok)}
+.mem-status{text-align:center;font-weight:700;font-size:.9rem;color:var(--muted);margin:.5rem 0}
+
+/* QUIZ */
+.quiz-item{background:#fff8e7;border:2px solid var(--accent3);border-radius:1rem;padding:.9rem 1rem;margin-bottom:.8rem}
+.quiz-score{background:var(--accent2);color:#fff;border-radius:2rem;padding:.25rem .9rem;font-size:.82rem;font-weight:700}
+.quiz-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+
+/* BUBBLE POP */
+#bubbleCanvas{width:100%;max-width:600px;height:300px;display:block;margin:0 auto;border-radius:1.2rem;background:linear-gradient(160deg,#fff8e7 60%,#ffefc0);cursor:crosshair;touch-action:none}
+.bubble-score{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:var(--accent2);margin:.4rem 0}
+
+/* ALL DONE BANNER */
+.all-done{display:none;text-align:center;background:linear-gradient(135deg,#fff8e7,#ffefc0);border:3px solid var(--accent);border-radius:2rem;padding:2.2rem 1.5rem;margin:1.5rem auto;max-width:600px;box-shadow:0 8px 30px rgba(230,150,0,.22)}
+.all-done.show{display:block;animation:popIn .5s ease}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.all-done h2{font-family:'Nunito',sans-serif;font-size:2rem;margin-bottom:.5rem;color:var(--accent2)}
+.all-done p{color:var(--muted);font-size:1rem}
+
+/* CONFETTI CANVAS */
+#confettiCanvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;width:100%;height:100%}
+
+/* FOOTER */
+.page-footer{text-align:center;padding:1rem 1.2rem;font-size:.75rem;color:var(--muted);border-top:1px solid #ead9a8;margin-top:2rem}
+.legal-footer{text-align:center;font-size:.7rem;color:var(--muted);padding:.5rem 1rem 1.4rem}
+.legal-footer a{color:var(--accent2);text-decoration:none}
+
+@media(max-width:520px){
+  .section-head{flex-direction:column;align-items:flex-start}
+  .flip-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .tpr-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .memory-grid{grid-template-columns:repeat(4,1fr)}
+  .section-body{padding:.9rem}
+}
+
+/* ═══ LAB BRAND + LOGO ══════════════════════════════════════════════════ */
+.lab-topbar{display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,3vw,1.75rem);
+  background:color-mix(in srgb,var(--surface,#fff) 92%,transparent);
+  border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:200;min-height:54px}
+.lab-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.lab-mark{width:36px;height:36px;border-radius:8px;background:var(--accent2);
+  display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.25rem;color:#fff;letter-spacing:-.05em;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);position:relative}
+.lab-mark::after{content:'';position:absolute;right:5px;bottom:5px;width:5px;height:5px;
+  border-radius:50%;background:rgba(255,255,255,.65)}
+.lab-brand-copy{display:grid;gap:1px}
+.lab-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;
+  letter-spacing:-.02em;color:var(--text);line-height:1}
+.lab-brand-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);line-height:1}
+.lab-nav{display:flex;gap:.4rem;align-items:center;margin-left:auto;flex-wrap:wrap}
+.lab-back{font-size:.75rem;font-weight:700;color:var(--muted);text-decoration:none;
+  padding:.2rem .6rem;border-radius:.5rem;transition:color .18s}
+.lab-back:hover{color:var(--accent2)}
+.lab-pill-nav{display:inline-grid;place-items:center;padding:.2rem .65rem;
+  border:1px solid rgba(0,0,0,.13);border-radius:999px;font-size:.65rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-pill-accent{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.lab-tool-btn{height:30px;padding:0 .75rem;border:1px solid rgba(0,0,0,.15);border-radius:7px;
+  background:transparent;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;
+  color:var(--muted);transition:all .16s;font-family:'Manrope',sans-serif}
+.lab-tool-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ═══ LAB HERO ══════════════════════════════════════════════════════════ */
+.lab-hero{border:1px solid rgba(0,0,0,.07);border-radius:1.5rem;
+  margin:1.2rem auto 0;max-width:960px;
+  padding:clamp(1.5rem,4vw,2.8rem) clamp(1.2rem,3vw,2.2rem);
+  background:var(--surface,#fff);overflow:hidden;position:relative;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.lab-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,var(--accent3) 0%,transparent 68%);
+  pointer-events:none;opacity:.22}
+.lab-hero-inner{position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 148px;gap:2rem;align-items:center}
+.lab-eyebrow{font-size:.67rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--accent2);flex-shrink:0}
+.lab-hero-title{font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.75rem,5vw,3rem);line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:.8rem;color:var(--text)}
+.lab-hero-title em{font-style:normal;color:var(--accent2)}
+.lab-hero-lead{color:var(--muted);font-size:clamp(.85rem,1.7vw,1rem);line-height:1.7;margin-bottom:1.1rem}
+.lab-hero-badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-badge{display:inline-grid;place-items:center;padding:.22rem .65rem;
+  border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:.64rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;
+  background:linear-gradient(135deg,var(--accent3) 0%,var(--accent) 100%);
+  border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.85}
+.lab-vis-inner{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:16px}
+.lab-vis-dot{border-radius:6px;background:rgba(255,255,255,.55)}
+.lab-vis-dot:nth-child(1){height:32px}
+.lab-vis-dot:nth-child(2){height:20px;margin-top:auto}
+.lab-vis-dot:nth-child(3){height:20px}
+.lab-vis-dot:nth-child(4){height:32px;margin-top:auto}
+@media(max-width:580px){
+  .lab-hero-inner{grid-template-columns:1fr}
+  .lab-hero-visual{display:none}
+  .lab-topbar{flex-wrap:wrap;gap:.5rem}
+}
+
+/* ═══ BUBBLE POP BONUS ══════════════════════════════════════════════════ */
+.bub-score-bar{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--accent2);margin-bottom:.6rem}
+#bubCanvas{width:100%;height:280px;display:block;border-radius:1rem;
+  background:linear-gradient(160deg,var(--bg,#f5f5f5) 60%,color-mix(in srgb,var(--accent3) 30%,transparent));
+  cursor:crosshair;touch-action:none;border:1.5px solid rgba(0,0,0,.07)}
+.bub-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+
+
+
+/* TOP ONLY: align demo header with A1 Lesson 01 without changing palettes */
+:root { --demo-top-width: min(100% - 48px, 1240px); }
+.lab-topbar,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  backdrop-filter: blur(14px);
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+.topbar-brand,
+.lab-brand-name,
+.brand {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+.lab-back,
+.btn-back,
+.back-link,
+.btn-top,
+.topbar-back,
+.topbar-btn,
+.btn-sm.btn-back {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.lab-hero {
+  width: var(--demo-top-width);
+  max-width: 1240px;
+  margin: 24px auto 18px !important;
+  border-radius: 18px !important;
+  padding: clamp(26px, 5vw, 56px) !important;
+  text-align: left;
+}
+.lab-hero-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.28fr) minmax(220px, .92fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.lab-eyebrow {
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase;
+}
+.lab-hero-title {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2.05rem, 5vw, 4.25rem) !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 18px !important;
+}
+.lab-hero-lead {
+  max-width: 760px;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+  line-height: 1.7 !important;
+}
+.lab-hero-badges {
+  justify-content: flex-start;
+  gap: 8px !important;
+}
+.lab-pill,
+.lab-hero-badges span,
+.topbar-pills span {
+  border-radius: 999px !important;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase;
+}
+.hero {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin: 18px auto 10px !important;
+  padding: 0 clamp(16px, 3vw, 28px) !important;
+  text-align: center !important;
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+}
+.hero h1 {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+.hero p,
+.hero-sub,
+.subtitle-pill,
+.hero-pill {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  letter-spacing: 0 !important;
+}
+.rail,
+.progress-rail {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  :root { --demo-top-width: min(100% - 28px, 1240px); }
+  .lab-hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .lab-hero { padding: 24px 18px !important; }
+  .lab-hero-visual { justify-self: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">Pre-A1</span>
-    <span class="lbs-pill">5+ / early starters</span>
-    <span class="lbs-pill">Kids starter</span>
+
+<header class="lab-topbar">
+  <a class="lab-brand" href="../index.html">
+    <div class="lab-mark">L</div>
+    <div class="lab-brand-copy">
+      <span class="lab-brand-name">LinguaBoost Lab</span>
+      <span class="lab-brand-tag">New Generation English</span>
+    </div>
+  </a>
+  <nav class="lab-nav">
+    <a class="lab-back" href="../index.html">All Lessons</a>
+    <span class="lab-pill-nav lab-pill-accent">PRE-A1</span>
+    <span class="lab-pill-nav">Hello</span>
+    <button class="lab-tool-btn" onclick="toggleLang()">RU / EN</button>
+  </nav>
+</header>
+</div>
+
+<div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">PRE-A1 &middot; Lesson 01 &middot; Hello · Classroom</div>
+      <h1 class="lab-hero-title"><em>Lesson</em></h1>
+      <p class="lab-hero-lead">Interactive PRE-A1 lesson</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">PRE-A1</span>
+        <span class="lab-badge">6 activities</span>
+        <span class="lab-badge">interactive</span>
+      </div>
+    </div>
+    <div class="lab-hero-visual" aria-hidden="true">
+      <div class="lab-vis-inner">
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+      </div>
+    </div>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
 </div>
-<div class="container">
-    <!-- star progress (simple gamification) -->
-    <div class="star-progress">
-        <div class="stars" id="starArea">
-            <span>в­ђ</span><span>в­ђ</span><span>в­ђ</span><span>в­ђ</span><span>в­ђ</span>
-        </div>
-        <div class="score-text" id="taskCounter">рџЊџ 0/5 tasks done</div>
-    </div>
-
-    <!-- BLOCK 1: HELLO & WHAT'S YOUR NAME? (Super Simple Style) -->
-    <div class="lesson-card" id="helloSection">
-        <div class="card-title">рџЋ¤ 1. Hello! What's your name?</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
-            <div>
-                <button class="big-button" id="sayHelloBtn">рџђЈ Say Hello!</button>
-                <button class="big-button" id="whatsNameBtn" style="background:#69B0E0;">вќ“ What's your name?</button>
-                <div style="margin-top: 16px;">
-                    <input type="text" id="kidNameInput" placeholder="Your name..." style="font-size: 20px; padding: 12px; border-radius: 60px; border: 2px solid #F3B33D; text-align: center;">
-                    <button id="submitNameBtn">рџ‘‰ Answer</button>
-                </div>
-            </div>
-            <div style="font-size: 70px;">рџ¦’рџЋµ</div>
-        </div>
-        <p id="greetingMessage" style="margin-top: 16px; font-size: 22px; font-weight: bold; background: #FFF0CC; border-radius: 50px; padding: 10px;"></p>
-    </div>
-
-    <!-- BLOCK 2: ACTION SONGS (movement) -->
-    <div class="lesson-card">
-        <div class="card-title">рџЏѓвЂЌв™ЂпёЏ 2. Move & Sing! Actions</div>
-        <div class="action-grid" id="actionsGrid"></div>
-        <div style="text-align: center; margin: 10px 0;">
-            <button id="randomActionBtn" class="big-button" style="background: #E09D32;">рџЋІ Show me a random action!</button>
-        </div>
-        <div id="actionMessage" style="font-size: 28px; font-weight: bold; text-align: center; margin-top: 10px;"></div>
-    </div>
-
-    <!-- BLOCK 3: DEMONSTRATIVES (THIS/THAT, THESE/THOSE) -->
-    <div class="lesson-card">
-        <div class="card-title">рџ‘‡ 3. This / That / These / Those</div>
-        <div class="demo-area" id="demoArea"></div>
-        <div style="text-align: center;">
-            <button id="speakDemoBtn" class="big-button" style="background:#9B7B4C;">рџ”Љ Listen & learn</button>
-        </div>
-    </div>
-
-    <!-- BLOCK 4: PRONOUNS WHACK-A-MOLE GAME (he/she/it/we/they/you) -->
-    <div class="lesson-card">
-        <div class="card-title">рџђ­ 4. Whack-a-Mole! Pronouns</div>
-        <div class="mole-game">
-            <div class="mole-timer" id="moleTimerDisplay">вЏ±пёЏ 0:30</div>
-            <div class="mole-grid" id="moleGrid"></div>
-            <div>Score: <span id="moleScore">0</span></div>
-            <button id="startMoleGame" class="big-button" style="background:#3C9E3C;">в–¶пёЏ Start Whack!</button>
-            <p style="margin-top: 10px;">рџ‘‚ Listen: <strong id="currentPronounPrompt">Click START</strong> в†’ hit the correct mole!</p>
-        </div>
-    </div>
-
-    <!-- BLOCK 5: CLASSROOM OBJECTS + THIS/THAT interactive -->
-    <div class="lesson-card">
-        <div class="card-title">рџ“љ 5. Classroom Objects + This / That</div>
-        <div class="classroom-grid" id="classroomGrid"></div>
-        <div class="this-that-quiz" id="thisThatQuizArea">
-            <p><strong>в­ђ Quick quiz: This or That?</strong> (click on object first)</p>
-            <div id="quizQuestion" style="font-size: 20px;">Select an object above рџ‘†</div>
-            <div style="margin-top: 12px;">
-                <button id="thisChoiceBtn" style="background:#F7B05E; padding:8px 25px; border-radius: 60px;">рџ‘‰ This is ...</button>
-                <button id="thatChoiceBtn" style="background:#F7B05E; padding:8px 25px; border-radius: 60px;">рџ‘‰ That is ...</button>
-                <span id="quizFeedback"></span>
-            </div>
-        </div>
-    </div>
-
-    <footer>рџЋ‰ Great job, superstar! рџЋ‰  Keep learning English!</footer>
+  <h1>Hello! Classroom Fun</h1>
+  <p>Learn greetings, classroom commands and vocabulary. An interactive lesson for absolute beginners!</p>
 </div>
+
+<div class="star-bar" id="starBar">
+  <span class="star" id="star1">⭐</span>
+  <span class="star" id="star2">⭐</span>
+  <span class="star" id="star3">⭐</span>
+  <span class="star" id="star4">⭐</span>
+  <span class="star" id="star5">⭐</span>
+  <span class="star" id="star6">⭐</span>
+</div>
+
+<div class="rail" id="progressRail">
+  <div class="rail-step" id="rail1">
+    <div class="rail-dot">1</div>
+    <div class="rail-label">Hello</div>
+  </div>
+  <div class="rail-step" id="rail2">
+    <div class="rail-dot">2</div>
+    <div class="rail-label">TPR</div>
+  </div>
+  <div class="rail-step" id="rail3">
+    <div class="rail-dot">3</div>
+    <div class="rail-label">Words</div>
+  </div>
+  <div class="rail-step" id="rail4">
+    <div class="rail-dot">4</div>
+    <div class="rail-label">Memory</div>
+  </div>
+  <div class="rail-step" id="rail5">
+    <div class="rail-dot">5</div>
+    <div class="rail-label">Quiz</div>
+  </div>
+  <div class="rail-step" id="rail6">
+    <div class="rail-dot">6</div>
+    <div class="rail-label">Bubbles</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1 — GREETINGS                     -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Привет и пока!" data-en="Hello and Goodbye!">Привет и пока!</span></h2>
+    <span class="section-badge" data-ru="8 фраз" data-en="8 phrases">8 фраз</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem" data-ru="Нажмите на карточку, чтобы услышать фразу по-английски." data-en="Tap a card to hear the phrase in English.">Нажмите на карточку, чтобы услышать фразу по-английски.</p>
+    <div class="greet-grid" id="greetGrid"></div>
+    <div class="tpr-progress" id="greetProgress"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 2 — TPR COMMANDS                  -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Команды — делайте!" data-en="Commands — do it!">Команды — делайте!</span></h2>
+    <span class="section-badge" data-ru="8 команд" data-en="8 commands">8 команд</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem" data-ru="Нажмите кнопку, услышьте команду и выполните её! Нажмите все 8." data-en="Tap the button, hear the command and do it! Tap all 8.">Нажмите кнопку, услышьте команду и выполните её! Нажмите все 8.</p>
+    <div class="tpr-grid" id="tprGrid"></div>
+    <div class="tpr-progress" id="tprProgress"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3 — CLASSROOM WORDS (FLIP CARDS)  -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Слова в классе" data-en="Classroom Words">Слова в классе</span></h2>
+    <span class="section-badge" data-ru="10 карточек" data-en="10 cards">10 карточек</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem" data-ru="Нажмите на карточку — увидите слово по-русски и сможете услышать его." data-en="Tap a card to see the Russian and hear the word.">Нажмите на карточку — увидите слово по-русски и сможете услышать его.</p>
+    <div class="flip-grid" id="wordFlipGrid"></div>
+    <div class="flip-counter" id="wordFlipCounter"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 4 — MEMORY GAME                   -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Игра «Память»" data-en="Memory Game">Игра «Память»</span></h2>
+    <span class="section-badge" data-ru="8 пар" data-en="8 pairs">8 пар</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem" data-ru="Найдите пары: английское слово + перевод." data-en="Match pairs: English word + Russian translation.">Найдите пары: английское слово + перевод.</p>
+    <div class="memory-grid" id="memoryGrid"></div>
+    <div class="mem-status" id="memStatus"></div>
+    <div style="text-align:center">
+      <button class="btn btn-secondary" onclick="resetMemory()" style="margin-top:.5rem" data-ru="↺ Заново" data-en="↺ Reset">↺ Заново</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5 — QUIZ: CHOOSE THE WORD         -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Тест: выбери слово" data-en="Quiz: Choose the Word">Тест: выбери слово</span></h2>
+    <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+      <div class="quiz-score" id="quizScore">0 / 8</div>
+      <span class="section-badge" data-ru="8 вопросов" data-en="8 questions">8 вопросов</span>
+    </div>
+  </div>
+  <div class="section-body">
+    <div id="quizContainer"></div>
+    <div class="quiz-actions">
+      <button class="btn btn-primary" onclick="checkQuiz()" data-ru="✅ Проверить" data-en="✅ Check">✅ Проверить</button>
+      <button class="btn btn-secondary" onclick="resetQuiz()" data-ru="↺ Сначала" data-en="↺ Reset">↺ Сначала</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 6 — BUBBLE POP                    -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-head">
+    <h2><span data-ru="Лопни пузырь!" data-en="Pop the Bubble!">Лопни пузырь!</span></h2>
+    <span class="section-badge" data-ru="лопни все!" data-en="pop them all!">лопни все!</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.7rem" data-ru="Лопайте пузыри с английскими словами! Наберите 10 очков." data-en="Pop bubbles with English words! Get 10 points.">Лопайте пузыри с английскими словами! Наберите 10 очков.</p>
+    <div class="bubble-score" id="bubbleScoreDisplay">Score: 0</div>
+    <canvas id="bubbleCanvas"></canvas>
+    <div style="text-align:center;margin-top:.8rem">
+      <button class="btn btn-primary" id="bubbleStartBtn" onclick="startBubbles()" data-ru="🫧 Играть!" data-en="🫧 Play!">🫧 Играть!</button>
+      <button class="btn btn-secondary" id="bubbleResetBtn" onclick="resetBubbles()" style="display:none" data-ru="↺ Снова" data-en="↺ Again">↺ Снова</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- BONUS: BUBBLE POP -->
+<section class="section" style="border-top-color:var(--accent2)">
+  <div class="section-head">
+    <h2>Bubble Pop — Vocabulary Sprint</h2>
+    <span class="section-badge">bonus game</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:.7rem">Pop bubbles with vocabulary words — score 10 points to win! Click or tap a bubble.</p>
+    <div class="bub-score-bar" id="bubScoreDisplay">Score: 0 / 10</div>
+    <canvas id="bubCanvas"></canvas>
+    <div class="bub-actions">
+      <button class="btn btn-primary" id="bubStartBtn" onclick="startBubbles()">Play</button>
+      <button class="btn btn-secondary" id="bubResetBtn" onclick="resetBubbles()" style="display:none">Reset</button>
+    </div>
+  </div>
+</section>
+<!-- ALL DONE BANNER -->
+<div class="all-done" id="allDone">
+  <h2><span data-ru="Урок завершён!" data-en="Lesson Complete!">Урок завершён!</span></h2>
+  <p data-ru="Вы выучили приветствия, команды и слова классной комнаты. Отличная работа!" data-en="You learned greetings, commands and classroom words. Outstanding work!">Вы выучили приветствия, команды и слова классной комнаты. Отличная работа!</p>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer" data-ru="🌟 Pre-A1 · Hello · Classroom · Commands · Vocabulary · Memory" data-en="🌟 Pre-A1 · Hello · Classroom · Commands · Vocabulary · Memory">
+  🌟 Pre-A1 · Hello · Classroom · Commands · Vocabulary · Memory
+</div>
+<div class="legal-footer">
+  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design.</p>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
 
 <script>
-    // ----- TASK COUNTER (5 main tasks) -----
-    let tasksCompleted = 0;
-    const starSpans = document.querySelectorAll('#starArea span');
-    const taskCounterSpan = document.getElementById('taskCounter');
-    function completeTask(taskId) {
-        // prevent duplicate if already completed (simple)
-        if(window[`task_${taskId}`]) return;
-        window[`task_${taskId}`] = true;
-        tasksCompleted = Math.min(tasksCompleted+1, 5);
-        for(let i=0; i<starSpans.length; i++) {
-            if(i < tasksCompleted) starSpans[i].classList.add('active');
-            else starSpans[i].classList.remove('active');
-        }
-        taskCounterSpan.innerText = `рџЊџ ${tasksCompleted}/5 tasks done`;
-    }
+// ── LANG TOGGLE ───────────────────────────────────────────────────────────────
+function toggleLang(){
+  const h=document.documentElement;
+  const next=h.dataset.lang==='ru'?'en':'ru';
+  h.dataset.lang=next;
+  document.querySelectorAll('[data-ru],[data-en]').forEach(el=>{
+    el.innerHTML=el.dataset[next]||el.innerHTML;
+  });
+}
 
-    // Text-to-speech helper (kid-friendly, slow)
-    function speak(text, rate=0.85) {
-        if(!window.speechSynthesis) return alert("Your browser doesn't support speech");
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = rate;
-        utterance.pitch = 1.2;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utterance);
-    }
+// ── PROGRESS SYSTEM ───────────────────────────────────────────────────────────
+const tasksDone=new Set();
+function completeTask(n){
+  if(tasksDone.has(n))return;
+  tasksDone.add(n);
+  const rail=document.getElementById('rail'+n);
+  if(rail)rail.classList.add('done');
+  const star=document.getElementById('star'+n);
+  if(star){star.classList.add('lit');star.textContent='🌟';}
+  if(tasksDone.size===6){
+    setTimeout(()=>{
+      document.getElementById('allDone').classList.add('show');
+      launchConfetti();
+    },400);
+  }
+}
 
-    // ----- 1. Hello section -----
-    const helloBtn = document.getElementById('sayHelloBtn');
-    const whatsName = document.getElementById('whatsNameBtn');
-    const submitName = document.getElementById('submitNameBtn');
-    const nameInput = document.getElementById('kidNameInput');
-    const greetingP = document.getElementById('greetingMessage');
-    helloBtn.onclick = () => { speak("Hello!"); };
-    whatsName.onclick = () => { speak("What's your name?"); };
-    submitName.onclick = () => {
-        let name = nameInput.value.trim();
-        if(name === "") name = "friend";
-        speak(
-ice to meet you, ${name}!`);
-        greetingP.innerHTML = `рџ¦’ Giraffe says: "Nice to meet you, ${name}! рџЊџ"`;
-        completeTask('hello');
+// ── CONFETTI ──────────────────────────────────────────────────────────────────
+function launchConfetti(){
+  const canvas=document.getElementById('confettiCanvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#f2a822','#e06b00','#ffd54f','#3aaa5c','#e53935','#ab47bc','#29b6f6'];
+  const pieces=Array.from({length:160},()=>({
+    x:Math.random()*canvas.width, y:Math.random()*canvas.height-canvas.height,
+    r:Math.random()*7+3, d:Math.random()*160,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    tilt:Math.random()*10-10, angle:Math.random()*Math.PI*2,
+    spin:Math.random()*.2-.1, speed:Math.random()*3+1
+  }));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.beginPath();
+      ctx.ellipse(p.x,p.y,p.r,p.r/2,p.angle,0,Math.PI*2);
+      ctx.fillStyle=p.color; ctx.fill();
+      p.y+=p.speed; p.x+=Math.sin(p.d/30)*2;
+      p.angle+=p.spin; p.d++;
+      if(p.y>canvas.height) p.y=-10;
+    });
+    if(++frame<220)requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+// ── SPEAK ─────────────────────────────────────────────────────────────────────
+function speak(text){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.85;
+  window.speechSynthesis.speak(u);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 1 — GREETINGS
+// ═══════════════════════════════════════════════════════════════════════════════
+const GREETINGS=[
+  {icon:'🌅',en:'Good morning!',ru:'Доброе утро!'},
+  {icon:'☀️',en:'Good afternoon!',ru:'Добрый день!'},
+  {icon:'🌙',en:'Good evening!',ru:'Добрый вечер!'},
+  {icon:'👋',en:'Hello! / Hi!',ru:'Привет!'},
+  {icon:'😊',en:"How are you?",ru:'Как дела?'},
+  {icon:'🤩',en:"I'm fine, thank you!",ru:'Хорошо, спасибо!'},
+  {icon:'👋',en:'Goodbye! / Bye!',ru:'До свидания!'},
+  {icon:'🌟',en:'See you tomorrow!',ru:'До завтра!'},
+];
+let greetClicked=new Set();
+function buildGreetings(){
+  const grid=document.getElementById('greetGrid');
+  GREETINGS.forEach((g,i)=>{
+    const card=document.createElement('div');
+    card.className='greet-card';
+    card.innerHTML=`<div class="speak-icon">${g.icon}</div><div class="en">${g.en}</div><div class="ru">${g.ru}</div>`;
+    card.onclick=()=>{
+      speak(g.en);
+      greetClicked.add(i);
+      card.style.borderColor='var(--ok)';
+      updateGreetProgress();
     };
+    grid.appendChild(card);
+  });
+  updateGreetProgress();
+}
+function updateGreetProgress(){
+  const done=greetClicked.size, total=GREETINGS.length;
+  document.getElementById('greetProgress').textContent=`Прослушано: ${done} / ${total}`;
+  if(done===total) completeTask(1);
+}
 
-    // ----- 2. Actions array -----
-    const actionsList = [
-        { word: "Stand up", emoji: "рџ§Ќ" }, { word: "Sit down", emoji: "рџЄ‘" },
-        { word: "Clap your hands", emoji: "рџ‘Џ" }, { word: "Touch your head", emoji: "рџ™†" },
-        { word: "Turn around", emoji: "рџ”„" }, { word: "Jump", emoji: "рџ¤ё" },
-        { word: "Show me your hands", emoji: "рџ–ђпёЏ" }
-    ];
-    const actionsGrid = document.getElementById('actionsGrid');
-    actionsList.forEach(action => {
-        const card = document.createElement('div');
-        card.className = 'action-card';
-        card.innerHTML = `<span style="font-size:38px;">${action.emoji}</span> <span>${action.word}</span> рџ”Љ`;
-        card.onclick = () => speak(action.word);
-        actionsGrid.appendChild(card);
-    });
-    const randomBtn = document.getElementById('randomActionBtn');
-    const actionMsg = document.getElementById('actionMessage');
-    randomBtn.onclick = () => {
-        const rand = actionsList[Math.floor(Math.random() * actionsList.length)];
-        actionMsg.innerHTML = `вњЁ Now: ${rand.word} ${rand.emoji} вњЁ`;
-        speak(rand.word);
-        completeTask('actions');
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 2 — TPR COMMANDS
+// ═══════════════════════════════════════════════════════════════════════════════
+const TPR=[
+  {icon:'🪑',en:'Sit down!',ru:'Садитесь!'},
+  {icon:'🧍',en:'Stand up!',ru:'Встаньте!'},
+  {icon:'🤫',en:'Be quiet!',ru:'Тишина!'},
+  {icon:'👂',en:'Listen!',ru:'Слушайте!'},
+  {icon:'📖',en:'Open your book!',ru:'Откройте книгу!'},
+  {icon:'📕',en:'Close your book!',ru:'Закройте книгу!'},
+  {icon:'✍️',en:'Write it down!',ru:'Запишите!'},
+  {icon:'🙋',en:'Put your hand up!',ru:'Поднимите руку!'},
+];
+let tprDone=new Set();
+function buildTPR(){
+  const grid=document.getElementById('tprGrid');
+  TPR.forEach((t,i)=>{
+    const btn=document.createElement('button');
+    btn.className='tpr-btn';
+    btn.innerHTML=`<span class="tpr-icon">${t.icon}</span>${t.en}<br><small style="font-weight:400;opacity:.8">${t.ru}</small>`;
+    btn.onclick=()=>{
+      speak(t.en);
+      tprDone.add(i);
+      btn.classList.add('done-tpr');
+      updateTPRProgress();
     };
+    grid.appendChild(btn);
+  });
+  updateTPRProgress();
+}
+function updateTPRProgress(){
+  const done=tprDone.size, total=TPR.length;
+  document.getElementById('tprProgress').textContent=`Выполнено: ${done} / ${total}`;
+  if(done===total) completeTask(2);
+}
 
-    // ----- 3. Demonstratives (visual) This/That/These/Those with items -----
-    const demoItems = [
-        { name: "apple", near: "рџЌЋ", far: "рџЌЏ", type: "singular", thisText: "This is an apple", thatText: "That is an apple" },
-        { name: "ball", near: "вљЅ", far: "вљѕ", type: "singular", thisText: "This is a ball", thatText: "That is a ball" },
-        { name: "eggs (plural)", near: "рџҐљрџҐљ", far: "рџҐљрџҐљ", type: "plural", theseText: "These are eggs", thoseText: "Those are eggs" },
-        { name: "cars", near: "рџљ—рџљ™", far: "рџљ—рџљ™", type: "plural", theseText: "These are cars", thoseText: "Those are cars" }
-    ];
-    const demoArea = document.getElementById('demoArea');
-    function renderDemonstratives() {
-        demoArea.innerHTML = '';
-        demoItems.forEach((item, idx) => {
-            const card = document.createElement('div');
-            card.className = 'demo-card';
-            if(item.type === 'singular') {
-                card.innerHTML = `<div class="demo-emoji">рџ‘€ ${item.near}</div><div><strong>THIS</strong> (near)</div>
-                                  <div class="demo-emoji">рџ‘‰ ${item.far}</div><div><strong>THAT</strong> (far)</div>`;
-                card.onclick = () => speak(`${item.thisText}. ${item.thatText}`);
-            } else {
-                card.innerHTML = `<div class="demo-emoji">рџ‘€ ${item.near}</div><div><strong>THESE</strong> (near)</div>
-                                  <div class="demo-emoji">рџ‘‰ ${item.far}</div><div><strong>THOSE</strong> (far)</div>`;
-                card.onclick = () => speak(`${item.theseText}. ${item.thoseText}`);
-            }
-            demoArea.appendChild(card);
-        });
-    }
-    renderDemonstratives();
-    document.getElementById('speakDemoBtn').onclick = () => speak("This near, That far. These near plural, Those far plural.");
-    
-    // ----- 4. Whack a Mole (Pronouns) he, she, it, we, they, you
-    const pronouns = ["he", "she", "it", "we", "they", "you"];
-    let moleActiveIndex = -1;
-    let moleInterval = null;
-    let gameActive = false;
-    let moleScore = 0;
-    let timeLeft = 30;
-    let timerInterval = null;
-    const moleGrid = document.getElementById('moleGrid');
-    const moleScoreSpan = document.getElementById('moleScore');
-    const moleTimerDisplay = document.getElementById('moleTimerDisplay');
-    const pronounPromptSpan = document.getElementById('currentPronounPrompt');
-    
-    function buildMoleHoles() {
-        moleGrid.innerHTML = '';
-        for(let i=0; i<6; i++) {
-            const hole = document.createElement('div');
-            hole.className = 'mole-hole';
-            hole.dataset.index = i;
-            hole.innerText = 'рџ•іпёЏ';
-            hole.addEventListener('click', () => {
-                if(!gameActive) return;
-                if(moleActiveIndex === i) {
-                    // correct whack
-                    const targetPronoun = pronouns[i % pronouns.length];
-                    moleScore++;
-                    moleScoreSpan.innerText = moleScore;
-                    speak(`Good! ${targetPronoun}`, 0.9);
-                    // show quick celebration
-                    hole.style.backgroundColor = "#FFD966";
-                    setTimeout(() => { if(hole) hole.style.backgroundColor = "#4B2E1A"; }, 200);
-                    // deactivate mole after hit
-                    if(moleActiveIndex !== -1) {
-                        const prev = document.querySelector(`.mole-hole[data-index='${moleActiveIndex}']`);
-                        if(prev) prev.innerText = 'рџ•іпёЏ';
-                        moleActiveIndex = -1;
-                    }
-                    // remove current active
-                    clearActiveMole();
-                    scheduleMole();
-                } else {
-                    speak("Try again!");
-                }
-            });
-            moleGrid.appendChild(hole);
-        }
-    }
-    function clearActiveMole() {
-        if(moleActiveIndex !== -1) {
-            const oldHole = document.querySelector(`.mole-hole[data-index='${moleActiveIndex}']`);
-            if(oldHole) {
-                oldHole.innerText = 'рџ•іпёЏ';
-                oldHole.classList.remove('mole-active');
-            }
-            moleActiveIndex = -1;
-        }
-    }
-    function scheduleMole() {
-        if(!gameActive) return;
-        clearActiveMole();
-        const randomIdx = Math.floor(Math.random() * 6);
-        moleActiveIndex = randomIdx;
-        const hole = document.querySelector(`.mole-hole[data-index='${randomIdx}']`);
-        if(hole) {
-            const pronoun = pronouns[randomIdx % pronouns.length];
-            hole.innerText = `${pronoun} рџђ­`;
-            hole.classList.add('mole-active');
-            pronounPromptSpan.innerText = `рџ”Љ Hit the mole with pronoun: ${pronoun.toUpperCase()}`;
-        }
-        // set timeout to hide mole after 1.5 seconds
-        if(moleInterval) clearTimeout(moleInterval);
-        moleInterval = setTimeout(() => {
-            if(gameActive && moleActiveIndex === randomIdx) {
-                clearActiveMole();
-                scheduleMole();
-            }
-        }, 1500);
-    }
-    function stopMoleGame() {
-        if(timerInterval) clearInterval(timerInterval);
-        if(moleInterval) clearTimeout(moleInterval);
-        gameActive = false;
-        clearActiveMole();
-        pronounPromptSpan.innerText = "Game stopped. Press Start!";
-    }
-    function startMoleGame() {
-        if(gameActive) stopMoleGame();
-        moleScore = 0;
-        moleScoreSpan.innerText = "0";
-        timeLeft = 30;
-        moleTimerDisplay.innerText = "вЏ±пёЏ 0:30";
-        gameActive = true;
-        clearActiveMole();
-        buildMoleHoles(); // reset
-        timerInterval = setInterval(() => {
-            if(!gameActive) return;
-            if(timeLeft <= 1) {
-                clearInterval(timerInterval);
-                gameActive = false;
-                clearActiveMole();
-                moleTimerDisplay.innerText = "вЏ±пёЏ TIME'S UP!";
-                pronounPromptSpan.innerText = `Game over! Score: ${moleScore}`;
-                if(moleInterval) clearTimeout(moleInterval);
-                if(moleScore > 0) completeTask('pronouns');
-            } else {
-                timeLeft--;
-                moleTimerDisplay.innerText = `вЏ±пёЏ 0:${timeLeft < 10 ? '0'+timeLeft : timeLeft}`;
-            }
-        }, 1000);
-        scheduleMole();
-    }
-    document.getElementById('startMoleGame').onclick = () => startMoleGame();
-    buildMoleHoles();
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 3 — CLASSROOM WORDS FLIP CARDS
+// ═══════════════════════════════════════════════════════════════════════════════
+const WORDS=[
+  {en:'a pen',ru:'ручка'},{en:'a pencil',ru:'карандаш'},{en:'a book',ru:'книга'},
+  {en:'a bag',ru:'сумка'},{en:'a ruler',ru:'линейка'},{en:'an eraser',ru:'ластик'},
+  {en:'a desk',ru:'парта'},{en:'a chair',ru:'стул'},{en:'a board',ru:'доска'},
+  {en:'a teacher',ru:'учитель'},
+];
+let wordsFlipped=new Set();
+function buildWordFlips(){
+  const grid=document.getElementById('wordFlipGrid');
+  WORDS.forEach((w,i)=>{
+    const wrap=document.createElement('div');
+    wrap.className='flip-wrap';
+    wrap.innerHTML=`<div class="flip-inner"><div class="flip-front">${w.en}<span class="f-tap">tap</span></div><div class="flip-back">${w.ru}<br><button onclick="event.stopPropagation();speak('${w.en}')" style="margin-top:.3rem;background:var(--accent2);color:#fff;border:none;border-radius:1rem;padding:.2rem .5rem;cursor:pointer;font-size:.7rem">🔊</button></div></div>`;
+    wrap.onclick=()=>{
+      wrap.classList.toggle('flipped');
+      if(wrap.classList.contains('flipped')){
+        speak(w.en);
+        wordsFlipped.add(i);
+        updateWordCounter();
+      }
+    };
+    grid.appendChild(wrap);
+  });
+  updateWordCounter();
+}
+function updateWordCounter(){
+  const done=wordsFlipped.size, total=WORDS.length;
+  document.getElementById('wordFlipCounter').textContent=`Изучено: ${done} / ${total}`;
+  if(done===total) completeTask(3);
+}
 
-    // ----- 5. Classroom objects + This/That mini game
-    const classroomObjects = [
-        "pencil", "eraser", "ruler", "notebook", "scissors", "glue", "pen", "pencil case", "clock", "desk", "chair", "board"
-    ];
-    const objGrid = document.getElementById('classroomGrid');
-    let currentSelectedObject = null;
-    classroomObjects.forEach(obj => {
-        const objDiv = document.createElement('div');
-        objDiv.className = 'obj-item';
-        let emoji = "рџ“Ћ";
-        if(obj === "pencil") emoji = "вњЏпёЏ";
-        else if(obj === "eraser") emoji = "рџ§Ѕ";
-        else if(obj === "ruler") emoji = "рџ“Џ";
-        else if(obj === "notebook") emoji = "рџ““";
-        else if(obj === "scissors") emoji = "вњ‚пёЏ";
-        else if(obj === "glue") emoji = "рџ©№";
-        else if(obj === "pen") emoji = "рџ–ЉпёЏ";
-        else if(obj === "pencil case") emoji = "рџ“Ѓ";
-        else if(obj === "clock") emoji = "вЏ°";
-        else if(obj === "desk") emoji = "рџЄ‘";
-        else if(obj === "chair") emoji = "рџ’є";
-        else if(obj === "board") emoji = "в¬›";
-        objDiv.innerHTML = `${emoji} ${obj} рџ”Љ`;
-        objDiv.onclick = () => {
-            currentSelectedObject = obj;
-            speak(obj);
-            document.getElementById('quizQuestion').innerHTML = `вњЁ Selected: <strong style="font-size:28px;">${obj}</strong> в†’ Is it THIS (near) or THAT (far)?`;
-            document.getElementById('quizFeedback').innerHTML = "";
-        };
-        objGrid.appendChild(objDiv);
-    });
-    // This/That quiz logic
-    const thisBtn = document.getElementById('thisChoiceBtn');
-    const thatBtn = document.getElementById('thatChoiceBtn');
-    const quizFeedbackSpan = document.getElementById('quizFeedback');
-    function checkThisThat(choice) { // choice 'this' or 'that'
-        if(!currentSelectedObject) {
-            quizFeedbackSpan.innerHTML = "вќ“ First click on a classroom object!";
-            return;
-        }
-        // For a kid, both options are fine as long as they understand meaning, we give positive feedback
-        if(choice === 'this') {
-            speak(`This is a ${currentSelectedObject}`);
-            quizFeedbackSpan.innerHTML = `вњ… Good! "This is a ${currentSelectedObject}" (near you) рџЊџ`;
-        } else {
-            speak(`That is a ${currentSelectedObject}`);
-            quizFeedbackSpan.innerHTML = `вњ… Great! "That is a ${currentSelectedObject}" (far away) рџЊџ`;
-        }
-        completeTask('objects');
-        // optional extra star
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 4 — MEMORY GAME
+// ═══════════════════════════════════════════════════════════════════════════════
+const MEM_PAIRS=[
+  {a:'Hello!',b:'Привет!'},{a:'Sit down',b:'Садитесь'},{a:'a pen',b:'ручка'},
+  {a:'a book',b:'книга'},{a:'Stand up',b:'Встаньте'},{a:'a desk',b:'парта'},
+  {a:'Listen!',b:'Слушайте!'},{a:'a board',b:'доска'},
+];
+let memCards=[], memFlipped=[], memLocked=false, memMatched=0;
+function buildMemory(){
+  memMatched=0; memFlipped=[]; memLocked=false;
+  const allCards=[];
+  MEM_PAIRS.forEach((p,i)=>{
+    allCards.push({text:p.a,pair:i,side:'a'});
+    allCards.push({text:p.b,pair:i,side:'b'});
+  });
+  allCards.sort(()=>Math.random()-.5);
+  const grid=document.getElementById('memoryGrid');
+  grid.innerHTML='';
+  memCards=[];
+  allCards.forEach((c,i)=>{
+    const div=document.createElement('div');
+    div.className='mem-card';
+    div.innerHTML=`<div class="mem-inner"><div class="mem-front">?</div><div class="mem-back">${c.text}</div></div>`;
+    div.onclick=()=>flipMem(i);
+    grid.appendChild(div);
+    memCards.push({el:div, ...c});
+  });
+  document.getElementById('memStatus').textContent=`Найдено пар: 0 / ${MEM_PAIRS.length}`;
+}
+function flipMem(i){
+  if(memLocked)return;
+  const card=memCards[i];
+  if(card.el.classList.contains('flipped')||card.el.classList.contains('matched'))return;
+  card.el.classList.add('flipped');
+  memFlipped.push(i);
+  if(memFlipped.length===2){
+    memLocked=true;
+    const [a,b]=memFlipped.map(idx=>memCards[idx]);
+    if(a.pair===b.pair&&a.side!==b.side){
+      setTimeout(()=>{
+        a.el.classList.add('matched'); b.el.classList.add('matched');
+        memMatched++;
+        document.getElementById('memStatus').textContent=`Найдено пар: ${memMatched} / ${MEM_PAIRS.length}`;
+        if(memMatched===MEM_PAIRS.length) completeTask(4);
+        memFlipped=[];
+        memLocked=false;
+      },500);
+    } else {
+      setTimeout(()=>{
+        a.el.classList.remove('flipped'); b.el.classList.remove('flipped');
+        memFlipped=[];
+        memLocked=false;
+      },900);
     }
-    thisBtn.onclick = () => checkThisThat('this');
-    thatBtn.onclick = () => checkThisThat('that');
-    
-    // add extra task completion for seeing at least 3 tasks done? but we already trigger on specific actions
-    // Also add a small progress from demonstratives? not mandatory but user can get star from "hello, actions, pronouns, objects" and we also give extra for demo area click? let's allow demo click to finish task as well if they interact.
-    let demoTaskCompleted = false;
-    demoArea.addEventListener('click', (e) => {
-        if(!demoTaskCompleted) {
-            demoTaskCompleted = true;
-            completeTask('demo');
+  }
+}
+function resetMemory(){buildMemory();}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 5 — QUIZ
+// ═══════════════════════════════════════════════════════════════════════════════
+const QUIZ=[
+  {q:'Как будет "Доброе утро"?',opts:['Good morning!','Good evening!','Good night!','Hello!'],a:0},
+  {q:'Что значит "Sit down"?',opts:['Встаньте','Садитесь','Слушайте','Тихо'],a:1},
+  {q:'Как по-английски "книга"?',opts:['a pen','a ruler','a book','a bag'],a:2},
+  {q:'Что значит "Stand up"?',opts:['Садитесь','Встаньте','Тихо','Запишите'],a:1},
+  {q:'Как будет "До свидания"?',opts:['Hello!','Thank you!','Goodbye!','Sorry!'],a:2},
+  {q:'Что такое "a desk"?',opts:['стул','ручка','доска','парта'],a:3},
+  {q:'Как сказать "Слушайте"?',opts:['Write!','Listen!','Open!','Close!'],a:1},
+  {q:'Что значит "How are you?"',opts:['Как тебя зовут?','Как дела?','Сколько лет?','Где ты?'],a:1},
+];
+function buildQuiz(){
+  const c=document.getElementById('quizContainer');
+  c.innerHTML='';
+  QUIZ.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='quiz-item';
+    div.innerHTML=`<p style="font-weight:600;margin-bottom:.5rem">${i+1}. ${item.q}</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem" id="opts${i}">
+        ${item.opts.map((o,oi)=>`<button class="btn btn-secondary" id="opt${i}_${oi}" onclick="selectOpt(${i},${oi})">${o}</button>`).join('')}
+      </div>
+      <div id="qfb${i}" style="font-size:.8rem;margin-top:.4rem;display:none"></div>`;
+    c.appendChild(div);
+  });
+}
+let selectedOpts={};
+function selectOpt(qi,oi){
+  selectedOpts[qi]=oi;
+  const opts=document.getElementById('opts'+qi);
+  [...opts.children].forEach((b,i)=>{b.style.background=i===oi?'var(--accent)':'';b.style.color=i===oi?'#fff':''});
+}
+function checkQuiz(){
+  let correct=0;
+  QUIZ.forEach((item,i)=>{
+    const fb=document.getElementById('qfb'+i);
+    fb.style.display='block';
+    if(selectedOpts[i]===item.a){
+      correct++;
+      fb.textContent='✅ Правильно!';
+      fb.style.color='var(--ok)';
+    } else {
+      fb.textContent=`❌ Правильный ответ: ${item.opts[item.a]}`;
+      fb.style.color='var(--miss)';
+    }
+  });
+  document.getElementById('quizScore').textContent=correct+' / '+QUIZ.length;
+  if(correct>=6) completeTask(5);
+}
+function resetQuiz(){
+  selectedOpts={};
+  buildQuiz();
+  document.getElementById('quizScore').textContent='0 / '+QUIZ.length;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SECTION 6 — BUBBLE POP
+// ═══════════════════════════════════════════════════════════════════════════════
+const BUBBLE_WORDS=['Hello!','Bye!','a pen','a book','Sit down','Stand up','Listen!','a desk',
+  'Good morning','Thank you','a chair','a ruler','Write!','Open!','a bag'];
+let bubbles=[], bubbleScore=0, bubbleAnimId=null, bubbleRunning=false;
+const bCanvas=()=>document.getElementById('bubbleCanvas');
+function randomColor(){
+  const cols=['#f2a822','#e06b00','#f9c846','#3aaa5c','#29b6f6','#ab47bc','#e53935'];
+  return cols[Math.floor(Math.random()*cols.length)];
+}
+function spawnBubble(canvas){
+  const r=Math.random()*22+22;
+  return {
+    x:r+Math.random()*(canvas.width-2*r),
+    y:canvas.height+r,
+    r:r,
+    vy:-(Math.random()*0.7+0.4),
+    vx:(Math.random()-.5)*0.5,
+    word:BUBBLE_WORDS[Math.floor(Math.random()*BUBBLE_WORDS.length)],
+    color:randomColor(),
+    alpha:1
+  };
+}
+function startBubbles(){
+  document.getElementById('bubbleStartBtn').style.display='none';
+  document.getElementById('bubbleResetBtn').style.display='inline-block';
+  bubbles=[]; bubbleScore=0; bubbleRunning=true;
+  const canvas=bCanvas();
+  canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;
+  for(let i=0;i<5;i++) bubbles.push(spawnBubble(canvas));
+  
+  canvas.ontouchstart=canvas.onmousedown=(e)=>{
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const touches=e.changedTouches||[e];
+    for(let t of touches){
+      const mx=(t.clientX-rect.left)*(canvas.width/rect.width);
+      const my=(t.clientY-rect.top)*(canvas.height/rect.height);
+      bubbles.forEach((b,i)=>{
+        if(!b.popped && Math.hypot(b.x-mx,b.y-my)<b.r+8){
+          b.popped=true;
+          bubbleScore++;
+          document.getElementById('bubbleScoreDisplay').textContent='Score: '+bubbleScore;
+          speak(b.word);
+          setTimeout(()=>{ bubbles.splice(i,1); if(bubbleRunning) bubbles.push(spawnBubble(canvas)); },400);
+          if(bubbleScore>=10) completeTask(6);
         }
+      });
+    }
+  };
+
+  function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubbles.length<6&&bubbleRunning) bubbles.push(spawnBubble(canvas));
+    bubbles.forEach(b=>{
+      b.x+=b.vx; b.y+=b.vy;
+      ctx.beginPath();
+      const grad=ctx.createRadialGradient(b.x-b.r*.3,b.y-b.r*.3,b.r*.1,b.x,b.y,b.r);
+      grad.addColorStop(0,'rgba(255,255,255,.6)');
+      grad.addColorStop(1,b.color+'cc');
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fillStyle=b.popped?'rgba(255,255,255,.3)':grad;
+      ctx.fill();
+      ctx.strokeStyle=b.color;
+      ctx.lineWidth=2;
+      ctx.stroke();
+      if(!b.popped){
+        ctx.fillStyle='#2d1a00';
+        ctx.font=`bold ${Math.max(10,b.r*.52)}px Nunito,sans-serif`;
+        ctx.textAlign='center';
+        ctx.textBaseline='middle';
+        ctx.fillText(b.word.length>8?b.word.slice(0,7)+'…':b.word,b.x,b.y);
+      }
     });
-    // finally, friendly initial voice
-    window.addEventListener('load', () => {
-        setTimeout(() => speak("Hello little explorer! Let's learn English!"), 500);
+    bubbles=bubbles.filter(b=>b.y+b.r>-20);
+    if(bubbleRunning) bubbleAnimId=requestAnimationFrame(loop);
+  }
+  loop();
+}
+function resetBubbles(){
+  bubbleRunning=false;
+  if(bubbleAnimId) cancelAnimationFrame(bubbleAnimId);
+  bubbles=[];
+  bubbleScore=0;
+  document.getElementById('bubbleScoreDisplay').textContent='Score: 0';
+  const canvas=bCanvas();
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubbleStartBtn').style.display='inline-block';
+  document.getElementById('bubbleResetBtn').style.display='none';
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  buildGreetings();
+  buildTPR();
+  buildWordFlips();
+  buildMemory();
+  buildQuiz();
+});
+
+// ═══ BUBBLE POP ═══════════════════════════════════════════════════════════
+const BUB_WORDS=['Hello!', 'Sit down', 'Stand up', 'a pen', 'Listen!', 'a book', 'a desk', 'Bye!', 'a chair', 'a ruler'];
+let bubs=[],bubScore=0,bubRunning=false,bubAnimId=null;
+function startBubbles(){
+  document.getElementById('bubStartBtn').style.display='none';
+  document.getElementById('bubResetBtn').style.display='inline-block';
+  bubs=[];bubScore=0;bubRunning=true;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.width=canvas.offsetWidth||600;canvas.height=280;
+  const cs=getComputedStyle(document.documentElement);
+  const c1=cs.getPropertyValue('--accent').trim()||'#f2a822';
+  const c2=cs.getPropertyValue('--accent2').trim()||'#e06b00';
+  const c3=cs.getPropertyValue('--accent3').trim()||'#ffd54f';
+  const COLS=[c1,c2,c3,'#29b6f6','#ab47bc'];
+  function spawnBub(){
+    const r=Math.random()*22+22;
+    return{x:r+Math.random()*(canvas.width-2*r),y:canvas.height+r,r,
+      vy:-(Math.random()*.55+.38),vx:(Math.random()-.5)*.4,
+      word:BUB_WORDS[Math.floor(Math.random()*BUB_WORDS.length)],
+      c:COLS[Math.floor(Math.random()*COLS.length)],popped:false};
+  }
+  for(let i=0;i<5;i++)bubs.push(spawnBub());
+  function hitTest(mx,my){
+    bubs.forEach((b,i)=>{
+      if(!b.popped&&Math.hypot(b.x-mx,b.y-my)<b.r+8){
+        b.popped=true;bubScore++;
+        document.getElementById('bubScoreDisplay').textContent='Score: '+bubScore+' / 10';
+        if(typeof speak==='function')speak(b.word);
+        setTimeout(()=>{bubs.splice(i,1);if(bubRunning)bubs.push(spawnBub());},350);
+        if(bubScore>=10){bubRunning=false;
+          document.getElementById('bubScoreDisplay').textContent='Done! Score: '+bubScore+' / 10';}
+      }
     });
+  }
+  canvas.onmousedown=e=>{const r=canvas.getBoundingClientRect();
+    hitTest((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));};
+  canvas.ontouchstart=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();
+    const t=e.changedTouches[0];
+    hitTest((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));};
+  (function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubs.length<6&&bubRunning)bubs.push(spawnBub());
+    bubs.forEach(b=>{
+      b.x+=b.vx;b.y+=b.vy;
+      if(!b.popped){
+        ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle=b.c+'44';ctx.fill();
+        ctx.strokeStyle=b.c;ctx.lineWidth=2.5;ctx.stroke();
+        // shine
+        ctx.beginPath();ctx.arc(b.x-b.r*.28,b.y-b.r*.28,b.r*.32,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,.35)';ctx.fill();
+        ctx.fillStyle='#333';
+        ctx.font=`bold ${Math.max(10,Math.floor(b.r*.52))}px Nunito,sans-serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        const w=b.word.length>10?b.word.slice(0,9)+'…':b.word;
+        ctx.fillText(w,b.x,b.y);
+      }
+    });
+    bubs=bubs.filter(b=>b.y+b.r>-20);
+    if(bubRunning)bubAnimId=requestAnimationFrame(loop);
+  })();
+}
+function resetBubbles(){
+  bubRunning=false;if(bubAnimId)cancelAnimationFrame(bubAnimId);
+  bubs=[];bubScore=0;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubStartBtn').style.display='inline-block';
+  document.getElementById('bubResetBtn').style.display='none';
+}
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>РЎР°Р№С‚ СЃРѕР·РґР°РЅ РњР°СЂРёРµР№ Р’РёС‚Р°Р»СЊРµРІРЅРѕР№ Р‘СѓСЂС†РµРІРѕР№ РїСЂРё РїРѕРґРґРµСЂР¶РєРµ Claude, DeepSeek, GPT Рё РїР»Р°РіРёРЅР° Codex Design. РЈРїРѕРјРёРЅР°РЅРёРµ СЌС‚РёС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РЅРµ РѕР·РЅР°С‡Р°РµС‚ РїР°СЂС‚РЅС‘СЂСЃС‚РІРѕ РёР»Рё РѕС„РёС†РёР°Р»СЊРЅРѕРµ РѕРґРѕР±СЂРµРЅРёРµ.</p>
-  <p>РўРµСЂРјРёРЅ В«РЅРµР№СЂРѕС€РєРѕР»Р°В» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє Р°РІС‚РѕСЂСЃРєРѕРµ СЂР°Р±РѕС‡РµРµ РѕРїРёСЃР°РЅРёРµ РїРѕРґС…РѕРґР° Рє РѕР±СѓС‡РµРЅРёСЋ, Р° РЅРµ РєР°Рє РјРµРґРёС†РёРЅСЃРєР°СЏ, РЅРµР№СЂРѕРїСЃРёС…РѕР»РѕРіРёС‡РµСЃРєР°СЏ РёР»Рё РєРѕСЂСЂРµРєС†РёРѕРЅРЅР°СЏ СѓСЃР»СѓРіР°.</p>
-</footer>
 </body>
 </html>
-

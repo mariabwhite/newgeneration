@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -667,6 +667,25 @@ body.light .dynasty-epigraph {
   line-height: 1.4;
   text-transform: uppercase;
 }
+.neural-article-shot-cyborg {
+  max-width: min(456px, 100%);
+  margin-top: 34px;
+  margin-bottom: 30px;
+}
+.neural-article-shot-cyborg img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+.neural-article-shot-cyborg .cyborg-light {
+  display: none;
+}
+body.light .neural-article-shot-cyborg .cyborg-dark {
+  display: none;
+}
+body.light .neural-article-shot-cyborg .cyborg-light {
+  display: block;
+}
 .dynasty-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1271,11 +1290,55 @@ body.light .journal-placeholder .dynasty-toggle {
   max-width: 820px;
 }
 
+/* Accordion state for journal article cards: no overlapping panels. */
+.dynasty-list:has(.dynasty-feature[open]) {
+  grid-template-columns: 1fr;
+}
+.dynasty-list:has(.dynasty-feature[open]) .dynasty-feature:not([open]) {
+  display: none;
+}
+.dynasty-list .dynasty-feature[open] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.dynasty-list .dynasty-feature[open] > summary {
+  width: min(360px, 100%);
+  max-width: 360px;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-cover {
+  min-height: 300px;
+  aspect-ratio: auto;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-panel,
+.dynasty-list .dynasty-feature:nth-child(3n + 2)[open] .dynasty-panel,
+.dynasty-list .dynasty-feature:nth-child(3n)[open] .dynasty-panel {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 22px;
+  padding-top: 30px;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-title {
+  max-width: 820px;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.08;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-copy {
+  max-width: 760px;
+  min-width: 0;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-gallery {
+  min-width: 0;
+}
+
 @media (max-width: 640px) {
   #neural-tools .neural-feature-grid {
     grid-template-columns: 1fr;
   }
   #neural-tools .neural-feature-grid .neural-article-feature[open] > summary {
+    max-width: none;
+  }
+  .dynasty-list .dynasty-feature[open] > summary {
+    width: 100%;
     max-width: none;
   }
 }
@@ -1305,12 +1368,24 @@ body.light .journal-placeholder .dynasty-toggle {
       l.classList.toggle("active", l.dataset.nav === page);
     });
   }
+  function setupArticleAccordion() {
+    const articleSelector = "details.dynasty-feature, details.neural-article-feature";
+    document.querySelectorAll(articleSelector).forEach(article => {
+      article.addEventListener("toggle", () => {
+        if (!article.open) return;
+        document.querySelectorAll(articleSelector).forEach(other => {
+          if (other !== article) other.open = false;
+        });
+      });
+    });
+  }
   (function restore() {
     try {
       const savedLang = localStorage.getItem("nge-lang");
       if (savedLang === "en") toggleLang();
     } catch (e) {}
     markActiveNav();
+    setupArticleAccordion();
   })();
 </script>
 </head>
@@ -1530,6 +1605,11 @@ body.light .journal-placeholder .dynasty-toggle {
             <p>Постепенно отдельные страницы начали складываться в систему New Generation English. Появились главная страница, раздел “О проекте”, программы, условия, кейсы, блог, страница про путешествия, визуальные материалы и общая навигация. Потом выросла LinguaBoost Lab — интерактивная лаборатория с модулями по уровням от Pre-A1 до B2+: грамматика, лексика, карточки, квизы, тренажёры, задания на говорение и повторение.</p>
             <p>Следующим большим шагом стали кабинеты. Сайт перестал быть просто витриной и начал превращаться в образовательную платформу. Появился кабинет ученика с расписанием, домашними заданиями, материалами и прогрессом. Появился кабинет преподавателя с уроками, учениками, оплатами, задачами и отчётностью. Появился кабинет родителя, где можно видеть посещаемость, прогресс, уведомления и финансовый блок.</p>
             <p>Нейросети на этом пути стали не заменой автора, а рабочей командой. DeepSeek помог начать. Claude помогал с дизайном и формулировками. GPT помогал собирать смысл, тексты и структуру. Codex помогал разбираться в коде, объединять страницы, чинить ошибки, делать бэкапы, проверять мобильную версию, править CSS и превращать набор файлов в более аккуратный проект.</p>
+            <figure class="neural-article-shot neural-article-shot-cyborg">
+              <img class="cyborg-dark" src="assets/Без имени.png" alt="Тёмный портрет киборга как образ работы с нейросетями" loading="lazy">
+              <img class="cyborg-light" src="assets/hero-cyborg-light.png" alt="Светлый портрет киборга как образ работы с нейросетями" loading="lazy">
+              <figcaption data-ru="Нейросети здесь не заменяют автора: они становятся рабочей средой, в которой текст, дизайн и код постепенно собираются в систему." data-en="AI tools do not replace the author here: they become a working environment where text, design, and code gradually form a system.">Нейросети здесь не заменяют автора: они становятся рабочей средой, в которой текст, дизайн и код постепенно собираются в систему.</figcaption>
+            </figure>
             <p>Отдельная часть пути — это визуальная доводка. Мы проверяли светлую и тёмную тему, мобильную адаптацию, меню, отступы, карточки, контраст, изображения, подписи, порядок разделов. Появились аудит-скриншоты, VISUAL_AUDIT_TODO.md, резервные копии перед правками и отдельные версии после исправлений. То есть сайт создавался не одной кнопкой, а через десятки маленьких решений.</p>
             <p>И самое важное: я училась вместе с проектом. Сначала я просто хотела сделать красивую страницу. Потом поняла, что такое песочница. Потом научилась создавать несколько страниц. Потом — объединять их. Потом — думать версиями. Потом — видеть сайт как систему. А потом стало понятно: это уже не черновик, а проект, который не стыдно привести в порядок, документировать и выложить на GitHub.</p>
             <p>Так путь от первого HTML-документика стал историей не только про сайт, но и про рост. От “я сделала одну страничку в DeepSeek” до “у меня есть образовательная экосистема”. От первого кодика до сети страниц, лаборатории, кабинетов и живого проекта New Generation English.</p>
@@ -1877,6 +1957,8 @@ body.light .journal-placeholder .dynasty-toggle {
    девичья фамилия, место рождения, родители и биография требуют уточнения
 
 <strong>Основные семейные линии</strong>
+
+<strong>Духины</strong> — <span class="familong>
 
 <strong>Духины</strong> — <span class="family-role">педагогика, школа, иностранные языки, наука, директорская и учительская линия</span>.
 <strong>Наркевичи</strong> — <span class="family-role">железнодорожное ведомство, дореволюционная служебная культура</span>.

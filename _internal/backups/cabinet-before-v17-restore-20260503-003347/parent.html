@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Кабинет родителя New Generation English — посещаемость, прогресс и оплаты.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+  <title>Кабинет родителя · NGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../system.css">
+  <link rel="stylesheet" href="./cabinet.css">
+<link rel="stylesheet" href="../assets/visitor-counter.css">
+</head>
+<body data-page="cabinet-parent">
+<script>
+  (function () {
+    var KEY = "nge-cabinet-theme"; window.__NGE_CABINET_THEME_WIRED__ = true;
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === "light") document.body.classList.add("light");
+    } catch (e) {}
+
+    function initThemeToggle() {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      if (window.__NGE_CABINET_THEME_WIRED__) return;
+      window.__NGE_CABINET_THEME_WIRED__ = true;
+
+      function sync() {
+        btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
+      }
+      sync();
+      btn.addEventListener("click", function () {
+        document.body.classList.toggle("light");
+        try {
+          localStorage.setItem(KEY, document.body.classList.contains("light") ? "light" : "dark");
+        } catch (e) {}
+        sync();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initThemeToggle, { once: true });
+    } else {
+      initThemeToggle();
+    }
+  })();
+</script>
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub" data-ru="Кабинет родителя" data-en="Parent cabinet">Кабинет родителя</div>
+    </div>
+  </a>
+  <nav class="topnav" aria-label="Навигация">
+    <a class="topnav-link" href="parent.html" data-nav="cabinet-parent" data-ru="Родитель" data-en="Parent">Родитель</a>
+    <a class="topnav-link" href="../index.html" data-ru="На главную" data-en="Home">На главную</a>
+  </nav>
+  <div class="topbar-tools">
+    <span class="control-btn" id="whoami" style="cursor: default;">—</span>
+    <button class="control-btn" id="signOutBtn" type="button" data-ru="Выйти" data-en="Sign out">Выйти</button>
+    <button class="control-btn" id="theme-toggle" type="button" aria-label="Переключить тему">☾</button>
+    <button class="control-btn lang-btn" id="langBtn" type="button">RU</button>
+  </div>
+</header>
+
+<main class="page-shell cabinet-main">
+  <section class="cabinet-hero">
+    <span class="kicker" data-ru="Кабинет родителей" data-en="Parent cabinet">Кабинет родителей</span>
+    <h1 data-ru="Посещаемость · материалы · уведомления" data-en="Attendance · materials · notifications">Посещаемость · материалы · уведомления</h1>
+    <p class="lead"
+       data-ru="Здесь вы видите процесс обучения: расписание, домашние задания, прогресс и оплаты."
+       data-en="Here you see the learning process: schedule, homework, progress, and payments.">
+      Здесь вы видите процесс обучения: расписание, домашние задания, прогресс и оплаты.
+    </p>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Состав кабинета" data-en="Cabinet scope">Состав кабинета</div>
+          <h2 class="panel-title" data-ru="Что здесь есть" data-en="What is here">Что здесь есть</h2>
+        </div>
+      </div>
+      <p class="panel-sub" data-ru="Кабинет родителей нужен для спокойного контроля: расписание и посещаемость ребёнка, домашние задания, важные материалы, прогресс, комментарии преподавателя, абонемент, оплаты и напоминания." data-en="The parent cabinet is for calm oversight: child schedule and attendance, homework, important materials, progress, teacher comments, subscription, payments, and reminders.">Кабинет родителей нужен для спокойного контроля: расписание и посещаемость ребёнка, домашние задания, важные материалы, прогресс, комментарии преподавателя, абонемент, оплаты и напоминания.</p>
+    </div>
+  </section>
+
+  <section style="padding: 18px 0 0;">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker" data-ru="Выбор" data-en="Select">Выбор</div>
+          <h2 class="panel-title" data-ru="Ребёнок" data-en="Child">Ребёнок</h2>
+        </div>
+      </div>
+      <div class="form-row" style="grid-template-columns: 1fr;">
+        <label data-ru="Профиль ученика" data-en="Student profile">Профиль ученика
+          <select id="childSelect"></select>
+        </label>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="parent-report-generator" id="parent-report-generator">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-kicker">Отчетность</div>
+          <h2 class="panel-title">Родительский отчет по демо-модели</h2>
+        </div>
+      </div>
+      <p class="panel-sub">Рабочий генератор отчета: данные ученика, темы, прогресс, методика, ресурсы, абонемент и готовый текст для родителя. Если внешних ссылок нет, поле ресурсов можно оставить пустым.</p>
+
+      <div class="parent-report-layout">
+        <form class="parent-report-form" id="parentReportForm">
+          <label>Ученик
+            <input id="studentName" value="Джон Доу">
+          </label>
+          <label>Возраст
+            <input id="studentAge" value="7 лет">
+          </label>
+          <label>Рабочий уровень
+            <input id="studentLevel" value="A1 / начальный уровень">
+          </label>
+          <label>Формат
+            <input id="lessonFormat" value="Индивидуально, 1 раз в неделю по 1 часу">
+          </label>
+          <label>Расписание
+            <input id="schedule" value="Понедельник, 13:00">
+          </label>
+          <label>Период отчета
+            <input id="period" value="демо-период 2026">
+          </label>
+          <label>Краткий вывод
+            <textarea id="observations">Джон занимается в спокойном учебном формате. Он постепенно привыкает слышать английский в понятных ситуациях, реагировать на инструкции, повторять короткие фразы и пробовать самостоятельный ответ. На этом этапе важны регулярность, узнавание знакомых моделей и мягкий переход от повторения к собственной речи.</textarea>
+          </label>
+          <label>Прогресс: зона || что получается || статус || комментарий
+            <textarea id="progressRows">Понимание || Реагирует на знакомые фразы и инструкции || Стабильно || Сначала узнавание и действие, затем речь.
+Лексика || Узнает и повторяет слова из пройденных тем || В процессе || Слова нужно возвращать в разных играх и контекстах.
+Короткие фразы || Повторяет базовые модели || В процессе || Цель — уверенное повторение и постепенный самостоятельный ответ.
+Игра и включенность || Работает через картинки, движение и персонажей || Хорошо || Игровой формат сейчас самый продуктивный.</textarea>
+          </label>
+          <label>Темы: тема — что делали
+            <textarea id="topics">Приветствие и знакомство — Hello; My name is John; What is your name?
+Classroom-фразы — This is my classroom; show me; point to; look; listen; repeat.
+Части тела и лица — nose, eyes, ears, mouth, hands, arms, legs, feet.
+Местоимения — I / you / he / she / it / we / they через картинки и игрушки.
+Have / has — I have; he has; she has; it has; we have; they have.
+Цвета + тело — My nose is red; My hands are blue.
+Эмоции — happy, sad, angry, tired через мимику и движение.
+Животные — It has a nose; It has two eyes; It has four legs.
+Семья — mum, dad, family; This is my mum; This is my dad.
+Действия и команды — jump; clap; touch your nose; sit down; stand up.</textarea>
+          </label>
+          <label>Методика работы
+            <textarea id="method">Работа идет через игру, картинки, персонажей, игрушки, движение и короткие речевые модели. Основная схема занятия: teacher says → student points / touches / repeats / chooses / shows toy / answers with one short phrase. Никакого давления на длинный ответ: важн

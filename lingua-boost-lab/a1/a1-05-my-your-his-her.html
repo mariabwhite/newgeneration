@@ -1,0 +1,895 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light-lab">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>My / Your / His / Her · A1 · LinguaBoost Lab</title>
+<script src="../assets/lab-theme-sync.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+[data-theme="light-lab"] {
+  --bg: #f7f5ff; --bg-2: #efeaff; --card: #ffffff; --card-2: #f4f0ff;
+  --text: #1a1326; --muted: #4a4358; --faint: #756d86;
+  --accent: #ff5a1f; --accent-2: #ff6d38; --accent-on: #ffffff;
+  --brand: #7a5fcf; --brand-2: #4f3ea5;
+  --line: rgba(122,95,207,0.18); --line-2: rgba(122,95,207,0.30); --line-dot: rgba(122,95,207,0.42);
+  --hero-glow1: rgba(122,95,207,0.18); --hero-glow2: rgba(255,90,31,0.10);
+  --term-bg: rgba(122,95,207,0.06); --soft: rgba(122,95,207,0.08); --ok: #16a06b; --warn: #b7791f;
+}[data-theme="peach"] {
+  --bg: #f6ede7; --bg-2: #f1e2d6; --card: #fdf7f2; --card-2: #f9eee5;
+  --text: #2b1c12; --muted: #6b4f3c; --faint: #997558;
+  --accent: #e26a2c; --accent-2: #f08240; --accent-on: #fff8f3;
+  --brand: #b8542a; --brand-2: #8a3c1c;
+  --line: rgba(184,84,42,0.18); --line-2: rgba(184,84,42,0.30); --line-dot: rgba(184,84,42,0.40);
+  --hero-glow1: rgba(226,106,44,0.16); --hero-glow2: rgba(184,84,42,0.10);
+  --term-bg: rgba(184,84,42,0.06); --soft: rgba(226,106,44,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="green"] {
+  --bg: #eaf3ec; --bg-2: #dbe9de; --card: #f4faf5; --card-2: #e6f1e8;
+  --text: #102218; --muted: #3e5648; --faint: #6a8275;
+  --accent: #1f8f5a; --accent-2: #29a96a; --accent-on: #f4faf5;
+  --brand: #2f7d52; --brand-2: #1d5e3b;
+  --line: rgba(31,143,90,0.18); --line-2: rgba(31,143,90,0.30); --line-dot: rgba(31,143,90,0.40);
+  --hero-glow1: rgba(31,143,90,0.16); --hero-glow2: rgba(255,155,47,0.06);
+  --term-bg: rgba(31,143,90,0.06); --soft: rgba(31,143,90,0.08); --ok: #1f8f5a; --warn: #98791d;
+}
+[data-theme="rose"] {
+  --bg: #f5eef3; --bg-2: #ecdfe7; --card: #fbf5f9; --card-2: #f1e3ec;
+  --text: #2a1622; --muted: #6c4659; --faint: #936e82;
+  --accent: #c84d80; --accent-2: #d96796; --accent-on: #fbf5f9;
+  --brand: #a13a6c; --brand-2: #7a2851;
+  --line: rgba(161,58,108,0.18); --line-2: rgba(161,58,108,0.30); --line-dot: rgba(161,58,108,0.40);
+  --hero-glow1: rgba(200,77,128,0.16); --hero-glow2: rgba(161,58,108,0.08);
+  --term-bg: rgba(161,58,108,0.06); --soft: rgba(200,77,128,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="cyan"] {
+  --bg: #eaf8fb; --bg-2: #d9f0f6; --card: #f7fdff; --card-2: #e7f6fb;
+  --text: #08242c; --muted: #365c66; --faint: #6b8d96;
+  --accent: #0f9ec4; --accent-2: #18b8df; --accent-on: #f7fdff;
+  --brand: #167c9b; --brand-2: #0f5f78;
+  --line: rgba(15,158,196,0.18); --line-2: rgba(15,158,196,0.32); --line-dot: rgba(15,158,196,0.42);
+  --hero-glow1: rgba(15,158,196,0.14); --hero-glow2: rgba(22,124,155,0.08);
+  --term-bg: rgba(15,158,196,0.06); --soft: rgba(15,158,196,0.08); --ok: #15885f; --warn: #9a6618;
+}
+[data-theme="amber"] {
+  --bg: #fff7e8; --bg-2: #f7ead2; --card: #fffdf8; --card-2: #fbf0da;
+  --text: #2b2111; --muted: #665336; --faint: #927a55;
+  --accent: #d88916; --accent-2: #eba12a; --accent-on: #fff9ed;
+  --brand: #a86513; --brand-2: #7b4a0c;
+  --line: rgba(168,101,19,0.18); --line-2: rgba(168,101,19,0.30); --line-dot: rgba(168,101,19,0.40);
+  --hero-glow1: rgba(216,137,22,0.16); --hero-glow2: rgba(168,101,19,0.08);
+  --term-bg: rgba(216,137,22,0.06); --soft: rgba(216,137,22,0.10); --ok: #2f7d52; --warn: #8f5d12;
+}
+[data-theme="white"] {
+  --bg: #f8fafc; --bg-2: #edf2f7; --card: #ffffff; --card-2: #f1f5f9;
+  --text: #172033; --muted: #4b5871; --faint: #7d899f;
+  --accent: #315ee8; --accent-2: #5f83ff; --accent-on: #ffffff;
+  --brand: #6c4fd8; --brand-2: #2d3f8f;
+  --line: rgba(49,94,232,0.16); --line-2: rgba(49,94,232,0.28); --line-dot: rgba(108,79,216,0.38);
+  --hero-glow1: rgba(49,94,232,0.12); --hero-glow2: rgba(108,79,216,0.08);
+  --term-bg: rgba(49,94,232,0.05); --soft: rgba(49,94,232,0.07); --ok: #16875a; --warn: #9a6618;
+}
+[data-theme="black-lab"] {
+  --bg: #030305; --bg-2: #08070d; --card: #0d0b14; --card-2: #15101f;
+  --text: #f7f3ff; --muted: #c8bddc; --faint: #8c7da5;
+  --accent: #ff7a1a; --accent-2: #ff9b2f; --accent-on: #080503;
+  --brand: #9a7ad9; --brand-2: #c8b4ff;
+  --line: rgba(196,174,240,0.16); --line-2: rgba(196,174,240,0.30); --line-dot: rgba(196,174,240,0.42);
+  --hero-glow1: rgba(122,76,220,0.30); --hero-glow2: rgba(255,122,26,0.14);
+  --term-bg: rgba(154,122,217,0.08); --soft: rgba(154,122,217,0.10); --ok: #46c487; --warn: #f2a43b;
+}
+[data-theme="violet"] {
+  --bg: #130d24; --bg-2: #1d1433; --card: #201731; --card-2: #2b2142;
+  --text: #f7f2ff; --muted: #d0c3ee; --faint: #a999c7;
+  --accent: #b993ff; --accent-2: #d2bcff; --accent-on: #171025;
+  --brand: #ff8a2a; --brand-2: #c8b4ff;
+  --line: rgba(198,177,255,0.18); --line-2: rgba(198,177,255,0.32); --line-dot: rgba(198,177,255,0.45);
+  --hero-glow1: rgba(157,116,255,0.28); --hero-glow2: rgba(255,138,42,0.12);
+  --term-bg: rgba(198,177,255,0.06); --soft: rgba(198,177,255,0.10); --ok: #54c58f; --warn: #f0aa45;
+}
+:root {
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh; font-family: var(--body); color: var(--text);
+  background: radial-gradient(circle at 82% 4%, var(--hero-glow1), transparent 38%), radial-gradient(circle at 8% 38%, var(--hero-glow2), transparent 32%), var(--bg);
+  background-attachment: fixed; transition: background 0.3s, color 0.3s;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font: inherit; }
+.topbar {
+  position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px); background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); min-height: 56px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px;
+  display: grid; place-items: center; background: var(--soft); position: relative;
+}
+.brand-mark::before { content: "L"; font-family: var(--display); font-size: 20px; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -0.04em; }
+.brand-mark::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand); }
+.brand-copy { display: grid; gap: 2px; }
+.brand-name { font-family: var(--display); font-size: 14px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.brand-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+.topbar-nav { display: flex; gap: clamp(12px, 2vw, 22px); margin-left: 12px; flex-wrap: wrap; }
+.top-link { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color 0.18s; }
+.top-link:hover, .top-link.active { color: var(--accent); }
+.topbar-tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.btn-tool {
+  height: 32px; min-width: 38px; padding: 0 10px; border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--card); color: var(--muted); font: 800 11px/1 var(--mono); letter-spacing: 0.08em; cursor: pointer;
+  display: inline-grid; place-items: center; transition: all 0.16s;
+}
+select.btn-tool { width: 118px; }
+.btn-tool:hover { border-color: var(--accent); color: var(--accent); }
+.btn-tool.is-active { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 32px clamp(16px, 3vw, 28px) 80px; }
+.hero {
+  position: relative; border: 1px solid var(--line); border-radius: 18px; padding: clamp(26px, 5vw, 56px); margin-bottom: 18px;
+  background: radial-gradient(circle at 88% 14%, var(--hero-glow1), transparent 42%), radial-gradient(circle at 8% 88%, var(--hero-glow2), transparent 50%), var(--card);
+  overflow: hidden;
+}
+.hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.28fr 0.92fr; gap: 40px; align-items: center; }
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+.hero-eyebrow::before { content: "$ "; color: var(--accent); }
+.hero-title { font-family: var(--display); font-size: clamp(2.05rem, 5vw, 4.25rem); line-height: 0.96; letter-spacing: -0.05em; margin-bottom: 18px; }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-lead { color: var(--muted); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.7; max-width: 760px; margin-bottom: 20px; }
+.hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill { display: inline-grid; place-items: center; min-height: 28px; padding: 6px 10px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--soft); color: var(--muted); font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-grid; place-items: center; min-height: 42px; padding: 0 18px; border-radius: 8px;
+  border: 1px solid var(--line-2); font-family: var(--mono); font-size: 11px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; transition: transform 0.16s, border-color 0.16s, background 0.16s;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.btn.ghost { background: var(--soft); color: var(--text); }
+.hero-photo { position: relative; min-height: 320px; border-radius: 16px; border: 1px solid var(--line-2); overflow: hidden; background: var(--card-2); box-shadow: 0 30px 80px -28px var(--hero-glow1); }
+.hero-img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; display: block; }
+.scene-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.scene-card {
+  min-height: 188px; border: 1px solid var(--line); border-radius: 14px; background: var(--card-2);
+  display: grid; align-content: end; position: relative; overflow: hidden; box-shadow: 0 18px 34px rgba(8,19,50,0.08);
+}
+.scene-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.22s ease; }
+.scene-card:hover img { transform: scale(1.03); }
+.scene-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 46%, rgba(0,0,0,0.58) 100%); }
+.scene-card span { position: relative; z-index: 1; margin: 12px; width: fit-content; border-radius: 999px; padding: 7px 10px; background: rgba(255,255,255,0.9); font-family: var(--mono); font-size: 10px; color: #081332; text-transform: uppercase; letter-spacing: 0.1em; }
+.prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.prompt-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2); display: grid; gap: 8px; }
+.prompt-card label { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; color: var(--text); }
+.prompt-card input[type="checkbox"] { margin-top: 3px; accent-color: var(--accent); }
+.now-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.now-item { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2); }
+.now-item label { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); line-height: 1.45; }
+.now-item input { margin-top: 3px; accent-color: var(--ok); }
+.step-tracker {
+  position: sticky; top: 56px; z-index: 20; display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+  align-items: center; padding: 12px 14px; margin: 0 0 18px; border: 1px solid var(--line);
+  border-radius: 12px; background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(14px);
+}
+.step-count { font-family: var(--mono); font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; }
+.step-track { height: 8px; border-radius: 999px; background: var(--soft); overflow: hidden; }
+.step-fill { height: 100%; width: 12.5%; background: var(--accent); border-radius: inherit; transition: width 0.2s; }
+.step-name { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.block-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.bank.interactive { gap: 10px; margin-bottom: 18px; }
+.word-chip {
+  display: inline-grid; place-items: center; min-height: 32px; padding: 7px 11px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--card-2); color: var(--text);
+  font-family: var(--mono); font-size: 11px; font-weight: 800; cursor: grab;
+}
+.word-chip.is-selected { border-color: var(--accent); color: var(--accent); }
+.drop-slot {
+  display: inline-grid; place-items: center; min-width: 128px; min-height: 30px; padding: 3px 10px;
+  border: 1px dashed var(--accent); border-radius: 999px; color: var(--faint);
+}
+.drop-slot.filled { border-style: solid; color: var(--text); background: var(--soft); }
+.recorder { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); margin-top: 14px; }
+.recorder-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.record-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--faint); display: inline-block; }
+.record-dot.is-recording { background: #ff4d5f; box-shadow: 0 0 0 6px rgba(255,77,95,0.16); }
+.block {
+  position: relative; border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 30px);
+  margin: 18px 0; background: color-mix(in srgb, var(--card) 92%, transparent);
+}
+.block-head { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.block-num { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line-2); display: grid; place-items: center; background: var(--soft); color: var(--accent); font-family: var(--mono); font-size: 13px; font-weight: 800; }
+.block-title-wrap { flex: 1; min-width: 0; }
+.block-kicker { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); margin-bottom: 5px; }
+.block-title { font-family: var(--display); font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.05; letter-spacing: -0.04em; }
+.block-time { flex: 0 0 auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; }
+.block-intro { color: var(--muted); font-size: 15px; line-height: 1.66; margin-bottom: 18px; max-width: 860px; }
+.goal-grid, .focus-grid, .output-grid, .check-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.info-card, .text-card, .error-card { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--card-2); }
+.info-card h3, .text-card h3, .error-card h3 { font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; margin-bottom: 8px; }
+.info-card p, .text-card p, .error-card p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.vocab-card { padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); transition: transform 0.16s, border-color 0.16s; }
+.vocab-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.vocab-en { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.vocab-word { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.vocab-ipa { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.vocab-ru { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.vocab-example { margin-top: 10px; color: var(--text); font-size: 13px; line-height: 1.5; }
+.grammar-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
+.grammar-table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--card-2); }
+.grammar-table th, .grammar-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); vertical-align: top; text-align: left; }
+.grammar-table th:last-child, .grammar-table td:last-child { border-right: none; }
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table th { font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; color: var(--text); }
+.grammar-table .formula { color: var(--accent); font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.grammar-table .sample { color: var(--muted); line-height: 1.55; }
+.grammar-rule { border-left: 3px solid var(--accent); padding: 14px 18px; background: var(--term-bg); border-radius: 0 12px 12px 0; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+.grammar-rule strong { color: var(--accent); font-weight: 800; }
+.error-card { border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.bad { color: var(--warn); }
+.good { color: var(--ok); }
+.practice-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.practice-item {
+  display: grid; grid-template-columns: 34px 1fr auto; gap: 14px; align-items: center;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2);
+}
+.practice-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+.practice-q { font-size: 15px; line-height: 1.5; }
+.choice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.choice {
+  border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 11px; background: var(--soft);
+  color: var(--muted); cursor: pointer; font-family: var(--mono); font-size: 11px; font-weight: 800;
+}
+.choice:hover, .choice.is-picked { border-color: var(--accent); color: var(--accent); }
+.practice-hint {
+  border: 1px dashed var(--line-2); background: transparent; color: var(--faint); border-radius: 999px;
+  padding: 7px 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer;
+}
+.practice-hint:hover { color: var(--brand); border-color: var(--brand); }
+.practice-hint.shown { color: var(--ok); border-color: var(--ok); border-style: solid; }
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.text-card { margin-bottom: 14px; }
+.write-box { width: 100%; min-height: 138px; resize: vertical; border: 1px solid var(--line-2); border-radius: 12px; padding: 14px 16px; background: var(--term-bg); color: var(--text); outline: none; line-height: 1.55; }
+.write-box:focus { border-color: var(--accent); }
+.lesson-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.foot-link { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--card); display: grid; gap: 6px; transition: border-color 0.16s, transform 0.16s; }
+.foot-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+.foot-link.next { text-align: right; }
+.foot-meta { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); }
+.foot-title { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.copyright { margin-top: 24px; color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+.lesson-score-card {
+  width: min(100% - 56px, 1180px);
+  margin: 0 auto 18px;
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+}
+.lesson-score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lesson-score-track {
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--soft);
+}
+.lesson-score-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.2s ease;
+}
+.lesson-score-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.lesson-score-card.is-complete {
+  border-color: color-mix(in srgb, #22c55e 54%, var(--line));
+  box-shadow: 0 18px 46px color-mix(in srgb, #22c55e 16%, transparent);
+}
+
+/* Friendly UI */
+body { background: #fffaf5; color: #081332; }
+.friendly-topbar { min-height: 70px; padding: 10px clamp(18px, 3vw, 34px); background: rgba(255,255,255,0.92); border-bottom: 1px solid rgba(8,19,50,0.10); box-shadow: 0 10px 30px rgba(8,19,50,0.05); }
+.friendly-brand { gap: 10px; }
+.boost-logo-mark { width: 34px; height: 42px; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.boost-flame { width: 34px; height: 34px; display: block; filter: drop-shadow(0 9px 14px rgba(255,105,10,0.20)); }
+.friendly-brand .brand-name { font-family: var(--body); font-size: 24px; font-weight: 900; color: #081332; letter-spacing: -0.04em; display: inline-flex; align-items: baseline; gap: 0; }
+.brand-boost { color: var(--accent); }
+.lab-tag { display: inline-grid; place-items: center; min-height: 24px; padding: 0 7px; border: 2px solid #ff690a; border-radius: 6px; color: #ff690a; font-size: 13px; letter-spacing: 0.06em; margin-left: 2px; }
+.friendly-nav { margin-left: clamp(20px, 5vw, 70px); gap: clamp(22px, 4vw, 54px); }
+.friendly-nav .top-link { font-family: var(--body); font-size: 16px; font-weight: 750; letter-spacing: 0; text-transform: none; color: #111827; }
+.friendly-nav .top-link:hover, .friendly-nav .top-link.active { color: #ff690a; }
+.audience-switch { margin-left: auto; display: flex; align-items: center; gap: 4px; min-width: 218px; height: 48px; padding: 5px; border: 2px solid rgba(8,19,50,0.13); border-radius: 999px; background: #fff; }
+.audience-btn { flex: 1; height: 38px; border: 0; border-radius: 999px; background: transparent; color: #111827; font: 850 16px/1 var(--body); cursor: pointer; }
+.audience-btn.is-active { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+.friendly-tools { margin-left: 18px; display: flex; gap: 8px; align-items: center; }
+.friendly-tools .btn-tool { height: 34px; border-radius: 999px; background: #fff; color: #111827; letter-spacing: 0; }
+.level-bubble { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(8,19,50,0.13); border-radius: 50%; background: #fff; color: #081332; font-weight: 900; }
+.menu-btn { width: 42px; height: 42px; border: 0; background: transparent; display: grid; gap: 5px; align-content: center; cursor: pointer; }
+.menu-btn span { display: block; height: 3px; border-radius: 999px; background: #081332; }
+.wrap { max-width: none; padding: 0 0 78px; }
+.friendly-hero { border: 0; border-radius: 0; margin: 0; padding: 0; min-height: 480px; background: #fff; overflow: hidden; }
+.friendly-hero-inner { display: grid; grid-template-columns: minmax(390px, 0.82fr) 1.18fr; gap: 0; min-height: 480px; }
+.hero-copy-panel { position: relative; z-index: 2; padding: clamp(42px, 6vw, 72px) 28px clamp(42px, 5vw, 64px) clamp(28px, 4vw, 56px); background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.96) 72%, rgba(255,255,255,0) 100%); }
+.friendly-eyebrow { color: #ff690a; font-family: var(--body); font-size: 19px; font-weight: 900; letter-spacing: 0; text-transform: none; margin-bottom: 12px; }
+.friendly-eyebrow::before { content: ""; }
+.friendly-title { max-width: 560px; font-family: var(--body); font-size: clamp(3rem, 5.8vw, 5.3rem); line-height: 0.96; letter-spacing: -0.075em; color: #071433; }
+.friendly-title em { color: #071433; }
+.friendly-lead { max-width: 520px; color: #3d465d; font-size: 20px; line-height: 1.46; margin-bottom: 28px; }
+.friendly-meta { display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 16px; max-width: 470px; margin-bottom: 26px; }
+.info-pill { display: grid; grid-template-columns: 46px 1fr; align-items: center; gap: 12px; min-height: 78px; padding: 12px 16px; border: 1px solid rgba(8,19,50,0.11); border-radius: 14px; background: rgba(255,255,255,0.82); box-shadow: 0 16px 34px rgba(8,19,50,0.06); color: #081332; }
+.info-pill strong { font-size: 14px; }
+.info-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 3px solid #7790bf; border-radius: 50%; color: #36578c; font-weight: 900; }
+.friendly-photo { min-height: 480px; border: 0; border-radius: 0; box-shadow: none; background: #fff3e7; }
+.friendly-photo::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 32%; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.86) 30%, rgba(255,255,255,0) 100%); }
+.friendly-photo .hero-img { min-height: 480px; object-fit: cover; object-position: center; }
+.btn { border-radius: 14px; font-family: var(--body); letter-spacing: 0; text-transform: none; font-size: 15px; font-weight: 850; min-height: 48px; padding: 0 20px; }
+.btn.primary { background: #ff690a; border-color: #ff690a; color: #fff; box-shadow: 0 16px 26px rgba(255,105,10,0.20); }
+.btn.ghost { background: #fff; color: #081332; border-color: rgba(8,19,50,0.14); }
+.lesson-flow, .learn-panel { width: min(100% - 56px, 1320px); margin: -32px auto 22px; position: relative; z-index: 5; border: 1px solid rgba(8,19,50,0.10); border-radius: 22px; background: rgba(255,255,255,0.94); box-shadow: 0 24px 70px rgba(8,19,50,0.08); padding: 26px 28px; }
+.lesson-flow h2, .learn-panel h2 { font-family: var(--body); font-size: 18px; letter-spacing: 0; color: #081332; margin-bottom: 16px; }
+.flow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px; }
+.flow-card { position: relative; min-height: 132px; border: 1px solid rgba(8,19,50,0.10); border-radius: 16px; background: #fff; padding: 28px 18px 18px 86px; display: grid; align-content: center; gap: 8px; color: #081332; }
+.flow-card:not(:last-child)::after { content: "→"; position: absolute; right: -34px; top: 50%; transform: translateY(-50%); color: #617291; font-size: 30px; }
+.flow-num { position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-weight: 900; }
+.flow-icon { position: absolute; left: 28px; bottom: 24px; color: #ffb21a; font-size: 42px; line-height: 1; }
+.flow-card strong { font-size: 15px; }
+.flow-card small { color: #374151; line-height: 1.45; }
+.learn-panel { margin-top: 0; display: grid; grid-template-columns: 1fr 390px; gap: 28px; background: linear-gradient(135deg, #fff 0%, #fff3e8 100%); }
+.learn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
+.learn-grid span { position: relative; padding-left: 30px; color: #081332; line-height: 1.45; }
+.learn-grid span::before { content: "✓"; position: absolute; left: 0; top: 0; color: #ff690a; font-weight: 900; }
+.certificate-card { align-self: center; min-height: 96px; border: 1px solid rgba(255,105,10,0.18); border-radius: 18px; background: #fff; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding: 18px; }
+.cert-star { grid-row: span 2; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-size: 32px; }
+.step-tracker { width: min(100% - 56px, 1320px); margin: 0 auto 18px; top: 70px; }
+.block, .lesson-foot, .copyright { width: min(100% - 56px, 1180px); margin-left: auto; margin-right: auto; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="kids"] { background: transparent; color: #111827; box-shadow: none; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+
+/* dark themes */
+[data-theme="black-lab"] body, [data-theme="violet"] body { background: radial-gradient(circle at 78% 4%, var(--hero-glow1), transparent 40%), radial-gradient(circle at 12% 42%, var(--hero-glow2), transparent 36%), var(--bg); color: var(--text); }
+[data-theme="black-lab"] .friendly-topbar, [data-theme="violet"] .friendly-topbar { background: color-mix(in srgb, var(--bg) 90%, transparent); border-bottom-color: var(--line); box-shadow: 0 18px 44px rgba(0,0,0,0.34); }
+[data-theme="black-lab"] .friendly-brand .brand-name, [data-theme="violet"] .friendly-brand .brand-name, [data-theme="black-lab"] .friendly-nav .top-link, [data-theme="violet"] .friendly-nav .top-link, [data-theme="black-lab"] .level-bubble, [data-theme="violet"] .level-bubble, [data-theme="black-lab"] .menu-btn span, [data-theme="violet"] .menu-btn span { color: var(--text); }
+[data-theme="black-lab"] .menu-btn span, [data-theme="violet"] .menu-btn span { background: var(--text); }
+[data-theme="black-lab"] .audience-switch, [data-theme="violet"] .audience-switch, [data-theme="black-lab"] .friendly-tools .btn-tool, [data-theme="violet"] .friendly-tools .btn-tool, [data-theme="black-lab"] .level-bubble, [data-theme="violet"] .level-bubble { background: color-mix(in srgb, var(--card) 88%, transparent); border-color: var(--line-2); color: var(--text); }
+[data-theme="black-lab"] .friendly-hero, [data-theme="violet"] .friendly-hero { background: var(--bg); }
+[data-theme="black-lab"] .hero-copy-panel, [data-theme="violet"] .hero-copy-panel { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 94%, transparent) 72%, transparent 100%); }
+[data-theme="black-lab"] .friendly-title, [data-theme="violet"] .friendly-title, [data-theme="black-lab"] .friendly-title em, [data-theme="violet"] .friendly-title em { color: var(--text); }
+[data-theme="black-lab"] .friendly-lead, [data-theme="violet"] .friendly-lead { color: var(--muted); }
+[data-theme="black-lab"] .friendly-photo, [data-theme="violet"] .friendly-photo { background: var(--card); }
+[data-theme="black-lab"] .friendly-photo::before, [data-theme="violet"] .friendly-photo::before { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 76%, transparent) 34%, transparent 100%); }
+[data-theme="black-lab"] .info-pill, [data-theme="violet"] .info-pill, [data-theme="black-lab"] .lesson-flow, [data-theme="violet"] .lesson-flow, [data-theme="black-lab"] .flow-card, [data-theme="violet"] .flow-card, [data-theme="black-lab"] .certificate-card, [data-theme="violet"] .certificate-card { background: color-mix(in srgb, var(--card) 92%, transparent); border-color: var(--line); color: var(--text); box-shadow: 0 24px 70px rgba(0,0,0,0.26); }
+[data-theme="black-lab"] .learn-panel, [data-theme="violet"] .learn-panel { background: linear-gradient(135deg, color-mix(in srgb, var(--card) 96%, transparent) 0%, color-mix(in srgb, var(--card-2) 94%, transparent) 100%); border-color: var(--line); }
+[data-theme="black-lab"] .flow-card small, [data-theme="violet"] .flow-card small, [data-theme="black-lab"] .learn-grid span, [data-theme="violet"] .learn-grid span, [data-theme="black-lab"] .certificate-card small, [data-theme="violet"] .certificate-card small { color: var(--muted); }
+.hero-img, .scene-card img { background: color-mix(in srgb, var(--card) 70%, transparent); }
+
+/* A1 01-03 shell match: compact Lab BAR while lesson 05 enters the sequence. */
+.friendly-brand { gap: 12px; }
+.friendly-brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.boost-logo-mark {
+  width: 34px;
+  height: 42px;
+}
+.boost-flame {
+  width: 34px;
+  height: 34px;
+}
+.friendly-brand .brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.lab-tag {
+  min-height: 22px;
+  padding: 0 6px;
+  font-size: 12px;
+  margin-left: 2px;
+}
+.friendly-nav .top-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.audience-switch {
+  border-radius: 14px;
+}
+.audience-btn {
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.friendly-tools .btn-tool,
+.palette-select,
+.level-bubble,
+.menu-btn {
+  border-radius: 10px;
+  font-family: var(--display);
+}
+.level-bubble {
+  width: 46px;
+  height: 46px;
+}
+.menu-btn {
+  border: 1px solid rgba(8,19,50,0.12);
+}
+
+/* Lesson 05 image assets. */
+.friendly-photo,
+.scene-card img {
+  display: block;
+}
+.friendly-hero-inner {
+  grid-template-columns: minmax(390px, 0.82fr) 1.18fr;
+}
+.hero-copy-panel {
+  min-height: 480px;
+  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.96) 72%, rgba(255,255,255,0) 100%);
+}
+@media (max-width: 1100px) { .friendly-nav { display: none; } .flow-grid { grid-template-columns: 1fr; gap: 12px; } .flow-card:not(:last-child)::after { display: none; } .learn-panel { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .friendly-hero-inner { grid-template-columns: 1fr; } .hero-copy-panel { background: var(--card); } .friendly-photo { min-height: 300px; order: -1; } .friendly-photo .hero-img { min-height: 300px; } .friendly-meta, .learn-grid { grid-template-columns: 1fr; } .lesson-flow, .learn-panel, .step-tracker, .lesson-score-card, .block, .lesson-foot, .copyright { width: min(100% - 28px, 1180px); } .audience-switch { min-width: 168px; } }
+
+/* Codex A1 logo lockup sync */
+.friendly-brand {
+  width: min(220px, 52vw) !important;
+  height: 42px !important;
+  min-height: 42px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  color: transparent !important;
+  font-size: 0 !important;
+  background: url("../../assets/Для уроков/a1-05/linguaboost-logo-light-lockup-purple.png") left center / contain no-repeat;
+}
+[data-theme="black-lab"] .friendly-brand,
+[data-theme="violet"] .friendly-brand {
+  background-image: url("../../assets/Для уроков/a1-05/linguaboost-logo-dark-lockup.png");
+}
+.friendly-brand > * {
+  display: none !important;
+}
+@media (max-width: 640px) {
+  .friendly-brand {
+    width: min(176px, 72vw) !important;
+    height: 34px !important;
+    min-height: 34px;
+  }
+}
+/* End Codex A1 logo lockup sync */
+
+/* Codex sync: lesson-one purple bar system. */
+html[data-theme="light-lab"] body,
+[data-theme="light-lab"] body {
+  background:
+    radial-gradient(circle at 80% 6%, rgba(122,95,207,.18), transparent 32%),
+    radial-gradient(circle at 8% 36%, rgba(255,90,31,.10), transparent 34%),
+    linear-gradient(145deg, #f7f5ff 0%, #efeaff 100%) !important;
+  color: var(--text);
+}
+html[data-theme="light-lab"] .lesson-flow,
+html[data-theme="light-lab"] .learn-panel,
+html[data-theme="light-lab"] .step-tracker,
+html[data-theme="light-lab"] .lesson-score-card,
+html[data-theme="light-lab"] .block {
+  border-color: rgba(122,95,207,0.18) !important;
+  background: rgba(255,255,255,0.94) !important;
+  box-shadow: 0 24px 70px rgba(122,95,207,0.12) !important;
+}
+html[data-theme="light-lab"] .learn-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f4f0ff 100%) !important;
+}
+html[data-theme="light-lab"] .flow-card,
+html[data-theme="light-lab"] .certificate-card,
+html[data-theme="light-lab"] .certificate,
+html[data-theme="light-lab"] .info-pill {
+  border-color: rgba(122,95,207,0.18) !important;
+  background: #ffffff !important;
+  color: #1a1326 !important;
+}
+html[data-theme="light-lab"] .flow-card:not(:last-child)::after {
+  color: #7a5fcf !important;
+}
+html[data-theme="light-lab"] .step-track,
+html[data-theme="light-lab"] .lesson-score-track {
+  background: rgba(122,95,207,0.10) !important;
+}
+html[data-theme="light-lab"] .step-fill,
+html[data-theme="light-lab"] .lesson-score-fill {
+  background: #ff5a1f !important;
+}
+
+/* Full-width lesson flow: match A1-01 orange progress plank and keep flow below hero. */
+.lesson-flow,
+.learn-panel,
+.step-tracker,
+.lesson-score-card,
+.block,
+.lesson-foot,
+.copyright {
+  box-sizing: border-box;
+  width: calc(100% - 4cm);
+  max-width: 1320px;
+}
+.lesson-flow {
+  margin: 24px auto 22px;
+}
+.step-tracker,
+.lesson-score-card {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 820px) {
+  .lesson-flow,
+  .learn-panel,
+  .step-tracker,
+  .lesson-score-card,
+  .block,
+  .lesson-foot,
+  .copyright {
+    width: min(100% - 28px, 1180px);
+  }
+}
+
+/* Codex polish 2026-05-04: align flow / score / body and remove yellow flow accents. */
+.lesson-flow,
+.learn-panel,
+.step-tracker,
+.lesson-score-card,
+.block,
+.lesson-foot,
+.copyright {
+  box-sizing: border-box !important;
+  width: calc(100% - 2cm) !important;
+  max-width: 1320px !important;
+}
+.lesson-flow,
+.learn-panel,
+.step-tracker,
+.lesson-score-card {
+  border-color: rgba(122,95,207,.18) !important;
+  box-shadow: 0 18px 54px rgba(122,95,207,.08) !important;
+}
+.flow-num { background: #ff5a1f !important; color: #fff !important; border-radius: 10px !important; }
+.flow-icon { color: #7a5fcf !important; opacity: .96 !important; text-shadow: none !important; }
+.flow-card { border-color: rgba(122,95,207,.18) !important; }
+.flow-card:not(:last-child)::after { color: #7a5fcf !important; }
+.step-track,
+.lesson-score-track,
+.round-track { background: rgba(122,95,207,.12) !important; }
+.step-fill,
+.lesson-score-fill,
+.round-fill { background: #ff5a1f !important; }
+html[data-theme="light-lab"] .flow-icon,
+html[data-theme="light-lab"] .flow-card:not(:last-child)::after { color: #7a5fcf !important; }
+html[data-theme="light-lab"] .flow-num,
+html[data-theme="light-lab"] .step-fill,
+html[data-theme="light-lab"] .lesson-score-fill,
+html[data-theme="light-lab"] .round-fill { background: #ff5a1f !important; }
+/* Codex polish 2026-05-04: show LAB text logo instead of old Studio image lockup. */
+.friendly-brand {
+  width: auto !important;
+  min-width: 176px !important;
+  height: auto !important;
+  background: none !important;
+}
+.friendly-brand > * {
+  display: inline-grid !important;
+}
+.friendly-brand .brand-copy,
+.friendly-brand .friendly-brand-copy,
+.friendly-brand .brand-name {
+  display: inline-flex !important;
+}
+.friendly-brand .lab-tag {
+  display: inline-grid !important;
+}
+/* Codex polish 2026-05-04: final common Lesson Flow colors. */
+.lesson-flow {
+  background: rgba(255,255,255,.96) !important;
+  border-color: rgba(122,95,207,.18) !important;
+  box-shadow: 0 22px 62px rgba(122,95,207,.14) !important;
+}
+.lesson-flow h2 { color: #081332 !important; }
+.flow-card {
+  background: #fff !important;
+  border-color: rgba(122,95,207,.18) !important;
+  color: #081332 !important;
+}
+.flow-card:not(:last-child)::after { color: #7a5fcf !important; }
+.flow-num {
+  background: #ff5a1f !important;
+  color: #fff !important;
+}
+.flow-icon {
+  color: #7a5fcf !important;
+}
+.flow-card strong { color: #050820 !important; }
+.flow-card small { color: #29324a !important; }
+/* Codex polish 2026-05-04: final 2cm gutters for ladder and body. */
+.lesson-flow,
+.learn-panel,
+.step-tracker,
+.lesson-score-card,
+.block,
+.lesson-foot,
+.copyright {
+  box-sizing: border-box !important;
+  width: calc(100% - 4cm) !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  .lesson-flow,
+  .learn-panel,
+  .step-tracker,
+  .lesson-score-card,
+  .block,
+  .lesson-foot,
+  .copyright {
+    width: min(100% - 28px, 1180px) !important;
+  }
+}
+</style>
+</head>
+<body>
+  <header class="topbar friendly-topbar">
+    <a class="brand friendly-brand" href="../index.html"><span class="boost-logo-mark"><svg class="boost-flame" viewBox="0 0 64 64"><path d="M33 4c7 11 20 20 20 35 0 12-9 21-21 21S11 52 11 40c0-9 6-16 11-22 3-4 7-8 11-14Z" fill="#ff6a00"/><path d="M34 24c5 6 10 10 10 18 0 7-5 12-12 12s-12-5-12-12c0-5 3-9 7-13 2-2 5-4 7-5Z" fill="#ffb31a" opacity="0.92"/></svg></span><span class="brand-copy friendly-brand-copy"><span class="brand-name"><span>Lingua</span><span class="brand-boost">Boost</span></span><span class="brand-tag lab-tag">LAB</span></span></a>
+    <nav class="topbar-nav friendly-nav"><a class="top-link active" href="#">Modules</a><a class="top-link" href="#final-task">Progress</a><a class="top-link" href="#input">My Lab</a><a class="top-link" href="#focus">Resources</a></nav>
+    <div class="audience-switch"><button class="audience-btn is-active" data-audience-btn="kids">Kids</button><button class="audience-btn" data-audience-btn="adults">Adults</button></div>
+    <div class="topbar-tools friendly-tools"><button class="btn-tool" data-lang-btn="ru">RU</button><button class="btn-tool is-active" data-lang-btn="en">EN</button><select class="btn-tool palette-select" data-palette><option value="light-lab">light-lab</option><option value="peach">peach</option><option value="green">green</option><option value="rose">rose</option><option value="cyan">cyan</option><option value="amber">amber</option><option value="white">white</option><option value="black-lab">black-lab</option><option value="violet">violet</option></select><span class="level-bubble">A1</span><button class="menu-btn"><span></span><span></span><span></span></button></div>
+  </header>
+  <main class="wrap">
+    <section class="hero friendly-hero"><div class="hero-inner friendly-hero-inner"><div class="hero-copy-panel"><div class="hero-eyebrow friendly-eyebrow">A1-05</div><h1 class="hero-title friendly-title">My / Your / His / Her: <em>People & Things</em></h1><p class="hero-lead friendly-lead" data-kids="Talk about your family, school things, and room. Say: This is my bag. It is his book. It is her pencil. Ask: Is this your notebook?" data-adults="Talk about your workspace, people, and things. Say: This is my laptop. It is her notebook. It is his coffee mug. Ask: Is this your charger?">Talk about your family, school things, and room. Say: This is my bag. It is his book. It is her pencil. Ask: Is this your notebook?</p><div class="hero-meta friendly-meta"><span class="info-pill"><span class="info-icon">◎</span><span><strong>Grammar Focus</strong><br>my / your / his / her</span></span><span class="info-pill"><span class="info-icon">◷</span><span><strong>Lesson Time</strong><br>45-60 min</span></span></div><div class="hero-actions"><a class="btn primary" href="#goal">Start lesson</a><a class="btn ghost" href="#final-task">Final task</a></div></div><div class="hero-photo friendly-photo"><img class="hero-img" data-hero-img data-kids-light="../../assets/Для уроков/a1-05/92ae1d04-444c-48f3-9f3f-d933d3eb13f0.png" data-kids-dark="../../assets/Для уроков/a1-05/fbca290f-22e9-4b8b-aced-45fb6af3ebfa.png" data-adults-light="../../assets/Для уроков/a1-05/cbccbef6-eae3-4e9d-bbd7-acf7371444bd.png" data-adults-dark="../../assets/Для уроков/a1-05/f74ea642-b559-4e9b-8a21-da108790ec6f.png" src="../../assets/Для уроков/a1-05/92ae1d04-444c-48f3-9f3f-d933d3eb13f0.png" alt="People and things for practising my, your, his and her"></div></div></section>
+
+    <section class="lesson-flow"><h2>Lesson Flow</h2><div class="flow-grid"><a class="flow-card" href="#guided"><span class="flow-num">1</span><span class="flow-icon">?</span><strong>Discover</strong><small>Look at people and things</small></a><a class="flow-card" href="#focus"><span class="flow-num">2</span><span class="flow-icon">◉</span><strong>Grammar</strong><small>my / your / his / her</small></a><a class="flow-card" href="#guided"><span class="flow-num">3</span><span class="flow-icon">✎</span><strong>Practice</strong><small>Choose & build</small></a><a class="flow-card" href="#text"><span class="flow-num">4</span><span class="flow-icon">◉</span><strong>Read / Listen</strong><small>Whose things?</small></a><a class="flow-card" href="#final-task"><span class="flow-num">5</span><span class="flow-icon">☆</span><strong>Final Task</strong><small>Describe people's things</small></a></div></section>
+    <section class="learn-panel" aria-label="What you will learn">
+      <div>
+        <h2>What you'll learn</h2>
+        <div class="learn-grid">
+          <span>Possessive words: my / your / his / her</span>
+          <span>Talking about people's things</span>
+          <span>Questions with whose</span>
+          <span>Describing a person and their objects</span>
+        </div>
+      </div>
+      <div class="certificate-card" data-module-certificate><span class="cert-star">★</span><strong>Complete all tasks</strong><small>to get your Lab Certificate</small></div>
+    </section>
+
+    <div class="step-tracker"><span class="step-count">Step <span data-step-current>01</span>/08</span><span class="step-track"><span class="step-fill" data-step-fill></span></span><span class="step-name" data-step-name>Goal</span></div>
+    <section class="lesson-score-card" data-lesson-score-card><div class="lesson-score-head"><span>Auto score</span><strong data-lesson-score>0%</strong></div><div class="lesson-score-track"><span class="lesson-score-fill" data-lesson-score-fill></span></div><div class="lesson-score-meta"><span data-lesson-score-note>Complete guided tasks, build tasks, checklist, and final draft.</span><span>Module progress: <strong data-module-progress-count>0 / 8</strong></span></div></section>
+
+    <!-- BLOCK 01: GOAL -->
+    <section class="block" id="goal"><header class="block-head"><div class="block-num">01</div><div class="block-title-wrap"><div class="block-kicker">Goal</div><h2 class="block-title">What you will do in this lesson</h2></div><div class="block-time">≈ 3 min</div></header><p class="block-intro">In this lesson, you will learn to say whose things they are. You will use my, your, his, her, our, and their.</p><div class="goal-grid"><article class="info-card"><h3>Start</h3><p>You already know how to say what people have: Alex has a bag. Now you will say whose bag it is: It is his bag.</p></article><article class="info-card"><h3>Route</h3><p>First look at people and things, then learn my / your / his / her, then practise questions.</p></article><article class="info-card"><h3>Finish</h3><p>At the end you will describe 6–8 things and say whose they are.</p></article></div><div class="block-nav"><a class="btn primary" href="#input">Next: visual input</a></div></section>
+
+    <!-- BLOCK 02: VISUAL INPUT -->
+    <section class="block" id="input"><header class="block-head"><div class="block-num">02</div><div class="block-title-wrap"><div class="block-kicker">Visual Input</div><h2 class="block-title">Look at the people and things</h2></div><div class="block-time">≈ 7 min</div></header><div class="scene-strip"><figure class="scene-card"><img data-story-img="0" data-kids-src="../../assets/Для уроков/a1-05/06dac1b0-e938-4b3d-87d4-f2e210405e31.png" data-adults-src="../../assets/Для уроков/a1-05/4c391b2c-2e91-4f53-a9fa-6a3b328e113c.png" src="../../assets/Для уроков/a1-05/06dac1b0-e938-4b3d-87d4-f2e210405e31.png" alt="my item"><span>Scene 1</span></figure><figure class="scene-card"><img data-story-img="1" data-kids-src="../../assets/Для уроков/a1-05/40caf7c7-d05f-4742-9f17-1ff8f3670677.png" data-adults-src="../../assets/Для уроков/a1-05/3ad2fd15-41dd-471a-8449-de95e2daadce.png" src="../../assets/Для уроков/a1-05/40caf7c7-d05f-4742-9f17-1ff8f3670677.png" alt="his item"><span>Scene 2</span></figure><figure class="scene-card"><img data-story-img="2" data-kids-src="../../assets/Для уроков/a1-05/46f81e88-6448-4f75-9fd9-64c2f355fd52.png" data-adults-src="../../assets/Для уроков/a1-05/098f12bd-03b4-472a-a8f7-9988fd569ecd.png" src="../../assets/Для уроков/a1-05/46f81e88-6448-4f75-9fd9-64c2f355fd52.png" alt="her item"><span>Scene 3</span></figure><figure class="scene-card"><img data-story-img="3" data-kids-src="../../assets/Для уроков/a1-05/4564b012-adbf-4453-9859-d2cd2ac3d7dd.png" data-adults-src="../../assets/Для уроков/a1-05/c0625ce9-4fbf-4616-8341-79cae9a2f153.png" src="../../assets/Для уроков/a1-05/4564b012-adbf-4453-9859-d2cd2ac3d7dd.png" alt="their item"><span>Scene 4</span></figure></div><div class="prompt-grid"><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="This is my bag." data-adults="This is my laptop."> <span data-kids="This is my bag." data-adults="This is my laptop.">This is my bag.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="This is your notebook." data-adults="This is your charger."> <span data-kids="This is your notebook." data-adults="This is your charger.">This is your notebook.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="It is his book." data-adults="It is his coffee mug."> <span data-kids="It is his book." data-adults="It is his coffee mug.">It is his book.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="It is her pencil." data-adults="It is her notebook."> <span data-kids="It is her pencil." data-adults="It is her notebook.">It is her pencil.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="These are our books." data-adults="These are our documents."> <span data-kids="These are our books." data-adults="These are our documents.">These are our books.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="These are their toys." data-adults="These are their keys."> <span data-kids="These are their toys." data-adults="These are their keys.">These are their toys.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Is this your pen?" data-adults="Is this your phone?"> <span data-kids="Is this your pen?" data-adults="Is this your phone?">Is this your pen?</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Is it his football?" data-adults="Is it her pen?"> <span data-kids="Is it his football?" data-adults="Is it her pen?">Is it his football?</span></label></div></div><div class="block-nav"><a class="btn primary" href="#vocab">Next: vocabulary</a></div></section>
+
+    <!-- BLOCK 03: VOCABULARY -->
+    <section class="block" id="vocab"><header class="block-head"><div class="block-num">03</div><div class="block-title-wrap"><div class="block-kicker">Vocabulary</div><h2 class="block-title">Words for people and things</h2></div><div class="block-time">≈ 6 min</div></header><div class="vocab-grid"><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">my</span></div><div class="vocab-ru">This is my bag. / This is my laptop.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">your</span></div><div class="vocab-ru">This is your pencil. / Is this your charger?</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">his</span></div><div class="vocab-ru">It is his book. / It is his coffee mug.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">her</span></div><div class="vocab-ru">It is her notebook. / It is her pen.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">our</span></div><div class="vocab-ru">These are our books. / This is our workspace.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">their</span></div><div class="vocab-ru">These are their toys. / These are their keys.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">family</span></div><div class="vocab-ru">This is my family.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">brother</span></div><div class="vocab-ru">It is his football.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">sister</span></div><div class="vocab-ru">It is her doll.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">colleague</span></div><div class="vocab-ru">This is my colleague.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">phone</span></div><div class="vocab-ru">Is this your phone?</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">workspace</span></div><div class="vocab-ru">This is our workspace.</div></div></div><div class="block-nav"><a class="btn primary" href="#focus">Next: grammar</a></div></section>
+
+    <!-- BLOCK 04: LANGUAGE FOCUS -->
+    <section class="block" id="focus"><header class="block-head"><div class="block-num">04</div><div class="block-title-wrap"><div class="block-kicker">Language Focus</div><h2 class="block-title">My / Your / His / Her</h2></div><div class="block-time">≈ 8 min</div></header><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Subject</th><th>Possessive adjective</th><th>Example</th></tr></thead><tbody><tr><td>I</td><td>my</td><td class="sample">This is my bag. / This is my laptop.</td></tr><tr><td>you</td><td>your</td><td class="sample">Is this your notebook? / Is this your charger?</td></tr><tr><td>he / Alex</td><td>his</td><td class="sample">It is his desk. / It is his coffee mug.</td></tr><tr><td>she / Mia</td><td>her</td><td class="sample">It is her pencil. / It is her notebook.</td></tr><tr><td>we</td><td>our</td><td class="sample">These are our books. / This is our workspace.</td></tr><tr><td>they</td><td>their</td><td class="sample">These are their toys. / These are their keys.</td></tr></tbody></table></div><div class="grammar-rule"><strong>Rule:</strong> Use my, your, his, her, our, their before a noun to show ownership. Example: my bag, your book, his desk, her laptop, our classroom, their keys.</div><div class="error-card"><h3>Typical mistake</h3><p><span class="bad">Wrong:</span> This is I bag. / It is he laptop. / It is she phone.<br><span class="good">Right:</span> This is my bag. / It is his laptop. / It is her phone.</p></div><div class="block-nav"><a class="btn primary" href="#guided">Next: guided practice</a></div></section>
+
+    <!-- BLOCK 05: GUIDED PRACTICE (16 ITEMS) -->
+    <section class="block" id="guided"><header class="block-head"><div class="block-num">05</div><div class="block-title-wrap"><div class="block-kicker">Guided Practice</div><h2 class="block-title">Choose the correct word</h2></div><div class="block-time">≈ 10 min</div></header><p class="block-intro">Choose the correct option. The score updates automatically.</p><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">This is ___ bag.<span class="choice-row"><button class="choice" data-correct="true">my</button><button class="choice">I</button></span></span><button class="practice-hint" data-answer="This is my bag.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Is this ___ notebook?<span class="choice-row"><button class="choice" data-correct="true">your</button><button class="choice">you</button></span></span><button class="practice-hint" data-answer="Is this your notebook?">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Alex has a book. It is ___ book.<span class="choice-row"><button class="choice" data-correct="true">his</button><button class="choice">he</button></span></span><button class="practice-hint" data-answer="Alex has a book. It is his book.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Mia has a pencil. It is ___ pencil.<span class="choice-row"><button class="choice" data-correct="true">her</button><button class="choice">she</button></span></span><button class="practice-hint" data-answer="Mia has a pencil. It is her pencil.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">We have two books. These are ___ books.<span class="choice-row"><button class="choice" data-correct="true">our</button><button class="choice">we</button></span></span><button class="practice-hint" data-answer="We have two books. These are our books.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">They have school bags. These are ___ bags.<span class="choice-row"><button class="choice" data-correct="true">their</button><button class="choice">they</button></span></span><button class="practice-hint" data-answer="They have school bags. These are their bags.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">I have a laptop. This is ___ laptop.<span class="choice-row"><button class="choice" data-correct="true">my</button><button class="choice">me</button></span></span><button class="practice-hint" data-answer="I have a laptop. This is my laptop.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">You have a charger. This is ___ charger.<span class="choice-row"><button class="choice" data-correct="true">your</button><button class="choice">you</button></span></span><button class="practice-hint" data-answer="You have a charger. This is your charger.">hint</button></li><li class="practice-item"><span class="practice-num">09</span><span class="practice-q">He has a desk. It is ___ desk.<span class="choice-row"><button class="choice" data-correct="true">his</button><button class="choice">her</button></span></span><button class="practice-hint" data-answer="He has a desk. It is his desk.">hint</button></li><li class="practice-item"><span class="practice-num">10</span><span class="practice-q">She has a notebook. It is ___ notebook.<span class="choice-row"><button class="choice" data-correct="true">her</button><button class="choice">his</button></span></span><button class="practice-hint" data-answer="She has a notebook. It is her notebook.">hint</button></li><li class="practice-item"><span class="practice-num">11</span><span class="practice-q">This is ___ family.<span class="choice-row"><button class="choice" data-correct="true">my</button><button class="choice">I</button></span></span><button class="practice-hint" data-answer="This is my family.">hint</button></li><li class="practice-item"><span class="practice-num">12</span><span class="practice-q">These are ___ documents.<span class="choice-row"><button class="choice" data-correct="true">our</button><button class="choice">we</button></span></span><button class="practice-hint" data-answer="These are our documents.">hint</button></li><li class="practice-item"><span class="practice-num">13</span><span class="practice-q">Are these ___ keys?<span class="choice-row"><button class="choice" data-correct="true">their</button><button class="choice">they</button></span></span><button class="practice-hint" data-answer="Are these their keys?">hint</button></li><li class="practice-item"><span class="practice-num">14</span><span class="practice-q">Is it ___ phone?<span class="choice-row"><button class="choice" data-correct="true">your</button><button class="choice">you</button></span></span><button class="practice-hint" data-answer="Is it your phone?">hint</button></li><li class="practice-item"><span class="practice-num">15</span><span class="practice-q">That is Alex. This is ___ bag.<span class="choice-row"><button class="choice" data-correct="true">his</button><button class="choice">he</button></span></span><button class="practice-hint" data-answer="That is Alex. This is his bag.">hint</button></li><li class="practice-item"><span class="practice-num">16</span><span class="practice-q">That is Mia. This is ___ laptop.<span class="choice-row"><button class="choice" data-correct="true">her</button><button class="choice">she</button></span></span><button class="practice-hint" data-answer="That is Mia. This is her laptop.">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#active">Next: active practice</a></div></section>
+
+    <!-- BLOCK 06: ACTIVE PRACTICE (drag/drop) -->
+    <section class="block" id="active"><header class="block-head"><div class="block-num">06</div><div class="block-title-wrap"><div class="block-kicker">Active Practice</div><h2 class="block-title">Build sentences and questions</h2></div><div class="block-time">≈ 7 min</div></header><div class="bank interactive"><button class="word-chip">my</button><button class="word-chip">your</button><button class="word-chip">his</button><button class="word-chip">her</button><button class="word-chip">our</button><button class="word-chip">their</button><button class="word-chip">This is</button><button class="word-chip">Is this</button></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="This is">drop</span> my bag.</span><button class="practice-hint" data-answer="This is my bag.">model</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Is this">drop</span> your notebook?</span><button class="practice-hint" data-answer="Is this your notebook?">model</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">It is <span class="drop-slot" data-drop data-expected="his">drop</span> book.</span><button class="practice-hint" data-answer="It is his book.">model</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">It is <span class="drop-slot" data-drop data-expected="her">drop</span> pencil.</span><button class="practice-hint" data-answer="It is her pencil.">model</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">These are <span class="drop-slot" data-drop data-expected="our">drop</span> books.</span><button class="practice-hint" data-answer="These are our books.">model</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">These are <span class="drop-slot" data-drop data-expected="their">drop</span> keys.</span><button class="practice-hint" data-answer="These are their keys.">model</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Is this">drop</span> your phone?</span><button class="practice-hint" data-answer="Is this your phone?">model</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Is this">drop</span> her laptop?</span><button class="practice-hint" data-answer="Is this her laptop?">model</button></li></ol><div class="block-nav"><a class="btn primary" href="#text">Next: reading</a></div></section>
+
+    <!-- BLOCK 07: LISTENING / READING -->
+    <section class="block" id="text"><header class="block-head"><div class="block-num">07</div><div class="block-title-wrap"><div class="block-kicker">Listening / Reading</div><h2 class="block-title">Whose things are these?</h2></div><div class="block-time">≈ 7 min</div></header><div style="display: flex; gap: 12px; margin-bottom: 16px;"><button class="btn ghost" id="listenBtn">Listen</button><button class="btn ghost" id="showTextBtn">Show text</button></div><div class="text-card" id="readingCard" style="display: block;"><h3>Alex and Mia</h3><p id="readingScript" data-kids="Alex and Mia are in Alex's room. Alex has a blue bag. It is his bag. Mia has a red notebook. It is her notebook. There are two books on the desk. They are Alex's books. There are pencils in a cup. They are their pencils for the lesson. Alex says, “This is my football.” Mia says, “This is your room. It is clean and bright.” They practise English and talk about their things." data-adults="Alex and Mia are in a small workspace. Alex has a laptop. It is his laptop. Mia has a notebook. It is her notebook. There is a blue coffee mug on the desk. It is Alex's mug. There are documents near the laptop. They are their documents for the meeting. Mia says, “This is my pen.” Alex says, “Is this your charger?” They practise English and talk about their things.">Alex and Mia are in Alex's room. Alex has a blue bag. It is his bag. Mia has a red notebook. It is her notebook. There are two books on the desk. They are Alex's books. There are pencils in a cup. They are their pencils for the lesson. Alex says, “This is my football.” Mia says, “This is your room. It is clean and bright.” They practise English and talk about their things.</p></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Is the blue bag Alex's bag? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Is the red notebook Mia's notebook? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Are the two books Alex's books? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Are the pencils their pencils? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Is the football Mia's football? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Is Alex's room clean and bright? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Does Mia say “This is your room”? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Are they practising English? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#final-task">Next: final task</a></div></section>
+
+    <!-- BLOCK 08: FINAL TASK -->
+    <section class="block" id="final-task"><header class="block-head"><div class="block-num">08</div><div class="block-title-wrap"><div class="block-kicker">Final Task</div><h2 class="block-title">Describe people's things</h2></div><div class="block-time">≈ 10 min</div></header><div class="recorder"><div class="minitask-title">Record or write</div><p class="minitask-detail">Write or record 6–8 sentences about your things, your family’s things, your room, or your workspace. Use: my, your, his, her, our, their, and 2 questions.</p><div class="recorder-controls"><span class="record-dot" data-record-dot></span><button class="btn primary" data-record-start>Start recording</button><button class="btn ghost" data-record-stop disabled>Stop</button><audio controls data-record-audio></audio></div></div><textarea class="write-box" data-final-draft placeholder="Write 6–8 sentences:&#10;This is my ...&#10;Is this your ...?&#10;It is his ...&#10;It is her ...&#10;These are our ...&#10;These are their ...&#10;Is this your ...?&#10;Is it her ...?"></textarea><div class="check-grid" style="margin-top:14px"><article class="info-card"><h3>Now I can</h3><div class="now-grid"><div class="now-item"><label><input type="checkbox" data-final> I can say: This is my ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: This is your ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: It is his ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: It is her ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: These are our ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: These are their ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can ask: Is this your ...?</label></div><div class="now-item"><label><input type="checkbox" data-final> I can answer: Yes, it is / No, it isn't.</label></div></div></article><article class="info-card"><h3>What to send</h3><p>6–8 sentences: describe things you and other people have. Use my, your, his, her, our, their correctly.</p></article><article class="info-card"><h3>If it is hard</h3><p>Go back to Vocabulary, then Language Focus, then do Guided Practice again.</p></article></div></section>
+
+    <nav class="lesson-foot"><a class="foot-link prev" href="a1-04-have-has-my-things.html"><span class="foot-meta">Previous lesson</span><span class="foot-title">Have / Has</span></a><a class="foot-link" href="#focus"><span class="foot-meta">Review</span><span class="foot-title">Language Focus</span></a><a class="foot-link next" href="a1-06-prepositions-of-place.html"><span class="foot-meta">Next lesson</span><span class="foot-title">Where is it?</span></a></nav>
+    <p class="copyright">LinguaBoost Lab · A1 Module 05 · My / Your / His / Her</p>
+  </main>
+  <script>
+    (()=>{
+      const root=document.documentElement;
+      const paletteSelect=document.querySelector("[data-palette]");
+      const labProgressKey="linguaboost.lab.progress.v1";
+      const lessonId="a1-05";
+      const moduleId="a1";
+      const moduleLessonTotal=8;
+      const sceneAssets={
+        kids:{
+          light:[
+            "../../assets/Для уроков/a1-05/06dac1b0-e938-4b3d-87d4-f2e210405e31.png",
+            "../../assets/Для уроков/a1-05/40caf7c7-d05f-4742-9f17-1ff8f3670677.png",
+            "../../assets/Для уроков/a1-05/46f81e88-6448-4f75-9fd9-64c2f355fd52.png",
+            "../../assets/Для уроков/a1-05/4564b012-adbf-4453-9859-d2cd2ac3d7dd.png"
+          ],
+          dark:[
+            "../../assets/Для уроков/a1-05/c9f5e612-5a3e-44d6-829f-4e416dea0187.png",
+            "../../assets/Для уроков/a1-05/3e604b55-41e2-4cff-b218-8231f5ce0e52.png",
+            "../../assets/Для уроков/a1-05/5788a056-e6c7-4c43-a04c-3043b1ebe3b1.png",
+            "../../assets/Для уроков/a1-05/84423f8f-f8ab-43a8-8746-9d9261add83b.png"
+          ]
+        },
+        adults:{
+          light:[
+            "../../assets/Для уроков/a1-05/4c391b2c-2e91-4f53-a9fa-6a3b328e113c.png",
+            "../../assets/Для уроков/a1-05/170f3223-7207-498a-9da9-5145a850db1e.png",
+            "../../assets/Для уроков/a1-05/098f12bd-03b4-472a-a8f7-9988fd569ecd.png",
+            "../../assets/Для уроков/a1-05/c0625ce9-4fbf-4616-8341-79cae9a2f153.png"
+          ],
+          dark:[
+            "../../assets/Для уроков/a1-05/a0d749bd-ed0e-44b1-97c5-e2b14b3d1959.png",
+            "../../assets/Для уроков/a1-05/adb52e34-8561-427c-8b93-8584f76927d3.png",
+            "../../assets/Для уроков/a1-05/3ad2fd15-41dd-471a-8449-de95e2daadce.png",
+            "../../assets/Для уроков/a1-05/24bc588d-3f34-42bb-a80b-9d3a2b5a063b (1).png"
+          ]
+        }
+      };
+      const paletteKey = "lesson-palette"; function applyPalette(p){ const safe=p||"light-lab"; root.setAttribute("data-theme",safe); if(paletteSelect) paletteSelect.value=safe; localStorage.setItem(paletteKey, safe); localStorage.setItem("nge-theme-lab", window.LinguaBoostTheme?.catalogTheme(safe) || (safe === "black-lab" || safe === "violet" ? "dark" : safe === "cyan" ? "sky" : "light")); window.LinguaBoostTheme?.syncLinks(document,safe); updateHeroImages(); }
+      paletteSelect?.addEventListener("change",e=>applyPalette(e.target.value));
+      applyPalette(localStorage.getItem(paletteKey)||"light-lab");
+      
+      function updateHeroImages(){
+        const audience=document.body.dataset.audience||"kids";
+        const isDark=["black-lab","violet"].includes(root.getAttribute("data-theme"));
+        const mode=isDark?"dark":"light";
+        const hero=document.querySelector("[data-hero-img]");
+        const src=hero?.dataset[`${audience}${mode==='dark'?'Dark':'Light'}`];
+        if(hero&&src) hero.src=src;
+        document.querySelectorAll("[data-story-img]").forEach((img,idx)=>{ const key=sceneAssets[audience]?.[mode]?.[idx]||img.dataset[`${audience}Src`]; if(key) img.src=key; });
+        const obsSpans=document.querySelectorAll("[data-obs] span");
+        obsSpans.forEach(span=>{ const txt=span.closest("[data-obs]")?.dataset[audience]; if(txt) span.innerText=txt; });
+        const scriptP=document.getElementById("readingScript");
+        if(scriptP&&scriptP.dataset[audience]) scriptP.innerText=scriptP.dataset[audience];
+        updateReadingChoices();
+      }
+      function applyAudience(aud){
+        document.body.dataset.audience=aud;
+        localStorage.setItem("lesson-audience",aud);
+        document.querySelectorAll("[data-audience-btn]").forEach(btn=>btn.classList.toggle("is-active",btn.dataset.audienceBtn===aud));
+        const lead=document.querySelector(".friendly-lead");
+        if(lead&&lead.dataset[aud]) lead.innerText=lead.dataset[aud];
+        updateHeroImages();
+      }
+      function updateReadingChoices(){
+        const audience=document.body.dataset.audience||"kids";
+        const items=document.querySelectorAll("#text .practice-item .practice-q");
+        if(audience==="adults"){
+          if(items[0]) items[0].innerHTML="Is the laptop Alex's laptop? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[1]) items[1].innerHTML="Is the notebook Mia's notebook? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[2]) items[2].innerHTML="Is the coffee mug Alex's mug? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[3]) items[3].innerHTML="Are the documents their documents? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[4]) items[4].innerHTML="Is the pen Alex's pen? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[5]) items[5].innerHTML="Does Alex ask about Mia's charger? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[6]) items[6].innerHTML="Are they in a small workspace? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[7]) items[7].innerHTML="Are they practising English? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+        } else {
+          if(items[0]) items[0].innerHTML="Is the blue bag Alex's bag? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[1]) items[1].innerHTML="Is the red notebook Mia's notebook? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[2]) items[2].innerHTML="Are the two books Alex's books? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[3]) items[3].innerHTML="Are the pencils their pencils? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[4]) items[4].innerHTML="Is the football Mia's football? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[5]) items[5].innerHTML="Is Alex's room clean and bright? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[6]) items[6].innerHTML="Does Mia say “This is your room”? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[7]) items[7].innerHTML="Are they practising English? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+        }
+        document.querySelectorAll("#text .choice").forEach(btn=>btn.removeEventListener("click",choiceHandler));
+        document.querySelectorAll("#text .choice").forEach(btn=>btn.addEventListener("click",choiceHandler));
+        updateScore();
+      }
+      function choiceHandler(e){
+        const row=e.currentTarget.closest(".choice-row");
+        row?.querySelectorAll(".choice").forEach(c=>{c.classList.remove("is-picked");c.removeAttribute("data-state");});
+        e.currentTarget.classList.add("is-picked");
+        e.currentTarget.dataset.state=e.currentTarget.dataset.correct==="true"?"correct":"wrong";
+        updateScore();
+      }
+      applyAudience(localStorage.getItem("lesson-audience")||"kids");
+      document.querySelectorAll("[data-audience-btn]").forEach(btn=>btn.addEventListener("click",()=>applyAudience(btn.dataset.audienceBtn)));
+      
+      document.querySelectorAll(".choice").forEach(btn=>btn.addEventListener("click",choiceHandler));
+      document.querySelectorAll(".practice-hint").forEach(btn=>btn.addEventListener("click",function(){ this.textContent=this.dataset.answer||""; this.classList.add("shown"); }));
+      let selectedWord="";
+      document.querySelectorAll(".word-chip").forEach(chip=>{ chip.addEventListener("click",()=>{ document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("is-selected")); chip.classList.add("is-selected"); selectedWord=chip.textContent.trim(); }); chip.addEventListener("dragstart",e=>{ selectedWord=chip.textContent.trim(); e.dataTransfer?.setData("text/plain",selectedWord); }); });
+      document.querySelectorAll("[data-drop]").forEach(slot=>{ function fill(v){ if(!v)return; slot.textContent=v; slot.classList.add("filled"); const exp=slot.dataset.expected; const isCorrect=exp&&v.trim().toLowerCase()===exp.toLowerCase(); slot.classList.toggle("is-correct",isCorrect); updateScore(); } slot.addEventListener("click",()=>fill(selectedWord)); slot.addEventListener("dragover",e=>e.preventDefault()); slot.addEventListener("drop",e=>{ e.preventDefault(); fill(e.dataTransfer?.getData("text/plain")||selectedWord); }); });
+      
+      function updateScore(){
+        const correctChoices=document.querySelectorAll("#guided .choice.is-picked[data-correct='true']").length;
+        const correctDrops=document.querySelectorAll("[data-drop].filled.is-correct").length;
+        const obsChecks=document.querySelectorAll("[data-obs]:checked").length;
+        const readChecks=document.querySelectorAll("#text .choice.is-picked[data-correct='true']").length;
+        const finalChecks=document.querySelectorAll("[data-final]:checked").length;
+        const draft=document.querySelector("[data-final-draft]")?.value.trim()||"";
+        const draftDone=draft.split(/\s+/).length>=20;
+        const points=correctChoices+correctDrops+Math.min(obsChecks,4)+readChecks+Math.min(finalChecks,4)+(draftDone?4:0);
+        const max=16+8+4+8+4+4;
+        const score=Math.round((points/max)*100);
+        document.querySelector("[data-lesson-score]").textContent=`${score}%`;
+        document.querySelector("[data-lesson-score-fill]").style.width=`${score}%`;
+        const comp=Math.floor(score/12.5);
+        document.querySelector("[data-module-progress-count]").textContent=`${comp} / 8`;
+        const completed=score>=80;
+        document.querySelector("[data-lesson-score-card]")?.classList.toggle("is-complete",completed);
+        const note=document.querySelector("[data-lesson-score-note]");
+        if(note) note.textContent=completed?"Lesson complete. Your module progress is saved.":"Reach 80% to complete this lesson.";
+        try{
+          const progress=JSON.parse(localStorage.getItem(labProgressKey)||"{}");
+          const moduleProgress=progress[moduleId]||{lessons:{}};
+          moduleProgress.lessons=moduleProgress.lessons||{};
+          moduleProgress.lessons[lessonId]={score,completed,updatedAt:new Date().toISOString()};
+          moduleProgress.completed=Object.values(moduleProgress.lessons).filter(item=>item&&item.completed).length>=moduleLessonTotal;
+          progress[moduleId]=moduleProgress;
+          localStorage.setItem(labProgressKey,JSON.stringify(progress));
+          window.dispatchEvent(new CustomEvent("linguaboost:progress",{detail:progress}));
+        }catch(error){}
+      }
+      document.querySelectorAll("input[type='checkbox']").forEach(i=>i.addEventListener("change",updateScore));
+      document.querySelector("[data-final-draft]")?.addEventListener("input",updateScore);
+      updateScore();
+      
+      const stepBlocks=["goal","input","vocab","focus","guided","active","text","final-task"];
+      function updateStep(){ let active=0; stepBlocks.forEach((id,i)=>{ const b=document.getElementById(id); if(b&&b.getBoundingClientRect().top<window.innerHeight*0.42) active=i; }); document.querySelector("[data-step-current]")&&(document.querySelector("[data-step-current]").textContent=String(active+1).padStart(2,"0")); document.querySelector("[data-step-fill]")&&(document.querySelector("[data-step-fill]").style.width=`${((active+1)/stepBlocks.length)*100}%`); document.querySelector("[data-step-name]")&&(document.querySelector("[data-step-name]").textContent=stepBlocks[active].charAt(0).toUpperCase()+stepBlocks[active].slice(1)); }
+      window.addEventListener("scroll",updateStep); updateStep();
+      
+      let mediaRecorder,chunks=[];
+      const startBtn=document.querySelector("[data-record-start]"),stopBtn=document.querySelector("[data-record-stop]"),audioEl=document.querySelector("[data-record-audio]"),recordDot=document.querySelector("[data-record-dot]");
+      startBtn?.addEventListener("click",async()=>{ if(!navigator.mediaDevices?.getUserMedia) return; const stream=await navigator.mediaDevices.getUserMedia({audio:true}); chunks=[]; mediaRecorder=new MediaRecorder(stream); mediaRecorder.addEventListener("dataavailable",e=>{ if(e.data.size>0) chunks.push(e.data); }); mediaRecorder.addEventListener("stop",()=>{ const blob=new Blob(chunks,{type:"audio/webm"}); if(audioEl) audioEl.src=URL.createObjectURL(blob); stream.getTracks().forEach(t=>t.stop()); }); mediaRecorder.start(); startBtn.disabled=true; stopBtn?.removeAttribute("disabled"); recordDot?.classList.add("is-recording"); });
+      stopBtn?.addEventListener("click",()=>{ mediaRecorder?.stop(); stopBtn.disabled=true; startBtn?.removeAttribute("disabled"); recordDot?.classList.remove("is-recording"); });
+      
+      document.getElementById("listenBtn")?.addEventListener("click",()=>{ const text=document.getElementById("readingScript")?.innerText; if(text&&window.speechSynthesis){ window.speechSynthesis.cancel(); const utter=new SpeechSynthesisUtterance(text); utter.lang="en-US"; utter.rate=0.9; window.speechSynthesis.speak(utter); } });
+      let textVisible=true;
+      document.getElementById("showTextBtn")?.addEventListener("click",()=>{ const card=document.getElementById("readingCard"); if(card){ textVisible=!textVisible; card.style.display=textVisible?"block":"none"; document.getElementById("showTextBtn").innerText=textVisible?"Hide text":"Show text"; } });
+      updateReadingChoices();
+    })();
+  </script>
+<script defer src="../assets/a1-session.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

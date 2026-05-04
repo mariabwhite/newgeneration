@@ -1,518 +1,645 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" data-lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Ancient China Explorer | LinguaBoost Studio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        body {
-            background: linear-gradient(145deg, #8B0000 0%, #2C1810 100%);
-            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Noto Sans CJK SC', cursive, sans-serif;
-            padding: 20px 16px 60px;
-            min-height: 100vh;
-        }
-
-        /* китайский орнамент */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            border-radius: 64px;
-            padding: 20px;
-            margin-bottom: 32px;
-            text-align: center;
-            border: 3px solid #FF4500;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        .hero::before {
-            content: "🐉";
-            font-size: 3rem;
-            position: absolute;
-            left: 15px;
-            top: -10px;
-            opacity: 0.5;
-        }
-        .hero::after {
-            content: "🐲";
-            font-size: 3rem;
-            position: absolute;
-            right: 15px;
-            bottom: -10px;
-            opacity: 0.5;
-        }
-        h1 {
-            font-size: 2.3rem;
-            color: #2C1810;
-            text-shadow: 2px 2px 0 #FFD700;
-        }
-        .sub {
-            font-size: 1.2rem;
-            background: #2C1810;
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 60px;
-            color: #FFD700;
-        }
-
-        .card {
-            background: rgba(255,248,225,0.95);
-            border-radius: 48px;
-            padding: 20px;
-            margin-bottom: 28px;
-            box-shadow: 0 18px 28px rgba(0,0,0,0.2);
-            border-left: 8px solid #DAA520;
-            border-right: 2px solid #DAA520;
-        }
-        .section-title {
-            font-size: 1.6rem;
-            background: #8B0000;
-            display: inline-block;
-            padding: 6px 28px;
-            border-radius: 60px;
-            color: #FFD700;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* flip cards */
-        .grid-flip {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin: 20px 0;
-        }
-        .flip-card {
-            background: transparent;
-            width: 150px;
-            height: 130px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-        .flip-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s;
-            transform-style: preserve-3d;
-            border-radius: 20px;
-        }
-        .flip-card.flipped .flip-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-front, .flip-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: bold;
-            text-align: center;
-            padding: 8px;
-            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-        }
-        .flip-front {
-            background: #DAA520;
-            color: #2C1810;
-            border: 2px solid #8B0000;
-        }
-        .flip-back {
-            background: #2C1810;
-            color: #FFD700;
-            transform: rotateY(180deg);
-            border: 2px solid #DAA520;
-        }
-        .speak-btn {
-            background: #FFD700;
-            border: none;
-            border-radius: 30px;
-            padding: 5px 12px;
-            margin-top: 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        /* упражнения */
-        .quiz-item {
-            background: #FFF8E7;
-            border-radius: 32px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #DAA520;
-        }
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .opt {
-            background: #8B0000;
-            color: #FFD700;
-            padding: 10px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.1s;
-        }
-        .opt.correct-selected {
-            background: #228B22;
-        }
-        .opt.wrong-selected {
-            background: #8B0000;
-            opacity: 0.6;
-        }
-
-        .btn {
-            background: #DAA520;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #2C1810;
-            cursor: pointer;
-            margin: 8px 5px;
-            box-shadow: 0 4px 0 #8B0000;
-            transition: 0.05s linear;
-        }
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #8B0000;
-        }
-
-        .timer-box {
-            font-family: monospace;
-            font-size: 1.5rem;
-            background: #2C1810;
-            color: #FFD700;
-            padding: 6px 16px;
-            border-radius: 40px;
-            display: inline-block;
-        }
-        textarea {
-            width: 100%;
-            border-radius: 28px;
-            padding: 12px;
-            border: 2px solid #DAA520;
-            font-size: 1rem;
-            margin: 12px 0;
-        }
-        .score-board {
-            text-align: center;
-            background: linear-gradient(135deg, #FFD700, #DAA520);
-            padding: 16px;
-            border-radius: 80px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            position: sticky;
-            bottom: 10px;
-            color: #2C1810;
-        }
-        @media (max-width: 700px) {
-            .flip-card { width: 130px; height: 110px; }
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ancient China Explorer · A2 · LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+:root {
+  --bg:#faf5ed; --bg2:#f0e5ce; --surface:#fffdf8; --card:#fff8ee; --card2:#f5ead5;
+  --text:#2a1a0a; --muted:#6b4228; --faint:#a07848;
+  --accent:#8b3010; --accent2:#b84520; --accon:#fff;
+  --brand:#3a6624; --brand2:#5a9038;
+  --line:rgba(58,102,36,.13); --line2:rgba(58,102,36,.26);
+  --ok:#2e7d32; --err:#c0392b;
+  --glow1:rgba(139,48,16,.07); --glow2:rgba(58,102,36,.09);
+  --mono:"JetBrains Mono",Consolas,monospace;
+  --display:"Unbounded",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 0%,var(--glow1),transparent 55%),
+    radial-gradient(ellipse at 10% 95%,var(--glow2),transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a6624' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+a{color:inherit;text-decoration:none;}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;
+  padding:10px clamp(14px,3vw,28px);
+  background:rgba(250,245,237,.9);border-bottom:2px solid rgba(58,102,36,.18);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.lab-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.lab-mark{width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  display:grid;place-items:center;font-family:var(--display);font-weight:900;
+  font-size:17px;color:#fff;box-shadow:0 2px 10px rgba(58,102,36,.3);}
+.lab-brand-name{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+.lab-brand-tag{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+.topbar-nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.pill{padding:4px 10px;border-radius:20px;font:700 9px/1 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;border:1px solid var(--line2);color:var(--muted);}
+.pill-accent{background:rgba(139,48,16,.1);border-color:var(--accent);color:var(--accent);}
+.pill-brand{background:rgba(58,102,36,.1);border-color:var(--brand);color:var(--brand);}
+.btn-sm{height:28px;padding:0 12px;border-radius:7px;border:1px solid var(--line2);
+  background:var(--card);color:var(--muted);font:700 10px/1 var(--mono);
+  letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+.btn-sm:hover{border-color:var(--brand);color:var(--brand);}
+
+/* ── HUD ── */
+.hud{position:fixed;top:58px;right:16px;z-index:90;display:flex;flex-direction:column;
+  align-items:flex-end;gap:4px;pointer-events:none;}
+.hud-score{font-family:var(--display);font-size:1.4rem;font-weight:900;color:var(--accent);letter-spacing:-.04em;}
+.hud-combo{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brand);transition:transform .2s;}
+.hud-combo.bump{transform:scale(1.4);}
+
+/* ── STAR BAR ── */
+.star-bar{display:flex;justify-content:center;gap:10px;padding:18px 16px 8px;}
+.star-item{font-size:1.6rem;opacity:.2;transition:opacity .4s,transform .4s,filter .4s;filter:grayscale(1);}
+.star-item.lit{opacity:1;transform:scale(1.18);filter:drop-shadow(0 0 8px var(--accent));}
+
+/* ── RAIL ── */
+.rail{display:flex;justify-content:center;gap:8px;padding:4px 16px 20px;}
+.rail-dot{width:10px;height:10px;border-radius:50%;background:var(--card2);
+  border:1px solid var(--line2);transition:all .35s;}
+.rail-dot.done{background:var(--ok);border-color:var(--ok);box-shadow:0 0 8px var(--ok);}
+
+/* ── WRAP ── */
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(14px,3vw,28px) 80px;}
+
+/* ── HERO ── */
+.hero{border:2px solid rgba(58,102,36,.2);border-radius:20px;
+  background:linear-gradient(135deg,rgba(58,102,36,.06),rgba(139,48,16,.06));
+  padding:clamp(20px,4vw,36px);margin-bottom:28px;position:relative;overflow:hidden;}
+.hero::before{content:"龍";position:absolute;right:24px;top:50%;transform:translateY(-50%);
+  font-size:9rem;opacity:.05;color:var(--brand);line-height:1;pointer-events:none;}
+.hero-kicker{font:700 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:8px;}
+.hero-title{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;
+  letter-spacing:-.05em;line-height:1;margin-bottom:10px;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-desc{color:var(--muted);font-size:14px;line-height:1.7;max-width:55ch;}
+
+/* ── BLOCK ── */
+.block{border:1px solid var(--line);border-radius:16px;background:var(--surface);
+  padding:clamp(18px,3vw,30px);margin-bottom:22px;overflow:hidden;position:relative;}
+.block::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:16px 16px 0 0;}
+.block-head{display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;
+  margin-bottom:18px;border-bottom:1px dashed rgba(58,102,36,.2);}
+.block-num{flex:0 0 auto;width:42px;height:42px;border:2px solid var(--brand);
+  background:rgba(58,102,36,.08);border-radius:10px;display:grid;place-items:center;
+  font-family:var(--display);font-weight:900;font-size:15px;color:var(--brand);}
+.block-info{flex:1;}
+.block-kicker{font:700 9px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:4px;}
+.block-title{font-family:var(--display);font-size:clamp(.95rem,2vw,1.4rem);
+  font-weight:800;letter-spacing:-.03em;line-height:1.15;}
+.block-badge{flex:0 0 auto;font:700 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);padding:5px 9px;border:1px dotted var(--line2);border-radius:6px;}
+.block-hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+
+/* ── BTN ── */
+.btn{display:inline-flex;align-items:center;padding:9px 18px;border-radius:9px;
+  font:800 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:all .15s;border:1px solid transparent;}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand);}
+.btn-primary:hover{background:var(--brand2);}
+.btn-ghost{background:var(--card);color:var(--muted);border-color:var(--line2);}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand);}
+.btn-warn{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* ════ FC ════ */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px;perspective:1200px;}
+.fc{height:120px;cursor:pointer;}
+.fc-inner{width:100%;height:100%;position:relative;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;}
+.fc.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:10px;border:1px solid var(--line2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:8px;}
+.fc-front{background:var(--card);}
+.fc-back{background:color-mix(in srgb,var(--brand) 10%,var(--card));
+  border-color:var(--brand);transform:rotateY(180deg);}
+.fc-word{font-family:var(--display);font-size:.95rem;font-weight:800;letter-spacing:-.02em;text-align:center;}
+.fc-ipa{font-family:var(--mono);font-size:9px;color:var(--faint);}
+.fc-ru{color:var(--muted);font-size:12px;font-weight:600;}
+.fc-hint{font-family:var(--mono);font-size:8px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;}
+.fc-speak{width:24px;height:24px;border-radius:50%;border:1px solid var(--line2);
+  background:var(--card2);cursor:pointer;display:grid;place-items:center;font-size:11px;transition:all .14s;}
+.fc-speak:hover{border-color:var(--accent);}
+.fc-counter{text-align:center;font:400 10px/1 var(--mono);color:var(--faint);margin-top:8px;}
+
+/* ════ SB ════ */
+.sb-wrap{display:flex;flex-direction:column;gap:20px;}
+.sb-label{font:700 9px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+.sb-target{min-height:50px;border:2px dashed var(--line2);border-radius:10px;
+  padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  transition:border-color .2s;background:rgba(0,0,0,.02);}
+.sb-target.over{border-color:var(--brand);}
+.sb-target.correct{border-color:var(--ok);background:rgba(46,125,50,.05);}
+.sb-target.wrong{border-color:var(--err);background:rgba(192,57,43,.05);}
+.sb-bank{display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;}
+.token{padding:6px 11px;border-radius:8px;border:1px solid var(--line2);
+  background:var(--card2);color:var(--text);font:600 12px/1 var(--body);
+  cursor:grab;user-select:none;transition:all .14s;}
+.token:hover{border-color:var(--brand);color:var(--brand);}
+.token.placed{opacity:.35;cursor:default;}
+.sb-result{font:600 11px/1 var(--mono);padding:5px 10px;border-radius:6px;display:none;}
+.sb-result.ok{color:var(--ok);background:rgba(46,125,50,.08);}
+.sb-result.err{color:var(--err);background:rgba(192,57,43,.08);}
+
+/* ════ MATCH ════ */
+.match-wrap{position:relative;}
+.match-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.match-col{display:flex;flex-direction:column;gap:7px;}
+.match-item{padding:9px 13px;border-radius:9px;border:1px solid var(--line2);
+  background:var(--card);font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .16s;position:relative;z-index:1;line-height:1.3;}
+.match-item:hover{border-color:var(--brand);}
+.match-item.selected{border-color:var(--accent);background:rgba(139,48,16,.07);color:var(--accent);}
+.match-item.matched{border-color:var(--ok);background:rgba(46,125,50,.07);color:var(--ok);pointer-events:none;}
+.match-item.error{border-color:var(--err);}
+.match-item.def-side{font-size:12px;color:var(--muted);}
+.match-status{font:400 11px/1 var(--mono);color:var(--muted);margin-top:10px;min-height:20px;}
+
+/* ════ ST ════ */
+.st-timer{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.timer-bar{flex:1;height:6px;border-radius:3px;background:var(--card2);overflow:hidden;}
+.timer-fill{height:100%;background:var(--ok);border-radius:3px;transition:width .9s linear,background .3s;}
+.timer-fill.warn{background:var(--err);}
+.timer-num{font:700 13px/1 var(--mono);color:var(--muted);width:20px;}
+.st-display{font-family:var(--display);font-size:1rem;font-weight:700;
+  background:var(--card);border:1px solid var(--line2);border-radius:10px;
+  padding:14px 16px;margin-bottom:10px;min-height:54px;cursor:pointer;
+  display:flex;align-items:center;line-height:1.4;}
+.st-input-row{display:flex;gap:8px;}
+.st-input{flex:1;background:var(--card);border:2px solid var(--line2);border-radius:9px;
+  color:var(--text);font:500 14px/1 var(--body);padding:11px 13px;outline:none;transition:border-color .2s;}
+.st-input:focus{border-color:var(--brand);}
+.st-input.ok{border-color:var(--ok);}
+.st-input.err{border-color:var(--err);}
+.st-msg{font:400 11px/1 var(--mono);margin-top:8px;min-height:18px;}
+
+/* ════ MEMORY ════ */
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.mem-card{height:78px;cursor:pointer;perspective:600px;}
+.mc-inner{width:100%;height:100%;position:relative;transition:transform .4s;transform-style:preserve-3d;}
+.mem-card.reveal .mc-inner,.mem-card.matched .mc-inner{transform:rotateY(180deg);}
+.mc-front,.mc-back{position:absolute;inset:0;border-radius:9px;border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;padding:6px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  font:600 11px/1.3 var(--body);text-align:center;}
+.mc-front{background:var(--card);color:var(--accent);font-size:1.2rem;}
+.mc-back{background:var(--card2);transform:rotateY(180deg);font-size:10px;}
+.mem-card.matched .mc-back{border-color:var(--ok);background:rgba(46,125,50,.08);color:var(--ok);}
+.mem-card.wrong .mc-back,.mem-card.wrong .mc-front{border-color:var(--err);}
+.mem-stats{font:400 10px/1 var(--mono);color:var(--muted);margin-top:8px;display:flex;gap:14px;}
+.mem-stats b{color:var(--accent);}
+
+/* ════ BLITZ ════ */
+.blitz-q{font-size:1rem;font-weight:700;line-height:1.55;margin-bottom:14px;
+  padding:13px 16px;background:var(--card);border-radius:10px;
+  border-left:3px solid var(--brand);}
+.blank{display:inline-block;min-width:70px;border-bottom:2px solid var(--brand);
+  text-align:center;color:var(--brand);margin:0 3px;}
+.blitz-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:10px;}
+.blitz-opt{padding:11px 13px;border-radius:9px;border:1px solid var(--line2);
+  background:var(--card);color:var(--text);font:600 13px/1.3 var(--body);
+  cursor:pointer;transition:all .15s;text-align:left;}
+.blitz-opt:hover:not(:disabled){border-color:var(--brand);background:rgba(58,102,36,.07);}
+.blitz-opt.correct{border-color:var(--ok);background:rgba(46,125,50,.1);color:var(--ok);}
+.blitz-opt.wrong{border-color:var(--err);background:rgba(192,57,43,.1);color:var(--err);}
+.blitz-bar{display:flex;gap:10px;align-items:center;font:400 10px/1 var(--mono);color:var(--faint);}
+.combo-pill{padding:4px 10px;border-radius:20px;font:900 10px/1 var(--mono);
+  background:rgba(139,48,16,.08);border:1px solid var(--accent);color:var(--accent);}
+.blitz-prog{flex:1;height:4px;border-radius:2px;background:var(--card2);}
+.blitz-prog-fill{height:100%;border-radius:2px;background:var(--brand);transition:width .4s;}
+.blitz-exp{font:400 10px/1.6 var(--mono);color:var(--faint);margin-top:8px;
+  padding:8px 12px;background:rgba(58,102,36,.05);border-radius:8px;}
+
+/* ════ SPEECH ════ */
+.mic-area{text-align:center;padding:8px 0;}
+.mic-phrase{font-size:1rem;font-weight:600;line-height:1.5;margin-bottom:12px;
+  padding:14px;background:var(--card);border-radius:10px;border-left:3px solid var(--brand);}
+.mic-btn{width:68px;height:68px;border-radius:50%;border:2px solid var(--brand);
+  background:rgba(58,102,36,.08);font-size:1.7rem;cursor:pointer;
+  display:grid;place-items:center;transition:all .2s;margin:0 auto 12px;}
+.mic-btn:hover,.mic-btn.recording{background:rgba(58,102,36,.2);
+  box-shadow:0 0 20px rgba(58,102,36,.3);}
+.mic-transcript{font:400 11px/1 var(--mono);color:var(--muted);min-height:18px;margin-bottom:8px;}
+.mic-result{font:600 12px/1 var(--mono);padding:8px 12px;border-radius:8px;display:none;}
+.mic-result.ok{color:var(--ok);background:rgba(46,125,50,.08);}
+.mic-result.err{color:var(--err);background:rgba(192,57,43,.08);}
+.speech-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+
+/* ════ WB ════ */
+.wb-def{font-size:13px;color:var(--muted);margin-bottom:10px;padding:9px 13px;
+  background:var(--card);border-radius:8px;border-left:2px solid var(--brand);}
+.wb-target{min-height:50px;border:2px dashed var(--brand);border-radius:10px;
+  padding:9px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  background:rgba(58,102,36,.04);margin-bottom:10px;transition:border-color .2s;}
+.wb-target.correct{border-color:var(--ok);}
+.wb-bank{display:flex;flex-wrap:wrap;gap:7px;}
+.morpheme{padding:8px 13px;border-radius:8px;font:700 13px/1 var(--mono);cursor:pointer;transition:all .15s;user-select:none;}
+.morpheme.prefix{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);color:#3b82f6;}
+.morpheme.root{background:rgba(180,100,20,.12);border:1px solid rgba(180,100,20,.35);color:#b46414;}
+.morpheme.suffix{background:rgba(46,125,50,.12);border:1px solid rgba(46,125,50,.35);color:#2e7d32;}
+.morpheme.placed{opacity:.3;cursor:default;}
+.wb-msg{font:400 11px/1 var(--mono);margin-top:8px;min-height:18px;}
+
+/* ── ALL DONE ── */
+.all-done{display:none;text-align:center;padding:clamp(24px,5vw,48px);margin:24px 0;
+  border:2px solid var(--brand);border-radius:20px;
+  background:linear-gradient(135deg,rgba(58,102,36,.07),rgba(139,48,16,.07)),var(--surface);}
+.all-done.show{display:block;}
+.all-done-title{font-family:var(--display);font-size:clamp(2rem,5vw,3rem);font-weight:900;
+  letter-spacing:-.05em;color:var(--brand);margin-bottom:6px;}
+.all-done-sub{font:700 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.all-done-score{font-family:var(--display);font-size:1.8rem;font-weight:900;color:var(--text);margin:16px 0 8px;}
+#confetti{position:fixed;inset:0;z-index:999;pointer-events:none;}
+
+@media(max-width:600px){
+  .fc-grid{grid-template-columns:repeat(2,1fr);}
+  .blitz-opts{grid-template-columns:1fr;}
+  .mem-grid{grid-template-columns:repeat(3,1fr);}
+  .match-cols{grid-template-columns:1fr;gap:12px;}
+}
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">A2</span>
-    <span class="lbs-pill">School learners</span>
-    <span class="lbs-pill">Culture lesson</span>
+
+<header class="topbar">
+  <a class="lab-brand" href="../index.html">
+    <div class="lab-mark">L</div>
+    <div>
+      <div class="lab-brand-name">LinguaBoost Lab</div>
+      <div class="lab-brand-tag">New Generation English</div>
+    </div>
+  </a>
+  <nav class="topbar-nav">
+    <a class="btn-sm" href="../index.html">&#8592; All Lessons</a>
+    <span class="pill pill-accent">A2</span>
+    <span class="pill pill-brand">Ancient China</span>
+    <button class="btn-sm" onclick="toggleLang()">RU / EN</button>
+  </nav>
+</header>
+
+<div class="hud">
+  <div class="hud-score" id="hudScore">0</div>
+  <div class="hud-combo" id="hudCombo">COMBO x1</div>
+</div>
+
+<div class="star-bar">
+  <div class="star-item" id="s1">&#11088;</div>
+  <div class="star-item" id="s2">&#11088;</div>
+  <div class="star-item" id="s3">&#11088;</div>
+  <div class="star-item" id="s4">&#11088;</div>
+  <div class="star-item" id="s5">&#11088;</div>
+  <div class="star-item" id="s6">&#11088;</div>
+</div>
+<div class="rail">
+  <div class="rail-dot" id="rd1"></div>
+  <div class="rail-dot" id="rd2"></div>
+  <div class="rail-dot" id="rd3"></div>
+  <div class="rail-dot" id="rd4"></div>
+  <div class="rail-dot" id="rd5"></div>
+  <div class="rail-dot" id="rd6"></div>
+</div>
+
+<main class="wrap">
+
+<div class="hero">
+  <div class="hero-kicker">A2 · History &amp; Culture · English</div>
+  <div class="hero-title">Ancient <em>China</em><br>Explorer</div>
+  <div class="hero-desc" data-ru="Путешествуй в Древний Китай — учи слова, строй предложения, играй в игры и узнавай, как Китай изменил мир." data-en="Travel to Ancient China — learn vocabulary, build sentences, play games and discover how China changed the world.">Travel to Ancient China — learn vocabulary, build sentences, play games and discover how China changed the world.</div>
+</div>
+
+<!-- BLOCK 1 · FLASHCARDS -->
+<section class="block" id="b1">
+  <div class="block-head">
+    <div class="block-num">01</div>
+    <div class="block-info">
+      <div class="block-kicker">Vocabulary · Speech Synthesis</div>
+      <div class="block-title">Key Words of Ancient China</div>
+    </div>
+    <div class="block-badge">FLIP ALL 8</div>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+  <p class="block-hint" data-ru="Нажмите на карточку чтобы перевернуть. Нажмите 🔊 чтобы послушать произношение. Откройте все 8 карточек." data-en="Click to flip each card. Press 🔊 to hear the word. Reveal all 8 to complete.">Click to flip. Press 🔊 to hear the word. Reveal all 8 cards to complete.</p>
+  <div class="fc-grid" id="fcGrid"></div>
+  <div class="fc-counter">Flipped: <span id="fcDone">0</span> / 8</div>
+</section>
+
+<!-- BLOCK 2 · SENTENCE BUILDER -->
+<section class="block" id="b2">
+  <div class="block-head">
+    <div class="block-num">02</div>
+    <div class="block-info">
+      <div class="block-kicker">Drag &amp; Drop · Past Simple / Passive</div>
+      <div class="block-title">Build the Sentence</div>
+    </div>
+    <div class="block-badge">2 / 3 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="Перетащите слова в правильный порядок. Прошедшее время, страдательный залог, сравнительные конструкции." data-en="Drag words into the correct order. Past simple, passive voice, comparative structures.">Drag words into the correct order — past simple, passive voice, comparatives. Get 2/3 correct to continue.</p>
+  <div class="sb-wrap" id="sbSentences"></div>
+  <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button class="btn btn-ghost" onclick="resetAllSB()">&#8635; Reset All</button>
+    <div id="sbPassMsg" style="font:700 11px/1 var(--mono);color:var(--ok);display:none;">&#10003; Section complete!</div>
+  </div>
+</section>
+
+<!-- BLOCK 3 · CANVAS MATCH -->
+<section class="block" id="b3">
+  <div class="block-head">
+    <div class="block-num">03</div>
+    <div class="block-info">
+      <div class="block-kicker">Canvas · Chinese Inventions</div>
+      <div class="block-title">Connect the Pairs</div>
+    </div>
+    <div class="block-badge">MATCH ALL 6</div>
+  </div>
+  <p class="block-hint" data-ru="Нажмите на изобретение слева, затем на его описание справа." data-en="Click an invention on the left, then its description on the right. Match all 6 pairs.">Click an invention on the left, then its description on the right. Match all 6 pairs to complete.</p>
+  <div class="match-wrap" id="matchWrap">
+    <canvas class="match-canvas" id="matchCanvas"></canvas>
+    <div class="match-cols" id="matchCols"></div>
+  </div>
+  <div class="match-status" id="matchStatus">Select an invention on the left to begin.</div>
+  <div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMatch()">&#8635; Shuffle &amp; Restart</button></div>
+</section>
+
+<!-- BLOCK 4 · SPEED TYPE -->
+<section class="block" id="b4">
+  <div class="block-head">
+    <div class="block-num">04</div>
+    <div class="block-info">
+      <div class="block-kicker">Speed Type · Timer Challenge</div>
+      <div class="block-title">Hear it — Type it</div>
+    </div>
+    <div class="block-badge">3 / 5 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="Нажмите на фразу чтобы прослушать. Напечатайте за 10 секунд. Комбо множит очки!" data-en="Click the phrase to hear it. Type it within 10 seconds. Combo multiplies your score!">Click the phrase to hear it again. Type it within 10 seconds. Score 3/5 to complete.</p>
+  <div id="stArea"></div>
+</section>
+
+<!-- BLOCK 5 · MEMORY -->
+<section class="block" id="b5">
+  <div class="block-head">
+    <div class="block-num">05</div>
+    <div class="block-info">
+      <div class="block-kicker">Memory · Flip &amp; Match</div>
+      <div class="block-title">Find the Pairs</div>
+    </div>
+    <div class="block-badge">MATCH ALL 6</div>
+  </div>
+  <p class="block-hint" data-ru="Переворачивайте карточки и ищите пары: слово + перевод. Запоминайте расположение!" data-en="Flip cards and find pairs: word + translation. Remember where each card is!">Flip cards to find matching pairs — word + translation. Fewer moves = better score!</p>
+  <div class="mem-grid" id="memGrid"></div>
+  <div class="mem-stats">Moves: <b id="memMoves">0</b> &nbsp;|&nbsp; Found: <b id="memFound">0</b>/6</div>
+  <div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMemory()">&#8635; Shuffle</button></div>
+</section>
+
+<!-- BLOCK 6 · GRAMMAR BLITZ -->
+<section class="block" id="b6">
+  <div class="block-head">
+    <div class="block-num">06</div>
+    <div class="block-info">
+      <div class="block-kicker">Grammar Blitz · Combo Multiplier</div>
+      <div class="block-title">A2 Grammar in Context</div>
+    </div>
+    <div class="block-badge">5 / 8 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="A2 грамматика: прошедшее время, артикли, предлоги, сравнительная степень, was/were. Комбо множит очки!" data-en="A2 grammar: past simple, articles, prepositions, comparatives, was/were. Combo multiplies your score!">A2 grammar in historical context — past simple, articles, prepositions, comparatives. Consecutive correct answers build your COMBO!</p>
+  <div id="blitzArea"></div>
+</section>
+
+<!-- BLOCK 7 · SPEECH (BONUS) -->
+<section class="block" id="b7">
+  <div class="block-head">
+    <div class="block-num">07</div>
+    <div class="block-info">
+      <div class="block-kicker">Speaking Practice · Bonus Points</div>
+      <div class="block-title">Say it Aloud</div>
+    </div>
+    <div class="block-badge">BONUS</div>
+  </div>
+  <p class="block-hint" data-ru="Chrome/Edge: нажмите 🎤 и произнесите фразу. Зарабатывайте бонусные очки!" data-en="Chrome/Edge: press 🎤 and say the phrase. Earn bonus points!">Chrome / Edge: press 🎤 and say the phrase clearly. Earn bonus points for correct pronunciation!</p>
+  <div id="speechArea"></div>
+</section>
+
+<!-- BLOCK 8 · WORD BUILDER (BONUS) -->
+<section class="block" id="b8">
+  <div class="block-head">
+    <div class="block-num">08</div>
+    <div class="block-info">
+      <div class="block-kicker">Compound Words · Word Construction</div>
+      <div class="block-title">Assemble the Word — Bonus</div>
+    </div>
+    <div class="block-badge">BONUS</div>
+  </div>
+  <p class="block-hint" data-ru="Нажимайте на части слова в правильном порядке, чтобы собрать сложное слово." data-en="Click word parts in the correct order to build the compound word.">Click word parts in the correct order to assemble the compound word. Earn bonus points!</p>
+  <div id="wbArea"></div>
+</section>
+
+<div class="all-done" id="allDone">
+  <div class="all-done-title">Lesson Complete!</div>
+  <div class="all-done-sub">A2 · Ancient China Explorer</div>
+  <div class="all-done-score">&#11088; &#11088; &#11088; &#11088; &#11088; &#11088;</div>
+  <div style="font:400 13px/1 var(--mono);color:var(--muted);margin-top:8px;">
+    Final score: <span style="color:var(--accent);font-weight:700;" id="finalScore">0</span> pts
+  </div>
+  <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+    <a class="btn btn-ghost" href="../index.html">&#8592; All Lessons</a>
+    <button class="btn btn-primary" onclick="location.reload()">&#8635; Play Again</button>
+  </div>
 </div>
-<div class="container">
-    <div class="hero">
-        <h1>🇨🇳 Древний Китай 🇨🇳</h1>
-        <div class="sub">🐼 Учимся играя с Федей! 🎋</div>
-    </div>
+</main>
 
-    <!-- 1. FLIP CARDS словарь -->
-    <div class="card">
-        <div class="section-title">📖 Словарик · переверни карточку</div>
-        <div class="grid-flip" id="vocabGrid"></div>
-    </div>
-
-    <!-- 2. Упражнение fill gap (10 предложений) -->
-    <div class="card">
-        <div class="section-title">✏️ Выбери правильное слово</div>
-        <div id="gapQuiz"></div>
-        <button class="btn" id="checkGapBtn">✅ Проверить упражнение</button>
-    </div>
-
-    <!-- 3. Speaking задание -->
-    <div class="card">
-        <div class="section-title">🗣️ Speaking · Моё путешествие в Китай</div>
-        <p><strong>Шаблон:</strong> I want to visit... First, I will see... Then I will eat... Because...</p>
-        <button class="btn" id="showIdeasBtn">📋 Показать идеи</button>
-        <button class="btn" id="startTimerBtn">🎤 Start speaking (30 sec)</button>
-        <span class="timer-box" id="timerDisplay">00:00</span>
-        <textarea id="speechAnswer" rows="3" placeholder="Напиши или скажи свой ответ..."></textarea>
-        <button class="btn" id="submitSpeechBtn">🏆 Отправить ответ +10 очков</button>
-        <div id="speechFeedback" style="margin-top:8px;"></div>
-    </div>
-
-    <!-- 4. Аудирование -->
-    <div class="card">
-        <div class="section-title">🎧 Аудирование · Послушай Мэй</div>
-        <button class="btn" id="listenBtn">🔊 Listen: My city Beijing</button>
-        <div id="audioQuiz"></div>
-        <button class="btn" id="checkAudioBtn">Проверить аудирование</button>
-    </div>
-
-    <!-- 5. Три текста о достопримечательностях -->
-    <div class="card">
-        <div class="section-title">🏯 Новые места Китая</div>
-        <div id="textsReading"></div>
-        <button class="btn" id="checkReadingBtn">✅ Проверить TRUE/FALSE</button>
-    </div>
-
-    <!-- ФИНАЛЬНЫЙ СЧЁТ -->
-    <div class="score-board">
-        🎋 ИТОГО: <span id="scoreValue">0</span> очков 🐉
-    </div>
-</div>
+<canvas id="confetti" style="display:none;"></canvas>
 
 <script>
-    // ---------- СЛОВАРЬ (все категории) ----------
-    const vocab = [
-        { ru: "Великая стена", en: "the Great Wall" }, { ru: "Запретный город", en: "the Forbidden City" },
-        { ru: "Терракотовая армия", en: "the Terracotta Army" }, { ru: "древние храмы", en: "ancient temples" },
-        { ru: "императорские дворцы", en: "imperial palaces" }, { ru: "пагоды", en: "pagodas" },
-        { ru: "каменные мосты", en: "stone bridges" }, { ru: "городские стены", en: "city walls" },
-        { ru: "традиционные сады", en: "traditional gardens" }, { ru: "старые ворота", en: "old gates" },
-        { ru: "панды", en: "pandas" }, { ru: "бамбук", en: "bamboo" }, { ru: "рис", en: "rice" },
-        { ru: "лапша", en: "noodles" }, { ru: "чай", en: "tea" }, { ru: "чайная культура", en: "tea culture" },
-        { ru: "уличная еда", en: "street food" }, { ru: "Китайский новый год", en: "Chinese New Year" },
-        { ru: "Пекин", en: "Beijing" }, { ru: "Шанхай", en: "Shanghai" }, { ru: "многолюдные улицы", en: "crowded streets" },
-        { ru: "фабрики", en: "factories" }, { ru: "технологии", en: "technology" }, { ru: "императоры", en: "emperors" },
-        { ru: "империя", en: "empire" }, { ru: "шёлк", en: "silk" }, { ru: "бумага", en: "paper" }, { ru: "торговля", en: "trade" }
-    ];
+/* ── CORE ── */
+let totalScore=0, combo=1, doneCount=0;
+function addScore(p){totalScore+=p*combo;document.getElementById('hudScore').textContent=totalScore;}
+function bumpCombo(){combo=Math.min(combo+1,8);const el=document.getElementById('hudCombo');el.textContent='COMBO x'+combo;el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');setTimeout(()=>el.classList.remove('bump'),300);}
+function resetCombo(){combo=1;document.getElementById('hudCombo').textContent='COMBO x1';}
+function completeTask(n){
+  if(n<1||n>6)return;
+  document.getElementById('rd'+n).classList.add('done');
+  document.getElementById('s'+n).classList.add('lit');
+  addScore(50); doneCount++;
+  if(doneCount>=6){setTimeout(()=>{document.getElementById('allDone').classList.add('show');document.getElementById('finalScore').textContent=totalScore;launchConfetti();},600);}
+}
+function speak(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.84;speechSynthesis.cancel();speechSynthesis.speak(u);}
+function toggleLang(){const l=document.documentElement.dataset.lang==='ru'?'en':'ru';document.documentElement.dataset.lang=l;document.querySelectorAll('[data-ru],[data-en]').forEach(el=>{if(el.dataset[l])el.textContent=el.dataset[l];});}
 
-    let totalScore = 0;
-    function addPoints(p) { totalScore += p; document.getElementById('scoreValue').innerText = totalScore; }
+/* ── CONFETTI ── */
+function launchConfetti(){
+  const cv=document.getElementById('confetti');cv.style.display='block';
+  const ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const cols=['#3a6624','#8b3010','#5a9038','#d4a017','#b84520','#2e7d32'];
+  const p=Array.from({length:150},()=>({x:Math.random()*cv.width,y:-10,
+    w:Math.random()*8+4,h:Math.random()*12+5,rot:Math.random()*Math.PI*2,
+    vx:(Math.random()-.5)*5,vy:Math.random()*4+2,
+    col:cols[Math.floor(Math.random()*cols.length)],a:1}));
+  let f=0;function draw(){ctx.clearRect(0,0,cv.width,cv.height);
+    p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.rot+=.08;q.a-=.005;
+      ctx.save();ctx.globalAlpha=Math.max(0,q.a);ctx.translate(q.x,q.y);ctx.rotate(q.rot);
+      ctx.fillStyle=q.col;ctx.beginPath();ctx.ellipse(0,0,q.w/2,q.h/2,0,0,Math.PI*2);ctx.fill();ctx.restore();});
+    f++;if(f<200)requestAnimationFrame(draw);else cv.style.display='none';}draw();}
 
-    // 1. FLIP CARDS с озвучкой
-    function renderFlipCards() {
-        const container = document.getElementById('vocabGrid');
-        container.innerHTML = '';
-        vocab.forEach((item, idx) => {
-            const flipDiv = document.createElement('div');
-            flipDiv.className = 'flip-card';
-            flipDiv.innerHTML = `<div class="flip-inner">
-                <div class="flip-front">🇷🇺 ${item.ru}</div>
-                <div class="flip-back">🇬🇧 ${item.en}<br><button class="speak-btn" data-word="${item.en}">🔊 Произнести</button></div>
-            </div>`;
-            flipDiv.addEventListener('click', (e) => {
-                if(e.target.classList.contains('speak-btn')) {
-                    e.stopPropagation();
-                    speakWord(e.target.getAttribute('data-word'));
-                } else flipDiv.classList.toggle('flipped');
-            });
-            container.appendChild(flipDiv);
-        });
-    }
-    function speakWord(word) { if(window.speechSynthesis) { let u = new SpeechSynthesisUtterance(word); u.lang='en-US'; speechSynthesis.cancel(); speechSynthesis.speak(u); } }
+/* ══ BLOCK 1 · FLASHCARDS ══ */
+const FC=[
+  {en:'dynasty',    ipa:'/ˈdaɪnəsti/',   ru:'династия'},
+  {en:'emperor',    ipa:'/ˈempərə/',      ru:'император'},
+  {en:'silk',       ipa:'/sɪlk/',         ru:'шёлк'},
+  {en:'jade',       ipa:'/dʒeɪd/',        ru:'нефрит'},
+  {en:'temple',     ipa:'/ˈtempəl/',      ru:'храм'},
+  {en:'merchant',   ipa:'/ˈmɜːtʃənt/',   ru:'купец'},
+  {en:'scroll',     ipa:'/skrəʊl/',       ru:'свиток'},
+  {en:'festival',   ipa:'/ˈfestɪvəl/',   ru:'праздник'},
+];
+let fcFlipped=0;
+(function(){
+  const g=document.getElementById('fcGrid');
+  FC.forEach(w=>{
+    const fc=document.createElement('div');fc.className='fc';
+    fc.innerHTML=`<div class="fc-inner"><div class="fc-front"><div class="fc-word">${w.en}</div><div class="fc-ipa">${w.ipa}</div><button class="fc-speak" type="button">&#128266;</button><div class="fc-hint">tap to flip</div></div><div class="fc-back"><div class="fc-ru">${w.ru}</div><div class="fc-word" style="font-size:.85rem">${w.en}</div><button class="fc-speak" type="button">&#128266;</button></div></div>`;
+    fc.querySelectorAll('.fc-speak').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();speak(w.en);addScore(1);}));
+    let done=false;
+    fc.addEventListener('click',()=>{fc.classList.toggle('flipped');if(!done&&fc.classList.contains('flipped')){done=true;fcFlipped++;speak(w.en);addScore(3);document.getElementById('fcDone').textContent=fcFlipped;if(fcFlipped>=8)completeTask(1);}});
+    g.appendChild(fc);
+  });
+})();
 
-    // 2. GAP FILL (10 предложений)
-    const gapSentences = [
-        { text: "China is a very __________ country.", options: ["interesting", "boring", "small"], correct: "interesting" },
-        { text: "There are many big __________ like Beijing and Shanghai.", options: ["rivers", "cities", "mountains"], correct: "cities" },
-        { text: "The streets are often very __________.", options: ["empty", "crowded", "quiet"], correct: "crowded" },
-        { text: "China is famous for the Great Wall and __________.", options: ["pandas", "tigers", "elephants"], correct: "pandas" },
-        { text: "People eat __________ and noodles.", options: ["bread", "rice", "pizza"], correct: "rice" },
-        { text: "__________ food is also very popular.", options: ["Street", "Fast", "Frozen"], correct: "Street" },
-        { text: "__________ culture is important in China.", options: ["Coffee", "Tea", "Milk"], correct: "Tea" },
-        { text: "Chinese __________ Year is a big holiday.", options: ["Old", "New", "Lunar"], correct: "New" },
-        { text: "China has many __________ and produces a lot of things.", options: ["factories", "farms", "schools"], correct: "factories" },
-        { text: "It is also very modern because of __________.", options: ["nature", "technology", "animals"], correct: "technology" }
-    ];
-    let gapAnswers = new Array(10).fill(null);
-    function renderGapQuiz() {
-        const container = document.getElementById('gapQuiz');
-        container.innerHTML = '';
-        gapSentences.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div>${idx+1}. ${item.text}</div><div class="options" id="gapOpts-${idx}"></div>`;
-            container.appendChild(div);
-            const optsDiv = div.querySelector(`.options`);
-            const shuffled = [...item.options];
-            shuffled.forEach(opt => {
-                const optBtn = document.createElement('div');
-                optBtn.className = 'opt';
-                optBtn.innerText = opt;
-                optBtn.addEventListener('click', () => {
-                    document.querySelectorAll(`#gapOpts-${idx} .opt`).forEach(b => { b.style.background = "#8B0000"; b.style.opacity = "0.7"; });
-                    optBtn.style.background = "#DAA520";
-                    optBtn.style.opacity = "1";
-                    gapAnswers[idx] = opt;
-                });
-                optsDiv.appendChild(optBtn);
-            });
-        });
-    }
-    function checkGap() {
-        let correct = 0;
-        gapSentences.forEach((item, i) => { if(gapAnswers[i] === item.correct) correct++; });
-        addPoints(correct * 3);
-        alert(`Правильных ответов: ${correct}/${gapSentences.length}\n+${correct*3} очков!`);
-    }
+/* ══ BLOCK 2 · SENTENCE BUILDER ══ */
+const SB=[
+  {words:['The','Great','Wall','was','built','to','protect','China','from','invaders'],answer:'The Great Wall was built to protect China from invaders'},
+  {words:['Silk','was','more','valuable','than','gold','in','the','ancient','world'],answer:'Silk was more valuable than gold in the ancient world'},
+  {words:['Chinese','merchants','traveled','long','distances','to','trade','their','goods'],answer:'Chinese merchants traveled long distances to trade their goods'},
+];
+let sbCorrect=0;
+(function(){
+  const wrap=document.getElementById('sbSentences');
+  SB.forEach((s,si)=>{
+    const sh=[...s.words].sort(()=>Math.random()-.5);
+    const d=document.createElement('div');
+    d.innerHTML=`<div class="sb-label">Sentence ${si+1} of ${SB.length}</div><div class="sb-target" id="sbt${si}"></div><div class="sb-bank" id="sbb${si}"></div><div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;align-items:center;"><button onclick="checkSB(${si})" class="btn btn-warn" style="padding:7px 13px;font-size:9px;">CHECK</button><button onclick="resetSB(${si})" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">RESET</button><div class="sb-result" id="sbr${si}"></div></div>`;
+    wrap.appendChild(d);
+    const bank=document.getElementById('sbb'+si);
+    sh.forEach(w=>{const t=document.createElement('div');t.className='token';t.textContent=w;t.draggable=true;
+      t.addEventListener('dragstart',e=>{e.dataTransfer.setData('text',w);e.dataTransfer.setData('si',si);t.classList.add('dragging');});
+      t.addEventListener('dragend',()=>t.classList.remove('dragging'));
+      t.addEventListener('click',()=>moveToken(t,si));bank.appendChild(t);});
+    const tgt=document.getElementById('sbt'+si);
+    tgt.addEventListener('dragover',e=>{e.preventDefault();tgt.classList.add('over');});
+    tgt.addEventListener('dragleave',()=>tgt.classList.remove('over'));
+    tgt.addEventListener('drop',e=>{e.preventDefault();tgt.classList.remove('over');const w=e.dataTransfer.getData('text');const b2=document.getElementById('sbb'+e.dataTransfer.getData('si'));const tok=[...b2.children].find(c=>c.textContent===w&&!c.classList.contains('placed'));if(tok){tok.classList.add('placed');addToTarget(w,si,tok);}});
+  });
+})();
+function addToTarget(word,si,srcToken){const t=document.getElementById('sbt'+si);const el=document.createElement('div');el.className='token placed';el.textContent=word;el.style.cursor='pointer';el.addEventListener('click',()=>{t.removeChild(el);if(srcToken)srcToken.classList.remove('placed');});t.appendChild(el);}
+function moveToken(tok,si){const b=document.getElementById('sbb'+si);if(tok.parentElement===b){tok.classList.add('placed');addToTarget(tok.textContent,si,tok);}}
+function checkSB(si){const t=document.getElementById('sbt'+si);const r=document.getElementById('sbr'+si);const built=[...t.children].map(c=>c.textContent).join(' ');const ok=built.toLowerCase()===SB[si].answer.toLowerCase();t.className='sb-target '+(ok?'correct':'wrong');r.style.display='inline-block';r.className='sb-result '+(ok?'ok':'err');if(ok){r.textContent='✓ Correct! +'+(12*combo)+' pts';addScore(12);bumpCombo();speak('Well done!');sbCorrect++;if(sbCorrect>=2&&!document.getElementById('sbPassMsg').dataset.done){document.getElementById('sbPassMsg').style.display='inline';document.getElementById('sbPassMsg').dataset.done='1';completeTask(2);}}else{r.textContent='✗ Try again!';resetCombo();}}
+function resetSB(si){const t=document.getElementById('sbt'+si);t.innerHTML='';t.className='sb-target';document.getElementById('sbr'+si).style.display='none';[...document.getElementById('sbb'+si).children].forEach(c=>c.classList.remove('placed'));}
+function resetAllSB(){SB.forEach((_,i)=>resetSB(i));}
 
-    // 3. Speaking
-    document.getElementById('showIdeasBtn').onclick = () => { document.getElementById('speechFeedback').innerHTML = "💡 Идеи: Great Wall, pandas, Beijing noodles, Forbidden City, terracotta warriors!"; };
-    let timerInterval;
-    document.getElementById('startTimerBtn').onclick = () => {
-        if(timerInterval) clearInterval(timerInterval);
-        let seconds = 30;
-        const disp = document.getElementById('timerDisplay');
-        const update = () => {
-            let m = Math.floor(seconds/60);
-            let s = seconds%60;
-            disp.innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-            if(seconds<=0) { clearInterval(timerInterval); disp.innerText = "TIME'S UP!"; }
-            seconds--;
-        };
-        update();
-        timerInterval = setInterval(update,1000);
-    };
-    document.getElementById('submitSpeechBtn').onclick = () => {
-        let answer = document.getElementById('speechAnswer').value.trim();
-        if(answer.length > 15) { addPoints(10); document.getElementById('speechFeedback').innerHTML = "✨ Отличная речь! +10 очков"; }
-        else { document.getElementById('speechFeedback').innerHTML = "📝 Напиши подлиннее (минимум 15 символов)"; }
-    };
+/* ══ BLOCK 3 · MATCH ══ */
+const MATCH=[
+  {en:'paper',      def:'writing surface made from plant fibres'},
+  {en:'compass',    def:'navigation tool that always points north'},
+  {en:'gunpowder',  def:'explosive mixture used in fireworks and cannons'},
+  {en:'printing',   def:'technique for reproducing text on many pages'},
+  {en:'silk',       def:'luxury fabric made from silkworm cocoons'},
+  {en:'porcelain',  def:'fine white ceramic pottery from China'},
+];
+let matchSel=null,matchLines=[],matchDone=0;
+function initMatch(){
+  matchSel=null;matchLines=[];matchDone=0;
+  const cols=document.getElementById('matchCols');
+  const sh=[...MATCH].sort(()=>Math.random()-.5);
+  cols.innerHTML='<div class="match-col" id="mcEn"></div><div class="match-col" id="mcDef"></div>';
+  MATCH.forEach((p,i)=>{const el=document.createElement('div');el.className='match-item';el.textContent=p.en;el.dataset.key=i;el.dataset.side='en';el.addEventListener('click',()=>matchClick(el));document.getElementById('mcEn').appendChild(el);});
+  sh.forEach(p=>{const i=MATCH.indexOf(p);const el=document.createElement('div');el.className='match-item def-side';el.textContent=p.def;el.dataset.key=i;el.dataset.side='def';el.addEventListener('click',()=>matchClick(el));document.getElementById('mcDef').appendChild(el);});
+  document.getElementById('matchStatus').textContent='Select an invention on the left to begin.';
+  redrawMatch();
+}
+function matchClick(el){
+  if(el.classList.contains('matched'))return;
+  if(!matchSel){if(el.dataset.side!=='en')return;matchSel=el;el.classList.add('selected');document.getElementById('matchStatus').textContent='→ '+el.textContent+' selected — click its description';return;}
+  if(el.dataset.side==='en'){matchSel.classList.remove('selected');matchSel=el;el.classList.add('selected');return;}
+  const ok=matchSel.dataset.key===el.dataset.key;
+  if(ok){matchSel.classList.remove('selected');matchSel.classList.add('matched');el.classList.add('matched');speak(matchSel.textContent);matchLines.push({from:matchSel,to:el});matchDone++;addScore(18);bumpCombo();document.getElementById('matchStatus').innerHTML=`<span style="color:var(--ok)">&#10003; Matched: ${matchSel.textContent}</span>`;if(matchDone===MATCH.length){launchConfetti();addScore(30);setTimeout(()=>completeTask(3),400);}}
+  else{matchSel.classList.add('error');el.classList.add('error');setTimeout(()=>{matchSel.classList.remove('error','selected');el.classList.remove('error');},600);resetCombo();document.getElementById('matchStatus').innerHTML='<span style="color:var(--err)">&#10007; Wrong pair — try again</span>';}
+  matchSel=null;redrawMatch();
+}
+function getCenter(el){const wr=document.getElementById('matchWrap').getBoundingClientRect();const r=el.getBoundingClientRect();return{x:r.left-wr.left+r.width/2,y:r.top-wr.top+r.height/2};}
+function redrawMatch(){const cv=document.getElementById('matchCanvas');const wr=document.getElementById('matchWrap');if(!wr)return;cv.width=wr.offsetWidth;cv.height=wr.offsetHeight;const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);matchLines.forEach(l=>{const a=getCenter(l.from),b=getCenter(l.to);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='var(--ok)';ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);[a,b].forEach(pt=>{ctx.beginPath();ctx.arc(pt.x,pt.y,4,0,Math.PI*2);ctx.fillStyle='var(--ok)';ctx.fill();});});}
+window.addEventListener('resize',redrawMatch);
+initMatch();
 
-    // 4. Аудирование
-    const audioText = "Hello! My name is Mei. I live in Beijing. The Forbidden City is very old and beautiful. Many tourists visit it every year. I want to go there with my family.";
-    const audioQuestions = [
-        { q: "What is the girl's name?", opts: ["Li", "Mei", "Zhou"], correct: "Mei" },
-        { q: "Where does she live?", opts: ["Shanghai", "Beijing", "Guilin"], correct: "Beijing" },
-        { q: "What place does she want to visit?", opts: ["Great Wall", "Forbidden City", "Terracotta Army"], correct: "Forbidden City" }
-    ];
-    let audioAnswers = new Array(3).fill(null);
-    function renderAudioQuiz() {
-        const container = document.getElementById('audioQuiz');
-        container.innerHTML = '';
-        audioQuestions.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div>${idx+1}. ${item.q}</div><div class="options" id="audioOpts-${idx}"></div>`;
-            container.appendChild(div);
-            item.opts.forEach(opt => {
-                const btn = document.createElement('div');
-                btn.className = 'opt';
-                btn.innerText = opt;
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll(`#audioOpts-${idx} .opt`).forEach(b => b.style.background = "#8B0000");
-                    btn.style.background = "#228B22";
-                    audioAnswers[idx] = opt;
-                });
-                div.querySelector(`.options`).appendChild(btn);
-            });
-        });
-    }
-    document.getElementById('listenBtn').onclick = () => { speakWord(audioText); };
-    function checkAudio() {
-        let correct = 0;
-        audioQuestions.forEach((q,i) => { if(audioAnswers[i] === q.correct) correct++; });
-        addPoints(correct * 3);
-        alert(`Аудирование: ${correct}/3 правильных! +${correct*3} очков`);
-    }
+/* ══ BLOCK 4 · SPEED TYPE ══ */
+const ST=['China invented paper over two thousand years ago','The Great Wall stretches across mountains and deserts','Chinese merchants traveled the Silk Road to trade goods','The first Chinese emperor was called Qin Shi Huang','Tea became one of China\'s most important exports'];
+let stIdx=0,stTimer=null,stTime=10,stCorrect=0;
+(function(){const area=document.getElementById('stArea');area.innerHTML=`<div class="st-timer"><div class="timer-bar"><div class="timer-fill" id="stFill" style="width:100%"></div></div><div class="timer-num" id="stNum">10</div></div><div class="st-display" id="stDisplay" onclick="speak(ST[stIdx%ST.length])"><span style="opacity:.5">&#9654; Click to hear the first phrase</span></div><div class="st-input-row"><input class="st-input" id="stInput" type="text" placeholder="Type what you hear..." autocomplete="off" disabled><button onclick="checkST()" class="btn btn-ghost" style="flex-shrink:0;">CHECK</button></div><div class="st-msg" id="stMsg"></div><div style="font:400 10px/1 var(--mono);color:var(--faint);margin-top:5px;">Phrase <span id="stIdxD">0</span>/${ST.length} | Correct: <span id="stCorrD">0</span>/5</div>`;document.getElementById('stDisplay').addEventListener('click',startST);document.getElementById('stInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkST();});})();
+function startST(){if(stTimer)clearInterval(stTimer);stTime=10;const ph=ST[stIdx%ST.length];document.getElementById('stDisplay').innerHTML=`<span onclick="speak('${ph.replace(/'/g,"\\'")}')" style="cursor:pointer">&#9654; ${ph}</span>`;document.getElementById('stIdxD').textContent=(stIdx%ST.length)+1;const inp=document.getElementById('stInput');inp.value='';inp.disabled=false;inp.focus();inp.className='st-input';document.getElementById('stMsg').textContent='';document.getElementById('stFill').style.width='100%';document.getElementById('stFill').classList.remove('warn');speak(ph);stTimer=setInterval(()=>{stTime--;const p=(stTime/10)*100;document.getElementById('stFill').style.width=p+'%';document.getElementById('stNum').textContent=stTime;if(stTime<=3)document.getElementById('stFill').classList.add('warn');if(stTime<=0){clearInterval(stTimer);checkST(true);}},1000);}
+function checkST(timeout=false){if(stTimer)clearInterval(stTimer);const inp=document.getElementById('stInput');const ph=ST[stIdx%ST.length];const typed=inp.value.trim().toLowerCase().replace(/[^a-z\s]/g,'');const correct=ph.toLowerCase().replace(/[^a-z\s]/g,'');const ok=typed===correct;inp.className='st-input '+(ok?'ok':'err');const msg=document.getElementById('stMsg');if(timeout&&!ok){msg.style.color='var(--err)';msg.textContent='⏱ Time up! Was: '+ph;resetCombo();}else if(ok){const pts=stTime*4*combo;addScore(pts);bumpCombo();msg.style.color='var(--ok)';msg.textContent='✓ +'+pts+' pts ('+stTime+'s left ×'+combo+' combo)';speak('Excellent!');stCorrect++;document.getElementById('stCorrD').textContent=stCorrect;if(stCorrect>=3&&!document.getElementById('stArea').dataset.done){document.getElementById('stArea').dataset.done='1';completeTask(4);}}else{msg.style.color='var(--err)';msg.textContent='✗ Was: '+ph;resetCombo();}inp.disabled=true;stIdx++;if(stIdx<ST.length)setTimeout(startST,1700);}
 
-    // 5. Три текста + TRUE/FALSE
-    const readingItems = [
-        { title: "🏯 The Summer Palace", text: "The Summer Palace is in Beijing. It has a big lake and many gardens. Emperors liked to rest there in summer.", statement: "The Summer Palace has a big lake.", answer: true },
-        { title: "🏞️ The Li River", text: "The Li River is in Guilin. The mountains near the river look like paintings. Many people take a boat trip there.", statement: "The Li River is near Beijing.", answer: false },
-        { title: "🗿 The Giant Buddha of Leshan", text: "The Giant Buddha is a huge stone statue carved into a mountain. It is over 70 metres tall.", statement: "The Giant Buddha is more than 70 metres tall.", answer: true }
-    ];
-    let readingUser = new Array(3).fill(null);
-    function renderReading() {
-        const container = document.getElementById('textsReading');
-        container.innerHTML = '';
-        readingItems.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div><strong>${item.title}</strong><br>${item.text}</div>
-            <div style="margin-top:12px;"><strong>❓ TRUE or FALSE:</strong> ${item.statement}</div>
-            <div class="options"><div class="opt" data-r-idx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-r-idx="${idx}" data-val="false">❌ FALSE</div></div>`;
-            container.appendChild(div);
-        });
-        document.querySelectorAll('[data-r-idx]').forEach(el => {
-            el.addEventListener('click', (e) => {
-                const idx = parseInt(el.dataset.rIdx);
-                const val = el.dataset.val === 'true';
-                readingUser[idx] = val;
-                el.style.background = "#228B22";
-                document.querySelectorAll(`[data-r-idx="${idx}"]`).forEach(b => { if(b !== el) b.style.background = "#8B0000"; });
-            });
-        });
-    }
-    function checkReading() {
-        let correct = 0;
-        readingItems.forEach((item, i) => { if(readingUser[i] === item.answer) correct++; });
-        addPoints(correct * 4);
-        alert(`Чтение: ${correct}/${readingItems.length} правильных! +${correct*4} очков`);
-    }
+/* ══ BLOCK 5 · MEMORY ══ */
+const MEM=[
+  {term:'dynasty',  def:'ruling family'},
+  {term:'emperor',  def:'ruler of empire'},
+  {term:'silk',     def:'fabric from worms'},
+  {term:'jade',     def:'green gem stone'},
+  {term:'temple',   def:'religious building'},
+  {term:'scroll',   def:'ancient text roll'},
+];
+let memF=[],memM=0,memMov=0,memLk=false;
+function initMemory(){memF=[];memM=0;memMov=0;memLk=false;document.getElementById('memMoves').textContent=0;document.getElementById('memFound').textContent=0;const cards=[];MEM.forEach((p,i)=>{cards.push({id:i,text:p.term});cards.push({id:i,text:p.def});});cards.sort(()=>Math.random()-.5);const g=document.getElementById('memGrid');g.innerHTML='';cards.forEach(c=>{const card=document.createElement('div');card.className='mem-card';card.dataset.id=c.id;card.dataset.text=c.text;const fs=c.text.length>10?'9px':'11px';card.innerHTML=`<div class="mc-inner"><div class="mc-front">&#128048;</div><div class="mc-back" style="font-size:${fs}">${c.text}</div></div>`;card.addEventListener('click',()=>memClick(card));g.appendChild(card);});}
+function memClick(card){if(memLk||card.classList.contains('reveal')||card.classList.contains('matched'))return;card.classList.add('reveal');memF.push(card);if(memF.length===2){memLk=true;memMov++;document.getElementById('memMoves').textContent=memMov;const[a,b]=memF;if(a.dataset.id===b.dataset.id&&a!==b){a.classList.add('matched');b.classList.add('matched');memM++;document.getElementById('memFound').textContent=memM;addScore(22);bumpCombo();speak(a.dataset.text);memF=[];memLk=false;if(memM===MEM.length){setTimeout(()=>{launchConfetti();completeTask(5);},300);}}else{resetCombo();a.classList.add('wrong');b.classList.add('wrong');setTimeout(()=>{a.classList.remove('reveal','wrong');b.classList.remove('reveal','wrong');memF=[];memLk=false;},900);}}}
+initMemory();
 
-    // Инициализация
-    renderFlipCards();
-    renderGapQuiz();
-    renderAudioQuiz();
-    renderReading();
+/* ══ BLOCK 6 · GRAMMAR BLITZ ══ */
+const BLITZ=[
+  {q:'The Great Wall ___ built more than two thousand years ago.',opts:['is','was','were','has been'],a:1,exp:'Past simple passive: "was built" — completed action in the past.'},
+  {q:'___ Great Wall is one of the most famous structures in the world.',opts:['A','An','The','—'],a:2,exp:'"The" — we use the definite article for unique, specific things.'},
+  {q:'Silk was ___ expensive than wool in ancient times.',opts:['more','most','much','very'],a:0,exp:'"More... than" — comparative with two-syllable+ adjectives.'},
+  {q:'Merchants traveled ___ the Silk Road to reach Europe.',opts:['through','along','across','by'],a:1,exp:'"Along" — moving in the direction of a route or road.'},
+  {q:'___ many different dynasties in China\'s long history.',opts:['There was','There were','It was','They were'],a:1,exp:'"There were" — plural existential construction in past simple.'},
+  {q:'Chinese people ___ tea every day, even in ancient times.',opts:['drinks','drank','drunk','drink'],a:1,exp:'"Drank" — past simple of "drink" (irregular verb).'},
+  {q:'Paper ___ cheaper and lighter than clay tablets.',opts:['is','was','were','been'],a:1,exp:'"Was" — past simple of "to be" for singular subject.'},
+  {q:'Archaeologists have ___ ancient scrolls in many Chinese tombs.',opts:['find','found','finding','finded'],a:1,exp:'"Found" — past participle of "find" (irregular). Used with present perfect "have found".'},
+];
+let blitzIdx=0,blitzScore=0;
+function initBlitz(){blitzIdx=0;blitzScore=0;renderBlitz();}
+function renderBlitz(){const area=document.getElementById('blitzArea');if(blitzIdx>=BLITZ.length){const passed=blitzScore>=5;area.innerHTML=`<div style="padding:16px;background:var(--card);border-radius:10px;font:700 13px/1.6 var(--body);">${passed?'<span style="color:var(--ok)">&#10003;':'<span style="color:var(--err)">&#10007;'} Blitz complete — ${blitzScore}/${BLITZ.length} correct</span><br><span style="font:400 10px/1 var(--mono);color:var(--faint);">Score: ${totalScore} pts</span></div><button onclick="initBlitz()" class="btn btn-ghost" style="margin-top:10px;">&#8635; Replay</button>`;if(passed&&!area.dataset.done){area.dataset.done='1';completeTask(6);}return;}
+const q=BLITZ[blitzIdx];const pct=(blitzIdx/BLITZ.length)*100;area.innerHTML=`<div class="blitz-q">${q.q.replace('___','<span class="blank">___</span>')}</div><div class="blitz-opts">${q.opts.map((o,i)=>`<button class="blitz-opt" onclick="answerBlitz(${i})" type="button">${o}</button>`).join('')}</div><div class="blitz-bar"><div class="combo-pill">COMBO x${combo}</div><div class="blitz-prog"><div class="blitz-prog-fill" style="width:${pct}%"></div></div><div>Q ${blitzIdx+1}/${BLITZ.length}</div></div>`;}
+function answerBlitz(i){const q=BLITZ[blitzIdx];document.querySelectorAll('.blitz-opt').forEach((b,bi)=>{b.disabled=true;if(bi===q.a)b.classList.add('correct');else if(bi===i&&i!==q.a)b.classList.add('wrong');});const ok=i===q.a;if(ok){addScore(14);bumpCombo();blitzScore++;speak(q.opts[q.a]);}else resetCombo();const exp=document.createElement('div');exp.className='blitz-exp';exp.textContent=q.exp;document.getElementById('blitzArea').appendChild(exp);blitzIdx++;setTimeout(renderBlitz,1300);}
+initBlitz();
 
-    document.getElementById('checkGapBtn').onclick = checkGap;
-    document.getElementById('checkAudioBtn').onclick = checkAudio;
-    document.getElementById('checkReadingBtn').onclick = checkReading;
+/* ══ BLOCK 7 · SPEECH ══ */
+const SP=['China invented paper, printing, and gunpowder','The Great Wall was built to protect ancient China','The Silk Road was a trading route from China to Europe'];
+let spIdx=0;
+(function(){const area=document.getElementById('speechArea');const Rec=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Rec){area.innerHTML=`<div style="font:400 12px/1.6 var(--mono);color:var(--muted);padding:12px;background:var(--card);border-radius:8px;">Speech Recognition needs Chrome or Edge. Use &#128266; to hear the phrases.</div>${buildSPUI(false)}`;return;}renderSP(Rec,area);})();
+function buildSPUI(hasRec){const p=SP[spIdx%SP.length];return`<div class="mic-area"><div class="mic-phrase">${p}</div><button class="mic-btn" id="micBtn">&#127908;</button><div class="mic-transcript" id="micTxt">Press mic and speak...</div><div class="mic-result" id="micRes"></div><div class="speech-nav"><button onclick="speak('${p.replace(/'/g,"\\'")}');addScore(2);" class="btn btn-ghost">&#128266; HEAR</button><button onclick="spIdx++;${hasRec?`renderSP(window.SpeechRecognition||window.webkitSpeechRecognition,document.getElementById('speechArea'))`:`document.getElementById('speechArea').innerHTML=buildSPUI(false)`}" class="btn btn-ghost">NEXT &#8594;</button></div></div>`;}
+function renderSP(Rec,area){const p=SP[spIdx%SP.length];area.innerHTML=buildSPUI(true);const rec=new Rec();rec.lang='en-US';rec.continuous=false;rec.interimResults=true;const btn=document.getElementById('micBtn');let going=false;btn.addEventListener('click',()=>{if(!going){going=true;rec.start();btn.classList.add('recording');btn.textContent='⏹';}else{going=false;rec.stop();btn.classList.remove('recording');btn.textContent='\u{1F3A4}';}});rec.onresult=e=>{const txt=[...e.results].map(r=>r[0].transcript).join('');document.getElementById('micTxt').textContent=txt;if(e.results[e.results.length-1].isFinal){const fw=p.toLowerCase().split(' ').slice(0,3).join(' ');const ok=txt.toLowerCase().includes(fw);const res=document.getElementById('micRes');res.style.display='block';res.className='mic-result '+(ok?'ok':'err');res.textContent=ok?'✓ Great pronunciation! +25 pts':'✗ Try again: '+p;if(ok){addScore(25);bumpCombo();}btn.classList.remove('recording');btn.textContent='\u{1F3A4}';going=false;}};rec.onerror=()=>{btn.classList.remove('recording');btn.textContent='\u{1F3A4}';going=false;};}
+
+/* ══ BLOCK 8 · WORD BUILDER ══ */
+const WB=[
+  {target:'silkworm',   def:'the caterpillar that produces silk threads',    parts:[{t:'silk',ty:'root'},{t:'worm',ty:'suffix'}]},
+  {target:'marketplace',def:'a place where people buy and sell goods',       parts:[{t:'market',ty:'root'},{t:'place',ty:'suffix'}]},
+  {target:'handmade',   def:'made by hand, not by machine',                  parts:[{t:'hand',ty:'root'},{t:'made',ty:'suffix'}]},
+  {target:'artwork',    def:'creative objects or paintings',                  parts:[{t:'art',ty:'root'},{t:'work',ty:'suffix'}]},
+];
+let wbIdx=0,wbBuilt=[];
+function initWB(){renderWB();}
+function renderWB(){const area=document.getElementById('wbArea');const w=WB[wbIdx%WB.length];wbBuilt=[];const sh=[...w.parts].sort(()=>Math.random()-.5);area.innerHTML=`<div class="wb-def"><strong>Meaning:</strong> ${w.def}</div><div class="wb-target" id="wbT"><span style="font:400 9px/1 var(--mono);color:var(--faint);letter-spacing:.1em;">click parts below ↓</span></div><div class="wb-bank">${sh.map((p,i)=>`<div class="morpheme ${p.ty}" id="wbm${i}" data-text="${p.t}" data-type="${p.ty}" onclick="addMorpheme(this)">${p.t}</div>`).join('')}</div><div style="display:flex;gap:7px;margin-top:10px;align-items:center;flex-wrap:wrap;"><button onclick="checkWB()" class="btn btn-primary" style="padding:7px 13px;font-size:9px;">CHECK</button><button onclick="wbBuilt=[];renderWB()" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">RESET</button><button onclick="wbIdx++;renderWB()" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">NEXT &#8594;</button><div id="wbMsg" class="wb-msg"></div></div>`;}
+function addMorpheme(el){if(el.classList.contains('placed')){el.classList.remove('placed');wbBuilt=wbBuilt.filter(t=>t!==el.dataset.text);}else{el.classList.add('placed');wbBuilt.push(el.dataset.text);}const t=document.getElementById('wbT');if(wbBuilt.length){t.innerHTML=wbBuilt.map(tx=>{const ty=document.querySelector(`[data-text="${tx}"]`)?.dataset.type||'';return`<div class="morpheme ${ty}" style="cursor:default">${tx}</div>`;}).join('');}else t.innerHTML='<span style="font:400 9px/1 var(--mono);color:var(--faint);letter-spacing:.1em;">click parts below ↓</span>';}
+function checkWB(){const w=WB[wbIdx%WB.length];const built=wbBuilt.join('');const ok=built.toLowerCase()===w.target.toLowerCase();const t=document.getElementById('wbT');const msg=document.getElementById('wbMsg');t.classList.toggle('correct',ok);if(ok){msg.style.color='var(--ok)';msg.textContent='✓ '+w.target+' — +'+(18*combo)+' pts';addScore(18);bumpCombo();speak(w.target);setTimeout(launchConfetti,200);}else{msg.style.color='var(--err)';msg.textContent='✗ Expected: '+w.target;resetCombo();}}
+initWB();
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
 </body>
 </html>
-

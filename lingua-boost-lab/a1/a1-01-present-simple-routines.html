@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Present Simple Routines · A1 · LinguaBoost Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="../assets/lab-theme-sync.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -220,11 +220,7 @@ select.btn-tool { width: 118px; }
 }
 .vocab-back { transform: rotateY(180deg); }
 .vocab-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.icon-btn {
-  width: 34px; height: 34px; display: inline-grid; place-items: center; border: 1px solid var(--line-2);
-  border-radius: 8px; background: var(--soft); color: var(--text); cursor: pointer;
-  font-family: var(--mono); font-weight: 900;
-}
+.icon-btn { min-width: 58px; height: 34px; padding: 0 10px; display: inline-grid; place-items: center; border: 1px solid var(--line-2); border-radius: 8px; background: var(--soft); color: var(--text); cursor: pointer; font-family: var(--mono); font-size: 10px; font-weight: 900; letter-spacing: 0; }
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 .flip-note { font-family: var(--mono); font-size: 10px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; }
 .grammar-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
@@ -1001,11 +997,11 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
     color-mix(in srgb, var(--bg) 52%, transparent) 82%,
     transparent 100%);
 }
-/* Full-width lesson flow: keep it below the hero image with 1cm side gutters. */
+/* Full-width lesson flow: keep it below the hero image with 2cm side gutters. */
 .lesson-flow,
 .step-tracker {
   box-sizing: border-box;
-  width: calc(100% - 2cm);
+  width: calc(100% - 4cm);
   max-width: none;
 }
 .lesson-flow {
@@ -1032,6 +1028,71 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
   .practice-hint { grid-column: 2; justify-self: start; }
   .lesson-foot { grid-template-columns: 1fr; }
   .foot-link.next { text-align: left; }
+}
+/* Codex polish 2026-05-04: show LAB text logo instead of old Studio image lockup. */
+.friendly-brand {
+  width: auto !important;
+  min-width: 176px !important;
+  height: auto !important;
+  background: none !important;
+}
+.friendly-brand > * {
+  display: inline-grid !important;
+}
+.friendly-brand .brand-copy,
+.friendly-brand .friendly-brand-copy,
+.friendly-brand .brand-name {
+  display: inline-flex !important;
+}
+.friendly-brand .lab-tag {
+  display: inline-grid !important;
+}
+/* Codex polish 2026-05-04: final common Lesson Flow colors. */
+.lesson-flow {
+  background: rgba(255,255,255,.96) !important;
+  border-color: rgba(122,95,207,.18) !important;
+  box-shadow: 0 22px 62px rgba(122,95,207,.14) !important;
+}
+.lesson-flow h2 { color: #081332 !important; }
+.flow-card {
+  background: #fff !important;
+  border-color: rgba(122,95,207,.18) !important;
+  color: #081332 !important;
+}
+.flow-card:not(:last-child)::after { color: #7a5fcf !important; }
+.flow-num {
+  background: #ff5a1f !important;
+  color: #fff !important;
+}
+.flow-icon {
+  color: #7a5fcf !important;
+}
+.flow-card strong { color: #050820 !important; }
+.flow-card small { color: #29324a !important; }
+/* Codex polish 2026-05-04: final 2cm gutters for ladder and body. */
+.lesson-flow,
+.learn-panel,
+.step-tracker,
+.lesson-score-card,
+.block,
+.lesson-foot,
+.copyright {
+  box-sizing: border-box !important;
+  width: calc(100% - 4cm) !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  .lesson-flow,
+  .learn-panel,
+  .step-tracker,
+  .lesson-score-card,
+  .block,
+  .lesson-foot,
+  .copyright {
+    width: min(100% - 28px, 1180px) !important;
+  }
 }
 </style>
 </head>
@@ -1187,16 +1248,16 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
         </div>
         <div class="block-time" data-ru="≈ 7 мин" data-en="≈ 7 min">≈ 7 мин</div>
       </header>
-      <p class="block-intro" data-i18n-scope="task" data-ru="Нажмите на карточку, чтобы увидеть пример. Нажмите ▶, чтобы услышать фразу." data-en="Tap a card to see an example. Press ▶ to hear the phrase.">Tap a card to see an example. Press ▶ to hear the phrase.</p>
+      <p class="block-intro" data-i18n-scope="task" data-ru="Нажмите на карточку, чтобы увидеть пример. Нажмите Listen, чтобы услышать фразу." data-en="Tap a card to see an example. Press Listen to hear the phrase.">Tap a card to see an example. Press Listen to hear the phrase.</p>
       <div class="vocab-grid flip-grid">
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">get up</span><span class="vocab-ipa">/get ʌp/</span></div><div class="vocab-ru" data-ru="вставать" data-en="wake up and leave bed">wake up and leave bed</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="get up">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I get up at 7.</div><button class="icon-btn speak-btn" type="button" data-say="I get up at seven.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">have breakfast</span><span class="vocab-ipa">/hæv ˈbrekfəst/</span></div><div class="vocab-ru" data-ru="завтракать" data-en="eat in the morning">eat in the morning</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="have breakfast">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I have breakfast at home.</div><button class="icon-btn speak-btn" type="button" data-say="I have breakfast at home.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">go to class</span><span class="vocab-ipa">/gəʊ tə klɑːs/</span></div><div class="vocab-ru" data-ru="идти на занятие" data-en="go to a lesson or class">go to a lesson or class</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="go to class">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I go to class in the morning.</div><button class="icon-btn speak-btn" type="button" data-say="I go to class in the morning.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">study</span><span class="vocab-ipa">/ˈstʌdi/</span></div><div class="vocab-ru" data-ru="учиться, изучать" data-en="learn or work with a subject">learn or work with a subject</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="study">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I study English.</div><button class="icon-btn speak-btn" type="button" data-say="I study English.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">have lunch</span><span class="vocab-ipa">/hæv lʌntʃ/</span></div><div class="vocab-ru" data-ru="обедать" data-en="eat in the middle of the day">eat in the middle of the day</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="have lunch">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">Alex has lunch at one.</div><button class="icon-btn speak-btn" type="button" data-say="Alex has lunch at one.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">finish tasks</span><span class="vocab-ipa">/ˈfɪnɪʃ tɑːsks/</span></div><div class="vocab-ru" data-ru="заканчивать задачи" data-en="complete things you need to do">complete things you need to do</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="finish tasks">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I finish tasks in the afternoon.</div><button class="icon-btn speak-btn" type="button" data-say="I finish tasks in the afternoon.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">relax</span><span class="vocab-ipa">/rɪˈlæks/</span></div><div class="vocab-ru" data-ru="отдыхать" data-en="rest">rest</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="relax">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">Alex relaxes in the evening.</div><button class="icon-btn speak-btn" type="button" data-say="Alex relaxes in the evening.">▶</button></div></div></article>
-        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">watch videos</span><span class="vocab-ipa">/wɒtʃ ˈvɪdiəʊz/</span></div><div class="vocab-ru" data-ru="смотреть видео" data-en="watch videos">watch videos</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="watch videos">▶</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">We watch videos after dinner.</div><button class="icon-btn speak-btn" type="button" data-say="We watch videos after dinner.">▶</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">get up</span><span class="vocab-ipa">/get ʌp/</span></div><div class="vocab-ru" data-ru="вставать" data-en="wake up and leave bed">wake up and leave bed</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="get up">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I get up at 7.</div><button class="icon-btn speak-btn" type="button" data-say="I get up at seven.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">have breakfast</span><span class="vocab-ipa">/hæv ˈbrekfəst/</span></div><div class="vocab-ru" data-ru="завтракать" data-en="eat in the morning">eat in the morning</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="have breakfast">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I have breakfast at home.</div><button class="icon-btn speak-btn" type="button" data-say="I have breakfast at home.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">go to class</span><span class="vocab-ipa">/gəʊ tə klɑːs/</span></div><div class="vocab-ru" data-ru="идти на занятие" data-en="go to a lesson or class">go to a lesson or class</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="go to class">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I go to class in the morning.</div><button class="icon-btn speak-btn" type="button" data-say="I go to class in the morning.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">study</span><span class="vocab-ipa">/ˈstʌdi/</span></div><div class="vocab-ru" data-ru="учиться, изучать" data-en="learn or work with a subject">learn or work with a subject</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="study">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I study English.</div><button class="icon-btn speak-btn" type="button" data-say="I study English.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">have lunch</span><span class="vocab-ipa">/hæv lʌntʃ/</span></div><div class="vocab-ru" data-ru="обедать" data-en="eat in the middle of the day">eat in the middle of the day</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="have lunch">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">Alex has lunch at one.</div><button class="icon-btn speak-btn" type="button" data-say="Alex has lunch at one.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">finish tasks</span><span class="vocab-ipa">/ˈfɪnɪʃ tɑːsks/</span></div><div class="vocab-ru" data-ru="заканчивать задачи" data-en="complete things you need to do">complete things you need to do</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="finish tasks">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">I finish tasks in the afternoon.</div><button class="icon-btn speak-btn" type="button" data-say="I finish tasks in the afternoon.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">relax</span><span class="vocab-ipa">/rɪˈlæks/</span></div><div class="vocab-ru" data-ru="отдыхать" data-en="rest">rest</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="relax">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">Alex relaxes in the evening.</div><button class="icon-btn speak-btn" type="button" data-say="Alex relaxes in the evening.">Listen</button></div></div></article>
+        <article class="vocab-card" tabindex="0"><div class="vocab-inner"><div class="vocab-face"><div><div class="vocab-en"><span class="vocab-word">watch videos</span><span class="vocab-ipa">/wɒtʃ ˈvɪdiəʊz/</span></div><div class="vocab-ru" data-ru="смотреть видео" data-en="watch videos">watch videos</div></div><div class="vocab-actions"><button class="icon-btn speak-btn" type="button" data-say="watch videos">Listen</button><span class="flip-note">tap to flip</span></div></div><div class="vocab-face vocab-back"><div class="vocab-example">We watch videos after dinner.</div><button class="icon-btn speak-btn" type="button" data-say="We watch videos after dinner.">Listen</button></div></div></article>
       </div>
       <div class="block-nav"><button class="btn ghost" type="button" data-flip-next>Flip next card</button><a class="btn primary" href="#focus">Next: grammar</a></div>
     </section>
@@ -1428,7 +1489,7 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
       </a>
       <a class="foot-link next" href="./a1-02-present-simple-questions-negatives.html">
         <span class="foot-meta">Next lesson</span>
-        <span class="foot-title">A1 Lesson 02</span>
+        <span class="foot-title">Questions + Negatives</span>
       </a>
     </nav>
 
@@ -1438,7 +1499,7 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
 <script>
 (() => {
   const root = document.documentElement;
-  const paletteKey = "lesson-palette";
+  const paletteKey = "lesson-palette-a1-01";
   const langKey = "lesson-lang-v2";
   const labProgressKey = "linguaboost.lab.progress.v1";
   const lessonId = "a1-01";
@@ -1537,8 +1598,7 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
     const safe = palettes.includes(palette) ? palette : "light-lab";
     root.setAttribute("data-theme", safe);
     if (paletteSelect) paletteSelect.value = safe;
-    localStorage.setItem(paletteKey, safe);
-    updateHeroImage();
+    localStorage.setItem(paletteKey, safe); window.LinguaBoostTheme?.syncLinks(document, safe); updateHeroImage();
     updateStoryImages();
   }
 
@@ -1622,7 +1682,7 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
   }
 
   document.body.dataset.audience = localStorage.getItem("lesson-audience") || "kids";
-  applyPalette(localStorage.getItem(paletteKey) || root.getAttribute("data-theme") || "light-lab");
+  applyPalette(root.getAttribute("data-theme") || localStorage.getItem(paletteKey) || "light-lab");
   applyLang(localStorage.getItem(langKey) || "en");
 
   paletteSelect?.addEventListener("change", event => applyPalette(event.target.value));
@@ -1797,6 +1857,10 @@ body:not([data-audience="adults"]) .audience-btn[data-audience-btn="adults"] {
 </script>
 </body>
 </html>
+
+
+
+
 
 
 

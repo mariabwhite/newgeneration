@@ -1,618 +1,538 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" data-lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Ancient China: Cultural Studies | LinguaBoost Studio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        body {
-            background: linear-gradient(145deg, #F9E7B3 0%, #F5BC7A 100%);
-            font-family: 'Segoe UI', 'Roboto', 'Comic Neue', system-ui, sans-serif;
-            padding: 20px 16px 60px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* header */
-        .hero {
-            background: #FFF9E0;
-            border-radius: 64px;
-            padding: 20px;
-            margin-bottom: 32px;
-            text-align: center;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
-            border: 3px solid #FFB347;
-        }
-        h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #E67E22, #D35400);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .sub {
-            font-size: 1.1rem;
-            background: #FFE0A3;
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 60px;
-            color: #B64926;
-            font-weight: bold;
-        }
-        .score-panel {
-            background: #FFD966;
-            display: inline-block;
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-top: 12px;
-            color: #A1412B;
-        }
-
-        /* cards */
-        .card {
-            background: white;
-            border-radius: 48px;
-            padding: 24px;
-            margin-bottom: 32px;
-            box-shadow: 0 18px 28px rgba(0,0,0,0.15);
-            border: 2px solid #FFC48A;
-        }
-        .section-title {
-            font-size: 1.7rem;
-            background: #FFE0A3;
-            display: inline-block;
-            padding: 6px 28px;
-            border-radius: 60px;
-            color: #A1412B;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* flip cards grid */
-        .grid-flip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: flex-start;
-        }
-        .flip-card {
-            background: transparent;
-            width: 150px;
-            height: 130px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-        .flip-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s;
-            transform-style: preserve-3d;
-            border-radius: 20px;
-        }
-        .flip-card.flipped .flip-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-front, .flip-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 8px;
-            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-        }
-        .flip-front {
-            background: #FFB347;
-            color: white;
-            border: 2px solid #D35400;
-        }
-        .flip-back {
-            background: #6AB04C;
-            color: white;
-            transform: rotateY(180deg);
-            border: 2px solid #FFD966;
-        }
-        .speak-btn {
-            background: #FFD966;
-            border: none;
-            border-radius: 30px;
-            padding: 5px 12px;
-            margin-top: 8px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #A1412B;
-        }
-
-        /* quiz options */
-        .quiz-item {
-            background: #FFF8E7;
-            border-radius: 32px;
-            padding: 16px;
-            margin-bottom: 16px;
-            border: 1px solid #FFC48A;
-        }
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .opt {
-            background: #FFB347;
-            padding: 8px 18px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-            transition: 0.1s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .opt.correct-highlight {
-            background: #2E8B57;
-            box-shadow: 0 0 0 2px #FFD966;
-        }
-        .opt.wrong-highlight {
-            background: #CD5C5C;
-            text-decoration: line-through;
-        }
-        .btn {
-            background: #FFB347;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            margin-top: 12px;
-            margin-right: 8px;
-            box-shadow: 0 4px 0 #A05E2A;
-            transition: 0.05s linear;
-        }
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #A05E2A;
-        }
-        .btn-outline {
-            background: #FFE0A3;
-            color: #A1412B;
-            box-shadow: none;
-            border: 1px solid #FFB347;
-        }
-        textarea {
-            width: 100%;
-            background: #FFF8E7;
-            border: 2px solid #FFC48A;
-            border-radius: 24px;
-            padding: 12px;
-            font-size: 0.9rem;
-            margin: 12px 0;
-            font-family: inherit;
-        }
-        .panda-card {
-            background: linear-gradient(135deg, #FFF8E7, #FFE0A3);
-            border-radius: 48px;
-            padding: 24px;
-            margin-top: 20px;
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            align-items: center;
-            border: 2px solid #FFB347;
-        }
-        .panda-emoji {
-            font-size: 5rem;
-            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
-        }
-        @media (max-width: 700px) {
-            .flip-card { width: 130px; height: 110px; }
-            .section-title { font-size: 1.3rem; }
-            h1 { font-size: 1.8rem; }
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ancient China: Cultural Studies | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+/* ── Terracotta / Cultural Palette ─────────────── */
+:root{
+  --bg:       #fff8f0;
+  --surface:  #fffaf5;
+  --accent:   #B64926;
+  --accent2:  #A1412B;
+  --accent3:  #E67E22;
+  --text:     #2c1000;
+  --muted:    #8B4513;
+  --ok:       #4caf50;
+  --miss:     #ef5350;
+  --radius:   18px;
+  --shadow:   0 4px 20px rgba(0,0,0,.09);
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Nunito',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden}
+
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 20px;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,.07);position:sticky;top:0;z-index:99}
+.topbar .brand{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.05rem;color:var(--accent);text-decoration:none;flex:1}
+.btn-sm{padding:6px 14px;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:.15s}
+.btn-lang{background:var(--accent);color:#fff}
+.btn-back{background:#ffe0c8;color:var(--text)}
+
+.hero{padding:26px 20px 0;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(1.4rem,5vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:6px}
+.hero p{color:var(--muted);font-size:1rem;margin-bottom:16px}
+.breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+
+.star-bar{display:flex;gap:6px;max-width:800px;margin:0 auto 4px;padding:0 20px}
+.star{font-size:1.3rem;opacity:.3;transition:.3s}
+.star.lit{opacity:1}
+.rail{display:flex;gap:6px;max-width:800px;margin:0 auto 24px;padding:0 20px}
+.rail-step{flex:1;height:8px;border-radius:8px;background:#f5cba7;transition:.4s}
+.rail-step.done{background:var(--accent)}
+
+.section{max-width:800px;margin:0 auto 30px;padding:0 16px}
+.section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.section-hdr .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-hdr h2{font-size:1.15rem;font-weight:800}
+.card{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid #f5cba7}
+
+/* Flip */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.flip-card{height:90px;perspective:600px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:.45s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;font-weight:700;gap:4px;padding:8px;text-align:center}
+.flip-front{background:#ffe0c8;border:2px solid #f5cba7;font-size:.8rem;color:var(--muted)}
+.flip-back{background:var(--accent);color:#fff;transform:rotateY(180deg);font-size:.78rem;line-height:1.4}
+
+/* MCQ */
+.mc-item{background:#fff3e8;border:1px solid #f5cba7;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.mc-q{font-weight:700;font-size:.95rem;margin-bottom:8px}
+.mc-opts{display:flex;gap:8px;flex-wrap:wrap}
+.mc-opt{padding:7px 16px;border-radius:50px;background:#fff;border:2px solid #f5cba7;font-weight:700;font-size:.85rem;cursor:pointer;transition:.15s}
+.mc-opt:hover{background:var(--accent);color:#fff}
+.mc-opt.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.mc-opt.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+
+/* Reading text */
+.reading-text{background:#fff3e8;border-radius:14px;padding:16px;margin-bottom:14px;font-size:.95rem;line-height:1.8;border:1px solid #f5cba7}
+
+/* TF */
+.tf-item{background:#fff3e8;border:1px solid #f5cba7;border-radius:12px;padding:12px;margin-bottom:8px}
+.tf-q{font-weight:700;font-size:.9rem;margin-bottom:6px}
+.tf-btns{display:flex;gap:8px}
+.tf-btn{padding:6px 16px;border-radius:50px;border:2px solid #f5cba7;background:#fff;font-weight:800;font-size:.85rem;cursor:pointer;transition:.15s}
+.tf-btn:hover{background:var(--accent);color:#fff}
+.tf-btn.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.tf-btn.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+.tf-fb{font-size:.82rem;font-weight:700;margin-top:5px;color:var(--muted)}
+
+/* Essay builder */
+.essay-btn{padding:8px 16px;border-radius:50px;background:#ffe0c8;border:2px solid #f5cba7;font-weight:700;font-size:.85rem;cursor:pointer;margin:4px;transition:.15s;color:var(--accent2)}
+.essay-btn:hover{background:var(--accent);color:#fff}
+.essay-output{background:#fff;border:2px solid #f5cba7;border-radius:12px;padding:14px;min-height:100px;font-size:.9rem;line-height:1.7;color:var(--text);margin-top:10px;white-space:pre-wrap}
+
+.btn-primary{padding:10px 22px;border-radius:50px;background:var(--accent2);color:#fff;font-weight:800;font-size:.95rem;border:none;cursor:pointer;transition:.15s;margin-top:8px}
+.btn-primary:hover{background:#6b2500}
+.task-badge{display:none;align-items:center;gap:8px;margin-top:12px;padding:10px 16px;background:#e8f5e9;border:2px solid #a5d6a7;border-radius:50px;font-weight:800;color:#2e7d32;font-size:.9rem}
+.task-badge.show{display:flex}
+
+#allDone{display:none;max-width:800px;margin:0 auto 40px;padding:0 16px}
+#allDone .banner{background:linear-gradient(135deg,#B64926,#E67E22);color:#fff;border-radius:20px;padding:28px;text-align:center;box-shadow:0 8px 30px rgba(182,73,38,.4)}
+canvas#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+@media(max-width:520px){.flip-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ═══ LAB BRAND + LOGO ══════════════════════════════════════════════════ */
+.lab-topbar{display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,3vw,1.75rem);
+  background:color-mix(in srgb,var(--surface,#fff) 92%,transparent);
+  border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:200;min-height:54px}
+.lab-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.lab-mark{width:36px;height:36px;border-radius:8px;background:var(--accent2);
+  display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.25rem;color:#fff;letter-spacing:-.05em;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);position:relative}
+.lab-mark::after{content:'';position:absolute;right:5px;bottom:5px;width:5px;height:5px;
+  border-radius:50%;background:rgba(255,255,255,.65)}
+.lab-brand-copy{display:grid;gap:1px}
+.lab-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;
+  letter-spacing:-.02em;color:var(--text);line-height:1}
+.lab-brand-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);line-height:1}
+.lab-nav{display:flex;gap:.4rem;align-items:center;margin-left:auto;flex-wrap:wrap}
+.lab-back{font-size:.75rem;font-weight:700;color:var(--muted);text-decoration:none;
+  padding:.2rem .6rem;border-radius:.5rem;transition:color .18s}
+.lab-back:hover{color:var(--accent2)}
+.lab-pill-nav{display:inline-grid;place-items:center;padding:.2rem .65rem;
+  border:1px solid rgba(0,0,0,.13);border-radius:999px;font-size:.65rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-pill-accent{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.lab-tool-btn{height:30px;padding:0 .75rem;border:1px solid rgba(0,0,0,.15);border-radius:7px;
+  background:transparent;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;
+  color:var(--muted);transition:all .16s;font-family:'Manrope',sans-serif}
+.lab-tool-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ═══ LAB HERO ══════════════════════════════════════════════════════════ */
+.lab-hero{border:1px solid rgba(0,0,0,.07);border-radius:1.5rem;
+  margin:1.2rem auto 0;max-width:960px;
+  padding:clamp(1.5rem,4vw,2.8rem) clamp(1.2rem,3vw,2.2rem);
+  background:var(--surface,#fff);overflow:hidden;position:relative;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.lab-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,var(--accent3) 0%,transparent 68%);
+  pointer-events:none;opacity:.22}
+.lab-hero-inner{position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 148px;gap:2rem;align-items:center}
+.lab-eyebrow{font-size:.67rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--accent2);flex-shrink:0}
+.lab-hero-title{font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.75rem,5vw,3rem);line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:.8rem;color:var(--text)}
+.lab-hero-title em{font-style:normal;color:var(--accent2)}
+.lab-hero-lead{color:var(--muted);font-size:clamp(.85rem,1.7vw,1rem);line-height:1.7;margin-bottom:1.1rem}
+.lab-hero-badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-badge{display:inline-grid;place-items:center;padding:.22rem .65rem;
+  border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:.64rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;
+  background:linear-gradient(135deg,var(--accent3) 0%,var(--accent) 100%);
+  border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.85}
+.lab-vis-inner{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:16px}
+.lab-vis-dot{border-radius:6px;background:rgba(255,255,255,.55)}
+.lab-vis-dot:nth-child(1){height:32px}
+.lab-vis-dot:nth-child(2){height:20px;margin-top:auto}
+.lab-vis-dot:nth-child(3){height:20px}
+.lab-vis-dot:nth-child(4){height:32px;margin-top:auto}
+@media(max-width:580px){
+  .lab-hero-inner{grid-template-columns:1fr}
+  .lab-hero-visual{display:none}
+  .lab-topbar{flex-wrap:wrap;gap:.5rem}
+}
+
+/* ═══ BUBBLE POP BONUS ══════════════════════════════════════════════════ */
+.bub-score-bar{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--accent2);margin-bottom:.6rem}
+#bubCanvas{width:100%;height:280px;display:block;border-radius:1rem;
+  background:linear-gradient(160deg,var(--bg,#f5f5f5) 60%,color-mix(in srgb,var(--accent3) 30%,transparent));
+  cursor:crosshair;touch-action:none;border:1.5px solid rgba(0,0,0,.07)}
+.bub-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+
+
+
+/* TOP ONLY: align demo header with A1 Lesson 01 without changing palettes */
+:root { --demo-top-width: min(100% - 48px, 1240px); }
+.lab-topbar,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  backdrop-filter: blur(14px);
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+.topbar-brand,
+.lab-brand-name,
+.brand {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+.lab-back,
+.btn-back,
+.back-link,
+.btn-top,
+.topbar-back,
+.topbar-btn,
+.btn-sm.btn-back {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.lab-hero {
+  width: var(--demo-top-width);
+  max-width: 1240px;
+  margin: 24px auto 18px !important;
+  border-radius: 18px !important;
+  padding: clamp(26px, 5vw, 56px) !important;
+  text-align: left;
+}
+.lab-hero-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.28fr) minmax(220px, .92fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.lab-eyebrow {
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase;
+}
+.lab-hero-title {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2.05rem, 5vw, 4.25rem) !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 18px !important;
+}
+.lab-hero-lead {
+  max-width: 760px;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+  line-height: 1.7 !important;
+}
+.lab-hero-badges {
+  justify-content: flex-start;
+  gap: 8px !important;
+}
+.lab-pill,
+.lab-hero-badges span,
+.topbar-pills span {
+  border-radius: 999px !important;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase;
+}
+.hero {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin: 18px auto 10px !important;
+  padding: 0 clamp(16px, 3vw, 28px) !important;
+  text-align: center !important;
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+}
+.hero h1 {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+.hero p,
+.hero-sub,
+.subtitle-pill,
+.hero-pill {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  letter-spacing: 0 !important;
+}
+.rail,
+.progress-rail {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  :root { --demo-top-width: min(100% - 28px, 1240px); }
+  .lab-hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .lab-hero { padding: 24px 18px !important; }
+  .lab-hero-visual { justify-self: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">B1</span>
-    <span class="lbs-pill">School learners / teens</span>
-    <span class="lbs-pill">Culture + reading</span>
+<nav class="topbar">
+  <a class="brand" href="../index.html"> LinguaBoost Lab</a>
+  <button class="btn-sm btn-back" onclick="location.href='../index.html'">All Lessons</button>
+  <button class="btn-sm btn-lang" onclick="toggleLang()" id="langBtn">EN</button>
+</nav>
+<div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">B1 &middot; Lesson 08 &middot; China · Cultural Studies</div>
+      <h1 class="lab-hero-title"><em>Lesson</em></h1>
+      <p class="lab-hero-lead">Interactive B1 lesson</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">B1</span>
+        <span class="lab-badge">6 activities</span>
+        <span class="lab-badge">interactive</span>
+      </div>
+    </div>
+    <div class="lab-hero-visual" aria-hidden="true">
+      <div class="lab-vis-inner">
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+      </div>
+    </div>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
 </div>
-<div class="container">
-    <div class="hero">
-        <h1>🏯 Ancient China · Cultural Studies</h1>
-        <div class="sub">Intermediate Level · A2–B1</div>
-        <div class="score-panel">🏆 SCORE: <span id="totalScore">0</span> points</div>
-    </div>
-
-    <!-- 1. FLIP CARDS (28 vocabulary) -->
-    <div class="card">
-        <div class="section-title">📖 Vocabulary · 28 terms</div>
-        <div class="grid-flip" id="vocabGrid"></div>
-    </div>
-
-    <!-- 2. GAP FILL · 10 sentences -->
-    <div class="card">
-        <div class="section-title">✍️ Exercise 1 · Choose the correct word</div>
-        <div id="gapQuizContainer"></div>
-        <button class="btn" id="checkGapBtn">✅ Check & get points</button>
-    </div>
-
-    <!-- 3. SPEAKING · 5 questions -->
-    <div class="card">
-        <div class="section-title">🎤 Speaking practice · Answer the questions</div>
-        <div id="speakingQuestions"></div>
-        <button class="btn" id="checkSpeakingBtn">📝 Submit speaking answers</button>
-    </div>
-
-    <!-- 4. LISTENING · 3 texts with quizzes -->
-    <div class="card">
-        <div class="section-title">🎧 Listening comprehension</div>
-        <div id="listeningSection"></div>
-        <button class="btn" id="checkListeningBtn">🔊 Check listening answers</button>
-    </div>
-
-    <!-- 5. READING · 6 texts TRUE/FALSE -->
-    <div class="card">
-        <div class="section-title">📚 Reading · 6 landmarks</div>
-        <div id="readingSection"></div>
-        <button class="btn" id="checkReadingBtn">📖 Check reading answers</button>
-    </div>
-
-    <!-- 6. PANDA TEXT + image -->
-    <div class="card">
-        <div class="section-title">🐼 Giant Pandas · National Treasure</div>
-        <div class="panda-card">
-            <div class="panda-emoji">🐼🎋</div>
-            <div style="flex:1">
-                <p><strong>Giant pandas live only in China. Fewer than 2,000 remain in the wild. They spend 12 hours daily eating bamboo. China has established special reserves to protect them. Pandas are a global symbol of wildlife conservation.</strong></p>
-                <div id="pandaQuiz"></div>
-                <button class="btn btn-outline" id="checkPandaBtn">🐼 Check panda quiz</button>
-            </div>
-        </div>
-    </div>
+  <h1>Ancient China: Cultural Studies</h1>
+  <p>Philosophy, inventions, traditions and writing &mdash; B1</p>
 </div>
+<div class="star-bar"><span class="star" id="star1">⭐</span><span class="star" id="star2">⭐</span><span class="star" id="star3">⭐</span><span class="star" id="star4">⭐</span><span class="star" id="star5">⭐</span><span class="star" id="star6">⭐</span></div>
+<div class="rail"><div class="rail-step" id="rs1"></div><div class="rail-step" id="rs2"></div><div class="rail-step" id="rs3"></div><div class="rail-step" id="rs4"></div><div class="rail-step" id="rs5"></div><div class="rail-step" id="rs6"></div></div>
+
+<section class="section"><div class="section-hdr"><div class="num">1</div><h2 data-ru="Культурная лексика — перевернуть!" data-en="Cultural vocabulary — flip it!">Культурная лексика — перевернуть!</h2></div>
+<div class="card"><div class="flip-grid" id="vocabGrid"></div><div class="task-badge" id="badge1">✅ <span data-ru="Словарь выучен!" data-en="Vocabulary done!">Словарь выучен!</span></div></div></section>
+
+<section class="section"><div class="section-hdr"><div class="num">2</div><h2 data-ru="Чтение: философы Древнего Китая" data-en="Reading: Philosophers of Ancient China">Чтение — True / False</h2></div>
+<div class="card">
+  <div class="reading-text">
+    <strong>Confucius</strong> (551–479 BC) was one of China's greatest philosophers. He believed that society should be based on <em>respect, loyalty and education</em>. His ideas, known as <strong>Confucianism</strong>, shaped Chinese culture for over 2,000 years. Another philosopher, <strong>Laozi</strong>, founded <strong>Taoism</strong> — a philosophy based on living in harmony with nature. <strong>Sun Tzu</strong> wrote "The Art of War", which is still studied today by military leaders and business people. Ancient China also gave the world <strong>four great inventions</strong>: paper, printing, gunpowder and the compass.
+  </div>
+  <div id="tfContainer"></div>
+  <div class="task-badge" id="badge2">✅ <span data-ru="Чтение пройдено!" data-en="Reading complete!">Чтение пройдено!</span></div>
+</div></section>
+
+<section class="section"><div class="section-hdr"><div class="num">3</div><h2 data-ru="Изобретения Китая — выбери правильное" data-en="Chinese Inventions — choose the right answer">Изобретения — MCQ</h2></div>
+<div class="card"><div id="mcContainer"></div><div class="task-badge" id="badge3">✅ <span data-ru="Задание 3 готово!" data-en="Task 3 done!">Задание 3 готово!</span></div></div></section>
+
+<section class="section"><div class="section-hdr"><div class="num">4</div><h2 data-ru="Сопоставь философа и учение" data-en="Match philosopher to teaching">Сопоставь философа и учение</h2></div>
+<div class="card">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div><div style="font-size:.85rem;font-weight:800;color:var(--muted);margin-bottom:8px">👤 Философ / Philosopher</div><div id="philLeft"></div></div>
+    <div><div style="font-size:.85rem;font-weight:800;color:var(--muted);margin-bottom:8px">💡 Учение / Teaching</div><div id="philRight"></div></div>
+  </div>
+  <div style="margin-top:10px;font-weight:800;font-size:.9rem" id="philFb"></div>
+  <div class="task-badge" id="badge4">✅ <span data-ru="Задание 4 готово!" data-en="Task 4 done!">Задание 4 готово!</span></div>
+</div></section>
+
+<section class="section"><div class="section-hdr"><div class="num">5</div><h2 data-ru="Традиции — услышь и повтори" data-en="Traditions — hear &amp; repeat">Традиции</h2></div>
+<div class="card">
+  <p style="font-size:.9rem;font-weight:700;color:var(--muted);margin-bottom:12px" data-ru="Нажми на карточку — услышишь факт о традиции" data-en="Tap a card — hear a fact about the tradition">Нажми на карточку — услышишь факт</p>
+  <div id="tradCards"></div>
+  <div class="task-badge" id="badge5">✅ <span data-ru="Задание 5 готово!" data-en="Task 5 done!">Задание 5 готово!</span></div>
+</div></section>
+
+<section class="section"><div class="section-hdr"><div class="num">6</div><h2 data-ru="Построй эссе — выбери фразы!" data-en="Build your essay — select phrases!">Построй эссе</h2></div>
+<div class="card">
+  <p style="font-size:.9rem;font-weight:700;color:var(--muted);margin-bottom:10px" data-ru="Нажимай на фразы — добавляй в эссе. Потом прочитай вслух!" data-en="Tap phrases — add to essay. Then read it aloud!">Нажимай на фразы — добавляй в эссе</p>
+  <div id="essayBtns"></div>
+  <div class="essay-output" id="essayOut" data-ru="Твоё эссе появится здесь…" data-en="Your essay will appear here…">Твоё эссе появится здесь…</div>
+  <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+    <button class="btn-primary" onclick="readEssay()">🔊 <span data-ru="Прочитать" data-en="Read aloud">Прочитать</span></button>
+    <button class="btn-sm btn-back" onclick="clearEssay()">🗑️ <span data-ru="Очистить" data-en="Clear">Очистить</span></button>
+  </div>
+  <div class="task-badge" id="badge6">✅ <span data-ru="Эссе написано! Задание 6 готово" data-en="Essay written! Task 6 done">Эссе написано! Задание 6 готово</span></div>
+</div></section>
+
+<div id="allDone"><div class="banner"><div style="font-size:3rem">🏺🐉📜</div><div style="font-size:1.5rem;font-weight:900;margin:10px 0" data-ru="Культурное погружение завершено!" data-en="Cultural immersion complete!">Культурное погружение завершено!</div><div data-ru="Ты знаешь культуру Китая на уровне B1!" data-en="You know Chinese culture at B1 level!">Ты знаешь культуру Китая на уровне B1!</div></div></div>
+<canvas id="confettiCanvas"></canvas>
+<footer style="text-align:center;padding:20px;color:var(--muted);font-size:.8rem">© New Generation English · <a href="../index.html" style="color:var(--muted)">LinguaBoost Lab</a></footer>
 
 <script>
-    // ---------- VOCABULARY (28 items) ----------
-    const vocabList = [
-        { ru: "Великая стена", en: "the Great Wall" }, { ru: "Запретный город", en: "the Forbidden City" },
-        { ru: "Терракотовая армия", en: "the Terracotta Army" }, { ru: "древние храмы", en: "ancient temples" },
-        { ru: "императорские дворцы", en: "imperial palaces" }, { ru: "пагоды", en: "pagodas" },
-        { ru: "каменные мосты", en: "stone bridges" }, { ru: "городские стены", en: "city walls" },
-        { ru: "традиционные сады", en: "traditional gardens" }, { ru: "старые ворота", en: "old gates" },
-        { ru: "панды", en: "pandas" }, { ru: "бамбук", en: "bamboo" }, { ru: "рис", en: "rice" },
-        { ru: "лапша", en: "noodles" }, { ru: "чай", en: "tea" }, { ru: "чайная культура", en: "tea culture" },
-        { ru: "уличная еда", en: "street food" }, { ru: "Китайский новый год", en: "Chinese New Year" },
-        { ru: "Пекин", en: "Beijing" }, { ru: "Шанхай", en: "Shanghai" }, { ru: "многолюдные улицы", en: "crowded streets" },
-        { ru: "фабрики", en: "factories" }, { ru: "технологии", en: "technology" }, { ru: "императоры", en: "emperors" },
-        { ru: "империя", en: "empire" }, { ru: "шёлк", en: "silk" }, { ru: "бумага", en: "paper" }, { ru: "торговля", en: "trade" }
-    ];
-    let totalPoints = 0;
-    function addPoints(p) { totalPoints += p; document.getElementById('totalScore').innerText = totalPoints; }
+const VOCAB=[
+  {en:'Confucianism',ru:'конфуцианство'},{en:'Taoism',ru:'даосизм'},
+  {en:'philosophy',ru:'философия'},{en:'harmony',ru:'гармония'},
+  {en:'loyalty',ru:'верность/лояльность'},{en:'gunpowder',ru:'порох'},
+  {en:'compass',ru:'компас'},{en:'printing',ru:'книгопечатание'},
+  {en:'calligraphy',ru:'каллиграфия'},{en:'dynasty',ru:'династия'},
+  {en:'mandate of heaven',ru:'мандат Неба'},{en:'civil service',ru:'государственная служба'},
+];
 
-    // Speech function
-    function speak(word) { let u = new SpeechSynthesisUtterance(word); u.lang = 'en-US'; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+const TF=[
+  {q:'Confucius lived in the 5th century BC.',correct:true},
+  {q:'Taoism was founded by Confucius.',correct:false},
+  {q:'Sun Tzu wrote "The Art of War".',correct:true},
+  {q:'The four great inventions include electricity.',correct:false},
+  {q:'Paper was invented in Ancient China.',correct:true},
+  {q:'Confucianism shaped China for over 2,000 years.',correct:true},
+];
 
-    // 1. FLIP CARDS
-    function renderFlip() {
-        const grid = document.getElementById('vocabGrid');
-        grid.innerHTML = '';
-        vocabList.forEach(item => {
-            const flip = document.createElement('div');
-            flip.className = 'flip-card';
-            flip.innerHTML = `<div class="flip-inner">
-                <div class="flip-front">🇷🇺 ${item.ru}</div>
-                <div class="flip-back">🇬🇧 ${item.en}<br><button class="speak-btn" data-word="${item.en}">🔊 Pronounce</button></div>
-            </div>`;
-            flip.addEventListener('click', (e) => {
-                if (e.target.classList.contains('speak-btn')) {
-                    e.stopPropagation();
-                    speak(e.target.dataset.word);
-                } else {
-                    flip.classList.toggle('flipped');
-                }
-            });
-            grid.appendChild(flip);
-        });
-    }
+const MC=[
+  {q:'Ancient China invented four great ___.',opts:['kingdoms','inventions','languages'],correct:'inventions'},
+  {q:'The ___ is a navigational tool invented in China.',opts:['clock','compass','telescope'],correct:'compass'},
+  {q:'"The Art of War" was written by ___.',opts:['Confucius','Laozi','Sun Tzu'],correct:'Sun Tzu'},
+  {q:'___ is the practice of beautiful writing.',opts:['Calligraphy','Philosophy','Pottery'],correct:'Calligraphy'},
+  {q:'Taoism teaches living in harmony with ___.',opts:['society','nature','rulers'],correct:'nature'},
+];
 
-    // 2. GAP FILL (10 sentences)
-    const gapData = [
-        { text: "China is a very __________ country.", options: ["interesting", "boring", "small"], correct: "interesting" },
-        { text: "There are many big __________ like Beijing and Shanghai.", options: ["cities", "rivers", "mountains"], correct: "cities" },
-        { text: "The streets are often very __________.", options: ["crowded", "empty", "quiet"], correct: "crowded" },
-        { text: "China is famous for the Great Wall and __________.", options: ["pandas", "tigers", "elephants"], correct: "pandas" },
-        { text: "People eat __________ and noodles.", options: ["rice", "bread", "pizza"], correct: "rice" },
-        { text: "__________ food is very popular in China.", options: ["Street", "Fast", "Frozen"], correct: "Street" },
-        { text: "__________ culture is an important part of life.", options: ["Tea", "Coffee", "Milk"], correct: "Tea" },
-        { text: "Chinese __________ Year is a big holiday.", options: ["New", "Old", "Lunar"], correct: "New" },
-        { text: "China has many __________ and produces a lot of goods.", options: ["factories", "farms", "schools"], correct: "factories" },
-        { text: "China is very modern because of __________.", options: ["technology", "nature", "history"], correct: "technology" }
-    ];
-    let gapSelections = new Array(10).fill(null);
-    function renderGap() {
-        const cont = document.getElementById('gapQuizContainer');
-        cont.innerHTML = '';
-        gapData.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div><strong>${idx+1}.</strong> ${item.text}</div><div class="options" id="gapOpts-${idx}"></div>`;
-            cont.appendChild(div);
-            const optsDiv = div.querySelector(`.options`);
-            item.options.forEach(opt => {
-                const optBtn = document.createElement('div');
-                optBtn.className = 'opt';
-                optBtn.innerText = opt;
-                optBtn.addEventListener('click', () => {
-                    document.querySelectorAll(`#gapOpts-${idx} .opt`).forEach(b => b.classList.remove('correct-highlight', 'wrong-highlight'));
-                    if (opt === item.correct) {
-                        optBtn.classList.add('correct-highlight');
-                    } else {
-                        optBtn.classList.add('wrong-highlight');
-                    }
-                    gapSelections[idx] = opt;
-                });
-                optsDiv.appendChild(optBtn);
-            });
-        });
-    }
-    function checkGap() {
-        let correct = 0;
-        gapData.forEach((item, i) => { if (gapSelections[i] === item.correct) correct++; });
-        addPoints(correct * 2);
-        alert(`Exercise 1: ${correct}/${gapData.length} correct. +${correct*2} points`);
-    }
+const PHIL=[
+  {name:'Confucius',teaching:'respect, loyalty and education form a good society'},
+  {name:'Laozi',teaching:'live in harmony with nature — the Tao (Way)'},
+  {name:'Sun Tzu',teaching:'strategy, knowing yourself and your enemy wins wars'},
+  {name:'Mencius',teaching:'humans are naturally good; rulers must be virtuous'},
+];
 
-    // 3. SPEAKING 5 questions
-    const speakQuestions = [
-        "What would you like to see in China and why? (Great Wall / Forbidden City / Terracotta Army)",
-        "What Chinese food do you know? Would you like to try it?",
-        "Why are pandas important for China?",
-        "Do you think technology helps China today? Give one example.",
-        "If you could travel to ancient China, what would you do?"
-    ];
-    let speakAnswers = new Array(5).fill('');
-    function renderSpeaking() {
-        const cont = document.getElementById('speakingQuestions');
-        cont.innerHTML = '';
-        const hints = [
-            "💡 I'd like to see the Great Wall because it's an ancient wonder and very long.",
-            "💡 I know noodles and dumplings. I'd love to try real Chinese street food.",
-            "💡 Pandas are a symbol of conservation and only live in China.",
-            "💡 Mobile payments and high-speed trains are great examples of Chinese technology.",
-            "💡 I would visit the emperor's palace and learn about silk production."
-        ];
-        speakQuestions.forEach((q, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div><strong>${idx+1}. ${q}</strong></div>
-            <textarea id="speakAns${idx}" rows="2" placeholder="Write your answer here..."></textarea>
-            <button class="btn-outline hintBtn" data-idx="${idx}" style="padding:6px 16px; font-size:0.8rem;">💡 Hint</button>
-            <div id="hint${idx}" style="font-size:0.85rem; color:#D35400; margin-top:8px;"></div>`;
-            cont.appendChild(div);
-            document.getElementById(`speakAns${idx}`).addEventListener('input', (e) => speakAnswers[idx] = e.target.value);
-            div.querySelector('.hintBtn').addEventListener('click', () => {
-                document.getElementById(`hint${idx}`).innerHTML = hints[idx];
-            });
-        });
-    }
-    function checkSpeaking() {
-        let answered = 0;
-        for (let i = 0; i < speakAnswers.length; i++) {
-            if (speakAnswers[i] && speakAnswers[i].trim().length > 15) answered++;
-        }
-        addPoints(answered * 4);
-        alert(`Speaking: ${answered} detailed answers (min 15 chars). +${answered*4} points. Try to write more for full points!`);
-    }
+const TRADITIONS=[
+  {emoji:'🐉',name:'Dragon Festival',text:'The Dragon Boat Festival celebrates the poet Qu Yuan. People race long boats and eat sticky rice dumplings called zongzi.'},
+  {emoji:'🏮',name:'Lantern Festival',text:'On the 15th day of Chinese New Year, colourful lanterns are hung everywhere. People solve riddles written on lanterns.'},
+  {emoji:'🍵',name:'Tea Ceremony',text:'Tea drinking is an art in China. The Gongfu tea ceremony has over 18 precise steps and shows respect to guests.'},
+  {emoji:'📜',name:'Calligraphy',text:'Chinese calligraphy is both writing and art. Brushstrokes must flow perfectly — it requires years of practice.'},
+];
 
-    // 4. LISTENING 3 texts with quizzes
-    const listenData = [
-        { text: "The Silk Road was an ancient trade route. Chinese merchants sold silk, tea, and porcelain. They travelled for months to reach other countries.",
-          questions: [
-              { q: "What did Chinese merchants sell?", opts: ["Cotton", "Silk and tea", "Gold"], correct: "Silk and tea" },
-              { q: "How long did they travel?", opts: ["Weeks", "Months", "Years"], correct: "Months" },
-              { q: "What was the Silk Road?", opts: ["A wall", "A trade route", "A temple"], correct: "A trade route" }
-          ] },
-        { text: "Ancient China invented paper, printing, gunpowder, and the compass. These inventions changed the world forever.",
-          questions: [
-              { q: "Which invention is mentioned first?", opts: ["Printing", "Gunpowder", "Paper"], correct: "Paper" },
-              { q: "What did the compass help with?", opts: ["Navigation", "Writing", "Cooking"], correct: "Navigation" },
-              { q: "How did these inventions affect the world?", opts: ["They changed it forever", "They were forgotten", "Only China used them"], correct: "They changed it forever" }
-          ] },
-        { text: "The emperor lived in the Forbidden City. He had many servants and advisors. People had to follow strict rules.",
-          questions: [
-              { q: "Where did the emperor live?", opts: ["Great Wall", "Forbidden City", "Terracotta Army"], correct: "Forbidden City" },
-              { q: "Who helped the emperor?", opts: ["Soldiers", "Servants and advisors", "Farmers"], correct: "Servants and advisors" },
-              { q: "What did people have to follow?", opts: ["Strict rules", "No rules", "Only traditions"], correct: "Strict rules" }
-          ] }
-    ];
-    let listenAnswers = [[null,null,null],[null,null,null],[null,null,null]];
-    function renderListening() {
-        const cont = document.getElementById('listeningSection');
-        cont.innerHTML = '';
-        listenData.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div><strong>🎧 Text ${idx+1}:</strong> ${item.text}</div>
-            <button class="btn-outline listenBtn" data-idx="${idx}" style="margin:10px 0;">🔊 Listen to this text</button>`;
-            cont.appendChild(div);
-            item.questions.forEach((q, qIdx) => {
-                const qDiv = document.createElement('div');
-                qDiv.style.marginTop = '12px';
-                qDiv.innerHTML = `<div><strong>${qIdx+1}.</strong> ${q.q}</div><div class="options" id="listOpts-${idx}-${qIdx}"></div>`;
-                div.appendChild(qDiv);
-                const optDiv = qDiv.querySelector(`.options`);
-                q.opts.forEach(opt => {
-                    const optBtn = document.createElement('div');
-                    optBtn.className = 'opt';
-                    optBtn.innerText = opt;
-                    optBtn.addEventListener('click', () => {
-                        document.querySelectorAll(`#listOpts-${idx}-${qIdx} .opt`).forEach(b => b.classList.remove('correct-highlight', 'wrong-highlight'));
-                        if (opt === q.correct) {
-                            optBtn.classList.add('correct-highlight');
-                        } else {
-                            optBtn.classList.add('wrong-highlight');
-                        }
-                        listenAnswers[idx][qIdx] = opt;
-                    });
-                    optDiv.appendChild(optBtn);
-                });
-            });
-        });
-        document.querySelectorAll('.listenBtn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                let idx = parseInt(btn.dataset.idx);
-                speak(listenData[idx].text);
-            });
-        });
-    }
-    function checkListening() {
-        let totalCorrect = 0;
-        listenData.forEach((item, i) => {
-            item.questions.forEach((q, j) => { if (listenAnswers[i][j] === q.correct) totalCorrect++; });
-        });
-        addPoints(totalCorrect * 2);
-        alert(`Listening: ${totalCorrect}/9 correct. +${totalCorrect*2} points`);
-    }
+const ESSAY_PHRASES=[
+  'China is one of the oldest civilisations in the world.',
+  'Confucius believed that education and respect are essential.',
+  'The four great inventions changed the history of humanity.',
+  'Tea culture shows the importance of harmony and patience.',
+  'In conclusion, Chinese culture has influenced the entire world.',
+  'Furthermore, traditional arts like calligraphy are still practised today.',
+  'The philosopher Laozi taught that we should live in harmony with nature.',
+];
 
-    // 5. READING 6 texts TRUE/FALSE
-    const readingItems = [
-        { title: "Summer Palace", text: "Located in Beijing, the Summer Palace has lakes and gardens. Emperors used it as a summer retreat.", statement: "The Summer Palace is in Shanghai.", answer: false },
-        { title: "Li River", text: "The Li River in Guilin is famous for karst mountains. Tourists take bamboo rafts.", statement: "The Li River is famous for karst mountains.", answer: true },
-        { title: "Giant Buddha of Leshan", text: "This 71-metre statue was carved in the 8th century.", statement: "The Giant Buddha is 71 metres tall.", answer: true },
-        { title: "Potala Palace", text: "Located in Lhasa, Tibet, it has over 1,000 rooms.", statement: "Potala Palace has fewer than 500 rooms.", answer: false },
-        { title: "Mogao Caves", text: "Also known as the Thousand Buddha Grottoes, they contain Buddhist art.", statement: "Mogao Caves are a UNESCO site.", answer: true },
-        { title: "Huangshan", text: "Famous for pine trees and granite peaks. Many poets were inspired.", statement: "Huangshan is famous for its beaches.", answer: false }
-    ];
-    let readingAnswers = new Array(6).fill(null);
-    function renderReading() {
-        const cont = document.getElementById('readingSection');
-        cont.innerHTML = '';
-        readingItems.forEach((item, idx) => {
-            const div = document.createElement('div');
-            div.className = 'quiz-item';
-            div.innerHTML = `<div><strong>${item.title}</strong><br>${item.text}</div>
-            <div style="margin:12px 0"><strong>❓ Statement:</strong> ${item.statement}</div>
-            <div class="options"><div class="opt" data-ridx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-ridx="${idx}" data-val="false">❌ FALSE</div></div>`;
-            cont.appendChild(div);
-        });
-        document.querySelectorAll('[data-ridx]').forEach(el => {
-            el.addEventListener('click', () => {
-                const idx = parseInt(el.dataset.ridx);
-                const val = el.dataset.val === 'true';
-                readingAnswers[idx] = val;
-                document.querySelectorAll(`[data-ridx="${idx}"]`).forEach(b => b.classList.remove('correct-highlight'));
-                el.classList.add('correct-highlight');
-            });
-        });
-    }
-    function checkReading() {
-        let correct = 0;
-        readingItems.forEach((item, i) => { if (readingAnswers[i] === item.answer) correct++; });
-        addPoints(correct * 2);
-        alert(`Reading: ${correct}/6 correct. +${correct*2} points`);
-    }
+function toggleLang(){const h=document.documentElement,isRu=h.dataset.lang==='ru';h.dataset.lang=isRu?'en':'ru';document.getElementById('langBtn').textContent=isRu?'RU':'EN';document.querySelectorAll('[data-ru]').forEach(el=>el.textContent=isRu?el.dataset.en:el.dataset.ru);}
+function speak(t){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;speechSynthesis.speak(u);}
+const done=new Set();
+function completeTask(n){if(done.has(n))return;done.add(n);document.getElementById('rs'+n).classList.add('done');document.getElementById('star'+n).classList.add('lit');document.getElementById('badge'+n).classList.add('show');if(done.size===6){document.getElementById('allDone').style.display='block';launchConfetti();}}
+function launchConfetti(){const cv=document.getElementById('confettiCanvas');cv.width=innerWidth;cv.height=innerHeight;const ctx=cv.getContext('2d');const C=['#B64926','#E67E22','#FFD700','#4caf50','#2196f3'];const p=Array.from({length:150},()=>({x:Math.random()*cv.width,y:-20,r:5+Math.random()*7,dx:(Math.random()-.5)*2,dy:2+Math.random()*3,rot:Math.random()*360,drot:(Math.random()-.5)*5,col:C[Math.floor(Math.random()*C.length)]}));let f=0;(function draw(){ctx.clearRect(0,0,cv.width,cv.height);p.forEach(q=>{ctx.save();ctx.translate(q.x,q.y);ctx.rotate(q.rot*Math.PI/180);ctx.fillStyle=q.col;ctx.fillRect(-q.r,-q.r/2,q.r*2,q.r);ctx.restore();q.x+=q.dx;q.y+=q.dy;q.rot+=q.drot;if(q.y>cv.height+20){q.y=-20;q.x=Math.random()*cv.width;}});if(++f<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,cv.width,cv.height);})();}
 
-    // 6. PANDA QUIZ
-    const pandaQuestions = [
-        { q: "Giant pandas live only in China.", correct: true },
-        { q: "There are more than 10,000 pandas in the wild.", correct: false },
-        { q: "Pandas eat bamboo for 12 hours a day.", correct: true }
-    ];
-    let pandaSelections = [null, null, null];
-    function renderPandaQuiz() {
-        const cont = document.getElementById('pandaQuiz');
-        cont.innerHTML = '';
-        pandaQuestions.forEach((q, idx) => {
-            const div = document.createElement('div');
-            div.style.margin = "12px 0";
-            div.innerHTML = `<div><strong>${idx+1}.</strong> ${q.q}</div><div class="options"><div class="opt" data-pidx="${idx}" data-val="true">✅ TRUE</div><div class="opt" data-pidx="${idx}" data-val="false">❌ FALSE</div></div>`;
-            cont.appendChild(div);
-        });
-        document.querySelectorAll('[data-pidx]').forEach(el => {
-            el.addEventListener('click', () => {
-                const idx = parseInt(el.dataset.pidx);
-                const val = el.dataset.val === 'true';
-                pandaSelections[idx] = val;
-                document.querySelectorAll(`[data-pidx="${idx}"]`).forEach(b => b.classList.remove('correct-highlight'));
-                el.classList.add('correct-highlight');
-            });
-        });
-    }
-    function checkPanda() {
-        let correct = 0;
-        pandaQuestions.forEach((q, i) => { if (pandaSelections[i] === q.correct) correct++; });
-        addPoints(correct * 2);
-        alert(`Panda quiz: ${correct}/3 correct. +${correct*2} points`);
-    }
+// SEC 1
+(function(){const g=document.getElementById('vocabGrid');let fl=new Set();VOCAB.forEach((v,i)=>{const c=document.createElement('div');c.className='flip-card';c.innerHTML=`<div class="flip-inner"><div class="flip-front">${v.ru}</div><div class="flip-back">${v.en}</div></div>`;c.onclick=()=>{c.classList.toggle('flipped');if(c.classList.contains('flipped')){speak(v.en);fl.add(i);if(fl.size>=8)completeTask(1);}};g.appendChild(c);});})();
 
-    // INIT ALL
-    renderFlip();
-    renderGap();
-    renderSpeaking();
-    renderListening();
-    renderReading();
-    renderPandaQuiz();
+// SEC 2 TF
+(function(){const c=document.getElementById('tfContainer');let ans=new Set();TF.forEach((item,i)=>{const div=document.createElement('div');div.className='tf-item';div.innerHTML=`<div class="tf-q">${i+1}. ${item.q}</div><div class="tf-btns"><button class="tf-btn" data-v="true">✅ True</button><button class="tf-btn" data-v="false">❌ False</button></div><div class="tf-fb" id="tfb${i}"></div>`;c.appendChild(div);div.querySelectorAll('.tf-btn').forEach(btn=>{btn.onclick=()=>{div.querySelectorAll('.tf-btn').forEach(b=>{b.disabled=true;b.classList.remove('correct','wrong');});const ch=btn.dataset.v==='true';btn.classList.add(ch===item.correct?'correct':'wrong');if(ch!==item.correct)div.querySelectorAll('.tf-btn').forEach(b=>{if((b.dataset.v==='true')===item.correct)b.classList.add('correct');});document.getElementById('tfb'+i).textContent=ch===item.correct?'✓ Correct!':'✗ Actually '+(item.correct?'True':'False');ans.add(i);if(ans.size===TF.length)completeTask(2);};});});})();
 
-    document.getElementById('checkGapBtn').onclick = checkGap;
-    document.getElementById('checkSpeakingBtn').onclick = checkSpeaking;
-    document.getElementById('checkListeningBtn').onclick = checkListening;
-    document.getElementById('checkReadingBtn').onclick = checkReading;
-    document.getElementById('checkPandaBtn').onclick = checkPanda;
+// SEC 3 MCQ
+(function(){const c=document.getElementById('mcContainer');let ok=0;MC.forEach((q,i)=>{const div=document.createElement('div');div.className='mc-item';div.innerHTML=`<div class="mc-q">${i+1}. ${q.q}</div><div class="mc-opts" id="mco${i}"></div>`;c.appendChild(div);const opts=div.querySelector('#mco'+i);[...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{const b=document.createElement('button');b.className='mc-opt';b.textContent=opt;b.onclick=()=>{opts.querySelectorAll('.mc-opt').forEach(x=>{x.disabled=true;x.classList.remove('correct','wrong');});b.classList.add(opt===q.correct?'correct':'wrong');if(opt!==q.correct)opts.querySelectorAll('.mc-opt').forEach(x=>{if(x.textContent===q.correct)x.classList.add('correct');});if(opt===q.correct){ok++;if(ok>=MC.length-1)completeTask(3);}};opts.appendChild(b);});});})();
+
+// SEC 4 Philosopher Match
+(function(){const shuffW=[...PHIL].sort(()=>Math.random()-.5);const shuffT=[...PHIL].sort(()=>Math.random()-.5);let sel=null,matched=new Set();const ld=document.getElementById('philLeft'),rd=document.getElementById('philRight');
+function render(){ld.innerHTML='';rd.innerHTML='';
+shuffW.forEach(p=>{const d=document.createElement('div');d.className='mc-opt'+(matched.has(p.name)?' correct':'')+(sel===p.name?' wrong':'');d.style.marginBottom='6px';d.textContent=p.name;if(!matched.has(p.name)){d.onclick=()=>{sel=p.name;render();};}ld.appendChild(d);});
+shuffT.forEach(p=>{const d=document.createElement('div');d.className='mc-opt'+(matched.has(p.name)?' correct':'');d.style.cssText='margin-bottom:6px;text-align:left;border-radius:10px;font-size:.78rem';d.textContent=p.teaching;if(!matched.has(p.name)){d.onclick=()=>{if(!sel)return;const ex=PHIL.find(x=>x.name===sel);if(ex&&ex.teaching===p.teaching){matched.add(sel);speak(sel);document.getElementById('philFb').textContent='✅ '+sel;document.getElementById('philFb').style.color='var(--ok)';sel=null;if(matched.size>=PHIL.length)completeTask(4);render();}else{document.getElementById('philFb').textContent='❌ Try again!';document.getElementById('philFb').style.color='var(--miss)';}};} rd.appendChild(d);});}
+render();})();
+
+// SEC 5 Traditions
+(function(){const c=document.getElementById('tradCards');let tapped=new Set();TRADITIONS.forEach((t,i)=>{const d=document.createElement('div');d.className='mc-item';d.style.cursor='pointer';d.innerHTML=`<div style="font-size:1.5rem;margin-bottom:6px">${t.emoji} <strong>${t.name}</strong></div><div style="font-size:.88rem;display:none" id="tdet${i}">${t.text}</div><div style="font-size:.78rem;color:var(--muted)" id="tprompt${i}" data-ru="Нажми чтобы узнать больше" data-en="Tap to learn more">Нажми чтобы узнать больше</div>`;d.onclick=()=>{const det=document.getElementById('tdet'+i);const pr=document.getElementById('tprompt'+i);if(det.style.display==='none'){det.style.display='block';pr.style.display='none';speak(t.text);}else{det.style.display='none';pr.style.display='block';}tapped.add(i);if(tapped.size>=TRADITIONS.length)completeTask(5);};c.appendChild(d);});})();
+
+// SEC 6 Essay
+let essayText='';
+(function(){const c=document.getElementById('essayBtns');ESSAY_PHRASES.forEach(ph=>{const b=document.createElement('button');b.className='essay-btn';b.textContent=ph.length>40?ph.slice(0,38)+'…':ph;b.onclick=()=>{essayText+=(essayText?'\n':'')+ph;document.getElementById('essayOut').textContent=essayText;if(essayText.split('\n').length>=3)completeTask(6);};c.appendChild(b);});})();
+window.readEssay=function(){if(essayText)speak(essayText);};
+window.clearEssay=function(){essayText='';document.getElementById('essayOut').textContent='Твоё эссе появится здесь…';};
+
+// ═══ BUBBLE POP ═══════════════════════════════════════════════════════════
+const BUB_WORDS=['dynasty', 'Confucius', 'calligraphy', 'porcelain', 'philosophy', 'ancestor', 'ritual', 'scholar', 'invention', 'harmony'];
+let bubs=[],bubScore=0,bubRunning=false,bubAnimId=null;
+function startBubbles(){
+  document.getElementById('bubStartBtn').style.display='none';
+  document.getElementById('bubResetBtn').style.display='inline-block';
+  bubs=[];bubScore=0;bubRunning=true;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.width=canvas.offsetWidth||600;canvas.height=280;
+  const cs=getComputedStyle(document.documentElement);
+  const c1=cs.getPropertyValue('--accent').trim()||'#f2a822';
+  const c2=cs.getPropertyValue('--accent2').trim()||'#e06b00';
+  const c3=cs.getPropertyValue('--accent3').trim()||'#ffd54f';
+  const COLS=[c1,c2,c3,'#29b6f6','#ab47bc'];
+  function spawnBub(){
+    const r=Math.random()*22+22;
+    return{x:r+Math.random()*(canvas.width-2*r),y:canvas.height+r,r,
+      vy:-(Math.random()*.55+.38),vx:(Math.random()-.5)*.4,
+      word:BUB_WORDS[Math.floor(Math.random()*BUB_WORDS.length)],
+      c:COLS[Math.floor(Math.random()*COLS.length)],popped:false};
+  }
+  for(let i=0;i<5;i++)bubs.push(spawnBub());
+  function hitTest(mx,my){
+    bubs.forEach((b,i)=>{
+      if(!b.popped&&Math.hypot(b.x-mx,b.y-my)<b.r+8){
+        b.popped=true;bubScore++;
+        document.getElementById('bubScoreDisplay').textContent='Score: '+bubScore+' / 10';
+        if(typeof speak==='function')speak(b.word);
+        setTimeout(()=>{bubs.splice(i,1);if(bubRunning)bubs.push(spawnBub());},350);
+        if(bubScore>=10){bubRunning=false;
+          document.getElementById('bubScoreDisplay').textContent='Done! Score: '+bubScore+' / 10';}
+      }
+    });
+  }
+  canvas.onmousedown=e=>{const r=canvas.getBoundingClientRect();
+    hitTest((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));};
+  canvas.ontouchstart=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();
+    const t=e.changedTouches[0];
+    hitTest((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));};
+  (function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubs.length<6&&bubRunning)bubs.push(spawnBub());
+    bubs.forEach(b=>{
+      b.x+=b.vx;b.y+=b.vy;
+      if(!b.popped){
+        ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle=b.c+'44';ctx.fill();
+        ctx.strokeStyle=b.c;ctx.lineWidth=2.5;ctx.stroke();
+        // shine
+        ctx.beginPath();ctx.arc(b.x-b.r*.28,b.y-b.r*.28,b.r*.32,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,.35)';ctx.fill();
+        ctx.fillStyle='#333';
+        ctx.font=`bold ${Math.max(10,Math.floor(b.r*.52))}px Nunito,sans-serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        const w=b.word.length>10?b.word.slice(0,9)+'…':b.word;
+        ctx.fillText(w,b.x,b.y);
+      }
+    });
+    bubs=bubs.filter(b=>b.y+b.r>-20);
+    if(bubRunning)bubAnimId=requestAnimationFrame(loop);
+  })();
+}
+function resetBubbles(){
+  bubRunning=false;if(bubAnimId)cancelAnimationFrame(bubAnimId);
+  bubs=[];bubScore=0;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubStartBtn').style.display='inline-block';
+  document.getElementById('bubResetBtn').style.display='none';
+}
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
 </body>
 </html>
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

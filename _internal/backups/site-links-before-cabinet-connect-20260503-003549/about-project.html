@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="О проекте New Generation English: биография преподавателя, идея нейрошколы, документы и кабинеты внутри образовательной экосистемы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='.9em' x='10' font-size='80' font-family='Arial Black' fill='%23FF5A1F' font-weight='900'>N</text></svg>">
+<title>О проекте New Generation English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  function toggleTheme() {
+    if (window.NGETheme) window.NGETheme.toggleTheme();
+  }
+  function toggleLang() {
+    if (typeof window.toggleLang === "function" && window.toggleLang !== toggleLang) {
+      window.toggleLang();
+    }
+  }
+
+  function updateExperienceCounter() {
+    const el = document.getElementById("expCounter");
+    if (!el) return;
+
+    // Teacher experience counter: since 2009-09-01.
+    const start = new Date(2009, 8, 1); // months are 0-based
+    const now = new Date();
+
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+      months -= 1;
+      const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonthDays;
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    el.textContent = years + "+";
+    const lang = document.documentElement.getAttribute("lang") || "ru";
+    el.title = lang === "en"
+      ? `${years}y ${months}m ${days}d since Sep 1, 2009`
+      : `${years} лет ${months} мес ${days} дн с 1 сентября 2009`;
+  }
+
+  function updateExperienceTicker() {
+    const ticker = document.getElementById("expTicker");
+    if (!ticker) return;
+
+    const start = new Date(2009, 8, 1);
+    const now = new Date();
+
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+      months -= 1;
+      const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonthDays;
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const hh = pad2(now.getHours());
+    const mm = pad2(now.getMinutes());
+    const ss = pad2(now.getSeconds());
+    const digits = `${years}y ${pad2(months)}m ${pad2(days)}d ${hh}:${mm}:${ss}`;
+
+    const lang = document.documentElement.getAttribute("lang") || "ru";
+    ticker.textContent = (lang === "en" ? "EXP: " : "СТАЖ: ") + digits;
+    ticker.title = lang === "en"
+      ? `${years}y ${months}m ${days}d since Sep 1, 2009`
+      : `${years} лет ${months} мес ${days} дн с 1 сентября 2009`;
+  }
+  function markActiveNav() {
+    const page = document.body.dataset.page;
+    if (!page) return;
+    document.querySelectorAll(".topnav-link[data-nav]").forEach(l => {
+      l.classList.toggle("active", l.dataset.nav === page);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function restore() {
+    try {
+      const savedLang = localStorage.getItem("nge-lang");
+      if (savedLang === "en") toggleLang();
+    } catch (e) {}
+
+    markActiveNav();
+    updateExperienceCounter();
+    updateExperienceTicker();
+    // About-me ticker: update once per second without touching the hero counter.
+    setInterval(updateExperienceTicker, 1000);
+  });
+</script>
+<style>
+/* ============================================================
+   TOKENS — STRICT SYSTEM FROM INDEX.HTML
+   ============================================================ */
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* ============================================================
+   TOPBAR (сохранен из about)
+   ============================================================ */
+/* ============================================================
+   SECTION PRIMITIVES
+   ============================================================ */
+.sect-head {
+  display: grid; grid-template-columns: 140px minmax(0, 1fr);
+  gap: 40px; margin-bottom: 48px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-3);
+  -webkit-text-stroke: 0;
+  color: var(--text-3);
+  margin-top: 8px;
+}
+.sect-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.section { padding: 80px 24px; max-width: 1240px; margin: 0 auto; }
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ============================================================
+   ECOSYSTEM BUTTON STRIP (top shortcuts)
+   ============================================================ */
+.ecosystem-strip {
+  max-width: 1240px;
+  margin: 18px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.eco-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 60%),
+    rgba(0,0,0,0.78);
+  color: var(--text);
+  border: 1px solid rgba(255,90,31,0.55);
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 10px 26px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  min-height: 40px;
+}
+.eco-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 86%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+.eco-btn:active { transform: translateY(0); }
+.eco-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* Light theme: avoid dark pills on cream background */
+body.light .eco-btn {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%),
+    rgba(255,255,255,0.92);
+  border-color: color-mix(in srgb, var(--accent) 42%, rgba(0,0,0,0.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 0 0 1px rgba(0,0,0,0.02),
+    0 14px 30px rgba(16, 12, 8, 0.14);
+}
+body.light .eco-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, rgba(0,0,0,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 14%, transparent),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+body.light .eco-btn:focus-visible {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent),
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+.eco-btn-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.eco-btn-arrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.9;
+}
+@media (max-width: 980px) {
+  .ecosystem-strip { grid-template-columns: 1fr; }
+  .eco-btn { justify-content: center; }
+  .eco-btn-arrow { display: none; }
+}
+
+.eco-btn.is-active {
+  border-color: color-mix(in srgb, var(--accent) 86%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 30px rgba(0,0,0,0.6);
+}
+body.light .eco-btn.is-active {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.78),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 14%, transparent),
+    0 16px 34px rgba(16, 12, 8, 0.16);
+}
+
+.eco-cabinets {
+  padding-top: 34px;
+  padding-bottom: 10px;
+  scroll-margin-top: 86px;
+}
+.eco-cabinets .sect-head { position: relative; margin-bottom: 18px; }
+.eco-cabinets-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-2) 70%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+body.light .eco-cabinets-close {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.10);
+  color: var(--text);
+}
+
+.cabinet-card.is-active {
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 16px 34px rgba(0,0,0,0.55);
+}
+body.light .cabinet-card.is-active {
+  border-color: color-mix(in srgb, var(--accent) 55%, rgba(0,0,0,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 0 0 1px rgba(0,0,0,0.03),
+    0 0 22px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 18px 38px rgba(16, 12, 8, 0.14);
+}
+
+/* ============================================================
+   HERO (переделан под систему)
+   ============================================================ */
+/* ============================================================
+   ABOUT GRID (2 колонки текста)
+   ============================================================ */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.about-text p {
+  margin-bottom: 18px;
+  font-size: 16px; line-height: 1.65;
+  color: var(--text-2);
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+
+/* ============================================================
+   CABINET GRID
+   ============================================================ */
+.cabinet-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cabinet-card {
+  position: relative;
+  padding: 28px 24px 24px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.cabinet-num {
+  position: absolute; top: 20px; right: 20px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; color: var(--text-3);
+}
+.cabinet-title {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.cabinet-list {
+  list-style: none; margin-bottom: 20px;
+}
+.cabinet-list li {
+  position: relative; padding-left: 20px;
+  font-size: 14px; color: var(--text-2); line-height: 1.6;
+  margin-bottom: 8px;
+}
+.cabinet-list li::before {
+  content: "→"; position: absolute; left: 0;
+  font-family: var(--mono); color: var(--accent); font-weight: 700;
+}
+.cabinet-status {
+  display: block;
+  width: fit-content;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 4px;
+  margin: 14px auto 0;
+}
+
+/* Cabinets emphasis (about page only) */
+.cabinet-card::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 16px;
+  height: 1px;
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+  opacity: .85;
+  pointer-events: none;
+}
+.cabinet-lead {
+  max-width: 980px;
+  margin: 0 auto 28px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-2);
+}
+
+/* Experience counter */
+
+/* Neuro-school clarification note (Section 01) */
+.neuro-definition {
+  position: relative;
+  padding: 28px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 90, 31, 0.10), rgba(255, 90, 31, 0.03));
+  border: 1px solid rgba(255, 90, 31, 0.25);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin: 24px 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.neuro-definition p { margin: 0; }
+.neuro-definition .note { margin-top: 10px; color: var(--text-2); }
+.neuro-definition strong { color: var(--text); }
+
+.neuro-definition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0.6;
+}
+
+.neuro-definition .document-heading {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  margin-bottom: 14px;
+}
+
+.neuro-definition:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 90, 31, 0.4);
+}
+
+/* Dark theme only: IMPORTANT (“ВАЖНО”) block styling */
+body:not(.light) .important-box,
+body:not(.light) .neuro-definition {
+  background: linear-gradient(180deg, rgba(255, 90, 31, 0.15), rgba(255, 90, 31, 0.05));
+  border: 1px solid rgba(255, 90, 31, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(255, 90, 31, 0.2),
+    0 12px 40px rgba(255, 90, 31, 0.1);
+}
+
+body:not(.light) .important-box p,
+body:not(.light) .neuro-definition .note {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body:not(.light) .important-box strong,
+body:not(.light) .neuro-definition strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ============================================================
+   ARTICLES GRID
+   ============================================================ */
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.article-card {
+  padding: 40px 36px;
+}
+.article-card h3 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.article-card p {
+  font-size: 17px; line-height: 1.65;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.article-card p:last-child { margin-bottom: 0; }
+.bio-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto 28px;
+}
+.document-box {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.document-heading {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.doc-list {
+  list-style: none; margin-bottom: 12px;
+}
+.doc-list li {
+  position: relative; padding-left: 18px;
+  font-size: 14px; color: var(--text-2); line-height: 1.55;
+  margin-bottom: 6px;
+}
+.doc-list li::before {
+  content: "•"; position: absolute; left: 0;
+  color: var(--accent);
+}
+.document-note {
+  font-size: 13px; color: var(--text-3);
+  font-family: var(--mono);
+}
+.note {
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center;
+}
+.cta-head::before,
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.cta h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  max-width: 1240px; margin: 0 auto;
+  padding: 40px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; color: var(--text-3);
+}
+.footer-copy a { color: var(--text-2); }
+.footer-copy a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.footer-link {
+  padding: 6px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); transition: all .15s;
+}
+.footer-link:hover { color: var(--text); background: color-mix(in srgb, var(--text) 8%, transparent); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .cabinet-grid, .articles-grid { grid-template-columns: 1fr; }
+  .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  .bio-layout { grid-template-columns: 1fr; }
+  .bio-photo { max-width: 360px; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .cta { padding: 56px 0; }
+}
+</style>
+<link rel="stylesheet" href="./system.css">
+<link rel="stylesheet" href="./assets/visitor-counter.css">
+</head>
+<body data-page="about">
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="New Generation English">
+    <div class="brand-mark">N</div>
+    <div>
+      <div class="brand-name"><span>NG ENGLISH</span></div>
+      <div class="brand-sub">nge · since 2023</div>
+    </div>
+  </a>
+
+  <nav class="topnav" aria-label="Основная навигация">
+    <a class="topnav-link" href="about-project.html" data-nav="about" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="topnav-link" href="programs.html" data-nav="programs" data-ru="Программы" data-en="Programs">Программы</a>
+    <a class="topnav-link" href="cases.html" data-nav="cases" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="topnav-link" href="conditions.html" data-nav="conditions" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="topnav-link" href="blog.html" data-nav="blog" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="topnav-link" href="lingua-boost-lab/index.html" data-nav="lab" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+
+  <div class="topbar-tools">
+    <button class="control-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Theme: DARK">DARK</button>
+    <button class="control-btn lang-btn" id="langBtn" onclick="toggleLang()">RU</button>
+  </div>
+</header>
+
+<main>
+
+    <div class="ecosystem-strip" aria-label="Кабинеты экосистемы">
+      <a class="eco-btn" href="cabinet/student.html" aria-label="Кабинет ученика">
+        <span class="eco-btn-label" data-ru="Кабинет ученика" data-en="Student cabinet">Кабинет ученика</span>
+        <span class="eco-btn-arrow">→</span>
+      </a>
+      <a class="eco-btn" href="cabinet/parent.html" aria-label="Кабинет родителей">
+        <span class="eco-btn-label" data-ru="Кабинет родителей" data-en="Parent cabinet">Кабинет родителей</span>
+        <span class="eco-btn-arrow">→</span>
+      </a>
+      <a class="eco-btn" href="cabinet/teacher.html" aria-label="Кабинет преподавателя">
+        <span class="eco-btn-label" data-ru="Кабинет преподавателя" data-en="Teacher cabinet">Кабинет преподавателя</span>
+        <span class="eco-btn-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+  <div class="hero-stars-bg" aria-hidden="true">
+    <img class="img-dark" src="assets/2b6113f9-60e3-4068-8396-cc913336484c.png" alt="">
+    <img class="img-light" src="assets/b7902a11-3511-4d56-ab78-1ba0c1b8a42b.png" alt="">
+</div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-ru="О проекте · New Generation English" data-en="About · New Generation English">О проекте · New Generation English</span>
+      <span class="bar"></span>
+      <span>№ 002</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker" data-ru="New Generation English" data-en="New Generation English">New Generation English</div>
+        <div class="hero-kicker-secondary" data-ru="Авторская образовательная среда" data-en="A personally designed learning environment">Авторская образовательная среда</div>
+
+        <h1>
+          <span class="line" data-ru="Английский —" data-en="English is">Английский —</span>
+          <span class="line accent" data-ru="управляемая система." data-en="a manageable system.">управляемая система.</span>
+        </h1>
+
+        <p class="hero-lead"
+           data-ru="Для тех, кто хочет понимать, что делает, — а не просто «учить язык». Авторская образовательная среда: уроки под вашу цель, темп и точку входа."
+           data-en="For those who want to understand what they are doing, not just “learn a language”. A personally designed learning environment: lessons built around your goal, pace, and starting point.">
+          Для тех, кто хочет понимать, что делает, — а не просто «учить язык».<br>
+          Авторская образовательная среда: уроки под вашу цель, темп и точку входа.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="index.html">
+            <span data-ru="Вернуться на главную" data-en="Back to home">Вернуться на главную</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn btn-ghost" href="programs.html">
+            <span data-ru="Смотреть программы" data-en="View programs">Смотреть программы</span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="hero-students-link">
+          <span data-ru="вторая вкладка навигации" data-en="second navigation item">вторая вкладка навигации</span>
+          —
+          <a href="about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell"><div class="idx">01</div><div class="num"><em id="expCounter" class="exp-counter">16+</em></div><div class="lbl" data-ru="лет опыта" data-en="years of experience">лет опыта</div></div>
+      <div class="cell"><div class="idx">02</div><div class="num">NGE</div><div class="lbl" data-ru="экосистема" data-en="ecosystem">экосистема</div></div>
+      <div class="cell"><div class="idx">03</div><div class="num">500+</div><div class="lbl" data-ru="учеников" data-en="students">учеников</div></div>
+      <div class="cell"><div class="idx">04</div><div class="num">LAB</div><div class="lbl" data-ru="модули" data-en="modules">модули</div></div>
+    </div>
+  </div>
+</section>
+
+      <hr class="dash">
+    <!-- SECTION 01: Кто стоит за системой -->
+    <section class="section" id="about-author">
+      <div class="sect-head">
+        <div class="sect-index">01<small data-ru="Обо мне" data-en="About me">Обо мне</small></div>
+        <div><div class="sect-eyebrow" data-ru="О проекте" data-en="About project">О проекте</div><h2 class="sect-title" data-ru="Кто стоит за системой" data-en="Who is behind the system">Кто стоит за системой</h2></div>
+      </div>
+      <div class="articles-grid">
+        <div class="article-card">
+          <h3 data-ru="Об авторе системы" data-en="About the author of the system">Об авторе системы</h3>
+          <div class="bio-layout" style="grid-template-columns: minmax(260px, 420px) 1fr; align-items: center; gap: 28px;">
+            <div class="bio-photo hero-media">
+              <img src="assets/maria-teacher.jpg" alt="Мария Витальевна" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 240%27%3E%3Crect width=%27200%27 height=%27240%27 fill=%27%23141414%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-size=%2714%27 fill=%27%236a6a6a%27 text-anchor=%27middle%27%3EMARIA%3C/text%3E%3C/svg%3E'">
+              <div class="hero-media-frame"></div>
+              <div class="hero-media-caption">
+                <span class="dot"></span>
+                <span data-ru="Мария · преподаватель" data-en="Maria · teacher">Мария · преподаватель</span>
+              </div>
+            </div>
+            <div>
+              <div id="expTicker"
+                   style="margin: 2px 0 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; color: #2ee59d; text-transform: uppercase;">
+                СТАЖ: --
+              </div>
+
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="Я — Мария Бурцева. Я не просто преподаю английский — я строю систему, в которой обучение работает как управляемый процесс, а не набор уроков."
+                 data-en="I’m Maria Burtseva. I don’t just teach English — I build a system where learning works as a manageable process, not a random set of lessons.">
+ Я — Мария Бурцева. Я не просто преподаю английский — я строю систему, в которой обучение работает как управляемый процесс, а не набор уроков.
+              </p>
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="Преподаю с 2009 года. Работаю с задачами, где важна конкретика: экзамены, поступление и учёба за рубежом, медицинский и деловой английский, взрослые ученики без «школьной воды»."
+                 data-en="I’ve been teaching since 2009. I work with goals where clarity matters: exams, admissions and study abroad, medical and business English, and adult learning without school-style filler.">
+ Преподаю с 2009 года. Работаю с задачами, где важна конкретика: экзамены, поступление и учёба за рубежом, медицинский и деловой английский, взрослые ученики без «школьной воды».
+              </p>
+              <p style="font-size: 17px; line-height: 1.65;"
+                 data-ru="За время практики через систему прошли 500+ учеников. Это не поток: маршрут строится под конкретного человека и его цель."
+                 data-en="Over time, 500+ students have gone through the system. This is not an assembly line: each route is built for a specific person and goal.">
+ За время практики через систему прошли 500+ учеников. Это не поток: маршрут строится под конкретного человека и его цель.
+              </p>
+              <p style="font-size: 17px; line-height: 1.65; margin-bottom: 0;"
+                 data-ru="Профессиональный фон включает перевод (технический, юридический, медицинский, деловой) и разработку учебных материалов. Поэтому я держу точность, структуру и понятные траектории — и использую современные инструменты только там, где они делают прогресс прозрачнее."
+                 data-en="My background includes translation (technical, legal, medical, business) and educational content development. That’s why I keep precision, structure, and clear trajectories — and use modern tools only where they make progress more transparent.">
+ Профессиональный фон включает перевод (технический, юридический, медицинский, деловой) и разработку учебных материалов. Поэтому я держу точность, структуру и понятные траектории — и использую современные инструменты только там, где они делают прогресс прозрачнее.
+              </p>
+
+              <div style="display:flex; justify-content:center;">
+                <a class="btn btn-primary" href="conditions.html#documents" style="margin-top: 18px;"
+                   data-ru="Документы и сертификаты →" data-en="Documents & certificates →">Документы и сертификаты →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <hr class="dash">
+
+    <!-- SECTION 02: О школе / нейрошкола / отличие -->
+    <section class="section" id="neuro-school">
+      <div class="sect-head">
+        <div class="sect-index">02<small data-ru="О школе" data-en="About school">О школе</small></div>
+        <div><div class="sect-eyebrow" data-ru="New Generation English" data-en="New Generation English">New Generation English</div><h2 class="sect-title" data-ru="Нейрошкола и отличие" data-en="Neuro-school and the difference">Нейрошкола и отличие</h2></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p
+            data-ru="New Generation English — это не просто занятия, а образовательная среда, в которой английский становится понятной и управляемой системой."
+            data-en="New Generation English is not just lessons, but an educational environment where English becomes a clear and manageable system.">
+New Generation English — это не просто занятия, а образовательная среда, в которой английский становится понятной и управляемой системой.
+          </p>
+          <p
+            data-ru="Нейрошкола в рамках проекта — это способ выстроить обучение вокруг конкретного ученика, не разрушая структуру, а уточняя её."
+            data-en="In this project, a neuro-school is a way to build learning around a specific student: not by breaking the structure, but by refining it.">
+Нейрошкола в рамках проекта — это способ выстроить обучение вокруг конкретного ученика, не разрушая структуру, а уточняя её.
+          </p>
+          <div class="document-box neuro-definition" role="note">
+            <p class="document-heading" data-ru="ВАЖНО" data-en="IMPORTANT">ВАЖНО</p>
+            <p class="note"
+               data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция."
+               data-en="In this project, the term “neuro-school” is used as a working definition of a learning system built around the learner’s perception logic, not as neuropsychological correction.">
+ В данном проекте термин «нейрошкола» используется как <strong>рабочее определение</strong> системы обучения, выстроенной вокруг логики восприятия ученика, а не как <strong>нейропсихологическая коррекция</strong>.
+            </p>
+          </div>
+          <p
+            data-ru="Уроки в такой системе не идут по шаблону. Они собираются под каждого ученика как маршрутные карты: с учётом уровня, целей и темпа."
+            data-en="Lessons in this system do not follow a template. They are built for each student as route maps, with level, goals, and pace taken into account.">
+Уроки в такой системе не идут по шаблону. Они собираются под каждого ученика как маршрутные карты: с учётом уровня, целей и темпа.
+          </p>
+          <p
+            data-ru="В работе используются как современные инструменты (включая нейросети), так и проверенные международные материалы — Лонгман, Кембридж, Оксфорд. Это позволяет сочетать гибкость и академическую надёжность."
+            data-en="We use both modern tools (including neural networks) and proven international materials such as Longman, Cambridge, and Oxford. This allows us to combine flexibility with academic reliability.">
+В работе используются как современные инструменты (включая нейросети), так и проверенные международные материалы — Лонгман, Кембридж, Оксфорд. Это позволяет сочетать гибкость и академическую надёжность.
+          </p>
+        </div>
+        <div class="about-text">
+          <p
+            data-ru="Обычная школа даёт один маршрут для всех: единый темп, единый формат, единое объяснение."
+            data-en="A traditional school provides one route for everyone: one pace, one format, one explanation.">
+Обычная школа даёт один маршрут для всех: единый темп, единый формат, единое объяснение.
+          </p>
+          <p
+            data-ru="Нейрошкола работает иначе: она сохраняет систему, но адаптирует подачу, ритм и инструменты под человека."
+            data-en="A neuro-school works differently: it keeps the system, but adapts delivery, rhythm, and tools to the person.">
+Нейрошкола работает иначе: она сохраняет систему, но адаптирует подачу, ритм и инструменты под человека.
+          </p>
+          <p
+            data-ru="Технологии здесь не заменяют преподавателя, а помогают сделать процесс более прозрачным и управляемым."
+            data-en="Technology here does not replace the teacher; it helps make the process more transparent and manageable.">
+Технологии здесь не заменяют преподавателя, а помогают сделать процесс более прозрачным и управляемым.
+          </p>
+        </div>
+      </div>
+    </section>
+
+      <hr class="dash">
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-head"><span data-ru="04 · Запись" data-en="04 · Enrollment">04 · Запись</span></div>
+        <h2>
+          <span data-ru="Если вы хотите систему," data-en="If you want a system,">Если вы хотите систему,</span>
+          <span class="accent" data-ru="а не просто уроки —" data-en="not just lessons —">а не просто уроки —</span>
+        </h2>
+        <p
+          data-ru="Напишите мне в Телеграм. Разберём, какой формат обучения нужен сейчас, какая цель стоит перед вами, и как выстроить маршрут внутри этой системы."
+          data-en="Message me on Telegram. We’ll clarify which format you need now, what goal you are working towards, and how to build the best route within this system.">
+Напишите мне в Телеграм. Разберём, какой формат обучения нужен сейчас, какая цель стоит перед вами, и как выстроить маршрут внутри этой системы.
+        </p>
+        <div style="display:flex; justify-content:center;">
+          <a href="https://t.me/MariaBurceva_English" target="_blank" class="btn btn-primary" data-ru="Написать в Телеграм" data-en="Message me on Telegram">Написать в Телеграм →</a>
+        </div>
+    </section>
+
+  </main>
+
+<!-- FOOTER -->
+<footer class="footer legal-footer">
+  <div class="footer-legal">
+    <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
+    <p data-ru="Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга." data-en="The term “neuro-school” is used as the author’s working description of a learning approach, not as a medical, neuropsychological, or corrective service.">Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
+  </div>
+</footer>
+
+<script defer src="./site.js"></script>
+<script defer src="./theme-cycle.js"></script>
+</body>
+</html>

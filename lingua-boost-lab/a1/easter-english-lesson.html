@@ -1,681 +1,982 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Easter English Lesson | LinguaBoost Studio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fef7e0;
-            background-image: radial-gradient(circle at 10% 20%, rgba(255,245,200,0.4) 2%, transparent 2.5%);
-            background-size: 28px 28px;
-            color: #2d3e2b;
-            padding: 1.8rem 1.2rem;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* header / logo */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #f3c26b;
-            padding-bottom: 0.8rem;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #c97e2c, #b34e3a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            font-weight: 600;
-        }
-        .nav-links span {
-            cursor: default;
-            padding: 0.2rem 0;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-links .active {
-            border-bottom-color: #e7a23b;
-            color: #b45f2b;
-        }
-        .homework-badge {
-            background: #ffb347;
-            padding: 4px 12px;
-            border-radius: 40px;
-            color: #2c2b26;
-            font-size: 0.8rem;
-        }
-
-        /* section cards */
-        .section-card {
-            background: rgba(255, 252, 240, 0.92);
-            backdrop-filter: blur(2px);
-            border-radius: 2rem;
-            padding: 1.6rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-            border: 1px solid #ffe2aa;
-        }
-        .section-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #bc6f2c;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-left: 5px solid #f3b43a;
-            padding-left: 18px;
-        }
-
-        /* matching pictures (1.1) */
-        .match-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.2rem;
-            margin: 1.5rem 0;
-        }
-        .match-card {
-            background: #fff6e5;
-            border-radius: 28px;
-            padding: 0.8rem;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.1s;
-            border: 2px solid #f7d9a0;
-        }
-        .match-card.selected {
-            background: #ffe0a3;
-            border-color: #e28c2e;
-            transform: scale(0.98);
-        }
-        .match-emoji {
-            font-size: 2.6rem;
-        }
-        .match-word {
-            font-weight: 600;
-            margin-top: 6px;
-        }
-        .match-status {
-            font-size: 0.8rem;
-            margin-top: 6px;
-            font-weight: 500;
-        }
-
-        /* True/False block */
-        .tf-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        .tf-item {
-            background: #fcf3e0;
-            padding: 12px 18px;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .tf-question {
-            flex: 2;
-            font-weight: 500;
-        }
-        .tf-buttons button {
-            margin: 0 6px;
-            padding: 5px 20px;
-            border: none;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .true-btn { background: #a3d9a5; color: #1b4d1b; }
-        .false-btn { background: #f4acb7; color: #871e2c; }
-        .tf-feedback { margin-left: 10px; font-size: 0.85rem; }
-
-        /* recipe order (drag & drop style interactive) */
-        .recipe-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 20px 0;
-        }
-        .step-row {
-            background: #f2e5cf;
-            border-radius: 50px;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: grab;
-            transition: 0.1s;
-        }
-        .step-row.dragging {
-            opacity: 0.5;
-        }
-        .step-index {
-            font-weight: 800;
-            background: #d9b48b;
-            width: 32px;
-            height: 32px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            color: white;
-        }
-        .step-text {
-            flex: 1;
-        }
-
-        /* jokes matching */
-        .jokes-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .jokes-col {
-            flex: 1;
-            background: #fff2e0;
-            border-radius: 32px;
-            padding: 16px;
-        }
-        .joke-item {
-            background: #faeecd;
-            margin: 12px 0;
-            padding: 12px;
-            border-radius: 40px;
-            cursor: pointer;
-            text-align: center;
-            transition: 0.1s;
-        }
-        .joke-item.selected {
-            background: #f7bc5e;
-            color: #2d2b1f;
-        }
-        .joke-matched {
-            background: #9bc48e;
-            text-decoration: line-through;
-            opacity: 0.7;
-            cursor: default;
-        }
-
-        /* video tick list */
-        .video-checklist {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin: 20px 0;
-        }
-        .check-item {
-            background: #e8dcc8;
-            padding: 8px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-        }
-        .check-item.checked {
-            background: #85b97a;
-            text-decoration: line-through;
-            color: #2b4223;
-        }
-
-        /* song gap-fill */
-        .song-gap {
-            background: #fae7c9;
-            padding: 20px;
-            border-radius: 36px;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-        .gap-input {
-            background: white;
-            border: 1px solid #e2b87a;
-            padding: 4px 12px;
-            border-radius: 50px;
-            width: 110px;
-            text-align: center;
-        }
-        button {
-            background: #e6b050;
-            border: none;
-            border-radius: 40px;
-            padding: 6px 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-
-        /* reading customs with popup (Easter Customs) */
-        .custom-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .custom-card {
-            background: #fff3e2;
-            border-radius: 28px;
-            padding: 18px;
-            flex: 1 1 220px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            opacity: 0.7;
-        }
-        @media (max-width: 700px) {
-            .top-bar { flex-direction: column; gap: 10px; }
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Easter English — A1 | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+:root{
+  --bg:#fef7e0;--surface:#fff;--accent:#e7a23b;--accent2:#c97e2c;
+  --accent3:#f4c06a;--text:#3d2b00;--muted:#9a7b4f;
+  --ok:#2c7a4d;--miss:#c0392b;--radius:1.2rem;--shadow:0 6px 24px rgba(0,0,0,.1);
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* TOPBAR */
+.topbar{background:var(--surface);box-shadow:var(--shadow);padding:.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;position:sticky;top:0;z-index:100}
+.brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:var(--accent2);text-decoration:none}
+.topbar-pills{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.pill{background:var(--accent3);color:var(--text);border-radius:2rem;padding:.2rem .75rem;font-size:.8rem;font-weight:700}
+.topbar-right{display:flex;align-items:center;gap:.7rem}
+.btn-lang{background:var(--accent);color:#fff;border:none;border-radius:2rem;padding:.3rem .9rem;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;font-size:.85rem}
+.btn-lang:hover{background:var(--accent2)}
+.back-link{color:var(--muted);font-size:.85rem;text-decoration:none;font-weight:600}
+.back-link:hover{color:var(--accent2)}
+
+/* HERO */
+.hero{text-align:center;padding:2rem 1rem 1rem}
+.breadcrumb{font-size:.8rem;color:var(--muted);font-weight:600;margin-bottom:.5rem}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.6rem;color:var(--accent2);margin-bottom:.6rem}
+.subtitle-pill{display:inline-block;background:var(--accent);color:#fff;border-radius:2rem;padding:.3rem 1.1rem;font-size:.9rem;font-weight:700}
+
+/* STAR BAR */
+.star-bar{display:flex;justify-content:center;gap:.6rem;padding:.8rem 1rem .4rem;flex-wrap:wrap}
+.star{font-size:1.6rem;opacity:.25;transition:all .4s;cursor:default;user-select:none}
+.star.lit{opacity:1;filter:drop-shadow(0 0 8px gold);transform:scale(1.1)}
+
+/* RAIL */
+.rail{display:flex;align-items:center;justify-content:center;padding:.4rem 1rem 1.4rem}
+.rail-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:2.5rem;position:relative}
+.rail-step::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:4px;background:#e0d8ca;z-index:0;transition:background .4s}
+.rail-step:last-child::after{display:none}
+.rail-dot{width:28px;height:28px;border-radius:50%;background:#e0d8ca;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#aaa;position:relative;z-index:1;transition:all .4s}
+.rail-step.done .rail-dot{background:var(--accent);color:#fff}
+.rail-step.done::after{background:var(--accent)}
+.rail-label{font-size:.65rem;font-weight:600;color:var(--muted);margin-top:.2rem;text-align:center}
+
+/* SECTION */
+.section{background:var(--surface);border-radius:1.8rem;margin:1.2rem auto;max-width:900px;overflow:hidden;box-shadow:var(--shadow);border-top:6px solid var(--accent3)}
+.section-head{background:linear-gradient(135deg,var(--accent2),#e7a23b);color:#fff;padding:1.1rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem}
+.section-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.25rem}
+.section-num{font-size:1.6rem}
+.section-body{padding:1.4rem 1.6rem}
+.section-tip{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:1rem}
+
+/* BUTTONS */
+.btn{padding:.5rem 1.3rem;border-radius:2rem;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif;font-size:.9rem}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2)}
+.btn-secondary{background:#bfb8ac;color:#fff}
+.btn-sm{padding:.3rem .8rem;font-size:.8rem}
+.btn-speak{background:#e3f4ec;color:var(--ok);border:2px solid var(--ok);padding:.3rem .8rem;border-radius:2rem;font-weight:700;font-family:'Manrope',sans-serif;cursor:pointer;font-size:.85rem}
+.btn-speak:hover{background:var(--ok);color:#fff}
+
+/* FLIP CARDS */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.9rem}
+.flip-wrap{perspective:800px;height:100px;cursor:pointer}
+.flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s}
+.flip-wrap.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5rem;gap:.2rem}
+.flip-front{background:var(--accent);color:#fff;font-weight:800;font-family:'Nunito',sans-serif;font-size:1.1rem}
+.flip-back{background:var(--accent2);color:#fff;font-size:.85rem;transform:rotateY(180deg)}
+.flip-back .back-emoji{font-size:1.4rem}
+
+/* TRUE/FALSE */
+.tf-list{display:flex;flex-direction:column;gap:.8rem}
+.tf-item{background:#faf7f0;border-radius:1rem;padding:.9rem 1rem}
+.tf-stmt{font-weight:600;margin-bottom:.6rem;font-size:.95rem}
+.tf-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn-tf{padding:.35rem 1rem;border-radius:2rem;font-weight:700;border:2px solid transparent;cursor:pointer;font-family:'Manrope',sans-serif;font-size:.85rem;background:#e8e2d6;color:var(--text);transition:all .2s}
+.btn-tf.sel-true{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn-tf.sel-false{background:var(--miss);color:#fff;border-color:var(--miss)}
+.tf-fb{font-size:.8rem;margin-top:.5rem;padding:.3rem .6rem;border-radius:.5rem;display:none;font-weight:600}
+.tf-fb.fb-ok{background:#e3f4ec;color:var(--ok);display:block}
+.tf-fb.fb-miss{background:#fdecea;color:var(--miss);display:block}
+.tf-check-row{margin-top:1rem}
+
+/* DRAG & DROP RECIPE */
+.drag-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.drag-item{background:var(--accent3);border-radius:.8rem;padding:.65rem 1rem;font-weight:600;cursor:grab;user-select:none;display:flex;align-items:center;gap:.6rem;transition:background .2s}
+.drag-item:active{cursor:grabbing}
+.drag-item.drag-over{background:var(--accent);color:#fff}
+.drag-item.correct-order{background:#e3f4ec;color:var(--ok)}
+.drag-item.wrong-order{background:#fdecea;color:var(--miss)}
+.step-num{background:rgba(0,0,0,.15);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+.recipe-result{margin-top:.8rem;font-weight:700;display:none}
+
+/* JOKE MATCHING */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.match-col{display:flex;flex-direction:column;gap:.5rem}
+.match-col-head{font-weight:700;font-size:.85rem;color:var(--muted);margin-bottom:.2rem}
+.match-item{padding:.6rem .9rem;border-radius:.8rem;cursor:pointer;font-weight:600;font-size:.85rem;border:2px solid transparent;transition:all .2s;line-height:1.3}
+.match-item.setup{background:#f0ebe0}
+.match-item.punchline{background:#faf5e8}
+.match-item.selected{border-color:var(--accent);background:var(--accent3)}
+.match-item.matched{background:#e3f4ec;color:var(--ok);border-color:var(--ok);cursor:default}
+.match-score{margin-top:.8rem;font-weight:700;color:var(--ok)}
+
+/* EGG CANVAS */
+.egg-controls{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem}
+.color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .2s}
+.color-swatch.active{border-color:var(--text)}
+.brush-btn{padding:.25rem .7rem;border-radius:1rem;font-size:.8rem;font-weight:700;border:2px solid #ccc;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif}
+.brush-btn.active{border-color:var(--accent);background:var(--accent3)}
+#eggCanvas{border-radius:1rem;background:#fff;box-shadow:inset 0 0 8px rgba(0,0,0,.08);touch-action:none;display:block;margin:0 auto;cursor:crosshair;max-width:100%}
+.egg-stroke-info{font-size:.8rem;color:var(--muted);font-weight:600;margin-top:.5rem}
+
+/* GAP FILL */
+.gap-list{display:flex;flex-direction:column;gap:.6rem}
+.gap-item{background:#faf7f0;border-radius:.9rem;padding:.75rem 1rem;font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.gap-select{padding:.3rem .6rem;border-radius:.6rem;border:2px solid var(--accent3);font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;background:#fff;color:var(--text);cursor:pointer}
+.gap-select.correct{border-color:var(--ok);background:#e3f4ec}
+.gap-select.wrong{border-color:var(--miss);background:#fdecea}
+.gap-score{margin-top:.8rem;font-weight:700;font-size:1rem}
+
+/* ALL DONE */
+.all-done{display:none;text-align:center;padding:2.5rem 1.5rem;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:1.8rem;color:#fff;margin:1.2rem auto;max-width:900px;box-shadow:var(--shadow)}
+.all-done.show{display:block}
+.all-done h2{font-family:'Nunito',sans-serif;font-size:2rem;margin-bottom:.5rem}
+
+/* CONFETTI */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999}
+
+/* FOOTER */
+footer{text-align:center;padding:1.5rem 1rem 2rem;color:var(--muted);font-size:.8rem}
+footer a{color:var(--muted)}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero h1{font-size:2rem}
+  .section-body{padding:1rem}
+  .flip-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .match-grid{grid-template-columns:1fr}
+  .topbar{gap:.4rem}
+  .brand{font-size:1rem}
+}
+@media(max-width:380px){
+  .flip-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ═══ LAB BRAND + LOGO ══════════════════════════════════════════════════ */
+.lab-topbar{display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,3vw,1.75rem);
+  background:color-mix(in srgb,var(--surface,#fff) 92%,transparent);
+  border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:200;min-height:54px}
+.lab-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.lab-mark{width:36px;height:36px;border-radius:8px;background:var(--accent2);
+  display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.25rem;color:#fff;letter-spacing:-.05em;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);position:relative}
+.lab-mark::after{content:'';position:absolute;right:5px;bottom:5px;width:5px;height:5px;
+  border-radius:50%;background:rgba(255,255,255,.65)}
+.lab-brand-copy{display:grid;gap:1px}
+.lab-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;
+  letter-spacing:-.02em;color:var(--text);line-height:1}
+.lab-brand-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);line-height:1}
+.lab-nav{display:flex;gap:.4rem;align-items:center;margin-left:auto;flex-wrap:wrap}
+.lab-back{font-size:.75rem;font-weight:700;color:var(--muted);text-decoration:none;
+  padding:.2rem .6rem;border-radius:.5rem;transition:color .18s}
+.lab-back:hover{color:var(--accent2)}
+.lab-pill-nav{display:inline-grid;place-items:center;padding:.2rem .65rem;
+  border:1px solid rgba(0,0,0,.13);border-radius:999px;font-size:.65rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-pill-accent{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.lab-tool-btn{height:30px;padding:0 .75rem;border:1px solid rgba(0,0,0,.15);border-radius:7px;
+  background:transparent;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;
+  color:var(--muted);transition:all .16s;font-family:'Manrope',sans-serif}
+.lab-tool-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ═══ LAB HERO ══════════════════════════════════════════════════════════ */
+.lab-hero{border:1px solid rgba(0,0,0,.07);border-radius:1.5rem;
+  margin:1.2rem auto 0;max-width:960px;
+  padding:clamp(1.5rem,4vw,2.8rem) clamp(1.2rem,3vw,2.2rem);
+  background:var(--surface,#fff);overflow:hidden;position:relative;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.lab-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,var(--accent3) 0%,transparent 68%);
+  pointer-events:none;opacity:.22}
+.lab-hero-inner{position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 148px;gap:2rem;align-items:center}
+.lab-eyebrow{font-size:.67rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--accent2);flex-shrink:0}
+.lab-hero-title{font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.75rem,5vw,3rem);line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:.8rem;color:var(--text)}
+.lab-hero-title em{font-style:normal;color:var(--accent2)}
+.lab-hero-lead{color:var(--muted);font-size:clamp(.85rem,1.7vw,1rem);line-height:1.7;margin-bottom:1.1rem}
+.lab-hero-badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-badge{display:inline-grid;place-items:center;padding:.22rem .65rem;
+  border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:.64rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;
+  background:linear-gradient(135deg,var(--accent3) 0%,var(--accent) 100%);
+  border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.85}
+.lab-vis-inner{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:16px}
+.lab-vis-dot{border-radius:6px;background:rgba(255,255,255,.55)}
+.lab-vis-dot:nth-child(1){height:32px}
+.lab-vis-dot:nth-child(2){height:20px;margin-top:auto}
+.lab-vis-dot:nth-child(3){height:20px}
+.lab-vis-dot:nth-child(4){height:32px;margin-top:auto}
+@media(max-width:580px){
+  .lab-hero-inner{grid-template-columns:1fr}
+  .lab-hero-visual{display:none}
+  .lab-topbar{flex-wrap:wrap;gap:.5rem}
+}
+
+/* ═══ BUBBLE POP BONUS ══════════════════════════════════════════════════ */
+.bub-score-bar{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--accent2);margin-bottom:.6rem}
+#bubCanvas{width:100%;height:280px;display:block;border-radius:1rem;
+  background:linear-gradient(160deg,var(--bg,#f5f5f5) 60%,color-mix(in srgb,var(--accent3) 30%,transparent));
+  cursor:crosshair;touch-action:none;border:1.5px solid rgba(0,0,0,.07)}
+.bub-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+
+
+
+/* TOP ONLY: align demo header with A1 Lesson 01 without changing palettes */
+:root { --demo-top-width: min(100% - 48px, 1240px); }
+.lab-topbar,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  backdrop-filter: blur(14px);
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+.topbar-brand,
+.lab-brand-name,
+.brand {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+.lab-back,
+.btn-back,
+.back-link,
+.btn-top,
+.topbar-back,
+.topbar-btn,
+.btn-sm.btn-back {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.lab-hero {
+  width: var(--demo-top-width);
+  max-width: 1240px;
+  margin: 24px auto 18px !important;
+  border-radius: 18px !important;
+  padding: clamp(26px, 5vw, 56px) !important;
+  text-align: left;
+}
+.lab-hero-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.28fr) minmax(220px, .92fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.lab-eyebrow {
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase;
+}
+.lab-hero-title {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2.05rem, 5vw, 4.25rem) !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 18px !important;
+}
+.lab-hero-lead {
+  max-width: 760px;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+  line-height: 1.7 !important;
+}
+.lab-hero-badges {
+  justify-content: flex-start;
+  gap: 8px !important;
+}
+.lab-pill,
+.lab-hero-badges span,
+.topbar-pills span {
+  border-radius: 999px !important;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase;
+}
+.hero {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin: 18px auto 10px !important;
+  padding: 0 clamp(16px, 3vw, 28px) !important;
+  text-align: center !important;
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+}
+.hero h1 {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+.hero p,
+.hero-sub,
+.subtitle-pill,
+.hero-pill {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  letter-spacing: 0 !important;
+}
+.rail,
+.progress-rail {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  :root { --demo-top-width: min(100% - 28px, 1240px); }
+  .lab-hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .lab-hero { padding: 24px 18px !important; }
+  .lab-hero-visual { justify-self: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">A1</span>
-    <span class="lbs-pill">Kids / family learners</span>
-    <span class="lbs-pill">Seasonal lesson</span>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a class="brand" href="../index.html">LinguaBoost Lab</a>
+  <div class="topbar-pills">
+    <span class="pill">A1</span>
+    <span class="pill">Easter</span>
+    <span class="pill">Spring</span>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+  <div class="topbar-right">
+<a class="back-link" href="../index.html">All Lessons</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">A1 &middot; Lesson 02 &middot; Easter · Spring</div>
+      <h1 class="lab-hero-title"><em>Lesson</em></h1>
+      <p class="lab-hero-lead">Interactive A1 lesson</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">A1</span>
+        <span class="lab-badge">6 activities</span>
+        <span class="lab-badge">interactive</span>
+      </div>
+    </div>
+    <div class="lab-hero-visual" aria-hidden="true">
+      <div class="lab-vis-inner">
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="container">
-    <!-- top header -->
-    <div class="top-bar">
-        <div class="logo">🐣 English Easter Lab</div>
-        <div class="nav-links">
-            <span class="active">Lesson</span>
-            <span>Homework <span class="homework-badge">NEW</span></span>
-            <span>Easter symbols</span>
-        </div>
-    </div>
-
-    <!-- 1.1 Match the words to the pictures -->
-    <div class="section-card">
-        <div class="section-title">🐰 1.1 Match the words to the pictures</div>
-        <div id="matchingGame" class="match-grid"></div>
-        <div id="matchProgressMsg" style="font-weight:500; margin-top:8px;"></div>
-    </div>
-
-    <!-- 1.2 True/False about Easter -->
-    <div class="section-card">
-        <div class="section-title">📖 1.2 True or False? Easter Traditions</div>
-        <div id="tfContainer" class="tf-list"></div>
-    </div>
-
-    <!-- 1.3 Recipe ordering (Chocolate Nests) -->
-    <div class="section-card">
-        <div class="section-title">🍫 1.3 Recipe: Chocolate nests (order the method)</div>
-        <div id="recipeStepsContainer" class="recipe-steps"></div>
-        <button id="checkRecipeOrder">✅ Check order</button>
-        <span id="recipeFeedback" style="margin-left: 15px;"></span>
-    </div>
-
-    <!-- 1.4 Match the parts of the jokes -->
-    <div class="section-card">
-        <div class="section-title">😂 1.4 Easter Jokes (Match the pairs)</div>
-        <div id="jokesGameArea" class="jokes-container"></div>
-        <div id="jokesFeedback" style="margin-top: 15px;"></div>
-    </div>
-
-    <!-- 1.5 Look at the picture (descriptive) -->
-    <div class="section-card">
-        <div class="section-title">🖼️ 1.5 Describe the picture</div>
-        <div style="background:#ffe6c7; border-radius: 28px; padding: 20px; text-align:center;">
-            <div style="font-size: 5rem;">🥚🎨🌸</div>
-            <p><strong>Ukrainian pysanka style / decorated egg</strong></p>
-            <p>1. What do you see? <input type="text" id="descAnswer1" placeholder="Your answer..." style="margin:8px; padding:8px; border-radius:30px; border:1px solid #c9a56b;"></p>
-            <p>2. Would you like to decorate your own egg? <input type="text" id="descAnswer2" placeholder="Yes / No / Maybe..."></p>
-        </div>
-    </div>
-
-    <!-- 1.6 Video checklist -->
-    <div class="section-card">
-        <div class="section-title">🎥 1.6 Watch the video & tick the things you need</div>
-        <div id="videoChecklist" class="video-checklist"></div>
-    </div>
-
-    <!-- 1.7 Decorate your own egg (drawing zone) -->
-    <div class="section-card">
-        <div class="section-title">🎨 1.7 Decorate your own egg (imagination)</div>
-        <canvas id="eggCanvas" width="300" height="300" style="background: #fef1db; border-radius: 60px; width:100%; max-width:300px; height:auto; border:2px solid #d9a13b; display:block; margin:0 auto;"></canvas>
-        <div style="text-align:center; margin-top:12px;"><button id="clearEggCanvas">🧽 Clear & start again</button></div>
-    </div>
-
-    <!-- 1.8 Song gap-fill -->
-    <div class="section-card">
-        <div class="section-title">🎵 1.8 Easter song: “Candy” lyrics (fill blanks)</div>
-        <div class="song-gap" id="songGapFill"></div>
-        <button id="checkSongBtn">Check song gaps</button>
-        <span id="songFeedback"></span>
-        <p style="margin-top:10px;">🎶 <em>Listen to the melody (imagine the beat)</em></p>
-    </div>
-
-    <!-- Easter Customs reading extra -->
-    <div class="section-card">
-        <div class="section-title">🌿 Easter Customs around the world</div>
-        <div class="custom-grid">
-            <div class="custom-card">🦶 <strong>Foot washing</strong><br>Tradition of humility, Jesus washed disciples' feet.</div>
-            <div class="custom-card">🌳 <strong>Easter tree</strong><br>Decorated branches with eggs — life & death symbol.</div>
-            <div class="custom-card">🥚 <strong>Egg hunt</strong><br>Children collect hidden eggs, winner gets most.</div>
-            <div class="custom-card">⚪ <strong>Egg rolling</strong><br>Roll eggs on slopes; White House annual event.</div>
-        </div>
-    </div>
+  <h1>Easter English</h1>
+  <span class="subtitle-pill">Learn Easter words and traditions!</span>
 </div>
-<footer>🐇 Happy Easter! Complete all tasks and enjoy learning.</footer>
+
+<!-- STAR BAR -->
+<div class="star-bar">
+  <span class="star" id="star1">⭐</span>
+  <span class="star" id="star2">⭐</span>
+  <span class="star" id="star3">⭐</span>
+  <span class="star" id="star4">⭐</span>
+  <span class="star" id="star5">⭐</span>
+  <span class="star" id="star6">⭐</span>
+</div>
+
+<!-- PROGRESS RAIL -->
+<div class="rail">
+  <div class="rail-step" id="rail1">
+    <div class="rail-dot">1</div>
+    <div class="rail-label">Cards</div>
+  </div>
+  <div class="rail-step" id="rail2">
+    <div class="rail-dot">2</div>
+    <div class="rail-label">True/False</div>
+  </div>
+  <div class="rail-step" id="rail3">
+    <div class="rail-dot">3</div>
+    <div class="rail-label">Recipe</div>
+  </div>
+  <div class="rail-step" id="rail4">
+    <div class="rail-dot">4</div>
+    <div class="rail-label">Jokes</div>
+  </div>
+  <div class="rail-step" id="rail5">
+    <div class="rail-dot">5</div>
+    <div class="rail-label">Draw</div>
+  </div>
+  <div class="rail-step" id="rail6">
+    <div class="rail-dot">6</div>
+    <div class="rail-label">Fill</div>
+  </div>
+</div>
+
+<!-- SECTION 1: VOCAB FLIP CARDS -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="Easter Vocabulary" data-ru="Пасхальные слова">Easter Vocabulary</h2>
+    <span class="section-num">1/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Click each card to flip it and see the Russian translation!" data-ru="Нажми на карточку, чтобы увидеть перевод!">Click each card to flip it and see the Russian translation!</p>
+    <div class="flip-grid" id="flipGrid"></div>
+    <p style="margin-top:.8rem;font-size:.82rem;color:var(--muted);font-weight:600" id="flipProgress">Flipped: 0 / 10</p>
+  </div>
+</section>
+
+<!-- SECTION 2: TRUE / FALSE -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="True or False?" data-ru="Правда или нет?">True or False?</h2>
+    <span class="section-num">2/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Choose TRUE or FALSE for each statement, then check your answers." data-ru="Выбери TRUE или FALSE для каждого утверждения.">Choose TRUE or FALSE for each statement, then check your answers.</p>
+    <div class="tf-list" id="tfList"></div>
+    <div class="tf-check-row">
+      <button class="btn btn-primary" onclick="checkTF()">Check Answers ✔</button>
+      <span id="tfScore" style="margin-left:.8rem;font-weight:700"></span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: RECIPE DRAG & DROP -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="Chocolate Easter Basket" data-ru="Шоколадная корзинка">Chocolate Easter Basket</h2>
+    <span class="section-num">3/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Drag the steps into the correct order to make a chocolate Easter basket!" data-ru="Перетащи шаги в правильном порядке!">Drag the steps into the correct order to make a chocolate Easter basket!</p>
+    <ul class="drag-list" id="dragList"></ul>
+    <button class="btn btn-primary" onclick="checkRecipe()">Check Order ✔</button>
+    <div class="recipe-result" id="recipeResult"></div>
+  </div>
+</section>
+
+<!-- SECTION 4: JOKES MATCHING -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="Easter Joke Match" data-ru="Сопоставь шутки">Easter Joke Match</h2>
+    <span class="section-num">4/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Click a joke setup, then click the matching punchline!" data-ru="Нажми на начало шутки, потом на концовку!">Click a joke setup, then click the matching punchline!</p>
+    <div class="match-grid">
+      <div class="match-col">
+        <div class="match-col-head" data-en="Joke setup" data-ru="Начало шутки">Joke setup</div>
+        <div id="setupCol"></div>
+      </div>
+      <div class="match-col">
+        <div class="match-col-head" data-en="Punchline" data-ru="Концовка">Punchline</div>
+        <div id="punchCol"></div>
+      </div>
+    </div>
+    <div class="match-score" id="matchScore"></div>
+  </div>
+</section>
+
+<!-- SECTION 5: EGG CANVAS DRAWING -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="Decorate an Easter Egg" data-ru="Укрась пасхальное яйцо">Decorate an Easter Egg</h2>
+    <span class="section-num">5/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Paint the egg! Use at least 5 brush strokes to complete this activity." data-ru="Раскрась яйцо! Сделай не менее 5 мазков.">Paint the egg! Use at least 5 brush strokes to complete this activity.</p>
+    <div class="egg-controls">
+      <span style="font-weight:700;font-size:.85rem" data-en="Color:" data-ru="Цвет:">Color:</span>
+      <div id="colorPalette" style="display:flex;gap:.4rem;flex-wrap:wrap"></div>
+      <span style="font-weight:700;font-size:.85rem;margin-left:.4rem" data-en="Size:" data-ru="Размер:">Size:</span>
+      <button class="brush-btn active" id="bSmall" onclick="setBrush(3,this)">S</button>
+      <button class="brush-btn" id="bMed" onclick="setBrush(8,this)">M</button>
+      <button class="brush-btn" id="bLarge" onclick="setBrush(15,this)">L</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearEgg()">Clear</button>
+      <button class="btn-speak" onclick="speak('I decorated a beautiful Easter egg!')">🔊 Say it!</button>
+    </div>
+    <canvas id="eggCanvas" width="380" height="300"></canvas>
+    <div class="egg-stroke-info" id="strokeInfo">Strokes: 0 / 5</div>
+  </div>
+</section>
+
+<!-- SECTION 6: GAP FILL -->
+<section class="section">
+  <div class="section-head">
+    <h2 data-en="Fill the Gaps" data-ru="Заполни пропуски">Fill the Gaps</h2>
+    <span class="section-num">6/6</span>
+  </div>
+  <div class="section-body">
+    <p class="section-tip" data-en="Choose the correct word to complete each sentence." data-ru="Выбери правильное слово для каждого предложения.">Choose the correct word to complete each sentence.</p>
+    <div class="gap-list" id="gapList"></div>
+    <div style="margin-top:1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="checkGaps()">Check Answers ✔</button>
+      <div class="gap-score" id="gapScore"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BONUS: BUBBLE POP -->
+<section class="section" style="border-top-color:var(--accent2)">
+  <div class="section-head">
+    <h2>Bubble Pop — Vocabulary Sprint</h2>
+    <span class="section-badge">bonus game</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:.7rem">Pop bubbles with vocabulary words — score 10 points to win! Click or tap a bubble.</p>
+    <div class="bub-score-bar" id="bubScoreDisplay">Score: 0 / 10</div>
+    <canvas id="bubCanvas"></canvas>
+    <div class="bub-actions">
+      <button class="btn btn-primary" id="bubStartBtn" onclick="startBubbles()">Play</button>
+      <button class="btn btn-secondary" id="bubResetBtn" onclick="resetBubbles()" style="display:none">Reset</button>
+    </div>
+  </div>
+</section>
+<!-- ALL DONE BANNER -->
+<div class="all-done" id="allDone">
+  <h2 style="font-family:'Nunito',sans-serif;font-size:2rem">Happy Easter!</h2>
+  <p>You completed all 6 Easter activities! Brilliant work! 🎉</p>
+</div>
+
+<!-- CONFETTI CANVAS -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- FOOTER -->
+<footer>
+  <p>© New Generation English · <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
+  <p style="font-size:.75rem;margin-top:.3rem">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT.</p>
+</footer>
 
 <script>
-    // -------------------- 1.1 MATCHING (Easter symbols) --------------------
-    const easterSymbols = [
-        { name: "Easter Bunny", emoji: "🐇", matched: false },
-        { name: "Easter Eggs", emoji: "🥚", matched: false },
-        { name: "The Cross", emoji: "✝️", matched: false },
-        { name: "Hot Cross Buns", emoji: "🍞", matched: false },
-        { name: "Easter Lilies", emoji: "🌼", matched: false },
-        { name: "Easter Lamb", emoji: "🐑", matched: false },
-        { name: "The Easter Candles & Bonfires", emoji: "🕯️🔥", matched: false }
-    ];
-    let selectedSymbol = null;
-    function renderMatchingGame() {
-        const container = document.getElementById('matchingGame');
-        container.innerHTML = '';
-        easterSymbols.forEach((sym, idx) => {
-            const card = document.createElement('div');
-            card.className = `match-card ${sym.matched ? 'matched' : ''}`;
-            if(sym.matched) card.style.opacity = '0.5';
-            card.innerHTML = `<div class="match-emoji">${sym.emoji}</div>
-                              <div class="match-word">${sym.name}</div>
-                              <div class="match-status">${sym.matched ? '✓ matched' : 'click to select'}</div>`;
-            card.addEventListener('click', () => {
-                if(sym.matched) return;
-                if(selectedSymbol === idx) {
-                    selectedSymbol = null;
-                    document.querySelectorAll('.match-card').forEach(c => c.classList.remove('selected'));
-                } else {
-                    if(selectedSymbol !== null) {
-                        // match attempt
-                        const first = easterSymbols[selectedSymbol];
-                        const second = sym;
-                        if(first.name === second.name && selectedSymbol !== idx) {
-                            first.matched = true;
-                            second.matched = true;
-                            document.getElementById('matchProgressMsg').innerHTML = `✅ Matched: ${first.name}!`;
-                        } else {
-                            document.getElementById('matchProgressMsg').innerHTML = `❌ "${first.name}" ≠ "${second.name}". Try again.`;
-                        }
-                        selectedSymbol = null;
-                        renderMatchingGame();
-                    } else {
-                        selectedSymbol = idx;
-                        renderMatchingGame();
-                        const cards = document.querySelectorAll('.match-card');
-                        if(cards[idx]) cards[idx].classList.add('selected');
-                    }
-                }
-            });
-            container.appendChild(card);
-        });
-    }
-    renderMatchingGame();
+// ============================================================
+// CORE TASK SYSTEM
+// ============================================================
+const tasksDone=new Set();
+function completeTask(n){
+  if(tasksDone.has(n))return;
+  tasksDone.add(n);
+  document.getElementById('rail'+n).classList.add('done');
+  const star=document.getElementById('star'+n);
+  star.classList.add('lit');star.textContent='🌟';
+  if(tasksDone.size===6){setTimeout(()=>{document.getElementById('allDone').classList.add('show');launchConfetti();},400);}
+}
+function launchConfetti(){
+  const canvas=document.getElementById('confettiCanvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const colors=['#e7a23b','#c97e2c','#2c7a4d','#e91e63','#f1c40f','#9b59b6'];
+  const pieces=Array.from({length:160},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*7+3,d:Math.random()*160,color:colors[Math.floor(Math.random()*colors.length)],angle:Math.random()*Math.PI*2,spin:Math.random()*.2-.1,speed:Math.random()*3+1}));
+  let frame=0;
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(p=>{ctx.beginPath();ctx.ellipse(p.x,p.y,p.r,p.r/2,p.angle,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();p.y+=p.speed;p.x+=Math.sin(p.d/30)*2;p.angle+=p.spin;p.d++;if(p.y>canvas.height)p.y=-10;});if(++frame<220)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);}
+  draw();
+}
+function speak(text){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=0.85;window.speechSynthesis.speak(u);}
+function toggleLang(){const h=document.documentElement;const next=h.dataset.lang==='ru'?'en':'ru';h.dataset.lang=next;document.querySelectorAll('[data-ru],[data-en]').forEach(el=>{el.innerHTML=el.dataset[next]||el.innerHTML;});}
 
-    // 1.2 True / False statements
-    const tfStatements = [
-        { text: "Easter is named after the goddess of dawn (Eostre).", correct: true, answer: null },
-        { text: "The date of Easter is the same every year.", correct: false, answer: null },
-        { text: "Eggs are a symbol of life (Jesus emerging from tomb).", correct: true, answer: null },
-        { text: "The Easter Bunny is an old addition to Easter festival (ancient).", correct: false, answer: null },
-        { text: "The basket represents a bird's nest full of eggs.", correct: true, answer: null },
-        { text: "The white lily symbolizes love and wealth.", correct: false, answer: null },
-        { text: "Hot cross buns are sweet buns with meat and vegetables.", correct: false, answer: null }
-    ];
-    function renderTF() {
-        const container = document.getElementById('tfContainer');
-        container.innerHTML = '';
-        tfStatements.forEach((item, i) => {
-            const div = document.createElement('div');
-            div.className = 'tf-item';
-            div.innerHTML = `
-                <div class="tf-question">${item.text}</div>
-                <div class="tf-buttons">
-                    <button class="true-btn" data-idx="${i}" data-val="true">True</button>
-                    <button class="false-btn" data-idx="${i}" data-val="false">False</button>
-                </div>
-                <div class="tf-feedback" id="tf-fb-${i}">${item.answer !== null ? (item.answer === item.correct ? '✓ correct' : '✗ wrong') : '—'}</div>
-            `;
-            container.appendChild(div);
-        });
-        document.querySelectorAll('.true-btn, .false-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const idx = parseInt(btn.dataset.idx);
-                const chosen = btn.dataset.val === 'true';
-                tfStatements[idx].answer = chosen;
-                const fbSpan = document.getElementById(`tf-fb-${idx}`);
-                if(chosen === tfStatements[idx].correct) fbSpan.innerHTML = '✓ Correct!';
-                else fbSpan.innerHTML = `❌ Wrong. Correct: ${tfStatements[idx].correct}`;
-            });
-        });
+// ============================================================
+// SECTION 1 — FLIP CARDS
+// ============================================================
+const vocabWords=[
+  {en:'egg',ru:'яйцо',emoji:'🥚'},
+  {en:'rabbit',ru:'кролик',emoji:'🐰'},
+  {en:'basket',ru:'корзина',emoji:'🧺'},
+  {en:'chick',ru:'цыплёнок',emoji:'🐥'},
+  {en:'chocolate',ru:'шоколад',emoji:'🍫'},
+  {en:'flower',ru:'цветок',emoji:'🌸'},
+  {en:'spring',ru:'весна',emoji:'🌱'},
+  {en:'hunt',ru:'охота',emoji:'🔍'},
+  {en:'nest',ru:'гнездо',emoji:'🪺'},
+  {en:'holiday',ru:'праздник',emoji:'🎉'}
+];
+let flippedCount=0;
+const flipGrid=document.getElementById('flipGrid');
+vocabWords.forEach((w,i)=>{
+  const wrap=document.createElement('div');
+  wrap.className='flip-wrap';
+  wrap.innerHTML=`<div class="flip-inner">
+    <div class="flip-front">
+      <div>${w.en}</div>
+      <div style="font-size:.75rem;opacity:.7;font-weight:600">tap to flip</div>
+    </div>
+    <div class="flip-back">
+      <div class="back-emoji">${w.emoji}</div>
+      <div style="font-weight:800">${w.ru}</div>
+      <div style="font-size:.75rem;opacity:.8">${w.en}</div>
+    </div>
+  </div>`;
+  wrap.addEventListener('click',()=>{
+    if(!wrap.classList.contains('flipped')){
+      wrap.classList.add('flipped');
+      speak(w.en);
+      flippedCount++;
+      document.getElementById('flipProgress').textContent='Flipped: '+flippedCount+' / 10';
+      if(flippedCount===10)completeTask(1);
+    } else {
+      wrap.classList.remove('flipped');
     }
-    renderTF();
+  });
+  flipGrid.appendChild(wrap);
+});
 
-    // 1.3 Recipe ordering (drag and drop)
-    let recipeStepsArray = [
-        "Break the chocolate into small pieces and place in a heat-proof bowl.",
-        "Rest the bowl over a saucepan of hot water. The chocolate now needs to melt.",
-        "Stir until all the chocolate has melted.",
-        "Crumble the Shredded Wheat in a big bowl.",
-        "Add some of the Shredded Wheat to the chocolate to give a twiggy effect.",
-        "Spoon some the mixture into one of the paper cases to make a nest shape.",
-        "Make a hollow in the middle big enough for a mini egg.",
-        "Put the egg in the nest."
-    ];
-    let currentOrder = [...recipeStepsArray];
-    function renderRecipeOrder() {
-        const container = document.getElementById('recipeStepsContainer');
-        container.innerHTML = '';
-        currentOrder.forEach((step, idx) => {
-            const row = document.createElement('div');
-            row.className = 'step-row';
-            row.setAttribute('draggable', 'true');
-            row.setAttribute('data-index', idx);
-            row.innerHTML = `<span class="step-index">${idx+1}</span><span class="step-text">${step}</span>`;
-            row.addEventListener('dragstart', e => {
-                e.dataTransfer.setData('text/plain', idx);
-                row.classList.add('dragging');
-            });
-            row.addEventListener('dragend', e => row.classList.remove('dragging'));
-            row.addEventListener('dragover', e => e.preventDefault());
-            row.addEventListener('drop', e => {
-                e.preventDefault();
-                const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
-                const toIdx = idx;
-                if(!isNaN(fromIdx) && !isNaN(toIdx) && fromIdx !== toIdx) {
-                    const moved = currentOrder[fromIdx];
-                    currentOrder.splice(fromIdx,1);
-                    currentOrder.splice(toIdx,0,moved);
-                    renderRecipeOrder();
-                }
-            });
-            container.appendChild(row);
-        });
-    }
-    renderRecipeOrder();
-    document.getElementById('checkRecipeOrder').addEventListener('click', () => {
-        const correctOrder = [...recipeStepsArray];
-        let isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
-        document.getElementById('recipeFeedback').innerHTML = isCorrect ? "🎉 Perfect order! Correct method." : "⚠️ Not yet, check the logical cooking sequence (melt first, crumble, mix, shape, add egg).";
+// ============================================================
+// SECTION 2 — TRUE / FALSE
+// ============================================================
+const tfData=[
+  {stmt:'Easter celebrates the arrival of winter.',ans:false,exp:'Easter celebrates spring, not winter!'},
+  {stmt:'People often hide chocolate eggs for children to find.',ans:true,exp:'Yes! Egg hunts are a fun Easter tradition.'},
+  {stmt:'The Easter Bunny brings gifts in a basket.',ans:true,exp:'Correct! The Easter Bunny fills baskets with treats.'},
+  {stmt:'Easter always falls on the same date every year.',ans:false,exp:'Easter date changes every year — it depends on the moon!'},
+  {stmt:'Hot cross buns are a traditional Easter food.',ans:true,exp:'Yes! Hot cross buns are eaten on Good Friday.'},
+  {stmt:'The chick is a symbol of new life.',ans:true,exp:'Correct! Chicks hatch from eggs, symbolising new beginnings.'},
+  {stmt:'Easter is celebrated only in the USA.',ans:false,exp:'Easter is celebrated in many countries around the world!'}
+];
+const tfList=document.getElementById('tfList');
+tfData.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.className='tf-item';
+  div.innerHTML=`<div class="tf-stmt">${i+1}. ${item.stmt}</div>
+    <div class="tf-btns">
+      <button class="btn-tf" id="tf${i}T" onclick="pickTF(${i},true)">TRUE</button>
+      <button class="btn-tf" id="tf${i}F" onclick="pickTF(${i},false)">FALSE</button>
+    </div>
+    <div class="tf-fb" id="tf${i}fb"></div>`;
+  tfList.appendChild(div);
+});
+const tfAnswers={};
+function pickTF(i,val){
+  tfAnswers[i]=val;
+  document.getElementById('tf'+i+'T').className='btn-tf'+(val===true?' sel-true':'');
+  document.getElementById('tf'+i+'F').className='btn-tf'+(val===false?' sel-false':'');
+}
+function checkTF(){
+  let correct=0;
+  tfData.forEach((item,i)=>{
+    const fb=document.getElementById('tf'+i+'fb');
+    fb.className='tf-fb';
+    if(tfAnswers[i]===undefined)return;
+    if(tfAnswers[i]===item.ans){correct++;fb.className='tf-fb fb-ok';fb.textContent='✓ Correct! '+item.exp;}
+    else{fb.className='tf-fb fb-miss';fb.textContent='✗ Wrong. '+item.exp;}
+  });
+  document.getElementById('tfScore').textContent='Score: '+correct+'/7';
+  if(correct===7)completeTask(2);
+}
+
+// ============================================================
+// SECTION 3 — RECIPE DRAG & DROP
+// ============================================================
+const recipeSteps=[
+  'Buy chocolate',
+  'Melt the chocolate',
+  'Line the basket with foil',
+  'Pour chocolate into molds',
+  'Let it cool',
+  'Add small eggs inside',
+  'Decorate with ribbon',
+  'Give as a gift'
+];
+const shuffled=[...recipeSteps].sort(()=>Math.random()-.5);
+const dragList=document.getElementById('dragList');
+let dragSrc=null;
+
+function buildDragList(arr){
+  dragList.innerHTML='';
+  arr.forEach((step,i)=>{
+    const li=document.createElement('li');
+    li.className='drag-item';
+    li.draggable=true;
+    li.dataset.step=step;
+    li.innerHTML=`<span class="step-num">${i+1}</span><span>${step}</span>`;
+    li.addEventListener('dragstart',e=>{dragSrc=li;e.dataTransfer.effectAllowed='move';li.style.opacity='.5';});
+    li.addEventListener('dragend',()=>{li.style.opacity='1';document.querySelectorAll('.drag-item').forEach(x=>x.classList.remove('drag-over'));rebuildNumbers();});
+    li.addEventListener('dragover',e=>{e.preventDefault();e.dataTransfer.dropEffect='move';li.classList.add('drag-over');return false;});
+    li.addEventListener('dragleave',()=>li.classList.remove('drag-over'));
+    li.addEventListener('drop',e=>{
+      e.stopPropagation();
+      if(dragSrc!==li){
+        const items=[...dragList.querySelectorAll('.drag-item')];
+        const srcIdx=items.indexOf(dragSrc);
+        const tgtIdx=items.indexOf(li);
+        if(srcIdx<tgtIdx)dragList.insertBefore(dragSrc,li.nextSibling);
+        else dragList.insertBefore(dragSrc,li);
+        rebuildNumbers();
+      }
+      return false;
     });
+    // Touch support
+    let touchStartY=0;
+    li.addEventListener('touchstart',e=>{dragSrc=li;touchStartY=e.touches[0].clientY;},{passive:true});
+    li.addEventListener('touchmove',e=>{
+      e.preventDefault();
+      const t=e.touches[0];
+      const elBelow=document.elementFromPoint(t.clientX,t.clientY);
+      const target=elBelow&&elBelow.closest('.drag-item');
+      if(target&&target!==dragSrc){
+        document.querySelectorAll('.drag-item').forEach(x=>x.classList.remove('drag-over'));
+        target.classList.add('drag-over');
+        const items=[...dragList.querySelectorAll('.drag-item')];
+        const srcIdx=items.indexOf(dragSrc);
+        const tgtIdx=items.indexOf(target);
+        if(srcIdx<tgtIdx)dragList.insertBefore(dragSrc,target.nextSibling);
+        else dragList.insertBefore(dragSrc,target);
+        rebuildNumbers();
+      }
+    },{passive:false});
+    li.addEventListener('touchend',()=>{document.querySelectorAll('.drag-item').forEach(x=>x.classList.remove('drag-over'));});
+    dragList.appendChild(li);
+  });
+}
+function rebuildNumbers(){
+  dragList.querySelectorAll('.drag-item').forEach((li,i)=>{
+    li.querySelector('.step-num').textContent=i+1;
+    li.classList.remove('correct-order','wrong-order');
+  });
+}
+buildDragList(shuffled);
 
-    // 1.4 Jokes matching (pair halves)
-    const jokeStarts = [
-        "Why did the Easter Bunny smile all the time?", "What do Easter eggs drink at breakfast time?", "How does the Easter Bunny feel on Easter Monday?", "What sport are Easter eggs good at?", "Where did the egg go on holiday?", "Why was the Easter Bunny in a bad mood?", "How does the Easter Bunny stay fit?", "Why are Easter egg jokes so funny?"
-    ];
-    const jokeEnds = [
-        "Because they crack you up!", "Eggs-hausted!", "Eggs-presso!", "Regular eggs-ercise!", "Easter Island!", "They were feeling hoppy!", "Running!", "They were a hot cross bun!"
-    ];
-    // Shuffle ends for display
-    let availableEnds = [...jokeEnds];
-    let selectedStartIdx = null;
-    let matchedJokes = new Array(jokeStarts.length).fill(false);
-    function renderJokes() {
-        const container = document.getElementById('jokesGameArea');
-        container.innerHTML = `<div class="jokes-col"><h3>😂 Beginning of joke</h3><div id="startsList"></div></div>
-                               <div class="jokes-col"><h3>🎯 Punchline</h3><div id="endsList"></div></div>`;
-        const startsDiv = document.getElementById('startsList');
-        const endsDiv = document.getElementById('endsList');
-        jokeStarts.forEach((start, idx) => {
-            const btn = document.createElement('div');
-            btn.className = `joke-item ${matchedJokes[idx] ? 'joke-matched' : ''}`;
-            btn.innerText = start;
-            if(!matchedJokes[idx]) {
-                btn.addEventListener('click', () => {
-                    if(selectedStartIdx !== null) document.querySelectorAll('#startsList .joke-item').forEach(el => el.classList.remove('selected'));
-                    selectedStartIdx = idx;
-                    btn.classList.add('selected');
-                });
-            }
-            startsDiv.appendChild(btn);
-        });
-        availableEnds.forEach((end, idx) => {
-            const endBtn = document.createElement('div');
-            endBtn.className = 'joke-item';
-            endBtn.innerText = end;
-            endBtn.addEventListener('click', () => {
-                if(selectedStartIdx !== null && !matchedJokes[selectedStartIdx]) {
-                    const correctEnd = jokeEnds[selectedStartIdx];
-                    if(end === correctEnd) {
-                        matchedJokes[selectedStartIdx] = true;
-                        document.getElementById('jokesFeedback').innerHTML = `✅ Matched: "${jokeStarts[selectedStartIdx]}" ➜ "${end}"`;
-                        availableEnds = availableEnds.filter(e => e !== end);
-                        selectedStartIdx = null;
-                        renderJokes();
-                    } else {
-                        document.getElementById('jokesFeedback').innerHTML = `❌ Wrong match. Try again.`;
-                    }
-                } else { document.getElementById('jokesFeedback').innerHTML = `Select a joke start first!`; }
-            });
-            endsDiv.appendChild(endBtn);
-        });
-    }
-    renderJokes();
+function checkRecipe(){
+  const current=[...dragList.querySelectorAll('.drag-item')].map(li=>li.dataset.step);
+  let allOk=true;
+  current.forEach((step,i)=>{
+    const li=dragList.querySelectorAll('.drag-item')[i];
+    if(step===recipeSteps[i]){li.classList.add('correct-order');li.classList.remove('wrong-order');}
+    else{li.classList.add('wrong-order');li.classList.remove('correct-order');allOk=false;}
+  });
+  const res=document.getElementById('recipeResult');
+  res.style.display='block';
+  if(allOk){res.style.color='var(--ok)';res.textContent='✓ Perfect order! Great job!';completeTask(3);}
+  else{res.style.color='var(--miss)';res.textContent='✗ Not quite right. Try rearranging the steps!';}
+}
 
-    // 1.6 Video checklist
-    const itemsNeeded = ["flowers","paint","pencils","brushes","pens","water","paper","eggs"];
-    let checkedState = new Array(itemsNeeded.length).fill(false);
-    function renderChecklist() {
-        const container = document.getElementById('videoChecklist');
-        container.innerHTML = '';
-        itemsNeeded.forEach((item, idx) => {
-            const chip = document.createElement('div');
-            chip.className = `check-item ${checkedState[idx] ? 'checked' : ''}`;
-            chip.innerText = item;
-            chip.addEventListener('click', () => {
-                checkedState[idx] = !checkedState[idx];
-                renderChecklist();
-            });
-            container.appendChild(chip);
-        });
-    }
-    renderChecklist();
+// ============================================================
+// SECTION 4 — JOKE MATCHING
+// ============================================================
+const jokes=[
+  {setup:'Why did the Easter egg hide?',punch:'Because it was a little chicken!'},
+  {setup:'What do you call a sleeping dinosaur?',punch:'A dino-snore!'},
+  {setup:'Why was the Easter Bunny so unhappy?',punch:'He was having a bad hare day!'},
+  {setup:'What do you get if you pour hot water down a rabbit hole?',punch:'Hot cross bunnies!'},
+  {setup:"Why can't a rabbit's nose be 12 inches long?",punch:'Because then it would be a foot!'},
+  {setup:'What happened to the Easter egg when it heard a joke?',punch:'It cracked up!'}
+];
+const punchlines=[...jokes].sort(()=>Math.random()-.5).map(j=>j.punch);
+let selectedSetup=null;
+let matchedCount=0;
+const setupCol=document.getElementById('setupCol');
+const punchCol=document.getElementById('punchCol');
 
-    // 1.7 Canvas egg decoration
-    const canvas = document.getElementById('eggCanvas');
-    const ctx = canvas.getContext('2d');
-    function drawEggBackground() {
-        ctx.fillStyle = "#fbe9c3";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle = "#e0b07f";
-        ctx.beginPath();
-        ctx.ellipse(canvas.width/2, canvas.height/2, canvas.width*0.35, canvas.height*0.48, 0, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.strokeStyle = "#a75d2a";
-        ctx.lineWidth = 2;
-        ctx.stroke();
+jokes.forEach((j,i)=>{
+  const el=document.createElement('div');
+  el.className='match-item setup';
+  el.textContent=j.setup;
+  el.dataset.idx=i;
+  el.addEventListener('click',()=>{
+    if(el.classList.contains('matched'))return;
+    document.querySelectorAll('.match-item.setup:not(.matched)').forEach(x=>x.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedSetup=el;
+  });
+  setupCol.appendChild(el);
+});
+punchlines.forEach((p,i)=>{
+  const el=document.createElement('div');
+  el.className='match-item punchline';
+  el.textContent=p;
+  el.dataset.punch=p;
+  el.addEventListener('click',()=>{
+    if(el.classList.contains('matched'))return;
+    if(!selectedSetup)return;
+    const setup=selectedSetup;
+    const jIdx=parseInt(setup.dataset.idx);
+    if(jokes[jIdx].punch===p){
+      setup.classList.add('matched'); el.classList.add('matched');
+      setup.classList.remove('selected');
+      matchedCount++;
+      document.getElementById('matchScore').textContent=`Matched: ${matchedCount} / ${jokes.length}`;
+      if(matchedCount===jokes.length) completeTask(4);
+    } else {
+      setup.classList.remove('selected');
     }
-    drawEggBackground();
-    let drawing = false;
-    canvas.addEventListener('mousedown', (e) => { drawing = true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); });
-    canvas.addEventListener('mousemove', (e) => { if(drawing) { ctx.lineTo(e.offsetX, e.offsetY); ctx.strokeStyle = "#b8572e"; ctx.lineWidth = 3; ctx.stroke(); ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); } });
-    canvas.addEventListener('mouseup', () => drawing = false);
-    canvas.addEventListener('mouseleave', () => drawing = false);
-    document.getElementById('clearEggCanvas').addEventListener('click', () => { drawEggBackground(); });
+    selectedSetup=null;
+  });
+  punchCol.appendChild(el);
+});
 
-    // 1.8 Song gap fill
-    const songGaps = ["a guy", "beat", "summer", "goes", "finer", "water", "sweater", "beach", "day"];
-    const songTemplate = `I know ___1___ who’s tough but sweet<br>He’s so fine, he can’t be ___2___<br>He’s got everything that I desire<br>Sets the ___3___ sun on fire<br>I want candy, I want candy<br>Go to see him when the sun ___4___ down<br>Ain’t no ___5___ boy in town<br>You’re my guy, just what the doctor ordered<br>So sweet, you make my mouth ___6___<br>I want candy, I want candy<br>Candy on the ___7___, there’s nothing better<br>But I like candy when it’s wrapped in a ___8___<br>Some ___9___ soon I’ll make you mine,<br>Then I’ll have candy all the time`;
-    function buildSongInputs() {
-        let html = `<p>Fill in the blanks:</p><div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">`;
-        let gapIdx = 1;
-        const parts = songTemplate.split(/___\d+___/);
-        for(let i=0; i<parts.length; i++) {
-            html += parts[i];
-            if(i < parts.length-1) {
-                html += `<input type="text" class="gap-input" id="gap${gapIdx}" placeholder="word ${gapIdx}">`;
-                gapIdx++;
-            }
-        }
-        html += `</div>`;
-        document.getElementById('songGapFill').innerHTML = html;
-    }
-    buildSongInputs();
-    document.getElementById('checkSongBtn').addEventListener('click', () => {
-        let correctCount = 0;
-        for(let i=1; i<=9; i++) {
-            const input = document.getElementById(`gap${i}`);
-            if(input && input.value.trim().toLowerCase() === songGaps[i-1].toLowerCase()) correctCount++;
-        }
-        document.getElementById('songFeedback').innerHTML = `🎵 You got ${correctCount}/9 correct! Answers: ${songGaps.join(", ")}`;
+/* ===== SECTION 5: EGG CANVAS ===== */
+const EGG_COLORS=['#e91e63','#9c27b0','#2196f3','#4caf50','#ff9800','#f44336','#00bcd4','#ffeb3b'];
+let currentColor=EGG_COLORS[0], brushSize=8, strokeCount=0, eggDrawing=false;
+const palette=document.getElementById('colorPalette');
+EGG_COLORS.forEach(c=>{
+  const sw=document.createElement('button');
+  sw.style.cssText=`width:26px;height:26px;border-radius:50%;background:${c};border:3px solid transparent;cursor:pointer;transition:border .15s`;
+  sw.onclick=()=>{
+    currentColor=c;
+    document.querySelectorAll('#colorPalette button').forEach(b=>b.style.border='3px solid transparent');
+    sw.style.border='3px solid #333';
+  };
+  palette.appendChild(sw);
+});
+palette.firstChild.style.border='3px solid #333';
+function setBrush(size,btn){
+  brushSize=size;
+  document.querySelectorAll('.brush-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function clearEgg(){
+  const canvas=document.getElementById('eggCanvas');
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  strokeCount=0;
+  document.getElementById('strokeInfo').textContent='Strokes: 0 / 5';
+}
+(function initEgg(){
+  const canvas=document.getElementById('eggCanvas');
+  const ctx=canvas.getContext('2d');
+  let painting=false;
+  function getPos(e){
+    const r=canvas.getBoundingClientRect();
+    const src=e.touches?e.touches[0]:e;
+    return{x:(src.clientX-r.left)*(canvas.width/r.width),y:(src.clientY-r.top)*(canvas.height/r.height)};
+  }
+  function startDraw(e){e.preventDefault();painting=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);}
+  function doDraw(e){e.preventDefault();if(!painting)return;const p=getPos(e);ctx.lineTo(p.x,p.y);ctx.strokeStyle=currentColor;ctx.lineWidth=brushSize;ctx.lineCap='round';ctx.stroke();}
+  function endDraw(){
+    if(!painting)return;painting=false;
+    strokeCount++;
+    document.getElementById('strokeInfo').textContent=`Strokes: ${strokeCount} / 5`;
+    if(strokeCount>=5) completeTask(5);
+  }
+  canvas.addEventListener('mousedown',startDraw);canvas.addEventListener('mousemove',doDraw);canvas.addEventListener('mouseup',endDraw);
+  canvas.addEventListener('touchstart',startDraw,{passive:false});canvas.addEventListener('touchmove',doDraw,{passive:false});canvas.addEventListener('touchend',endDraw);
+})();
+
+/* ===== SECTION 6: GAP FILL ===== */
+const GAP_ITEMS=[
+  {before:'Tom',blank:'went',after:'to the market yesterday.',opts:['went','goed','go']},
+  {before:'He',blank:'found',after:'a beautiful old map.',opts:['find','found','finded']},
+  {before:'Tom',blank:'took',after:'the map and ran home.',opts:['taked','take','took']},
+  {before:'She',blank:'saw',after:'the treasure on the island.',opts:['seen','see','saw']},
+  {before:'We',blank:'ate',after:'eggs and chocolate for Easter.',opts:['eated','ate','eat']},
+  {before:'They',blank:'made',after:'a plan to find the treasure.',opts:['maked','made','make']},
+];
+const gapList=document.getElementById('gapList');
+GAP_ITEMS.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.className='gap-item';
+  const shuffled=[...item.opts].sort(()=>Math.random()-.5);
+  div.innerHTML=`${item.before} <select id="gap${i}" style="padding:.2rem .5rem;border-radius:.5rem;border:2px solid var(--accent);font-weight:700;font-size:.9rem;font-family:Manrope,sans-serif"><option value="">—</option>${shuffled.map(o=>`<option value="${o}">${o}</option>`).join('')}</select> ${item.after}`;
+  gapList.appendChild(div);
+});
+function checkGaps(){
+  let correct=0;
+  GAP_ITEMS.forEach((item,i)=>{
+    const sel=document.getElementById('gap'+i);
+    if(sel.value===item.blank){correct++;sel.style.border='2px solid var(--ok)';}
+    else sel.style.border='2px solid var(--miss)';
+  });
+  document.getElementById('gapScore').textContent=`Score: ${correct} / ${GAP_ITEMS.length}`;
+  if(correct>=5) completeTask(6);
+}
+
+/* ===== INIT ===== */
+window.addEventListener('DOMContentLoaded',()=>{
+  buildFlipCards();
+  buildTrueFalse();
+  buildDragRecipe();
+});
+
+// ═══ BUBBLE POP ═══════════════════════════════════════════════════════════
+const BUB_WORDS=['Easter', 'bunny', 'egg', 'basket', 'spring', 'chocolate', 'treasure', 'hunt', 'celebrate', 'found'];
+let bubs=[],bubScore=0,bubRunning=false,bubAnimId=null;
+function startBubbles(){
+  document.getElementById('bubStartBtn').style.display='none';
+  document.getElementById('bubResetBtn').style.display='inline-block';
+  bubs=[];bubScore=0;bubRunning=true;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.width=canvas.offsetWidth||600;canvas.height=280;
+  const cs=getComputedStyle(document.documentElement);
+  const c1=cs.getPropertyValue('--accent').trim()||'#f2a822';
+  const c2=cs.getPropertyValue('--accent2').trim()||'#e06b00';
+  const c3=cs.getPropertyValue('--accent3').trim()||'#ffd54f';
+  const COLS=[c1,c2,c3,'#29b6f6','#ab47bc'];
+  function spawnBub(){
+    const r=Math.random()*22+22;
+    return{x:r+Math.random()*(canvas.width-2*r),y:canvas.height+r,r,
+      vy:-(Math.random()*.55+.38),vx:(Math.random()-.5)*.4,
+      word:BUB_WORDS[Math.floor(Math.random()*BUB_WORDS.length)],
+      c:COLS[Math.floor(Math.random()*COLS.length)],popped:false};
+  }
+  for(let i=0;i<5;i++)bubs.push(spawnBub());
+  function hitTest(mx,my){
+    bubs.forEach((b,i)=>{
+      if(!b.popped&&Math.hypot(b.x-mx,b.y-my)<b.r+8){
+        b.popped=true;bubScore++;
+        document.getElementById('bubScoreDisplay').textContent='Score: '+bubScore+' / 10';
+        if(typeof speak==='function')speak(b.word);
+        setTimeout(()=>{bubs.splice(i,1);if(bubRunning)bubs.push(spawnBub());},350);
+        if(bubScore>=10){bubRunning=false;
+          document.getElementById('bubScoreDisplay').textContent='Done! Score: '+bubScore+' / 10';}
+      }
     });
+  }
+  canvas.onmousedown=e=>{const r=canvas.getBoundingClientRect();
+    hitTest((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));};
+  canvas.ontouchstart=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();
+    const t=e.changedTouches[0];
+    hitTest((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));};
+  (function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubs.length<6&&bubRunning)bubs.push(spawnBub());
+    bubs.forEach(b=>{
+      b.x+=b.vx;b.y+=b.vy;
+      if(!b.popped){
+        ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle=b.c+'44';ctx.fill();
+        ctx.strokeStyle=b.c;ctx.lineWidth=2.5;ctx.stroke();
+        // shine
+        ctx.beginPath();ctx.arc(b.x-b.r*.28,b.y-b.r*.28,b.r*.32,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,.35)';ctx.fill();
+        ctx.fillStyle='#333';
+        ctx.font=`bold ${Math.max(10,Math.floor(b.r*.52))}px Nunito,sans-serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        const w=b.word.length>10?b.word.slice(0,9)+'…':b.word;
+        ctx.fillText(w,b.x,b.y);
+      }
+    });
+    bubs=bubs.filter(b=>b.y+b.r>-20);
+    if(bubRunning)bubAnimId=requestAnimationFrame(loop);
+  })();
+}
+function resetBubbles(){
+  bubRunning=false;if(bubAnimId)cancelAnimationFrame(bubAnimId);
+  bubs=[];bubScore=0;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubStartBtn').style.display='inline-block';
+  document.getElementById('bubResetBtn').style.display='none';
+}
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
 </body>
 </html>
-

@@ -26,1130 +26,844 @@
 <link rel="stylesheet" href="./system.css">
 <link rel="stylesheet" href="./assets/visitor-counter.css">
 <style>
-  /* ════════════════════════════════════════════════
-     CONDITIONS · DOSSIER theme — sits ON TOP of system.css
-     Palette: noir #0b0613 / paper #f4ecd8 (warm) / orange #ff5a1f / plum #9a7ad9
-     ════════════════════════════════════════════════ */
 
-  :root {
-    --d-bg: #0b0613;
-    --d-bg-2: #140b22;
-    --d-paper: #f4ecd8;
-    --d-paper-ink: #1a1326;
-    --d-text: #f0ebff;
-    --d-muted: #b6a8d6;
-    --d-faint: #7a6c97;
-    --d-line: rgba(244,236,216,0.14);
-    --d-line-2: rgba(244,236,216,0.32);
-    --d-accent: #ff5a1f;
-    --d-accent-2: #ff7a47;
-    --d-plum: #9a7ad9;
-    --d-stamp: #ff5a1f;
-    --d-card: #150c22;
-    --d-card-2: #1c1330;
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.05);
+  --muted: rgba(255, 255, 255, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero-kicker,
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+
+.section-heading {
+  font-size: 32px;
+  margin-bottom: 1rem;
+}
+
+.subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.subnav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--muted);
+  padding-bottom: 8px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.subnav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-divider {
+  display: none;
+}
+
+.formats-grid,
+.info-grid,
+.summary-grid,
+.documents-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.formats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.organisation-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.documents-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.format-card,
+.info-card,
+.summary-card,
+.document-card {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.format-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.format-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.format-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.format-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.format-price span {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.format-card p,
+.info-card p,
+.summary-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.format-card ul,
+.info-card ul,
+.summary-card ul {
+  padding-left: 1.25rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.format-card li,
+.info-card li,
+.summary-card li {
+  margin-bottom: 0.5rem;
+}
+
+.format-card li::marker,
+.info-card li::marker,
+.summary-card li::marker {
+  color: var(--accent);
+}
+
+.info-card h3,
+.summary-card h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.info-card summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.info-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.info-card summary h3 {
+  margin-bottom: 0;
+}
+
+.info-card summary::after {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.info-card[open] summary::after {
+  content: "−";
+}
+
+.info-card .info-body {
+  margin-top: 1.25rem;
+}
+
+.org-card {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.org-card h3 {
+  margin-bottom: 1rem;
+}
+
+.org-card .info-body {
+  margin-top: 0;
+}
+
+.levels-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.level-pill {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.level-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.document-card {
+  display: block;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.document-card:hover {
+  border-color: var(--accent);
+}
+
+.document-card img {
+  width: 100%;
+  aspect-ratio: 0.78;
+  object-fit: cover;
+  display: block;
+}
+
+.documents-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.documents-gallery .document-card {
+  min-height: 100%;
+}
+
+.document-card figure {
+  margin: 0 0 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.documents-gallery .document-card img {
+  aspect-ratio: 1.18;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.document-card-open {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 330px;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(35, 168, 224, 0.18), transparent 32%),
+    linear-gradient(145deg, rgba(255, 90, 31, 0.12), rgba(255, 255, 255, 0.02) 42%, transparent);
+}
+
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.documents-archive {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.documents-archive summary {
+  cursor: pointer;
+  padding: 1.25rem;
+  list-style: none;
+  font-family: 'Unbounded', sans-serif;
+  color: var(--text);
+}
+
+.documents-archive summary::-webkit-details-marker {
+  display: none;
+}
+
+.documents-archive p {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.archive-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.archive-list .doc-action {
+  margin-top: 0;
+  text-align: left;
+  padding: 0 0.9rem;
+}
+
+.document-copy {
+  padding: 1rem;
+}
+
+.document-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.document-copy h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.document-note {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.note-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: transparent;
+}
+
+.note-box strong {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.note-box p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.entry-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.terms-head {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.terms-index {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.terms-index small {
+  display: block;
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.terms-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: var(--text);
+}
+
+.terms-title .accent {
+  color: var(--accent);
+}
+
+.terms-lead {
+  max-width: 860px;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 90, 31, 0.08), transparent 42%),
+    rgba(255, 255, 255, 0.02);
+  padding: 1.25rem;
+  min-height: 230px;
+  cursor: pointer;
+}
+
+.step-card summary {
+  list-style: none;
+}
+
+.step-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.step-number {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.step-card h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.step-card p,
+.step-card li {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.step-card ul {
+  margin-top: 0.8rem;
+  padding-left: 1.15rem;
+}
+
+.step-card .doc-action {
+  margin-top: auto;
+}
+
+.contract-warning {
+  margin: 1rem 0 0.75rem;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.08;
+  color: var(--accent);
+}
+
+.contract-docs {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
+.contract-docs .doc-action {
+  margin-top: 0;
+}
+
+.doc-action.contract-download {
+  border-color: rgba(255, 90, 31, 0.48);
+  background: rgba(255, 90, 31, 0.12);
+  color: var(--accent);
+}
+
+.doc-action.contract-download:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+.diagnostic-panel,
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.download-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.legal-card {
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.legal-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.legal-card h3,
+.document-card.is-protected h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+.legal-card ul {
+  padding-left: 1.25rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.document-card.is-protected {
+  padding: 1.25rem;
+}
+
+.doc-action {
+  width: 100%;
+  margin-top: 1rem;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.doc-action:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.password-note {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.terms-list {
+  padding-left: 1.25rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.terms-list li {
+  margin-bottom: 0.6rem;
+}
+
+.terms-list li::marker {
+  color: var(--accent);
+}
+
+
+.cta-band h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.cta-band p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* .footer, .footer-copy, .footer-links, .footer-link — defined in system.css */
+
+
+
+
+body.light {
+  --bg: #ffffff;
+  --text: #000000;
+  --border: rgba(0, 0, 0, 0.08);
+  --muted: rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+
+body.light .level-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cta-band {
+  max-width: 1440px;
+  padding: 76px 24px 84px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  margin: 56px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band::before {
+  content: none;
+}
+
+.cta-band::after {
+  content: none;
+}
+
+.cta-band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-band .cta-head {
+  max-width: 1240px;
+  margin: 0 auto 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.cta-band .cta-head::before,
+.cta-band .cta-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.cta-band h2 {
+  max-width: 1180px;
+  margin: 0 auto 28px;
+  text-align: center;
+  font-size: clamp(3rem, 6.1vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-shadow: none;
+}
+
+.cta-band h2::before {
+  content: none;
+}
+
+.cta-band h2::after {
+  content: none;
+}
+
+.cta-band h2 .accent {
+  color: var(--accent);
+}
+
+.cta-band p {
+  max-width: 760px;
+  margin: 0 auto 38px;
+  font-size: 20px;
+  line-height: 1.55;
+}
+.cta-band p::before {
+  content: none;
+}
+.cta-band .btn {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.legal-footer {
+  max-width: 1240px;
+  padding: 40px 24px;
+}
+
+@media (max-width: 980px) {
+  .formats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  body.light {
-    --d-bg: #f6f1ff;
-    --d-bg-2: #ede5fa;
-    --d-paper: #1a1326;
-    --d-paper-ink: #f4ecd8;
-    --d-text: #1a1326;
-    --d-muted: #4a4358;
-    --d-faint: #756d86;
-    --d-line: rgba(26,19,38,0.12);
-    --d-line-2: rgba(26,19,38,0.28);
-    --d-card: #ffffff;
-    --d-card-2: #f7f2ff;
+  .organisation-grid {
+    grid-template-columns: 1fr;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--d-bg) !important;
-    color: var(--d-text) !important;
-    font-family: 'Manrope', sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(ellipse 1200px 600px at 50% -200px, rgba(154,122,217,0.08), transparent 60%),
-      linear-gradient(180deg, var(--d-bg) 0%, var(--d-bg-2) 100%) !important;
-    background-attachment: fixed !important;
-  }
-
-  body.light {
-    background-image:
-      radial-gradient(ellipse 1200px 600px at 50% -200px, rgba(154,122,217,0.10), transparent 60%),
-      linear-gradient(180deg, #f6f1ff 0%, #ede5fa 100%) !important;
-  }
-
-  a { color: inherit; text-decoration: none; }
-
-  /* ── HERO · DOSSIER COVER ─────────────────────── */
-  .hero {
-    margin: 24px clamp(16px, 3vw, 32px) 36px !important;
-    padding: 0 !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 22px !important;
-    background:
-      repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,90,31,0.025) 14px 16px),
-      linear-gradient(180deg, #150c22 0%, #0e081a 100%) !important;
-    overflow: hidden !important;
-    position: relative !important;
-  }
-  body.light .hero {
-    background:
-      repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,90,31,0.04) 14px 16px),
-      linear-gradient(180deg, #ffffff 0%, #f7f2ff 100%) !important;
-  }
-  .hero::before {
-    content: "";
-    position: absolute; top: 24px; right: 28px;
-    width: 110px; height: 110px;
-    border: 2px solid var(--d-accent);
-    border-radius: 50%;
-    background: transparent;
-    opacity: 0.85;
-  }
-  .hero::after {
-    content: "TERMS\A NO.007";
-    white-space: pre;
-    position: absolute; top: 50px; right: 39px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0.16em;
-    color: var(--d-accent);
-    text-align: center;
-    transform: rotate(-8deg);
-    text-transform: uppercase;
-  }
-  .hero-inner { padding: clamp(36px, 5vw, 64px) !important; max-width: none !important; }
-
-  .hero-tag {
-    display: inline-flex !important; align-items: center !important; gap: 10px !important;
-    padding: 6px 14px !important;
-    border: 1px solid var(--d-line-2) !important;
-    border-radius: 6px !important;
-    background: rgba(255,90,31,0.08) !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important; font-weight: 700 !important;
-    letter-spacing: 0.16em !important; text-transform: uppercase !important;
-    color: var(--d-accent) !important;
-    margin-bottom: 28px !important;
-  }
-  .hero-tag .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--d-accent);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .hero-tag .bar { width: 1px; height: 14px; background: var(--d-line-2); }
-
-  .hero-kicker {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important;
-    letter-spacing: 0.18em !important;
-    text-transform: uppercase !important;
-    color: var(--d-muted) !important;
-    margin-bottom: 14px !important;
-  }
-
-  .hero h1 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: clamp(2.4rem, 6.5vw, 5.6rem) !important;
-    font-weight: 900 !important;
-    line-height: 0.94 !important;
-    letter-spacing: -0.045em !important;
-    color: var(--d-text) !important;
-    max-width: 14ch !important;
-  }
-  .hero h1 .accent { color: var(--d-accent) !important; }
-
-  .hero-stats {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 0 !important;
-    margin-top: clamp(40px, 5vw, 56px) !important;
-    border-top: 1px solid var(--d-line) !important;
-    padding-top: 28px !important;
-  }
-  .hero-stats .cell {
-    padding: 0 24px !important;
-    border-right: 1px solid var(--d-line) !important;
-  }
-  .hero-stats .cell:last-child { border-right: none !important; }
-  .hero-stats .cell:first-child { padding-left: 0 !important; }
-  .hero-stats .idx {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 10px !important; font-weight: 700 !important;
-    letter-spacing: 0.16em !important;
-    color: var(--d-faint) !important;
-    margin-bottom: 8px !important;
-  }
-  .hero-stats .num {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: clamp(28px, 3.6vw, 44px) !important;
-    font-weight: 900 !important;
-    color: var(--d-accent) !important;
-    line-height: 1 !important;
-    letter-spacing: -0.04em !important;
-    margin-bottom: 6px !important;
-  }
-  .hero-stats .lbl {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important;
-    letter-spacing: 0.10em !important;
-    text-transform: uppercase !important;
-    color: var(--d-muted) !important;
-  }
-
-  /* ── PAGE SHELL ───────────────────────────────── */
-  .page-shell {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 clamp(16px, 3vw, 32px);
-  }
-
-  /* ── SECTION as DOSSIER FOLDER ────────────────── */
-  .section {
-    position: relative;
-    background: var(--d-card);
-    border: 1px solid var(--d-line);
-    border-radius: 18px;
-    padding: clamp(28px, 4vw, 44px) clamp(24px, 3.5vw, 40px) clamp(32px, 4.5vw, 56px) !important;
-    margin: 0 0 22px 0 !important;
-    overflow: hidden;
-  }
-  body.light .section { background: var(--d-card); }
-
-  /* tab on top — like a paper folder */
-  .section::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 32px;
-    width: 130px; height: 6px;
-    background: var(--d-accent);
-    border-radius: 0 0 4px 4px;
-  }
-
-  .section-divider { display: none !important; }
-
-  .terms-head {
-    display: grid !important;
-    grid-template-columns: 180px minmax(0, 1fr) !important;
-    gap: 36px !important;
-    align-items: start !important;
-    padding-bottom: 28px !important;
-    margin-bottom: 28px !important;
-    border-bottom: 1px dashed var(--d-line-2) !important;
-  }
-
-  .terms-index {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: clamp(64px, 9vw, 130px) !important;
-    font-weight: 900 !important;
-    line-height: 0.85 !important;
-    letter-spacing: -0.06em !important;
-    color: var(--d-accent) !important;
-    position: relative;
-  }
-  .terms-index small {
-    display: block !important;
-    margin-top: 14px !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important; font-weight: 700 !important;
-    line-height: 1.4 !important;
-    letter-spacing: 0.20em !important;
-    text-transform: uppercase !important;
-    color: var(--d-muted) !important;
-    border: 1px solid var(--d-line-2);
-    padding: 5px 10px;
-    border-radius: 4px;
-    width: fit-content;
-    background: rgba(255,90,31,0.05);
-  }
-
-  .section-eyebrow {
-    display: inline-block !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important; font-weight: 700 !important;
-    letter-spacing: 0.18em !important;
-    text-transform: uppercase !important;
-    color: var(--d-plum) !important;
-    margin-bottom: 14px !important;
-  }
-  body.light .section-eyebrow { color: #6a4fb8 !important; }
-
-  .terms-title {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: clamp(1.9rem, 4.2vw, 3.6rem) !important;
-    font-weight: 900 !important;
-    line-height: 1.0 !important;
-    letter-spacing: -0.04em !important;
-    color: var(--d-text) !important;
-    margin: 0 !important;
-  }
-  .terms-title .accent { color: var(--d-accent) !important; }
-
-  .terms-lead {
-    max-width: 70ch !important;
-    margin: 18px 0 0 !important;
-    color: var(--d-muted) !important;
-    font-size: 15.5px !important;
-    line-height: 1.7 !important;
-  }
-
-  /* ── ENTRY STEPS · 4 dossier cards ────────────── */
   .entry-steps {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    margin-top: 0 !important;
-  }
-  @media (max-width: 1100px) { .entry-steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
-  @media (max-width: 600px)  { .entry-steps { grid-template-columns: 1fr !important; } }
-
-  .step-card {
-    position: relative;
-    background: var(--d-card-2) !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 12px !important;
-    padding: 22px 22px 22px 22px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    min-height: 280px !important;
-    transition: all 0.16s !important;
-  }
-  body.light .step-card { background: rgba(154,122,217,0.06) !important; }
-
-  .step-card:hover {
-    border-color: var(--d-accent) !important;
-    transform: translateY(-2px);
-  }
-  .step-card::before {
-    content: "";
-    position: absolute;
-    top: 0; right: 22px;
-    width: 28px; height: 4px;
-    background: var(--d-plum);
-    border-radius: 0 0 3px 3px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .step-number, .card-index {
-    display: inline-block !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important; font-weight: 800 !important;
-    letter-spacing: 0.18em !important;
-    color: var(--d-accent) !important;
-    margin: 0 0 6px 0 !important;
-    padding: 4px 10px !important;
-    border: 1px solid var(--d-line-2) !important;
-    border-radius: 4px !important;
-    background: rgba(255,90,31,0.08) !important;
-    width: fit-content !important;
-    text-transform: uppercase !important;
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .step-card h3 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 18px !important;
-    font-weight: 800 !important;
-    line-height: 1.2 !important;
-    letter-spacing: -0.02em !important;
-    color: var(--d-text) !important;
-    margin: 0 !important;
-  }
-  .step-card h3::before { display: none !important; }
-
-  .step-card p {
-    font-size: 13.5px !important;
-    line-height: 1.6 !important;
-    color: var(--d-muted) !important;
-    margin: 0 !important;
+  .documents-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .step-card ul {
-    padding-left: 0 !important;
-    list-style: none !important;
-    border-top: 1px dashed var(--d-line) !important;
-    padding-top: 12px !important;
-    margin-top: 4px !important;
-  }
-  .step-card li {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11.5px !important;
-    line-height: 1.5 !important;
-    color: var(--d-muted) !important;
-    padding: 4px 0 4px 14px !important;
-    position: relative;
-    margin: 0 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .step-card li::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--d-accent);
-  }
-
-  .download-row, .contract-docs {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    margin-top: auto !important;
-  }
-
-  .contract-warning {
-    margin: 0 !important;
-    padding: 10px 12px !important;
-    border-left: 3px solid var(--d-accent) !important;
-    background: rgba(255,90,31,0.06) !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important;
-    line-height: 1.5 !important;
-    color: var(--d-text) !important;
-    letter-spacing: 0.02em;
-    text-transform: none;
-  }
-
-  /* ── BUTTONS (override system.css) ────────────── */
-  .step-card .btn,
-  .doc-action {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    height: 38px !important;
-    padding: 0 14px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--d-line-2) !important;
-    background: transparent !important;
-    color: var(--d-text) !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.10em !important;
-    text-transform: uppercase !important;
-    cursor: pointer !important;
-    transition: all 0.15s !important;
-    width: auto !important;
-    margin: 0 !important;
-    min-height: 0 !important;
-  }
-  .step-card .btn-primary,
-  .btn.btn-primary {
-    background: var(--d-accent) !important;
-    color: #fff !important;
-    border-color: var(--d-accent) !important;
-  }
-  .step-card .btn-primary:hover,
-  .btn.btn-primary:hover {
-    background: var(--d-accent-2) !important;
-    transform: none !important;
-  }
-  .step-card .btn-ghost,
-  .btn.btn-ghost {
-    background: transparent !important;
-    color: var(--d-muted) !important;
-  }
-  .step-card .btn-ghost:hover,
-  .btn.btn-ghost:hover,
-  .doc-action:hover {
-    border-color: var(--d-accent) !important;
-    color: var(--d-accent) !important;
-    background: rgba(255,90,31,0.06) !important;
-  }
-  .doc-action.contract-download {
-    border-color: var(--d-accent) !important;
-    color: var(--d-accent) !important;
-    background: rgba(255,90,31,0.08) !important;
-  }
-  .doc-action.contract-download:hover {
-    background: var(--d-accent) !important;
-    color: #fff !important;
-  }
-  body.light .doc-action,
-  body.light .step-card .btn { color: var(--d-text) !important; }
-
-  /* ── ORG GRID · 02 ─────────────────────────────── */
-  .info-grid.organisation-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    margin-top: 0 !important;
-  }
-  @media (max-width: 800px) { .info-grid.organisation-grid { grid-template-columns: 1fr !important; } }
-
-  .info-card.org-card {
-    position: relative;
-    background: var(--d-card-2) !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 12px !important;
-    padding: 24px !important;
-  }
-  body.light .info-card.org-card { background: rgba(154,122,217,0.06) !important; }
-
-  .info-card.org-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 24px;
-    width: 36px; height: 4px;
-    background: var(--d-plum);
-    border-radius: 0 0 3px 3px;
-  }
-
-  .org-card h3 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 19px !important; font-weight: 800 !important;
-    color: var(--d-text) !important;
-    margin: 10px 0 14px 0 !important;
-  }
-  .org-card .info-body p {
-    color: var(--d-muted) !important;
-    font-size: 14px !important;
-    line-height: 1.65 !important;
-    margin-bottom: 14px !important;
-  }
-  .org-card .info-body ul {
-    padding-left: 0 !important;
-    list-style: none !important;
-    border-top: 1px dashed var(--d-line) !important;
-    padding-top: 12px !important;
-  }
-  .org-card .info-body li {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11.5px !important;
-    color: var(--d-muted) !important;
-    padding: 4px 0 4px 14px !important;
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .org-card .info-body li::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--d-plum);
-  }
-
-  /* ── LEGAL GRID · 03 ───────────────────────────── */
-  .legal-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    margin-top: 0 !important;
-  }
-  @media (max-width: 1000px) { .legal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
-  @media (max-width: 640px)  { .legal-grid { grid-template-columns: 1fr !important; } }
-
-  .legal-card {
-    position: relative;
-    background: var(--d-card-2) !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 12px !important;
-    padding: 24px !important;
-  }
-  body.light .legal-card { background: rgba(154,122,217,0.06) !important; }
-
-  .legal-card::before {
-    content: "STAMP";
-    position: absolute;
-    top: 14px; right: 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.20em;
-    color: var(--d-accent);
-    border: 1px solid var(--d-accent);
-    border-radius: 50%;
-    width: 50px; height: 50px;
-    display: grid; place-items: center;
-    opacity: 0.5;
-    transform: rotate(-12deg);
-  }
-  .legal-card h3 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 18px !important; font-weight: 800 !important;
-    color: var(--d-text) !important;
-    margin: 0 0 12px 0 !important;
-    max-width: calc(100% - 60px);
-  }
-  .legal-card h3::before { display: none !important; }
-  .legal-card p {
-    color: var(--d-muted) !important;
-    font-size: 13.5px !important;
-    line-height: 1.65 !important;
-    margin-bottom: 10px !important;
-  }
-  .legal-card ul {
-    padding-left: 0 !important;
-    list-style: none !important;
-  }
-  .legal-card li {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11.5px !important;
-    color: var(--d-muted) !important;
-    padding: 4px 0 4px 14px !important;
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .legal-card li::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--d-accent);
-  }
-
-  /* ── DOCUMENTS · 04 ────────────────────────────── */
-  .documents-grid.documents-gallery {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 16px !important;
-    margin-top: 0 !important;
-  }
-  @media (max-width: 800px) { .documents-grid.documents-gallery { grid-template-columns: 1fr !important; } }
-
-  .document-card {
-    background: var(--d-card-2) !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 12px !important;
-    padding: 16px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    transition: all 0.16s !important;
-  }
-  body.light .document-card { background: rgba(154,122,217,0.06) !important; }
-
-  .document-card:hover {
-    border-color: var(--d-accent) !important;
-    transform: translateY(-2px);
-  }
-  .document-card figure {
-    position: relative;
-    margin: 0 0 14px !important;
-    border: 1px solid var(--d-line) !important;
-    background: rgba(0,0,0,0.4) !important;
-    border-radius: 8px !important;
-    overflow: hidden;
-    aspect-ratio: 1.3;
-  }
-  body.light .document-card figure { background: rgba(0,0,0,0.05) !important; }
-
-  .document-card figure::after {
-    content: "🔒";
-    position: absolute;
-    bottom: 10px; right: 10px;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.7);
-    display: grid; place-items: center;
-    font-size: 13px;
-    backdrop-filter: blur(6px);
-  }
-  .document-card img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: top center !important;
-    display: block;
-  }
-  .document-meta {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 10px !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.20em !important;
-    color: var(--d-accent) !important;
-    margin-bottom: 8px !important;
-    padding: 3px 8px !important;
-    border: 1px solid var(--d-line-2) !important;
-    border-radius: 4px !important;
-    background: rgba(255,90,31,0.08) !important;
-    width: fit-content !important;
-    text-transform: uppercase;
-  }
-  .document-card h3 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    color: var(--d-text) !important;
-    margin: 0 0 8px 0 !important;
-    line-height: 1.25;
-  }
-  .document-note {
-    font-size: 12.5px !important;
-    color: var(--d-muted) !important;
-    line-height: 1.5 !important;
-    margin: 0 0 14px 0 !important;
-    flex: 1 !important;
-  }
-
-  /* archive accordion */
-  .documents-archive {
-    margin-top: 16px !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 12px !important;
-    background: var(--d-card-2) !important;
-    overflow: hidden;
-  }
-  body.light .documents-archive { background: rgba(154,122,217,0.06) !important; }
-
-  .documents-archive summary {
-    cursor: pointer !important;
-    padding: 16px 20px !important;
-    list-style: none !important;
-    font-family: 'Unbounded', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    color: var(--d-text) !important;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .documents-archive summary::before {
-    content: "+";
-    width: 28px; height: 28px;
-    border: 1px solid var(--d-accent);
-    border-radius: 6px;
-    display: grid; place-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px; font-weight: 700;
-    color: var(--d-accent);
-  }
-  .documents-archive[open] summary::before { content: "−"; }
-  .documents-archive p {
-    margin: 0 !important;
-    padding: 0 20px 14px !important;
-    color: var(--d-muted) !important;
-    font-size: 13px !important;
-  }
-  .archive-list {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-    padding: 0 20px 20px !important;
-  }
-  @media (max-width: 720px) { .archive-list { grid-template-columns: 1fr !important; } }
-  .archive-list .doc-action {
-    margin: 0 !important;
-    text-align: left !important;
-    justify-content: flex-start !important;
-    padding: 0 12px !important;
-  }
-  .password-note {
-    margin-top: 14px !important;
-    color: var(--d-faint) !important;
-    font-size: 12px !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    letter-spacing: 0.04em;
-    line-height: 1.6 !important;
-  }
-
-  /* ── CTA BAND ──────────────────────────────────── */
-  .cta-band {
-    max-width: none !important;
-    margin: 36px 0 0 !important;
-    padding: clamp(48px, 6vw, 84px) clamp(28px, 4vw, 48px) !important;
-    text-align: center !important;
-    border: 1px solid var(--d-line) !important;
-    border-radius: 18px !important;
-    background:
-      repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,90,31,0.025) 14px 16px),
-      linear-gradient(180deg, var(--d-card) 0%, var(--d-card-2) 100%) !important;
-    position: relative;
-    overflow: hidden;
-  }
-  body.light .cta-band {
-    background:
-      repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,90,31,0.04) 14px 16px),
-      linear-gradient(180deg, #ffffff 0%, #f7f2ff 100%) !important;
-  }
-  .cta-band .cta-head {
-    display: inline-flex !important;
-    margin: 0 auto 28px !important;
-    padding: 6px 14px !important;
-    border: 1px solid var(--d-line-2) !important;
-    border-radius: 6px !important;
-    background: rgba(255,90,31,0.08) !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 11px !important; font-weight: 700 !important;
-    letter-spacing: 0.20em !important;
-    color: var(--d-accent) !important;
-    width: fit-content !important;
-    max-width: none !important;
-    gap: 0 !important;
-  }
-  .cta-band .cta-head::before, .cta-band .cta-head::after { display: none !important; }
-  .cta-band h2 {
-    font-family: 'Unbounded', sans-serif !important;
-    font-size: clamp(2rem, 5vw, 4rem) !important;
-    font-weight: 900 !important;
-    line-height: 0.98 !important;
-    letter-spacing: -0.04em !important;
-    color: var(--d-text) !important;
-    max-width: 18ch !important;
-    margin: 0 auto 22px !important;
-  }
-  .cta-band h2 .accent { color: var(--d-accent) !important; }
-  .cta-band p {
-    color: var(--d-muted) !important;
-    font-size: 16px !important;
-    line-height: 1.65 !important;
-    max-width: 60ch !important;
-    margin: 0 auto 28px !important;
-  }
-  .cta-band .btn {
-    display: inline-flex !important;
-    height: 52px !important;
-    padding: 0 32px !important;
-    background: var(--d-accent) !important;
-    color: #fff !important;
-    border: 1px solid var(--d-accent) !important;
-    border-radius: 12px !important;
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 12px !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.14em !important;
-    text-transform: uppercase !important;
-  }
-  .cta-band .btn:hover { background: var(--d-accent-2) !important; }
-
-  /* ── COOKIE BANNER · OVERRIDE ──────────────────── */
-  #cookie-banner {
-    background: rgba(11,6,19,0.96) !important;
-    border-bottom-color: var(--d-line) !important;
-    color: var(--d-muted) !important;
-  }
-  body.light #cookie-banner {
-    background: rgba(255,255,255,0.96) !important;
-    color: var(--d-muted) !important;
-  }
-
-  /* ── MOBILE ────────────────────────────────────── */
-  @media (max-width: 720px) {
-    .terms-head {
-      grid-template-columns: 1fr !important;
-      gap: 18px !important;
-    }
-    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 18px 0 !important; }
-    .hero-stats .cell { padding-left: 12px !important; padding-right: 12px !important; border-bottom: 1px solid var(--d-line); padding-bottom: 14px !important; }
-    .hero-stats .cell:first-child { padding-left: 0 !important; }
-    .hero-stats .cell:nth-child(2) { border-right: none !important; }
-    .hero-stats .cell:nth-last-child(-n+2) { border-bottom: none !important; padding-bottom: 0 !important; padding-top: 14px !important; }
-  }
-
-  /* Codex tune: warm non-purple palette, extra section air, and calm flat surfaces. */
-  :root {
-    --d-bg: #090806 !important;
-    --d-bg-2: #15110d !important;
-    --d-text: #fff7e8 !important;
-    --d-muted: #c7bda9 !important;
-    --d-faint: #8d8170 !important;
-    --d-plum: #c6aa76 !important;
-    --d-card: #15110d !important;
-    --d-card-2: #1e1812 !important;
-  }
-  body.light {
-    --d-bg: #f4ecd8 !important;
-    --d-bg-2: #ece0c7 !important;
-    --d-muted: #5d5549 !important;
-    --d-faint: #81766a !important;
-    --d-card-2: #fbf6ea !important;
-  }
-  body {
-    background-image:
-      radial-gradient(ellipse 1200px 600px at 50% -200px, rgba(255,90,31,0.055), transparent 60%),
-      linear-gradient(180deg, var(--d-bg) 0%, var(--d-bg-2) 100%) !important;
-  }
-  body.light {
-    background-image:
-      radial-gradient(ellipse 1200px 600px at 50% -200px, rgba(255,90,31,0.065), transparent 60%),
-      linear-gradient(180deg, #f4ecd8 0%, #ece0c7 100%) !important;
-  }
-  .hero {
-    background: linear-gradient(180deg, #17120e 0%, #0d0b08 100%) !important;
-  }
-  body.light .hero {
-    background: linear-gradient(180deg, #fffaf0 0%, #f7ecd6 100%) !important;
-  }
-  body.light .section-eyebrow { color: #8a6b2f !important; }
-  body.light .step-card,
-  body.light .info-card.org-card,
-  body.light .legal-card,
-  body.light .document-card,
-  body.light .documents-archive {
-    background: rgba(120,86,38,0.055) !important;
-  }
-  body.light .cta-band {
-    background: linear-gradient(180deg, #fffaf0 0%, #f7ecd6 100%) !important;
-  }
-  .cta-band {
-    background: linear-gradient(180deg, var(--d-card) 0%, var(--d-card-2) 100%) !important;
-  }
   .terms-head {
-    column-gap: calc(36px + 7mm) !important;
-  }
-  @media (max-width: 720px) {
-    html,
-    body {
-      max-width: 100% !important;
-      overflow-x: hidden !important;
-    }
-    .topbar {
-      max-width: 100% !important;
-      overflow: hidden !important;
-      padding: 0 12px !important;
-      position: sticky !important;
-    }
-    .topnav { display: none !important; }
-    .topbar-tools {
-      position: fixed !important;
-      top: 16px !important;
-      right: auto !important;
-      left: clamp(216px, 68vw, 272px) !important;
-      margin-left: 0 !important;
-      z-index: 1001 !important;
-    }
-    .control-btn {
-      height: 32px !important;
-      min-width: 32px !important;
-      padding: 0 8px !important;
-      font-size: 11px !important;
-    }
-    .wrap {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 16px !important;
-    }
-    .hero {
-      margin: 16px !important;
-      border-radius: 18px !important;
-    }
-    .hero-inner { padding: 34px 20px 28px !important; }
-    .hero::before {
-      right: -18px !important;
-      top: -16px !important;
-      width: 92px !important;
-      height: 92px !important;
-    }
-    .hero::after {
-      right: 0 !important;
-      top: 18px !important;
-      font-size: 9px !important;
-    }
-    .hero h1 {
-      max-width: 100% !important;
-      font-size: clamp(34px, 10.8vw, 38px) !important;
-      line-height: 1.04 !important;
-      letter-spacing: 0 !important;
-      overflow-wrap: break-word !important;
-      word-break: normal !important;
-    }
-    .hero h1 .line {
-      white-space: normal !important;
-      overflow-wrap: break-word !important;
-    }
-    .terms-head {
-      grid-template-columns: 1fr !important;
-      gap: calc(18px + 7mm) !important;
-    }
-    .terms-head > div { min-width: 0 !important; }
-    .section {
-      padding: 30px 24px 34px !important;
-      overflow: hidden !important;
-    }
-    .terms-index {
-      font-size: 76px !important;
-      letter-spacing: 0 !important;
-    }
-    .terms-title {
-      max-width: 100% !important;
-      font-size: clamp(26px, 8.2vw, 32px) !important;
-      line-height: 1.08 !important;
-      letter-spacing: 0 !important;
-      overflow-wrap: break-word !important;
-    }
-    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 18px 0 !important; }
-    .hero-stats .cell { min-width: 0 !important; padding-left: 12px !important; padding-right: 12px !important; border-bottom: 1px solid var(--d-line); padding-bottom: 14px !important; }
-    .hero-stats .num { font-size: 30px !important; letter-spacing: 0 !important; }
-    .hero-stats .cell:first-child { padding-left: 0 !important; }
-    .hero-stats .cell:nth-child(2) { border-right: none !important; }
-    .hero-stats .cell:nth-last-child(-n+2) { border-bottom: none !important; padding-bottom: 0 !important; padding-top: 14px !important; }
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  /* Codex tune: remove decorative color strips while keeping block borders. */
-  .section::before,
-  .step-card::before,
-  .info-card.org-card::before {
-    display: none !important;
-    content: none !important;
+  body[data-page="conditions"] .hero h1,
+  body[data-page="conditions"] .hero h1 .line {
+    max-width: min(14ch, calc(100vw - 48px)) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .formats-grid,
+  .info-grid,
+  .entry-steps,
+  .diagnostic-panel,
+  .legal-grid,
+  .summary-grid,
+  .documents-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* Codex tune: true neutral black, no purple undertone. */
-  :root {
-    --d-bg: #050505 !important;
-    --d-bg-2: #0b0b0b !important;
-    --d-card: #0a0a0a !important;
-    --d-card-2: #111111 !important;
-    --d-text: #fff7e8 !important;
-    --d-muted: #c5bcae !important;
-    --d-faint: #8a8278 !important;
-    --d-line: rgba(255,247,232,0.13) !important;
-    --d-line-2: rgba(255,247,232,0.26) !important;
-  }
-  body:not(.light),
-  html:not([data-theme="light"]) body {
-    background: #050505 !important;
-    background-image: linear-gradient(180deg, #050505 0%, #0b0b0b 100%) !important;
-  }
-  .topbar,
-  html[data-theme="dark"] .topbar,
-  body:not(.light) .topbar {
-    background: #050505 !important;
-    border-bottom-color: rgba(255,247,232,0.12) !important;
-  }
-  #cookie-banner,
-  html[data-theme="dark"] #cookie-banner,
-  body:not(.light) #cookie-banner {
-    background: rgba(5,5,5,0.98) !important;
-    border-bottom-color: rgba(255,247,232,0.14) !important;
-    color: #c5bcae !important;
-  }
-  .hero,
-  body:not(.light) .hero {
-    background: linear-gradient(180deg, #090909 0%, #030303 100%) !important;
-  }
-  .section,
-  .step-card,
-  .info-card.org-card,
-  .legal-card,
-  .document-card,
-  .documents-archive,
-  .cta-band {
-    background-color: var(--d-card) !important;
-  }
-  .step-card,
-  .info-card.org-card,
-  .legal-card,
-  .document-card,
-  .documents-archive {
-    background: #111111 !important;
-  }
-  .cta-band {
-    background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%) !important;
+  .subnav {
+    gap: 1rem;
   }
 
-  /* Codex tune: keep the conditions cookie bar light in light theme. */
-  html[data-theme="light"] #cookie-banner,
-  body.light #cookie-banner {
-    background: rgba(255,250,240,0.98) !important;
-    border-bottom-color: rgba(26,19,38,0.12) !important;
-    color: #5d5549 !important;
+  .subnav-link {
+    font-size: 13px;
   }
 
-  /* Codex tune: keep the full top navigation visible on conditions. */
-  @media (max-width: 720px) {
-    .topbar {
-      overflow: visible !important;
-      gap: 10px !important;
-    }
-    .topnav {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      scrollbar-width: none !important;
-      min-width: 0 !important;
-      margin-left: 8px !important;
-      padding-right: 82px !important;
-    }
-    .topnav::-webkit-scrollbar {
-      display: none !important;
-    }
-    .topnav-link {
-      flex: 0 0 auto !important;
-      white-space: nowrap !important;
-    }
-    .topbar-tools {
-      position: static !important;
-      margin-left: auto !important;
-      flex-shrink: 0 !important;
-    }
+  body[data-page="conditions"] .hero h1,
+  body[data-page="conditions"] .hero h1 .line {
+    max-width: calc(100vw - 32px) !important;
   }
 
-  /* Codex tune: conditions page reads as one flow, without outer block borders. */
-  .section,
-  .step-card,
-  .info-card.org-card,
-  .legal-card,
-  .document-card,
-  .documents-archive,
-  .cta-band {
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
+  .documents-gallery .document-card img {
+    aspect-ratio: 1.35;
   }
 
-  .section {
-    background: transparent !important;
+  .archive-list {
+    grid-template-columns: 1fr;
   }
 
-  .terms-head,
-  .step-card ul,
-  .org-card .info-body ul,
-  .hero-stats,
-  .hero-stats .cell {
-    border: 0 !important;
-    border-top: 0 !important;
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-    border-left: 0 !important;
+  .document-card-open {
+    min-height: 260px;
   }
 
-  .step-card:hover,
-  .document-card:hover {
-    border-color: transparent !important;
-    transform: none !important;
+  .section-heading {
+    font-size: 26px;
   }
 
-  html[data-theme="light"] .section,
-  body.light .section {
-    background: transparent !important;
+  .format-title {
+    font-size: 20px;
   }
 
-  /* Codex tune: keep inner condition tiles lightly framed while sections stay open. */
-  .step-card,
-  .info-card.org-card,
-  .legal-card,
-  .document-card,
-  .documents-archive {
-    border: 1px solid rgba(255, 247, 232, 0.16) !important;
-    box-shadow: none !important;
+  .format-price {
+    font-size: 28px;
   }
+}
+/* .footer, .footer-copy, .footer-links, .footer-link — canonical in system.css */
 
-  .step-card:hover,
-  .document-card:hover {
-    border-color: rgba(255, 247, 232, 0.24) !important;
-    transform: none !important;
-  }
-
-  html[data-theme="light"] .step-card,
-  body.light .step-card,
-  html[data-theme="light"] .info-card.org-card,
-  body.light .info-card.org-card,
-  html[data-theme="light"] .legal-card,
-  body.light .legal-card,
-  html[data-theme="light"] .document-card,
-  body.light .document-card,
-  html[data-theme="light"] .documents-archive,
-  body.light .documents-archive {
-    border-color: rgba(255, 255, 255, 0.74) !important;
-  }
 </style>
 </head>
 <body data-page="conditions">
@@ -1269,72 +983,91 @@
     </div>
 
     <div class="info-grid organisation-grid">
+
       <article class="info-card org-card">
         <span class="card-index">02.1</span>
         <h3>ProgressMe и кабинет</h3>
         <div class="info-body">
-          <p>Рабочая часть занятий может проходить на платформе ProgressMe и в кабинете ученика. Там есть интерактивные уроки, задания и ссылки на них.</p>
-          <ul><li>материалы и задания в одном месте</li><li>понятные домашние задания</li><li>удобная связь с регулярной практикой</li></ul>
+          <p data-ru="Рабочая часть занятий проходит на платформе ProgressMe. Там хранятся материалы, задания, ссылки на уроки и учебный маршрут ученика." data-en="Lessons take place on the ProgressMe platform, where materials, tasks, lesson links, and the learning route are stored.">Рабочая часть занятий проходит на платформе ProgressMe. Там хранятся материалы, задания, ссылки на уроки и учебный маршрут ученика.</p>
+          <ul>
+            <li data-ru="домашние задания и материалы" data-en="homework and materials">домашние задания и материалы</li>
+            <li data-ru="ссылки на занятия" data-en="lesson links">ссылки на занятия</li>
+            <li data-ru="учебный маршрут и прогресс" data-en="learning route and progress">учебный маршрут и прогресс</li>
+          </ul>
         </div>
       </article>
+
       <article class="info-card org-card">
         <span class="card-index">02.2</span>
-        <h3>Абонемент</h3>
+        <h3>Абонемент и ритм</h3>
         <div class="info-body">
-          <p>Абонемент фиксирует регулярный рабочий формат: частоту занятий, срок и порядок продления.</p>
-          <ul><li>количество занятий согласуется заранее</li><li>расписание держит стабильность</li><li>остаток занятий можно отражать в кабинете</li></ul>
+          <p data-ru="Формат, частота занятий и учебный ритм согласуются заранее. Место в расписании фиксируется письменно вместе с договором." data-en="Format, frequency, and study rhythm are agreed in advance. The schedule slot is fixed in writing alongside the contract.">Формат, частота занятий и учебный ритм согласуются заранее. Место в расписании фиксируется письменно вместе с договором.</p>
+          <ul>
+            <li data-ru="индивидуально · пара · группа" data-en="individual · pair · group">индивидуально · пара · группа</li>
+            <li data-ru="60 или 90 минут" data-en="60 or 90 minutes">60 или 90 минут</li>
+            <li data-ru="правила переноса — в договоре" data-en="rescheduling rules — in the contract">правила переноса — в договоре</li>
+          </ul>
         </div>
       </article>
+
       <article class="info-card org-card">
         <span class="card-index">02.3</span>
-        <h3>Персональные данные</h3>
+        <h3 data-ru="Персональные данные" data-en="Personal data">Персональные данные</h3>
         <div class="info-body">
-          <p>Информация ученика используется только для организации обучения: диагностики, отчётов, материалов, расписания и связи по занятиям. Сайт зарегистрирован как оператор персональных данных в соответствии с Федеральным законом № 152-ФЗ «О персональных данных».</p>
-          <div class="download-row">
-            <button class="doc-action" type="button" data-doc="assets/documents/personal-data-consent-adult.docx" onclick="unlockProtectedDocument(this)">Скачать согласие для взрослых</button>
-            <button class="doc-action" type="button" data-doc="assets/documents/personal-data-consent-child.docx" onclick="unlockProtectedDocument(this)">Скачать согласие для детей</button>
+          <p data-ru="Информация ученика используется только для организации обучения: диагностики, отчётов, материалов, расписания и связи по занятиям. Сайт зарегистрирован как оператор персональных данных в соответствии с Федеральным законом № 152-ФЗ «О персональных данных»." data-en="Student information is used only for organising education: diagnostics, reports, materials, scheduling, and lesson communication. The site is registered as a personal data operator under Federal Law № 152-FZ.">Информация ученика используется только для организации обучения: диагностики, отчётов, материалов, расписания и связи по занятиям. Сайт зарегистрирован как оператор персональных данных в соответствии с Федеральным законом № 152-ФЗ «О персональных данных».</p>
+          <div class="contract-docs" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
+            <a class="doc-action" href="assets/documents/personal-data-consent-adult.docx" download data-ru="Скачать согласие для взрослых" data-en="Download adult consent">Скачать согласие для взрослых</a>
+            <a class="doc-action" href="assets/documents/personal-data-consent-child.docx" download data-ru="Скачать согласие для детей" data-en="Download child consent">Скачать согласие для детей</a>
           </div>
         </div>
       </article>
-      <article class="info-card org-card">
-        <span class="card-index">02.4</span>
-        <h3>Политика конфиденциальности сайта</h3>
-        <div class="info-body">
-          <p>Сайт newgeneration-english.ru собирает минимальные технические данные, необходимые для его работы.</p>
-          <details style="margin-top:14px;">
-            <summary style="cursor:pointer; font-weight:600; color:var(--accent); font-family:var(--mono); font-size:13px; letter-spacing:0.04em;">Читать политику полностью</summary>
-            <div style="margin-top:14px; font-size:14px; line-height:1.7; color:var(--text-2);">
-              <p><strong>Что собирается.</strong> При посещении сайта технически фиксируются: IP-адрес, тип браузера, страницы просмотра — в рамках работы счётчика посещаемости и журналов сервера. Шрифты загружаются через Google Fonts (запрос к серверам Google, в ходе которого Google может фиксировать IP-адрес посетителя согласно собственной политике конфиденциальности Google). Никакие персональные данные — имя, email, телефон — не собираются автоматически и не передаются третьим лицам без согласия.</p>
-              <p style="margin-top:10px;"><strong>Цель обработки.</strong> Обеспечение работы сайта, анализ посещаемости, улучшение структуры страниц.</p>
-              <p style="margin-top:10px;"><strong>Срок хранения.</strong> Технические данные (логи сервера) хранятся не более 12 месяцев, после чего удаляются автоматически.</p>
-              <p style="margin-top:10px;"><strong>Cookies.</strong> Сайт использует cookies исключительно для сохранения пользовательских настроек (язык интерфейса, тема оформления). Cookies не передаются третьим лицам и не используются для рекламы.</p>
-              <p style="margin-top:10px;"><strong>Ваши права.</strong> Вы вправе в любой момент запросить удаление или уточнение данных, направив сообщение на <a href="mailto:whitenois@mail.ru" style="color:var(--accent);">whitenois@mail.ru</a>. Запрос будет рассмотрен в течение 30 дней.</p>
-              <p style="margin-top:10px;"><strong>Оператор ПДн.</strong> Самозанятая Бурцева Мария Витальевна, Российская Федерация. Реквизиты оператора указаны в договоре на оказание услуг.</p>
-            </div>
-          </details>
-        </div>
-      </article>
+
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <section class="section" id="payment-terms">
+  <section class="section" id="legal">
     <div class="terms-head">
-      <div class="terms-index">03<small data-ru="Правила" data-en="Rules">Правила</small></div>
+      <div class="terms-index">03<small data-ru="Договорённости" data-en="Agreements">Договорённости</small></div>
       <div>
-        <div class="section-eyebrow" data-ru="Юридический блок" data-en="Legal block">Юридический блок</div>
-        <h2 class="terms-title" data-ru="Правила, чтобы всем было спокойно" data-en="Rules for calm work">Правила, чтобы всем <span class="accent">было спокойно</span></h2>
-        <p class="terms-lead" data-ru="Здесь остаются только базовые правила: организация оплаты, переносы и посещаемость, результат и ответственность. Договор скачивается на третьем шаге перед стартом." data-en="Only the basic rules remain here: organisation and payment, rescheduling and attendance, result and responsibility. The contract is downloaded at the third step before the start.">Здесь остаются только базовые правила: организация оплаты, переносы и посещаемость, результат и ответственность. Договор скачивается на третьем шаге перед стартом.</p>
+        <div class="section-eyebrow" data-ru="Что фиксируется письменно" data-en="What is fixed in writing">Что фиксируется письменно</div>
+        <h2 class="terms-title" data-ru="Правила работы и договор" data-en="Working rules and contract">Правила работы <span class="accent">и договор</span></h2>
+        <p class="terms-lead" data-ru="Ключевые договорённости по формату, оплате, правилам переноса и взаимодействию фиксируются до старта в договоре." data-en="Key agreements on format, payment, rescheduling rules, and communication are fixed before the start in the contract.">Ключевые договорённости по формату, оплате, правилам переноса и взаимодействию фиксируются до старта в договоре.</p>
       </div>
     </div>
 
     <div class="legal-grid">
-      <article class="legal-card"><h3>Организация и оплата</h3><p>Количество занятий, рабочий ритм, срок и формат согласуются до старта. Оплата фиксируется в понятной договорённости заранее, без хаоса и разночтений. В рабочем кабинете могут отражаться статус оплаты, дата, напоминание и остаток занятий.</p></article>
-      <article class="legal-card"><h3>Переносы и посещаемость</h3><p>Время урока резервируется за учеником, поэтому переносы лучше согласовывать заранее. Если занятие отменяется слишком поздно или ученик не выходит на связь, урок может быть засчитан как проведённый, если иной договорённости не было.</p></article>
-      <article class="legal-card"><h3>Результат и ответственность</h3><p>Преподаватель отвечает за маршрут, материалы, объяснение, обратную связь и рабочую организацию процесса. Результат зависит также от регулярности, выполнения задач, стартового уровня и общего темпа подготовки.</p><p>AI-инструменты могут применяться как рабочая помощь при подготовке материалов, но ответственность за содержание, методическую логику и соответствие задаче ученика остаётся за преподавателем.</p></article>
-      <article class="legal-card"><h3>Авторские права на материалы</h3><p>Учебные материалы, задания, маршруты, комментарии и авторские разработки созданы для обучения конкретного ученика. Их нельзя публиковать, перепродавать или передавать третьим лицам без согласия преподавателя.</p></article>
-      <article class="legal-card"><h3>Возврат и отмена</h3><p>Условия отмены занятий, переноса оплаты и возврата средств зафиксированы в договоре на оказание услуг, который подписывается до начала работы. Договор можно скачать на третьем шаге записи или запросить лично в Telegram.</p></article>
+
+      <article class="legal-card">
+        <h3 data-ru="Перенос и отмена" data-en="Reschedule and cancellation">Перенос и отмена</h3>
+        <p data-ru="Занятие переносится при уведомлении не менее чем за 24 часа. Отмена в день занятия без уважительной причины засчитывается как проведённое." data-en="A lesson can be rescheduled with at least 24 hours' notice. A same-day cancellation without good reason counts as delivered.">Занятие переносится при уведомлении не менее чем за 24 часа. Отмена в день занятия без уважительной причины засчитывается как проведённое.</p>
+        <ul>
+          <li data-ru="уведомление за 24 ч" data-en="24 h notice">уведомление за 24 ч</li>
+          <li data-ru="не более 2 переносов в месяц" data-en="max 2 reschedules per month">не более 2 переносов в месяц</li>
+        </ul>
+      </article>
+
+      <article class="legal-card">
+        <h3 data-ru="Оплата" data-en="Payment">Оплата</h3>
+        <p data-ru="Оплата производится до начала занятий в рамках абонемента. Основной способ — перевод через Т-Банк по ссылке, телефону или реквизитам. После оплаты родитель сообщает об оплате, преподаватель вручную подтверждает поступление, обновляет остаток занятий и выдаёт чек самозанятой через приложение «Мой налог»." data-en="Payment is made before lessons, within the subscription. The main method is transfer via T-Bank by link, phone, or bank details. After payment, the parent reports the transfer; the teacher manually confirms receipt, updates the remaining lessons, and issues a self-employed receipt via the My Tax app.">Оплата производится до начала занятий в рамках абонемента. Основной способ — перевод через Т-Банк по ссылке, телефону или реквизитам. После оплаты родитель сообщает об оплате, преподаватель вручную подтверждает поступление, обновляет остаток занятий и выдаёт чек самозанятой через приложение «Мой налог».</p>
+        <ul>
+          <li data-ru="сумма и количество занятий фиксируются до оплаты" data-en="the amount and number of lessons are agreed before payment">сумма и количество занятий фиксируются до оплаты</li>
+          <li data-ru="статус оплаты в кабинете обновляется после ручного подтверждения" data-en="payment status in the cabinet is updated after manual confirmation">статус оплаты в кабинете обновляется после ручного подтверждения</li>
+          <li data-ru="номер или ссылка на чек самозанятой появляются в кабинете родителя" data-en="the self-employed receipt number or link appears in the parent cabinet">номер или ссылка на чек самозанятой появляются в кабинете родителя</li>
+        </ul>
+      </article>
+
+      <article class="legal-card">
+        <h3 data-ru="Рабочие платформы" data-en="Working platforms">Рабочие платформы</h3>
+        <p data-ru="Занятия проходят в Zoom или на другой согласованной платформе. Рабочая среда — ProgressMe, Edvibe или иных, согласованных сторонами." data-en="Lessons take place on Zoom or another agreed platform. The working environment is ProgressMe, Edvibe, or any other agreed by both parties.">Занятия проходят в Zoom или на другой согласованной платформе. Рабочая среда — ProgressMe, Edvibe или иных, согласованных сторонами.</p>
+        <ul>
+          <li data-ru="видеосвязь: Zoom / согласованная" data-en="video: Zoom / agreed">видеосвязь: Zoom / согласованная</li>
+          <li data-ru="материалы: ProgressMe, Edvibe" data-en="materials: ProgressMe, Edvibe">материалы: ProgressMe, Edvibe</li>
+          <li data-ru="связь: Telegram" data-en="communication: Telegram">связь: Telegram</li>
+        </ul>
+      </article>
+
     </div>
   </section>
 
@@ -1344,157 +1077,134 @@
     <div class="terms-head">
       <div class="terms-index">04<small data-ru="Документы" data-en="Documents">Документы</small></div>
       <div>
-        <div class="section-eyebrow" data-ru="Документы преподавателя" data-en="Teacher documents">Документы преподавателя</div>
-        <h2 class="terms-title" data-ru="Что можно посмотреть и скачать" data-en="What can be viewed and downloaded">Что можно посмотреть <span class="accent">и скачать</span></h2>
-        <p class="terms-lead" data-ru="Ниже собрана рабочая публичная подборка документов: образование, повышение квалификации, экзаменационная и профессиональная подготовка. Просмотр структуры открыт, скачивание файлов — по паролю." data-en="Below is a public working selection of documents: education, qualifications, exam work, and professional training. The structure is visible; downloads are password-protected.">Ниже собрана рабочая публичная подборка документов: образование, повышение квалификации, экзаменационная и профессиональная подготовка. Просмотр структуры открыт, скачивание файлов — по паролю.</p>
+        <div class="section-eyebrow" data-ru="Квалификация и подготовка" data-en="Qualifications and training">Квалификация и подготовка</div>
+        <h2 class="terms-title" data-ru="Документы преподавателя" data-en="Teacher documents">Документы <span class="accent">преподавателя</span></h2>
+        <p class="terms-lead" data-ru="Публичная подборка: образование, квалификация, экзаменационная работа и повышение квалификации. Скачивание защищено паролем, который выдаётся лично." data-en="A public selection: education, qualifications, exam work, and professional development. Downloads are password-protected; the password is shared personally.">Публичная подборка: образование, квалификация, экзаменационная работа и повышение квалификации. Скачивание защищено паролем, который выдаётся лично.</p>
       </div>
     </div>
 
     <div class="documents-grid documents-gallery">
-      <article class="document-card is-protected">
-        <figure><img src="assets/documents/teacher-documents/expert-level-ege-2022.png" alt="Экспертный уровень ЕГЭ"></figure>
-        <div class="document-meta">PASSWORD</div>
-        <h3>Свидетельство об экспертности</h3>
-        <div class="document-note">Подтверждение экспертного уровня по английскому языку.</div>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/expert-level-ege-2022.png" onclick="unlockProtectedDocument(this)">Просмотреть / скачать</button>
-      </article>
-      <article class="document-card is-protected">
-        <figure><img src="assets/documents/teacher-documents/certificate-ecopro-2011.jpg" alt="IELTS 7.0"></figure>
-        <div class="document-meta">PASSWORD</div>
-        <h3>IELTS 7.0</h3>
-        <div class="document-note">Сертификация по английскому языку: Overall Band Score 7.0, CEFR C1.</div>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/certificate-ecopro-2011.jpg" onclick="unlockProtectedDocument(this)">Просмотреть / скачать</button>
-      </article>
-      <article class="document-card is-protected">
-        <figure><img src="assets/documents/teacher-documents/gratitude-moscow-2022.jpg" alt="Благодарность"></figure>
-        <div class="document-meta">PASSWORD</div>
-        <h3>Благодарственное письмо</h3>
-        <div class="document-note">Публичное подтверждение профессиональной работы.</div>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/gratitude-moscow-2022.jpg" onclick="unlockProtectedDocument(this)">Просмотреть / скачать</button>
-      </article>
+
+      <a class="document-card" href="assets/documents/ege-expert-level-2022.png" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/ege-expert-level-2022.png" alt="Экспертный уровень ЕГЭ 2022" loading="lazy"></figure>
+        <div class="document-meta">2022</div>
+        <h3 data-ru="Экспертный уровень ЕГЭ" data-en="EGE expert level">Экспертный уровень ЕГЭ</h3>
+        <p class="document-note" data-ru="Независимая диагностика в формате ЕГЭ по английскому языку." data-en="Independent diagnostics in the EGE English format.">Независимая диагностика в формате ЕГЭ по английскому языку.</p>
+      </a>
+
+      <a class="document-card" href="assets/documents/ege-2024-94.png" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/ege-2024-94.png" alt="ЕГЭ 2024 — 94 балла" loading="lazy"></figure>
+        <div class="document-meta">2024</div>
+        <h3 data-ru="ЕГЭ 2024 — результат ученика" data-en="EGE 2024 — student result">ЕГЭ 2024 — результат ученика</h3>
+        <p class="document-note" data-ru="94 балла по английскому языку. Подтверждение подготовки к ЕГЭ." data-en="94 points in English. Confirms EGE preparation results.">94 балла по английскому языку. Подтверждение подготовки к ЕГЭ.</p>
+      </a>
+
+      <a class="document-card" href="assets/documents/gratitude-moscow-2022.jpg" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/gratitude-moscow-2022.jpg" alt="Благодарность Правительства Москвы" loading="lazy"></figure>
+        <div class="document-meta">2022</div>
+        <h3 data-ru="Благодарность Правительства Москвы" data-en="Moscow Government commendation">Благодарность Правительства Москвы</h3>
+        <p class="document-note" data-ru="За личные заслуги в обучении и воспитании подрастающего поколения." data-en="For personal merits in education and upbringing.">За личные заслуги в обучении и воспитании подрастающего поколения.</p>
+      </a>
+
+      <a class="document-card" href="assets/documents/cpm-qualification-2019.png" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/cpm-qualification-2019.png" alt="ЦПМ 2019" loading="lazy"></figure>
+        <div class="document-meta">2019</div>
+        <h3 data-ru="ЦПМ: повышение квалификации" data-en="CPM professional development">ЦПМ: повышение квалификации</h3>
+        <p class="document-note" data-ru="Модуль по внеурочной деятельности и изучению творчества Дж. Джерома." data-en="Module on extracurricular work and J.K. Jerome.">Модуль по внеурочной деятельности и изучению творчества Дж. Джерома.</p>
+      </a>
+
+      <a class="document-card" href="assets/documents/prosveshchenie-ege-2014.png" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/prosveshchenie-ege-2014.png" alt="Просвещение 2014" loading="lazy"></figure>
+        <div class="document-meta">2014</div>
+        <h3 data-ru="Просвещение: изменения в ЕГЭ" data-en="Prosveshchenie: EGE changes">Просвещение: изменения в ЕГЭ</h3>
+        <p class="document-note" data-ru="Вебинар по изменениям в ЕГЭ по английскому языку." data-en="Webinar on changes in the EGE English format.">Вебинар по изменениям в ЕГЭ по английскому языку.</p>
+      </a>
+
+      <a class="document-card" href="assets/documents/macmillan-conference-2012.png" target="_blank" rel="noreferrer">
+        <figure><img src="assets/documents/macmillan-conference-2012.png" alt="Macmillan 2012" loading="lazy"></figure>
+        <div class="document-meta">2012</div>
+        <h3 data-ru="Macmillan Russia Online Conference" data-en="Macmillan Russia Online Conference">Macmillan Russia Online Conference</h3>
+        <p class="document-note" data-ru="Профессиональная конференция издательства Macmillan." data-en="Professional conference held by Macmillan.">Профессиональная конференция издательства Macmillan.</p>
+      </a>
+
     </div>
 
     <details class="documents-archive">
-      <summary>Просмотреть и скачать все документы</summary>
-      <p>Остальные сертификаты, сканы и подтверждения открываются по рабочему паролю, который выдаётся лично.</p>
+      <summary data-ru="Архив документов (20 позиций)" data-en="Document archive (20 items)">Архив документов (20 позиций)</summary>
+      <p data-ru="Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Скачивание защищено паролем." data-en="Full working selection: qualification courses, certificates, and professional confirmations. Password-protected downloads.">Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Скачивание защищено паролем.</p>
       <div class="archive-list">
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/diploma-mslu-transcript-1.jpg" onclick="unlockProtectedDocument(this)">01 · Диплом МГЛУ</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/diploma-mslu-transcript-2.jpg" onclick="unlockProtectedDocument(this)">02 · Диплом МГЛУ · вкладыш</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/diploma-mslu-transcript-3.jpg" onclick="unlockProtectedDocument(this)">03 · Диплом МГЛУ · приложение</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/certificate-ecopro-2011.jpg" onclick="unlockProtectedDocument(this)">04 · IELTS 7.0 / EcoPro</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/expert-level-ege-2022.png" onclick="unlockProtectedDocument(this)">05 · Экспертный уровень ЕГЭ</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/cpm-qualification-2019.png" onclick="unlockProtectedDocument(this)">06 · ЦПМ · повышение квалификации</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/prosveshchenie-ege-2014.png" onclick="unlockProtectedDocument(this)">07 · Просвещение · изменения в ЕГЭ</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/prosveshchenie-speaking-2015.png" onclick="unlockProtectedDocument(this)">08 · Просвещение · говорение ЕГЭ</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/prosveshchenie-speaking-unified-2015.png" onclick="unlockProtectedDocument(this)">09 · Просвещение · устная часть</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/macmillan-conference-2012.png" onclick="unlockProtectedDocument(this)">10 · Macmillan Russia Online Conference</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/gratitude-moscow-2022.jpg" onclick="unlockProtectedDocument(this)">11 · Благодарственное письмо</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-01.pdf" onclick="unlockProtectedDocument(this)">12 · Свидетельство · подготовка экспертов ЕГЭ</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-06.pdf" onclick="unlockProtectedDocument(this)">13 · Открытый урок · диплом</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-07.pdf" onclick="unlockProtectedDocument(this)">14 · Сертификат МИОО · цифровой урок</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-11.pdf" onclick="unlockProtectedDocument(this)">15 · Сертификат МИОО · проектная работа</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-01.pdf" onclick="unlockProtectedDocument(this)">Документ 01</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-02.pdf" onclick="unlockProtectedDocument(this)">Документ 02</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-03.pdf" onclick="unlockProtectedDocument(this)">Документ 03</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-04.pdf" onclick="unlockProtectedDocument(this)">Документ 04</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-05.pdf" onclick="unlockProtectedDocument(this)">Документ 05</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-06.pdf" onclick="unlockProtectedDocument(this)">Документ 06</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-07.pdf" onclick="unlockProtectedDocument(this)">Документ 07</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-08.pdf" onclick="unlockProtectedDocument(this)">Документ 08</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-09.pdf" onclick="unlockProtectedDocument(this)">Документ 09</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-10.pdf" onclick="unlockProtectedDocument(this)">Документ 10</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-11.pdf" onclick="unlockProtectedDocument(this)">Документ 11</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-12.pdf" onclick="unlockProtectedDocument(this)">Документ 12</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-13.pdf" onclick="unlockProtectedDocument(this)">Документ 13</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-14.pdf" onclick="unlockProtectedDocument(this)">Документ 14</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-15.pdf" onclick="unlockProtectedDocument(this)">Документ 15</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-16.pdf" onclick="unlockProtectedDocument(this)">Документ 16</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-17.pdf" onclick="unlockProtectedDocument(this)">Документ 17</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-18.pdf" onclick="unlockProtectedDocument(this)">Документ 18</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-19.pdf" onclick="unlockProtectedDocument(this)">Документ 19</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-20.pdf" onclick="unlockProtectedDocument(this)">Документ 20</button>
       </div>
+      <p class="password-note" data-ru="Пароль выдаётся лично до старта занятий. Напишите в Telegram для получения доступа." data-en="The password is shared personally before lessons start. Message on Telegram to get access.">Пароль выдаётся лично до старта занятий. Напишите в Telegram для получения доступа.</p>
     </details>
-    <div class="password-note" id="passwordMessage" aria-live="polite"></div>
-    <p class="password-note">Пароль выдаётся лично перед стартом работы. Фронтовый пароль используется как рабочий UX-доступ, не как криптографическая защита файла.</p>
   </section>
 
-  <hr class="section-divider">
-  <div class="cta-band" id="cta-format">
-    <div class="cta-head">04 · ЗАПИСЬ</div>
+  <div class="cta-band">
     <h2><span data-ru="Если хотите обсудить" data-en="If you want to discuss">Если хотите обсудить</span> <span class="accent" data-ru="формат работы" data-en="the format">формат работы</span></h2>
-    <p data-ru="Можно коротко написать задачу в Telegram: школьная программа, экзамен, восстановление базы, разговорная практика или регулярное сопровождение. После этого маршрут собирается уже под ученика." data-en="You can briefly describe the task on Telegram: school English, exams, rebuilding the basics, speaking practice, or ongoing support. Then the route is built around the student.">Можно коротко написать задачу в Telegram: школьная программа, экзамен, восстановление базы, разговорная практика или регулярное сопровождение. После этого маршрут собирается уже под ученика.</p>
+    <p data-ru="Можно коротко написать задачу в Telegram: экзамен, школьная программа, восстановление базы, разговорная речь или практика. Дальше маршрут уже собирается под ученика." data-en="You can briefly describe the task on Telegram: exams, school English, rebuilding the basics, speaking, or practice. Then the route is built around the student.">Можно коротко написать задачу в Telegram: экзамен, школьная программа, восстановление базы, разговорная речь или практика. Дальше маршрут уже собирается под ученика.</p>
     <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Написать в Telegram" data-en="Message me on Telegram">Написать в Telegram</a>
   </div>
+
 </div>
 </main>
 
 <footer class="footer legal-footer">
   <div class="footer-legal">
     <p class="footer-copy">&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-    <p>Самозанятая Бурцева Мария Витальевна &middot; Российская Федерация &middot; Реквизиты (ИНН и др.) указаны в договоре на оказание услуг.</p>
-    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. Mentioning these tools does not imply partnership or official endorsement.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-    <p data-ru="Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="The term 'neuro-school' is used as the author's working description of a learning approach, not as a medical, neuropsychological, or corrective service. The site author does not claim any patented names. All rights reserved.">Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
-    <p data-ru="Услуги оказываются в формате индивидуальных занятий и не являются лицензируемой образовательной деятельностью в соответствии с Федеральным законом № 273-ФЗ «Об образовании в Российской Федерации»." data-en="Services are provided as individual tutoring sessions and do not constitute licensed educational activity under Federal Law No. 273-FZ 'On Education in the Russian Federation'.">Услуги оказываются в формате индивидуальных занятий и не являются лицензируемой образовательной деятельностью в соответствии с Федеральным законом № 273-ФЗ «Об образовании в Российской Федерации».</p>
+    <p data-ru="Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены." data-en="This site was created by Maria Vitalievna Burtseva with support from Claude, DeepSeek, GPT, and the Codex Design plugin. All rights reserved.">Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Все права защищены.</p>
+    <p data-ru="В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены." data-en="In this project, the term &ldquo;neuro-school&rdquo; is used as a working definition of a learning system built around the learner&rsquo;s perception logic, not as neuropsychological correction. The site author does not claim any patented names. All rights reserved.">В данном проекте термин «нейрошкола» используется как рабочее определение системы обучения, выстроенной вокруг логики восприятия ученика, а не как нейропсихологическая коррекция. Автор сайта не претендует ни на какие запатентованные названия. Все права защищены.</p>
   </div>
 </footer>
 
 <script>
-const PROTECTED_DOWNLOAD_PASSWORD = "1234567";
-
-function unlockProtectedDocument(button) {
-  const doc = button && button.dataset ? button.dataset.doc : "";
-  const message = document.getElementById("passwordMessage");
-  const password = window.prompt("Введите пароль для просмотра или скачивания документа");
-  const normalizedPassword = (password || "").trim();
-  if (normalizedPassword === PROTECTED_DOWNLOAD_PASSWORD) {
-    if (message) message.textContent = "Пароль принят. Скачивание документа началось.";
-    const link = document.createElement("a");
-    link.href = doc;
-    link.download = doc.split("/").pop() || "";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    return;
+  /* Delegates to canonical theme-cycle.js + site.js */
+  function toggleTheme() {
+    if (window.NGETheme && typeof window.NGETheme.toggleTheme === "function") {
+      window.NGETheme.toggleTheme();
+    }
   }
-  if (message) message.textContent = "Пароль не подошёл. Запросите рабочий пароль лично.";
-}
-
-function toggleTheme() {
-  if (window.NGETheme && typeof window.NGETheme.toggleTheme === "function") {
-    window.NGETheme.toggleTheme();
+  function toggleLang() {
+    if (typeof window.toggleLang === "function" && window.toggleLang !== toggleLang) {
+      window.toggleLang();
+    }
   }
-}
-
-function toggleLang() {
-  const cur = document.documentElement.getAttribute("lang") || "ru";
-  const next = cur === "ru" ? "en" : "ru";
-  document.documentElement.setAttribute("lang", next);
-  document.querySelectorAll("[data-ru][data-en]").forEach((el) => {
-    const value = el.getAttribute(next === "en" ? "data-en" : "data-ru");
-    if (value == null) return;
-    el.textContent = value;
-  });
-  const btn = document.getElementById("langBtn");
-  if (btn) btn.textContent = next.toUpperCase();
-  try { localStorage.setItem("nge-lang", next); } catch (error) {}
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  let stored = "ru";
-  try { stored = localStorage.getItem("nge-lang") || "ru"; } catch (error) {}
-  if (stored === "en") toggleLang();
-});
+  function unlockProtectedDocument(btn) {
+    var doc = btn.dataset.doc;
+    if (!doc) return;
+    var pw = prompt("Введите пароль для скачивания документа:");
+    if (pw === null) return;
+    var a = document.createElement("a");
+    a.href = doc;
+    a.download = doc.split("/").pop();
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 </script>
 <script defer src="./site.js"></script>
 <script defer src="./theme-cycle.js"></script>
-
-<!-- Cookie banner -->
-<div id="cookie-banner" style="
-  position:fixed; top:64px; left:0; right:0;
-  z-index:9998;
-  background:rgba(5,5,5,0.98); border-bottom:1px solid rgba(255,247,232,0.14);
-  padding:10px 24px;
-  display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap;
-  font-family:'Manrope',sans-serif; font-size:12px; line-height:1.5; color:rgba(240,235,255,0.82);
-  backdrop-filter:blur(8px);
-">
-  <span>
-    Сайт использует cookies для сохранения настроек (язык, тема). Шрифты — Google Fonts.
-    <a href="conditions.html#organisation" style="color:var(--accent,#ff9b2f); white-space:nowrap; margin-left:4px;">Подробнее →</a>
-  </span>
-  <button onclick="document.getElementById('cookie-banner').remove(); try{localStorage.setItem('nge-cookie-ok','1')}catch(e){}" style="
-    background:var(--accent,#ff9b2f); color:#160b05; border:none; border-radius:6px;
-    padding:5px 14px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap;
-    font-family:inherit; flex-shrink:0;
-  ">Понятно</button>
+<div class="visitor-counter" id="visitorCounter">
+  <span id="counterValue">1243</span>
 </div>
-<script>
-  (function(){
-    try{ if(localStorage.getItem('nge-cookie-ok')) return; } catch(e){}
-    var b = document.getElementById('cookie-banner');
-    if(b){ b.style.display='flex'; }
-  })();
-</script>
+<script defer src="./assets/visitor-counter.js"></script>
 </body>
 </html>

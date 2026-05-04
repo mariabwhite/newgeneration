@@ -29,8 +29,29 @@ function getCabinetTheme() {
 function applyTheme(theme) {
   document.body.classList.toggle("light", theme === "light");
   syncThemeButton();
+  syncLabLinks();
 }
 
+function getLabThemeParam() {
+  return document.body.classList.contains("light") ? "lite" : "dark";
+}
+
+function withLabTheme(href) {
+  if (!href || !href.includes("lingua-boost-lab")) return href;
+  const hashIndex = href.indexOf("#");
+  const hash = hashIndex >= 0 ? href.slice(hashIndex) : "";
+  const body = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+  const clean = body.replace(/([?&])theme=[^&#]*&?/i, "$1").replace(/[?&]$/, "");
+  const sep = clean.includes("?") ? "&" : "?";
+  return `${clean}${sep}theme=${getLabThemeParam()}${hash}`;
+}
+
+function syncLabLinks() {
+  document.querySelectorAll('a[href*="lingua-boost-lab"]').forEach((a) => {
+    const raw = a.getAttribute("href") || "";
+    a.setAttribute("href", withLabTheme(raw));
+  });
+}
 function isThemeWired() {
   // eslint-disable-next-line no-undef
   return typeof window !== "undefined" && Boolean(window[THEME_WIRED_FLAG]);

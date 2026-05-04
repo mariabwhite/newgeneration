@@ -1,761 +1,1052 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Space Explorers English | LinguaBoost Studio</title>
-    <!-- Google Fonts & simple CSS reset -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #0b0f2a 0%, #0a0c22 100%);
-            color: #eef5ff;
-            padding: 2rem 1.5rem;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 2.7rem;
-            background: linear-gradient(135deg, #FFD166, #6C9FFF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .sub {
-            color: #a0b3e0;
-            border-left: 4px solid #FFB347;
-            padding-left: 1rem;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        /* section styles */
-        .section-card {
-            background: rgba(18, 25, 55, 0.7);
-            backdrop-filter: blur(2px);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(108, 159, 255, 0.3);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
-            transition: all 0.2s;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid #3a4c8c;
-            padding-bottom: 8px;
-        }
-
-        /* FLASHCARDS */
-        .flashcard-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
-        }
-        .flashcard {
-            background-color: transparent;
-            width: 220px;
-            height: 270px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-        .flashcard-front, .flashcard-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            background: #1e2a5e;
-            background-image: radial-gradient(circle at 10% 30%, #2a3a70, #121b3f);
-            border: 1px solid #6c9fff;
-        }
-        .flashcard-front {
-            background: linear-gradient(145deg, #1e2f6e, #0e1a42);
-        }
-        .flashcard-back {
-            background: linear-gradient(145deg, #261f45, #18122e);
-            transform: rotateY(180deg);
-            font-weight: 500;
-        }
-        .card-word {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .card-trans {
-            font-size: 1.2rem;
-            color: #FFD966;
-        }
-        .sound-btn {
-            margin-top: 15px;
-            background: #3b5bb0;
-            border: none;
-            border-radius: 40px;
-            padding: 6px 14px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .sound-btn:hover {
-            background: #5f7edb;
-            transform: scale(1.02);
-        }
-
-        /* pop-up tooltip (hover definition) */
-        .popup-term {
-            border-bottom: 2px dotted #ffb347;
-            cursor: help;
-            position: relative;
-            font-weight: 600;
-        }
-        .popup-term:hover::after {
-            content: attr(data-def);
-            position: absolute;
-            background: #111c3f;
-            color: #ffde9c;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            border-radius: 20px;
-            white-space: nowrap;
-            top: -28px;
-            left: 0;
-            z-index: 20;
-            box-shadow: 0 5px 12px black;
-            border: 1px solid gold;
-            font-weight: normal;
-        }
-
-        /* грамматические цвета */
-        .gram-present-perfect {
-            color: #6fcf97;
-            font-weight: 600;
-            background: rgba(111,207,151,0.15);
-            border-radius: 6px;
-            padding: 0 2px;
-        }
-        .gram-past-simple {
-            color: #5dade2;
-            font-weight: 600;
-            background: rgba(93,173,226,0.15);
-            border-radius: 6px;
-            padding: 0 2px;
-        }
-
-        /* word wall */
-        .wordwall {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .word-tag {
-            background: #242f62;
-            padding: 10px 20px;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            cursor: default;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .word-tag:hover {
-            transform: scale(1.05);
-            background: #3e51a0;
-        }
-
-        /* matching game */
-        .matching-pairs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: space-between;
-        }
-        .match-column {
-            flex: 1;
-            min-width: 180px;
-        }
-        .match-item {
-            background: #111a36;
-            margin: 12px 0;
-            padding: 14px;
-            border-radius: 60px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.1s;
-            border: 1px solid #4a6bc0;
-            font-weight: 500;
-        }
-        .match-item.selected {
-            background: #ffb347;
-            color: #0a0c22;
-            border-color: white;
-            transform: scale(1.01);
-        }
-        .match-item.matched {
-            visibility: hidden;
-            display: none;
-        }
-        .match-feedback {
-            font-size: 1rem;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        /* hangman */
-        .hangman-area {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
-        }
-        .hangman-drawing {
-            font-family: monospace;
-            font-size: 1.3rem;
-            background: #00000040;
-            padding: 10px;
-            border-radius: 20px;
-        }
-        .word-display {
-            font-size: 2rem;
-            letter-spacing: 8px;
-            font-weight: bold;
-        }
-        .hangman-letters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            max-width: 400px;
-        }
-        .letter-btn {
-            background: #2f4172;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .letter-btn.disabled {
-            background: #444;
-            opacity: 0.5;
-            cursor: default;
-        }
-        .reset-game {
-            background: #ff8c42;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* спектрограмма (визуализация микрофона) */
-        .spectrum-container {
-            background: #010017;
-            border-radius: 28px;
-            padding: 15px;
-            text-align: center;
-        }
-        canvas {
-            background: #050a1f;
-            border-radius: 20px;
-            width: 100%;
-            height: 150px;
-            display: block;
-            margin-top: 10px;
-        }
-        .mic-btn {
-            background: #6c9fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 50px;
-            margin: 10px 0;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* аудиоплеер */
-        audio {
-            width: 100%;
-            margin: 10px 0;
-        }
-        .listening-quiz {
-            background: #0b102b;
-            padding: 15px;
-            border-radius: 20px;
-            margin-top: 15px;
-        }
-
-        /* транскрипция */
-        .transcript-word {
-            cursor: pointer;
-            font-weight: bold;
-            border-bottom: 1px dashed #ffaa55;
-            margin-right: 5px;
-        }
-        .ipa-badge {
-            background: #2e3c6e;
-            border-radius: 16px;
-            padding: 2px 8px;
-            font-size: 0.9rem;
-            margin-left: 8px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            opacity: 0.7;
-        }
-        button {
-            font-family: inherit;
-        }
-        @media (max-width: 800px) {
-            .flashcard-grid { gap: 12px; }
-            .flashcard { width: 170px; height: 220px; }
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Space Explorers — B1 English | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+:root{
+  --bg:#0b0f2a;--surface:#131830;--accent:#6C9FFF;--accent2:#4a7de0;
+  --accent3:#FFD166;--text:#e8eeff;--muted:#8899cc;
+  --ok:#4caf50;--miss:#e74c3c;--radius:1.2rem;--shadow:0 6px 24px rgba(0,0,0,.5);
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Manrope',sans-serif;min-height:100vh;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;
+  width:100%;height:100%;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 80% 10%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 40% 70%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 50%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 90% 80%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 10% 90%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(2px 2px at 50% 20%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 75% 60%,rgba(255,255,255,.6) 0%,transparent 100%);
+}
+.container{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 1rem 2rem}
+
+/* TOPBAR */
+.topbar{background:#060818;padding:.7rem 1.4rem;display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;position:sticky;top:0;z-index:100;border-bottom:1px solid #1a2040}
+.topbar-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;color:var(--accent);margin-right:.5rem}
+.topbar-pills{display:flex;gap:.4rem;flex-wrap:wrap}
+.pill{background:#1a2040;color:var(--muted);border-radius:2rem;padding:.2rem .75rem;font-size:.78rem;font-weight:700;border:1px solid #2a3060}
+.pill.b{color:var(--accent);border-color:var(--accent)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:.7rem}
+.btn-lang{background:#1a2040;color:var(--accent3);border:1px solid #2a3060;border-radius:2rem;padding:.2rem .8rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s}
+.btn-lang:hover{background:#2a3060}
+.back-link{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;transition:color .2s}
+.back-link:hover{color:var(--accent)}
+
+/* HERO */
+.hero{text-align:center;padding:2.5rem 1rem 1.5rem}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:.8rem;font-weight:600}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,6vw,3rem);color:#fff;margin-bottom:.8rem;text-shadow:0 0 30px rgba(108,159,255,.4)}
+.hero-sub{display:inline-flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.sub-pill{border-radius:2rem;padding:.35rem 1rem;font-size:.82rem;font-weight:700}
+.sub-pill.blue{background:rgba(108,159,255,.15);color:var(--accent);border:1px solid rgba(108,159,255,.35)}
+.sub-pill.gold{background:rgba(255,209,102,.12);color:var(--accent3);border:1px solid rgba(255,209,102,.3)}
+
+/* STAR BAR */
+.star-bar{display:flex;justify-content:center;gap:.8rem;margin:1rem 0;flex-wrap:wrap}
+.star{font-size:1.6rem;opacity:.2;transition:all .4s;user-select:none}
+.star.lit{opacity:1;filter:drop-shadow(0 0 10px gold);transform:scale(1.1)}
+
+/* RAIL */
+.progress-rail{display:flex;align-items:center;justify-content:center;gap:0;margin:1.2rem auto;max-width:700px;flex-wrap:nowrap}
+.rail-step{display:flex;flex-direction:column;align-items:center;gap:.3rem;position:relative;flex:1}
+.rail-step:not(:last-child)::after{content:'';position:absolute;top:16px;left:50%;width:100%;height:3px;background:#1a2040;z-index:0}
+.rail-step.done::after{background:var(--accent)}
+.rail-dot{width:32px;height:32px;border-radius:50%;background:#1a2040;border:2px solid #2a3060;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--muted);position:relative;z-index:1;transition:all .4s;font-family:'Nunito',sans-serif}
+.rail-step.done .rail-dot{background:var(--accent);color:#0b0f2a;border-color:var(--accent)}
+.rail-label{font-size:.62rem;color:var(--muted);font-weight:600;text-align:center;max-width:60px}
+
+/* SECTIONS */
+.section{background:var(--surface);border-radius:1.8rem;margin:1.2rem auto;max-width:900px;overflow:hidden;box-shadow:var(--shadow);border-top:6px solid var(--accent)}
+.section-head{background:linear-gradient(135deg,#1a2040,#0d1530);color:var(--accent);padding:1.1rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem}
+.section-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1rem,3vw,1.35rem)}
+.section-tag{background:rgba(108,159,255,.15);color:var(--accent);border-radius:2rem;padding:.2rem .8rem;font-size:.75rem;font-weight:700;border:1px solid rgba(108,159,255,.3)}
+.section-body{padding:1.4rem}
+
+/* FLIP CARDS */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem}
+.flip-card{height:110px;cursor:pointer;perspective:800px}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:.6rem;text-align:center}
+.flip-front{background:#1a2040;color:var(--accent);font-family:'Nunito',sans-serif;font-weight:900;border:2px solid #2a3060}
+.flip-front .fc-emoji{font-size:1.5rem;margin-bottom:.3rem}
+.flip-front .fc-word{font-size:.9rem}
+.flip-back{background:var(--accent2);color:#fff;transform:rotateY(180deg);border:2px solid var(--accent)}
+.flip-back .fb-ru{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;margin-bottom:.3rem}
+.flip-back .fb-def{font-size:.65rem;opacity:.9;line-height:1.3}
+.flip-progress{text-align:center;margin-top:.8rem;color:var(--muted);font-size:.82rem;font-weight:600}
+
+/* PLANETS */
+.planets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.9rem}
+.planet-card{background:#1a2040;border:2px solid #2a3060;border-radius:1.2rem;padding:1rem;cursor:pointer;text-align:center;transition:all .25s}
+.planet-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.planet-card.opened{border-color:var(--accent3);background:#1a2540}
+.planet-emoji{font-size:2.5rem}
+.planet-name{font-family:'Nunito',sans-serif;font-weight:900;color:var(--accent3);margin:.3rem 0;font-size:.95rem}
+.planet-fact{font-size:.78rem;color:var(--muted);display:none;line-height:1.5;margin-top:.5rem}
+.planet-card.opened .planet-fact{display:block;color:var(--text)}
+.planets-progress{text-align:center;margin-top:.8rem;color:var(--muted);font-size:.82rem;font-weight:600}
+
+/* TRUE/FALSE */
+.tf-list{display:flex;flex-direction:column;gap:.8rem}
+.tf-item{background:#1a2040;border-radius:1rem;padding:1rem;border:2px solid #2a3060}
+.tf-stmt{color:var(--text);font-size:.92rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.tf-btns{display:flex;gap:.6rem;flex-wrap:wrap}
+.tf-btn{padding:.35rem 1.1rem;border-radius:2rem;font-weight:700;border:2px solid transparent;cursor:pointer;font-family:'Manrope',sans-serif;font-size:.82rem;transition:all .2s;background:#0b0f2a;color:var(--text)}
+.tf-btn:hover{border-color:var(--accent)}
+.tf-btn.selected-true{background:rgba(76,175,80,.15);border-color:var(--ok);color:var(--ok)}
+.tf-btn.selected-false{background:rgba(231,76,60,.15);border-color:var(--miss);color:var(--miss)}
+.tf-btn.correct-hl{background:rgba(76,175,80,.25);border-color:var(--ok)!important;color:var(--ok)!important}
+.tf-btn.wrong-hl{background:rgba(231,76,60,.2);border-color:var(--miss)!important;color:var(--miss)!important}
+.tf-check{margin-top:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.tf-result{font-weight:700;font-size:.9rem}
+
+/* MCQ */
+.mcq-list{display:flex;flex-direction:column;gap:1rem}
+.mcq-item{background:#1a2040;border-radius:1rem;padding:1rem;border:2px solid #2a3060}
+.mcq-q{color:var(--text);font-size:.92rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.mcq-opts{display:flex;gap:.5rem;flex-wrap:wrap}
+.mcq-opt{background:#0b0f2a;color:var(--text);padding:.35rem 1rem;border-radius:2rem;cursor:pointer;font-size:.82rem;font-weight:600;border:2px solid #2a3060;transition:all .2s;font-family:'Manrope',sans-serif}
+.mcq-opt:hover:not(.correct):not(.wrong){border-color:var(--accent)}
+.mcq-opt.selected{border-color:var(--accent);background:#2a3060}
+.mcq-opt.correct{background:#1a3a2a;border-color:var(--ok);color:var(--ok)}
+.mcq-opt.wrong{background:#3a1a1a;border-color:var(--miss);color:var(--miss)}
+.mcq-check{margin-top:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.mcq-result{font-weight:700;font-size:.9rem}
+
+/* SPEED TYPE */
+.speed-def{background:#1a2040;border-radius:1rem;padding:1.2rem;text-align:center;font-size:1rem;color:var(--text);margin-bottom:.8rem;min-height:60px;line-height:1.5;font-weight:600;display:flex;align-items:center;justify-content:center}
+.speed-bar-wrap{background:#0b0f2a;border-radius:2rem;height:8px;overflow:hidden;margin:.5rem 0}
+.speed-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:2rem;transition:width .1s linear;width:100%}
+.speed-input{background:#1a2040;border:2px solid #2a3060;border-radius:2rem;padding:.6rem 1.2rem;color:var(--text);font-size:1rem;width:100%;max-width:300px;font-family:'Manrope',sans-serif;outline:none;transition:border-color .2s}
+.speed-input:focus{border-color:var(--accent)}
+.speed-controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.7rem}
+.speed-fb{font-weight:700;font-size:.9rem;min-height:1.2em;margin-top:.5rem}
+.speed-prog{color:var(--muted);font-size:.82rem;font-weight:600;margin-bottom:.5rem}
+.speed-result-box{text-align:center;padding:1.5rem;display:none}
+.speed-result-box h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--accent3);margin-bottom:.5rem}
+
+/* SPEAKING */
+.speaking-topic{background:#1a2040;border-radius:1rem;padding:1.4rem;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:.9rem;border:2px solid #2a3060}
+.speaking-timer-wrap{text-align:center;margin:1rem 0}
+.speaking-timer-num{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.5rem;color:var(--accent3)}
+.speaking-timer-bar-wrap{background:#0b0f2a;border-radius:2rem;height:8px;overflow:hidden;margin:.5rem auto;max-width:400px}
+.speaking-timer-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:2rem;transition:width 1s linear;width:100%}
+.speaking-btns{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;margin-top:.8rem}
+
+/* GENERAL BUTTONS */
+.btn{padding:.5rem 1.3rem;border-radius:2rem;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s;font-size:.88rem}
+.btn-primary{background:var(--accent);color:#0b0f2a}
+.btn-primary:hover{background:var(--accent2);color:#fff}
+.btn-gold{background:var(--accent3);color:#0b0f2a}
+.btn-gold:hover{background:#e8b84b}
+.btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.btn-outline:hover{background:rgba(108,159,255,.1)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ALL DONE */
+.all-done{display:none;text-align:center;padding:2.5rem;background:linear-gradient(135deg,#1a2040,#0d1530);border-radius:1.8rem;color:var(--accent3);border:2px solid var(--accent);margin:1.2rem auto;max-width:900px;box-shadow:var(--shadow)}
+.all-done.show{display:block}
+.all-done h2{font-family:'Nunito',sans-serif;font-size:2rem;margin-bottom:.5rem}
+
+/* CONFETTI */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:999}
+
+/* FOOTER */
+.footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.75rem;border-top:1px solid #1a2040;margin-top:1rem;position:relative;z-index:1}
+.footer a{color:var(--muted);text-decoration:none}
+
+@media(max-width:520px){
+  .flip-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .section-body{padding:1rem}
+  .planets-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .rail-label{display:none}
+}
+
+/* ═══ LAB BRAND + LOGO ══════════════════════════════════════════════════ */
+.lab-topbar{display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,3vw,1.75rem);
+  background:color-mix(in srgb,var(--surface,#fff) 92%,transparent);
+  border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:200;min-height:54px}
+.lab-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.lab-mark{width:36px;height:36px;border-radius:8px;background:var(--accent2);
+  display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.25rem;color:#fff;letter-spacing:-.05em;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);position:relative}
+.lab-mark::after{content:'';position:absolute;right:5px;bottom:5px;width:5px;height:5px;
+  border-radius:50%;background:rgba(255,255,255,.65)}
+.lab-brand-copy{display:grid;gap:1px}
+.lab-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;
+  letter-spacing:-.02em;color:var(--text);line-height:1}
+.lab-brand-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);line-height:1}
+.lab-nav{display:flex;gap:.4rem;align-items:center;margin-left:auto;flex-wrap:wrap}
+.lab-back{font-size:.75rem;font-weight:700;color:var(--muted);text-decoration:none;
+  padding:.2rem .6rem;border-radius:.5rem;transition:color .18s}
+.lab-back:hover{color:var(--accent2)}
+.lab-pill-nav{display:inline-grid;place-items:center;padding:.2rem .65rem;
+  border:1px solid rgba(0,0,0,.13);border-radius:999px;font-size:.65rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-pill-accent{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.lab-tool-btn{height:30px;padding:0 .75rem;border:1px solid rgba(0,0,0,.15);border-radius:7px;
+  background:transparent;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;
+  color:var(--muted);transition:all .16s;font-family:'Manrope',sans-serif}
+.lab-tool-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ═══ LAB HERO ══════════════════════════════════════════════════════════ */
+.lab-hero{border:1px solid rgba(0,0,0,.07);border-radius:1.5rem;
+  margin:1.2rem auto 0;max-width:960px;
+  padding:clamp(1.5rem,4vw,2.8rem) clamp(1.2rem,3vw,2.2rem);
+  background:var(--surface,#fff);overflow:hidden;position:relative;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.lab-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,var(--accent3) 0%,transparent 68%);
+  pointer-events:none;opacity:.22}
+.lab-hero-inner{position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 148px;gap:2rem;align-items:center}
+.lab-eyebrow{font-size:.67rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--accent2);flex-shrink:0}
+.lab-hero-title{font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.75rem,5vw,3rem);line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:.8rem;color:var(--text)}
+.lab-hero-title em{font-style:normal;color:var(--accent2)}
+.lab-hero-lead{color:var(--muted);font-size:clamp(.85rem,1.7vw,1rem);line-height:1.7;margin-bottom:1.1rem}
+.lab-hero-badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-badge{display:inline-grid;place-items:center;padding:.22rem .65rem;
+  border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:.64rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;
+  background:linear-gradient(135deg,var(--accent3) 0%,var(--accent) 100%);
+  border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.85}
+.lab-vis-inner{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:16px}
+.lab-vis-dot{border-radius:6px;background:rgba(255,255,255,.55)}
+.lab-vis-dot:nth-child(1){height:32px}
+.lab-vis-dot:nth-child(2){height:20px;margin-top:auto}
+.lab-vis-dot:nth-child(3){height:20px}
+.lab-vis-dot:nth-child(4){height:32px;margin-top:auto}
+@media(max-width:580px){
+  .lab-hero-inner{grid-template-columns:1fr}
+  .lab-hero-visual{display:none}
+  .lab-topbar{flex-wrap:wrap;gap:.5rem}
+}
+
+/* ═══ BUBBLE POP BONUS ══════════════════════════════════════════════════ */
+.bub-score-bar{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--accent2);margin-bottom:.6rem}
+#bubCanvas{width:100%;height:280px;display:block;border-radius:1rem;
+  background:linear-gradient(160deg,var(--bg,#f5f5f5) 60%,color-mix(in srgb,var(--accent3) 30%,transparent));
+  cursor:crosshair;touch-action:none;border:1.5px solid rgba(0,0,0,.07)}
+.bub-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+
+
+
+/* TOP ONLY: align demo header with A1 Lesson 01 without changing palettes */
+:root { --demo-top-width: min(100% - 48px, 1240px); }
+.lab-topbar,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  backdrop-filter: blur(14px);
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+.topbar-brand,
+.lab-brand-name,
+.brand {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+.lab-back,
+.btn-back,
+.back-link,
+.btn-top,
+.topbar-back,
+.topbar-btn,
+.btn-sm.btn-back {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.lab-hero {
+  width: var(--demo-top-width);
+  max-width: 1240px;
+  margin: 24px auto 18px !important;
+  border-radius: 18px !important;
+  padding: clamp(26px, 5vw, 56px) !important;
+  text-align: left;
+}
+.lab-hero-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.28fr) minmax(220px, .92fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.lab-eyebrow {
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase;
+}
+.lab-hero-title {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2.05rem, 5vw, 4.25rem) !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 18px !important;
+}
+.lab-hero-lead {
+  max-width: 760px;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+  line-height: 1.7 !important;
+}
+.lab-hero-badges {
+  justify-content: flex-start;
+  gap: 8px !important;
+}
+.lab-pill,
+.lab-hero-badges span,
+.topbar-pills span {
+  border-radius: 999px !important;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase;
+}
+.hero {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin: 18px auto 10px !important;
+  padding: 0 clamp(16px, 3vw, 28px) !important;
+  text-align: center !important;
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+}
+.hero h1 {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+.hero p,
+.hero-sub,
+.subtitle-pill,
+.hero-pill {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  letter-spacing: 0 !important;
+}
+.rail,
+.progress-rail {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  :root { --demo-top-width: min(100% - 28px, 1240px); }
+  .lab-hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .lab-hero { padding: 24px 18px !important; }
+  .lab-hero-visual { justify-self: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">B1</span>
-    <span class="lbs-pill">Teens</span>
-    <span class="lbs-pill">Theme lesson</span>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <span class="topbar-brand">LinguaBoost Lab</span>
+  <div class="topbar-pills">
+    <span class="pill b">B1</span>
+    <span class="pill">Space</span>
+    <span class="pill">Science</span>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
-</div>
+  <div class="topbar-right">
+<a href="../index.html" class="back-link">All Lessons</a>
+  </div>
+</nav>
+
 <div class="container">
-    <h1>🚀 Beyond Earth: Space Explorers</h1>
-    <div class="sub">B1+ Interactive lesson | Vocabulary, Listening, Grammar & Games</div>
 
-    <!-- 1. FLASHCARDS с переворотом и озвучиванием -->
-    <div class="section-card">
-        <div class="section-title">🪐 1. Flip & Listen | Flashcards</div>
-        <div class="flashcard-grid" id="flashcardGrid"></div>
+  <!-- HERO -->
+  <div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">B1 &middot; Lesson 10 &middot; Space · Explorers</div>
+      <h1 class="lab-hero-title"><em>Lesson</em></h1>
+      <p class="lab-hero-lead">Interactive B1 lesson</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">B1</span>
+        <span class="lab-badge">6 activities</span>
+        <span class="lab-badge">interactive</span>
+      </div>
     </div>
-
-    <!-- 2. Текст с pop-up переводом + выделение грамматики (Present Perfect / Past Simple) -->
-    <div class="section-card">
-        <div class="section-title">📖 2. Reading: Mars Mission Diary</div>
-        <div id="readingText" style="font-size: 1.1rem; line-height: 1.6;"></div>
-        <p style="margin-top: 12px; font-size:0.9rem;">💡 <em>Hover on <span class="popup-term" data-def="unusual or amazing">remarkable</span> words to see translation or definition.</em></p>
+    <div class="lab-hero-visual" aria-hidden="true">
+      <div class="lab-vis-inner">
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+      </div>
     </div>
-
-    <!-- 3. СТЕНА СЛОВ (Word Wall) -->
-    <div class="section-card">
-        <div class="section-title">📌 3. Space Word Wall</div>
-        <div id="wordWallContainer" class="wordwall"></div>
-    </div>
-
-    <!-- 4. СОПОСТАВЬ слово и картинку (текстово-иконки) + подсветка -->
-    <div class="section-card">
-        <div class="section-title">🔗 4. Match: Word & Picture</div>
-        <div class="matching-pairs" id="matchingGameArea"></div>
-        <div class="match-feedback" id="matchFeedback"></div>
-    </div>
-
-    <!-- 5. Аудирование + плеер + задание -->
-    <div class="section-card">
-        <div class="section-title">🎧 5. Listening: Cosmic Discovery</div>
-        <div class="lb-inline-audio">
-    <button id="playCosmicAudio" type="button">Play audio passage</button>
-    <button id="stopCosmicAudio" type="button">Stop</button>
+  </div>
 </div>
-<div class="lb-audio-note">Local browser speech is used here instead of an external audio file, so the module stays autonomous.</div>
-        <p style="margin: 8px 0;">🎙️ <em>Аудио пример (имитация новости космоса). Послушайте и ответьте:</em></p>
-        <div class="listening-quiz">
-            <p>❓ <strong>Listening task:</strong> What did the astronaut describe as "the most breathtaking view"?</p>
-            <label><input type="radio" name="listenQ" value="stars"> The Milky Way stars</label><br>
-            <label><input type="radio" name="listenQ" value="earth"> Earth rising over the Moon</label><br>
-            <label><input type="radio" name="listenQ" value="nebula"> The Orion Nebula</label><br>
-            <button id="checkListenBtn" style="margin-top: 12px; background:#ffae70; border:none; border-radius:30px; padding:6px 18px;">Check answer</button>
-            <span id="listenResult" style="margin-left: 15px;"></span>
-            <p class="popup-term" data-def="Correct answer hint: Earthrise">💡 Подсказка: Earthrise is iconic</p>
-        </div>
+    <h1>Space Explorers</h1>
+    <div class="hero-sub">
+      <span class="sub-pill blue">12 Vocabulary Words</span>
+      <span class="sub-pill gold">8 Planets</span>
+      <span class="sub-pill blue">6 Activities</span>
+      <span class="sub-pill gold">Grammar + Speaking</span>
     </div>
+  </div>
 
-    <!-- 6. Спектрограмма звука (визуализация голоса ученика) -->
-    <div class="section-card">
-        <div class="section-title">🎤 6. Voice Visualizer (Intonation & Stress)</div>
-        <div class="spectrum-container">
-            <button id="micAccessBtn" class="mic-btn">🎙️ Allow mic & see waveform</button>
-            <canvas id="spectrumCanvas" width="600" height="120" style="width:100%; height:120px"></canvas>
-            <p style="font-size:0.8rem;">Говорите слово "astronaut" или "galaxy" – наблюдайте динамику звука.</p>
-        </div>
-    </div>
+  <!-- STAR BAR -->
+  <div class="star-bar">
+    <span class="star" id="star1">&#x2B50;</span>
+    <span class="star" id="star2">&#x2B50;</span>
+    <span class="star" id="star3">&#x2B50;</span>
+    <span class="star" id="star4">&#x2B50;</span>
+    <span class="star" id="star5">&#x2B50;</span>
+    <span class="star" id="star6">&#x2B50;</span>
+  </div>
 
-    <!-- 7. Виселица (Hangman) -->
-    <div class="section-card">
-        <div class="section-title">🕹️ 7. Hangman: Space Edition</div>
-        <div class="hangman-area">
-            <div class="hangman-drawing" id="hangmanArt">_____</div>
-            <div>
-                <div class="word-display" id="hangmanWord">_ _ _ _ _</div>
-                <div id="hangmanMessage" style="margin: 12px 0;">Guess the space word!</div>
-                <div class="hangman-letters" id="lettersContainer"></div>
-                <button class="reset-game" id="resetHangman">🔄 New Word</button>
-            </div>
-        </div>
-    </div>
+  <!-- PROGRESS RAIL -->
+  <div class="progress-rail">
+    <div class="rail-step" id="rail1"><div class="rail-dot">1</div><div class="rail-label">Vocab</div></div>
+    <div class="rail-step" id="rail2"><div class="rail-dot">2</div><div class="rail-label">Planets</div></div>
+    <div class="rail-step" id="rail3"><div class="rail-dot">3</div><div class="rail-label">T/F</div></div>
+    <div class="rail-step" id="rail4"><div class="rail-dot">4</div><div class="rail-label">Grammar</div></div>
+    <div class="rail-step" id="rail5"><div class="rail-dot">5</div><div class="rail-label">Speed</div></div>
+    <div class="rail-step" id="rail6"><div class="rail-dot">6</div><div class="rail-label">Speaking</div></div>
+  </div>
 
-    <!-- 8. Кнопки транскрипции IPA + TTS -->
-    <div class="section-card">
-        <div class="section-title">🔊 8. Transcription & Pronunciation</div>
-        <p>Click on any word below to see IPA transcription and hear pronunciation:</p>
-        <div id="transcriptWords" style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px;"></div>
+  <!-- SECTION 1: FLIP CARDS -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 1 &mdash; Space Vocabulary</h2>
+      <span class="section-tag">Flip all 12 cards</span>
     </div>
-</div>
-<footer>✨ Interactive ESL B1 – Space Theme | Flip, match, speak, guess</footer>
+    <div class="section-body">
+      <div class="flip-grid" id="flipGrid"></div>
+      <div class="flip-progress" id="flipProgress">Flipped: 0 / 12</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PLANETS GRID -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 2 &mdash; Solar System</h2>
+      <span class="section-tag">Click all 8 planets</span>
+    </div>
+    <div class="section-body">
+      <div class="planets-grid" id="planetsGrid"></div>
+      <div class="planets-progress" id="planetsProgress">Explored: 0 / 8</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: TRUE/FALSE -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 3 &mdash; True or False?</h2>
+      <span class="section-tag">Score 5+ to complete</span>
+    </div>
+    <div class="section-body">
+      <div class="tf-list" id="tfList"></div>
+      <div class="tf-check">
+        <button class="btn btn-primary" onclick="checkTF()">Check Answers</button>
+        <span class="tf-result" id="tfResult"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MCQ GRAMMAR -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 4 &mdash; Grammar in Space</h2>
+      <span class="section-tag">Score 4+ to complete</span>
+    </div>
+    <div class="section-body">
+      <div class="mcq-list" id="mcqList"></div>
+      <div class="mcq-check">
+        <button class="btn btn-primary" onclick="checkMCQ()">Check Answers</button>
+        <span class="mcq-result" id="mcqResult"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SPEED TYPE -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 5 &mdash; Speed Type</h2>
+      <span class="section-tag">Score 4+ to complete</span>
+    </div>
+    <div class="section-body">
+      <div id="speedGame">
+        <div class="speed-prog" id="speedProgress">Word 1 / 6</div>
+        <div class="speed-def" id="speedDef">Loading...</div>
+        <div class="speed-bar-wrap"><div class="speed-bar" id="speedBar"></div></div>
+        <div class="speed-controls">
+          <input class="speed-input" id="speedInput" type="text" placeholder="Type the word..." autocomplete="off" onkeydown="if(event.key==='Enter')checkSpeed()"/>
+          <button class="btn btn-primary" onclick="checkSpeed()">Submit</button>
+        </div>
+        <div class="speed-fb" id="speedFb"></div>
+      </div>
+      <div class="speed-result-box" id="speedResult">
+        <h3 id="speedResultText"></h3>
+        <p style="color:var(--muted);margin-top:.5rem">Great job exploring the cosmos!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: SPEAKING BUILDER -->
+  <div class="section">
+    <div class="section-head">
+      <h2>Section 6 &mdash; Speaking Builder</h2>
+      <span class="section-tag">Complete the 30s timer</span>
+    </div>
+    <div class="section-body">
+      <div class="speaking-topic" id="speakingTopic">Press "New Topic" to get a speaking prompt!</div>
+      <div class="speaking-btns">
+        <button class="btn btn-outline" onclick="newSpeakingTopic()">&#x1F3B2; New Topic</button>
+        <button class="btn btn-gold" id="speakStartBtn" onclick="startSpeakingTimer()" disabled>&#x1F3A4; Start Timer (30s)</button>
+      </div>
+      <div class="speaking-timer-wrap" id="speakTimerWrap" style="display:none">
+        <div class="speaking-timer-num" id="speakTimerNum">30</div>
+        <div class="speaking-timer-bar-wrap"><div class="speaking-timer-bar" id="speakTimerBar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- BONUS: BUBBLE POP -->
+<section class="section" style="border-top-color:var(--accent2)">
+  <div class="section-head">
+    <h2>Bubble Pop — Vocabulary Sprint</h2>
+    <span class="section-badge">bonus game</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:.7rem">Pop bubbles with vocabulary words — score 10 points to win! Click or tap a bubble.</p>
+    <div class="bub-score-bar" id="bubScoreDisplay">Score: 0 / 10</div>
+    <canvas id="bubCanvas"></canvas>
+    <div class="bub-actions">
+      <button class="btn btn-primary" id="bubStartBtn" onclick="startBubbles()">Play</button>
+      <button class="btn btn-secondary" id="bubResetBtn" onclick="resetBubbles()" style="display:none">Reset</button>
+    </div>
+  </div>
+</section>
+<!-- ALL DONE -->
+  <div class="all-done" id="allDone">
+    <div style="font-size:3rem;margin-bottom:.5rem">&#x1F680;&#x1F31F;</div>
+    <h2>Mission Complete!</h2>
+    <p style="color:var(--text);font-size:1.05rem;margin-top:.7rem">You've conquered all 6 space activities!</p>
+    <p style="color:var(--muted);margin-top:.5rem">Your English skills are out of this world.</p>
+    <div style="margin-top:1.2rem;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top</button>
+      <a href="../index.html" class="btn btn-outline" style="display:inline-flex;align-items:center;text-decoration:none">All Lessons</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<canvas id="confettiCanvas"></canvas>
+
+<footer class="footer">
+  <p>&copy; 2025 LinguaBoost Lab &mdash; B1 English &middot; Space Explorers &middot; For educational use</p>
+</footer>
 
 <script>
-    // ---------- 1. FLASHCARDS (8 космических слов) ----------
-    const flashcardsData = [
-        { word: "orbit", translation: "орбита", audioPhrase: "orbit" },
-        { word: "asteroid", translation: "астероид", audioPhrase: "asteroid" },
-        { word: "galaxy", translation: "галактика", audioPhrase: "galaxy" },
-        { word: "launch", translation: "запуск / запускать", audioPhrase: "launch" },
-        { word: "satellite", translation: "спутник", audioPhrase: "satellite" },
-        { word: "gravity", translation: "гравитация", audioPhrase: "gravity" },
-        { word: "telescope", translation: "телескоп", audioPhrase: "telescope" },
-        { word: "black hole", translation: "черная дыра", audioPhrase: "black hole" }
-    ];
+// ==================== CORE ====================
+const tasksDone=new Set();
+function completeTask(n){
+  if(tasksDone.has(n))return;
+  tasksDone.add(n);
+  document.getElementById('rail'+n).classList.add('done');
+  const star=document.getElementById('star'+n);
+  star.classList.add('lit');
+  star.textContent='🌟';
+  if(tasksDone.size===6){
+    setTimeout(()=>{
+      document.getElementById('allDone').classList.add('show');
+      launchConfetti();
+    },400);
+  }
+}
 
-    function speakText(text) {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.9;
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(utterance);
-        } else alert("Text-to-Speech not supported");
-    }
-
-    function renderFlashcards() {
-        const grid = document.getElementById('flashcardGrid');
-        grid.innerHTML = '';
-        flashcardsData.forEach((item, idx) => {
-            const card = document.createElement('div');
-            card.className = 'flashcard';
-            card.setAttribute('data-idx', idx);
-            const inner = document.createElement('div');
-            inner.className = 'flashcard-inner';
-            inner.innerHTML = `
-                <div class="flashcard-front">
-                    <div class="card-word">${item.word}</div>
-                    <button class="sound-btn" data-word="${item.word}">🔊 Pronounce</button>
-                </div>
-                <div class="flashcard-back">
-                    <div class="card-trans">📖 ${item.translation}</div>
-                    <button class="sound-btn" data-word="${item.word}">🔊 Listen</button>
-                </div>
-            `;
-            card.appendChild(inner);
-            card.addEventListener('click', (e) => {
-                if(e.target.classList.contains('sound-btn')) {
-                    e.stopPropagation();
-                    speakText(item.word);
-                } else {
-                    card.classList.toggle('flipped');
-                }
-            });
-            grid.appendChild(card);
-        });
-    }
-    renderFlashcards();
-
-    // 2. Текст с pop-up переводом и выделение грамматики
-    const rawText = `Last year, astronauts <span class="gram-past-simple">completed</span> a historic mission to Mars. They <span class="gram-past-simple">spent</span> 300 days in space. Recently, scientists <span class="gram-present-perfect">have discovered</span> frozen water beneath the surface. "We <span class="gram-present-perfect">have never seen</span> such <span class="popup-term" data-def="great, impressive">remarkable</span> evidence before," said Dr. Elena. The team <span class="gram-past-simple">used</span> a powerful <span class="popup-term" data-def="device for observing distant objects">telescope</span> to find <span class="popup-term" data-def="small rocky bodies">asteroids</span> in the belt.`;
-    document.getElementById('readingText').innerHTML = rawText;
-
-    // 3. Word Wall (облако)
-    const spaceWords = ["astronaut", "comet", "nebula", "spacewalk", "rocket", "cosmonaut", "exoplanet", "supernova"];
-    const wordWallDiv = document.getElementById('wordWallContainer');
-    spaceWords.forEach(w => {
-        const tag = document.createElement('div');
-        tag.className = 'word-tag';
-        tag.innerText = w;
-        tag.addEventListener('click', () => speakText(w));
-        wordWallDiv.appendChild(tag);
+function launchConfetti(){
+  const canvas=document.getElementById('confettiCanvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  const colors=['#6C9FFF','#FFD166','#4a7de0','#f1c40f','#e74c3c','#9b59b6'];
+  const pieces=Array.from({length:160},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height-canvas.height,
+    r:Math.random()*7+3,
+    d:Math.random()*160,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    angle:Math.random()*Math.PI*2,
+    spin:Math.random()*.2-.1,
+    speed:Math.random()*3+1
+  }));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.beginPath();
+      ctx.ellipse(p.x,p.y,p.r,p.r/2,p.angle,0,Math.PI*2);
+      ctx.fillStyle=p.color;
+      ctx.fill();
+      p.y+=p.speed;
+      p.x+=Math.sin(p.d/30)*2;
+      p.angle+=p.spin;
+      p.d++;
+      if(p.y>canvas.height)p.y=-10;
     });
+    if(++frame<220)requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
 
-    // 4. Matching game (слово - описание/картинка эмодзи)
-    const matchItems = [
-        { word: "orbit", matchId: "path", desc: "🪐 Path around a planet" },
-        { word: "telescope", matchId: "scope", desc: "🔭 Tool to see stars" },
-        { word: "asteroid", matchId: "rock", desc: "🪨 Rocky space object" },
-        { word: "galaxy", matchId: "milky", desc: "🌌 Huge star system" }
-    ];
-    let selectedMatchType = null; // 'word' or 'desc'
-    let selectedValue = null;
-    let matchedPairs = 0;
-    function renderMatching() {
-        const container = document.getElementById('matchingGameArea');
-        container.innerHTML = `
-            <div class="match-column"><h4>🌟 WORDS</h4><div id="wordList"></div></div>
-            <div class="match-column"><h4>🖼️ DESCRIPTION</h4><div id="descList"></div></div>
-        `;
-        const wordDiv = document.getElementById('wordList');
-        const descDiv = document.getElementById('descList');
-        matchItems.forEach((item, idx) => {
-            const wordBtn = document.createElement('div');
-            wordBtn.className = 'match-item';
-            wordBtn.innerText = item.word;
-            wordBtn.dataset.type = 'word';
-            wordBtn.dataset.value = item.word;
-            wordBtn.dataset.matchId = item.matchId;
-            wordBtn.addEventListener('click', () => handleMatch('word', item.word, item.matchId, wordBtn));
-            wordDiv.appendChild(wordBtn);
-            const descBtn = document.createElement('div');
-            descBtn.className = 'match-item';
-            descBtn.innerText = item.desc;
-            descBtn.dataset.type = 'desc';
-            descBtn.dataset.value = item.desc;
-            descBtn.dataset.matchId = item.matchId;
-            descBtn.addEventListener('click', () => handleMatch('desc', item.desc, item.matchId, descBtn));
-            descDiv.appendChild(descBtn);
-        });
-    }
-    function handleMatch(type, value, matchId, element) {
-        if (element.classList.contains('matched')) return;
-        if (selectedMatchType === null) {
-            // first selection
-            selectedMatchType = type;
-            selectedValue = { value, matchId, element };
-            element.classList.add('selected');
-        } else {
-            // second selection
-            const first = selectedValue;
-            if (first.matchId === matchId && first.element !== element) {
-                // correct match
-                first.element.classList.add('matched');
-                element.classList.add('matched');
-                matchedPairs++;
-                document.getElementById('matchFeedback').innerHTML = '✅ Correct match! Great!';
-                if (matchedPairs === matchItems.length) document.getElementById('matchFeedback').innerHTML = '🏆 Perfect! All pairs matched!';
-            } else {
-                document.getElementById('matchFeedback').innerHTML = '❌ Wrong match. Try again!';
-            }
-            // clear selection
-            if (first.element) first.element.classList.remove('selected');
-            selectedMatchType = null;
-            selectedValue = null;
-        }
-    }
-    renderMatching();
+function speak(text){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';
+  u.rate=0.85;
+  window.speechSynthesis.speak(u);
+}
 
-    // 5. Аудирование - простой ответ (имитация Earthrise)
-    document.getElementById('checkListenBtn').addEventListener('click', () => {
-        const selected = document.querySelector('input[name="listenQ"]:checked');
-        const resultSpan = document.getElementById('listenResult');
-        if (selected && selected.value === 'earth') {
-            resultSpan.innerHTML = '✅ Correct! The astronaut described "Earth rising over the Moon".';
-        } else {
-            resultSpan.innerHTML = '❌ Not exactly. Listen again: Earthrise is the answer!';
-        }
+function toggleLang(){
+  const h=document.documentElement;
+  const next=h.dataset.lang==='ru'?'en':'ru';
+  h.dataset.lang=next;
+  document.querySelectorAll('[data-ru],[data-en]').forEach(el=>{
+    el.innerHTML=el.dataset[next]||el.innerHTML;
+  });
+}
+
+// ==================== SECTION 1: FLIP CARDS ====================
+const VOCAB=[
+  {word:'orbit',emoji:'🌍',ru:'орбита',def:'path around a planet'},
+  {word:'galaxy',emoji:'🌌',ru:'галактика',def:'system of billions of stars'},
+  {word:'comet',emoji:'☄️',ru:'комета',def:'icy body with tail'},
+  {word:'nebula',emoji:'✨',ru:'туманность',def:'cloud of gas and dust'},
+  {word:'asteroid',emoji:'🪨',ru:'астероид',def:'rocky body orbiting Sun'},
+  {word:'satellite',emoji:'📡',ru:'спутник',def:'object orbiting planet'},
+  {word:'telescope',emoji:'🔭',ru:'телескоп',def:'instrument for viewing space'},
+  {word:'gravity',emoji:'🌐',ru:'гравитация',def:'force pulling objects together'},
+  {word:'astronaut',emoji:'👨‍🚀',ru:'космонавт',def:'person who travels to space'},
+  {word:'black hole',emoji:'⚫',ru:'чёрная дыра',def:'region of extreme gravity'},
+  {word:'solar system',emoji:'☀️',ru:'солнечная система',def:'Sun and planets'},
+  {word:'constellation',emoji:'⭐',ru:'созвездие',def:'pattern of stars'}
+];
+const flippedCards=new Set();
+
+function buildFlipCards(){
+  const grid=document.getElementById('flipGrid');
+  VOCAB.forEach((v,i)=>{
+    const card=document.createElement('div');
+    card.className='flip-card';
+    card.dataset.i=i;
+    card.innerHTML=
+      '<div class="flip-inner">'+
+        '<div class="flip-front">'+
+          '<div class="fc-emoji">'+v.emoji+'</div>'+
+          '<div class="fc-word">'+v.word+'</div>'+
+        '</div>'+
+        '<div class="flip-back">'+
+          '<div class="fb-ru">'+v.ru+'</div>'+
+          '<div class="fb-def">'+v.def+'</div>'+
+        '</div>'+
+      '</div>';
+    card.addEventListener('click',()=>{
+      card.classList.toggle('flipped');
+      if(card.classList.contains('flipped')){
+        flippedCards.add(i);
+        document.getElementById('flipProgress').textContent='Flipped: '+flippedCards.size+' / '+VOCAB.length;
+        if(flippedCards.size===VOCAB.length)setTimeout(()=>completeTask(1),400);
+      }
     });
+    grid.appendChild(card);
+  });
+}
+buildFlipCards();
 
-    // 6. Спектрограмма через микрофон
-    let audioContext = null;
-    let mediaStream = null;
-    let animationId = null;
-    const canvas = document.getElementById('spectrumCanvas');
-    const ctx = canvas.getContext('2d');
-    function initMicrophone() {
-        if (audioContext && mediaStream) {
-            // close previous
-            audioContext.close();
-            if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
-        }
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-            mediaStream = stream;
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const source = audioContext.createMediaStreamSource(stream);
-            const analyser = audioContext.createAnalyser();
-            analyser.fftSize = 256;
-            const bufferLength = analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-            source.connect(analyser);
-            audioContext.resume();
-            function drawSpectrum() {
-                if (!audioContext) return;
-                analyser.getByteFrequencyData(dataArray);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#0f1a3a";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                let barWidth = (canvas.width / bufferLength) * 2.5;
-                let x = 0;
-                for (let i = 0; i < bufferLength; i++) {
-                    let barHeight = dataArray[i] / 2;
-                    ctx.fillStyle = `rgb(100, 150, ${200 + dataArray[i] / 3})`;
-                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-                    x += barWidth + 1;
-                }
-                animationId = requestAnimationFrame(drawSpectrum);
-            }
-            if (animationId) cancelAnimationFrame(animationId);
-            drawSpectrum();
-        }).catch(err => alert("Microphone access needed for voice visualizer: " + err));
-    }
-    document.getElementById('micAccessBtn').addEventListener('click', initMicrophone);
+// ==================== SECTION 2: PLANETS GRID ====================
+const PLANETS=[
+  {emoji:'☿',name:'Mercury',fact:'Mercury is the smallest planet and closest to the Sun.'},
+  {emoji:'♀️',name:'Venus',fact:'Venus is the hottest planet with temperatures up to 465°C.'},
+  {emoji:'🌍',name:'Earth',fact:'Earth is the only known planet with life.'},
+  {emoji:'🔴',name:'Mars',fact:'Mars is called the Red Planet due to iron oxide on its surface.'},
+  {emoji:'🪐',name:'Jupiter',fact:'Jupiter is the largest planet in our solar system.'},
+  {emoji:'💍',name:'Saturn',fact:'Saturn has beautiful rings made of ice and rock.'},
+  {emoji:'🔵',name:'Uranus',fact:'Uranus rotates on its side, unlike other planets.'},
+  {emoji:'🌊',name:'Neptune',fact:'Neptune is the windiest planet with winds up to 2,100 km/h.'}
+];
+const clickedPlanets=new Set();
 
-    // 7. Виселица
-    const hangmanWords = ["ASTEROID", "GALAXY", "TELESCOPE", "ORBIT", "SATELLITE", "COSMONAUT"];
-    let currentWord = "";
-    let guessedLetters = [];
-    let wrongGuesses = 0;
-    const maxWrong = 6;
-    function updateHangmanDisplay() {
-        const wordDisplay = document.getElementById('hangmanWord');
-        const displayWord = currentWord.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
-        wordDisplay.innerText = displayWord;
-        const hangmanArtElem = document.getElementById('hangmanArt');
-        const stages = ["⚡️ 0/6", "💀 1/6", "👽 2/6", "🪐 3/6", "🚀 4/6", "🌕 5/6", "💥 GAME OVER"];
-        hangmanArtElem.innerText = stages[wrongGuesses];
-        if (!displayWord.includes('_') && currentWord) {
-            document.getElementById('hangmanMessage').innerHTML = "🎉 You won! Great job!";
-        } else if (wrongGuesses >= maxWrong) {
-            document.getElementById('hangmanMessage').innerHTML = `😵 Game over! Word was ${currentWord}.`;
-        } else {
-            document.getElementById('hangmanMessage').innerHTML = `Wrong guesses: ${wrongGuesses}/${maxWrong}`;
-        }
-    }
-    function initHangman() {
-        currentWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
-        guessedLetters = [];
-        wrongGuesses = 0;
-        generateLetterButtons();
-        updateHangmanDisplay();
-    }
-    function generateLetterButtons() {
-        const container = document.getElementById('lettersContainer');
-        container.innerHTML = '';
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        alphabet.split('').forEach(letter => {
-            const btn = document.createElement('button');
-            btn.innerText = letter;
-            btn.className = 'letter-btn';
-            btn.addEventListener('click', () => {
-                if (guessedLetters.includes(letter) || wrongGuesses >= maxWrong) return;
-                guessedLetters.push(letter);
-                if (!currentWord.includes(letter)) {
-                    wrongGuesses++;
-                }
-                updateHangmanDisplay();
-                btn.classList.add('disabled');
-                btn.disabled = true;
-                const currentDisplay = document.getElementById('hangmanWord').innerText;
-                if (!currentDisplay.includes('_') && currentWord) {
-                    document.getElementById('hangmanMessage').innerHTML = "🏆 Victory!";
-                } else if (wrongGuesses >= maxWrong) updateHangmanDisplay();
-            });
-            container.appendChild(btn);
-        });
-    }
-    document.getElementById('resetHangman').addEventListener('click', () => { initHangman(); });
-    initHangman();
-
-    // 8. Транскрипция IPA + TTS клик
-    const vocabIPA = [
-        { word: "astronaut", ipa: "/ˈæstrənɔːt/" },
-        { word: "galaxy", ipa: "/ˈɡæləksi/" },
-        { word: "orbit", ipa: "/ˈɔːrbɪt/" },
-        { word: "telescope", ipa: "/ˈtelɪskoʊp/" },
-        { word: "nebula", ipa: "/ˈnebjələ/" }
-    ];
-    const transDiv = document.getElementById('transcriptWords');
-    vocabIPA.forEach(v => {
-        const span = document.createElement('span');
-        span.className = 'transcript-word';
-        span.innerText = v.word;
-        const ipaSpan = document.createElement('span');
-        ipaSpan.className = 'ipa-badge';
-        ipaSpan.innerText = v.ipa;
-        span.appendChild(ipaSpan);
-        span.addEventListener('click', (e) => {
-            e.stopPropagation();
-            alert(`IPA: ${v.ipa}`);
-            speakText(v.word);
-        });
-        transDiv.appendChild(span);
+function buildPlanets(){
+  const grid=document.getElementById('planetsGrid');
+  PLANETS.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='planet-card';
+    card.dataset.i=i;
+    card.innerHTML=
+      '<div class="planet-emoji">'+p.emoji+'</div>'+
+      '<div class="planet-name">'+p.name+'</div>'+
+      '<div class="planet-fact">'+p.fact+'</div>';
+    card.addEventListener('click',()=>{
+      if(!card.classList.contains('opened')){
+        card.classList.add('opened');
+        speak(p.name+'. '+p.fact);
+        clickedPlanets.add(i);
+        document.getElementById('planetsProgress').textContent='Explored: '+clickedPlanets.size+' / 8';
+        if(clickedPlanets.size===8)setTimeout(()=>completeTask(2),400);
+      } else {
+        card.classList.remove('opened');
+      }
     });
+    grid.appendChild(card);
+  });
+}
+buildPlanets();
 
-    // Cleanup microphone on page unload
-    window.addEventListener('beforeunload', () => {
-        if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
-        if (audioContext) audioContext.close();
+// ==================== SECTION 3: TRUE/FALSE ====================
+const TF_DATA=[
+  {stmt:'The Moon is a planet.',ans:false,exp:'The Moon is a natural satellite of Earth.'},
+  {stmt:'Light travels at approximately 300,000 km per second.',ans:true,exp:'That\'s the speed of light in a vacuum!'},
+  {stmt:'A solar year on Earth is 365 days.',ans:true,exp:'More precisely, 365.25 days.'},
+  {stmt:'Jupiter is smaller than Earth.',ans:false,exp:'Jupiter is much larger — 1,300 Earths could fit inside it.'},
+  {stmt:'Black holes are visible through normal telescopes.',ans:false,exp:'Black holes don\'t emit light — they can only be observed indirectly.'},
+  {stmt:'Astronauts float in space due to microgravity.',ans:true,exp:'In orbit, everything falls together creating the sensation of weightlessness.'}
+];
+const tfAnswers={};
+let tfChecked=false;
+
+function buildTF(){
+  const list=document.getElementById('tfList');
+  TF_DATA.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='tf-item';
+    div.dataset.i=i;
+    div.innerHTML=
+      '<div class="tf-stmt">'+(i+1)+'. '+item.stmt+'</div>'+
+      '<div class="tf-btns">'+
+        '<button class="tf-btn" data-val="true" onclick="selectTF('+i+',true,this)">TRUE</button>'+
+        '<button class="tf-btn" data-val="false" onclick="selectTF('+i+',false,this)">FALSE</button>'+
+      '</div>'+
+      '<div class="tf-exp" id="tfExp'+i+'" style="display:none;font-size:.78rem;color:var(--muted);margin-top:.5rem;font-style:italic"></div>';
+    list.appendChild(div);
+  });
+}
+
+function selectTF(i,val,btn){
+  if(tfChecked)return;
+  tfAnswers[i]=val;
+  const btns=btn.closest('.tf-item').querySelectorAll('.tf-btn');
+  btns.forEach(b=>{b.classList.remove('selected-true','selected-false');});
+  btn.classList.add(val?'selected-true':'selected-false');
+}
+
+function checkTF(){
+  if(tfChecked)return;
+  const answered=Object.keys(tfAnswers).length;
+  if(answered<TF_DATA.length){
+    const res=document.getElementById('tfResult');
+    res.textContent='Please answer all statements first!';
+    res.style.color='var(--accent3)';
+    return;
+  }
+  tfChecked=true;
+  let score=0;
+  TF_DATA.forEach((item,i)=>{
+    const userAns=tfAnswers[i];
+    const correct=item.ans;
+    const itemEl=document.querySelector('.tf-item[data-i="'+i+'"]');
+    const btns=itemEl.querySelectorAll('.tf-btn');
+    btns.forEach(b=>{
+      const bval=b.dataset.val==='true';
+      if(bval===correct)b.classList.add('correct-hl');
+      else if(bval===userAns&&userAns!==correct)b.classList.add('wrong-hl');
     });
+    const expEl=document.getElementById('tfExp'+i);
+    expEl.style.display='block';
+    expEl.textContent=item.exp;
+    if(userAns===correct)score++;
+  });
+  const res=document.getElementById('tfResult');
+  res.textContent='Score: '+score+' / '+TF_DATA.length;
+  res.style.color=score>=5?'var(--ok)':'var(--miss)';
+  if(score>=5)setTimeout(()=>completeTask(3),400);
+}
+buildTF();
+
+// ==================== SECTION 4: MCQ GRAMMAR ====================
+const MCQ_DATA=[
+  {q:'Astronauts ___ in the International Space Station for months.',opts:['lived','live','has lived'],ans:1},
+  {q:'The rover ___ on Mars since 2021.',opts:['is','has been','was'],ans:1},
+  {q:'If we ___ faster spacecraft, we could reach Mars in weeks.',opts:['have','had','has'],ans:1},
+  {q:'The telescope ___ into space in 1990.',opts:['launched','was launched','has launched'],ans:1},
+  {q:'Scientists believe there ___ other planets with life.',opts:['may be','may','might'],ans:0},
+  {q:'___ you ever seen a shooting star?',opts:['Have','Did','Has'],ans:0}
+];
+const mcqAnswers={};
+let mcqChecked=false;
+
+function buildMCQ(){
+  const list=document.getElementById('mcqList');
+  MCQ_DATA.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='mcq-item';
+    const optsHtml=item.opts.map((o,j)=>
+      '<button class="mcq-opt" data-q="'+i+'" data-j="'+j+'" onclick="selectMCQ('+i+','+j+',this)">('+String.fromCharCode(97+j)+') '+o+'</button>'
+    ).join('');
+    div.innerHTML=
+      '<div class="mcq-q">'+(i+1)+'. '+item.q+'</div>'+
+      '<div class="mcq-opts">'+optsHtml+'</div>';
+    list.appendChild(div);
+  });
+}
+
+function selectMCQ(qi,ji,btn){
+  if(mcqChecked)return;
+  mcqAnswers[qi]=ji;
+  const allOpts=document.querySelectorAll('.mcq-opt[data-q="'+qi+'"]');
+  allOpts.forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function checkMCQ(){
+  if(mcqChecked)return;
+  const answered=Object.keys(mcqAnswers).length;
+  if(answered<MCQ_DATA.length){
+    const res=document.getElementById('mcqResult');
+    res.textContent='Please answer all questions first!';
+    res.style.color='var(--accent3)';
+    return;
+  }
+  mcqChecked=true;
+  let score=0;
+  MCQ_DATA.forEach((item,i)=>{
+    const userJ=mcqAnswers[i];
+    const correctJ=item.ans;
+    const allOpts=document.querySelectorAll('.mcq-opt[data-q="'+i+'"]');
+    allOpts.forEach(b=>{
+      const bj=parseInt(b.dataset.j);
+      if(bj===correctJ)b.classList.add('correct');
+      else if(bj===userJ&&userJ!==correctJ)b.classList.add('wrong');
+    });
+    if(userJ===correctJ)score++;
+  });
+  const res=document.getElementById('mcqResult');
+  res.textContent='Score: '+score+' / '+MCQ_DATA.length;
+  res.style.color=score>=4?'var(--ok)':'var(--miss)';
+  if(score>=4)setTimeout(()=>completeTask(4),400);
+}
+buildMCQ();
+
+// ==================== SECTION 5: SPEED TYPE ====================
+const SPEED_DATA=[
+  {def:'A path a planet travels around another body',word:'orbit'},
+  {def:'A system of billions of stars, gas and dust',word:'galaxy'},
+  {def:'Icy body with a bright tail near the Sun',word:'comet'},
+  {def:'The force pulling objects toward each other',word:'gravity'},
+  {def:'A cloud of gas and dust where stars are born',word:'nebula'},
+  {def:'A person trained to travel to space',word:'astronaut'}
+];
+let speedIdx=0,speedScore=0,speedTimer=null;
+
+function loadSpeedQ(){
+  if(speedIdx>=SPEED_DATA.length){endSpeed();return;}
+  clearInterval(speedTimer);
+  const item=SPEED_DATA[speedIdx];
+  document.getElementById('speedDef').textContent=item.def;
+  document.getElementById('speedInput').value='';
+  document.getElementById('speedFb').textContent='';
+  document.getElementById('speedProgress').textContent='Word '+(speedIdx+1)+' / '+SPEED_DATA.length;
+  document.getElementById('speedInput').focus();
+  let t=15;
+  document.getElementById('speedBar').style.width='100%';
+  speedTimer=setInterval(()=>{
+    t-=0.1;
+    document.getElementById('speedBar').style.width=(t/15*100)+'%';
+    if(t<=0){
+      clearInterval(speedTimer);
+      document.getElementById('speedFb').textContent='⏱ Time! Answer: '+item.word;
+      document.getElementById('speedFb').style.color='var(--miss)';
+      speedIdx++;
+      setTimeout(loadSpeedQ,900);
+    }
+  },100);
+}
+
+function checkSpeed(){
+  if(speedIdx>=SPEED_DATA.length)return;
+  const input=document.getElementById('speedInput').value.trim().toLowerCase();
+  const correct=SPEED_DATA[speedIdx].word;
+  clearInterval(speedTimer);
+  if(input===correct){
+    speedScore++;
+    document.getElementById('speedFb').textContent='✓ Correct!';
+    document.getElementById('speedFb').style.color='var(--ok)';
+  } else {
+    document.getElementById('speedFb').textContent='✗ Answer: '+correct;
+    document.getElementById('speedFb').style.color='var(--miss)';
+  }
+  speedIdx++;
+  setTimeout(loadSpeedQ,800);
+}
+
+function endSpeed(){
+  document.getElementById('speedGame').style.display='none';
+  const rb=document.getElementById('speedResult');
+  rb.style.display='block';
+  document.getElementById('speedResultText').textContent='Score: '+speedScore+' / '+SPEED_DATA.length;
+  if(speedScore>=4)completeTask(5);
+}
+loadSpeedQ();
+
+// ==================== SECTION 6: SPEAKING ====================
+const SPEAKING_TOPICS=[
+  'Describe our solar system — name as many planets as you can.',
+  'Would you like to travel to space? Why or why not?',
+  'What do you think life on Mars would be like?',
+  'Explain what a black hole is in simple words.',
+  'Compare Earth and Mars — what are the similarities and differences?',
+  'What is the most exciting space discovery in history?'
+];
+let speakTimerInterval=null;
+
+function newSpeakingTopic(){
+  const t=SPEAKING_TOPICS[Math.floor(Math.random()*SPEAKING_TOPICS.length)];
+  document.getElementById('speakingTopic').textContent=t;
+  const btn=document.getElementById('speakStartBtn');
+  btn.disabled=false;
+  document.getElementById('speakTimerWrap').style.display='none';
+  document.getElementById('speakTimerNum').textContent='30';
+  document.getElementById('speakTimerNum').style.color='var(--accent3)';
+  document.getElementById('speakTimerBar').style.width='100%';
+  clearInterval(speakTimerInterval);
+}
+
+function startSpeakingTimer(){
+  document.getElementById('speakStartBtn').disabled=true;
+  document.getElementById('speakTimerWrap').style.display='block';
+  let t=30;
+  document.getElementById('speakTimerNum').textContent=t;
+  document.getElementById('speakTimerBar').style.width='100%';
+  speakTimerInterval=setInterval(()=>{
+    t--;
+    document.getElementById('speakTimerNum').textContent=t;
+    document.getElementById('speakTimerBar').style.width=(t/30*100)+'%';
+    if(t<=0){
+      clearInterval(speakTimerInterval);
+      document.getElementById('speakTimerNum').textContent='Done!';
+      document.getElementById('speakTimerNum').style.color='var(--ok)';
+      completeTask(6);
+    }
+  },1000);
+}
+
+// ═══ BUBBLE POP ═══════════════════════════════════════════════════════════
+const BUB_WORDS=['orbit', 'galaxy', 'telescope', 'asteroid', 'gravity', 'cosmos', 'mission', 'launch', 'shuttle', 'satellite'];
+let bubs=[],bubScore=0,bubRunning=false,bubAnimId=null;
+function startBubbles(){
+  document.getElementById('bubStartBtn').style.display='none';
+  document.getElementById('bubResetBtn').style.display='inline-block';
+  bubs=[];bubScore=0;bubRunning=true;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.width=canvas.offsetWidth||600;canvas.height=280;
+  const cs=getComputedStyle(document.documentElement);
+  const c1=cs.getPropertyValue('--accent').trim()||'#f2a822';
+  const c2=cs.getPropertyValue('--accent2').trim()||'#e06b00';
+  const c3=cs.getPropertyValue('--accent3').trim()||'#ffd54f';
+  const COLS=[c1,c2,c3,'#29b6f6','#ab47bc'];
+  function spawnBub(){
+    const r=Math.random()*22+22;
+    return{x:r+Math.random()*(canvas.width-2*r),y:canvas.height+r,r,
+      vy:-(Math.random()*.55+.38),vx:(Math.random()-.5)*.4,
+      word:BUB_WORDS[Math.floor(Math.random()*BUB_WORDS.length)],
+      c:COLS[Math.floor(Math.random()*COLS.length)],popped:false};
+  }
+  for(let i=0;i<5;i++)bubs.push(spawnBub());
+  function hitTest(mx,my){
+    bubs.forEach((b,i)=>{
+      if(!b.popped&&Math.hypot(b.x-mx,b.y-my)<b.r+8){
+        b.popped=true;bubScore++;
+        document.getElementById('bubScoreDisplay').textContent='Score: '+bubScore+' / 10';
+        if(typeof speak==='function')speak(b.word);
+        setTimeout(()=>{bubs.splice(i,1);if(bubRunning)bubs.push(spawnBub());},350);
+        if(bubScore>=10){bubRunning=false;
+          document.getElementById('bubScoreDisplay').textContent='Done! Score: '+bubScore+' / 10';}
+      }
+    });
+  }
+  canvas.onmousedown=e=>{const r=canvas.getBoundingClientRect();
+    hitTest((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));};
+  canvas.ontouchstart=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();
+    const t=e.changedTouches[0];
+    hitTest((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));};
+  (function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubs.length<6&&bubRunning)bubs.push(spawnBub());
+    bubs.forEach(b=>{
+      b.x+=b.vx;b.y+=b.vy;
+      if(!b.popped){
+        ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle=b.c+'44';ctx.fill();
+        ctx.strokeStyle=b.c;ctx.lineWidth=2.5;ctx.stroke();
+        // shine
+        ctx.beginPath();ctx.arc(b.x-b.r*.28,b.y-b.r*.28,b.r*.32,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,.35)';ctx.fill();
+        ctx.fillStyle='#333';
+        ctx.font=`bold ${Math.max(10,Math.floor(b.r*.52))}px Nunito,sans-serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        const w=b.word.length>10?b.word.slice(0,9)+'…':b.word;
+        ctx.fillText(w,b.x,b.y);
+      }
+    });
+    bubs=bubs.filter(b=>b.y+b.r>-20);
+    if(bubRunning)bubAnimId=requestAnimationFrame(loop);
+  })();
+}
+function resetBubbles(){
+  bubRunning=false;if(bubAnimId)cancelAnimationFrame(bubAnimId);
+  bubs=[];bubScore=0;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubStartBtn').style.display='inline-block';
+  document.getElementById('bubResetBtn').style.display='none';
+}
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
 </body>
 </html>
-

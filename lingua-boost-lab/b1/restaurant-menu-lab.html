@@ -1,1430 +1,262 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" data-lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Restaurant Menu Lab | LinguaBoost Studio</title>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-  <style>
-    :root {
-      --bg: #f6f2ea;
-      --bg-soft: #fffaf4;
-      --card: rgba(255, 252, 247, 0.96);
-      --line: #ead9c5;
-      --line-strong: #d8b892;
-      --text: #2c241a;
-      --muted: #6c5a47;
-      --accent: #b45f2b;
-      --accent-soft: rgba(180, 95, 43, 0.12);
-      --accent-strong: #8f4319;
-      --shadow: 0 18px 34px rgba(68, 39, 14, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-width: 320px;
-      background:
-        radial-gradient(circle at top right, rgba(180, 95, 43, 0.08), transparent 22%),
-        linear-gradient(180deg, #fbf6ef 0%, #f2ebe1 100%);
-      color: var(--text);
-      font-family: "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
-      padding: 20px 16px 44px;
-      line-height: 1.55;
-    }
-
-    .page-shell {
-      max-width: 1260px;
-      margin: 0 auto;
-    }
-
-    .hero-card,
-    .module-card {
-      border-radius: 34px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      padding: 28px;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow {
-      margin-bottom: 10px;
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-      letter-spacing: -0.04em;
-    }
-
-    h1 {
-      margin-bottom: 12px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.08;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-    }
-
-    .hero-points {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .hero-note {
-      padding: 16px 18px;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: rgba(255, 248, 239, 0.98);
-    }
-
-    .hero-note strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-
-    .hero-note p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.65;
-    }
-
-    .module-grid {
-      display: grid;
-      gap: 22px;
-      min-width: 0;
-    }
-
-    .module-card {
-      padding: 24px;
-      min-width: 0;
-    }
-
-    .card-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-      min-width: 0;
-    }
-
-    .card-head > div,
-    .hero-card > div,
-    .hero-points,
-    .pool-wrap,
-    .pool-toolbar,
-    .category-filter,
-    .ingredient-pool,
-    .menu-grid,
-    .support-card,
-    .sample-card,
-    .step-grid,
-    .rubric-grid {
-      min-width: 0;
-    }
-
-    .card-title {
-      font-size: 1.55rem;
-      line-height: 1.15;
-    }
-
-    .card-copy {
-      margin: 10px 0 0;
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.7;
-    }
-
-    .pill-row,
-    .category-filter {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: #fbf5ec;
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-
-    .category-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--text);
-      font: inherit;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-
-    .category-chip:hover,
-    .category-chip.is-active {
-      border-color: var(--line-strong);
-      color: var(--accent-strong);
-      background: var(--accent-soft);
-    }
-
-    .category-chip.is-active {
-      box-shadow: inset 0 0 0 1px rgba(180, 95, 43, 0.08);
-    }
-
-    .pool-wrap {
-      padding: 18px;
-      border-radius: 28px;
-      border: 1px dashed var(--line-strong);
-      background: #fbf3e9;
-    }
-
-    .pool-toolbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .pool-title {
-      font-size: 1rem;
-      font-weight: 700;
-    }
-
-    .pool-hint {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.6;
-      max-width: 720px;
-    }
-
-    .ingredient-pool {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-    }
-
-    .drag-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      flex: 0 0 auto;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: white;
-      box-shadow: 0 8px 18px rgba(95, 61, 30, 0.05);
-      cursor: grab;
-      user-select: none;
-      transition: 0.18s ease;
-    }
-
-    .drag-item:hover {
-      transform: translateY(-1px);
-      border-color: var(--line-strong);
-    }
-
-    .drag-item:active {
-      cursor: grabbing;
-    }
-
-    .drag-item__type {
-      color: var(--accent-strong);
-      font-size: 0.73rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .drag-item__name {
-      font-size: 0.94rem;
-      font-weight: 600;
-    }
-
-    .grid-note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .menu-category {
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: #fff9f1;
-      padding: 16px 14px;
-      transition: 0.18s ease;
-    }
-
-    .menu-category.is-active {
-      border-color: var(--line-strong);
-      box-shadow: inset 0 0 0 1px rgba(180, 95, 43, 0.08);
-      background: #fff6eb;
-    }
-
-    .menu-category h3 {
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
-
-    .dropzone {
-      min-height: 180px;
-      padding: 12px;
-      border-radius: 22px;
-      border: 1px dashed var(--line-strong);
-      background: rgba(255, 255, 255, 0.72);
-      display: grid;
-      align-content: start;
-      gap: 10px;
-      transition: 0.18s ease;
-    }
-
-    .dropzone.drag-over {
-      background: #fff0dd;
-      border-color: var(--accent);
-    }
-
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: white;
-      box-shadow: 0 6px 12px rgba(82, 56, 27, 0.04);
-    }
-
-    .menu-item span {
-      font-size: 0.92rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .remove-btn {
-      flex: 0 0 auto;
-      width: 32px;
-      height: 32px;
-      border: 0;
-      border-radius: 50%;
-      background: #f6ece1;
-      color: var(--accent-strong);
-      font: inherit;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .remove-btn:hover {
-      background: #f2dfcb;
-    }
-
-    .empty-message {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-    }
-
-    .action-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .btn,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      font: inherit;
-      font-size: 0.92rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-
-    .btn {
-      background: var(--accent);
-      color: #fffaf4;
-      border-color: var(--accent);
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(0.97);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border-color: var(--line-strong);
-      color: var(--accent-strong);
-    }
-
-    .btn-secondary:hover {
-      background: var(--accent-soft);
-    }
-
-    .speaking-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-    }
-
-    .support-card {
-      padding: 18px;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: #fcf6ee;
-    }
-
-    .support-card h3 {
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .support-card p,
-    .support-card li {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.65;
-    }
-
-    .support-card ul {
-      margin: 0;
-      padding-left: 18px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--text);
-      padding: 12px 14px;
-      font: inherit;
-      font-size: 0.95rem;
-      resize: vertical;
-    }
-
-    .live-preview {
-      margin-top: 16px;
-      padding: 18px;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: white;
-      font-size: 0.96rem;
-      line-height: 1.75;
-    }
-
-    .live-preview strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .step-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .step-card {
-      padding: 14px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: white;
-    }
-
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      font-size: 0.9rem;
-      font-weight: 800;
-    }
-
-    .step-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .rubric-stack {
-      display: grid;
-      gap: 16px;
-    }
-
-    .rubric-card {
-      padding: 18px;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: #fcf6ee;
-    }
-
-    .rubric-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .rubric-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-      margin: 0 0 12px;
-    }
-
-    .rubric-options {
-      display: grid;
-      gap: 10px;
-    }
-
-    .rubric-option {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: white;
-      border: 1px solid var(--line);
-    }
-
-    .rubric-option input {
-      margin-top: 2px;
-    }
-
-    .rubric-option span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .score-band {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      padding: 16px 18px;
-      border-radius: 24px;
-      border: 1px solid var(--line-strong);
-      background: rgba(255, 245, 233, 0.9);
-    }
-
-    .score-total {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--accent-strong);
-    }
-
-    .score-grade {
-      color: var(--muted);
-      font-size: 0.94rem;
-      font-weight: 700;
-    }
-
-    .note-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    @media (max-width: 1120px) {
-      .menu-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 900px) {
-      .hero-card,
-      .speaking-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 700px) {
-      body {
-        padding: 16px 12px 36px;
-      }
-
-      .hero-card,
-      .module-card {
-        border-radius: 24px;
-        padding: 18px 16px;
-      }
-
-      .form-grid,
-      .note-row,
-      .menu-grid,
-      .step-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .drag-item {
-        min-height: 44px;
-        padding: 10px 16px;
-      }
-
-      .dropzone {
-        min-height: 120px;
-      }
-    }
-  </style>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Restaurant Menu Lab · B1 · LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
-}
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+:root{--bg:#fff8f2;--bg2:#ffeedd;--surface:#fffcf9;--card:#fff5ec;--card2:#fde8d4;--text:#2a1205;--muted:#7a3d14;--faint:#c07040;--accent:#d4500a;--accent2:#e8621a;--accon:#fff;--brand:#b83a00;--brand2:#e05010;--line:rgba(212,80,10,.13);--line2:rgba(212,80,10,.26);--ok:#2e7d32;--err:#c0392b;--glow1:rgba(212,80,10,.08);--glow2:rgba(255,160,80,.07);--mono:"JetBrains Mono",Consolas,monospace;--display:"Unbounded",system-ui,sans-serif;--body:"Manrope",system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse at 75% 5%,var(--glow1),transparent 50%),radial-gradient(ellipse at 15% 90%,var(--glow2),transparent 50%);}
+a{color:inherit;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;padding:10px clamp(14px,3vw,28px);background:rgba(255,248,242,.92);border-bottom:2px solid rgba(212,80,10,.18);backdrop-filter:blur(16px);}
+.lab-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.lab-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--brand2));display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:17px;color:#fff;box-shadow:0 2px 10px rgba(212,80,10,.3);}
+.lab-brand-name{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:-.02em;}
+.lab-brand-tag{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+.topbar-nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.pill{padding:4px 10px;border-radius:20px;font:700 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);color:var(--muted);}
+.pill-a{background:rgba(212,80,10,.1);border-color:var(--accent);color:var(--accent);}
+.btn-sm{height:28px;padding:0 12px;border-radius:7px;border:1px solid var(--line2);background:var(--card);color:var(--muted);font:700 10px/1 var(--mono);letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent);}
+.hud{position:fixed;top:58px;right:16px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:4px;pointer-events:none;}
+.hud-score{font-family:var(--display);font-size:1.4rem;font-weight:900;color:var(--accent);letter-spacing:-.04em;}
+.hud-combo{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);transition:transform .2s;}
+.hud-combo.bump{transform:scale(1.4);}
+.star-bar{display:flex;justify-content:center;gap:10px;padding:18px 16px 8px;}
+.star-item{font-size:1.6rem;opacity:.2;transition:opacity .4s,transform .4s,filter .4s;filter:grayscale(1);}
+.star-item.lit{opacity:1;transform:scale(1.18);filter:drop-shadow(0 0 8px var(--accent));}
+.rail{display:flex;justify-content:center;gap:8px;padding:4px 16px 20px;}
+.rail-dot{width:10px;height:10px;border-radius:50%;background:var(--card2);border:1px solid var(--line2);transition:all .35s;}
+.rail-dot.done{background:var(--ok);border-color:var(--ok);box-shadow:0 0 8px var(--ok);}
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(14px,3vw,28px) 80px;}
+.hero{border:2px solid rgba(212,80,10,.2);border-radius:20px;background:linear-gradient(135deg,rgba(212,80,10,.06),rgba(255,160,80,.06));padding:clamp(20px,4vw,36px);margin-bottom:28px;position:relative;overflow:hidden;}
+.hero::before{content:"🍽";position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:7rem;opacity:.08;line-height:1;pointer-events:none;}
+.hero-kicker{font:700 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;}
+.hero-title{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;letter-spacing:-.05em;line-height:1;margin-bottom:10px;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-desc{color:var(--muted);font-size:14px;line-height:1.7;max-width:55ch;}
+.block{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:clamp(18px,3vw,30px);margin-bottom:22px;overflow:hidden;position:relative;}
+.block::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--brand2));border-radius:16px 16px 0 0;}
+.block-head{display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;margin-bottom:18px;border-bottom:1px dashed rgba(212,80,10,.18);}
+.block-num{flex:0 0 auto;width:42px;height:42px;border:2px solid var(--accent);background:rgba(212,80,10,.08);border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:15px;color:var(--accent);}
+.block-info{flex:1;}
+.block-kicker{font:700 9px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;}
+.block-title{font-family:var(--display);font-size:clamp(.95rem,2vw,1.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;}
+.block-badge{flex:0 0 auto;font:700 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:5px 9px;border:1px dotted var(--line2);border-radius:6px;}
+.block-hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+.btn{display:inline-flex;align-items:center;padding:9px 18px;border-radius:9px;font:800 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .15s;border:1px solid transparent;}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:var(--card);color:var(--muted);border-color:var(--line2);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+/* FC */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px;perspective:1200px;}
+.fc{height:118px;cursor:pointer;}
+.fc-inner{width:100%;height:100%;position:relative;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;}
+.fc.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:10px;border:1px solid var(--line2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:8px;}
+.fc-front{background:var(--card);}
+.fc-back{background:color-mix(in srgb,var(--accent) 10%,var(--card));border-color:var(--accent);transform:rotateY(180deg);}
+.fc-word{font-family:var(--display);font-size:.9rem;font-weight:800;letter-spacing:-.02em;text-align:center;}
+.fc-ipa{font-family:var(--mono);font-size:9px;color:var(--faint);}
+.fc-ru{color:var(--muted);font-size:12px;font-weight:600;}
+.fc-hint{font-family:var(--mono);font-size:8px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;}
+.fc-speak{width:24px;height:24px;border-radius:50%;border:1px solid var(--line2);background:var(--card2);cursor:pointer;display:grid;place-items:center;font-size:11px;transition:all .14s;}
+.fc-speak:hover{border-color:var(--accent);}
+/* SB */
+.sb-wrap{display:flex;flex-direction:column;gap:20px;}
+.sb-label{font:700 9px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+.sb-target{min-height:50px;border:2px dashed var(--line2);border-radius:10px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;transition:border-color .2s;background:rgba(0,0,0,.02);}
+.sb-target.over{border-color:var(--accent);}
+.sb-target.correct{border-color:var(--ok);background:rgba(46,125,50,.05);}
+.sb-target.wrong{border-color:var(--err);background:rgba(192,57,43,.05);}
+.sb-bank{display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;}
+.token{padding:6px 11px;border-radius:8px;border:1px solid var(--line2);background:var(--card2);color:var(--text);font:600 12px/1 var(--body);cursor:grab;user-select:none;transition:all .14s;}
+.token:hover{border-color:var(--accent);color:var(--accent);}
+.token.placed{opacity:.35;cursor:default;}
+.sb-result{font:600 11px/1 var(--mono);padding:5px 10px;border-radius:6px;display:none;}
+.sb-result.ok{color:var(--ok);background:rgba(46,125,50,.08);}
+.sb-result.err{color:var(--err);background:rgba(192,57,43,.08);}
+/* MATCH */
+.match-wrap{position:relative;}
+.match-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.match-col{display:flex;flex-direction:column;gap:7px;}
+.match-item{padding:9px 13px;border-radius:9px;border:1px solid var(--line2);background:var(--card);font-size:13px;font-weight:600;cursor:pointer;transition:all .16s;position:relative;z-index:1;line-height:1.3;}
+.match-item:hover{border-color:var(--accent);}
+.match-item.selected{border-color:var(--accent);background:rgba(212,80,10,.07);color:var(--accent);}
+.match-item.matched{border-color:var(--ok);background:rgba(46,125,50,.07);color:var(--ok);pointer-events:none;}
+.match-item.error{border-color:var(--err);}
+.match-item.def-side{font-size:12px;color:var(--muted);}
+.match-status{font:400 11px/1 var(--mono);color:var(--muted);margin-top:10px;min-height:20px;}
+/* ST */
+.st-timer{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.timer-bar{flex:1;height:6px;border-radius:3px;background:var(--card2);overflow:hidden;}
+.timer-fill{height:100%;background:var(--ok);border-radius:3px;transition:width .9s linear,background .3s;}
+.timer-fill.warn{background:var(--err);}
+.timer-num{font:700 13px/1 var(--mono);color:var(--muted);width:20px;}
+.st-display{font-family:var(--display);font-size:1rem;font-weight:700;background:var(--card);border:1px solid var(--line2);border-radius:10px;padding:13px 16px;margin-bottom:10px;min-height:52px;cursor:pointer;display:flex;align-items:center;line-height:1.4;}
+.st-input-row{display:flex;gap:8px;}
+.st-input{flex:1;background:var(--card);border:2px solid var(--line2);border-radius:9px;color:var(--text);font:500 14px/1 var(--body);padding:11px 13px;outline:none;transition:border-color .2s;}
+.st-input:focus{border-color:var(--accent);}
+.st-input.ok{border-color:var(--ok);}
+.st-input.err{border-color:var(--err);}
+.st-msg{font:400 11px/1 var(--mono);margin-top:8px;min-height:18px;}
+/* MEM */
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.mem-card{height:76px;cursor:pointer;perspective:600px;}
+.mc-inner{width:100%;height:100%;position:relative;transition:transform .4s;transform-style:preserve-3d;}
+.mem-card.reveal .mc-inner,.mem-card.matched .mc-inner{transform:rotateY(180deg);}
+.mc-front,.mc-back{position:absolute;inset:0;border-radius:9px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;padding:6px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font:600 11px/1.3 var(--body);text-align:center;}
+.mc-front{background:var(--card);color:var(--accent);font-size:1.3rem;}
+.mc-back{background:var(--card2);transform:rotateY(180deg);font-size:10px;}
+.mem-card.matched .mc-back{border-color:var(--ok);background:rgba(46,125,50,.08);color:var(--ok);}
+.mem-card.wrong .mc-back,.mem-card.wrong .mc-front{border-color:var(--err);}
+.mem-stats{font:400 10px/1 var(--mono);color:var(--muted);margin-top:8px;display:flex;gap:14px;}
+.mem-stats b{color:var(--accent);}
+/* BLITZ */
+.blitz-q{font-size:1rem;font-weight:700;line-height:1.55;margin-bottom:14px;padding:13px 16px;background:var(--card);border-radius:10px;border-left:3px solid var(--accent);}
+.blank{display:inline-block;min-width:70px;border-bottom:2px solid var(--accent);text-align:center;color:var(--accent);margin:0 3px;}
+.blitz-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:10px;}
+.blitz-opt{padding:11px 13px;border-radius:9px;border:1px solid var(--line2);background:var(--card);color:var(--text);font:600 13px/1.3 var(--body);cursor:pointer;transition:all .15s;text-align:left;}
+.blitz-opt:hover:not(:disabled){border-color:var(--accent);background:rgba(212,80,10,.06);}
+.blitz-opt.correct{border-color:var(--ok);background:rgba(46,125,50,.1);color:var(--ok);}
+.blitz-opt.wrong{border-color:var(--err);background:rgba(192,57,43,.1);color:var(--err);}
+.blitz-bar{display:flex;gap:10px;align-items:center;font:400 10px/1 var(--mono);color:var(--faint);}
+.combo-pill{padding:4px 10px;border-radius:20px;font:900 10px/1 var(--mono);background:rgba(212,80,10,.08);border:1px solid var(--accent);color:var(--accent);}
+.blitz-prog{flex:1;height:4px;border-radius:2px;background:var(--card2);}
+.blitz-prog-fill{height:100%;border-radius:2px;background:var(--accent);transition:width .4s;}
+.blitz-exp{font:400 10px/1.6 var(--mono);color:var(--faint);margin-top:8px;padding:8px 12px;background:rgba(212,80,10,.04);border-radius:8px;}
+/* MIC */
+.mic-area{text-align:center;padding:8px 0;}
+.mic-phrase{font-size:1rem;font-weight:600;line-height:1.5;margin-bottom:12px;padding:14px;background:var(--card);border-radius:10px;border-left:3px solid var(--accent);}
+.mic-btn{width:68px;height:68px;border-radius:50%;border:2px solid var(--accent);background:rgba(212,80,10,.08);font-size:1.7rem;cursor:pointer;display:grid;place-items:center;transition:all .2s;margin:0 auto 12px;}
+.mic-btn:hover,.mic-btn.recording{background:rgba(212,80,10,.2);box-shadow:0 0 20px rgba(212,80,10,.25);}
+.mic-transcript{font:400 11px/1 var(--mono);color:var(--muted);min-height:18px;margin-bottom:8px;}
+.mic-result{font:600 12px/1 var(--mono);padding:8px 12px;border-radius:8px;display:none;}
+.mic-result.ok{color:var(--ok);background:rgba(46,125,50,.08);}
+.mic-result.err{color:var(--err);background:rgba(192,57,43,.08);}
+.speech-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+/* WB */
+.wb-def{font-size:13px;color:var(--muted);margin-bottom:10px;padding:9px 13px;background:var(--card);border-radius:8px;border-left:2px solid var(--accent);}
+.wb-target{min-height:50px;border:2px dashed var(--accent);border-radius:10px;padding:9px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:rgba(212,80,10,.03);margin-bottom:10px;transition:border-color .2s;}
+.wb-target.correct{border-color:var(--ok);}
+.wb-bank{display:flex;flex-wrap:wrap;gap:7px;}
+.morpheme{padding:8px 13px;border-radius:8px;font:700 13px/1 var(--mono);cursor:pointer;transition:all .15s;user-select:none;}
+.morpheme.prefix{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);color:#3b82f6;}
+.morpheme.root{background:rgba(212,80,10,.12);border:1px solid rgba(212,80,10,.35);color:var(--accent);}
+.morpheme.suffix{background:rgba(46,125,50,.12);border:1px solid rgba(46,125,50,.35);color:#2e7d32;}
+.morpheme.placed{opacity:.3;cursor:default;}
+.wb-msg{font:400 11px/1 var(--mono);margin-top:8px;min-height:18px;}
+.all-done{display:none;text-align:center;padding:clamp(24px,5vw,48px);margin:24px 0;border:2px solid var(--accent);border-radius:20px;background:linear-gradient(135deg,rgba(212,80,10,.06),rgba(255,160,80,.06)),var(--surface);}
+.all-done.show{display:block;}
+.all-done-title{font-family:var(--display);font-size:clamp(2rem,5vw,3rem);font-weight:900;letter-spacing:-.05em;color:var(--accent);margin-bottom:6px;}
+.all-done-sub{font:700 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand);}
+.all-done-score{font-family:var(--display);font-size:1.8rem;font-weight:900;margin:16px 0 8px;}
+#confetti{position:fixed;inset:0;z-index:999;pointer-events:none;}
+@media(max-width:600px){.fc-grid{grid-template-columns:repeat(2,1fr);}.blitz-opts{grid-template-columns:1fr;}.mem-grid{grid-template-columns:repeat(3,1fr);}.match-cols{grid-template-columns:1fr;gap:12px;}}
 </style>
 </head>
 <body>
-  <div class="lbs-ribbon">
-    <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-    <div class="lbs-ribbon__meta">
-      <span class="lbs-pill">B1</span>
-      <span class="lbs-pill">Teens / adults</span>
-      <span class="lbs-pill">Speaking and rubric</span>
-    </div>
-    <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
-  </div>
-
-  <div class="page-shell">
-    <section class="hero-card">
-      <div>
-        <div class="eyebrow" data-ru="LinguaBoost Studio · Новый модуль" data-en="LinguaBoost Studio · New module">LinguaBoost Studio · Новый модуль</div>
-        <h1 data-ru="Restaurant Menu Lab" data-en="Restaurant Menu Lab">Restaurant Menu Lab</h1>
-        <p class="lead" data-ru="Модуль собирает в одну систему food vocabulary, speaking practice и готовую рубрику. Ученик конструирует меню, проговаривает его как владелец ресторана и получает понятную рамку для оценки устного ответа." data-en="This module brings food vocabulary, speaking practice, and a ready-made rubric into one system. The learner builds a menu, presents it as a restaurant owner, and gets a clear frame for oral assessment.">Модуль собирает в одну систему food vocabulary, speaking practice и готовую рубрику. Ученик конструирует меню, проговаривает его как владелец ресторана и получает понятную рамку для оценки устного ответа.</p>
-      </div>
-      <div class="hero-points">
-        <div class="hero-note">
-          <strong data-ru="Как работать" data-en="How to use it">Как работать</strong>
-          <p data-ru="Можно перетаскивать блюда мышкой, а на телефоне или планшете сначала выбрать категорию, а потом добавить блюдо касанием." data-en="On desktop you can drag the dishes with a mouse. On phones and tablets, select a category first and then add a dish with a tap.">Можно перетаскивать блюда мышкой, а на телефоне или планшете сначала выбрать категорию, а потом добавить блюдо касанием.</p>
-        </div>
-        <div class="hero-note">
-          <strong data-ru="Что внутри" data-en="What is inside">Что внутри</strong>
-          <p data-ru="Конструктор меню, speaking task, live sample, чек-лист и рубрика на 20 баллов без внешних зависимостей." data-en="A menu builder, speaking task, live sample, checklist, and a 20-point rubric with no external dependencies.">Конструктор меню, speaking task, live sample, чек-лист и рубрика на 20 баллов без внешних зависимостей.</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="module-grid">
-      <section class="module-card">
-        <div class="card-head">
-          <div>
-            <h2 class="card-title" data-ru="Соберите меню" data-en="Build the menu">Соберите меню</h2>
-            <p class="card-copy" data-ru="Выберите блюда для пяти категорий: appetizer, soup, main course, side dish и dessert. Для speaking можно оставить по одному блюду в каждой категории, а для обсуждения — собрать более широкий вариант." data-en="Choose dishes for five categories: appetizer, soup, main course, side dish, and dessert. For speaking you can leave one dish in each category; for discussion you can build a fuller menu.">Выберите блюда для пяти категорий: appetizer, soup, main course, side dish и dessert. Для speaking можно оставить по одному блюду в каждой категории, а для обсуждения — собрать более широкий вариант.</p>
-          </div>
-          <div class="pill-row">
-            <span class="pill" data-ru="Food English" data-en="Food English">Food English</span>
-            <span class="pill" data-ru="Speaking" data-en="Speaking">Speaking</span>
-            <span class="pill" data-ru="Assessment" data-en="Assessment">Assessment</span>
-          </div>
-        </div>
-
-        <div class="category-filter" id="categoryFilter"></div>
-
-        <div class="pool-wrap">
-          <div class="pool-toolbar">
-            <div>
-              <div class="pool-title" data-ru="Библиотека блюд" data-en="Dish library">Библиотека блюд</div>
-              <div class="pool-hint" id="poolHint"></div>
-            </div>
-          </div>
-          <div class="ingredient-pool" id="ingredientPool"></div>
-          <div class="grid-note" data-ru="Если работаете с планшета, можно сначала выбрать категорию сверху, а затем добавить блюдо касанием." data-en="If you work on a tablet, you can select a category above first and then add a dish with a tap.">Если работаете с планшета, можно сначала выбрать категорию сверху, а затем добавить блюдо касанием.</div>
-        </div>
-
-        <div class="menu-grid" id="menuGrid"></div>
-
-        <div class="action-row">
-          <button class="btn" type="button" id="resetMenuBtn" data-ru="Сбросить меню" data-en="Reset menu">Сбросить меню</button>
-          <button class="btn-secondary" type="button" id="fillSampleBtn" data-ru="Заполнить пример" data-en="Load sample menu">Заполнить пример</button>
-        </div>
-      </section>
-
-      <section class="module-card">
-        <div class="card-head">
-          <div>
-            <h2 class="card-title" data-ru="Speaking task" data-en="Speaking task">Speaking task</h2>
-            <p class="card-copy" data-ru="Ученик представляет себя владельцем ресторана и объясняет концепцию меню. Ниже собраны sentence starters, рабочий пример и короткий маршрут выступления." data-en="The learner presents themselves as a restaurant owner and explains the menu concept. Below you will find sentence starters, a working sample, and a short presentation route.">Ученик представляет себя владельцем ресторана и объясняет концепцию меню. Ниже собраны sentence starters, рабочий пример и короткий маршрут выступления.</p>
-          </div>
-        </div>
-
-        <div class="speaking-grid">
-          <div class="support-card">
-            <h3 data-ru="Sentence starters" data-en="Sentence starters">Sentence starters</h3>
-            <ul id="starterList"></ul>
-
-            <div class="form-grid">
-              <div class="field">
-                <label for="restaurantName" data-ru="Название ресторана" data-en="Restaurant name">Название ресторана</label>
-                <input id="restaurantName" type="text" value="Studio Table" data-placeholder-ru="Например: Studio Table" data-placeholder-en="For example: Studio Table">
-              </div>
-              <div class="field">
-                <label for="cuisineInput" data-ru="Кухня / стиль" data-en="Cuisine style">Кухня / стиль</label>
-                <input id="cuisineInput" type="text" value="Mediterranean" data-placeholder-ru="Например: Mediterranean" data-placeholder-en="For example: Mediterranean">
-              </div>
-            </div>
-
-            <div class="live-preview">
-              <strong data-ru="Живой пример ответа" data-en="Live sample answer">Живой пример ответа</strong>
-              <div id="liveExampleText"></div>
-            </div>
-          </div>
-
-          <div class="support-card">
-            <h3 data-ru="Маршрут выступления" data-en="Presentation route">Маршрут выступления</h3>
-            <div class="step-grid">
-              <div class="step-card">
-                <div class="step-number">1</div>
-                <p data-ru="Назовите ресторан и кухню. Объясните, на чём строится концепция меню." data-en="Name the restaurant and cuisine. Explain what the menu concept is based on.">Назовите ресторан и кухню. Объясните, на чём строится концепция меню.</p>
-              </div>
-              <div class="step-card">
-                <div class="step-number">2</div>
-                <p data-ru="Покажите структуру меню: starter, soup, main, side dish, dessert." data-en="Show the menu structure: starter, soup, main, side dish, dessert.">Покажите структуру меню: starter, soup, main, side dish, dessert.</p>
-              </div>
-              <div class="step-card">
-                <div class="step-number">3</div>
-                <p data-ru="Подчеркните signature dish и используйте cooking language: ingredients, prepared using, served with." data-en="Highlight the signature dish and use cooking language: ingredients, prepared using, served with.">Подчеркните signature dish и используйте cooking language: ingredients, prepared using, served with.</p>
-              </div>
-              <div class="step-card">
-                <div class="step-number">4</div>
-                <p data-ru="Завершите короткой рекомендацией: кому это меню подойдёт и почему." data-en="Finish with a short recommendation: who this menu is for and why.">Завершите короткой рекомендацией: кому это меню подойдёт и почему.</p>
-              </div>
-            </div>
-
-            <div class="support-card" style="margin-top:16px; background:white;">
-              <h3 data-ru="Чек-лист слушателя" data-en="Listener checklist">Чек-лист слушателя</h3>
-              <ul id="listenerChecklist"></ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="module-card">
-        <div class="card-head">
-          <div>
-            <h2 class="card-title" data-ru="Рубрика оценивания" data-en="Assessment rubric">Рубрика оценивания</h2>
-            <p class="card-copy" data-ru="Готовая рубрика позволяет быстро оценить task achievement, использование фраз, language control и fluency. Общий максимум — 20 баллов." data-en="The ready-made rubric helps you assess task achievement, phrase use, language control, and fluency quickly. The total maximum is 20 points.">Готовая рубрика позволяет быстро оценить task achievement, использование фраз, language control и fluency. Общий максимум — 20 баллов.</p>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="field">
-            <label for="studentName" data-ru="Имя ученика" data-en="Student name">Имя ученика</label>
-            <input id="studentName" type="text" data-placeholder-ru="Например: Анна" data-placeholder-en="For example: Anna">
-          </div>
-          <div class="field">
-            <label for="teacherNote" data-ru="Краткая пометка" data-en="Short note">Краткая пометка</label>
-            <input id="teacherNote" type="text" data-placeholder-ru="Например: уверенный B1" data-placeholder-en="For example: confident B1">
-          </div>
-        </div>
-
-        <div class="rubric-stack" id="rubricStack"></div>
-
-        <div class="score-band">
-          <div>
-            <div class="score-total" id="scoreTotal">0 / 20</div>
-            <div class="score-grade" id="scoreGrade"></div>
-          </div>
-          <div class="action-row" style="margin-top:0;">
-            <button class="btn" type="button" id="calculateBtn" data-ru="Посчитать итог" data-en="Calculate score">Посчитать итог</button>
-            <button class="btn-secondary" type="button" id="resetRubricBtn" data-ru="Сбросить оценивание" data-en="Reset rubric">Сбросить оценивание</button>
-          </div>
-        </div>
-
-        <div class="note-row">
-          <div class="field">
-            <label for="strengthsField" data-ru="Сильные стороны" data-en="Strengths">Сильные стороны</label>
-            <textarea id="strengthsField" rows="4" data-placeholder-ru="Например: уверенная логика, хорошая тематическая лексика, устойчивый темп" data-placeholder-en="For example: clear structure, good topic vocabulary, steady pace"></textarea>
-          </div>
-          <div class="field">
-            <label for="improveField" data-ru="Что улучшить" data-en="Areas to improve">Что улучшить</label>
-            <textarea id="improveField" rows="4" data-placeholder-ru="Например: больше связок, точнее работать с cooking verbs, добавить подробности" data-placeholder-en="For example: use more linking phrases, work on cooking verbs, add more detail"></textarea>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <script>
-    const langKey = "nge-linguaboost-lang";
-
-    const moduleTexts = {
-      ru: {
-        poolHint: "Перетаскивайте блюда в нужную колонку или добавляйте касанием в выбранную категорию.",
-        empty: "Категория пока пустая. Перетащите сюда блюдо или выберите категорию и добавьте его касанием.",
-        resetMenu: "Меню сброшено.",
-        sampleLoaded: "Примерное меню загружено.",
-        sampleAnswerLabel: "Пробный устный ответ",
-        checklist: [
-          "Названы ресторан и кухня.",
-          "Показаны все ключевые части меню.",
-          "Выделено signature dish.",
-          "Использованы phrases about ingredients and cooking.",
-          "Есть финальная рекомендация."
-        ],
-        categories: {
-          appetizer: "Закуска",
-          soup: "Суп",
-          main: "Основное",
-          side: "Гарнир",
-          dessert: "Десерт"
-        },
-        categoryHints: {
-          appetizer: "Выбрана категория «Закуска». Теперь можно добавить блюдо касанием.",
-          soup: "Выбрана категория «Суп». Теперь можно добавить блюдо касанием.",
-          main: "Выбрана категория «Основное». Теперь можно добавить блюдо касанием.",
-          side: "Выбрана категория «Гарнир». Теперь можно добавить блюдо касанием.",
-          dessert: "Выбрана категория «Десерт». Теперь можно добавить блюдо касанием."
-        },
-        starters: [
-          "Our restaurant is called {restaurant}.",
-          "Our restaurant focuses on {cuisine} cuisine.",
-          "As a starter, we serve {appetizer}.",
-          "Our soup of the day is {soup}.",
-          "Our signature dish is {main}.",
-          "It is served with {side} and finished with {dessert}."
-        ],
-        previewTemplate: "Our restaurant is called {restaurant}. We focus on {cuisine} cuisine. As a starter, we serve {appetizer}, and our soup of the day is {soup}. Our signature dish is {main}; it is prepared using fresh ingredients and served with {side}. To complete the meal, we offer {dessert}. This menu is designed for guests who enjoy balanced, memorable food with a clear concept.",
-        rubric: [
-          {
-            title: "1. Выполнение задачи",
-            description: "Есть ли в ответе структура меню, логика презентации и понимание роли говорящего?",
-            name: "task",
-            options: [
-              { value: 8, label: "Полная и уверенная презентация меню; структура ясна, роль выдержана." },
-              { value: 6, label: "Основные части есть, но некоторые элементы раскрыты кратко." },
-              { value: 4, label: "Часть структуры потеряна, ответ неполный." },
-              { value: 2, label: "Задача выполнена слабо, идея меню почти не оформлена." },
-              { value: 0, label: "Ответ не сформирован как speaking task." }
-            ]
-          },
-          {
-            title: "2. Sentence starters и функциональные фразы",
-            description: "Использованы ли рабочие формулы про cuisine, signature dish, ingredients и serving style?",
-            name: "phrases",
-            options: [
-              { value: 4, label: "Фразы используются свободно и по делу." },
-              { value: 3, label: "Есть большинство нужных формул." },
-              { value: 2, label: "Использованы только отдельные выражения." },
-              { value: 1, label: "Фраз мало, опора почти не использована." },
-              { value: 0, label: "Функциональные формулы отсутствуют." }
-            ]
-          },
-          {
-            title: "3. Лексика и грамматическая точность",
-            description: "Насколько уверенно ученик удерживает food vocabulary и строит понятные фразы?",
-            name: "language",
-            options: [
-              { value: 4, label: "Лексика уместная, ошибок немного, ответ звучит уверенно." },
-              { value: 3, label: "Есть отдельные ошибки, но речь понятна." },
-              { value: 2, label: "Ошибок много, ответ требует догадки." },
-              { value: 1, label: "Языковой контроль слабый, речь сильно распадается." },
-              { value: 0, label: "Понять высказывание почти невозможно." }
-            ]
-          },
-          {
-            title: "4. Беглость и произношение",
-            description: "Насколько связно и естественно звучит выступление?",
-            name: "fluency",
-            options: [
-              { value: 4, label: "Речь связная, темп устойчивый, произношение комфортное для слушателя." },
-              { value: 3, label: "В целом уверенно, но есть паузы и самокоррекция." },
-              { value: 2, label: "Много остановок, речь неровная." },
-              { value: 1, label: "Очень медленно и фрагментарно." },
-              { value: 0, label: "Связного устного ответа не получилось." }
-            ]
-          }
-        ],
-        grades: [
-          { min: 18, label: "Уровень ответа: strong A" },
-          { min: 15, label: "Уровень ответа: solid B" },
-          { min: 12, label: "Уровень ответа: working C" },
-          { min: 9, label: "Уровень ответа: fragile D" },
-          { min: 0, label: "Уровень ответа: needs rebuilding" }
-        ]
-      },
-      en: {
-        poolHint: "Drag the dishes into the right column or add them with a tap to the selected category.",
-        empty: "This category is empty for now. Drag a dish here or select the category and add one with a tap.",
-        resetMenu: "The menu has been reset.",
-        sampleLoaded: "A sample menu has been loaded.",
-        sampleAnswerLabel: "Sample oral response",
-        checklist: [
-          "The restaurant and cuisine are named.",
-          "All key menu parts are covered.",
-          "A signature dish is highlighted.",
-          "Ingredients and cooking phrases are used.",
-          "There is a short final recommendation."
-        ],
-        categories: {
-          appetizer: "Starter",
-          soup: "Soup",
-          main: "Main course",
-          side: "Side dish",
-          dessert: "Dessert"
-        },
-        categoryHints: {
-          appetizer: "The starter category is selected. You can now add a dish with a tap.",
-          soup: "The soup category is selected. You can now add a dish with a tap.",
-          main: "The main course category is selected. You can now add a dish with a tap.",
-          side: "The side dish category is selected. You can now add a dish with a tap.",
-          dessert: "The dessert category is selected. You can now add a dish with a tap."
-        },
-        starters: [
-          "Our restaurant is called {restaurant}.",
-          "Our restaurant focuses on {cuisine} cuisine.",
-          "As a starter, we serve {appetizer}.",
-          "Our soup of the day is {soup}.",
-          "Our signature dish is {main}.",
-          "It is served with {side} and finished with {dessert}."
-        ],
-        previewTemplate: "Our restaurant is called {restaurant}. We focus on {cuisine} cuisine. As a starter, we serve {appetizer}, and our soup of the day is {soup}. Our signature dish is {main}; it is prepared using fresh ingredients and served with {side}. To complete the meal, we offer {dessert}. This menu is designed for guests who enjoy balanced, memorable food with a clear concept.",
-        rubric: [
-          {
-            title: "1. Task achievement",
-            description: "Does the student present a clear menu structure and stay in the role of a restaurant owner?",
-            name: "task",
-            options: [
-              { value: 8, label: "A full and confident menu presentation with a clear structure and role." },
-              { value: 6, label: "Most elements are present, but some parts are brief." },
-              { value: 4, label: "Part of the structure is missing and the answer feels incomplete." },
-              { value: 2, label: "The task is handled weakly and the menu idea is barely built." },
-              { value: 0, label: "The response is not presented as a speaking task." }
-            ]
-          },
-          {
-            title: "2. Sentence starters and functional phrases",
-            description: "Are the working phrases about cuisine, signature dish, ingredients, and serving used?",
-            name: "phrases",
-            options: [
-              { value: 4, label: "The phrases are used naturally and effectively." },
-              { value: 3, label: "Most of the target formulas are present." },
-              { value: 2, label: "Only a few useful expressions are used." },
-              { value: 1, label: "The support phrases are barely used." },
-              { value: 0, label: "No functional phrases are used." }
-            ]
-          },
-          {
-            title: "3. Vocabulary and language control",
-            description: "How confidently does the learner handle food vocabulary and sentence building?",
-            name: "language",
-            options: [
-              { value: 4, label: "The vocabulary is appropriate and there are few errors." },
-              { value: 3, label: "There are some errors, but the message is clear." },
-              { value: 2, label: "There are many errors and the answer often needs guessing." },
-              { value: 1, label: "Language control is weak and the answer breaks down." },
-              { value: 0, label: "The response is almost impossible to understand." }
-            ]
-          },
-          {
-            title: "4. Fluency and pronunciation",
-            description: "How connected and natural does the presentation sound?",
-            name: "fluency",
-            options: [
-              { value: 4, label: "The speech is connected, steady, and easy to follow." },
-              { value: 3, label: "Mostly confident, though there are pauses and corrections." },
-              { value: 2, label: "There are many stops and the speech is uneven." },
-              { value: 1, label: "The response is very slow and fragmented." },
-              { value: 0, label: "A connected oral response does not appear." }
-            ]
-          }
-        ],
-        grades: [
-          { min: 18, label: "Performance band: strong A" },
-          { min: 15, label: "Performance band: solid B" },
-          { min: 12, label: "Performance band: working C" },
-          { min: 9, label: "Performance band: fragile D" },
-          { min: 0, label: "Performance band: needs rebuilding" }
-        ]
-      }
-    };
-
-    const categoryOrder = ["appetizer", "soup", "main", "side", "dessert"];
-
-    const extensiveMenu = {
-      appetizer: ["Bruschetta", "Spring Rolls", "Stuffed Mushrooms", "Fried Calamari", "Hummus and Pita", "Caprese Salad", "Shrimp Cocktail", "Spinach Dip"],
-      soup: ["Tomato Basil Soup", "French Onion Soup", "Miso Soup", "Pumpkin Cream Soup", "Lentil Soup", "Chicken Noodle Soup", "Tom Yum", "Cream of Mushroom"],
-      main: ["Grilled Salmon", "Mushroom Risotto", "Chicken Tikka Masala", "Seafood Paella", "Vegetable Curry", "Margherita Pizza", "Stuffed Peppers", "Fish and Chips"],
-      side: ["Garlic Bread", "Roasted Vegetables", "French Fries", "Rice Pilaf", "Mashed Potatoes", "Grilled Asparagus", "Sweet Potato Wedges", "Cucumber Salad"],
-      dessert: ["Tiramisu", "Cheesecake", "Chocolate Lava Cake", "Gelato", "Apple Pie", "Panna Cotta", "Baklava", "Lemon Tart"]
-    };
-
-    const sampleMenu = {
-      appetizer: ["Bruschetta"],
-      soup: ["Tomato Basil Soup"],
-      main: ["Grilled Salmon"],
-      side: ["Roasted Vegetables"],
-      dessert: ["Tiramisu"]
-    };
-
-    let selectedCategory = "main";
-    let menuState = createEmptyMenu();
-
-    function createEmptyMenu() {
-      return {
-        appetizer: [],
-        soup: [],
-        main: [],
-        side: [],
-        dessert: []
-      };
-    }
-
-    function getLang() {
-      return localStorage.getItem(langKey) || "ru";
-    }
-
-    function t() {
-      return moduleTexts[getLang()] || moduleTexts.ru;
-    }
-
-    function categoryName(key) {
-      return t().categories[key];
-    }
-
-    function replaceTokens(template, values) {
-      return template.replace(/\{(.*?)\}/g, (_, key) => values[key] || "");
-    }
-
-    function createDishToken(category, dish) {
-      const token = document.createElement("button");
-      token.type = "button";
-      token.className = "drag-item";
-      token.dataset.type = category;
-      token.dataset.name = dish;
-      token.draggable = true;
-      token.innerHTML = `<span class="drag-item__type">${categoryName(category)}</span><span class="drag-item__name">${dish}</span>`;
-      token.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("application/json", JSON.stringify({ category, dish }));
-        event.dataTransfer.setData("text/plain", dish);
-      });
-      token.addEventListener("click", () => {
-        addDish(selectedCategory, dish);
-      });
-      return token;
-    }
-
-    function addDish(category, dish) {
-      if (!category || !dish) return;
-      if (!menuState[category].includes(dish)) {
-        menuState[category].push(dish);
-        renderMenu();
-        updateSpeakingPreview();
-      }
-    }
-
-    function removeDish(category, dish) {
-      menuState[category] = menuState[category].filter((item) => item !== dish);
-      renderMenu();
-      updateSpeakingPreview();
-    }
-
-    function renderCategoryFilter() {
-      const filter = document.getElementById("categoryFilter");
-      filter.innerHTML = "";
-      categoryOrder.forEach((category) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "category-chip";
-        button.textContent = categoryName(category);
-        if (category === selectedCategory) {
-          button.classList.add("is-active");
-        }
-        button.addEventListener("click", () => {
-          selectedCategory = category;
-          renderCategoryFilter();
-          renderMenu();
-          updatePoolHint();
-        });
-        filter.appendChild(button);
-      });
-    }
-
-    function updatePoolHint() {
-      const hint = document.getElementById("poolHint");
-      hint.textContent = t().categoryHints[selectedCategory];
-    }
-
-    function renderPool() {
-      const pool = document.getElementById("ingredientPool");
-      pool.innerHTML = "";
-      categoryOrder.forEach((category) => {
-        extensiveMenu[category].forEach((dish) => {
-          pool.appendChild(createDishToken(category, dish));
-        });
-      });
-    }
-
-    function renderMenu() {
-      const grid = document.getElementById("menuGrid");
-      grid.innerHTML = "";
-
-      categoryOrder.forEach((category) => {
-        const wrap = document.createElement("section");
-        wrap.className = "menu-category";
-        if (category === selectedCategory) {
-          wrap.classList.add("is-active");
-        }
-
-        const title = document.createElement("h3");
-        title.textContent = categoryName(category);
-        wrap.appendChild(title);
-
-        const zone = document.createElement("div");
-        zone.className = "dropzone";
-        zone.dataset.category = category;
-
-        zone.addEventListener("click", () => {
-          selectedCategory = category;
-          renderCategoryFilter();
-          renderMenu();
-          updatePoolHint();
-        });
-
-        zone.addEventListener("dragover", (event) => {
-          event.preventDefault();
-          zone.classList.add("drag-over");
-        });
-
-        zone.addEventListener("dragleave", () => {
-          zone.classList.remove("drag-over");
-        });
-
-        zone.addEventListener("drop", (event) => {
-          event.preventDefault();
-          zone.classList.remove("drag-over");
-          let payload = null;
-          try {
-            payload = JSON.parse(event.dataTransfer.getData("application/json"));
-          } catch (error) {
-            payload = null;
-          }
-          const dish = payload?.dish || event.dataTransfer.getData("text/plain");
-          addDish(category, dish);
-        });
-
-        if (menuState[category].length === 0) {
-          const empty = document.createElement("div");
-          empty.className = "empty-message";
-          empty.textContent = t().empty;
-          zone.appendChild(empty);
-        } else {
-          menuState[category].forEach((dish) => {
-            const item = document.createElement("div");
-            item.className = "menu-item";
-
-            const text = document.createElement("span");
-            text.textContent = dish;
-
-            const remove = document.createElement("button");
-            remove.type = "button";
-            remove.className = "remove-btn";
-            remove.setAttribute("aria-label", "Remove");
-            remove.textContent = "×";
-            remove.addEventListener("click", (event) => {
-              event.stopPropagation();
-              removeDish(category, dish);
-            });
-
-            item.append(text, remove);
-            zone.appendChild(item);
-          });
-        }
-
-        wrap.appendChild(zone);
-        grid.appendChild(wrap);
-      });
-    }
-
-    function menuValue(category) {
-      return menuState[category][0] || "________";
-    }
-
-    function updateStarters() {
-      const list = document.getElementById("starterList");
-      const restaurant = document.getElementById("restaurantName").value.trim() || "Studio Table";
-      const cuisine = document.getElementById("cuisineInput").value.trim() || "Mediterranean";
-      const values = {
-        restaurant,
-        cuisine,
-        appetizer: menuValue("appetizer"),
-        soup: menuValue("soup"),
-        main: menuValue("main"),
-        side: menuValue("side"),
-        dessert: menuValue("dessert")
-      };
-
-      list.innerHTML = "";
-      t().starters.forEach((line) => {
-        const li = document.createElement("li");
-        li.textContent = replaceTokens(line, values);
-        list.appendChild(li);
-      });
-    }
-
-    function updateChecklist() {
-      const list = document.getElementById("listenerChecklist");
-      list.innerHTML = "";
-      t().checklist.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
-      });
-    }
-
-    function updateSpeakingPreview() {
-      updateStarters();
-      const preview = document.getElementById("liveExampleText");
-      const restaurant = document.getElementById("restaurantName").value.trim() || "Studio Table";
-      const cuisine = document.getElementById("cuisineInput").value.trim() || "Mediterranean";
-      const values = {
-        restaurant,
-        cuisine,
-        appetizer: menuValue("appetizer"),
-        soup: menuValue("soup"),
-        main: menuValue("main"),
-        side: menuValue("side"),
-        dessert: menuValue("dessert")
-      };
-      preview.textContent = replaceTokens(t().previewTemplate, values);
-    }
-
-    function renderRubric() {
-      const stack = document.getElementById("rubricStack");
-      stack.innerHTML = "";
-
-      t().rubric.forEach((block) => {
-        const card = document.createElement("div");
-        card.className = "rubric-card";
-
-        const head = document.createElement("div");
-        head.className = "rubric-head";
-        head.innerHTML = `<h3>${block.title}</h3>`;
-
-        const desc = document.createElement("p");
-        desc.className = "rubric-desc";
-        desc.textContent = block.description;
-
-        const options = document.createElement("div");
-        options.className = "rubric-options";
-
-        block.options.forEach((option, index) => {
-          const label = document.createElement("label");
-          label.className = "rubric-option";
-          label.innerHTML = `
-            <input type="radio" name="${block.name}" value="${option.value}">
-            <div>
-              <strong>${option.value}</strong>
-              <span>${option.label}</span>
-            </div>
-          `;
-          options.appendChild(label);
-        });
-
-        card.append(head, desc, options);
-        stack.appendChild(card);
-      });
-    }
-
-    function gradeLabel(total) {
-      const hit = t().grades.find((item) => total >= item.min);
-      return hit ? hit.label : "";
-    }
-
-    function calculateRubric() {
-      let total = 0;
-      document.querySelectorAll("#rubricStack input[type='radio']:checked").forEach((input) => {
-        total += Number(input.value || 0);
-      });
-      document.getElementById("scoreTotal").textContent = `${total} / 20`;
-      document.getElementById("scoreGrade").textContent = gradeLabel(total);
-    }
-
-    function resetRubric() {
-      document.querySelectorAll("#rubricStack input[type='radio']").forEach((input) => {
-        input.checked = false;
-      });
-      document.getElementById("studentName").value = "";
-      document.getElementById("teacherNote").value = "";
-      document.getElementById("strengthsField").value = "";
-      document.getElementById("improveField").value = "";
-      document.getElementById("scoreTotal").textContent = "0 / 20";
-      document.getElementById("scoreGrade").textContent = "";
-    }
-
-    function applySampleMenu() {
-      menuState = JSON.parse(JSON.stringify(sampleMenu));
-      renderMenu();
-      updateSpeakingPreview();
-    }
-
-    function applyModuleLanguage() {
-      const lang = getLang();
-      document.documentElement.lang = lang;
-      document.querySelectorAll("[data-placeholder-ru]").forEach((input) => {
-        input.placeholder = lang === "en" ? input.dataset.placeholderEn : input.dataset.placeholderRu;
-      });
-      renderCategoryFilter();
-      updatePoolHint();
-      renderPool();
-      renderMenu();
-      updateChecklist();
-      updateSpeakingPreview();
-      renderRubric();
-      calculateRubric();
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      renderCategoryFilter();
-      updatePoolHint();
-      renderPool();
-      renderMenu();
-      updateChecklist();
-      updateSpeakingPreview();
-      renderRubric();
-
-      document.getElementById("restaurantName").addEventListener("input", updateSpeakingPreview);
-      document.getElementById("cuisineInput").addEventListener("input", updateSpeakingPreview);
-      document.getElementById("calculateBtn").addEventListener("click", calculateRubric);
-      document.getElementById("resetRubricBtn").addEventListener("click", resetRubric);
-      document.getElementById("resetMenuBtn").addEventListener("click", () => {
-        menuState = createEmptyMenu();
-        renderMenu();
-        updateSpeakingPreview();
-      });
-      document.getElementById("fillSampleBtn").addEventListener("click", applySampleMenu);
-
-      applyModuleLanguage();
-    });
-
-    window.addEventListener("lb-language-change", applyModuleLanguage);
-  </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
+<header class="topbar">
+  <a class="lab-brand" href="../index.html"><div class="lab-mark">L</div><div><div class="lab-brand-name">LinguaBoost Lab</div><div class="lab-brand-tag">New Generation English</div></div></a>
+  <nav class="topbar-nav"><a class="btn-sm" href="../index.html">&#8592; All</a><span class="pill pill-a">B1</span><span class="pill">Restaurant</span><button class="btn-sm" onclick="toggleLang()">RU/EN</button></nav>
+</header>
+<div class="hud"><div class="hud-score" id="hudScore">0</div><div class="hud-combo" id="hudCombo">COMBO x1</div></div>
+<div class="star-bar"><div class="star-item" id="s1">&#11088;</div><div class="star-item" id="s2">&#11088;</div><div class="star-item" id="s3">&#11088;</div><div class="star-item" id="s4">&#11088;</div><div class="star-item" id="s5">&#11088;</div><div class="star-item" id="s6">&#11088;</div></div>
+<div class="rail"><div class="rail-dot" id="rd1"></div><div class="rail-dot" id="rd2"></div><div class="rail-dot" id="rd3"></div><div class="rail-dot" id="rd4"></div><div class="rail-dot" id="rd5"></div><div class="rail-dot" id="rd6"></div></div>
+<main class="wrap">
+<div class="hero">
+  <div class="hero-kicker">B1 · Food &amp; Dining · English</div>
+  <div class="hero-title">Restaurant <em>Menu</em> Lab</div>
+  <div class="hero-desc" data-ru="Учись заказывать еду, обсуждать меню и вести разговор в ресторане — как настоящий носитель английского." data-en="Learn to order food, discuss menus and hold a restaurant conversation like a native English speaker.">Learn to order food, discuss menus and hold a restaurant conversation like a native English speaker.</div>
 </div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
+<!-- B1 -->
+<section class="block" id="b1"><div class="block-head"><div class="block-num">01</div><div class="block-info"><div class="block-kicker">Vocabulary · Speech Synthesis</div><div class="block-title">Restaurant Vocabulary</div></div><div class="block-badge">FLIP ALL 8</div></div><p class="block-hint" data-ru="Нажмите чтобы перевернуть. 🔊 — прослушать. Откройте все 8." data-en="Click to flip. 🔊 to hear. Reveal all 8 to complete.">Click to flip each card. Press 🔊 to hear. Reveal all 8 to complete.</p><div class="fc-grid" id="fcGrid"></div><div style="text-align:center;font:400 10px/1 var(--mono);color:var(--faint);margin-top:8px;">Flipped: <span id="fcDone">0</span> / 8</div></section>
+<section class="block" id="b2"><div class="block-head"><div class="block-num">02</div><div class="block-info"><div class="block-kicker">Drag &amp; Drop · Polite Requests</div><div class="block-title">Build the Sentence</div></div><div class="block-badge">2/3 TO PASS</div></div><p class="block-hint" data-ru="Составьте вежливые фразы для ресторана." data-en="Build polite restaurant phrases using modal verbs and conditionals.">Build polite restaurant phrases. Drag words into order — modal verbs, conditionals, indirect questions.</p><div class="sb-wrap" id="sbSentences"></div><div style="margin-top:12px;display:flex;gap:8px;align-items:center;"><button class="btn btn-ghost" onclick="resetAllSB()">&#8635; Reset</button><div id="sbPassMsg" style="font:700 11px/1 var(--mono);color:var(--ok);display:none;">&#10003; Done!</div></div></section>
+<section class="block" id="b3"><div class="block-head"><div class="block-num">03</div><div class="block-info"><div class="block-kicker">Canvas · Menu Terms</div><div class="block-title">Connect the Pairs</div></div><div class="block-badge">MATCH ALL 6</div></div><p class="block-hint" data-ru="Соедините термин из меню с его описанием." data-en="Match menu term with its description.">Click a menu term on the left, then its description on the right.</p><div class="match-wrap" id="matchWrap"><canvas class="match-canvas" id="matchCanvas"></canvas><div class="match-cols" id="matchCols"></div></div><div class="match-status" id="matchStatus">Select a term on the left.</div><div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMatch()">&#8635; Restart</button></div></section>
+<section class="block" id="b4"><div class="block-head"><div class="block-num">04</div><div class="block-info"><div class="block-kicker">Speed Type · Timer</div><div class="block-title">Hear it — Type it</div></div><div class="block-badge">3/5 TO PASS</div></div><p class="block-hint" data-ru="Прослушайте фразу и напечатайте за 10 секунд." data-en="Hear the phrase and type it within 10 seconds.">Click to hear, then type within 10 seconds. 3/5 correct to pass.</p><div id="stArea"></div></section>
+<section class="block" id="b5"><div class="block-head"><div class="block-num">05</div><div class="block-info"><div class="block-kicker">Memory · Flip &amp; Match</div><div class="block-title">Find the Pairs</div></div><div class="block-badge">MATCH ALL 6</div></div><p class="block-hint" data-ru="Найдите пары: еда + описание." data-en="Find pairs: dish + description.">Flip cards and find matching pairs — dish + description.</p><div class="mem-grid" id="memGrid"></div><div class="mem-stats">Moves: <b id="memMoves">0</b> | Found: <b id="memFound">0</b>/6</div><div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMemory()">&#8635; Shuffle</button></div></section>
+<section class="block" id="b6"><div class="block-head"><div class="block-num">06</div><div class="block-info"><div class="block-kicker">Grammar Blitz · Combo</div><div class="block-title">B1 Grammar in Context</div></div><div class="block-badge">5/8 TO PASS</div></div><p class="block-hint" data-ru="B1 грамматика: модальные глаголы, условные предложения, косвенная речь, артикли." data-en="B1 grammar: modals, conditionals, reported speech, articles — in restaurant context.">B1 grammar in restaurant context — modals, conditionals, reported speech, articles. Build your COMBO!</p><div id="blitzArea"></div></section>
+<section class="block" id="b7"><div class="block-head"><div class="block-num">07</div><div class="block-info"><div class="block-kicker">Speaking · Bonus</div><div class="block-title">Say it Aloud</div></div><div class="block-badge">BONUS</div></div><p class="block-hint" data-ru="Chrome/Edge: нажмите 🎤 и произнесите фразу из ресторана." data-en="Chrome/Edge: press 🎤 and say the restaurant phrase.">Chrome / Edge: press 🎤 and say the phrase naturally. Earn bonus points!</p><div id="speechArea"></div></section>
+<section class="block" id="b8"><div class="block-head"><div class="block-num">08</div><div class="block-info"><div class="block-kicker">Word Builder · Morphemes</div><div class="block-title">Assemble the Word</div></div><div class="block-badge">BONUS</div></div><p class="block-hint" data-ru="Нажимайте на морфемы в правильном порядке." data-en="Click morphemes in the correct order.">Click morphemes in order to build the word. Earn bonus points!</p><div id="wbArea"></div></section>
+<div class="all-done" id="allDone">
+  <div class="all-done-title">Bon Appétit!</div>
+  <div class="all-done-sub">B1 · Restaurant Menu Lab</div>
+  <div class="all-done-score">&#11088; &#11088; &#11088; &#11088; &#11088; &#11088;</div>
+  <div style="font:400 13px/1 var(--mono);color:var(--muted);margin-top:8px;">Score: <span style="color:var(--accent);font-weight:700;" id="finalScore">0</span> pts</div>
+  <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><a class="btn btn-ghost" href="../index.html">&#8592; All Lessons</a><button class="btn btn-primary" onclick="location.reload()">&#8635; Again</button></div>
+</div>
+</main>
+<canvas id="confetti" style="display:none;"></canvas>
+<script>
+let totalScore=0,combo=1,doneCount=0;
+function addScore(p){totalScore+=p*combo;document.getElementById('hudScore').textContent=totalScore;}
+function bumpCombo(){combo=Math.min(combo+1,8);const el=document.getElementById('hudCombo');el.textContent='COMBO x'+combo;el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');setTimeout(()=>el.classList.remove('bump'),300);}
+function resetCombo(){combo=1;document.getElementById('hudCombo').textContent='COMBO x1';}
+function completeTask(n){if(n<1||n>6)return;document.getElementById('rd'+n).classList.add('done');document.getElementById('s'+n).classList.add('lit');addScore(50);doneCount++;if(doneCount>=6){setTimeout(()=>{document.getElementById('allDone').classList.add('show');document.getElementById('finalScore').textContent=totalScore;launchConfetti();},600);}}
+function speak(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.84;speechSynthesis.cancel();speechSynthesis.speak(u);}
+function toggleLang(){const l=document.documentElement.dataset.lang==='ru'?'en':'ru';document.documentElement.dataset.lang=l;document.querySelectorAll('[data-ru],[data-en]').forEach(el=>{if(el.dataset[l])el.textContent=el.dataset[l];});}
+function launchConfetti(){const cv=document.getElementById('confetti');cv.style.display='block';const ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const cols=['#d4500a','#e8621a','#f59e0b','#2e7d32','#b83a00','#fbbf24'];const p=Array.from({length:150},()=>({x:Math.random()*cv.width,y:-10,w:Math.random()*8+4,h:Math.random()*12+5,rot:Math.random()*Math.PI*2,vx:(Math.random()-.5)*5,vy:Math.random()*4+2,col:cols[Math.floor(Math.random()*cols.length)],a:1}));let f=0;function draw(){ctx.clearRect(0,0,cv.width,cv.height);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.rot+=.08;q.a-=.005;ctx.save();ctx.globalAlpha=Math.max(0,q.a);ctx.translate(q.x,q.y);ctx.rotate(q.rot);ctx.fillStyle=q.col;ctx.beginPath();ctx.ellipse(0,0,q.w/2,q.h/2,0,0,Math.PI*2);ctx.fill();ctx.restore();});f++;if(f<200)requestAnimationFrame(draw);else cv.style.display='none';}draw();}
+/* FC */
+const FC=[{en:'appetiser',ipa:'/ˈæpɪtaɪzə/',ru:'закуска'},{en:'main course',ipa:'/meɪn kɔːs/',ru:'основное блюдо'},{en:'dessert',ipa:'/dɪˈzɜːt/',ru:'десерт'},{en:'reservation',ipa:'/ˌrezəˈveɪʃən/',ru:'бронь'},{en:'menu',ipa:'/ˈmenjuː/',ru:'меню'},{en:'tip',ipa:'/tɪp/',ru:'чаевые'},{en:'bill',ipa:'/bɪl/',ru:'счёт'},{en:'portion',ipa:'/ˈpɔːʃən/',ru:'порция'}];
+let fcF=0;
+(function(){const g=document.getElementById('fcGrid');FC.forEach(w=>{const fc=document.createElement('div');fc.className='fc';fc.innerHTML=`<div class="fc-inner"><div class="fc-front"><div class="fc-word">${w.en}</div><div class="fc-ipa">${w.ipa}</div><button class="fc-speak" type="button">&#128266;</button><div class="fc-hint">tap to flip</div></div><div class="fc-back"><div class="fc-ru">${w.ru}</div><div class="fc-word" style="font-size:.8rem">${w.en}</div><button class="fc-speak" type="button">&#128266;</button></div></div>`;fc.querySelectorAll('.fc-speak').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();speak(w.en);addScore(1);}));let done=false;fc.addEventListener('click',()=>{fc.classList.toggle('flipped');if(!done&&fc.classList.contains('flipped')){done=true;fcF++;speak(w.en);addScore(3);document.getElementById('fcDone').textContent=fcF;if(fcF>=8)completeTask(1);}});g.appendChild(fc);});})();
+/* SB */
+const SB=[{words:['Could','I','have','the','bill,','please'],answer:'Could I have the bill, please'},{words:['I','would','like','to','book','a','table','for','two','people'],answer:'I would like to book a table for two people'},{words:['Could','you','tell','me','what','the','dish','of','the','day','is'],answer:'Could you tell me what the dish of the day is'}];
+let sbC=0;
+(function(){const w=document.getElementById('sbSentences');SB.forEach((s,si)=>{const sh=[...s.words].sort(()=>Math.random()-.5);const d=document.createElement('div');d.innerHTML=`<div class="sb-label">Phrase ${si+1}</div><div class="sb-target" id="sbt${si}"></div><div class="sb-bank" id="sbb${si}"></div><div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;align-items:center;"><button onclick="checkSB(${si})" class="btn btn-primary" style="padding:7px 13px;font-size:9px;">CHECK</button><button onclick="resetSB(${si})" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">RESET</button><div class="sb-result" id="sbr${si}"></div></div>`;w.appendChild(d);const bank=document.getElementById('sbb'+si);sh.forEach(ww=>{const t=document.createElement('div');t.className='token';t.textContent=ww;t.draggable=true;t.addEventListener('dragstart',e=>{e.dataTransfer.setData('text',ww);e.dataTransfer.setData('si',si);t.classList.add('dragging');});t.addEventListener('dragend',()=>t.classList.remove('dragging'));t.addEventListener('click',()=>mT(t,si));bank.appendChild(t);});const tgt=document.getElementById('sbt'+si);tgt.addEventListener('dragover',e=>{e.preventDefault();tgt.classList.add('over');});tgt.addEventListener('dragleave',()=>tgt.classList.remove('over'));tgt.addEventListener('drop',e=>{e.preventDefault();tgt.classList.remove('over');const ww=e.dataTransfer.getData('text');const b2=document.getElementById('sbb'+e.dataTransfer.getData('si'));const tok=[...b2.children].find(c=>c.textContent===ww&&!c.classList.contains('placed'));if(tok){tok.classList.add('placed');aT(ww,si,tok);}});});})();
+function aT(word,si,src){const t=document.getElementById('sbt'+si);const el=document.createElement('div');el.className='token placed';el.textContent=word;el.style.cursor='pointer';el.addEventListener('click',()=>{t.removeChild(el);if(src)src.classList.remove('placed');});t.appendChild(el);}
+function mT(tok,si){const b=document.getElementById('sbb'+si);if(tok.parentElement===b){tok.classList.add('placed');aT(tok.textContent,si,tok);}}
+function checkSB(si){const t=document.getElementById('sbt'+si);const r=document.getElementById('sbr'+si);const built=[...t.children].map(c=>c.textContent).join(' ').replace(/,\s*,/,',');const ok=built.replace(/,/g,'').toLowerCase()===SB[si].answer.replace(/,/g,'').toLowerCase();t.className='sb-target '+(ok?'correct':'wrong');r.style.display='inline-block';r.className='sb-result '+(ok?'ok':'err');if(ok){r.textContent='✓ +' +(12*combo)+' pts';addScore(12);bumpCombo();speak('Well done!');sbC++;if(sbC>=2&&!document.getElementById('sbPassMsg').dataset.done){document.getElementById('sbPassMsg').style.display='inline';document.getElementById('sbPassMsg').dataset.done='1';completeTask(2);}}else{r.textContent='✗ Try again!';resetCombo();}}
+function resetSB(si){const t=document.getElementById('sbt'+si);t.innerHTML='';t.className='sb-target';document.getElementById('sbr'+si).style.display='none';[...document.getElementById('sbb'+si).children].forEach(c=>c.classList.remove('placed'));}
+function resetAllSB(){SB.forEach((_,i)=>resetSB(i));}
+/* MATCH */
+const MATCH=[{en:'starter',def:'small dish eaten before the main course'},{en:'garnish',def:'decoration added to a dish, e.g. herbs'},{en:'al dente',def:'pasta cooked firm, not too soft'},{en:'set menu',def:'fixed selection of dishes for one price'},{en:'à la carte',def:'ordering individual dishes from the full menu'},{en:'sommelier',def:'wine expert who recommends wine in a restaurant'}];
+let matchSel=null,matchLines=[],matchDone=0;
+function initMatch(){matchSel=null;matchLines=[];matchDone=0;const cols=document.getElementById('matchCols');const sh=[...MATCH].sort(()=>Math.random()-.5);cols.innerHTML='<div class="match-col" id="mcEn"></div><div class="match-col" id="mcDef"></div>';MATCH.forEach((p,i)=>{const el=document.createElement('div');el.className='match-item';el.textContent=p.en;el.dataset.key=i;el.dataset.side='en';el.addEventListener('click',()=>matchClick(el));document.getElementById('mcEn').appendChild(el);});sh.forEach(p=>{const i=MATCH.indexOf(p);const el=document.createElement('div');el.className='match-item def-side';el.textContent=p.def;el.dataset.key=i;el.dataset.side='def';el.addEventListener('click',()=>matchClick(el));document.getElementById('mcDef').appendChild(el);});document.getElementById('matchStatus').textContent='Select a term on the left.';redrawMatch();}
+function matchClick(el){if(el.classList.contains('matched'))return;if(!matchSel){if(el.dataset.side!=='en')return;matchSel=el;el.classList.add('selected');document.getElementById('matchStatus').textContent='→ '+el.textContent;return;}if(el.dataset.side==='en'){matchSel.classList.remove('selected');matchSel=el;el.classList.add('selected');return;}const ok=matchSel.dataset.key===el.dataset.key;if(ok){matchSel.classList.remove('selected');matchSel.classList.add('matched');el.classList.add('matched');speak(matchSel.textContent);matchLines.push({from:matchSel,to:el});matchDone++;addScore(18);bumpCombo();document.getElementById('matchStatus').innerHTML=`<span style="color:var(--ok)">&#10003; ${matchSel.textContent}</span>`;if(matchDone===MATCH.length){launchConfetti();addScore(30);setTimeout(()=>completeTask(3),400);}}else{matchSel.classList.add('error');el.classList.add('error');setTimeout(()=>{matchSel.classList.remove('error','selected');el.classList.remove('error');},600);resetCombo();document.getElementById('matchStatus').innerHTML='<span style="color:var(--err)">&#10007; Wrong pair</span>';}matchSel=null;redrawMatch();}
+function getCenter(el){const wr=document.getElementById('matchWrap').getBoundingClientRect();const r=el.getBoundingClientRect();return{x:r.left-wr.left+r.width/2,y:r.top-wr.top+r.height/2};}
+function redrawMatch(){const cv=document.getElementById('matchCanvas');const wr=document.getElementById('matchWrap');if(!wr)return;cv.width=wr.offsetWidth;cv.height=wr.offsetHeight;const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);matchLines.forEach(l=>{const a=getCenter(l.from),b=getCenter(l.to);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='var(--ok)';ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);[a,b].forEach(pt=>{ctx.beginPath();ctx.arc(pt.x,pt.y,4,0,Math.PI*2);ctx.fillStyle='var(--ok)';ctx.fill();});});}
+window.addEventListener('resize',redrawMatch);initMatch();
+/* ST */
+const ST=["Could I see the menu, please","I would like to order the grilled salmon","Do you have any vegetarian options","Could we have the bill when you're ready","I'd like to make a reservation for this evening"];
+let stIdx=0,stTimer=null,stTime=10,stC=0;
+(function(){const area=document.getElementById('stArea');area.innerHTML=`<div class="st-timer"><div class="timer-bar"><div class="timer-fill" id="stFill" style="width:100%"></div></div><div class="timer-num" id="stNum">10</div></div><div class="st-display" id="stDisplay" onclick="speak(ST[stIdx%ST.length])"><span style="opacity:.5">&#9654; Click to hear phrase 1</span></div><div class="st-input-row"><input class="st-input" id="stInput" type="text" placeholder="Type what you hear..." autocomplete="off" disabled><button onclick="checkST()" class="btn btn-ghost" style="flex-shrink:0;">CHECK</button></div><div class="st-msg" id="stMsg"></div><div style="font:400 10px/1 var(--mono);color:var(--faint);margin-top:5px;">Phrase <span id="stIdxD">0</span>/${ST.length} | Correct: <span id="stCorrD">0</span>/5</div>`;document.getElementById('stDisplay').addEventListener('click',startST);document.getElementById('stInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkST();});})();
+function startST(){if(stTimer)clearInterval(stTimer);stTime=10;const ph=ST[stIdx%ST.length];document.getElementById('stDisplay').innerHTML=`<span onclick="speak('${ph.replace(/'/g,"\\'")}')" style="cursor:pointer">&#9654; ${ph}</span>`;document.getElementById('stIdxD').textContent=(stIdx%ST.length)+1;const inp=document.getElementById('stInput');inp.value='';inp.disabled=false;inp.focus();inp.className='st-input';document.getElementById('stMsg').textContent='';document.getElementById('stFill').style.width='100%';document.getElementById('stFill').classList.remove('warn');speak(ph);stTimer=setInterval(()=>{stTime--;document.getElementById('stFill').style.width=(stTime/10*100)+'%';document.getElementById('stNum').textContent=stTime;if(stTime<=3)document.getElementById('stFill').classList.add('warn');if(stTime<=0){clearInterval(stTimer);checkST(true);}},1000);}
+function checkST(timeout=false){if(stTimer)clearInterval(stTimer);const inp=document.getElementById('stInput');const ph=ST[stIdx%ST.length];const typed=inp.value.trim().toLowerCase().replace(/[^a-z\s']/g,'');const correct=ph.toLowerCase().replace(/[^a-z\s']/g,'');const ok=typed===correct;inp.className='st-input '+(ok?'ok':'err');const msg=document.getElementById('stMsg');if(timeout&&!ok){msg.style.color='var(--err)';msg.textContent='⏱ Was: '+ph;resetCombo();}else if(ok){const pts=stTime*4*combo;addScore(pts);bumpCombo();msg.style.color='var(--ok)';msg.textContent='✓ +'+pts+' pts';speak('Excellent!');stC++;document.getElementById('stCorrD').textContent=stC;if(stC>=3&&!document.getElementById('stArea').dataset.done){document.getElementById('stArea').dataset.done='1';completeTask(4);}}else{msg.style.color='var(--err)';msg.textContent='✗ Was: '+ph;resetCombo();}inp.disabled=true;stIdx++;if(stIdx<ST.length)setTimeout(startST,1700);}
+/* MEM */
+const MEM=[{term:'appetiser',def:'starter dish'},{term:'bill',def:'payment invoice'},{term:'tip',def:'extra money for staff'},{term:'portion',def:'amount of food served'},{term:'menu',def:'list of dishes'},{term:'reservation',def:'booking a table'}];
+let memF=[],memM=0,memMov=0,memLk=false;
+function initMemory(){memF=[];memM=0;memMov=0;memLk=false;document.getElementById('memMoves').textContent=0;document.getElementById('memFound').textContent=0;const cards=[];MEM.forEach((p,i)=>{cards.push({id:i,text:p.term});cards.push({id:i,text:p.def});});cards.sort(()=>Math.random()-.5);const g=document.getElementById('memGrid');g.innerHTML='';cards.forEach(c=>{const card=document.createElement('div');card.className='mem-card';card.dataset.id=c.id;card.dataset.text=c.text;card.innerHTML=`<div class="mc-inner"><div class="mc-front">&#127859;</div><div class="mc-back" style="font-size:${c.text.length>10?'9':'11'}px">${c.text}</div></div>`;card.addEventListener('click',()=>memClick(card));g.appendChild(card);});}
+function memClick(card){if(memLk||card.classList.contains('reveal')||card.classList.contains('matched'))return;card.classList.add('reveal');memF.push(card);if(memF.length===2){memLk=true;memMov++;document.getElementById('memMoves').textContent=memMov;const[a,b]=memF;if(a.dataset.id===b.dataset.id&&a!==b){a.classList.add('matched');b.classList.add('matched');memM++;document.getElementById('memFound').textContent=memM;addScore(22);bumpCombo();speak(a.dataset.text);memF=[];memLk=false;if(memM===MEM.length){setTimeout(()=>{launchConfetti();completeTask(5);},300);}}else{resetCombo();a.classList.add('wrong');b.classList.add('wrong');setTimeout(()=>{a.classList.remove('reveal','wrong');b.classList.remove('reveal','wrong');memF=[];memLk=false;},900);}}}
+initMemory();
+/* BLITZ */
+const BLITZ=[{q:'___ I have a table by the window, please?',opts:['Could','Should','Must','Ought'],a:0,exp:'"Could" — polite request modal verb. "Can" also works but "Could" is more formal.'},{q:'If the restaurant is full, we ___ try the one next door.',opts:['should','ought','could','would'],a:2,exp:'"Could" — possibility/suggestion in first conditional context.'},{q:'She asked if there ___ any vegetarian options.',opts:['is','was','were','are'],a:1,exp:'Reported speech: present "is" shifts to past "was".'},{q:'I\'d like to order ___ fish and some chips.',opts:['a','an','the','—'],a:2,exp:'"The fish" — we specify which fish (from the menu), so definite article.'},{q:'The waiter told us that the kitchen ___ closed.',opts:['was','is','has','had been'],a:0,exp:'"Was" — past simple in reported speech context.'},{q:'By the time we arrived, our table ___ already given away.',opts:['had been','was','has been','were'],a:0,exp:'Past perfect passive: action completed before another past action.'},{q:'Could you recommend a dish ___ is not too spicy?',opts:['what','which','who','whom'],a:1,exp:'"Which" — relative pronoun referring to a dish (non-restrictive clause).'},{q:'I am ___ the pasta — it looks amazing!',opts:['having','have','had','to have'],a:0,exp:'Present continuous for decisions made at the moment of speaking.'}];
+let bIdx=0,bScore=0;
+function initBlitz(){bIdx=0;bScore=0;renderBlitz();}
+function renderBlitz(){const area=document.getElementById('blitzArea');if(bIdx>=BLITZ.length){const passed=bScore>=5;area.innerHTML=`<div style="padding:16px;background:var(--card);border-radius:10px;font:700 13px/1.6 var(--body);">${passed?'<span style="color:var(--ok)">&#10003;':'<span style="color:var(--err)">&#10007;'} ${bScore}/${BLITZ.length} correct</span><br><span style="font:400 10px/1 var(--mono);color:var(--faint);">Score: ${totalScore} pts</span></div><button onclick="initBlitz()" class="btn btn-ghost" style="margin-top:10px;">&#8635; Replay</button>`;if(passed&&!area.dataset.done){area.dataset.done='1';completeTask(6);}return;}
+const q=BLITZ[bIdx];const pct=(bIdx/BLITZ.length)*100;area.innerHTML=`<div class="blitz-q">${q.q.replace('___','<span class="blank">___</span>')}</div><div class="blitz-opts">${q.opts.map((o,i)=>`<button class="blitz-opt" onclick="answerBlitz(${i})">${o}</button>`).join('')}</div><div class="blitz-bar"><div class="combo-pill">COMBO x${combo}</div><div class="blitz-prog"><div class="blitz-prog-fill" style="width:${pct}%"></div></div><div>Q ${bIdx+1}/${BLITZ.length}</div></div>`;}
+function answerBlitz(i){const q=BLITZ[bIdx];document.querySelectorAll('.blitz-opt').forEach((b,bi)=>{b.disabled=true;if(bi===q.a)b.classList.add('correct');else if(bi===i&&i!==q.a)b.classList.add('wrong');});if(i===q.a){addScore(14);bumpCombo();bScore++;speak(q.opts[q.a]);}else resetCombo();const exp=document.createElement('div');exp.className='blitz-exp';exp.textContent=q.exp;document.getElementById('blitzArea').appendChild(exp);bIdx++;setTimeout(renderBlitz,1300);}
+initBlitz();
+/* SPEECH */
+const SP=["Could I have the bill, please","I would like to book a table for two","What do you recommend today"];
+let spIdx=0;
+(function(){const area=document.getElementById('speechArea');const Rec=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Rec){renderSPbasic(area);return;}renderSP(Rec,area);})();
+function renderSPbasic(area){const p=SP[spIdx%SP.length];area.innerHTML=`<div class="mic-area"><div class="mic-phrase">${p}</div><button class="mic-btn" onclick="speak('${p.replace(/'/g,"\\'")}');addScore(2);">&#128266;</button><div class="speech-nav"><button onclick="spIdx++;renderSPbasic(document.getElementById('speechArea'))" class="btn btn-ghost">NEXT &#8594;</button></div></div>`;}
+function renderSP(Rec,area){const p=SP[spIdx%SP.length];area.innerHTML=`<div class="mic-area"><div class="mic-phrase">${p}</div><button class="mic-btn" id="micBtn">&#127908;</button><div class="mic-transcript" id="micTxt">Press mic...</div><div class="mic-result" id="micRes"></div><div class="speech-nav"><button onclick="speak('${p.replace(/'/g,"\\'")}');addScore(2);" class="btn btn-ghost">&#128266; HEAR</button><button onclick="spIdx++;renderSP(window.SpeechRecognition||window.webkitSpeechRecognition,document.getElementById('speechArea'))" class="btn btn-ghost">NEXT &#8594;</button></div></div>`;const rec=new Rec();rec.lang='en-US';rec.continuous=false;rec.interimResults=true;const btn=document.getElementById('micBtn');let going=false;btn.addEventListener('click',()=>{if(!going){going=true;rec.start();btn.classList.add('recording');btn.textContent='⏹';}else{going=false;rec.stop();btn.classList.remove('recording');btn.textContent='\u{1F3A4}';}});rec.onresult=e=>{const txt=[...e.results].map(r=>r[0].transcript).join('');document.getElementById('micTxt').textContent=txt;if(e.results[e.results.length-1].isFinal){const ok=txt.toLowerCase().includes(p.split(' ')[0].toLowerCase());const res=document.getElementById('micRes');res.style.display='block';res.className='mic-result '+(ok?'ok':'err');res.textContent=ok?'✓ +25 pts':'✗ Try: '+p;if(ok){addScore(25);bumpCombo();}btn.classList.remove('recording');btn.textContent='\u{1F3A4}';going=false;}};rec.onerror=()=>{btn.classList.remove('recording');btn.textContent='\u{1F3A4}';going=false;};}
+/* WB */
+const WB=[{target:'overcooked',def:'cooked for too long',parts:[{t:'over-',ty:'prefix'},{t:'cook',ty:'root'},{t:'-ed',ty:'suffix'}]},{target:'dishwasher',def:'machine for cleaning dishes',parts:[{t:'dish',ty:'root'},{t:'wash',ty:'root'},{t:'-er',ty:'suffix'}]},{target:'tablecloth',def:'fabric covering a dining table',parts:[{t:'table',ty:'root'},{t:'cloth',ty:'suffix'}]},{target:'underground',def:'located below the ground',parts:[{t:'under-',ty:'prefix'},{t:'ground',ty:'root'}]}];
+let wbIdx=0,wbBuilt=[];
+function initWB(){renderWB();}
+function renderWB(){const area=document.getElementById('wbArea');const w=WB[wbIdx%WB.length];wbBuilt=[];const sh=[...w.parts].sort(()=>Math.random()-.5);area.innerHTML=`<div class="wb-def"><strong>Meaning:</strong> ${w.def}</div><div class="wb-target" id="wbT"><span style="font:400 9px/1 var(--mono);color:var(--faint);">click parts below ↓</span></div><div class="wb-bank">${sh.map((p,i)=>`<div class="morpheme ${p.ty}" id="wbm${i}" data-text="${p.t}" data-type="${p.ty}" onclick="addMorpheme(this)">${p.t}</div>`).join('')}</div><div style="display:flex;gap:7px;margin-top:10px;align-items:center;flex-wrap:wrap;"><button onclick="checkWB()" class="btn btn-primary" style="padding:7px 13px;font-size:9px;">CHECK</button><button onclick="wbBuilt=[];renderWB()" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">RESET</button><button onclick="wbIdx++;renderWB()" class="btn btn-ghost" style="padding:7px 13px;font-size:9px;">NEXT &#8594;</button><div id="wbMsg" class="wb-msg"></div></div>`;}
+function addMorpheme(el){if(el.classList.contains('placed')){el.classList.remove('placed');wbBuilt=wbBuilt.filter(t=>t!==el.dataset.text);}else{el.classList.add('placed');wbBuilt.push(el.dataset.text);}const t=document.getElementById('wbT');if(wbBuilt.length){t.innerHTML=wbBuilt.map(tx=>`<div class="morpheme ${document.querySelector('[data-text="'+tx+'"]')?.dataset.type||''}" style="cursor:default">${tx}</div>`).join('');}else t.innerHTML='<span style="font:400 9px/1 var(--mono);color:var(--faint);">click parts below ↓</span>';}
+function checkWB(){const w=WB[wbIdx%WB.length];const built=wbBuilt.join('').replace(/-/g,'');const ok=built.toLowerCase()===w.target.toLowerCase();document.getElementById('wbT').classList.toggle('correct',ok);const msg=document.getElementById('wbMsg');if(ok){msg.style.color='var(--ok)';msg.textContent='✓ '+w.target+' +'+(18*combo)+' pts';addScore(18);bumpCombo();speak(w.target);setTimeout(launchConfetti,200);}else{msg.style.color='var(--err)';msg.textContent='✗ Expected: '+w.target;resetCombo();}}
+initWB();
+</script>
 </body>
 </html>

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light-lab">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Have / Has · A1 · LinguaBoost Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="../assets/lab-theme-sync.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -160,11 +160,15 @@ select.btn-tool { width: 118px; }
 .scene-card {
   min-height: 188px; border: 1px solid var(--line); border-radius: 14px; background: var(--card-2);
   display: grid; align-content: end; position: relative; overflow: hidden; box-shadow: 0 18px 34px rgba(8,19,50,0.08);
-}
+}.scene-card.is-empty { background: linear-gradient(180deg, var(--card-2), color-mix(in srgb, var(--card) 80%, var(--brand) 20%)); }
 .scene-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.22s ease; }
 .scene-card:hover img { transform: scale(1.03); }
 .scene-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 46%, rgba(0,0,0,0.58) 100%); }
 .scene-card span { position: relative; z-index: 1; margin: 12px; width: fit-content; border-radius: 999px; padding: 7px 10px; background: rgba(255,255,255,0.9); font-family: var(--mono); font-size: 10px; color: #081332; text-transform: uppercase; letter-spacing: 0.1em; }
+.picture-choice-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0 0 18px; }
+.picture-choice-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card-2); box-shadow: 0 18px 34px rgba(8,19,50,0.08); }
+.picture-choice-card img { width: 100%; aspect-ratio: 1.45 / 1; object-fit: cover; display: block; }
+.picture-choice-card figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; font-family: var(--mono); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
 .prompt-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2); display: grid; gap: 8px; }
 .prompt-card label { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; color: var(--text); }
@@ -266,6 +270,55 @@ select.btn-tool { width: 118px; }
 .foot-meta { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); }
 .foot-title { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
 .copyright { margin-top: 24px; color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+.lesson-score-card {
+  width: min(100% - 56px, 1180px);
+  margin: 0 auto 18px;
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 18px;
+}
+.lesson-score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lesson-score-track {
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 20%, transparent);
+}
+.lesson-score-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  transition: width 0.25s ease;
+}
+.lesson-score-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.lesson-score-card.is-complete {
+  border-color: color-mix(in srgb, #22c55e 54%, var(--line));
+  box-shadow: 0 18px 46px color-mix(in srgb, #22c55e 16%, transparent);
+}
 
 /* Friendly UI */
 body { background: #fffaf5; color: #081332; }
@@ -342,8 +395,169 @@ body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { backgro
 [data-theme="black-lab"] .learn-panel, [data-theme="violet"] .learn-panel { background: linear-gradient(135deg, color-mix(in srgb, var(--card) 96%, transparent) 0%, color-mix(in srgb, var(--card-2) 94%, transparent) 100%); border-color: var(--line); }
 [data-theme="black-lab"] .flow-card small, [data-theme="violet"] .flow-card small, [data-theme="black-lab"] .learn-grid span, [data-theme="violet"] .learn-grid span, [data-theme="black-lab"] .certificate-card small, [data-theme="violet"] .certificate-card small { color: var(--muted); }
 .hero-img, .scene-card img { background: color-mix(in srgb, var(--card) 70%, transparent); }
-@media (max-width: 1100px) { .friendly-nav { display: none; } .flow-grid { grid-template-columns: 1fr; gap: 12px; } .flow-card:not(:last-child)::after { display: none; } .learn-panel { grid-template-columns: 1fr; } }
+
+/* A1 01-03 shell match: keep lesson 04 on the same compact Lab header. */
+.friendly-brand { gap: 12px; }
+.friendly-brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.boost-logo-mark {
+  width: 34px;
+  height: 42px;
+}
+.boost-flame {
+  width: 34px;
+  height: 34px;
+}
+.friendly-brand .brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.lab-tag {
+  min-height: 22px;
+  padding: 0 6px;
+  font-size: 12px;
+  margin-left: 2px;
+}
+.friendly-nav .top-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.audience-switch {
+  border-radius: 14px;
+}
+.audience-btn {
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.friendly-tools .btn-tool,
+.palette-select,
+.level-bubble,
+.menu-btn {
+  border-radius: 10px;
+  font-family: var(--display);
+}
+.level-bubble {
+  width: 46px;
+  height: 46px;
+}
+.menu-btn {
+  border: 1px solid rgba(8,19,50,0.12);
+}
+@media (max-width: 1100px) { .friendly-nav { display: none; } .flow-grid, .picture-choice-grid { grid-template-columns: 1fr; gap: 12px; } .flow-card:not(:last-child)::after { display: none; } .learn-panel { grid-template-columns: 1fr; } }
 @media (max-width: 820px) { .friendly-hero-inner { grid-template-columns: 1fr; } .hero-copy-panel { background: var(--card); } .friendly-photo { min-height: 300px; order: -1; } .friendly-photo .hero-img { min-height: 300px; } .friendly-meta, .learn-grid { grid-template-columns: 1fr; } .lesson-flow, .learn-panel, .step-tracker, .block, .lesson-foot, .copyright { width: min(100% - 28px, 1180px); } .audience-switch { min-width: 168px; } }
+
+/* Codex sync: lesson-one purple bar system. */
+body {
+  background:
+    radial-gradient(circle at 82% 6%, var(--hero-glow1), transparent 38%),
+    radial-gradient(circle at 8% 44%, var(--hero-glow2), transparent 34%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%) !important;
+  color: var(--text);
+}
+.lesson-flow,
+.learn-panel,
+.step-tracker {
+  box-sizing: border-box;
+  width: calc(100% - 2cm);
+  max-width: none;
+}
+.lesson-flow {
+  margin: 24px auto 22px;
+}
+.learn-panel {
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 6%, var(--hero-glow2), transparent 42%),
+    color-mix(in srgb, var(--card) 94%, transparent);
+  box-shadow: 0 22px 62px color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.step-tracker {
+  margin: 0 auto 18px;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--brand) 10%, transparent);
+}
+.flow-card:not(:last-child)::after {
+  content: "\2192";
+  color: var(--brand);
+}
+.learn-grid span::before {
+  content: "\2713";
+  color: var(--accent);
+}
+.flow-num,
+.cert-star {
+  background: var(--accent);
+  color: #fff;
+}
+.flow-icon {
+  color: var(--accent);
+}
+.lesson-flow h2,
+.learn-panel h2,
+.flow-card strong,
+.certificate-card strong {
+  color: var(--text);
+}
+.flow-card small,
+.learn-grid span,
+.certificate-card small {
+  color: var(--muted);
+}
+@media (max-width: 1100px) {
+  .learn-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .lesson-flow,
+  .learn-panel,
+  .step-tracker { width: min(100% - 28px, 1180px); }
+}
+[data-theme="black-lab"] .lesson-flow,
+[data-theme="violet"] .lesson-flow,
+[data-theme="black-lab"] .learn-panel,
+[data-theme="violet"] .learn-panel,
+[data-theme="black-lab"] .flow-card,
+[data-theme="violet"] .flow-card,
+[data-theme="black-lab"] .certificate-card,
+[data-theme="violet"] .certificate-card {
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border-color: var(--line);
+  color: var(--text);
+  box-shadow: 0 22px 62px color-mix(in srgb, #000 24%, transparent);
+}
+[data-theme="black-lab"] .lesson-flow h2,
+[data-theme="violet"] .lesson-flow h2,
+[data-theme="black-lab"] .learn-panel h2,
+[data-theme="violet"] .learn-panel h2,
+[data-theme="black-lab"] .flow-card strong,
+[data-theme="violet"] .flow-card strong,
+[data-theme="black-lab"] .certificate-card strong,
+[data-theme="violet"] .certificate-card strong {
+  color: var(--text);
+}
+[data-theme="black-lab"] .flow-card small,
+[data-theme="violet"] .flow-card small,
+[data-theme="black-lab"] .learn-grid span,
+[data-theme="violet"] .learn-grid span,
+[data-theme="black-lab"] .certificate-card small,
+[data-theme="violet"] .certificate-card small {
+  color: var(--muted);
+}
 </style>
 </head>
 <body>
@@ -354,10 +568,29 @@ body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { backgro
     <div class="topbar-tools friendly-tools"><button class="btn-tool" data-lang-btn="ru">RU</button><button class="btn-tool is-active" data-lang-btn="en">EN</button><select class="btn-tool palette-select" data-palette><option value="light-lab">light-lab</option><option value="peach">peach</option><option value="green">green</option><option value="rose">rose</option><option value="cyan">cyan</option><option value="amber">amber</option><option value="white">white</option><option value="black-lab">black-lab</option><option value="violet">violet</option></select><span class="level-bubble">A1</span><button class="menu-btn"><span></span><span></span><span></span></button></div>
   </header>
   <main class="wrap">
-    <section class="hero friendly-hero"><div class="hero-inner friendly-hero-inner"><div class="hero-copy-panel"><div class="hero-eyebrow friendly-eyebrow">A1-04</div><h1 class="hero-title friendly-title">Have / Has: <em>My Things</em></h1><p class="hero-lead friendly-lead" data-kids="Talk about your bag, room, and things. Say: I have a book. Alex has a lamp. I don't have a TV. Ask: Do you have a pencil?" data-adults="Talk about your workspace, tools, and apartment things. Say: I have a laptop. Mia has a notebook. I don't have a printer. Ask: Does Alex have a desk?">Talk about your bag, room, and things. Say: I have a book. Alex has a lamp. I don't have a TV. Ask: Do you have a pencil?</p><div class="hero-meta friendly-meta"><span class="info-pill"><span class="info-icon">📦</span><span><strong>Grammar Focus</strong><br>have / has</span></span><span class="info-pill"><span class="info-icon">◷</span><span><strong>Lesson Time</strong><br>45-60 min</span></span></div><div class="hero-actions"><a class="btn primary" href="#goal">Start lesson</a><a class="btn ghost" href="#final-task">Final task</a></div></div><div class="hero-photo friendly-photo"><img class="hero-img" data-hero-img data-kids-light="../assets/ДЛЯ УРОКОВ/a1-04-kids-light-hero.png" data-kids-dark="../assets/ДЛЯ УРОКОВ/a1-04-kids-dark-hero.png" data-adults-light="../assets/ДЛЯ УРОКОВ/a1-04-adults-light-hero.png" data-adults-dark="../assets/ДЛЯ УРОКОВ/a1-04-adults-dark-hero.png" src="../assets/ДЛЯ УРОКОВ/a1-04-kids-light-hero.png" alt="People talking about things they have"></div></div></section>
-
-    <section class="lesson-flow"><h2>Lesson Flow</h2><div class="flow-grid"><a class="flow-card" href="#guided"><span class="flow-num">1</span><span class="flow-icon">🖼️</span><strong>Discover</strong><small>Look at things</small></a><a class="flow-card" href="#focus"><span class="flow-num">2</span><span class="flow-icon">📘</span><strong>Grammar</strong><small>have / has</small></a><a class="flow-card" href="#guided"><span class="flow-num">3</span><span class="flow-icon">✎</span><strong>Practice</strong><small>Choose & build</small></a><a class="flow-card" href="#text"><span class="flow-num">4</span><span class="flow-icon">🎤</span><strong>Read / Listen</strong><small>Alex's things</small></a><a class="flow-card" href="#final-task"><span class="flow-num">5</span><span class="flow-icon">⭐</span><strong>Final Task</strong><small>Describe your things</small></a></div></section>
-
+    <section class="hero friendly-hero"><div class="hero-inner friendly-hero-inner"><div class="hero-copy-panel"><div class="hero-eyebrow friendly-eyebrow">A1-04</div><h1 class="hero-title friendly-title">Have / Has: <em>My Things</em></h1><p class="hero-lead friendly-lead" data-kids="Talk about your bag, room, and things. Say: I have a book. Alex has a lamp. I don't have a TV. Ask: Do you have a pencil?" data-adults="Talk about your workspace, tools, and apartment things. Say: I have a laptop. Mia has a notebook. I don't have a printer. Ask: Does Alex have a desk?">Talk about your bag, room, and things. Say: I have a book. Alex has a lamp. I don't have a TV. Ask: Do you have a pencil?</p><div class="hero-meta friendly-meta"><span class="info-pill"><span class="info-icon">📦</span><span><strong>Grammar Focus</strong><br>have / has</span></span><span class="info-pill"><span class="info-icon">◷</span><span><strong>Lesson Time</strong><br>45-60 min</span></span></div><div class="hero-actions"><a class="btn primary" href="#goal">Start lesson</a><a class="btn ghost" href="#final-task">Final task</a></div></div><div class="hero-photo friendly-photo"><img class="hero-img" data-hero-img data-kids-light="../../assets/Для уроков/307673aa-87d3-4b11-97d7-09274e8a4245.png" data-kids-dark="../../assets/Для уроков/0a324e1a-540a-4a12-8a9c-245b64ecdff0.png" data-adults-light="../../assets/Для уроков/6b40afb1-2bcd-4625-98c6-11039b092c68.png" data-adults-dark="../../assets/Для уроков/183f1274-5ce8-4fa2-af3b-f4bd35b06cc4.png" src="../../assets/Для уроков/307673aa-87d3-4b11-97d7-09274e8a4245.png" alt="People talking about things they have"></div></div></section>
+    <section class="lesson-flow" aria-label="Lesson flow">
+      <h2>Lesson Flow</h2>
+      <div class="flow-grid">
+        <a class="flow-card" href="#guided"><span class="flow-num">1</span><span class="flow-icon">?</span><strong>Guided Tasks</strong><small>Learn with examples and support</small></a>
+        <a class="flow-card" href="#active"><span class="flow-num">2</span><span class="flow-icon">✎</span><strong>Active Tasks</strong><small>Practise grammar and vocabulary</small></a>
+        <a class="flow-card" href="#text"><span class="flow-num">3</span><span class="flow-icon">▤</span><strong>Reading Check</strong><small>Read and check understanding</small></a>
+        <a class="flow-card" href="#output"><span class="flow-num">4</span><span class="flow-icon">☰</span><strong>Output</strong><small>Use the language in speech</small></a>
+        <a class="flow-card" href="#final-task"><span class="flow-num">5</span><span class="flow-icon">☆</span><strong>Final Task</strong><small>Show what you can do</small></a>
+      </div>
+    </section>
+    <section class="learn-panel" aria-label="What you will learn">
+      <div>
+        <h2>What you'll learn</h2>
+        <div class="learn-grid">
+          <span>Affirmative sentences with I / you / we / they</span>
+          <span>Time expressions: always, usually, every day</span>
+          <span>Daily routines and habits</span>
+          <span>Speaking and writing about your day</span>
+        </div>
+      </div>
+      <div class="certificate-card" data-module-certificate><span class="cert-star">★</span><strong>Complete all tasks</strong><small>to get your Lab Certificate</small></div>
+    </section>
     <div class="step-tracker"><span class="step-count">Step <span data-step-current>01</span>/08</span><span class="step-track"><span class="step-fill" data-step-fill></span></span><span class="step-name" data-step-name>Goal</span></div>
     <section class="lesson-score-card" data-lesson-score-card><div class="lesson-score-head"><span>Auto score</span><strong data-lesson-score>0%</strong></div><div class="lesson-score-track"><span class="lesson-score-fill" data-lesson-score-fill></span></div><div class="lesson-score-meta"><span data-lesson-score-note>Complete guided tasks, build tasks, checklist, and final draft.</span><span>Module progress: <strong data-module-progress-count>0 / 8</strong></span></div></section>
 
@@ -365,8 +598,7 @@ body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { backgro
     <section class="block" id="goal"><header class="block-head"><div class="block-num">01</div><div class="block-title-wrap"><div class="block-kicker">Goal</div><h2 class="block-title">What you will do in this lesson</h2></div><div class="block-time">≈ 3 min</div></header><p class="block-intro">In this lesson, you will learn to say what people have and don't have. You will ask questions with Do you have...? and Does Alex have...?</p><div class="goal-grid"><article class="info-card"><h3>Start</h3><p>You already know how to describe a room: There is a desk. Now you will say who has it: Alex has a desk.</p></article><article class="info-card"><h3>Route</h3><p>First learn the words, then learn have / has, then practise questions and negatives.</p></article><article class="info-card"><h3>Finish</h3><p>At the end you will describe your bag, room, or workspace in 6–8 sentences and ask 3 questions.</p></article></div><div class="block-nav"><a class="btn primary" href="#input">Next: visual input</a></div></section>
 
     <!-- BLOCK 02: VISUAL INPUT -->
-    <section class="block" id="input"><header class="block-head"><div class="block-num">02</div><div class="block-title-wrap"><div class="block-kicker">Visual Input</div><h2 class="block-title">Look at the things</h2></div><div class="block-time">≈ 7 min</div></header><div class="scene-strip"><figure class="scene-card"><img data-story-img="0" data-kids-src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-01-bag.png" data-adults-src="../assets/ДЛЯ УРОКОВ/a1-04-adults-scene-01-workspace.png" src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-01-bag.png" alt="bag or workspace"><span>Scene 1</span></figure><figure class="scene-card"><img data-story-img="1" data-kids-src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-02-desk.png" data-adults-src="../assets/ДЛЯ УРОКОВ/a1-04-adults-scene-02-tools.png" src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-02-desk.png" alt="desk"><span>Scene 2</span></figure><figure class="scene-card"><img data-story-img="2" data-kids-src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-03-room.png" data-adults-src="../assets/ДЛЯ УРОКОВ/a1-04-adults-scene-03-apartment.png" src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-03-room.png" alt="room"><span>Scene 3</span></figure><figure class="scene-card"><img data-story-img="3" data-kids-src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-04-toys.png" data-adults-src="../assets/ДЛЯ УРОКОВ/a1-04-adults-scene-04-bag.png" src="../assets/ДЛЯ УРОКОВ/a1-04-kids-scene-04-toys.png" alt="toys"><span>Scene 4</span></figure></div><div class="prompt-grid"><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a school bag." data-adults="Mia has a laptop."> <span data-kids="Alex has a school bag." data-adults="Mia has a laptop.">Alex has a school bag.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has two books." data-adults="Mia has two notebooks."> <span data-kids="Alex has two books." data-adults="Mia has two notebooks.">Alex has two books.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a blue notebook." data-adults="Mia has a desk near the window."> <span data-kids="Alex has a blue notebook." data-adults="Mia has a desk near the window.">Alex has a blue notebook.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a lamp on his desk." data-adults="Mia has a lamp on the desk."> <span data-kids="Alex has a lamp on his desk." data-adults="Mia has a lamp on the desk.">Alex has a lamp.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex doesn't have a TV in his room." data-adults="Mia doesn't have a printer."> <span data-kids="Alex doesn't have a TV in his room." data-adults="Mia doesn't have a printer.">No TV / no printer</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex doesn't have many toys on the floor." data-adults="Mia doesn't have many documents on the table."> <span data-kids="Alex doesn't have many toys on the floor." data-adults="Mia doesn't have many documents on the table.">Not many things</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a football." data-adults="Mia has a coffee mug."> <span data-kids="Alex has a football." data-adults="Mia has a coffee mug.">Has extra item</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has some pencils." data-adults="Mia has some pens."> <span data-kids="Alex has some pencils." data-adults="Mia has some pens.">Has stationery</span></label></div></div><div class="block-nav"><a class="btn primary" href="#vocab">Next: vocabulary</a></div></section>
-
+        <section class="block" id="input"><header class="block-head"><div class="block-num">02</div><div class="block-title-wrap"><div class="block-kicker">Visual Input</div><h2 class="block-title">Look at the things</h2></div><div class="block-time">≈ 7 min</div></header><p class="block-intro">Choose one picture set. Say what the person has and does not have. Then compare two pictures with a partner.</p><div class="scene-strip"><figure class="scene-card"><img data-story-img="0" data-kids-src="../assets/Для уроков/a1-04-kids-scene-01-bag.png" data-adults-src="../assets/Для уроков/a1-04-adults-scene-01-workspace.png" src="../assets/Для уроков/a1-04-kids-scene-01-bag.png" alt="bag or workspace"><span>Scene 1</span></figure><figure class="scene-card"><img data-story-img="1" data-kids-src="../assets/Для уроков/a1-04-kids-scene-02-desk.png" data-adults-src="../assets/Для уроков/a1-04-adults-scene-02-tools.png" src="../assets/Для уроков/a1-04-kids-scene-02-desk.png" alt="desk"><span>Scene 2</span></figure><figure class="scene-card"><img data-story-img="2" data-kids-src="../assets/Для уроков/a1-04-kids-scene-03-room.png" data-adults-src="../assets/Для уроков/a1-04-adults-scene-03-apartment.png" src="../assets/Для уроков/a1-04-kids-scene-03-room.png" alt="room"><span>Scene 3</span></figure><figure class="scene-card"><img data-story-img="3" data-kids-src="../assets/Для уроков/a1-04-kids-scene-04-toys.png" data-adults-src="../assets/Для уроков/a1-04-adults-scene-04-bag.png" src="../assets/Для уроков/a1-04-kids-scene-04-toys.png" alt="toys"><span>Scene 4</span></figure></div><div class="prompt-grid"><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a school bag." data-adults="Mia has a laptop."> <span data-kids="Alex has a school bag." data-adults="Mia has a laptop.">Alex has a school bag.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has two books." data-adults="Mia has two notebooks."> <span data-kids="Alex has two books." data-adults="Mia has two notebooks.">Alex has two books.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a blue notebook." data-adults="Mia has a desk near the window."> <span data-kids="Alex has a blue notebook." data-adults="Mia has a desk near the window.">Alex has a blue notebook.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a lamp on his desk." data-adults="Mia has a lamp on the desk."> <span data-kids="Alex has a lamp on his desk." data-adults="Mia has a lamp on the desk.">Alex has a lamp.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex doesn't have a TV in his room." data-adults="Mia doesn't have a printer."> <span data-kids="Alex doesn't have a TV in his room." data-adults="Mia doesn't have a printer.">No TV / no printer</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex doesn't have many toys on the floor." data-adults="Mia doesn't have many documents on the table."> <span data-kids="Alex doesn't have many toys on the floor." data-adults="Mia doesn't have many documents on the table.">Not many things</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has a football." data-adults="Mia has a coffee mug."> <span data-kids="Alex has a football." data-adults="Mia has a coffee mug.">Has extra item</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Alex has some pencils." data-adults="Mia has some pens."> <span data-kids="Alex has some pencils." data-adults="Mia has some pens.">Has stationery</span></label></div></div><div class="block-nav"><a class="btn primary" href="#vocab">Next: vocabulary</a></div></section>
     <!-- BLOCK 03: VOCABULARY -->
     <section class="block" id="vocab"><header class="block-head"><div class="block-num">03</div><div class="block-title-wrap"><div class="block-kicker">Vocabulary</div><h2 class="block-title">Words for things</h2></div><div class="block-time">≈ 6 min</div></header><div class="vocab-grid"><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">bag</span><span class="vocab-ipa">/bæɡ/</span></div><div class="vocab-ru">I have a blue bag.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">book</span><span class="vocab-ipa">/bʊk/</span></div><div class="vocab-ru">Alex has two books.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">notebook</span><span class="vocab-ipa">/ˈnəʊtbʊk/</span></div><div class="vocab-ru">I have a notebook.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">pencil</span><span class="vocab-ipa">/ˈpensl/</span></div><div class="vocab-ru">She has three pencils.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">lamp</span><span class="vocab-ipa">/læmp/</span></div><div class="vocab-ru">Alex has a lamp.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">desk</span><span class="vocab-ipa">/desk/</span></div><div class="vocab-ru">I have a desk.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">laptop</span><span class="vocab-ipa">/ˈlæptɒp/</span></div><div class="vocab-ru">Mia has a laptop.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">printer</span><span class="vocab-ipa">/ˈprɪntə/</span></div><div class="vocab-ru">She doesn't have a printer.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">football</span><span class="vocab-ipa">/ˈfʊtbɔːl/</span></div><div class="vocab-ru">Alex has a football.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">coffee mug</span><span class="vocab-ipa">/ˈkɒfi mʌɡ/</span></div><div class="vocab-ru">Mia has a coffee mug.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">phone</span><span class="vocab-ipa">/fəʊn/</span></div><div class="vocab-ru">I have a phone.</div></div><div class="vocab-card"><div class="vocab-en"><span class="vocab-word">keys</span><span class="vocab-ipa">/kiːz/</span></div><div class="vocab-ru">She has keys.</div></div></div><div class="block-nav"><a class="btn primary" href="#focus">Next: grammar</a></div></section>
 
@@ -380,21 +612,22 @@ body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { backgro
     <section class="block" id="active"><header class="block-head"><div class="block-num">06</div><div class="block-title-wrap"><div class="block-kicker">Active Practice</div><h2 class="block-title">Build sentences and questions</h2></div><div class="block-time">≈ 7 min</div></header><div class="bank interactive"><button class="word-chip">I have</button><button class="word-chip">Alex has</button><button class="word-chip">Mia has</button><button class="word-chip">I don't have</button><button class="word-chip">Alex doesn't have</button><button class="word-chip">Mia doesn't have</button><button class="word-chip">Do you have</button><button class="word-chip">Does Alex have</button></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="I have">drop</span> a blue bag.</span><button class="practice-hint" data-answer="I have a blue bag.">model</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Alex has">drop</span> two books.</span><button class="practice-hint" data-answer="Alex has two books.">model</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Mia has">drop</span> a laptop.</span><button class="practice-hint" data-answer="Mia has a laptop.">model</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="I don't have">drop</span> a TV in my room.</span><button class="practice-hint" data-answer="I don't have a TV in my room.">model</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Alex doesn't have">drop</span> a printer.</span><button class="practice-hint" data-answer="Alex doesn't have a printer.">model</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Mia doesn't have">drop</span> many documents on the table.</span><button class="practice-hint" data-answer="Mia doesn't have many documents on the table.">model</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Do you have">drop</span> a pencil?</span><button class="practice-hint" data-answer="Do you have a pencil?">model</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Does Alex have">drop</span> a lamp?</span><button class="practice-hint" data-answer="Does Alex have a lamp?">model</button></li></ol><div class="block-nav"><a class="btn primary" href="#text">Next: reading</a></div></section>
 
     <!-- BLOCK 07: LISTENING / READING -->
-    <section class="block" id="text"><header class="block-head"><div class="block-num">07</div><div class="block-title-wrap"><div class="block-kicker">Listening / Reading</div><h2 class="block-title">Alex's things</h2></div><div class="block-time">≈ 7 min</div></header><div style="display: flex; gap: 12px; margin-bottom: 16px;"><button class="btn ghost" id="listenBtn">🔊 Listen</button><button class="btn ghost" id="showTextBtn">📄 Show text</button></div><div class="text-card" id="readingCard" style="display: block;"><h3>Alex's things</h3><p id="readingScript" data-kids="Alex has a small room. He has a bed near the window. He has a desk next to the bed. On the desk, he has two books, a blue notebook, and some pencils. Alex has a lamp on the desk. He has a football on the floor. He doesn't have a TV in his room. He doesn't have many toys on the floor. Alex likes his room because it is clean and bright." data-adults="Mia has a small workspace at home. She has a desk near the window. On the desk, she has a laptop, two notebooks, and some pens. She has a lamp and a small plant. Mia has a coffee mug near the laptop. She doesn't have a printer in the room. She doesn't have many documents on the table. Mia likes her workspace because it is quiet and simple.">Alex has a small room. He has a bed near the window. He has a desk next to the bed. On the desk, he has two books, a blue notebook, and some pencils. Alex has a lamp on the desk. He has a football on the floor. He doesn't have a TV in his room. He doesn't have many toys on the floor. Alex likes his room because it is clean and bright.</p></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Does Alex (Mia) have a small room / workspace? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes, he/she does.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Does Alex (Mia) have a desk near the window? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Does Alex (Mia) have two books / two notebooks? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Does Alex (Mia) have a lamp? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Does Alex (Mia) have a TV / a printer? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Does Alex (Mia) have many toys / many documents on the floor/table? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Does Alex have a football? / Does Mia have a coffee mug? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Does Alex (Mia) like his/her room? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#final-task">Next: final task</a></div></section>
+    <section class="block" id="text"><header class="block-head"><div class="block-num">07</div><div class="block-title-wrap"><div class="block-kicker">Listening / Reading</div><h2 class="block-title">Alex and Mia's things</h2></div><div class="block-time">≈ 7 min</div></header><div style="display: flex; gap: 12px; margin-bottom: 16px;"><button class="btn ghost" id="listenBtn">Listen</button><button class="btn ghost" id="showTextBtn">Show text</button></div><div class="text-card" id="readingCard" style="display: block;"><h3>Alex and Mia's things</h3><p id="readingScript" data-kids="Alex has a small room. He has a bed near the window. He has a desk next to the bed. On the desk, he has two books, a blue notebook, and some pencils. Alex has a lamp on the desk. He has a football on the floor. He doesn't have a TV in his room. He doesn't have many toys on the floor. Alex likes his room because it is clean and bright." data-adults="Mia has a small workspace at home. She has a desk near the window. On the desk, she has a laptop, two notebooks, and some pens. She has a lamp and a small plant. Mia has a coffee mug near the laptop. She doesn't have a printer in the room. She doesn't have many documents on the table. Mia likes her workspace because it is quiet and simple.">Alex has a small room. He has a bed near the window. He has a desk next to the bed. On the desk, he has two books, a blue notebook, and some pencils. Alex has a lamp on the desk. He has a football on the floor. He doesn't have a TV in his room. He doesn't have many toys on the floor. Alex likes his room because it is clean and bright.</p></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Does Alex (Mia) have a small room / workspace? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes, he/she does.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Does Alex (Mia) have a desk near the window? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Does Alex (Mia) have two books / two notebooks? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Does Alex (Mia) have a lamp? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Does Alex (Mia) have a TV / a printer? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Does Alex (Mia) have many toys / many documents on the floor/table? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Does Alex have a football? / Does Mia have a coffee mug? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Does Alex (Mia) like his/her room? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes.">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#final-task">Next: final task</a></div></section>
 
     <!-- BLOCK 08: FINAL TASK -->
     <section class="block" id="final-task"><header class="block-head"><div class="block-num">08</div><div class="block-title-wrap"><div class="block-kicker">Final Task</div><h2 class="block-title">Describe your things</h2></div><div class="block-time">≈ 10 min</div></header><div class="recorder"><div class="minitask-title">Record or write</div><p class="minitask-detail">Write or record 6–8 sentences about your bag, room, workspace, or apartment things. Use: 2 with I have, 2 with he/she has, 1 I don't have, 1 he/she doesn't have, and 2 questions (Do you have / Does Alex have).</p><div class="recorder-controls"><span class="record-dot" data-record-dot></span><button class="btn primary" data-record-start>Start recording</button><button class="btn ghost" data-record-stop disabled>Stop</button><audio controls data-record-audio></audio></div></div><textarea class="write-box" data-final-draft placeholder="Write 6–8 sentences:&#10;I have ...&#10;I have ...&#10;Alex has ...&#10;Mia has ...&#10;I don't have ...&#10;Alex doesn't have ...&#10;Do you have ...?&#10;Does Mia have ...?"></textarea><div class="check-grid" style="margin-top:14px"><article class="info-card"><h3>Now I can</h3><div class="now-grid"><div class="now-item"><label><input type="checkbox" data-final> I can say: I have ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: Alex has ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: I don't have ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: Alex doesn't have ...</label></div><div class="now-item"><label><input type="checkbox" data-final> I can ask: Do you have ...?</label></div><div class="now-item"><label><input type="checkbox" data-final> I can ask: Does Alex have ...?</label></div><div class="now-item"><label><input type="checkbox" data-final> I can answer: Yes, I do / No, I don't.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can answer: Yes, he does / No, he doesn't.</label></div></div></article><article class="info-card"><h3>What to send</h3><p>6–8 sentences: describe things you and other people have / don't have. Use correct have/has forms.</p></article><article class="info-card"><h3>If it is hard</h3><p>Go back to Vocabulary, then Language Focus, then do Guided Practice again.</p></article></div></section>
 
-    <nav class="lesson-foot"><a class="foot-link prev" href="../index.html#a1"><span class="foot-meta">Back to catalog</span><span class="foot-title">A1 modules</span></a><a class="foot-link" href="#focus"><span class="foot-meta">Review</span><span class="foot-title">Language Focus</span></a><a class="foot-link next" href="../index.html#a1"><span class="foot-meta">Next lesson</span><span class="foot-title">A1 Lesson 05</span></a></nav>
+    <nav class="lesson-foot" aria-label="lesson navigation"><a class="foot-link prev" href="a1-03-present-simple-adverbs-frequency.html"><span class="foot-meta">Previous lesson</span><span class="foot-title">There is / There are</span></a><a class="foot-link" href="#focus"><span class="foot-meta">Review</span><span class="foot-title">Have / Has</span></a><a class="foot-link next" href="a1-05-my-your-his-her.html"><span class="foot-meta">Next lesson</span><span class="foot-title">My / Your / His / Her</span></a></nav>
     <p class="copyright">LinguaBoost Lab · A1 Module 04 · Have / Has</p>
   </main>
   <script>
     (()=>{
       const root=document.documentElement;
       const paletteSelect=document.querySelector("[data-palette]");
-      function applyPalette(p){ root.setAttribute("data-theme",p); localStorage.setItem("lesson-palette",p); updateHeroImages(); }
+      const paletteKey = "lesson-palette-a1-04"; function applyPalette(p){ const safe=p||"light-lab"; root.setAttribute("data-theme",safe); if(paletteSelect) paletteSelect.value=safe; localStorage.setItem(paletteKey,safe); window.LinguaBoostTheme?.syncLinks(document,safe); updateHeroImages(); }
       paletteSelect?.addEventListener("change",e=>applyPalette(e.target.value));
-      applyPalette(localStorage.getItem("lesson-palette")||"light-lab");
+      const urlTheme = new URLSearchParams(window.location.search).get("theme");
+      applyPalette(urlTheme || localStorage.getItem(paletteKey) || root.getAttribute("data-theme") || "light-lab");
       
       function updateHeroImages(){
         const audience=document.body.dataset.audience||"kids";
@@ -496,3 +729,9 @@ body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { backgro
   </script>
 </body>
 </html>
+
+
+
+
+
+

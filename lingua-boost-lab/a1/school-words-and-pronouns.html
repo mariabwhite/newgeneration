@@ -1,680 +1,1020 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>School Words and Pronouns | LinguaBoost Studio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        body {
-            background: linear-gradient(135deg, #ffe6f2 0%, #ffd9e8 100%);
-            font-family: 'Quicksand', sans-serif;
-            padding: 20px 16px 40px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* Статистика */
-        .stats-panel {
-            background: #fff0f7;
-            border-radius: 70px;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-            box-shadow: 0 6px 14px rgba(255, 80, 140, 0.2);
-            border: 2px solid #ffb7d2;
-        }
-        .lives {
-            font-size: 34px;
-            letter-spacing: 6px;
-        }
-        .score-board {
-            background: #ffd966;
-            border-radius: 50px;
-            padding: 8px 24px;
-            font-weight: bold;
-            font-size: 28px;
-            color: #a13e6f;
-        }
-        .reset-game-btn {
-            background: #f4a261;
-            border: none;
-            border-radius: 50px;
-            padding: 8px 24px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        /* карточки секций */
-        .section-card {
-            background: rgba(255, 252, 248, 0.96);
-            border-radius: 56px;
-            padding: 24px 22px;
-            margin-bottom: 30px;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-            border: 2px solid #ffbfdf;
-        }
-
-        .card-title {
-            font-size: 28px;
-            font-weight: 700;
-            background: #ffe0f0;
-            display: inline-block;
-            padding: 6px 28px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            color: #b3437c;
-        }
-
-        /* флешкарточки */
-        .flashcard-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .flashcard {
-            background-color: transparent;
-            width: 170px;
-            height: 210px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            border-radius: 32px;
-        }
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-        .flashcard-front, .flashcard-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #fff0fa;
-            border: 3px solid #ff99cc;
-            padding: 10px;
-        }
-        .flashcard-back {
-            transform: rotateY(180deg);
-            background: #ffe6f2;
-        }
-        .card-word {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .sound-btn {
-            background: #ffb3d1;
-            border: none;
-            border-radius: 50px;
-            margin-top: 12px;
-            padding: 6px 14px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* сопоставление */
-        .match-zone {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-        .match-col {
-            flex: 1;
-            min-width: 180px;
-            background: #fff6fb;
-            border-radius: 48px;
-            padding: 15px;
-        }
-        .match-card-item {
-            background: #ffe2f0;
-            margin: 12px 0;
-            padding: 14px;
-            border-radius: 50px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.1s;
-            font-weight: 600;
-        }
-        .match-card-item.selected {
-            background: #ffb347;
-            color: white;
-        }
-        .match-card-item.matched {
-            background: #9bdf9b;
-            text-decoration: line-through;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        /* колесо */
-        .wheel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        canvas {
-            background: #ffe0f0;
-            border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .wheel-btn {
-            background: #e88bb4;
-            border: none;
-            font-size: 24px;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-weight: bold;
-            margin-top: 15px;
-            cursor: pointer;
-        }
-
-        /* таблица лидеров */
-        .leaderboard {
-            background: #ffecf2;
-            border-radius: 48px;
-            padding: 15px;
-        }
-        .leader-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 20px;
-            margin: 5px 0;
-            border-radius: 60px;
-            background: #fff1f9;
-            font-weight: bold;
-        }
-        .first-place {
-            background: #ffb7d2 !important;
-            color: #b3005c;
-            font-size: 22px;
-            border: 2px solid #ff69b4;
-        }
-
-        .random-task {
-            background: #fbe1f0;
-            padding: 20px;
-            border-radius: 60px;
-            text-align: center;
-        }
-        .popup-term {
-            border-bottom: 2px dotted #ff69b4;
-            cursor: help;
-        }
-        button {
-            font-family: 'Quicksand', sans-serif;
-        }
-    </style>
-  <link rel="stylesheet" href="../assets/studio-badge.css">
-  <link rel="stylesheet" href="../assets/studio-module-patch.css">
-  <script defer src="../assets/studio-module-shell.js"></script>
-<link rel="stylesheet" href="../../assets/visitor-counter.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>School Words & Pronouns — A1 | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-.legal-footer {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 18px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.16);
-  color: rgba(235,238,245,0.52);
-  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-align: center;
+:root{
+  --bg:#f3e5f5;--surface:#fff;--accent:#9c27b0;--accent2:#7b1fa2;
+  --accent3:#ce93d8;--text:#1a0030;--muted:#7a5080;
+  --ok:#2c7a4d;--miss:#c0392b;--radius:1.2rem;--shadow:0 6px 24px rgba(0,0,0,.1);
 }
-.legal-footer p { margin: 0 0 8px; }
-.legal-footer a { color: rgba(245,245,245,0.82); text-decoration: none; }
-.legal-footer a:hover { color: #ff8a3d; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;font-size:16px;min-height:100vh;}
+
+/* TOPBAR */
+.topbar{background:var(--surface);box-shadow:var(--shadow);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+.topbar-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:var(--accent);white-space:nowrap;}
+.pills{display:flex;gap:.4rem;flex-wrap:wrap;}
+.pill{background:var(--accent3);color:var(--accent2);border-radius:2rem;padding:.2rem .75rem;font-size:.8rem;font-weight:700;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:.75rem;}
+.btn-lang{background:var(--accent);color:#fff;border:none;border-radius:2rem;padding:.35rem .9rem;font-weight:700;font-size:.85rem;cursor:pointer;}
+.btn-lang:hover{background:var(--accent2);}
+.btn-back{background:none;border:2px solid var(--accent);color:var(--accent);border-radius:2rem;padding:.3rem .9rem;font-weight:700;font-size:.85rem;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-back:hover{background:var(--accent);color:#fff;}
+
+/* HERO */
+.hero{text-align:center;padding:2.5rem 1rem 1.5rem;}
+.breadcrumb{font-size:.85rem;color:var(--muted);margin-bottom:.75rem;}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.4rem;color:var(--accent2);margin-bottom:.75rem;}
+.subtitle-pill{display:inline-block;background:var(--accent);color:#fff;border-radius:2rem;padding:.4rem 1.2rem;font-weight:700;font-size:.95rem;}
+
+/* STAR BAR */
+.star-bar{display:flex;justify-content:center;gap:.75rem;padding:1rem;flex-wrap:wrap;}
+.star{font-size:1.6rem;opacity:.3;transition:opacity .4s,transform .4s;}
+.star.lit{opacity:1;transform:scale(1.2);}
+
+/* RAIL */
+.rail{display:flex;justify-content:center;gap:.5rem;padding:.5rem 1rem 1.5rem;flex-wrap:wrap;}
+.rail-step{width:2.4rem;height:2.4rem;border-radius:50%;background:#e0c8f0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:var(--muted);transition:background .4s,color .4s;}
+.rail-step.done{background:var(--ok);color:#fff;}
+
+/* SECTIONS */
+.section{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);margin:1.5rem auto;max-width:900px;overflow:hidden;}
+.section-head{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.75rem;}
+.section-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;}
+.section-num{background:rgba(255,255,255,.25);border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;flex-shrink:0;}
+.section-body{padding:1.5rem;}
+
+/* FLASHCARDS */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;}
+.flip-card{perspective:800px;height:90px;cursor:pointer;}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;border-radius:.8rem;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{position:absolute;inset:0;border-radius:.8rem;display:flex;align-items:center;justify-content:center;text-align:center;padding:.5rem;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.flip-front{background:var(--accent);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;}
+.flip-back{background:var(--accent2);color:#fff;transform:rotateY(180deg);font-size:.95rem;font-weight:700;flex-direction:column;gap:.2rem;}
+
+/* MEMORY GAME */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;}
+.mem-card{height:70px;background:var(--accent);border-radius:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:1.1rem;user-select:none;transition:background .3s,transform .2s;position:relative;overflow:hidden;}
+.mem-card::before{content:'?';position:absolute;color:rgba(255,255,255,.7);font-size:1.5rem;font-family:'Nunito',sans-serif;font-weight:900;transition:opacity .3s;}
+.mem-card.face-up::before,.mem-card.matched::before{opacity:0;}
+.mem-card.face-up{background:var(--surface);border:2px solid var(--accent);color:var(--text);}
+.mem-card.matched{background:#e8f5e9;border:2px solid var(--ok);color:var(--ok);}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s;}
+
+/* SPELLING BEE */
+.bee-progress{color:var(--muted);font-size:.9rem;margin-bottom:.75rem;font-weight:600;}
+.bee-row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem;}
+.bee-input{border:2px solid var(--accent3);border-radius:.6rem;padding:.5rem .9rem;font-size:1rem;font-family:'Manrope',sans-serif;width:220px;outline:none;}
+.bee-input:focus{border-color:var(--accent);}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:.6rem;padding:.5rem 1.2rem;font-weight:700;cursor:pointer;font-size:.95rem;transition:background .2s;}
+.btn:hover{background:var(--accent2);}
+.btn:disabled{opacity:.5;cursor:default;}
+.btn-speak{background:var(--accent3);color:var(--accent2);font-size:1.2rem;border:none;border-radius:50%;width:2.5rem;height:2.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.btn-speak:hover{background:var(--accent);color:#fff;}
+.bee-feedback{font-weight:700;margin-top:.5rem;min-height:1.4em;}
+.bee-feedback.ok{color:var(--ok);}
+.bee-feedback.miss{color:var(--miss);}
+.bee-score-bar{display:flex;gap:.4rem;margin-top:.75rem;flex-wrap:wrap;}
+.bee-dot{width:1.1rem;height:1.1rem;border-radius:50%;background:#e0c8f0;}
+.bee-dot.ok{background:var(--ok);}
+.bee-dot.miss{background:var(--miss);}
+
+/* PRONOUN MATCHING */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.match-col{display:flex;flex-direction:column;gap:.5rem;}
+.match-btn{border:2px solid var(--accent3);background:var(--surface);border-radius:.7rem;padding:.6rem 1rem;font-weight:700;cursor:pointer;text-align:center;transition:background .2s,border-color .2s;font-size:1rem;color:var(--text);}
+.match-btn:hover:not(.matched){border-color:var(--accent);background:#f9f0ff;}
+.match-btn.selected{background:var(--accent);color:#fff;border-color:var(--accent);}
+.match-btn.matched{background:#e8f5e9;border-color:var(--ok);color:var(--ok);cursor:default;}
+.match-status{margin-top:.75rem;font-weight:700;color:var(--muted);}
+
+/* QUIZ */
+.quiz-item{margin-bottom:1.25rem;padding:1rem;background:#faf0ff;border-radius:.8rem;border-left:4px solid var(--accent3);}
+.quiz-q{font-weight:700;margin-bottom:.6rem;}
+.quiz-opts{display:flex;flex-direction:column;gap:.4rem;}
+.quiz-opts label{display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:600;}
+.quiz-opts input{accent-color:var(--accent);}
+.quiz-result{margin-top:.75rem;padding:.5rem;border-radius:.6rem;font-weight:700;}
+.quiz-result.ok{background:#e8f5e9;color:var(--ok);}
+.quiz-result.miss{background:#fdecea;color:var(--miss);}
+.quiz-score{font-size:1.2rem;font-weight:700;margin-top:1rem;color:var(--accent2);}
+
+/* SPEAK CARDS */
+.speak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
+.speak-card{background:#faf0ff;border-radius:.9rem;padding:1rem;border:2px solid var(--accent3);transition:border-color .3s;}
+.speak-card.heard{border-color:var(--ok);background:#f0fff4;}
+.speak-card-en{font-weight:700;font-size:1rem;color:var(--text);margin-bottom:.3rem;}
+.speak-card-ru{font-size:.9rem;color:var(--muted);}
+.speak-card-bottom{display:flex;justify-content:flex-end;margin-top:.6rem;}
+.speak-progress{margin-top:.75rem;font-weight:600;color:var(--muted);}
+
+/* ALL DONE */
+.all-done{display:none;position:fixed;inset:0;background:rgba(155,39,176,.88);z-index:998;align-items:center;justify-content:center;text-align:center;color:#fff;flex-direction:column;gap:1rem;padding:2rem;}
+.all-done.show{display:flex;}
+.all-done h2{font-family:'Nunito',sans-serif;font-size:2rem;}
+.all-done p{font-size:1.2rem;font-weight:600;}
+.all-done .btn-close{background:#fff;color:var(--accent2);border:none;border-radius:2rem;padding:.6rem 1.5rem;font-weight:700;font-size:1rem;cursor:pointer;margin-top:.5rem;}
+
+/* CONFETTI */
+#confettiCanvas{position:fixed;top:0;left:0;pointer-events:none;z-index:999;}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.82rem;margin-top:2rem;}
+
+/* MOBILE */
+@media(max-width:520px){
+  .flip-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));}
+  .section-body{padding:1rem;}
+  .memory-grid{grid-template-columns:repeat(4,1fr);}
+  .speak-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:1.6rem;}
+  .match-grid{grid-template-columns:1fr 1fr;}
+  .match-btn{font-size:.85rem;padding:.5rem .4rem;}
+  .bee-input{width:160px;}
+}
+
+/* ═══ LAB BRAND + LOGO ══════════════════════════════════════════════════ */
+.lab-topbar{display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,3vw,1.75rem);
+  background:color-mix(in srgb,var(--surface,#fff) 92%,transparent);
+  border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:200;min-height:54px}
+.lab-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.lab-mark{width:36px;height:36px;border-radius:8px;background:var(--accent2);
+  display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.25rem;color:#fff;letter-spacing:-.05em;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);position:relative}
+.lab-mark::after{content:'';position:absolute;right:5px;bottom:5px;width:5px;height:5px;
+  border-radius:50%;background:rgba(255,255,255,.65)}
+.lab-brand-copy{display:grid;gap:1px}
+.lab-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;
+  letter-spacing:-.02em;color:var(--text);line-height:1}
+.lab-brand-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);line-height:1}
+.lab-nav{display:flex;gap:.4rem;align-items:center;margin-left:auto;flex-wrap:wrap}
+.lab-back{font-size:.75rem;font-weight:700;color:var(--muted);text-decoration:none;
+  padding:.2rem .6rem;border-radius:.5rem;transition:color .18s}
+.lab-back:hover{color:var(--accent2)}
+.lab-pill-nav{display:inline-grid;place-items:center;padding:.2rem .65rem;
+  border:1px solid rgba(0,0,0,.13);border-radius:999px;font-size:.65rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-pill-accent{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.lab-tool-btn{height:30px;padding:0 .75rem;border:1px solid rgba(0,0,0,.15);border-radius:7px;
+  background:transparent;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;
+  color:var(--muted);transition:all .16s;font-family:'Manrope',sans-serif}
+.lab-tool-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ═══ LAB HERO ══════════════════════════════════════════════════════════ */
+.lab-hero{border:1px solid rgba(0,0,0,.07);border-radius:1.5rem;
+  margin:1.2rem auto 0;max-width:960px;
+  padding:clamp(1.5rem,4vw,2.8rem) clamp(1.2rem,3vw,2.2rem);
+  background:var(--surface,#fff);overflow:hidden;position:relative;
+  box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.lab-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+  border-radius:50%;background:radial-gradient(circle,var(--accent3) 0%,transparent 68%);
+  pointer-events:none;opacity:.22}
+.lab-hero-inner{position:relative;z-index:1;display:grid;
+  grid-template-columns:1fr 148px;gap:2rem;align-items:center}
+.lab-eyebrow{font-size:.67rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:20px;height:2px;background:var(--accent2);flex-shrink:0}
+.lab-hero-title{font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.75rem,5vw,3rem);line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:.8rem;color:var(--text)}
+.lab-hero-title em{font-style:normal;color:var(--accent2)}
+.lab-hero-lead{color:var(--muted);font-size:clamp(.85rem,1.7vw,1rem);line-height:1.7;margin-bottom:1.1rem}
+.lab-hero-badges{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-badge{display:inline-grid;place-items:center;padding:.22rem .65rem;
+  border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:.64rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.04);color:var(--muted)}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;
+  background:linear-gradient(135deg,var(--accent3) 0%,var(--accent) 100%);
+  border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;opacity:.85}
+.lab-vis-inner{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:16px}
+.lab-vis-dot{border-radius:6px;background:rgba(255,255,255,.55)}
+.lab-vis-dot:nth-child(1){height:32px}
+.lab-vis-dot:nth-child(2){height:20px;margin-top:auto}
+.lab-vis-dot:nth-child(3){height:20px}
+.lab-vis-dot:nth-child(4){height:32px;margin-top:auto}
+@media(max-width:580px){
+  .lab-hero-inner{grid-template-columns:1fr}
+  .lab-hero-visual{display:none}
+  .lab-topbar{flex-wrap:wrap;gap:.5rem}
+}
+
+/* ═══ BUBBLE POP BONUS ══════════════════════════════════════════════════ */
+.bub-score-bar{text-align:center;font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--accent2);margin-bottom:.6rem}
+#bubCanvas{width:100%;height:280px;display:block;border-radius:1rem;
+  background:linear-gradient(160deg,var(--bg,#f5f5f5) 60%,color-mix(in srgb,var(--accent3) 30%,transparent));
+  cursor:crosshair;touch-action:none;border:1.5px solid rgba(0,0,0,.07)}
+.bub-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+
+
+
+/* TOP ONLY: align demo header with A1 Lesson 01 without changing palettes */
+:root { --demo-top-width: min(100% - 48px, 1240px); }
+.lab-topbar,
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  backdrop-filter: blur(14px);
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+.topbar-brand,
+.lab-brand-name,
+.brand {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+.lab-back,
+.btn-back,
+.back-link,
+.btn-top,
+.topbar-back,
+.topbar-btn,
+.btn-sm.btn-back {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.lab-hero {
+  width: var(--demo-top-width);
+  max-width: 1240px;
+  margin: 24px auto 18px !important;
+  border-radius: 18px !important;
+  padding: clamp(26px, 5vw, 56px) !important;
+  text-align: left;
+}
+.lab-hero-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.28fr) minmax(220px, .92fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.lab-eyebrow {
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase;
+}
+.lab-hero-title {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2.05rem, 5vw, 4.25rem) !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 18px !important;
+}
+.lab-hero-lead {
+  max-width: 760px;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+  line-height: 1.7 !important;
+}
+.lab-hero-badges {
+  justify-content: flex-start;
+  gap: 8px !important;
+}
+.lab-pill,
+.lab-hero-badges span,
+.topbar-pills span {
+  border-radius: 999px !important;
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase;
+}
+.hero {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin: 18px auto 10px !important;
+  padding: 0 clamp(16px, 3vw, 28px) !important;
+  text-align: center !important;
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+}
+.hero h1 {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  font-size: clamp(2rem, 4vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+.hero p,
+.hero-sub,
+.subtitle-pill,
+.hero-pill {
+  font-family: var(--display, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  letter-spacing: 0 !important;
+}
+.rail,
+.progress-rail {
+  width: var(--demo-top-width) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 820px) {
+  :root { --demo-top-width: min(100% - 28px, 1240px); }
+  .lab-hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .lab-hero { padding: 24px 18px !important; }
+  .lab-hero-visual { justify-self: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="lbs-ribbon">
-  <div class="lbs-ribbon__brand">LinguaBoost Studio</div>
-  <div class="lbs-ribbon__meta">
-    <span class="lbs-pill">A1</span>
-    <span class="lbs-pill">Kids / primary</span>
-    <span class="lbs-pill">Vocabulary + grammar</span>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <span class="topbar-brand">LinguaBoost Lab</span>
+  <div class="pills">
+    <span class="pill">A1</span>
+    <span class="pill">School</span>
+    <span class="pill">Pronouns</span>
   </div>
-  <a class="lbs-back" href="../index.html">&larr; All studio modules</a>
+  <div class="topbar-right">
+<a class="btn-back" href="../index.html">All Lessons</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">A1 &middot; Lesson 05 &middot; School · Pronouns</div>
+      <h1 class="lab-hero-title"><em>Lesson</em></h1>
+      <p class="lab-hero-lead">Interactive A1 lesson</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">A1</span>
+        <span class="lab-badge">6 activities</span>
+        <span class="lab-badge">interactive</span>
+      </div>
+    </div>
+    <div class="lab-hero-visual" aria-hidden="true">
+      <div class="lab-vis-inner">
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+        <div class="lab-vis-dot"></div><div class="lab-vis-dot"></div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="container">
-    <div class="stats-panel">
-        <div class="lives" id="livesDisplay">❤️❤️❤️</div>
-        <div class="score-board" id="scoreDisplay">⭐ 0</div>
-        <button class="reset-game-btn" id="fullResetBtn">✨ Начать заново</button>
-    </div>
-
-    <div class="section-card" style="background:#fff0fa; text-align:center;">
-        <h2 style="color:#c95a8f;">🦄 Привет, Юля! 🎀</h2>
-        <p style="font-size:22px;">У тебя 3 жизни. За правильные ответы +10 баллов. Жми на кнопки, слушай и побеждай!</p>
-    </div>
-
-    <!-- 1. Флешкарточки -->
-    <div class="section-card">
-        <div class="card-title">📖 Карточки (нажми для переворота, 🔊 для звука)</div>
-        <div class="flashcard-grid" id="flashcardGrid"></div>
-    </div>
-
-    <!-- 2. Генератор заданий (исправлен) -->
-    <div class="section-card">
-        <div class="card-title">🎲 Генератор заданий</div>
-        <div class="random-task">
-            <p id="randomQuestion" style="font-size:24px; font-weight:bold;">Нажми «Новое задание»</p>
-            <input type="text" id="randomAnswerInput" placeholder="Напиши ответ..." style="padding:10px; border-radius:50px; width:70%; font-size:18px;">
-            <div style="margin-top:15px;">
-                <button id="checkRandomBtn" style="background:#ffa3c2;">✅ Проверить</button>
-                <button id="newRandomTaskBtn" style="background:#d991b5;">🎲 НОВОЕ ЗАДАНИЕ</button>
-            </div>
-            <span id="randomFeedback" style="font-weight:bold;"></span>
-        </div>
-    </div>
-
-    <!-- 3. Сопоставь слово и картинку -->
-    <div class="section-card">
-        <div class="card-title">🧩 Сопоставь слово и картинку</div>
-        <div class="match-zone" id="matchingGameArea"></div>
-        <div id="matchFeedback" style="margin-top:12px; font-weight:bold;"></div>
-    </div>
-
-    <!-- 4. Колесо фортуны -->
-    <div class="section-card">
-        <div class="card-title">🎡 Колесо фортуны</div>
-        <div class="wheel-container">
-            <canvas id="wheelCanvas" width="300" height="300"></canvas>
-            <button id="spinWheelBtn" class="wheel-btn">🌀 Крутить колесо!</button>
-            <div id="wheelResult" style="margin-top:12px; font-weight:bold;"></div>
-        </div>
-    </div>
-
-    <!-- 5. Текст с pop-up переводом -->
-    <div class="section-card">
-        <div class="card-title">📖 Наведи на слово, чтобы увидеть перевод</div>
-        <p id="storyText" style="font-size: 22px; line-height: 1.6;"></p>
-    </div>
-
-    <!-- 6. Таблица лидеров (Юля на первом месте) -->
-    <div class="section-card">
-        <div class="card-title">🏆 Таблица лидеров</div>
-        <div id="leaderboardList" class="leaderboard"></div>
-    </div>
+  <h1>School Words &amp; Pronouns</h1>
+  <span class="subtitle-pill">Learn 12 school words + 7 pronouns</span>
 </div>
+
+<!-- STAR BAR -->
+<div class="star-bar">
+  <span class="star" id="star1">⭐</span>
+  <span class="star" id="star2">⭐</span>
+  <span class="star" id="star3">⭐</span>
+  <span class="star" id="star4">⭐</span>
+  <span class="star" id="star5">⭐</span>
+  <span class="star" id="star6">⭐</span>
+</div>
+
+<!-- RAIL -->
+<div class="rail">
+  <div class="rail-step" id="rail1">1</div>
+  <div class="rail-step" id="rail2">2</div>
+  <div class="rail-step" id="rail3">3</div>
+  <div class="rail-step" id="rail4">4</div>
+  <div class="rail-step" id="rail5">5</div>
+  <div class="rail-step" id="rail6">6</div>
+</div>
+
+<!-- SECTION 1: FLASHCARDS -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">1</div>
+    <h2>Flashcards — Flip to Learn</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:1rem;color:var(--muted);">Click each card to reveal the Russian translation. Flip all 12 to complete!</p>
+    <div class="flip-grid" id="flipGrid"></div>
+    <div id="flipProgress" style="margin-top:.75rem;font-weight:600;color:var(--muted);">Flipped: 0 / 12</div>
+  </div>
+</div>
+
+<!-- SECTION 2: MEMORY GAME -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">2</div>
+    <h2>Memory Game — Match Pairs</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:1rem;color:var(--muted);">Find all 6 matching pairs: English ↔ Russian.</p>
+    <div class="memory-grid" id="memGrid"></div>
+    <div id="memStatus" style="margin-top:.75rem;font-weight:600;color:var(--muted);">Pairs found: 0 / 6</div>
+  </div>
+</div>
+
+<!-- SECTION 3: SPELLING BEE -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">3</div>
+    <h2>Spelling Bee — Type What You Hear</h2>
+  </div>
+  <div class="section-body">
+    <div class="bee-progress" id="beeProgress">Word 1 / 8</div>
+    <div class="bee-row">
+      <button class="btn-speak" onclick="speakBee()" title="Listen">🔊</button>
+      <input class="bee-input" id="beeInput" type="text" placeholder="Type the word..." autocomplete="off"/>
+      <button class="btn" onclick="checkBee()">Check</button>
+    </div>
+    <div class="bee-feedback" id="beeFeedback"></div>
+    <div class="bee-score-bar" id="beeScoreBar"></div>
+    <div id="beeDone" style="display:none;margin-top:.75rem;font-weight:700;color:var(--ok);">✅ Spelling Bee complete!</div>
+  </div>
+</div>
+
+<!-- SECTION 4: PRONOUN MATCHING -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">4</div>
+    <h2>Pronoun Matching</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:1rem;color:var(--muted);">Click an English pronoun, then its Russian equivalent.</p>
+    <div class="match-grid">
+      <div class="match-col" id="matchLeft"></div>
+      <div class="match-col" id="matchRight"></div>
+    </div>
+    <div class="match-status" id="matchStatus">Matched: 0 / 7</div>
+  </div>
+</div>
+
+<!-- SECTION 5: QUIZ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">5</div>
+    <h2>Random Quiz — 10 Questions</h2>
+  </div>
+  <div class="section-body">
+    <div id="quizContainer"></div>
+    <button class="btn" id="quizCheckBtn" onclick="checkQuiz()" style="margin-top:1rem;">Check Answers</button>
+    <div class="quiz-score" id="quizScoreDisplay" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAK ALL -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-num">6</div>
+    <h2>Speak All — Listen &amp; Read</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:1rem;color:var(--muted);">Click 🔊 to hear each phrase. Listen to 8+ phrases to complete!</p>
+    <div class="speak-grid" id="speakGrid"></div>
+    <div class="speak-progress" id="speakProgress">Heard: 0 / 12</div>
+  </div>
+</div>
+
+
+<!-- BONUS: BUBBLE POP -->
+<section class="section" style="border-top-color:var(--accent2)">
+  <div class="section-head">
+    <h2>Bubble Pop — Vocabulary Sprint</h2>
+    <span class="section-badge">bonus game</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:.7rem">Pop bubbles with vocabulary words — score 10 points to win! Click or tap a bubble.</p>
+    <div class="bub-score-bar" id="bubScoreDisplay">Score: 0 / 10</div>
+    <canvas id="bubCanvas"></canvas>
+    <div class="bub-actions">
+      <button class="btn btn-primary" id="bubStartBtn" onclick="startBubbles()">Play</button>
+      <button class="btn btn-secondary" id="bubResetBtn" onclick="resetBubbles()" style="display:none">Reset</button>
+    </div>
+  </div>
+</section>
+<!-- ALL DONE BANNER -->
+<div class="all-done" id="allDone">
+  <h2 style="font-family:'Nunito',sans-serif;font-size:2rem">Excellent Student!</h2>
+  <p>You completed all 6 school activities! You're a superstar! ⭐</p>
+  <button class="btn-close" onclick="document.getElementById('allDone').classList.remove('show')">Close</button>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 LinguaBoost Lab · A1 English Course · School Words &amp; Pronouns</p>
+  <p style="margin-top:.3rem;">Content for educational purposes only.</p>
+</footer>
 
 <script>
-    // ---------- БАЛЛЫ И ЖИЗНИ ----------
-    let score = 0;
-    let lives = 3;
-    let leaderboard = [
-        { name: "Юля", points: 0 },
-        { name: "Алиса", points: 50 },
-        { name: "Соня", points: 35 },
-        { name: "Миша", points: 20 }
-    ];
+// ===== CORE =====
+const tasksDone = new Set();
+function completeTask(n) {
+  if (tasksDone.has(n)) return;
+  tasksDone.add(n);
+  document.getElementById('rail' + n).classList.add('done');
+  const star = document.getElementById('star' + n);
+  star.classList.add('lit');
+  star.textContent = '🌟';
+  if (tasksDone.size === 6) {
+    setTimeout(() => {
+      document.getElementById('allDone').classList.add('show');
+      launchConfetti();
+    }, 400);
+  }
+}
 
-    function updateUI() {
-        document.getElementById('scoreDisplay').innerHTML = `⭐ ${score}`;
-        let hearts = "";
-        for(let i=0; i<lives; i++) hearts += "❤️ ";
-        for(let i=lives; i<3; i++) hearts += "🖤 ";
-        document.getElementById('livesDisplay').innerHTML = hearts;
-        updateLeaderboard();
-        if(lives <= 0) {
-            alert("😢 Жизни кончились! Нажми «Начать заново».");
-        }
-    }
-
-    function addPoints(p) {
-        if(lives <= 0) return false;
-        score += p;
-        const yulia = leaderboard.find(l => l.name === "Юля");
-        if(yulia) yulia.points = score;
-        updateUI();
-        playSound(true);
-        return true;
-    }
-
-    function loseLife() {
-        if(lives <= 0) return false;
-        lives--;
-        updateUI();
-        playSound(false);
-        if(lives === 0) {
-            setTimeout(() => alert("💔 Ой, жизни закончились! Нажми кнопку «Начать заново»."), 100);
-        }
-        return true;
-    }
-
-    function playSound(correct) {
-        try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.type = 'sine';
-            const now = audioCtx.currentTime;
-            if(correct) {
-                osc.frequency.value = 880;
-                gain.gain.value = 0.2;
-                osc.start();
-                gain.gain.exponentialRampToValueAtTime(0.00001, now+0.4);
-                osc.stop(now+0.4);
-            } else {
-                osc.frequency.value = 440;
-                gain.gain.value = 0.2;
-                osc.start();
-                gain.gain.exponentialRampToValueAtTime(0.00001, now+0.3);
-                osc.stop(now+0.3);
-            }
-            setTimeout(() => audioCtx.close(), 500);
-        } catch(e) {}
-    }
-
-    function resetGame() {
-        score = 0;
-        lives = 3;
-        const yulia = leaderboard.find(l => l.name === "Юля");
-        if(yulia) yulia.points = 0;
-        updateUI();
-        document.getElementById('randomFeedback').innerHTML = "";
-        document.getElementById('matchFeedback').innerHTML = "";
-        document.getElementById('wheelResult').innerHTML = "";
-        renderMatchingGame();
-    }
-
-    // ---------- ОЗВУЧКА ----------
-    function speakWord(word) {
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.85;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utterance);
-    }
-
-    // ---------- ФЛЕШКАРТЫ ----------
-    const flashcards = [
-        { word: "I", trans: "Я", emoji: "👧" }, { word: "you", trans: "ты", emoji: "👉" },
-        { word: "he", trans: "он", emoji: "👦" }, { word: "she", trans: "она", emoji: "👧" },
-        { word: "it", trans: "оно", emoji: "🐱" }, { word: "we", trans: "мы", emoji: "👭" },
-        { word: "they", trans: "они", emoji: "👥" }, { word: "pen", trans: "ручка", emoji: "✒️" },
-        { word: "pencil", trans: "карандаш", emoji: "✏️" }, { word: "eraser", trans: "ластик", emoji: "🧽" },
-        { word: "ruler", trans: "линейка", emoji: "📏" }, { word: "notebook", trans: "тетрадь", emoji: "📓" }
-    ];
-
-    function renderFlashcards() {
-        const grid = document.getElementById('flashcardGrid');
-        grid.innerHTML = '';
-        flashcards.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'flashcard';
-            const inner = document.createElement('div');
-            inner.className = 'flashcard-inner';
-            inner.innerHTML = `
-                <div class="flashcard-front">
-                    <div class="card-word">${item.word} ${item.emoji}</div>
-                    <button class="sound-btn" data-word="${item.word}">🔊 Слушать</button>
-                </div>
-                <div class="flashcard-back">
-                    <div class="card-word">${item.trans}</div>
-                    <div>${item.emoji}</div>
-                </div>
-            `;
-            card.appendChild(inner);
-            card.addEventListener('click', (e) => {
-                if(e.target.classList.contains('sound-btn')) {
-                    e.stopPropagation();
-                    speakWord(item.word);
-                } else {
-                    card.classList.toggle('flipped');
-                }
-            });
-            grid.appendChild(card);
-        });
-    }
-    renderFlashcards();
-
-    // ---------- ГЕНЕРАТОР ЗАДАНИЙ (РАБОТАЕТ) ----------
-    const taskBank = [
-        { q: "Как будет ОН по-английски?", answer: "he" }, { q: "Переведи: МЫ", answer: "we" },
-        { q: "Как сказать ОНИ?", answer: "they" }, { q: "Переведи: РУЧКА", answer: "pen" },
-        { q: "Что это? (pencil)", answer: "pencil" }, { q: "Местоимение для девочки", answer: "she" },
-        { q: "Как будет ТЫ?", answer: "you" }, { q: "Предмет, которым стирают", answer: "eraser" },
-        { q: "Линейка по-английски", answer: "ruler" }, { q: "I — это ...", answer: "я" }
-    ];
-    let currentTask = null;
-    function newRandomTask() {
-        currentTask = taskBank[Math.floor(Math.random() * taskBank.length)];
-        document.getElementById('randomQuestion').innerHTML = `📌 ${currentTask.q}`;
-        document.getElementById('randomAnswerInput').value = '';
-        document.getElementById('randomFeedback').innerHTML = '';
-    }
-    document.getElementById('newRandomTaskBtn').addEventListener('click', newRandomTask);
-    document.getElementById('checkRandomBtn').addEventListener('click', () => {
-        if(!currentTask) return;
-        const userAnswer = document.getElementById('randomAnswerInput').value.trim().toLowerCase();
-        if(userAnswer === currentTask.answer.toLowerCase()) {
-            if(addPoints(10)) document.getElementById('randomFeedback').innerHTML = "✅ Верно! +10 баллов! 🎉";
-            else document.getElementById('randomFeedback').innerHTML = "❌ Нет жизней!";
-        } else {
-            loseLife();
-            document.getElementById('randomFeedback').innerHTML = `❌ Ошибка! Правильно: ${currentTask.answer}. -1 жизнь.`;
-        }
-        newRandomTask();
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#9c27b0','#ce93d8','#7b1fa2','#f1c40f','#2c7a4d','#e91e63'];
+  const pieces = Array.from({length:160}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 7 + 3,
+    d: Math.random() * 160,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    angle: Math.random() * Math.PI * 2,
+    spin: Math.random() * .2 - .1,
+    speed: Math.random() * 3 + 1
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      ctx.beginPath();
+      ctx.ellipse(p.x, p.y, p.r, p.r / 2, p.angle, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.y += p.speed;
+      p.x += Math.sin(p.d / 30) * 2;
+      p.angle += p.spin;
+      p.d++;
+      if (p.y > canvas.height) p.y = -10;
     });
-    newRandomTask();
+    if (++frame < 220) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
+}
 
-    // ---------- СОПОСТАВЛЕНИЕ (зелёный/красный) ----------
-    const matchPairs = [
-        { word: "she", picture: "👧 девочка" }, { word: "he", picture: "👦 мальчик" },
-        { word: "pen", picture: "✒️ ручка" }, { word: "pencil", picture: "✏️ карандаш" },
-        { word: "eraser", picture: "🧽 ластик" }, { word: "they", picture: "👥 они" }
-    ];
-    let selectedMatch = null;
-    let matchedWords = new Array(matchPairs.length).fill(false);
-    function renderMatchingGame() {
-        const container = document.getElementById('matchingGameArea');
-        container.innerHTML = `<div class="match-col"><h3>📖 Слова</h3><div id="wordsCol"></div></div>
-                               <div class="match-col"><h3>🖼️ Картинки</h3><div id="picsCol"></div></div>`;
-        const wordsDiv = document.getElementById('wordsCol');
-        const picsDiv = document.getElementById('picsCol');
-        matchPairs.forEach((pair, idx) => {
-            const wordElem = document.createElement('div');
-            wordElem.className = `match-card-item ${matchedWords[idx] ? 'matched' : ''}`;
-            wordElem.innerText = pair.word;
-            if(!matchedWords[idx]) {
-                wordElem.addEventListener('click', () => {
-                    if(selectedMatch && selectedMatch.type === 'word' && selectedMatch.index === idx) {
-                        selectedMatch = null;
-                        renderMatchingGame();
-                    } else {
-                        selectedMatch = { type: 'word', index: idx, matchId: idx };
-                        renderMatchingGame();
-                    }
-                });
-            }
-            wordsDiv.appendChild(wordElem);
-            const picElem = document.createElement('div');
-            picElem.className = `match-card-item ${matchedWords[idx] ? 'matched' : ''}`;
-            picElem.innerText = pair.picture;
-            if(!matchedWords[idx]) {
-                picElem.addEventListener('click', () => {
-                    if(selectedMatch && selectedMatch.type === 'word' && selectedMatch.matchId === idx) {
-                        matchedWords[idx] = true;
-                        addPoints(10);
-                        document.getElementById('matchFeedback').innerHTML = `✅ Верно! +10 баллов!`;
-                        selectedMatch = null;
-                        renderMatchingGame();
-                    } else {
-                        loseLife();
-                        document.getElementById('matchFeedback').innerHTML = `❌ Неправильно! -1 жизнь.`;
-                        selectedMatch = null;
-                        renderMatchingGame();
-                    }
-                });
-            }
-            picsDiv.appendChild(picElem);
-        });
-    }
-    renderMatchingGame();
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
 
-    // ---------- КОЛЕСО ФОРТУНЫ ----------
-    const sectors = [
-        { name: "+10 баллов", action: () => addPoints(10), msg: "Ура! +10 баллов!" },
-        { name: "Переведи: ОНИ", task: "they", points: 10 },
-        { name: "Скажи местоимение для девочки", task: "she", points: 10 },
-        { name: "-1 жизнь", action: () => loseLife(), msg: "Ой! -1 жизнь" },
-        { name: "+5 баллов", action: () => addPoints(5), msg: "+5 баллов!" },
-        { name: "Назови предмет (pen)", task: "pen", points: 10 }
-    ];
-    let currentRotation = 0;
-    const canvas = document.getElementById('wheelCanvas');
-    const ctx = canvas.getContext('2d');
-    function drawWheel() {
-        const angleStep = (Math.PI * 2) / sectors.length;
-        ctx.clearRect(0,0,300,300);
-        for(let i=0; i<sectors.length; i++) {
-            const start = i * angleStep + currentRotation;
-            const end = start + angleStep;
-            ctx.beginPath();
-            ctx.moveTo(150,150);
-            ctx.arc(150,150,150, start, end);
-            ctx.fillStyle = `hsl(${330 + i * 30}, 70%, 70%)`;
-            ctx.fill();
-            ctx.save();
-            ctx.translate(150,150);
-            ctx.rotate(start + angleStep/2);
-            ctx.fillStyle = "#4a2a3a";
-            ctx.font = "bold 14px 'Quicksand'";
-            ctx.fillText(sectors[i].name.substring(0,12), 60, 8);
-            ctx.restore();
-        }
-    }
-    drawWheel();
-    let spinning = false;
-    document.getElementById('spinWheelBtn').addEventListener('click', () => {
-        if(spinning) return;
-        spinning = true;
-        let spinAngle = Math.random() * 20 + 15;
-        let duration = 1000;
-        let startTime = null;
-        function animateSpin(now) {
-            if(!startTime) startTime = now;
-            let elapsed = now - startTime;
-            let t = Math.min(1, elapsed/duration);
-            let ease = 1 - Math.pow(1-t, 3);
-            let angle = currentRotation + spinAngle * Math.PI * ease;
-            ctx.clearRect(0,0,300,300);
-            const angleStep = (Math.PI * 2) / sectors.length;
-            for(let i=0; i<sectors.length; i++) {
-                const start = i * angleStep + angle;
-                const end = start + angleStep;
-                ctx.beginPath();
-                ctx.moveTo(150,150);
-                ctx.arc(150,150,150, start, end);
-                ctx.fillStyle = `hsl(${330 + i * 30}, 70%, 70%)`;
-                ctx.fill();
-                ctx.save();
-                ctx.translate(150,150);
-                ctx.rotate(start + angleStep/2);
-                ctx.fillStyle = "#2c1a24";
-                ctx.font = "bold 12px 'Quicksand'";
-                ctx.fillText(sectors[i].name.substring(0,10), 55, 8);
-                ctx.restore();
-            }
-            if(t < 1) requestAnimationFrame(animateSpin);
-            else {
-                currentRotation = angle % (Math.PI*2);
-                drawWheel();
-                let pointerAngle = (Math.PI * 1.5) % (Math.PI*2);
-                let winnerIndex = -1;
-                for(let i=0; i<sectors.length; i++) {
-                    let start = i * angleStep + currentRotation;
-                    let end = start + angleStep;
-                    if(pointerAngle >= start && pointerAngle <= end) { winnerIndex = i; break; }
-                }
-                if(winnerIndex !== -1) {
-                    const sector = sectors[winnerIndex];
-                    if(sector.action) {
-                        sector.action();
-                        document.getElementById('wheelResult').innerHTML = `🎡 ${sector.msg}`;
-                    } else if(sector.task) {
-                        let userResp = prompt(`🎡 Задание: ${sector.name}\nНапиши ответ по-английски:`);
-                        if(userResp && userResp.trim().toLowerCase() === sector.task) {
-                            addPoints(sector.points);
-                            document.getElementById('wheelResult').innerHTML = `✅ Верно! +${sector.points} баллов!`;
-                        } else {
-                            loseLife();
-                            document.getElementById('wheelResult').innerHTML = `❌ Неверно! Правильно: ${sector.task}. -1 жизнь.`;
-                        }
-                    }
-                }
-                spinning = false;
-            }
-        }
-        requestAnimationFrame(animateSpin);
+function toggleLang() {
+  const h = document.documentElement;
+  const next = h.dataset.lang === 'ru' ? 'en' : 'ru';
+  h.dataset.lang = next;
+  document.querySelectorAll('[data-ru],[data-en]').forEach(el => {
+    el.innerHTML = el.dataset[next] || el.innerHTML;
+  });
+}
+
+// ===== SECTION 1: FLASHCARDS =====
+const flashCards = [
+  {en:'I',        ru:'Я 👤'},
+  {en:'you',      ru:'ты/вы 👥'},
+  {en:'he',       ru:'он 👨'},
+  {en:'she',      ru:'она 👩'},
+  {en:'we',       ru:'мы 🤝'},
+  {en:'they',     ru:'они 👨‍👩‍👧'},
+  {en:'it',       ru:'оно 🔮'},
+  {en:'pencil',   ru:'карандаш ✏️'},
+  {en:'ruler',    ru:'линейка 📏'},
+  {en:'notebook', ru:'тетрадь 📓'},
+  {en:'backpack', ru:'рюкзак 🎒'},
+  {en:'classroom',ru:'класс 🏫'}
+];
+
+let flippedCount = 0;
+(function buildFlip() {
+  const grid = document.getElementById('flipGrid');
+  flashCards.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    card.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">${c.en}</div>
+        <div class="flip-face flip-back">${c.ru}</div>
+      </div>`;
+    card.addEventListener('click', function() {
+      if (!this.classList.contains('flipped')) {
+        this.classList.add('flipped');
+        flippedCount++;
+        document.getElementById('flipProgress').textContent = 'Flipped: ' + flippedCount + ' / 12';
+        if (flippedCount === 12) completeTask(1);
+      }
     });
+    grid.appendChild(card);
+  });
+})();
 
-    // Текст с pop-up
-    const popupStory = `Today at school, <span class="popup-term" data-trans="они">they</span> have a new <span class="popup-term" data-trans="тетрадь">notebook</span>. <span class="popup-term" data-trans="она">She</span> loves her <span class="popup-term" data-trans="ручка">pen</span>. <span class="popup-term" data-trans="мы">We</span> learn English! 🦄`;
-    document.getElementById('storyText').innerHTML = popupStory;
-    document.querySelectorAll('.popup-term').forEach(el => {
-        const trans = el.getAttribute('data-trans');
-        el.title = `Перевод: ${trans}`;
-        el.style.borderBottom = "2px dotted #ff69b4";
-    });
+// ===== SECTION 2: MEMORY GAME =====
+const memPairs = [
+  {en:'I',        ru:'Я'},
+  {en:'you',      ru:'ты'},
+  {en:'pencil',   ru:'карандаш'},
+  {en:'ruler',    ru:'линейка'},
+  {en:'notebook', ru:'тетрадь'},
+  {en:'backpack', ru:'рюкзак'}
+];
 
-    // Таблица лидеров (Юля всегда первая)
-    function updateLeaderboard() {
-        let sorted = [...leaderboard];
-        sorted.sort((a,b) => b.points - a.points);
-        const yuliaIndex = sorted.findIndex(l => l.name === "Юля");
-        if(yuliaIndex !== -1 && yuliaIndex !== 0) {
-            const yulia = sorted.splice(yuliaIndex,1)[0];
-            sorted.unshift(yulia);
-        }
-        const container = document.getElementById('leaderboardList');
-        container.innerHTML = '';
-        sorted.forEach((user, idx) => {
-            const row = document.createElement('div');
-            row.className = `leader-row ${user.name === "Юля" ? 'first-place' : ''}`;
-            row.innerHTML = `<span>${idx+1}. ${user.name}</span><span>⭐ ${user.points}</span>`;
-            container.appendChild(row);
-        });
+let memFlipped = [], memLocked = false, memMatched = 0;
+
+(function buildMemory() {
+  const cards = [];
+  memPairs.forEach((p, i) => {
+    cards.push({id: 'en' + i, word: p.en, pair: i});
+    cards.push({id: 'ru' + i, word: p.ru, pair: i});
+  });
+  // Shuffle
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  const grid = document.getElementById('memGrid');
+  cards.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'mem-card';
+    div.dataset.pair = c.pair;
+    div.dataset.id = c.id;
+    div.dataset.word = c.word;
+    div.addEventListener('click', onMemClick);
+    grid.appendChild(div);
+  });
+})();
+
+function onMemClick() {
+  if (memLocked || this.classList.contains('matched') || this.classList.contains('face-up')) return;
+  this.classList.add('face-up');
+  this.textContent = this.dataset.word;
+  memFlipped.push(this);
+  if (memFlipped.length === 2) {
+    memLocked = true;
+    const [a, b] = memFlipped;
+    if (a.dataset.pair === b.dataset.pair) {
+      a.classList.add('matched');
+      b.classList.add('matched');
+      memMatched++;
+      document.getElementById('memStatus').textContent = 'Pairs found: ' + memMatched + ' / 6';
+      memFlipped = [];
+      memLocked = false;
+      if (memMatched === 6) completeTask(2);
+    } else {
+      setTimeout(() => {
+        a.classList.remove('face-up');
+        b.classList.remove('face-up');
+        a.textContent = '';
+        b.textContent = '';
+        a.classList.add('shake');
+        b.classList.add('shake');
+        setTimeout(() => { a.classList.remove('shake'); b.classList.remove('shake'); }, 350);
+        memFlipped = [];
+        memLocked = false;
+      }, 900);
     }
-    updateLeaderboard();
-    document.getElementById('fullResetBtn').addEventListener('click', () => { resetGame(); window.location.reload(); });
+  }
+}
+
+// ===== SECTION 3: SPELLING BEE =====
+const beeWords = ['pencil','ruler','notebook','backpack','classroom','teacher','student','homework'];
+let beeIdx = 0, beeScore = 0;
+
+(function buildBeeScoreBar() {
+  const bar = document.getElementById('beeScoreBar');
+  beeWords.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'bee-dot';
+    d.id = 'beeDot' + i;
+    bar.appendChild(d);
+  });
+})();
+
+function speakBee() {
+  if (beeIdx < beeWords.length) speak(beeWords[beeIdx]);
+}
+
+function checkBee() {
+  if (beeIdx >= beeWords.length) return;
+  const input = document.getElementById('beeInput');
+  const val = input.value.trim().toLowerCase();
+  const correct = beeWords[beeIdx];
+  const fb = document.getElementById('beeFeedback');
+  const dot = document.getElementById('beeDot' + beeIdx);
+  if (val === correct) {
+    beeScore++;
+    fb.className = 'bee-feedback ok';
+    fb.textContent = '✅ Correct!';
+    dot.classList.add('ok');
+  } else {
+    fb.className = 'bee-feedback miss';
+    fb.textContent = '❌ Correct spelling: ' + correct;
+    dot.classList.add('miss');
+  }
+  beeIdx++;
+  input.value = '';
+  if (beeIdx < beeWords.length) {
+    document.getElementById('beeProgress').textContent = 'Word ' + (beeIdx + 1) + ' / 8';
+    setTimeout(() => { fb.textContent = ''; }, 800);
+  } else {
+    document.getElementById('beeProgress').textContent = 'Done!';
+    document.getElementById('beeDone').style.display = 'block';
+    input.disabled = true;
+    if (beeScore >= 4) completeTask(3);
+  }
+}
+
+document.getElementById('beeInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkBee();
+});
+
+// ===== SECTION 4: PRONOUN MATCHING =====
+const pronounPairs = [
+  {en:'I',    ru:'я'},
+  {en:'you',  ru:'ты/вы'},
+  {en:'he',   ru:'он'},
+  {en:'she',  ru:'она'},
+  {en:'we',   ru:'мы'},
+  {en:'they', ru:'они'},
+  {en:'it',   ru:'оно'}
+];
+
+const matchRuShuffled = ['ты/вы','они','он','мы','оно','она','я'];
+let matchSelected = null, matchCount = 0;
+
+(function buildMatch() {
+  const left = document.getElementById('matchLeft');
+  const right = document.getElementById('matchRight');
+  pronounPairs.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'match-btn';
+    btn.textContent = p.en;
+    btn.dataset.side = 'en';
+    btn.dataset.en = p.en;
+    btn.dataset.ru = p.ru;
+    btn.addEventListener('click', onMatchClick);
+    left.appendChild(btn);
+  });
+  matchRuShuffled.forEach(r => {
+    const btn = document.createElement('button');
+    btn.className = 'match-btn';
+    btn.textContent = r;
+    btn.dataset.side = 'ru';
+    btn.dataset.ru = r;
+    btn.addEventListener('click', onMatchClick);
+    right.appendChild(btn);
+  });
+})();
+
+function onMatchClick() {
+  if (this.classList.contains('matched')) return;
+  if (this.dataset.side === 'en') {
+    document.querySelectorAll('#matchLeft .match-btn.selected').forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+    matchSelected = this;
+  } else {
+    if (!matchSelected) return;
+    const enRu = matchSelected.dataset.ru.toLowerCase();
+    const ruVal = this.dataset.ru.toLowerCase();
+    if (enRu === ruVal) {
+      matchSelected.classList.add('matched');
+      matchSelected.classList.remove('selected');
+      this.classList.add('matched');
+      matchCount++;
+      document.getElementById('matchStatus').textContent = 'Matched: ' + matchCount + ' / 7';
+      matchSelected = null;
+      if (matchCount === 7) completeTask(4);
+    } else {
+      this.classList.add('shake');
+      matchSelected.classList.remove('selected');
+      matchSelected = null;
+      setTimeout(() => this.classList.remove('shake'), 350);
+    }
+  }
+}
+
+// ===== SECTION 5: QUIZ =====
+const quizBank = [
+  {q:'"I" is a...',                    opts:['pronoun','noun','verb'],                                   ans:'pronoun'},
+  {q:'Карандаш = ?',                   opts:['ruler','notebook','pencil'],                               ans:'pencil'},
+  {q:'"She" refers to...',             opts:['a boy','a girl','a thing'],                                ans:'a girl'},
+  {q:'Тетрадь = ?',                    opts:['backpack','notebook','ruler'],                             ans:'notebook'},
+  {q:'We = ?',                         opts:['они','мы','вы'],                                           ans:'мы'},
+  {q:'Рюкзак = ?',                     opts:['backpack','pencil','notebook'],                            ans:'backpack'},
+  {q:'"He" refers to...',              opts:['a girl','a boy','yourself'],                               ans:'a boy'},
+  {q:'Линейка = ?',                    opts:['pencil','ruler','eraser'],                                 ans:'ruler'},
+  {q:'They = ?',                       opts:['мы','вы','они'],                                           ans:'они'},
+  {q:'Класс = ?',                      opts:['classroom','teacher','homework'],                          ans:'classroom'},
+  {q:'"It" refers to...',              opts:['a person','a thing','a group'],                            ans:'a thing'},
+  {q:'Учитель = ?',                    opts:['student','homework','teacher'],                            ans:'teacher'},
+  {q:'You (plural) = ?',               opts:['мы','вы','они'],                                           ans:'вы'},
+  {q:'Домашнее задание = ?',           opts:['notebook','homework','pencil'],                            ans:'homework'},
+  {q:'Ученик = ?',                     opts:['teacher','student','ruler'],                               ans:'student'},
+  {q:'She = ?',                        opts:['он','она','оно'],                                          ans:'она'},
+  {q:'Backpack in Russian?',           opts:['тетрадь','линейка','рюкзак'],                              ans:'рюкзак'},
+  {q:'I = ?',                          opts:['Я','Ты','Он'],                                             ans:'Я'},
+  {q:'Classroom in Russian?',          opts:['класс','урок','школа'],                                    ans:'класс'},
+  {q:'"We" refers to...',              opts:['one person','a group including speaker','others only'],     ans:'a group including speaker'}
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const quizSelected = shuffle(quizBank).slice(0, 10);
+let quizChecked = false;
+
+(function buildQuiz() {
+  const container = document.getElementById('quizContainer');
+  quizSelected.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    const optsHTML = q.opts.map(o =>
+      `<label><input type="radio" name="q${i}" value="${o}"/> ${o}</label>`
+    ).join('');
+    div.innerHTML = `
+      <div class="quiz-q">${i + 1}. ${q.q}</div>
+      <div class="quiz-opts">${optsHTML}</div>
+      <div class="quiz-result" id="qr${i}" style="display:none;"></div>`;
+    container.appendChild(div);
+  });
+})();
+
+function checkQuiz() {
+  if (quizChecked) return;
+  quizChecked = true;
+  let score = 0;
+  quizSelected.forEach((q, i) => {
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    const res = document.getElementById('qr' + i);
+    res.style.display = 'block';
+    if (sel && sel.value === q.ans) {
+      score++;
+      res.className = 'quiz-result ok';
+      res.textContent = '✅ Correct!';
+    } else {
+      res.className = 'quiz-result miss';
+      res.textContent = '❌ Correct answer: ' + q.ans;
+    }
+  });
+  const sd = document.getElementById('quizScoreDisplay');
+  sd.style.display = 'block';
+  sd.textContent = 'Score: ' + score + ' / 10' + (score >= 7 ? ' — Great job! 🎉' : ' — Keep practising!');
+  document.getElementById('quizCheckBtn').disabled = true;
+  if (score >= 7) completeTask(5);
+}
+
+// ===== SECTION 6: SPEAK ALL =====
+const speakPhrases = [
+  {en:'I have a pencil.',         ru:'У меня есть карандаш.'},
+  {en:'She has a book.',          ru:'У неё есть книга.'},
+  {en:'He has a bag.',            ru:'У него есть сумка.'},
+  {en:'We have a ruler.',         ru:'У нас есть линейка.'},
+  {en:'They have pens.',          ru:'У них есть ручки.'},
+  {en:'I am a student.',          ru:'Я ученик/ученица.'},
+  {en:'She is a teacher.',        ru:'Она учитель.'},
+  {en:'He is in the classroom.',  ru:'Он в классе.'},
+  {en:'We are at school.',        ru:'Мы в школе.'},
+  {en:'They are friends.',        ru:'Они друзья.'},
+  {en:'This is my pencil case.',  ru:'Это мой пенал.'},
+  {en:'That is a blackboard.',    ru:'Это доска.'},
+];
+let speakHeard = new Set();
+function buildSpeakGrid() {
+  const grid = document.getElementById('speakGrid');
+  if (!grid) return;
+  speakPhrases.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;align-items:center;gap:.7rem;background:#f3e5f5;border-radius:.9rem;padding:.6rem .9rem;margin-bottom:.5rem';
+    div.innerHTML = `<button onclick="hearPhrase(${i})" style="background:var(--accent2);color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;flex-shrink:0">🔊</button>
+      <span style="font-weight:600">${p.en}</span>
+      <span style="color:var(--muted);font-size:.82rem">${p.ru}</span>`;
+    grid.appendChild(div);
+  });
+}
+function hearPhrase(i) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(speakPhrases[i].en);
+  u.lang = 'en-US'; u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+  speakHeard.add(i);
+  document.getElementById('speakProgress').textContent = `Heard: ${speakHeard.size} / ${speakPhrases.length}`;
+  if (speakHeard.size >= 8) completeTask(6);
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', () => {
+  buildFlipCards();
+  buildMemoryGame();
+  buildSpellingBee();
+  buildPronounMatch();
+  buildQuiz();
+  buildSpeakGrid();
+});
+
+// ═══ BUBBLE POP ═══════════════════════════════════════════════════════════
+const BUB_WORDS=['I have', 'She has', 'He has', 'a pencil', 'a book', 'a bag', 'we are', 'they are', 'a desk', 'a ruler'];
+let bubs=[],bubScore=0,bubRunning=false,bubAnimId=null;
+function startBubbles(){
+  document.getElementById('bubStartBtn').style.display='none';
+  document.getElementById('bubResetBtn').style.display='inline-block';
+  bubs=[];bubScore=0;bubRunning=true;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.width=canvas.offsetWidth||600;canvas.height=280;
+  const cs=getComputedStyle(document.documentElement);
+  const c1=cs.getPropertyValue('--accent').trim()||'#f2a822';
+  const c2=cs.getPropertyValue('--accent2').trim()||'#e06b00';
+  const c3=cs.getPropertyValue('--accent3').trim()||'#ffd54f';
+  const COLS=[c1,c2,c3,'#29b6f6','#ab47bc'];
+  function spawnBub(){
+    const r=Math.random()*22+22;
+    return{x:r+Math.random()*(canvas.width-2*r),y:canvas.height+r,r,
+      vy:-(Math.random()*.55+.38),vx:(Math.random()-.5)*.4,
+      word:BUB_WORDS[Math.floor(Math.random()*BUB_WORDS.length)],
+      c:COLS[Math.floor(Math.random()*COLS.length)],popped:false};
+  }
+  for(let i=0;i<5;i++)bubs.push(spawnBub());
+  function hitTest(mx,my){
+    bubs.forEach((b,i)=>{
+      if(!b.popped&&Math.hypot(b.x-mx,b.y-my)<b.r+8){
+        b.popped=true;bubScore++;
+        document.getElementById('bubScoreDisplay').textContent='Score: '+bubScore+' / 10';
+        if(typeof speak==='function')speak(b.word);
+        setTimeout(()=>{bubs.splice(i,1);if(bubRunning)bubs.push(spawnBub());},350);
+        if(bubScore>=10){bubRunning=false;
+          document.getElementById('bubScoreDisplay').textContent='Done! Score: '+bubScore+' / 10';}
+      }
+    });
+  }
+  canvas.onmousedown=e=>{const r=canvas.getBoundingClientRect();
+    hitTest((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));};
+  canvas.ontouchstart=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();
+    const t=e.changedTouches[0];
+    hitTest((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));};
+  (function loop(){
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(bubs.length<6&&bubRunning)bubs.push(spawnBub());
+    bubs.forEach(b=>{
+      b.x+=b.vx;b.y+=b.vy;
+      if(!b.popped){
+        ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle=b.c+'44';ctx.fill();
+        ctx.strokeStyle=b.c;ctx.lineWidth=2.5;ctx.stroke();
+        // shine
+        ctx.beginPath();ctx.arc(b.x-b.r*.28,b.y-b.r*.28,b.r*.32,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,.35)';ctx.fill();
+        ctx.fillStyle='#333';
+        ctx.font=`bold ${Math.max(10,Math.floor(b.r*.52))}px Nunito,sans-serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        const w=b.word.length>10?b.word.slice(0,9)+'…':b.word;
+        ctx.fillText(w,b.x,b.y);
+      }
+    });
+    bubs=bubs.filter(b=>b.y+b.r>-20);
+    if(bubRunning)bubAnimId=requestAnimationFrame(loop);
+  })();
+}
+function resetBubbles(){
+  bubRunning=false;if(bubAnimId)cancelAnimationFrame(bubAnimId);
+  bubs=[];bubScore=0;
+  document.getElementById('bubScoreDisplay').textContent='Score: 0 / 10';
+  const canvas=document.getElementById('bubCanvas');
+  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+  document.getElementById('bubStartBtn').style.display='inline-block';
+  document.getElementById('bubResetBtn').style.display='none';
+}
 </script>
-<div class="visitor-counter" id="visitorCounter">
-  <span id="counterValue">1243</span>
-</div>
-<script defer src="../../assets/visitor-counter.js"></script>
-<footer class="legal-footer">
-  <p>&copy; New Generation English &middot; <a href="mailto:whitenois@mail.ru">whitenois@mail.ru</a></p>
-  <p>Сайт создан Марией Витальевной Бурцевой при поддержке Claude, DeepSeek, GPT и плагина Codex Design. Упоминание этих инструментов не означает партнёрство или официальное одобрение.</p>
-  <p>Термин «нейрошкола» используется как авторское рабочее описание подхода к обучению, а не как медицинская, нейропсихологическая или коррекционная услуга.</p>
-</footer>
 </body>
 </html>
-

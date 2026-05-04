@@ -1,0 +1,715 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light-lab">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Put it there! Instructions &amp; Requests В· A1 В· LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+[data-theme="light-lab"] {
+  --bg: #f7f5ff; --bg-2: #efeaff; --card: #ffffff; --card-2: #f4f0ff;
+  --text: #1a1326; --muted: #4a4358; --faint: #756d86;
+  --accent: #ff5a1f; --accent-2: #ff6d38; --accent-on: #1a1326;
+  --brand: #7a5fcf; --brand-2: #4f3ea5;
+  --line: rgba(122,95,207,0.18); --line-2: rgba(122,95,207,0.30); --line-dot: rgba(122,95,207,0.42);
+  --hero-glow1: rgba(122,95,207,0.18); --hero-glow2: rgba(255,90,31,0.10);
+  --term-bg: rgba(122,95,207,0.06); --soft: rgba(122,95,207,0.08); --ok: #16a06b; --warn: #b7791f;
+}
+[data-theme="peach"] {
+  --bg: #f6ede7; --bg-2: #f1e2d6; --card: #fdf7f2; --card-2: #f9eee5;
+  --text: #2b1c12; --muted: #6b4f3c; --faint: #997558;
+  --accent: #e26a2c; --accent-2: #f08240; --accent-on: #fff8f3;
+  --brand: #b8542a; --brand-2: #8a3c1c;
+  --line: rgba(184,84,42,0.18); --line-2: rgba(184,84,42,0.30); --line-dot: rgba(184,84,42,0.40);
+  --hero-glow1: rgba(226,106,44,0.16); --hero-glow2: rgba(184,84,42,0.10);
+  --term-bg: rgba(184,84,42,0.06); --soft: rgba(226,106,44,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="green"] {
+  --bg: #eaf3ec; --bg-2: #dbe9de; --card: #f4faf5; --card-2: #e6f1e8;
+  --text: #102218; --muted: #3e5648; --faint: #6a8275;
+  --accent: #1f8f5a; --accent-2: #29a96a; --accent-on: #f4faf5;
+  --brand: #2f7d52; --brand-2: #1d5e3b;
+  --line: rgba(31,143,90,0.18); --line-2: rgba(31,143,90,0.30); --line-dot: rgba(31,143,90,0.40);
+  --hero-glow1: rgba(31,143,90,0.16); --hero-glow2: rgba(255,155,47,0.06);
+  --term-bg: rgba(31,143,90,0.06); --soft: rgba(31,143,90,0.08); --ok: #1f8f5a; --warn: #98791d;
+}
+[data-theme="rose"] {
+  --bg: #f5eef3; --bg-2: #ecdfe7; --card: #fbf5f9; --card-2: #f1e3ec;
+  --text: #2a1622; --muted: #6c4659; --faint: #936e82;
+  --accent: #c84d80; --accent-2: #d96796; --accent-on: #fbf5f9;
+  --brand: #a13a6c; --brand-2: #7a2851;
+  --line: rgba(161,58,108,0.18); --line-2: rgba(161,58,108,0.30); --line-dot: rgba(161,58,108,0.40);
+  --hero-glow1: rgba(200,77,128,0.16); --hero-glow2: rgba(161,58,108,0.08);
+  --term-bg: rgba(161,58,108,0.06); --soft: rgba(200,77,128,0.10); --ok: #2f7d52; --warn: #a85b16;
+}
+[data-theme="cyan"] {
+  --bg: #eaf8fb; --bg-2: #d9f0f6; --card: #f7fdff; --card-2: #e7f6fb;
+  --text: #08242c; --muted: #365c66; --faint: #6b8d96;
+  --accent: #0f9ec4; --accent-2: #18b8df; --accent-on: #f7fdff;
+  --brand: #167c9b; --brand-2: #0f5f78;
+  --line: rgba(15,158,196,0.18); --line-2: rgba(15,158,196,0.32); --line-dot: rgba(15,158,196,0.42);
+  --hero-glow1: rgba(15,158,196,0.14); --hero-glow2: rgba(22,124,155,0.08);
+  --term-bg: rgba(15,158,196,0.06); --soft: rgba(15,158,196,0.08); --ok: #15885f; --warn: #9a6618;
+}
+[data-theme="amber"] {
+  --bg: #fff7e8; --bg-2: #f7ead2; --card: #fffdf8; --card-2: #fbf0da;
+  --text: #2b2111; --muted: #665336; --faint: #927a55;
+  --accent: #d88916; --accent-2: #eba12a; --accent-on: #fff9ed;
+  --brand: #a86513; --brand-2: #7b4a0c;
+  --line: rgba(168,101,19,0.18); --line-2: rgba(168,101,19,0.30); --line-dot: rgba(168,101,19,0.40);
+  --hero-glow1: rgba(216,137,22,0.16); --hero-glow2: rgba(168,101,19,0.08);
+  --term-bg: rgba(216,137,22,0.06); --soft: rgba(216,137,22,0.10); --ok: #2f7d52; --warn: #8f5d12;
+}
+[data-theme="white"] {
+  --bg: #f8fafc; --bg-2: #edf2f7; --card: #ffffff; --card-2: #f1f5f9;
+  --text: #172033; --muted: #4b5871; --faint: #7d899f;
+  --accent: #315ee8; --accent-2: #5f83ff; --accent-on: #ffffff;
+  --brand: #6c4fd8; --brand-2: #2d3f8f;
+  --line: rgba(49,94,232,0.16); --line-2: rgba(49,94,232,0.28); --line-dot: rgba(108,79,216,0.38);
+  --hero-glow1: rgba(49,94,232,0.12); --hero-glow2: rgba(108,79,216,0.08);
+  --term-bg: rgba(49,94,232,0.05); --soft: rgba(49,94,232,0.07); --ok: #16875a; --warn: #9a6618;
+}
+[data-theme="black-lab"] {
+  --bg: #030305; --bg-2: #08070d; --card: #0d0b14; --card-2: #15101f;
+  --text: #f7f3ff; --muted: #c8bddc; --faint: #8c7da5;
+  --accent: #ff7a1a; --accent-2: #ff9b2f; --accent-on: #080503;
+  --brand: #9a7ad9; --brand-2: #c8b4ff;
+  --line: rgba(196,174,240,0.16); --line-2: rgba(196,174,240,0.30); --line-dot: rgba(196,174,240,0.42);
+  --hero-glow1: rgba(122,76,220,0.30); --hero-glow2: rgba(255,122,26,0.14);
+  --term-bg: rgba(154,122,217,0.08); --soft: rgba(154,122,217,0.10); --ok: #46c487; --warn: #f2a43b;
+}
+[data-theme="violet"] {
+  --bg: #130d24; --bg-2: #1d1433; --card: #201731; --card-2: #2b2142;
+  --text: #f7f2ff; --muted: #d0c3ee; --faint: #a999c7;
+  --accent: #b993ff; --accent-2: #d2bcff; --accent-on: #171025;
+  --brand: #ff8a2a; --brand-2: #c8b4ff;
+  --line: rgba(198,177,255,0.18); --line-2: rgba(198,177,255,0.32); --line-dot: rgba(198,177,255,0.45);
+  --hero-glow1: rgba(157,116,255,0.28); --hero-glow2: rgba(255,138,42,0.12);
+  --term-bg: rgba(198,177,255,0.06); --soft: rgba(198,177,255,0.10); --ok: #54c58f; --warn: #f0aa45;
+}
+:root {
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh; font-family: var(--body); color: var(--text);
+  background: radial-gradient(circle at 82% 4%, var(--hero-glow1), transparent 38%), radial-gradient(circle at 8% 38%, var(--hero-glow2), transparent 32%), var(--bg);
+  background-attachment: fixed; transition: background 0.3s, color 0.3s;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font: inherit; }
+.topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 16px; padding: 10px clamp(16px, 3vw, 28px); background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); min-height: 56px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark { width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px; display: grid; place-items: center; background: var(--soft); position: relative; }
+.brand-mark::before { content: "L"; font-family: var(--display); font-size: 20px; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -0.04em; }
+.brand-mark::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand); }
+.brand-copy { display: grid; gap: 2px; }
+.brand-name { font-family: var(--display); font-size: 14px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.brand-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+.topbar-nav { display: flex; gap: clamp(12px, 2vw, 22px); margin-left: 12px; flex-wrap: wrap; }
+.top-link { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color 0.18s; }
+.top-link:hover, .top-link.active { color: var(--accent); }
+.topbar-tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.btn-tool { height: 32px; min-width: 38px; padding: 0 10px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--card); color: var(--muted); font: 800 11px/1 var(--mono); letter-spacing: 0.08em; cursor: pointer; display: inline-grid; place-items: center; transition: all 0.16s; }
+select.btn-tool { width: 118px; }
+.btn-tool:hover { border-color: var(--accent); color: var(--accent); }
+.btn-tool.is-active { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 32px clamp(16px, 3vw, 28px) 80px; }
+.hero { position: relative; border: 1px solid var(--line); border-radius: 18px; padding: clamp(26px, 5vw, 56px); margin-bottom: 18px; background: radial-gradient(circle at 88% 14%, var(--hero-glow1), transparent 42%), radial-gradient(circle at 8% 88%, var(--hero-glow2), transparent 50%), var(--card); overflow: hidden; }
+.hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.28fr 0.92fr; gap: 40px; align-items: center; }
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+.hero-eyebrow::before { content: "$ "; color: var(--accent); }
+.hero-title { font-family: var(--display); font-size: clamp(2.05rem, 5vw, 4.25rem); line-height: 0.96; letter-spacing: -0.05em; margin-bottom: 18px; }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-lead { color: var(--muted); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.7; max-width: 760px; margin-bottom: 20px; }
+.hero-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill { display: inline-grid; place-items: center; min-height: 28px; padding: 6px 10px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--soft); color: var(--muted); font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { display: inline-grid; place-items: center; min-height: 42px; padding: 0 18px; border-radius: 8px; border: 1px solid var(--line-2); font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transition: transform 0.16s, border-color 0.16s, background 0.16s; }
+.btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.btn.ghost { background: var(--soft); color: var(--text); }
+.hero-photo { position: relative; min-height: 320px; border-radius: 16px; border: 1px solid var(--line-2); overflow: hidden; background: var(--card-2); box-shadow: 0 30px 80px -28px var(--hero-glow1); }
+.hero-img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; display: block; }
+.scene-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.scene-card { min-height: 188px; border: 1px solid var(--line); border-radius: 14px; background: var(--card-2); display: grid; align-content: end; position: relative; overflow: hidden; box-shadow: 0 18px 34px rgba(8,19,50,0.08); }
+.scene-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.22s ease; }
+.scene-card:hover img { transform: scale(1.03); }
+.scene-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 46%, rgba(0,0,0,0.58) 100%); }
+.scene-card span { position: relative; z-index: 1; margin: 12px; width: fit-content; border-radius: 999px; padding: 7px 10px; background: rgba(255,255,255,0.9); font-family: var(--mono); font-size: 10px; color: #081332; text-transform: uppercase; letter-spacing: 0.1em; }
+.prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.prompt-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2); display: grid; gap: 8px; }
+.prompt-card label { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; color: var(--text); }
+.prompt-card input[type="checkbox"] { margin-top: 3px; accent-color: var(--accent); }
+.now-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.now-item { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--card-2); }
+.now-item label { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); line-height: 1.45; }
+.now-item input { margin-top: 3px; accent-color: var(--ok); }
+.step-tracker { position: sticky; top: 56px; z-index: 20; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 12px 14px; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(14px); }
+.step-count { font-family: var(--mono); font-size: 10px; font-weight: 800; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; }
+.step-track { height: 8px; border-radius: 999px; background: var(--soft); overflow: hidden; }
+.step-fill { height: 100%; width: 11.1%; background: var(--accent); border-radius: inherit; transition: width 0.2s; }
+.step-name { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.block-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.bank.interactive { gap: 10px; margin-bottom: 18px; }
+.word-chip { display: inline-grid; place-items: center; min-height: 32px; padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card-2); color: var(--text); font-family: var(--mono); font-size: 11px; font-weight: 800; cursor: grab; }
+.word-chip.is-selected { border-color: var(--accent); color: var(--accent); }
+.drop-slot { display: inline-grid; place-items: center; min-width: 128px; min-height: 30px; padding: 3px 10px; border: 1px dashed var(--accent); border-radius: 999px; color: var(--faint); }
+.drop-slot.filled { border-style: solid; color: var(--text); background: var(--soft); }
+.recorder { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); margin-top: 14px; }
+.recorder-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.record-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--faint); display: inline-block; }
+.record-dot.is-recording { background: #ff4d5f; box-shadow: 0 0 0 6px rgba(255,77,95,0.16); }
+.block { position: relative; border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 30px); margin: 18px 0; background: color-mix(in srgb, var(--card) 92%, transparent); }
+.block-head { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.block-num { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line-2); display: grid; place-items: center; background: var(--soft); color: var(--accent); font-family: var(--mono); font-size: 13px; font-weight: 800; }
+.block-title-wrap { flex: 1; min-width: 0; }
+.block-kicker { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); margin-bottom: 5px; }
+.block-title { font-family: var(--display); font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.05; letter-spacing: -0.04em; }
+.block-time { flex: 0 0 auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px; }
+.block-intro { color: var(--muted); font-size: 15px; line-height: 1.66; margin-bottom: 18px; max-width: 860px; }
+.goal-grid, .focus-grid, .output-grid, .check-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.info-card, .text-card, .error-card { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--card-2); }
+.info-card h3, .text-card h3, .error-card h3 { font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; margin-bottom: 8px; }
+.info-card p, .text-card p, .error-card p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.vocab-card { padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); transition: transform 0.16s, border-color 0.16s; }
+.vocab-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.vocab-en { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.vocab-word { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.vocab-ipa { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.vocab-ru { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.vocab-example { margin-top: 10px; color: var(--text); font-size: 13px; line-height: 1.5; }
+.grammar-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
+.grammar-table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--card-2); }
+.grammar-table th, .grammar-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); vertical-align: top; text-align: left; }
+.grammar-table th:last-child, .grammar-table td:last-child { border-right: none; }
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table th { font-family: var(--display); font-size: 15px; letter-spacing: -0.02em; color: var(--text); }
+.grammar-table .formula { color: var(--accent); font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.grammar-table .sample { color: var(--muted); line-height: 1.55; }
+.grammar-rule { border-left: 3px solid var(--accent); padding: 14px 18px; background: var(--term-bg); border-radius: 0 12px 12px 0; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+.grammar-rule strong { color: var(--accent); font-weight: 800; }
+.error-card { border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.bad { color: var(--warn); }
+.good { color: var(--ok); }
+.practice-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.practice-item { display: grid; grid-template-columns: 34px 1fr auto; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); }
+.practice-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+.practice-q { font-size: 15px; line-height: 1.5; }
+.choice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.choice { border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 11px; background: var(--soft); color: var(--muted); cursor: pointer; font-family: var(--mono); font-size: 11px; font-weight: 800; }
+.choice:hover, .choice.is-picked { border-color: var(--accent); color: var(--accent); }
+.lesson-score-card {
+  width: min(100% - 56px, 1180px);
+  margin: 0 auto 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  box-shadow: 0 18px 42px rgba(8,19,50,0.06);
+}
+.lesson-score-head,
+.lesson-score-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lesson-score-head strong {
+  color: var(--accent);
+  font-size: 16px;
+}
+.lesson-score-track {
+  height: 10px;
+  margin: 12px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--soft);
+}
+.lesson-score-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.22s ease;
+}
+.choice[data-state="correct"] {
+  border-color: var(--ok);
+  color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+.choice[data-state="wrong"] {
+  border-color: var(--warn);
+  color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+}
+.drop-slot.is-correct {
+  border-color: var(--ok);
+  color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+.practice-hint { border: 1px dashed var(--line-2); background: transparent; color: var(--faint); border-radius: 999px; padding: 7px 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+.practice-hint:hover { color: var(--brand); border-color: var(--brand); }
+.practice-hint.shown { color: var(--ok); border-color: var(--ok); border-style: solid; }
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.text-card { margin-bottom: 14px; }
+.write-box { width: 100%; min-height: 138px; resize: vertical; border: 1px solid var(--line-2); border-radius: 12px; padding: 14px 16px; background: var(--term-bg); color: var(--text); outline: none; line-height: 1.55; }
+.write-box:focus { border-color: var(--accent); }
+.lesson-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.foot-link { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--card); display: grid; gap: 6px; transition: border-color 0.16s, transform 0.16s; }
+.foot-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+.foot-link.next { text-align: right; }
+.foot-meta { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); }
+.foot-title { font-family: var(--display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.copyright { margin-top: 24px; color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+
+/* Friendly UI */
+body { background: #fffaf5; color: #081332; }
+.friendly-topbar { min-height: 70px; padding: 10px clamp(18px, 3vw, 34px); background: rgba(255,255,255,0.92); border-bottom: 1px solid rgba(8,19,50,0.10); box-shadow: 0 10px 30px rgba(8,19,50,0.05); }
+.friendly-brand { gap: 10px; }
+.boost-logo-mark { width: 34px; height: 42px; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.boost-flame { width: 34px; height: 34px; display: block; filter: drop-shadow(0 9px 14px rgba(255,105,10,0.20)); }
+.friendly-brand .brand-name { font-family: var(--body); font-size: 24px; font-weight: 900; color: #081332; letter-spacing: -0.04em; display: inline-flex; align-items: baseline; gap: 0; }
+.brand-boost { color: var(--accent); }
+.lab-tag { display: inline-grid; place-items: center; min-height: 24px; padding: 0 7px; border: 2px solid #ff690a; border-radius: 6px; color: #ff690a; font-size: 13px; letter-spacing: 0.06em; margin-left: 2px; }
+.friendly-nav { margin-left: clamp(20px, 5vw, 70px); gap: clamp(22px, 4vw, 54px); }
+.friendly-nav .top-link { font-family: var(--body); font-size: 16px; font-weight: 750; letter-spacing: 0; text-transform: none; color: #111827; }
+.friendly-nav .top-link:hover, .friendly-nav .top-link.active { color: #ff690a; }
+.audience-switch { margin-left: auto; display: flex; align-items: center; gap: 4px; min-width: 218px; height: 48px; padding: 5px; border: 2px solid rgba(8,19,50,0.13); border-radius: 999px; background: #fff; }
+.audience-btn { flex: 1; height: 38px; border: 0; border-radius: 999px; background: transparent; color: #111827; font: 850 16px/1 var(--body); cursor: pointer; }
+.audience-btn.is-active { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+.friendly-tools { margin-left: 18px; display: flex; gap: 8px; align-items: center; }
+.friendly-tools .btn-tool { height: 34px; border-radius: 999px; background: #fff; color: #111827; letter-spacing: 0; }
+.level-bubble { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(8,19,50,0.13); border-radius: 50%; background: #fff; color: #081332; font-weight: 900; }
+.menu-btn { width: 42px; height: 42px; border: 0; background: transparent; display: grid; gap: 5px; align-content: center; cursor: pointer; }
+.menu-btn span { display: block; height: 3px; border-radius: 999px; background: #081332; }
+.wrap { max-width: none; padding: 0 0 78px; }
+.friendly-hero { border: 0; border-radius: 0; margin: 0; padding: 0; min-height: 480px; background: #fff; overflow: hidden; }
+.friendly-hero-inner { display: grid; grid-template-columns: minmax(390px, 0.82fr) 1.18fr; gap: 0; min-height: 480px; }
+.hero-copy-panel { position: relative; z-index: 2; padding: clamp(42px, 6vw, 72px) 28px clamp(42px, 5vw, 64px) clamp(28px, 4vw, 56px); background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.96) 72%, rgba(255,255,255,0) 100%); }
+.friendly-eyebrow { color: #ff690a; font-family: var(--body); font-size: 19px; font-weight: 900; letter-spacing: 0; text-transform: none; margin-bottom: 12px; }
+.friendly-eyebrow::before { content: ""; }
+.friendly-title { max-width: 560px; font-family: var(--body); font-size: clamp(3rem, 5.8vw, 5.3rem); line-height: 0.96; letter-spacing: -0.075em; color: #071433; }
+.friendly-title em { color: #071433; }
+.friendly-lead { max-width: 520px; color: #3d465d; font-size: 20px; line-height: 1.46; margin-bottom: 28px; }
+.friendly-meta { display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 16px; max-width: 470px; margin-bottom: 26px; }
+.info-pill { display: grid; grid-template-columns: 46px 1fr; align-items: center; gap: 12px; min-height: 78px; padding: 12px 16px; border: 1px solid rgba(8,19,50,0.11); border-radius: 14px; background: rgba(255,255,255,0.82); box-shadow: 0 16px 34px rgba(8,19,50,0.06); color: #081332; }
+.info-pill strong { font-size: 14px; }
+.info-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 3px solid #7790bf; border-radius: 50%; color: #36578c; font-weight: 900; }
+.friendly-photo { min-height: 480px; border: 0; border-radius: 0; box-shadow: none; background: #fff3e7; }
+.friendly-photo::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 32%; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.86) 30%, rgba(255,255,255,0) 100%); }
+.friendly-photo .hero-img { min-height: 480px; object-fit: cover; object-position: center; }
+.friendly-photo .hero-img,
+.scene-card img {
+  display: none;
+}
+.friendly-photo::after {
+  content: "Put it there";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 44px;
+  color: #081332;
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  text-align: center;
+  background:
+    radial-gradient(circle at 74% 24%, rgba(255, 105, 10, 0.18), transparent 28%),
+    radial-gradient(circle at 20% 78%, rgba(122, 95, 207, 0.14), transparent 34%),
+    linear-gradient(135deg, #fff7ed 0%, #f4f0ff 100%);
+}
+.scene-card {
+  align-content: center;
+  min-height: 168px;
+}
+.scene-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 2px dashed rgba(255,105,10,0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(90deg, rgba(255,105,10,0.10), transparent),
+    var(--card);
+}
+.btn { border-radius: 14px; font-family: var(--body); letter-spacing: 0; text-transform: none; font-size: 15px; font-weight: 850; min-height: 48px; padding: 0 20px; }
+.btn.primary { background: #ff690a; border-color: #ff690a; color: #fff; box-shadow: 0 16px 26px rgba(255,105,10,0.20); }
+.btn.ghost { background: #fff; color: #081332; border-color: rgba(8,19,50,0.14); }
+.lesson-flow, .learn-panel { width: min(100% - 56px, 1440px); margin: -32px auto 22px; position: relative; z-index: 5; border: 1px solid rgba(8,19,50,0.10); border-radius: 22px; background: rgba(255,255,255,0.94); box-shadow: 0 24px 70px rgba(8,19,50,0.08); padding: 26px 28px; }
+.lesson-flow h2, .learn-panel h2 { font-family: var(--body); font-size: 18px; letter-spacing: 0; color: #081332; margin-bottom: 16px; }
+.flow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px; }
+.flow-card { position: relative; min-height: 132px; border: 1px solid rgba(8,19,50,0.10); border-radius: 16px; background: #fff; padding: 28px 18px 18px 86px; display: grid; align-content: center; gap: 8px; color: #081332; }
+.flow-card:not(:last-child)::after { content: "в†’"; position: absolute; right: -34px; top: 50%; transform: translateY(-50%); color: #617291; font-size: 30px; }
+.flow-num { position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-weight: 900; }
+.flow-icon { position: absolute; left: 28px; bottom: 24px; color: #ffb21a; font-size: 42px; line-height: 1; }
+.flow-card strong { font-size: 15px; }
+.flow-card small { color: #374151; line-height: 1.45; }
+.learn-panel { margin-top: 0; display: grid; grid-template-columns: 1fr 390px; gap: 28px; background: linear-gradient(135deg, #fff 0%, #fff3e8 100%); }
+.learn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
+.learn-grid span { position: relative; padding-left: 30px; color: #081332; line-height: 1.45; }
+.learn-grid span::before { content: "вњ“"; position: absolute; left: 0; top: 0; color: #ff690a; font-weight: 900; }
+.certificate-card { align-self: center; min-height: 96px; border: 1px solid rgba(255,105,10,0.18); border-radius: 18px; background: #fff; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding: 18px; }
+.cert-star { grid-row: span 2; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: #ff690a; color: #fff; font-size: 32px; }
+.step-tracker { width: min(100% - 56px, 1440px); margin: 0 auto 18px; top: 70px; }
+.block, .lesson-foot, .copyright { width: min(100% - 56px, 1180px); margin-left: auto; margin-right: auto; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="kids"] { background: transparent; color: #111827; box-shadow: none; }
+body[data-audience="adults"] .audience-btn[data-audience-btn="adults"] { background: #ff690a; color: #fff; box-shadow: 0 10px 22px rgba(255,105,10,0.24); }
+
+/* dark themes */
+[data-theme="black-lab"] body, [data-theme="violet"] body { background: radial-gradient(circle at 78% 4%, var(--hero-glow1), transparent 40%), radial-gradient(circle at 12% 42%, var(--hero-glow2), transparent 36%), var(--bg); color: var(--text); }
+[data-theme="black-lab"] .friendly-topbar, [data-theme="violet"] .friendly-topbar { background: color-mix(in srgb, var(--bg) 90%, transparent); border-bottom-color: var(--line); box-shadow: 0 18px 44px rgba(0,0,0,0.34); }
+[data-theme="black-lab"] .friendly-brand .brand-name, [data-theme="violet"] .friendly-brand .brand-name, [data-theme="black-lab"] .friendly-nav .top-link, [data-theme="violet"] .friendly-nav .top-link, [data-theme="black-lab"] .level-bubble, [data-theme="violet"] .level-bubble, [data-theme="black-lab"] .menu-btn span, [data-theme="violet"] .menu-btn span { color: var(--text); }
+[data-theme="black-lab"] .menu-btn span, [data-theme="violet"] .menu-btn span { background: var(--text); }
+[data-theme="black-lab"] .audience-switch, [data-theme="violet"] .audience-switch, [data-theme="black-lab"] .friendly-tools .btn-tool, [data-theme="violet"] .friendly-tools .btn-tool, [data-theme="black-lab"] .level-bubble, [data-theme="violet"] .level-bubble { background: color-mix(in srgb, var(--card) 88%, transparent); border-color: var(--line-2); color: var(--text); }
+[data-theme="black-lab"] .friendly-hero, [data-theme="violet"] .friendly-hero { background: var(--bg); }
+[data-theme="black-lab"] .hero-copy-panel, [data-theme="violet"] .hero-copy-panel { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 94%, transparent) 72%, transparent 100%); }
+[data-theme="black-lab"] .friendly-title, [data-theme="violet"] .friendly-title, [data-theme="black-lab"] .friendly-title em, [data-theme="violet"] .friendly-title em { color: var(--text); }
+[data-theme="black-lab"] .friendly-lead, [data-theme="violet"] .friendly-lead { color: var(--muted); }
+[data-theme="black-lab"] .friendly-photo, [data-theme="violet"] .friendly-photo { background: var(--card); }
+[data-theme="black-lab"] .friendly-photo::before, [data-theme="violet"] .friendly-photo::before { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 76%, transparent) 34%, transparent 100%); }
+[data-theme="black-lab"] .info-pill, [data-theme="violet"] .info-pill, [data-theme="black-lab"] .lesson-flow, [data-theme="violet"] .lesson-flow, [data-theme="black-lab"] .flow-card, [data-theme="violet"] .flow-card, [data-theme="black-lab"] .certificate-card, [data-theme="violet"] .certificate-card { background: color-mix(in srgb, var(--card) 92%, transparent); border-color: var(--line); color: var(--text); box-shadow: 0 24px 70px rgba(0,0,0,0.26); }
+[data-theme="black-lab"] .learn-panel, [data-theme="violet"] .learn-panel { background: linear-gradient(135deg, color-mix(in srgb, var(--card) 96%, transparent) 0%, color-mix(in srgb, var(--card-2) 94%, transparent) 100%); border-color: var(--line); }
+[data-theme="black-lab"] .flow-card small, [data-theme="violet"] .flow-card small, [data-theme="black-lab"] .learn-grid span, [data-theme="violet"] .learn-grid span, [data-theme="black-lab"] .certificate-card small, [data-theme="violet"] .certificate-card small { color: var(--muted); }
+.hero-img, .scene-card img { background: color-mix(in srgb, var(--card) 70%, transparent); }
+@media (max-width: 1100px) { .friendly-nav { display: none; } .flow-grid { grid-template-columns: 1fr; gap: 12px; } .flow-card:not(:last-child)::after { display: none; } .learn-panel { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .friendly-hero-inner { grid-template-columns: 1fr; } .hero-copy-panel { background: var(--card); } .friendly-photo { min-height: 300px; order: -1; } .friendly-photo .hero-img { min-height: 300px; } .friendly-meta, .learn-grid { grid-template-columns: 1fr; } .lesson-flow, .learn-panel, .step-tracker, .block, .lesson-foot, .copyright { width: min(100% - 28px, 1180px); } .audience-switch { min-width: 168px; } }
+
+/* Codex sync: lesson-one purple bar system. */
+body {
+  background:
+    radial-gradient(circle at 82% 6%, var(--hero-glow1), transparent 38%),
+    radial-gradient(circle at 8% 44%, var(--hero-glow2), transparent 34%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%) !important;
+  color: var(--text);
+}
+.lesson-flow,
+.learn-panel,
+.step-tracker {
+  box-sizing: border-box;
+  width: calc(100% - 2cm);
+  max-width: none;
+}
+.lesson-flow {
+  margin: 24px auto 22px;
+}
+.learn-panel {
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 6%, var(--hero-glow2), transparent 42%),
+    color-mix(in srgb, var(--card) 94%, transparent);
+  box-shadow: 0 22px 62px color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.step-tracker {
+  margin: 0 auto 18px;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--brand) 10%, transparent);
+}
+.flow-card:not(:last-child)::after {
+  content: "\2192";
+  color: var(--brand);
+}
+.learn-grid span::before {
+  content: "\2713";
+  color: var(--accent);
+}
+.flow-num,
+.cert-star {
+  background: var(--accent);
+  color: #fff;
+}
+.flow-icon {
+  color: var(--accent);
+}
+.lesson-flow h2,
+.learn-panel h2,
+.flow-card strong,
+.certificate-card strong {
+  color: var(--text);
+}
+.flow-card small,
+.learn-grid span,
+.certificate-card small {
+  color: var(--muted);
+}
+@media (max-width: 1100px) {
+  .learn-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .lesson-flow,
+  .learn-panel,
+  .step-tracker { width: min(100% - 28px, 1180px); }
+}
+
+/* A1 01 shell match: compact square Lab header controls. */
+.friendly-brand { gap: 12px; }
+.friendly-brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.boost-logo-mark {
+  width: 34px;
+  height: 42px;
+}
+.boost-flame {
+  width: 34px;
+  height: 34px;
+}
+.friendly-brand .brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.lab-tag {
+  min-height: 22px;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  margin-left: 2px;
+}
+.friendly-nav .top-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.audience-switch {
+  border-radius: 14px;
+}
+.audience-btn {
+  border-radius: 9px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.friendly-tools .btn-tool,
+.palette-select,
+.level-bubble,
+.menu-btn {
+  border-radius: 10px;
+  font-family: var(--display);
+}
+.menu-btn {
+  border: 1px solid rgba(8,19,50,0.12);
+}
+[data-theme="black-lab"] .friendly-tools .btn-tool,
+[data-theme="violet"] .friendly-tools .btn-tool,
+[data-theme="black-lab"] .palette-select,
+[data-theme="violet"] .palette-select,
+[data-theme="black-lab"] .level-bubble,
+[data-theme="violet"] .level-bubble {
+  background: color-mix(in srgb, var(--card) 86%, transparent);
+  color: var(--text);
+}
+[data-theme="black-lab"] .audience-switch,
+[data-theme="violet"] .audience-switch {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border-color: color-mix(in srgb, var(--brand-2) 42%, var(--line));
+}
+</style>
+</head>
+<body>
+  <header class="topbar friendly-topbar">
+    <a class="brand friendly-brand" href="../index.html"><span class="boost-logo-mark"><svg class="boost-flame" viewBox="0 0 64 64"><path d="M33 4c7 11 20 20 20 35 0 12-9 21-21 21S11 52 11 40c0-9 6-16 11-22 3-4 7-8 11-14Z" fill="#ff6a00"/><path d="M34 24c5 6 10 10 10 18 0 7-5 12-12 12s-12-5-12-12c0-5 3-9 7-13 2-2 5-4 7-5Z" fill="#ffb31a" opacity="0.92"/></svg></span><span class="brand-copy friendly-brand-copy"><span class="brand-name"><span>Lingua</span><span class="brand-boost">Boost</span></span><span class="brand-tag lab-tag">LAB</span></span></a>
+    <nav class="topbar-nav friendly-nav"><a class="top-link active" href="#">Modules</a><a class="top-link" href="#final-task">Progress</a><a class="top-link" href="#input">My Lab</a><a class="top-link" href="#focus">Resources</a></nav>
+    <div class="audience-switch"><button class="audience-btn is-active" data-audience-btn="kids">Kids</button><button class="audience-btn" data-audience-btn="adults">Adults</button></div>
+    <div class="topbar-tools friendly-tools"><button class="btn-tool" data-lang-btn="ru">RU</button><button class="btn-tool is-active" data-lang-btn="en">EN</button><select class="btn-tool palette-select" data-palette><option value="light-lab">light-lab</option><option value="peach">peach</option><option value="green">green</option><option value="rose">rose</option><option value="cyan">cyan</option><option value="amber">amber</option><option value="white">white</option><option value="black-lab">black-lab</option><option value="violet">violet</option></select><span class="level-bubble">A1</span><button class="menu-btn"><span></span><span></span><span></span></button></div>
+  </header>
+  <main class="wrap">
+    <section class="hero friendly-hero"><div class="hero-inner friendly-hero-inner"><div class="hero-copy-panel"><div class="hero-eyebrow friendly-eyebrow">A1-07</div><h1 class="hero-title friendly-title">Put it there! <em>Instructions & Requests</em></h1><p class="hero-lead friendly-lead" data-kids="Clean AlexвЂ™s room with simple English instructions. Say: Put the pencils in the cup. Move the football next to the chair. Put it under the desk. Ask: Can you put it there?" data-adults="Organize MiaвЂ™s workspace with simple English requests. Say: Put the laptop on the desk. Move the documents next to the lamp. Put them in the bag. Ask: Can you move it, please?">Clean AlexвЂ™s room with simple English instructions. Say: Put the pencils in the cup. Move the football next to the chair. Put it under the desk. Ask: Can you put it there?</p><div class="hero-meta friendly-meta"><span class="info-pill"><span class="info-icon">рџ“ў</span><span><strong>Grammar Focus</strong><br>put / move / can you</span></span><span class="info-pill"><span class="info-icon">в—·</span><span><strong>Lesson Time</strong><br>50-65 min</span></span></div><div class="hero-actions"><a class="btn primary" href="#goal">Start lesson</a><a class="btn ghost" href="#final-task">Final task</a></div></div><div class="hero-photo friendly-photo"><img class="hero-img" data-hero-img data-kids-light="" data-kids-dark="" data-adults-light="" data-adults-dark=""  alt="Instructions and requests for placing objects"></div></div></section>
+    <section class="lesson-flow" aria-label="Lesson flow">
+      <h2>Lesson Flow</h2>
+      <div class="flow-grid">
+        <a class="flow-card" href="#guided"><span class="flow-num">1</span><span class="flow-icon">?</span><strong>Guided Tasks</strong><small>Learn with examples and support</small></a>
+        <a class="flow-card" href="#active"><span class="flow-num">2</span><span class="flow-icon">✎</span><strong>Active Tasks</strong><small>Practise grammar and vocabulary</small></a>
+        <a class="flow-card" href="#text"><span class="flow-num">3</span><span class="flow-icon">▤</span><strong>Reading Check</strong><small>Read and check understanding</small></a>
+        <a class="flow-card" href="#output"><span class="flow-num">4</span><span class="flow-icon">☰</span><strong>Output</strong><small>Use the language in speech</small></a>
+        <a class="flow-card" href="#final-task"><span class="flow-num">5</span><span class="flow-icon">☆</span><strong>Final Task</strong><small>Show what you can do</small></a>
+      </div>
+    </section>
+    <section class="learn-panel" aria-label="What you will learn">
+      <div>
+        <h2>What you'll learn</h2>
+        <div class="learn-grid">
+          <span>Affirmative sentences with I / you / we / they</span>
+          <span>Time expressions: always, usually, every day</span>
+          <span>Daily routines and habits</span>
+          <span>Speaking and writing about your day</span>
+        </div>
+      </div>
+      <div class="certificate-card" data-module-certificate><span class="cert-star">★</span><strong>Complete all tasks</strong><small>to get your Lab Certificate</small></div>
+    </section>
+    <div class="step-tracker"><span class="step-count">Step <span data-step-current>01</span>/09</span><span class="step-track"><span class="step-fill" data-step-fill></span></span><span class="step-name" data-step-name>Goal</span></div>
+    <section class="lesson-score-card" data-lesson-score-card><div class="lesson-score-head"><span>Auto score</span><strong data-lesson-score>0%</strong></div><div class="lesson-score-track"><span class="lesson-score-fill" data-lesson-score-fill></span></div><div class="lesson-score-meta"><span data-lesson-score-note>Complete guided tasks, build tasks, checklist, and final draft.</span><span>Module progress: <strong data-module-progress-count>0 / 8</strong></span></div></section>
+
+    <!-- BLOCK 01: GOAL -->
+    <section class="block" id="goal"><header class="block-head"><div class="block-num">01</div><div class="block-title-wrap"><div class="block-kicker">Goal</div><h2 class="block-title">What you will do in this lesson</h2></div><div class="block-time">в‰€ 3 min</div></header><p class="block-intro">In this lesson, you will learn to give simple instructions and polite requests. You will say where to put or move things. You will also use it for one thing and them for two or more things.</p><div class="goal-grid"><article class="info-card"><h3>Start</h3><p>You already know where things are: The bag is under the desk. Now you will give instructions: Put the bag under the desk.</p></article><article class="info-card"><h3>Route</h3><p>First look at objects, then learn action verbs, then practise commands, it / them, and polite requests.</p></article><article class="info-card"><h3>Finish</h3><p>At the end you will write or record 6вЂ“8 instructions for a room or workspace and ask 2 polite Can you...? questions.</p></article></div><div class="block-nav"><a class="btn primary" href="#input">Next: visual input</a></div></section>
+
+    <!-- BLOCK 02: VISUAL INPUT -->
+    <section class="block" id="input"><header class="block-head"><div class="block-num">02</div><div class="block-title-wrap"><div class="block-kicker">Visual Input</div><h2 class="block-title">Look and give instructions</h2></div><div class="block-time">в‰€ 7 min</div></header><div class="scene-strip"><figure class="scene-card"><img data-story-img="0" data-kids-light="" data-kids-dark="" data-adults-light="" data-adults-dark=""  alt="Put in / on"><span>Put in / on</span></figure><figure class="scene-card"><img data-story-img="1" data-kids-light="" data-kids-dark="" data-adults-light="" data-adults-dark=""  alt="Put under"><span>Put under</span></figure><figure class="scene-card"><img data-story-img="2" data-kids-light="" data-kids-dark="" data-adults-light="" data-adults-dark=""  alt="Move next to / between"><span>Move next to / between</span></figure><figure class="scene-card"><img data-story-img="3" data-kids-light="" data-kids-dark="" data-adults-light="" data-adults-dark=""  alt="Put behind / in front of"><span>Put behind / in front of</span></figure></div><div class="prompt-grid"><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the pencils in the cup." data-adults="Put the pens in the cup."> <span data-kids="Put the pencils in the cup." data-adults="Put the pens in the cup.">Put the pencils in the cup.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the notebook on the desk." data-adults="Put the laptop on the desk."> <span data-kids="Put the notebook on the desk." data-adults="Put the laptop on the desk.">Put the notebook on the desk.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the school bag under the desk." data-adults="Put the charger under the notebook."> <span data-kids="Put the school bag under the desk." data-adults="Put the charger under the notebook.">Put the bag under the desk.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Move the football next to the chair." data-adults="Move the phone next to the coffee mug."> <span data-kids="Move the football next to the chair." data-adults="Move the phone next to the coffee mug.">Move the football next to the chair.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the green book between two notebooks." data-adults="Put the documents between the laptop and the lamp."> <span data-kids="Put the green book between two notebooks." data-adults="Put the documents between the laptop and the lamp.">Put the book between two notebooks.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the toy robot behind the box." data-adults="Put the notebook behind the laptop."> <span data-kids="Put the toy robot behind the box." data-adults="Put the notebook behind the laptop.">Put the toy robot behind the box.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the pencil case in front of the books." data-adults="Put the keys in front of the work bag."> <span data-kids="Put the pencil case in front of the books." data-adults="Put the keys in front of the work bag.">Put the pencil case in front of the books.</span></label></div><div class="prompt-card"><label><input type="checkbox" data-obs data-kids="Put the books on the shelf." data-adults="Put the bag under the desk."> <span data-kids="Put the books on the shelf." data-adults="Put the bag under the desk.">Put the books on the shelf.</span></label></div></div><div class="block-nav"><a class="btn primary" href="#vocab">Next: vocabulary</a></div></section>
+
+    <!-- BLOCK 03: VOCABULARY -->
+    <section class="block" id="vocab"><header class="block-head"><div class="block-num">03</div><div class="block-title-wrap"><div class="block-kicker">Vocabulary</div><h2 class="block-title">Action words and places</h2></div><div class="block-time">в‰€ 6 min</div></header><div class="vocab-grid"><div class="vocab-card"><div class="vocab-word">put</div><div class="vocab-ru">Put the book on the desk.</div></div><div class="vocab-card"><div class="vocab-word">move</div><div class="vocab-ru">Move the chair next to the desk.</div></div><div class="vocab-card"><div class="vocab-word">take</div><div class="vocab-ru">Take the keys from the bag.</div></div><div class="vocab-card"><div class="vocab-word">give</div><div class="vocab-ru">Give me the notebook.</div></div><div class="vocab-card"><div class="vocab-word">find</div><div class="vocab-ru">Find the charger.</div></div><div class="vocab-card"><div class="vocab-word">Can you...?</div><div class="vocab-ru">Can you put it on the desk?</div></div><div class="vocab-card"><div class="vocab-word">please</div><div class="vocab-ru">Can you move it, please?</div></div><div class="vocab-card"><div class="vocab-word">bag</div><div class="vocab-ru">Put the bag under the desk.</div></div><div class="vocab-card"><div class="vocab-word">book</div><div class="vocab-ru">Put the book on the shelf.</div></div><div class="vocab-card"><div class="vocab-word">notebook</div><div class="vocab-ru">Put the notebook on the desk.</div></div><div class="vocab-card"><div class="vocab-word">pencil</div><div class="vocab-ru">Put the pencil in the cup.</div></div><div class="vocab-card"><div class="vocab-word">laptop</div><div class="vocab-ru">Put the laptop on the desk.</div></div><div class="vocab-card"><div class="vocab-word">phone</div><div class="vocab-ru">Move the phone next to the mug.</div></div><div class="vocab-card"><div class="vocab-word">keys</div><div class="vocab-ru">Put the keys in front of the bag.</div></div><div class="vocab-card"><div class="vocab-word">charger</div><div class="vocab-ru">Put the charger under the notebook.</div></div><div class="vocab-card"><div class="vocab-word">documents</div><div class="vocab-ru">Put the documents between the laptop and the lamp.</div></div><div class="vocab-card"><div class="vocab-word">coffee mug</div><div class="vocab-ru">Move the coffee mug next to the laptop.</div></div><div class="vocab-card"><div class="vocab-word">in</div><div class="vocab-ru">Put the pencils in the cup.</div></div><div class="vocab-card"><div class="vocab-word">on</div><div class="vocab-ru">Put the notebook on the desk.</div></div><div class="vocab-card"><div class="vocab-word">under</div><div class="vocab-ru">Put the bag under the desk.</div></div><div class="vocab-card"><div class="vocab-word">next to</div><div class="vocab-ru">Move the phone next to the mug.</div></div><div class="vocab-card"><div class="vocab-word">between</div><div class="vocab-ru">Put the book between two notebooks.</div></div><div class="vocab-card"><div class="vocab-word">behind</div><div class="vocab-ru">Put the toy robot behind the box.</div></div><div class="vocab-card"><div class="vocab-word">in front of</div><div class="vocab-ru">Put the keys in front of the bag.</div></div></div><div class="block-nav"><a class="btn primary" href="#focus">Next: commands</a></div></section>
+
+    <!-- BLOCK 04: LANGUAGE FOCUS вЂ” COMMANDS -->
+    <section class="block" id="focus"><header class="block-head"><div class="block-num">04</div><div class="block-title-wrap"><div class="block-kicker">Language Focus</div><h2 class="block-title">Commands: put, move, take, find</h2></div><div class="block-time">в‰€ 8 min</div></header><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Action</th><th>Formula</th><th>Example</th></tr></thead><tbody><tr><td class="formula">Put</td><td class="sample">Put + object + place.</td><td class="sample">Put the notebook on the desk. Put the pens in the cup.</td></tr><tr><td class="formula">Move</td><td class="sample">Move + object + place.</td><td class="sample">Move the chair next to the desk. Move the phone next to the coffee mug.</td></tr><tr><td class="formula">Take</td><td class="sample">Take + object + from + place.</td><td class="sample">Take the keys from the bag. Take the notebook from the shelf.</td></tr><tr><td class="formula">Find</td><td class="sample">Find + object + place.</td><td class="sample">Find the charger under the notebook. Find the toy behind the box.</td></tr><tr><td class="formula">Polite request</td><td class="sample">Can you + action + object + place?</td><td class="sample">Can you put the bag under the desk? Can you move the phone next to the mug?</td></tr></tbody></table></div><div class="grammar-rule"><strong>Rule:</strong> Use the base verb in commands and after Can you. Do not use -s.<br>рџ“Ќ Correct: Can you put it on the desk? вЂјпёЏ Wrong: Can you puts it on the desk?</div><div class="error-card"><h3>Typical mistake</h3><p><span class="bad">Wrong:</span> Can you puts the bag under the desk? / Move the pencils in cup.<br><span class="good">Right:</span> Can you put the bag under the desk? / Move the pencils into the cup.</p></div><div class="block-nav"><a class="btn primary" href="#mini-focus">Next: it / them</a></div></section>
+
+    <!-- BLOCK 05: MINI FOCUS вЂ” IT / THEM -->
+    <section class="block" id="mini-focus"><header class="block-head"><div class="block-num">05</div><div class="block-title-wrap"><div class="block-kicker">Mini Focus</div><h2 class="block-title">One thing = it. Many things = them.</h2></div><div class="block-time">в‰€ 6 min</div></header><div class="grammar-table-wrap"><table class="grammar-table"><thead><tr><th>Object</th><th>Pronoun</th><th>Instruction</th></tr></thead><tbody><tr><td class="sample">one book</td><td class="sample">it</td><td class="sample">Put it on the desk.</td></tr><tr><td class="sample">one bag</td><td class="sample">it</td><td class="sample">Put it under the desk.</td></tr><tr><td class="sample">one phone</td><td class="sample">it</td><td class="sample">Move it next to the mug.</td></tr><tr><td class="sample">many pencils</td><td class="sample">them</td><td class="sample">Put them in the cup.</td></tr><tr><td class="sample">two books</td><td class="sample">them</td><td class="sample">Put them on the shelf.</td></tr><tr><td class="sample">documents</td><td class="sample">them</td><td class="sample">Put them between the laptop and the lamp.</td></tr></tbody></table></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">The book is on the floor. Put ___ on the desk.<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">them</button></span></span><button class="practice-hint" data-answer="Put it on the desk.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">The pencils are on the desk. Put ___ in the cup.<span class="choice-row"><button class="choice">it</button><button class="choice" data-correct="true">them</button></span></span><button class="practice-hint" data-answer="Put them in the cup.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">The bag is near the chair. Put ___ under the desk.<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">them</button></span></span><button class="practice-hint" data-answer="Put it under the desk.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">The keys are on the table. Put ___ in the bag.<span class="choice-row"><button class="choice">it</button><button class="choice" data-correct="true">them</button></span></span><button class="practice-hint" data-answer="Put them in the bag.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">The phone is near the laptop. Move ___ next to the coffee mug.<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">them</button></span></span><button class="practice-hint" data-answer="Move it next to the coffee mug.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">The documents are on the chair. Put ___ between the laptop and the lamp.<span class="choice-row"><button class="choice">it</button><button class="choice" data-correct="true">them</button></span></span><button class="practice-hint" data-answer="Put them between the laptop and the lamp.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">The toy robot is on the desk. Put ___ behind the box.<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">them</button></span></span><button class="practice-hint" data-answer="Put it behind the box.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">The books are on the floor. Put ___ on the shelf.<span class="choice-row"><button class="choice">it</button><button class="choice" data-correct="true">them</button></span></span><button class="practice-hint" data-answer="Put them on the shelf.">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#guided">Next: guided practice</a></div></section>
+
+    <!-- BLOCK 06: GUIDED PRACTICE (16 items) -->
+    <section class="block" id="guided"><header class="block-head"><div class="block-num">06</div><div class="block-title-wrap"><div class="block-kicker">Guided Practice</div><h2 class="block-title">Choose the correct instruction</h2></div><div class="block-time">в‰€ 10 min</div></header><p class="block-intro">Choose the correct word. The score updates automatically.</p><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Put the pencils ___ the cup.<span class="choice-row"><button class="choice" data-correct="true">in</button><button class="choice">under</button></span></span><button class="practice-hint" data-answer="Put the pencils in the cup.">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Put the notebook ___ the desk.<span class="choice-row"><button class="choice" data-correct="true">on</button><button class="choice">behind</button></span></span><button class="practice-hint" data-answer="Put the notebook on the desk.">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Put the school bag ___ the desk.<span class="choice-row"><button class="choice" data-correct="true">under</button><button class="choice">between</button></span></span><button class="practice-hint" data-answer="Put the school bag under the desk.">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Move the football ___ the chair.<span class="choice-row"><button class="choice" data-correct="true">next to</button><button class="choice">in</button></span></span><button class="practice-hint" data-answer="Move the football next to the chair.">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Put the green book ___ two notebooks.<span class="choice-row"><button class="choice" data-correct="true">between</button><button class="choice">under</button></span></span><button class="practice-hint" data-answer="Put the green book between two notebooks.">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Put the toy robot ___ the box.<span class="choice-row"><button class="choice" data-correct="true">behind</button><button class="choice">on</button></span></span><button class="practice-hint" data-answer="Put the toy robot behind the box.">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Put the pencil case ___ the books.<span class="choice-row"><button class="choice" data-correct="true">in front of</button><button class="choice">between</button></span></span><button class="practice-hint" data-answer="Put the pencil case in front of the books.">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Put the books ___ the shelf.<span class="choice-row"><button class="choice" data-correct="true">on</button><button class="choice">under</button></span></span><button class="practice-hint" data-answer="Put the books on the shelf.">hint</button></li><li class="practice-item"><span class="practice-num">09</span><span class="practice-q">The bag is one thing. Put ___ under the desk.<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">them</button></span></span><button class="practice-hint" data-answer="One thing = it.">hint</button></li><li class="practice-item"><span class="practice-num">10</span><span class="practice-q">The pencils are many things. Put ___ in the cup.<span class="choice-row"><button class="choice">it</button><button class="choice" data-correct="true">them</button></span></span><button class="practice-hint" data-answer="Many things = them.">hint</button></li><li class="practice-item"><span class="practice-num">11</span><span class="practice-q">Can you ___ the laptop on the desk?<span class="choice-row"><button class="choice" data-correct="true">put</button><button class="choice">puts</button></span></span><button class="practice-hint" data-answer="After Can you, use the base verb.">hint</button></li><li class="practice-item"><span class="practice-num">12</span><span class="practice-q">Can you ___ the phone next to the mug?<span class="choice-row"><button class="choice" data-correct="true">move</button><button class="choice">moves</button></span></span><button class="practice-hint" data-answer="Can you move the phone?">hint</button></li><li class="practice-item"><span class="practice-num">13</span><span class="practice-q">___ the keys from the table.<span class="choice-row"><button class="choice" data-correct="true">Take</button><button class="choice">Takes</button></span></span><button class="practice-hint" data-answer="Start a command with the base verb.">hint</button></li><li class="practice-item"><span class="practice-num">14</span><span class="practice-q">___ the charger under the notebook.<span class="choice-row"><button class="choice" data-correct="true">Find</button><button class="choice">Finds</button></span></span><button class="practice-hint" data-answer="Find the charger under the notebook.">hint</button></li><li class="practice-item"><span class="practice-num">15</span><span class="practice-q">Put the documents ___ the laptop and the lamp.<span class="choice-row"><button class="choice" data-correct="true">between</button><button class="choice">in front of</button></span></span><button class="practice-hint" data-answer="Documents are between two objects.">hint</button></li><li class="practice-item"><span class="practice-num">16</span><span class="practice-q">Can you move ___, please?<span class="choice-row"><button class="choice" data-correct="true">it</button><button class="choice">he</button></span></span><button class="practice-hint" data-answer="Use it for one object.">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#active">Next: active practice</a></div></section>
+
+    <!-- BLOCK 07: ACTIVE PRACTICE (drag/drop) -->
+    <section class="block" id="active"><header class="block-head"><div class="block-num">07</div><div class="block-title-wrap"><div class="block-kicker">Active Practice</div><h2 class="block-title">Build instructions and requests</h2></div><div class="block-time">в‰€ 7 min</div></header><div class="bank interactive"><button class="word-chip">Put</button><button class="word-chip">Move</button><button class="word-chip">Take</button><button class="word-chip">Find</button><button class="word-chip">Can you put</button><button class="word-chip">Can you move</button><button class="word-chip">it</button><button class="word-chip">them</button><button class="word-chip">in</button><button class="word-chip">on</button><button class="word-chip">under</button><button class="word-chip">next to</button><button class="word-chip">between</button><button class="word-chip">behind</button><button class="word-chip">in front of</button></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the pencils <span class="drop-slot" data-drop data-expected="in">drop</span> the cup.</span><button class="practice-hint" data-answer="Put the pencils in the cup.">model</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the notebook <span class="drop-slot" data-drop data-expected="on">drop</span> the desk.</span><button class="practice-hint" data-answer="Put the notebook on the desk.">model</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the bag <span class="drop-slot" data-drop data-expected="under">drop</span> the desk.</span><button class="practice-hint" data-answer="Put the bag under the desk.">model</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Move">drop</span> the football <span class="drop-slot" data-drop data-expected="next to">drop</span> the chair.</span><button class="practice-hint" data-answer="Move the football next to the chair.">model</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the book <span class="drop-slot" data-drop data-expected="between">drop</span> two notebooks.</span><button class="practice-hint" data-answer="Put the book between two notebooks.">model</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the toy robot <span class="drop-slot" data-drop data-expected="behind">drop</span> the box.</span><button class="practice-hint" data-answer="Put the toy robot behind the box.">model</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Put">drop</span> the pencil case <span class="drop-slot" data-drop data-expected="in front of">drop</span> the books.</span><button class="practice-hint" data-answer="Put the pencil case in front of the books.">model</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q"><span class="drop-slot" data-drop data-expected="Can you put">drop</span> <span class="drop-slot" data-drop data-expected="it">drop</span> on the desk?</span><button class="practice-hint" data-answer="Can you put it on the desk?">model</button></li></ol><div class="block-nav"><a class="btn primary" href="#text">Next: reading</a></div></section>
+
+    <!-- BLOCK 08: LISTENING / READING -->
+    <section class="block" id="text"><header class="block-head"><div class="block-num">08</div><div class="block-title-wrap"><div class="block-kicker">Listening / Reading</div><h2 class="block-title">Clean the room. Organize the workspace.</h2></div><div class="block-time">в‰€ 7 min</div></header><div style="display: flex; gap: 12px; margin-bottom: 16px;"><button class="btn ghost" id="listenBtn">рџ”Љ Listen</button><button class="btn ghost" id="showTextBtn">рџ“„ Show text</button></div><div class="text-card" id="readingCard" style="display: block;"><h3>Alex and Mia</h3><p id="readingScript" data-kids="Alex and Mia are cleaning AlexвЂ™s room. Mia says, 'Put the pencils in the cup.' Alex puts them in the blue cup. Then Mia says, 'Put the notebook on the desk.' Alex puts it on the desk. The school bag is near the chair, so Alex puts it under the desk. The football is on the floor. Mia says, 'Move it next to the chair.' A toy robot is on the desk. Alex puts it behind a box. The pencil case is near the books. Mia says, 'Put it in front of the books.' Now the room is clean." data-adults="Mia and Alex are organizing MiaвЂ™s workspace. Alex says, 'Put the pens in the cup.' Mia puts them in the cup. Then Alex says, 'Put the laptop on the desk.' Mia puts it on the desk. The charger is on the table, so she puts it under the notebook. The phone is near the documents. Alex says, 'Move it next to the coffee mug.' The documents are on the chair, so Mia puts them between the laptop and the lamp. The keys are on the table. Alex says, 'Put them in front of the work bag.' Now the workspace is ready.">Alex and Mia are cleaning AlexвЂ™s room. Mia says, 'Put the pencils in the cup.' Alex puts them in the blue cup. Then Mia says, 'Put the notebook on the desk.' Alex puts it on the desk. The school bag is near the chair, so Alex puts it under the desk. The football is on the floor. Mia says, 'Move it next to the chair.' A toy robot is on the desk. Alex puts it behind a box. The pencil case is near the books. Mia says, 'Put it in front of the books.' Now the room is clean.</p></div><ol class="practice-list"><li class="practice-item"><span class="practice-num">01</span><span class="practice-q">Do Alex and Mia clean AlexвЂ™s room? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">02</span><span class="practice-q">Does Alex put the pencils in the cup? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">03</span><span class="practice-q">Does Alex put the notebook under the desk? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No">hint</button></li><li class="practice-item"><span class="practice-num">04</span><span class="practice-q">Does Alex put the bag under the desk? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">05</span><span class="practice-q">Does Mia say вЂњMove the football next to the chairвЂќ? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">06</span><span class="practice-q">Does Alex put the toy robot behind a box? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li><li class="practice-item"><span class="practice-num">07</span><span class="practice-q">Does Alex put the pencil case behind the books? <span class="choice-row"><button class="choice">Yes</button><button class="choice" data-correct="true">No</button></span></span><button class="practice-hint" data-answer="No">hint</button></li><li class="practice-item"><span class="practice-num">08</span><span class="practice-q">Is the room clean at the end? <span class="choice-row"><button class="choice" data-correct="true">Yes</button><button class="choice">No</button></span></span><button class="practice-hint" data-answer="Yes">hint</button></li></ol><div class="block-nav"><a class="btn primary" href="#final-task">Next: final task</a></div></section>
+
+    <!-- BLOCK 09: FINAL TASK -->
+    <section class="block" id="final-task"><header class="block-head"><div class="block-num">09</div><div class="block-title-wrap"><div class="block-kicker">Final Task</div><h2 class="block-title">Give instructions for a room or workspace</h2></div><div class="block-time">в‰€ 10 min</div></header><div class="recorder"><div class="minitask-title">Record or write</div><p class="minitask-detail">Write or record 6вЂ“8 instructions. Use at least 3 commands, 2 polite requests with Can you...?, 2 examples with it, 2 examples with them, and 5 place words.</p><div class="recorder-controls"><span class="record-dot" data-record-dot></span><button class="btn primary" data-record-start>Start recording</button><button class="btn ghost" data-record-stop disabled>Stop</button><audio controls data-record-audio></audio></div></div><textarea class="write-box" data-final-draft placeholder="Write 6вЂ“8 instructions:&#10;Put the pencils in the cup.&#10;Put the notebook on the desk.&#10;Put the bag under the desk.&#10;Move the phone next to the coffee mug.&#10;Put the documents between the laptop and the lamp.&#10;Put the keys in front of the bag.&#10;Can you put it on the desk?&#10;Can you move them, please?"></textarea><div class="check-grid"><article class="info-card"><h3>Now I can</h3><div class="now-grid"><div class="now-item"><label><input type="checkbox" data-final> I can say: Put the book on the desk.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: Move the chair next to the desk.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: Put it under the desk.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can say: Put them in the cup.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can ask: Can you put it there?</label></div><div class="now-item"><label><input type="checkbox" data-final> I can ask: Can you move them, please?</label></div><div class="now-item"><label><input type="checkbox" data-final> I can use: in / on / under / next to / between / behind / in front of.</label></div><div class="now-item"><label><input type="checkbox" data-final> I can use base verbs after Can you.</label></div></div></article><article class="info-card"><h3>What to send</h3><p>6вЂ“8 instructions + 2 polite requests for a room or workspace.</p></article><article class="info-card"><h3>If it is hard</h3><p>Go back to Visual Input, then Mini Focus, then Guided Practice.</p></article></div></section>
+
+    <nav class="lesson-foot"><a class="foot-link prev" href="../index.html#a1"><span class="foot-meta">Back to catalog</span><span class="foot-title">A1 modules</span></a><a class="foot-link" href="#focus"><span class="foot-meta">Review</span><span class="foot-title">Language Focus</span></a><a class="foot-link next" href="../index.html#a1"><span class="foot-meta">Next lesson</span><span class="foot-title">A1 Lesson 08</span></a></nav>
+    <p class="copyright">LinguaBoost Lab В· A1 Module 07 В· Put it there! Instructions &amp; Requests</p>
+  </main>
+  <script>
+    (()=>{
+      const root=document.documentElement;
+      const paletteSelect=document.querySelector("[data-palette]");
+      const paletteKey = "lesson-palette-a1-07"; function applyPalette(p){ const safe=p||"light-lab"; root.setAttribute("data-theme",safe); if(paletteSelect) paletteSelect.value=safe; localStorage.setItem(paletteKey,safe); updateHeroImages(); }
+      paletteSelect?.addEventListener("change",e=>applyPalette(e.target.value));
+      const urlTheme = new URLSearchParams(window.location.search).get("theme");
+      applyPalette(urlTheme||localStorage.getItem(paletteKey)||"light-lab");
+
+      function updateHeroImages(){
+        const audience=document.body.dataset.audience||"kids";
+        const isDark=["black-lab","violet"].includes(root.getAttribute("data-theme"));
+        const mode=isDark?"dark":"light";
+        const suffix=`${audience}${mode==='dark'?'Dark':'Light'}`;
+        const hero=document.querySelector("[data-hero-img]");
+        const heroSrc=hero?.dataset[suffix];
+        if(hero&&heroSrc) hero.src=heroSrc;
+        document.querySelectorAll("[data-story-img]").forEach(img=>{ const src=img.dataset[suffix]; if(src) img.src=src; });
+        const obsSpans=document.querySelectorAll("[data-obs] span");
+        obsSpans.forEach(span=>{ const txt=span.closest("[data-obs]")?.dataset[audience]; if(txt) span.innerText=txt; });
+        const scriptP=document.getElementById("readingScript");
+        if(scriptP&&scriptP.dataset[audience]) scriptP.innerText=scriptP.dataset[audience];
+        updateReadingChoices();
+      }
+      function applyAudience(aud){
+        document.body.dataset.audience=aud;
+        localStorage.setItem("lesson-audience",aud);
+        document.querySelectorAll("[data-audience-btn]").forEach(btn=>btn.classList.toggle("is-active",btn.dataset.audienceBtn===aud));
+        const lead=document.querySelector(".friendly-lead");
+        if(lead&&lead.dataset[aud]) lead.innerText=lead.dataset[aud];
+        updateHeroImages();
+      }
+      function updateReadingChoices(){
+        const audience=document.body.dataset.audience||"kids";
+        const items=document.querySelectorAll("#text .practice-item .practice-q");
+        if(audience==="adults"){
+          if(items[0]) items[0].innerHTML="Do Mia and Alex organize a workspace? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[1]) items[1].innerHTML="Does Mia put the pens in the cup? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[2]) items[2].innerHTML="Does Mia put the laptop under the desk? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[3]) items[3].innerHTML="Does Mia put the charger under the notebook? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[4]) items[4].innerHTML="Does Alex say вЂњMove the phone next to the coffee mugвЂќ? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[5]) items[5].innerHTML="Does Mia put the documents between the laptop and the lamp? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[6]) items[6].innerHTML="Does Mia put the keys behind the work bag? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[7]) items[7].innerHTML="Is the workspace ready at the end? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+        } else {
+          if(items[0]) items[0].innerHTML="Do Alex and Mia clean AlexвЂ™s room? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[1]) items[1].innerHTML="Does Alex put the pencils in the cup? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[2]) items[2].innerHTML="Does Alex put the notebook under the desk? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[3]) items[3].innerHTML="Does Alex put the bag under the desk? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[4]) items[4].innerHTML="Does Mia say вЂњMove the football next to the chairвЂќ? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[5]) items[5].innerHTML="Does Alex put the toy robot behind a box? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+          if(items[6]) items[6].innerHTML="Does Alex put the pencil case behind the books? <span class='choice-row'><button class='choice'>Yes</button><button class='choice' data-correct='true'>No</button></span>";
+          if(items[7]) items[7].innerHTML="Is the room clean at the end? <span class='choice-row'><button class='choice' data-correct='true'>Yes</button><button class='choice'>No</button></span>";
+        }
+        document.querySelectorAll("#text .choice").forEach(btn=>btn.removeEventListener("click",choiceHandler));
+        document.querySelectorAll("#text .choice").forEach(btn=>btn.addEventListener("click",choiceHandler));
+        updateScore();
+      }
+      function choiceHandler(e){
+        const row=e.currentTarget.closest(".choice-row");
+        row?.querySelectorAll(".choice").forEach(c=>{c.classList.remove("is-picked");c.removeAttribute("data-state");});
+        e.currentTarget.classList.add("is-picked");
+        e.currentTarget.dataset.state=e.currentTarget.dataset.correct==="true"?"correct":"wrong";
+        updateScore();
+      }
+      applyAudience(localStorage.getItem("lesson-audience")||"kids");
+      document.querySelectorAll("[data-audience-btn]").forEach(btn=>btn.addEventListener("click",()=>applyAudience(btn.dataset.audienceBtn)));
+
+      document.querySelectorAll(".choice").forEach(btn=>btn.addEventListener("click",choiceHandler));
+      document.querySelectorAll(".practice-hint").forEach(btn=>btn.addEventListener("click",function(){ this.textContent=this.dataset.answer||""; this.classList.add("shown"); }));
+      let selectedWord="";
+      document.querySelectorAll(".word-chip").forEach(chip=>{ chip.addEventListener("click",()=>{ document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("is-selected")); chip.classList.add("is-selected"); selectedWord=chip.textContent.trim(); }); chip.addEventListener("dragstart",e=>{ selectedWord=chip.textContent.trim(); e.dataTransfer?.setData("text/plain",selectedWord); }); });
+      document.querySelectorAll("[data-drop]").forEach(slot=>{ function fill(v){ if(!v)return; slot.textContent=v; slot.classList.add("filled"); const exp=slot.dataset.expected; const isCorrect=exp&&v.trim().toLowerCase()===exp.toLowerCase(); slot.classList.toggle("is-correct",isCorrect); updateScore(); } slot.addEventListener("click",()=>fill(selectedWord)); slot.addEventListener("dragover",e=>e.preventDefault()); slot.addEventListener("drop",e=>{ e.preventDefault(); fill(e.dataTransfer?.getData("text/plain")||selectedWord); }); });
+
+      function updateScore(){
+        const correctChoices=document.querySelectorAll("#guided .choice.is-picked[data-correct='true']").length;
+        const correctDrops=document.querySelectorAll("[data-drop].filled.is-correct").length;
+        const obsChecks=document.querySelectorAll("[data-obs]:checked").length;
+        const miniChecks=document.querySelectorAll("#mini-focus .choice.is-picked[data-correct='true']").length;
+        const readChecks=document.querySelectorAll("#text .choice.is-picked[data-correct='true']").length;
+        const finalChecks=document.querySelectorAll("[data-final]:checked").length;
+        const draft=document.querySelector("[data-final-draft]")?.value.trim()||"";
+        const draftDone=draft.split(/\s+/).length>=20;
+        const points=correctChoices+correctDrops+Math.min(obsChecks,4)+miniChecks+readChecks+Math.min(finalChecks,4)+(draftDone?4:0);
+        const max=16+8+8+8+8+8+4;
+        const score=Math.round((points/max)*100);
+        document.querySelector("[data-lesson-score]").textContent=`${score}%`;
+        document.querySelector("[data-lesson-score-fill]").style.width=`${score}%`;
+        const comp=Math.min(8,Math.floor(score/12.5));
+        document.querySelector("[data-module-progress-count]").textContent=`${comp} / 8`;
+      }
+      document.querySelectorAll("input[type='checkbox']").forEach(i=>i.addEventListener("change",updateScore));
+      document.querySelector("[data-final-draft]")?.addEventListener("input",updateScore);
+      updateScore();
+
+      const stepBlocks=["goal","input","vocab","focus","mini-focus","guided","active","text","final-task"];
+      function updateStep(){ let active=0; stepBlocks.forEach((id,i)=>{ const b=document.getElementById(id); if(b&&b.getBoundingClientRect().top<window.innerHeight*0.42) active=i; }); if(document.querySelector("[data-step-current]")) document.querySelector("[data-step-current]").textContent=String(active+1).padStart(2,"0"); if(document.querySelector("[data-step-fill]")) document.querySelector("[data-step-fill]").style.width=`${((active+1)/stepBlocks.length)*100}%`; if(document.querySelector("[data-step-name]")) document.querySelector("[data-step-name]").textContent=stepBlocks[active].charAt(0).toUpperCase()+stepBlocks[active].slice(1); }
+      window.addEventListener("scroll",updateStep); updateStep();
+
+      let mediaRecorder,chunks=[];
+      const startBtn=document.querySelector("[data-record-start]"),stopBtn=document.querySelector("[data-record-stop]"),audioEl=document.querySelector("[data-record-audio]"),recordDot=document.querySelector("[data-record-dot]");
+      startBtn?.addEventListener("click",async()=>{ if(!navigator.mediaDevices?.getUserMedia) return; const stream=await navigator.mediaDevices.getUserMedia({audio:true}); chunks=[]; mediaRecorder=new MediaRecorder(stream); mediaRecorder.addEventListener("dataavailable",e=>{ if(e.data.size>0) chunks.push(e.data); }); mediaRecorder.addEventListener("stop",()=>{ const blob=new Blob(chunks,{type:"audio/webm"}); if(audioEl) audioEl.src=URL.createObjectURL(blob); stream.getTracks().forEach(t=>t.stop()); }); mediaRecorder.start(); startBtn.disabled=true; stopBtn?.removeAttribute("disabled"); recordDot?.classList.add("is-recording"); });
+      stopBtn?.addEventListener("click",()=>{ mediaRecorder?.stop(); stopBtn.disabled=true; startBtn?.removeAttribute("disabled"); recordDot?.classList.remove("is-recording"); });
+
+      document.getElementById("listenBtn")?.addEventListener("click",()=>{ const text=document.getElementById("readingScript")?.innerText; if(text&&window.speechSynthesis){ window.speechSynthesis.cancel(); const utter=new SpeechSynthesisUtterance(text); utter.lang="en-US"; utter.rate=0.9; window.speechSynthesis.speak(utter); } });
+      let textVisible=true;
+      document.getElementById("showTextBtn")?.addEventListener("click",()=>{ const card=document.getElementById("readingCard"); if(card){ textVisible=!textVisible; card.style.display=textVisible?"block":"none"; document.getElementById("showTextBtn").innerText=textVisible?"Hide text":"Show text"; } });
+      updateReadingChoices();
+    })();
+  </script>
+</body>
+</html>
+
+
+
+

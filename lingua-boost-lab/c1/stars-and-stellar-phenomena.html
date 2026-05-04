@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Stars & Stellar Phenomena · C1 · LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#020716; --bg2:#05102a; --surface:#08152e; --card:#0d1e3f; --card2:#102248;
+  --text:#e8f0ff; --muted:#8fa8cc; --faint:#4a6a9a;
+  --accent:#f5c842; --accent2:#ffd966; --accon:#0d1020;
+  --brand:#9b7fe8; --brand2:#c4aff5;
+  --line:rgba(155,127,232,.14); --line2:rgba(155,127,232,.28);
+  --ok:#34d88a; --err:#ff5c72;
+  --glow1:rgba(245,200,66,.12); --glow2:rgba(155,127,232,.16);
+  --mono:"JetBrains Mono",Consolas,monospace;
+  --display:"Unbounded",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:radial-gradient(ellipse at 70% 0%,var(--glow1),transparent 50%),
+    radial-gradient(ellipse at 20% 90%,var(--glow2),transparent 50%);}
+a{color:inherit;text-decoration:none;}
+
+/* ── STARFIELD ── */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;
+  padding:10px clamp(14px,3vw,28px);
+  background:rgba(2,7,22,.82);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+.lab-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.lab-mark{width:34px;height:34px;border-radius:8px;background:var(--brand);
+  display:grid;place-items:center;font-family:var(--display);font-weight:900;
+  font-size:17px;color:#fff;box-shadow:0 2px 12px rgba(155,127,232,.4);}
+.lab-brand-name{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:-.02em;}
+.lab-brand-tag{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+.topbar-nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.pill{padding:4px 10px;border-radius:20px;font:700 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line2);color:var(--muted);white-space:nowrap;}
+.pill-accent{background:color-mix(in srgb,var(--accent) 15%,transparent);border-color:var(--accent);color:var(--accent);}
+.btn-sm{height:28px;padding:0 12px;border-radius:7px;border:1px solid var(--line2);
+  background:var(--card);color:var(--muted);font:700 10px/1 var(--mono);
+  letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ── HUD ── */
+.hud{position:fixed;top:58px;right:16px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:4px;pointer-events:none;}
+.hud-score{font-family:var(--display);font-size:1.4rem;font-weight:900;color:var(--accent);
+  text-shadow:0 0 20px rgba(245,200,66,.5);letter-spacing:-.04em;}
+.hud-combo{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brand);transition:transform .2s;}
+.hud-combo.bump{transform:scale(1.4);color:var(--ok);}
+
+/* ── STAR BAR ── */
+.star-bar{display:flex;justify-content:center;gap:10px;padding:18px 16px 10px;position:relative;z-index:1;}
+.star-item{font-size:1.6rem;opacity:.22;transition:opacity .4s,transform .4s,filter .4s;filter:grayscale(1);}
+.star-item.lit{opacity:1;transform:scale(1.18);filter:drop-shadow(0 0 10px var(--accent));}
+
+/* ── PROGRESS RAIL ── */
+.rail{display:flex;justify-content:center;gap:8px;padding:4px 16px 20px;position:relative;z-index:1;}
+.rail-dot{width:10px;height:10px;border-radius:50%;background:var(--card2);
+  border:1px solid var(--line2);transition:all .35s;}
+.rail-dot.done{background:var(--ok);border-color:var(--ok);box-shadow:0 0 8px var(--ok);}
+
+/* ── WRAP ── */
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(14px,3vw,28px) 80px;position:relative;z-index:1;}
+
+/* ── BLOCK ── */
+.block{border:1px solid var(--line);border-radius:16px;background:var(--surface);
+  padding:clamp(18px,3vw,32px);margin-bottom:24px;overflow:hidden;position:relative;}
+.block::before{content:"";position:absolute;inset:0;border-radius:16px;
+  background:linear-gradient(135deg,var(--glow2),transparent 60%);opacity:.4;pointer-events:none;}
+.block-head{display:flex;gap:12px;align-items:flex-start;padding-bottom:16px;
+  margin-bottom:20px;border-bottom:1px dashed rgba(155,127,232,.2);}
+.block-num{flex:0 0 auto;width:42px;height:42px;border:1px solid var(--accent);
+  background:rgba(245,200,66,.08);border-radius:10px;display:grid;place-items:center;
+  font-family:var(--display);font-weight:900;font-size:15px;color:var(--accent);}
+.block-info{flex:1;}
+.block-kicker{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--brand);margin-bottom:4px;}
+.block-title{font-family:var(--display);font-size:clamp(1rem,2.2vw,1.5rem);
+  font-weight:800;letter-spacing:-.04em;line-height:1.1;}
+.block-badge{flex:0 0 auto;font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);
+  padding:5px 9px;border:1px dotted var(--line2);border-radius:6px;white-space:nowrap;}
+.block-hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+
+/* ── TERM BOX ── */
+.term{border:1px solid var(--line2);border-radius:8px;padding:10px 14px;
+  font-family:var(--mono);font-size:11px;line-height:1.8;
+  background:rgba(0,0,0,.3);color:var(--muted);}
+.term .p{color:var(--accent);} .term .ok{color:var(--ok);} .term .br{color:var(--brand);}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 20px;border-radius:10px;font:800 11px/1 var(--mono);
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  transition:all .16s;border:1px solid transparent;}
+.btn-primary{background:var(--accent);color:var(--accon);border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:var(--card);color:var(--muted);border-color:var(--line2);}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand);}
+
+/* ════ BLOCK 1 · FLASHCARDS ════ */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;perspective:1200px;}
+.fc{height:128px;cursor:pointer;}
+.fc-inner{width:100%;height:100%;position:relative;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;}
+.fc.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:10px;border:1px solid var(--line2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:8px;}
+.fc-front{background:var(--card);}
+.fc-back{background:color-mix(in srgb,var(--brand) 12%,var(--card));
+  border-color:var(--brand);transform:rotateY(180deg);}
+.fc-word{font-family:var(--display);font-size:1rem;font-weight:800;letter-spacing:-.03em;text-align:center;}
+.fc-ipa{font-family:var(--mono);font-size:9px;color:var(--faint);}
+.fc-ru{color:var(--muted);font-size:12px;font-weight:600;text-align:center;}
+.fc-hint{font-family:var(--mono);font-size:8px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;}
+.fc-speak{width:26px;height:26px;border-radius:50%;border:1px solid var(--line2);
+  background:var(--card2);cursor:pointer;display:grid;place-items:center;font-size:11px;
+  transition:all .15s;flex-shrink:0;}
+.fc-speak:hover{border-color:var(--accent);background:rgba(245,200,66,.1);}
+.fc-counter{text-align:center;font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:8px;}
+
+/* ════ BLOCK 2 · SENTENCE BUILDER ════ */
+.sb-wrap{display:flex;flex-direction:column;gap:20px;}
+.sb-item-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:6px;}
+.sb-target{min-height:52px;border:2px dashed var(--line2);border-radius:10px;
+  padding:10px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  transition:border-color .2s;background:rgba(0,0,0,.2);}
+.sb-target.over{border-color:var(--brand);}
+.sb-target.correct{border-color:var(--ok);background:rgba(52,216,138,.06);}
+.sb-target.wrong{border-color:var(--err);background:rgba(255,92,114,.06);}
+.sb-bank{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0;}
+.token{padding:7px 12px;border-radius:8px;border:1px solid var(--line2);
+  background:var(--card2);color:var(--text);font:600 12px/1 var(--body);
+  cursor:grab;user-select:none;transition:all .15s;}
+.token:hover{border-color:var(--brand);color:var(--brand);}
+.token.placed{opacity:.4;cursor:default;}
+.token.dragging{opacity:.5;transform:scale(1.05);}
+.sb-result{font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:6px;display:none;}
+.sb-result.ok{color:var(--ok);background:rgba(52,216,138,.1);}
+.sb-result.err{color:var(--err);background:rgba(255,92,114,.1);}
+
+/* ════ BLOCK 3 · CANVAS MATCH ════ */
+.match-wrap{position:relative;}
+.match-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.match-col{display:flex;flex-direction:column;gap:8px;}
+.match-item{padding:10px 14px;border-radius:9px;border:1px solid var(--line2);
+  background:var(--card);font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .18s;position:relative;z-index:1;}
+.match-item:hover{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 10%,var(--card));}
+.match-item.selected{border-color:var(--accent);background:rgba(245,200,66,.1);color:var(--accent);}
+.match-item.matched{border-color:var(--ok);background:rgba(52,216,138,.08);color:var(--ok);pointer-events:none;}
+.match-item.error{border-color:var(--err);background:rgba(255,92,114,.1);}
+.match-item.ru-side{font-size:12px;color:var(--muted);}
+.match-status{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:10px;min-height:20px;}
+
+/* ════ BLOCK 4 · SPEED TYPE ════ */
+.st-timer{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.timer-bar{flex:1;height:6px;border-radius:3px;background:var(--card2);overflow:hidden;}
+.timer-fill{height:100%;background:var(--ok);border-radius:3px;transition:width .9s linear,background .3s;}
+.timer-fill.warn{background:var(--err);}
+.timer-num{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--muted);width:20px;}
+.st-display{font-family:var(--display);font-size:1.1rem;font-weight:700;
+  background:var(--card);border:1px solid var(--line2);border-radius:10px;
+  padding:14px 18px;margin-bottom:12px;min-height:56px;cursor:pointer;
+  display:flex;align-items:center;line-height:1.3;}
+.st-input-row{display:flex;gap:8px;}
+.st-input{flex:1;background:var(--card);border:1px solid var(--line2);border-radius:10px;
+  color:var(--text);font:500 14px/1 var(--body);padding:12px 14px;outline:none;
+  transition:border-color .2s;}
+.st-input:focus{border-color:var(--brand);}
+.st-input.ok{border-color:var(--ok);}
+.st-input.err{border-color:var(--err);}
+.st-msg{font-family:var(--mono);font-size:11px;margin-top:8px;min-height:18px;}
+
+/* ════ BLOCK 5 · MEMORY ════ */
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.mem-card{height:80px;cursor:pointer;perspective:600px;}
+.mc-inner{width:100%;height:100%;position:relative;transition:transform .4s;transform-style:preserve-3d;}
+.mem-card.reveal .mc-inner{transform:rotateY(180deg);}
+.mem-card.matched .mc-inner{transform:rotateY(180deg);}
+.mc-front,.mc-back{position:absolute;inset:0;border-radius:9px;border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;padding:6px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  font:600 11px/1.3 var(--body);text-align:center;}
+.mc-front{background:var(--card);font-size:1.3rem;border-color:var(--line);}
+.mc-back{background:var(--card2);transform:rotateY(180deg);}
+.mem-card.matched .mc-back{border-color:var(--ok);background:rgba(52,216,138,.1);color:var(--ok);}
+.mem-card.wrong .mc-back,.mem-card.wrong .mc-front{border-color:var(--err);}
+.mem-stats{display:flex;gap:16px;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--muted);}
+.mem-stats span{color:var(--accent);}
+
+/* ════ BLOCK 6 · GRAMMAR BLITZ ════ */
+.blitz-q{font-size:1.05rem;font-weight:700;line-height:1.5;margin-bottom:16px;
+  padding:14px 18px;background:var(--card);border-radius:10px;border-left:3px solid var(--accent);}
+.blank{display:inline-block;min-width:80px;border-bottom:2px solid var(--accent);
+  text-align:center;color:var(--accent);margin:0 3px;}
+.blitz-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;}
+.blitz-opt{padding:12px 14px;border-radius:10px;border:1px solid var(--line2);
+  background:var(--card);color:var(--text);font:600 13px/1.3 var(--body);
+  cursor:pointer;transition:all .16s;text-align:left;}
+.blitz-opt:hover:not(:disabled){border-color:var(--brand);background:rgba(155,127,232,.1);}
+.blitz-opt.correct{border-color:var(--ok);background:rgba(52,216,138,.12);color:var(--ok);}
+.blitz-opt.wrong{border-color:var(--err);background:rgba(255,92,114,.12);color:var(--err);}
+.blitz-stats{display:flex;gap:12px;align-items:center;font-family:var(--mono);font-size:10px;color:var(--faint);}
+.combo-pill{padding:4px 10px;border-radius:20px;font:900 11px/1 var(--mono);
+  background:rgba(245,200,66,.12);border:1px solid var(--accent);color:var(--accent);}
+.blitz-progress{flex:1;height:4px;border-radius:2px;background:var(--card2);}
+.blitz-fill{height:100%;border-radius:2px;background:var(--brand);transition:width .4s;}
+
+/* ════ BLOCK 7 · SPEECH ════ */
+.mic-area{text-align:center;padding:8px 0;}
+.mic-phrase{font-size:1.05rem;font-weight:600;line-height:1.5;margin-bottom:14px;
+  padding:14px;background:var(--card);border-radius:10px;}
+.mic-btn{width:70px;height:70px;border-radius:50%;border:2px solid var(--brand);
+  background:rgba(155,127,232,.1);font-size:1.8rem;cursor:pointer;
+  display:grid;place-items:center;transition:all .2s;margin:0 auto 14px;}
+.mic-btn:hover,.mic-btn.recording{background:rgba(155,127,232,.25);
+  box-shadow:0 0 24px rgba(155,127,232,.4);border-color:var(--brand2);}
+.mic-transcript{font-family:var(--mono);font-size:11px;color:var(--muted);min-height:20px;margin-bottom:8px;}
+.mic-result{font-family:var(--mono);font-size:12px;padding:8px 12px;border-radius:8px;display:none;}
+.mic-result.ok{color:var(--ok);background:rgba(52,216,138,.1);}
+.mic-result.err{color:var(--err);background:rgba(255,92,114,.1);}
+.speech-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+
+/* ════ BLOCK 8 · WORD BUILDER ════ */
+.wb-def{font-size:13px;color:var(--muted);margin-bottom:12px;padding:10px 14px;
+  background:var(--card);border-radius:8px;border-left:2px solid var(--brand);}
+.wb-target{min-height:52px;border:2px dashed var(--brand);border-radius:10px;
+  padding:10px 12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  background:rgba(155,127,232,.05);margin-bottom:10px;transition:border-color .2s;}
+.wb-target.correct{border-color:var(--ok);}
+.wb-bank{display:flex;flex-wrap:wrap;gap:6px;}
+.morpheme{padding:8px 14px;border-radius:8px;font:700 13px/1 var(--mono);
+  cursor:pointer;transition:all .16s;user-select:none;}
+.morpheme.prefix{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.4);color:#7dd3fc;}
+.morpheme.root{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);color:#fbbf24;}
+.morpheme.suffix{background:rgba(52,216,138,.15);border:1px solid rgba(52,216,138,.4);color:#34d88a;}
+.morpheme.placed{opacity:.35;cursor:default;}
+.wb-msg{font-family:var(--mono);font-size:11px;margin-top:8px;min-height:18px;}
+
+/* ── ALL DONE ── */
+.all-done{display:none;text-align:center;padding:clamp(24px,5vw,48px);margin:24px 0;
+  border:1px solid var(--accent);border-radius:20px;
+  background:radial-gradient(circle at 50% 0%,rgba(245,200,66,.1),transparent 60%),var(--surface);}
+.all-done.show{display:block;}
+.all-done-title{font-family:var(--display);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;
+  letter-spacing:-.06em;color:var(--accent);margin-bottom:8px;}
+.all-done-sub{font-family:var(--mono);font-size:12px;color:var(--brand);
+  letter-spacing:.12em;text-transform:uppercase;}
+.all-done-score{font-family:var(--display);font-size:2rem;font-weight:900;
+  color:var(--text);margin:16px 0 8px;}
+
+/* ── CONFETTI ── */
+#confetti{position:fixed;inset:0;z-index:999;pointer-events:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .fc-grid{grid-template-columns:repeat(2,1fr);}
+  .blitz-opts{grid-template-columns:1fr;}
+  .mem-grid{grid-template-columns:repeat(3,1fr);}
+  .match-cols{grid-template-columns:1fr;gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Starfield -->
+<canvas id="starfield"></canvas>
+
+<!-- Topbar -->
+<header class="topbar">
+  <a class="lab-brand" href="../index.html">
+    <div class="lab-mark">L</div>
+    <div>
+      <div class="lab-brand-name">LinguaBoost Lab</div>
+      <div class="lab-brand-tag">New Generation English</div>
+    </div>
+  </a>
+  <nav class="topbar-nav">
+    <a class="btn-sm" href="../index.html">&#8592; All Lessons</a>
+    <span class="pill pill-accent">C1</span>
+    <span class="pill">Stars &amp; Stellar Phenomena</span>
+    <button class="btn-sm" onclick="toggleLang()">RU / EN</button>
+  </nav>
+</header>
+
+<!-- Score HUD -->
+<div class="hud">
+  <div class="hud-score" id="hudScore">0</div>
+  <div class="hud-combo" id="hudCombo">COMBO x1</div>
+</div>
+
+<!-- Star bar -->
+<div class="star-bar">
+  <div class="star-item" id="s1">&#11088;</div>
+  <div class="star-item" id="s2">&#11088;</div>
+  <div class="star-item" id="s3">&#11088;</div>
+  <div class="star-item" id="s4">&#11088;</div>
+  <div class="star-item" id="s5">&#11088;</div>
+  <div class="star-item" id="s6">&#11088;</div>
+</div>
+
+<!-- Progress rail -->
+<div class="rail">
+  <div class="rail-dot" id="rd1"></div>
+  <div class="rail-dot" id="rd2"></div>
+  <div class="rail-dot" id="rd3"></div>
+  <div class="rail-dot" id="rd4"></div>
+  <div class="rail-dot" id="rd5"></div>
+  <div class="rail-dot" id="rd6"></div>
+</div>
+
+<!-- Main content -->
+<main class="wrap">
+
+<!-- ═══ BLOCK 1 · FLASHCARDS ═══ -->
+<section class="block" id="b1">
+  <div class="block-head">
+    <div class="block-num">01</div>
+    <div class="block-info">
+      <div class="block-kicker">Vocabulary · Speech Synthesis</div>
+      <div class="block-title">C1 Stellar Vocabulary</div>
+    </div>
+    <div class="block-badge">FLIP ALL 8</div>
+  </div>
+  <p class="block-hint" data-ru="Нажмите на карточку, чтобы перевернуть. Нажмите 🔊 чтобы услышать слово. Откройте все 8 карточек." data-en="Click to flip. Press 🔊 to hear the word. Reveal all 8 cards to complete.">Click to flip each card. Press 🔊 to hear the word. Reveal all 8 to complete.</p>
+  <div class="fc-grid" id="fcGrid"></div>
+  <div class="fc-counter" id="fcCounter">Flipped: <span id="fcDone">0</span> / 8</div>
+</section>
+
+<!-- ═══ BLOCK 2 · SENTENCE BUILDER ═══ -->
+<section class="block" id="b2">
+  <div class="block-head">
+    <div class="block-num">02</div>
+    <div class="block-info">
+      <div class="block-kicker">Drag &amp; Drop · Advanced Grammar</div>
+      <div class="block-title">Build the Sentence</div>
+    </div>
+    <div class="block-badge">2 / 3 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="Перетащите слова в правильном порядке. Это C1-конструкции: инверсия, условные предложения, сложное дополнение." data-en="Drag words into the correct order. These are C1 structures: inversion, conditionals, complex objects.">Drag words into the correct order — C1 structures: inversion, perfect passives, cleft sentences. Get 2/3 to continue.</p>
+  <div class="sb-wrap" id="sbSentences"></div>
+  <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button class="btn btn-ghost" onclick="resetAllSB()">&#8635; Reset All</button>
+    <div id="sbPassMsg" style="font-family:var(--mono);font-size:11px;color:var(--ok);display:none;">&#10003; Section complete!</div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 3 · CANVAS MATCH ═══ -->
+<section class="block" id="b3">
+  <div class="block-head">
+    <div class="block-num">03</div>
+    <div class="block-info">
+      <div class="block-kicker">Canvas · Terminology</div>
+      <div class="block-title">Connect the Pairs</div>
+    </div>
+    <div class="block-badge">MATCH ALL 6</div>
+  </div>
+  <p class="block-hint" data-ru="Кликните термин слева, затем определение справа. Линии рисуются прямо на canvas." data-en="Click a term on the left, then its definition on the right. Lines are drawn on canvas.">Click a term on the left, then its definition on the right. Match all 6 pairs to complete.</p>
+  <div class="match-wrap" id="matchWrap">
+    <canvas class="match-canvas" id="matchCanvas"></canvas>
+    <div class="match-cols" id="matchCols"></div>
+  </div>
+  <div class="match-status" id="matchStatus">Select a term on the left to begin.</div>
+  <div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMatch()">&#8635; Shuffle &amp; Restart</button></div>
+</section>
+
+<!-- ═══ BLOCK 4 · SPEED TYPE ═══ -->
+<section class="block" id="b4">
+  <div class="block-head">
+    <div class="block-num">04</div>
+    <div class="block-info">
+      <div class="block-kicker">Speed Type · Timer Challenge</div>
+      <div class="block-title">Hear it — Type it</div>
+    </div>
+    <div class="block-badge">3 / 5 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="Нажмите на фразу чтобы услышать её снова. Напечатайте то, что слышите — за 10 секунд. 3 правильных из 5." data-en="Click the phrase to hear it again. Type what you hear within 10 seconds. Get 3/5 correct.">Click the phrase to hear it again. Type what you hear within 10 seconds. Score 3/5 to complete.</p>
+  <div id="stArea"></div>
+</section>
+
+<!-- ═══ BLOCK 5 · MEMORY ═══ -->
+<section class="block" id="b5">
+  <div class="block-head">
+    <div class="block-num">05</div>
+    <div class="block-info">
+      <div class="block-kicker">Memory · Flip &amp; Match</div>
+      <div class="block-title">Find the Pairs</div>
+    </div>
+    <div class="block-badge">MATCH ALL 6</div>
+  </div>
+  <p class="block-hint" data-ru="Переворачивайте карточки и находите пары: термин + определение. Помните расположение!" data-en="Flip cards and find matching pairs: term + definition. Remember their positions!">Flip cards to find matching pairs: astronomical term + its definition. Fewest moves wins!</p>
+  <div class="mem-grid" id="memGrid"></div>
+  <div class="mem-stats">Moves: <span id="memMoves">0</span> &nbsp; Found: <span id="memFound">0</span>/6</div>
+  <div style="margin-top:10px;"><button class="btn btn-ghost" onclick="initMemory()">&#8635; Shuffle</button></div>
+</section>
+
+<!-- ═══ BLOCK 6 · GRAMMAR BLITZ ═══ -->
+<section class="block" id="b6">
+  <div class="block-head">
+    <div class="block-num">06</div>
+    <div class="block-info">
+      <div class="block-kicker">Grammar Blitz · Combo Multiplier</div>
+      <div class="block-title">Advanced Grammar in Context</div>
+    </div>
+    <div class="block-badge">5 / 8 TO PASS</div>
+  </div>
+  <p class="block-hint" data-ru="C1 грамматика: инверсия, смешанный conditional, страдательный залог, косвенная речь. Комбо множит очки!" data-en="C1 grammar: inversion, mixed conditionals, passive voice, reported speech. Combo multiplies your score!">C1 grammar in astronomical context — inversion, mixed conditionals, passive, subjunctive. Consecutive correct answers build your combo multiplier!</p>
+  <div id="blitzArea"></div>
+</section>
+
+<!-- ═══ BLOCK 7 · SPEECH RECOGNITION (BONUS) ═══ -->
+<section class="block" id="b7">
+  <div class="block-head">
+    <div class="block-num">07</div>
+    <div class="block-info">
+      <div class="block-kicker">Web Speech API · Speaking Practice</div>
+      <div class="block-title">Speak It Aloud — Bonus</div>
+    </div>
+    <div class="block-badge">BONUS</div>
+  </div>
+  <p class="block-hint" data-ru="Chrome/Edge: нажмите 🎤 и произнесите фразу. Система проверит ваше произношение." data-en="Chrome/Edge: press 🎤 and say the phrase. The system checks your pronunciation.">Chrome / Edge only: press 🎤 and say the phrase naturally. Earn bonus points for correct pronunciation.</p>
+  <div id="speechArea"></div>
+</section>
+
+<!-- ═══ BLOCK 8 · WORD BUILDER (BONUS) ═══ -->
+<section class="block" id="b8">
+  <div class="block-head">
+    <div class="block-num">08</div>
+    <div class="block-info">
+      <div class="block-kicker">Morpheme Builder · Word Construction</div>
+      <div class="block-title">Assemble the Word — Bonus</div>
+    </div>
+    <div class="block-badge">BONUS</div>
+  </div>
+  <p class="block-hint" data-ru="Нажимайте на морфемы в правильном порядке, чтобы собрать слово. Синий — префикс, оранжевый — корень, зелёный — суффикс." data-en="Click morphemes in the correct order to build the word. Blue = prefix, orange = root, green = suffix.">Click morphemes in order to assemble the scientific word. Blue = prefix, orange = root, green = suffix. Earn bonus points!</p>
+  <div id="wbArea"></div>
+</section>
+
+<!-- ALL DONE -->
+<div class="all-done" id="allDone">
+  <div class="all-done-title">Mission Complete!</div>
+  <div class="all-done-sub">C1 · Stars &amp; Stellar Phenomena</div>
+  <div class="all-done-score">&#11088; &#11088; &#11088; &#11088; &#11088; &#11088;</div>
+  <div style="font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:8px;">
+    Final score: <span style="color:var(--accent);font-weight:700;" id="finalScore">0</span> pts
+  </div>
+  <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+    <a class="btn btn-ghost" href="../index.html">&#8592; All Lessons</a>
+    <button class="btn btn-primary" onclick="location.reload()">&#8635; Play Again</button>
+  </div>
+</div>
+
+</main>
+
+<canvas id="confetti" style="display:none;"></canvas>
+
+<script>
+/* ══════════════════════════════════════
+   CORE UTILITIES
+══════════════════════════════════════ */
+let totalScore = 0, combo = 1;
+let doneCount = 0;
+
+function addScore(pts){
+  totalScore += pts * combo;
+  document.getElementById('hudScore').textContent = totalScore;
+}
+function bumpCombo(){
+  combo = Math.min(combo + 1, 8);
+  const el = document.getElementById('hudCombo');
+  el.textContent = 'COMBO x' + combo;
+  el.classList.remove('bump');
+  void el.offsetWidth;
+  el.classList.add('bump');
+  setTimeout(() => el.classList.remove('bump'), 300);
+}
+function resetCombo(){
+  combo = 1;
+  document.getElementById('hudCombo').textContent = 'COMBO x1';
+}
+
+function completeTask(n){
+  if(n < 1 || n > 6) return;
+  document.getElementById('rd' + n).classList.add('done');
+  document.getElementById('s' + n).classList.add('lit');
+  addScore(50);
+  doneCount++;
+  if(doneCount >= 6){
+    setTimeout(() => {
+      document.getElementById('allDone').classList.add('show');
+      document.getElementById('finalScore').textContent = totalScore;
+      launchConfetti();
+    }, 600);
+  }
+}
+
+function speak(text){
+  if(!window.speechSynthesis) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.84;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function toggleLang(){
+  const lang = document.documentElement.dataset.lang === 'ru' ? 'en' : 'ru';
+  document.documentElement.dataset.lang = lang;
+  document.querySelectorAll('[data-ru],[data-en]').forEach(el => {
+    if(el.dataset[lang]) el.textContent = el.dataset[lang];
+  });
+}
+
+/* ══════════════════════════════════════
+   STARFIELD
+══════════════════════════════════════ */
+(function(){
+  const cv = document.getElementById('starfield');
+  const ctx = cv.getContext('2d');
+  let W, H;
+  const stars = Array.from({length:240}, () => ({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.5 + 0.2,
+    a: Math.random(),
+    da: (Math.random() - 0.5) * 0.005,
+    speed: Math.random() * 0.00006 + 0.00001
+  }));
+  function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s => {
+      s.y -= s.speed;
+      if(s.y < 0) s.y = 1;
+      s.a = Math.max(0.05, Math.min(1, s.a + s.da));
+      if(s.a <= 0.05 || s.a >= 1) s.da *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,215,255,${s.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════ */
+function launchConfetti(){
+  const cv = document.getElementById('confetti');
+  cv.style.display = 'block';
+  const ctx = cv.getContext('2d');
+  cv.width = innerWidth; cv.height = innerHeight;
+  const cols = ['#f5c842','#9b7fe8','#34d88a','#ff5c72','#7dd3fc','#fbbf24'];
+  const pieces = Array.from({length:160}, () => ({
+    x: Math.random() * cv.width, y: -10,
+    w: Math.random() * 8 + 4, h: Math.random() * 12 + 6,
+    rot: Math.random() * Math.PI * 2,
+    vx: (Math.random() - 0.5) * 5,
+    vy: Math.random() * 4 + 2,
+    col: cols[Math.floor(Math.random() * cols.length)],
+    alpha: 1
+  }));
+  let frame = 0;
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    pieces.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += 0.08; p.alpha -= 0.005;
+      ctx.save(); ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.col;
+      ctx.beginPath(); ctx.ellipse(0,0,p.w/2,p.h/2,0,0,Math.PI*2);
+      ctx.fill(); ctx.restore();
+    });
+    frame++;
+    if(frame < 200) requestAnimationFrame(draw);
+    else { cv.style.display = 'none'; }
+  }
+  draw();
+}
+
+/* ══════════════════════════════════════
+   BLOCK 1 · FLASHCARDS
+══════════════════════════════════════ */
+const FC_WORDS = [
+  {en:'nebula',      ipa:'/ˈnebjʊlə/',      ru:'туманность'},
+  {en:'parsec',      ipa:'/ˈpɑːsek/',        ru:'парсек'},
+  {en:'luminosity',  ipa:'/ˌluːmɪˈnɒsɪti/', ru:'светимость'},
+  {en:'accretion',   ipa:'/əˈkriːʃən/',      ru:'аккреция'},
+  {en:'photosphere', ipa:'/ˈfəʊtəsfɪə/',     ru:'фотосфера'},
+  {en:'magnitude',   ipa:'/ˈmæɡnɪtjuːd/',   ru:'звёздная величина'},
+  {en:'parallax',    ipa:'/ˈpærəlæks/',      ru:'параллакс'},
+  {en:'perihelion',  ipa:'/ˌperɪˈhiːliən/',  ru:'перигелий'},
+];
+let fcFlipped = 0;
+(function initFC(){
+  const grid = document.getElementById('fcGrid');
+  FC_WORDS.forEach(w => {
+    const fc = document.createElement('div'); fc.className = 'fc';
+    fc.innerHTML = `<div class="fc-inner">
+      <div class="fc-front">
+        <div class="fc-word">${w.en}</div>
+        <div class="fc-ipa">${w.ipa}</div>
+        <button class="fc-speak" type="button" title="Listen">&#128266;</button>
+        <div class="fc-hint">tap to flip</div>
+      </div>
+      <div class="fc-back">
+        <div class="fc-ru">${w.ru}</div>
+        <div class="fc-word" style="font-size:.9rem">${w.en}</div>
+        <button class="fc-speak" type="button" title="Listen">&#128266;</button>
+      </div>
+    </div>`;
+    fc.querySelectorAll('.fc-speak').forEach(btn => btn.addEventListener('click', e => {
+      e.stopPropagation(); speak(w.en); addScore(1);
+    }));
+    let done = false;
+    fc.addEventListener('click', () => {
+      fc.classList.toggle('flipped');
+      if(!done && fc.classList.contains('flipped')){
+        done = true; fcFlipped++;
+        speak(w.en);
+        addScore(3);
+        document.getElementById('fcDone').textContent = fcFlipped;
+        if(fcFlipped >= 8) completeTask(1);
+      }
+    });
+    grid.appendChild(fc);
+  });
+})();
+
+/* ══════════════════════════════════════
+   BLOCK 2 · SENTENCE BUILDER
+══════════════════════════════════════ */
+const SB_DATA = [
+  {
+    words: ['Had','the','star','been','more','massive,','it','would','have','collapsed','into','a','black','hole'],
+    answer: 'Had the star been more massive, it would have collapsed into a black hole'
+  },
+  {
+    words: ['Not','only','does','the','sun','emit','light,','but','it','also','generates','a','powerful','magnetic','field'],
+    answer: 'Not only does the sun emit light, but it also generates a powerful magnetic field'
+  },
+  {
+    words: ['It','was','Edwin','Hubble','who','first','proved','that','galaxies','exist','beyond','the','Milky','Way'],
+    answer: 'It was Edwin Hubble who first proved that galaxies exist beyond the Milky Way'
+  },
+];
+let sbCorrect = 0;
+(function initSB(){
+  const wrap = document.getElementById('sbSentences');
+  SB_DATA.forEach((s, si) => {
+    const shuffled = [...s.words].sort(() => Math.random() - .5);
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div class="sb-item-label">Sentence ${si+1} of ${SB_DATA.length}</div>
+      <div class="sb-target" id="sbt${si}" data-answer="${s.answer}"></div>
+      <div class="sb-bank" id="sbb${si}"></div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center;">
+        <button onclick="checkSB(${si})" class="btn btn-primary" style="padding:7px 14px;font-size:10px;">CHECK</button>
+        <button onclick="resetSB(${si})" class="btn btn-ghost" style="padding:7px 14px;font-size:10px;">RESET</button>
+        <div class="sb-result" id="sbr${si}"></div>
+      </div>`;
+    wrap.appendChild(div);
+    const bank = document.getElementById('sbb'+si);
+    shuffled.forEach(w => {
+      const t = document.createElement('div'); t.className = 'token'; t.textContent = w;
+      t.draggable = true;
+      t.addEventListener('dragstart', e => { e.dataTransfer.setData('text', w); e.dataTransfer.setData('si', si); t.classList.add('dragging'); });
+      t.addEventListener('dragend', () => t.classList.remove('dragging'));
+      t.addEventListener('click', () => moveToken(t, si));
+      bank.appendChild(t);
+    });
+    const target = document.getElementById('sbt'+si);
+    target.addEventListener('dragover', e => { e.preventDefault(); target.classList.add('over'); });
+    target.addEventListener('dragleave', () => target.classList.remove('over'));
+    target.addEventListener('drop', e => {
+      e.preventDefault(); target.classList.remove('over');
+      const word = e.dataTransfer.getData('text');
+      const bank2 = document.getElementById('sbb' + e.dataTransfer.getData('si'));
+      const token = [...bank2.children].find(c => c.textContent === word && !c.classList.contains('placed'));
+      if(token){ token.classList.add('placed'); addToTarget(word, si, token); }
+    });
+  });
+})();
+function addToTarget(word, si, srcToken){
+  const target = document.getElementById('sbt'+si);
+  const t = document.createElement('div'); t.className = 'token placed'; t.textContent = word;
+  t.style.cursor = 'pointer';
+  t.addEventListener('click', () => {
+    target.removeChild(t);
+    if(srcToken) srcToken.classList.remove('placed');
+  });
+  target.appendChild(t);
+}
+function moveToken(token, si){
+  const bank = document.getElementById('sbb'+si);
+  const target = document.getElementById('sbt'+si);
+  if(token.parentElement === bank){
+    token.classList.add('placed');
+    addToTarget(token.textContent, si, token);
+  }
+}
+function checkSB(si){
+  const target = document.getElementById('sbt'+si);
+  const result = document.getElementById('sbr'+si);
+  const built = [...target.children].map(c => c.textContent).join(' ').replace(/,\s*,/,',');
+  const correct = SB_DATA[si].answer;
+  const ok = built.replace(/,/g,'').toLowerCase() === correct.replace(/,/g,'').toLowerCase();
+  target.className = 'sb-target ' + (ok ? 'correct' : 'wrong');
+  result.style.display = 'inline-block';
+  result.className = 'sb-result ' + (ok ? 'ok' : 'err');
+  if(ok){
+    result.textContent = '✓ Correct! +' + (15 * combo) + ' pts';
+    addScore(15); bumpCombo(); speak('Excellent!');
+    sbCorrect++;
+    if(sbCorrect >= 2 && !document.getElementById('sbPassMsg').dataset.done){
+      document.getElementById('sbPassMsg').style.display = 'inline';
+      document.getElementById('sbPassMsg').dataset.done = '1';
+      completeTask(2);
+    }
+  } else {
+    result.textContent = '✗ Not quite. Try again.';
+    resetCombo();
+  }
+}
+function resetSB(si){
+  const target = document.getElementById('sbt'+si);
+  const bank = document.getElementById('sbb'+si);
+  const result = document.getElementById('sbr'+si);
+  target.innerHTML = ''; target.className = 'sb-target';
+  result.style.display = 'none';
+  [...bank.children].forEach(c => c.classList.remove('placed'));
+}
+function resetAllSB(){ SB_DATA.forEach((_,i) => resetSB(i)); }
+
+/* ══════════════════════════════════════
+   BLOCK 3 · CANVAS MATCH
+══════════════════════════════════════ */
+const MATCH_PAIRS = [
+  {en:'supernova',   ru:'massive stellar explosion marking the end of a star\'s life'},
+  {en:'pulsar',      ru:'rapidly rotating neutron star emitting regular radiation pulses'},
+  {en:'quasar',      ru:'extremely luminous active galactic nucleus powered by a black hole'},
+  {en:'parallax',    ru:'apparent shift in a star\'s position used to measure its distance'},
+  {en:'Cepheid',     ru:'variable star whose pulsation period reveals its true luminosity'},
+  {en:'accretion disk', ru:'rotating disk of matter spiralling into a compact object'},
+];
+let matchSel = null, matchLines = [], matchDone = 0;
+function initMatch(){
+  matchSel = null; matchLines = []; matchDone = 0;
+  const cols = document.getElementById('matchCols');
+  const ruShuffled = [...MATCH_PAIRS].sort(() => Math.random() - .5);
+  cols.innerHTML = `<div class="match-col" id="mcEn"></div><div class="match-col" id="mcRu"></div>`;
+  MATCH_PAIRS.forEach((p,i) => {
+    const el = document.createElement('div');
+    el.className = 'match-item'; el.textContent = p.en;
+    el.dataset.key = i; el.dataset.side = 'en';
+    el.addEventListener('click', () => matchClick(el));
+    document.getElementById('mcEn').appendChild(el);
+  });
+  ruShuffled.forEach(p => {
+    const origIdx = MATCH_PAIRS.indexOf(p);
+    const el = document.createElement('div');
+    el.className = 'match-item ru-side'; el.textContent = p.ru;
+    el.dataset.key = origIdx; el.dataset.side = 'ru';
+    el.addEventListener('click', () => matchClick(el));
+    document.getElementById('mcRu').appendChild(el);
+  });
+  document.getElementById('matchStatus').textContent = 'Select a term on the left to begin.';
+  redrawMatchCanvas();
+}
+function matchClick(el){
+  if(el.classList.contains('matched')) return;
+  if(!matchSel){
+    if(el.dataset.side !== 'en') return;
+    matchSel = el; el.classList.add('selected');
+    document.getElementById('matchStatus').textContent = '→ Selected: ' + el.textContent + ' — now click its definition';
+    return;
+  }
+  if(el.dataset.side === 'en'){ matchSel.classList.remove('selected'); matchSel = el; el.classList.add('selected'); return; }
+  const ok = matchSel.dataset.key === el.dataset.key;
+  if(ok){
+    matchSel.classList.remove('selected'); matchSel.classList.add('matched'); el.classList.add('matched');
+    speak(matchSel.textContent);
+    matchLines.push({from: matchSel, to: el});
+    matchDone++; addScore(20); bumpCombo();
+    document.getElementById('matchStatus').innerHTML = `<span style="color:var(--ok)">✓ Matched: ${matchSel.textContent}</span>`;
+    if(matchDone === MATCH_PAIRS.length){ launchConfetti(); addScore(30); setTimeout(() => completeTask(3), 400); }
+  } else {
+    matchSel.classList.add('error'); el.classList.add('error');
+    setTimeout(() => { matchSel.classList.remove('error','selected'); el.classList.remove('error'); }, 600);
+    resetCombo();
+    document.getElementById('matchStatus').innerHTML = `<span style="color:var(--err)">✗ Wrong pair — try again</span>`;
+  }
+  matchSel = null;
+  redrawMatchCanvas();
+}
+function getCenter(el){
+  const wr = document.getElementById('matchWrap').getBoundingClientRect();
+  const r = el.getBoundingClientRect();
+  return { x: r.left - wr.left + r.width / 2, y: r.top - wr.top + r.height / 2 };
+}
+function redrawMatchCanvas(){
+  const cv = document.getElementById('matchCanvas');
+  const wrap = document.getElementById('matchWrap');
+  if(!wrap) return;
+  cv.width = wrap.offsetWidth; cv.height = wrap.offsetHeight;
+  const ctx = cv.getContext('2d');
+  ctx.clearRect(0,0,cv.width,cv.height);
+  matchLines.forEach(l => {
+    const a = getCenter(l.from), b = getCenter(l.to);
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+    ctx.strokeStyle = 'var(--ok)'; ctx.lineWidth = 2;
+    ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+    [a,b].forEach(pt => {
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,4,0,Math.PI*2);
+      ctx.fillStyle = 'var(--ok)'; ctx.fill();
+    });
+  });
+}
+window.addEventListener('resize', redrawMatchCanvas);
+initMatch();
+
+/* ══════════════════════════════════════
+   BLOCK 4 · SPEED TYPE
+══════════════════════════════════════ */
+const ST_PHRASES = [
+  'A neutron star can rotate hundreds of times per second',
+  'The Chandrasekhar limit determines when a white dwarf collapses',
+  'Stellar nucleosynthesis produces all elements heavier than hydrogen',
+  'The apparent magnitude measures how bright a star looks from Earth',
+  'Binary star systems account for roughly half of all stellar objects',
+];
+let stIdx = 0, stTimer = null, stTime = 10, stCorrect = 0;
+(function initST(){
+  const area = document.getElementById('stArea');
+  area.innerHTML = `
+    <div class="st-timer"><div class="timer-bar"><div class="timer-fill" id="stFill" style="width:100%"></div></div><div class="timer-num" id="stNum">10</div></div>
+    <div class="st-display" id="stDisplay" onclick="speak(ST_PHRASES[stIdx % ST_PHRASES.length])">
+      <span style="opacity:.5;font-size:1rem;">&#9654; Click to start the first phrase</span>
+    </div>
+    <div class="st-input-row">
+      <input class="st-input" id="stInput" type="text" placeholder="Type what you hear..." autocomplete="off" disabled>
+      <button onclick="checkST()" class="btn btn-ghost" style="flex-shrink:0;">CHECK</button>
+    </div>
+    <div class="st-msg" id="stMsg"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:6px;">Phrase <span id="stIdxDisp">0</span>/${ST_PHRASES.length} &nbsp;|&nbsp; Correct: <span id="stCorrectDisp">0</span>/5</div>`;
+  document.getElementById('stDisplay').addEventListener('click', startST);
+  document.getElementById('stInput').addEventListener('keydown', e => { if(e.key === 'Enter') checkST(); });
+})();
+function startST(){
+  if(stTimer) clearInterval(stTimer);
+  stTime = 10;
+  const ph = ST_PHRASES[stIdx % ST_PHRASES.length];
+  document.getElementById('stDisplay').innerHTML = `<span onclick="speak('${ph.replace(/'/g,"\\'")}')">&#9654; ${ph}</span>`;
+  document.getElementById('stIdxDisp').textContent = (stIdx % ST_PHRASES.length) + 1;
+  const input = document.getElementById('stInput');
+  input.value = ''; input.disabled = false; input.focus(); input.className = 'st-input';
+  document.getElementById('stMsg').textContent = '';
+  document.getElementById('stFill').style.width = '100%';
+  document.getElementById('stFill').classList.remove('warn');
+  speak(ph);
+  stTimer = setInterval(() => {
+    stTime--;
+    const pct = (stTime / 10) * 100;
+    document.getElementById('stFill').style.width = pct + '%';
+    document.getElementById('stNum').textContent = stTime;
+    if(stTime <= 3) document.getElementById('stFill').classList.add('warn');
+    if(stTime <= 0){ clearInterval(stTimer); checkST(true); }
+  }, 1000);
+}
+function checkST(timeout = false){
+  if(stTimer) clearInterval(stTimer);
+  const input = document.getElementById('stInput');
+  const ph = ST_PHRASES[stIdx % ST_PHRASES.length];
+  const typed = input.value.trim().toLowerCase().replace(/[^a-z\s]/g,'');
+  const correct = ph.toLowerCase().replace(/[^a-z\s]/g,'');
+  const ok = typed === correct;
+  input.className = 'st-input ' + (ok ? 'ok' : 'err');
+  const msg = document.getElementById('stMsg');
+  if(timeout && !ok){
+    msg.style.color = 'var(--err)'; msg.textContent = '⏱ Time up! Was: ' + ph; resetCombo();
+  } else if(ok){
+    const pts = stTime * 4 * combo; addScore(pts); bumpCombo();
+    msg.style.color = 'var(--ok)'; msg.textContent = '✓ +' + pts + ' pts (' + stTime + 's left ×' + combo + ' combo)';
+    speak('Excellent!');
+    stCorrect++;
+    document.getElementById('stCorrectDisp').textContent = stCorrect;
+    if(stCorrect >= 3 && !document.getElementById('stArea').dataset.done){
+      document.getElementById('stArea').dataset.done = '1';
+      completeTask(4);
+    }
+  } else {
+    msg.style.color = 'var(--err)'; msg.textContent = '✗ Answer: ' + ph; resetCombo();
+  }
+  input.disabled = true;
+  stIdx++;
+  if(stIdx < ST_PHRASES.length) setTimeout(startST, 1800);
+}
+
+/* ══════════════════════════════════════
+   BLOCK 5 · MEMORY
+══════════════════════════════════════ */
+const MEM_PAIRS = [
+  {term:'nebula',    def:'cloud of gas and dust in space'},
+  {term:'parsec',    def:'3.26 light-years of distance'},
+  {term:'quasar',    def:'brightest object in the universe'},
+  {term:'pulsar',    def:'rotating neutron star emitting pulses'},
+  {term:'magnitude', def:'measure of a star\'s brightness'},
+  {term:'parallax',  def:'technique for measuring stellar distances'},
+];
+let memFlipped = [], memMatched = 0, memMoves = 0, memLock = false;
+function initMemory(){
+  memFlipped = []; memMatched = 0; memMoves = 0; memLock = false;
+  document.getElementById('memMoves').textContent = 0;
+  document.getElementById('memFound').textContent = 0;
+  const cards = [];
+  MEM_PAIRS.forEach((p,i) => {
+    cards.push({id:i, text:p.term, isRu:false});
+    cards.push({id:i, text:p.def, isRu:true});
+  });
+  cards.sort(() => Math.random() - .5);
+  const grid = document.getElementById('memGrid'); grid.innerHTML = '';
+  cards.forEach(c => {
+    const card = document.createElement('div'); card.className = 'mem-card';
+    card.dataset.id = c.id; card.dataset.text = c.text;
+    const fs = c.text.length > 12 ? '9px' : '11px';
+    card.innerHTML = `<div class="mc-inner"><div class="mc-front">&#10024;</div><div class="mc-back" style="font-size:${fs}">${c.text}</div></div>`;
+    card.addEventListener('click', () => memClick(card));
+    grid.appendChild(card);
+  });
+}
+function memClick(card){
+  if(memLock || card.classList.contains('reveal') || card.classList.contains('matched')) return;
+  card.classList.add('reveal'); memFlipped.push(card);
+  if(memFlipped.length === 2){
+    memLock = true; memMoves++;
+    document.getElementById('memMoves').textContent = memMoves;
+    const [a, b] = memFlipped;
+    if(a.dataset.id === b.dataset.id && a !== b){
+      a.classList.add('matched'); b.classList.add('matched');
+      memMatched++; document.getElementById('memFound').textContent = memMatched;
+      addScore(25); bumpCombo(); speak(a.dataset.text);
+      memFlipped = []; memLock = false;
+      if(memMatched === MEM_PAIRS.length){ setTimeout(() => { launchConfetti(); completeTask(5); }, 300); }
+    } else {
+      resetCombo();
+      a.classList.add('wrong'); b.classList.add('wrong');
+      setTimeout(() => {
+        a.classList.remove('reveal','wrong'); b.classList.remove('reveal','wrong');
+        memFlipped = []; memLock = false;
+      }, 900);
+    }
+  }
+}
+initMemory();
+
+/* ══════════════════════════════════════
+   BLOCK 6 · GRAMMAR BLITZ
+══════════════════════════════════════ */
+const BLITZ_Q = [
+  {q:'___ the project been submitted on time, the team would have received the bonus.',
+   opts:['If','When','Had','Should'],a:2,
+   exp:'Inversion with "Had" replaces "If" in third conditional.'},
+  {q:'Not until the telescope was invented ___ mankind observe distant galaxies.',
+   opts:['could','could have','did','would'],a:0,
+   exp:'Negative inversion: "Not until... could" — auxiliary before subject.'},
+  {q:'The nebula ___ studied for decades before astronomers understood its composition.',
+   opts:['was being','had been','has been','was'],a:1,
+   exp:'Past perfect passive: action completed before another past event.'},
+  {q:'She asked the professor what the Chandrasekhar limit ___.',
+   opts:['is','was','has been','would be'],a:1,
+   exp:'Reported speech: present "is" → past "was" in indirect speech.'},
+  {q:'___ the sun to expand into a red giant, it would engulf Mercury and Venus.',
+   opts:['Were','Should','Had','If'],a:0,
+   exp:'Subjunctive inversion: "Were... to" = formal second conditional.'},
+  {q:'Stellar nucleosynthesis is the process by ___ heavier elements are forged.',
+   opts:['which','that','what','whom'],a:0,
+   exp:'"By which" — relative clause with preposition preceding the pronoun.'},
+  {q:'The discovery of pulsars, ___ rotational periods are extraordinarily precise, transformed astrophysics.',
+   opts:['which','whose','that','who'],a:1,
+   exp:'"Whose" — possessive relative clause referring to pulsars.'},
+  {q:'By the time the probe reaches the outer solar system, decades ___ passed.',
+   opts:['will have','would have','will be','have'],a:0,
+   exp:'Future perfect: completed action before a future reference point.'},
+];
+let blitzIdx = 0, blitzScore = 0;
+function initBlitz(){ blitzIdx = 0; blitzScore = 0; renderBlitz(); }
+function renderBlitz(){
+  const area = document.getElementById('blitzArea');
+  if(blitzIdx >= BLITZ_Q.length){
+    const passed = blitzScore >= 5;
+    area.innerHTML = `
+      <div class="term">
+        <div><span class="${passed?'ok':'p'}">&#10003; Blitz complete — ${blitzScore}/${BLITZ_Q.length} correct</span></div>
+        <div style="margin-top:6px;color:var(--faint)">Score so far: ${totalScore} pts · Combo peak: x${combo}</div>
+      </div>
+      <button onclick="initBlitz()" class="btn btn-ghost" style="margin-top:10px;">&#8635; Replay</button>`;
+    if(passed && !area.dataset.done){ area.dataset.done='1'; completeTask(6); }
+    return;
+  }
+  const q = BLITZ_Q[blitzIdx];
+  const pct = (blitzIdx / BLITZ_Q.length) * 100;
+  area.innerHTML = `
+    <div class="blitz-q">${q.q.replace('___', '<span class="blank">___</span>')}</div>
+    <div class="blitz-opts">${q.opts.map((o,i) => `<button class="blitz-opt" onclick="answerBlitz(${i})" type="button">${o}</button>`).join('')}</div>
+    <div class="blitz-stats">
+      <div class="combo-pill">COMBO x${combo}</div>
+      <div class="blitz-progress"><div class="blitz-fill" style="width:${pct}%"></div></div>
+      <div>Q ${blitzIdx+1}/${BLITZ_Q.length}</div>
+    </div>`;
+}
+function answerBlitz(i){
+  const q = BLITZ_Q[blitzIdx];
+  document.querySelectorAll('.blitz-opt').forEach((b,bi) => {
+    b.disabled = true;
+    if(bi === q.a) b.classList.add('correct');
+    else if(bi === i && i !== q.a) b.classList.add('wrong');
+  });
+  const ok = i === q.a;
+  if(ok){ addScore(15); bumpCombo(); blitzScore++; speak(q.opts[q.a]); }
+  else resetCombo();
+  const exp = document.createElement('div');
+  exp.style.cssText = 'font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:10px;padding:8px 12px;background:rgba(0,0,0,.3);border-radius:8px;';
+  exp.textContent = q.exp;
+  document.getElementById('blitzArea').appendChild(exp);
+  blitzIdx++;
+  setTimeout(renderBlitz, 1200);
+}
+initBlitz();
+
+/* ══════════════════════════════════════
+   BLOCK 7 · SPEECH RECOGNITION
+══════════════════════════════════════ */
+const SPEECH_PHRASES = [
+  'A neutron star is formed when a massive star undergoes a supernova explosion',
+  'The parallax method is used to calculate the distance to nearby stars',
+  'Cepheid variables serve as standard candles for measuring cosmic distances',
+];
+let speechIdx = 0;
+(function initSpeech(){
+  const area = document.getElementById('speechArea');
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRec){
+    area.innerHTML = `<div class="term"><span class="br">&rarr;</span> Speech Recognition requires Chrome or Edge.<br><span style="color:var(--faint)">Use the &#128266; button below to hear the phrase instead.</span></div>` + buildNoRecUI();
+    return;
+  }
+  renderSpeech(SpeechRec, area);
+})();
+function buildNoRecUI(){
+  const p = SPEECH_PHRASES[speechIdx % SPEECH_PHRASES.length];
+  return `<div class="mic-area">
+    <div class="mic-phrase">${p}</div>
+    <button class="mic-btn" onclick="speak('${p.replace(/'/g,"\\'")}')">&#128266;</button>
+    <div class="speech-nav">
+      <button onclick="speechIdx++;document.getElementById('speechArea').innerHTML=buildNoRecUI()" class="btn btn-ghost">NEXT &rarr;</button>
+    </div>
+  </div>`;
+}
+function renderSpeech(SpeechRec, area){
+  const phrase = SPEECH_PHRASES[speechIdx % SPEECH_PHRASES.length];
+  area.innerHTML = `
+    <div class="mic-area">
+      <div class="mic-phrase">${phrase}</div>
+      <button class="mic-btn" id="micBtn" type="button">&#127908;</button>
+      <div class="mic-transcript" id="micTxt">Press the mic and speak...</div>
+      <div class="mic-result" id="micRes"></div>
+      <div class="speech-nav">
+        <button onclick="speak('${phrase.replace(/'/g,"\\'")}'); addScore(2);" class="btn btn-ghost">&#128266; HEAR</button>
+        <button onclick="speechIdx++;renderSpeech(window.SpeechRecognition||window.webkitSpeechRecognition,document.getElementById('speechArea'))" class="btn btn-ghost">NEXT &rarr;</button>
+      </div>
+    </div>`;
+  const rec = new SpeechRec();
+  rec.lang = 'en-US'; rec.continuous = false; rec.interimResults = true;
+  const btn = document.getElementById('micBtn');
+  let going = false;
+  btn.addEventListener('click', () => {
+    if(!going){ going = true; rec.start(); btn.classList.add('recording'); btn.textContent = '⏹'; }
+    else{ going = false; rec.stop(); btn.classList.remove('recording'); btn.textContent = '\u{1F3A4}'; }
+  });
+  rec.onresult = e => {
+    const txt = [...e.results].map(r => r[0].transcript).join('');
+    document.getElementById('micTxt').textContent = txt;
+    if(e.results[e.results.length-1].isFinal){
+      const firstWords = phrase.toLowerCase().split(' ').slice(0,4).join(' ');
+      const ok = txt.toLowerCase().includes(firstWords);
+      const res = document.getElementById('micRes');
+      res.style.display = 'block';
+      res.className = 'mic-result ' + (ok ? 'ok' : 'err');
+      res.textContent = ok ? '✓ Great pronunciation! +30 pts' : '✗ Try again: ' + phrase;
+      if(ok){ addScore(30); bumpCombo(); }
+      btn.classList.remove('recording'); btn.textContent = '\u{1F3A4}'; going = false;
+    }
+  };
+  rec.onerror = () => { btn.classList.remove('recording'); btn.textContent = '\u{1F3A4}'; going = false; };
+}
+
+/* ══════════════════════════════════════
+   BLOCK 8 · WORD BUILDER
+══════════════════════════════════════ */
+const WB_WORDS = [
+  {target:'astrophysics', def:'the branch of physics applied to stars and the cosmos',
+   parts:[{text:'astro-',type:'prefix'},{text:'physic',type:'root'},{text:'-s',type:'suffix'}]},
+  {target:'interstellar', def:'existing or occurring between the stars',
+   parts:[{text:'inter-',type:'prefix'},{text:'stellar',type:'root'}]},
+  {target:'heliocentric', def:'having the sun as the centre of the solar system',
+   parts:[{text:'helio-',type:'prefix'},{text:'centr',type:'root'},{text:'-ic',type:'suffix'}]},
+  {target:'photosphere', def:'the luminous envelope of the sun seen as its visible surface',
+   parts:[{text:'photo-',type:'prefix'},{text:'sphere',type:'root'}]},
+];
+let wbIdx = 0, wbBuilt = [];
+function initWB(){ renderWB(); }
+function renderWB(){
+  const area = document.getElementById('wbArea');
+  const w = WB_WORDS[wbIdx % WB_WORDS.length];
+  wbBuilt = [];
+  const shuffled = [...w.parts].sort(() => Math.random() - .5);
+  area.innerHTML = `
+    <div class="wb-def"><strong data-ru="Значение" data-en="Meaning">Meaning:</strong> ${w.def}</div>
+    <div class="wb-target" id="wbTarget"><span style="font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.1em;">click morphemes below ↓</span></div>
+    <div class="wb-bank" id="wbBank">${shuffled.map((p,i) => `<div class="morpheme ${p.type}" id="wbm${i}" data-text="${p.text}" data-type="${p.type}" onclick="addMorpheme(this)">${p.text}</div>`).join('')}</div>
+    <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap;">
+      <button onclick="checkWB()" class="btn btn-primary" style="padding:8px 16px;font-size:10px;">CHECK</button>
+      <button onclick="wbBuilt=[];renderWB()" class="btn btn-ghost" style="padding:8px 16px;font-size:10px;">RESET</button>
+      <button onclick="wbIdx++;renderWB()" class="btn btn-ghost" style="padding:8px 16px;font-size:10px;">NEXT →</button>
+      <div id="wbMsg" class="wb-msg"></div>
+    </div>`;
+}
+function addMorpheme(el){
+  if(el.classList.contains('placed')){ el.classList.remove('placed'); wbBuilt = wbBuilt.filter(t => t !== el.dataset.text); }
+  else { el.classList.add('placed'); wbBuilt.push(el.dataset.text); }
+  const target = document.getElementById('wbTarget');
+  if(wbBuilt.length){
+    target.innerHTML = wbBuilt.map(t => {
+      const type = document.querySelector(`[data-text="${t}"]`)?.dataset.type || '';
+      return `<div class="morpheme ${type}" style="cursor:default;">${t}</div>`;
+    }).join('');
+  } else {
+    target.innerHTML = `<span style="font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.1em;">click morphemes below ↓</span>`;
+  }
+}
+function checkWB(){
+  const w = WB_WORDS[wbIdx % WB_WORDS.length];
+  const built = wbBuilt.join('').replace(/-/g,'');
+  const ok = built.toLowerCase() === w.target.toLowerCase();
+  const target = document.getElementById('wbTarget');
+  const msg = document.getElementById('wbMsg');
+  target.classList.toggle('correct', ok);
+  if(ok){
+    msg.style.color = 'var(--ok)'; msg.textContent = '✓ ' + w.target + ' — +' + (20*combo) + ' pts';
+    addScore(20); bumpCombo(); speak(w.target); setTimeout(launchConfetti, 200);
+  } else {
+    msg.style.color = 'var(--err)'; msg.textContent = '✗ Expected: ' + w.target; resetCombo();
+  }
+}
+initWB();
+</script>
+</body>
+</html>

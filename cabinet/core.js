@@ -32,13 +32,6 @@ const SESSION_KEY = "nge_os_session_v1";
  *  status: "pending"|"paid"|"overdue";
  *  date: string; // ISO
  *  comment?: string;
- *  lessonsTotal?: number;
- *  lessonsLeft?: number;
- *  paidAt?: string;
- *  remindAt?: string;
- *  paymentUrl?: string;
- *  paymentProvider?: string;
- *  payerMarkedAt?: string;
  * }} Payment
  *
  * @typedef {{
@@ -174,33 +167,8 @@ function seed() {
       },
     ],
     payments: [
-      {
-        id: "p_1",
-        studentId: studentA,
-        amount: 3500,
-        status: "paid",
-        date: plusDays(-7),
-        paidAt: plusDays(-7),
-        remindAt: plusDays(21),
-        lessonsTotal: 4,
-        lessonsLeft: 3,
-        paymentProvider: "tbank",
-        paymentUrl: "",
-        comment: "Индивидуально",
-      },
-      {
-        id: "p_2",
-        studentId: studentB,
-        amount: 3000,
-        status: "pending",
-        date: plusDays(-3),
-        remindAt: plusDays(4),
-        lessonsTotal: 4,
-        lessonsLeft: 1,
-        paymentProvider: "tbank",
-        paymentUrl: "",
-        comment: "Индивидуально",
-      },
+      { id: "p_1", studentId: studentA, amount: 3500, status: "paid", date: plusDays(-7), comment: "Индивидуально" },
+      { id: "p_2", studentId: studentB, amount: 3000, status: "pending", date: plusDays(-3), comment: "Индивидуально" },
     ],
     progress: [
       {
@@ -287,18 +255,6 @@ export function loadState() {
       ...p,
       studentGoals: p.studentGoals || "",
       studentNotes: p.studentNotes || "",
-    }));
-    s.payments = s.payments.map((p) => ({
-      ...p,
-      lessonsTotal: Number.isFinite(Number(p.lessonsTotal)) ? Number(p.lessonsTotal) : 0,
-      lessonsLeft: Number.isFinite(Number(p.lessonsLeft)) ? Number(p.lessonsLeft) : 0,
-      paidAt: p.paidAt || (p.status === "paid" ? p.date : ""),
-      remindAt: p.remindAt || "",
-      paymentUrl: p.paymentUrl || "",
-      paymentProvider: p.paymentProvider || "tbank",
-      payerMarkedAt: p.payerMarkedAt || "",
-      receiptNumber: p.receiptNumber || "",
-      receiptUrl: p.receiptUrl || "",
     }));
 
     return s;
@@ -475,7 +431,7 @@ export function listPendingNotifications(state) {
   return state.notifications
     .filter((n) => !n.sentAt)
     .slice()
-    .sort((a, b) => new Date(b.sendAt) - new Date(a.sendAt));
+    .sort((a, b) => new Date(a.sendAt) - new Date(b.sendAt));
 }
 
 /** @param {State} state @param {string} userId */

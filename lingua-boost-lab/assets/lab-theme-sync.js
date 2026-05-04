@@ -1,0 +1,121 @@
+(function () {
+  const LESSON_STORAGE_KEY = "lesson-palette";
+  const CATALOG_STORAGE_KEY = "nge-theme-lab";
+  const DEFAULT_QUERY_THEME = "light-lab";
+  const lessonThemes = new Set(["light-lab", "peach", "green", "rose", "cyan", "amber", "white", "black-lab", "violet"]);
+
+  function readStorage(key) {
+    try { return localStorage.getItem(key) || ""; } catch (error) { return ""; }
+  }
+
+  function writeStorage(key, value) {
+    try { localStorage.setItem(key, value); } catch (error) {}
+  }
+
+  function readQueryTheme() {
+    try { return new URLSearchParams(window.location.search).get("theme") || ""; } catch (error) { return ""; }
+  }
+
+  function normalizeRaw(value) {
+    const raw = String(value || "").trim().toLowerCase();
+    if (lessonThemes.has(raw)) return raw;
+    if (["dark", "black", "night"].includes(raw)) return "black-lab";
+    if (["lite", "light", "day"].includes(raw)) return "light-lab";
+    if (["sky", "blue"].includes(raw)) return "cyan";
+    return "";
+  }
+
+  function lessonTheme(value) {
+    const raw = normalizeRaw(value);
+    return lessonThemes.has(raw) ? raw : "light-lab";
+  }
+
+  function catalogTheme(value) {
+    const raw = normalizeRaw(value);
+    if (raw === "black-lab" || raw === "violet") return "dark";
+    if (raw === "cyan") return "sky";
+    return "light";
+  }
+
+  function queryThemeFromInternal(value) {
+    const raw = normalizeRaw(value);
+    return lessonThemes.has(raw) ? raw : "light-lab";
+  }
+
+  function resolveLessonTheme() {
+    const explicit = readQueryTheme();
+    if (explicit) return lessonTheme(explicit);
+    const stored = readStorage(LESSON_STORAGE_KEY);
+    if (stored) return lessonTheme(stored);
+    const current = document.documentElement.getAttribute("data-theme");
+    return lessonTheme(current || DEFAULT_QUERY_THEME);
+  }
+
+  function resolveCatalogTheme() {
+    const explicit = readQueryTheme();
+    if (explicit) return catalogTheme(explicit);
+    const stored = readStorage(CATALOG_STORAGE_KEY);
+    if (stored) return catalogTheme(stored);
+    const current = document.documentElement.getAttribute("data-theme");
+    return catalogTheme(current || "dark");
+  }
+
+  function withTheme(href, theme) {
+    if (!href || href === "#" || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return href;
+    const queryTheme = queryThemeFromInternal(theme);
+    const hashIndex = href.indexOf("#");
+    const hash = hashIndex >= 0 ? href.slice(hashIndex) : "";
+    const body = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+    const clean = body.replace(/([?&])theme=[^&#]*&?/i, "$1").replace(/[?&]$/, "");
+    const sep = clean.includes("?") ? "&" : "?";
+    return `${clean}${sep}theme=${encodeURIComponent(queryTheme)}${hash}`;
+  }
+
+  function syncLinks(scope, theme) {
+    const root = scope || document;
+    const activeTheme = theme || document.documentElement.getAttribute("data-theme") || readQueryTheme() || DEFAULT_QUERY_THEME;
+    root.querySelectorAll("a[href]").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      if (!href || href.startsWith("#") || href.includes("mailto:")) return;
+      const isLab = href.includes("lingua-boost-lab") || href.includes("../index.html") || href.includes("./a1/") || /a1-0[1-8].*\.html/.test(href);
+      if (isLab) link.setAttribute("href", withTheme(href, activeTheme));
+    });
+  }
+
+  const api = {
+    lessonTheme,
+    catalogTheme,
+    resolveLessonTheme,
+    resolveCatalogTheme,
+    queryThemeFromInternal,
+    withTheme,
+    syncLinks,
+    applyLessonTheme() {
+      const theme = resolveLessonTheme();
+      document.documentElement.setAttribute("data-theme", theme);
+      writeStorage(LESSON_STORAGE_KEY, theme);
+      writeStorage(CATALOG_STORAGE_KEY, catalogTheme(theme));
+      return theme;
+    },
+    applyCatalogTheme() {
+      const theme = resolveCatalogTheme();
+      document.documentElement.setAttribute("data-theme", theme);
+      if (document.body) document.body.classList.toggle("light", theme !== "dark");
+      writeStorage(CATALOG_STORAGE_KEY, theme);
+      writeStorage(LESSON_STORAGE_KEY, lessonTheme(theme));
+      return theme;
+    }
+  };
+
+  window.LinguaBoostTheme = api;
+  const path = window.location.pathname.replace(/\\/g, "/");
+  const isLesson = /\/lingua-boost-lab\/a1\//.test(path);
+  const isCatalog = /\/lingua-boost-lab\/(index\.html)?$/.test(path);
+  if (isLesson) api.applyLessonTheme();
+  if (isCatalog) api.applyCatalogTheme();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const theme = document.documentElement.getAttribute("data-theme") || (isCatalog ? api.resolveCatalogTheme() : api.resolveLessonTheme());
+    api.syncLinks(document, theme);
+  });
+})();

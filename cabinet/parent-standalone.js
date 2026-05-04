@@ -1,9 +1,24 @@
-﻿(function () {
+(function () {
 
   "use strict";
 
 const STORAGE_KEY = "nge_os_v1";
 const SESSION_KEY = "nge_os_session_v1";
+const PAYMENT_DETAILS = {
+  url: "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143",
+  telegramUrl: "https://t.me/MariaBurceva_English",
+  phone: "89165101792",
+  recipient: "Бурцева Мария Витальевна",
+  contract: "5181572792",
+  account: "40817810200014652973",
+  purpose: "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается",
+  bik: "044525974",
+  bank: "АО \"ТБанк\"",
+  correspondentAccount: "30101810145250000974",
+  inn: "7710140679",
+  kpp: "771301001",
+  method: "Т-Банк",
+};
 
 /**
  * @typedef {"student"|"teacher"|"parent"} Role
@@ -36,10 +51,14 @@ const SESSION_KEY = "nge_os_session_v1";
  *  status: "pending"|"paid"|"overdue";
  *  date: string; // ISO
  *  comment?: string;
- *  lessonsTotal?: number;
- *  lessonsLeft?: number;
- *  paidAt?: string;
- *  remindAt?: string;
+ *  paymentUrl?: string;
+ *  paidReportedAt?: string;
+ *  confirmedAt?: string;
+ *  receiptUrl?: string;
+ *  receiptNumber?: string;
+ *  receiptIssuedAt?: string;
+ *  lessonsAdded?: number;
+ *  lessonsAppliedAt?: string;
  * }} Payment
  *
  * @typedef {{
@@ -71,6 +90,7 @@ const SESSION_KEY = "nge_os_session_v1";
  *  studentId: string;
  *  tariff: string;
  *  plan?: string;
+ *  remainingLessons?: number;
  * }} StudentMeta
  *
  * @typedef {{
@@ -139,10 +159,10 @@ function seed() {
 
   return {
     users: [
-      { id: teacherId, role: "teacher", name: "РњР°СЂРёСЏ (РЈС‡РёС‚РµР»СЊ)", email: "teacher@example.com" },
-      { id: studentA, role: "student", name: "РЈС‡РµРЅРёРє Рђ", email: "student.a@example.com" },
-      { id: studentB, role: "student", name: "РЈС‡РµРЅРёРє Р‘", email: "student.b@example.com" },
-      { id: parentId, role: "parent", name: "Р РѕРґРёС‚РµР»СЊ", email: "parent@example.com", linkedStudents: [studentA, studentB] },
+      { id: teacherId, role: "teacher", name: "Мария (Учитель)", email: "teacher@example.com" },
+      { id: studentA, role: "student", name: "Ученик А", email: "student.a@example.com" },
+      { id: studentB, role: "student", name: "Ученик Б", email: "student.b@example.com" },
+      { id: parentId, role: "parent", name: "Родитель", email: "parent@example.com", linkedStudents: [studentA, studentB] },
     ],
     lessons: [
       {
@@ -151,7 +171,7 @@ function seed() {
         teacherId,
         date: plusDays(0),
         status: "planned",
-        homework: "РџРѕРІС‚РѕСЂРёС‚СЊ Past Simple (10 РїСЂРёРјРµСЂРѕРІ) + 15 РјРёРЅСѓС‚ С‡С‚РµРЅРёСЏ.",
+        homework: "Повторить Past Simple (10 примеров) + 15 минут чтения.",
         notes: "",
         progressMeUrl: "https://progressme.ru/",
       },
@@ -161,7 +181,7 @@ function seed() {
         teacherId,
         date: plusDays(1),
         status: "planned",
-        homework: "РђСѓРґРёСЂРѕРІР°РЅРёРµ: 1 РєРѕСЂРѕС‚РєРѕРµ РІРёРґРµРѕ, РІС‹РїРёСЃР°С‚СЊ 10 СЃР»РѕРІ.",
+        homework: "Аудирование: 1 короткое видео, выписать 10 слов.",
         notes: "",
       },
       {
@@ -170,41 +190,20 @@ function seed() {
         teacherId,
         date: plusDays(-2),
         status: "done",
-        homework: "Р—Р°РєСЂРµРїРёС‚СЊ Р»РµРєСЃРёРєСѓ РїРѕ С‚РµРјРµ В«TravelВ».",
-        notes: "РЎРёР»СЊРЅР°СЏ РґРёРЅР°РјРёРєР°, РґРµСЂР¶РёС‚ С‚РµРјРї. РЎР»РµРґСѓСЋС‰РёР№ С€Р°Рі: speaking drills.",
+        homework: "Закрепить лексику по теме «Travel».",
+        notes: "Сильная динамика, держит темп. Следующий шаг: speaking drills.",
       },
     ],
     payments: [
-      {
-        id: "p_1",
-        studentId: studentA,
-        amount: 3500,
-        status: "paid",
-        date: plusDays(-7),
-        paidAt: plusDays(-7),
-        remindAt: plusDays(21),
-        lessonsTotal: 4,
-        lessonsLeft: 3,
-        comment: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ",
-      },
-      {
-        id: "p_2",
-        studentId: studentB,
-        amount: 3000,
-        status: "pending",
-        date: plusDays(-3),
-        remindAt: plusDays(4),
-        lessonsTotal: 4,
-        lessonsLeft: 1,
-        comment: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ",
-      },
+      { id: "p_1", studentId: studentA, amount: 3500, status: "paid", date: plusDays(-7), comment: "Индивидуально" },
+      { id: "p_2", studentId: studentB, amount: 3000, status: "pending", date: plusDays(-3), comment: "Индивидуально" },
     ],
     progress: [
       {
         studentId: studentA,
         level: "A2",
         goals: "Speaking + travel vocabulary",
-        comments: "РџР»Р°РІРЅРѕ СЂР°СЃС‚С‘С‚ СѓРІРµСЂРµРЅРЅРѕСЃС‚СЊ.",
+        comments: "Плавно растёт уверенность.",
         studentGoals: "",
         studentNotes: "",
       },
@@ -212,7 +211,7 @@ function seed() {
         studentId: studentB,
         level: "B1",
         goals: "Grammar + fluency",
-        comments: "РќСѓР¶РµРЅ СЂРµР¶РёРј РґРѕРјР°С€РєРё 3Г—/РЅРµРґ.",
+        comments: "Нужен режим домашки 3×/нед.",
         studentGoals: "",
         studentNotes: "",
       },
@@ -223,7 +222,7 @@ function seed() {
         studentId: studentA,
         kind: "practice",
         title: "Speaking drill",
-        details: "10 РјРёРЅСѓС‚ вЂ” РІРѕРїСЂРѕСЃС‹/РѕС‚РІРµС‚С‹ РїРѕ С‚РµРјРµ Travel.",
+        details: "10 минут — вопросы/ответы по теме Travel.",
         minutes: 10,
         at: plusDays(-1),
         done: true,
@@ -233,23 +232,23 @@ function seed() {
         id: "si_2",
         studentId: studentA,
         kind: "material",
-        title: "РЎРїРёСЃРѕРє СЃР»РѕРІ: Travel (10)",
-        details: "РџРѕРІС‚РѕСЂРёС‚СЊ + 10 РїСЂРёРјРµСЂРѕРІ РІ Past Simple.",
+        title: "Список слов: Travel (10)",
+        details: "Повторить + 10 примеров в Past Simple.",
         url: "",
         done: false,
         createdAt: new Date().toISOString(),
       },
     ],
     studentMeta: [
-      { studentId: studentA, tariff: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ В· 3500 в‚Ѕ", plan: "1Г—/РЅРµРґ" },
-      { studentId: studentB, tariff: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ В· 3000 в‚Ѕ", plan: "2Г—/РЅРµРґ" },
+      { studentId: studentA, tariff: "Индивидуально · 3500 ₽", plan: "1×/нед", remainingLessons: 4 },
+      { studentId: studentB, tariff: "Индивидуально · 3000 ₽", plan: "2×/нед", remainingLessons: 2 },
     ],
     teacherTasks: [
       {
         id: "t_1",
         teacherId,
-        title: "РџСЂРѕРІРµСЂРёС‚СЊ РґРѕРјР°С€РєСѓ (РЈС‡РµРЅРёРє Рђ)",
-        notes: "Past Simple (10 РїСЂРёРјРµСЂРѕРІ) + Р»РµРєСЃРёРєР° Travel.",
+        title: "Проверить домашку (Ученик А)",
+        notes: "Past Simple (10 примеров) + лексика Travel.",
         due: todayISODate(),
         status: "open",
         createdAt: new Date().toISOString(),
@@ -285,17 +284,18 @@ function loadState() {
       studentGoals: p.studentGoals || "",
       studentNotes: p.studentNotes || "",
     }));
+
+    s.studentMeta = s.studentMeta.map((m) => ({
+      ...m,
+      remainingLessons: Number.isFinite(Number(m.remainingLessons)) ? Number(m.remainingLessons) : 0,
+    }));
+
     s.payments = s.payments.map((p) => ({
       ...p,
-      lessonsTotal: Number.isFinite(Number(p.lessonsTotal)) ? Number(p.lessonsTotal) : 0,
-      lessonsLeft: Number.isFinite(Number(p.lessonsLeft)) ? Number(p.lessonsLeft) : 0,
-      paidAt: p.paidAt || (p.status === "paid" ? p.date : ""),
-      remindAt: p.remindAt || "",
-      paymentUrl: p.paymentUrl || "",
-      paymentProvider: p.paymentProvider || "tbank",
-      payerMarkedAt: p.payerMarkedAt || "",
-      receiptNumber: p.receiptNumber || "",
+      paymentUrl: p.paymentUrl || PAYMENT_DETAILS.url,
       receiptUrl: p.receiptUrl || "",
+      receiptNumber: p.receiptNumber || "",
+      lessonsAdded: Number.isFinite(Number(p.lessonsAdded)) ? Number(p.lessonsAdded) : 0,
     }));
 
     return s;
@@ -377,7 +377,7 @@ function upsertProgress(state, studentId, patch) {
   if (idx === -1) {
     const created = {
       studentId,
-      level: patch.level || "вЂ”",
+      level: patch.level || "—",
       goals: patch.goals || "",
       comments: patch.comments || "",
     };
@@ -472,7 +472,7 @@ function listPendingNotifications(state) {
   return state.notifications
     .filter((n) => !n.sentAt)
     .slice()
-    .sort((a, b) => new Date(b.sendAt) - new Date(a.sendAt));
+    .sort((a, b) => new Date(a.sendAt) - new Date(b.sendAt));
 }
 
 /** @param {State} state @param {string} userId */
@@ -525,8 +525,9 @@ function upsertStudentMeta(state, studentId, patch) {
   if (idx === -1) {
     const created = {
       studentId,
-      tariff: (patch.tariff || "").trim() || "вЂ”",
+      tariff: (patch.tariff || "").trim() || "—",
       plan: (patch.plan || "").trim() || "",
+      remainingLessons: Number.isFinite(Number(patch.remainingLessons)) ? Number(patch.remainingLessons) : 0,
     };
     state.studentMeta.push(created);
     saveState(state);
@@ -621,9 +622,10 @@ function deleteTeacherTask(state, taskId) {
 }
 
 
+
 const CABINET_THEME_KEY = "nge-cabinet-theme";
-const SUN_ICON = "\u2600"; // вЂ
-const MOON_ICON = "\u263E"; // вѕ
+const SUN_ICON = "\u2600"; // ☀
+const MOON_ICON = "\u263E"; // ☾
 const THEME_WIRED_FLAG = "__NGE_CABINET_THEME_WIRED__";
 
 function qs(sel) {
@@ -776,6 +778,9 @@ function wireTopbarActions() {
 }
 
 
+
+
+
 function escapeHtml(text) {
   return String(text || "")
     .replaceAll("&", "&amp;")
@@ -796,36 +801,14 @@ function t(ru, en) {
   return getLang() === "ru" ? ru : en;
 }
 
-const PAYMENT_SETTINGS_KEY = "nge_payment_settings_v1";
-const DEFAULT_TBANK_PAYMENT_URL = "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143";
-const TBANK_PAYMENT_DETAILS = [
-  ["РџРѕР»СѓС‡Р°С‚РµР»СЊ", "Р‘СѓСЂС†РµРІР° РњР°СЂРёСЏ Р’РёС‚Р°Р»СЊРµРІРЅР°"],
-  ["РЎС‡РµС‚", "40817810200014652973"],
-  ["РќР°Р·РЅР°С‡РµРЅРёРµ", "РџРµСЂРµРІРѕРґ СЃСЂРµРґСЃС‚РІ РїРѕ РґРѕРіРѕРІРѕСЂСѓ в„– 5181572792 Р‘СѓСЂС†РµРІР° РњР°СЂРёСЏ Р’РёС‚Р°Р»СЊРµРІРЅР° РќР”РЎ РЅРµ РѕР±Р»Р°РіР°РµС‚СЃСЏ"],
-  ["Р‘РРљ", "044525974"],
-  ["Р‘Р°РЅРє", "РђРћ \"РўР‘Р°РЅРє\""],
-  ["РљРѕСЂСЂ. СЃС‡РµС‚", "30101810145250000974"],
-  ["РРќРќ", "7710140679"],
-  ["РљРџРџ", "771301001"],
-];
-
-function getPaymentSettings() {
+async function copyText(text, btn) {
   try {
-    const parsed = JSON.parse(localStorage.getItem(PAYMENT_SETTINGS_KEY) || "{}");
-    return {
-      tbankUrl: typeof parsed.tbankUrl === "string" && parsed.tbankUrl.trim() ? parsed.tbankUrl.trim() : DEFAULT_TBANK_PAYMENT_URL,
-    };
+    await navigator.clipboard.writeText(text);
+    btn.textContent = t("Скопировано", "Copied");
+    setTimeout(() => (btn.textContent = btn.dataset.label || t("Копировать", "Copy")), 1200);
   } catch {
-    return { tbankUrl: DEFAULT_TBANK_PAYMENT_URL };
+    btn.textContent = t("Не скопировалось", "Copy failed");
   }
-}
-
-function getPaymentUrl(payment) {
-  return (payment.paymentUrl || "").trim() || getPaymentSettings().tbankUrl;
-}
-
-function renderTbankDetails() {
-  return TBANK_PAYMENT_DETAILS.map(([label, value]) => `<div><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</div>`).join("");
 }
 
 function pill(status) {
@@ -851,7 +834,7 @@ function renderChildOptions(state, parentUser) {
       return u ? `<option value="${escapeHtml(id)}">${escapeHtml(u.name)}</option>` : "";
     })
     .join("");
-  select.innerHTML = options || `<option value="">${escapeHtml(t("РќРµС‚ РїСЂРёРІСЏР·Р°РЅРЅС‹С… СѓС‡РµРЅРёРєРѕРІ", "No linked students"))}</option>`;
+  select.innerHTML = options || `<option value="">${escapeHtml(t("Нет привязанных учеников", "No linked students"))}</option>`;
 }
 
 function renderAttendanceKpis(lessons) {
@@ -878,7 +861,7 @@ function renderLessons(state, studentId) {
       return `
         <tr>
           <td><div class="panel-kicker">${escapeHtml(formatDateTime(l.date))}</div>${pill(l.status)}</td>
-          <td class="muted">${escapeHtml((l.homework || "").slice(0, 110) || "вЂ”")}</td>
+          <td class="muted">${escapeHtml((l.homework || "").slice(0, 110) || "—")}</td>
         </tr>`;
     })
     .join("");
@@ -888,11 +871,11 @@ function renderLessons(state, studentId) {
     table.innerHTML = `
       <thead>
         <tr>
-          <th>${escapeHtml(t("Р”Р°С‚Р°", "Date"))}</th>
-          <th>${escapeHtml(t("Р”РѕРјР°С€РєР°", "Homework"))}</th>
+          <th>${escapeHtml(t("Дата", "Date"))}</th>
+          <th>${escapeHtml(t("Домашка", "Homework"))}</th>
         </tr>
       </thead>
-      <tbody>${rows || `<tr><td colspan="2" class="muted">${escapeHtml(t("РќРµС‚ СѓСЂРѕРєРѕРІ", "No lessons"))}</td></tr>`}</tbody>
+      <tbody>${rows || `<tr><td colspan="2" class="muted">${escapeHtml(t("Нет уроков", "No lessons"))}</td></tr>`}</tbody>
     `;
   }
 }
@@ -915,19 +898,19 @@ function renderHomework(state, studentId) {
           `
         )
         .join("")
-    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґРѕРјР°С€РєРё", "No homework yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("Пока нет домашки", "No homework yet"))}</div>`;
 
   const materials = listStudentItems(state, studentId, "material").slice(0, 6);
   const materialsHtml = materials.length
     ? `
       <div style="margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px;">
-        <div class="panel-kicker">${escapeHtml(t("РњР°С‚РµСЂРёР°Р»С‹ СѓС‡РµРЅРёРєР°", "Student materials"))}</div>
+        <div class="panel-kicker">${escapeHtml(t("Материалы ученика", "Student materials"))}</div>
         ${materials
           .map((m) => {
             const link = m.url
               ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
                   m.url
-                )}" target="_blank" rel="noopener noreferrer">в†—</a>`
+                )}" target="_blank" rel="noopener noreferrer">↗</a>`
               : "";
             return `
               <div style="display:flex; justify-content:space-between; gap:12px; padding: 8px 0; border-bottom: 1px solid var(--line);">
@@ -944,37 +927,7 @@ function renderHomework(state, studentId) {
     `
     : "";
 
-  const practice = listStudentItems(state, studentId, "practice").slice(0, 6);
-  const practiceHtml = practice.length
-    ? `
-      <div style="margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px;">
-        <div class="panel-kicker">${escapeHtml(t("РўСЂРµРЅР°Р¶С‘СЂС‹ Рё РїСЂР°РєС‚РёРєР°", "Practice and trainers"))}</div>
-        ${practice
-          .map((p) => {
-            const link = p.url
-              ? `<a class="footer-link" style="padding:4px 10px; border-radius:10px;" href="${escapeHtml(
-                  p.url
-                )}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ", "Open"))}</a>`
-              : "";
-            return `
-              <div style="display:flex; justify-content:space-between; gap:12px; padding: 8px 0; border-bottom: 1px solid var(--line);">
-                <div>
-                  <div><strong>${escapeHtml(p.title)}</strong> ${p.done ? pill("paid") : ""}</div>
-                  ${p.details ? `<div class="muted" style="margin-top:4px;">${escapeHtml(p.details)}</div>` : ""}
-                  <div class="muted" style="margin-top:4px;">${escapeHtml(
-                    [p.level, p.minutes ? `${p.minutes} ${t("РјРёРЅ", "min")}` : ""].filter(Boolean).join(" В· ")
-                  )}</div>
-                </div>
-                <div>${link}</div>
-              </div>
-            `;
-          })
-          .join("")}
-      </div>
-    `
-    : "";
-
-  const html = `${homeworkHtml}${materialsHtml}${practiceHtml}`;
+  const html = `${homeworkHtml}${materialsHtml}`;
   const el = byId("parentHomeworkList");
   if (el) el.innerHTML = html;
 }
@@ -986,39 +939,65 @@ function renderProgress(state, studentId) {
   el.innerHTML = prog
     ? `
       <div style="display:grid; gap: 10px;">
-        <div><span class="panel-kicker">${escapeHtml(t("РЈСЂРѕРІРµРЅСЊ", "Level"))}</span><div><strong>${escapeHtml(prog.level)}</strong></div></div>
-        <div><span class="panel-kicker">${escapeHtml(t("Р¦РµР»Рё", "Goals"))}</span><div class="muted">${escapeHtml(prog.goals)}</div></div>
-        <div><span class="panel-kicker">${escapeHtml(t("РљРѕРјРјРµРЅС‚Р°СЂРёР№ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ", "Teacher comment"))}</span><div class="muted">${escapeHtml(prog.comments)}</div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("Уровень", "Level"))}</span><div><strong>${escapeHtml(prog.level)}</strong></div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("Цели", "Goals"))}</span><div class="muted">${escapeHtml(prog.goals)}</div></div>
+        <div><span class="panel-kicker">${escapeHtml(t("Комментарий преподавателя", "Teacher comment"))}</span><div class="muted">${escapeHtml(prog.comments)}</div></div>
       </div>`
-    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РґР°РЅРЅС‹С…", "No data yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("Пока нет данных", "No data yet"))}</div>`;
+}
+
+function downloadReportDocument(filename, html) {
+  if (window.NGEReportDocs?.openPdfPrint) {
+    window.NGEReportDocs.openPdfPrint(filename.replace(/\.html$/i, ".pdf"), html);
+    return;
+  }
+  if (window.NGEReportDocs?.downloadHtml) {
+    window.NGEReportDocs.downloadHtml(filename.replace(/\.pdf$/i, ".html"), html);
+    return;
+  }
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename.replace(/\.pdf$/i, ".html");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 function buildTeacherSavedReportText(state, report) {
   const student = getUser(state, report.studentId);
   const progress = getProgress(state, report.studentId) || {};
   const meta = getStudentMeta(state, report.studentId) || {};
-  const lessons = listLessonsForStudent(state, report.studentId).slice(-8).reverse();
+  const lessons = listLessonsForStudent(state, report.studentId).slice(-12).reverse();
+  const materials = listStudentItems(state, report.studentId, "material");
+  const practice = listStudentItems(state, report.studentId, "practice");
+  const payments = listPaymentsForStudent(state, report.studentId);
   const builder = window.NGEReportDocs?.buildReportDocument;
-  if (!builder) return report.body || "";
-  return builder({
-    title: report.title || "РћС‚С‡С‘С‚ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ",
-    studentName: student?.name || "вЂ”",
-    generatedLabel: formatDateTime(report.createdAt),
-    level: progress.level || "вЂ”",
-    subscription: meta.tariff || "вЂ”",
-    totalLessons: meta.lessonsTotal || lessons.length,
-    lessonsLeft: meta.lessonsLeft ?? "вЂ”",
-    focus: progress.goals || progress.comments || "Р Р°Р±РѕС‡РёР№ С„РѕРєСѓСЃ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ.",
-    body: report.body || progress.comments || "",
-    homework: lessons.find((l) => l.homework)?.homework || "",
-    nextStep: meta.plan || progress.goals || "РџСЂРѕРґРѕР»Р¶Р°РµРј РїРѕ РїР»Р°РЅСѓ Р·Р°РЅСЏС‚РёР№.",
-    lessons: lessons.map((l) => ({
-      date: formatDateTime(l.date),
-      status: l.status,
-      topic: "РЈСЂРѕРє Р°РЅРіР»РёР№СЃРєРѕРіРѕ",
-      homework: l.homework || l.notes || "",
-    })),
-  });
+  if (builder) {
+    return builder({
+      title: report.title || "Отчёт о прогрессе",
+      studentName: student?.name || "—",
+      subtitle: `${student?.name || "Ученик"} · ${meta.tariff || "индивидуальный маршрут"}`,
+      generatedLabel: formatDateTime(report.createdAt),
+      level: progress.level || "—",
+      subscription: meta.tariff || "индивидуально",
+      totalLessons: meta.lessonsTotal || lessons.length,
+      lessonsLeft: meta.lessonsLeft ?? "—",
+      focus: progress.goals || progress.comments || "Учебный фокус преподавателя.",
+      goals: progress.goals || "",
+      body: report.body || progress.comments || "",
+      teacherComment: progress.comments || "",
+      homework: lessons.find((l) => l.homework)?.homework || "",
+      nextStep: meta.plan || progress.goals || "Продолжаем по плану занятий.",
+      lessons: lessons.map((l) => ({ date: formatDateTime(l.date), status: l.status, topic: "Урок английского", homework: l.homework || l.notes || "" })),
+      materials: materials.map((m) => ({ title: m.title, details: m.details || m.url || "", done: Boolean(m.done), date: m.at ? formatDateTime(m.at) : "" })),
+      practice: practice.map((p) => ({ title: p.title, details: p.details || p.level || p.url || "", done: Boolean(p.done), minutes: p.minutes || "" })),
+      payments: payments.map((p) => ({ date: formatDateTime(p.date), amount: p.amount, status: p.status, comment: p.comment || "" })),
+    });
+  }
+  return ["Отчёт преподавателя New Generation English", `Дата: ${formatDateTime(report.createdAt)}`, `Ученик: ${student?.name || "—"}`, "", report.title || "Отчёт", "", report.body || ""].join("\n");
 }
 
 function renderParentReports(state, studentId) {
@@ -1033,24 +1012,24 @@ function renderParentReports(state, studentId) {
   if (!reports.length) {
     el.innerHTML = `
       <div style="border-top:1px solid var(--line); padding-top:12px;">
-        <div class="panel-kicker">${escapeHtml(t("РћС‚С‡С‘С‚С‹", "Reports"))}</div>
-        <div class="muted">${escapeHtml(t("РћС‚С‡С‘С‚РѕРІ РїСЂРµРїРѕРґР°РІР°С‚РµР»СЏ РїРѕРєР° РЅРµС‚", "No teacher reports yet"))}</div>
+        <div class="panel-kicker">${escapeHtml(t("Отчёты", "Reports"))}</div>
+        <div class="muted">${escapeHtml(t("Отчётов преподавателя пока нет", "No teacher reports yet"))}</div>
       </div>`;
     return;
   }
 
   el.innerHTML = `
     <div style="border-top:1px solid var(--line); padding-top:12px;">
-      <div class="panel-kicker">${escapeHtml(t("РћС‚С‡С‘С‚С‹", "Reports"))}</div>
+      <div class="panel-kicker">${escapeHtml(t("Отчёты", "Reports"))}</div>
       ${reports.map((report) => `
         <div class="student-item-row">
           <div>
             <div class="panel-kicker">${escapeHtml(formatDateTime(report.createdAt))}</div>
-            <div><strong>${escapeHtml(report.title || t("РћС‚С‡С‘С‚", "Report"))}</strong></div>
+            <div><strong>${escapeHtml(report.title || t("Отчёт", "Report"))}</strong></div>
             <div class="muted">${escapeHtml((report.body || "").slice(0, 120))}</div>
           </div>
           <div class="student-item-actions">
-            <button class="btn-mini" type="button" data-parent-report="${escapeHtml(report.id)}">${escapeHtml(t("PDF", "PDF"))}</button>
+            <button class="btn-mini" type="button" data-parent-report="${escapeHtml(report.id)}">${escapeHtml(t("Скачать", "Download"))}</button>
           </div>
         </div>`).join("")}
     </div>`;
@@ -1063,89 +1042,107 @@ function renderParentReports(state, studentId) {
       if (!report) return;
       const student = getUser(fresh, report.studentId);
       const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
-      const html = buildTeacherSavedReportText(fresh, report);
-      window.NGEReportDocs?.openPdfPrint
-        ? window.NGEReportDocs.openPdfPrint(
-ge-teacher-report-${safeName}.pdf`, html)
-        : (() => {
-            const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = 
-ge-teacher-report-${safeName}.html`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-          })();
+      downloadReportDocument(`nge-teacher-report-${safeName}.pdf`, buildTeacherSavedReportText(fresh, report));
     });
   });
 }
 
 function renderPayments(state, studentId) {
+  const meta = getStudentMeta(state, studentId);
+  const student = getUser(state, studentId);
   const payments = listPaymentsForStudent(state, studentId).slice(0, 10);
+  const paymentGuide = `
+    <div class="payment-guide">
+      <div>
+        <div class="panel-kicker">${escapeHtml(t("Оплата", "Payment"))}</div>
+        <strong>${escapeHtml(PAYMENT_DETAILS.method)} · ${escapeHtml(PAYMENT_DETAILS.recipient)}</strong>
+        <div class="muted">${escapeHtml(t("Телефон для перевода", "Transfer phone"))}: ${escapeHtml(PAYMENT_DETAILS.phone)}</div>
+        <div class="muted">${escapeHtml(t("Назначение", "Purpose"))}: ${escapeHtml(PAYMENT_DETAILS.purpose)}</div>
+      </div>
+      <div class="payment-guide-actions">
+        <a class="btn-mini" data-primary href="${escapeHtml(PAYMENT_DETAILS.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Оплатить через Т-Банк", "Pay via T-Bank"))}</a>
+        <button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.phone)}" data-label="${escapeHtml(t("Скопировать телефон", "Copy phone"))}">${escapeHtml(t("Скопировать телефон", "Copy phone"))}</button>
+        <button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.url)}" data-label="${escapeHtml(t("Скопировать ссылку", "Copy link"))}">${escapeHtml(t("Скопировать ссылку", "Copy link"))}</button>
+      </div>
+    </div>
+    <details class="payment-details">
+      <summary>${escapeHtml(t("Реквизиты для перевода", "Bank details"))}</summary>
+      <div class="payment-details-grid">
+        <span>${escapeHtml(t("Получатель", "Recipient"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.recipient)}" data-label="${escapeHtml(PAYMENT_DETAILS.recipient)}">${escapeHtml(PAYMENT_DETAILS.recipient)}</button>
+        <span>${escapeHtml(t("Счёт", "Account"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.account)}" data-label="${escapeHtml(PAYMENT_DETAILS.account)}">${escapeHtml(PAYMENT_DETAILS.account)}</button>
+        <span>${escapeHtml(t("Банк", "Bank"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.bank)}" data-label="${escapeHtml(PAYMENT_DETAILS.bank)}">${escapeHtml(PAYMENT_DETAILS.bank)}</button>
+        <span>${escapeHtml(t("БИК", "BIK"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.bik)}" data-label="${escapeHtml(PAYMENT_DETAILS.bik)}">${escapeHtml(PAYMENT_DETAILS.bik)}</button>
+        <span>${escapeHtml(t("Корр. счёт", "Corr. account"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}" data-label="${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}">${escapeHtml(PAYMENT_DETAILS.correspondentAccount)}</button>
+        <span>${escapeHtml(t("ИНН", "INN"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.inn)}" data-label="${escapeHtml(PAYMENT_DETAILS.inn)}">${escapeHtml(PAYMENT_DETAILS.inn)}</button>
+        <span>${escapeHtml(t("КПП", "KPP"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.kpp)}" data-label="${escapeHtml(PAYMENT_DETAILS.kpp)}">${escapeHtml(PAYMENT_DETAILS.kpp)}</button>
+        <span>${escapeHtml(t("Назначение", "Purpose"))}</span><button class="btn-mini" type="button" data-copy-pay="${escapeHtml(PAYMENT_DETAILS.purpose)}" data-label="${escapeHtml(t("Скопировать назначение", "Copy purpose"))}">${escapeHtml(t("Скопировать назначение", "Copy purpose"))}</button>
+      </div>
+    </details>
+    <div class="payment-balance">
+      <span>${escapeHtml(t("Остаток занятий", "Lessons left"))}</span>
+      <strong>${escapeHtml(String(meta?.remainingLessons ?? 0))}</strong>
+    </div>
+  `;
   const html = payments.length
     ? payments
         .map((p) => {
-          const total = Number(p.lessonsTotal || 0);
-          const left = Number(p.lessonsLeft || 0);
-          const paidAt = p.paidAt ? formatDateTime(p.paidAt) : t("РЅРµ РѕРїР»Р°С‡РµРЅРѕ", "not paid");
-          const remindAt = p.remindAt ? formatDateTime(p.remindAt) : t("РЅРµ Р·Р°РґР°РЅРѕ", "not set");
-          const paymentUrl = getPaymentUrl(p);
-          const markedAt = p.payerMarkedAt ? formatDateTime(p.payerMarkedAt) : "";
-          const receiptNumber = (p.receiptNumber || "").trim();
-          const receiptUrl = (p.receiptUrl || "").trim();
+          const receiptReady = p.receiptUrl || p.receiptNumber || p.receiptIssuedAt;
+          const canReport = p.status !== "paid" && !p.paidReportedAt;
+          const notifyText = [
+            "Мария Витальевна, здравствуйте!",
+            "Я оплатил(а) абонемент.",
+            `Ученик: ${student?.name || ""}`,
+            `Сумма: ${p.amount} руб.`,
+            `Дата оплаты: ${new Date().toLocaleDateString("ru-RU")}`,
+            `Назначение: ${PAYMENT_DETAILS.purpose}`,
+          ].join("\n");
           return `<div class="payment-row">
             <div>
               <div class="panel-kicker">${escapeHtml(formatDateTime(p.date))}</div>
               <div class="muted">${escapeHtml(p.comment || "")}</div>
-              <div style="margin-top:6px;"><strong>${escapeHtml(total ? `${left}/${total}` : "вЂ”")}</strong> <span class="muted">${escapeHtml(t("Р·Р°РЅСЏС‚РёР№ РѕСЃС‚Р°Р»РѕСЃСЊ / РІСЃРµРіРѕ", "lessons left / total"))}</span></div>
-              <div class="muted" style="margin-top:4px;">${escapeHtml(t("РћРїР»Р°С‡РµРЅРѕ", "Paid"))}: ${escapeHtml(paidAt)} В· ${escapeHtml(t("РќР°РїРѕРјРЅРёС‚СЊ", "Remind"))}: ${escapeHtml(remindAt)}</div>
-              <div class="payment-placeholder">
-                <strong>${escapeHtml(t("РћРїР»Р°С‚Р° С‡РµСЂРµР· Рў-Р‘Р°РЅРє", "T-Bank payment"))}</strong>
-                <div class="muted" style="margin-top:4px;">${escapeHtml(markedAt ? t(`Р РѕРґРёС‚РµР»СЊ РѕС‚РјРµС‚РёР» РѕРїР»Р°С‚Сѓ: ${markedAt}`, `Payment marked by parent: ${markedAt}`) : t("РџРѕСЃР»Рµ РѕРїР»Р°С‚С‹ РЅР°Р¶РјРёС‚Рµ В«РЇ РѕРїР»Р°С‚РёР»(Р°)В»: РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ РїРѕРґС‚РІРµСЂРґРёС‚ РїР»Р°С‚С‘Р¶ Рё РѕР±РЅРѕРІРёС‚ РѕСЃС‚Р°С‚РѕРє Р·Р°РЅСЏС‚РёР№.", "After payment, click вЂњI paidвЂќ: the teacher will confirm it and update the lesson balance."))}</div>
-                <div class="muted" style="margin-top:8px;">${renderTbankDetails()}</div>
-                <div class="actions" style="margin-top:10px;">
-                  ${paymentUrl ? `<a class="btn-mini" data-primary href="${escapeHtml(paymentUrl)}" target="_blank" rel="noopener">РћРїР»Р°С‚РёС‚СЊ С‡РµСЂРµР· Рў-Р‘Р°РЅРє</a>` : `<span class="btn-mini" aria-disabled="true">${escapeHtml(t("РЎСЃС‹Р»РєР° Рў-Р‘Р°РЅРєР° РіРѕС‚РѕРІРёС‚СЃСЏ", "T-Bank link pending"))}</span>`}
-                  ${paymentUrl ? `<button class="btn-mini" type="button" data-parent-pay-confirm="${escapeHtml(p.id)}">${escapeHtml(t("РЇ РѕРїР»Р°С‚РёР»(Р°)", "I paid"))}</button>` : ""}
-                </div>
+              ${p.paidReportedAt ? `<div class="muted">${escapeHtml(t("Вы отметили оплату", "Payment reported"))}: ${escapeHtml(formatDateTime(p.paidReportedAt))}</div>` : ""}
+              ${
+                receiptReady
+                  ? `<div class="muted">${escapeHtml(t("Чек", "Receipt"))}: ${escapeHtml(p.receiptNumber || t("выдан", "issued"))}</div>`
+                  : `<div class="muted">${escapeHtml(t("Чек появится после подтверждения оплаты", "Receipt appears after confirmation"))}</div>`
+              }
+              <div class="actions">
+                ${canReport ? `<button class="btn-mini" type="button" data-report-pay="${escapeHtml(p.id)}">${escapeHtml(t("Я оплатил(а)", "I paid"))}</button>` : ""}
+                ${canReport ? `<button class="btn-mini" type="button" data-telegram-pay="${escapeHtml(notifyText)}" data-label="${escapeHtml(t("Сообщить Марии", "Message Maria"))}">${escapeHtml(t("Сообщить Марии", "Message Maria"))}</button>` : ""}
+                ${p.receiptUrl ? `<a class="btn-mini" href="${escapeHtml(p.receiptUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("Открыть чек", "Open receipt"))}</a>` : ""}
               </div>
-              ${receiptUrl ? `<div class="actions" style="margin-top:8px;"><a class="btn-mini" href="${escapeHtml(receiptUrl)}" target="_blank" rel="noopener">${escapeHtml(t("РћС‚РєСЂС‹С‚СЊ С‡РµРє", "Open receipt"))}</a></div>` : ""}
-              ${receiptNumber && !receiptUrl ? `<div class="muted" style="margin-top:8px;">${escapeHtml(t("Р§РµРє", "Receipt"))}: ${escapeHtml(receiptNumber)}</div>` : ""}
             </div>
-            <div class="payment-actions mono"><strong>${escapeHtml(String(p.amount))} в‚Ѕ</strong> ${pill(p.status)}</div>
+            <div class="mono payment-row-side">
+              <strong>${escapeHtml(String(p.amount))} ₽</strong>
+              ${pill(p.status)}
+              ${p.paymentUrl ? `<a class="btn-mini" data-primary href="${escapeHtml(p.paymentUrl)}" target="_blank" rel="noopener">${escapeHtml(t("Оплатить", "Pay"))}</a>` : ""}
+            </div>
           </div>`;
         })
         .join("")
-    : `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ РѕРїР»Р°С‚", "No payments yet"))}</div>`;
+    : `<div class="muted">${escapeHtml(t("Пока нет оплат", "No payments yet"))}</div>`;
   const el = byId("parentPaymentsList");
-  if (el) el.innerHTML = html;
-  el?.querySelectorAll("[data-parent-pay-confirm]").forEach((btn) => {
+  if (!el) return;
+  el.innerHTML = `${paymentGuide}${html}`;
+
+  el.querySelectorAll("[data-copy-pay]").forEach((btn) => {
+    btn.addEventListener("click", () => copyText(btn.getAttribute("data-copy-pay") || "", btn));
+  });
+
+  el.querySelectorAll("[data-report-pay]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const paymentId = btn.getAttribute("data-parent-pay-confirm") || "";
+      const id = btn.getAttribute("data-report-pay");
+      if (!id) return;
       const fresh = loadState();
-      const payment = fresh.payments.find((x) => x.id === paymentId);
-      if (!payment) return;
-      if (!getPaymentUrl(payment)) return;
-      updatePayment(fresh, paymentId, { status: "pending", payerMarkedAt: new Date().toISOString() });
-      const student = getUser(fresh, payment.studentId);
-      (fresh.users || [])
-        .filter((u) => u.role === "teacher")
-        .forEach((teacher) => {
-          queueNotification(fresh, {
-            userId: teacher.id,
-            channel: "telegram",
-            payload: {
-              title: "Р РѕРґРёС‚РµР»СЊ РѕС‚РјРµС‚РёР» РѕРїР»Р°С‚Сѓ",
-              text: `${student?.name || "РЈС‡РµРЅРёРє"}: ${payment.amount} в‚Ѕ В· Рў-Р‘Р°РЅРє В· Р¶РґС‘С‚ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ`,
-              link: payment.paymentUrl || "",
-            },
-            sendAt: new Date().toISOString(),
-          });
-        });
-      saveState(fresh);
+      updatePayment(fresh, id, { paidReportedAt: new Date().toISOString() });
       renderPayments(loadState(), studentId);
+    });
+  });
+
+  el.querySelectorAll("[data-telegram-pay]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await copyText(btn.getAttribute("data-telegram-pay") || "", btn);
+      window.open(PAYMENT_DETAILS.telegramUrl, "_blank", "noopener,noreferrer");
     });
   });
 }
@@ -1155,7 +1152,7 @@ function renderNotifications(state, parentId) {
   const el = byId("parentNotifList");
   if (!el) return;
   if (!items.length) {
-    el.innerHTML = `<div class="muted">${escapeHtml(t("РџРѕРєР° РЅРµС‚ СѓРІРµРґРѕРјР»РµРЅРёР№", "No notifications yet"))}</div>`;
+    el.innerHTML = `<div class="muted">${escapeHtml(t("Пока нет уведомлений", "No notifications yet"))}</div>`;
     return;
   }
   el.innerHTML = items
@@ -1168,7 +1165,7 @@ function renderNotifications(state, parentId) {
               <div class="panel-kicker">${escapeHtml(formatDateTime(n.sendAt))}</div>
               <div><strong>${escapeHtml(n.payload.title)}</strong></div>
             </div>
-            <button class="btn-mini" type="button" data-copy="${escapeHtml(payload)}">${escapeHtml(t("РљРѕРїРёСЂРѕРІР°С‚СЊ", "Copy"))}</button>
+            <button class="btn-mini" type="button" data-copy="${escapeHtml(payload)}">${escapeHtml(t("Копировать", "Copy"))}</button>
           </div>
           <div class="muted" style="margin-top: 8px; white-space: pre-wrap;">${escapeHtml(n.payload.text)}</div>
         </div>`;
@@ -1180,8 +1177,8 @@ function renderNotifications(state, parentId) {
       const text = btn.getAttribute("data-copy") || "";
       try {
         await navigator.clipboard.writeText(text);
-        btn.textContent = t("РЎРєРѕРїРёСЂРѕРІР°РЅРѕ", "Copied");
-        setTimeout(() => (btn.textContent = t("РљРѕРїРёСЂРѕРІР°С‚СЊ", "Copy")), 1200);
+        btn.textContent = t("Скопировано", "Copied");
+        setTimeout(() => (btn.textContent = t("Копировать", "Copy")), 1200);
       } catch {
         // noop
       }
@@ -1199,72 +1196,64 @@ function buildProgressReport(state, parentUser, studentId) {
   const practice = listStudentItems(state, studentId, "practice");
   const doneItems = [...materials, ...practice].filter((x) => x.done);
   const practiceMinutes = practice.reduce((sum, item) => sum + (item.done ? Number(item.minutes || 0) : 0), 0);
-  const latestHomework = lessons.slice().reverse().find((l) => l.homework)?.homework || "";
-  const builder = window.NGEReportDocs?.buildReportDocument;
-  if (!builder) return `РћС‚С‡С‘С‚ РѕР± СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё New Generation English\nРЈС‡РµРЅРёРє: ${student?.name || "вЂ”"}`;
-  return builder({
-    title: "Р РѕРґРёС‚РµР»СЊСЃРєРёР№ РѕС‚С‡С‘С‚ РѕР± СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё",
-    studentName: student?.name || "вЂ”",
-    parentName: parentUser.name || "",
-    generatedLabel: formatDateTime(new Date().toISOString()),
-    level: progress.level || "вЂ”",
-    subscription: meta.tariff || "вЂ”",
-    totalLessons: meta.lessonsTotal || lessons.length,
-    lessonsLeft: meta.lessonsLeft ?? "вЂ”",
-    focus: progress.goals || progress.comments || "РџСЂРѕРґРѕР»Р¶Р°РµРј СЂР°Р±РѕС‚Сѓ РїРѕ С‚РµРєСѓС‰РµРјСѓ СѓС‡РµР±РЅРѕРјСѓ РїР»Р°РЅСѓ.",
-    body: [
-      progress.comments || "",
-      `Р’С‹РїРѕР»РЅРµРЅРѕ Р·Р°РґР°РЅРёР№: ${doneItems.length}.`,
-      practiceMinutes ? `Р—Р°РєСЂС‹С‚Рѕ ${practiceMinutes} РјРёРЅСѓС‚ РїСЂР°РєС‚РёРєРё.` : "",
-    ].filter(Boolean).join("\n"),
-    homework: latestHomework,
-    nextStep: meta.plan || progress.goals || "РЎР»РµРґРёС‚СЊ Р·Р° РґРѕРјР°С€РєРѕР№ Рё Р±Р»РёР¶Р°Р№С€РёРјРё РјР°С‚РµСЂРёР°Р»Р°РјРё.",
-    lessons: lessons.slice(-12).reverse().map((l) => ({
-      date: formatDateTime(l.date),
-      status: l.status,
-      topic: "РЈСЂРѕРє Р°РЅРіР»РёР№СЃРєРѕРіРѕ",
-      homework: l.homework || l.notes || "",
-    })),
-    materials: materials.map((m) => ({
-      title: m.title,
-      details: m.details || m.url || "",
-      done: Boolean(m.done),
-      date: m.at ? formatDateTime(m.at) : "",
-    })),
-    practice: practice.map((p) => ({
-      title: p.title,
-      details: p.details || p.level || p.url || "",
-      done: Boolean(p.done),
-      minutes: p.minutes || "",
-    })),
-    payments: payments.map((p) => {
-      const total = Number(p.lessonsTotal || 0);
-      const left = Number(p.lessonsLeft || 0);
-      return {
-        date: formatDateTime(p.date),
-        amount: p.amount,
-        status: p.status,
-        comment: `${total ? `РћСЃС‚Р°Р»РѕСЃСЊ Р·Р°РЅСЏС‚РёР№: ${left}/${total}. ` : ""}${p.remindAt ? `РќР°РїРѕРјРЅРёС‚СЊ: ${formatDateTime(p.remindAt)}. ` : ""}${p.comment || ""}`.trim(),
-      };
-    }),
-  });
+
+  const lines = [
+    "Отчёт об успеваемости New Generation English",
+    `Дата выгрузки: ${formatDateTime(new Date().toISOString())}`,
+    `Родитель: ${parentUser.name || "—"}`,
+    `Ученик: ${student?.name || "—"}`,
+    "",
+    "Профиль",
+    `Уровень: ${progress.level || "—"}`,
+    `Абонемент: ${meta.tariff || "—"}`,
+    `План занятий: ${meta.plan || "—"}`,
+    "",
+    "Цели и комментарии преподавателя",
+    `Цели: ${progress.goals || "—"}`,
+    `Комментарий: ${progress.comments || "—"}`,
+    "",
+    "Посещаемость",
+    `Запланировано: ${lessons.filter((l) => l.status === "planned").length}`,
+    `Проведено: ${lessons.filter((l) => l.status === "done").length}`,
+    `Пропуски: ${lessons.filter((l) => l.status === "missed").length}`,
+    "",
+    "Уроки",
+    ...(lessons.length
+      ? lessons.slice(-12).reverse().map((l) => `- ${formatDateTime(l.date)} · ${l.status} · ${l.homework || "без домашки"}`)
+      : ["- уроков пока нет"]),
+    "",
+    "Материалы",
+    ...(materials.length
+      ? materials.map((m) => `- ${m.done ? "[x]" : "[ ]"} ${m.title}${m.details ? ` — ${m.details}` : ""}`)
+      : ["- материалов пока нет"]),
+    "",
+    "Практика и тренажёры",
+    ...(practice.length
+      ? practice.map((p) => `- ${p.done ? "[x]" : "[ ]"} ${p.title}${p.minutes ? ` · ${p.minutes} мин` : ""}${p.details ? ` — ${p.details}` : ""}`)
+      : ["- практики пока нет"]),
+    "",
+    "Итоги",
+    `Выполнено заданий: ${doneItems.length}`,
+    `Минут практики: ${practiceMinutes}`,
+    "",
+    "Оплаты",
+    ...(payments.length
+      ? payments.map((p) => `- ${formatDateTime(p.date)} · ${p.amount} ₽ · ${p.status}${p.comment ? ` · ${p.comment}` : ""}`)
+      : ["- оплат пока нет"]),
+  ];
+
+  return lines.join("\n");
 }
 
 function downloadProgressReport(state, parentUser, studentId) {
   const student = getUser(state, studentId);
   const report = buildProgressReport(state, parentUser, studentId);
-  const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
-  if (window.NGEReportDocs?.openPdfPrint) {
-    window.NGEReportDocs.openPdfPrint(
-ge-progress-${safeName}.pdf`, report);
-    return;
-  }
-  const blob = new Blob([report], { type: "text/html;charset=utf-8" });
+  const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
+  const safeName = (student?.name || "student").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "") || "student";
   const a = document.createElement("a");
   a.href = url;
-  a.download = 
-ge-progress-${safeName}.html`;
+  a.download = `nge-progress-${safeName}.txt`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -1276,7 +1265,7 @@ function ensureReportButton(parentUser, getStudentId) {
   if (!host || byId("downloadParentReportBtn")) return;
   const actions = document.createElement("div");
   actions.className = "actions";
-  actions.innerHTML = `<button class="btn-mini" id="downloadParentReportBtn" type="button" data-primary>PDF-РѕС‚С‡С‘С‚</button>`;
+  actions.innerHTML = `<button class="btn-mini" id="downloadParentReportBtn" type="button" data-primary>Скачать отчёт</button>`;
   host.appendChild(actions);
   byId("downloadParentReportBtn")?.addEventListener("click", () => {
     const studentId = getStudentId();
