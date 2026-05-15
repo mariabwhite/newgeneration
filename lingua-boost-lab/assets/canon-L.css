@@ -1,0 +1,2127 @@
+/* ============================================================
+   LINGUABOOST LAB · CANON-L
+   Skeleton: sticky 64px, 34px mark with angled orange triangle,
+   mono-caps nav, paper-pill tools, Kids/Adults segment.
+
+   Palette comes from inline style on <header class="canon-l-topbar">:
+     --lb-bg, --lb-text, --lb-muted, --lb-line,
+     --lb-pill-bg, --lb-pill-border, --lb-link-hover,
+     --lb-seg-bg, --lb-seg-border, --lb-seg-btn.
+
+   Without tokens (A1 lessons, Lab catalog) -> Midnight Plum fallback.
+   ============================================================ */
+
+/* =====================================================================
+   CANON-L DESIGN TOKENS (added 2026-05-11, prompt 14)
+   Type scale, feedback palette, spacing, radii, motion, shadows.
+   These tokens are ADDITIVE — they do not override any existing rule.
+   To use: write var(--fs-h1), var(--sp-4), var(--fb-ok) etc.
+   ===================================================================== */
+:root {
+  /* --- Font families -------------------------------------------------- */
+  --ff-display: 'Unbounded', 'Inter', system-ui, -apple-system, sans-serif;
+  --ff-body:    'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+  --ff-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* --- Font weights --------------------------------------------------- */
+  --fw-display: 800;
+  --fw-bold:    700;
+  --fw-medium:  500;
+  --fw-regular: 400;
+
+  /* --- Font sizes (fluid where useful) -------------------------------- */
+  --fs-display: clamp(36px, 5vw, 56px);   /* hero on catalog */
+  --fs-h1:      clamp(28px, 4vw, 44px);   /* lesson title */
+  --fs-h2:      clamp(22px, 3vw, 32px);   /* section title */
+  --fs-h3:      20px;                     /* sub-section */
+  --fs-h4:      17px;                     /* small heading */
+  --fs-body:    16px;                     /* default paragraph */
+  --fs-small:   14px;                     /* meta, captions */
+  --fs-micro:   12px;                     /* timestamps, badges */
+  --fs-caps:    11px;                     /* mono caps (nav, eyebrow) */
+
+  /* --- Line heights --------------------------------------------------- */
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-base:    1.55;
+  --lh-loose:   1.7;
+
+  /* --- Letter spacing ------------------------------------------------- */
+  --ls-display: -0.01em;
+  --ls-normal:  0;
+  --ls-caps:    0.18em;
+
+  /* --- Feedback palette ---------------------------------------------- */
+  --fb-ok:         #2e9c4d;
+  --fb-ok-bg:      rgba(46, 156, 77, 0.12);
+  --fb-ok-border:  rgba(46, 156, 77, 0.35);
+
+  --fb-err:        #d8453f;
+  --fb-err-bg:     rgba(216, 69, 63, 0.10);
+  --fb-err-border: rgba(216, 69, 63, 0.35);
+
+  --fb-hint:        #f2a93b;
+  --fb-hint-bg:     rgba(242, 169, 59, 0.12);
+  --fb-hint-border: rgba(242, 169, 59, 0.40);
+
+  --fb-info:        #4f7cdb;
+  --fb-info-bg:     rgba(79, 124, 219, 0.10);
+  --fb-info-border: rgba(79, 124, 219, 0.35);
+
+  /* --- Spacing scale (4px grid) -------------------------------------- */
+  --sp-0:  0;
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+
+  /* --- Radii ---------------------------------------------------------- */
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-full: 999px;
+
+  /* --- Motion --------------------------------------------------------- */
+  --tr-fast: 120ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tr-base: 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tr-slow: 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* --- Shadows -------------------------------------------------------- */
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --sh-2: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --sh-3: 0 12px 36px rgba(0, 0, 0, 0.12);
+
+  /* --- Z-index scale ------------------------------------------------- */
+  --z-base:     0;
+  --z-elevated: 10;
+  --z-sticky:   100;
+  --z-overlay:  1000;
+  --z-modal:    10000;
+}
+
+/* ---------------------------------------------------------------------
+   CANON-L TYPE UTILITIES
+   Opt-in classes that apply the type scale. Drop on any element.
+   --------------------------------------------------------------------- */
+.canon-l-display {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+.canon-l-h1 {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-display);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-display);
+}
+.canon-l-h2 {
+  font-family: var(--ff-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-normal);
+}
+.canon-l-h3 {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+.canon-l-h4 {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+}
+.canon-l-body {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+}
+.canon-l-small {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-small);
+  line-height: var(--lh-base);
+}
+.canon-l-micro {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-micro);
+  line-height: var(--lh-base);
+}
+.canon-l-caps {
+  font-family: var(--ff-mono);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-caps);
+  line-height: 1;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------
+   CANON-L FEEDBACK UTILITIES
+   For correct/wrong/hint/info states on quiz items, alerts, banners.
+   --------------------------------------------------------------------- */
+.canon-l-feedback {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+}
+.canon-l-feedback.is-correct {
+  color: var(--fb-ok);
+  background: var(--fb-ok-bg);
+  border-color: var(--fb-ok-border);
+}
+.canon-l-feedback.is-wrong {
+  color: var(--fb-err);
+  background: var(--fb-err-bg);
+  border-color: var(--fb-err-border);
+}
+.canon-l-feedback.is-hint {
+  color: var(--fb-hint);
+  background: var(--fb-hint-bg);
+  border-color: var(--fb-hint-border);
+}
+.canon-l-feedback.is-info {
+  color: var(--fb-info);
+  background: var(--fb-info-bg);
+  border-color: var(--fb-info-border);
+}
+
+/* ---------------------------------------------------------------------
+   CANON-L SPACING UTILITIES
+   Stack: vertical flow with gap. Cluster: horizontal flow with gap.
+   --------------------------------------------------------------------- */
+.canon-l-stack-1 { display: flex; flex-direction: column; gap: var(--sp-1); }
+.canon-l-stack-2 { display: flex; flex-direction: column; gap: var(--sp-2); }
+.canon-l-stack-3 { display: flex; flex-direction: column; gap: var(--sp-3); }
+.canon-l-stack-4 { display: flex; flex-direction: column; gap: var(--sp-4); }
+.canon-l-stack-5 { display: flex; flex-direction: column; gap: var(--sp-5); }
+.canon-l-stack-6 { display: flex; flex-direction: column; gap: var(--sp-6); }
+.canon-l-cluster-1 { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+.canon-l-cluster-2 { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.canon-l-cluster-3 { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+.canon-l-cluster-4 { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.canon-l-cluster-5 { display: flex; flex-wrap: wrap; gap: var(--sp-5); }
+/* End of tokens block === */
+
+/* === BASE TOPBAR ============================================ */
+.canon-l-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 64px;
+  padding: 14px clamp(18px, 3vw, 28px);
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.12));
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.canon-l-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.canon-l-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: #c5aef0;
+  color: #0e0a18;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 9px;
+  border-top-right-radius: 0;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.canon-l-mark::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: #ff9b2f;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+}
+.canon-l-mark img,
+.canon-l-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.canon-l-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.canon-l-name {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+
+.canon-l-sub {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  margin-top: 3px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.canon-l-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-left: 18px;
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.canon-l-link {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  padding: 6px 0;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.18s ease;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.canon-l-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--lb-link-hover, #c5aef0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.18s ease;
+}
+
+.canon-l-link:hover,
+.canon-l-link.is-active,
+.canon-l-link[aria-current="page"] {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-link:hover::after,
+.canon-l-link.is-active::after,
+.canon-l-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.canon-l-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* === KIDS / ADULTS SEGMENT ================================== */
+.canon-l-audience-switch {
+  display: inline-flex;
+  align-items: center;
+  background: var(--lb-seg-bg, #1a1326);
+  border: 1px solid var(--lb-seg-border, rgba(197, 174, 240, 0.22));
+  border-radius: 999px;
+  padding: 2px;
+  gap: 0;
+  flex-shrink: 0;
+}
+.canon-l-audience-btn {
+  border: 0;
+  background: transparent;
+  padding: 6px 14px;
+  min-height: 26px;
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-seg-btn, #c5aef0);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-audience-btn:hover {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-audience-btn.is-active,
+.canon-l-audience-btn[aria-pressed="true"] {
+  background: #ff690a;
+  color: #ffffff;
+}
+
+/* === PILLS (EN, LEVEL) ====================================== */
+.canon-l-pill {
+  min-height: 32px;
+  min-width: 56px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.22));
+  background: var(--lb-pill-bg, #1a1326);
+  color: var(--lb-text, #f0ebff);
+  cursor: pointer;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.canon-l-pill.palette-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 26px;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 14px) 14px, calc(100% - 9px) 14px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.canon-l-pill:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  color: var(--lb-text, #ffffff);
+}
+
+/* === LIGHT variant (A1 lessons & catalog) ==================== */
+/* Only when the page uses one of these data-theme values and has no inline tokens. */
+[data-theme="light"] .canon-l-topbar,
+[data-theme="light-lab"] .canon-l-topbar,
+[data-theme="white"] .canon-l-topbar,
+[data-theme="peach"] .canon-l-topbar,
+[data-theme="green"] .canon-l-topbar,
+[data-theme="rose"] .canon-l-topbar,
+[data-theme="cyan"] .canon-l-topbar,
+[data-theme="amber"] .canon-l-topbar,
+[data-theme="violet"] .canon-l-topbar {
+  background: var(--lb-bg, rgba(247, 245, 255, 0.92));
+  border-bottom-color: var(--lb-line, rgba(122, 95, 207, 0.18));
+}
+
+[data-theme="light"] .canon-l-mark,
+[data-theme="light-lab"] .canon-l-mark,
+[data-theme="white"] .canon-l-mark,
+[data-theme="peach"] .canon-l-mark,
+[data-theme="green"] .canon-l-mark,
+[data-theme="rose"] .canon-l-mark,
+[data-theme="cyan"] .canon-l-mark,
+[data-theme="amber"] .canon-l-mark,
+[data-theme="violet"] .canon-l-mark {
+  background: #4f3ea5;
+  color: #f7f5ff;
+}
+[data-theme="light"] .canon-l-mark::after,
+[data-theme="light-lab"] .canon-l-mark::after,
+[data-theme="white"] .canon-l-mark::after,
+[data-theme="peach"] .canon-l-mark::after,
+[data-theme="green"] .canon-l-mark::after,
+[data-theme="rose"] .canon-l-mark::after,
+[data-theme="cyan"] .canon-l-mark::after,
+[data-theme="amber"] .canon-l-mark::after,
+[data-theme="violet"] .canon-l-mark::after {
+  background: #ff5a1f;
+}
+
+[data-theme="light"] .canon-l-name,
+[data-theme="light-lab"] .canon-l-name,
+[data-theme="white"] .canon-l-name,
+[data-theme="peach"] .canon-l-name,
+[data-theme="green"] .canon-l-name,
+[data-theme="rose"] .canon-l-name,
+[data-theme="cyan"] .canon-l-name,
+[data-theme="amber"] .canon-l-name,
+[data-theme="violet"] .canon-l-name {
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-sub,
+[data-theme="light-lab"] .canon-l-sub,
+[data-theme="white"] .canon-l-sub,
+[data-theme="peach"] .canon-l-sub,
+[data-theme="green"] .canon-l-sub,
+[data-theme="rose"] .canon-l-sub,
+[data-theme="cyan"] .canon-l-sub,
+[data-theme="amber"] .canon-l-sub,
+[data-theme="violet"] .canon-l-sub {
+  color: var(--lb-muted, #756d86);
+}
+
+[data-theme="light"] .canon-l-link,
+[data-theme="light-lab"] .canon-l-link,
+[data-theme="white"] .canon-l-link,
+[data-theme="peach"] .canon-l-link,
+[data-theme="green"] .canon-l-link,
+[data-theme="rose"] .canon-l-link,
+[data-theme="cyan"] .canon-l-link,
+[data-theme="amber"] .canon-l-link,
+[data-theme="violet"] .canon-l-link {
+  color: var(--lb-muted, #756d86);
+}
+[data-theme="light"] .canon-l-link::after,
+[data-theme="light-lab"] .canon-l-link::after,
+[data-theme="white"] .canon-l-link::after,
+[data-theme="peach"] .canon-l-link::after,
+[data-theme="green"] .canon-l-link::after,
+[data-theme="rose"] .canon-l-link::after,
+[data-theme="cyan"] .canon-l-link::after,
+[data-theme="amber"] .canon-l-link::after,
+[data-theme="violet"] .canon-l-link::after {
+  background: var(--lb-link-hover, #7a5fcf);
+}
+[data-theme="light"] .canon-l-link:hover,
+[data-theme="light-lab"] .canon-l-link:hover,
+[data-theme="white"] .canon-l-link:hover,
+[data-theme="peach"] .canon-l-link:hover,
+[data-theme="green"] .canon-l-link:hover,
+[data-theme="rose"] .canon-l-link:hover,
+[data-theme="cyan"] .canon-l-link:hover,
+[data-theme="amber"] .canon-l-link:hover,
+[data-theme="violet"] .canon-l-link:hover,
+[data-theme="light"] .canon-l-link.is-active,
+[data-theme="light-lab"] .canon-l-link.is-active,
+[data-theme="white"] .canon-l-link.is-active,
+[data-theme="peach"] .canon-l-link.is-active,
+[data-theme="green"] .canon-l-link.is-active,
+[data-theme="rose"] .canon-l-link.is-active,
+[data-theme="cyan"] .canon-l-link.is-active,
+[data-theme="amber"] .canon-l-link.is-active,
+[data-theme="violet"] .canon-l-link.is-active {
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-pill,
+[data-theme="light-lab"] .canon-l-pill,
+[data-theme="white"] .canon-l-pill,
+[data-theme="peach"] .canon-l-pill,
+[data-theme="green"] .canon-l-pill,
+[data-theme="rose"] .canon-l-pill,
+[data-theme="cyan"] .canon-l-pill,
+[data-theme="amber"] .canon-l-pill,
+[data-theme="violet"] .canon-l-pill {
+  background: var(--lb-pill-bg, #ffffff);
+  color: var(--lb-text, #1a1326);
+  border-color: var(--lb-pill-border, rgba(122, 95, 207, 0.30));
+}
+[data-theme="light"] .canon-l-pill:hover,
+[data-theme="light-lab"] .canon-l-pill:hover,
+[data-theme="white"] .canon-l-pill:hover,
+[data-theme="peach"] .canon-l-pill:hover,
+[data-theme="green"] .canon-l-pill:hover,
+[data-theme="rose"] .canon-l-pill:hover,
+[data-theme="cyan"] .canon-l-pill:hover,
+[data-theme="amber"] .canon-l-pill:hover,
+[data-theme="violet"] .canon-l-pill:hover {
+  border-color: #4f3ea5;
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-audience-switch,
+[data-theme="light-lab"] .canon-l-audience-switch,
+[data-theme="white"] .canon-l-audience-switch,
+[data-theme="peach"] .canon-l-audience-switch,
+[data-theme="green"] .canon-l-audience-switch,
+[data-theme="rose"] .canon-l-audience-switch,
+[data-theme="cyan"] .canon-l-audience-switch,
+[data-theme="amber"] .canon-l-audience-switch,
+[data-theme="violet"] .canon-l-audience-switch {
+  background: var(--lb-seg-bg, #ffffff);
+  border-color: var(--lb-seg-border, rgba(122, 95, 207, 0.30));
+}
+[data-theme="light"] .canon-l-audience-btn,
+[data-theme="light-lab"] .canon-l-audience-btn,
+[data-theme="white"] .canon-l-audience-btn,
+[data-theme="peach"] .canon-l-audience-btn,
+[data-theme="green"] .canon-l-audience-btn,
+[data-theme="rose"] .canon-l-audience-btn,
+[data-theme="cyan"] .canon-l-audience-btn,
+[data-theme="amber"] .canon-l-audience-btn,
+[data-theme="violet"] .canon-l-audience-btn {
+  color: var(--lb-seg-btn, #4f3ea5);
+}
+
+/* === MOBILE ================================================= */
+@media (max-width: 720px) {
+  .canon-l-topbar {
+    padding: 12px 16px;
+    gap: 12px;
+    min-height: 56px;
+  }
+  .canon-l-nav {
+    gap: 14px;
+    margin-left: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .canon-l-nav::-webkit-scrollbar { display: none; }
+  .canon-l-sub { display: none; }
+  .canon-l-audience-btn { padding: 6px 10px; }
+  .canon-l-pill { padding: 6px 12px; min-width: 44px; }
+}
+
+/* === FOOTER ================================================ */
+/* Footer palette follows the same inline tokens as the topbar.
+   Without tokens, fall back to Midnight Plum. */
+.canon-l-footer {
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-top: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  padding: 22px clamp(18px, 3vw, 28px) 26px;
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  color: var(--lb-text, #f0ebff);
+  margin-top: 48px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.canon-l-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.16));
+}
+
+.canon-l-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.canon-l-footer-mark {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: #c5aef0;
+  color: #0e0a18;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  border-radius: 7px;
+  border-top-right-radius: 0;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.canon-l-footer-mark::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  background: #ff9b2f;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+}
+.canon-l-footer-mark img,
+.canon-l-footer-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.canon-l-footer-name {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+
+.canon-l-footer-meta {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  flex: 1 1 220px;
+  text-align: center;
+  min-width: 0;
+}
+
+.canon-l-footer-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.canon-l-footer-nav a {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-footer-nav a:hover {
+  color: var(--lb-text, #f0ebff);
+}
+
+.canon-l-footer-legal {
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--lb-muted, #8f7daa);
+  font-family: "Manrope", system-ui, sans-serif;
+}
+.canon-l-footer-legal strong {
+  color: var(--lb-text, #f0ebff);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .canon-l-footer {
+    padding: 18px 16px 22px;
+    margin-top: 32px;
+  }
+  .canon-l-footer-row {
+    gap: 12px;
+  }
+  .canon-l-footer-meta {
+    text-align: left;
+    flex: 1 1 100%;
+    order: 3;
+    font-size: 9.5px;
+  }
+  .canon-l-footer-nav {
+    gap: 14px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .canon-l-footer-nav::-webkit-scrollbar { display: none; }
+  .canon-l-footer-legal {
+    font-size: 11px;
+  }
+}
+
+/* === CRUMBS (under topbar, before content) ============== */
+.canon-l-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 12px clamp(18px, 3vw, 28px);
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.10));
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+}
+.canon-l-crumbs a {
+  color: var(--lb-muted, #8f7daa);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-crumbs a:hover {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-crumbs-sep {
+  margin: 0 10px;
+  opacity: 0.5;
+}
+.canon-l-crumbs-here {
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .canon-l-crumbs {
+    padding: 9px 16px;
+    font-size: 9.5px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    top: 56px;
+  }
+  .canon-l-crumbs::-webkit-scrollbar { display: none; }
+  .canon-l-crumbs-sep { margin: 0 8px; }
+}
+
+
+/* === CANON-L BAR INDEPENDENCE / FOOTER BRAND DEDUPE ============== */
+.canon-l-topbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
+  align-items: center;
+  justify-content: stretch;
+  text-align: initial;
+}
+.canon-l-brand {
+  justify-self: start;
+  margin-left: 0;
+}
+.canon-l-nav {
+  justify-self: center;
+  justify-content: center;
+  margin-left: 0;
+  flex: 0 1 auto;
+  text-align: center;
+}
+.canon-l-tools {
+  justify-self: end;
+  justify-content: flex-end;
+  margin-left: 0;
+}
+.canon-l-crumbs {
+  justify-content: center;
+  text-align: center;
+}
+.canon-l-footer {
+  text-align: center;
+}
+.canon-l-footer-row {
+  justify-content: center;
+}
+.canon-l-footer-brand {
+  display: none;
+}
+.canon-l-footer-meta {
+  flex: 0 1 auto;
+  text-align: center;
+}
+.canon-l-footer-nav {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.canon-l-footer-legal {
+  text-align: center;
+}
+@media (max-width: 960px) {
+  .canon-l-topbar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+  .canon-l-brand,
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-self: center;
+  }
+  .canon-l-nav,
+  .canon-l-tools,
+  .canon-l-footer-row,
+  .canon-l-footer-nav {
+    justify-content: center;
+  }
+  .canon-l-nav {
+    margin-left: 0;
+  }
+  .canon-l-footer-meta {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+/* === CANON-L SINGLE TOP STRIP OVERRIDE ========================== */
+.canon-l-topbar {
+  display: flex;
+  grid-template-columns: none;
+  justify-content: flex-start;
+  justify-items: initial;
+  border-bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+  gap: clamp(22px, 2.5vw, 38px);
+  padding-left: clamp(22px, 2.5vw, 42px);
+  padding-right: clamp(16px, 2vw, 28px);
+}
+
+.canon-l-brand,
+.canon-l-nav,
+.canon-l-tools {
+  justify-self: initial;
+  margin-left: 0;
+}
+
+.canon-l-nav {
+  justify-content: flex-start;
+  flex: 0 1 auto;
+}
+
+.canon-l-tools {
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.canon-l-crumbs {
+  display: none;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.canon-l-audience-switch,
+.canon-l-audience-btn,
+.canon-l-pill {
+  border-radius: 10px;
+}
+
+.canon-l-mark {
+  border-radius: 8px 0 8px 8px;
+}
+
+@media (max-width: 960px) {
+  .canon-l-topbar {
+    display: flex;
+    grid-template-columns: none;
+    justify-content: flex-start;
+    justify-items: initial;
+    align-items: center;
+    gap: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .canon-l-topbar::-webkit-scrollbar {
+    display: none;
+  }
+  .canon-l-brand,
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-self: initial;
+  }
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+}
+
+body.nge-unified-lab.lb-level-a1 .canon-l-tools {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+body.nge-unified-lab.lb-level-a1 .canon-l-nav {
+  flex: 0 1 auto;
+}
+
+/* === HERO (unified lesson heading block below crumbs) ============ */
+.canon-l-hero {
+  position: relative;
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  padding: 48px clamp(18px, 3vw, 28px) 32px;
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.10));
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.canon-l-hero-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+.canon-l-hero-eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  margin: 0;
+}
+.canon-l-hero-title {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-hero-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-hero-lead {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--lb-muted, #8f7daa);
+  max-width: 720px;
+  margin: 0;
+}
+.canon-l-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.canon-l-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.22));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-text, #f0ebff);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.canon-l-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .canon-l-hero { padding: 32px 16px 24px; }
+  .canon-l-hero-inner { gap: 10px; }
+  .canon-l-hero-lead { font-size: 14px; }
+}
+
+/* === STEP TRACKER (under hero, before lesson sections) ============ */
+.canon-l-tracker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px clamp(18px, 3vw, 28px);
+  max-width: 1240px;
+  margin: 18px auto 24px;
+  background: var(--lb-pill-bg, transparent);
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 14px;
+  box-sizing: border-box;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-tracker-step {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.canon-l-tracker-bar {
+  flex: 1 1 200px;
+  height: 6px;
+  background: var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 999px;
+  overflow: hidden;
+  min-width: 120px;
+}
+.canon-l-tracker-fill {
+  height: 100%;
+  background: var(--lb-text, #c5aef0);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.canon-l-tracker-stars {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.canon-l-tracker-star {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: var(--lb-line, rgba(197, 174, 240, 0.30));
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transition: background 0.2s ease;
+}
+.canon-l-tracker-star.is-earned,
+.canon-l-tracker-star.earned {
+  background: #ff9b2f;
+}
+.canon-l-tracker-score {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.canon-l-tracker-reset {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.30));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-muted, #8f7daa);
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+.canon-l-tracker-reset:hover {
+  color: var(--lb-text, #f0ebff);
+  border-color: var(--lb-link-hover, #c5aef0);
+}
+@media (max-width: 720px) {
+  .canon-l-tracker {
+    padding: 12px 14px;
+    gap: 10px;
+    margin: 14px 16px 18px;
+  }
+  .canon-l-tracker-step { flex: 1 1 100%; }
+}
+
+/* === WHY THIS LESSON WORKS (native details, under hero) ======== */
+.canon-l-why {
+  width: var(--lesson-shell, min(100% - 56px, 1320px));
+  max-width: 1320px;
+  margin: 14px auto 18px;
+  padding: 14px 18px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: var(--cl-r-lg, 18px);
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  color: var(--lb-text, #f0ebff);
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+}
+.canon-l-why summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  list-style: none;
+  cursor: pointer;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-why summary::-webkit-details-marker { display: none; }
+.canon-l-why summary::after {
+  content: "+";
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  border: 1px solid var(--lb-pill-border, var(--lb-line, rgba(197, 174, 240, 0.26)));
+  border-radius: 999px;
+  background: var(--lb-pill-bg, rgba(255, 255, 255, 0.08));
+  color: var(--lb-accent, var(--lb-seg-btn, var(--lb-link-hover, #c5aef0)));
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.canon-l-why[open] summary::after {
+  content: "−";
+  transform: none;
+}
+.canon-l-why-eyebrow {
+  margin: 12px 0 10px;
+  color: var(--lb-muted, rgba(240, 235, 255, 0.72));
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.canon-l-why-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+}
+.canon-l-why-list li {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: calc(var(--cl-r-lg, 18px) - 6px);
+  background: var(--lb-pill-bg, rgba(255, 255, 255, 0.08));
+  color: var(--lb-text, #f0ebff);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.canon-l-why-list strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--lb-accent, var(--lb-seg-btn, var(--lb-link-hover, #c5aef0)));
+  font-weight: 800;
+}
+@media (max-width: 920px) {
+  .canon-l-why-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .canon-l-why {
+    width: min(100% - 28px, 1320px);
+    margin: 12px auto 16px;
+    padding: 13px 14px;
+  }
+  .canon-l-why summary {
+    font-size: 13px;
+  }
+}
+@media (max-width: 560px) {
+  .canon-l-why-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .canon-l-why summary::after {
+    transition: none;
+  }
+}
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.001s;
+  }
+}
+
+/* === POST HERO-UNIFY REPAIR (12-page polish pass) ============ */
+.canon-l-hero {
+  min-height: clamp(320px, 30vw, 420px);
+}
+.canon-l-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #0f0a18) 86%, transparent) 0%, color-mix(in srgb, var(--lb-bg, #0f0a18) 54%, transparent) 42%, transparent 82%);
+}
+.canon-l-hero-bg {
+  opacity: .39;
+  filter: saturate(1.10) brightness(1.08) contrast(1.03);
+}
+.canon-l-hero.is-visual-bright .canon-l-hero-bg {
+  opacity: .62;
+}
+.canon-l-hero.is-visual-strong .canon-l-hero-bg {
+  opacity: .62;
+}
+.canon-l-hero.is-visual-tall {
+  min-height: clamp(380px, 34vw, 460px);
+}
+.canon-l-hero.is-visual-tall .canon-l-hero-inner {
+  align-content: center;
+}
+.canon-l-hero-pill,
+.canon-l-audience-switch,
+.canon-l-audience-btn,
+.canon-l-pill,
+.lab-badge,
+.subtitle-pill,
+.section-badge,
+.round-badge,
+.mission-pill,
+.tag,
+.chip,
+.btn,
+button:not(.icon-btn) {
+  border-radius: 10px !important;
+}
+.canon-l-hero-meta,
+.mission-pill-row {
+  gap: 8px;
+}
+.section,
+.activity-card,
+.activity,
+.game-card,
+.round-card,
+.task-card,
+.vocab-panel,
+.china-section,
+.menu-section {
+  margin-block: 24px;
+}
+.section-body,
+.activity-body,
+.round-body,
+.game-card,
+.task-card,
+.vocab-panel,
+.china-section,
+.menu-section {
+  padding: 24px;
+}
+.canon-l-same-width,
+.canon-l-same-width .canon-l-hero,
+.canon-l-same-width .progress,
+.canon-l-same-width .section,
+.canon-l-same-width .activity-card,
+.canon-l-same-width .china-section {
+  width: min(100% - 48px, 1240px);
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lb-page-core-trainer .utility-strip {
+  display: none !important;
+}
+@media (max-width: 720px) {
+  .section,
+  .activity-card,
+  .activity,
+  .game-card,
+  .round-card,
+  .task-card,
+  .vocab-panel,
+  .china-section,
+  .menu-section {
+    margin-block: 18px;
+  }
+  .section-body,
+  .activity-body,
+  .round-body,
+  .game-card,
+  .task-card,
+  .vocab-panel,
+  .china-section,
+  .menu-section {
+    padding: 18px;
+  }
+  .canon-l-same-width,
+  .canon-l-same-width .canon-l-hero,
+  .canon-l-same-width .progress,
+  .canon-l-same-width .section,
+  .canon-l-same-width .activity-card,
+  .canon-l-same-width .china-section {
+    width: min(100% - 28px, 1240px);
+  }
+}
+
+/* === CANON-L WIDTH RHYTHM TRIAL (hero full, content aligned) ====== */
+body:has(.canon-l-hero) .canon-l-hero {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) .canon-l-hero-inner {
+  width: 100%;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) main > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) .wrap > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) .container > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap) {
+  width: min(100% - 48px, 1240px) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) :is(.quiz-narrow,.narrow-panel,.reading-panel,.dialogue-panel,.writing-panel,.sentence-bank) {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 720px) {
+  body:has(.canon-l-hero) .canon-l-hero-inner,
+  body:has(.canon-l-hero) > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) main > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) .wrap > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) .container > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap) {
+    width: min(100% - 28px, 1240px) !important;
+  }
+}
+
+/* === SECTION TITLE (exercise section headings) ==================== */
+.canon-l-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 14px;
+  padding: 0;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--lb-text, #f0ebff);
+  flex-wrap: wrap;
+}
+.canon-l-section-num {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--lb-link-hover, #ff9b2f);
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.canon-l-section-name {
+  color: var(--lb-text, #f0ebff);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.canon-l-section-sub {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 1.6vw, 16px);
+  letter-spacing: 0;
+  color: var(--lb-muted, #8f7daa);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.canon-l-section-sub::before {
+  content: "\00b7";
+  margin-right: 8px;
+  opacity: 0.5;
+}
+@media (max-width: 720px) {
+  .canon-l-section-title { gap: 10px; font-size: 18px; }
+  .canon-l-section-num { font-size: 13px; }
+  .canon-l-section-sub { font-size: 13px; flex: 1 1 100%; }
+  .canon-l-section-sub::before { margin-right: 6px; }
+}
+
+
+
+/* === CARD - reusable card/block container ================== */
+.canon-l-card {
+  background: var(--lb-pill-bg, var(--lb-bg, #1a1326));
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-sizing: border-box;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--lb-text, #f0ebff);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.canon-l-card-elevated {
+  background: var(--lb-pill-bg, #ffffff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.canon-l-card-interactive {
+  cursor: pointer;
+}
+.canon-l-card-interactive:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  transform: translateY(-2px);
+}
+.canon-l-card-active {
+  border-color: var(--lb-link-hover, #c5aef0);
+  border-width: 2px;
+}
+.canon-l-card-title {
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--lb-text);
+  margin: 0 0 6px;
+}
+.canon-l-card-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--lb-muted);
+  margin: 0;
+}
+
+/* === BUTTON - primary / ghost / mini ========================= */
+.canon-l-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.30));
+  background: transparent;
+  color: var(--lb-text, #f0ebff);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+.canon-l-btn:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  color: var(--lb-text);
+}
+.canon-l-btn:active { transform: scale(0.98); }
+.canon-l-btn:disabled,
+.canon-l-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* primary - filled accent */
+.canon-l-btn-primary {
+  background: #ff690a;
+  border-color: #ff690a;
+  color: #ffffff;
+}
+.canon-l-btn-primary:hover {
+  background: #ff7b1a;
+  border-color: #ff7b1a;
+  color: #ffffff;
+}
+
+/* ghost - transparent and quiet */
+.canon-l-btn-ghost {
+  background: transparent;
+  border-color: var(--lb-line, rgba(197, 174, 240, 0.30));
+  color: var(--lb-muted, #8f7daa);
+}
+.canon-l-btn-ghost:hover {
+  color: var(--lb-text);
+}
+
+/* mini - compact toolbar / inline actions */
+.canon-l-btn-mini {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* full-width */
+.canon-l-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* === INPUT - text / textarea / select ======================== */
+.canon-l-input,
+.canon-l-textarea,
+.canon-l-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.30));
+  background: var(--lb-pill-bg, #ffffff);
+  color: var(--lb-text, #1a1326);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+  outline: none;
+}
+.canon-l-textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.55;
+}
+.canon-l-input:focus,
+.canon-l-textarea:focus,
+.canon-l-select:focus {
+  border-color: var(--lb-link-hover, #c5aef0);
+  box-shadow: 0 0 0 3px rgba(255, 105, 10, 0.18);
+}
+.canon-l-input::placeholder,
+.canon-l-textarea::placeholder {
+  color: var(--lb-muted, #8f7daa);
+  opacity: 0.7;
+}
+.canon-l-input.is-correct,
+.canon-l-textarea.is-correct,
+.canon-l-select.is-correct {
+  border-color: #2f7d52;
+  background: rgba(47, 125, 82, 0.08);
+}
+.canon-l-input.is-wrong,
+.canon-l-textarea.is-wrong,
+.canon-l-select.is-wrong {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.08);
+}
+
+/* === FEEDBACK BOX - correct / wrong / hint =================== */
+.canon-l-feedback {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--lb-text, #f0ebff);
+  background: var(--lb-pill-bg, transparent);
+}
+.canon-l-feedback.is-correct,
+.canon-l-feedback.ok {
+  border-color: rgba(47, 125, 82, 0.40);
+  background: rgba(47, 125, 82, 0.10);
+  color: #1f5638;
+}
+.canon-l-feedback.is-wrong,
+.canon-l-feedback.miss {
+  border-color: rgba(192, 57, 43, 0.40);
+  background: rgba(192, 57, 43, 0.10);
+  color: #8c2519;
+}
+.canon-l-feedback.is-hint,
+.canon-l-feedback.hint {
+  border-color: var(--lb-line, rgba(197, 174, 240, 0.40));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-muted, #8f7daa);
+}
+.canon-l-feedback::before {
+  content: "\2022";
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.canon-l-feedback.is-correct::before,
+.canon-l-feedback.ok::before { content: "\2713"; }
+.canon-l-feedback.is-wrong::before,
+.canon-l-feedback.miss::before { content: "\2715"; }
+.canon-l-feedback.is-hint::before,
+.canon-l-feedback.hint::before { content: "?"; }
+
+/* === RESPONSIVE ============================================== */
+@media (max-width: 720px) {
+  .canon-l-card { padding: 16px 16px; border-radius: 12px; }
+  .canon-l-btn { padding: 9px 18px; font-size: 13px; }
+  .canon-l-input, .canon-l-textarea, .canon-l-select { padding: 9px 12px; font-size: 13px; }
+}
+
+/* === HERO READABILITY POLISH ===================================== */
+.canon-l-hero {
+  isolation: isolate;
+}
+.canon-l-hero-inner {
+  align-content: center;
+}
+.canon-l-hero-title {
+  font-weight: 900;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1;
+  color: var(--lb-text, #f7f2ff);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .24);
+}
+.canon-l-hero-title em {
+  color: var(--lb-link-hover, var(--lb-text, #f7f2ff));
+  font-weight: 900;
+}
+.canon-l-hero-lead {
+  color: color-mix(in srgb, var(--lb-text, #f7f2ff) 82%, var(--lb-muted, #8f7daa));
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 650;
+}
+.canon-l-hero-eyebrow {
+  color: var(--lb-link-hover, var(--lb-muted, #c5aef0));
+  font-weight: 800;
+}
+.canon-l-hero-pill {
+  font-weight: 800;
+  color: var(--lb-text, #f7f2ff);
+}
+.canon-l-hero.is-hero-kids .canon-l-hero-bg,
+.canon-l-hero.is-hero-soft .canon-l-hero-bg {
+  opacity: .72;
+  filter: saturate(1.08) brightness(1.02) contrast(1.04);
+}
+.canon-l-hero.is-hero-kids::after,
+.canon-l-hero.is-hero-soft::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #fff8f0) 92%, white 8%) 0%, color-mix(in srgb, var(--lb-bg, #fff8f0) 78%, transparent) 44%, transparent 82%);
+}
+.canon-l-hero.is-hero-drama .canon-l-hero-bg {
+  opacity: .74;
+  filter: saturate(1.18) brightness(.92) contrast(1.12);
+}
+.canon-l-hero.is-hero-drama::after {
+  background: linear-gradient(90deg, rgba(32, 8, 8, .90) 0%, rgba(72, 14, 10, .70) 44%, transparent 80%), linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .26));
+}
+.canon-l-hero.is-hero-cosmic .canon-l-hero-bg {
+  opacity: .70;
+  filter: saturate(1.16) brightness(.86) contrast(1.16);
+}
+.canon-l-hero.is-hero-cosmic::after {
+  background: linear-gradient(90deg, rgba(2, 7, 22, .94) 0%, rgba(8, 21, 46, .76) 46%, transparent 82%), linear-gradient(180deg, rgba(0, 0, 0, .10), rgba(0, 0, 0, .32));
+}
+.canon-l-hero.is-hero-clean::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #fff) 96%, var(--lb-line, #ddd) 4%) 0%, var(--lb-bg, #fff) 100%);
+}
+.canon-l-hero.is-hero-clean .canon-l-hero-bg {
+  opacity: .28;
+  filter: saturate(1.02) brightness(1.05) contrast(1.02);
+}
+/* Legacy bridge for catalog / Past Simple / Core Trainer while they keep their custom hero markup. */
+.hero.is-hero-clean h1,
+.hero.is-hero-clean .lead,
+.hero.is-hero-clean .hero-badge,
+.hero.is-hero-drama .hero-h1,
+.hero.is-hero-drama .hero-lead,
+.hero.is-hero-drama .hero-l .eyebrow,
+.hero-mini.is-hero-clean h1,
+.hero-mini.is-hero-clean p {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+}
+.hero.is-hero-drama .hero-h1 {
+  font-weight: 900;
+}
+.hero.is-hero-drama .hero-lead {
+  font-weight: 700;
+}
+.hero-mini.is-hero-clean h1 {
+  font-weight: 900;
+}
+.hero-mini.is-hero-clean p {
+  font-weight: 650;
+}
+@media (max-width: 720px) {
+  .canon-l-hero-title { font-size: clamp(30px, 10vw, 44px); }
+  .canon-l-hero-lead { font-size: 15px; }
+}
+
+/* Codex fix: violet is a dark lesson theme, so Canon-L topbar must not inherit the light strip. */
+html[data-theme="violet"] .canon-l-topbar {
+  background: color-mix(in srgb, var(--bg, #120826) 92%, transparent) !important;
+  border-bottom-color: var(--line, rgba(197,174,240,0.16)) !important;
+  box-shadow: 0 16px 38px rgba(0,0,0,0.30) !important;
+}
+html[data-theme="violet"] .canon-l-name,
+html[data-theme="violet"] .canon-l-link,
+html[data-theme="violet"] .canon-l-link:hover,
+html[data-theme="violet"] .canon-l-link.is-active {
+  color: var(--text, #f0ebff) !important;
+}
+html[data-theme="violet"] .canon-l-sub {
+  color: var(--muted, #c9b9f4) !important;
+}
+html[data-theme="violet"] .canon-l-pill,
+html[data-theme="violet"] .canon-l-audience-switch,
+html[data-theme="violet"] .canon-l-audience-btn {
+  background: color-mix(in srgb, var(--surface, #1f1534) 88%, transparent) !important;
+  border-color: var(--line-2, rgba(197,174,240,0.24)) !important;
+  color: var(--text, #f0ebff) !important;
+}
+
+/* Codex a11y pass: keyboard skip link. */
+.canon-l-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--lb-text, #2b1c12);
+  color: var(--lb-bg, #fef8f0);
+  z-index: 1000;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+.canon-l-skip-link:focus { top: 0; }
+/* Canon hero titles use <em> as a color accent, never as italic type. */
+.canon-l-hero-title em,
+.lab-hero-title em,
+.lesson-hero-title em,
+.hero-title em,
+.friendly-title em {
+  font-style: normal !important;
+}
+/* Codex a11y pass: visible keyboard focus. */
+.canon-l-topbar a:focus-visible,
+.canon-l-topbar button:focus-visible,
+.canon-l-pill:focus-visible,
+.canon-l-audience-btn:focus-visible,
+.canon-l-btn:focus-visible {
+  outline: 2px solid var(--lb-accent, #ff7b1a);
+  outline-offset: 2px;
+}
+
+/* LinguaBoost local SVG-mask icon system: replaces emoji-font UI glyphs. */
+.lb-ico {
+  --ico: var(--lb-accent, #7c3aed);
+  width: 1.12em;
+  height: 1.12em;
+  display: inline-block;
+  vertical-align: -0.16em;
+  color: var(--ico);
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--ico) 32%, transparent));
+}
+.lb-ico,
+.hero-banner::after {
+  --icon-book: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 5.5c0-1.1.9-2 2-2h5c1.1 0 2 .9 2 2v15c0-1.1-.9-2-2-2H6c-1.1 0-2-.9-2-2zM20 5.5c0-1.1-.9-2-2-2h-5c-1.1 0-2 .9-2 2v15c0-1.1.9-2 2-2h5c1.1 0 2-.9 2-2z' fill='black'/%3E%3C/svg%3E");
+}
+.lb-ico-book { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 5.5c0-1.1.9-2 2-2h5c1.1 0 2 .9 2 2v15c0-1.1-.9-2-2-2H6c-1.1 0-2-.9-2-2zM20 5.5c0-1.1-.9-2-2-2h-5c-1.1 0-2 .9-2 2v15c0-1.1.9-2 2-2h5c1.1 0 2-.9 2-2z' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-student { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='7.5' r='3.2' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M5.5 21c.8-4 3.1-6 6.5-6s5.7 2 6.5 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-person { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='5.5' r='2.7' fill='black'/%3E%3Cpath d='M12 9v11M8 13h8M9 21l3-6 3 6' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-chair { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 4h10v8H7zM7 12h10M8 12v8M16 12v8M7 20h10' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-hands { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 12V4.5a1.5 1.5 0 0 1 3 0V12M14 12V6a1.5 1.5 0 0 1 3 0v8c0 4-2.5 6-6 6-3.2 0-5-1.8-6.5-4.5L3.5 14a1.6 1.6 0 0 1 2.8-1.5L8 15' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-thought { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 15c-2.4 0-4-1.8-4-4s1.8-4 4.2-4C8 4.8 10 3.5 12.5 3.5c3.4 0 6 2.3 6 5.3 1.6.5 2.5 1.8 2.5 3.4 0 2.2-1.7 3.8-4 3.8H9l-4 3z' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M11.8 12c0-1.8 2.2-1.7 2.2-3.3 0-1-.8-1.7-2-1.7-1 0-1.8.4-2.4 1.1M12 15h.1' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-move { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 4l2 4 4 .6-3 3 .7 4.3L13 14l-3.7 1.9.7-4.3-3-3 4-.6z' fill='black'/%3E%3Cpath d='M5 20c3-2.5 6-2.5 9 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-burst { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3l1.5 5 5-1.5-2.5 4.7 4.5 2.8-5.3.7.7 5.3-3.9-3.6L8.1 20l.7-5.3-5.3-.7 4.5-2.8-2.5-4.7 5 1.5z' fill='black'/%3E%3C/svg%3E"); }
+.lb-ico-star { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3l2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.8z' fill='black'/%3E%3C/svg%3E"); }
+.lb-ico-check-circle { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M7.5 12.3l3 3L17 8.8' fill='none' stroke='black' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-trophy { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 4h8v4c0 4-1.6 6-4 6s-4-2-4-6zM9 20h6M12 14v6M8 6H4c0 3 1.5 5 4 5M16 6h4c0 3-1.5 5-4 5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-box { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 8l8-4 8 4-8 4zM4 8v8l8 4 8-4V8M12 12v8' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-ball { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 3c2 3 2 15 0 18M3 12h18M6 6c3 2 9 2 12 0M6 18c3-2 9-2 12 0' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-compass { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M15.5 8.5l-2 5-5 2 2-5z' fill='black'/%3E%3C/svg%3E"); }
+.lb-ico-shop { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 10l1-5h14l1 5M6 10v10h12V10M8 20v-6h4v6M14 14h2' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-map { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 5l5-2 6 2 5-2v16l-5 2-6-2-5 2zM9 3v16M15 5v16' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-tree { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 3l6 8h-4l5 7H5l5-7H6zM12 18v3' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-tent { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 20L12 4l9 16zM12 4v16M9 20l3-6 3 6' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-cave { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 20c0-8 3-14 8-14s8 6 8 14zM9 20c0-4 1-6 3-6s3 2 3 6' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-island { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 20c4-2 12-2 16 0M12 18V8M12 8c-3-2-5-2-7 0 2-4 5-5 7-3M12 8c3-3 6-3 8 0-3-1-5-1-8 0z' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-scroll { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 4h11v13c0 1.7-1.3 3-3 3H6c1.7 0 3-1.3 3-3V7c0-1.7-1.3-3-3-3zM6 4c-1.7 0-3 1.3-3 3h6c0-1.7-1.3-3-3-3zM11 8h5M11 12h5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-ico-mic { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='9' y='3' width='6' height='11' rx='3' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M5 11c0 4 3 7 7 7s7-3 7-7M12 18v3M9 21h6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.lb-ico-heart { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 20s-8-4.8-8-10.5C4 6.5 6 4.5 8.7 4.5c1.6 0 2.7.8 3.3 1.8.6-1 1.7-1.8 3.3-1.8C18 4.5 20 6.5 20 9.5 20 15.2 12 20 12 20z' fill='black'/%3E%3C/svg%3E"); }
+.lb-ico-flower { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='2' fill='black'/%3E%3Cpath d='M12 3c2.1 2.2 2.1 4.2 0 6.2C9.9 7.2 9.9 5.2 12 3zM12 21c-2.1-2.2-2.1-4.2 0-6.2 2.1 2 2.1 4 0 6.2zM3 12c2.2-2.1 4.2-2.1 6.2 0-2 2.1-4 2.1-6.2 0zM21 12c-2.2 2.1-4.2 2.1-6.2 0 2-2.1 4-2.1 6.2 0z' fill='black'/%3E%3C/svg%3E"); }
+.lb-ico-circle { --icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='8' fill='none' stroke='black' stroke-width='2.4'/%3E%3C/svg%3E"); }
+.lb-ico-violet { --ico: #7c3aed; }
+.lb-ico-peach { --ico: #f9735b; }
+.lb-ico-teal { --ico: #14b8a6; }
+.lb-ico-amber { --ico: #f59e0b; }
+.lb-ico-pink { --ico: #ec4899; }
+.lb-ico-green { --ico: #22c55e; }
+.lb-ico-gold { --ico: #f59e0b; }
+.lb-ico-blue { --ico: #2563eb; }
+.lb-ico-rose { --ico: #e11d48; }
+.lb-ico-slate { --ico: #475569; }
+.lb-ico-cyan { --ico: #0891b2; }
+.lb-ico-gray { --ico: #94a3b8; }
+.lb-ico-yellow { --ico: #facc15; }
+.lb-ico-orange { --ico: #ea580c; }
+
+/* ============================================================
+   Lab toggles — squared + active highlight (2026-05-15)
+   Quadratize .theme-toggle and .lang-toggle from the rounded
+   base .canon-l-pill. The plain .canon-l-pill (level chip,
+   palette-select, audience pill) stays unchanged.
+   ============================================================ */
+
+.canon-l-pill.theme-toggle,
+.canon-l-pill.lang-toggle {
+  border-radius: 10px;
+  min-width: 64px;
+  padding: 6px 14px;
+  letter-spacing: 0.12em;
+}
+
+/* Theme toggle = always-active orange ring */
+.canon-l-pill.theme-toggle {
+  background: #15151B;
+  border: 1.5px solid #FF5A1F;
+  color: #FFFFFF;
+}
+.canon-l-pill.theme-toggle:hover {
+  background: #1F1F26;
+  border-color: #FFA56C;
+  color: #FFFFFF;
+}
+
+/* Lang toggle = solid, transparent border, orange on hover */
+.canon-l-pill.lang-toggle {
+  background: #15151B;
+  border: 1.5px solid transparent;
+  color: #FFFFFF;
+}
+.canon-l-pill.lang-toggle:hover {
+  background: #1F1F26;
+  border-color: #FF5A1F;
+  color: #FFFFFF;
+}
+
+/* Light theme overrides (all light variants) */
+[data-theme="light"] .canon-l-pill.theme-toggle,
+[data-theme="light-lab"] .canon-l-pill.theme-toggle,
+[data-theme="white"] .canon-l-pill.theme-toggle,
+[data-theme="peach"] .canon-l-pill.theme-toggle,
+[data-theme="green"] .canon-l-pill.theme-toggle,
+[data-theme="rose"] .canon-l-pill.theme-toggle,
+[data-theme="cyan"] .canon-l-pill.theme-toggle,
+[data-theme="amber"] .canon-l-pill.theme-toggle {
+  background: #f8f6f2;
+  border-color: #FF5A1F;
+  color: #1a1612;
+}
+[data-theme="light"] .canon-l-pill.theme-toggle:hover,
+[data-theme="light-lab"] .canon-l-pill.theme-toggle:hover,
+[data-theme="white"] .canon-l-pill.theme-toggle:hover,
+[data-theme="peach"] .canon-l-pill.theme-toggle:hover,
+[data-theme="green"] .canon-l-pill.theme-toggle:hover,
+[data-theme="rose"] .canon-l-pill.theme-toggle:hover,
+[data-theme="cyan"] .canon-l-pill.theme-toggle:hover,
+[data-theme="amber"] .canon-l-pill.theme-toggle:hover {
+  background: #ede9e3;
+  border-color: #C8480F;
+  color: #1a1612;
+}
+[data-theme="light"] .canon-l-pill.lang-toggle,
+[data-theme="light-lab"] .canon-l-pill.lang-toggle,
+[data-theme="white"] .canon-l-pill.lang-toggle,
+[data-theme="peach"] .canon-l-pill.lang-toggle,
+[data-theme="green"] .canon-l-pill.lang-toggle,
+[data-theme="rose"] .canon-l-pill.lang-toggle,
+[data-theme="cyan"] .canon-l-pill.lang-toggle,
+[data-theme="amber"] .canon-l-pill.lang-toggle {
+  background: #f8f6f2;
+  border-color: transparent;
+  color: #1a1612;
+}
+[data-theme="light"] .canon-l-pill.lang-toggle:hover,
+[data-theme="light-lab"] .canon-l-pill.lang-toggle:hover,
+[data-theme="white"] .canon-l-pill.lang-toggle:hover,
+[data-theme="peach"] .canon-l-pill.lang-toggle:hover,
+[data-theme="green"] .canon-l-pill.lang-toggle:hover,
+[data-theme="rose"] .canon-l-pill.lang-toggle:hover,
+[data-theme="cyan"] .canon-l-pill.lang-toggle:hover,
+[data-theme="amber"] .canon-l-pill.lang-toggle:hover {
+  background: #ede9e3;
+  border-color: #FF5A1F;
+  color: #1a1612;
+}
+
+/* Out-of-scope hide (set by canon-L.js based on URL path) */
+.canon-l-pill.lang-toggle.is-scope-hidden,
+.canon-l-pill.theme-toggle.is-scope-hidden,
+.canon-l-pill.palette-select.is-scope-hidden,
+select.palette-select.is-scope-hidden,
+[data-lang-toggle].is-scope-hidden,
+[data-lang-pill].is-scope-hidden,
+[data-theme-toggle].is-scope-hidden,
+[data-palette].is-scope-hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   v2 (2026-05-15): lesson-specific fixes
+   - Make pills respect local --lb-bg token so they aren't dark
+     on light topbars (Prepositions World, lessons with inline
+     style override).
+   - Cover the custom rosegold theme (Restaurant Menu Lab).
+   - Stretch topbar to full lesson width where it's constrained.
+   ============================================================ */
+
+/* Catch lessons whose canon-l-topbar has inline --lb-bg starting */
+/* with #f or #F (light cream/white). The pills inside that topbar */
+/* switch to a light surface + dark text to match.                  */
+.canon-l-topbar[style*="--lb-bg:#f"] .canon-l-pill.theme-toggle,
+.canon-l-topbar[style*="--lb-bg:#F"] .canon-l-pill.theme-toggle,
+.canon-l-topbar[style*="--lb-bg: #f"] .canon-l-pill.theme-toggle,
+.canon-l-topbar[style*="--lb-bg:#fff"] .canon-l-pill.theme-toggle,
+.canon-l-topbar[style*="--lb-bg:#fef"] .canon-l-pill.theme-toggle,
+.canon-l-topbar[style*="--lb-bg:#fff"] .canon-l-pill.lang-toggle,
+.canon-l-topbar[style*="--lb-bg:#f"] .canon-l-pill.lang-toggle,
+.canon-l-topbar[style*="--lb-bg:#F"] .canon-l-pill.lang-toggle,
+.canon-l-topbar[style*="--lb-bg: #f"] .canon-l-pill.lang-toggle {
+  background: var(--lb-pill-bg, #ffffff) !important;
+  color: var(--lb-text, #1a1612) !important;
+}
+.canon-l-topbar[style*="--lb-bg:#f"] .canon-l-pill.theme-toggle:hover,
+.canon-l-topbar[style*="--lb-bg:#F"] .canon-l-pill.theme-toggle:hover {
+  background: var(--lb-pill-bg-hover, #f3efe8) !important;
+  border-color: #C8480F !important;
+}
+.canon-l-topbar[style*="--lb-bg:#f"] .canon-l-pill.lang-toggle:hover,
+.canon-l-topbar[style*="--lb-bg:#F"] .canon-l-pill.lang-toggle:hover {
+  background: var(--lb-pill-bg-hover, #f3efe8) !important;
+  border-color: #FF5A1F !important;
+}
+
+/* Restaurant Menu Lab uses data-theme="rosegold" (custom) */
+[data-theme="rosegold"] .canon-l-pill.theme-toggle,
+[data-theme="rosegold"] .canon-l-pill.lang-toggle {
+  background: #fff5f0 !important;
+  color: #2b1c12 !important;
+}
+[data-theme="rosegold"] .canon-l-pill.theme-toggle {
+  border-color: #FF5A1F !important;
+}
+[data-theme="rosegold"] .canon-l-pill.theme-toggle:hover,
+[data-theme="rosegold"] .canon-l-pill.lang-toggle:hover {
+  background: #ffeadf !important;
+}
+
+/* Force canon-l-topbar to span the full available width regardless */
+/* of any inline max-width inside specific lessons (English Booster, */
+/* Grammar Arcade — both had narrow constrained topbars).            */
+.canon-l-topbar {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+/* If a lesson uses legacy <header class="topbar"> (Restaurant Menu Lab) */
+/* visually align it to the canon-l-topbar style: full width, neutral   */
+/* light surface, calm border.                                          */
+body[data-page-legacy-topbar] header.topbar,
+header.topbar.unify-legacy,
+[data-theme="rosegold"] header.topbar {
+  width: 100% !important;
+  max-width: none !important;
+  background: var(--lb-bg, #fff5f0) !important;
+  color: var(--lb-text, #2b1c12) !important;
+  border-bottom: 1px solid rgba(255, 90, 31, 0.18);
+  padding: 12px 24px;
+  box-sizing: border-box;
+}
+
+/* Make sure the inner wrapper of legacy .topbar also stretches when    */
+/* the lesson constrains it via .wrap or .container.                    */
+[data-theme="rosegold"] header.topbar > * {
+  max-width: none !important;
+}
+
+/* English Booster — true edge-to-edge topbar (per Maria 2026-05-15) */
+body.lb-page-english-booster .canon-l-topbar,
+body.lb-page-english-booster header.canon-l-topbar {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* Inside content keeps small breathing room from the edges */
+body.lb-page-english-booster .canon-l-topbar > .canon-l-brand {
+  padding-left: 18px !important;
+}
+body.lb-page-english-booster .canon-l-topbar > .canon-l-tools {
+  padding-right: 18px !important;
+}
+
+/* Level pill (canon-l-level) — quadratize to match other pills (2026-05-15) */
+.canon-l-pill.canon-l-level {
+  border-radius: 10px !important;
+  min-width: 56px;
+  padding: 6px 14px;
+  letter-spacing: 0.12em;
+}
+
+/* English Booster — pull footer nav links to the left, grouped with the */
+/* brand + meta, not space-between to the right edge (per Maria 2026-05-15). */
+body.lb-page-english-booster .canon-l-footer-row {
+  justify-content: flex-start !important;
+  gap: 24px !important;
+}
+body.lb-page-english-booster .canon-l-footer-meta {
+  flex: 0 0 auto !important;
+  text-align: left !important;
+}
+body.lb-page-english-booster .canon-l-footer-nav {
+  margin-left: 0 !important;
+  justify-content: flex-start !important;
+}

@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="rosegold">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Restaurant Menu Lab | B1 | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== ROSE GOLD - CREAM - BROWN - GOLD DESIGN SYSTEM ========== */
+[data-theme="rosegold"] {
+  --bg: #fffaf5;
+  --bg-2: #fef4ea;
+  --card: #ffffff;
+  --card-2: #fff9f2;
+  --text: #3e2a21;
+  --muted: #9b7b62;
+  --faint: #c9aa8b;
+  --accent: #d4a373;
+  --accent-2: #e6c394;
+  --accent-on: #fff8f0;
+  --brand: #b87c4f;
+  --brand-2: #9b5e37;
+  --line: rgba(184,124,79,0.12);
+  --line-2: rgba(184,124,79,0.20);
+  --line-dot: rgba(184,124,79,0.30);
+  --hero-glow1: rgba(212,163,115,0.08);
+  --hero-glow2: rgba(184,124,79,0.06);
+  --term-bg: rgba(184,124,79,0.04);
+  --soft: rgba(212,163,115,0.08);
+  --ok: #8b6b42;
+  --warn: #a85b16;
+}
+
+:root {
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--body);
+  color: var(--text);
+  background: var(--bg);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 32px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  min-height: 64px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--soft);
+  display: grid; place-items: center;
+  position: relative;
+  color: var(--accent);
+}
+.brand-mark::after{ content:''; position:absolute; right:4px; bottom:4px; width:5px; height:5px; border-radius:50%; background: var(--brand); }
+.brand-mark svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linejoin: round; }
+.brand-copy { display: grid; gap: 2px; }
+.brand-name { font-family: var(--display); font-size: 14px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+.brand-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+.topbar-nav { display: flex; gap: clamp(12px, 2vw, 22px); margin-left: 12px; flex-wrap: wrap; }
+.top-link { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); transition: color 0.18s; cursor: pointer; text-decoration: none; }
+.top-link:hover, .top-link.active { color: var(--accent); }
+.topbar-tools { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+.btn-tool {
+  height: 36px;
+  min-width: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: white;
+  color: var(--muted);
+  font: 700 11px/1 var(--mono);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-tool:hover { border-color: var(--accent); color: var(--accent); }
+select.btn-tool { width: 110px; }
+.level-bubble {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  background: white;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 32px 32px 80px; }
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--card-2), var(--bg-2));
+  border-radius: 32px;
+  padding: 48px 56px;
+  margin-bottom: 32px;
+  border: 1px solid var(--line);
+  overflow: hidden;          /* clip image to rounded corners */
+  min-height: 360px;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  align-items: center;
+}
+.hero-inner > div:first-child{
+  position: relative;
+  z-index: 3;                /* keep text on top of the absolute image */
+  /* Fit only into the cream/empty area on the left of the chef image */
+  width: clamp(260px, 40%, 460px);
+  max-width: 460px;
+  margin-left: 2cm;          /* shift the whole text block 2 cm to the right */
+}
+/* Tighter type to live inside the cream pocket */
+.hero-title{ font-size: clamp(1.8rem, 3.6vw, 3rem); }
+.hero-lead{ max-width: 100%; font-size: 10px; line-height: 1.5; color: var(--text); }
+.hero-meta .meta-pill{ font-size: 11px; padding: 6px 14px; }
+.hero-eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; margin-top: 2mm; }
+.hero-title { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 0.96; letter-spacing: -0.04em; margin-bottom: 20px; color: var(--text); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-lead { color: var(--text); font-size: 17px; line-height: 1.6; margin-bottom: 24px; max-width: 520px; }
+.hero-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.hero-actions { display: flex; gap: 5mm; flex-wrap: wrap; }
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(212, 163, 115, 0.18);   /* light cream tint ~18% */
+  border: 1px solid rgba(212, 163, 115, 0.22);
+  border-radius: 40px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  border: none;
+  text-decoration: none;
+  position: relative;
+}
+.btn::before{
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.95;
+}
+.btn.primary{
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: white;
+  box-shadow: 0 10px 22px rgba(184,124,79,0.28), inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+.btn.primary::before{ content: ""; display: none; }
+.btn.primary:hover{
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 26px rgba(184,124,79,0.34), inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+.btn.primary:active{ transform: translateY(-1px) scale(0.99); }
+.btn.ghost{
+  background: rgba(255,255,255,0.55);
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.btn.ghost::before{ content: ""; display: none; color: var(--accent); }
+.btn.ghost:hover{
+  background: var(--accent);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(184,124,79,0.22);
+}
+.btn.ghost:hover::before{ color: white; }
+.btn.ghost:active{ transform: translateY(-1px); }
+/* Hero image fills the entire hero block - chef on the right, cream space on the left under the text */
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.hero-visual img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: right center;   /* keep chef on the right, cream area aligned to left */
+  display: block;
+}
+.hero-visual p{ display: none; }    /* hide leftover label if any */
+/* Soft cream overlay on the left so text reads on top of the image */
+.hero::after{
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right,
+    rgba(255, 250, 245, 0.55) 0%,
+    rgba(255, 250, 245, 0.20) 32%,
+    rgba(255, 250, 245, 0.0) 50%);
+  pointer-events: none;
+}
+@media (max-width: 820px){
+  .hero{ min-height: 420px; }
+  .hero-inner > div:first-child{ max-width: 100%; }
+  .hero::after{
+    background: linear-gradient(to bottom,
+      rgba(255, 250, 245, 0.82) 0%,
+      rgba(255, 250, 245, 0.35) 50%,
+      rgba(255, 250, 245, 0.0) 75%);
+  }
+}
+
+/* Inline drop-feedback toast & rubric flash */
+.drop-toast{
+  position: fixed; right: 20px; bottom: 20px;
+  background: var(--card); color: var(--brand-2);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  box-shadow: 0 8px 22px rgba(184,124,79,0.18);
+  z-index: 200;
+  animation: dropToastIn .2s ease;
+}
+.drop-toast.err{ background: #fbe4d4; color: #a85b16; border-color: #efb98a; }
+.drop-toast.ok { background: #e6f3da; color: #386428; border-color: #b9d99a; }
+@keyframes dropToastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.dropzone.flash-err{ animation: shake .35s ease; border-color: #d4793c !important; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+#totalScoreRubricDisplay.flash{ animation: scoreFlash .9s ease; }
+@keyframes scoreFlash { 0% { background: #fff5d8; transform: scale(1); } 50% { background: #ffeab8; transform: scale(1.05); } 100% { background: transparent; transform: scale(1); } }
+
+/* Dish photo strip - sits under the Speaking Mission tracker */
+.dish-strip{
+  width: 100%;
+  margin: 0 0 24px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  /* No fixed aspect - let the strip keep its natural proportions so all 7 dishes fit */
+  max-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dish-strip img{
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;             /* show entire strip; no side cropping */
+  object-position: center;
+  display: block;
+}
+
+.step-tracker {
+  background: white;
+  border-radius: 60px;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--line);
+}
+.step-count { font-family: var(--mono); font-size: 11px; font-weight: 800; color: var(--accent); }
+.step-track { flex: 1; height: 6px; background: #f0e3d6; border-radius: 6px; overflow: hidden; }
+.step-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 6px; transition: width 0.3s; }
+.step-name { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--muted); }
+
+.round-card {
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: var(--card-2);
+  border-bottom: 1px solid var(--line);
+}
+.round-title { font-family: var(--display); font-size: 18px; font-weight: 800; color: var(--text); }
+.round-badge { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 40px; background: #f0e3d6; color: var(--muted); }
+.round-score { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); }
+.round-body { padding: 24px; display: block !important; }
+
+/* ===== RESTAURANT SPECIFIC STYLES ===== */
+.ingredient-pool {
+  background: var(--bg-2);
+  border-radius: 48px;
+  padding: 18px 20px;
+  margin-bottom: 32px;
+  border: 1px dashed var(--line-2);
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  gap: 12px;
+}
+.drag-item {
+  background: white;
+  border-radius: 60px;
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: grab;
+  border: 1px solid #f0dec8;
+  display: inline-flex;
+  user-select: none;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 20px 0;
+}
+.menu-category {
+  background: var(--card-2);
+  border-radius: 24px;
+  padding: 16px 14px 14px;
+  border: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.cat-thumb{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.cat-thumb img{
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.menu-category h3 {
+  font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.08em;
+  margin: 0 0 12px;
+  background: #edd6bb;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px;
+  border-radius: 40px;
+  font-weight: 800;
+  color: #7a563a;
+  align-self: flex-start;
+}
+.menu-category h3 .h-count{
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  background: white;
+  border: 1px solid var(--line-2);
+  border-radius: 30px;
+  padding: 2px 10px;
+  color: var(--brand-2);
+}
+.dropzone {
+  flex: 1;
+  min-height: 110px;
+  background: #fefaf5;
+  border: 1.5px dashed var(--line-2);
+  border-radius: 18px;
+  padding: 14px 12px;
+  font-family: var(--mono);
+  font-size: 12px; font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-align: center;
+  display: flex; flex-direction: column;
+  align-items: stretch; justify-content: center;
+  gap: 8px;
+}
+.dropzone:empty::before{ content: "Drag dishes here"; display: block; }
+.dropzone:empty::after{ content: "(multiple allowed)"; display: block; font-size: 10px; opacity: 0.7; margin-top: 2px; }
+.dropzone.drag-over{ background: var(--soft); border-color: var(--accent); border-style: solid; }
+
+/* Chef tip - wide image card spanning 3 columns of the bottom row, sits next to dessert */
+.chef-tip{
+  grid-column: 2 / -1;          /* cols 2-4 = 3 cells wide */
+  align-self: stretch;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: visible;            /* allow image to bleed below the frame */
+  z-index: 0;
+  min-height: 260px;
+}
+.chef-tip-img{
+  position: absolute;
+  top: 5mm;                     /* push image down 5 mm - its bottom escapes the frame */
+  left: 0; right: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+}
+.menu-workshop, .menu-grid, .round-body{ overflow: visible; }
+@media (max-width: 920px){
+  .menu-grid{ grid-template-columns: repeat(2, 1fr); }
+  .chef-tip{ grid-column: 1 / -1; min-height: 220px; }
+}
+@media (max-width: 540px){
+  .menu-grid{ grid-template-columns: 1fr; }
+}
+.menu-item {
+  background: white;
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 50px;
+  border-left: 5px solid var(--accent);
+  display: flex;
+  justify-content: space-between;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b87c4f;
+  font-size: 1.2rem;
+}
+.sentence-starters {
+  background: #fef6ed;
+  border-radius: 36px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 6px solid var(--accent);
+}
+.step-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 20px 0;
+}
+.step {
+  background: var(--bg-2);
+  border-radius: 28px;
+  padding: 12px;
+  flex: 1;
+  text-align: center;
+}
+.reset-menu-btn, .calc-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 60px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+textarea { width: 100%; border-radius: 28px; border: 1px solid var(--line-2); padding: 12px; }
+.footnote { text-align: center; margin-top: 40px; font-size: 0.7rem; color: var(--faint); }
+table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+th, td { padding: 12px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+th { background: #fdf3e8; }
+.total-score {
+  font-weight: 800;
+  background: #edd6bb;
+  padding: 6px 20px;
+  border-radius: 60px;
+  display: inline-block;
+}
+
+/* ===== SPEAKING MISSION UPGRADE - CONTENT ONLY ===== */
+.mission-card {
+  background: linear-gradient(135deg, #fff7ef, #fdf0e2);
+  border: 1px solid var(--line-2);
+  border-left: 6px solid var(--accent);
+  border-radius: 32px;
+  padding: 22px;
+  margin: 18px 0 22px;
+}
+.mission-card h3 { margin-bottom: 8px; font-family: var(--display); font-size: 1.1rem; }
+.mission-brief { margin: 0 0 24px; }
+.mission-path {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.mission-step, .language-pill {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--brand-2);
+}
+.mission-step span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.concept-grid, .language-grid, .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.concept-field {
+  display: grid;
+  gap: 6px;
+}
+.concept-field label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.concept-field input, .concept-field select {
+  min-height: 42px;
+  border-radius: 16px;
+  border: 1px solid var(--line-2);
+  background: #fff;
+  padding: 8px 12px;
+  color: var(--text);
+}
+.balance-tip, .menu-summary, .useful-language, .speaking-frame, .preflight-check {
+  background: #fffaf2;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 18px 20px;
+  margin: 18px 0;
+}
+.balance-tip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.balance-tip-grid div, .summary-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+}
+.summary-item strong {
+  display: block;
+  color: var(--brand-2);
+  margin-bottom: 4px;
+}
+.menu-ready {
+  margin-top: 12px;
+  font-weight: 800;
+  color: var(--warn);
+}
+.menu-ready.is-ready { color: var(--ok); }
+.language-grid { grid-template-columns: repeat(3, minmax(180px, 1fr)); }
+.language-pill { line-height: 1.7; font-weight: 700; }
+.speaking-frame ol, .preflight-check ul {
+  margin: 10px 0 0 18px;
+  padding: 0;
+  line-height: 1.75;
+}
+.speech-chip-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.speech-chip {
+  border: 1px solid var(--line-2);
+  background: white;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  transition: all .2s;
+}
+.speech-chip:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--brand); background: var(--accent-on); }
+.cuisine-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.cuisine-pill {
+  border: 1px solid var(--line-2);
+  background: white;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.cuisine-pill.is-active, .cuisine-pill:hover { background: var(--accent); color: white; border-color: var(--accent); }
+.example-highlight {
+  background: #fff8ef;
+  padding: 18px;
+  border-radius: 32px;
+  margin-top: 8px;
+  line-height: 1.65;
+  border: 1px solid var(--line);
+}
+.example-highlight mark { background: #f4dfc6; color: var(--brand-2); border-radius: 999px; padding: 2px 8px; }
+.speech-draft { width: 100%; min-height: 120px; margin-top: 14px; background: white; }
+.performance-panel { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; margin-top: 20px; }
+.performance-box { background: var(--bg-2); border: 1px solid var(--line); border-radius: 28px; padding: 16px 18px; }
+.timer-display { font-family: var(--display); font-size: 2rem; color: var(--brand); margin: 10px 0; }
+.rubric-scoreboard { display: grid; grid-template-columns: repeat(4, minmax(140px,1fr)); gap: 12px; margin: 18px 0; }
+.rubric-tile { background: var(--card-2); border: 1px solid var(--line); border-radius: 24px; padding: 14px; }
+.rubric-tile strong { display: block; color: var(--brand-2); margin-bottom: 6px; }
+@media (max-width: 780px) {
+  .performance-panel { grid-template-columns: 1fr; }
+  .rubric-scoreboard { grid-template-columns: 1fr; }
+  .mission-path, .concept-grid, .language-grid, .summary-grid, .balance-tip-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 780px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero { padding: 32px 16px; }
+  .hero-inner > div:first-child { width: 100%; max-width: none; margin-left: 0; }
+  .menu-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<link rel="stylesheet" href="../assets/mobile-fix.css?v=1" data-tag="linguaboost-mobile-fix-loaded">
+<link rel="stylesheet" href="../assets/canon-L.css?v=3" data-tag="canon-L-loaded">
+<script src="../assets/canon-L.js?v=5" defer></script>
+<script defer src="../assets/touch-dnd.js?v=1"></script>
+<link rel="stylesheet" href="../assets/lab-unify-repair.css?v=2" data-lab-unify-repair>
+<script src="../assets/lab-theme-sync.js"></script>
+<style id="codex-restaurant-footer-restore-20260514">
+.lesson-foot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(calc(100% - 56px),1180px);max-width:1180px;margin:24px auto 0;padding:0;}
+.foot-link{min-height:94px;border:1px solid var(--line,rgba(184,124,79,.18));border-radius:14px;padding:16px 18px;background:var(--card,#fff);display:grid;align-content:center;gap:6px;text-decoration:none;color:inherit;box-shadow:none;transition:border-color .16s,transform .16s;}
+.foot-link:hover{border-color:var(--accent,#d4a373);transform:translateY(-1px);}
+.foot-link.next{text-align:right;}
+.foot-meta{font-family:var(--mono,ui-monospace,monospace);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand,#b87c4f);}
+.foot-title{font-family:var(--display,system-ui,sans-serif);font-size:18px;font-weight:800;line-height:1.2;letter-spacing:0;color:inherit;}
+.canon-l-footer{margin-top:28px;background:var(--lb-bg,#fff9f2);color:var(--lb-text,#3e2a21);border-top:1px solid var(--lb-line,rgba(184,124,79,0.12));padding:24px min(32px,5vw) 28px;}
+.canon-l-footer-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;max-width:1180px;margin:0 auto 12px;}
+.canon-l-footer-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:800;}
+.canon-l-footer-mark{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:var(--lb-pill-bg,#fff);border:1px solid var(--lb-pill-border,rgba(184,124,79,0.20));color:var(--lb-seg-btn,#b87c4f);font-family:var(--display,system-ui,sans-serif);font-weight:900;}
+.canon-l-footer-meta{font-family:var(--mono,ui-monospace,monospace);font-size:11px;font-weight:700;color:var(--lb-muted,#9b7b62);}
+.canon-l-footer-nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;}
+.canon-l-footer-nav a{color:inherit;text-decoration:none;font-weight:700;}
+.canon-l-footer-legal{max-width:1180px;margin:0 auto;color:var(--lb-muted,#9b7b62);font-size:12px;line-height:1.6;}
+@media(max-width:820px){.lesson-foot{grid-template-columns:1fr;width:min(calc(100% - 28px),1180px);}.foot-link.next{text-align:left;}.canon-l-footer-nav{margin-left:0;width:100%;}.canon-l-footer-row{align-items:flex-start;}}
+</style>
+</head>
+<body>
+<script>
+  /* NGE STATE-BRIDGE — window.name as cross-page truth on file:// origin. */
+  (function(){
+    try {
+      var st = {};
+      try { st = (window.name && window.name.charAt(0) === "{") ? JSON.parse(window.name) : {}; } catch(_){}
+      var url = new URLSearchParams(location.search);
+      var theme = st.theme || url.get("theme") || localStorage.getItem("nge-theme") || "";
+      var lang  = st.lang  || url.get("lang")  || localStorage.getItem("nge-lang")  || "";
+      var isLight = (theme === "light" || theme === "light-lab");
+      var isEn = (lang === "en");
+      if (isLight) document.body.classList.add("light");
+      if (isEn) document.body.classList.add("en");
+      var siteTheme = isLight ? "light" : "dark";
+      var lessonTheme = isLight ? "light-lab" : "black-lab";
+      var finalLang = isEn ? "en" : "ru";
+      window.name = JSON.stringify({ theme: lessonTheme, lang: finalLang });
+      try {
+        localStorage.setItem("nge-theme", siteTheme);
+        localStorage.setItem("nge-lang", finalLang);
+        localStorage.setItem("lesson-palette", lessonTheme);
+      } catch(_){}
+    } catch(_){}
+  })();
+</script>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"><path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z"/></svg></div>
+    <div class="brand-copy"><span class="brand-name">Lingua Boost</span><span class="brand-tag">B1 | Restaurant Menu</span></div>
+  </div>
+  <nav class="topbar-nav" aria-label="Site links">
+    <a class="top-link" href="../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
+    <a class="top-link" href="../../index.html" data-ru="Главная" data-en="Home">Главная</a>
+    <a class="top-link" href="../../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+  </nav>
+  <div class="topbar-tools"><button class="btn-tool lang-toggle" type="button" data-lang-toggle data-lang-pill aria-label="Toggle interface language">EN</button><span class="level-bubble">B1</span></div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-inner">
+      <div><div class="hero-eyebrow">Restaurant Menu Lab | B1</div><h1 class="hero-title">Menu Architect<br><em>Build & Present</em></h1><p class="hero-lead">You are a chef-founder. Build a balanced menu, choose your cuisine style and present the concept to a business partner.</p><div class="hero-meta"><span class="meta-pill">Chef-Founder Mission</span><span class="meta-pill">Speaking Pitch</span><span class="meta-pill">Rubric</span></div><div class="hero-actions"><a class="btn primary" href="#menuWorkshop">Start Building</a><a class="btn ghost" href="#rubric">Rubric</a></div></div>
+      <div class="hero-visual">
+        <img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/94587bc8-e73f-4ad3-bac8-83fa394753e2.png"
+             alt="Chef boy in a restaurant kitchen"
+             onerror="this.style.display='none'">
+      </div>
+    </div>
+  </section>
+
+  <div class="step-tracker" id="progress"><span class="step-count">Restaurant Menu Mission</span><div class="step-track"><div class="step-fill" id="progressFill"></div></div><span class="step-name" id="progressText">0 / 3 stages</span><button id="resetAllBtn" class="btn-tool" style="margin-left:auto;">Reset</button></div>
+
+  <section class="mission-card mission-brief">
+    <h3>Mission</h3>
+    <p><strong>You are a chef-founder of a new restaurant.</strong> Build a balanced menu, choose a cuisine style, prepare a short menu pitch and present it to a business partner.</p>
+    <div class="mission-path" aria-label="Mission path">
+      <div class="mission-step"><span>Step 1</span>Build your menu</div>
+      <div class="mission-step"><span>Step 2</span>Choose cuisine style</div>
+      <div class="mission-step"><span>Step 3</span>Draft your menu pitch</div>
+      <div class="mission-step"><span>Step 4</span>Present for 1.5-2 minutes</div>
+      <div class="mission-step"><span>Step 5</span>Get your speaking score</div>
+    </div>
+  </section>
+
+  <div class="dish-strip" aria-hidden="true">
+    <img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/b7575b6e-e3f4-4aec-8770-a34a9052faa4.png"
+         alt="Dish strip - appetizer photos"
+         onerror="this.parentElement.style.display='none'">
+  </div>
+
+  <div id="activities-container"></div>
+
+  <div class="footnote">Menu Architect | Drag & Drop | Speaking Rubric | Rose Gold Edition</div>
+</main>
+
+<script>
+  // ========== RESTAURANT CONTENT (exactly from original) ==========
+  const extensiveMenu = {
+    appetizer: ["Bruschetta", "Spring Rolls", "Stuffed Mushrooms", "Fried Calamari", "Hummus & Pita", "Caprese Salad", "Shrimp Cocktail", "Spinach Artichoke Dip", "Carpaccio", "Nachos", "Summer Rolls", "Fried Zucchini", "Deviled Eggs", "Prawn Toast", "Meatballs Marinara"],
+    soup: ["Tomato Basil Soup", "French Onion Soup", "Miso Soup", "Pumpkin Cream", "Lentil Soup", "Minestrone", "Chicken Noodle Soup", "Tom Yum", "Corn Chowder", "Borscht", "Gazpacho", "Cream of Mushroom", "Clam Chowder", "Thai Coconut Soup", "Wonton Soup"],
+    main: ["Grilled Salmon", "Beef Lasagna", "Chicken Tikka Masala", "Mushroom Risotto", "Eggplant Parmigiana", "Lamb Chops", "Steak Frites", "Pad Thai", "Duck Confit", "Seafood Paella", "Vegetable Curry", "Pork Belly", "Margherita Pizza", "BBQ Ribs", "Stuffed Bell Peppers", "Fish & Chips", "Beef Bourguignon"],
+    side: ["Garlic Bread", "Roasted Vegetables", "French Fries", "Quinoa Salad", "Coleslaw", "Steamed Broccoli", "Mashed Potatoes", "Rice Pilaf", "Grilled Asparagus", "Onion Rings", "Sweet Potato Wedges", "Cucumber Salad", "Baked Beans", "Polenta", "Sauteed Spinach", "Fruit Salsa"],
+    dessert: ["Tiramisu", "Cheesecake", "Chocolate Lava Cake", "Gelato", "Apple Pie", "Creme Brulee", "Panna Cotta", "Brownie Sundae", "Mango Sticky Rice", "Lemon Tart", "Fruit Sorbet", "Baklava", "Churros", "Molten Chocolate Cake", "Berry Pavlova", "Affogato"]
+  };
+
+  let menuState = { appetizer: [], soup: [], main: [], side: [], dessert: [] };
+  let activityCompleted = false;
+
+  function updateProgress() {
+    const fill = document.getElementById('progressFill');
+    if (fill) fill.style.width = activityCompleted ? '100%' : '0%';
+    const text = document.getElementById('progressText');
+    if (text) text.innerHTML = activityCompleted ? '3 / 3 stages' : '0 / 3 stages';
+  }
+
+  function saveProgress() {
+    localStorage.setItem('restaurantMenuProgress_RoseGold', JSON.stringify({ completed: activityCompleted, menu: menuState }));
+  }
+
+  function loadProgress() {
+    const saved = localStorage.getItem('restaurantMenuProgress_RoseGold');
+    if (saved) {
+      const data = JSON.parse(saved);
+      activityCompleted = data.completed || false;
+      if (data.menu) menuState = data.menu;
+      updateProgress();
+    }
+  }
+
+  function renderRestaurantBlock(container) {
+    container.innerHTML = `
+      <div id="menuWorkshop" class="round-card">
+        <div class="round-header"><span class="round-title">Restaurant Menu Workshop</span><span class="round-badge">${activityCompleted ? 'Completed' : 'Pending'}</span><span class="round-score">${activityCompleted ? 'Done' : 'Open'}</span></div>
+        <div class="round-body">
+          <div class="menu-workshop">
+            <div class="mission-card">
+              <h3>01 Restaurant Concept</h3>
+              <p>Before you build the menu, choose the idea behind your restaurant.</p>
+              <div class="concept-grid">
+                <div class="concept-field"><label for="restaurantNameInput">Restaurant name</label><input id="restaurantNameInput" type="text" placeholder="e.g., Olive Street"></div>
+                <div class="concept-field"><label for="conceptCuisineInput">Cuisine style</label><input id="conceptCuisineInput" type="text" placeholder="e.g., Mediterranean"></div>
+                <div class="concept-field"><label for="targetGuestInput">Target guest</label><select id="targetGuestInput"><option>families</option><option>students</option><option>business people</option><option>tourists</option></select></div>
+                <div class="concept-field"><label for="atmosphereInput">Atmosphere</label><select id="atmosphereInput"><option>cozy</option><option>modern</option><option>elegant</option><option>casual</option><option>family-friendly</option></select></div>
+                <div class="concept-field"><label for="signatureIdeaInput">Signature idea</label><select id="signatureIdeaInput"><option>fresh food</option><option>homemade dishes</option><option>healthy meals</option><option>street food</option><option>fusion menu</option></select></div>
+              </div>
+            </div>
+
+            <div class="workshop-title">02 FLAVOR LIBRARY | 45+ ITEMS <span class="badge">drag into matching categories</span></div>
+            <div class="balance-tip">
+              <strong>Chef Tip: Build a balanced menu</strong>
+              <p style="margin-top:6px;">A good menu has 1 appetizer, 1 soup, 1 main course, 1 side dish and 1 dessert. Soup is optional, but it makes your menu richer.</p>
+              <div class="balance-tip-grid">
+                <div><strong>Flavours</strong><br>sweet, salty, fresh, spicy</div>
+                <div><strong>Colours</strong><br>green, red, yellow, white</div>
+                <div><strong>Textures</strong><br>crispy, soft, creamy, crunchy</div>
+              </div>
+            </div>
+            <div id="draggableContainer" class="ingredient-pool"></div>
+            <div class="menu-grid">
+              <div class="menu-category" data-category="appetizer">
+                <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/plate.png" alt="Appetizer" onerror="this.style.display='none'"></div>
+                <h3>APPETIZER <span class="h-count" id="count-appetizer">0</span></h3>
+                <div class="dropzone" id="drop-appetizer"></div>
+              </div>
+              <div class="menu-category" data-category="soup">
+                <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/%D1%81%D1%83%D0%BF.png" alt="Soup" onerror="this.style.display='none'"></div>
+                <h3>SOUP <span class="h-count" id="count-soup">0</span></h3>
+                <div class="dropzone" id="drop-soup"></div>
+              </div>
+              <div class="menu-category" data-category="main">
+                <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/%D0%B0%D0%B0%D0%BF%D0%B0%D0%BF.png" alt="Main course" onerror="this.style.display='none'"></div>
+                <h3>MAIN COURSE <span class="h-count" id="count-main">0</span></h3>
+                <div class="dropzone" id="drop-main"></div>
+              </div>
+              <div class="menu-category" data-category="side">
+                <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/gdgdg.png" alt="Side dish" onerror="this.style.display='none'"></div>
+                <h3>SIDE DISH <span class="h-count" id="count-side">0</span></h3>
+                <div class="dropzone" id="drop-side"></div>
+              </div>
+              <div class="menu-category" data-category="dessert">
+                <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/%D0%BF%D1%80%D0%BE%D1%80%D0%BF%D0%BE.png" alt="Cheesecake dessert" onerror="this.style.display='none'"></div>
+                <h3>DESSERT <span class="h-count" id="count-dessert">0</span></h3>
+                <div class="dropzone" id="drop-dessert"></div>
+              </div>
+              <div class="chef-tip" role="note">
+                <img class="chef-tip-img" src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/9241a7cc-12a5-4041-8f74-6ab0e63cc275.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+                <div style="position:relative; z-index:2; padding: 28px; max-width: 520px;">
+                  <strong style="display:block; color:var(--brand-2); font-size:1.1rem; margin-bottom:10px;">Chef note</strong>
+                  <p>Balance the plate: one clear starter, one strong main course, one useful side dish and one memorable dessert.</p>
+                  <p style="margin-top:10px;">Use colour, texture and flavour to make the menu sound attractive.</p>
+                </div>
+              </div>
+            </div>
+            <div class="menu-summary">
+              <strong>Your Menu Summary</strong>
+              <div class="summary-grid">
+                <div class="summary-item"><strong>Appetizer</strong><span id="summary-appetizer">Not chosen yet</span></div>
+                <div class="summary-item"><strong>Soup</strong><span id="summary-soup">Optional</span></div>
+                <div class="summary-item"><strong>Main course</strong><span id="summary-main">Not chosen yet</span></div>
+                <div class="summary-item"><strong>Side dish</strong><span id="summary-side">Not chosen yet</span></div>
+                <div class="summary-item"><strong>Dessert</strong><span id="summary-dessert">Not chosen yet</span></div>
+              </div>
+              <div id="menuReadyStatus" class="menu-ready">Your menu is ready when you have an appetizer, main course, side dish and dessert.</div>
+            </div>
+            <button id="resetMenuBtn" class="reset-menu-btn">Reset menu</button>
+            <div style="font-size:0.75rem; margin-top:16px;">You can add multiple dishes per category. Click x to remove.</div>
+          </div>
+
+          <div class="speaking-card" style="margin-top:36px;">
+            <h2>CHEF'S PRESENTATION | MENU PITCH</h2>
+
+            <div class="mission-card">
+              <h3>Your Mission</h3>
+              <p><strong>You are the chef-founder of a new restaurant.</strong> You are presenting your menu to a potential business partner. Your goal is to sound clear, confident and persuasive.</p>
+              <p style="margin-top:8px;">Speak for <strong>1.5-2 minutes</strong>. Use the menu you built above and include all required sentence starters.</p>
+            </div>
+
+            <div class="useful-language">
+              <strong>Useful Language</strong>
+              <div class="language-grid">
+                <div class="language-pill"><strong>Cooking verbs</strong><br>grill, bake, roast, fry, steam, boil, serve, season, mix, slice</div>
+                <div class="language-pill"><strong>Food adjectives</strong><br>fresh, crispy, creamy, spicy, sweet, rich, light, healthy, homemade</div>
+                <div class="language-pill"><strong>Business phrases</strong><br>Our concept is simple. The menu is balanced. Customers will enjoy it because...</div>
+              </div>
+            </div>
+
+            <div class="sentence-starters">
+              <strong>REQUIRED SENTENCE STARTERS - click a chip to add it to your draft:</strong>
+              <div class="speech-chip-grid">
+                <button class="speech-chip" data-starter="Our restaurant focuses on Mediterranean cuisine.">Our restaurant focuses on ...</button>
+                <button class="speech-chip" data-starter="Our signature dish is chef's special because it is fresh and memorable.">Our signature dish is ... because ...</button>
+                <button class="speech-chip" data-starter="As a starter, we serve bruschetta.">As a starter, we serve ...</button>
+                <button class="speech-chip" data-starter="The main course is prepared using high-quality ingredients.">The main course is prepared using ...</button>
+                <button class="speech-chip" data-starter="We cook it by slow roasting and careful seasoning.">We cook it by ...</button>
+                <button class="speech-chip" data-starter="It contains ingredients such as herbs, spices and a house sauce.">It contains ingredients such as ...</button>
+              </div>
+              <textarea id="speechDraft" class="speech-draft" placeholder="Click sentence starters above, then edit your speech here..."></textarea>
+            </div>
+
+            <div class="speaking-frame">
+              <strong>Speaking Frame: 1.5-2 minute menu pitch</strong>
+              <ol>
+                <li>Hello, my name is ___, and I am the chef-founder of this restaurant.</li>
+                <li>Our restaurant focuses on ___ cuisine. The atmosphere is ___ and ___.</li>
+                <li>As a starter, we serve ___. Our soup is ___.</li>
+                <li>For the main course, we offer ___ with ___ as a side dish. For dessert, we serve ___.</li>
+                <li>Our signature dish is ___ because ___.</li>
+                <li>It is prepared using ___. We cook it by ___.</li>
+                <li>It contains ingredients such as ___, ___ and ___.</li>
+                <li>I think this menu is successful because it is balanced, attractive and easy to understand.</li>
+                <li>Thank you for listening.</li>
+              </ol>
+            </div>
+
+            <div style="background: #fef3e8; border-radius: 32px; padding: 16px 22px; margin-bottom: 20px;">
+              <strong>Cuisine style:</strong>
+              <div class="cuisine-pills">
+                <button class="cuisine-pill is-active" data-cuisine="Mediterranean">Mediterranean</button>
+                <button class="cuisine-pill" data-cuisine="Italian">Italian</button>
+                <button class="cuisine-pill" data-cuisine="Japanese">Japanese</button>
+                <button class="cuisine-pill" data-cuisine="Mexican">Mexican</button>
+                <button class="cuisine-pill" data-cuisine="Fusion">Fusion</button>
+              </div>
+              <label>Or type your own: </label>
+              <input type="text" id="cuisineInput" placeholder="e.g., Mediterranean / Asian" value="Mediterranean" style="border-radius: 60px; border:1px solid #dbbc95; padding: 8px 18px; width: 70%; max-width: 280px;">
+              <button id="updateMenuPreview" style="background: var(--accent); color:white; border:none; padding: 8px 22px; border-radius: 60px; margin-left: 12px; cursor:pointer;">Refresh example</button>
+            </div>
+
+            <p><strong>YOUR EXAMPLE (automatically generated from your menu):</strong></p>
+            <div id="liveExampleText" class="example-highlight">...</div>
+
+            <div class="step-grid">
+              <div class="step">1. Build menu</div><div class="step">2. Choose cuisine</div><div class="step">3. Draft speech</div><div class="step">4. Present</div><div class="step">5. Score</div>
+            </div>
+
+            <div class="preflight-check">
+              <strong>Before you present, check:</strong>
+              <ul>
+                <li>Did I name my cuisine?</li>
+                <li>Did I explain my signature dish?</li>
+                <li>Did I mention starter, main course, side dish and dessert?</li>
+                <li>Did I use cooking verbs?</li>
+                <li>Did I finish politely?</li>
+              </ul>
+            </div>
+
+            <div class="performance-panel">
+              <div class="performance-box">
+                <strong>Practice Mode</strong>
+                <p style="margin-top:6px;">Read your draft aloud twice. First slowly, then naturally.</p>
+                <button id="copyExampleBtn" class="btn ghost" style="margin-top:12px;">Copy example to draft</button>
+              </div>
+              <div class="performance-box">
+                <strong>Speaking Timer</strong>
+                <div id="speakingTimer" class="timer-display">02:00</div>
+                <button id="startTimerBtn" class="btn primary">Start timer</button>
+                <button id="resetTimerBtn" class="btn ghost">Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rubric-section" style="margin-top:36px;">
+            <h2>SPEAKING RUBRIC (max 20 points)</h2>
+            <p style="margin: 8px 0 18px;">Use this rubric before you speak and after your presentation.</p>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px;">
+              <div><strong>Student name:</strong> <input type="text" id="studentNameRubric" placeholder="Name"></div>
+              <div class="total-score" id="totalScoreRubricDisplay">Total: -- / 20</div>
+            </div>
+
+            <div class="rubric-scoreboard">
+              <div class="rubric-tile"><strong>Task completion</strong>8 pts | menu logic</div>
+              <div class="rubric-tile"><strong>Sentence starters</strong>4 pts | required phrases</div>
+              <div class="rubric-tile"><strong>Grammar & vocabulary</strong>4 pts | B1 accuracy</div>
+              <div class="rubric-tile"><strong>Fluency</strong>4 pts | confident delivery</div>
+            </div>
+
+            <table>
+              <tr><th colspan="4">1. Task completion (max 8)</th></tr>
+              <tr><td>Cuisine named clearly</td><td><input type="radio" name="taskComp1" value="2"> 2 <input type="radio" name="taskComp1" value="1"> 1 <input type="radio" name="taskComp1" value="0"> 0</td></tr>
+              <tr><td>Signature dish + reason explained</td><td><input type="radio" name="taskComp2" value="2"> 2 <input type="radio" name="taskComp2" value="1"> 1 <input type="radio" name="taskComp2" value="0"> 0</td></tr>
+              <tr><td>Starter / appetizer mentioned naturally</td><td><input type="radio" name="taskComp3" value="2"> 2 <input type="radio" name="taskComp3" value="1"> 1 <input type="radio" name="taskComp3" value="0"> 0</td></tr>
+              <tr><td>Main course + side dish + dessert included</td><td><input type="radio" name="taskComp4" value="2"> 2 <input type="radio" name="taskComp4" value="1"> 1 <input type="radio" name="taskComp4" value="0"> 0</td></tr>
+
+              <tr><th colspan="2">2. Sentence starters (4 pts)</th></tr>
+              <tr><td>Uses all required starters: focuses on / signature dish / as a starter / prepared using / cook it by / contains ingredients such as</td><td><input type="radio" name="startersScore" value="4"> 4 <input type="radio" name="startersScore" value="3"> 3 <input type="radio" name="startersScore" value="2"> 2 <input type="radio" name="startersScore" value="1"> 1 <input type="radio" name="startersScore" value="0"> 0</td></tr>
+
+              <tr><th colspan="2">3. Grammar & Vocabulary (4 pts)</th></tr>
+              <tr><td>Uses menu vocabulary, cooking verbs, reasons and B1 grammar accurately</td><td><input type="radio" name="grammarScore" value="4"> 4 <input type="radio" name="grammarScore" value="3"> 3 <input type="radio" name="grammarScore" value="2"> 2 <input type="radio" name="grammarScore" value="1"> 1 <input type="radio" name="grammarScore" value="0"> 0</td></tr>
+
+              <tr><th colspan="2">4. Pronunciation & Fluency (4 pts)</th></tr>
+              <tr><td>Speaks clearly, keeps going, sounds confident and finishes naturally</td><td><input type="radio" name="fluencyScore" value="4"> 4 <input type="radio" name="fluencyScore" value="3"> 3 <input type="radio" name="fluencyScore" value="2"> 2 <input type="radio" name="fluencyScore" value="1"> 1 <input type="radio" name="fluencyScore" value="0"> 0</td></tr>
+            </table>
+            <div class="rubric-actions">
+              <button id="calcRubricBtn" class="calc-btn">Calculate total score</button>
+              <button id="resetRubricBtn" class="calc-btn calc-btn-secondary">Reset rubric</button>
+            </div>
+            <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+              <div style="flex:1"><strong>Strengths</strong><br><textarea id="strengthsField" rows="3" placeholder="e.g., clear structure, strong food vocabulary, confident delivery"></textarea></div>
+              <div style="flex:1"><strong>Areas to improve</strong><br><textarea id="improveField" rows="3" placeholder="e.g., add more reasons, improve pronunciation, use all starters"></textarea></div>
+            </div>
+            <div style="margin-top: 20px;">Grade: 18-20 A | 15-17 B | 12-14 C | 9-11 D | 0-8 F</div>
+          </div>
+          ${!activityCompleted ? `<button id="markActivityComplete" class="btn primary" style="margin-top:30px;">Mark block as completed</button>` : '<div style="color:var(--ok); margin-top:20px;">Block completed</div>'}
+        </div>
+      </div>
+    `;
+    initRestaurantInteractions();
+    if (!activityCompleted) {
+      document.getElementById('markActivityComplete')?.addEventListener('click', () => {
+        activityCompleted = true;
+        saveProgress();
+        updateProgress();
+        renderRestaurantBlock(container);
+      });
+    }
+  }
+
+  function showDropToast(text, kind, zoneEl) {
+    if (zoneEl) {
+      zoneEl.classList.remove('flash-err');
+      void zoneEl.offsetWidth;
+      zoneEl.classList.add('flash-err');
+      setTimeout(() => zoneEl && zoneEl.classList.remove('flash-err'), 400);
+    }
+    let toast = document.querySelector('.drop-toast');
+    if (toast) toast.remove();
+    toast = document.createElement('div');
+    toast.className = 'drop-toast' + (kind ? ' ' + kind : '');
+    toast.textContent = text;
+    document.body.appendChild(toast);
+    setTimeout(() => toast && toast.parentNode && toast.remove(), 2200);
+  }
+
+  function renderDropzones() {
+    for (let cat of Object.keys(menuState)) {
+      const container = document.getElementById(`drop-${cat}`);
+      const counter   = document.getElementById(`count-${cat}`);
+      if (!container) continue;
+      const items = menuState[cat];
+      container.innerHTML = "";
+      // Empty placeholder is rendered via CSS :empty::before / ::after now
+      items.forEach(item => {
+        const dishDiv = document.createElement("div");
+        dishDiv.className = "menu-item";
+        dishDiv.innerHTML = `<span>${item}</span><button class="remove-btn" data-cat="${cat}" data-item="${item}">x</button>`;
+        container.appendChild(dishDiv);
+      });
+      if (counter) counter.textContent = items.length;
+    }
+    attachRemoveEvents();
+    updateMenuSummary();
+    updateSpeakingPreview();
+  }
+
+  function updateMenuSummary() {
+    const labels = {
+      appetizer: 'Not chosen yet',
+      soup: 'Optional',
+      main: 'Not chosen yet',
+      side: 'Not chosen yet',
+      dessert: 'Not chosen yet'
+    };
+    Object.keys(labels).forEach(cat => {
+      const node = document.getElementById(`summary-${cat}`);
+      if (!node) return;
+      node.textContent = menuState[cat]?.length ? menuState[cat].join(', ') : labels[cat];
+    });
+    const ready = menuState.appetizer.length && menuState.main.length && menuState.side.length && menuState.dessert.length;
+    const status = document.getElementById('menuReadyStatus');
+    if (status) {
+      status.textContent = ready
+        ? 'Your menu is ready for the pitch. Soup is optional, but it makes your menu richer.'
+        : 'Your menu is ready when you have an appetizer, main course, side dish and dessert.';
+      status.classList.toggle('is-ready', Boolean(ready));
+    }
+  }
+
+  function attachRemoveEvents() {
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.removeEventListener('click', handleRemove);
+      btn.addEventListener('click', handleRemove);
+    });
+  }
+
+  function handleRemove(e) {
+    const btn = e.currentTarget;
+    const cat = btn.getAttribute('data-cat');
+    const itemName = btn.getAttribute('data-item');
+    if (cat && menuState[cat]) {
+      menuState[cat] = menuState[cat].filter(i => i !== itemName);
+      renderDropzones();
+      saveProgress();
+    }
+  }
+
+  function buildDraggablePool() {
+    const pool = document.getElementById('draggableContainer');
+    pool.innerHTML = '';
+    for (let [type, dishes] of Object.entries(extensiveMenu)) {
+      dishes.forEach(dish => {
+        const dragEl = document.createElement('div');
+        dragEl.className = 'drag-item';
+        dragEl.setAttribute('data-type', type);
+        dragEl.innerText = dish;
+        dragEl.setAttribute('draggable', 'true');
+        dragEl.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', JSON.stringify({ name: dish, type: type }));
+          dragEl.style.opacity = '0.45';
+        });
+        dragEl.addEventListener('dragend', () => { dragEl.style.opacity = ''; });
+        pool.appendChild(dragEl);
+      });
+    }
+  }
+
+  function attachDropZones() {
+    document.querySelectorAll('.dropzone').forEach(zone => {
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        let raw;
+        try { raw = e.dataTransfer.getData('text/plain'); } catch (err) { raw = ''; }
+        if (!raw) return;
+        let data;
+        try { data = JSON.parse(raw); } catch (err) { return; }
+        const expected = zone.id.replace('drop-', '');
+        if (data.type !== expected) {
+          showDropToast(`This is a ${data.type}, drop into ${data.type.toUpperCase()} instead.`, 'err', zone);
+          return;
+        }
+        if (!menuState[expected].includes(data.name)) {
+          menuState[expected].push(data.name);
+          renderDropzones();
+          saveProgress();
+          showDropToast(`Added: ${data.name}`, 'ok', null);
+        } else {
+          showDropToast(`${data.name} is already on the menu.`, 'err', zone);
+        }
+      });
+    });
+  }
+
+  function updateSpeakingPreview() {
+    const node = document.getElementById('liveExampleText');
+    if (!node) return;
+    const cuisine = (document.getElementById('cuisineInput') || {}).value || 'Mediterranean';
+    const pick = (arr) => arr.length ? arr[0] : null;
+    const app = pick(menuState.appetizer);
+    const soup = pick(menuState.soup);
+    const main = pick(menuState.main);
+    const side = pick(menuState.side);
+    const dessert = pick(menuState.dessert);
+    if (!app && !main && !dessert) {
+      node.innerHTML = `<em>Drop at least a few dishes into the categories above to generate your example pitch.</em>`;
+      return;
+    }
+    const parts = [];
+    parts.push(`Our restaurant focuses on <mark>${cuisine}</mark> cuisine.`);
+    if (main) parts.push(`Our signature dish is <mark>${main}</mark> because it shows our style and is memorable to guests.`);
+    if (app) parts.push(`As a starter, we serve <mark>${app}</mark>${soup ? `, often paired with <mark>${soup}</mark>` : ''}.`);
+    if (main) parts.push(`The main course <mark>${main}</mark> is prepared using high-quality, seasonal ingredients.`);
+    parts.push(`We cook it by <mark>slow roasting and careful seasoning</mark>.`);
+    parts.push(`It contains ingredients such as <mark>fresh herbs, olive oil and a house sauce</mark>.`);
+    if (side) parts.push(`On the side, we offer <mark>${side}</mark> to balance the plate.`);
+    if (dessert) parts.push(`To finish, we recommend <mark>${dessert}</mark>.`);
+    parts.push(`Thank you for listening.`);
+    node.innerHTML = parts.join(' ');
+  }
+
+  function attachSpeechChips() {
+    document.querySelectorAll('.speech-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const ta = document.getElementById('speechDraft');
+        if (!ta) return;
+        const text = chip.getAttribute('data-starter') || chip.textContent;
+        ta.value = (ta.value ? ta.value.trimEnd() + ' ' : '') + text + ' ';
+        ta.focus();
+      });
+    });
+  }
+
+  function attachCuisinePills() {
+    document.querySelectorAll('.cuisine-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.cuisine-pill').forEach(p => p.classList.remove('is-active'));
+        pill.classList.add('is-active');
+        const c = pill.getAttribute('data-cuisine');
+        const inp = document.getElementById('cuisineInput');
+        if (inp) inp.value = c;
+        updateSpeakingPreview();
+      });
+    });
+    const refresh = document.getElementById('updateMenuPreview');
+    if (refresh) refresh.addEventListener('click', updateSpeakingPreview);
+    const copyBtn = document.getElementById('copyExampleBtn');
+    if (copyBtn) copyBtn.addEventListener('click', () => {
+      const ex = document.getElementById('liveExampleText');
+      const ta = document.getElementById('speechDraft');
+      if (ex && ta) ta.value = ex.innerText;
+    });
+  }
+
+  // Speaking timer (counts down 2 minutes)
+  let timerInterval = null, timerSeconds = 120;
+  function fmtTime(s){ const m = Math.floor(s/60).toString().padStart(2,'0'); const sec=(s%60).toString().padStart(2,'0'); return `${m}:${sec}`; }
+  function attachSpeakingTimer() {
+    const display = document.getElementById('speakingTimer');
+    const start = document.getElementById('startTimerBtn');
+    const reset = document.getElementById('resetTimerBtn');
+    if (!display || !start || !reset) return;
+    timerSeconds = 120;
+    display.textContent = fmtTime(timerSeconds);
+    start.addEventListener('click', () => {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        timerSeconds--;
+        display.textContent = fmtTime(Math.max(0, timerSeconds));
+        if (timerSeconds <= 0) { clearInterval(timerInterval); timerInterval = null; display.textContent = '00:00'; }
+      }, 1000);
+    });
+    reset.addEventListener('click', () => {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      timerSeconds = 120;
+      display.textContent = fmtTime(timerSeconds);
+    });
+  }
+
+  // Rubric scoring
+  function attachRubric() {
+    const calc = document.getElementById('calcRubricBtn');
+    const reset = document.getElementById('resetRubricBtn');
+    const display = document.getElementById('totalScoreRubricDisplay');
+    if (!calc || !display) return;
+    function computeTotal() {
+      let total = 0;
+      const groups = ['taskComp1','taskComp2','taskComp3','taskComp4','startersScore','grammarScore','fluencyScore'];
+      groups.forEach(g => {
+        const sel = document.querySelector(`input[name="${g}"]:checked`);
+        if (sel) total += parseInt(sel.value, 10) || 0;
+      });
+      return total;
+    }
+    calc.addEventListener('click', () => {
+      const total = computeTotal();
+      display.textContent = `Total: ${total} / 20`;
+      display.classList.remove('flash'); void display.offsetWidth; display.classList.add('flash');
+    });
+    if (reset) reset.addEventListener('click', () => {
+      document.querySelectorAll('.rubric-section input[type="radio"]').forEach(r => { r.checked = false; });
+      const sn = document.getElementById('studentNameRubric'); if (sn) sn.value = '';
+      const s1 = document.getElementById('strengthsField'); if (s1) s1.value = '';
+      const s2 = document.getElementById('improveField'); if (s2) s2.value = '';
+      display.textContent = 'Total: -- / 20';
+    });
+  }
+
+  function initRestaurantInteractions() {
+    buildDraggablePool();
+    attachDropZones();
+    renderDropzones();
+    attachSpeechChips();
+    attachCuisinePills();
+    attachSpeakingTimer();
+    attachRubric();
+    const resetBtn = document.getElementById('resetMenuBtn');
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      menuState = { appetizer: [], soup: [], main: [], side: [], dessert: [] };
+      renderDropzones();
+      updateSpeakingPreview();
+      saveProgress();
+    });
+    const cuisineInp = document.getElementById('cuisineInput');
+    if (cuisineInp) cuisineInp.addEventListener('input', updateSpeakingPreview);
+    const resetAll = document.getElementById('resetAllBtn');
+    if (resetAll) resetAll.addEventListener('click', () => {
+      if (!confirm('Reset all progress?')) return;
+      localStorage.removeItem('restaurantMenuProgress_RoseGold');
+      activityCompleted = false;
+      menuState = { appetizer: [], soup: [], main: [], side: [], dessert: [] };
+      renderRestaurantBlock(document.getElementById('activities-container'));
+      updateProgress();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProgress();
+    const container = document.getElementById('activities-container');
+    if (container) renderRestaurantBlock(container);
+    updateProgress();
+  });
+</script>
+<script defer src="../assets/lab-unify-repair.js?v=2" data-lab-unify-repair></script>
+<nav class="lesson-foot" aria-label="Lesson navigation">
+  <a class="foot-link prev" href="ancient-china-cultural-studies.html">
+    <span class="foot-meta">Предыдущий урок</span>
+    <span class="foot-title">Ancient China: Cultural Studies</span>
+  </a>
+  <a class="foot-link" href="../index.html#interactive-lessons">
+    <span class="foot-meta">Все уроки</span>
+    <span class="foot-title">Каталог Lab</span>
+  </a>
+  <a class="foot-link next" href="grammar-arcade-pc-pp.html">
+    <span class="foot-meta">Следующий урок</span>
+    <span class="foot-title">Grammar Arcade</span>
+  </a>
+</nav>
+<footer class="canon-l-footer" style="--lb-bg:#fff9f2; --lb-text:#3e2a21; --lb-muted:#9b7b62; --lb-line:rgba(184,124,79,0.12); --lb-pill-bg:#ffffff; --lb-pill-border:rgba(184,124,79,0.20); --lb-link-hover:#b87c4f; --lb-seg-bg:#ffffff; --lb-seg-border:rgba(184,124,79,0.20); --lb-seg-btn:#b87c4f;" role="contentinfo">
+  <div class="canon-l-footer-row">
+    <a class="canon-l-footer-brand" href="../index.html" aria-label="LinguaBoost Lab">
+      <span class="canon-l-footer-mark" aria-hidden="true">L</span>
+      <span class="canon-l-footer-name">LinguaBoost Lab</span>
+    </a>
+    <span class="canon-l-footer-meta canon-l-footer-meta-wide">Restaurant Menu Lab &middot; B1</span>
+    <nav class="canon-l-footer-nav" aria-label="Site links">
+      <a href="../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
+      <a href="../../index.html" data-ru="Главная" data-en="Home">Главная</a>
+      <a href="../../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+    </nav>
+  </div>
+  <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
+</footer>
+<style id="codex-restaurant-black-lab-polish-20260514">
+html body .wrap,
+html body .hero,
+html body .step-tracker,
+html body main.wrap > .mission-card,
+html body .dish-strip,
+html body #activities-container,
+html body .round-card,
+html body nav.lesson-foot,
+html body footer.canon-l-footer{
+  box-sizing:border-box !important;
+  width:min(calc(100% - 56px),1180px) !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+html body .wrap{width:100% !important;max-width:none !important;}
+html body .hero{overflow:hidden !important;}
+html body .hero-inner > div:first-child{
+  box-sizing:border-box !important;
+  width:min(38%,430px) !important;
+  max-width:430px !important;
+  margin-left:58px !important;
+  padding:22px 0 24px !important;
+}
+html body .hero-title{
+  font-size:clamp(1.72rem,3.1vw,3.22rem) !important;
+  line-height:1.02 !important;
+  letter-spacing:0 !important;
+  margin-bottom:16px !important;
+  overflow-wrap:normal !important;
+}
+html body .hero-lead{
+  font-size:15px !important;
+  line-height:1.45 !important;
+  max-width:380px !important;
+  margin-bottom:18px !important;
+}
+html body .hero-meta{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:8px !important;
+  max-width:430px !important;
+  margin-bottom:20px !important;
+}
+html body .meta-pill{
+  box-sizing:border-box !important;
+  min-height:42px !important;
+  height:42px !important;
+  padding:0 10px !important;
+  border-radius:10px !important;
+  justify-content:center !important;
+  text-align:center !important;
+  font-size:9.5px !important;
+  line-height:1.15 !important;
+  white-space:normal !important;
+}
+html body .btn,
+html body .btn-tool,
+html body .reset-menu-btn,
+html body .calc-btn,
+html body .speech-chip,
+html body .cuisine-pill,
+html body #updateMenuPreview,
+html body #resetRubricBtn,
+html body .remove-btn{
+  box-sizing:border-box !important;
+  min-height:44px !important;
+  height:44px !important;
+  border-radius:10px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  line-height:1.1 !important;
+}
+html body .btn,
+html body .btn-tool,
+html body .reset-menu-btn,
+html body .calc-btn,
+html body #updateMenuPreview,
+html body #resetRubricBtn{
+  padding:0 18px !important;
+}
+html body .hero-actions .btn{min-width:132px !important;}
+html body .speech-chip,
+html body .cuisine-pill{
+  padding:0 14px !important;
+  text-align:center !important;
+  white-space:normal !important;
+}
+html body .remove-btn{
+  min-width:34px !important;
+  width:34px !important;
+  height:34px !important;
+  min-height:34px !important;
+  border-radius:8px !important;
+}
+html body .footnote{display:none !important;}
+html body .cat-thumb{
+  background:#fffaf2 !important;
+  border:1px solid rgba(212,163,115,.20) !important;
+  border-radius:16px !important;
+  padding:8px !important;
+}
+html body .cat-thumb img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  background:#fffaf2 !important;
+  border-radius:12px !important;
+}
+html body .menu-category[data-category="appetizer"] .cat-thumb,
+html body .menu-category[data-category="soup"] .cat-thumb,
+html body .menu-category[data-category="main"] .cat-thumb,
+html body .menu-category[data-category="side"] .cat-thumb{
+  box-shadow:inset 0 0 0 999px rgba(255,250,242,.35) !important;
+}
+html body .round-header,
+html body .mission-path,
+html body .concept-grid,
+html body .summary-grid,
+html body .language-grid,
+html body .rubric-scoreboard{
+  min-width:0 !important;
+}
+html body .round-header > *,
+html body .mission-step,
+html body .summary-item,
+html body .language-pill,
+html body .rubric-tile{
+  min-width:0 !important;
+  overflow-wrap:anywhere !important;
+}
+@media(max-width:920px){
+  html body .hero-inner > div:first-child{width:100% !important;max-width:100% !important;margin-left:0 !important;padding:26px !important;}
+  html body .hero-meta{grid-template-columns:1fr !important;max-width:360px !important;}
+  html body .meta-pill{justify-content:flex-start !important;text-align:left !important;}
+}
+@media(max-width:820px){
+  html body .hero,
+  html body .step-tracker,
+  html body main.wrap > .mission-card,
+  html body .dish-strip,
+  html body #activities-container,
+  html body .round-card,
+  html body nav.lesson-foot,
+  html body footer.canon-l-footer{width:calc(100% - 28px) !important;}
+}
+</style><style id="codex-restaurant-round-width-lock-20260514">
+html body #activities-container{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+html body #activities-container > .round-card,
+html body .round-card{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:1180px !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+html body #activities-container > .round-card{margin-left:auto !important;margin-right:auto !important;}
+</style><style id="codex-restaurant-nav-cleanup-20260514">
+html body .brand-tag{display:none !important;}
+html body .rubric-actions{
+  display:flex !important;
+  align-items:center !important;
+  gap:18px !important;
+  flex-wrap:wrap !important;
+  margin:24px 0 !important;
+}
+html body #calcRubricBtn,
+html body #resetRubricBtn{
+  box-sizing:border-box !important;
+  min-height:52px !important;
+  height:52px !important;
+  padding:0 24px !important;
+  border:1px solid rgba(184,124,79,.28) !important;
+  border-radius:12px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-family:var(--body) !important;
+  font-size:20px !important;
+  font-weight:800 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  line-height:1 !important;
+  cursor:pointer !important;
+}
+html body #calcRubricBtn{background:#d9a36f !important;color:#fff !important;min-width:248px !important;}
+html body #resetRubricBtn{background:#dcc09a !important;color:#1f140d !important;min-width:158px !important;}
+html body footer.canon-l-footer{
+  width:min(calc(100% - 56px),1180px) !important;
+  max-width:1180px !important;
+  margin:34px auto 0 !important;
+  padding:0 0 34px !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  color:var(--lb-text,#3d2818) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-row{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:18px !important;
+  width:100% !important;
+  padding:26px 0 20px !important;
+  border-top:1px solid var(--lb-line,rgba(212,163,115,.30)) !important;
+  border-bottom:1px solid var(--lb-line,rgba(212,163,115,.30)) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand,
+html body footer.canon-l-footer .canon-l-footer-mark,
+html body footer.canon-l-footer .canon-l-footer-name{display:none !important;}
+html body footer.canon-l-footer .canon-l-footer-meta{
+  display:block !important;
+  margin:0 auto !important;
+  font-family:var(--display) !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+  letter-spacing:.12em !important;
+  text-transform:uppercase !important;
+  color:var(--lb-text,#3d2818) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:30px !important;
+  margin:0 auto !important;
+  width:auto !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a{
+  font-family:var(--mono) !important;
+  font-size:10px !important;
+  font-weight:800 !important;
+  letter-spacing:.32em !important;
+  text-transform:uppercase !important;
+  color:var(--lb-text,#3d2818) !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal{
+  max-width:930px !important;
+  margin:26px auto 0 !important;
+  padding:0 !important;
+  color:#7d5b3f !important;
+  font-size:14px !important;
+  line-height:1.55 !important;
+  text-align:center !important;
+}
+@media(max-width:620px){
+  html body .rubric-actions{gap:12px !important;}
+  html body #calcRubricBtn,
+  html body #resetRubricBtn{width:100% !important;min-width:0 !important;font-size:17px !important;}
+  html body footer.canon-l-footer{width:calc(100% - 28px) !important;}
+  html body footer.canon-l-footer .canon-l-footer-nav{gap:16px !important;flex-wrap:wrap !important;}
+  html body footer.canon-l-footer .canon-l-footer-meta{font-size:15px !important;}
+}
+</style>
+<style id="codex-restaurant-footer-china-mold-20260514">
+html body footer.canon-l-footer{
+  box-sizing:border-box !important;
+  width:min(calc(100% - 56px),1180px) !important;
+  max-width:1180px !important;
+  margin:28px auto 0 !important;
+  padding:24px min(32px,5vw) 28px !important;
+  background:#fffaf5 !important;
+  color:#3d2818 !important;
+  border-top:1px solid rgba(212,163,115,.24) !important;
+  text-align:left !important;
+}
+html body footer.canon-l-footer .canon-l-footer-row{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:16px !important;
+  flex-wrap:nowrap !important;
+  max-width:1180px !important;
+  margin:0 auto 12px !important;
+  padding:0 !important;
+  border:0 !important;
+  text-align:left !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  flex:0 0 auto !important;
+  text-decoration:none !important;
+  color:inherit !important;
+  font-weight:800 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-mark{
+  display:grid !important;
+  place-items:center !important;
+  width:34px !important;
+  height:34px !important;
+  border-radius:8px !important;
+  background:#fff !important;
+  border:1px solid rgba(212,163,115,.45) !important;
+  color:#b87c4f !important;
+}
+html body footer.canon-l-footer .canon-l-footer-name{display:inline !important;}
+html body footer.canon-l-footer .canon-l-footer-meta-wide{
+  flex:0 1 auto !important;
+  width:auto !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+  text-align:left !important;
+  font-family:var(--mono,ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  color:#7d5b3f !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav{
+  margin-left:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:16px !important;
+  flex-wrap:nowrap !important;
+  width:auto !important;
+  white-space:nowrap !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a{
+  font-family:inherit !important;
+  font-size:inherit !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  color:inherit !important;
+  text-decoration:none !important;
+  font-weight:700 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal{
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  color:#7d5b3f !important;
+  font-size:12px !important;
+  line-height:1.6 !important;
+  text-align:left !important;
+}
+@media(max-width:820px){
+  html body footer.canon-l-footer{width:calc(100% - 28px) !important;}
+  html body footer.canon-l-footer .canon-l-footer-row{flex-wrap:wrap !important;align-items:flex-start !important;}
+  html body footer.canon-l-footer .canon-l-footer-nav{width:100% !important;flex-wrap:wrap !important;}
+}
+</style>
+<style id="codex-restaurant-canon-grid-20260514">
+html body{
+  font-family:var(--body) !important;
+  font-size:16px !important;
+  line-height:1.55 !important;
+}
+html body .wrap{
+  box-sizing:border-box !important;
+  width:min(calc(100% - 120px),1320px) !important;
+  max-width:1320px !important;
+  margin:0 auto !important;
+  padding:32px 0 80px !important;
+}
+html body .hero,
+html body .step-tracker,
+html body main.wrap > .mission-card,
+html body .dish-strip,
+html body #activities-container,
+html body .round-card,
+html body nav.lesson-foot,
+html body footer.canon-l-footer{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:1320px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+html body .hero{
+  min-height:390px !important;
+  margin-bottom:28px !important;
+  padding:48px 56px !important;
+  border-radius:24px !important;
+}
+html body .hero-inner > div:first-child{
+  width:min(41%,470px) !important;
+  max-width:470px !important;
+  margin-left:52px !important;
+  padding:20px 0 !important;
+}
+html body .hero-title{
+  font-family:var(--display) !important;
+  font-size:clamp(2.45rem,3.75vw,3.38rem) !important;
+  line-height:1.02 !important;
+  letter-spacing:0 !important;
+}
+html body .hero-lead{
+  font-size:16px !important;
+  line-height:1.5 !important;
+  max-width:430px !important;
+}
+html body .hero-meta{
+  display:flex !important;
+  gap:10px !important;
+  flex-wrap:wrap !important;
+  max-width:470px !important;
+}
+html body .meta-pill{
+  min-height:38px !important;
+  height:auto !important;
+  padding:8px 12px !important;
+  border-radius:10px !important;
+  font-size:10px !important;
+  line-height:1.15 !important;
+  white-space:normal !important;
+}
+html body .step-tracker,
+html body main.wrap > .mission-card,
+html body .round-card{
+  margin-bottom:28px !important;
+}
+html body .mission-card{
+  border-radius:24px !important;
+  padding:22px 24px !important;
+}
+html body .mission-card h3,
+html body .round-title{
+  font-family:var(--display) !important;
+  font-size:28px !important;
+  line-height:1.12 !important;
+  letter-spacing:0 !important;
+}
+html body .round-header{
+  min-height:78px !important;
+  padding:20px 24px !important;
+  gap:18px !important;
+}
+html body .round-body{
+  padding:26px !important;
+}
+html body .mission-path,
+html body .concept-grid,
+html body .language-grid,
+html body .summary-grid,
+html body .balance-tip-grid,
+html body .rubric-scoreboard,
+html body .menu-grid{
+  align-items:stretch !important;
+}
+html body .mission-step,
+html body .language-pill,
+html body .summary-item,
+html body .balance-tip-grid div,
+html body .rubric-tile,
+html body .menu-category,
+html body .step,
+html body .performance-box,
+html body .foot-link{
+  height:100% !important;
+  align-self:stretch !important;
+  min-width:0 !important;
+  overflow-wrap:anywhere !important;
+}
+html body .menu-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:20px !important;
+}
+html body .chef-tip{
+  align-self:stretch !important;
+  min-height:260px !important;
+}
+html body .speaking-card,
+html body .rubric-section{
+  margin-top:32px !important;
+}
+html body .balance-tip,
+html body .menu-summary,
+html body .useful-language,
+html body .speaking-frame,
+html body .preflight-check,
+html body .performance-panel{
+  margin-top:20px !important;
+  margin-bottom:20px !important;
+}
+html body nav.lesson-foot{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:16px !important;
+  margin-top:32px !important;
+}
+html body #activities-container > .round-card,
+html body #activities-container .round-card{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:1320px !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+html body #activities-container{
+  display:block !important;
+}
+html body footer.canon-l-footer{
+  margin-top:28px !important;
+  padding:24px 0 28px !important;
+  background:transparent !important;
+  border-top:1px solid rgba(212,163,115,.24) !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand,
+html body footer.canon-l-footer .canon-l-footer-mark,
+html body footer.canon-l-footer .canon-l-footer-name{
+  display:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-row,
+html body footer.canon-l-footer .canon-l-footer-legal{
+  max-width:1320px !important;
+}
+@media(max-width:920px){
+  html body .wrap{
+    width:calc(100% - 28px) !important;
+    padding:20px 0 56px !important;
+  }
+  html body .hero,
+  html body .step-tracker,
+  html body main.wrap > .mission-card,
+  html body .dish-strip,
+  html body #activities-container,
+  html body .round-card,
+  html body nav.lesson-foot,
+  html body footer.canon-l-footer{
+    width:100% !important;
+  }
+  html body .hero{
+    min-height:430px !important;
+    padding:28px 18px !important;
+    border-radius:20px !important;
+  }
+  html body .hero-inner > div:first-child{
+    width:100% !important;
+    max-width:100% !important;
+    margin-left:0 !important;
+    padding:22px !important;
+  }
+  html body .hero-title{
+    font-size:clamp(2rem,10vw,2.85rem) !important;
+  }
+  html body .mission-card h3,
+  html body .round-title{
+    font-size:19.2px !important;
+    line-height:1.12 !important;
+  }
+  html body .step-tracker,
+  html body .round-header,
+  html body footer.canon-l-footer .canon-l-footer-row{
+    flex-wrap:wrap !important;
+  }
+  html body .round-body,
+  html body .mission-card{
+    padding:18px !important;
+  }
+  html body .menu-grid,
+  html body .concept-grid,
+  html body .language-grid,
+  html body .summary-grid,
+  html body .balance-tip-grid,
+  html body .rubric-scoreboard,
+  html body .performance-panel,
+  html body nav.lesson-foot{
+    grid-template-columns:1fr !important;
+  }
+  html body .hero-actions .btn,
+  html body .rubric-actions > *,
+  html body .step-tracker .btn-tool{
+    width:100% !important;
+    min-width:0 !important;
+  }
+  html body table{
+    display:block !important;
+    max-width:100% !important;
+    overflow-x:auto !important;
+  }
+}
+</style>
+<style id="codex-restaurant-mobile-overflow-fix-20260514">
+@media(max-width:920px){
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+  html body .topbar{
+    padding:10px 14px !important;
+    gap:12px !important;
+    flex-wrap:wrap !important;
+  }
+  html body .topbar-nav{
+    gap:12px !important;
+    margin-left:0 !important;
+  }
+  html body .level-bubble{
+    display:none !important;
+  }
+  html body .hero-inner > div:first-child{
+    box-sizing:border-box !important;
+    overflow:hidden !important;
+  }
+  html body .hero-title{
+    max-width:100% !important;
+    font-size:clamp(2rem,10.2vw,2.38rem) !important;
+    line-height:1.04 !important;
+    overflow-wrap:anywhere !important;
+  }
+  html body .hero-lead,
+  html body .mission-card p,
+  html body .round-card p,
+  html body .performance-box,
+  html body .language-pill,
+  html body .rubric-tile{
+    max-width:100% !important;
+    overflow-wrap:anywhere !important;
+  }
+  html body .hero-meta,
+  html body .hero-actions,
+  html body .rubric-actions{
+    width:100% !important;
+  }
+  html body .step-tracker{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+    padding:16px 12px !important;
+    border-radius:20px !important;
+  }
+  html body .step-count,
+  html body .step-name{
+    width:100% !important;
+    text-align:left !important;
+  }
+  html body .step-track{
+    width:100% !important;
+    min-width:0 !important;
+  }
+  html body .dish-strip,
+  html body .dish-strip img{
+    max-width:100% !important;
+  }
+  html body .concept-field input,
+  html body .concept-field select,
+  html body textarea{
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+}
+@media(max-width:620px){`r`n  html body .hero-title{`r`n    font-size:31px !important;
+  }
+  html body .hero-lead{
+    font-size:15px !important;
+  }
+  html body .meta-pill{
+    flex:1 1 100% !important;
+    justify-content:flex-start !important;
+  }
+}
+</style>
+<style id="codex-restaurant-mobile-tighten-20260514">
+@media(max-width:620px){`r`n  html body .wrap{
+    width:calc(100% - 28px) !important;
+    max-width:calc(100% - 28px) !important;
+    overflow:hidden !important;
+  }
+  html body .hero,
+  html body .step-tracker,
+  html body main.wrap > .mission-card,
+  html body .dish-strip,
+  html body #activities-container,
+  html body .round-card,
+  html body nav.lesson-foot,
+  html body footer.canon-l-footer{
+    max-width:100% !important;
+    overflow:hidden !important;
+  }
+  html body .hero-inner,
+  html body .hero-inner > div:first-child,
+  html body .mission-card,
+  html body .round-card,
+  html body .round-body,
+  html body .round-header{
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+  html body .hero-title{
+    font-size:31px !important;
+    line-height:1.06 !important;
+    max-width:300px !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+  html body .hero-lead{
+    width:100% !important;
+    max-width:300px !important;
+    font-size:14px !important;
+    line-height:1.45 !important;
+  }
+  html body .hero-meta,
+  html body .hero-actions{
+    max-width:300px !important;
+  }
+  html body .mission-card p,
+  html body .round-card p{
+    width:100% !important;
+    max-width:100% !important;
+    font-size:15px !important;
+  }
+}
+</style>
+<style id="codex-restaurant-top-and-foot-like-geo-20260515">
+html body .topbar .topbar-tools{
+  margin-left:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+html body .topbar .lang-toggle{
+  display:inline-grid !important;
+  place-items:center !important;
+  width:44px !important;
+  min-width:44px !important;
+  height:44px !important;
+  padding:0 !important;
+  border-radius:50% !important;
+  border:1px solid var(--line-2) !important;
+  background:white !important;
+  color:var(--accent) !important;
+  font-family:var(--mono) !important;
+  font-size:11px !important;
+  font-weight:900 !important;
+  letter-spacing:.04em !important;
+  text-transform:uppercase !important;
+}
+html body [data-theme-toggle],
+html body .theme-toggle{
+  display:none !important;
+}
+body[class] .lesson-foot{
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  align-items:stretch !important;
+  gap:12px !important;
+  width:min(calc(100% - 2cm),1320px) !important;
+  max-width:1320px !important;
+  margin:24px auto 0 !important;
+  padding:0 !important;
+}
+body[class] .lesson-foot .foot-link{
+  box-sizing:border-box !important;
+  min-height:94px !important;
+  height:94px !important;
+  border:1px solid var(--line,rgba(23,35,50,.18)) !important;
+  border-radius:14px !important;
+  padding:16px 18px !important;
+  background:var(--surface,var(--card,#fffdf8)) !important;
+  display:grid !important;
+  align-content:center !important;
+  gap:6px !important;
+  color:#1e4a76 !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+  transition:border-color .16s,transform .16s !important;
+}
+body[class] .lesson-foot .foot-link:hover{
+  background:var(--surface,var(--card,#fffdf8)) !important;
+  color:#1e4a76 !important;
+  border-color:#2d7a50 !important;
+  transform:translateY(-1px) !important;
+}
+body[class] .lesson-foot .foot-link.next{text-align:right !important;}
+body[class] .lesson-foot .foot-meta{
+  display:block !important;
+  font-family:var(--mono,ui-monospace,monospace) !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+  letter-spacing:.14em !important;
+  line-height:1.2 !important;
+  text-transform:uppercase !important;
+  color:#2d7a50 !important;
+}
+body[class] .lesson-foot .foot-title{
+  display:block !important;
+  font-family:var(--display,'Unbounded',system-ui,sans-serif) !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:0 !important;
+  color:#1e4a76 !important;
+}
+html body footer.canon-l-footer{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:60px 0 0 !important;
+  padding:30px clamp(40px,6vw,88px) 34px !important;
+  background:#f4f0e8 !important;
+  color:#172332 !important;
+  border-top:1px solid rgba(23,35,50,.18) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand,
+html body footer.canon-l-footer .canon-l-footer-mark,
+html body footer.canon-l-footer .canon-l-footer-name{
+  display:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-row{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:18px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 auto 22px !important;
+  padding:0 0 22px !important;
+  border-bottom:1px solid rgba(23,35,50,.18) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-meta,
+html body footer.canon-l-footer .canon-l-footer-meta-wide{
+  display:inline-flex !important;
+  width:auto !important;
+  margin:0 !important;
+  font-family:var(--mono,ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  letter-spacing:.32em !important;
+  line-height:1.2 !important;
+  text-transform:uppercase !important;
+  color:#172332 !important;
+  white-space:nowrap !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:22px !important;
+  flex-wrap:wrap !important;
+  width:auto !important;
+  margin:0 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a{
+  font-family:var(--mono,ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  letter-spacing:.28em !important;
+  text-transform:uppercase !important;
+  color:#1e4a76 !important;
+  text-decoration:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal{
+  max-width:1460px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  color:#172332 !important;
+  font-size:16px !important;
+  line-height:1.55 !important;
+  text-align:center !important;
+}
+@media(max-width:820px){
+  body[class] .lesson-foot{grid-template-columns:1fr !important;width:min(100% - 28px,1320px) !important;}
+  body[class] .lesson-foot .foot-link.next{text-align:left !important;}
+  html body footer.canon-l-footer{padding:26px 20px 30px !important;margin-top:38px !important;}
+  html body footer.canon-l-footer .canon-l-footer-meta,
+  html body footer.canon-l-footer .canon-l-footer-meta-wide{white-space:normal !important;letter-spacing:.18em !important;}
+}
+</style><style id="codex-restaurant-final-normalize-20260515">
+/* Final restaurant cleanup: square language/level pills and shared lab footer shape. */
+html body .topbar .topbar-tools{
+  margin-left:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+}
+html body .topbar .lang-toggle,
+html body .topbar .level-bubble{
+  box-sizing:border-box !important;
+  width:38px !important;
+  min-width:38px !important;
+  height:38px !important;
+  min-height:38px !important;
+  padding:0 !important;
+  border-radius:8px !important;
+  display:inline-grid !important;
+  place-items:center !important;
+  border:1px solid rgba(30,74,118,.28) !important;
+  background:#fffdf8 !important;
+  color:#12365b !important;
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:10px !important;
+  font-weight:800 !important;
+  line-height:1 !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+  box-shadow:none !important;
+}
+html body .topbar [data-theme-toggle],
+html body .topbar .theme-toggle{
+  display:none !important;
+}
+html body nav.lesson-foot,
+body[class] nav.lesson-foot{
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:12px !important;
+  width:min(calc(100% - 2cm),1660px) !important;
+  max-width:1660px !important;
+  margin:64px auto 76px !important;
+  padding:0 !important;
+  align-items:stretch !important;
+}
+html body nav.lesson-foot .foot-link,
+body[class] nav.lesson-foot .foot-link{
+  box-sizing:border-box !important;
+  min-height:118px !important;
+  height:118px !important;
+  padding:30px 24px !important;
+  border-radius:14px !important;
+  border:1px solid rgba(23,35,50,.12) !important;
+  background:#fffdf8 !important;
+  color:#12365b !important;
+  display:grid !important;
+  align-content:center !important;
+  gap:8px !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+  transition:border-color .16s,transform .16s !important;
+}
+html body nav.lesson-foot .foot-link.prev{
+  border-color:#2d7a50 !important;
+}
+html body nav.lesson-foot .foot-link:hover{
+  border-color:#2d7a50 !important;
+  transform:translateY(-1px) !important;
+  background:#fffdf8 !important;
+  color:#12365b !important;
+}
+html body nav.lesson-foot .foot-link.next{
+  text-align:right !important;
+}
+html body nav.lesson-foot .foot-meta,
+body[class] nav.lesson-foot .foot-meta{
+  display:block !important;
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:.24em !important;
+  text-transform:uppercase !important;
+  color:#2d7a50 !important;
+}
+html body nav.lesson-foot .foot-title,
+body[class] nav.lesson-foot .foot-title{
+  display:block !important;
+  font-family:var(--display,'Unbounded',Manrope,system-ui,sans-serif) !important;
+  font-size:24px !important;
+  font-weight:800 !important;
+  line-height:1.15 !important;
+  letter-spacing:0 !important;
+  color:#12365b !important;
+}
+html body footer.canon-l-footer,
+html[data-theme] body footer.canon-l-footer{
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:34px clamp(48px,5vw,96px) 32px !important;
+  background:#f4f0e8 !important;
+  color:#172332 !important;
+  border-top:1px solid rgba(23,35,50,.18) !important;
+  text-align:center !important;
+  box-shadow:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand,
+html body footer.canon-l-footer .canon-l-footer-mark,
+html body footer.canon-l-footer .canon-l-footer-name{
+  display:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-row{
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:24px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+  max-width:1660px !important;
+  margin:0 auto 28px !important;
+  padding:0 0 28px !important;
+  border:0 !important;
+  border-bottom:1px solid rgba(23,35,50,.18) !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-meta,
+html body footer.canon-l-footer .canon-l-footer-meta-wide{
+  display:inline-flex !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:.36em !important;
+  text-transform:uppercase !important;
+  color:#172332 !important;
+  text-align:center !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:24px !important;
+  flex-wrap:wrap !important;
+  width:auto !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a{
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  letter-spacing:.32em !important;
+  line-height:1.2 !important;
+  text-transform:uppercase !important;
+  color:#12365b !important;
+  text-decoration:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal{
+  display:block !important;
+  max-width:1600px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  color:#172332 !important;
+  font-family:var(--body,Manrope,system-ui,sans-serif) !important;
+  font-size:20px !important;
+  font-weight:400 !important;
+  line-height:1.45 !important;
+  text-align:center !important;
+}
+@media(max-width:820px){
+  html body nav.lesson-foot,
+  body[class] nav.lesson-foot{
+    grid-template-columns:1fr !important;
+    width:min(100% - 28px,1660px) !important;
+    margin:38px auto 42px !important;
+  }
+  html body nav.lesson-foot .foot-link.next{text-align:left !important;}
+  html body footer.canon-l-footer{padding:28px 20px 30px !important;}
+  html body footer.canon-l-footer .canon-l-footer-meta,
+  html body footer.canon-l-footer .canon-l-footer-meta-wide,
+  html body footer.canon-l-footer .canon-l-footer-nav{white-space:normal !important;}
+  html body footer.canon-l-footer .canon-l-footer-legal{font-size:15px !important;}
+}
+</style><style id="codex-restaurant-footer-typography-final-20260515">
+html body nav.lesson-foot .foot-meta,
+html body nav.lesson-foot .foot-link .foot-meta,
+body[class] nav.lesson-foot .foot-link .foot-meta{
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:.26em !important;
+  text-transform:uppercase !important;
+  color:#2d7a50 !important;
+  -webkit-text-fill-color:#2d7a50 !important;
+}
+html body nav.lesson-foot .foot-title,
+html body nav.lesson-foot .foot-link .foot-title,
+body[class] nav.lesson-foot .foot-link .foot-title{
+  font-family:var(--display,'Unbounded',Manrope,system-ui,sans-serif) !important;
+  font-size:26px !important;
+  font-weight:800 !important;
+  line-height:1.12 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  color:#12365b !important;
+  -webkit-text-fill-color:#12365b !important;
+}
+html body footer.canon-l-footer .canon-l-footer-meta,
+html body footer.canon-l-footer .canon-l-footer-meta-wide{
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1.25 !important;
+  letter-spacing:.38em !important;
+  text-transform:uppercase !important;
+  color:#0f2947 !important;
+  -webkit-text-fill-color:#0f2947 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a,
+html body footer.canon-l-footer .canon-l-footer-nav a:visited{
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace) !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1.25 !important;
+  letter-spacing:.34em !important;
+  text-transform:uppercase !important;
+  color:#0f2947 !important;
+  -webkit-text-fill-color:#0f2947 !important;
+  text-decoration:none !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal{
+  font-family:var(--body,Manrope,system-ui,sans-serif) !important;
+  font-size:18px !important;
+  font-weight:400 !important;
+  line-height:1.45 !important;
+  letter-spacing:0 !important;
+  color:#172332 !important;
+  -webkit-text-fill-color:#172332 !important;
+  text-align:center !important;
+}
+@media(max-width:820px){
+  html body nav.lesson-foot .foot-title,
+  html body nav.lesson-foot .foot-link .foot-title{font-size:22px !important;}
+  html body footer.canon-l-footer .canon-l-footer-meta,
+  html body footer.canon-l-footer .canon-l-footer-meta-wide,
+  html body footer.canon-l-footer .canon-l-footer-nav a{font-size:11px !important;letter-spacing:.2em !important;}
+  html body footer.canon-l-footer .canon-l-footer-legal{font-size:15px !important;}
+}
+</style>
+<style id="restaurant-footer-canon-restore-20260516">
+/* Restore canon-L footer to match other B1 lessons (override prior restaurant-specific footer typography). */
+html body footer.canon-l-footer .canon-l-footer-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  padding-bottom: 14px !important;
+  text-align: left !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--lb-line, rgba(212,163,115,.30)) !important;
+}
+html body footer.canon-l-footer .canon-l-footer-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  flex-shrink: 0 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-mark {
+  display: grid !important;
+  width: 26px !important; height: 26px !important;
+  place-items: center !important;
+  background: var(--lb-pill-bg, #fff) !important;
+  color: var(--lb-text, #3d2818) !important;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif !important;
+  font-weight: 800 !important; font-size: 13px !important;
+  border-radius: 7px !important;
+  border-top-right-radius: 0 !important;
+  letter-spacing: -0.04em !important;
+}
+html body footer.canon-l-footer .canon-l-footer-name {
+  display: inline !important;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif !important;
+  font-weight: 800 !important; font-size: 14px !important;
+  letter-spacing: -0.01em !important;
+  color: var(--lb-text, #3d2818) !important;
+  white-space: nowrap !important;
+}
+html body footer.canon-l-footer .canon-l-footer-meta,
+html body footer.canon-l-footer .canon-l-footer-meta-wide {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--lb-muted, #7d5b3f) !important;
+  flex: 1 1 220px !important;
+  text-align: center !important;
+  background: transparent !important;
+  padding: 0 !important; border: 0 !important; margin: 0 !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 18px !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important; width: auto !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a {
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--lb-muted, #7d5b3f) !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  padding: 0 !important; border: 0 !important;
+  height: auto !important; min-height: 0 !important;
+  transition: color 0.15s ease !important;
+}
+html body footer.canon-l-footer .canon-l-footer-nav a:hover {
+  color: var(--lb-text, #3d2818) !important;
+}
+html body footer.canon-l-footer .canon-l-footer-legal {
+  margin: 14px 0 0 !important;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+  color: var(--lb-muted, #7d5b3f) !important;
+  font-family: "Manrope", system-ui, sans-serif !important;
+  text-align: left !important;
+}
+@media (max-width: 720px) {
+  html body footer.canon-l-footer .canon-l-footer-meta,
+  html body footer.canon-l-footer .canon-l-footer-meta-wide { font-size: 9.5px !important; }
+  html body footer.canon-l-footer .canon-l-footer-nav a { font-size: 10px !important; }
+  html body footer.canon-l-footer .canon-l-footer-legal { font-size: 11px !important; }
+}
+
+/* DARK theme palette — restaurant rosegold inverted to deep cocoa.
+   Triggers when body does NOT have .light (i.e. dark/black-lab theme). */
+html body:not(.light) footer.canon-l-footer {
+  --lb-bg: #2a1810 !important;
+  --lb-text: #fff9f2 !important;
+  --lb-muted: #c9aa8b !important;
+  --lb-line: rgba(184,124,79,0.30) !important;
+  --lb-pill-bg: rgba(184,124,79,0.10) !important;
+  --lb-pill-border: rgba(184,124,79,0.30) !important;
+  --lb-link-hover: #d4a373 !important;
+  --lb-seg-bg: rgba(184,124,79,0.10) !important;
+  --lb-seg-border: rgba(184,124,79,0.30) !important;
+  --lb-seg-btn: #d4a373 !important;
+}
+</style></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

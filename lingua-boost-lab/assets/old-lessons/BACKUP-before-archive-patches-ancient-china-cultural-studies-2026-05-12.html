@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="china-b1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 Ancient China PPP Module | LinguaBoost Lab</title>
+<style>
+:root {
+  --bg: #8B1A1A;
+  --bg-deep: #4A0E0E;
+  --surface: #A52222;
+  --surface-2: #C43030;
+  --text: #FFF8E7;
+  --muted: #FFE0A3;
+  --accent: #FFD700;
+  --accent-2: #FFC107;
+  --ok: #5B8B62;
+  --err: #FFB199;
+  --line: rgba(255, 215, 0, .3);
+  --line-strong: rgba(255, 215, 0, .52);
+  --shadow: 0 18px 38px rgba(0, 0, 0, .28);
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(2px 2px at 15% 25%, rgba(255, 215, 0, .34) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 55%, rgba(255, 215, 0, .24) 0%, transparent 100%),
+    linear-gradient(145deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--body);
+}
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+.lesson-shell,
+.lesson-foot {
+  width: min(calc(100% - 2cm), 1320px);
+  margin: 0 auto;
+}
+.wrap {
+  padding: 32px 0 64px;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px max(16px, calc((100vw - 1320px) / 2));
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #FFC145;
+  color: var(--bg);
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+.brand-copy { display: grid; gap: 2px; }
+.brand-name {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+.brand-sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  color: var(--muted);
+}
+.topnav {
+  display: flex;
+  gap: clamp(12px, 2vw, 22px);
+  margin-left: 12px;
+  flex-wrap: wrap;
+}
+.topnav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.topnav a:hover,
+.topnav a.is-active { color: var(--accent); }
+.top-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tool-pill {
+  min-height: 32px;
+  min-width: 38px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 900;
+}
+.level-pill {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FFC145;
+  color: var(--bg);
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 900;
+}
+.crumbs {
+  width: min(calc(100% - 2cm), 1320px);
+  margin: 16px auto 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+.crumbs a { color: inherit; text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs-here { color: var(--accent); }
+.module-hero {
+  border: 2px solid var(--accent);
+  border-radius: 28px;
+  padding: clamp(28px, 5vw, 54px);
+  background: linear-gradient(135deg, #A52222, #7A1515);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  min-height: 390px;
+  display: grid;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .28;
+  filter: saturate(1.08) contrast(1.05);
+}
+.module-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(74, 14, 14, .94), rgba(107, 15, 15, .68) 56%, rgba(122, 21, 21, .28));
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.eyebrow,
+.section-sub,
+.pill,
+.mini-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.eyebrow { color: var(--accent); margin: 0 0 16px; }
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: .96;
+  letter-spacing: 0;
+}
+h1 em { color: var(--accent); font-style: normal; }
+.lead {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 215, 0, .12);
+  color: var(--accent);
+}
+.tracker {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  margin: 22px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+}
+.bar { height: 9px; border-radius: 999px; background: rgba(255, 248, 231, .14); overflow: hidden; }
+.fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .25s ease; }
+.card {
+  margin: 18px 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card.is-done {
+  border-left: 6px solid var(--ok);
+  box-shadow: 0 0 0 1px rgba(91, 139, 98, .22), 0 14px 30px rgba(0, 0, 0, .18);
+}
+.section-title {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin: 0;
+  min-height: 64px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.section-num {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-weight: 900;
+}
+.section-name {
+  font-family: var(--display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0;
+}
+.section-sub { color: var(--muted); }
+.body { padding: 22px; }
+.intro { color: var(--muted); line-height: 1.62; margin: 0 0 16px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.tile,
+.quiz-item,
+.output-box,
+.now-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 15px;
+  background: linear-gradient(135deg, #A52222, #8F1C1C);
+}
+.tile h3 { margin: 0 0 8px; color: var(--accent); font-size: 1rem; }
+.tile p { margin: 0; color: var(--muted); line-height: 1.5; }
+.trust-grid .tile { min-height: 132px; }
+.visual-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .75fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.visual-frame,
+.visual-stack,
+.photo-strip,
+.gallery-stage,
+.panda-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #3A0A0A;
+}
+.visual-frame img,
+.visual-stack img,
+.photo-strip img,
+.gallery-slide img {
+  width: 100%;
+  display: block;
+}
+.visual-frame img { height: 100%; min-height: 320px; object-fit: cover; }
+.visual-stack { display: grid; grid-template-rows: auto 1fr; }
+.visual-stack img { height: 230px; object-fit: contain; background: rgba(0, 0, 0, .18); }
+.fact-panel { padding: 15px; }
+.fact-panel h3 { margin: 0 0 8px; color: var(--accent); }
+.fact-panel p { margin: 0; color: var(--muted); line-height: 1.55; }
+.gallery-stage {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  margin-bottom: 14px;
+}
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.gallery-slide.is-active { opacity: 1; }
+.gallery-slide img { height: 100%; object-fit: cover; }
+.gallery-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px;
+  color: #fff;
+  font-weight: 800;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .72));
+}
+.gallery-dots { display: flex; justify-content: center; gap: 9px; margin-bottom: 16px; }
+.gallery-dot {
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(255, 215, 0, .18);
+}
+.gallery-dot.is-active { background: var(--accent); transform: scale(1.18); }
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 14px;
+}
+.photo-strip img { height: 210px; object-fit: cover; }
+.panda-panel { padding: 16px; }
+.panda-panel p { margin: 0; color: var(--muted); line-height: 1.6; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+th, td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+th { color: var(--accent); background: rgba(0, 0, 0, .14); }
+tr:last-child td { border-bottom: 0; }
+.formula { font-weight: 800; color: var(--accent); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin: 12px 8px 0 0;
+  padding: 10px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 900;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.opt {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 11px;
+  background: rgba(74, 14, 14, .28);
+  color: var(--text);
+}
+.opt.is-selected { border-color: var(--accent); background: rgba(255, 215, 0, .18); }
+.feedback {
+  margin-top: 14px;
+  min-height: 42px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  background: rgba(74, 14, 14, .28);
+}
+.feedback.ok { border-color: rgba(91, 139, 98, .8); color: #E6FFE9; background: rgba(91, 139, 98, .24); }
+.feedback.err { border-color: rgba(255, 177, 153, .8); color: #FFE0D6; background: rgba(255, 177, 153, .14); }
+.word-bank,
+.sentence-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 50px;
+  padding: 10px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: rgba(74, 14, 14, .22);
+}
+.word-chip {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 215, 0, .14);
+  color: var(--text);
+}
+textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(74, 14, 14, .32);
+  color: var(--text);
+}
+.rubric-list,
+.goal-list,
+.now-grid {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.rubric-list label,
+.now-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.bonus {
+  border-style: dashed;
+  background: linear-gradient(180deg, rgba(255, 215, 0, .07), rgba(165, 34, 34, .92));
+}
+.lesson-foot {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+  margin: 24px auto 0;
+  padding: 0 0 48px;
+}
+.foot-link {
+  min-height: 94px;
+  height: 94px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color .16s, transform .16s;
+}
+.foot-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.foot-link.next { text-align: right; }
+.foot-meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.foot-title {
+  display: block;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+@media (max-width: 720px) {
+  .tracker { grid-template-columns: 1fr; position: static; }
+  th, td { display: block; width: 100%; }
+  th { display: none; }
+  .visual-layout { grid-template-columns: 1fr; }
+  .photo-strip { grid-template-columns: 1fr; }
+  .photo-strip img { height: 170px; }
+  .gallery-stage { aspect-ratio: 4 / 3; }
+  .topbar { align-items: flex-start; flex-wrap: wrap; }
+  .topnav { order: 3; width: 100%; margin-left: 0; }
+  .lesson-shell,
+  .lesson-foot,
+  .crumbs { width: min(100% - 28px, 1320px); }
+  .lesson-foot { grid-template-columns: 1fr; }
+  .foot-link.next { text-align: left; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html" aria-label="LinguaBoost Lab">
+    <span class="brand-mark" aria-hidden="true">L</span>
+    <span class="brand-copy">
+      <span class="brand-name">LinguaBoost Lab</span>
+      <span class="brand-sub">CHINA CULTURE</span>
+    </span>
+  </a>
+  <nav class="topnav" aria-label="Lesson navigation">
+    <a href="#trust">Why</a>
+    <a href="#goal" class="is-active">Goal</a>
+    <a href="#guided">Practice</a>
+    <a href="#now">Final</a>
+  </nav>
+  <div class="top-tools">
+    <span class="tool-pill">EN</span>
+    <span class="tool-pill level-pill">B1</span>
+  </div>
+</header>
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../index.html">Home</a>
+  <span>&middot;</span>
+  <a href="../index.html">B1</a>
+  <span>&middot;</span>
+  <span class="crumbs-here">Ancient China Cultural Explorer</span>
+</nav>
+<main class="wrap lesson-shell">
+  <section class="module-hero" aria-labelledby="hero-title">
+    <img class="hero-bg" src="../../assets/Для уроков/China/6bf79f05-ed8b-48b1-9c3f-ac8fa32acfcb.png" alt="">
+    <div class="hero-content">
+      <p class="eyebrow">B1 · Culture · History · PPP module</p>
+      <h1 id="hero-title">Ancient <em>China</em><br>Cultural Explorer</h1>
+      <p class="lead" data-ru="Отдельный методический модуль для B1-урока: сохраняет красно-золотую визуальную ДНК Cultural Studies, но собирает курс в 10 понятных PPP-блоков."
+         data-en="A standalone methodology module for the B1 lesson: it keeps the red-and-gold Cultural Studies visual DNA, but rebuilds the course into 10 clear PPP blocks.">
+        A standalone methodology module for the B1 lesson: it keeps the red-and-gold Cultural Studies visual DNA, but rebuilds the course into 10 clear PPP blocks.
+      </p>
+      <div class="meta">
+        <span class="pill">B1</span>
+        <span class="pill">10 PPP blocks</span>
+        <span class="pill">Pandas and landmarks</span>
+        <span class="pill">No alert popups</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="tracker" aria-live="polite">
+    <span class="mini-label">Mission</span>
+    <span class="bar"><span class="fill" id="progressFill"></span></span>
+    <span class="mini-label" id="progressText">0 / 10</span>
+  </div>
+
+  <section class="card" id="goal" aria-labelledby="goal-title" data-block>
+    <h2 class="section-title" id="goal-title">
+      <span class="section-num">01</span>
+      <span class="section-name" data-ru="Цель урока" data-en="Lesson Goal">Lesson Goal</span>
+      <span class="section-sub">can-do</span>
+    </h2>
+    <div class="body">
+      <p class="intro" data-ru="К концу урока ученик не просто узнает факты, а сможет объяснять культурные идеи, сравнивать эпохи и говорить о наследии Китая на уровне B1."
+         data-en="By the end of the lesson, the learner will not just recall facts, but explain cultural ideas, compare periods, and speak about China's legacy at B1 level.">
+        By the end of the lesson, the learner will not just recall facts, but explain cultural ideas, compare periods, and speak about China's legacy at B1 level.
+      </p>
+      <div class="grid">
+        <div class="tile"><h3>I can name</h3><p>three ancient Chinese inventions and explain why they mattered.</p></div>
+        <div class="tile"><h3>I can describe</h3><p>one tradition or cultural symbol using B1 phrases and examples.</p></div>
+        <div class="tile"><h3>I can compare</h3><p>ancient and modern China with because, while, however, and as a result.</p></div>
+      </div>
+      <button class="btn" type="button" data-complete="goal">Start mission</button>
+    </div>
+  </section>
+
+  <section class="card" id="trust" aria-labelledby="trust-title">
+    <h2 class="section-title" id="trust-title">
+      <span class="section-num">Trust</span>
+      <span class="section-name" data-ru="Почему этот урок работает" data-en="Why this lesson works">Why this lesson works</span>
+      <span class="section-sub">trust block</span>
+    </h2>
+    <div class="body">
+      <div class="grid trust-grid">
+        <div class="tile"><h3>B1 cultural exploration</h3><p>Dynasties, inventions, philosophy, daily life, and legacy are treated as connected ideas, not isolated trivia.</p></div>
+        <div class="tile"><h3>Games plus culture</h3><p>Flip cards, maze, Hextris, Mei listening, Panda quiz, and Gallery stay as engaging discovery layers.</p></div>
+        <div class="tile"><h3>All 4 skills</h3><p>Reading, listening, speaking, and output writing are connected through one Ancient China mission.</p></div>
+        <div class="tile"><h3>Story-driven route</h3><p>The lesson moves from input to controlled practice to independent B1 output.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="visual-entry" aria-labelledby="visual-entry-title">
+    <h2 class="section-title" id="visual-entry-title">
+      <span class="section-num">Visual</span>
+      <span class="section-name">China Map and Terracotta Warrior</span>
+      <span class="section-sub">lesson atmosphere</span>
+    </h2>
+    <div class="body">
+      <div class="visual-layout">
+        <div class="visual-frame">
+          <img src="../../assets/Для уроков/China/465bcad0-9ff7-4fc9-9c6c-ca4a08091f4b.png" alt="Ancient China map">
+        </div>
+        <div class="visual-stack">
+          <img src="../../assets/Для уроков/China/7408b857-0b83-481e-b697-a16381dd7334.png" alt="Terracotta warrior">
+          <div class="fact-panel">
+            <h3>East China Plain</h3>
+            <p>A fertile region where states, trade routes, cities, and many cultural traditions developed. Use this visual before vocabulary to anchor the lesson in place.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="vocab" aria-labelledby="vocab-title" data-block>
+    <h2 class="section-title" id="vocab-title">
+      <span class="section-num">02</span>
+      <span class="section-name" data-ru="Словарь" data-en="Vocabulary">Vocabulary</span>
+      <span class="section-sub">Dynasties · Inventions · Philosophy</span>
+    </h2>
+    <div class="body">
+      <p class="intro">Three categories give the existing flip cards a clearer learning spine.</p>
+      <div class="grid">
+        <div class="tile"><h3>Dynasties</h3><p><strong>dynasty</strong> · <strong>emperor</strong> · <strong>imperial court</strong><br>The Qin dynasty unified parts of China.</p></div>
+        <div class="tile"><h3>Inventions</h3><p><strong>compass</strong> · <strong>paper</strong> · <strong>printing</strong><br>Printing helped people share ideas faster.</p></div>
+        <div class="tile"><h3>Philosophy</h3><p><strong>harmony</strong> · <strong>wisdom</strong> · <strong>respect</strong><br>Confucianism taught respect for family and society.</p></div>
+      </div>
+      <button class="btn" type="button" data-complete="vocab">Vocabulary ready</button>
+    </div>
+  </section>
+
+  <section class="card" id="focus-a" aria-labelledby="focus-a-title" data-block>
+    <h2 class="section-title" id="focus-a-title">
+      <span class="section-num">03</span>
+      <span class="section-name">Cultural Focus A: Four Great Inventions</span>
+      <span class="section-sub">presentation</span>
+    </h2>
+    <div class="body">
+      <table>
+        <thead><tr><th>Invention</th><th>Russian</th><th>B1 example</th></tr></thead>
+        <tbody>
+          <tr><td class="formula">Compass</td><td>компас</td><td>The compass changed travel because sailors could navigate more safely.</td></tr>
+          <tr><td class="formula">Gunpowder</td><td>порох</td><td>Gunpowder was first used for medicine and rituals, but later changed warfare.</td></tr>
+          <tr><td class="formula">Paper</td><td>бумага</td><td>Paper made writing cheaper, so education and records became easier.</td></tr>
+          <tr><td class="formula">Printing</td><td>печать</td><td>Printing spread knowledge faster than handwritten copies.</td></tr>
+        </tbody>
+      </table>
+      <button class="btn" type="button" data-complete="focus-a">Focus A complete</button>
+    </div>
+  </section>
+
+  <section class="card" id="focus-b" aria-labelledby="focus-b-title" data-block>
+    <h2 class="section-title" id="focus-b-title">
+      <span class="section-num">04</span>
+      <span class="section-name">Cultural Focus B: Three Philosophies</span>
+      <span class="section-sub">presentation</span>
+    </h2>
+    <div class="body">
+      <table>
+        <thead><tr><th>Idea</th><th>Core meaning</th><th>B1 example</th></tr></thead>
+        <tbody>
+          <tr><td class="formula">Confucianism</td><td>respect, duty, family, education</td><td>Confucianism influenced schools because learning and responsibility were central values.</td></tr>
+          <tr><td class="formula">Daoism</td><td>balance, nature, simple living</td><td>Daoism encouraged people to live in harmony with nature.</td></tr>
+          <tr><td class="formula">Buddhism</td><td>compassion, suffering, inner peace</td><td>Buddhism changed art and temple life across China.</td></tr>
+        </tbody>
+      </table>
+      <button class="btn" type="button" data-complete="focus-b">Focus B complete</button>
+    </div>
+  </section>
+
+  <section class="card" id="guided" aria-labelledby="guided-title" data-block>
+    <h2 class="section-title" id="guided-title">
+      <span class="section-num">05</span>
+      <span class="section-name">Guided Practice</span>
+      <span class="section-sub">Word Maze + culture quiz logic</span>
+    </h2>
+    <div class="body">
+      <div id="guidedQuiz"></div>
+      <button class="btn" type="button" id="checkGuided">Check guided practice</button>
+      <div class="feedback" id="guidedFeedback">Choose one answer for each item.</div>
+    </div>
+  </section>
+
+  <section class="card" id="active" aria-labelledby="active-title" data-block>
+    <h2 class="section-title" id="active-title">
+      <span class="section-num">06</span>
+      <span class="section-name">Active Practice</span>
+      <span class="section-sub">sentence builder</span>
+    </h2>
+    <div class="body">
+      <p class="intro">Build a B1 sentence about Ancient China. Tap words in order.</p>
+      <div class="sentence-line" id="sentenceLine" aria-label="Your sentence"></div>
+      <div class="word-bank" id="wordBank"></div>
+      <button class="btn" type="button" id="checkSentence">Check sentence</button>
+      <button class="btn ghost" type="button" id="resetSentence">Reset</button>
+      <div class="feedback" id="sentenceFeedback">Target: Ancient Chinese inventions influenced the world because they changed communication.</div>
+    </div>
+  </section>
+
+  <section class="card" id="listening" aria-labelledby="listening-title" data-block>
+    <h2 class="section-title" id="listening-title">
+      <span class="section-num">07</span>
+      <span class="section-name">Listening</span>
+      <span class="section-sub">Mei + Liu dialogue</span>
+    </h2>
+    <div class="body">
+      <p class="intro">Mei and Liu discuss inventions and philosophy. Use browser speech synthesis for a quick preview.</p>
+      <button class="btn" type="button" id="playDialogue">Play dialogue</button>
+      <button class="btn ghost" type="button" id="playSlow">Slower</button>
+      <div id="listeningQuiz"></div>
+      <button class="btn" type="button" id="checkListening">Check listening</button>
+      <div class="feedback" id="listeningFeedback">Answer 4 of 5 to complete the listening block.</div>
+    </div>
+  </section>
+
+  <section class="card" id="reading" aria-labelledby="reading-title" data-block>
+    <h2 class="section-title" id="reading-title">
+      <span class="section-num">08</span>
+      <span class="section-name">Reading</span>
+      <span class="section-sub">gist + detail</span>
+    </h2>
+    <div class="body">
+      <div class="gallery-stage" id="landmarkGallery" aria-label="Ancient China landmark gallery">
+        <div class="gallery-slide is-active">
+          <img src="../../assets/Для уроков/China/411953c4-2d12-4d7d-98b5-3ce076a9cf79.png" alt="The Forbidden City">
+          <div class="gallery-caption">The Forbidden City · Imperial Palace, Beijing</div>
+        </div>
+        <div class="gallery-slide">
+          <img src="../../assets/Для уроков/China/4a431227-6d35-4923-b265-b3e943fb7689.png" alt="The Great Wall">
+          <div class="gallery-caption">The Great Wall of China · over 21,000 km long</div>
+        </div>
+        <div class="gallery-slide">
+          <img src="../../assets/Для уроков/China/a0a5997d-03f0-4950-8355-e4bae053f05f.png" alt="Terracotta Army">
+          <div class="gallery-caption">Terracotta Army · Xi'an, discovered in 1974</div>
+        </div>
+      </div>
+      <div class="gallery-dots" id="galleryDots" aria-label="Choose landmark image">
+        <button class="gallery-dot is-active" type="button" data-gallery="0" aria-label="Forbidden City"></button>
+        <button class="gallery-dot" type="button" data-gallery="1" aria-label="Great Wall"></button>
+        <button class="gallery-dot" type="button" data-gallery="2" aria-label="Terracotta Army"></button>
+      </div>
+      <div class="tile">
+        <h3>Ancient Ideas, Modern World</h3>
+        <p>Many ideas from Ancient China still influence modern life. Paper and printing changed education because information became easier to record and share. The compass changed travel and trade. Philosophies such as Confucianism and Daoism shaped ideas about family, responsibility, balance, and nature. Today, these ideas are not only history; they are part of how people understand culture, identity, and progress.</p>
+      </div>
+      <div id="readingQuiz"></div>
+      <button class="btn" type="button" id="checkReading">Check reading</button>
+      <div class="feedback" id="readingFeedback">Answer the gist question and details.</div>
+    </div>
+  </section>
+
+  <section class="card bonus" id="panda-break" aria-labelledby="panda-break-title">
+    <h2 class="section-title" id="panda-break-title">
+      <span class="section-num">Discovery</span>
+      <span class="section-name">Giant Pandas · National Treasure</span>
+      <span class="section-sub">bonus comprehension</span>
+    </h2>
+    <div class="body">
+      <div class="photo-strip">
+        <img src="../../assets/Для уроков/China/76c5b2ad-ac73-4da3-9a94-9b2f4804c708.png" alt="Giant panda">
+        <img src="../../assets/Для уроков/China/9d9ce87e-f60d-4e1e-8bfd-70d049ede671.png" alt="Panda eating bamboo">
+        <img src="../../assets/Для уроков/China/a81d5cdf-dc4c-4f7b-b590-027a89a39912.png" alt="Panda family">
+      </div>
+      <div class="panda-panel">
+        <p><strong>Giant pandas live only in China.</strong> Fewer than 2,000 remain in the wild. They spend many hours each day eating bamboo, and China has created special reserves to protect them. Pandas are now a global symbol of wildlife conservation and cultural identity.</p>
+      </div>
+      <div id="pandaQuiz"></div>
+      <button class="btn" type="button" id="checkPanda">Check panda quiz</button>
+      <div class="feedback" id="pandaFeedback">Answer the three panda facts.</div>
+    </div>
+  </section>
+
+  <section class="card" id="output" aria-labelledby="output-title" data-block>
+    <h2 class="section-title" id="output-title">
+      <span class="section-num">09</span>
+      <span class="section-name">Output Speaking</span>
+      <span class="section-sub">B1 rubric</span>
+    </h2>
+    <div class="body">
+      <div class="output-box">
+        <p class="intro">Write or say a 45-60 second answer: Which ancient Chinese idea or invention do you think is the most important, and why?</p>
+        <ul class="rubric-list">
+          <li><label><input type="checkbox" data-rubric="vocab" disabled> 3+ lesson vocabulary words</label></li>
+          <li><label><input type="checkbox" data-rubric="connector" disabled> because / so / however / as a result</label></li>
+          <li><label><input type="checkbox" data-rubric="detail" disabled> 1 clear cultural detail</label></li>
+        </ul>
+      </div>
+      <textarea id="outputText" placeholder="I think ... was the most important because ..."></textarea>
+      <button class="btn" type="button" id="checkOutput">Check rubric</button>
+      <div class="feedback" id="outputFeedback">Hit all three rubric points to complete the output block.</div>
+    </div>
+  </section>
+
+  <section class="card" id="now" aria-labelledby="now-title" data-block>
+    <h2 class="section-title" id="now-title">
+      <span class="section-num">10</span>
+      <span class="section-name">Now I Can</span>
+      <span class="section-sub">reflection</span>
+    </h2>
+    <div class="body">
+      <div class="now-grid">
+        <label class="now-item"><input type="checkbox" data-now="0"> I can name 3 ancient Chinese inventions.</label>
+        <label class="now-item"><input type="checkbox" data-now="1"> I can describe 1 tradition or philosophy using B1 phrases.</label>
+        <label class="now-item"><input type="checkbox" data-now="2"> I can compare ancient and modern China.</label>
+        <label class="now-item"><input type="checkbox" data-now="3"> I can speak for 1 minute about Ancient China.</label>
+      </div>
+      <div class="feedback" id="nowFeedback">Tick at least 3 statements to close the module.</div>
+    </div>
+  </section>
+
+  <section class="card bonus" id="bonus" aria-labelledby="bonus-title">
+    <h2 class="section-title" id="bonus-title">
+      <span class="section-num">Bonus</span>
+      <span class="section-name">Discovery Layer</span>
+      <span class="section-sub">for B1 integration</span>
+    </h2>
+    <div class="body">
+      <div class="grid">
+        <div class="tile"><h3>Hextris</h3><p>Keep as a bonus game after Active Practice, not as the main PPP active block.</p></div>
+        <div class="tile"><h3>Extra Facts</h3><p>Use as optional detail enrichment after Reading and Listening.</p></div>
+        <div class="tile"><h3>Gallery and pandas</h3><p>Gallery now supports Reading; the panda block works as a separate discovery check.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav class="lesson-foot" aria-label="Lesson navigation">
+  <a class="foot-link prev" href="../a2/ancient-china-explorer.html">
+    <span class="foot-meta">Previous lesson</span>
+    <span class="foot-title">Ancient China Explorer</span>
+  </a>
+  <a class="foot-link" href="../index.html#interactive-lessons">
+    <span class="foot-meta">All lessons</span>
+    <span class="foot-title">Lab catalog</span>
+  </a>
+  <a class="foot-link next" href="grammar-arcade-pc-pp.html">
+    <span class="foot-meta">Next lesson</span>
+    <span class="foot-title">Grammar Arcade</span>
+  </a>
+</nav>
+
+<script>
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'lblab:b1:ancient-china:ppp-module:v1';
+  const blocks = ['goal', 'vocab', 'focus-a', 'focus-b', 'guided', 'active', 'listening', 'reading', 'output', 'now'];
+  const state = loadState();
+
+  const trust = document.getElementById('trust');
+  const goal = document.getElementById('goal');
+  if (trust && goal && goal.previousElementSibling !== trust) {
+    goal.parentNode.insertBefore(trust, goal);
+  }
+
+  function loadState() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { done: {}, now: [] };
+    } catch (_) {
+      return { done: {}, now: [] };
+    }
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+  }
+
+  function complete(id) {
+    state.done[id] = true;
+    saveState();
+    refresh();
+  }
+
+  function refresh() {
+    const doneCount = blocks.filter(id => state.done[id]).length;
+    document.getElementById('progressFill').style.width = Math.round(doneCount / blocks.length * 100) + '%';
+    document.getElementById('progressText').textContent = doneCount + ' / ' + blocks.length;
+    document.querySelectorAll('[data-block]').forEach(section => {
+      section.classList.toggle('is-done', Boolean(state.done[section.id]));
+    });
+  }
+
+  function setFeedback(id, text, kind) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove('ok', 'err');
+    if (kind) el.classList.add(kind);
+  }
+
+  function selectOption(container, key, value) {
+    container.querySelectorAll('[data-key="' + key + '"]').forEach(el => el.classList.remove('is-selected'));
+    const picked = container.querySelector('[data-key="' + key + '"][data-value="' + value + '"]');
+    if (picked) picked.classList.add('is-selected');
+    container.dataset[key] = value;
+  }
+
+  function renderQuiz(rootId, items) {
+    const root = document.getElementById(rootId);
+    root.textContent = '';
+    items.forEach((item, index) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'quiz-item';
+      const title = document.createElement('strong');
+      title.textContent = (index + 1) + '. ' + item.q;
+      wrap.appendChild(title);
+      const opts = document.createElement('div');
+      opts.className = 'options';
+      item.options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt';
+        btn.dataset.key = 'q' + index;
+        btn.dataset.value = option;
+        btn.textContent = option;
+        btn.addEventListener('click', () => selectOption(root, 'q' + index, option));
+        opts.appendChild(btn);
+      });
+      wrap.appendChild(opts);
+      root.appendChild(wrap);
+    });
+  }
+
+  const guidedItems = [
+    { q: 'Which invention helped sailors navigate?', options: ['compass', 'silk', 'pagoda'], a: 'compass' },
+    { q: 'Which philosophy focused strongly on family and duty?', options: ['Daoism', 'Confucianism', 'printing'], a: 'Confucianism' },
+    { q: 'Paper made records and education...', options: ['harder', 'easier', 'impossible'], a: 'easier' },
+    { q: 'Daoism is connected with...', options: ['balance and nature', 'only warfare', 'only emperors'], a: 'balance and nature' }
+  ];
+
+  const listeningItems = [
+    { q: 'Mei says paper helped people...', options: ['share knowledge', 'build walls', 'grow bamboo'], a: 'share knowledge' },
+    { q: 'Liu connects Confucianism with...', options: ['family respect', 'sea travel', 'gunpowder'], a: 'family respect' },
+    { q: 'Daoism teaches harmony with...', options: ['nature', 'machines', 'palaces'], a: 'nature' },
+    { q: 'The compass changed...', options: ['navigation', 'painting', 'tea'], a: 'navigation' },
+    { q: 'They agree ancient China still...', options: ['influences the world', 'has no influence', 'only matters in museums'], a: 'influences the world' }
+  ];
+
+  const readingItems = [
+    { q: 'Gist: the text mainly says Ancient China...', options: ['still influences modern life', 'invented only one thing', 'had no philosophies'], a: 'still influences modern life' },
+    { q: 'Paper and printing changed...', options: ['education', 'the weather', 'mountains'], a: 'education' },
+    { q: 'The compass changed...', options: ['travel and trade', 'family names', 'temple roofs'], a: 'travel and trade' },
+    { q: 'Confucianism and Daoism shaped ideas about...', options: ['values and balance', 'only food', 'only sport'], a: 'values and balance' }
+  ];
+
+  const pandaItems = [
+    { q: 'Giant pandas live only in China.', options: ['TRUE', 'FALSE'], a: 'TRUE' },
+    { q: 'There are more than 10,000 pandas in the wild.', options: ['TRUE', 'FALSE'], a: 'FALSE' },
+    { q: 'Pandas eat bamboo for many hours a day.', options: ['TRUE', 'FALSE'], a: 'TRUE' }
+  ];
+
+  function scoreQuiz(rootId, items) {
+    const root = document.getElementById(rootId);
+    return items.reduce((score, item, index) => score + (root.dataset['q' + index] === item.a ? 1 : 0), 0);
+  }
+
+  function speak(text, rate) {
+    if (!('speechSynthesis' in window)) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = rate || .92;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  }
+
+  const dialogue = 'Mei: Ancient China gave the world paper, printing, gunpowder, and the compass. Liu: I think paper and printing were especially important because they helped people share knowledge. Mei: Philosophy mattered too. Confucianism taught respect and responsibility. Liu: And Daoism taught harmony with nature. Mei: So ancient China is not only old history. It still influences how people think today.';
+
+  const targetWords = ['Ancient', 'Chinese', 'inventions', 'influenced', 'the', 'world', 'because', 'they', 'changed', 'communication'];
+  const placed = [];
+
+  function renderSentence() {
+    const bank = document.getElementById('wordBank');
+    const line = document.getElementById('sentenceLine');
+    bank.textContent = '';
+    line.textContent = '';
+    placed.forEach((word, index) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'word-chip';
+      chip.textContent = word;
+      chip.addEventListener('click', () => {
+        placed.splice(index, 1);
+        renderSentence();
+      });
+      line.appendChild(chip);
+    });
+    targetWords.filter(word => !placed.includes(word)).forEach(word => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'word-chip';
+      chip.textContent = word;
+      chip.addEventListener('click', () => {
+        placed.push(word);
+        renderSentence();
+      });
+      bank.appendChild(chip);
+    });
+  }
+
+  document.querySelectorAll('[data-complete]').forEach(btn => {
+    btn.addEventListener('click', () => complete(btn.dataset.complete));
+  });
+
+  renderQuiz('guidedQuiz', guidedItems);
+  renderQuiz('listeningQuiz', listeningItems);
+  renderQuiz('readingQuiz', readingItems);
+  renderQuiz('pandaQuiz', pandaItems);
+  renderSentence();
+
+  document.querySelectorAll('[data-gallery]').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = dot.dataset.gallery;
+      document.querySelectorAll('#landmarkGallery .gallery-slide').forEach((slide, i) => {
+        slide.classList.toggle('is-active', String(i) === index);
+      });
+      document.querySelectorAll('#galleryDots .gallery-dot').forEach((item, i) => {
+        item.classList.toggle('is-active', String(i) === index);
+      });
+    });
+  });
+
+  document.getElementById('checkGuided').addEventListener('click', () => {
+    const score = scoreQuiz('guidedQuiz', guidedItems);
+    if (score >= 3) {
+      complete('guided');
+      setFeedback('guidedFeedback', score + ' / 4 correct. Guided practice complete.', 'ok');
+    } else {
+      setFeedback('guidedFeedback', score + ' / 4 correct. Review inventions and philosophies.', 'err');
+    }
+  });
+
+  document.getElementById('checkSentence').addEventListener('click', () => {
+    const ok = placed.join(' ') === targetWords.join(' ');
+    if (ok) {
+      complete('active');
+      setFeedback('sentenceFeedback', 'Correct sentence. Active practice complete.', 'ok');
+    } else {
+      setFeedback('sentenceFeedback', 'Not yet. Check the word order and connector.', 'err');
+    }
+  });
+
+  document.getElementById('resetSentence').addEventListener('click', () => {
+    placed.splice(0, placed.length);
+    renderSentence();
+    setFeedback('sentenceFeedback', 'Sentence reset. Build it again.', null);
+  });
+
+  document.getElementById('playDialogue').addEventListener('click', () => speak(dialogue, .92));
+  document.getElementById('playSlow').addEventListener('click', () => speak(dialogue, .72));
+
+  document.getElementById('checkListening').addEventListener('click', () => {
+    const score = scoreQuiz('listeningQuiz', listeningItems);
+    if (score >= 4) {
+      complete('listening');
+      setFeedback('listeningFeedback', score + ' / 5 correct. Listening complete.', 'ok');
+    } else {
+      setFeedback('listeningFeedback', score + ' / 5 correct. Listen once more.', 'err');
+    }
+  });
+
+  document.getElementById('checkReading').addEventListener('click', () => {
+    const score = scoreQuiz('readingQuiz', readingItems);
+    if (score >= 3) {
+      complete('reading');
+      setFeedback('readingFeedback', score + ' / 4 correct. Reading complete.', 'ok');
+    } else {
+      setFeedback('readingFeedback', score + ' / 4 correct. Re-read the main idea and details.', 'err');
+    }
+  });
+
+  document.getElementById('checkPanda').addEventListener('click', () => {
+    const score = scoreQuiz('pandaQuiz', pandaItems);
+    if (score >= 2) {
+      setFeedback('pandaFeedback', score + ' / 3 correct. Panda discovery complete.', 'ok');
+    } else {
+      setFeedback('pandaFeedback', score + ' / 3 correct. Read the panda note again.', 'err');
+    }
+  });
+
+  document.getElementById('checkOutput').addEventListener('click', () => {
+    const text = document.getElementById('outputText').value.toLowerCase();
+    const vocab = ['compass', 'paper', 'printing', 'gunpowder', 'confucianism', 'daoism', 'buddhism', 'dynasty', 'emperor', 'harmony', 'panda', 'bamboo', 'conservation'];
+    const vocabHits = vocab.filter(word => text.includes(word)).length;
+    const hasConnector = /\b(because|so|however|as a result|while)\b/.test(text);
+    const hasDetail = /\b(changed|influenced|taught|spread|helped|family|nature|education|travel|knowledge|reserve|wildlife|symbol)\b/.test(text);
+    document.querySelector('[data-rubric="vocab"]').checked = vocabHits >= 3;
+    document.querySelector('[data-rubric="connector"]').checked = hasConnector;
+    document.querySelector('[data-rubric="detail"]').checked = hasDetail;
+    if (vocabHits >= 3 && hasConnector && hasDetail) {
+      complete('output');
+      setFeedback('outputFeedback', 'Rubric complete: vocabulary, connector, and cultural detail are present.', 'ok');
+    } else {
+      setFeedback('outputFeedback', 'Add: 3 vocabulary words, one connector, and one cultural detail.', 'err');
+    }
+  });
+
+  document.querySelectorAll('[data-now]').forEach((cb, index) => {
+    cb.checked = Boolean(state.now[index]);
+    cb.addEventListener('change', () => {
+      state.now[index] = cb.checked;
+      saveState();
+      const count = Array.from(document.querySelectorAll('[data-now]')).filter(item => item.checked).length;
+      if (count >= 3) {
+        complete('now');
+        setFeedback('nowFeedback', count + ' / 4 checked. Reflection complete.', 'ok');
+      } else {
+        state.done.now = false;
+        saveState();
+        refresh();
+        setFeedback('nowFeedback', count + ' / 4 checked. Tick at least 3 statements.', null);
+      }
+    });
+  });
+
+  refresh();
+})();
+</script>
+</body>
+</html>

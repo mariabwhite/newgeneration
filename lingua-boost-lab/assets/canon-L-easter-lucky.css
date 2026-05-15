@@ -1,0 +1,1917 @@
+/* ============================================================
+   LINGUABOOST LAB В· CANON-L
+   Skeleton: sticky 64px, 34px mark СЃ СѓРіР»РѕРІС‹Рј РѕСЂР°РЅР¶РµРІС‹Рј С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРј,
+   mono-caps nav, paper-pill tools, Kids/Adults СЃРµРіРјРµРЅС‚.
+
+   РџР°Р»РёС‚СЂР° Р±РµСЂС‘С‚СЃСЏ РёР· inline-style РЅР° <header class="canon-l-topbar">:
+     --lb-bg, --lb-text, --lb-muted, --lb-line,
+     --lb-pill-bg, --lb-pill-border, --lb-link-hover,
+     --lb-seg-bg, --lb-seg-border, --lb-seg-btn.
+
+   Р‘РµР· С‚РѕРєРµРЅРѕРІ (A1 СѓСЂРѕРєРё, РєР°С‚Р°Р»РѕРі Lab) в†’ Midnight Plum (fallback).
+   ============================================================ */
+
+/* === BASE TOPBAR ============================================ */
+.canon-l-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 64px;
+  padding: 14px clamp(18px, 3vw, 28px);
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.12));
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.canon-l-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.canon-l-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: #c5aef0;
+  color: #0e0a18;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 9px;
+  border-top-right-radius: 0;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.canon-l-mark::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: #ff9b2f;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+}
+.canon-l-mark img,
+.canon-l-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.canon-l-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.canon-l-name {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+
+.canon-l-sub {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  margin-top: 3px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.canon-l-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-left: 18px;
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.canon-l-link {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  padding: 6px 0;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.18s ease;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.canon-l-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--lb-link-hover, #c5aef0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.18s ease;
+}
+
+.canon-l-link:hover,
+.canon-l-link.is-active,
+.canon-l-link[aria-current="page"] {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-link:hover::after,
+.canon-l-link.is-active::after,
+.canon-l-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.canon-l-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* === KIDS / ADULTS SEGMENT ================================== */
+.canon-l-audience-switch {
+  display: inline-flex;
+  align-items: center;
+  background: var(--lb-seg-bg, #1a1326);
+  border: 1px solid var(--lb-seg-border, rgba(197, 174, 240, 0.22));
+  border-radius: 999px;
+  padding: 2px;
+  gap: 0;
+  flex-shrink: 0;
+}
+.canon-l-audience-btn {
+  border: 0;
+  background: transparent;
+  padding: 6px 14px;
+  min-height: 26px;
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-seg-btn, #c5aef0);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-audience-btn:hover {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-audience-btn.is-active,
+.canon-l-audience-btn[aria-pressed="true"] {
+  background: #ff690a;
+  color: #ffffff;
+}
+
+/* === PILLS (EN, LEVEL) ====================================== */
+.canon-l-pill {
+  min-height: 32px;
+  min-width: 56px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.22));
+  background: var(--lb-pill-bg, #1a1326);
+  color: var(--lb-text, #f0ebff);
+  cursor: pointer;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.canon-l-pill.palette-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 26px;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 14px) 14px, calc(100% - 9px) 14px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.canon-l-pill:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  color: var(--lb-text, #ffffff);
+}
+
+/* === LIGHT variant (A1 lessons & catalog) ==================== */
+/* РўРѕР»СЊРєРѕ РµСЃР»Рё РЅР° СЃС‚СЂР°РЅРёС†Рµ data-theme РёР· СЌС‚РѕРіРѕ РЅР°Р±РѕСЂР° Рё РќР•Рў inline С‚РѕРєРµРЅРѕРІ. */
+[data-theme="light"] .canon-l-topbar,
+[data-theme="light-lab"] .canon-l-topbar,
+[data-theme="white"] .canon-l-topbar,
+[data-theme="peach"] .canon-l-topbar,
+[data-theme="green"] .canon-l-topbar,
+[data-theme="rose"] .canon-l-topbar,
+[data-theme="cyan"] .canon-l-topbar,
+[data-theme="amber"] .canon-l-topbar,
+[data-theme="violet"] .canon-l-topbar {
+  background: var(--lb-bg, rgba(247, 245, 255, 0.92));
+  border-bottom-color: var(--lb-line, rgba(122, 95, 207, 0.18));
+}
+
+[data-theme="light"] .canon-l-mark,
+[data-theme="light-lab"] .canon-l-mark,
+[data-theme="white"] .canon-l-mark,
+[data-theme="peach"] .canon-l-mark,
+[data-theme="green"] .canon-l-mark,
+[data-theme="rose"] .canon-l-mark,
+[data-theme="cyan"] .canon-l-mark,
+[data-theme="amber"] .canon-l-mark,
+[data-theme="violet"] .canon-l-mark {
+  background: #4f3ea5;
+  color: #f7f5ff;
+}
+[data-theme="light"] .canon-l-mark::after,
+[data-theme="light-lab"] .canon-l-mark::after,
+[data-theme="white"] .canon-l-mark::after,
+[data-theme="peach"] .canon-l-mark::after,
+[data-theme="green"] .canon-l-mark::after,
+[data-theme="rose"] .canon-l-mark::after,
+[data-theme="cyan"] .canon-l-mark::after,
+[data-theme="amber"] .canon-l-mark::after,
+[data-theme="violet"] .canon-l-mark::after {
+  background: #ff5a1f;
+}
+
+[data-theme="light"] .canon-l-name,
+[data-theme="light-lab"] .canon-l-name,
+[data-theme="white"] .canon-l-name,
+[data-theme="peach"] .canon-l-name,
+[data-theme="green"] .canon-l-name,
+[data-theme="rose"] .canon-l-name,
+[data-theme="cyan"] .canon-l-name,
+[data-theme="amber"] .canon-l-name,
+[data-theme="violet"] .canon-l-name {
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-sub,
+[data-theme="light-lab"] .canon-l-sub,
+[data-theme="white"] .canon-l-sub,
+[data-theme="peach"] .canon-l-sub,
+[data-theme="green"] .canon-l-sub,
+[data-theme="rose"] .canon-l-sub,
+[data-theme="cyan"] .canon-l-sub,
+[data-theme="amber"] .canon-l-sub,
+[data-theme="violet"] .canon-l-sub {
+  color: var(--lb-muted, #756d86);
+}
+
+[data-theme="light"] .canon-l-link,
+[data-theme="light-lab"] .canon-l-link,
+[data-theme="white"] .canon-l-link,
+[data-theme="peach"] .canon-l-link,
+[data-theme="green"] .canon-l-link,
+[data-theme="rose"] .canon-l-link,
+[data-theme="cyan"] .canon-l-link,
+[data-theme="amber"] .canon-l-link,
+[data-theme="violet"] .canon-l-link {
+  color: var(--lb-muted, #756d86);
+}
+[data-theme="light"] .canon-l-link::after,
+[data-theme="light-lab"] .canon-l-link::after,
+[data-theme="white"] .canon-l-link::after,
+[data-theme="peach"] .canon-l-link::after,
+[data-theme="green"] .canon-l-link::after,
+[data-theme="rose"] .canon-l-link::after,
+[data-theme="cyan"] .canon-l-link::after,
+[data-theme="amber"] .canon-l-link::after,
+[data-theme="violet"] .canon-l-link::after {
+  background: var(--lb-link-hover, #7a5fcf);
+}
+[data-theme="light"] .canon-l-link:hover,
+[data-theme="light-lab"] .canon-l-link:hover,
+[data-theme="white"] .canon-l-link:hover,
+[data-theme="peach"] .canon-l-link:hover,
+[data-theme="green"] .canon-l-link:hover,
+[data-theme="rose"] .canon-l-link:hover,
+[data-theme="cyan"] .canon-l-link:hover,
+[data-theme="amber"] .canon-l-link:hover,
+[data-theme="violet"] .canon-l-link:hover,
+[data-theme="light"] .canon-l-link.is-active,
+[data-theme="light-lab"] .canon-l-link.is-active,
+[data-theme="white"] .canon-l-link.is-active,
+[data-theme="peach"] .canon-l-link.is-active,
+[data-theme="green"] .canon-l-link.is-active,
+[data-theme="rose"] .canon-l-link.is-active,
+[data-theme="cyan"] .canon-l-link.is-active,
+[data-theme="amber"] .canon-l-link.is-active,
+[data-theme="violet"] .canon-l-link.is-active {
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-pill,
+[data-theme="light-lab"] .canon-l-pill,
+[data-theme="white"] .canon-l-pill,
+[data-theme="peach"] .canon-l-pill,
+[data-theme="green"] .canon-l-pill,
+[data-theme="rose"] .canon-l-pill,
+[data-theme="cyan"] .canon-l-pill,
+[data-theme="amber"] .canon-l-pill,
+[data-theme="violet"] .canon-l-pill {
+  background: var(--lb-pill-bg, #ffffff);
+  color: var(--lb-text, #1a1326);
+  border-color: var(--lb-pill-border, rgba(122, 95, 207, 0.30));
+}
+[data-theme="light"] .canon-l-pill:hover,
+[data-theme="light-lab"] .canon-l-pill:hover,
+[data-theme="white"] .canon-l-pill:hover,
+[data-theme="peach"] .canon-l-pill:hover,
+[data-theme="green"] .canon-l-pill:hover,
+[data-theme="rose"] .canon-l-pill:hover,
+[data-theme="cyan"] .canon-l-pill:hover,
+[data-theme="amber"] .canon-l-pill:hover,
+[data-theme="violet"] .canon-l-pill:hover {
+  border-color: #4f3ea5;
+  color: var(--lb-text, #1a1326);
+}
+
+[data-theme="light"] .canon-l-audience-switch,
+[data-theme="light-lab"] .canon-l-audience-switch,
+[data-theme="white"] .canon-l-audience-switch,
+[data-theme="peach"] .canon-l-audience-switch,
+[data-theme="green"] .canon-l-audience-switch,
+[data-theme="rose"] .canon-l-audience-switch,
+[data-theme="cyan"] .canon-l-audience-switch,
+[data-theme="amber"] .canon-l-audience-switch,
+[data-theme="violet"] .canon-l-audience-switch {
+  background: var(--lb-seg-bg, #ffffff);
+  border-color: var(--lb-seg-border, rgba(122, 95, 207, 0.30));
+}
+[data-theme="light"] .canon-l-audience-btn,
+[data-theme="light-lab"] .canon-l-audience-btn,
+[data-theme="white"] .canon-l-audience-btn,
+[data-theme="peach"] .canon-l-audience-btn,
+[data-theme="green"] .canon-l-audience-btn,
+[data-theme="rose"] .canon-l-audience-btn,
+[data-theme="cyan"] .canon-l-audience-btn,
+[data-theme="amber"] .canon-l-audience-btn,
+[data-theme="violet"] .canon-l-audience-btn {
+  color: var(--lb-seg-btn, #4f3ea5);
+}
+
+/* === MOBILE ================================================= */
+@media (max-width: 720px) {
+  .canon-l-topbar {
+    padding: 12px 16px;
+    gap: 12px;
+    min-height: 56px;
+  }
+  .canon-l-nav {
+    gap: 14px;
+    margin-left: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .canon-l-nav::-webkit-scrollbar { display: none; }
+  .canon-l-sub { display: none; }
+  .canon-l-audience-btn { padding: 6px 10px; }
+  .canon-l-pill { padding: 6px 12px; min-width: 44px; }
+}
+
+/* === FOOTER ================================================ */
+/* РџР°Р»РёС‚СЂР° Р±РµСЂС‘С‚СЃСЏ РёР· С‚РµС… Р¶Рµ inline-С‚РѕРєРµРЅРѕРІ, С‡С‚Рѕ Рё С€Р°РїРєР°.
+   Р‘РµР· С‚РѕРєРµРЅРѕРІ (РµСЃР»Рё Сѓ С„Р°Р№Р»Р° РЅРµС‚ header СЃ tokens) вЂ” Midnight Plum. */
+.canon-l-footer {
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-top: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  padding: 22px clamp(18px, 3vw, 28px) 26px;
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  color: var(--lb-text, #f0ebff);
+  margin-top: 48px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.canon-l-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.16));
+}
+
+.canon-l-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.canon-l-footer-mark {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: #c5aef0;
+  color: #0e0a18;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  border-radius: 7px;
+  border-top-right-radius: 0;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.canon-l-footer-mark::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  background: #ff9b2f;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
+}
+.canon-l-footer-mark img,
+.canon-l-footer-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.canon-l-footer-name {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+
+.canon-l-footer-meta {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  flex: 1 1 220px;
+  text-align: center;
+  min-width: 0;
+}
+
+.canon-l-footer-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.canon-l-footer-nav a {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-footer-nav a:hover {
+  color: var(--lb-text, #f0ebff);
+}
+
+.canon-l-footer-legal {
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--lb-muted, #8f7daa);
+  font-family: "Manrope", system-ui, sans-serif;
+}
+.canon-l-footer-legal strong {
+  color: var(--lb-text, #f0ebff);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .canon-l-footer {
+    padding: 18px 16px 22px;
+    margin-top: 32px;
+  }
+  .canon-l-footer-row {
+    gap: 12px;
+  }
+  .canon-l-footer-meta {
+    text-align: left;
+    flex: 1 1 100%;
+    order: 3;
+    font-size: 9.5px;
+  }
+  .canon-l-footer-nav {
+    gap: 14px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .canon-l-footer-nav::-webkit-scrollbar { display: none; }
+  .canon-l-footer-legal {
+    font-size: 11px;
+  }
+}
+
+/* === CRUMBS (under topbar, before content) ============== */
+.canon-l-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 12px clamp(18px, 3vw, 28px);
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.10));
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+}
+.canon-l-crumbs a {
+  color: var(--lb-muted, #8f7daa);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.canon-l-crumbs a:hover {
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-crumbs-sep {
+  margin: 0 10px;
+  opacity: 0.5;
+}
+.canon-l-crumbs-here {
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .canon-l-crumbs {
+    padding: 9px 16px;
+    font-size: 9.5px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    top: 56px;
+  }
+  .canon-l-crumbs::-webkit-scrollbar { display: none; }
+  .canon-l-crumbs-sep { margin: 0 8px; }
+}
+
+
+/* === CANON-L BAR INDEPENDENCE / FOOTER BRAND DEDUPE ============== */
+.canon-l-topbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
+  align-items: center;
+  justify-content: stretch;
+  text-align: initial;
+}
+.canon-l-brand {
+  justify-self: start;
+  margin-left: 0;
+}
+.canon-l-nav {
+  justify-self: center;
+  justify-content: center;
+  margin-left: 0;
+  flex: 0 1 auto;
+  text-align: center;
+}
+.canon-l-tools {
+  justify-self: end;
+  justify-content: flex-end;
+  margin-left: 0;
+}
+.canon-l-crumbs {
+  justify-content: center;
+  text-align: center;
+}
+.canon-l-footer {
+  text-align: center;
+}
+.canon-l-footer-row {
+  justify-content: center;
+}
+.canon-l-footer-brand {
+  display: none;
+}
+.canon-l-footer-meta {
+  flex: 0 1 auto;
+  text-align: center;
+}
+.canon-l-footer-nav {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.canon-l-footer-legal {
+  text-align: center;
+}
+@media (max-width: 960px) {
+  .canon-l-topbar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+  .canon-l-brand,
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-self: center;
+  }
+  .canon-l-nav,
+  .canon-l-tools,
+  .canon-l-footer-row,
+  .canon-l-footer-nav {
+    justify-content: center;
+  }
+  .canon-l-nav {
+    margin-left: 0;
+  }
+  .canon-l-footer-meta {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+/* === CANON-L SINGLE TOP STRIP OVERRIDE ========================== */
+.canon-l-topbar {
+  display: flex;
+  grid-template-columns: none;
+  justify-content: flex-start;
+  justify-items: initial;
+  border-bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+  gap: clamp(22px, 2.5vw, 38px);
+  padding-left: clamp(22px, 2.5vw, 42px);
+  padding-right: clamp(16px, 2vw, 28px);
+}
+
+.canon-l-brand,
+.canon-l-nav,
+.canon-l-tools {
+  justify-self: initial;
+  margin-left: 0;
+}
+
+.canon-l-nav {
+  justify-content: flex-start;
+  flex: 0 1 auto;
+}
+
+.canon-l-tools {
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.canon-l-crumbs {
+  display: none;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.canon-l-audience-switch,
+.canon-l-audience-btn,
+.canon-l-pill {
+  border-radius: 10px;
+}
+
+.canon-l-mark {
+  border-radius: 8px 0 8px 8px;
+}
+
+@media (max-width: 960px) {
+  .canon-l-topbar {
+    display: flex;
+    grid-template-columns: none;
+    justify-content: flex-start;
+    justify-items: initial;
+    align-items: center;
+    gap: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .canon-l-topbar::-webkit-scrollbar {
+    display: none;
+  }
+  .canon-l-brand,
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-self: initial;
+  }
+  .canon-l-nav,
+  .canon-l-tools {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+}
+
+body.nge-unified-lab.lb-level-a1 .canon-l-tools {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+body.nge-unified-lab.lb-level-a1 .canon-l-nav {
+  flex: 0 1 auto;
+}
+
+/* === HERO (unified lesson heading block below crumbs) ============ */
+.canon-l-hero {
+  position: relative;
+  background: var(--lb-bg, rgba(14, 10, 24, 0.92));
+  padding: 48px clamp(18px, 3vw, 28px) 32px;
+  border-bottom: 1px solid var(--lb-line, rgba(197, 174, 240, 0.10));
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.canon-l-hero-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+.canon-l-hero-eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  margin: 0;
+}
+.canon-l-hero-title {
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-hero-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-hero-lead {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--lb-muted, #8f7daa);
+  max-width: 720px;
+  margin: 0;
+}
+.canon-l-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.canon-l-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.22));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-text, #f0ebff);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.canon-l-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .canon-l-hero { padding: 32px 16px 24px; }
+  .canon-l-hero-inner { gap: 10px; }
+  .canon-l-hero-lead { font-size: 14px; }
+}
+
+/* === STEP TRACKER (under hero, before lesson sections) ============ */
+.canon-l-tracker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px clamp(18px, 3vw, 28px);
+  max-width: 1240px;
+  margin: 18px auto 24px;
+  background: var(--lb-pill-bg, transparent);
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 14px;
+  box-sizing: border-box;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--lb-text, #f0ebff);
+}
+.canon-l-tracker-step {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #8f7daa);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.canon-l-tracker-bar {
+  flex: 1 1 200px;
+  height: 6px;
+  background: var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 999px;
+  overflow: hidden;
+  min-width: 120px;
+}
+.canon-l-tracker-fill {
+  height: 100%;
+  background: var(--lb-text, #c5aef0);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.canon-l-tracker-stars {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.canon-l-tracker-star {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: var(--lb-line, rgba(197, 174, 240, 0.30));
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transition: background 0.2s ease;
+}
+.canon-l-tracker-star.is-earned,
+.canon-l-tracker-star.earned {
+  background: #ff9b2f;
+}
+.canon-l-tracker-score {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lb-text, #f0ebff);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.canon-l-tracker-reset {
+  margin-left: auto;
+  padding: 6px 14px;
+  border: 1px solid var(--lb-pill-border, rgba(197, 174, 240, 0.30));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-muted, #8f7daa);
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+.canon-l-tracker-reset:hover {
+  color: var(--lb-text, #f0ebff);
+  border-color: var(--lb-link-hover, #c5aef0);
+}
+@media (max-width: 720px) {
+  .canon-l-tracker {
+    padding: 12px 14px;
+    gap: 10px;
+    margin: 14px 16px 18px;
+  }
+  .canon-l-tracker-step { flex: 1 1 100%; }
+}
+
+/* === POST HERO-UNIFY REPAIR (12-page polish pass) ============ */
+.canon-l-hero {
+  min-height: clamp(320px, 30vw, 420px);
+}
+.canon-l-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #0f0a18) 86%, transparent) 0%, color-mix(in srgb, var(--lb-bg, #0f0a18) 54%, transparent) 42%, transparent 82%);
+}
+.canon-l-hero-bg {
+  opacity: .39;
+  filter: saturate(1.10) brightness(1.08) contrast(1.03);
+}
+.canon-l-hero.is-visual-bright .canon-l-hero-bg {
+  opacity: .62;
+}
+.canon-l-hero.is-visual-strong .canon-l-hero-bg {
+  opacity: .62;
+}
+.canon-l-hero.is-visual-tall {
+  min-height: clamp(380px, 34vw, 460px);
+}
+.canon-l-hero.is-visual-tall .canon-l-hero-inner {
+  align-content: center;
+}
+.canon-l-hero-pill,
+.canon-l-audience-switch,
+.canon-l-audience-btn,
+.canon-l-pill,
+.lab-badge,
+.subtitle-pill,
+.section-badge,
+.round-badge,
+.mission-pill,
+.tag,
+.chip,
+.btn,
+button:not(.icon-btn) {
+  border-radius: 10px !important;
+}
+.canon-l-hero-meta,
+.mission-pill-row {
+  gap: 8px;
+}
+.section,
+.activity-card,
+.activity,
+.game-card,
+.round-card,
+.task-card,
+.vocab-panel,
+.china-section,
+.menu-section {
+  margin-block: 24px;
+}
+.section-body,
+.activity-body,
+.round-body,
+.game-card,
+.task-card,
+.vocab-panel,
+.china-section,
+.menu-section {
+  padding: 24px;
+}
+.canon-l-same-width,
+.canon-l-same-width .canon-l-hero,
+.canon-l-same-width .progress,
+.canon-l-same-width .section,
+.canon-l-same-width .activity-card,
+.canon-l-same-width .china-section {
+  width: min(100% - 48px, 1240px);
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lb-page-core-trainer .utility-strip {
+  display: none !important;
+}
+@media (max-width: 720px) {
+  .section,
+  .activity-card,
+  .activity,
+  .game-card,
+  .round-card,
+  .task-card,
+  .vocab-panel,
+  .china-section,
+  .menu-section {
+    margin-block: 18px;
+  }
+  .section-body,
+  .activity-body,
+  .round-body,
+  .game-card,
+  .task-card,
+  .vocab-panel,
+  .china-section,
+  .menu-section {
+    padding: 18px;
+  }
+  .canon-l-same-width,
+  .canon-l-same-width .canon-l-hero,
+  .canon-l-same-width .progress,
+  .canon-l-same-width .section,
+  .canon-l-same-width .activity-card,
+  .canon-l-same-width .china-section {
+    width: min(100% - 28px, 1240px);
+  }
+}
+
+/* === CANON-L WIDTH RHYTHM TRIAL (hero full, content aligned) ====== */
+body:has(.canon-l-hero) .canon-l-hero {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) .canon-l-hero-inner {
+  width: 100%;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) main > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) .wrap > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+body:has(.canon-l-hero) .container > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap) {
+  width: min(100% - 48px, 1240px) !important;
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+body:has(.canon-l-hero) :is(.quiz-narrow,.narrow-panel,.reading-panel,.dialogue-panel,.writing-panel,.sentence-bank) {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 720px) {
+  body:has(.canon-l-hero) .canon-l-hero-inner,
+  body:has(.canon-l-hero) > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) main > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) .wrap > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap),
+  body:has(.canon-l-hero) .container > :is(.canon-l-tracker,.progress,.step-tracker,.lesson-flow,.learn-panel,.lesson-score-card,.block,.section,.task-card,.vocab-panel,.china-section,.menu-section,.lesson-foot,.copyright,.all-done,.rail-wrap) {
+    width: min(100% - 28px, 1240px) !important;
+  }
+}
+
+/* === SECTION TITLE (exercise section headings) ==================== */
+.canon-l-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 14px;
+  padding: 0;
+  font-family: "Unbounded", "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--lb-text, #f0ebff);
+  flex-wrap: wrap;
+}
+.canon-l-section-num {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--lb-link-hover, #ff9b2f);
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.canon-l-section-name {
+  color: var(--lb-text, #f0ebff);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.canon-l-section-sub {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 1.6vw, 16px);
+  letter-spacing: 0;
+  color: var(--lb-muted, #8f7daa);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.canon-l-section-sub::before {
+  content: "\00b7";
+  margin-right: 8px;
+  opacity: 0.5;
+}
+@media (max-width: 720px) {
+  .canon-l-section-title { gap: 10px; font-size: 18px; }
+  .canon-l-section-num { font-size: 13px; }
+  .canon-l-section-sub { font-size: 13px; flex: 1 1 100%; }
+  .canon-l-section-sub::before { margin-right: 6px; }
+}
+
+
+
+/* === CARD - reusable card/block container ================== */
+.canon-l-card {
+  background: var(--lb-pill-bg, var(--lb-bg, #1a1326));
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.18));
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-sizing: border-box;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--lb-text, #f0ebff);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.canon-l-card-elevated {
+  background: var(--lb-pill-bg, #ffffff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.canon-l-card-interactive {
+  cursor: pointer;
+}
+.canon-l-card-interactive:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  transform: translateY(-2px);
+}
+.canon-l-card-active {
+  border-color: var(--lb-link-hover, #c5aef0);
+  border-width: 2px;
+}
+.canon-l-card-title {
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--lb-text);
+  margin: 0 0 6px;
+}
+.canon-l-card-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--lb-muted);
+  margin: 0;
+}
+
+/* === BUTTON - primary / ghost / mini ========================= */
+.canon-l-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.30));
+  background: transparent;
+  color: var(--lb-text, #f0ebff);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+.canon-l-btn:hover {
+  border-color: var(--lb-link-hover, #c5aef0);
+  color: var(--lb-text);
+}
+.canon-l-btn:active { transform: scale(0.98); }
+.canon-l-btn:disabled,
+.canon-l-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* primary - filled accent */
+.canon-l-btn-primary {
+  background: #ff690a;
+  border-color: #ff690a;
+  color: #ffffff;
+}
+.canon-l-btn-primary:hover {
+  background: #ff7b1a;
+  border-color: #ff7b1a;
+  color: #ffffff;
+}
+
+/* ghost - transparent and quiet */
+.canon-l-btn-ghost {
+  background: transparent;
+  border-color: var(--lb-line, rgba(197, 174, 240, 0.30));
+  color: var(--lb-muted, #8f7daa);
+}
+.canon-l-btn-ghost:hover {
+  color: var(--lb-text);
+}
+
+/* mini - compact toolbar / inline actions */
+.canon-l-btn-mini {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* full-width */
+.canon-l-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* === INPUT - text / textarea / select ======================== */
+.canon-l-input,
+.canon-l-textarea,
+.canon-l-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--lb-line, rgba(197, 174, 240, 0.30));
+  background: var(--lb-pill-bg, #ffffff);
+  color: var(--lb-text, #1a1326);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+  outline: none;
+}
+.canon-l-textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.55;
+}
+.canon-l-input:focus,
+.canon-l-textarea:focus,
+.canon-l-select:focus {
+  border-color: var(--lb-link-hover, #c5aef0);
+  box-shadow: 0 0 0 3px rgba(255, 105, 10, 0.18);
+}
+.canon-l-input::placeholder,
+.canon-l-textarea::placeholder {
+  color: var(--lb-muted, #8f7daa);
+  opacity: 0.7;
+}
+.canon-l-input.is-correct,
+.canon-l-textarea.is-correct,
+.canon-l-select.is-correct {
+  border-color: #2f7d52;
+  background: rgba(47, 125, 82, 0.08);
+}
+.canon-l-input.is-wrong,
+.canon-l-textarea.is-wrong,
+.canon-l-select.is-wrong {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.08);
+}
+
+/* === FEEDBACK BOX - correct / wrong / hint =================== */
+.canon-l-feedback {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--lb-text, #f0ebff);
+  background: var(--lb-pill-bg, transparent);
+}
+.canon-l-feedback.is-correct,
+.canon-l-feedback.ok {
+  border-color: rgba(47, 125, 82, 0.40);
+  background: rgba(47, 125, 82, 0.10);
+  color: #1f5638;
+}
+.canon-l-feedback.is-wrong,
+.canon-l-feedback.miss {
+  border-color: rgba(192, 57, 43, 0.40);
+  background: rgba(192, 57, 43, 0.10);
+  color: #8c2519;
+}
+.canon-l-feedback.is-hint,
+.canon-l-feedback.hint {
+  border-color: var(--lb-line, rgba(197, 174, 240, 0.40));
+  background: var(--lb-pill-bg, transparent);
+  color: var(--lb-muted, #8f7daa);
+}
+.canon-l-feedback::before {
+  content: "\2022";
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.canon-l-feedback.is-correct::before,
+.canon-l-feedback.ok::before { content: "\2713"; }
+.canon-l-feedback.is-wrong::before,
+.canon-l-feedback.miss::before { content: "\2715"; }
+.canon-l-feedback.is-hint::before,
+.canon-l-feedback.hint::before { content: "?"; }
+
+/* === RESPONSIVE ============================================== */
+@media (max-width: 720px) {
+  .canon-l-card { padding: 16px 16px; border-radius: 12px; }
+  .canon-l-btn { padding: 9px 18px; font-size: 13px; }
+  .canon-l-input, .canon-l-textarea, .canon-l-select { padding: 9px 12px; font-size: 13px; }
+}
+
+/* === HERO READABILITY POLISH ===================================== */
+.canon-l-hero {
+  isolation: isolate;
+}
+.canon-l-hero-inner {
+  align-content: center;
+}
+.canon-l-hero-title {
+  font-weight: 900;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1;
+  color: var(--lb-text, #f7f2ff);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .24);
+}
+.canon-l-hero-title em {
+  color: var(--lb-link-hover, var(--lb-text, #f7f2ff));
+  font-weight: 900;
+}
+.canon-l-hero-lead {
+  color: color-mix(in srgb, var(--lb-text, #f7f2ff) 82%, var(--lb-muted, #8f7daa));
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 650;
+}
+.canon-l-hero-eyebrow {
+  color: var(--lb-link-hover, var(--lb-muted, #c5aef0));
+  font-weight: 800;
+}
+.canon-l-hero-pill {
+  font-weight: 800;
+  color: var(--lb-text, #f7f2ff);
+}
+.canon-l-hero.is-hero-kids .canon-l-hero-bg,
+.canon-l-hero.is-hero-soft .canon-l-hero-bg {
+  opacity: .72;
+  filter: saturate(1.08) brightness(1.02) contrast(1.04);
+}
+.canon-l-hero.is-hero-kids::after,
+.canon-l-hero.is-hero-soft::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #fff8f0) 92%, white 8%) 0%, color-mix(in srgb, var(--lb-bg, #fff8f0) 78%, transparent) 44%, transparent 82%);
+}
+.canon-l-hero.is-hero-drama .canon-l-hero-bg {
+  opacity: .74;
+  filter: saturate(1.18) brightness(.92) contrast(1.12);
+}
+.canon-l-hero.is-hero-drama::after {
+  background: linear-gradient(90deg, rgba(32, 8, 8, .90) 0%, rgba(72, 14, 10, .70) 44%, transparent 80%), linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .26));
+}
+.canon-l-hero.is-hero-cosmic .canon-l-hero-bg {
+  opacity: .70;
+  filter: saturate(1.16) brightness(.86) contrast(1.16);
+}
+.canon-l-hero.is-hero-cosmic::after {
+  background: linear-gradient(90deg, rgba(2, 7, 22, .94) 0%, rgba(8, 21, 46, .76) 46%, transparent 82%), linear-gradient(180deg, rgba(0, 0, 0, .10), rgba(0, 0, 0, .32));
+}
+.canon-l-hero.is-hero-clean::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--lb-bg, #fff) 96%, var(--lb-line, #ddd) 4%) 0%, var(--lb-bg, #fff) 100%);
+}
+.canon-l-hero.is-hero-clean .canon-l-hero-bg {
+  opacity: .28;
+  filter: saturate(1.02) brightness(1.05) contrast(1.02);
+}
+/* Legacy bridge for catalog / Past Simple / Core Trainer while they keep their custom hero markup. */
+.hero.is-hero-clean h1,
+.hero.is-hero-clean .lead,
+.hero.is-hero-clean .hero-badge,
+.hero.is-hero-drama .hero-h1,
+.hero.is-hero-drama .hero-lead,
+.hero.is-hero-drama .hero-l .eyebrow,
+.hero-mini.is-hero-clean h1,
+.hero-mini.is-hero-clean p {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+}
+.hero.is-hero-drama .hero-h1 {
+  font-weight: 900;
+}
+.hero.is-hero-drama .hero-lead {
+  font-weight: 700;
+}
+.hero-mini.is-hero-clean h1 {
+  font-weight: 900;
+}
+.hero-mini.is-hero-clean p {
+  font-weight: 650;
+}
+@media (max-width: 720px) {
+  .canon-l-hero-title { font-size: clamp(30px, 10vw, 44px); }
+  .canon-l-hero-lead { font-size: 15px; }
+}
+
+/* Codex fix: violet is a dark lesson theme, so Canon-L topbar must not inherit the light strip. */
+html[data-theme="violet"] .canon-l-topbar {
+  background: color-mix(in srgb, var(--bg, #120826) 92%, transparent) !important;
+  border-bottom-color: var(--line, rgba(197,174,240,0.16)) !important;
+  box-shadow: 0 16px 38px rgba(0,0,0,0.30) !important;
+}
+html[data-theme="violet"] .canon-l-name,
+html[data-theme="violet"] .canon-l-link,
+html[data-theme="violet"] .canon-l-link:hover,
+html[data-theme="violet"] .canon-l-link.is-active {
+  color: var(--text, #f0ebff) !important;
+}
+html[data-theme="violet"] .canon-l-sub {
+  color: var(--muted, #c9b9f4) !important;
+}
+html[data-theme="violet"] .canon-l-pill,
+html[data-theme="violet"] .canon-l-audience-switch,
+html[data-theme="violet"] .canon-l-audience-btn {
+  background: color-mix(in srgb, var(--surface, #1f1534) 88%, transparent) !important;
+  border-color: var(--line-2, rgba(197,174,240,0.24)) !important;
+  color: var(--text, #f0ebff) !important;
+}
+
+/* === INTERACTIVE LESSON CANON TARGET ==============================
+   Scoped to body.lb-canon-target. Excluded lessons keep their own CSS.
+   Canon geometry follows A1 / Prepositions World measurements.
+   ================================================================== */
+body.lb-canon-target {
+  --lesson-shell: min(100% - 56px, 1320px);
+  --lesson-card: var(--surface, var(--lb-bg, #fffdf7));
+  --lesson-line: rgba(255,145,36,.24);
+  --lesson-line-strong: rgba(255,145,36,.32);
+  --lesson-shadow: 0 16px 42px rgba(134,93,7,.08);
+  --lesson-hero-shadow: 0 24px 70px rgba(134,93,7,.14);
+  font-family: var(--body, "Manrope", system-ui, sans-serif);
+  color: var(--text, var(--lb-text, inherit));
+}
+
+body.lb-canon-target :is(.canon-l-topbar,.friendly-topbar,.nge-shell-topbar,.topbar) {
+  min-height: 64px !important;
+  padding: 14px 28px 14px 42px !important;
+  border-radius: 0 !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+}
+body.lb-canon-target :is(.canon-l-tools,.friendly-tools,.shell-tools,.topbar-tools) {
+  margin-left: auto !important;
+}
+body.lb-canon-target :is(.canon-l-pill,.canon-l-audience-switch,.canon-l-audience-btn,.friendly-tools .btn-tool,.palette-select,.level-bubble,.audience-switch,.audience-btn) {
+  border-radius: 8px !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+}
+
+body.lb-canon-target :is(.canon-l-hero,.hero.friendly-hero,.friendly-hero,.lab-hero,.hero-banner,.hero.is-hero-clean,.hero.is-hero-drama,.hero.is-hero-cosmic,.hero-mini) {
+  position: relative !important;
+  width: var(--lesson-shell) !important;
+  max-width: 1320px !important;
+  height: clamp(390px, 24vw, 440px) !important;
+  min-height: 390px !important;
+  margin: 18px auto !important;
+  padding: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--lesson-line-strong) !important;
+  box-shadow: var(--lesson-hero-shadow) !important;
+  box-sizing: border-box !important;
+}
+body.lb-canon-target :is(.canon-l-hero-bg,.hero-img,.hero-banner-img,.lab-hero-bg,.lab-hero-visual img,.friendly-photo img) {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+body.lb-canon-target :is(.friendly-photo,.lab-hero-visual) {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+body.lb-canon-target :is(.canon-l-hero,.friendly-hero,.lab-hero,.hero-banner,.hero-mini)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--bg, var(--lb-bg, #fff8f0)) 92%, white 8%) 0%, color-mix(in srgb, var(--bg, var(--lb-bg, #fff8f0)) 78%, transparent) 44%, transparent 82%);
+}
+body.lb-canon-target :is(.canon-l-hero-inner,.friendly-hero-inner,.lab-hero-inner,.hero-banner-overlay,.hero-mini-inner) {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 600px !important;
+  max-width: 600px !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 34px 28px 34px 46px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+}
+body.lb-canon-target :is(.hero-copy-panel,.lab-hero-inner > div:first-child,.hero-banner-overlay > .hero-content) {
+  width: 100% !important;
+  max-width: 526px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.lb-canon-target :is(.canon-l-hero-title,.friendly-title,.hero-title,.lab-hero-title,.lesson-hero-title,.hero-h1,.hero-mini h1) {
+  font-family: var(--display, "Unbounded", "Manrope", system-ui, sans-serif) !important;
+  font-size: clamp(2.25rem, 3.75vw, 3.5rem) !important;
+  font-weight: 900 !important;
+  line-height: .96 !important;
+  letter-spacing: 0 !important;
+  margin: 0 !important;
+  max-width: 560px !important;
+  text-transform: none !important;
+}
+body.lb-canon-target :is(.canon-l-hero-lead,.friendly-lead,.hero-lead,.lab-hero-lead,.lesson-hero-lead,.hero-mini p) {
+  width: 100% !important;
+  max-width: 526px !important;
+  padding: 14px 18px !important;
+  border-radius: 16px !important;
+  font-family: var(--body, "Manrope", system-ui, sans-serif) !important;
+  font-size: clamp(15px, 1vw, 17px) !important;
+  font-weight: 700 !important;
+  line-height: 1.48 !important;
+  letter-spacing: 0 !important;
+  margin: 0 !important;
+  background: color-mix(in srgb, var(--lesson-card) 76%, transparent) !important;
+}
+body.lb-canon-target :is(.canon-l-hero-meta,.friendly-meta,.hero-meta,.lab-hero-badges) {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px 10px !important;
+  margin-top: 2px !important;
+}
+body.lb-canon-target :is(.canon-l-hero-pill,.info-pill,.lab-badge,.hero-badge,.pill) {
+  border-radius: 8px !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+}
+
+body.lb-canon-target :is(.star-bar,.canon-l-tracker-stars) { display: none !important; }
+body.lb-canon-target :is(.rail,.step-tracker,.canon-l-tracker,.progress-header) {
+  width: var(--lesson-shell) !important;
+  max-width: 1320px !important;
+  min-height: 80px !important;
+  height: auto !important;
+  margin: 18px auto 22px !important;
+  padding: 8px 28px 20px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,145,36,.28) !important;
+  background: color-mix(in srgb, var(--lesson-card) 90%, transparent) !important;
+  box-shadow: 0 14px 34px rgba(134,93,7,.08) !important;
+  box-sizing: border-box !important;
+}
+body.lb-canon-target :is(.rail-dot,.dot,.step-count,.step-num) {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+body.lb-canon-target :is(.rail-label,.step-name,.canon-l-tracker-step,.canon-l-tracker-score) {
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+body.lb-canon-target :is(.section,.block,.lesson-flow,.learn-panel,.lesson-score-card,.all-done,.lesson-foot,.prepositions-story-break,.lesson-illustration) {
+  width: var(--lesson-shell) !important;
+  max-width: 1320px !important;
+  margin: 18px auto !important;
+  border-radius: 20px !important;
+  border: 1px solid var(--lesson-line) !important;
+  background: var(--lesson-card) !important;
+  overflow: hidden !important;
+  box-shadow: var(--lesson-shadow) !important;
+  box-sizing: border-box !important;
+}
+body.lb-canon-target :is(.section-head,.section-header,.block-head) {
+  min-height: 70px !important;
+  padding: 20px 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+  border-bottom: 1px solid rgba(255,145,36,.18) !important;
+  background: color-mix(in srgb, var(--lesson-card) 88%, var(--accent, var(--lb-link-hover, #f9a825)) 12%) !important;
+  box-sizing: border-box !important;
+}
+body.lb-canon-target :is(.section-head h2,.section-header .section-title,.section-title,.block-title,.learn-panel h2) {
+  font-family: var(--display, "Unbounded", "Manrope", system-ui, sans-serif) !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  margin: 0 !important;
+}
+body.lb-canon-target :is(.section-badge,.round-badge,.block-time,.block-kicker,.a1-content-marker) {
+  border-radius: 8px !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+}
+body.lb-canon-target :is(.section-body,.block > :not(.block-head),.learn-panel > :not(.block-head)) {
+  font-family: var(--body, "Manrope", system-ui, sans-serif) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
+}
+body.lb-canon-target .section-body { padding: 24px !important; }
+body.lb-canon-target :is(.block-intro,.prep-task-note,.feedback,.task-note,.instruction) {
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+body.lb-canon-target :is(.btn,.button,.check-btn,.reset-btn,.option,.chip,.q-opt,.pic-opt,.choice,.answer-chip) {
+  border-radius: 8px !important;
+  font-family: var(--mono, "JetBrains Mono", Consolas, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+body.lb-canon-target :is(.flip-grid,.cards-grid,.card-grid,.vocab-grid,.learn-grid,.memory-grid,.speak-grid) {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)) !important;
+  gap: 14px !important;
+}
+body.lb-canon-target :is(.flip-front,.card-front) {
+  font-family: var(--display, "Unbounded", "Manrope", system-ui, sans-serif) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+}
+body.lb-canon-target :is(.flip-back,.card-back) {
+  font-family: var(--body, "Manrope", system-ui, sans-serif) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+
+@media (max-width: 720px) {
+  body.lb-canon-target { --lesson-shell: min(100% - 28px, 1320px); }
+  body.lb-canon-target :is(.canon-l-topbar,.friendly-topbar,.nge-shell-topbar,.topbar) {
+    padding: 12px 14px !important;
+  }
+  body.lb-canon-target :is(.canon-l-hero,.hero.friendly-hero,.friendly-hero,.lab-hero,.hero-banner,.hero.is-hero-clean,.hero.is-hero-drama,.hero.is-hero-cosmic,.hero-mini) {
+    height: auto !important;
+    min-height: 390px !important;
+  }
+  body.lb-canon-target :is(.canon-l-hero-inner,.friendly-hero-inner,.lab-hero-inner,.hero-banner-overlay,.hero-mini-inner) {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 28px 20px !important;
+  }
+  body.lb-canon-target :is(.canon-l-hero-title,.friendly-title,.hero-title,.lab-hero-title,.lesson-hero-title,.hero-h1,.hero-mini h1) {
+    font-size: clamp(2rem, 11vw, 2.75rem) !important;
+  }
+  body.lb-canon-target :is(.section-head,.section-header,.block-head) {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+}
+
+/* === EXPLICIT INTERACTIVE CANON FALLBACK ==========================
+   Same target as above, without :is() grouping, for older page cascades.
+   ================================================================== */
+.lb-canon-target .canon-l-hero,
+.lb-canon-target .hero.friendly-hero,
+.lb-canon-target .friendly-hero,
+.lb-canon-target .lab-hero,
+.lb-canon-target .hero-banner,
+.lb-canon-target .hero-mini {
+  width: min(100% - 56px, 1320px) !important;
+  max-width: 1320px !important;
+  height: clamp(390px, 24vw, 440px) !important;
+  min-height: 390px !important;
+  margin: 18px auto !important;
+  padding: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+.lb-canon-target .canon-l-hero-inner,
+.lb-canon-target .friendly-hero-inner,
+.lb-canon-target .lab-hero-inner,
+.lb-canon-target .hero-banner-overlay,
+.lb-canon-target .hero-mini-inner {
+  width: 600px !important;
+  max-width: 600px !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 34px 28px 34px 46px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+}
+.lb-canon-target .canon-l-hero-bg,
+.lb-canon-target .hero-img,
+.lb-canon-target .hero-banner-img,
+.lb-canon-target .lab-hero-bg,
+.lb-canon-target .lab-hero-visual img,
+.lb-canon-target .friendly-photo img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+}
+.lb-canon-target .rail,
+.lb-canon-target .step-tracker,
+.lb-canon-target .canon-l-tracker,
+.lb-canon-target .progress-header {
+  width: min(100% - 56px, 1320px) !important;
+  max-width: 1320px !important;
+  min-height: 80px !important;
+  margin: 18px auto 22px !important;
+  padding: 8px 28px 20px !important;
+  border-radius: 18px !important;
+  box-sizing: border-box !important;
+}
+.lb-canon-target .section,
+.lb-canon-target .block,
+.lb-canon-target .lesson-flow,
+.lb-canon-target .learn-panel,
+.lb-canon-target .lesson-score-card,
+.lb-canon-target .all-done,
+.lb-canon-target .lesson-foot,
+.lb-canon-target .prepositions-story-break,
+.lb-canon-target .lesson-illustration {
+  width: min(100% - 56px, 1320px) !important;
+  max-width: 1320px !important;
+  margin: 18px auto !important;
+  border-radius: 20px !important;
+  box-sizing: border-box !important;
+}
+.lb-canon-target .section-head,
+.lb-canon-target .section-header,
+.lb-canon-target .block-head {
+  min-height: 70px !important;
+  padding: 20px 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+.lb-canon-target .section-head h2,
+.lb-canon-target .section-header .section-title,
+.lb-canon-target .section-title,
+.lb-canon-target .block-title,
+.lb-canon-target .learn-panel h2 {
+  font-family: var(--display, "Unbounded", "Manrope", system-ui, sans-serif) !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.lb-canon-target .section-body {
+  padding: 24px !important;
+  font-family: var(--body, "Manrope", system-ui, sans-serif) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+@media (max-width: 720px) {
+  .lb-canon-target .canon-l-hero,
+  .lb-canon-target .hero.friendly-hero,
+  .lb-canon-target .friendly-hero,
+  .lb-canon-target .lab-hero,
+  .lb-canon-target .hero-banner,
+  .lb-canon-target .hero-mini,
+  .lb-canon-target .rail,
+  .lb-canon-target .step-tracker,
+  .lb-canon-target .canon-l-tracker,
+  .lb-canon-target .progress-header,
+  .lb-canon-target .section,
+  .lb-canon-target .block,
+  .lb-canon-target .lesson-flow,
+  .lb-canon-target .learn-panel,
+  .lb-canon-target .lesson-score-card,
+  .lb-canon-target .all-done,
+  .lb-canon-target .lesson-foot,
+  .lb-canon-target .prepositions-story-break,
+  .lb-canon-target .lesson-illustration {
+    width: min(100% - 28px, 1320px) !important;
+  }
+  .lb-canon-target .canon-l-hero-inner,
+  .lb-canon-target .friendly-hero-inner,
+  .lb-canon-target .lab-hero-inner,
+  .lb-canon-target .hero-banner-overlay,
+  .lb-canon-target .hero-mini-inner {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 28px 20px !important;
+  }
+}
+
+/* Codex a11y pass: keyboard skip link. */
+.canon-l-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--lb-text, #2b1c12);
+  color: var(--lb-bg, #fef8f0);
+  z-index: 1000;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+.canon-l-skip-link:focus { top: 0; }
+/* Codex a11y pass: visible keyboard focus. */
+.canon-l-topbar a:focus-visible,
+.canon-l-topbar button:focus-visible,
+.canon-l-pill:focus-visible,
+.canon-l-audience-btn:focus-visible,
+.canon-l-btn:focus-visible {
+  outline: 2px solid var(--lb-accent, #ff7b1a);
+  outline-offset: 2px;
+}

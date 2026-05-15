@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="salad">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>English Booster · A2 → B1 · LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== САЛАТОВАЯ ДИЗАЙН-СИСТЕМА ========== */
+[data-theme="salad"] {
+  --bg: #f5fae8;
+  --bg-2: #eaf5df;
+  --card: #ffffff;
+  --card-2: #fafff2;
+  --text: #1f2c15;
+  --muted: #4d6440;
+  --faint: #6f8f58;
+  --accent: #6fbf4c;
+  --accent-2: #88d162;
+  --accent-on: #f7fff0;
+  --brand: #55923b;
+  --brand-2: #3b6e27;
+  --line: rgba(85,146,59,0.12);
+  --line-2: rgba(85,146,59,0.20);
+  --line-dot: rgba(85,146,59,0.30);
+  --soft: rgba(111,191,76,0.06);
+  --ok: #2f7d52;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Manrope', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+h1, h2, h3, h4, p { margin: 0; }
+button, input { font: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+/* ── TOPBAR (Easter geometry) ──────────────── */
+.topbar{
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  min-height: 56px;
+}
+.brand{ display: flex; align-items: center; gap: 12px; }
+.brand-mark{
+  width: 36px; height: 36px;
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--soft);
+  display: grid; place-items: center;
+  position: relative;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px; font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+.brand-mark::after{
+  content: ''; position: absolute;
+  right: 4px; bottom: 4px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--brand);
+}
+.brand-copy{ display: grid; gap: 2px; }
+.brand-name{
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px; font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1; color: var(--text);
+}
+.brand-tag{
+  font-family: monospace;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint);
+}
+.topbar-nav{
+  display: flex; gap: clamp(12px, 2vw, 22px);
+  margin-left: 12px; flex-wrap: wrap;
+}
+.top-link{
+  font-family: monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.18s;
+  cursor: pointer;
+}
+.top-link:hover, .top-link.active{ color: var(--accent); }
+.topbar-tools{ margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.btn-tool{
+  height: 32px; min-width: 38px; padding: 0 12px;
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--card); color: var(--muted);
+  font: 700 11px/1 monospace; letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-grid; place-items: center;
+  transition: all 0.16s;
+  text-decoration: none;
+}
+.btn-tool:hover{ border-color: var(--accent); color: var(--accent); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 32px 32px 80px; }
+
+/* ── HERO BANNER (China + Pink pattern) ─────── */
+.hero-banner{
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--card-2), var(--bg-2));
+  min-height: 380px;
+}
+.hero-banner.has-img{
+  aspect-ratio: 1672/941;
+  min-height: 420px;
+}
+.hero-banner-img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: right center;
+  display: block; z-index: 0;
+}
+.hero-banner-overlay{
+  position: relative; z-index: 2;
+  padding: clamp(28px, 4vw, 56px);
+  display: flex; align-items: center;
+  min-height: inherit;
+}
+.hero-banner.has-img .hero-banner-overlay{
+  position: absolute; inset: 0;
+  /* Neutral white overlay — image keeps its natural colours */
+  background: linear-gradient(to right,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.55) 28%,
+    rgba(255, 255, 255, 0.20) 48%,
+    rgba(255, 255, 255, 0.0) 58%);
+}
+.hero-banner::after{
+  content: "";
+  position: absolute;
+  right: clamp(24px, 5vw, 80px); top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  opacity: 0.55;
+  filter: drop-shadow(0 4px 8px rgba(85,146,59,0.18));
+  pointer-events: none;
+}
+.hero-banner.has-img::after{ display: none; }
+.hero-banner-content{ max-width: 540px; }
+
+.hero-eyebrow { font-family: monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.hero-title { font-family: 'Unbounded', sans-serif; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 0.96; letter-spacing: -0.04em; margin-bottom: 20px; text-shadow: 0 1px 0 rgba(255,255,255,.4); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-lead { color: var(--muted); font-size: 17px; line-height: 1.6; margin-bottom: 24px; }
+.hero-meta{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.hero-actions{ display: flex; flex-wrap: wrap; gap: 10px; }
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,.85);
+  border: 1px solid var(--line-2);
+  border-radius: 40px;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  backdrop-filter: blur(2px);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.btn.primary { background: var(--accent); color: white; box-shadow: 0 8px 20px rgba(111,191,76,0.25); }
+.btn.primary:hover { background: var(--accent-2); transform: translateY(-2px); }
+.btn.ghost { background: transparent; border: 1px solid var(--line-2); color: var(--text); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 820px) {
+  .hero-banner{ aspect-ratio: auto; min-height: 360px; }
+  .hero-banner.has-img{ aspect-ratio: auto; min-height: 360px; }
+  .hero-banner.has-img .hero-banner-overlay{
+    background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.72) 50%,
+      rgba(255, 255, 255, 0.25) 75%,
+      rgba(255, 255, 255, 0.0) 95%);
+    align-items: flex-start;
+  }
+}
+
+/* ── LESSON ILLUSTRATION POSTER ─────────────── */
+.lesson-illustration{
+  width: 100%;
+  margin: 0 0 14px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+.lesson-illustration img{
+  width: 100%; height: auto; display: block;
+}
+
+.step-tracker {
+  background: white;
+  border-radius: 60px;
+  padding: 12px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--line);
+}
+.step-count{ font-family: monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-2); }
+.step-track { flex: 1; height: 6px; background: #e2ebd6; border-radius: 6px; overflow: hidden; }
+.step-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 6px; transition: width 0.3s; }
+.step-name{ font-family: monospace; font-size: 11px; font-weight: 700; color: var(--muted); }
+
+.round-card {
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 20px;
+  border: 1px solid var(--line);
+}
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: var(--card-2);
+  border-bottom: 1px solid var(--line);
+  border-radius: 24px 24px 0 0;
+}
+.round-title { font-family: 'Unbounded', sans-serif; font-size: 18px; font-weight: 800; }
+.round-badge { font-family: monospace; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 40px; background: #e2ebd6; }
+.round-score { font-family: monospace; font-size: 12px; font-weight: 700; color: var(--accent); }
+.round-body { padding: 24px; }
+.practice-list { display: grid; gap: 20px; }
+.practice-item {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 16px;
+  align-items: start;
+  padding: 16px 20px;
+  background: var(--card-2);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+}
+.practice-num { font-family: monospace; font-size: 13px; font-weight: 800; color: var(--accent); }
+.practice-q { font-size: 15px; line-height: 1.5; }
+.choice-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.choice {
+  border: 1px solid var(--line-2);
+  border-radius: 40px;
+  padding: 8px 18px;
+  background: white;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+.choice:hover, .choice.is-picked { border-color: var(--accent); color: var(--accent); background: var(--soft); }
+.practice-hint {
+  border: 1px dashed var(--line-2);
+  background: transparent;
+  border-radius: 40px;
+  padding: 6px 14px;
+  font-family: monospace;
+  font-size: 10px;
+  cursor: pointer;
+  width: fit-content;
+}
+.blank {
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: 1px solid var(--line-2);
+  background: white;
+  min-width: 180px;
+}
+.flash-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.flash-card {
+  background: var(--card);
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  padding: 12px 18px;
+  cursor: pointer;
+  text-align: center;
+  flex: 1 0 160px;
+}
+.flash-card:hover { background: var(--soft); }
+.flash-front, .flash-back { font-family: monospace; font-size: 12px; }
+.flash-back { display: none; margin-top: 8px; color: var(--accent); }
+.flash-card.flipped .flash-front { display: none; }
+.flash-card.flipped .flash-back { display: block; }
+.julia-ask {
+  background: var(--bg-2);
+  border-radius: 28px;
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+.julia-name { font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+.question-list { padding-left: 20px; margin: 0; }
+.question-list li { margin-bottom: 8px; }
+
+/* Inline check feedback in place of alert */
+.block-warning{
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  background: #ffe9d8;
+  border: 1px solid #f4b88a;
+  color: #8a3c1c;
+  font-family: monospace; font-size: 12px; font-weight: 700;
+  display: none;
+}
+.block-warning.show{ display: block; }
+
+.lesson-foot{
+  display: flex; flex-wrap: wrap; gap: 14px;
+  margin-top: 36px;
+}
+.foot-link{
+  flex: 1 1 200px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: white;
+  text-align: center;
+  font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 14px;
+  color: var(--brand-2);
+  text-decoration: none;
+  transition: 0.15s;
+}
+.foot-link:hover{ background: var(--accent); color: white; border-color: var(--accent); }
+
+.foot-note { text-align: center; margin-top: 24px; font-family: monospace; font-size: 10px; color: var(--faint); letter-spacing: 0.06em; }
+@media (max-width: 820px) {
+  .practice-item { grid-template-columns: 28px 1fr; }
+  .topbar{ padding: 8px 14px; gap: 10px; }
+  .topbar-nav{ display: none; }
+  .wrap{ padding: 20px 16px 60px; }
+}
+
+/* Codex stylefix: Easter typography geometry + thematic pictorial badges */
+.brand-mark img,.lab-mark img,.topbar-badge-img{
+  width:26px;height:26px;display:block;object-fit:contain;border-radius:6px;
+}
+.brand-mark,.lab-mark{
+  overflow:hidden;flex:0 0 auto;
+}
+.lab-hero-visual{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent3,var(--accent)) 32%,#fff),color-mix(in srgb,var(--accent2,var(--accent)) 72%,#fff)) !important;
+}
+.lab-hero-visual img{
+  width:76px;height:76px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.16));
+}
+.topbar-brand.with-badge,.brand.with-badge{
+  display:inline-flex;align-items:center;gap:10px;
+}
+.topbar-brand.with-badge::before,.brand.with-badge::before{
+  content:"";width:34px;height:34px;display:inline-block;border-radius:8px;
+  background:var(--lesson-badge) center/26px 26px no-repeat,var(--accent2,var(--accent));
+  box-shadow:0 2px 8px rgba(0,0,0,.12);flex:0 0 auto;
+}
+.lesson-hero-title{
+  font-family:var(--display,'Nunito',ui-sans-serif,system-ui,sans-serif) !important;
+  font-size:clamp(2.05rem,5vw,4.25rem) !important;
+  line-height:.96 !important;letter-spacing:0 !important;margin:0 0 18px !important;
+}
+.lesson-hero-title em{font-style:normal;color:var(--accent2,var(--accent));}
+.lesson-hero-lead{max-width:760px;font-size:clamp(15px,1.4vw,17px)!important;line-height:1.7!important;color:var(--muted);}
+</style>
+
+<link rel="stylesheet" href="../assets/mobile-fix.css?v=1" data-tag="linguaboost-mobile-fix-loaded">
+<link rel="stylesheet" href="../assets/lab-unify-repair.css?v=2" data-lab-unify-repair>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><img src="../assets/badges/english-booster.svg" alt="" aria-hidden="true"></div>
+    <div class="brand-copy">
+      <span class="brand-name">Lingua Boost</span>
+      <span class="brand-tag">A2 → B1 · English Booster</span>
+    </div>
+  </div>
+  <nav class="topbar-nav">
+    <a class="top-link" href="../index.html#interactive-lessons">All Lessons</a>
+    <a class="top-link active" href="#block1">Start</a>
+    <a class="top-link" href="#block5">Practice</a>
+    <a class="top-link" href="#block10">Final</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero-banner" id="heroBanner">
+    <img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Baby/6bf443b3-5d26-4904-a20c-0d9177c5c175.png"
+         alt="English Booster A2 to B1 — tenses overview"
+         class="hero-banner-img"
+         onload="this.parentElement.classList.add('has-img')"
+         onerror="this.style.display='none'">
+    <div class="hero-banner-overlay">
+      <div class="hero-banner-content">
+        <div class="hero-eyebrow">Grammar &amp; Vocabulary · 10 Blocks</div>
+        <h1 class="hero-title">English Booster<br><em>A2 → B1</em></h1>
+        <p class="hero-lead">Present · Perfect · Past · Passive · Conditionals · Irregular verbs · Clothes · Hairdresser · Descriptions · Places</p>
+        <div class="hero-meta">
+          <span class="meta-pill">10 blocks</span>
+          <span class="meta-pill">5–8 tasks each</span>
+          <span class="meta-pill">Flash cards</span>
+        </div>
+        <div class="hero-actions"><a class="btn primary" href="#block1">Start Learning</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="step-tracker">
+    <span class="step-count">Booster Mission</span>
+    <div class="step-track"><div class="step-fill" id="progressFill"></div></div>
+    <span class="step-name" id="progressText">0 / 10 blocks</span>
+    <button id="resetAllBtn" class="btn-tool" style="margin-left:auto;">⟳ Reset</button>
+  </div>
+
+  <div id="blocksContainer"></div>
+
+  <nav class="lesson-foot">
+    <a class="foot-link" href="../index.html#interactive-lessons">← All lessons</a>
+    <a class="foot-link" href="./core-trainer-a2-b1.html">Core Trainer A2-B1 →</a>
+  </nav>
+
+  <div class="foot-note">© LinguaBoost Lab · English Booster · A2 → B1 · 10 interactive blocks</div>
+</main>
+
+<script>
+// 10 БЛОКОВ – каждый содержит 5–8 заданий + личные вопросы + флеш-карточки.
+// banner: путь к иллюстрации, рендерится перед карточкой блока (если задан).
+const BABY = "../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Baby";
+
+const blocksData = [
+  { // 1 Basic Tenses – 5 заданий
+    name: "1. Basic Tenses · Present Simple / Cont / Future",
+    tasks: [
+      { type: "choice", text: "Too many repetitive tasks ______ me feel tired today.", options: ["are making", "make", "is making"], correct: "are making" },
+      { type: "choice", text: "Right now, I ______ my schedule.", options: ["am checking", "check", "will check"], correct: "am checking" },
+      { type: "choice", text: "Next month our company ______ a corporate event.", options: ["will organize", "organizes", "is organizing"], correct: "will organize" },
+      { type: "gap", text: "This week I ______ on several projects. (use Present Continuous)", correct: "am working" },
+      { type: "gap", text: "A clear routine ______ me keep a clear mind. (help / third person)", correct: "helps" }
+    ],
+    personal: ["What usually helps you stay calm when work gets chaotic?", "Are you working on anything important this week?", "What will you change in your daily routine next month?"],
+    flash: [
+      { front: "What helps you stay calm at work?", back: "Present Simple · I check my schedule every morning." },
+      { front: "What are you doing right now?", back: "Present Continuous · Right now I am working." },
+      { front: "What will you do tomorrow?", back: "Future Simple · I will organise my tasks." }
+    ]
+  },
+  { // 2 Perfect Tenses – 6 заданий
+    name: "2. Perfect Tenses",
+    banner: `${BABY}/2cee24c4-2f0c-4bd0-a5d7-d7bcf12e76ea.png`,
+    tasks: [
+      { type: "choice", text: "I ______ my daily routine recently.", options: ["have changed", "has changed", "changed"], correct: "have changed" },
+      { type: "choice", text: "Our team ______ the quality this month.", options: ["has been improving", "have improved", "is improving"], correct: "has been improving" },
+      { type: "choice", text: "Before the meeting started, I ______ my schedule.", options: ["had checked", "have checked", "checked"], correct: "had checked" },
+      { type: "gap", text: "I ______ overwhelmed this week. (Present Perfect Continuous)", correct: "have been feeling" },
+      { type: "gap", text: "She ______ already ______ her homework. (Present Perfect, do)", correct: "has done" },
+      { type: "gap", text: "They ______ (live) in London since 2020.", correct: "have lived" }
+    ],
+    personal: ["What have you changed in your work routine recently?", "Have you been feeling overwhelmed this week?", "What skill have you improved this month?"],
+    flash: [
+      { front: "What have you changed recently?", back: "Present Perfect · I have changed my daily routine." },
+      { front: "How have you been feeling lately?", back: "Present Perfect Continuous · I have been feeling overwhelmed." },
+      { front: "What had you done before the meeting?", back: "Past Perfect · I had checked my schedule." }
+    ]
+  },
+  { // 3 Past Simple/Continuous – 6 заданий
+    name: "3. Past Simple / Past Continuous",
+    banner: `${BABY}/c51fc7dc-9102-4726-82a1-973dc0e5c5e4.png`,
+    tasks: [
+      { type: "choice", text: "While I was checking my schedule, my colleague ______ problems.", options: ["solved", "was solving", "solve"], correct: "solved" },
+      { type: "choice", text: "Yesterday I ______ tired after work.", options: ["felt", "was feeling", "feel"], correct: "felt" },
+      { type: "choice", text: "When the phone rang, we ______ a difficult problem.", options: ["were solving", "solved", "solve"], correct: "were solving" },
+      { type: "gap", text: "During the meeting, I ______ on current projects. (past continuous)", correct: "was working" },
+      { type: "gap", text: "She ______ (read) a book when I came in.", correct: "was reading" },
+      { type: "gap", text: "They ______ (not / see) the accident yesterday.", correct: "did not see" }
+    ],
+    personal: ["What were you doing when you received important news?", "Did you feel stressed last week? What helped?", "What mistake did you make at work and what did you learn?"],
+    flash: [
+      { front: "What did you do yesterday?", back: "Past Simple · I felt tired after work." },
+      { front: "What were you doing when interrupted?", back: "Past Continuous · I was checking my schedule." }
+    ]
+  },
+  { // 4 Passive Voice – 5 заданий
+    name: "4. Passive Voice",
+    tasks: [
+      { type: "choice", text: "Useful information ______ for clients every day.", options: ["is provided", "provides", "was provided"], correct: "is provided" },
+      { type: "choice", text: "New assistants ______ last month.", options: ["were hired", "are hired", "hired"], correct: "were hired" },
+      { type: "gap", text: "Stress management ______ in many companies now. (Present Passive)", correct: "is taught" },
+      { type: "gap", text: "The report ______ (finish) by 5 pm yesterday.", correct: "was finished" },
+      { type: "gap", text: "More attention ______ (should / give) to this issue.", correct: "should be given" }
+    ],
+    personal: ["How often is your opinion asked before important decisions?", "Were you given enough support when you joined?", "Should more support be given to employees who feel burnout?"],
+    flash: [
+      { front: "How is information shared?", back: "Present Passive · Information is provided every day." },
+      { front: "Were new people hired?", back: "Past Passive · New assistants were hired last month." },
+      { front: "What should be given to stressed people?", back: "Modal Passive · Support should be given." }
+    ]
+  },
+  { // 5 Conditionals – 5 заданий
+    name: "5. Conditionals (Zero, 1st, 2nd)",
+    tasks: [
+      { type: "choice", text: "If work becomes complicated, I ______ a break.", options: ["will take", "take", "would take"], correct: "will take" },
+      { type: "choice", text: "If I were you, I ______ the schedule earlier.", options: ["would check", "will check", "check"], correct: "would check" },
+      { type: "gap", text: "If work became less stressful, my mood ______ improve. (would/will)", correct: "would" },
+      { type: "gap", text: "If you heat ice, it ______ (melt).", correct: "melts" },
+      { type: "gap", text: "If she ______ (have) more time, she would travel more.", correct: "had" }
+    ],
+    personal: ["If you had one extra hour every day, how would you spend it?", "What will you do if your current project fails?", "If you could change one thing about your workplace, what would it be?"],
+    flash: [
+      { front: "If work is hard, I...", back: "1st Conditional · I will take a break." },
+      { front: "If I were you...", back: "2nd Conditional · I would check earlier." }
+    ]
+  },
+  { // 6 Irregular Verbs – 7 заданий
+    name: "6. Irregular Verbs (Past Simple)",
+    tasks: [
+      { type: "match-word", text: "go → ______", correct: "went" },
+      { type: "match-word", text: "see → ______", correct: "saw" },
+      { type: "match-word", text: "give → ______", correct: "gave" },
+      { type: "match-word", text: "write → ______", correct: "wrote" },
+      { type: "match-word", text: "run → ______", correct: "ran" },
+      { type: "match-word", text: "come → ______", correct: "came" },
+      { type: "match-word", text: "wear → ______", correct: "wore" }
+    ],
+    personal: ["Where did you go yesterday? (I went to...)", "What did you see on your way?", "What did you wear and why?"],
+    flash: [
+      { front: "go → ?", back: "went" },
+      { front: "see → ?", back: "saw" },
+      { front: "give → ?", back: "gave" }
+    ]
+  },
+  { // 7 Clothes – 6 заданий
+    name: "7. Clothes",
+    banner: `${BABY}/c0d180e6-d836-431e-9cb5-88224b7ffba3.png`,
+    tasks: [
+      { type: "match-word", text: "T-shirt → picture description", correct: "T-shirt" },
+      { type: "match-word", text: "trousers → picture description", correct: "trousers" },
+      { type: "match-word", text: "sneakers → picture description", correct: "sneakers" },
+      { type: "gap", text: "She is wearing a red ______.", correct: "dress" },
+      { type: "gap", text: "In summer I wear ______ and a T-shirt.", correct: "shorts" },
+      { type: "gap", text: "He put on a warm ______ because it was cold.", correct: "jacket" }
+    ],
+    personal: ["What are you wearing now?", "What do you wear when it is cold?", "Do you like shorts or trousers? Why?"],
+    flash: [
+      { front: "What do you wear on your feet?", back: "sneakers / shoes" },
+      { front: "Formal trousers are called...", back: "trousers" }
+    ]
+  },
+  { // 8 Hairdresser – 6 заданий
+    name: "8. Hairdresser",
+    tasks: [
+      { type: "gap", text: "Julia goes to the ______ to cut her hair.", correct: "hairdresser" },
+      { type: "gap", text: "The tool used to cut hair: ______.", correct: "scissors" },
+      { type: "gap", text: "She looks in the ______ after the haircut.", correct: "mirror" },
+      { type: "choice", text: "A ______ is used to dry hair.", options: ["comb", "brush", "hairdryer"], correct: "hairdryer" },
+      { type: "gap", text: "He brushed his hair with a ______.", correct: "brush" },
+      { type: "gap", text: "After washing, the stylist used a ______ to shape the hair.", correct: "comb" }
+    ],
+    personal: ["Do you like going to the hairdresser? Why?", "What tools does a hairdresser use?", "How do you feel after a haircut?"],
+    flash: [
+      { front: "A tool for cutting hair", back: "scissors" },
+      { front: "You use this to see yourself", back: "mirror" }
+    ]
+  },
+  { // 9 Descriptions & Feelings – 7 заданий
+    name: "9. Descriptions & Feelings",
+    tasks: [
+      { type: "choice", text: "The room is very ______ – no noise.", options: ["quiet", "noisy", "active"], correct: "quiet" },
+      { type: "choice", text: "She felt ______ after winning the prize.", options: ["upset", "proud", "ill"], correct: "proud" },
+      { type: "gap", text: "The tiny man is very ______ (opposite of big).", correct: "tiny" },
+      { type: "gap", text: "Don't worry, the dog is ______, not angry.", correct: "friendly" },
+      { type: "gap", text: "He was ______ because he lost his keys.", correct: "upset" },
+      { type: "gap", text: "The children are very ______ and run around all day.", correct: "active" },
+      { type: "gap", text: "The story was so ______ that I couldn't stop reading.", correct: "exciting" }
+    ],
+    personal: ["Is your room clean or messy?", "When do you feel proud?", "Are you friendly to new people?"],
+    flash: [
+      { front: "not noisy", back: "quiet" },
+      { front: "very small", back: "tiny" },
+      { front: "opposite of sad", back: "happy" }
+    ]
+  },
+  { // 10 Places & Useful Phrases – 8 заданий
+    name: "10. Places & Useful Phrases",
+    banner: `${BABY}/ec525401-4075-4b0e-8a60-0ddae041e815.png`,
+    tasks: [
+      { type: "gap", text: "They walk past the ______ station.", correct: "railway" },
+      { type: "gap", text: "Don't ______ – everything will be fine.", correct: "worry" },
+      { type: "choice", text: "When a child is restless, you say: 'Sit ______'", options: ["still", "fast", "loud"], correct: "still" },
+      { type: "match-word", text: "newspapers → what is it?", correct: "newspapers" },
+      { type: "gap", text: "The street was full of green ______.", correct: "bushes" },
+      { type: "gap", text: "Monday is a public ______.", correct: "holiday" },
+      { type: "gap", text: "Please ______ me a question.", correct: "ask" },
+      { type: "gap", text: "My favorite cartoon ______ is Mickey Mouse.", correct: "character" }
+    ],
+    personal: ["What places do you see near your home?", "When do people say «Don't worry»?", "Who is your favourite cartoon character?"],
+    flash: [
+      { front: "Where trains stop", back: "railway station" },
+      { front: "Phrase meaning relax", back: "Don't worry" }
+    ]
+  }
+];
+
+let completedBlocks = new Array(10).fill(false);
+let blockScores = new Array(10).fill(0);
+
+function loadProgress() {
+  try {
+    const saved = localStorage.getItem("englishBoosterA2B1");
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (Array.isArray(data.completed)) completedBlocks = data.completed;
+      if (Array.isArray(data.scores))    blockScores    = data.scores;
+    }
+  } catch(_) {}
+}
+function saveProgress() {
+  try { localStorage.setItem("englishBoosterA2B1", JSON.stringify({ completed: completedBlocks, scores: blockScores })); } catch(_) {}
+}
+function updateProgress() {
+  const done = completedBlocks.filter(v => v === true).length;
+  const pf = document.getElementById('progressFill');
+  const pt = document.getElementById('progressText');
+  if (pf) pf.style.width = `${(done/10)*100}%`;
+  if (pt) pt.innerHTML = `${done} / 10 blocks`;
+}
+function completeBlock(idx) {
+  if (!completedBlocks[idx]) {
+    completedBlocks[idx] = true;
+    saveProgress();
+    updateProgress();
+    renderBlocks();
+  }
+}
+
+function renderBlocks() {
+  const container = document.getElementById('blocksContainer');
+  if (!container) return;
+  container.innerHTML = '';
+  blocksData.forEach((block, idx) => {
+    // Poster (if banner present)
+    if (block.banner) {
+      const poster = document.createElement('div');
+      poster.className = 'lesson-illustration';
+      poster.innerHTML = `<img src="${block.banner}" alt="${block.name}" loading="lazy" onerror="this.closest('.lesson-illustration').remove()">`;
+      container.appendChild(poster);
+    }
+    // Block card
+    const roundDiv = document.createElement('div');
+    roundDiv.className = 'round-card';
+    roundDiv.id = `block${idx+1}`;
+    roundDiv.innerHTML = `
+      <div class="round-header">
+        <span class="round-title">${block.name}</span>
+        <span class="round-badge">${completedBlocks[idx] ? '✓ Complete' : `${blockScores[idx] || 0}/${block.tasks.length} tasks`}</span>
+        <span class="round-score">${completedBlocks[idx] ? '★' : '○'}</span>
+      </div>
+      <div class="round-body">
+        <div class="practice-list" id="tasks-${idx}"></div>
+        ${!completedBlocks[idx] ? `<button class="btn ghost check-block" data-block="${idx}" style="margin-top:20px;">✓ Check block</button>` : '<span style="color:var(--ok);">✅ Block completed</span>'}
+        <div class="block-warning" id="warn-${idx}"></div>
+      </div>
+    `;
+    container.appendChild(roundDiv);
+    renderTasks(idx);
+  });
+  attachEvents();
+}
+
+function renderTasks(blockIdx) {
+  const block = blocksData[blockIdx];
+  const container = document.getElementById(`tasks-${blockIdx}`);
+  if (!container) return;
+  container.innerHTML = '';
+  block.tasks.forEach((task, tIdx) => {
+    const item = document.createElement('div');
+    item.className = 'practice-item';
+    let inputHtml = '';
+    if (task.type === 'choice') {
+      inputHtml = `<div class="choice-row">${task.options.map((opt) => `<button class="choice" data-correct="${opt === task.correct ? 'true' : 'false'}" data-task="${blockIdx}-${tIdx}">${opt}</button>`).join('')}</div>`;
+    } else if (task.type === 'gap' || task.type === 'match-word') {
+      inputHtml = `<input type="text" class="blank" data-gap data-correct="${task.correct}" data-task="${blockIdx}-${tIdx}" placeholder="type answer">`;
+    }
+    item.innerHTML = `<span class="practice-num">${tIdx+1}</span><span class="practice-q">${task.text}</span><div style="display:flex; flex-direction:column; gap:8px;">${inputHtml}<button class="practice-hint">💡 Hint</button></div>`;
+    container.appendChild(item);
+  });
+  // personal questions
+  const personalDiv = document.createElement('div');
+  personalDiv.className = 'julia-ask';
+  personalDiv.innerHTML = `<div class="julia-name">🌸 Julia asks you:</div><ul class="question-list">${block.personal.map(q => `<li>💬 ${q}</li>`).join('')}</ul>`;
+  container.appendChild(personalDiv);
+  // flash cards
+  const flashDiv = document.createElement('div');
+  flashDiv.innerHTML = `<div style="margin-top:20px; font-weight:700;">🃏 Flash cards (click to flip)</div><div class="flash-grid">${block.flash.map(f => `<div class="flash-card"><div class="flash-front">${f.front}</div><div class="flash-back">${f.back}</div></div>`).join('')}</div>`;
+  container.appendChild(flashDiv);
+  flashDiv.querySelectorAll('.flash-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+  });
+}
+
+function attachEvents() {
+  document.querySelectorAll('.choice').forEach(btn => {
+    btn.removeEventListener('click', choiceHandler);
+    btn.addEventListener('click', choiceHandler);
+  });
+  document.querySelectorAll('.blank[data-gap]').forEach(inp => {
+    inp.removeEventListener('change', inputHandler);
+    inp.addEventListener('change', inputHandler);
+  });
+  document.querySelectorAll('.check-block').forEach(btn => {
+    btn.removeEventListener('click', checkBlockHandler);
+    btn.addEventListener('click', checkBlockHandler);
+  });
+  document.querySelectorAll('.practice-hint').forEach(h => {
+    h.removeEventListener('click', hintHandler);
+    h.addEventListener('click', hintHandler);
+  });
+}
+
+function choiceHandler(e) {
+  const btn = e.currentTarget;
+  const isCorrect = btn.dataset.correct === 'true';
+  const taskId = btn.dataset.task;
+  if (!taskId) return;
+  const [blockIdx, tIdx] = taskId.split('-').map(Number);
+  if (completedBlocks[blockIdx]) return;
+  const itemDiv = btn.closest('.practice-item');
+  if (itemDiv && itemDiv.dataset.done) return;
+  if (isCorrect) {
+    itemDiv.dataset.done = 'true';
+    blockScores[blockIdx] = (blockScores[blockIdx] || 0) + 1;
+    btn.classList.add('is-picked');
+    saveProgress();
+    renderBlocks();
+  } else {
+    btn.style.background = '#ffdddd';
+    setTimeout(() => btn.style.background = '', 500);
+  }
+}
+
+function inputHandler(e) {
+  const inp = e.currentTarget;
+  const taskId = inp.dataset.task;
+  if (!taskId) return;
+  const [blockIdx, tIdx] = taskId.split('-').map(Number);
+  if (completedBlocks[blockIdx]) return;
+  const correct = inp.dataset.correct;
+  const userVal = inp.value.trim().toLowerCase();
+  const isCorrect = userVal === correct.toLowerCase();
+  const itemDiv = inp.closest('.practice-item');
+  if (itemDiv && itemDiv.dataset.done) return;
+  if (isCorrect && !itemDiv.dataset.done) {
+    itemDiv.dataset.done = 'true';
+    blockScores[blockIdx] = (blockScores[blockIdx] || 0) + 1;
+    inp.style.borderColor = 'var(--ok)';
+    saveProgress();
+    renderBlocks();
+  } else if (!isCorrect) {
+    inp.style.borderColor = '#ffaaaa';
+    setTimeout(() => inp.style.borderColor = '', 800);
+  }
+}
+
+function checkBlockHandler(e) {
+  const blockIdx = parseInt(e.currentTarget.dataset.block, 10);
+  const block = blocksData[blockIdx];
+  if (completedBlocks[blockIdx]) return;
+  if ((blockScores[blockIdx] || 0) >= block.tasks.length) {
+    completeBlock(blockIdx);
+  } else {
+    const warn = document.getElementById(`warn-${blockIdx}`);
+    if (warn) {
+      warn.textContent = `Complete all ${block.tasks.length} tasks first — ${blockScores[blockIdx] || 0} / ${block.tasks.length} done.`;
+      warn.classList.add('show');
+      setTimeout(() => warn.classList.remove('show'), 2400);
+    }
+  }
+}
+
+function hintHandler(e) {
+  const hintBtn = e.currentTarget;
+  const original = '💡 Hint';
+  hintBtn.textContent = '💡 Check spelling / grammar carefully';
+  setTimeout(() => { if (hintBtn) hintBtn.textContent = original; }, 1500);
+}
+
+document.getElementById('resetAllBtn')?.addEventListener('click', () => {
+  completedBlocks.fill(false);
+  blockScores.fill(0);
+  saveProgress();
+  renderBlocks();
+  updateProgress();
+});
+
+loadProgress();
+renderBlocks();
+updateProgress();
+</script>
+<script defer src="../assets/lab-unify-repair.js?v=2" data-lab-unify-repair></script>
+</body>
+</html>

@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Geo Quest: Articles on the Map | LinguaBoost Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+  --bg: #f4f0e8;
+  --surface: #fffdf8;
+  --surface-soft: #f8f2e6;
+  --ink: #172332;
+  --muted: #64707d;
+  --line: rgba(23,35,50,.14);
+  --accent: #2c7a4d;
+  --accent2: #1e4a76;
+  --accent3: #d7942d;
+  --ok: #2c7a4d;
+  --miss: #b6463b;
+  --shadow: 0 22px 60px rgba(30,74,118,.12);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.65;
+  background:
+    radial-gradient(circle at 10% 8%, color-mix(in srgb, var(--accent3) 20%, transparent), transparent 30%),
+    radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--accent2) 13%, transparent), transparent 34%),
+    linear-gradient(180deg, #f9f5ec 0%, var(--bg) 52%, #eef2ec 100%);
+}
+a { color: inherit; }
+button, input, select, textarea { font: inherit; }
+.lab-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px clamp(18px, 3vw, 32px);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+.lab-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.lab-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--accent2);
+  box-shadow: 0 8px 18px rgba(30,74,118,.18);
+}
+.lab-mark img { width: 27px; height: 27px; object-fit: contain; }
+.lab-brand-copy { display: grid; gap: 1px; }
+.lab-brand-name {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+.lab-brand-tag, .lab-back, .lab-pill-nav, .lab-tool-btn, .lab-badge, .section-badge, .progress-label, .section-kicker, .btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.lab-brand-tag { color: var(--muted); }
+.lab-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lab-back, .lab-pill-nav, .lab-tool-btn {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  padding: 0 12px;
+  text-decoration: none;
+  color: var(--muted);
+  background: rgba(255,255,255,.55);
+}
+.lab-pill-accent { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+.lab-tool-btn { cursor: pointer; }
+.lab-hero {
+  width: min(100% - 48px, 1240px);
+  margin: 24px auto 18px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: clamp(30px, 5vw, 58px);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,253,248,.84)),
+    radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--accent3) 23%, transparent), transparent 33%);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+.lab-hero::after {
+  content: "";
+  position: absolute;
+  right: clamp(22px, 5vw, 72px);
+  bottom: -48px;
+  width: clamp(220px, 28vw, 360px);
+  height: clamp(220px, 28vw, 360px);
+  border: 1px solid color-mix(in srgb, var(--accent2) 12%, transparent);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(30,74,118,.12) 49% 51%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(44,122,77,.14) 49% 51%, transparent 52%);
+  opacity: .72;
+}
+.lab-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
+  gap: clamp(26px, 5vw, 58px);
+  align-items: center;
+}
+.lab-eyebrow, .section-kicker {
+  color: var(--accent2);
+  margin-bottom: 12px;
+}
+.lab-hero-title {
+  margin: 0 0 18px;
+  font-family: var(--display);
+  font-size: clamp(2.05rem, 5vw, 4.25rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: .96;
+  color: var(--accent2);
+}
+.lab-hero-title em { font-style: normal; color: var(--accent); }
+.lab-hero-lead {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+}
+.lab-hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.lab-badge, .section-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.66);
+  color: var(--muted);
+}
+.map-panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255,255,255,.62);
+  box-shadow: 0 18px 36px rgba(30,74,118,.08);
+}
+.map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.map-tile {
+  min-height: 84px;
+  border-radius: 14px;
+  padding: 12px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+}
+.map-tile strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.1;
+  color: var(--accent2);
+}
+.map-tile span { color: var(--muted); font-size: 13px; }
+.progress {
+  width: min(100% - 48px, 1040px);
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+}
+.progress-step {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 8px 6px;
+  text-align: center;
+  background: rgba(255,255,255,.62);
+  color: var(--muted);
+}
+.progress-step.done {
+  background: color-mix(in srgb, var(--accent) 14%, #fff);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.progress-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent2) 10%, #fff);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+.progress-label { display: block; font-size: 9px; }
+.section {
+  width: min(100% - 48px, 960px);
+  margin: 18px auto;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 18px 46px rgba(30,74,118,.10);
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 18px clamp(18px, 3vw, 26px);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 82%, var(--accent3) 18%);
+}
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+.section h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: var(--accent2);
+}
+.section-body { padding: clamp(18px, 3vw, 28px); }
+.section-intro {
+  margin: 0 0 16px;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.grid-2, .grid-3 {
+  display: grid;
+  gap: 14px;
+}
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.work-card, .rule-card, .task-card, .speak-card, .error-row, .output-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: var(--surface-soft);
+}
+.work-card h3, .rule-card h3, .task-card h3, .speak-card h3, .output-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--accent2);
+}
+.work-card p, .rule-card p, .task-card p, .speak-card p, .output-card p { margin: 0; color: var(--muted); }
+code, .mono-chip {
+  font-family: var(--mono);
+  font-size: .86em;
+  color: var(--accent2);
+}
+.mono-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 4px 5px 0 0;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.72);
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+.reference-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+.reference-table th, .reference-table td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.reference-table tr:last-child td { border-bottom: 0; }
+.reference-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: color-mix(in srgb, var(--accent2) 8%, #fff);
+}
+.choice-row, .action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.choice-btn, .btn {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 0 14px;
+  cursor: pointer;
+  color: var(--accent2);
+  background: #fff;
+}
+.choice-btn:hover, .btn:hover { border-color: var(--accent2); }
+.choice-btn.selected { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+.choice-btn.correct { background: color-mix(in srgb, var(--ok) 18%, #fff); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
+.choice-btn.wrong { background: color-mix(in srgb, var(--miss) 14%, #fff); color: var(--miss); border-color: color-mix(in srgb, var(--miss) 34%, transparent); }
+.btn-primary { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+.btn-secondary { background: rgba(255,255,255,.74); color: var(--accent2); }
+.score-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 800;
+}
+.input-grid { display: grid; gap: 12px; }
+.input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-soft);
+}
+.rather-list {
+  display: grid;
+  gap: 12px;
+}
+.rather-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  background: var(--surface-soft);
+}
+.rather-question {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--accent2);
+}
+.rather-controls {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 120px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+.rather-controls label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rather-answer {
+  margin-top: 10px;
+  min-height: 56px;
+}
+.urban-exercises {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.urban-exercise {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: var(--surface-soft);
+}
+.urban-exercise h3 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--accent2);
+}
+.urban-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+.urban-type {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+}
+.urban-type input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--ink);
+}
+.urban-choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.urban-choice-row .choice-btn {
+  min-width: 74px;
+}
+select, textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--ink);
+}
+textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+.model-answer {
+  display: none;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent) 11%, #fff);
+  color: #234332;
+}
+.model-answer.show { display: block; }
+.error-row { margin-bottom: 12px; }
+.error-row strong { color: var(--accent2); }
+.all-done {
+  display: none;
+  width: min(100% - 48px, 960px);
+  margin: 20px auto;
+  border-radius: 20px;
+  padding: 28px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  color: #fff;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.all-done.show { display: block; }
+.all-done h2 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+.page-footer {
+  max-width: 960px;
+  margin: 20px auto 32px;
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+@media (max-width: 820px) {
+  .lab-hero, .progress, .section, .all-done { width: min(100% - 28px, 960px); }
+  .lab-hero-inner, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .progress { grid-template-columns: repeat(5, 1fr); }
+  .map-panel { display: none; }
+  .section-head { align-items: flex-start; }
+  .input-row { grid-template-columns: 1fr; }
+  .rather-controls { grid-template-columns: 1fr; }
+  .urban-exercises { grid-template-columns: 1fr; }
+  .urban-line { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .progress { grid-template-columns: repeat(2, 1fr); }
+  .lab-topbar { align-items: flex-start; flex-wrap: wrap; }
+  .lab-nav { width: 100%; margin-left: 0; }
+}
+</style>
+<link rel="stylesheet" href="../assets/mobile-fix.css?v=1" data-tag="linguaboost-mobile-fix-loaded">
+<link rel="stylesheet" href="../assets/lab-unify-repair.css?v=2" data-lab-unify-repair>
+</head>
+<body>
+<header class="lab-topbar">
+  <a class="lab-brand" href="../index.html">
+    <span class="lab-mark"><img src="../assets/badges/geo-articles.svg" alt="" aria-hidden="true"></span>
+    <span class="lab-brand-copy">
+      <span class="lab-brand-name">LinguaBoost Lab</span>
+      <span class="lab-brand-tag">Geo Quest</span>
+    </span>
+  </a>
+  <nav class="lab-nav" aria-label="Lesson navigation">
+    <a class="lab-back" href="../index.html">All Lessons</a>
+    <span class="lab-pill-nav lab-pill-accent">B2+</span>
+    <span class="lab-pill-nav">Adult workshop</span>
+    <button class="lab-tool-btn" type="button" onclick="toggleModels()">Models</button>
+  </nav>
+</header>
+
+<section class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">B2+ grammar workshop</div>
+      <h1 class="lab-hero-title">Geo Quest: <em>Articles on the Map</em></h1>
+      <p class="lab-hero-lead">A focused workshop on <strong>the</strong>, zero article, and difficult geographical names: countries, rivers, seas, islands, mountains, peninsulas, regions and official names.</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge">12 blocks</span>
+        <span class="lab-badge">reference tables</span>
+        <span class="lab-badge">exam tasks</span>
+        <span class="lab-badge">speaking output</span>
+      </div>
+    </div>
+    <div class="map-panel" aria-hidden="true">
+      <div class="map-grid">
+        <div class="map-tile"><strong>the</strong><span>rivers, seas, ranges, groups</span></div>
+        <div class="map-tile"><strong>zero</strong><span>most countries, cities, single lakes</span></div>
+        <div class="map-tile"><strong>of</strong><span>the Gulf of Mexico</span></div>
+        <div class="map-tile"><strong>exam</strong><span>spot the category first</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="progress" id="progress">
+  <div class="progress-step" id="step1"><span class="progress-num">1</span><span class="progress-label">map</span></div>
+  <div class="progress-step" id="step2"><span class="progress-num">2</span><span class="progress-label">zero</span></div>
+  <div class="progress-step" id="step3"><span class="progress-num">3</span><span class="progress-label">the</span></div>
+  <div class="progress-step" id="step4"><span class="progress-num">4</span><span class="progress-label">of</span></div>
+  <div class="progress-step" id="step5"><span class="progress-num">5</span><span class="progress-label">traps</span></div>
+  <div class="progress-step" id="step6"><span class="progress-num">6</span><span class="progress-label">sort</span></div>
+  <div class="progress-step" id="step7"><span class="progress-num">7</span><span class="progress-label">exam</span></div>
+  <div class="progress-step" id="step8"><span class="progress-num">8</span><span class="progress-label">errors</span></div>
+  <div class="progress-step" id="step9"><span class="progress-num">9</span><span class="progress-label">route</span></div>
+  <div class="progress-step" id="step10"><span class="progress-num">10</span><span class="progress-label">urban</span></div>
+  <div class="progress-step" id="step11"><span class="progress-num">11</span><span class="progress-label">rather</span></div>
+  <div class="progress-step" id="step12"><span class="progress-num">12</span><span class="progress-label">output</span></div>
+</div>
+
+<main>
+  <section class="section" id="block1">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">1</div><div><div class="section-kicker">orientation</div><h2>Article Map: Category First</h2></div></div><button class="btn btn-secondary" type="button" onclick="completeTask(1)">mark studied</button></header>
+    <div class="section-body">
+      <p class="section-intro">Do not start by guessing. First identify the geographical category, then apply the article rule.</p>
+      <div class="grid-3">
+        <article class="work-card"><h3>Usually zero article</h3><p>Most countries, cities, towns, streets, single lakes, single mountains and individual islands.</p><p><span class="mono-chip">France</span><span class="mono-chip">Lake Baikal</span><span class="mono-chip">Mount Fuji</span></p></article>
+        <article class="work-card"><h3>Usually the</h3><p>Rivers, seas, oceans, deserts, mountain ranges, island groups, plural countries and official state names.</p><p><span class="mono-chip">the Nile</span><span class="mono-chip">the Alps</span><span class="mono-chip">the Netherlands</span></p></article>
+        <article class="work-card"><h3>Meaning decides</h3><p>Some names change with grammar: <code>Crimea</code>, but <code>the Crimean Peninsula</code>; <code>Oxford Street</code>, but <code>the High Street</code>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="block2">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">2</div><div><div class="section-kicker">reference</div><h2>Zero Article: Clean Names</h2></div></div><button class="btn btn-secondary" type="button" onclick="completeTask(2)">mark studied</button></header>
+    <div class="section-body">
+      <p class="section-intro">Zero article is often the default when the name works like a proper noun without a plural form or a common geographical noun.</p>
+      <table class="reference-table">
+        <thead><tr><th>Category</th><th>Pattern</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Countries and cities</td><td>Most singular country and city names</td><td>Ukraine, Canada, Japan, Moscow, Paris</td></tr>
+          <tr><td>Single lakes</td><td><code>Lake + name</code></td><td>Lake Baikal, Lake Geneva, Lake Ontario</td></tr>
+          <tr><td>Single mountains</td><td><code>Mount + name</code> or a single peak name</td><td>Mount Everest, Mount Fuji, Kilimanjaro</td></tr>
+          <tr><td>Individual islands</td><td>One island, not a group</td><td>Greenland, Sicily, Madagascar, Cyprus</td></tr>
+          <tr><td>Most streets and parks</td><td>Street/park names as proper nouns</td><td>Oxford Street, Broadway, Central Park, Hyde Park</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="block3">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">3</div><div><div class="section-kicker">reference</div><h2>The Article: Named Systems</h2></div></div><button class="btn btn-secondary" type="button" onclick="completeTask(3)">mark studied</button></header>
+    <div class="section-body">
+      <div class="grid-2">
+        <article class="rule-card"><h3>Water systems</h3><p>Use <code>the</code> with rivers, seas, oceans, canals and straits: <strong>the Thames</strong>, <strong>the Black Sea</strong>, <strong>the Atlantic</strong>, <strong>the Suez Canal</strong>, <strong>the Strait of Gibraltar</strong>.</p></article>
+        <article class="rule-card"><h3>Groups and ranges</h3><p>Use <code>the</code> with mountain ranges and island groups: <strong>the Alps</strong>, <strong>the Himalayas</strong>, <strong>the Maldives</strong>, <strong>the Bahamas</strong>.</p></article>
+        <article class="rule-card"><h3>Plural or political names</h3><p>Use <code>the</code> with plural country names and formal names: <strong>the Netherlands</strong>, <strong>the Philippines</strong>, <strong>the United Kingdom</strong>, <strong>the Czech Republic</strong>.</p></article>
+        <article class="rule-card"><h3>Deserts and regions</h3><p>Use <code>the</code> with many deserts and regions: <strong>the Sahara</strong>, <strong>the Gobi</strong>, <strong>the Middle East</strong>, <strong>the Arctic</strong>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="block4">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">4</div><div><div class="section-kicker">decision rule</div><h2>The OF Rule</h2></div></div><button class="btn btn-secondary" type="button" onclick="completeTask(4)">mark studied</button></header>
+    <div class="section-body">
+      <p class="section-intro">If a geographical name contains <code>of</code>, it very often behaves like a descriptive phrase and takes <strong>the</strong>.</p>
+      <div class="grid-3">
+        <article class="work-card"><h3>Water</h3><p><span class="mono-chip">the Gulf of Mexico</span><span class="mono-chip">the Bay of Bengal</span><span class="mono-chip">the Strait of Gibraltar</span></p></article>
+        <article class="work-card"><h3>Landmarks</h3><p><span class="mono-chip">the Cape of Good Hope</span><span class="mono-chip">the Isle of Man</span><span class="mono-chip">the Tower of London</span></p></article>
+        <article class="work-card"><h3>States and unions</h3><p><span class="mono-chip">the United States of America</span><span class="mono-chip">the Republic of Ireland</span></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="block5">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">5</div><div><div class="section-kicker">clinic</div><h2>Common Traps Clinic</h2></div></div><button class="btn btn-secondary" type="button" onclick="completeTask(5)">mark studied</button></header>
+    <div class="section-body">
+      <div class="grid-2">
+        <article class="work-card"><h3>Ukraine</h3><p>Modern standard English uses <strong>Ukraine</strong>, not <s>the Ukraine</s>. Historical usage exists, but learners should use the country name without the article.</p></article>
+        <article class="work-card"><h3>Crimea</h3><p><strong>Crimea</strong> as a proper name usually has no article. Add <code>the</code> when the phrase is descriptive: <strong>the Crimean Peninsula</strong>.</p></article>
+        <article class="work-card"><h3>Lake vs the lake</h3><p><strong>Lake Baikal</strong> is a name. <strong>the lake</strong> is a common noun phrase after the name is known.</p></article>
+        <article class="work-card"><h3>Mountains vs ranges</h3><p><strong>Mount Everest</strong> is one peak. <strong>the Himalayas</strong> are a range, so they take <code>the</code>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="block6">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">6</div><div><div class="section-kicker">sorting</div><h2>Category Sort: Choose the Rule</h2></div></div><span class="section-badge">interactive</span></header>
+    <div class="section-body">
+      <div class="input-grid" data-select-quiz="category">
+        <div class="input-row"><span><strong>the Nile</strong> needs <code>the</code> because it is a...</span><select data-answer="river"><option value="">Choose</option><option value="river">river</option><option value="country">country</option><option value="city">city</option></select></div>
+        <div class="input-row"><span><strong>Lake Geneva</strong> usually has zero article because it is...</span><select data-answer="lake-name"><option value="">Choose</option><option value="range">a mountain range</option><option value="lake-name">Lake + name</option><option value="plural">a plural name</option></select></div>
+        <div class="input-row"><span><strong>the Philippines</strong> takes <code>the</code> because it is...</span><select data-answer="island-group"><option value="">Choose</option><option value="single-island">one island</option><option value="island-group">an island group / plural name</option><option value="street">a street</option></select></div>
+        <div class="input-row"><span><strong>Mount Fuji</strong> usually has zero article because it is...</span><select data-answer="single-peak"><option value="">Choose</option><option value="single-peak">a single peak</option><option value="range">a mountain range</option><option value="sea">a sea</option></select></div>
+        <div class="input-row"><span><strong>the Czech Republic</strong> takes <code>the</code> because it is...</span><select data-answer="formal-state"><option value="">Choose</option><option value="city">a city</option><option value="formal-state">a formal political name</option><option value="lake-name">Lake + name</option></select></div>
+      </div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="checkSelectQuiz('category', 6)">check block 6</button><button class="btn btn-secondary" type="button" onclick="resetSelectQuiz('category')">reset</button></div>
+      <div class="score-note" id="score6"></div>
+    </div>
+  </section>
+
+  <section class="section" id="block7">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">7</div><div><div class="section-kicker">exam focus</div><h2>Exam-Style Article Decisions</h2></div></div><span class="section-badge">8 items</span></header>
+    <div class="section-body">
+      <div class="input-grid" data-select-quiz="exam">
+        <div class="input-row"><span>We crossed ___ Atlantic in early autumn.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>She has worked in ___ Canada and ___ United States.</span><select data-answer="zero-the"><option value="">Choose</option><option value="zero-the">zero / the</option><option value="the-zero">the / zero</option><option value="zero-zero">zero / zero</option></select></div>
+        <div class="input-row"><span>They spent a week near ___ Lake Como.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>The expedition reached ___ Andes.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>My cousin lives on ___ Sicily.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>The documentary was about ___ Gulf of Finland.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>Traffic on ___ Oxford Street was slow.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        <div class="input-row"><span>The storm moved across ___ Sahara.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+      </div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="checkSelectQuiz('exam', 7)">check block 7</button><button class="btn btn-secondary" type="button" onclick="resetSelectQuiz('exam')">reset</button></div>
+      <div class="score-note" id="score7"></div>
+    </div>
+  </section>
+
+  <section class="section" id="block8">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">8</div><div><div class="section-kicker">editing</div><h2>Error Correction Board</h2></div></div><span class="section-badge">diagnostic</span></header>
+    <div class="section-body">
+      <p class="section-intro">Find the article error, explain the category, then reveal a model correction.</p>
+      <div class="error-row"><strong>1.</strong> We travelled across the Lake Baikal in February.<div class="model-answer">Correct: We travelled across Lake Baikal in February. <code>Lake + name</code> normally has zero article.</div></div>
+      <div class="error-row"><strong>2.</strong> She wants to visit Alps next winter.<div class="model-answer">Correct: She wants to visit the Alps next winter. Mountain ranges take <code>the</code>.</div></div>
+      <div class="error-row"><strong>3.</strong> The Ukraine is famous for its cultural heritage.<div class="model-answer">Correct: Ukraine is famous for its cultural heritage. Modern country name: zero article.</div></div>
+      <div class="error-row"><strong>4.</strong> We crossed Strait of Gibraltar at night.<div class="model-answer">Correct: We crossed the Strait of Gibraltar at night. Straits and names with <code>of</code> take <code>the</code>.</div></div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="revealModels(8)">reveal corrections</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="block9">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">9</div><div><div class="section-kicker">transfer</div><h2>Route Builder: Geography in Context</h2></div></div><span class="section-badge">production prep</span></header>
+    <div class="section-body">
+      <p class="section-intro">Choose the best article for each place, then use the route as a spoken mini-story.</p>
+      <div class="grid-3">
+        <article class="task-card"><h3>Route A</h3><p><span class="mono-chip">the Black Sea</span><span class="mono-chip">Crimea</span><span class="mono-chip">the Crimean Peninsula</span></p></article>
+        <article class="task-card"><h3>Route B</h3><p><span class="mono-chip">Paris</span><span class="mono-chip">the Seine</span><span class="mono-chip">the English Channel</span></p></article>
+        <article class="task-card"><h3>Route C</h3><p><span class="mono-chip">Japan</span><span class="mono-chip">Mount Fuji</span><span class="mono-chip">the Pacific</span></p></article>
+      </div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="completeTask(9)">mark route planned</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="block10">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">10</div><div><div class="section-kicker">urban names</div><h2>Streets, Parks, Cinemas &amp; Bridges</h2></div></div><span class="section-badge">2 tables + 2 tasks</span></header>
+    <div class="section-body">
+      <p class="section-intro">City names are not random: streets and parks are often zero article, while theatres, cinemas, hotels and many named bridges often use <code>the</code>. The safest strategy is to notice the type of place and learn the fixed exceptions.</p>
+      <table class="reference-table">
+        <thead><tr><th>Usually zero article</th><th>Pattern</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Streets, roads, avenues</td><td>Proper name + street word</td><td>Oxford Street, Baker Street, Fifth Avenue, Wall Street, Broadway</td></tr>
+          <tr><td>Parks and squares</td><td>Proper name + park/square/garden as part of the name</td><td>Central Park, Hyde Park, Trafalgar Square, Times Square, Covent Garden</td></tr>
+          <tr><td>Some iconic bridges</td><td>Older/fixed names without article</td><td>Tower Bridge, London Bridge, Brooklyn Bridge in many route-style contexts</td></tr>
+          <tr><td>Stations and airports</td><td>Name + station/airport</td><td>Waterloo Station, Victoria Station, Heathrow Airport, Gatwick Airport</td></tr>
+        </tbody>
+      </table>
+      <table class="reference-table" style="margin-top:14px">
+        <thead><tr><th>Often with the</th><th>Pattern</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Cinemas, theatres, hotels</td><td>Named venues and well-known buildings</td><td>the Odeon, the Apollo, the Globe, the Ritz, the Hilton</td></tr>
+          <tr><td>Bridges with descriptive names</td><td>Article + full bridge name is common</td><td>the Golden Gate Bridge, the Brooklyn Bridge, the Kerch Bridge, the Millennium Bridge</td></tr>
+          <tr><td>Institutions and museums</td><td>Named cultural institutions</td><td>the British Museum, the Louvre, the Tate, the National Gallery</td></tr>
+          <tr><td>Fixed exceptions</td><td>Learn as chunks</td><td>the High Street, the Strand, the Mall, the Hague, the West End</td></tr>
+        </tbody>
+      </table>
+
+      <div class="urban-exercises">
+        <article class="urban-exercise" data-select-quiz="urban">
+          <h3>Exercise 1: City Article Decisions</h3>
+          <p>Choose <code>the</code> or zero article.</p>
+          <div class="urban-line"><span>We met near ___ Oxford Street.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+          <div class="urban-line"><span>The premiere was at ___ Odeon.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+          <div class="urban-line"><span>They walked across ___ Golden Gate Bridge.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+          <div class="urban-line"><span>We had lunch in ___ Central Park.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+          <div class="urban-line"><span>The hotel was close to ___ British Museum.</span><select data-answer="the"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+          <div class="urban-line"><span>Traffic on ___ Fifth Avenue was heavy.</span><select data-answer="zero"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select></div>
+        </article>
+
+        <article class="urban-exercise">
+          <h3>Exercise 2: Mini City Route</h3>
+          <p>Write 5-7 sentences about a city route. Use at least six names from the tables and explain two article choices.</p>
+          <textarea id="urbanRouteBox" placeholder="Example route: I would start in Hyde Park, walk down Oxford Street, then visit the British Museum..."></textarea>
+          <div class="model-answer" id="urbanSample">Sample: I would start in Hyde Park because park names usually have no article. Then I would walk along Oxford Street and take a bus to the British Museum. I use the with the British Museum because named museums usually take the article. In the evening, I would see a film at the Odeon and stay near Waterloo Station.</div>
+        </article>
+      </div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="checkUrbanBlock()">check urban block</button><button class="btn btn-secondary" type="button" onclick="document.getElementById('urbanSample').classList.add('show')">show sample</button></div>
+      <div class="score-note" id="score10"></div>
+    </div>
+  </section>
+
+  <section class="section" id="block11">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">11</div><div><div class="section-kicker">speaking challenge</div><h2>Would You Rather: Articles First, Opinion Second</h2></div></div><span class="section-badge">15 prompts</span></header>
+    <div class="section-body">
+      <p class="section-intro">First complete the missing articles in each travel question. Then answer the question with a reason from personal experience, taste or imagination.</p>
+      <div class="rather-list" id="ratherList"></div>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="checkWouldRather()">check articles & answers</button><button class="btn btn-secondary" type="button" onclick="buildWouldRather(true)">reset</button></div>
+      <div class="score-note" id="score11"></div>
+    </div>
+  </section>
+
+  <section class="section" id="block12">
+    <header class="section-head"><div class="section-title-wrap"><div class="section-num">12</div><div><div class="section-kicker">output</div><h2>Speaking &amp; Writing Output</h2></div></div><span class="section-badge">final task</span></header>
+    <div class="section-body">
+      <div class="grid-3">
+        <article class="speak-card"><h3>Explain</h3><p>Explain the difference between <code>Lake Baikal</code>, <code>the Black Sea</code> and <code>the Nile</code>.</p></article>
+        <article class="speak-card"><h3>Contrast</h3><p>Contrast <code>Crimea</code> and <code>the Crimean Peninsula</code> in two sentences.</p></article>
+        <article class="speak-card"><h3>Apply</h3><p>Describe a route with at least six geographical names and explain two article choices.</p></article>
+      </div>
+      <p class="section-intro" style="margin-top:18px">Write 90-120 words. Use at least eight geographical names and at least four examples with <code>the</code>.</p>
+      <textarea id="writingBox" placeholder="Write your route or geography paragraph here..."></textarea>
+      <div class="action-row"><button class="btn btn-primary" type="button" onclick="checkWriting()">check output</button><button class="btn btn-secondary" type="button" onclick="showSample()">show sample</button></div>
+      <div class="score-note" id="score12"></div>
+      <div class="model-answer" id="sampleAnswer">Sample: Last year I planned a route from Ukraine to the United Kingdom. First, I wanted to sail across the Black Sea and then travel through the Bosporus. Later, I read about the Alps, the Rhine and Lake Geneva. The pattern is clear: rivers, seas and mountain ranges usually take the article, but most countries and names with Lake or Mount do not.</div>
+    </div>
+  </section>
+</main>
+
+<div class="all-done" id="allDone">
+  <h2>Geo Quest Complete</h2>
+  <p>You can now explain the major article patterns for geographical names and use them in exam-style writing and speaking.</p>
+</div>
+
+<div class="page-footer">B2+ workshop: countries, rivers, seas, mountains, islands, peninsulas, regions, official names.</div>
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+const completed = new Set();
+
+function completeTask(n) {
+  if (completed.has(n)) return;
+  completed.add(n);
+  const step = document.getElementById("step" + n);
+  if (step) step.classList.add("done");
+  if (completed.size === 12) {
+    document.getElementById("allDone").classList.add("show");
+    launchConfetti();
+  }
+}
+
+const WOULD_RATHER = [
+  { a: "Alps", aa: "the", b: "Lake Baikal", ba: "zero", tail: "in winter" },
+  { a: "Sahara", aa: "the", b: "Greenland", ba: "zero", tail: "for a once-in-a-lifetime expedition" },
+  { a: "Netherlands", aa: "the", b: "Canada", ba: "zero", tail: "for a year of study" },
+  { a: "Black Sea", aa: "the", b: "Crimea", ba: "zero", tail: "for a summer trip" },
+  { a: "Amazon", aa: "the", b: "Madagascar", ba: "zero", tail: "to see unusual wildlife" },
+  { a: "United Kingdom", aa: "the", b: "Japan", ba: "zero", tail: "for a culture-focused holiday" },
+  { a: "Himalayas", aa: "the", b: "Mount Fuji", ba: "zero", tail: "for mountain views" },
+  { a: "Maldives", aa: "the", b: "Sicily", ba: "zero", tail: "for a beach holiday" },
+  { a: "Gulf of Mexico", aa: "the", b: "Lake Geneva", ba: "zero", tail: "for a calm week near water" },
+  { a: "Arctic", aa: "the", b: "New Zealand", ba: "zero", tail: "for an adventure trip" },
+  { a: "Philippines", aa: "the", b: "Cyprus", ba: "zero", tail: "to live by the sea" },
+  { a: "Nile", aa: "the", b: "Kilimanjaro", ba: "zero", tail: "for a documentary project" },
+  { a: "Czech Republic", aa: "the", b: "France", ba: "zero", tail: "for a historical route" },
+  { a: "Strait of Gibraltar", aa: "the", b: "Oxford Street", ba: "zero", tail: "for a travel vlog" },
+  { a: "Pacific", aa: "the", b: "Central Park", ba: "zero", tail: "for a memorable first trip abroad" }
+];
+
+function articleOptions(id, answer) {
+  return `<select id="${id}" data-answer="${answer}"><option value="">Choose</option><option value="the">the</option><option value="zero">zero article</option></select>`;
+}
+
+function buildWouldRather(reset = false) {
+  const list = document.getElementById("ratherList");
+  if (!list) return;
+  list.innerHTML = "";
+  WOULD_RATHER.forEach((item, index) => {
+    const card = document.createElement("article");
+    card.className = "rather-card";
+    card.innerHTML = `
+      <p class="rather-question">${index + 1}. Would you rather travel to ___ ${item.a} or ___ ${item.b} ${item.tail}?</p>
+      <div class="rather-controls">
+        <label for="rather${index}a">Before ${item.a}</label>
+        ${articleOptions(`rather${index}a`, item.aa)}
+        <label for="rather${index}b">Before ${item.b}</label>
+        ${articleOptions(`rather${index}b`, item.ba)}
+      </div>
+      <textarea class="rather-answer" id="ratherAnswer${index}" placeholder="Answer the question and give a reason..."></textarea>
+    `;
+    list.appendChild(card);
+  });
+  if (reset) {
+    const score = document.getElementById("score11");
+    score.textContent = "";
+  }
+}
+
+function checkWouldRather() {
+  let articleCorrect = 0;
+  let articleTotal = 0;
+  let answered = 0;
+  WOULD_RATHER.forEach((_, index) => {
+    ["a", "b"].forEach((side) => {
+      const select = document.getElementById(`rather${index}${side}`);
+      const ok = select.value === select.dataset.answer;
+      select.style.borderColor = ok ? "var(--ok)" : "var(--miss)";
+      select.style.boxShadow = ok ? "0 0 0 3px rgba(44,122,77,.12)" : "0 0 0 3px rgba(182,70,59,.10)";
+      articleTotal += 1;
+      if (ok) articleCorrect += 1;
+    });
+    const answer = document.getElementById(`ratherAnswer${index}`);
+    const words = answer.value.trim() ? answer.value.trim().split(/\s+/).length : 0;
+    const okAnswer = words >= 8;
+    answer.style.borderColor = okAnswer ? "var(--ok)" : "var(--miss)";
+    if (okAnswer) answered += 1;
+  });
+  const score = document.getElementById("score11");
+  score.textContent = `${articleCorrect} / ${articleTotal} articles, ${answered} / ${WOULD_RATHER.length} spoken/written answers`;
+  const ready = articleCorrect === articleTotal && answered === WOULD_RATHER.length;
+  score.style.color = ready ? "var(--ok)" : "var(--muted)";
+  if (ready) completeTask(11);
+}
+
+function checkSelectQuiz(name, taskNumber) {
+  const wrap = document.querySelector(`[data-select-quiz="${name}"]`);
+  const selects = [...wrap.querySelectorAll("select")];
+  let correct = 0;
+  selects.forEach((select) => {
+    const ok = select.value === select.dataset.answer;
+    select.style.borderColor = ok ? "var(--ok)" : "var(--miss)";
+    select.style.boxShadow = ok ? "0 0 0 3px rgba(44,122,77,.12)" : "0 0 0 3px rgba(182,70,59,.10)";
+    if (ok) correct += 1;
+  });
+  const score = document.getElementById("score" + taskNumber);
+  score.textContent = `${correct} / ${selects.length} correct`;
+  score.style.color = correct === selects.length ? "var(--ok)" : "var(--muted)";
+  if (correct === selects.length) completeTask(taskNumber);
+}
+
+function checkUrbanBlock() {
+  const wrap = document.querySelector('[data-select-quiz="urban"]');
+  const selects = [...wrap.querySelectorAll("select")];
+  let correct = 0;
+  selects.forEach((select) => {
+    const ok = select.value === select.dataset.answer;
+    select.style.borderColor = ok ? "var(--ok)" : "var(--miss)";
+    select.style.boxShadow = ok ? "0 0 0 3px rgba(44,122,77,.12)" : "0 0 0 3px rgba(182,70,59,.10)";
+    if (ok) correct += 1;
+  });
+  const routeBox = document.getElementById("urbanRouteBox");
+  const route = routeBox.value.trim();
+  const words = route ? route.split(/\s+/).length : 0;
+  const routeReady = words >= 45 && /\b(the|zero article|no article|because|usually)\b/i.test(route);
+  routeBox.style.borderColor = routeReady ? "var(--ok)" : "var(--miss)";
+  const score = document.getElementById("score10");
+  score.textContent = `${correct} / ${selects.length} article choices, route ${routeReady ? "ready" : "needs 45+ words and two article explanations"}`;
+  const ready = correct === selects.length && routeReady;
+  score.style.color = ready ? "var(--ok)" : "var(--muted)";
+  if (ready) completeTask(10);
+}
+
+function resetSelectQuiz(name) {
+  const wrap = document.querySelector(`[data-select-quiz="${name}"]`);
+  [...wrap.querySelectorAll("select")].forEach((select) => {
+    select.value = "";
+    select.style.borderColor = "";
+    select.style.boxShadow = "";
+  });
+}
+
+function revealModels(taskNumber) {
+  document.querySelectorAll("#block" + taskNumber + " .model-answer").forEach((el) => el.classList.add("show"));
+  completeTask(taskNumber);
+}
+
+function toggleModels() {
+  document.querySelectorAll(".model-answer").forEach((el) => el.classList.toggle("show"));
+}
+
+function showSample() {
+  document.getElementById("sampleAnswer").classList.add("show");
+}
+
+function checkWriting() {
+  const text = document.getElementById("writingBox").value.trim();
+  const score = document.getElementById("score12");
+  const words = text ? text.split(/\s+/).length : 0;
+  const theCount = (text.match(/\bthe\b/gi) || []).length;
+  const hasGeo = /\b(Sea|Ocean|River|Lake|Mount|Mountains|Alps|Nile|Sahara|Ukraine|Crimea|Canada|Japan|Gulf|Strait|Peninsula|Island|Islands)\b/i.test(text);
+  if (words >= 80 && theCount >= 4 && hasGeo) {
+    score.textContent = `Ready: ${words} words, ${theCount} uses of "the".`;
+    score.style.color = "var(--ok)";
+    completeTask(12);
+  } else {
+    score.textContent = `Add more detail: ${words}/80+ words, ${theCount}/4+ uses of "the", and clear geographical names.`;
+    score.style.color = "var(--muted)";
+  }
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ["#d7942d", "#2c7a4d", "#1e4a76", "#f1d7a3", "#8fb6a0"];
+  const pieces = Array.from({ length: 140 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 6 + 3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    speed: Math.random() * 3 + 1,
+    angle: Math.random() * Math.PI * 2,
+    spin: Math.random() * .18 - .09
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach((p) => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r);
+      ctx.restore();
+      p.y += p.speed;
+      p.x += Math.sin(frame / 16 + p.r) * 1.4;
+      p.angle += p.spin;
+      if (p.y > canvas.height + 20) p.y = -20;
+    });
+    frame += 1;
+    if (frame < 220) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildWouldRather();
+});
+</script>
+<script defer src="../assets/lab-unify-repair.js?v=2" data-lab-unify-repair></script>
+</body>
+</html>

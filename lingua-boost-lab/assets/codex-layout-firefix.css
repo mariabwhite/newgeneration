@@ -1,0 +1,148 @@
+﻿/* Codex layout firefighting pass, 2026-05-15. Keeps lesson shells aligned and prevents oversized interactive cards from escaping their boxes. */
+:root { --codex-lesson-shell: min(100% - 56px, 1320px); }
+
+body :is(.canon-l-hero, .lab-hero, .hero, .canon-l-tracker, .progress, .rail, .section, .round-card, .booster-mission, .booster-map, .booster-report, #blocksContainer, .lesson-foot, .all-done) {
+  box-sizing: border-box;
+}
+
+body.lb-canon-target :is(.canon-l-hero, .lab-hero, .hero, .canon-l-tracker, .progress, .rail, .section, .round-card, .lesson-foot, .all-done),
+body.lb-page-school-words :is(.school-scene, .a1-system-hud),
+body.lb-page-prepositions-world :is(.prepositions-story-break, .world-mission, .world-mission-card),
+body.lb-page-easter :is(.wrap, .passport-card, .passport, .stepbar, .progress-shell),
+body.lb-page-english-booster :is(.booster-mission, .booster-map, .booster-report, #blocksContainer) {
+  width: var(--codex-lesson-shell) !important;
+  max-width: 1320px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.lb-page-prepositions-world :is(.canon-l-why, .world-mission-card, .section, .rail, .all-done) {
+  width: var(--codex-lesson-shell) !important;
+  max-width: 1320px !important;
+}
+body.lb-page-prepositions-world .section-head { min-height: 0 !important; }
+body.lb-page-prepositions-world .section-body { overflow: visible !important; }
+body.lb-page-prepositions-world :is(.quiz-actions, .bub-actions, .lesson-foot) {
+  position: static !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transform: none !important;
+}
+body.lb-page-prepositions-world .lesson-foot { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+
+body.lb-page-school-words #bubCanvas {
+  height: clamp(340px, 34vw, 430px) !important;
+  min-height: 340px !important;
+  overflow: hidden !important;
+}
+body.lb-page-school-words .bub-actions { position: static !important; display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
+
+body.lb-page-easter { --codex-lesson-shell: min(100% - 56px, 1250px); }
+body.lb-page-easter :is(.passport-grid, .flip-grid, .picture-grid, .customs-grid, .mission-grid) {
+  display: grid !important;
+  align-items: stretch !important;
+  grid-auto-flow: row !important;
+}
+body.lb-page-easter .passport-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+body.lb-page-easter .flip-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+body.lb-page-easter .round-card { position: relative !important; clear: both !important; }
+body.lb-page-easter .game-area {
+  width: 100% !important;
+  min-height: 320px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+body.lb-page-easter .game-egg {
+  box-sizing: border-box !important;
+  transform-origin: center !important;
+  z-index: 2 !important;
+}
+body.lb-page-easter .game-egg.pop { pointer-events: none !important; }
+
+body.lb-page-english-booster :is(.booster-map-grid, .booster-report-grid, .booster-mission-stations) {
+  display: grid !important;
+  align-items: stretch !important;
+  grid-auto-flow: row !important;
+}
+body.lb-page-english-booster .booster-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+body.lb-page-english-booster #blocksContainer {
+  display: block !important;
+  min-height: 220px !important;
+  overflow: visible !important;
+}
+body.lb-page-english-booster .round-card { display: block !important; opacity: 1 !important; visibility: visible !important; }
+
+body.lb-canon-target :is(.canon-l-why, .grid-2, .grid-3, .cards-grid, .task-grid, .rule-grid, .work-grid) {
+  display: grid !important;
+  align-items: stretch !important;
+  grid-auto-flow: row !important;
+}
+body.lb-canon-target .canon-l-why { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; width: var(--codex-lesson-shell) !important; max-width: 1320px !important; margin-left: auto !important; margin-right: auto !important; }
+body.lb-canon-target .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+body.lb-canon-target .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+body.lb-canon-target :is(.why-card, .canon-l-why-card, .work-card, .rule-card, .task-card, .speak-card, .output-card) {
+  min-width: 0 !important;
+  height: auto !important;
+  transform: none !important;
+}
+
+body:not(.lb-canon-target) .lesson-foot,
+body.lb-canon-target .lesson-foot {
+  position: static !important;
+  clear: both !important;
+  transform: none !important;
+  grid-auto-rows: 1fr !important;
+}
+
+body .canon-l-section-title,
+body .section-title-wrap,
+body .block-head,
+body .round-head {
+  min-width: 0 !important;
+}
+body :is(.btn, .canon-l-btn, button, .foot-link) { min-width: 0; }
+
+body:has(.fc-grid) .fc-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+  align-items: stretch !important;
+}
+body:has(.fc-grid) .fc { height: 152px !important; min-width: 0 !important; }
+body:has(.fc-grid) .fc-front,
+body:has(.fc-grid) .fc-back {
+  overflow: hidden !important;
+  padding: 12px !important;
+}
+body:has(.fc-grid) .fc-word {
+  max-width: 100% !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+  font-size: clamp(18px, 1.75vw, 24px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+}
+body:has(.fc-grid) .fc-ipa,
+body:has(.fc-grid) .fc-hint { flex-shrink: 0 !important; }
+body:has(.mem-grid) .mem-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
+body:has(.mem-grid) .mem-card { min-width: 0 !important; }
+body:has(.mem-grid) .mc-front,
+body:has(.mem-grid) .mc-back { overflow-wrap: anywhere !important; }
+
+@media (max-width: 900px) {
+  :root { --codex-lesson-shell: min(100% - 28px, 1320px); }
+  body.lb-canon-target .canon-l-why,
+  body.lb-canon-target .grid-3,
+  body.lb-page-english-booster .booster-map-grid,
+  body.lb-page-easter .passport-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  body.lb-page-prepositions-world .lesson-foot { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 620px) {
+  body.lb-canon-target .canon-l-why,
+  body.lb-canon-target :is(.grid-2, .grid-3),
+  body.lb-page-english-booster :is(.booster-map-grid, .booster-report-grid, .booster-mission-stations),
+  body.lb-page-easter :is(.passport-grid, .flip-grid, .picture-grid, .customs-grid) { grid-template-columns: 1fr !important; }
+  body:has(.fc-grid) .fc-grid { grid-template-columns: 1fr !important; }
+}

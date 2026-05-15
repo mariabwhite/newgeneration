@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Simple Adventure · LinguaBoost Lab Kids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f8f6ff;
+  --paper-2:#f5f3ff;
+  --paper-3:#ede9fe;
+  --ink:#1e1b4b;
+  --ink-2:#2e2a66;
+  --ink-mute:#625a86;
+  --line:rgba(30,27,75,.12);
+  --line-2:rgba(30,27,75,.22);
+  --accent:#7c3aed;
+  --accent-2:#6d28d9;
+  --plum:#7c3aed;
+  --plum-2:#5b21b6;
+  --plum-soft:#ede9fe;
+  --plum-line:rgba(124,58,237,.22);
+  --gold:#fbbf24;
+  --card:#ffffff;
+  --shadow-sm:0 1px 0 rgba(11,11,12,.04), 0 2px 6px rgba(11,11,12,.04);
+  --shadow-md:0 1px 0 rgba(11,11,12,.05), 0 8px 24px rgba(11,11,12,.06);
+  --shadow-lg:0 1px 0 rgba(11,11,12,.06), 0 18px 40px rgba(11,11,12,.08);
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
+  --sans:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --max:1240px;
+}
+*{ box-sizing:border-box; }
+html, body{
+  margin:0; padding:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  background-image:
+    radial-gradient(1100px 540px at 84% -8%, rgba(124,58,237,.12), transparent 70%),
+    radial-gradient(900px 480px at -10% 110%, rgba(251,191,36,.10), transparent 70%);
+  background-attachment: fixed;
+  min-height:100vh;
+}
+::selection{ background:var(--ink); color:var(--paper); }
+
+/* ============================================================
+   TOPBAR (Lab academic)
+   ============================================================ */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:saturate(140%) blur(6px);
+}
+.topbar-inner{
+  max-width:var(--max); margin:0 auto;
+  padding:14px 28px;
+  display:flex; align-items:center; gap:18px;
+}
+.lab-brand{
+  display:flex; align-items:center; gap:12px;
+  text-decoration:none; color:var(--ink);
+}
+.lab-mark{
+  width:34px; height:34px; border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff;
+  display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:18px;
+  position:relative; overflow:hidden;
+  flex-shrink:0;
+}
+.lab-mark::after{
+  content:""; position:absolute; right:0; top:0;
+  width:9px; height:9px; background:var(--gold);
+  clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.brand-copy{ display:grid; gap:1px; }
+.brand-name{
+  font-family:var(--display); font-weight:800; font-size:15px;
+  letter-spacing:-.01em; line-height:1;
+}
+.brand-name .boost{ color:var(--accent); }
+.brand-tag{
+  font-family:var(--mono); font-size:9.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute); margin-top:3px;
+}
+.lab-nav{
+  display:flex; gap:22px; align-items:center;
+  margin-left:18px;
+}
+.lab-nav a{
+  font-family:var(--mono); font-size:10px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-mute); text-decoration:none;
+  padding:6px 0; position:relative;
+}
+.lab-nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:0;
+  height:1px; background:var(--accent);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .18s ease;
+}
+.lab-nav a:hover{ color:var(--ink); }
+.lab-nav a:hover::after,
+.lab-nav a.is-active::after{ transform:scaleX(1); }
+.lab-nav a.is-active{ color:var(--ink); }
+
+.topchips{
+  margin-left:auto;
+  display:flex; gap:8px; align-items:center;
+}
+.topchip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 11px; border-radius:999px;
+  background:var(--card); border:1px solid var(--line);
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  color:var(--ink); white-space:nowrap;
+}
+.topchip .dot{
+  width:6px; height:6px; border-radius:50%;
+  background:var(--accent);
+}
+.topchip.streak .dot{ background:var(--gold); }
+.langtoggle{
+  border:1px solid var(--line); background:var(--card);
+  border-radius:999px; padding:6px 11px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+  font-weight:700; color:var(--ink); cursor:pointer;
+  text-transform:uppercase;
+}
+.langtoggle:hover{ border-color:var(--ink); }
+
+/* ============================================================
+   PROGRESS RAIL (academic thin numbered-rail)
+   ============================================================ */
+.rail-wrap{
+  max-width:var(--max); margin:18px auto 0;
+  padding:0 28px;
+}
+.rail-meta{
+  display:flex; align-items:center; gap:12px;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute); margin-bottom:8px;
+}
+.rail-meta .crumb{ color:var(--ink); }
+.rail-meta .sep{ opacity:.4; }
+.progress-rail{
+  display:grid; grid-template-columns:repeat(6,1fr);
+  gap:8px;
+}
+.rail-step{
+  height:6px; border-radius:999px;
+  background:var(--line);
+}
+.rail-step.is-done{ background:var(--accent); }
+.rail-step.is-active{
+  background:linear-gradient(90deg,var(--accent) 50%, var(--line) 50%);
+}
+
+/* ============================================================
+   HERO (kids cinematic + academic chrome)
+   wave-bottom clip-path
+   ============================================================ */
+.hero{
+  max-width:var(--max);
+  margin:18px auto 0;
+  padding:0 28px;
+}
+.hero-card{
+  position:relative;
+  background:var(--card);
+  border:1px solid rgba(124,58,237,.18);
+  border-radius:28px;
+  padding:0;
+  min-height:420px;
+  display:block;
+  box-shadow:0 28px 72px rgba(124,58,237,.18);
+  overflow:hidden;
+}
+.hero-card::after{
+  /* the actual wave bottom — using clip-path on a wrapper instead */
+  content:none;
+}
+.hero-card::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(90deg, rgba(250,245,255,.96) 0%, rgba(250,245,255,.78) 31%, rgba(250,245,255,.08) 54%, transparent 100%);
+  z-index:1;
+}
+.hero-art{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  z-index:0;
+}
+.hero-l{
+  position:relative; z-index:2;
+  width:min(470px,52%);
+  min-height:420px;
+  padding:46px 36px 46px 42px;
+  display:flex; flex-direction:column; gap:18px;
+  justify-content:center;
+}
+.eyebrow{
+  align-self:flex-start;
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--plum-soft); color:var(--plum);
+  border:1px solid var(--plum-line);
+  border-radius:999px; padding:6px 14px;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase;
+}
+.hero-h1{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(40px, 5vw, 64px);
+  line-height:1.0; letter-spacing:-.02em;
+  color:var(--ink); margin:0;
+  text-wrap:balance;
+}
+.hero-h1 .l2{ display:block; color:var(--plum); position:relative; }
+.hero-h1 .l2 .spark{
+  display:inline-block; vertical-align:0.2em; margin-left:8px;
+  width:18px; height:18px;
+}
+.hero-lead{
+  font-size:15.5px; line-height:1.55;
+  color:var(--ink-mute); max-width:46ch;
+  margin:0;
+}
+.hero-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:2px; }
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 14px; border-radius:999px;
+  background:var(--paper-2); border:1px solid var(--line);
+  font-family:var(--mono); font-size:10.5px; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-2);
+}
+.chip.is-fill{
+  background:var(--ink); color:var(--paper); border-color:var(--ink);
+}
+.stars{
+  display:flex; gap:3px; align-items:center;
+  color:var(--gold); font-size:20px; margin-top:4px;
+}
+.stars small{
+  font-family:var(--mono); font-size:11px; color:var(--ink-mute);
+  margin-left:10px; letter-spacing:.1em; font-weight:700;
+}
+
+.hero-r{ display:none; }
+.hero-illu{ display:none; }
+.hero-illu .label{
+  font-family:var(--display); font-weight:800;
+  color:rgba(11,11,12,.22);
+  font-size:14px; letter-spacing:.16em; text-transform:uppercase;
+  padding:0 36px;
+}
+.hero-illu .sub{
+  font-family:var(--mono); font-size:11px; color:rgba(11,11,12,.32);
+  letter-spacing:.12em; margin-top:8px; text-transform:uppercase;
+}
+.bubbles{
+  position:absolute; inset:0; pointer-events:none;
+}
+.bubble{
+  position:absolute;
+  background:rgba(255,255,255,.86); border:1px solid rgba(124,58,237,.18);
+  border-radius:999px; padding:10px 18px;
+  font-family:var(--display); font-weight:700; font-size:15px;
+  color:var(--ink); box-shadow:0 16px 38px rgba(124,58,237,.16);
+  display:inline-flex; align-items:center; gap:10px;
+  backdrop-filter:blur(8px);
+}
+.bubble .past{ color:var(--accent); font-size:13px; }
+.bubble::after{
+  content:""; position:absolute;
+  width:10px; height:10px; border-radius:50%;
+  background:var(--card); border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);
+}
+.bubble.b1{ top:14%; left:8%; }
+.bubble.b1::after{ bottom:-14px; right:18px; }
+.bubble.b2{ top:24%; right:12%; }
+.bubble.b2::after{ bottom:-14px; left:22px; }
+.bubble.b3{ top:8%; left:50%; transform:translateX(-50%); }
+.bubble.b3::after{ bottom:-14px; left:50%; transform:translateX(-50%); }
+
+/* hero-card wave bottom — overlay strip */
+.hero-wave{
+  display:none;
+  width:100%; height:42px; margin-top:-1px;
+  background:var(--paper);
+}
+.hero-wave svg{ display:block; width:100%; height:100%; }
+.hero-wave path{ fill:var(--card); stroke:var(--line); stroke-width:1; }
+
+@media(max-width:920px){
+  .hero-card{ min-height:620px; }
+  .hero-art{ object-position:62% center; }
+  .hero-card::before{
+    background:linear-gradient(180deg, rgba(250,245,255,.96) 0%, rgba(250,245,255,.84) 44%, rgba(250,245,255,.16) 78%, transparent 100%);
+  }
+  .hero-l{ width:100%; min-height:0; padding:30px 26px 300px; }
+}
+
+/* ============================================================
+   ADVENTURE ROUTE
+   ============================================================ */
+.route-wrap{
+  max-width:var(--max);
+  margin:18px auto 32px;
+  padding:0 28px;
+  display:grid;
+  grid-template-columns:1fr 250px;
+  gap:24px;
+}
+.route-main{ min-width:0; }
+.route-head{
+  display:flex; align-items:center; gap:14px;
+  margin:6px 0 12px;
+}
+.route-head .flag{
+  width:34px; height:34px; border-radius:9px;
+  background:var(--plum-soft); color:var(--plum);
+  border:1px solid var(--plum-line);
+  display:grid; place-items:center;
+  font-size:16px;
+}
+.route-head h2{
+  font-family:var(--display); font-weight:800;
+  font-size:22px; letter-spacing:-.01em; color:var(--ink);
+  margin:0;
+}
+.route-head .done-pill{
+  margin-left:auto;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  padding:6px 12px; border-radius:999px;
+  background:var(--card); border:1px solid var(--line);
+  color:var(--ink); letter-spacing:.06em;
+}
+
+.route{
+  position:relative;
+  display:block;
+  min-height:220px;
+  border-radius:30px;
+  background:
+    radial-gradient(720px 260px at 20% 20%, rgba(255,255,255,.74), transparent 72%),
+    linear-gradient(135deg,#faf5ff,#fdf2f8 58%,#ede9fe);
+  box-shadow:0 24px 70px rgba(124,58,237,.16);
+  overflow:visible;
+}
+.route-art{ display:block; width:100%; height:auto; position:relative; z-index:1; filter:drop-shadow(0 18px 40px rgba(124,58,237,.12)); }
+.route-hotspots{ position:absolute; inset:0; z-index:2; }
+.route-hotspot{
+  position:absolute; top:37%; width:9.5%; height:39%;
+  border-radius:24px; color:transparent; text-decoration:none;
+}
+.route-hotspot:focus-visible{ outline:3px solid var(--gold); outline-offset:4px; }
+.route-hotspot.h1{ left:20.2%; }
+.route-hotspot.h2{ left:33.2%; }
+.route-hotspot.h3{ left:46%; }
+.route-hotspot.h4{ left:58.8%; }
+.route-hotspot.h5{ left:71.7%; }
+.route-hotspot.h6{ left:84.4%; }
+.route-svg{
+  display:none;
+}
+.route-svg path{
+  fill:none; stroke:var(--plum-line);
+  stroke-width:2; stroke-dasharray:6 6;
+}
+.stop{
+  position:relative; z-index:1;
+  background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,243,255,.94));
+  border:1px solid rgba(124,58,237,.16);
+  border-radius:16px;
+  padding:30px 12px 14px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+  display:flex; flex-direction:column; gap:6px;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.route.has-art .stop{ display:none; }
+.stop:hover{
+  transform:translateY(-2px);
+  border-color:var(--ink);
+  box-shadow:var(--shadow-md);
+}
+.stop .num{
+  position:absolute; top:-15px; left:50%;
+  transform:translateX(-50%);
+  width:32px; height:32px; border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff;
+  display:grid; place-items:center;
+  font-family:var(--mono); font-weight:800; font-size:13px;
+  border:3px solid var(--paper);
+  box-shadow:0 2px 6px rgba(11,11,12,.18);
+}
+.stop.is-active .num{ background:var(--accent); }
+.stop.is-done .num{ background:var(--accent); }
+.stop .sticker{
+  width:64px; height:64px;
+  margin:6px auto 4px;
+  border-radius:14px;
+  background:linear-gradient(180deg, #fff, var(--plum-soft));
+  border:1px solid var(--plum-line);
+  display:grid; place-items:center;
+  font-family:var(--display); font-weight:800;
+  font-size:11px; color:rgba(11,11,12,.36);
+  letter-spacing:.08em;
+  text-align:center; padding:0 6px; line-height:1.2;
+}
+.stop strong{
+  font-family:var(--display); font-weight:700; font-size:14px;
+  color:var(--ink);
+}
+.stop small{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  color:var(--ink-mute); letter-spacing:.04em;
+}
+.stop .go{
+  margin-top:6px; align-self:center;
+  padding:6px 14px; border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2)); border:1px solid var(--accent);
+  font-family:var(--mono); font-size:10.5px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#fff; text-decoration:none;
+  transition:all .15s ease;
+}
+.stop .go:hover{
+  background:var(--plum-2); color:#fff; border-color:var(--plum-2);
+}
+
+@media(max-width:1080px){
+  .route-wrap{ grid-template-columns:1fr; }
+  .side-stats{ grid-template-columns:repeat(4,1fr); display:grid; gap:10px; }
+  .side-stats .stat-card{ flex-direction:column; }
+}
+@media(max-width:760px){
+  .route{ grid-template-columns:repeat(3,1fr); }
+  .side-stats{ grid-template-columns:repeat(2,1fr); }
+  .route{ min-height:150px; border-radius:20px; }
+  .route-hotspot{ top:36%; height:42%; border-radius:14px; }
+}
+
+/* ============================================================
+   SIDE STATS
+   ============================================================ */
+.side-stats{
+  display:flex; flex-direction:column; gap:10px;
+  align-self:start;
+  margin-top:50px;
+}
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:var(--shadow-sm);
+}
+.stat-icon{
+  width:34px; height:34px; border-radius:10px;
+  background:var(--plum-soft); color:var(--plum);
+  display:grid; place-items:center;
+  font-size:16px; flex-shrink:0;
+}
+.stat-icon.is-orange{
+  background:rgba(251,191,36,.18); color:#8a5a00;
+}
+.stat-icon.is-ink{
+  background:var(--ink); color:var(--paper);
+}
+.stat-body{ display:grid; gap:1px; min-width:0; }
+.stat-label{
+  font-family:var(--mono); font-size:9.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.stat-value{
+  font-family:var(--display); font-weight:800; font-size:22px;
+  color:var(--ink); line-height:1;
+}
+.stat-value.small{ font-size:13px; font-weight:700; font-family:var(--mono); }
+.stat-card.story{
+  flex-direction:column; align-items:flex-start; gap:8px;
+  padding:14px 16px 16px;
+}
+.stat-card.story .head{
+  display:flex; align-items:center; gap:10px;
+}
+.stat-card.story .desc{
+  font-family:var(--sans); font-size:12.5px; line-height:1.45;
+  color:var(--ink-mute); margin:0;
+}
+
+/* ============================================================
+   SECTION CARDS (academic exercise blocks)
+   ============================================================ */
+.section{
+  max-width:var(--max);
+  margin:18px auto;
+  padding:0 28px;
+}
+.section-header{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-bottom:none;
+  border-radius:14px 14px 0 0;
+  padding:18px 22px;
+  display:flex; align-items:center; gap:14px;
+}
+.section-num{
+  width:34px; height:34px; border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff;
+  display:grid; place-items:center;
+  font-family:var(--mono); font-weight:800; font-size:14px;
+  position:relative; overflow:hidden;
+  flex-shrink:0;
+}
+.section-num::after{
+  content:""; position:absolute; right:0; top:0;
+  width:7px; height:7px; background:var(--gold);
+  clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.section-title{
+  font-family:var(--display); font-weight:700; font-size:18px;
+  color:var(--ink);
+}
+.section-sub{
+  font-family:var(--mono); font-size:10.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-mute); margin-top:2px;
+}
+.section-badge{
+  margin-left:auto;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:.18em; text-transform:uppercase;
+  background:var(--accent); color:#fff;
+  border-radius:999px; padding:4px 10px;
+}
+.section-body{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:none;
+  border-radius:0 0 14px 14px;
+  padding:24px;
+  box-shadow:var(--shadow-sm);
+}
+.section-body p{ margin:0 0 8px; color:var(--ink); font-size:14px; line-height:1.55; }
+
+.exercise-meta{
+  font-family:var(--mono); font-size:10.5px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute);
+  margin:0 0 14px;
+}
+.exercise-grid{ display:grid; gap:12px; }
+.flip-grid{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+.flip-card{
+  min-height:104px; border:1px solid var(--line); border-radius:12px;
+  background:linear-gradient(180deg,#fff,var(--paper-2)); color:var(--ink); cursor:pointer;
+  display:grid; place-items:center; padding:12px; box-shadow:var(--shadow-sm);
+  transition:transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.flip-card:hover{ transform:translateY(-2px); border-color:var(--ink); }
+.flip-card.is-flipped{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; border-color:var(--accent); }
+.flip-card .base{ font-family:var(--display); font-size:18px; font-weight:800; }
+.flip-card .past{ display:none; font-family:var(--display); font-size:20px; font-weight:800; color:var(--gold); }
+.flip-card .ru{ display:block; margin-top:6px; font-size:12px; color:var(--ink-mute); }
+.flip-card.is-flipped .base{ display:none; }
+.flip-card.is-flipped .past{ display:block; }
+.flip-card.is-flipped .ru{ color:rgba(244,239,232,.72); }
+.drag-area{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+.drag-pool,.drop-zones,.word-bank,.sentence-row,.mc-list,.type-list{
+  display:grid; gap:10px;
+}
+.drag-pool{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.drag-tile,.word-chip,.mc-option,.story-verb{
+  border:1px solid var(--plum-line); background:#fff; color:var(--ink);
+  border-radius:999px; padding:9px 13px; cursor:pointer;
+  font-family:var(--mono); font-size:11px; font-weight:800;
+  letter-spacing:.08em; text-transform:uppercase;
+  transition:transform .14s ease, border-color .14s ease, background .14s ease;
+}
+.drag-tile:hover,.word-chip:hover,.mc-option:hover,.story-verb:hover{
+  transform:translateY(-1px); border-color:var(--ink);
+}
+.drag-tile.is-used{ opacity:.35; cursor:default; }
+.drop-zone{
+  min-height:48px; border:1px dashed var(--plum-line); border-radius:12px;
+  padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:var(--paper-2);
+}
+.drop-zone.is-over{ border-color:var(--plum); background:var(--plum-soft); }
+.drop-zone.is-correct{ border-style:solid; border-color:var(--accent); background:rgba(124,58,237,.09); }
+.drop-label{ font-family:var(--display); font-weight:800; }
+.drop-answer{ color:var(--plum); font-family:var(--mono); font-weight:800; }
+.builder-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.sentence-row{
+  min-height:52px; grid-template-columns:repeat(6,minmax(72px,1fr));
+  border:1px dashed var(--line-2); border-radius:12px; padding:10px; background:var(--paper-2);
+}
+.word-bank{ grid-template-columns:repeat(auto-fit,minmax(92px,1fr)); margin-top:10px; }
+.word-chip.is-used{ opacity:.32; cursor:default; }
+.sentence-slot{ min-height:34px; border-bottom:2px solid var(--line-2); display:grid; place-items:center; }
+.exercise-btn{
+  border:none; border-radius:999px; background:var(--ink); color:var(--paper);
+  font-family:var(--mono); font-size:10.5px; font-weight:800;
+  letter-spacing:.14em; text-transform:uppercase; padding:10px 16px; cursor:pointer;
+}
+.exercise-btn.alt{ background:var(--paper-2); color:var(--ink); border:1px solid var(--line); }
+.mc-item,.type-item{
+  border:1px solid var(--line); border-radius:12px; padding:14px; background:var(--paper-2);
+}
+.mc-prompt,.type-prompt{ font-weight:800; margin-bottom:10px; }
+.mc-options{ display:flex; flex-wrap:wrap; gap:8px; }
+.mc-option.is-selected{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.mc-option.is-correct{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.mc-option.is-wrong{ background:#fff; color:var(--ink); border-color:var(--plum); }
+.type-input{
+  width:min(260px,100%); border:1px solid var(--line-2); border-radius:999px;
+  padding:10px 14px; font:700 14px var(--sans); color:var(--ink); background:#fff;
+}
+.type-item.is-correct{ border-color:var(--accent); background:rgba(124,58,237,.09); }
+.type-item.is-wrong{ border-color:var(--plum); background:var(--plum-soft); }
+.story-box{
+  border:1px solid var(--line); border-radius:14px; padding:18px;
+  background:linear-gradient(135deg,#fff,var(--paper-2) 52%,#fdf2f8);
+  font-size:16px; line-height:1.9;
+}
+.story-verb{ margin:0 3px; background:#fff; }
+.story-verb.is-correct{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.feedback{
+  min-height:24px; margin-top:12px; font-weight:800; color:var(--plum);
+}
+.finale-note{
+  display:none; margin-top:14px; border:1px solid var(--line); border-radius:14px;
+  padding:16px; background:var(--ink); color:var(--paper); font-family:var(--display);
+  font-weight:800; text-align:center;
+}
+.finale-note.show{ display:block; }
+.confetti-canvas{ position:fixed; inset:0; pointer-events:none; z-index:999; }
+@media(max-width:760px){
+  .flip-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .drag-area{ grid-template-columns:1fr; }
+  .drag-pool{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .sentence-row{ grid-template-columns:repeat(2,minmax(96px,1fr)); }
+}
+
+/* ============================================================
+   BONUS BAR (Lab plum, kids stickers)
+   ============================================================ */
+.bonus-wrap{
+  max-width:var(--max);
+  margin:24px auto 0;
+  padding:0 28px;
+}
+.bonus{
+  position:relative;
+  background:
+    radial-gradient(480px 200px at 20% 50%, rgba(124,58,237,.24), transparent 70%),
+    radial-gradient(420px 220px at 80% 50%, rgba(245,200,66,.16), transparent 70%),
+    var(--plum);
+  border-radius:18px;
+  padding:18px 22px;
+  display:grid;
+  grid-template-columns:auto 1fr auto auto auto;
+  gap:18px; align-items:center;
+  box-shadow:var(--shadow-lg);
+  overflow:visible;
+  color:#fff;
+}
+.bonus-orb{
+  width:54px; height:54px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #d3c0ff, var(--plum-2));
+  position:relative;
+  box-shadow:0 6px 18px rgba(0,0,0,.25), inset 0 -6px 14px rgba(0,0,0,.25);
+  flex-shrink:0;
+}
+.bonus-orb::after{
+  content:""; position:absolute; right:-10px; bottom:-2px;
+  width:18px; height:18px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, #b9a4ee);
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+.bonus-title-wrap{ display:grid; gap:4px; min-width:0; }
+.bonus-title{
+  font-family:var(--display); font-weight:800; font-size:17px;
+  letter-spacing:-.005em; line-height:1.1;
+}
+.bonus-sub{
+  font-family:var(--mono); font-size:10.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+.bonus-desc{
+  font-size:13px; line-height:1.45;
+  color:rgba(255,255,255,.85); max-width:36ch;
+}
+.bonus-score{
+  display:grid; gap:6px; min-width:160px;
+}
+.bonus-score-label{
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:#fff;
+}
+.bonus-score-bar{
+  width:160px; height:6px; border-radius:999px;
+  background:rgba(255,255,255,.22); overflow:hidden;
+}
+.bonus-score-fill{
+  height:100%; width:0%; background:#fff; border-radius:999px;
+  transition:width .3s ease;
+}
+.bonus-cta{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 22px; border-radius:999px;
+  background:#fff; color:var(--plum);
+  font-family:var(--display); font-weight:800; font-size:14px;
+  text-decoration:none; cursor:pointer;
+  border:none;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
+  transition:transform .12s ease;
+}
+.bonus-cta:hover{ transform:translateY(-1px); }
+.bonus-cta .play{
+  display:inline-grid; place-items:center;
+  width:0; height:0;
+  border-left:9px solid var(--plum);
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+  margin-right:2px;
+}
+.bonus-mascot{
+  position:absolute; right:-6px; bottom:-12px;
+  width:84px; height:84px; border-radius:18px;
+  background:linear-gradient(180deg, var(--gold), #e9b22e);
+  border:3px solid #fff;
+  display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:11px;
+  color:rgba(11,11,12,.5);
+  letter-spacing:.06em; text-align:center;
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
+  transform:rotate(-6deg);
+}
+
+@media(max-width:980px){
+  .bonus{
+    grid-template-columns:auto 1fr;
+    grid-auto-rows:auto;
+  }
+  .bonus-desc{ grid-column:1 / -1; }
+  .bonus-score{ grid-column:1 / -1; }
+  .bonus-cta{ grid-column:1 / -1; justify-self:start; }
+  .bonus-mascot{ display:none; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  border-top:1px solid var(--line);
+  margin-top:40px;
+  padding:22px 28px;
+  text-align:center;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.footer p{ margin:0; }
+</style>
+</head>
+<body>
+
+<!-- ============== TOPBAR ============== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="lab-brand" href="#">
+      <span class="lab-mark">L</span>
+      <span class="brand-copy">
+        <span class="brand-name">Lingua<span class="boost">Boost</span></span>
+        <span class="brand-tag">A1 · PAST SIMPLE</span>
+      </span>
+    </a>
+    <nav class="lab-nav" aria-label="Main">
+      <a href="#" class="is-active">Lessons</a>
+      <a href="#">Games</a>
+      <a href="#">Progress</a>
+      <a href="#">Profile</a>
+    </nav>
+    <div class="topchips">
+      <span class="topchip"><span class="dot"></span>Score 240</span>
+      <span class="topchip streak"><span class="dot"></span>Streak 7</span>
+      <button class="langtoggle" type="button" id="langtoggle">RU / EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== RAIL ============== -->
+<div class="rail-wrap">
+  <div class="rail-meta">
+    <span class="crumb">Lab</span><span class="sep">/</span>
+    <span class="crumb">A1 · Past Simple</span><span class="sep">/</span>
+    <span>Adventure</span>
+  </div>
+  <div class="progress-rail" aria-label="Lesson progress">
+    <span class="rail-step is-active"></span>
+    <span class="rail-step"></span>
+    <span class="rail-step"></span>
+    <span class="rail-step"></span>
+    <span class="rail-step"></span>
+    <span class="rail-step"></span>
+  </div>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-card">
+    <img class="hero-art" src="past-simple-hero-violet.png" alt="Past Simple Adventure with two kids studying a treasure map">
+    <div class="hero-l">
+      <span class="eyebrow">A1 · Past Simple</span>
+      <h1 class="hero-h1">
+        Past Simple
+        <span class="l2">Adventure
+          <svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0l2.5 7.5L22 10l-7.5 2.5L12 20l-2.5-7.5L2 10l7.5-2.5L12 0z"/></svg>
+        </span>
+      </h1>
+      <p class="hero-lead">Tom packs his bag and walks out at dawn. Six stops, twelve irregular verbs, one quiet story. Find them, learn them, move on.</p>
+      <div class="hero-chips">
+        <span class="chip is-fill">A1</span>
+        <span class="chip">6 activities</span>
+        <span class="chip">irregular verbs</span>
+        <span class="chip">adventure</span>
+      </div>
+      <div class="stars" aria-label="5 of 5">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        <small>5.0 · 1 240 learners</small>
+      </div>
+    </div>
+  </div>
+  <!-- wave bottom -->
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 42" preserveAspectRatio="none">
+      <path d="M0,0 L0,8 C200,40 360,40 600,16 C840,-8 1000,-8 1200,18 L1200,0 Z" />
+    </svg>
+  </div>
+</section>
+
+<!-- ============== ROUTE + SIDE STATS ============== -->
+<div class="route-wrap">
+  <div class="route-main">
+    <div class="route-head">
+      <span class="flag">⚑</span>
+      <h2>Adventure Route</h2>
+      <span class="done-pill">0 / 6 done</span>
+    </div>
+
+    <div class="route has-art">
+      <img class="route-art" src="past-simple-route-transparent.png" alt="Adventure route: Market, Map Table, Road, Camp, Cave, Island">
+      <div class="route-hotspots" aria-label="Adventure route links">
+        <a class="route-hotspot h1" href="#sec1">Market flip</a>
+        <a class="route-hotspot h2" href="#sec2">Map Table match</a>
+        <a class="route-hotspot h3" href="#sec3">Road build</a>
+        <a class="route-hotspot h4" href="#sec4">Camp choose</a>
+        <a class="route-hotspot h5" href="#sec5">Cave check</a>
+        <a class="route-hotspot h6" href="#sec6">Island story</a>
+      </div>
+      <svg class="route-svg" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,30 Q60,0 120,30 T240,30 T360,30 T480,30 T600,30" />
+      </svg>
+
+      <article class="stop is-active" data-stop="1">
+        <span class="num">1</span>
+        <div class="sticker">MARKET</div>
+        <strong>Market</strong>
+        <small>find – found</small>
+        <a class="go" href="#sec1">flip</a>
+      </article>
+      <article class="stop" data-stop="2">
+        <span class="num">2</span>
+        <div class="sticker">MAP TABLE</div>
+        <strong>Map Table</strong>
+        <small>take – took</small>
+        <a class="go" href="#sec2">match</a>
+      </article>
+      <article class="stop" data-stop="3">
+        <span class="num">3</span>
+        <div class="sticker">ROAD</div>
+        <strong>Road</strong>
+        <small>go – went</small>
+        <a class="go" href="#sec3">build</a>
+      </article>
+      <article class="stop" data-stop="4">
+        <span class="num">4</span>
+        <div class="sticker">CAMP</div>
+        <strong>Camp</strong>
+        <small>eat – ate</small>
+        <a class="go" href="#sec4">choose</a>
+      </article>
+      <article class="stop" data-stop="5">
+        <span class="num">5</span>
+        <div class="sticker">CAVE</div>
+        <strong>Cave</strong>
+        <small>see – saw</small>
+        <a class="go" href="#sec5">check</a>
+      </article>
+      <article class="stop" data-stop="6">
+        <span class="num">6</span>
+        <div class="sticker">ISLAND</div>
+        <strong>Island</strong>
+        <small>make – made</small>
+        <a class="go" href="#sec6">story</a>
+      </article>
+    </div>
+  </div>
+
+  <aside class="side-stats" aria-label="Stats">
+    <div class="stat-card">
+      <div class="stat-icon">★</div>
+      <div class="stat-body">
+        <span class="stat-label">Score</span>
+        <span class="stat-value" id="scoreVal">0</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon is-orange">🔥</div>
+      <div class="stat-body">
+        <span class="stat-label">Combo</span>
+        <span class="stat-value" id="comboVal">×1</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon is-ink">▶</div>
+      <div class="stat-body">
+        <span class="stat-label">Status</span>
+        <span class="stat-value small">Touch ready</span>
+      </div>
+    </div>
+    <div class="stat-card story">
+      <div class="head">
+        <div class="stat-icon">📖</div>
+        <span class="stat-label">Story combo</span>
+      </div>
+      <p class="desc">Found verbs, learned them, moved on.</p>
+    </div>
+  </aside>
+</div>
+
+<!-- ============== SECTIONS (placeholders, academic chrome) ============== -->
+<section class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div>
+      <div class="section-title">Verb Flip Cards</div>
+      <div class="section-sub">Market · find – found</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Flip all 12 cards to reveal past forms.</p>
+    <div class="exercise-meta" id="flipMeta">0 / 12 flipped</div>
+    <div class="exercise-grid flip-grid" id="flipGrid"></div>
+    <div class="feedback" id="flipFeedback"></div>
+  </div>
+</section>
+
+<section class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div>
+      <div class="section-title">Drag & Match</div>
+      <div class="section-sub">Map Table · take – took</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Drag past forms to matching base forms.</p>
+    <div class="drag-area">
+      <div>
+        <div class="exercise-meta">Past forms</div>
+        <div class="drag-pool" id="dragPool"></div>
+      </div>
+      <div>
+        <div class="exercise-meta">Base forms</div>
+        <div class="drop-zones" id="dropZones"></div>
+      </div>
+    </div>
+    <div class="feedback" id="dragFeedback"></div>
+  </div>
+</section>
+
+<section class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div>
+      <div class="section-title">Sentence Builder</div>
+      <div class="section-sub">Road · go – went</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Drag the words into the right order.</p>
+    <div class="builder-head">
+      <div class="exercise-meta" id="builderMeta">Sentence 1 of 5</div>
+      <button class="exercise-btn alt" type="button" id="builderReset">Reset</button>
+    </div>
+    <div class="sentence-row" id="sentenceRow"></div>
+    <div class="word-bank" id="wordBank"></div>
+    <div class="feedback" id="builderFeedback"></div>
+  </div>
+</section>
+
+<section class="section" id="sec4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div>
+      <div class="section-title">Choose the Form</div>
+      <div class="section-sub">Camp · eat – ate</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Pick the correct past form for each sentence.</p>
+    <div class="mc-list" id="mcList"></div>
+    <button class="exercise-btn" type="button" id="mcCheck">Check answers</button>
+    <div class="feedback" id="mcFeedback"></div>
+  </div>
+</section>
+
+<section class="section" id="sec5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div>
+      <div class="section-title">Type the Past</div>
+      <div class="section-sub">Cave · see – saw</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Type the past form. Spelling matters.</p>
+    <div class="type-list" id="typeList"></div>
+    <button class="exercise-btn" type="button" id="typeCheck">Check spelling</button>
+    <div class="feedback" id="typeFeedback"></div>
+  </div>
+</section>
+
+<section class="section" id="sec6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div>
+      <div class="section-title">The Story</div>
+      <div class="section-sub">Island · make – made</div>
+      <span class="section-badge">final</span>
+    </div>
+  </div>
+  <div class="section-body">
+    <p>Read Tom's adventure. Tap each verb to confirm its past form.</p>
+    <div class="story-box" id="storyBox"></div>
+    <div class="feedback" id="storyFeedback"></div>
+    <div class="finale-note" id="finaleNote">Adventure complete. Past Simple unlocked.</div>
+  </div>
+</section>
+
+<!-- ============== BONUS ============== -->
+<div class="bonus-wrap">
+  <div class="bonus" role="region" aria-label="Bubble Pop">
+    <div class="bonus-orb" aria-hidden="true"></div>
+    <div class="bonus-title-wrap">
+      <div class="bonus-title">Bubble Pop — Vocabulary Sprint</div>
+      <div class="bonus-sub">Bonus game</div>
+      <div class="bonus-desc">Pop bubbles with vocabulary words — score 10 to win. Click or tap a bubble.</div>
+    </div>
+    <div class="bonus-score">
+      <span class="bonus-score-label">Score 0 / 10</span>
+      <div class="bonus-score-bar"><div class="bonus-score-fill" id="bonusFill"></div></div>
+    </div>
+    <button class="bonus-cta" type="button" id="bonusPlay">
+      <span class="play"></span> Play
+    </button>
+    <div class="bonus-mascot" aria-hidden="true">BEE</div>
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <p>© 2024 LinguaBoost Lab · Educational content for English learners · A1 Level</p>
+</footer>
+
+<script>
+var STORAGE_KEY = 'lba1-past-simple-kids';
+var verbs = [
+  {base:'find', past:'found'}, {base:'go', past:'went'}, {base:'eat', past:'ate'},
+  {base:'take', past:'took'}, {base:'see', past:'saw'}, {base:'make', past:'made'},
+  {base:'give', past:'gave'}, {base:'tell', past:'told'}, {base:'come', past:'came'},
+  {base:'have', past:'had'}, {base:'get', past:'got'}, {base:'know', past:'knew'}
+];
+var completed = [false,false,false,false,false,false];
+var score = 0;
+var combo = 1;
+var draggedPast = '';
+var builderIndex = 0;
+var builderPicked = [];
+var dragPairs = [
+  {base:'find', past:'found'}, {base:'take', past:'took'}, {base:'see', past:'saw'},
+  {base:'make', past:'made'}, {base:'give', past:'gave'}, {base:'tell', past:'told'}
+];
+var builderSentences = [
+  ['Tom','went','to','the','market','.'],
+  ['He','found','a','gold','map','.'],
+  ['Mia','took','the','small','key','.'],
+  ['They','saw','a','funny','sign','.'],
+  ['We','made','a','brave','plan','.']
+];
+var mcQuestions = [
+  {text:'Yesterday I ___ a sandwich.', options:['eat','ate','eated'], answer:1},
+  {text:'Tom ___ a treasure map.', options:['find','found','finded'], answer:1},
+  {text:'They ___ to the camp.', options:['goed','went','go'], answer:1},
+  {text:'Mia ___ the red bag.', options:['took','take','taked'], answer:0},
+  {text:'We ___ a bright light.', options:['see','seed','saw'], answer:2},
+  {text:'Dad ___ a story.', options:['told','telled','tell'], answer:0}
+];
+var typeQuestions = [
+  {base:'come', past:'came'}, {base:'have', past:'had'}, {base:'get', past:'got'},
+  {base:'know', past:'knew'}, {base:'make', past:'made'}, {base:'give', past:'gave'}
+];
+var storyParts = [
+  'Tom ', {base:'go', past:'went'}, ' to an island. He ', {base:'find', past:'found'},
+  ' a map and ', {base:'take', past:'took'}, ' a little boat. On the beach he ',
+  {base:'see', past:'saw'}, ' a cave. He ', {base:'make', past:'made'}, ' a torch, ',
+  {base:'have', past:'had'}, ' one brave idea, and ', {base:'get', past:'got'},
+  ' inside. His friend ', {base:'come', past:'came'}, ' too. Together they ',
+  {base:'know', past:'knew'}, ' the adventure was real.'
+];
+
+function byId(id){ return document.getElementById(id); }
+function setText(id, text){ var el = byId(id); if(el) el.textContent = text; }
+function shuffle(list){
+  return list.map(function(v){ return {v:v, r:Math.random()}; })
+    .sort(function(a,b){ return a.r - b.r; })
+    .map(function(x){ return x.v; });
+}
+
+function bumpScore(delta){
+  score += delta * combo;
+  combo = Math.min(combo + 1, 9);
+  byId('scoreVal').textContent = score;
+  byId('comboVal').textContent = 'x' + combo;
+  var chips = document.querySelectorAll('.topchip');
+  if(chips[0]) chips[0].innerHTML = '<span class="dot"></span>Score ' + score;
+  if(chips[1]) chips[1].innerHTML = '<span class="dot"></span>Streak ' + combo;
+  saveProgress();
+}
+
+function completeStop(n){
+  if(completed[n - 1]) return;
+  completed[n - 1] = true;
+  bumpScore(20);
+  updateProgress();
+  saveProgress();
+  if(completed.filter(Boolean).length === 6) launchFinale();
+}
+
+function updateProgress(){
+  var total = completed.filter(Boolean).length;
+  var nextIndex = completed.findIndex(function(v){ return !v; });
+  document.querySelectorAll('.rail-step').forEach(function(step, idx){
+    step.classList.toggle('is-done', completed[idx]);
+    step.classList.toggle('is-active', idx === nextIndex);
+  });
+  document.querySelectorAll('.stop').forEach(function(stop, idx){
+    stop.classList.toggle('is-done', completed[idx]);
+    stop.classList.toggle('is-active', idx === nextIndex);
+  });
+  var done = document.querySelector('.done-pill');
+  if(done) done.textContent = total + ' / 6 done';
+}
+
+function saveProgress(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({completed:completed, score:score, combo:combo}));
+  }catch(e){}
+}
+
+function loadProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      var data = JSON.parse(raw);
+      if(Array.isArray(data.completed) && data.completed.length === 6) completed = data.completed.map(Boolean);
+      score = Number(data.score) || 0;
+      combo = Number(data.combo) || 1;
+    }
+  }catch(e){}
+  byId('scoreVal').textContent = score;
+  byId('comboVal').textContent = 'x' + combo;
+  updateProgress();
+}
+
+function initFlip(){
+  var grid = byId('flipGrid');
+  verbs.forEach(function(item){
+    var card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'flip-card';
+    card.innerHTML = '<span><span class="base">' + item.base + '</span><span class="past">' + item.past + '</span><span class="ru">tap to reveal</span></span>';
+    card.addEventListener('click', function(){
+      if(card.classList.contains('is-flipped')) return;
+      card.classList.add('is-flipped');
+      var count = grid.querySelectorAll('.is-flipped').length;
+      setText('flipMeta', count + ' / 12 flipped');
+      if(count === 12){
+        setText('flipFeedback', 'Great. All verbs are open.');
+        completeStop(1);
+      }
+    });
+    grid.appendChild(card);
+  });
+}
+
+function initDrag(){
+  var pool = byId('dragPool');
+  var zones = byId('dropZones');
+  shuffle(dragPairs).forEach(function(pair){
+    var tile = document.createElement('button');
+    tile.type = 'button';
+    tile.className = 'drag-tile';
+    tile.draggable = true;
+    tile.textContent = pair.past;
+    tile.dataset.past = pair.past;
+    tile.addEventListener('click', function(){
+      if(tile.classList.contains('is-used')) return;
+      draggedPast = tile.dataset.past;
+      setText('dragFeedback', 'Now tap the matching base form.');
+    });
+    tile.addEventListener('dragstart', function(){ draggedPast = tile.dataset.past; });
+    pool.appendChild(tile);
+  });
+  dragPairs.forEach(function(pair){
+    var zone = document.createElement('div');
+    zone.className = 'drop-zone';
+    zone.dataset.answer = pair.past;
+    zone.innerHTML = '<span class="drop-label">' + pair.base + '</span><span class="drop-answer">drop here</span>';
+    zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('is-over'); });
+    zone.addEventListener('dragleave', function(){ zone.classList.remove('is-over'); });
+    zone.addEventListener('drop', function(e){ e.preventDefault(); placeDrag(zone); });
+    zone.addEventListener('click', function(){ placeDrag(zone); });
+    zones.appendChild(zone);
+  });
+}
+
+function placeDrag(zone){
+  zone.classList.remove('is-over');
+  if(!draggedPast || zone.classList.contains('is-correct')) return;
+  if(draggedPast === zone.dataset.answer){
+    zone.querySelector('.drop-answer').textContent = draggedPast;
+    zone.classList.add('is-correct');
+    document.querySelectorAll('.drag-tile').forEach(function(tile){
+      if(tile.dataset.past === draggedPast) tile.classList.add('is-used');
+    });
+    draggedPast = '';
+    bumpScore(3);
+    var done = byId('dropZones').querySelectorAll('.is-correct').length;
+    setText('dragFeedback', done + ' / 6 matched');
+    if(done === 6) completeStop(2);
+  }else{
+    setText('dragFeedback', 'Try another match.');
+    combo = 1;
+    byId('comboVal').textContent = 'x1';
+  }
+}
+
+function renderBuilder(){
+  if(builderIndex >= builderSentences.length) builderIndex = builderSentences.length - 1;
+  var sentence = builderSentences[builderIndex];
+  builderPicked = [];
+  byId('sentenceRow').innerHTML = sentence.map(function(){ return '<div class="sentence-slot"></div>'; }).join('');
+  byId('wordBank').innerHTML = '';
+  setText('builderMeta', 'Sentence ' + (builderIndex + 1) + ' of ' + builderSentences.length);
+  setText('builderFeedback', '');
+  shuffle(sentence).forEach(function(word){
+    var chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'word-chip';
+    chip.textContent = word;
+    chip.addEventListener('click', function(){
+      if(chip.classList.contains('is-used')) return;
+      if(word === sentence[builderPicked.length]){
+        builderPicked.push(word);
+        chip.classList.add('is-used');
+        byId('sentenceRow').children[builderPicked.length - 1].textContent = word;
+        if(builderPicked.length === sentence.length){
+          bumpScore(4);
+          builderIndex += 1;
+          if(builderIndex === builderSentences.length){
+            setText('builderFeedback', 'All sentences are built.');
+            completeStop(3);
+          }else{
+            setTimeout(renderBuilder, 550);
+          }
+        }
+      }else{
+        setText('builderFeedback', 'Look for the next word in order.');
+        combo = 1;
+        byId('comboVal').textContent = 'x1';
+      }
+    });
+    byId('wordBank').appendChild(chip);
+  });
+}
+
+function initMultipleChoice(){
+  var list = byId('mcList');
+  mcQuestions.forEach(function(q){
+    var item = document.createElement('div');
+    item.className = 'mc-item';
+    item.dataset.answer = q.answer;
+    item.innerHTML = '<div class="mc-prompt">' + q.text + '</div><div class="mc-options"></div>';
+    q.options.forEach(function(opt, oi){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mc-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', function(){
+        item.querySelectorAll('.mc-option').forEach(function(b){ b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        item.dataset.choice = oi;
+      });
+      item.querySelector('.mc-options').appendChild(btn);
+    });
+    list.appendChild(item);
+  });
+  byId('mcCheck').addEventListener('click', function(){
+    var correct = 0;
+    list.querySelectorAll('.mc-item').forEach(function(item){
+      var answer = Number(item.dataset.answer);
+      var choice = Number(item.dataset.choice);
+      item.querySelectorAll('.mc-option').forEach(function(btn, idx){
+        btn.classList.toggle('is-correct', idx === answer);
+        btn.classList.toggle('is-wrong', idx === choice && idx !== answer);
+      });
+      if(choice === answer) correct += 1;
+    });
+    setText('mcFeedback', correct + ' / 6 correct');
+    if(correct >= 4) completeStop(4);
+    else combo = 1;
+  });
+}
+
+function initType(){
+  var list = byId('typeList');
+  typeQuestions.forEach(function(q){
+    var item = document.createElement('label');
+    item.className = 'type-item';
+    item.dataset.answer = q.past;
+    item.innerHTML = '<div class="type-prompt">' + q.base + ' -></div><input class="type-input" autocomplete="off" spellcheck="false">';
+    list.appendChild(item);
+  });
+  byId('typeCheck').addEventListener('click', function(){
+    var correct = 0;
+    list.querySelectorAll('.type-item').forEach(function(item){
+      var input = item.querySelector('input');
+      var ok = input.value.trim().toLowerCase() === item.dataset.answer;
+      item.classList.toggle('is-correct', ok);
+      item.classList.toggle('is-wrong', !ok);
+      if(ok) correct += 1;
+    });
+    setText('typeFeedback', correct + ' / 6 correct');
+    if(correct >= 4) completeStop(5);
+    else combo = 1;
+  });
+}
+
+function initStory(){
+  var box = byId('storyBox');
+  storyParts.forEach(function(part){
+    if(typeof part === 'string'){
+      box.appendChild(document.createTextNode(part));
+      return;
+    }
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'story-verb';
+    btn.textContent = part.base;
+    btn.addEventListener('click', function(){
+      if(btn.classList.contains('is-correct')) return;
+      btn.textContent = part.past;
+      btn.classList.add('is-correct');
+      bumpScore(2);
+      var done = box.querySelectorAll('.story-verb.is-correct').length;
+      setText('storyFeedback', done + ' / 9 verbs found');
+      if(done === 9) completeStop(6);
+    });
+    box.appendChild(btn);
+  });
+}
+
+function launchFinale(){
+  byId('finaleNote').classList.add('show');
+  var canvas = document.createElement('canvas');
+  canvas.className = 'confetti-canvas';
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+  var colors = ['#7c3aed','#a78bfa','#fbbf24','#1e1b4b'];
+  var bits = [];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  for(var i = 0; i < 120; i += 1){
+    bits.push({x:Math.random()*canvas.width, y:-20-Math.random()*canvas.height, w:6+Math.random()*8, h:8+Math.random()*12, s:2+Math.random()*4, r:Math.random()*6, c:colors[i%colors.length]});
+  }
+  var frames = 0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    bits.forEach(function(p){
+      p.y += p.s;
+      p.x += Math.sin((frames + p.r) * 0.05) * 1.8;
+      p.r += 0.08;
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    frames += 1;
+    if(frames < 180) requestAnimationFrame(draw);
+    else canvas.remove();
+  }
+  draw();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  byId('langtoggle').addEventListener('click', function(){
+    var html = document.documentElement;
+    var cur = html.getAttribute('data-lang') || 'ru';
+    html.setAttribute('data-lang', cur === 'ru' ? 'en' : 'ru');
+    this.textContent = cur === 'ru' ? 'EN / RU' : 'RU / EN';
+  });
+  document.querySelectorAll('.stop').forEach(function(stop){
+    stop.addEventListener('click', function(e){
+      if(e.target.classList.contains('go')) return;
+      document.querySelectorAll('.stop').forEach(function(s){ s.classList.remove('is-active'); });
+      stop.classList.add('is-active');
+    });
+  });
+  var bonusFill = byId('bonusFill');
+  var bonusVal = 0;
+  byId('bonusPlay').addEventListener('click', function(){
+    bonusVal = (bonusVal + 20) % 120;
+    bonusFill.style.width = Math.min(bonusVal, 100) + '%';
+  });
+  byId('builderReset').addEventListener('click', renderBuilder);
+  initFlip();
+  initDrag();
+  renderBuilder();
+  initMultipleChoice();
+  initType();
+  initStory();
+  loadProgress();
+});
+</script>
+
+</body>
+</html>

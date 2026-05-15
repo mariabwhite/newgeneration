@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find &amp; Say · Free Demo · LinguaBoost Lab</title>
+<link rel="icon" type="image/svg+xml" href="../assets/nge-favicon-lab.svg">
+<meta name="description" content="A free 15-word hidden-object game from LinguaBoost Lab. Find the items, say the words — and discover our paid lessons.">
+<style>
+:root{
+  --bg:#1a1326;
+  --bg-deep:#120d1f;
+  --text:#f0ebff;
+  --muted:#8f7daa;
+  --line:rgba(197,174,240,.18);
+  --line-strong:rgba(197,174,240,.35);
+  --accent:#ff9b2f;
+  --accent-soft:#ffb35d;
+  --gold:#d4a843;
+  --green:#4ade80;
+  --green-deep:#16a34a;
+  --red:#d8453f;
+  --pill-bg:rgba(197,174,240,.08);
+  --ff-display:'Unbounded','Inter',system-ui,-apple-system,sans-serif;
+  --ff-body:'Manrope','Inter',system-ui,-apple-system,sans-serif;
+  --ff-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--ff-body);min-height:100vh;}
+body{
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(255,155,47,.06), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(197,174,240,.06), transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+  display:flex;
+  flex-direction:column;
+}
+
+/* === Layout =================================================== */
+.fs-wrap{
+  max-width:1480px;
+  margin:0 auto;
+  padding:24px clamp(14px,2.4vw,32px) 36px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  width:100%;
+}
+
+/* === Header =================================================== */
+.fs-head{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  padding:6px 0 4px;
+}
+.fs-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+.fs-logo-mark{
+  font-size:30px;
+  line-height:1;
+  filter:drop-shadow(0 2px 14px rgba(255,155,47,.45));
+}
+.fs-logo-title{
+  font-family:var(--ff-display);
+  font-size:clamp(22px,3vw,30px);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  color:var(--text);
+}
+.fs-subtitle{
+  color:var(--muted);
+  font-size:14px;
+  flex:1;
+  min-width:200px;
+  margin:0;
+}
+.fs-subtitle .fs-subtitle-ico{font-size:16px;color:var(--gold);}
+.fs-head-tools{display:flex;gap:10px;flex-shrink:0;}
+.fs-tool{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-family:var(--ff-mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  cursor:pointer;
+  transition:.18s;
+}
+.fs-tool:hover,.fs-tool:focus-visible{
+  border-color:var(--accent);
+  color:var(--accent);
+  outline:none;
+}
+.fs-tool.is-off{opacity:.55;}
+.fs-tool .q{
+  width:16px;
+  height:16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid currentColor;
+  border-radius:50%;
+  font-size:10px;
+  font-weight:800;
+}
+
+/* === Game grid ================================================ */
+.fs-game{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:24px;
+  align-items:start;
+}
+
+/* Scene panel — the picture with hotspots */
+.fs-scene{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#000;
+  aspect-ratio:1130/795;
+  box-shadow:0 14px 48px -16px rgba(0,0,0,.65);
+}
+.fs-scene img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.fs-hot{
+  position:absolute;
+  width:8%;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:2px dashed transparent;
+  background:transparent;
+  cursor:pointer;
+  transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;
+  transform:translate(-50%,-50%);
+  outline:none;
+  padding:0;
+}
+.fs-hot:hover,
+.fs-hot:focus-visible{
+  border-color:rgba(255,155,47,.65);
+  background:rgba(255,155,47,.10);
+  box-shadow:0 0 0 4px rgba(255,155,47,.10),0 0 36px rgba(255,155,47,.40);
+  transform:translate(-50%,-50%) scale(1.08);
+}
+.fs-hot.is-found{
+  border:2px solid rgba(74,222,128,.85);
+  background:rgba(74,222,128,.18);
+  box-shadow:0 0 0 4px rgba(74,222,128,.10),0 0 28px rgba(74,222,128,.35);
+  cursor:default;
+}
+.fs-hot.is-found:hover{transform:translate(-50%,-50%) scale(1);}
+.fs-hot.is-found::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:60%;
+  height:60%;
+  transform:translate(-50%,-50%);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12 L10 17 L19 7' fill='none' stroke='%234ade80' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  filter:drop-shadow(0 2px 12px rgba(0,0,0,.7));
+}
+.fs-hot.is-missed{
+  animation:fs-pulse-red 1.6s ease-out 1;
+}
+@keyframes fs-pulse-red{
+  0%{box-shadow:0 0 0 0 rgba(216,69,63,.7);border-color:rgba(216,69,63,1);background:rgba(216,69,63,.20);}
+  100%{box-shadow:0 0 0 26px rgba(216,69,63,0);border-color:transparent;background:transparent;}
+}
+.fs-debug .fs-hot:not(.is-found){
+  border-color:rgba(197,174,240,.50);
+  background:rgba(197,174,240,.06);
+}
+
+/* === Items panel ============================================== */
+.fs-items{
+  position:sticky;
+  top:18px;
+  background:var(--bg-deep);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-height:calc(100vh - 36px);
+  overflow:hidden;
+  box-shadow:0 10px 36px -16px rgba(0,0,0,.55);
+}
+.fs-items-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.fs-items-title{
+  font-family:var(--ff-display);
+  font-size:15px;
+  font-weight:700;
+  color:var(--text);
+}
+.fs-counter{
+  font-family:var(--ff-mono);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+.fs-counter strong{color:var(--accent);font-size:14px;}
+.fs-list{
+  list-style:none;
+  margin:0;
+  padding:0 4px 0 0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  overflow-y:auto;
+  flex:1;
+}
+.fs-list::-webkit-scrollbar{width:6px;}
+.fs-list::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+.fs-list::-webkit-scrollbar-track{background:transparent;}
+.fs-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .15s ease,opacity .25s ease;
+}
+.fs-item:hover{background:var(--pill-bg);}
+.fs-item.is-found{opacity:.5;}
+.fs-item.is-flash{background:rgba(216,69,63,.18);animation:fs-flash 1.6s ease-out;}
+@keyframes fs-flash{
+  0%{background:rgba(216,69,63,.40);}
+  100%{background:transparent;}
+}
+.fs-item-mark{
+  flex-shrink:0;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:1.5px solid var(--line-strong);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:900;
+  color:transparent;
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+.fs-item.is-found .fs-item-mark{
+  background:var(--green);
+  border-color:var(--green);
+  color:#062c0f;
+}
+.fs-item-text{flex:1;line-height:1.32;min-width:0;}
+.fs-item-en{
+  font-weight:600;
+  font-size:14px;
+  color:var(--text);
+  display:block;
+}
+.fs-item.is-found .fs-item-en{text-decoration:line-through;color:var(--muted);}
+.fs-item-ru{
+  display:block;
+  color:var(--accent);
+  font-size:12px;
+  margin-top:2px;
+  font-weight:500;
+}
+.fs-item.is-found .fs-item-ru{color:var(--muted);}
+
+/* === Footer / actions ========================================= */
+.fs-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 20px;
+  background:var(--bg-deep);
+  border:1px solid var(--line);
+  border-radius:14px;
+  flex-wrap:wrap;
+}
+.fs-tip{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  color:var(--muted);
+  font-size:13px;
+  max-width:540px;
+  line-height:1.4;
+}
+.fs-tip-ico{font-size:20px;color:var(--gold);line-height:1;}
+.fs-tip strong{color:var(--text);}
+.fs-score{
+  font-family:var(--ff-body);
+  font-size:14px;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.fs-score strong{color:var(--accent);font-size:17px;font-weight:800;font-family:var(--ff-mono);}
+.fs-check{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 24px;
+  background:var(--accent);
+  color:#1a1326;
+  font-family:var(--ff-mono);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.2s ease;
+  box-shadow:0 6px 22px -8px rgba(255,155,47,.65);
+}
+.fs-check:hover{background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 10px 28px -8px rgba(255,155,47,.85);}
+.fs-check:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+
+/* === Final CTA modal (when all 15 found) ====================== */
+.fs-cta{
+  position:fixed;
+  inset:0;
+  background:rgba(13,7,22,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  padding:24px;
+}
+.fs-cta.is-open{display:flex;animation:fs-fade-in .35s ease-out;}
+@keyframes fs-fade-in{from{opacity:0;}to{opacity:1;}}
+.fs-cta-card{
+  background:linear-gradient(135deg,#241634 0%,#1a1326 100%);
+  border:1px solid rgba(255,155,47,.45);
+  border-radius:24px;
+  padding:38px 32px 32px;
+  max-width:540px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(255,155,47,.08);
+  animation:fs-pop .45s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes fs-pop{
+  from{transform:translateY(20px) scale(.92);opacity:0;}
+  to{transform:translateY(0) scale(1);opacity:1;}
+}
+.fs-cta-eyebrow{
+  font-family:var(--ff-mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 12px;
+}
+.fs-cta-title{
+  font-family:var(--ff-display);
+  font-size:clamp(20px,2.8vw,26px);
+  font-weight:800;
+  margin:0 0 12px;
+  line-height:1.15;
+  color:var(--text);
+}
+.fs-cta-text{
+  color:var(--muted);
+  font-size:13px;
+  margin:0 0 22px;
+  line-height:1.55;
+}
+.fs-cta-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 26px;
+  background:var(--accent);
+  color:#1a1326;
+  font-family:var(--ff-mono);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border:0;
+  border-radius:999px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.22s ease;
+  box-shadow:0 14px 36px -10px rgba(255,155,47,.55);
+}
+.fs-cta-btn:hover,.fs-cta-btn:focus-visible{
+  background:var(--accent-soft);
+  transform:translateY(-2px);
+  box-shadow:0 20px 44px -10px rgba(255,155,47,.75);
+  outline:none;
+}
+.fs-cta-close{
+  background:transparent;
+  border:0;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:16px;
+  cursor:pointer;
+  font-family:var(--ff-body);
+  text-decoration:underline;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+.fs-cta-close:hover{color:var(--text);}
+
+/* === How-to-play modal ======================================== */
+.fs-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(13,7,22,.78);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:90;
+  padding:24px;
+}
+.fs-modal.is-open{display:flex;animation:fs-fade-in .25s ease-out;}
+.fs-modal-card{
+  background:var(--bg-deep);
+  border:1px solid var(--line-strong);
+  border-radius:18px;
+  padding:26px 24px 22px;
+  max-width:480px;
+  width:100%;
+  box-shadow:0 22px 56px rgba(0,0,0,.5);
+}
+.fs-modal-title{
+  font-family:var(--ff-display);
+  font-size:22px;
+  font-weight:800;
+  margin:0 0 16px;
+  color:var(--text);
+}
+.fs-modal-list{
+  list-style:none;
+  padding:0;
+  margin:0 0 22px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.5;
+}
+.fs-modal-list li{padding-left:24px;position:relative;}
+.fs-modal-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:8px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+}
+.fs-modal-list em{color:var(--accent);font-style:normal;font-weight:600;}
+.fs-modal-list kbd{
+  font-family:var(--ff-mono);
+  font-size:11px;
+  background:var(--pill-bg);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:1px 6px;
+  color:var(--text);
+}
+.fs-modal-close{
+  display:block;
+  margin:0 auto;
+  background:transparent;
+  border:1px solid var(--line-strong);
+  color:var(--text);
+  padding:9px 20px;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:var(--ff-mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  transition:.18s;
+}
+.fs-modal-close:hover{border-color:var(--accent);color:var(--accent);}
+
+/* === Subtle bottom credit ===================================== */
+.fs-credit{
+  text-align:center;
+  margin-top:8px;
+  font-family:var(--ff-mono);
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(143,125,170,.6);
+}
+.fs-credit a{color:var(--muted);text-decoration:none;border-bottom:1px dotted transparent;}
+.fs-credit a:hover{color:var(--accent);border-bottom-color:currentColor;}
+
+/* === Mobile =================================================== */
+@media(max-width:920px){
+  .fs-game{grid-template-columns:1fr;}
+  .fs-items{position:static;max-height:none;}
+  .fs-list{max-height:340px;}
+  .fs-foot{flex-direction:column;align-items:stretch;text-align:center;}
+  .fs-tip{max-width:none;justify-content:center;}
+  .fs-score{order:2;}
+  .fs-check{order:3;align-self:center;}
+}
+@media(max-width:540px){
+  .fs-head{gap:12px;}
+  .fs-subtitle{font-size:13px;}
+  .fs-tool{padding:7px 12px;font-size:10px;}
+}
+</style>
+</head>
+<body>
+<script>
+  /* NGE STATE-BRIDGE — window.name as cross-page truth on file:// origin. */
+  (function(){
+    try {
+      var st = {};
+      try { st = (window.name && window.name.charAt(0) === "{") ? JSON.parse(window.name) : {}; } catch(_){}
+      var url = new URLSearchParams(location.search);
+      var theme = st.theme || url.get("theme") || localStorage.getItem("nge-theme") || "";
+      var lang  = st.lang  || url.get("lang")  || localStorage.getItem("nge-lang")  || "";
+      var isLight = (theme === "light" || theme === "light-lab");
+      var isEn = (lang === "en");
+      if (isLight) document.body.classList.add("light");
+      if (isEn) document.body.classList.add("en");
+      var siteTheme = isLight ? "light" : "dark";
+      var lessonTheme = isLight ? "light-lab" : "black-lab";
+      var finalLang = isEn ? "en" : "ru";
+      window.name = JSON.stringify({ theme: lessonTheme, lang: finalLang });
+      try {
+        localStorage.setItem("nge-theme", siteTheme);
+        localStorage.setItem("nge-lang", finalLang);
+        localStorage.setItem("lesson-palette", lessonTheme);
+      } catch(_){}
+    } catch(_){}
+  })();
+</script>
+
+<main class="fs-wrap">
+
+  <!-- ============ HEADER ============ -->
+  <header class="fs-head">
+    <a class="fs-logo" href="index.html" aria-label="LinguaBoost Lab home">
+      <span class="fs-logo-mark" aria-hidden="true">🔍</span>
+      <span class="fs-logo-title">Find &amp; Say</span>
+    </a>
+    <p class="fs-subtitle">Look around and find all the items from the list. <span class="fs-subtitle-ico" aria-hidden="true">🔎</span></p>
+    <div class="fs-head-tools">
+      <button class="fs-tool" id="fs-help" type="button">How to play <span class="q" aria-hidden="true">?</span></button>
+      <button class="fs-tool" id="fs-mute" type="button" aria-label="Toggle voice">🔊</button>
+    </div>
+  </header>
+
+  <!-- ============ GAME ============ -->
+  <div class="fs-game">
+
+    <div class="fs-scene" id="fs-scene">
+      <img src="assets/find-say-scene.png" alt="A cluttered student desk with school items hidden among books and papers" loading="eager">
+      <!-- Hotspots are injected by JS based on the ITEMS array -->
+    </div>
+
+    <aside class="fs-items" aria-label="Items to find">
+      <div class="fs-items-head">
+        <span class="fs-items-title">Find these items:</span>
+        <span class="fs-counter"><strong id="fs-count">0</strong> / <span id="fs-total">15</span></span>
+      </div>
+      <ul class="fs-list" id="fs-list" aria-live="polite"></ul>
+    </aside>
+
+  </div>
+
+  <!-- ============ FOOTER (tip + score + check) ============ -->
+  <footer class="fs-foot">
+    <div class="fs-tip">
+      <span class="fs-tip-ico" aria-hidden="true">💡</span>
+      <span><strong>Tip:</strong> some items are really well hidden. Click anywhere on the picture — if there's an item there, it lights up green.</span>
+    </div>
+    <span class="fs-score">Great! You found: <strong id="fs-score">0</strong> of <strong id="fs-score-total">15</strong></span>
+    <button class="fs-check" id="fs-check" type="button">Check answers</button>
+  </footer>
+
+  <p class="fs-credit">Free demo &middot; <a href="index.html">LinguaBoost Lab</a> &middot; 25+ interactive lessons inside</p>
+
+</main>
+
+<!-- ============ HOW-TO MODAL ============ -->
+<div class="fs-modal" id="fs-modal-help" role="dialog" aria-labelledby="fs-help-title" aria-modal="true" aria-hidden="true">
+  <div class="fs-modal-card">
+    <h2 class="fs-modal-title" id="fs-help-title">How to play</h2>
+    <ul class="fs-modal-list">
+      <li>Look at the picture and pick an item from the list on the right.</li>
+      <li>Find it on the picture and <em>click it</em>. If you're close — it turns green and the word is read aloud.</li>
+      <li>You can also click an item in the list to <em>hear</em> the word.</li>
+      <li>Try to find all 15 without using <em>Check answers</em>. When you finish — the path to the LinguaBoost Lab catalog opens.</li>
+      <li>Shortcuts: <kbd>Alt</kbd>+<kbd>R</kbd> reset · <kbd>Esc</kbd> close any window.</li>
+    </ul>
+    <button class="fs-modal-close" type="button" data-close-modal>Got it</button>
+  </div>
+</div>
+
+<!-- ============ FINAL CTA MODAL ============ -->
+<div class="fs-cta" id="fs-cta-success" role="dialog" aria-labelledby="fs-cta-title" aria-modal="true" aria-hidden="true">
+  <div class="fs-cta-card">
+    <p class="fs-cta-eyebrow">Demo complete</p>
+    <h2 class="fs-cta-title" id="fs-cta-title">You found all 15. Brilliant!</h2>
+    <p class="fs-cta-text">That was a free taste. Inside <strong>LinguaBoost Lab</strong> there are <strong>25+ interactive lessons</strong> — A1 to C1, with grammar quests, vocabulary labs, listening and speaking practice.</p>
+    <a class="fs-cta-btn" href="index.html">Explore LinguaBoost Lab &rarr;</a>
+    <button class="fs-cta-close" type="button" id="fs-cta-close-btn">Stay on this page</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // === ITEMS + hotspot positions ==================================
+  // Each item: id, en (display in list), speak (TTS text), ru (translation),
+  //            x (% horizontal centre), y (% vertical centre), size (% of width = radius*2).
+  // Positions are approximate — tweak in source if needed.
+  // The image is 1130×795. Coordinates are % of the displayed image.
+  var ITEMS = [
+    {id:"subway",       en:"subway",                                speak:"subway",                  ru:"метро",                  x:17, y:14, size:7},
+    {id:"boring",       en:"boring",                                speak:"boring",                  ru:"скучный",                x:26, y:38, size:7},
+    {id:"watercolours", en:"watercolours",                          speak:"watercolours",            ru:"акварель",               x:35, y:62, size:7},
+    {id:"underpass",    en:"Underpass",                             speak:"underpass",               ru:"Подземный переход",      x:29, y:11, size:5},
+    {id:"pavement",     en:"Pavement",                              speak:"pavement",                ru:"Тротуар",                x:24, y:11, size:5},
+    {id:"roundabout",   en:"Roundabout",                            speak:"roundabout",              ru:"Кольцевая развязка",     x:49, y:60, size:6},
+    {id:"robotics",     en:"robotics / robotics club / class",      speak:"robotics club",           ru:"робототехника",          x:85, y:17, size:8},
+    {id:"coat-of-arms", en:"coat of arms",                          speak:"coat of arms",            ru:"герб",                   x:44, y:18, size:5},
+    {id:"hole-punch",   en:"a hole punch",                          speak:"a hole punch",            ru:"дырокол",                x:26, y:88, size:6},
+    {id:"highlighters", en:"a set / kit of highlighters",           speak:"a set of highlighters",   ru:"набор",                  x:58, y:71, size:7},
+    {id:"magnifier",    en:"a magnifying glass",                    speak:"a magnifying glass",      ru:"увеличительное стекло",  x:38, y:88, size:6},
+    {id:"scissors",     en:"scissors",                              speak:"scissors",                ru:"ножницы",                x:72, y:70, size:5},
+    {id:"pattern",      en:"a pattern",                             speak:"a pattern",               ru:"узор",                   x:45, y:80, size:7},
+    {id:"chemistry",    en:"Chemistry",                             speak:"chemistry",               ru:"химия",                  x:25, y:48, size:5},
+    {id:"globe",        en:"a globe",                               speak:"a globe",                 ru:"глобус",                 x:11, y:36, size:5}
+  ];
+
+  // === STATE ======================================================
+  var STORAGE_KEY = "linguaboost:find-and-say:v1";
+  var state = (function(){
+    try{
+      var raw = JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
+      return {found:raw.found||{}, muted:!!raw.muted};
+    }catch(e){
+      return {found:{}, muted:false};
+    }
+  })();
+  function save(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){} }
+
+  // === DOM ========================================================
+  var scene    = document.getElementById("fs-scene");
+  var list     = document.getElementById("fs-list");
+  var counter  = document.getElementById("fs-count");
+  var total    = document.getElementById("fs-total");
+  var score    = document.getElementById("fs-score");
+  var scoreTot = document.getElementById("fs-score-total");
+  var checkBtn = document.getElementById("fs-check");
+  var muteBtn  = document.getElementById("fs-mute");
+  var helpBtn  = document.getElementById("fs-help");
+  var modalHelp= document.getElementById("fs-modal-help");
+  var ctaSuccess = document.getElementById("fs-cta-success");
+  var ctaCloseBtn = document.getElementById("fs-cta-close-btn");
+
+  total.textContent = ITEMS.length;
+  scoreTot.textContent = ITEMS.length;
+
+  // === Render =====================================================
+  function renderHotspot(item){
+    var hot = document.createElement("button");
+    hot.type = "button";
+    hot.className = "fs-hot";
+    hot.setAttribute("data-id", item.id);
+    hot.setAttribute("aria-label", item.speak);
+    hot.style.left   = item.x + "%";
+    hot.style.top    = item.y + "%";
+    hot.style.width  = (item.size*2) + "%";
+    if(state.found[item.id]) hot.classList.add("is-found");
+    hot.addEventListener("click", function(ev){
+      ev.preventDefault();
+      handleFind(item.id);
+    });
+    scene.appendChild(hot);
+  }
+
+  function renderItem(item){
+    var li = document.createElement("li");
+    li.className = "fs-item";
+    li.setAttribute("data-id", item.id);
+    if(state.found[item.id]) li.classList.add("is-found");
+    li.innerHTML =
+      '<span class="fs-item-mark" aria-hidden="true">&#10003;</span>'
+      + '<span class="fs-item-text">'
+      +   '<span class="fs-item-en">'+escapeHtml(item.en)+'</span>'
+      +   '<span class="fs-item-ru">'+escapeHtml(item.ru)+'</span>'
+      + '</span>';
+    li.addEventListener("click", function(){
+      // Clicking the list item reads the word aloud (no penalty, no auto-mark)
+      speak(item.speak);
+    });
+    list.appendChild(li);
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" })[c];
+    });
+  }
+
+  ITEMS.forEach(function(item){
+    renderHotspot(item);
+    renderItem(item);
+  });
+
+  // === GAME LOGIC =================================================
+  function handleFind(id){
+    if(state.found[id]) return;
+    state.found[id] = true;
+    save();
+
+    var hot = scene.querySelector('.fs-hot[data-id="'+CSS.escape(id)+'"]');
+    var li  = list.querySelector('.fs-item[data-id="'+CSS.escape(id)+'"]');
+    if(hot) hot.classList.add("is-found");
+    if(li)  li.classList.add("is-found");
+
+    var item = ITEMS.find(function(i){return i.id===id;});
+    if(item) speak(item.speak);
+
+    updateCounters();
+    if(getCount() === ITEMS.length){
+      setTimeout(showSuccess, 750);
+    }
+  }
+
+  function getCount(){
+    var n=0;
+    for(var k in state.found){ if(state.found[k]) n++; }
+    return n;
+  }
+
+  function updateCounters(){
+    var n = getCount();
+    counter.textContent = n;
+    score.textContent = n;
+  }
+
+  function showSuccess(){
+    ctaSuccess.classList.add("is-open");
+    ctaSuccess.setAttribute("aria-hidden","false");
+  }
+
+  // === Check answers — pulse all missed items + their hotspots ====
+  checkBtn.addEventListener("click", function(){
+    if(getCount() === ITEMS.length){
+      showSuccess();
+      return;
+    }
+    ITEMS.forEach(function(item){
+      if(state.found[item.id]) return;
+      var hot = scene.querySelector('.fs-hot[data-id="'+CSS.escape(item.id)+'"]');
+      var li  = list.querySelector('.fs-item[data-id="'+CSS.escape(item.id)+'"]');
+      if(hot){
+        hot.classList.remove("is-missed");
+        void hot.offsetWidth;  // restart animation
+        hot.classList.add("is-missed");
+      }
+      if(li){
+        li.classList.remove("is-flash");
+        void li.offsetWidth;
+        li.classList.add("is-flash");
+      }
+    });
+  });
+
+  // === Voice — Free Dictionary API audio + smart fallback =========
+  // Strategy: prefer real human MP3 from dictionaryapi.dev (Wiktionary recordings).
+  // Falls back to SpeechSynthesis with a carefully picked voice if no MP3 found
+  // or network is unreachable. Audio URLs are cached in localStorage.
+  var AUDIO_CACHE_KEY = "linguaboost:find-and-say:audio-cache:v1";
+  var audioCache = (function(){
+    try{ return JSON.parse(localStorage.getItem(AUDIO_CACHE_KEY)||"{}"); }
+    catch(e){ return {}; }
+  })();
+  function persistAudioCache(){
+    try{ localStorage.setItem(AUDIO_CACHE_KEY, JSON.stringify(audioCache)); }catch(e){}
+  }
+
+  function normaliseLookup(text){
+    // Strip leading article so the dictionary can resolve the head word
+    return String(text).trim().replace(/^(a |an |the )/i, "").trim();
+  }
+
+  function fetchDictAudio(text){
+    var key = normaliseLookup(text).toLowerCase();
+    if(audioCache[key] !== undefined){
+      return Promise.resolve(audioCache[key]); // may be "" if previously not found
+    }
+    // Free, no key, CORS-friendly. May fail on multi-word phrases.
+    var url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(key);
+    return fetch(url, {mode:"cors"})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(data){
+        if(!data || !Array.isArray(data)) { audioCache[key]=""; persistAudioCache(); return ""; }
+        // Walk every phonetics entry, prefer UK then US then anything non-empty
+        var candidates = [];
+        data.forEach(function(entry){
+          (entry.phonetics||[]).forEach(function(p){
+            if(p.audio) candidates.push(p.audio);
+          });
+        });
+        if(!candidates.length){ audioCache[key]=""; persistAudioCache(); return ""; }
+        var preferred = candidates.find(function(u){ return /-uk\.mp3/i.test(u); })
+                     || candidates.find(function(u){ return /-us\.mp3/i.test(u); })
+                     || candidates[0];
+        // dictionaryapi.dev sometimes returns protocol-relative URLs
+        if(/^\/\//.test(preferred)) preferred = "https:" + preferred;
+        audioCache[key] = preferred;
+        persistAudioCache();
+        return preferred;
+      })
+      .catch(function(){ audioCache[key]=""; persistAudioCache(); return ""; });
+  }
+
+  // Single shared Audio element so a new utterance always cancels the previous
+  var currentAudio = null;
+  function playMp3(url){
+    return new Promise(function(resolve, reject){
+      try{
+        if(currentAudio){ try{ currentAudio.pause(); }catch(e){} currentAudio = null; }
+        var a = new Audio(url);
+        a.preload = "auto";
+        a.volume = 1.0;
+        currentAudio = a;
+        a.addEventListener("ended", function(){ resolve(true); }, {once:true});
+        a.addEventListener("error", function(){ reject(new Error("audio error")); }, {once:true});
+        var p = a.play();
+        if(p && p.catch) p.catch(reject);
+      }catch(e){ reject(e); }
+    });
+  }
+
+  function pickBestVoice(){
+    if(!window.speechSynthesis) return null;
+    var voices = window.speechSynthesis.getVoices() || [];
+    if(!voices.length) return null;
+    // Quality-priority pattern list (higher = better)
+    var patterns = [
+      /^Google.*\b(US|UK|British|American)\b.*English/i,
+      /^Google US English/i,
+      /^Microsoft (Aria|Jenny|Guy|Sara|Sonia|Eric|Libby|Ryan|Davis|Tony|Andrew|Emma) Online/i,
+      /^Microsoft (Aria|Jenny|Guy|Sara|Sonia|Eric|Libby|Ryan) Natural/i,
+      /\bNatural\b.*en[-_]/i,
+      /^Microsoft (Aria|Jenny|Guy|Sara|Sonia|Eric|Libby|Ryan|Davis|Tony|Andrew|Emma)/i,
+      /^(Samantha|Karen|Daniel|Moira|Tessa|Serena)/i,  // Apple high-quality
+      /Online.*en[-_]/i,
+      /en[-_](US|GB)/i,
+      /^en[-_]/i
+    ];
+    for(var i=0;i<patterns.length;i++){
+      var p = patterns[i];
+      var v = voices.find(function(vv){ return p.test(vv.name||"") || p.test(vv.lang||""); });
+      if(v) return v;
+    }
+    return voices.find(function(vv){ return (vv.lang||"").toLowerCase().indexOf("en") === 0; }) || voices[0];
+  }
+
+  function speakSynth(text){
+    if(!window.speechSynthesis) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-GB";
+      u.rate = 0.92;
+      u.pitch = 1.0;
+      var v = pickBestVoice();
+      if(v){ u.voice = v; u.lang = v.lang || u.lang; }
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  // Warm up voice list (some browsers populate it asynchronously)
+  if(window.speechSynthesis){
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function(){ window.speechSynthesis.getVoices(); };
+  }
+
+  function speak(text){
+    if(state.muted) return;
+    // First try real human MP3 from Wiktionary via dictionaryapi.dev
+    fetchDictAudio(text).then(function(url){
+      if(url){
+        playMp3(url).catch(function(){ speakSynth(text); });
+      } else {
+        speakSynth(text);
+      }
+    }).catch(function(){ speakSynth(text); });
+  }
+
+  function setMuted(m){
+    state.muted = !!m;
+    save();
+    muteBtn.classList.toggle("is-off", state.muted);
+    muteBtn.textContent = state.muted ? "🔇" : "🔊";
+    muteBtn.setAttribute("aria-label", state.muted ? "Unmute voice" : "Mute voice");
+  }
+  muteBtn.addEventListener("click", function(){ setMuted(!state.muted); });
+  setMuted(state.muted);
+
+  // === Modals =====================================================
+  helpBtn.addEventListener("click", function(){
+    modalHelp.classList.add("is-open");
+    modalHelp.setAttribute("aria-hidden","false");
+  });
+  modalHelp.addEventListener("click", function(ev){
+    if(ev.target === modalHelp || ev.target.matches("[data-close-modal]")){
+      modalHelp.classList.remove("is-open");
+      modalHelp.setAttribute("aria-hidden","true");
+    }
+  });
+  ctaCloseBtn.addEventListener("click", function(){
+    ctaSuccess.classList.remove("is-open");
+    ctaSuccess.setAttribute("aria-hidden","true");
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape"){
+      modalHelp.classList.remove("is-open");
+      modalHelp.setAttribute("aria-hidden","true");
+      ctaSuccess.classList.remove("is-open");
+      ctaSuccess.setAttribute("aria-hidden","true");
+    }
+  });
+
+  // === Shortcuts (reset + debug toggle) ===========================
+  document.addEventListener("keydown", function(ev){
+    if(ev.altKey && (ev.key === "r" || ev.key === "R")){
+      ev.preventDefault();
+      state.found = {};
+      save();
+      document.querySelectorAll(".fs-hot.is-found").forEach(function(h){h.classList.remove("is-found");});
+      document.querySelectorAll(".fs-item.is-found").forEach(function(i){i.classList.remove("is-found");});
+      updateCounters();
+    }
+    if(ev.altKey && (ev.key === "d" || ev.key === "D")){
+      ev.preventDefault();
+      scene.classList.toggle("fs-debug");
+    }
+  });
+
+  // Initial counters
+  updateCounters();
+
+})();
+</script>
+</body>
+</html>

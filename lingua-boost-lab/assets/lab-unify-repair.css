@@ -1,0 +1,875 @@
+/*
+  Compatibility layer for older LinguaBoost interactive lessons.
+  The active shell geometry now lives in nge-unified-skeleton.css.
+*/
+
+
+/* Codex 2026-05-09: keep interactive lesson topbars as one clean row, no injected brick chips. */
+.lb-unified-topbar.topbar,
+.lb-unified-topbar.lab-topbar,
+.nge-shell-topbar.lb-unified-topbar,
+.topbar.lb-unified-topbar,
+.lab-topbar.lb-unified-topbar {
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: clamp(8px, 1.2vw, 14px) !important;
+  min-height: 56px !important;
+  overflow: hidden !important;
+}
+
+/* Codex level canon pass 2026-05-14:
+   One shared measuring stick per level. It keeps lesson palettes intact while
+   normalizing typography, outer grid, footer rhythm and accidental footer marks. */
+:root {
+  --lb-canon-page-gap: 60px;
+  --lb-canon-wide: 1320px;
+  --lb-canon-mid: 1180px;
+  --lb-canon-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --lb-canon-display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --lb-canon-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+body[data-lb-level] {
+  font-family: var(--lb-canon-body) !important;
+  font-size: 16px !important;
+}
+
+body[data-lb-level] .canon-l-hero-title,
+body[data-lb-level] .hero-title,
+body[data-lb-level] .friendly-title {
+  font-family: var(--lb-canon-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+body[data-lb-level="a1"] .canon-l-hero-title,
+body[data-lb-level="a1"] .hero-title,
+body[data-lb-level="a1"] .friendly-title {
+  font-size: clamp(2.05rem, 3.35vw, 3.015rem) !important;
+  line-height: .98 !important;
+}
+
+body[data-lb-level="a2b1"] .canon-l-hero-title,
+body[data-lb-level="b1"] .canon-l-hero-title,
+body[data-lb-level="a2b1"] .hero-title,
+body[data-lb-level="b1"] .hero-title {
+  font-size: clamp(2.25rem, 3.75vw, 3.375rem) !important;
+  line-height: .96 !important;
+}
+
+body[data-lb-level="b2plus"] .canon-l-hero-title,
+body[data-lb-level="c1"] .canon-l-hero-title,
+body[data-lb-level="b2plus"] .hero-title,
+body[data-lb-level="c1"] .hero-title {
+  font-size: clamp(2.35rem, 3.9vw, 3.5rem) !important;
+  line-height: .98 !important;
+}
+
+body[data-lb-level] .canon-l-section-title,
+body[data-lb-level] .block-title,
+body[data-lb-level] .section-title,
+body[data-lb-level] .section-head h2,
+body[data-lb-level] .round-title {
+  font-family: var(--lb-canon-display) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.12 !important;
+}
+
+body[data-lb-level="a1"] .canon-l-section-title,
+body[data-lb-level="a1"] .block-title,
+body[data-lb-level="a1"] .section-title,
+body[data-lb-level="a1"] .section-head h2,
+body[data-lb-level="a1"] .round-title {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem) !important;
+}
+
+body[data-lb-level="a2b1"] .canon-l-section-title,
+body[data-lb-level="b1"] .canon-l-section-title,
+body[data-lb-level="a2b1"] .block-title,
+body[data-lb-level="b1"] .block-title,
+body[data-lb-level="a2b1"] .section-title,
+body[data-lb-level="b1"] .section-title,
+body[data-lb-level="a2b1"] .section-head h2,
+body[data-lb-level="b1"] .section-head h2,
+body[data-lb-level="a2b1"] .round-title,
+body[data-lb-level="b1"] .round-title {
+  font-size: clamp(1.35rem, 1.95vw, 1.75rem) !important;
+}
+
+body[data-lb-level] .canon-l-link,
+body[data-lb-level] .canon-l-pill,
+body[data-lb-level] .top-link,
+body[data-lb-level] .lab-tool-btn,
+body[data-lb-level] button,
+body[data-lb-level] .btn {
+  font-family: var(--lb-canon-mono) !important;
+}
+
+@media (min-width: 721px) {
+  body[data-lb-level] .canon-l-hero,
+  body[data-lb-level] .hero,
+  body[data-lb-level] .hero-banner,
+  body[data-lb-level] .lab-hero {
+    width: min(calc(100% - (var(--lb-canon-page-gap) * 2)), var(--lb-canon-wide)) !important;
+    max-width: var(--lb-canon-wide) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body[data-lb-page="english-booster"] main,
+  body[data-lb-page="english-booster"] .wrap,
+  body[data-lb-page="core-trainer"] main,
+  body[data-lb-page="core-trainer"] .wrap,
+  body[data-lb-page="restaurant-menu"] main,
+  body[data-lb-page="restaurant-menu"] .wrap,
+  body[data-lb-page="grammar-arcade"] main,
+  body[data-lb-page="grammar-arcade"] .wrap,
+  body[data-lb-page="whispering-library"] main,
+  body[data-lb-page="whispering-library"] .wrap,
+  body[data-lb-page="whispering-library"] .shell,
+  body[data-lb-page="geo-quest"] main,
+  body[data-lb-page="geo-quest"] .wrap,
+  body[data-lb-page="stars"] main,
+  body[data-lb-page="stars"] .wrap,
+  body[data-lb-page="stars"] .shell {
+    width: min(calc(100% - (var(--lb-canon-page-gap) * 2)), var(--lb-canon-wide)) !important;
+    max-width: var(--lb-canon-wide) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body[data-lb-level] footer.canon-l-footer,
+  body[data-lb-level] .canon-l-footer {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+body[data-lb-level] footer .canon-l-footer-brand,
+body[data-lb-level] footer .canon-l-footer-mark,
+body[data-lb-level] .canon-l-footer .canon-l-footer-brand,
+body[data-lb-level] .canon-l-footer .canon-l-footer-mark {
+  display: none !important;
+}
+
+body[data-lb-page="prepositions-world"] .world-mission-row,
+body[data-lb-page="prepositions-world"] .world-mission-path,
+body[data-lb-page="prepositions-world"] .flip-grid,
+body[data-lb-page="prepositions-world"] .prep-choice-grid,
+body[data-lb-page="prepositions-world"] .speaking-grid {
+  align-items: stretch !important;
+  gap: clamp(18px, 2vw, 28px) !important;
+}
+
+body[data-lb-page="prepositions-world"] .world-mission-words,
+body[data-lb-page="prepositions-world"] .world-mission-path,
+body[data-lb-page="prepositions-world"] .mini-action,
+body[data-lb-page="prepositions-world"] .sentence-frame {
+  min-height: 100% !important;
+  margin-top: clamp(18px, 1.6vw, 26px) !important;
+}
+
+body[data-lb-page="easter"] .star-bar {
+  width: min(calc(100% - (var(--lb-canon-page-gap) * 2)), var(--lb-canon-wide)) !important;
+  max-width: var(--lb-canon-wide) !important;
+  margin: 18px auto 12px !important;
+}
+
+body[data-lb-page="easter"] .round-card,
+body[data-lb-page="easter"] .mission-card {
+  width: min(calc(100% - (var(--lb-canon-page-gap) * 2)), var(--lb-canon-wide)) !important;
+  max-width: var(--lb-canon-wide) !important;
+}
+
+body[data-lb-page="english-booster"] .booster-listen-chip,
+body[data-lb-page="english-booster"] .canon-l-hero-pill,
+body[data-lb-page="english-booster"] .core-line-chip {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  min-width: max-content !important;
+}
+
+body[data-lb-page="stars"] .vocab-word,
+body[data-lb-page="stars"] [data-word="nebula"],
+body[data-lb-page="stars"] .nebula {
+  font-size: clamp(1rem, 1.4vw, 1.25rem) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+@media (max-width: 720px) {
+  body[data-lb-level] .canon-l-hero-title,
+  body[data-lb-level] .hero-title,
+  body[data-lb-level] .friendly-title {
+    font-size: clamp(2rem, 10vw, 2.7rem) !important;
+    line-height: 1 !important;
+  }
+  body[data-lb-page="easter"] .round-card,
+  body[data-lb-page="easter"] .mission-card,
+  body[data-lb-page="easter"] .star-bar {
+    width: min(calc(100% - 28px), var(--lb-canon-wide)) !important;
+  }
+  body[data-lb-page="restaurant-menu"] .hero-visual,
+  body[data-lb-page="restaurant-menu"] .hero-visual > *,
+  body[data-lb-page="restaurant-menu"] .hero-inner > *,
+  body[data-lb-page="restaurant-menu"] .hero img {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+}
+.lb-unified-topbar .lab-topchips,
+.lb-unified-topbar .lab-topchip,
+.lb-unified-topbar .lab-langtoggle {
+  display: none !important;
+}
+.lb-unified-topbar .brand,
+.lb-unified-topbar .lab-brand,
+.lb-unified-topbar .nge-shell-brand {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  max-width: min(360px, 42vw) !important;
+}
+.lb-unified-topbar .brand-copy,
+.lb-unified-topbar .lab-brand-copy,
+.lb-unified-topbar .nge-shell-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+.lb-unified-topbar .brand-name,
+.lb-unified-topbar .brand-tag,
+.lb-unified-topbar .lab-brand-name,
+.lb-unified-topbar .lab-brand-tag,
+.lb-unified-topbar .nge-shell-name,
+.lb-unified-topbar .nge-shell-tag {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.lb-unified-topbar .topbar-nav,
+.lb-unified-topbar .lab-nav,
+.lb-unified-topbar .nge-shell-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  margin-left: clamp(6px, 1vw, 12px) !important;
+  margin-right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+}
+.lb-unified-topbar .topbar-nav::-webkit-scrollbar,
+.lb-unified-topbar .lab-nav::-webkit-scrollbar,
+.lb-unified-topbar .nge-shell-nav::-webkit-scrollbar { display: none !important; }
+.lb-unified-topbar .top-link,
+.lb-unified-topbar .lab-back,
+.lb-unified-topbar .lab-pill-nav,
+.lb-unified-topbar .lab-tool-btn,
+.lb-unified-topbar .nge-shell-link {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.lb-unified-topbar .topbar-tools,
+.lb-unified-topbar .lab-topbar-tools {
+  margin-left: 0 !important;
+  flex: 0 0 auto !important;
+}
+.lb-unified-topbar .level-bubble,
+.lb-unified-topbar .lab-level-bubble,
+.lb-unified-topbar .nge-level-badge {
+  width: 42px !important;
+  height: 34px !important;
+  flex: 0 0 42px !important;
+  border-radius: 10px !important;
+  font-size: 9px !important;
+  line-height: 1 !important;
+  padding: 0 3px !important;
+  text-align: center !important;
+}
+@media (max-width: 820px) {
+  .lb-unified-topbar .brand,
+  .lb-unified-topbar .lab-brand,
+  .lb-unified-topbar .nge-shell-brand { max-width: 45vw !important; }
+  .lb-unified-topbar .topbar-nav,
+  .lb-unified-topbar .lab-nav,
+  .lb-unified-topbar .nge-shell-nav { order: 0 !important; flex-basis: auto !important; }
+}
+/* Codex 2026-05-09: direct topbar brick guard for all interactive lessons. */
+.topbar,
+.lab-topbar,
+.nge-shell-topbar {
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: clamp(8px, 1.2vw, 14px) !important;
+  min-height: 56px !important;
+  overflow: hidden !important;
+}
+.topbar .lab-topchips,
+.lab-topbar .lab-topchips,
+.nge-shell-topbar .lab-topchips,
+.topbar .lab-topchip,
+.lab-topbar .lab-topchip,
+.nge-shell-topbar .lab-topchip,
+.topbar .lab-langtoggle,
+.lab-topbar .lab-langtoggle,
+.nge-shell-topbar .lab-langtoggle {
+  display: none !important;
+}
+.topbar .brand,
+.lab-topbar .lab-brand,
+.nge-shell-topbar .nge-shell-brand {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  max-width: min(360px, 42vw) !important;
+}
+.topbar .brand-copy,
+.lab-topbar .lab-brand-copy,
+.nge-shell-topbar .nge-shell-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+.topbar .brand-name,
+.topbar .brand-tag,
+.lab-topbar .lab-brand-name,
+.lab-topbar .lab-brand-tag,
+.nge-shell-topbar .nge-shell-name,
+.nge-shell-topbar .nge-shell-tag {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.topbar .topbar-nav,
+.lab-topbar .lab-nav,
+.nge-shell-topbar .nge-shell-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  margin-left: clamp(6px, 1vw, 12px) !important;
+  margin-right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+}
+.topbar .topbar-nav::-webkit-scrollbar,
+.lab-topbar .lab-nav::-webkit-scrollbar,
+.nge-shell-topbar .nge-shell-nav::-webkit-scrollbar { display: none !important; }
+.topbar .top-link,
+.lab-topbar .lab-back,
+.lab-topbar .lab-pill-nav,
+.lab-topbar .lab-tool-btn,
+.nge-shell-topbar .nge-shell-link {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.topbar .topbar-tools,
+.lab-topbar .lab-topbar-tools {
+  margin-left: 0 !important;
+  flex: 0 0 auto !important;
+}
+.topbar .level-bubble,
+.lab-topbar .level-bubble,
+.lab-topbar .lab-level-bubble,
+.nge-shell-topbar .nge-level-badge {
+  width: 42px !important;
+  height: 34px !important;
+  flex: 0 0 42px !important;
+  border-radius: 10px !important;
+  font-size: 9px !important;
+  line-height: 1 !important;
+  padding: 0 3px !important;
+  text-align: center !important;
+}
+@media (max-width: 820px) {
+  .topbar .brand,
+  .lab-topbar .lab-brand,
+  .nge-shell-topbar .nge-shell-brand { max-width: 45vw !important; }
+  .topbar .topbar-nav,
+  .lab-topbar .lab-nav,
+  .nge-shell-topbar .nge-shell-nav { order: 0 !important; flex-basis: auto !important; }
+}
+
+/* Codex 2026-05-14: compact intro/progress blocks on interactive lessons. */
+.canon-l-collapsible {
+  box-sizing: border-box !important;
+  width: var(--lesson-shell, min(100% - 56px, 1320px)) !important;
+  max-width: 1320px !important;
+  margin: clamp(14px, 2vw, 22px) auto !important;
+  border-radius: var(--radius, var(--wl-radius, 18px)) !important;
+  border: 1px solid var(--lb-line, rgba(212,168,67,.22)) !important;
+  background: var(--lb-bg, rgba(243,233,210,.06)) !important;
+  overflow: hidden !important;
+}
+.canon-l-collapsible > .canon-l-collapsible-summary {
+  box-sizing: border-box !important;
+  min-height: 58px !important;
+  padding: 14px clamp(20px, 4vw, 56px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  cursor: pointer !important;
+  list-style: none !important;
+  color: var(--lb-text, inherit) !important;
+  font-family: var(--display, "Unbounded", "Manrope", system-ui, sans-serif) !important;
+  font-size: clamp(.92rem, 1.2vw, 1rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .01em !important;
+}
+.canon-l-collapsible > .canon-l-collapsible-summary::-webkit-details-marker {
+  display: none !important;
+}
+.canon-l-collapsible-icon {
+  width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--lb-seg-border, var(--lb-line, currentColor)) !important;
+  display: grid !important;
+  place-items: center !important;
+}
+.canon-l-collapsible-icon::before {
+  content: "+" !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  color: var(--lb-accent, var(--accent, currentColor)) !important;
+}
+.canon-l-collapsible[open] > .canon-l-collapsible-summary .canon-l-collapsible-icon::before {
+  content: "-" !important;
+}
+.canon-l-collapsible > .canon-l-collapsible-body,
+.canon-l-collapsible > .canon-l-why,
+.canon-l-collapsible > .wl-why {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.canon-l-collapsible > .canon-l-why,
+.canon-l-collapsible > .wl-why {
+  padding-left: clamp(20px, 4vw, 56px) !important;
+  padding-right: clamp(20px, 4vw, 56px) !important;
+}
+.canon-l-progress-align {
+  box-sizing: border-box !important;
+  width: var(--lesson-shell, min(100% - 56px, 1320px)) !important;
+  max-width: 1320px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+body.lb-page-ancient-china .canon-l-collapsible {
+  width: 100% !important;
+  max-width: none !important;
+}
+@media (max-width: 720px) {
+  .canon-l-collapsible,
+  .canon-l-progress-align {
+    width: min(100% - 28px, 1320px) !important;
+  }
+}
+.wl-wrap .canon-l-collapsible {
+  width: 100% !important;
+  max-width: none !important;
+  background: rgba(243,233,210,.045) !important;
+  border-color: rgba(212,168,67,.22) !important;
+}
+.wl-wrap .canon-l-collapsible > .canon-l-collapsible-summary {
+  color: var(--wl-parchment, inherit) !important;
+}
+.wl-wrap .canon-l-progress-align {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Codex 2026-05-14: grid/overflow guard for continuing Lab unification. */
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: clip !important;
+}
+.ingredient-pool {
+  white-space: normal !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  overflow-x: visible !important;
+}
+.drag-item {
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  text-align: center !important;
+}
+.theory-tables,
+.mini-table-card,
+.reference-table,
+.pattern-table,
+.section-body,
+.round-body,
+.grid-2,
+.grid-3 {
+  min-width: 0 !important;
+}
+.mini-table-card,
+.reference-table,
+.pattern-table {
+  max-width: 100% !important;
+}
+.mini-table-card table,
+table.reference-table,
+table.pattern-table,
+.section-body table,
+.round-body table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+.mini-table-card th,
+.mini-table-card td,
+.reference-table th,
+.reference-table td,
+.pattern-table th,
+.pattern-table td {
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+.section-body table,
+.round-body table {
+  max-width: 100% !important;
+}
+.section-body th,
+.section-body td,
+.round-body th,
+.round-body td {
+  overflow-wrap: anywhere !important;
+}
+.lab-topbar,
+.topbar,
+.nge-shell-topbar {
+  max-width: 100% !important;
+}
+.lab-nav,
+.topbar-nav,
+.nge-shell-nav {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+}
+.lab-nav::-webkit-scrollbar,
+.topbar-nav::-webkit-scrollbar,
+.nge-shell-nav::-webkit-scrollbar {
+  display: none !important;
+}
+.stars {
+  max-width: 100% !important;
+  letter-spacing: min(.08em, 3px) !important;
+  overflow-wrap: anywhere !important;
+}
+@media (max-width: 720px) {
+  .ingredient-pool {
+    border-radius: 22px !important;
+    padding: 14px !important;
+    gap: 8px !important;
+  }
+  .drag-item {
+    flex: 1 1 min(100%, 136px) !important;
+    justify-content: center !important;
+    padding: 9px 12px !important;
+  }
+  .mini-table-card {
+    padding: .8rem !important;
+  }
+  .mini-table-card th,
+  .mini-table-card td,
+  .reference-table th,
+  .reference-table td,
+  .pattern-table th,
+  .pattern-table td {
+    padding: 8px !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+  .mini-table-card table,
+  table.reference-table,
+  table.pattern-table,
+  .section-body table,
+  .round-body table,
+  .mini-table-card thead,
+  .reference-table thead,
+  .pattern-table thead,
+  .section-body thead,
+  .round-body thead,
+  .mini-table-card tbody,
+  .reference-table tbody,
+  .pattern-table tbody,
+  .section-body tbody,
+  .round-body tbody,
+  .mini-table-card tr,
+  .reference-table tr,
+  .pattern-table tr,
+  .section-body tr,
+  .round-body tr,
+  .mini-table-card th,
+  .reference-table th,
+  .pattern-table th,
+  .section-body th,
+  .round-body th,
+  .mini-table-card td,
+  .reference-table td,
+  .pattern-table td,
+  .section-body td,
+  .round-body td {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .mini-table-card thead,
+  .reference-table thead,
+  .pattern-table thead,
+  .section-body thead,
+  .round-body thead {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+  }
+  .mini-table-card tr,
+  .reference-table tr,
+  .pattern-table tr,
+  .section-body tr,
+  .round-body tr {
+    border-bottom: 1px solid var(--lb-line, rgba(0,0,0,.12)) !important;
+    padding: 8px 0 !important;
+  }
+  .mini-table-card tr:last-child,
+  .reference-table tr:last-child,
+  .pattern-table tr:last-child,
+  .section-body tr:last-child,
+  .round-body tr:last-child {
+    border-bottom: 0 !important;
+  }
+  .canon-l-nav,
+  .canon-l-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  .canon-l-link {
+    flex: 0 1 auto !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .canon-l-topbar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 8px !important;
+    padding-block: 8px !important;
+    align-items: center !important;
+  }
+  .canon-l-brand {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .canon-l-brand-main,
+  .canon-l-brand-sub {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .canon-l-nav {
+    grid-column: 1 / -1 !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+  }
+  .canon-l-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+  .canon-l-tools {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+  .canon-l-pill {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+  }
+  .canon-l-link {
+    min-height: 28px !important;
+    padding: 5px 7px !important;
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+  }
+  .hero-banner,
+  .hero-banner.has-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    aspect-ratio: auto !important;
+  }
+  .hero-banner-img,
+  .hero-banner-overlay,
+  .hero-content,
+  .hero-eyebrow,
+  .hero-title,
+  .hero-lead,
+  .hero-meta {
+    max-width: 100% !important;
+  }
+  .canon-l-hero,
+  .canon-l-hero-inner {
+    width: calc(100vw - 28px) !important;
+    inline-size: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    max-inline-size: calc(100vw - 28px) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .canon-l-hero-inner {
+    margin-inline: auto !important;
+    padding-inline: clamp(18px, 6vw, 28px) !important;
+  }
+  .canon-l-hero-title,
+  .canon-l-hero-lead,
+  .canon-l-hero-meta {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .canon-l-hero-title {
+    overflow-wrap: anywhere !important;
+  }
+  .canon-l-hero-meta {
+    flex-wrap: wrap !important;
+  }
+  .vocab-grid,
+  .vocab-card,
+  .info-grid,
+  .info-card,
+  .scene-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .vocab-card > *,
+  .info-card > *,
+  .scene-card > * {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+  .scene-card {
+    overflow: hidden !important;
+  }
+  .scene-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .scene-card span,
+  .scene-card figcaption {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+  .foot-nav,
+  .lesson-foot-nav,
+  .footer-nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    max-width: 100% !important;
+  }
+  .foot-link,
+  .foot-link.next {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .focus-table,
+  table.focus-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+  }
+  .focus-table th,
+  .focus-table td {
+    overflow-wrap: anywhere !important;
+  }
+  .topbar,
+  .lab-topbar,
+  .nge-shell-topbar {
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+  }
+  .topbar-nav,
+  .lab-nav,
+  .nge-shell-nav {
+    flex: 1 1 100% !important;
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+  }
+  .stars {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 2px !important;
+    letter-spacing: 0 !important;
+  }
+  .lab-pill-nav,
+  .lab-tool-btn,
+  .top-link {
+    letter-spacing: .06em !important;
+  }
+}
+
+
+/* codex-a1-light-footer-canon-20260515: keep A1 lower footer light in non-dark lesson palettes. */
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer {
+  background: var(--surface, #ffffff) !important;
+  color: var(--text, #081332) !important;
+  border-top: 1px solid var(--line, rgba(8,19,50,.12)) !important;
+}
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-row {
+  border-bottom-color: var(--line, rgba(8,19,50,.12)) !important;
+}
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-name {
+  color: var(--text, #081332) !important;
+}
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-meta,
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-nav a,
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-legal {
+  color: var(--muted, #4a4358) !important;
+}
+html:not([data-theme='black-lab']):not([data-theme='violet']) body.lb-level-a1 .canon-l-footer-nav a:hover {
+  color: var(--accent, #ff690a) !important;
+}
