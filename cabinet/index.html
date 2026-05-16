@@ -154,25 +154,35 @@
   </section>
 </main>
 
-<script type="module">
-  import { bootThemeAndLang, signInMock, wireTopbarActions } from "./app.js";
-
-  bootThemeAndLang();
-  wireTopbarActions();
-
-  function wire(id, role, target) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      signInMock(role);
-      location.href = target;
-    });
-  }
-
-  wire("openStudent", "student", "student.html");
-  wire("openTeacher", "teacher", "teacher.html");
-  wire("openParent", "parent", "parent.html");
+<script src="./cabinet.js"></script>
+<script>
+  /* Overview cards link to role pages, which enforce session check.
+     If user is not signed in, role pages redirect to ./login.html. */
+  (function () {
+    function wire(id, target) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        // Clear any stale session so role page bounces to login cleanly
+        var s = NGECabinet.getSession();
+        if (s) {
+          // If existing session matches target role, allow direct navigation
+          if ((target === "student.html" && s.role === "student") ||
+              (target === "teacher.html" && s.role === "teacher") ||
+              (target === "parent.html" && (s.role === "student" || s.role === "parent"))) {
+            location.href = target;
+            return;
+          }
+        }
+        // Otherwise route through login
+        location.href = "./login.html?next=" + encodeURIComponent(target);
+      });
+    }
+    wire("openStudent", "student.html");
+    wire("openTeacher", "teacher.html");
+    wire("openParent", "parent.html");
+  })();
 </script>
 <div class="visitor-counter" id="visitorCounter">
   <span id="counterValue">1243</span>
