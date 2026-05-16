@@ -476,7 +476,7 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   font-family: var(--display);
   font-size: 42px; font-weight: 800; line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--accent);
+  color: var(--text);
 }
 .fmt-price .u {
   font-family: var(--mono); font-size: 12px;
@@ -716,6 +716,192 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   .cookie-banner { padding: 10px 14px; gap: 12px; font-size: 11.5px; }
   .cookie-banner__button { padding: 6px 16px; min-height: 36px; }
 }
+
+/* ============================================================
+   FAQ TRIGGER + MODAL
+   ============================================================ */
+.faq-trigger-section {
+  padding: 60px 24px 40px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-trigger-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.faq-trigger-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 28px;
+}
+.faq-trigger {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 50px; padding: 0 26px;
+  background: var(--bg); color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, color .15s, transform .15s;
+}
+.faq-trigger:hover { background: var(--accent-2); color: #000; transform: translateY(-1px); }
+.faq-trigger .arrow { font-family: var(--display); font-size: 14px; }
+
+.faq-modal {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  display: none;
+}
+.faq-modal[aria-hidden="false"] {
+  display: flex; align-items: center; justify-content: center;
+  animation: faqFadeIn .2s ease-out;
+}
+.faq-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+.faq-card {
+  position: relative;
+  width: min(90vw, 720px);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--text);
+  border-radius: 16px;
+  padding: 48px 36px 32px;
+  color: var(--text);
+  animation: faqSlideUp .25s ease-out;
+}
+.faq-close {
+  position: absolute; top: 14px; right: 18px;
+  background: transparent; border: none;
+  font-size: 28px; line-height: 1;
+  color: inherit; cursor: pointer;
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: background .15s;
+}
+.faq-close:hover { background: var(--bg-2); }
+.faq-card-title {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  color: inherit;
+}
+.faq-card-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.faq-list { display: flex; flex-direction: column; }
+.faq-item {
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+}
+.faq-item:last-child { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--text-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit;
+  padding-right: 28px;
+  position: relative;
+  user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+"; position: absolute;
+  right: 0; top: 50%; transform: translateY(-50%);
+  font-size: 22px; font-weight: 400;
+  color: var(--accent);
+  transition: transform .2s;
+}
+.faq-item[open] summary::after { content: "−"; }
+.faq-item p {
+  margin-top: 10px;
+  font-family: var(--text-font);
+  font-size: 14px; line-height: 1.55;
+  color: inherit;
+  opacity: 0.82;
+}
+
+@keyframes faqFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes faqSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  .faq-card { width: 95vw; padding: 40px 20px 24px; max-height: 88vh; }
+  .faq-card-title { font-size: 20px; }
+}
+
+/* About FAQ embedded link */
+.about-faq-prompt {
+  margin-top: 28px;
+  padding-top: 22px;
+  padding-left: 180px;
+  border-top: 1px solid var(--line);
+}
+.about-faq-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; border: none;
+  padding: 0;
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent);
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.about-faq-link:hover { opacity: 0.75; }
+.about-faq-link .arrow { font-family: var(--display); font-size: 14px; }
+@media (max-width: 1024px) {
+  .about-faq-prompt { padding-left: 0; }
+}
+
+/* Format card POPULAR variant */
+.fmt.fmt--popular {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+.fmt-badge {
+  display: inline-block; align-self: flex-start;
+  background: var(--accent); color: #000;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+}
+
+/* FAQ acknowledge button (bottom of modal) */
+.faq-ack {
+  display: block; width: 100%; margin-top: 24px;
+  height: 48px;
+  background: var(--accent); color: #000;
+  border: none; border-radius: 10px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.faq-ack:hover { background: var(--accent-2); transform: translateY(-1px); }
 </style>
 <link rel="stylesheet" href="./system.css?v=7">
 <link rel="stylesheet" href="./assets/design-unify.css?v=1">
@@ -872,13 +1058,19 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   <div class="about-body">
     <div class="spacer"></div>
     <div class="about-text">
-      <p data-ru="За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Поэтому одной программы для всех у меня нет." data-en="Over 15 years of teaching I have learned one thing: it's not about 'language ability'. Every student thinks in their own way, and this has to be considered from the start. So I don't have a one-size-fits-all program.">За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Поэтому одной программы для всех у меня нет.</p>
+      <p data-ru="За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Универсальной программы «для всех» у меня нет — но под конкретные задачи (ЕГЭ, ОГЭ, IELTS, медицинский английский) есть свои программы, наработанные за годы." data-en="Over 15 years of teaching I have learned one thing: it's not about 'language ability'. Every student thinks in their own way, and this has to be considered from the start. There is no one-size-fits-all program — but for specific tracks (EGE, OGE, IELTS, medical English) I have developed dedicated programs over the years.">За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Универсальной программы «для всех» у меня нет — но под конкретные задачи (ЕГЭ, ОГЭ, IELTS, медицинский английский) есть свои программы, наработанные за годы.</p>
       <p data-ru="Для меня преподавание — не пересказ учебника. Английский должен перестать быть набором правил и стать языком, которым человек действительно пользуется: в школе, на экзамене, в разговоре, в работе." data-en="For me, teaching is not retelling a textbook. English should stop being a set of rules and become a language a person actually uses: at school, in an exam, in conversation, at work.">Для меня преподавание — не пересказ учебника. Английский должен перестать быть набором правил и стать языком, которым человек действительно пользуется: в школе, на экзамене, в разговоре, в работе.</p>
     </div>
     <div class="about-text">
       <p data-ru="Я работаю со школьниками и взрослыми. На первом занятии смотрю, что уже получается, что вызывает трудности и какой темп подойдёт. Дальше объясняю просто, возвращаюсь к сложным местам столько раз, сколько нужно, и не тороплю ради галочки." data-en="I work with schoolchildren and adults. In our first lesson I look at what's already working, what's causing difficulty, and what pace will suit you. After that I explain things simply, return to difficult spots as many times as needed, and never rush just to check a box.">Я работаю со школьниками и взрослыми. На первом занятии смотрю, что уже получается, что вызывает трудности и какой темп подойдёт. Дальше объясняю просто, возвращаюсь к сложным местам столько раз, сколько нужно, и не тороплю ради галочки.</p>
       <p data-ru="Хороший урок — это когда ученик уходит чуть увереннее, чем пришёл: понял, сказал, написал, исправил ошибку — и не испугался." data-en="A good lesson is when a student leaves a little more confident than they arrived: they understood it, said it, wrote it, corrected a mistake — and didn't get scared.">Хороший урок — это когда ученик уходит чуть увереннее, чем пришёл: понял, сказал, написал, исправил ошибку — и не испугался.</p>
     </div>
+  </div>
+  <div class="about-faq-prompt">
+    <button class="about-faq-link" type="button" onclick="openFaq()">
+      <span data-ru="Подойду ли я вам? · 10 частых вопросов" data-en="Am I right for you? · 10 frequent questions">Подойду ли я вам? · 10 частых вопросов</span>
+      <span class="arrow">→</span>
+    </button>
   </div>
 </section>
 
@@ -896,12 +1088,65 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 
 <hr class="dash">
 
+<!-- FAQ MODAL (triggered from About) -->
+<div class="faq-modal" id="faqModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="faqModalTitle">
+  <div class="faq-backdrop" onclick="closeFaq()"></div>
+  <div class="faq-card" role="document">
+    <button class="faq-close" type="button" onclick="closeFaq()" aria-label="Закрыть">×</button>
+    <h2 class="faq-card-title" id="faqModalTitle" data-ru="С чем приходят и кому ко мне можно" data-en="What students come with — and who I work with">С чем приходят и кому ко мне можно</h2>
+    <p class="faq-card-sub" data-ru="10 частых вопросов о моих занятиях" data-en="10 frequent questions about my lessons">10 частых вопросов о моих занятиях</p>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-ru="1. Кому подходят занятия?" data-en="1. Who are these lessons for?">1. Кому подходят занятия?</summary>
+        <p data-ru="Я работаю с мотивированными людьми — это главное. Школьники, взрослые, дети. Английский — это работа 50 на 50: со стороны ученика тоже нужны усилия. Особенно хорошо у нас получается с теми, кому нужен повышенный уровень. Тяжело идут только те, кого приходится постоянно контролировать или которые сами ничего не хотят." data-en="I work with motivated learners — that's the main thing. School students, adults, children. English is 50/50 work: the student also has to put in effort. It goes especially well with those who want an advanced level. Difficult cases are only people who need constant external control or who simply don't want to study.">Я работаю с мотивированными людьми — это главное. Школьники, взрослые, дети. Английский — это работа 50 на 50: со стороны ученика тоже нужны усилия. Особенно хорошо у нас получается с теми, кому нужен повышенный уровень. Тяжело идут только те, кого приходится постоянно контролировать или которые сами ничего не хотят.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="2. С какого уровня можно начать?" data-en="2. At what level can I start?">2. С какого уровня можно начать?</summary>
+        <p data-ru="С любого. Беру с нуля. Беру тех, кто давно не занимался и хочет вернуться. Беру взрослых, которым надо подтянуть базу. Отдельная специализация — медицинский английский (уровень B2 и выше)." data-en="Any. I take absolute beginners. I take people returning after a long break. I take adults who need to brush up the basics. Separate specialty: medical English (B2 and above).">С любого. Беру с нуля. Беру тех, кто давно не занимался и хочет вернуться. Беру взрослых, которым надо подтянуть базу. Отдельная специализация — медицинский английский (уровень B2 и выше).</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="3. Готовите к ЕГЭ и ОГЭ?" data-en="3. Do you prepare for the EGE and OGE?">3. Готовите к ЕГЭ и ОГЭ?</summary>
+        <p data-ru="Да. На ЕГЭ и ОГЭ у меня отдельная программа подготовки." data-en="Yes. I have a dedicated preparation program for both EGE and OGE.">Да. На ЕГЭ и ОГЭ у меня отдельная программа подготовки.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="4. Готовите к международным экзаменам?" data-en="4. Do you prepare for international exams?">4. Готовите к международным экзаменам?</summary>
+        <p data-ru="Да — TOEFL, Cambridge, IELTS." data-en="Yes — TOEFL, Cambridge, IELTS.">Да — TOEFL, Cambridge, IELTS.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="5. Работаете с бизнес-английским?" data-en="5. Do you teach business English?">5. Работаете с бизнес-английским?</summary>
+        <p data-ru="Да. Бизнес-английский, переговоры, рабочая переписка. Также делаю переводы." data-en="Yes. Business English, negotiations, work correspondence. I also do translations.">Да. Бизнес-английский, переговоры, рабочая переписка. Также делаю переводы.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="6. Хочу просто заговорить — это к вам?" data-en="6. I just want to start speaking — am I in the right place?">6. Хочу просто заговорить — это к вам?</summary>
+        <p data-ru="Зависит от мотивации. Если задача — научиться говорить, да. Просто поболтать без цели — не ко мне. Главное, чтобы со стороны ученика тоже была работа." data-en="It depends on motivation. If the goal is to learn to speak — yes. Just to chat without a goal — that's not my market. The main thing is that the student is also putting in work.">Зависит от мотивации. Если задача — научиться говорить, да. Просто поболтать без цели — не ко мне. Главное, чтобы со стороны ученика тоже была работа.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="7. Как проходит первое занятие?" data-en="7. How does the first lesson work?">7. Как проходит первое занятие?</summary>
+        <p data-ru="Сначала диагностика. Потом регистрация на платформе ProgressMe — пришлёте мне логин и пароль. Подпишем договор и оформим абонемент. Демонстрационное занятие провожу прямо на платформе." data-en="First — a diagnostic. Then registration on the ProgressMe platform — you send me your login and password. We sign a contract and top up the lesson package. The demo lesson runs directly on the platform.">Сначала диагностика. Потом регистрация на платформе ProgressMe — пришлёте мне логин и пароль. Подпишем договор и оформим абонемент. Демонстрационное занятие провожу прямо на платформе.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="8. Как часто проходят занятия?" data-en="8. How often are the lessons?">8. Как часто проходят занятия?</summary>
+        <p data-ru="Так часто, как требует ваша цель. Реже одного раза в неделю — возможно, если уровень приличный и вы готовы заниматься самостоятельно: по модулям, по библиотеке материалов или по своим текстам с моими рекомендациями." data-en="As often as your goal requires. Less than once a week is possible if your level is solid and you are ready to study on your own — through the modules, the material library, or your own texts with my recommendations.">Так часто, как требует ваша цель. Реже одного раза в неделю — возможно, если уровень приличный и вы готовы заниматься самостоятельно: по модулям, по библиотеке материалов или по своим текстам с моими рекомендациями.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="9. Что такое LinguaBoost Lab?" data-en="9. What is LinguaBoost Lab?">9. Что такое LinguaBoost Lab?</summary>
+        <p data-ru="Короткие модули и тренажёры по конкретным темам. Работает двумя способами: как поддержка к нашим занятиям между уроками (домашка, повторение, тренировка), или как самостоятельный продукт." data-en="Short modules and trainers on specific topics. Works two ways: as supplementary practice between our lessons (homework, review, drills), or as a standalone product.">Короткие модули и тренажёры по конкретным темам. Работает двумя способами: как поддержка к нашим занятиям между уроками (домашка, повторение, тренировка), или как самостоятельный продукт.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-ru="10. С кем у вас лучше всего получается?" data-en="10. Who gets the best results with you?">10. С кем у вас лучше всего получается?</summary>
+        <p data-ru="С теми, кто действительно хочет учиться и готов вкладываться. Делает домашнюю, не ждёт, что результат «сам появится». Если со стороны ученика есть включённость — у нас получится. Если человек ждёт, чтобы преподаватель «сделал результат» за него — лучше искать другой подход." data-en="With those who really want to learn and are ready to put in the work. Who do their homework and don't expect the result to 'just happen'. If you bring engagement, we will get there. If you are waiting for the teacher to 'produce a result' for you — you'll be better off with a different approach.">С теми, кто действительно хочет учиться и готов вкладываться. Делает домашнюю, не ждёт, что результат «сам появится». Если со стороны ученика есть включённость — у нас получится. Если человек ждёт, чтобы преподаватель «сделал результат» за него — лучше искать другой подход.</p>
+      </details>
+    </div>
+    <button class="faq-ack" type="button" onclick="closeFaq()" data-ru="Понятно" data-en="Got it">Понятно</button>
+  </div>
+</div>
+
 <!-- FORMATS (текст причесан, убраны повторяющиеся конструкции) -->
 <section class="section" aria-label="Форматы">
   <div class="sect-head"><div class="sect-index">03<small data-ru="Форматы" data-en="Formats">Форматы</small></div><div><div class="sect-eyebrow" data-ru="Как можно заниматься" data-en="Lesson formats">Как можно заниматься</div><h2 class="sect-title" data-ru="Формат под вашу задачу" data-en="A format for your goal">Формат под вашу задачу</h2></div></div>
   <div class="fmt-grid">
-    <!-- Один на один -->
-    <article class="fmt"><div class="fmt-num">01 / 03</div><div class="fmt-tag" data-ru="Индивидуально" data-en="Individual">Индивидуально</div><h3 class="fmt-title" data-ru="Один на один" data-en="One‑to‑one">Один на один</h3><div class="fmt-price"><span class="n">3&nbsp;500&nbsp;₽</span><span class="u" data-ru="/ 60 мин" data-en="/ 60 min">/ 60 мин</span></div><div class="fmt-note" data-ru="Подходит, если нужна точная работа: экзамен, пробелы в базе, разговорная речь, письмо, деловой английский или нестандартная задача." data-en="Perfect for focused work: exam preparation, filling gaps, speaking, writing, business English, or unique tasks.">Подходит, если нужна точная работа: экзамен, пробелы в базе, разговорная речь, письмо, деловой английский или нестандартная задача.</div><ul class="fmt-list"><li data-ru="Работаем с вашей задачей" data-en="We work on your specific task">Работаем с вашей задачей</li><li data-ru="Можно приносить свои тексты и вопросы" data-en="You can bring your own texts and questions">Можно приносить свои тексты и вопросы</li><li data-ru="Больше времени на ошибки и обратную связь" data-en="More time for mistakes and feedback">Больше времени на ошибки и обратную связь</li><li data-ru="Доступ к LinguaBoost Lab" data-en="Access to LinguaBoost Lab">Доступ к LinguaBoost Lab</li></ul><a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a></article>
+    <!-- Один на один (POPULAR) -->
+    <article class="fmt fmt--popular"><div class="fmt-num">01 / 03</div><div class="fmt-badge" data-ru="Чаще выбирают" data-en="Most popular">Чаще выбирают</div><div class="fmt-tag" data-ru="Индивидуально" data-en="Individual">Индивидуально</div><h3 class="fmt-title" data-ru="Один на один" data-en="One‑to‑one">Один на один</h3><div class="fmt-price"><span class="n">3&nbsp;500&nbsp;₽</span><span class="u" data-ru="/ 60 мин" data-en="/ 60 min">/ 60 мин</span></div><div class="fmt-note" data-ru="Подходит, если нужна точная работа: экзамен, пробелы в базе, разговорная речь, письмо, деловой английский или нестандартная задача." data-en="Perfect for focused work: exam preparation, filling gaps, speaking, writing, business English, or unique tasks.">Подходит, если нужна точная работа: экзамен, пробелы в базе, разговорная речь, письмо, деловой английский или нестандартная задача.</div><ul class="fmt-list"><li data-ru="Работаем с вашей задачей" data-en="We work on your specific task">Работаем с вашей задачей</li><li data-ru="Можно приносить свои тексты и вопросы" data-en="You can bring your own texts and questions">Можно приносить свои тексты и вопросы</li><li data-ru="Больше времени на ошибки и обратную связь" data-en="More time for mistakes and feedback">Больше времени на ошибки и обратную связь</li><li data-ru="Доступ к LinguaBoost Lab" data-en="Access to LinguaBoost Lab">Доступ к LinguaBoost Lab</li></ul><a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a></article>
 
     <!-- Пара -->
     <article class="fmt"><div class="fmt-num">02 / 03</div><div class="fmt-tag" data-ru="Пара" data-en="Pair">Пара</div><h3 class="fmt-title" data-ru="Работа в паре" data-en="Pair lessons">Работа в паре</h3><div class="fmt-price"><span class="n">2&nbsp;500&nbsp;₽</span><span class="u" data-ru="/ 60 мин · за человека" data-en="/ 60 min · per person">/ 60 мин · за человека</span></div><div class="fmt-note" data-ru="Хороший вариант, если у двоих похожий уровень и цель. Появляется живой собеседник, стоимость ниже индивидуального." data-en="A great option when two students have a similar level and goal. You get a real conversation partner at a lower cost than one‑to‑one.">Хороший вариант, если у двоих похожий уровень и цель. Появляется живой собеседник, стоимость ниже индивидуального.</div><ul class="fmt-list"><li data-ru="Два ученика близкого уровня" data-en="Two students of similar level">Два ученика близкого уровня</li><li data-ru="Больше разговорной практики" data-en="More speaking practice">Больше разговорной практики</li><li data-ru="Дешевле индивидуального формата" data-en="Cheaper than individual lessons">Дешевле индивидуального формата</li><li data-ru="Темп согласуем заранее" data-en="Pace agreed in advance">Темп согласуем заранее</li></ul><a class="fmt-cta" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer" data-ru="Записаться →" data-en="Book →">Записаться →</a></article>
@@ -944,6 +1189,16 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
       </div>
       <p class="review-text" data-ru="«За несколько месяцев подняла уровень с A2 до B2. Уроки в лёгкой атмосфере, без скучных учебников. 100% рекомендую!»" data-en="«In a few months my level rose from A2 to B2. The lessons were light, clear, and never boring. Strongly recommend!»">«За несколько месяцев подняла уровень с A2 до B2. Уроки в лёгкой атмосфере, без скучных учебников. 100% рекомендую!»</p>
     </article>
+    <article class="review-card">
+      <div class="review-header">
+        <div class="review-avatar">АЖ</div>
+        <div>
+          <div class="review-author" data-ru="Анастасия Журавлёва" data-en="Anastasia Zhuravleva">Анастасия Журавлёва</div>
+          <div class="review-date">23.11.2024</div>
+        </div>
+      </div>
+      <p class="review-text" data-ru="«Племянник сам заинтересовался процессом. ЕГЭ сдан без трудностей. Это главный успех.»" data-en="«My nephew became genuinely interested in the process. He passed the EGE without difficulty. That is the main success.»">«Племянник сам заинтересовался процессом. ЕГЭ сдан без трудностей. Это главный успех.»</p>
+    </article>
   </div>
 </section>
 
@@ -979,6 +1234,29 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 
 <script defer src="./site.js?v=6"></script>
   <script defer src="./theme-cycle.js?v=5"></script>
+
+<script>
+  /* FAQ modal — open/close + Esc handler. */
+  function openFaq() {
+    var m = document.getElementById('faqModal');
+    if (!m) return;
+    m.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFaq() {
+    var m = document.getElementById('faqModal');
+    if (!m) return;
+    m.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    m.querySelectorAll('.faq-item').forEach(function(d){ d.removeAttribute('open'); });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var m = document.getElementById('faqModal');
+      if (m && m.getAttribute('aria-hidden') === 'false') closeFaq();
+    }
+  });
+</script>
 
 <!-- Cookie banner -->
 <div id="cookie-banner" class="cookie-banner">
