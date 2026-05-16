@@ -176,9 +176,15 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 
 .hero-lead {
   max-width: 640px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   font-size: 17px; line-height: 1.55;
   color: var(--text-2);
+}
+
+.hero-signature {
+  margin-bottom: 28px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
 }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
@@ -265,9 +271,9 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   font-weight: 800; line-height: 1; letter-spacing: -0.035em;
   color: var(--text);
 }
-.hero-stats .num em {
-  font-style: normal; color: var(--accent);
-}
+.hero-stats .num em { font-style: normal; }
+.hero-stats .cell.accent .num,
+.hero-stats .cell.accent .num em { color: var(--accent); }
 .hero-stats .lbl {
   margin-top: 10px;
   font-family: var(--mono); font-size: 10px;
@@ -470,7 +476,7 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   font-family: var(--display);
   font-size: 42px; font-weight: 800; line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--text);
+  color: var(--accent);
 }
 .fmt-price .u {
   font-family: var(--mono); font-size: 12px;
@@ -495,13 +501,14 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   margin-top: auto;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 44px; padding: 0 18px;
-  background: var(--accent); color: #000;
+  background: var(--bg); color: var(--accent);
+  border: 1px solid var(--accent);
   font-family: var(--mono); font-size: 12px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   border-radius: 8px;
-  transition: background .15s, transform .15s;
+  transition: background .15s, color .15s, border-color .15s, transform .15s;
 }
-.fmt-cta:hover { background: var(--accent-2); transform: translateY(-1px); }
+.fmt-cta:hover { background: var(--accent-2); border-color: var(--accent-2); color: #000; transform: translateY(-1px); }
 
 /* ============================================================
    REVIEWS (соцпрофф)
@@ -710,8 +717,8 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   .cookie-banner__button { padding: 6px 16px; min-height: 36px; }
 }
 </style>
-<link rel="stylesheet" href="./system.css?v=6">
-<link rel="stylesheet" href="./assets/design-unify.css">
+<link rel="stylesheet" href="./system.css?v=7">
+<link rel="stylesheet" href="./assets/design-unify.css?v=1">
 </head>
 
 <body data-page="home">
@@ -806,20 +813,20 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
       <span class="dot"></span>
       <span data-ru="Преподаватель английского · 15+ лет" data-en="English teacher · 15+ years">Преподаватель английского · 15+ лет</span>
       <span class="bar"></span>
-      <span>MARIA BURTSEVA</span>
     </div>
 
     <div class="hero-grid">
       <div class="hero-copy">
-        <div class="hero-kicker" data-ru="Мария Витальевна" data-en="Maria Burtseva">Мария Витальевна</div>
-        <div class="hero-kicker-secondary" data-ru="Преподаватель английского языка" data-en="English teacher">Преподаватель английского языка</div>
-
         <h1>
           <span class="line" data-ru="Английский —" data-en="English is">Английский —</span>
           <span class="line accent" data-ru="это путь." data-en="a path.">это путь.</span>
         </h1>
 
-        <p class="hero-lead" data-ru="Который вы проходите не одни. Главное — правильно выбрать спутника." data-en="And you don't walk it alone. What matters is choosing the right companion.">Который вы проходите не одни. Главное — правильно выбрать спутника.</p>
+        <p class="hero-lead" data-ru="За 15 лет я провела сотни учеников: школьников и взрослых, тех, кто готовился к экзамену, и тех, кто хотел подтянуть базу или просто заговорить." data-en="Over 15 years I have led hundreds of students — schoolchildren and adults, those preparing for an exam, and those who wanted to brush up on the basics or simply start speaking.">За 15 лет я провела сотни учеников: школьников и взрослых, тех, кто готовился к экзамену, и тех, кто хотел подтянуть базу или просто заговорить.</p>
+
+        <div class="hero-signature">
+          <span data-ru="— Мария Витальевна (преподаватель английского языка)" data-en="— Maria Burtseva (English teacher)">— Мария Витальевна (преподаватель английского языка)</span>
+        </div>
 
         <div class="btn-row">
           <a class="btn btn-primary" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">
@@ -848,7 +855,7 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
     <div class="hero-stats">
       <div class="cell"><div class="idx">01</div><div class="num"><em>15+</em></div><div class="lbl" data-ru="лет опыта" data-en="years of experience">лет опыта</div></div>
       <div class="cell"><div class="idx">02</div><div class="num"><em>500+</em></div><div class="lbl" data-ru="учеников" data-en="students">учеников</div></div>
-      <div class="cell"><div class="idx">03</div><div class="num"><em>98</em></div><div class="lbl" data-ru="максимум ЕГЭ 2024" data-en="EGE top score, 2024">максимум ЕГЭ 2024</div></div>
+      <div class="cell accent"><div class="idx">03</div><div class="num"><em>98</em></div><div class="lbl" data-ru="максимум ЕГЭ 2024" data-en="EGE top score, 2024">максимум ЕГЭ 2024</div></div>
       <div class="cell"><div class="idx">04</div><div class="num">1:1</div><div class="lbl" data-ru="личный подход" data-en="personal approach">личный подход</div></div>
     </div>
   </div>
@@ -865,12 +872,12 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
   <div class="about-body">
     <div class="spacer"></div>
     <div class="about-text">
-      <p data-ru="За 15 лет работы я поняла: дело не в «способностях к языкам». Просто каждый ученик думает по-своему, поэтому одной программы для всех у меня нет." data-en="Over 15 years of teaching I have figured this out: it's not about 'language ability'. Every student thinks in their own way — so I don't have a one-size-fits-all program.">За 15 лет работы я поняла: дело не в «способностях к языкам». Просто каждый ученик думает по-своему, поэтому одной программы для всех у меня нет.</p>
-      <p data-ru="Для меня преподавание — не пересказ учебника. Я хочу, чтобы английский перестал быть набором правил и стал языком, которым ученик действительно пользуется." data-en="For me, teaching is not retelling a textbook. I want English to stop being a set of rules and become a language the student actually uses.">Для меня преподавание — не пересказ учебника. Я хочу, чтобы английский перестал быть набором правил и стал языком, которым ученик действительно пользуется.</p>
+      <p data-ru="За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Поэтому одной программы для всех у меня нет." data-en="Over 15 years of teaching I have learned one thing: it's not about 'language ability'. Every student thinks in their own way, and this has to be considered from the start. So I don't have a one-size-fits-all program.">За 15 лет работы я поняла: дело не в «способностях к языкам». Каждый ученик думает по-своему, и это важно учитывать с самого начала. Поэтому одной программы для всех у меня нет.</p>
+      <p data-ru="Для меня преподавание — не пересказ учебника. Английский должен перестать быть набором правил и стать языком, которым человек действительно пользуется: в школе, на экзамене, в разговоре, в работе." data-en="For me, teaching is not retelling a textbook. English should stop being a set of rules and become a language a person actually uses: at school, in an exam, in conversation, at work.">Для меня преподавание — не пересказ учебника. Английский должен перестать быть набором правил и стать языком, которым человек действительно пользуется: в школе, на экзамене, в разговоре, в работе.</p>
     </div>
     <div class="about-text">
-      <p data-ru="Работаю со школьниками и взрослыми — помогаю подтянуть базу, подготовиться к экзамену, начать говорить увереннее. На первом занятии смотрю, что человек уже умеет, что ему нужно и какой темп ему подходит." data-en="I work with school students and adults — helping them strengthen the basics, prepare for exams, and start speaking with confidence. In our first lesson, I look at what you already know, what you need, and what pace suits you.">Работаю со школьниками и взрослыми — помогаю подтянуть базу, подготовиться к экзамену, начать говорить увереннее. На первом занятии смотрю, что человек уже умеет, что ему нужно и какой темп ему подходит.</p>
-      <p data-ru="Я объясняю просто, возвращаюсь к трудным местам столько раз, сколько нужно, и не тороплю ученика ради галочки. Хороший урок — это когда человек уходит чуть увереннее: понял, сказал, написал, исправил ошибку — и не испугался." data-en="I explain things simply, come back to difficult spots as many times as needed, and never rush a student just to check a box. A good lesson is when someone walks away a little more confident: they understood, said it, wrote it, corrected a mistake — and didn't get scared.">Я объясняю просто, возвращаюсь к трудным местам столько раз, сколько нужно, и не тороплю ученика ради галочки. Хороший урок — это когда человек уходит чуть увереннее: понял, сказал, написал, исправил ошибку — и не испугался.</p>
+      <p data-ru="Я работаю со школьниками и взрослыми. На первом занятии смотрю, что уже получается, что вызывает трудности и какой темп подойдёт. Дальше объясняю просто, возвращаюсь к сложным местам столько раз, сколько нужно, и не тороплю ради галочки." data-en="I work with schoolchildren and adults. In our first lesson I look at what's already working, what's causing difficulty, and what pace will suit you. After that I explain things simply, return to difficult spots as many times as needed, and never rush just to check a box.">Я работаю со школьниками и взрослыми. На первом занятии смотрю, что уже получается, что вызывает трудности и какой темп подойдёт. Дальше объясняю просто, возвращаюсь к сложным местам столько раз, сколько нужно, и не тороплю ради галочки.</p>
+      <p data-ru="Хороший урок — это когда ученик уходит чуть увереннее, чем пришёл: понял, сказал, написал, исправил ошибку — и не испугался." data-en="A good lesson is when a student leaves a little more confident than they arrived: they understood it, said it, wrote it, corrected a mistake — and didn't get scared.">Хороший урок — это когда ученик уходит чуть увереннее, чем пришёл: понял, сказал, написал, исправил ошибку — и не испугался.</p>
     </div>
   </div>
 </section>
