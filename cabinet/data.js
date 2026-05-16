@@ -9,6 +9,20 @@ window.NGE_DATA = {
     "name": "Мария Витальевна Бурцева",
     "passwordHash": "94d5d02aa86a4ad402c54025da0f758d9781db2de21c22c601c1903e7a8148ce"
   },
+  "payment": {
+    "tinkoffQuickPay": "https://www.tinkoff.ru/rm/r_PnDqHEqsDu.EkrmOLeXmQ/MIhLS10143",
+    "telegram": "https://t.me/MariaBurceva_English",
+    "phone": "89165101792",
+    "recipient": "Бурцева Мария Витальевна",
+    "contract": "5181572792",
+    "account": "40817810200014652973",
+    "bik": "044525974",
+    "bank": "АО \"ТБанк\"",
+    "correspondentAccount": "30101810145250000974",
+    "inn": "7710140679",
+    "kpp": "771301001",
+    "purpose": "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается"
+  },
   "students": [
     {
       "id": "andrei-kruglov",
