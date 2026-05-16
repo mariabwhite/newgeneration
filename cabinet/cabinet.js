@@ -164,9 +164,80 @@
     `;
   }
 
-  /* ---------- render: teacher table ---------- */
+  /* ---------- render: teacher (schedule grid + table) ---------- */
+
+  const _DAY_MAP = {
+    'понедельник': 1, 'пн': 1,
+    'вторник': 2, 'вт': 2,
+    'среда': 3, 'ср': 3,
+    'четверг': 4, 'чт': 4,
+    'пятница': 5, 'пт': 5,
+    'суббота': 6, 'сб': 6,
+    'воскресенье': 7, 'вс': 7,
+  };
+  const _DAY_SHORT = { 1: "Пн", 2: "Вт", 3: "Ср", 4: "Чт", 5: "Пт", 6: "Сб", 7: "Вс" };
+
+  function _parseSchedule(scheduleStr) {
+    if (!scheduleStr) return [];
+    const out = [];
+    const slots = scheduleStr.split(/[\/;,]/);
+    for (const raw of slots) {
+      const s = raw.trim().toLowerCase();
+      if (!s) continue;
+      let dayNum = null;
+      for (const [name, num] of Object.entries(_DAY_MAP)) {
+        const re = new RegExp("\\b" + name + "\\b");
+        if (re.test(s)) { dayNum = num; break; }
+      }
+      if (!dayNum) continue;
+      const timeMatch = s.match(/(\d{1,2})[:.,](\d{2})/);
+      let time = null;
+      if (timeMatch) {
+        time = String(parseInt(timeMatch[1], 10)).padStart(2, "0") + ":" + timeMatch[2];
+      }
+      out.push({ dayNum, time });
+    }
+    return out;
+  }
+
+  function _buildScheduleGrid(students) {
+    // Each cell: { dayNum, time, studentName, studentId, level }
+    const slots = [];
+    students.forEach(s => {
+      _parseSchedule(s.schedule).forEach(sl => {
+        slots.push({ ...sl, studentName: s.name, studentId: s.id, level: s.level });
+      });
+    });
+    // Group by day, sort by time within
+    const byDay = {};
+    for (let d = 1; d <= 7; d++) byDay[d] = [];
+    slots.forEach(sl => byDay[sl.dayNum].push(sl));
+    Object.values(byDay).forEach(arr => arr.sort((a, b) => (a.time || "ZZ").localeCompare(b.time || "ZZ")));
+    return byDay;
+  }
 
   function renderTeacher(container, students) {
+    const grid = _buildScheduleGrid(students);
+    const totalSlots = Object.values(grid).reduce((sum, day) => sum + day.length, 0);
+
+    const dayColumns = [1, 2, 3, 4, 5, 6, 7].map(d => {
+      const slotsHtml = grid[d].length
+        ? grid[d].map(sl => `
+            <div class="cab-slot">
+              <div class="cab-slot-time">${_esc(sl.time || "—")}</div>
+              <div class="cab-slot-name">${_esc(sl.studentName)}</div>
+              ${sl.level ? `<div class="cab-slot-level">${_esc(sl.level)}</div>` : ""}
+            </div>
+          `).join("")
+        : `<div class="cab-slot cab-slot--empty">—</div>`;
+      return `
+        <div class="cab-day">
+          <h4>${_esc(_DAY_SHORT[d])}</h4>
+          ${slotsHtml}
+        </div>
+      `;
+    }).join("");
+
     const rows = students.map(s => `
       <tr>
         <td>${_esc(s.name)}</td>
@@ -182,10 +253,17 @@
     container.innerHTML = `
       <div class="cab-hero">
         <h1>Кабинет преподавателя</h1>
-        <p class="cab-hero-sub">${students.length} активных учеников</p>
+        <p class="cab-hero-sub">${students.length} активных учеников · ${totalSlots} занятий в неделю</p>
       </div>
 
       <article class="cab-card">
+        <h3>Расписание недели</h3>
+        <div class="cab-schedule-grid">
+          ${dayColumns}
+        </div>
+      </article>
+
+      <article class="cab-card" style="margin-top: 16px;">
         <h3>Ученики</h3>
         <div class="cab-table-wrap">
           <table class="cab-table">
