@@ -216,9 +216,73 @@
     return byDay;
   }
 
+  function _computeNextLesson(students) {
+    const now = new Date();
+    const dow = now.getDay() === 0 ? 7 : now.getDay(); // 1=Пн … 7=Вс
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    let best = null;
+    students.forEach(s => {
+      _parseSchedule(s.schedule).forEach(sl => {
+        if (!sl.time) return;
+        const [h, m] = sl.time.split(":").map(Number);
+        const slotMins = h * 60 + m;
+        let dayDelta = (sl.dayNum - dow + 7) % 7;
+        let deltaMins = dayDelta * 1440 + slotMins - nowMins;
+        if (deltaMins < 0) deltaMins += 7 * 1440;
+        if (!best || deltaMins < best.deltaMins) {
+          best = { studentName: s.name, time: sl.time, dayNum: sl.dayNum, deltaMins };
+        }
+      });
+    });
+    return best;
+  }
+
+  function _humanDelta(mins) {
+    if (mins < 60) return `через ${mins} мин`;
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    if (h < 24) return `через ${h} ч${m ? " " + m + " мин" : ""}`;
+    const d = Math.floor(h / 24);
+    const rh = h % 24;
+    return `через ${d} д${rh ? " " + rh + " ч" : ""}`;
+  }
+
+  function _currentMonthKey() {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+
+  function _previousMonthKey() {
+    const d = new Date();
+    d.setMonth(d.getMonth() - 1);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+
   function renderTeacher(container, students) {
     const grid = _buildScheduleGrid(students);
     const totalSlots = Object.values(grid).reduce((sum, day) => sum + day.length, 0);
+    const reports = (window.NGE_DATA && window.NGE_DATA.reports) || [];
+    const prevMonth = _previousMonthKey();
+
+    // Оповещалки
+    const unpaid = students.filter(s => !s.payment_status || s.payment_status === "" || s.payment_status === "Не выставлено" || s.payment_status === "Ожидает");
+    const noReport = students.filter(s => !reports.some(r => r.student_id === s.id && r.month === prevMonth));
+    const nextLesson = _computeNextLesson(students);
+
+    const unpaidHtml = unpaid.length
+      ? `<div class="cab-alert-num">${unpaid.length}</div>
+         <div class="cab-alert-list">${unpaid.slice(0, 5).map(s => `<span>${_esc(s.name)}</span>`).join(", ")}${unpaid.length > 5 ? " + ещё " + (unpaid.length - 5) : ""}</div>`
+      : `<div class="cab-alert-num">✓</div><div class="cab-alert-list">все оплачено</div>`;
+
+    const nextLessonHtml = nextLesson
+      ? `<div class="cab-alert-num">${_esc(_DAY_SHORT[nextLesson.dayNum])} ${_esc(nextLesson.time)}</div>
+         <div class="cab-alert-list">${_esc(nextLesson.studentName)} · ${_esc(_humanDelta(nextLesson.deltaMins))}</div>`
+      : `<div class="cab-alert-num">—</div><div class="cab-alert-list">нет занятий с временем</div>`;
+
+    const noReportHtml = noReport.length
+      ? `<div class="cab-alert-num">${noReport.length}</div>
+         <div class="cab-alert-list">${noReport.slice(0, 5).map(s => `<span>${_esc(s.name)}</span>`).join(", ")}${noReport.length > 5 ? " + ещё " + (noReport.length - 5) : ""}</div>`
+      : `<div class="cab-alert-num">✓</div><div class="cab-alert-list">все отчёты есть</div>`;
 
     const dayColumns = [1, 2, 3, 4, 5, 6, 7].map(d => {
       const slotsHtml = grid[d].length
@@ -244,8 +308,9 @@
         <td>${_esc(s.level || "—")}</td>
         <td>${_esc(s.format || "—")}</td>
         <td>${_esc(s.schedule || "—")}</td>
+        <td>${_esc(s.parent_name || (s.is_adult ? "взрослый" : "—"))}</td>
         <td>${s.price_per_lesson ? _esc(s.price_per_lesson) + " ₽" : "—"}</td>
-        <td>${_esc(s.payment_status || "—")}</td>
+        <td>${_esc(s.payment_status || "Не выставлено")}</td>
         <td><code>${_esc(s.pin)}</code></td>
       </tr>
     `).join("");
@@ -254,6 +319,29 @@
       <div class="cab-hero">
         <h1>Кабинет преподавателя</h1>
         <p class="cab-hero-sub">${students.length} активных учеников · ${totalSlots} занятий в неделю</p>
+      </div>
+
+      <div class="cab-quick-links">
+        <a class="cab-link-chip cab-link-chip--accent" href="https://progressme.ru/" target="_blank" rel="noreferrer">ProgressMe ↗</a>
+        <a class="cab-link-chip" href="https://www.notion.so/34d7364cba7980558eaecdd30712c27a" target="_blank" rel="noreferrer">Notion: Ученики</a>
+        <a class="cab-link-chip" href="https://www.notion.so/a4dcecdb595144eab9badb752e1e7b81" target="_blank" rel="noreferrer">Notion: Договоры</a>
+        <a class="cab-link-chip" href="https://www.notion.so/3627364cba7981ba94c1e261e7eec9f1" target="_blank" rel="noreferrer">Notion: Логины и PIN</a>
+        <a class="cab-link-chip" href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">Telegram-канал</a>
+      </div>
+
+      <div class="cab-alerts">
+        <article class="cab-alert cab-alert--unpaid">
+          <div class="cab-alert-head"><span class="cab-alert-icon">💰</span><h4>Не оплачено</h4></div>
+          ${unpaidHtml}
+        </article>
+        <article class="cab-alert cab-alert--next">
+          <div class="cab-alert-head"><span class="cab-alert-icon">📅</span><h4>Следующий урок</h4></div>
+          ${nextLessonHtml}
+        </article>
+        <article class="cab-alert cab-alert--report">
+          <div class="cab-alert-head"><span class="cab-alert-icon">📝</span><h4>Нет отчёта за прошлый месяц</h4></div>
+          ${noReportHtml}
+        </article>
       </div>
 
       <article class="cab-card">
@@ -273,6 +361,7 @@
                 <th>Уровень</th>
                 <th>Формат</th>
                 <th>Расписание</th>
+                <th>Родитель</th>
                 <th>Цена</th>
                 <th>Оплата</th>
                 <th>PIN</th>
@@ -283,7 +372,7 @@
         </div>
       </article>
 
-      <p class="cab-mvp-note">MVP-версия. Колонка PIN — для передачи ученику/родителю в Telegram (не показывать им на этой странице на людях). Редактирование данных — в Notion; этот кабинет читает snapshot.</p>
+      <p class="cab-mvp-note">MVP-версия. Тоггл оплат прямо тут и кнопка «Запись урока» — в следующем шаге.</p>
     `;
   }
 
