@@ -1,9 +1,9 @@
 /* Generated snapshot — see _rebuild_cabinet_data.js (recreate via Claude/MCP). */
 window.NGE_DATA = {
   "version": 2,
-  "generated": "2026-05-16T14:48:36.265Z",
-  "generated_by": "Claude Opus 4.7 — Notion snapshot (students + payment + parent reports)",
-  "note": "PIN derived deterministically from student id. Teacher password SHA-256 hashed. Reports fetched from Notion Monthly Reports DB on 2026-05-16.",
+  "generated": "2026-05-16T16:05:00.000Z",
+  "generated_by": "Claude Opus 4.7 — Notion snapshot + parent data from signed contracts",
+  "note": "PIN derived deterministically from student id. Teacher password SHA-256 hashed. Parent ФИО/passport/email/phone added from scanned contracts on 2026-05-16.",
   "teacher": {
     "id": "teacher",
     "name": "Мария Витальевна Бурцева",
@@ -35,9 +35,14 @@ window.NGE_DATA = {
       "schedule": "вторник 14:30 / четверг 12:30",
       "goal": "разговорный английский, школа, подготовка к TOEFL/IELTS",
       "price_per_lesson": 2500,
+      "monthly_package": 20000,
       "weekly_revenue": 5000,
       "payment_status": "Оплачено",
-      "parent_name": "Юлия Борисовна",
+      "is_adult": true,
+      "parent_name": "",
+      "contact_passport": "4520 965594",
+      "contact_phone": "+79166988892",
+      "contact_address": "Москва, ул. Ю. Парковая, 15-244",
       "pin": "1721"
     },
     {
@@ -50,6 +55,12 @@ window.NGE_DATA = {
       "goal": "взрослый ученик, медленный темп, через карточки и опоры",
       "price_per_lesson": 2000,
       "payment_status": "Оплачено",
+      "is_adult": true,
+      "parent_name": "",
+      "contact_passport": "4524 №179806 (ГУ МВД по г.Москве, 20.06.2024)",
+      "contact_phone": "+79671403548",
+      "contact_email": "elenavit-2005@mail.ru",
+      "contact_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
       "pin": "2547"
     },
     {
@@ -58,8 +69,13 @@ window.NGE_DATA = {
       "name": "Сова Екатерина",
       "level": "B1",
       "format": "индивидуально",
-      "schedule": "понедельник",
+      "schedule": "пятница 18:00",
       "payment_status": "",
+      "parent_name": "Сова Елена Витальевна",
+      "parent_passport": "4524 №179806",
+      "parent_phone": "+79671403548",
+      "parent_email": "elenavit-2005@mail.ru",
+      "parent_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
       "pin": "6924"
     },
     {
@@ -71,6 +87,8 @@ window.NGE_DATA = {
       "schedule": "вторник 16:00 / четверг 20:15 / пятница 20:00",
       "goal": "Spotlight 9",
       "payment_status": "",
+      "parent_name": "Протасова Мария Петровна",
+      "contract_note": "бумажный договор, не онлайн",
       "pin": "7186"
     },
     {
@@ -80,8 +98,14 @@ window.NGE_DATA = {
       "level": "",
       "format": "индивидуально",
       "schedule": "пятница",
-      "price_per_lesson": 2000,
+      "price_per_lesson": 1500,
+      "monthly_package": 6000,
       "payment_status": "",
+      "parent_name": "Подлесных Татьяна Анатольевна",
+      "parent_passport": "4524 514335 (06.11.2024)",
+      "parent_phone": "+79057502111",
+      "parent_email": "ryabina8@list.ru",
+      "parent_address": "Москва, пос. Сосенское, п. Коммунарка, ул. Ясная, д.5, кв.33",
       "pin": "7670"
     },
     {
@@ -93,17 +117,22 @@ window.NGE_DATA = {
       "schedule": "вторник 15:00 / четверг 15:00",
       "goal": "подготовка к ЕГЭ",
       "payment_status": "",
+      "parent_name": "Либова Юлия Игоревна",
+      "contract_note": "без договора",
       "pin": "5376"
     },
     {
       "id": "denis-shalmanov",
       "notion_id": "34d7364c-ba79-81a5-bdd8-ce47d7b050d7",
       "name": "Денис Шалманов",
-      "level": "",
+      "level": "A1",
       "format": "индивидуально",
       "schedule": "воскресенье",
       "price_per_lesson": 2500,
       "payment_status": "",
+      "is_adult": true,
+      "parent_name": "",
+      "contract_note": "отсканированный договор, требует визуальной сверки",
       "pin": "6347"
     },
     {
@@ -115,6 +144,10 @@ window.NGE_DATA = {
       "schedule": "понедельник",
       "price_per_lesson": 2500,
       "payment_status": "",
+      "parent_name": "Исаева Наталья Вячеславовна",
+      "parent_passport": "4514 567410 (УФМС России по г.Москве)",
+      "parent_email": "platemir@yandex.ru",
+      "parent_address": "Москва, Береговой пр-д, д.7, кв.95",
       "pin": "2512"
     },
     {
@@ -126,6 +159,7 @@ window.NGE_DATA = {
       "schedule": "понедельник 13:00 / среда 12:00",
       "price_per_lesson": 2000,
       "payment_status": "",
+      "parent_name": "Лушин Александр Анатольевич",
       "pin": "2223"
     },
     {
@@ -136,7 +170,13 @@ window.NGE_DATA = {
       "format": "индивидуально",
       "schedule": "понедельник 16:00 / пятница 15:30",
       "goal": "Старлайт 3 / Grammar or reading",
+      "price_per_lesson": 2000,
+      "monthly_package": 16000,
       "payment_status": "",
+      "parent_name": "Изотова Ольга Игоревна",
+      "parent_passport": "4510 764054",
+      "parent_phone": "+79269754602",
+      "parent_email": "meet.me.here@mail.ru",
       "pin": "2799"
     },
     {
@@ -147,6 +187,8 @@ window.NGE_DATA = {
       "format": "индивидуально",
       "schedule": "четверг",
       "payment_status": "",
+      "parent_name": "Галина Анатольевна",
+      "contract_note": "частичный, без полного договора",
       "pin": "9972"
     },
     {
@@ -156,7 +198,27 @@ window.NGE_DATA = {
       "level": "",
       "format": "парное занятие",
       "schedule": "четверг 18:00 / воскресенье 13:35",
+      "price_per_lesson": 1500,
+      "monthly_package": 12000,
       "payment_status": "",
+      "parent_name": "Медведева Марина Сергеевна (Катя) / Лихолева Елена Сергеевна (Маша)",
+      "kids": [
+        {
+          "name": "Медведева Екатерина",
+          "parent": "Медведева Марина Сергеевна",
+          "parent_passport": "4523 521762 (04.05.2023)",
+          "parent_phone": "+79165478727",
+          "parent_email": "marine_medvedeva@rambler.ru",
+          "parent_address": "Москва, ул. Островитянова, д.9 кв.947"
+        },
+        {
+          "name": "Кузнецова Мария",
+          "parent": "Лихолева Елена Сергеевна",
+          "parent_passport": "4519 568773 (ГУ МВД России по г.Москве)",
+          "parent_email": "ivan-tenaivanova@ya.ru (уточнить)",
+          "parent_address": "Москва, ул. Акад. Волгина, д.8А"
+        }
+      ],
       "pin": "3713"
     },
     {
@@ -166,7 +228,12 @@ window.NGE_DATA = {
       "level": "",
       "format": "индивидуально",
       "schedule": "2 часа",
+      "price_per_lesson": 2500,
+      "monthly_package": 10000,
       "payment_status": "",
+      "parent_name": "Кедрова Татьяна Владимировна",
+      "parent_passport": "45 08 445532",
+      "parent_address": "Москва, Сиреневый б-р, д.44, корп.1, кв.163",
       "pin": "1265"
     }
   ],
