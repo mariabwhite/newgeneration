@@ -1198,6 +1198,165 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
   }
 }
 
+/* === Абонемент-card (parent cabinet) === */
+.cab-abonement-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 16px;
+}
+
+.cab-abonement-bar {
+  height: 10px;
+  background: var(--surface-2, rgba(255,255,255,0.06));
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.cab-abonement-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2BB673, #FFC145);
+  border-radius: 999px;
+  transition: width 0.3s ease-out;
+}
+
+.cab-abonement-count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.cab-abonement-used {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.cab-abonement-of {
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.cab-abonement-total {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.cab-abonement-label {
+  margin-left: 4px;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* === Lesson dialog (teacher) === */
+.cab-lesson-dialog {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  max-width: 640px;
+  width: calc(100% - 40px);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.cab-lesson-dialog::backdrop {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(3px);
+}
+
+.cab-lesson-title {
+  margin: 0 0 18px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.cab-lesson-title span {
+  color: var(--accent);
+}
+
+.cab-lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 14px;
+}
+
+.cab-lesson-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.cab-lesson-full {
+  grid-column: 1 / -1;
+}
+
+.cab-lesson-grid input,
+.cab-lesson-grid select,
+.cab-lesson-grid textarea {
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-2, rgba(255,255,255,0.04));
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.cab-lesson-grid input:focus,
+.cab-lesson-grid select:focus,
+.cab-lesson-grid textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.cab-lesson-grid textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.cab-lesson-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.cab-lesson-hint {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(43, 182, 115, 0.12);
+  color: var(--text);
+  font-size: 12.5px;
+  line-height: 1.55;
+  border-left: 3px solid #2BB673;
+}
+
+@media (max-width: 560px) {
+  .cab-lesson-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Preview links in teacher table */
 .cab-preview-link {
   display: inline-flex;

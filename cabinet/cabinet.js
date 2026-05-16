@@ -338,6 +338,7 @@
         <td style="white-space: nowrap;">
           <a class="cab-preview-link" href="./student.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет ученика">🎓</a>
           <a class="cab-preview-link" href="./parent.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет родителя">👪</a>
+          <button class="cab-preview-link cab-add-lesson-btn" type="button" data-student-id="${_esc(s.id)}" data-student-name="${_esc(s.name)}" data-lessons-used="${_esc(s.lessons_used_this_month || 0)}" title="Записать урок">➕</button>
         </td>
       </tr>
     `).join("");
@@ -400,11 +401,137 @@
         </div>
       </article>
 
-      <p class="cab-mvp-note">MVP-версия. Тоггл оплат прямо тут и кнопка «Запись урока» — в следующем шаге.</p>
+      <p class="cab-mvp-note">MVP-версия. ➕ — записать урок (генерит markdown → копирует в буфер → вставь в чат с Claude, я залью в Lesson Log).</p>
+
+      <dialog id="lessonDialog" class="cab-lesson-dialog">
+        <form method="dialog" id="lessonForm">
+          <h3 class="cab-lesson-title">➕ Запись урока: <span id="lessonStudentName"></span></h3>
+          <div class="cab-lesson-grid">
+            <label>Дата <input type="date" name="date" id="lessonDate" required></label>
+            <label>Статус
+              <select name="status" id="lessonStatus">
+                <option value="completed">✅ completed</option>
+                <option value="planned">📅 planned</option>
+                <option value="missed">❌ missed</option>
+                <option value="rescheduled">🔄 rescheduled</option>
+                <option value="cancelled">⛔ cancelled</option>
+              </select>
+            </label>
+            <label class="cab-lesson-full">Тема <input type="text" name="topic" placeholder="Present Perfect отрицания + Question forms" required></label>
+            <label class="cab-lesson-full">Активности (через запятую) <input type="text" name="activities" placeholder="grammar, speaking"></label>
+            <label class="cab-lesson-full">Что прошли <textarea name="covered" rows="3" placeholder="Подробнее — что разбирали, что получилось"></textarea></label>
+            <label class="cab-lesson-full">Домашка <textarea name="homework" rows="2" placeholder="Что задано на платформе/в учебнике"></textarea></label>
+            <label>№ в пакете <input type="number" name="lessonNum" min="1" step="1"></label>
+            <label>Длительность мин <input type="number" name="duration" value="60" min="15" step="5"></label>
+          </div>
+          <div class="cab-lesson-actions">
+            <button type="button" class="cab-action-btn cab-action-btn--primary" id="lessonCopyBtn">📋 Скопировать для Claude</button>
+            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="lessonCancelBtn">Отмена</button>
+          </div>
+          <p class="cab-lesson-hint" id="lessonHint" style="display:none;">✅ Скопировано! Открой Claude → вставь сообщение → я залью в Lesson Log + обновлю счётчик абонемента.</p>
+        </form>
+      </dialog>
     `;
+
+    // Wire up "Запись урока" buttons
+    const dialog = container.querySelector("#lessonDialog");
+    const nameEl = container.querySelector("#lessonStudentName");
+    const dateEl = container.querySelector("#lessonDate");
+    const lessonNumEl = container.querySelector("input[name='lessonNum']");
+    const form = container.querySelector("#lessonForm");
+    const hint = container.querySelector("#lessonHint");
+
+    function todayISO() {
+      const d = new Date();
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    }
+
+    container.querySelectorAll(".cab-add-lesson-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sid = btn.dataset.studentId;
+        const sname = btn.dataset.studentName;
+        const used = parseInt(btn.dataset.lessonsUsed || "0", 10);
+        nameEl.textContent = sname;
+        dateEl.value = todayISO();
+        lessonNumEl.value = used + 1;
+        form.dataset.studentId = sid;
+        form.dataset.studentName = sname;
+        hint.style.display = "none";
+        if (typeof dialog.showModal === "function") dialog.showModal();
+        else dialog.setAttribute("open", "");
+      });
+    });
+
+    container.querySelector("#lessonCancelBtn").addEventListener("click", () => {
+      dialog.close && dialog.close();
+      dialog.removeAttribute("open");
+    });
+
+    container.querySelector("#lessonCopyBtn").addEventListener("click", async () => {
+      const data = new FormData(form);
+      const sname = form.dataset.studentName;
+      const sid = form.dataset.studentId;
+      const md =
+        `📝 Запись урока (для Claude → Lesson Log):\n` +
+        `- ученик: ${sname} (id: ${sid})\n` +
+        `- дата: ${data.get("date")}\n` +
+        `- статус: ${data.get("status")}\n` +
+        `- тема: ${data.get("topic")}\n` +
+        `- активности: ${data.get("activities") || "—"}\n` +
+        `- что прошли: ${data.get("covered") || "—"}\n` +
+        `- домашка: ${data.get("homework") || "—"}\n` +
+        `- № в пакете: ${data.get("lessonNum") || "—"}\n` +
+        `- длительность: ${data.get("duration") || 60} мин`;
+      try {
+        await navigator.clipboard.writeText(md);
+        hint.style.display = "block";
+        hint.textContent = "✅ Скопировано! Открой Claude → вставь сообщение → я залью в Lesson Log + обновлю счётчик абонемента.";
+      } catch (e) {
+        hint.style.display = "block";
+        hint.textContent = "⚠️ Не получилось скопировать автоматом. Текст ниже — скопируй руками:\n\n" + md;
+        hint.style.whiteSpace = "pre-wrap";
+      }
+    });
   }
 
   /* ---------- render: parent view ---------- */
+
+  function _renderAbonementCard(student) {
+    const total = student.lessons_in_package;
+    const used = student.lessons_used_this_month || 0;
+    const remaining = total ? Math.max(total - used, 0) : null;
+    const month = student.subscription_month || _currentMonthLabel();
+    const pkg = student.monthly_package;
+    const pricePer = student.price_per_lesson;
+
+    if (!total && !pkg && !pricePer) return "";
+
+    const progressPct = total ? Math.min(Math.round((used / total) * 100), 100) : 0;
+
+    return `
+      <article class="cab-card cab-abonement">
+        <h3>Абонемент · ${_esc(month)}</h3>
+        ${total ? `
+          <div class="cab-abonement-progress">
+            <div class="cab-abonement-bar">
+              <div class="cab-abonement-fill" style="width: ${progressPct}%;"></div>
+            </div>
+            <div class="cab-abonement-count">
+              <span class="cab-abonement-used">${_esc(used)}</span>
+              <span class="cab-abonement-of">из</span>
+              <span class="cab-abonement-total">${_esc(total)}</span>
+              <span class="cab-abonement-label">уроков</span>
+            </div>
+          </div>
+          ${remaining !== null ? `<div class="cab-card-row"><span class="cab-row-label">Осталось</span><span class="cab-row-value"><b>${remaining}</b> ${remaining === 1 ? "урок" : (remaining < 5 && remaining > 1 ? "урока" : "уроков")}</span></div>` : ""}
+        ` : ""}
+        ${pricePer ? `<div class="cab-card-row"><span class="cab-row-label">Цена занятия</span><span class="cab-row-value">${_esc(pricePer)} ₽</span></div>` : ""}
+        ${pkg ? `<div class="cab-card-row"><span class="cab-row-label">Стоимость пакета</span><span class="cab-row-value"><b>${_esc(pkg)} ₽</b></span></div>` : ""}
+        <div class="cab-card-row"><span class="cab-row-label">Расписание</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
+        ${student.payment_status ? `<div class="cab-card-row"><span class="cab-row-label">Статус</span><span class="cab-row-value">${_esc(student.payment_status)}</span></div>` : ""}
+      </article>
+    `;
+  }
 
   function renderParent(container, student) {
     if (!student) {
@@ -427,8 +554,9 @@
           ${student.level ? `<div class="cab-card-row"><span class="cab-row-label">Уровень</span><span class="cab-row-value">${_esc(student.level)}</span></div>` : ""}
           ${student.format ? `<div class="cab-card-row"><span class="cab-row-label">Формат</span><span class="cab-row-value">${_esc(student.format)}</span></div>` : ""}
           ${student.goal ? `<div class="cab-card-row"><span class="cab-row-label">Цель</span><span class="cab-row-value">${_esc(student.goal)}</span></div>` : ""}
-          <div class="cab-card-row"><span class="cab-row-label">Расписание</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
         </article>
+
+        ${_renderAbonementCard(student)}
 
         ${_renderReportsCard(student, (window.NGE_DATA && window.NGE_DATA.reports) || [], payment)}
 
@@ -516,7 +644,12 @@
   }
 
   function _renderReportsCard(student, reports, payment) {
-    const studentReports = reports.filter(r => r.student_id === student.id);
+    /* Родителю показываем ТОЛЬКО отчёты со статусом "sent".
+       Драфты ("ready to send", "source imported", "draft") видит только учитель в Notion. */
+    const studentReports = reports.filter(r =>
+      r.student_id === student.id &&
+      (r.status === "sent" || r.report_status === "sent")
+    );
     const currentMonth = _currentMonthLabel();
 
     if (studentReports.length === 0) {
