@@ -53,6 +53,9 @@ function setLanguage(lang) {
   localStorage.setItem("nge-lang", lang);
   localStorage.setItem(PREF_VERSION_KEY, PREF_VERSION);
 
+  /* Anti-FOUC: reveal body once translation pass finished. */
+  document.body.classList.add("lang-ready");
+
   /* Keep URL in sync — survives file:// origin isolation between pages */
   try {
     const _u = new URL(window.location.href);
