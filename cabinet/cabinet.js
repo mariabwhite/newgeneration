@@ -94,6 +94,27 @@
     return s;
   }
 
+  /**
+   * Для student.html / parent.html: возвращает session + studentId для рендера.
+   * Преподаватель (если есть ?student=<id>) видит превью без сброса своей
+   * сессии. Студент видит только свои данные.
+   */
+  function requireStudentViewSession() {
+    const s = getSession();
+    if (!s) { location.href = "./login.html"; return null; }
+    const url = new URL(location.href);
+    const previewId = url.searchParams.get("student");
+    if (s.role === "teacher") {
+      if (!previewId) { location.href = "./teacher.html"; return null; }
+      return { ...s, viewStudentId: previewId, isPreview: true };
+    }
+    if (s.role === "student") {
+      return { ...s, viewStudentId: s.studentId, isPreview: false };
+    }
+    location.href = "./login.html";
+    return null;
+  }
+
   /* ---------- find student helpers ---------- */
 
   async function getStudentById(id) {
@@ -314,6 +335,10 @@
         <td>${s.price_per_lesson ? _esc(s.price_per_lesson) + " ₽" : "—"}</td>
         <td>${_esc(s.payment_status || "Не выставлено")}</td>
         <td><code>${_esc(s.pin)}</code></td>
+        <td style="white-space: nowrap;">
+          <a class="cab-preview-link" href="./student.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет ученика">🎓</a>
+          <a class="cab-preview-link" href="./parent.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет родителя">👪</a>
+        </td>
       </tr>
     `).join("");
 
@@ -367,6 +392,7 @@
                 <th>Цена</th>
                 <th>Оплата</th>
                 <th>PIN</th>
+                <th>Превью</th>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -608,6 +634,7 @@ ${reportBody}
     signOut,
     tryLogin,
     requireSession,
+    requireStudentViewSession,
     getStudentById,
     getAllStudents,
     getReportsForStudent,

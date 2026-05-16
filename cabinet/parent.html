@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../system.css?v=7">
-<link rel="stylesheet" href="./cabinet.css?v=3">
+<link rel="stylesheet" href="./cabinet.css?v=4">
 </head>
 <body data-page="cabinet-parent">
 <script>
@@ -42,8 +42,8 @@
   </div>
 </main>
 
-<script src="./data.js?v=3"></script>
-<script src="./cabinet.js?v=3"></script>
+<script src="./data.js?v=4"></script>
+<script src="./cabinet.js?v=4"></script>
 <script>
   (function () {
     var btn = document.getElementById("themeToggle");
@@ -57,17 +57,23 @@
   })();
 
   (async function () {
-    /* MVP: parent uses the same PIN as the student (one PIN per family).
-       Future: separate parent PIN. */
-    var session = NGECabinet.getSession();
-    if (!session || (session.role !== "student" && session.role !== "parent")) {
-      location.href = "./login.html"; return;
-    }
+    /* MVP: parent uses the same PIN as the student. Teacher can preview
+       through ?student=<id> without losing teacher session. */
+    var session = NGECabinet.requireStudentViewSession();
+    if (!session) return;
     NGECabinet.wireSignOutButton("signOut");
     var container = document.getElementById("cabinetContent");
     try {
-      var student = await NGECabinet.getStudentById(session.studentId);
-      NGECabinet.renderParent(container, student);
+      var student = await NGECabinet.getStudentById(session.viewStudentId);
+      if (session.isPreview) {
+        var banner = '<div style="background: var(--accent); color:#fff; padding: 10px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13px; font-weight: 600;">🔍 Предпросмотр учителя — вы видите кабинет родителя «' + (student ? student.name : "?") + '». Сессия учителя не сброшена. <a href="./teacher.html" style="color:#fff; text-decoration: underline; margin-left: 8px;">← обратно в кабинет учителя</a></div>';
+        container.innerHTML = banner;
+        var sub = document.createElement("div");
+        container.appendChild(sub);
+        NGECabinet.renderParent(sub, student);
+      } else {
+        NGECabinet.renderParent(container, student);
+      }
     } catch (e) {
       container.innerHTML = "<p style='color:var(--accent);'>Ошибка загрузки: " + (e.message || e) + "</p>";
     }
