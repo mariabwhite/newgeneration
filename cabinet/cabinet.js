@@ -235,17 +235,7 @@
           <div class="cab-card-row"><span class="cab-row-label">Расписание</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
         </article>
 
-        <article class="cab-card">
-          <h3>Отчёты</h3>
-          <div class="cab-card-row"><span class="cab-row-label">${_esc(currentMonth)}</span><span class="cab-row-value">${_esc(student.payment_status || "в работе")}</span></div>
-          <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
-            <button class="cab-action-btn" type="button" data-action="open-report" data-student="${_esc(student.id)}">Открыть отчёт за ${_esc(currentMonth)}</button>
-            <a class="cab-action-btn cab-action-btn--ghost" href="${_esc(payment.telegram || "")}" target="_blank" rel="noreferrer">Запросить расширенный отчёт у Марии</a>
-          </div>
-          <p style="margin-top: 12px; font-size: 11.5px; color: var(--text-3); line-height: 1.55;">
-            «Открыть отчёт» сформирует страницу, готовую к печати: распечатайте или сохраните как PDF через диалог браузера (⌘P / Ctrl+P → «Сохранить как PDF»).
-          </p>
-        </article>
+        ${_renderReportsCard(student, (window.NGE_DATA && window.NGE_DATA.reports) || [], payment)}
 
         <article class="cab-card">
           <h3>Оплата</h3>
@@ -278,7 +268,7 @@
 
     // Wire up the dynamic buttons
     container.querySelectorAll('[data-action="open-report"]').forEach(btn => {
-      btn.addEventListener("click", () => openPrintableReport(btn.dataset.student));
+      btn.addEventListener("click", () => openPrintableReport(btn.dataset.student, btn.dataset.report));
     });
     container.querySelectorAll('[data-action="toggle-bank-details"]').forEach(btn => {
       btn.addEventListener("click", () => {
@@ -300,62 +290,131 @@
     return months[d.getMonth()] + " " + d.getFullYear();
   }
 
-  async function openPrintableReport(studentId) {
+  // Very small markdown → HTML (just headings, bullets, paragraphs, line breaks)
+  function _mdToHtml(md) {
+    if (!md) return "";
+    const lines = md.split(/\r?\n/);
+    let html = "";
+    let inList = false;
+    for (let raw of lines) {
+      const line = raw.trim();
+      if (!line) {
+        if (inList) { html += "</ul>"; inList = false; }
+        continue;
+      }
+      if (line.startsWith("# ")) {
+        if (inList) { html += "</ul>"; inList = false; }
+        html += `<h3>${_esc(line.slice(2))}</h3>`;
+      } else if (line.startsWith("## ")) {
+        if (inList) { html += "</ul>"; inList = false; }
+        html += `<h4>${_esc(line.slice(3))}</h4>`;
+      } else if (line.startsWith("- ") || line.startsWith("• ")) {
+        if (!inList) { html += "<ul>"; inList = true; }
+        html += `<li>${_esc(line.slice(2))}</li>`;
+      } else {
+        if (inList) { html += "</ul>"; inList = false; }
+        html += `<p>${_esc(line)}</p>`;
+      }
+    }
+    if (inList) html += "</ul>";
+    return html;
+  }
+
+  function _renderReportsCard(student, reports, payment) {
+    const studentReports = reports.filter(r => r.student_id === student.id);
+    const currentMonth = _currentMonthLabel();
+
+    if (studentReports.length === 0) {
+      return `
+        <article class="cab-card">
+          <h3>Отчёты</h3>
+          <div class="cab-card-row"><span class="cab-row-label">${_esc(currentMonth)}</span><span class="cab-row-value">отчёт пока не загружен</span></div>
+          <p style="margin: 12px 0 14px; font-size: 12px; line-height: 1.55; color: var(--text-3);">
+            Методический отчёт за ${_esc(currentMonth)} ещё в работе. Напишите Марии, чтобы получить его быстрее.
+          </p>
+          <a class="cab-action-btn cab-action-btn--ghost" href="${_esc(payment.telegram || "")}" target="_blank" rel="noreferrer">Запросить отчёт у Марии</a>
+        </article>
+      `;
+    }
+
+    const rows = studentReports.map(r => `
+      <div class="cab-report-row">
+        <div>
+          <div class="cab-report-title">${_esc(r.title || r.type)}</div>
+          <div class="cab-report-meta">${_esc(r.month_label || r.month || "")} · ${_esc(r.type || "")}</div>
+        </div>
+        <button class="cab-action-btn" type="button" data-action="open-report" data-student="${_esc(student.id)}" data-report="${_esc(r.id)}">Открыть</button>
+      </div>
+    `).join("");
+
+    return `
+      <article class="cab-card">
+        <h3>Отчёты</h3>
+        ${rows}
+        <p style="margin-top: 12px; font-size: 11.5px; color: var(--text-3); line-height: 1.55;">
+          Откроется страница, готовая к печати: <kbd>Ctrl/⌘ + P</kbd> → «Сохранить как PDF».
+        </p>
+      </article>
+    `;
+  }
+
+  async function openPrintableReport(studentId, reportId) {
     const student = await getStudentById(studentId);
     if (!student) return;
-    const month = _currentMonthLabel();
     const teacher = (window.NGE_DATA && window.NGE_DATA.teacher && window.NGE_DATA.teacher.name) || "Мария Витальевна Бурцева";
     const date = new Date().toLocaleDateString("ru-RU");
+    const allReports = (window.NGE_DATA && window.NGE_DATA.reports) || [];
+    const report = reportId ? allReports.find(r => r.id === reportId) : null;
+    const monthLabel = (report && (report.month_label || report.month)) || _currentMonthLabel();
+
+    const reportBody = report ? _mdToHtml(report.content || "") : `
+      <h3>Отчёт пока не загружен</h3>
+      <p>Методический отчёт за ${_esc(monthLabel)} ещё в работе. Это техническая выгрузка профиля.</p>
+    `;
 
     const html = `<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="UTF-8">
-<title>Отчёт — ${_esc(student.name)} — ${_esc(month)}</title>
+<title>${_esc(report ? report.title : "Отчёт")} — ${_esc(student.name)}</title>
 <style>
   * { box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Manrope, Arial, sans-serif;
-    margin: 40px auto; max-width: 720px; padding: 0 24px; color: #1a1612; line-height: 1.55; }
-  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.02em; }
-  .sub { color: #6b6560; margin-bottom: 32px; }
-  h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.14em;
-    color: #FF5A1F; margin: 28px 0 12px; }
-  .row { display: flex; justify-content: space-between; gap: 14px;
-    padding: 8px 0; border-top: 1px solid rgba(0,0,0,0.08); font-size: 14px; }
-  .row:first-of-type { border-top: none; }
-  .row .label { color: #6b6560; font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.1em; padding-top: 2px; }
-  .row .value { text-align: right; }
-  .footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,0.08);
+    margin: 40px auto; max-width: 720px; padding: 0 24px; color: #1a1612; line-height: 1.65; }
+  h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .sub { color: #6b6560; margin-bottom: 28px; font-size: 13px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: #FF5A1F; margin: 24px 0 8px; }
+  h3 { font-size: 17px; margin: 22px 0 10px; color: #1a1612; }
+  h4 { font-size: 14px; margin: 16px 0 8px; color: #1a1612; }
+  p  { margin: 8px 0; font-size: 14px; }
+  ul { margin: 6px 0 12px 20px; padding: 0; }
+  li { margin: 4px 0; font-size: 14px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 14px; padding: 12px 0;
+    border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin: 0 0 24px; font-size: 12px; color: #6b6560; }
+  .meta b { color: #1a1612; font-weight: 600; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.08);
     color: #6b6560; font-size: 12px; line-height: 1.7; }
-  .footer .sig { font-weight: 600; color: #1a1612; }
-  @media print { body { margin: 20mm; padding: 0; } }
+  .footer .sig { font-weight: 600; color: #1a1612; margin-top: 6px; }
+  @media print { body { margin: 18mm; padding: 0; max-width: none; } }
 </style>
 </head><body>
-<h1>Отчёт за ${_esc(month)}</h1>
-<div class="sub">New Generation English · кабинет ${_esc(student.name)}</div>
+<h1>${_esc(report ? report.title : "Отчёт")}</h1>
+<div class="sub">New Generation English · ${_esc(student.name)}${student.level ? " · " + _esc(student.level) : ""}</div>
 
-<h2>Ученик</h2>
-<div class="row"><span class="label">Имя</span><span class="value">${_esc(student.name)}</span></div>
-${student.level ? `<div class="row"><span class="label">Уровень</span><span class="value">${_esc(student.level)}</span></div>` : ""}
-${student.format ? `<div class="row"><span class="label">Формат</span><span class="value">${_esc(student.format)}</span></div>` : ""}
-${student.duration ? `<div class="row"><span class="label">Длительность</span><span class="value">${_esc(student.duration)}</span></div>` : ""}
-${student.lessons_per_week ? `<div class="row"><span class="label">Раз в неделю</span><span class="value">${_esc(student.lessons_per_week)}</span></div>` : ""}
-${student.schedule ? `<div class="row"><span class="label">Расписание</span><span class="value">${_esc(student.schedule)}</span></div>` : ""}
-${student.goal ? `<div class="row"><span class="label">Цель</span><span class="value">${_esc(student.goal)}</span></div>` : ""}
+<div class="meta">
+  <span><b>Ученик:</b> ${_esc(student.name)}</span>
+  ${student.format ? `<span><b>Формат:</b> ${_esc(student.format)}</span>` : ""}
+  ${student.schedule ? `<span><b>Расписание:</b> ${_esc(student.schedule)}</span>` : ""}
+  ${report ? `<span><b>Месяц:</b> ${_esc(monthLabel)}</span>` : ""}
+  ${report && report.recipient ? `<span><b>Кому:</b> ${_esc(report.recipient)}</span>` : ""}
+</div>
 
-<h2>Оплата</h2>
-${student.price_per_lesson ? `<div class="row"><span class="label">Цена занятия</span><span class="value">${_esc(student.price_per_lesson)} ₽</span></div>` : ""}
-${student.weekly_revenue ? `<div class="row"><span class="label">В неделю</span><span class="value">${_esc(student.weekly_revenue)} ₽</span></div>` : ""}
-<div class="row"><span class="label">Статус</span><span class="value">${_esc(student.payment_status || "—")}</span></div>
+${reportBody}
 
 <div class="footer">
-  <p>
-    Это краткая выгрузка из кабинета на ${_esc(date)}.<br>
-    Полный методический отчёт за месяц (сильные стороны, провалы, домашние задания, прогресс)
-    готовится индивидуально и присылается отдельно в Telegram.
-  </p>
+  <p>Выгрузка из кабинета на ${_esc(date)}. Источник — рабочая база Notion (Monthly Reports).</p>
   <p class="sig">${_esc(teacher)}</p>
-  <p>New Generation English · ${_esc(month)}</p>
 </div>
 </body></html>`;
 

@@ -1,9 +1,9 @@
-/* Generated snapshot — see _build_cabinet_data.js (recreate via Claude/MCP). */
+/* Generated snapshot — see _rebuild_cabinet_data.js (recreate via Claude/MCP). */
 window.NGE_DATA = {
-  "version": 1,
-  "generated": "2026-05-16T14:14:41.356Z",
-  "generated_by": "Claude Opus 4.7 — MVP snapshot from Notion + Excel observation",
-  "note": "PIN is derived deterministically from student id (sha256 mod 9000 + 1000). Teacher password hashed sha256. For production this must move to a backend.",
+  "version": 2,
+  "generated": "2026-05-16T14:48:36.265Z",
+  "generated_by": "Claude Opus 4.7 — Notion snapshot (students + payment + parent reports)",
+  "note": "PIN derived deterministically from student id. Teacher password SHA-256 hashed. Reports fetched from Notion Monthly Reports DB on 2026-05-16.",
   "teacher": {
     "id": "teacher",
     "name": "Мария Витальевна Бурцева",
@@ -56,7 +56,7 @@ window.NGE_DATA = {
       "id": "sova-ekaterina",
       "notion_id": "34d7364c-ba79-810e-ac5b-f35b5a113898",
       "name": "Сова Екатерина",
-      "level": "",
+      "level": "B1",
       "format": "индивидуально",
       "schedule": "понедельник",
       "payment_status": "",
@@ -91,6 +91,7 @@ window.NGE_DATA = {
       "level": "",
       "format": "индивидуально",
       "schedule": "вторник 15:00 / четверг 15:00",
+      "goal": "подготовка к ЕГЭ",
       "payment_status": "",
       "pin": "5376"
     },
@@ -169,5 +170,110 @@ window.NGE_DATA = {
       "pin": "1265"
     }
   ],
-  "reports": []
+  "reports": [
+    {
+      "id": "2026-05-anya-isaeva-parent",
+      "student_id": "anya-isaeva",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель",
+      "status": "source imported",
+      "title": "Отчёт родителю · май 2026",
+      "short_message": "Аня молодец: закончили блок по теме города, ввели Present Perfect и закрепили три формы настоящего времени — Present Simple, Present Continuous и Present Perfect. Прописали диктант; дальше — города, другие страны, спорт и travelling.",
+      "content": "# Краткий вывод\n\nАня прошла первый блок занятий по понедельникам. Основной фокус был на устной базе, простых личных вопросах, there is / there are, предлогах места и городской лексике. Устная речь начала становиться увереннее: пауз меньше, фразы собираются ровнее, но грамматические конструкции нужно доводить до автоматизма.\n\n# Сегодня, 11 мая\n\nАня молодец: закончили блок по теме города, ввели Present Perfect и собрали три формы настоящего времени — Present Simple, Present Continuous и Present Perfect. Прописали диктант. Дальше переходим к полезным новым темам: города, другие страны, спорт и travelling.\n\n# Следующий фокус\n\nЗакрепление Present Simple / Present Continuous / Present Perfect через устную практику, диктанты и новые темы: города, другие страны, спорт и travelling.",
+      "notion_url": "https://www.notion.so/35a7364cba7981b787b5cf8960ca9354"
+    },
+    {
+      "id": "2026-05-denis-shalmanov-parent",
+      "student_id": "denis-shalmanov",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель",
+      "status": "source imported",
+      "title": "Отчёт родителю · май 2026",
+      "short_message": "Денис работает над бытовым разговорным английским, описанием картинки и короткими диалогами. Фокус — автоматизация there is / there are / it is и простые вопросы.",
+      "content": "# Краткий вывод\n\nДенис занимается как взрослый ученик с практической целью: бытовой разговорный английский, описание места / картинки, вопросы и короткие диалоги.\n\n# Ближайший фокус\n\nМагазинный диалог, описание картинки / комнаты / дома, личные бытовые вопросы, Present Simple vs Present Continuous.",
+      "notion_url": "https://www.notion.so/35a7364cba798199a0a9c1146281d5f8"
+    },
+    {
+      "id": "2026-05-katya-sova-parent",
+      "student_id": "sova-ekaterina",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель",
+      "status": "source imported",
+      "title": "Отчёт родителю · май 2026",
+      "short_message": "Катя стабильно работает на уровне B1. В мае фокус — books / book genres, phrasal verbs и ОГЭ-формат; важно фиксировать ошибки и выводить лексику в речь.",
+      "content": "# Краткий вывод\n\nКатя работает на уровне B1. Основные блоки: ОГЭ-формат, books / book genres и phrasal verbs.\n\n# Ближайший фокус\n\nBook genres → vocabulary table → questions → B1 multiple choice → matching → interview → short result check.",
+      "notion_url": "https://www.notion.so/35a7364cba7981a2801af0ed869d847f"
+    },
+    {
+      "id": "2026-05-ekaterina-medvedeva-parent",
+      "student_id": "ekaterina-mariya-pair",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель (Екатерина Медведева)",
+      "status": "source imported",
+      "title": "Отчёт родителю Екатерины · май 2026",
+      "short_message": "Катя работала ровно и стабильно: word formation, suffixes/prefixes, gerund/infinitive, used to и ОГЭ. Speaking стал собраннее, лучше держится фрейм.",
+      "content": "# Краткий вывод\n\nКатя работала ровно и стабильно. Понимание тем стало лучше, speaking подрос.\n\n# Май\n\n9 занятий × 1 500 руб. = 13 500 руб.",
+      "notion_url": "https://www.notion.so/35a7364cba7981bea07ddf8a902b1f13"
+    },
+    {
+      "id": "2026-05-maria-kuznetsova-parent",
+      "student_id": "ekaterina-mariya-pair",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель (Мария Кузнецова)",
+      "status": "source imported",
+      "title": "Отчёт родителю Марии · май 2026",
+      "short_message": "Маша работает в паре с Катей. Нужна дополнительная опора на построение предложения и точечная практика: gerund/infinitive, word formation, spelling и более полные ответы.",
+      "content": "# Краткий вывод\n\nМаша работает в паре с Катей и проходит те же темы. По последним работам точность временно просела: нужны опора на построение предложения и точечная практика.\n\n# Примечание\n\nОтдельной личной карточки Марии Кузнецовой не найдено, строка связана с общей карточкой пары Екатерина и Мария.",
+      "notion_url": "https://www.notion.so/35a7364cba7981489de5fa224b04e372"
+    },
+    {
+      "id": "2026-05-andrei-kruglov-toefl",
+      "student_id": "andrei-kruglov",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "TOEFL diagnostic",
+      "recipient": "родитель",
+      "status": "source imported",
+      "title": "TOEFL диагностика · 2026",
+      "short_message": "Андрей показывает уверенный B2. TOEFL-style diagnostic estimate — 4.0/6.0. Сильные стороны Reading и Listening; фокус роста — Writing/Speaking accuracy.",
+      "content": "# Краткий вывод\n\nАндрей показывает уверенный общий уровень B2. Диагностическая оценка по TOEFL iBT 2026 classroom scale — 4.0 из 6.0.\n\n# План\n\nReading, real-audio listening, email + academic discussion writing, structured speaking, collocations/articles/plurals.",
+      "notion_url": "https://www.notion.so/35a7364cba79812492a3dcc970b5ceef"
+    },
+    {
+      "id": "2026-05-daniella-libova-parent",
+      "student_id": "daniella-libova",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "Юлия Игоревна",
+      "status": "source imported",
+      "title": "Отчёт родителю · май 2026",
+      "short_message": "Дана укрепляется: грамматика подросла, ответы стали ровнее. Сильные разделы — аудирование и чтение; зоны роста — spelling, word formation, speaking и writing по критериям ЕГЭ.",
+      "content": "# Краткий вывод\n\nВ апреле Дана работала в формате подготовки к ЕГЭ: грамматика, словообразование, устная часть и диагностические задания. Подключали TOEFL-формат и Langart.\n\n# Май\n\n6 занятий к оплате после переноса 2 занятий из апреля.",
+      "notion_url": "https://www.notion.so/35a7364cba7981ef858beda6387ad2f5"
+    },
+    {
+      "id": "2026-05-yulya-lushina-parent",
+      "student_id": "yulya-lushina",
+      "month": "2026-05",
+      "month_label": "май 2026",
+      "type": "parent report",
+      "recipient": "родитель",
+      "status": "source imported",
+      "title": "Отчёт родителю · май 2026",
+      "short_message": "Юля занимается в игровом формате. Главный прогресс — узнавание английского в понятных ситуациях, реакция на команды и повторение коротких фраз.",
+      "content": "# Краткий вывод\n\nЮля занимается в игровом формате: движение, картинки, персонажи, игрушки и короткие повторяющиеся фразы.\n\n# Следующий фокус\n\nBody and face, This is my..., I have..., He/She/It has..., feelings, animals, actions.",
+      "notion_url": "https://www.notion.so/35a7364cba79819c9339d3c4f4953e46"
+    }
+  ]
 };
