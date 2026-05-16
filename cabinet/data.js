@@ -1,4 +1,5 @@
-{
+/* Generated snapshot — see _build_cabinet_data.js (recreate via Claude/MCP). */
+window.NGE_DATA = {
   "version": 1,
   "generated": "2026-05-16T14:14:41.356Z",
   "generated_by": "Claude Opus 4.7 — MVP snapshot from Notion + Excel observation",
@@ -155,4 +156,4 @@
     }
   ],
   "reports": []
-}
+};

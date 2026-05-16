@@ -15,16 +15,14 @@
   "use strict";
 
   const SESSION_KEY = "nge_session_v2";
-  const DATA_URL = "./data.json";
 
-  let _dataCache = null;
-
+  /**
+   * Data is loaded via <script src="./data.js"> which sets window.NGE_DATA.
+   * (fetch() doesn't work on file:// in Chrome/Edge.)
+   */
   async function loadData() {
-    if (_dataCache) return _dataCache;
-    const res = await fetch(DATA_URL, { cache: "no-cache" });
-    if (!res.ok) throw new Error("Не удалось загрузить data.json");
-    _dataCache = await res.json();
-    return _dataCache;
+    if (window.NGE_DATA) return window.NGE_DATA;
+    throw new Error("data.js не подгрузился — проверь подключение <script src='./data.js'> до cabinet.js");
   }
 
   /* ---------- session ---------- */
