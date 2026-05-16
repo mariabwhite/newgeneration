@@ -184,10 +184,12 @@
     for (const raw of slots) {
       const s = raw.trim().toLowerCase();
       if (!s) continue;
+      // ВАЖНО: \b не работает с кириллицей в стандартных JS-регексах,
+      // поэтому используем простой includes (порядок _DAY_MAP — длинные имена
+      // первыми, чтобы "пн" не съел "понедельник").
       let dayNum = null;
       for (const [name, num] of Object.entries(_DAY_MAP)) {
-        const re = new RegExp("\\b" + name + "\\b");
-        if (re.test(s)) { dayNum = num; break; }
+        if (s.indexOf(name) !== -1) { dayNum = num; break; }
       }
       if (!dayNum) continue;
       const timeMatch = s.match(/(\d{1,2})[:.,](\d{2})/);
@@ -262,11 +264,11 @@
     const grid = _buildScheduleGrid(students);
     const totalSlots = Object.values(grid).reduce((sum, day) => sum + day.length, 0);
     const reports = (window.NGE_DATA && window.NGE_DATA.reports) || [];
-    const prevMonth = _previousMonthKey();
+    const currentMonth = _currentMonthKey();
 
     // Оповещалки
     const unpaid = students.filter(s => !s.payment_status || s.payment_status === "" || s.payment_status === "Не выставлено" || s.payment_status === "Ожидает");
-    const noReport = students.filter(s => !reports.some(r => r.student_id === s.id && r.month === prevMonth));
+    const noReport = students.filter(s => !reports.some(r => r.student_id === s.id && r.month === currentMonth));
     const nextLesson = _computeNextLesson(students);
 
     const unpaidHtml = unpaid.length
@@ -339,7 +341,7 @@
           ${nextLessonHtml}
         </article>
         <article class="cab-alert cab-alert--report">
-          <div class="cab-alert-head"><span class="cab-alert-icon">📝</span><h4>Нет отчёта за прошлый месяц</h4></div>
+          <div class="cab-alert-head"><span class="cab-alert-icon">📝</span><h4>Нет отчёта за этот месяц</h4></div>
           ${noReportHtml}
         </article>
       </div>
