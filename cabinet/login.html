@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../system.css?v=7">
-<link rel="stylesheet" href="./cabinet.css?v=5">
+<link rel="stylesheet" href="./cabinet.css?v=6">
 </head>
 <body data-page="cabinet-login">
 <script>
@@ -36,7 +36,7 @@
 </header>
 
 <main class="page-shell cabinet-main">
-  <section class="cab-login">
+  <section class="cab-login" id="loginSection">
     <h1>Вход в кабинет</h1>
     <p class="cab-login-sub">Введите 4-значный PIN (ученик/родитель) или пароль (преподаватель).</p>
     <form id="loginForm" autocomplete="off">
@@ -49,10 +49,30 @@
       MVP-версия: данные хранятся локально в браузере и в snapshot'е из Notion.
     </p>
   </section>
+
+  <section class="cab-login cab-role-picker" id="rolePicker" style="display:none;">
+    <h1>Кто заходит?</h1>
+    <p class="cab-login-sub" id="rolePickerSub">Вы вошли как <b id="rolePickerName">—</b>. Выберите, в каком виде показать кабинет.</p>
+    <div class="cab-role-buttons">
+      <button type="button" class="cab-role-btn" data-role="student">
+        <span class="cab-role-emoji">🎓</span>
+        <span class="cab-role-title">Я ученик</span>
+        <span class="cab-role-desc">профиль, расписание, темы уроков, домашка</span>
+      </button>
+      <button type="button" class="cab-role-btn" data-role="parent">
+        <span class="cab-role-emoji">👪</span>
+        <span class="cab-role-title">Я родитель</span>
+        <span class="cab-role-desc">абонемент, отчёты, оплата</span>
+      </button>
+    </div>
+    <p class="cab-login-hint">
+      <a href="#" id="rolePickerBack">← вернуться к вводу PIN</a>
+    </p>
+  </section>
 </main>
 
 <script src="./data.js?v=5"></script>
-<script src="./cabinet.js?v=5"></script>
+<script src="./cabinet.js?v=6"></script>
 <script>
   (function () {
     var btn = document.getElementById("themeToggle");
@@ -65,12 +85,28 @@
     });
   })();
 
+  var loginSection = document.getElementById("loginSection");
+  var rolePicker = document.getElementById("rolePicker");
+  var rolePickerName = document.getElementById("rolePickerName");
+
+  function showPicker(session) {
+    rolePickerName.textContent = session.name || "—";
+    loginSection.style.display = "none";
+    rolePicker.style.display = "";
+  }
+
+  function showLogin() {
+    rolePicker.style.display = "none";
+    loginSection.style.display = "";
+  }
+
   (function () {
     var s = NGECabinet.getSession();
     if (!s) return;
-    if (s.role === "student") location.href = "./student.html";
-    else if (s.role === "teacher") location.href = "./teacher.html";
-    else if (s.role === "parent") location.href = "./parent.html";
+    if (s.role === "teacher") { location.href = "./teacher.html"; return; }
+    if (s.role === "student") { location.href = "./student.html"; return; }
+    if (s.role === "parent") { location.href = "./parent.html"; return; }
+    if (s.role === "family") { showPicker(s); return; }
   })();
 
   document.getElementById("loginForm").addEventListener("submit", async function (e) {
@@ -85,12 +121,32 @@
         return;
       }
       NGECabinet.setSession(session);
-      if (session.role === "teacher") location.href = "./teacher.html";
-      else location.href = "./student.html";
+      if (session.role === "teacher") { location.href = "./teacher.html"; return; }
+      if (session.role === "family") { showPicker(session); return; }
+      location.href = "./student.html";
     } catch (err) {
       errEl.textContent = "Ошибка: " + (err && err.message ? err.message : err);
       errEl.classList.add("is-visible");
     }
+  });
+
+  rolePicker.querySelectorAll(".cab-role-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var role = btn.getAttribute("data-role");
+      var s = NGECabinet.getSession();
+      if (!s) { showLogin(); return; }
+      var nextSession = Object.assign({}, s, { role: role });
+      NGECabinet.setSession(nextSession);
+      location.href = role === "parent" ? "./parent.html" : "./student.html";
+    });
+  });
+
+  document.getElementById("rolePickerBack").addEventListener("click", function (e) {
+    e.preventDefault();
+    NGECabinet.clearSession();
+    document.getElementById("loginCode").value = "";
+    showLogin();
+    document.getElementById("loginCode").focus();
   });
 </script>
 

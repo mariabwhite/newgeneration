@@ -39,8 +39,12 @@
     try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch (_) {}
   }
 
-  function signOut() {
+  function clearSession() {
     try { localStorage.removeItem(SESSION_KEY); } catch (_) {}
+  }
+
+  function signOut() {
+    clearSession();
     location.href = "./login.html";
   }
 
@@ -63,11 +67,12 @@
     const data = await loadData();
     const trimmed = String(code).trim();
 
-    // 4-digit PIN → student or parent
+    // 4-digit PIN → family (PIN shared between student and parent;
+    // login.html shows a picker right after to set the final role).
     if (/^\d{4}$/.test(trimmed)) {
       const student = data.students.find(s => s.pin === trimmed);
       if (student) {
-        return { role: "student", studentId: student.id, name: student.name };
+        return { role: "family", studentId: student.id, name: student.name };
       }
       return null;
     }
@@ -108,9 +113,10 @@
       if (!previewId) { location.href = "./teacher.html"; return null; }
       return { ...s, viewStudentId: previewId, isPreview: true };
     }
-    if (s.role === "student") {
+    if (s.role === "student" || s.role === "parent") {
       return { ...s, viewStudentId: s.studentId, isPreview: false };
     }
+    // role === "family" → user hasn't picked yet; bounce to login picker.
     location.href = "./login.html";
     return null;
   }
@@ -171,13 +177,6 @@
           <h3>Расписание</h3>
           <div class="cab-card-row"><span class="cab-row-label">Дни и время</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
           ${student.lessons_per_week ? `<div class="cab-card-row"><span class="cab-row-label">Раз в неделю</span><span class="cab-row-value">${_esc(student.lessons_per_week)}</span></div>` : ""}
-        </article>
-
-        <article class="cab-card">
-          <h3>Оплата</h3>
-          ${student.price_per_lesson ? `<div class="cab-card-row"><span class="cab-row-label">Стоимость занятия</span><span class="cab-row-value">${_esc(student.price_per_lesson)} ₽</span></div>` : ""}
-          ${student.weekly_revenue ? `<div class="cab-card-row"><span class="cab-row-label">В неделю</span><span class="cab-row-value">${_esc(student.weekly_revenue)} ₽</span></div>` : ""}
-          ${student.payment_status ? `<div class="cab-card-row"><span class="cab-row-label">Статус</span><span class="cab-row-value">${_esc(student.payment_status)}</span></div>` : ""}
         </article>
       </div>
 
@@ -764,6 +763,7 @@ ${reportBody}
     loadData,
     getSession,
     setSession,
+    clearSession,
     signOut,
     tryLogin,
     requireSession,
