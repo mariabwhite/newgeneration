@@ -110,7 +110,7 @@ function markActiveNav() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setTheme(localStorage.getItem("nge-theme") || "dark");
+  setTheme(localStorage.getItem("nge-theme") || "light");
 
   const requestedLang = readRequestedLanguage();
   const storedLang = localStorage.getItem("nge-lang");
