@@ -89,12 +89,29 @@ window.NGE_DATA = {
       "level": "A2/B1",
       "lessons_in_package": 13,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 5,
       "payment_status": "Оплачено",
       "payment_note": "Мария Петровна платит еженедельно",
       "parent_name": "Протасова Мария Петровна",
       "contract_note": "бумажный договор, не онлайн",
-      "pin": "7186"
+      "pin": "7186",
+      "stability_note": "Май-абонемент. 5 уроков completed (1, 5, 7, 8, 12). 14 и 15 — технические трудности, перенесены на 17 (суббота, 1.5 часа комбинированно). Сегодня (17.05) — этот комбинированный урок. Дальше 19, 21, 22, 26, 28, 29.",
+      "lessons": [
+        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "Туристический английский — Китай (лексика, клише)" },
+        { "date": "2026-05-05", "num": 2, "status": "completed", "topic": "Туристический английский — Италия" },
+        { "date": "2026-05-07", "num": 3, "status": "completed", "topic": "Грамматический юнит" },
+        { "date": "2026-05-08", "num": 4, "status": "completed", "topic": "Повторение неправильных глаголов" },
+        { "date": "2026-05-12", "num": 5, "status": "completed", "topic": "Туристические клише" },
+        { "date": "2026-05-14", "num": 6, "status": "rescheduled", "topic": "Перенесён на 17.05 (технические трудности)" },
+        { "date": "2026-05-15", "num": 7, "status": "rescheduled", "topic": "Перенесён на 17.05 (технические трудности)" },
+        { "date": "2026-05-17", "num": 8, "status": "planned", "topic": "Комбинированный урок 1.5 часа (за 14 и 15.05)" },
+        { "date": "2026-05-19", "num": 9, "status": "planned", "topic": "" },
+        { "date": "2026-05-21", "num": 10, "status": "planned", "topic": "" },
+        { "date": "2026-05-22", "num": 11, "status": "planned", "topic": "" },
+        { "date": "2026-05-26", "num": 12, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 13, "status": "planned", "topic": "" },
+        { "date": "2026-05-29", "num": 14, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "ivanov-ivan",
@@ -162,7 +179,18 @@ window.NGE_DATA = {
       "is_adult": true,
       "parent_name": "",
       "contract_note": "отсканированный договор, требует визуальной сверки",
-      "pin": "6347"
+      "pin": "6347",
+      "lessons_in_package": 5,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 3,
+      "stability_note": "5 воскресений в мае. Оплачено 7500 ₽ = 3 урока (3, 10, 17). 2 урока (3, 10) — перевал из апреля. 24, 31 мая — к оплате отдельно. Стабильно ходит.",
+      "lessons": [
+        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "одежда — лексика, описания" },
+        { "date": "2026-05-10", "num": 2, "status": "completed", "topic": "Past Simple / Past Continuous, stative verbs" },
+        { "date": "2026-05-17", "num": 3, "status": "completed", "topic": "дома — лексика, описания" },
+        { "date": "2026-05-24", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-05-31", "num": 5, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "anya-isaeva",
@@ -203,13 +231,25 @@ window.NGE_DATA = {
       "monthly_package": 18000,
       "lessons_in_package": 9,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 4,
       "payment_status": "Оплачено",
       "parent_name": "Изотова Ольга Игоревна",
       "parent_passport": "4510 764054",
       "parent_phone": "+79269754602",
       "parent_email": "meet.me.here@mail.ru",
-      "pin": "2799"
+      "pin": "2799",
+      "stability_note": "Май-абонемент 9 уроков. На 17.05 отыграно 4 (1, 4, 8, 15). 11 мая — единственный пропуск. Дальше 18, 22, 25, 29.",
+      "lessons": [
+        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "еда — лексика" },
+        { "date": "2026-05-04", "num": 2, "status": "completed", "topic": "магазины + история про Юлию (чтение, лексика)" },
+        { "date": "2026-05-08", "num": 3, "status": "completed", "topic": "контейнеры/бутылки/банки + Present Simple" },
+        { "date": "2026-05-11", "num": 4, "status": "missed", "topic": "" },
+        { "date": "2026-05-15", "num": 5, "status": "completed", "topic": "неправильные глаголы, времена, истории" },
+        { "date": "2026-05-18", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-22", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 8, "status": "planned", "topic": "" },
+        { "date": "2026-05-29", "num": 9, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "sofia-pavlova",
@@ -267,16 +307,34 @@ window.NGE_DATA = {
       "id": "katya-marakina",
       "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
       "name": "Катя Маракина",
-      "level": "",
+      "level": "B1",
       "format": "индивидуально",
-      "schedule": "воскресенье 12:00 (2 часа)",
+      "schedule": "воскресенье 12:00 (90 мин) + вторник 17:00 (90 мин, наверстывание до 14.06)",
       "price_per_lesson": 2500,
       "monthly_package": 10000,
+      "lessons_in_package": 4,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "stability_note": "До 14.06 — 2 урока в неделю (вс 12:00 + вт 17:00) для наверстывания 4 пропусков. С 14.06 — летний пересбор. Май: 26.04, 3.05, 10.05 cancelled (согласованные), 17.05 missed (без предупреждения).",
       "payment_status": "Оплачено",
       "parent_name": "Кедрова Татьяна Владимировна",
       "parent_passport": "45 08 445532",
       "parent_address": "Москва, Сиреневый б-р, д.44, корп.1, кв.163",
-      "pin": "1265"
+      "pin": "1265",
+      "lessons": [
+        { "date": "2026-04-26", "num": 1, "status": "cancelled", "topic": "Согласованный перенос (предупредили заранее)" },
+        { "date": "2026-05-03", "num": 1, "status": "cancelled", "topic": "Согласованный перенос (предупредили заранее)" },
+        { "date": "2026-05-10", "num": 2, "status": "cancelled", "topic": "Согласованный перенос (предупредили заранее)" },
+        { "date": "2026-05-17", "num": 3, "status": "missed", "topic": "Пропуск без предупреждения" },
+        { "date": "2026-05-19", "num": 4, "status": "planned", "topic": "Makeup #1 — наверстывание" },
+        { "date": "2026-05-24", "num": 5, "status": "planned", "topic": "Воскресенье, регулярный слот" },
+        { "date": "2026-05-26", "num": 6, "status": "planned", "topic": "Makeup #2 — наверстывание" },
+        { "date": "2026-05-31", "num": 7, "status": "planned", "topic": "Воскресенье, регулярный слот" },
+        { "date": "2026-06-02", "num": 8, "status": "planned", "topic": "Makeup #3 — наверстывание" },
+        { "date": "2026-06-07", "num": 9, "status": "planned", "topic": "Воскресенье, регулярный слот" },
+        { "date": "2026-06-09", "num": 10, "status": "planned", "topic": "Makeup #4 — наверстывание (последний)" },
+        { "date": "2026-06-14", "num": 11, "status": "planned", "topic": "Воскресенье — последний урок до летнего пересбора" }
+      ]
     }
   ],
   "reports": [
