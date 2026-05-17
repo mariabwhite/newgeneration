@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Катя — план наверстывания</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ec; --paper: #ffffff; --paper-2: #faf8f4;
+    --line: rgba(26, 22, 18, 0.10);
+    --text: #1a1612; --text-2: #6b6560; --text-3: #9c948b;
+    --accent: #FF5A1F; --accent-2: #FFC145;
+    --display: "Unbounded", "Manrope", system-ui, sans-serif;
+    --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 14px; -webkit-font-smoothing: antialiased; }
+
+  .doc { background: var(--paper); max-width: 760px; margin: 48px auto; border-radius: 4px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); overflow: hidden; }
+
+  .doc-hero { background: var(--paper-2); padding: 36px 56px 28px; border-bottom: 1px solid var(--line); position: relative; }
+  .doc-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 60%, var(--accent-2) 100%); }
+
+  .brand-strip { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; background: var(--accent); color: #0b0b0c; font-family: var(--display); font-weight: 800; font-size: 20px; border-radius: 9px; border-top-right-radius: 0; letter-spacing: -0.04em; position: relative; overflow: hidden; }
+  .brand-mark::after { content: ""; position: absolute; right: 0; top: 0; width: 14px; height: 14px; background: #fff; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+  .brand-copy { display: grid; gap: 2px; min-width: 0; }
+  .brand-name { font-family: var(--display); font-weight: 800; font-size: 14px; letter-spacing: -0.005em; line-height: 1; }
+  .brand-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
+
+  .doc-kicker { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin: 0 0 8px; font-weight: 700; }
+  .doc-title { font-family: var(--display); font-weight: 800; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 6px; color: var(--text); }
+  .doc-sub { color: var(--text-2); font-size: 13.5px; margin: 0; }
+
+  .doc-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px 22px; padding: 22px 56px; border-bottom: 1px solid var(--line); background: var(--paper); font-size: 12px; }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-3); font-weight: 600; }
+  .meta-value { color: var(--text); font-weight: 500; font-size: 13px; }
+
+  .doc-body { padding: 36px 56px 40px; }
+  .doc-body > p:first-child { font-size: 15px; margin-top: 0; }
+  .doc-body p { margin: 10px 0; }
+  .doc-body h3 { font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -0.01em; margin: 30px 0 12px; padding-left: 14px; border-left: 3px solid var(--accent); line-height: 1.3; }
+  .doc-body ul { margin: 8px 0 16px 0; padding: 0; list-style: none; }
+  .doc-body li { position: relative; padding: 4px 0 4px 22px; font-size: 14px; line-height: 1.6; }
+  .doc-body li::before { content: ""; position: absolute; left: 4px; top: 14px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .doc-body strong { color: var(--text); font-weight: 700; }
+  .doc-body em { color: var(--text-2); font-style: italic; }
+
+  /* Slot cards — для окон */
+  .slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0 20px;
+  }
+  .slot {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+  .slot-day {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .slot-date {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .slot-time {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .doc-footer { background: var(--paper-2); padding: 22px 56px 26px; border-top: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
+  .doc-sig { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .doc-sig-mark { width: 26px; height: 26px; display: grid; place-items: center; background: var(--accent); color: #0b0b0c; font-family: var(--display); font-weight: 800; font-size: 14px; border-radius: 6px; border-top-right-radius: 0; letter-spacing: -0.04em; }
+  .doc-sig-name { font-family: var(--display); font-weight: 700; color: var(--text); font-size: 13px; }
+  .doc-footer-note { margin: 0; font-size: 11px; color: var(--text-3); line-height: 1.6; }
+
+  @media print {
+    body { background: #fff; }
+    .doc { box-shadow: none; margin: 0; max-width: none; }
+    .doc-hero, .doc-meta, .doc-body, .doc-footer { padding-left: 14mm; padding-right: 14mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <div class="doc-hero">
+    <div class="brand-strip">
+      <div class="brand-mark">N</div>
+      <div class="brand-copy">
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-tag">Maria · Personal Tutor</div>
+      </div>
+    </div>
+    <div class="doc-kicker">Личное сообщение · План наверстывания</div>
+    <h1 class="doc-title">Привет, Катя!</h1>
+    <p class="doc-sub">Расписание на ближайшие 4 недели и окна на этой неделе</p>
+  </div>
+
+  <div class="doc-meta">
+    <div class="meta-item">
+      <span class="meta-label">Дата</span>
+      <span class="meta-value">17 мая 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Кому</span>
+      <span class="meta-value">Катя Маракина</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Уровень</span>
+      <span class="meta-value">B1</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Формат</span>
+      <span class="meta-value">90 минут</span>
+    </div>
+  </div>
+
+  <div class="doc-body">
+    <p>Мы с мамой только что обсудили и договорились продолжать. Четыре пропущенных занятия (26.04, 3.05, 10.05, 17.05) наверстаем за 4 недели — добавляем по одному будничному уроку дополнительно к воскресенью.</p>
+
+    <h3>На этой неделе — выбери окно</h3>
+    <p>Три варианта по 90 минут:</p>
+
+    <div class="slots">
+      <div class="slot">
+        <div class="slot-day">Понедельник</div>
+        <div class="slot-date">18 мая</div>
+        <div class="slot-time">19:00 – 20:30</div>
+      </div>
+      <div class="slot">
+        <div class="slot-day">Вторник</div>
+        <div class="slot-date">19 мая</div>
+        <div class="slot-time">17:00 – 18:30</div>
+      </div>
+      <div class="slot">
+        <div class="slot-day">Пятница</div>
+        <div class="slot-date">22 мая</div>
+        <div class="slot-time">16:00 – 17:30</div>
+      </div>
+    </div>
+
+    <p>Если ни одно не подходит — напиши, посмотрю ещё.</p>
+
+    <h3>Воскресенье 24 мая</h3>
+    <p>Как обычно — <strong>12:00</strong>. Твой постоянный слот остаётся.</p>
+
+    <h3>С июня</h3>
+    <p>Когда школа закончится, я пересоберу расписание для всех учеников. К концу мая пришлю новые варианты — обсудим, на какие дни/часы ты переходишь летом.</p>
+
+    <h3>Что от тебя</h3>
+    <p>Напиши, какое окно на этой неделе выбираешь — лучше до завтрашнего вечера, чтобы я успела зафиксировать. Дальше я сама буду присылать тебе ближайшие даты по этому же графику.</p>
+  </div>
+
+  <div class="doc-footer">
+    <div class="doc-sig">
+      <div class="doc-sig-mark">N</div>
+      <div class="doc-sig-name">Мария Витальевна Бурцева</div>
+    </div>
+    <p class="doc-footer-note">New Generation English · Личное сообщение от преподавателя · Готово к печати: Ctrl/⌘ + P → «Сохранить как PDF».</p>
+  </div>
+</div>
+
+</body>
+</html>
