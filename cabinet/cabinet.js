@@ -179,11 +179,13 @@
           ${student.lessons_per_week ? `<div class="cab-card-row"><span class="cab-row-label">Раз в неделю</span><span class="cab-row-value">${_esc(student.lessons_per_week)}</span></div>` : ""}
         </article>
 
-        ${_renderLessonsCard(student)}
+        ${_renderLessonsCard(student, { interactive: true })}
       </div>
 
       <p class="cab-mvp-note">Это MVP-версия кабинета. Расширенные функции (домашка, отчёты, тренажёры) добавляются постепенно.</p>
     `;
+
+    _wireHomeworkCheckboxes(container, student);
   }
 
   /* ---------- render: teacher (schedule grid + table) ---------- */
@@ -421,7 +423,9 @@
             <label class="cab-lesson-full">Тема <input type="text" name="topic" placeholder="Present Perfect отрицания + Question forms" required></label>
             <label class="cab-lesson-full">Активности (через запятую) <input type="text" name="activities" placeholder="grammar, speaking"></label>
             <label class="cab-lesson-full">Что прошли <textarea name="covered" rows="3" placeholder="Подробнее — что разбирали, что получилось"></textarea></label>
-            <label class="cab-lesson-full">Домашка <textarea name="homework" rows="2" placeholder="Что задано на платформе/в учебнике"></textarea></label>
+            <label class="cab-lesson-full">Домашка — текст <textarea name="homework" rows="2" placeholder="Что задано — текстом, для родителя/ученика"></textarea></label>
+            <label class="cab-lesson-full">Lab-модуль (ссылка) <input type="text" name="hwUrl" placeholder="../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html"></label>
+            <label class="cab-lesson-full">Lab-модуль (название) <input type="text" name="hwTitle" placeholder="Word Building"></label>
             <label>№ в пакете <input type="number" name="lessonNum" min="1" step="1"></label>
             <label>Длительность мин <input type="number" name="duration" value="60" min="15" step="5"></label>
           </div>
@@ -480,7 +484,9 @@
         `- тема: ${data.get("topic")}\n` +
         `- активности: ${data.get("activities") || "—"}\n` +
         `- что прошли: ${data.get("covered") || "—"}\n` +
-        `- домашка: ${data.get("homework") || "—"}\n` +
+        `- домашка (текст): ${data.get("homework") || "—"}\n` +
+        `- домашка (Lab url): ${data.get("hwUrl") || "—"}\n` +
+        `- домашка (Lab название): ${data.get("hwTitle") || "—"}\n` +
         `- № в пакете: ${data.get("lessonNum") || "—"}\n` +
         `- длительность: ${data.get("duration") || 60} мин`;
       try {
@@ -521,6 +527,24 @@
     return _DOW_RU[new Date(y, m - 1, d).getDay()];
   }
 
+  /* ---------- homework status (localStorage per studentId+date) ---------- */
+  function _hwKey(studentId, date) {
+    return "nge-hw-" + studentId + "-" + date;
+  }
+
+  function _getHwStatus(studentId, lesson) {
+    if (!lesson || !lesson.homework) return null;
+    try {
+      const ls = localStorage.getItem(_hwKey(studentId, lesson.date));
+      if (ls === "done" || ls === "pending") return ls;
+    } catch (_) {}
+    return (lesson.homework && lesson.homework.status) || "pending";
+  }
+
+  function _setHwStatus(studentId, date, status) {
+    try { localStorage.setItem(_hwKey(studentId, date), status); } catch (_) {}
+  }
+
   function _lessonStatusBadge(lesson, todayISO) {
     const d = lesson.date;
     const s = lesson.status;
@@ -534,7 +558,9 @@
     return { cls: "is-future", label: "запланирован" };
   }
 
-  function _renderLessonsCard(student) {
+  function _renderLessonsCard(student, opts) {
+    opts = opts || {};
+    const interactive = !!opts.interactive;
     const lessons = Array.isArray(student.lessons) ? student.lessons : [];
     if (!lessons.length) return "";
 
@@ -556,12 +582,24 @@
         : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
       const hw = l.homework;
       let hwChip = "";
-      if (hw && hw.module_url) {
-        const title = hw.module_title || "Домашка";
-        const tooltip = hw.text || "";
-        hwChip = `<a class="cab-lesson-hw" href="${_esc(hw.module_url)}" target="_blank" rel="noreferrer" title="${_esc(tooltip)}">→ ${_esc(title)}</a>`;
-      } else if (hw && hw.text) {
-        hwChip = `<span class="cab-lesson-hw cab-lesson-hw--text" title="${_esc(hw.text)}">📝 домашка</span>`;
+      if (hw) {
+        const hwStatus = _getHwStatus(student.id, l) || "pending";
+        const isDone = hwStatus === "done";
+        const chipDoneCls = isDone ? " is-done" : "";
+        let chip = "";
+        if (hw.module_url) {
+          const title = hw.module_title || "Домашка";
+          const tooltip = hw.text || "";
+          chip = `<a class="cab-lesson-hw${chipDoneCls}" href="${_esc(hw.module_url)}" target="_blank" rel="noreferrer" title="${_esc(tooltip)}">→ ${_esc(title)}</a>`;
+        } else if (hw.text) {
+          chip = `<span class="cab-lesson-hw cab-lesson-hw--text${chipDoneCls}" title="${_esc(hw.text)}">📝 домашка</span>`;
+        }
+        const cbCls = "cab-hw-cb" + (isDone ? " is-done" : "") + (interactive ? "" : " is-readonly");
+        const cbAttrs = interactive
+          ? `role="checkbox" tabindex="0" aria-checked="${isDone}" data-action="toggle-hw" data-hw-date="${_esc(l.date)}" title="${isDone ? 'Сделано — клик чтобы отменить' : 'Отметить как сделанное'}"`
+          : `role="img" aria-label="${isDone ? 'Домашка сделана' : 'Домашка ожидается'}" title="${isDone ? 'Домашка сделана' : 'Ожидается'}"`;
+        const cbContent = isDone ? "✓" : "";
+        hwChip = chip + `<span class="${cbCls}" ${cbAttrs}>${cbContent}</span>`;
       }
       return `
         <li class="cab-lesson-row ${badge.cls}">
@@ -579,6 +617,32 @@
         <ul class="cab-lessons-list">${rows}</ul>
       </article>
     `;
+  }
+
+  /* ---------- homework checkbox wireup ---------- */
+  function _wireHomeworkCheckboxes(container, student) {
+    if (!container || !student) return;
+    container.querySelectorAll('[data-action="toggle-hw"]').forEach(el => {
+      const toggle = () => {
+        const date = el.dataset.hwDate;
+        if (!date) return;
+        const current = _getHwStatus(student.id, { date, homework: { status: "pending" } });
+        const next = current === "done" ? "pending" : "done";
+        _setHwStatus(student.id, date, next);
+        const isDone = next === "done";
+        el.classList.toggle("is-done", isDone);
+        el.setAttribute("aria-checked", String(isDone));
+        el.textContent = isDone ? "✓" : "";
+        el.setAttribute("title", isDone ? "Сделано — клик чтобы отменить" : "Отметить как сделанное");
+        const row = el.closest(".cab-lesson-row");
+        const chip = row && row.querySelector(".cab-lesson-hw");
+        if (chip) chip.classList.toggle("is-done", isDone);
+      };
+      el.addEventListener("click", toggle);
+      el.addEventListener("keydown", (ev) => {
+        if (ev.key === " " || ev.key === "Enter") { ev.preventDefault(); toggle(); }
+      });
+    });
   }
 
   /* ---------- render: parent view ---------- */
@@ -668,7 +732,7 @@
           </div>
         </article>
 
-        ${_renderLessonsCard(student)}
+        ${_renderLessonsCard(student, { interactive: false })}
       </div>
 
       <p class="cab-mvp-note">
