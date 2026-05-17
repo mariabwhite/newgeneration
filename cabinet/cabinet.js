@@ -636,8 +636,6 @@
 
         ${_renderAbonementCard(student)}
 
-        ${_renderLessonsCard(student)}
-
         ${_renderReportsCard(student, (window.NGE_DATA && window.NGE_DATA.reports) || [], payment)}
 
         <article class="cab-card">
@@ -660,6 +658,8 @@
             ${payment.purpose ? `<div class="cab-card-row"><span class="cab-row-label">Назначение</span><span class="cab-row-value" style="font-size:11px;line-height:1.45;">${_esc(payment.purpose)}</span></div>` : ""}
           </div>
         </article>
+
+        ${_renderLessonsCard(student)}
       </div>
 
       <p class="cab-mvp-note">
