@@ -444,6 +444,66 @@ select.btn-tool { width: 110px; }
   border-bottom-color: var(--brand, #b87c4f);
   box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.20);
 }
+/* Topbar canon-l-mark — restore original star look (cream bg + tan star + accent dot) */
+.canon-l-topbar .canon-l-mark {
+  background: rgba(212, 163, 115, 0.10) !important;
+  border: 1px solid rgba(184, 124, 79, 0.30) !important;
+  border-radius: 8px !important;
+  color: #d4a373 !important;
+  width: 36px !important;
+  height: 36px !important;
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+}
+.canon-l-topbar .canon-l-mark::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #b87c4f;
+}
+.canon-l-topbar .canon-l-mark svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+/* Footer lang toggle */
+.canon-l-footer-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 26px;
+  padding: 0 10px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lb-muted, #7d5b3f);
+  background: transparent;
+  border: 1px solid rgba(184, 124, 79, 0.40);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.canon-l-footer-lang:hover {
+  color: var(--lb-text, #3e2a21);
+  background: rgba(184, 124, 79, 0.10);
+  border-color: rgba(184, 124, 79, 0.60);
+}
+/* Lesson-foot cards — в цвет body (cream), не белые */
+.lesson-foot .foot-link {
+  background: var(--bg, #fffaf5) !important;
+  border-color: rgba(184, 124, 79, 0.22) !important;
+}
+.lesson-foot .foot-link:hover {
+  background: var(--bg-2, #fef4ea) !important;
+  border-color: var(--accent, #d4a373) !important;
+}
 /* Grading scale — 5 cards в rosegold-палитру */
 .grade-scale { margin-top: 24px; }
 .grade-scale-title {
@@ -901,7 +961,7 @@ th { background: #fdf3e8; }
 
 <header class="canon-l-topbar" style="--lb-bg:#fff9f2; --lb-text:#3e2a21; --lb-muted:#9b7b62; --lb-line:rgba(184,124,79,0.30); --lb-pill-bg:#fff8f0; --lb-pill-border:rgba(184,124,79,0.40); --lb-link-hover:#3e2a21; --lb-seg-bg:#ffffff; --lb-seg-border:rgba(184,124,79,0.40); --lb-seg-btn:#b87c4f;">
   <a class="canon-l-brand" href="../index.html" aria-label="LinguaBoost Lab · B1">
-    <span class="canon-l-mark" aria-hidden="true" style="color:#d4a373;"><svg viewBox="0 0 24 24" width="20" height="20" stroke="#d4a373" stroke-width="1.8" stroke-linejoin="round" fill="none"><path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z"/></svg></span>
+    <span class="canon-l-mark" aria-hidden="true"><svg viewBox="0 0 24 24" stroke="#d4a373" stroke-width="1.8" stroke-linejoin="round" fill="none"><path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z"/></svg></span>
     <span class="canon-l-copy">
       <span class="canon-l-name">LinguaBoost</span>
       <span class="canon-l-sub">B1 · RESTAURANT MENU</span>
@@ -1611,6 +1671,7 @@ th { background: #fdf3e8; }
       <a href="../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
       <a href="../../index.html" data-ru="Главная" data-en="Home">Главная</a>
       <a href="../../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+      <button type="button" class="canon-l-footer-lang" data-lang-toggle aria-label="Toggle interface language">EN</button>
     </nav>
   </div>
   <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
