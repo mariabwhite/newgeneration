@@ -173,11 +173,7 @@
           ${parent}
         </article>
 
-        <article class="cab-card">
-          <h3>Расписание</h3>
-          <div class="cab-card-row"><span class="cab-row-label">Дни и время</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
-          ${student.lessons_per_week ? `<div class="cab-card-row"><span class="cab-row-label">Раз в неделю</span><span class="cab-row-value">${_esc(student.lessons_per_week)}</span></div>` : ""}
-        </article>
+        ${_renderAbonementCard(student, { studentView: true })}
 
         ${_renderLessonsCard(student, { interactive: true })}
       </div>
@@ -647,7 +643,9 @@
 
   /* ---------- render: parent view ---------- */
 
-  function _renderAbonementCard(student) {
+  function _renderAbonementCard(student, opts) {
+    opts = opts || {};
+    const studentView = !!opts.studentView; // в кабинете ребёнка — скрываем цены и статус оплаты
     const total = student.lessons_in_package;
     const used = student.lessons_used_this_month || 0;
     const remaining = total ? Math.max(total - used, 0) : null;
@@ -676,10 +674,10 @@
           </div>
           ${remaining !== null ? `<div class="cab-card-row"><span class="cab-row-label">Осталось</span><span class="cab-row-value"><b>${remaining}</b> ${remaining === 1 ? "урок" : (remaining < 5 && remaining > 1 ? "урока" : "уроков")}</span></div>` : ""}
         ` : ""}
-        ${pricePer ? `<div class="cab-card-row"><span class="cab-row-label">Цена занятия</span><span class="cab-row-value">${_esc(pricePer)} ₽</span></div>` : ""}
-        ${pkg ? `<div class="cab-card-row"><span class="cab-row-label">Стоимость пакета</span><span class="cab-row-value"><b>${_esc(pkg)} ₽</b></span></div>` : ""}
+        ${!studentView && pricePer ? `<div class="cab-card-row"><span class="cab-row-label">Цена занятия</span><span class="cab-row-value">${_esc(pricePer)} ₽</span></div>` : ""}
+        ${!studentView && pkg ? `<div class="cab-card-row"><span class="cab-row-label">Стоимость пакета</span><span class="cab-row-value"><b>${_esc(pkg)} ₽</b></span></div>` : ""}
         <div class="cab-card-row"><span class="cab-row-label">Расписание</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
-        ${student.payment_status ? `<div class="cab-card-row"><span class="cab-row-label">Статус</span><span class="cab-row-value">${_esc(student.payment_status)}</span></div>` : ""}
+        ${!studentView && student.payment_status ? `<div class="cab-card-row"><span class="cab-row-label">Статус</span><span class="cab-row-value">${_esc(student.payment_status)}</span></div>` : ""}
       </article>
     `;
   }

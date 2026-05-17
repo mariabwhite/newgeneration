@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>2026-05 — Катя Маракина — parent report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ec; --paper: #ffffff; --paper-2: #faf8f4;
+    --line: rgba(26, 22, 18, 0.10);
+    --text: #1a1612; --text-2: #6b6560; --text-3: #9c948b;
+    --accent: #FF5A1F; --accent-2: #FFC145;
+    --display: "Unbounded", "Manrope", system-ui, sans-serif;
+    --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--body); background: var(--bg); color: var(--text); line-height: 1.65; font-size: 14px; -webkit-font-smoothing: antialiased; }
+
+  .doc { background: var(--paper); max-width: 760px; margin: 48px auto; border-radius: 4px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); overflow: hidden; }
+
+  .doc-hero { background: var(--paper-2); padding: 36px 56px 28px; border-bottom: 1px solid var(--line); position: relative; }
+  .doc-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 60%, var(--accent-2) 100%); }
+
+  .brand-strip { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; background: var(--accent); color: #0b0b0c; font-family: var(--display); font-weight: 800; font-size: 20px; border-radius: 9px; border-top-right-radius: 0; letter-spacing: -0.04em; position: relative; overflow: hidden; }
+  .brand-mark::after { content: ""; position: absolute; right: 0; top: 0; width: 14px; height: 14px; background: #fff; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+  .brand-copy { display: grid; gap: 2px; min-width: 0; }
+  .brand-name { font-family: var(--display); font-weight: 800; font-size: 14px; letter-spacing: -0.005em; line-height: 1; }
+  .brand-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
+
+  .doc-kicker { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin: 0 0 8px; font-weight: 700; }
+  .doc-title { font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 6px; color: var(--text); }
+  .doc-sub { color: var(--text-2); font-size: 13.5px; margin: 0; }
+
+  .doc-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px 22px; padding: 22px 56px; border-bottom: 1px solid var(--line); background: var(--paper); font-size: 12px; }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-3); font-weight: 600; }
+  .meta-value { color: var(--text); font-weight: 500; font-size: 13px; }
+
+  .doc-body { padding: 36px 56px 40px; }
+  .doc-body > p:first-child { font-size: 15px; margin-top: 0; }
+  .doc-body p { margin: 10px 0; }
+  .doc-body h3 { font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -0.01em; margin: 30px 0 12px; padding-left: 14px; border-left: 3px solid var(--accent); line-height: 1.3; }
+  .doc-body ul { margin: 8px 0 16px 0; padding: 0; list-style: none; }
+  .doc-body li { position: relative; padding: 4px 0 4px 22px; font-size: 14px; line-height: 1.6; }
+  .doc-body li::before { content: ""; position: absolute; left: 4px; top: 14px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .doc-body strong { color: var(--text); font-weight: 700; }
+  .doc-body em { color: var(--text-2); font-style: italic; }
+  .doc-body li strong:first-child { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+
+  .doc-footer { background: var(--paper-2); padding: 22px 56px 26px; border-top: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
+  .doc-sig { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .doc-sig-mark { width: 26px; height: 26px; display: grid; place-items: center; background: var(--accent); color: #0b0b0c; font-family: var(--display); font-weight: 800; font-size: 14px; border-radius: 6px; border-top-right-radius: 0; letter-spacing: -0.04em; }
+  .doc-sig-name { font-family: var(--display); font-weight: 700; color: var(--text); font-size: 13px; }
+  .doc-footer-note { margin: 0; font-size: 11px; color: var(--text-3); line-height: 1.6; }
+
+  .editor-note { background: rgba(255, 90, 31, 0.06); border-left: 3px solid var(--accent); padding: 14px 18px; margin: 20px auto; max-width: 760px; font-size: 12.5px; color: var(--text); line-height: 1.6; border-radius: 4px; }
+  .editor-note strong { font-family: var(--display); font-weight: 700; }
+  .editor-note code { background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 3px; font-family: var(--mono); font-size: 11.5px; }
+
+  @media print {
+    body { background: #fff; }
+    .editor-note { display: none; }
+    .doc { box-shadow: none; margin: 0; max-width: none; }
+    .doc-hero, .doc-meta, .doc-body, .doc-footer { padding-left: 14mm; padding-right: 14mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="editor-note">
+  <strong>Превью отчёта для вычитки.</strong> Это вид того, что увидит мама Кати, когда я переключу статус на <code>sent</code> в Notion.
+  <br>
+  Сейчас отчёт в Notion со статусом <code>ready to send</code> — мама пока не видит в кабинете.
+  <br>
+  Прочитай → скажи что подкрутить → я обновлю Notion. Когда финал — скажешь «отправлять», переключу статус.
+</div>
+
+<div class="doc">
+
+  <div class="doc-hero">
+    <div class="brand-strip">
+      <div class="brand-mark">N</div>
+      <div class="brand-copy">
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-tag">Maria · Personal Tutor</div>
+      </div>
+    </div>
+    <div class="doc-kicker">Monthly Report · Parent</div>
+    <h1 class="doc-title">Катя Маракина</h1>
+    <p class="doc-sub">Отчёт о занятиях за апрель–май 2026</p>
+  </div>
+
+  <div class="doc-meta">
+    <div class="meta-item">
+      <span class="meta-label">Период</span>
+      <span class="meta-value">апрель – май 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Уровень</span>
+      <span class="meta-value">B1</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Формат</span>
+      <span class="meta-value">индивидуально</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Расписание</span>
+      <span class="meta-value">вс 12:00 · 90 мин</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Кому</span>
+      <span class="meta-value">Кедрова Т. В.</span>
+    </div>
+  </div>
+
+  <div class="doc-body">
+    <p>Добрый день!</p>
+    <p>Отправляю краткий отчёт по занятиям <strong>Кати</strong> за апрель–май и хочу обсудить формат дальнейшего сотрудничества.</p>
+
+    <h3>Календарь занятий</h3>
+    <ul>
+      <li><strong>26 апреля</strong> — <em>пропуск без отмены</em></li>
+      <li><strong>3 мая</strong> — <em>пропуск без отмены</em></li>
+      <li><strong>10 мая</strong> — <em>пропуск без отмены</em></li>
+      <li><strong>17 мая</strong> — <em>пропуск без отмены</em></li>
+    </ul>
+    <p>Все четыре воскресных занятия 12:00 (по графику абонемента) не были проведены — Катя не выходила на связь к началу занятия, отмен или переносов от вас не поступало.</p>
+
+    <h3>Контекст</h3>
+    <p>По нашей договорённости занятия проходят регулярно по воскресеньям в 12:00, длительность 90 минут, в рамках месячного абонемента на 4 занятия (2 500 ₽ за занятие). Договор заключён 26.08.2025 — оплата текущего абонемента поступила, занятия закреплены за Катей.</p>
+    <p>При длительном отсутствии без предупреждения и без явки оплаченные часы фактически расходуются, но методическая работа с учеником не идёт — на этом ни Катя не движется вперёд, ни ваши средства не работают.</p>
+
+    <h3>Что предлагаю</h3>
+    <p>Хотелось бы понять формат, в котором вам и Кате удобно продолжать. Возможны три варианта:</p>
+    <ul>
+      <li><strong>Возобновляем регулярный режим.</strong> Следующее занятие — воскресенье <strong>24 мая в 12:00</strong>. Прошу подтвердить заранее, в идеале за день, что Катя будет на связи. С моей стороны слот закрепляется за вами.</li>
+      <li><strong>Делаем паузу до сентября.</strong> Понятный сценарий, если сейчас сложный период (школа, экзамены, ритм). Текущий абонемент закрываем, к новому учебному году возвращаемся.</li>
+      <li><strong>Завершаем сотрудничество.</strong> Тоже корректное решение, без обид. Обсудим условия завершения по правилам договора отдельно — напишите, и я пришлю детали.</li>
+    </ul>
+
+    <h3>Короткое сообщение</h3>
+    <p>Татьяна Владимировна, добрый день! За апрель–май у Кати четыре пропуска без отмены подряд (26.04, 3.05, 10.05, 17.05). Прошу написать, как удобно продолжать — возобновляем 24 мая, делаем паузу до сентября или закрываем договор.</p>
+  </div>
+
+  <div class="doc-footer">
+    <div class="doc-sig">
+      <div class="doc-sig-mark">N</div>
+      <div class="doc-sig-name">Мария Витальевна Бурцева</div>
+    </div>
+    <p class="doc-footer-note">New Generation English · Личный кабинет · Источник — Notion (Monthly Reports). Готово к печати: Ctrl/⌘ + P → «Сохранить как PDF».</p>
+  </div>
+</div>
+
+</body>
+</html>
