@@ -349,6 +349,60 @@ select.btn-tool { width: 110px; }
   display: inline-flex;
   user-select: none;
 }
+/* Pool category tabs — keep 79 items from spilling all at once */
+.pool-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 14px;
+  flex-wrap: wrap;
+}
+.pool-tab {
+  background: transparent;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--display, "Unbounded", "Manrope", sans-serif);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.pool-tab:hover:not(.is-active) { background: var(--soft, rgba(0,0,0,0.04)); }
+.pool-tab:active { transform: scale(0.97); }
+.pool-tab.is-active {
+  background: var(--accent);
+  color: var(--accent-on, #fff);
+  border-color: var(--accent);
+}
+.pool-tab-count {
+  display: inline-block;
+  min-width: 22px;
+  text-align: center;
+  background: var(--line-2);
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+.pool-tab.is-active .pool-tab-count {
+  background: rgba(0, 0, 0, 0.20);
+  color: var(--accent-on, #fff);
+}
+/* Hide items that don't match active category */
+.ingredient-pool[data-active-cat="appetizer"] .drag-item:not([data-type="appetizer"]),
+.ingredient-pool[data-active-cat="soup"]      .drag-item:not([data-type="soup"]),
+.ingredient-pool[data-active-cat="main"]      .drag-item:not([data-type="main"]),
+.ingredient-pool[data-active-cat="side"]      .drag-item:not([data-type="side"]),
+.ingredient-pool[data-active-cat="dessert"]   .drag-item:not([data-type="dessert"]) {
+  display: none;
+}
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -818,7 +872,14 @@ th { background: #fdf3e8; }
                 <div><strong>Textures</strong><br>crispy, soft, creamy, crunchy</div>
               </div>
             </div>
-            <div id="draggableContainer" class="ingredient-pool"></div>
+            <div class="pool-tabs" role="tablist" aria-label="Filter dishes by category">
+              <button type="button" class="pool-tab is-active" data-pool-tab="appetizer" role="tab" aria-selected="true">Appetizer <span class="pool-tab-count" data-pool-count="appetizer">15</span></button>
+              <button type="button" class="pool-tab" data-pool-tab="soup" role="tab" aria-selected="false">Soup <span class="pool-tab-count" data-pool-count="soup">15</span></button>
+              <button type="button" class="pool-tab" data-pool-tab="main" role="tab" aria-selected="false">Main <span class="pool-tab-count" data-pool-count="main">17</span></button>
+              <button type="button" class="pool-tab" data-pool-tab="side" role="tab" aria-selected="false">Side <span class="pool-tab-count" data-pool-count="side">16</span></button>
+              <button type="button" class="pool-tab" data-pool-tab="dessert" role="tab" aria-selected="false">Dessert <span class="pool-tab-count" data-pool-count="dessert">16</span></button>
+            </div>
+            <div id="draggableContainer" class="ingredient-pool" data-active-cat="appetizer"></div>
             <div class="menu-grid">
               <div class="menu-category" data-category="appetizer">
                 <div class="cat-thumb"><img src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Menu/plate.png" alt="Appetizer" onerror="this.style.display='none'"></div>
@@ -1260,8 +1321,28 @@ th { background: #fdf3e8; }
     });
   }
 
+  function attachPoolTabs() {
+    const pool = document.getElementById('draggableContainer');
+    if (!pool) return;
+    const tabs = document.querySelectorAll('.pool-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const cat = tab.getAttribute('data-pool-tab');
+        if (!cat) return;
+        tabs.forEach(t => {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        pool.setAttribute('data-active-cat', cat);
+      });
+    });
+  }
+
   function initRestaurantInteractions() {
     buildDraggablePool();
+    attachPoolTabs();
     attachDropZones();
     renderDropzones();
     attachSpeechChips();
