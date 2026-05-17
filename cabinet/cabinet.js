@@ -551,14 +551,23 @@
       const dateStr = _formatLessonDate(l.date);
       const dow = _dowFromISO(l.date);
       const num = l.num ? `<span class="cab-lesson-num">${_esc(l.num)}</span>` : "";
-      const topic = l.topic && l.topic.trim()
+      const topicText = l.topic && l.topic.trim()
         ? `<span class="cab-lesson-topic">${_esc(l.topic)}</span>`
         : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
+      const hw = l.homework;
+      let hwChip = "";
+      if (hw && hw.module_url) {
+        const title = hw.module_title || "Домашка";
+        const tooltip = hw.text || "";
+        hwChip = `<a class="cab-lesson-hw" href="${_esc(hw.module_url)}" target="_blank" rel="noreferrer" title="${_esc(tooltip)}">→ ${_esc(title)}</a>`;
+      } else if (hw && hw.text) {
+        hwChip = `<span class="cab-lesson-hw cab-lesson-hw--text" title="${_esc(hw.text)}">📝 домашка</span>`;
+      }
       return `
         <li class="cab-lesson-row ${badge.cls}">
           ${num}
           <span class="cab-lesson-date">${dateStr} · ${dow}</span>
-          ${topic}
+          <span class="cab-lesson-topic-wrap">${topicText}${hwChip}</span>
           <span class="cab-lesson-badge">${badge.label}</span>
         </li>
       `;

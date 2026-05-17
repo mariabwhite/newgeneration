@@ -135,7 +135,14 @@ window.NGE_DATA = {
       "lessons": [
         { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "ЕГЭ-практика (тему уточнить)" },
         { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "ЕГЭ-практика (тему уточнить)" },
-        { "date": "2026-05-11", "num": 3, "status": "completed", "topic": "устные части ЕГЭ" },
+        {
+          "date": "2026-05-11", "num": 3, "status": "completed", "topic": "устные части ЕГЭ",
+          "homework": {
+            "text": "Пройти Word Building (префиксы и суффиксы) — упражнения 1 и 2. К следующему уроку.",
+            "module_url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html",
+            "module_title": "Word Building"
+          }
+        },
         { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
         { "date": "2026-05-18", "num": 5, "status": "planned", "topic": "" },
         { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
