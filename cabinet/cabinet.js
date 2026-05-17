@@ -775,7 +775,12 @@
     return (months[idx] || "") + " " + y;
   }
 
-  // Very small markdown → HTML (just headings, bullets, paragraphs, line breaks)
+  // Inline markdown: **bold** → <strong>. Run AFTER _esc — input is already HTML-safe.
+  function _inlineBold(text) {
+    return text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  }
+
+  // Very small markdown → HTML (headings, bullets, paragraphs, inline bold)
   function _mdToHtml(md) {
     if (!md) return "";
     const lines = md.split(/\r?\n/);
@@ -789,16 +794,16 @@
       }
       if (line.startsWith("# ")) {
         if (inList) { html += "</ul>"; inList = false; }
-        html += `<h3>${_esc(line.slice(2))}</h3>`;
+        html += `<h3>${_inlineBold(_esc(line.slice(2)))}</h3>`;
       } else if (line.startsWith("## ")) {
         if (inList) { html += "</ul>"; inList = false; }
-        html += `<h4>${_esc(line.slice(3))}</h4>`;
+        html += `<h4>${_inlineBold(_esc(line.slice(3)))}</h4>`;
       } else if (line.startsWith("- ") || line.startsWith("• ")) {
         if (!inList) { html += "<ul>"; inList = true; }
-        html += `<li>${_esc(line.slice(2))}</li>`;
+        html += `<li>${_inlineBold(_esc(line.slice(2)))}</li>`;
       } else {
         if (inList) { html += "</ul>"; inList = false; }
-        html += `<p>${_esc(line)}</p>`;
+        html += `<p>${_inlineBold(_esc(line))}</p>`;
       }
     }
     if (inList) html += "</ul>";
