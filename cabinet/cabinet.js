@@ -420,8 +420,7 @@
             <label class="cab-lesson-full">Активности (через запятую) <input type="text" name="activities" placeholder="grammar, speaking"></label>
             <label class="cab-lesson-full">Что прошли <textarea name="covered" rows="3" placeholder="Подробнее — что разбирали, что получилось"></textarea></label>
             <label class="cab-lesson-full">Домашка — текст <textarea name="homework" rows="2" placeholder="Что задано — текстом, для родителя/ученика"></textarea></label>
-            <label class="cab-lesson-full">Lab-модуль (ссылка) <input type="text" name="hwUrl" placeholder="../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html"></label>
-            <label class="cab-lesson-full">Lab-модуль (название) <input type="text" name="hwTitle" placeholder="Word Building"></label>
+            <label class="cab-lesson-full">Lab-модуль <select name="labModule" id="lessonLabSelect"><option value="">— не назначен —</option></select></label>
             <label>№ в пакете <input type="number" name="lessonNum" min="1" step="1"></label>
             <label>Длительность мин <input type="number" name="duration" value="60" min="15" step="5"></label>
           </div>
@@ -441,6 +440,32 @@
     const lessonNumEl = container.querySelector("input[name='lessonNum']");
     const form = container.querySelector("#lessonForm");
     const hint = container.querySelector("#lessonHint");
+    const labSelect = container.querySelector("#lessonLabSelect");
+
+    // Populate Lab-module picker from window.NGE_DATA.labModules
+    (function populateLabSelect() {
+      if (!labSelect) return;
+      const modules = (window.NGE_DATA && window.NGE_DATA.labModules) || [];
+      const byLevel = {};
+      modules.forEach(m => {
+        if (!byLevel[m.level]) byLevel[m.level] = [];
+        byLevel[m.level].push(m);
+      });
+      const order = ["Pre-A1", "A1", "A2", "B1", "B2+", "C1"];
+      order.forEach(lvl => {
+        if (!byLevel[lvl]) return;
+        const og = document.createElement("optgroup");
+        og.label = lvl;
+        byLevel[lvl].forEach(m => {
+          const opt = document.createElement("option");
+          opt.value = m.url;
+          opt.textContent = m.title;
+          opt.dataset.title = m.title;
+          og.appendChild(opt);
+        });
+        labSelect.appendChild(og);
+      });
+    })();
 
     function todayISO() {
       const d = new Date();
@@ -455,6 +480,7 @@
         nameEl.textContent = sname;
         dateEl.value = todayISO();
         lessonNumEl.value = used + 1;
+        if (labSelect) labSelect.value = "";
         form.dataset.studentId = sid;
         form.dataset.studentName = sname;
         hint.style.display = "none";
@@ -472,6 +498,14 @@
       const data = new FormData(form);
       const sname = form.dataset.studentName;
       const sid = form.dataset.studentId;
+      // Lab-модуль: достаём URL и название из выбранного option
+      let labUrl = "—";
+      let labTitle = "—";
+      if (labSelect && labSelect.value) {
+        labUrl = labSelect.value;
+        const opt = labSelect.options[labSelect.selectedIndex];
+        labTitle = (opt && (opt.dataset.title || opt.textContent)) || labSelect.value;
+      }
       const md =
         `📝 Запись урока (для Claude → Lesson Log):\n` +
         `- ученик: ${sname} (id: ${sid})\n` +
@@ -481,8 +515,8 @@
         `- активности: ${data.get("activities") || "—"}\n` +
         `- что прошли: ${data.get("covered") || "—"}\n` +
         `- домашка (текст): ${data.get("homework") || "—"}\n` +
-        `- домашка (Lab url): ${data.get("hwUrl") || "—"}\n` +
-        `- домашка (Lab название): ${data.get("hwTitle") || "—"}\n` +
+        `- домашка (Lab url): ${labUrl}\n` +
+        `- домашка (Lab название): ${labTitle}\n` +
         `- № в пакете: ${data.get("lessonNum") || "—"}\n` +
         `- длительность: ${data.get("duration") || 60} мин`;
       try {

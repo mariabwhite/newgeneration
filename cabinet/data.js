@@ -455,5 +455,32 @@ window.NGE_DATA = {
       "content": "# Краткий вывод\n\nЮля занимается в игровом формате: движение, картинки, персонажи, игрушки и короткие повторяющиеся фразы.\n\n# Следующий фокус\n\nBody and face, This is my..., I have..., He/She/It has..., feelings, animals, actions.",
       "notion_url": "https://www.notion.so/35a7364cba79819c9339d3c4f4953e46"
     }
+  ],
+  "labModules": [
+    { "level": "Pre-A1", "title": "Body & Grammar Garden", "url": "../lingua-boost-lab/pre-a1/body-and-grammar-pink.html" },
+    { "level": "Pre-A1", "title": "Hello! Classroom Fun", "url": "../lingua-boost-lab/pre-a1/hello-classroom-fun.html" },
+    { "level": "A1", "title": "Present Simple Routines", "url": "../lingua-boost-lab/a1/a1-01-present-simple-routines.html" },
+    { "level": "A1", "title": "Present Simple Questions & Negatives", "url": "../lingua-boost-lab/a1/a1-02-present-simple-questions-negatives.html" },
+    { "level": "A1", "title": "Present Simple + Adverbs of Frequency / There is/are", "url": "../lingua-boost-lab/a1/a1-03-present-simple-adverbs-frequency.html" },
+    { "level": "A1", "title": "Have / Has — My Things", "url": "../lingua-boost-lab/a1/a1-04-have-has-my-things.html" },
+    { "level": "A1", "title": "My / Your / His / Her", "url": "../lingua-boost-lab/a1/a1-05-my-your-his-her.html" },
+    { "level": "A1", "title": "Prepositions of Place", "url": "../lingua-boost-lab/a1/a1-06-prepositions-of-place.html" },
+    { "level": "A1", "title": "Instructions & Requests", "url": "../lingua-boost-lab/a1/a1-07-instructions-requests.html" },
+    { "level": "A1", "title": "Final Mission (A1)", "url": "../lingua-boost-lab/a1/a1-08-final-mission.html" },
+    { "level": "A1", "title": "Easter English Lesson", "url": "../lingua-boost-lab/a1/easter-english-lesson.html" },
+    { "level": "A1", "title": "Past Simple Adventure", "url": "../lingua-boost-lab/a1/past-simple-adventure.html" },
+    { "level": "A1", "title": "Prepositions World", "url": "../lingua-boost-lab/a1/prepositions-world.html" },
+    { "level": "A1", "title": "School Words & Pronouns", "url": "../lingua-boost-lab/a1/school-words-and-pronouns.html" },
+    { "level": "A2", "title": "Ancient China Explorer", "url": "../lingua-boost-lab/a2/ancient-china-explorer.html" },
+    { "level": "A2", "title": "Core Trainer A2 → B1", "url": "../lingua-boost-lab/a2/core-trainer-a2-b1.html" },
+    { "level": "A2", "title": "English Booster A2 → B1", "url": "../lingua-boost-lab/a2/english-booster-a2-b1.html" },
+    { "level": "B1", "title": "Ancient China Cultural Studies", "url": "../lingua-boost-lab/b1/ancient-china-cultural-studies.html" },
+    { "level": "B1", "title": "Grammar Arcade: Present Continuous vs Present Perfect", "url": "../lingua-boost-lab/b1/grammar-arcade-pc-pp.html" },
+    { "level": "B1", "title": "Restaurant Menu Lab", "url": "../lingua-boost-lab/b1/restaurant-menu-lab.html" },
+    { "level": "B1", "title": "Space Explorers", "url": "../lingua-boost-lab/b1/space-explorers-english.html" },
+    { "level": "B1", "title": "Whispering Library Quest", "url": "../lingua-boost-lab/b1/whispering-library-quest.html" },
+    { "level": "B1", "title": "Word Forge: Suffixes & Prefixes", "url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html" },
+    { "level": "B2+", "title": "Geo Quest: Articles on the Map", "url": "../lingua-boost-lab/b2-plus/articles-with-geographical-names.html" },
+    { "level": "C1", "title": "Stars & Stellar Phenomena", "url": "../lingua-boost-lab/c1/stars-and-stellar-phenomena.html" }
   ]
 };
