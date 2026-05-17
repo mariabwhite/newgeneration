@@ -861,53 +861,101 @@
     const monthLabel = (report && (report.month_label || report.month)) || _currentMonthLabel();
 
     const reportBody = report ? _mdToHtml(report.content || "") : `
-      <h3>Отчёт пока не загружен</h3>
-      <p>Методический отчёт за ${_esc(monthLabel)} ещё в работе. Это техническая выгрузка профиля.</p>
+      <p><em>Методический отчёт за ${_esc(monthLabel)} ещё в работе. Это техническая выгрузка профиля.</em></p>
     `;
+
+    const reportType = report && report.type === "student report" ? "Student" : "Parent";
+    const kicker = "Monthly Report · " + reportType;
+    const heroTitle = student.name;
+    const heroSub = report
+      ? `Отчёт о занятиях за ${_esc(monthLabel)}`
+      : `Профиль · ${_esc(monthLabel)}`;
 
     const html = `<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="UTF-8">
 <title>${_esc(report ? report.title : "Отчёт")} — ${_esc(student.name)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Manrope, Arial, sans-serif;
-    margin: 40px auto; max-width: 720px; padding: 0 24px; color: #1a1612; line-height: 1.65; }
-  h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -0.02em; }
-  .sub { color: #6b6560; margin-bottom: 28px; font-size: 13px; }
-  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.16em;
-    color: #FF5A1F; margin: 24px 0 8px; }
-  h3 { font-size: 17px; margin: 22px 0 10px; color: #1a1612; }
-  h4 { font-size: 14px; margin: 16px 0 8px; color: #1a1612; }
-  p  { margin: 8px 0; font-size: 14px; }
-  ul { margin: 6px 0 12px 20px; padding: 0; }
-  li { margin: 4px 0; font-size: 14px; }
-  .meta { display: flex; flex-wrap: wrap; gap: 14px; padding: 12px 0;
-    border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);
-    margin: 0 0 24px; font-size: 12px; color: #6b6560; }
-  .meta b { color: #1a1612; font-weight: 600; }
-  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.08);
-    color: #6b6560; font-size: 12px; line-height: 1.7; }
-  .footer .sig { font-weight: 600; color: #1a1612; margin-top: 6px; }
-  @media print { body { margin: 18mm; padding: 0; max-width: none; } }
+  :root {
+    --bg:#f4f1ec; --paper:#fff; --paper-2:#faf8f4;
+    --line:rgba(26,22,18,0.10);
+    --text:#1a1612; --text-2:#6b6560; --text-3:#9c948b;
+    --accent:#FF5A1F; --accent-2:#FFC145;
+    --display:"Unbounded","Manrope",system-ui,sans-serif;
+    --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.65;font-size:14px;-webkit-font-smoothing:antialiased;}
+  .doc{background:var(--paper);max-width:760px;margin:48px auto;border-radius:4px;box-shadow:0 8px 32px rgba(0,0,0,0.10);overflow:hidden;}
+  .doc-hero{background:var(--paper-2);padding:36px 56px 28px;border-bottom:1px solid var(--line);position:relative;}
+  .doc-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 60%,var(--accent-2) 100%);}
+  .brand-strip{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+  .brand-mark{width:38px;height:38px;display:grid;place-items:center;background:var(--accent);color:#0b0b0c;font-family:var(--display);font-weight:800;font-size:20px;border-radius:9px;border-top-right-radius:0;letter-spacing:-0.04em;position:relative;overflow:hidden;}
+  .brand-mark::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;background:#fff;clip-path:polygon(100% 0, 0 0, 100% 100%);}
+  .brand-copy{display:grid;gap:2px;min-width:0;}
+  .brand-name{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:-0.005em;line-height:1;}
+  .brand-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-2);}
+  .doc-kicker{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);margin:0 0 8px;font-weight:700;}
+  .doc-title{font-family:var(--display);font-weight:800;font-size:30px;line-height:1.15;letter-spacing:-0.02em;margin:0 0 6px;color:var(--text);}
+  .doc-sub{color:var(--text-2);font-size:13.5px;margin:0;}
+  .doc-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px 22px;padding:22px 56px;border-bottom:1px solid var(--line);background:var(--paper);font-size:12px;}
+  .meta-item{display:flex;flex-direction:column;gap:3px;}
+  .meta-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-3);font-weight:600;}
+  .meta-value{color:var(--text);font-weight:500;font-size:13px;}
+  .doc-body{padding:36px 56px 40px;}
+  .doc-body>p:first-child{font-size:15px;margin-top:0;}
+  .doc-body p{margin:10px 0;}
+  .doc-body h3{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.01em;margin:30px 0 12px;padding-left:14px;border-left:3px solid var(--accent);line-height:1.3;}
+  .doc-body h4{font-family:var(--display);font-weight:600;font-size:14px;margin:20px 0 8px;color:var(--text-2);}
+  .doc-body ul{margin:8px 0 16px 0;padding:0;list-style:none;}
+  .doc-body li{position:relative;padding:4px 0 4px 22px;font-size:14px;line-height:1.6;}
+  .doc-body li::before{content:"";position:absolute;left:4px;top:14px;width:6px;height:6px;background:var(--accent);border-radius:50%;}
+  .doc-body strong{color:var(--text);font-weight:700;}
+  .doc-body em{color:var(--text-2);font-style:italic;}
+  .doc-footer{background:var(--paper-2);padding:22px 56px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--text-2);}
+  .doc-sig{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .doc-sig-mark{width:26px;height:26px;display:grid;place-items:center;background:var(--accent);color:#0b0b0c;font-family:var(--display);font-weight:800;font-size:14px;border-radius:6px;border-top-right-radius:0;letter-spacing:-0.04em;}
+  .doc-sig-name{font-family:var(--display);font-weight:700;color:var(--text);font-size:13px;}
+  .doc-footer-note{margin:0;font-size:11px;color:var(--text-3);line-height:1.6;}
+  @media print{body{background:#fff;}.doc{box-shadow:none;margin:0;max-width:none;}.doc-hero,.doc-meta,.doc-body,.doc-footer{padding-left:14mm;padding-right:14mm;}}
 </style>
 </head><body>
-<h1>${_esc(report ? report.title : "Отчёт")}</h1>
-<div class="sub">New Generation English · ${_esc(student.name)}${student.level ? " · " + _esc(student.level) : ""}</div>
+<div class="doc">
+  <div class="doc-hero">
+    <div class="brand-strip">
+      <div class="brand-mark">N</div>
+      <div class="brand-copy">
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-tag">Maria · Personal Tutor</div>
+      </div>
+    </div>
+    <div class="doc-kicker">${_esc(kicker)}</div>
+    <h1 class="doc-title">${_esc(heroTitle)}</h1>
+    <p class="doc-sub">${heroSub}</p>
+  </div>
 
-<div class="meta">
-  <span><b>Ученик:</b> ${_esc(student.name)}</span>
-  ${student.format ? `<span><b>Формат:</b> ${_esc(student.format)}</span>` : ""}
-  ${student.schedule ? `<span><b>Расписание:</b> ${_esc(student.schedule)}</span>` : ""}
-  ${report ? `<span><b>Месяц:</b> ${_esc(monthLabel)}</span>` : ""}
-  ${report && report.recipient ? `<span><b>Кому:</b> ${_esc(report.recipient)}</span>` : ""}
-</div>
+  <div class="doc-meta">
+    ${report ? `<div class="meta-item"><span class="meta-label">Месяц</span><span class="meta-value">${_esc(monthLabel)}</span></div>` : ""}
+    ${student.level ? `<div class="meta-item"><span class="meta-label">Уровень</span><span class="meta-value">${_esc(student.level)}</span></div>` : ""}
+    ${student.format ? `<div class="meta-item"><span class="meta-label">Формат</span><span class="meta-value">${_esc(student.format)}</span></div>` : ""}
+    ${student.schedule ? `<div class="meta-item"><span class="meta-label">Расписание</span><span class="meta-value">${_esc(student.schedule)}</span></div>` : ""}
+    ${report && report.recipient ? `<div class="meta-item"><span class="meta-label">Кому</span><span class="meta-value">${_esc(report.recipient)}</span></div>` : ""}
+  </div>
 
-${reportBody}
+  <div class="doc-body">${reportBody}</div>
 
-<div class="footer">
-  <p>Выгрузка из кабинета на ${_esc(date)}. Источник — рабочая база Notion (Monthly Reports).</p>
-  <p class="sig">${_esc(teacher)}</p>
+  <div class="doc-footer">
+    <div class="doc-sig">
+      <div class="doc-sig-mark">N</div>
+      <div class="doc-sig-name">${_esc(teacher)}</div>
+    </div>
+    <p class="doc-footer-note">New Generation English · Личный кабинет · Источник — Notion (Monthly Reports). Готово к печати: Ctrl/⌘ + P → «Сохранить как PDF». ${_esc(date)}</p>
+  </div>
 </div>
 </body></html>`;
 
