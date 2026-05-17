@@ -178,9 +178,11 @@
           <div class="cab-card-row"><span class="cab-row-label">Дни и время</span><span class="cab-row-value">${_esc(student.schedule || "—")}</span></div>
           ${student.lessons_per_week ? `<div class="cab-card-row"><span class="cab-row-label">Раз в неделю</span><span class="cab-row-value">${_esc(student.lessons_per_week)}</span></div>` : ""}
         </article>
+
+        ${_renderLessonsCard(student)}
       </div>
 
-      <p class="cab-mvp-note">Это MVP-версия кабинета. Расширенные функции (история уроков, домашка, отчёты, тренажёры) добавляются постепенно.</p>
+      <p class="cab-mvp-note">Это MVP-версия кабинета. Расширенные функции (домашка, отчёты, тренажёры) добавляются постепенно.</p>
     `;
   }
 
@@ -493,6 +495,83 @@
     });
   }
 
+  /* ---------- render: lessons table (shared by student & parent) ---------- */
+
+  const _MONTH_NAMES_RU = ["янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+  const _DOW_RU = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+
+  function _todayISO() {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function _currentMonthISO() {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+
+  function _formatLessonDate(iso) {
+    const [, m, day] = iso.split("-");
+    const monIdx = parseInt(m, 10) - 1;
+    return parseInt(day, 10) + " " + (_MONTH_NAMES_RU[monIdx] || "");
+  }
+
+  function _dowFromISO(iso) {
+    const [y, m, d] = iso.split("-").map(Number);
+    return _DOW_RU[new Date(y, m - 1, d).getDay()];
+  }
+
+  function _lessonStatusBadge(lesson, todayISO) {
+    const d = lesson.date;
+    const s = lesson.status;
+    if (s === "missed") return { cls: "is-missed", label: "пропуск" };
+    if (s === "cancelled") return { cls: "is-cancelled", label: "отменён" };
+    if (s === "rescheduled") return { cls: "is-rescheduled", label: "перенесён" };
+    if (s === "completed") return { cls: "is-completed", label: "✓ пройдено" };
+    // planned
+    if (d < todayISO) return { cls: "is-pending", label: "жду тему" };
+    if (d === todayISO) return { cls: "is-today", label: "сегодня" };
+    return { cls: "is-future", label: "запланирован" };
+  }
+
+  function _renderLessonsCard(student) {
+    const lessons = Array.isArray(student.lessons) ? student.lessons : [];
+    if (!lessons.length) return "";
+
+    const month = student.subscription_month || _currentMonthISO();
+    const todayISO = _todayISO();
+    const monthLessons = lessons
+      .filter(l => l.date && l.date.startsWith(month))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    if (!monthLessons.length) return "";
+
+    const rows = monthLessons.map(l => {
+      const badge = _lessonStatusBadge(l, todayISO);
+      const dateStr = _formatLessonDate(l.date);
+      const dow = _dowFromISO(l.date);
+      const num = l.num ? `<span class="cab-lesson-num">${_esc(l.num)}</span>` : "";
+      const topic = l.topic && l.topic.trim()
+        ? `<span class="cab-lesson-topic">${_esc(l.topic)}</span>`
+        : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
+      return `
+        <li class="cab-lesson-row ${badge.cls}">
+          ${num}
+          <span class="cab-lesson-date">${dateStr} · ${dow}</span>
+          ${topic}
+          <span class="cab-lesson-badge">${badge.label}</span>
+        </li>
+      `;
+    }).join("");
+
+    return `
+      <article class="cab-card cab-card--wide">
+        <h3>Уроки · ${_esc(_monthLabelFromISO(month))}</h3>
+        <ul class="cab-lessons-list">${rows}</ul>
+      </article>
+    `;
+  }
+
   /* ---------- render: parent view ---------- */
 
   function _renderAbonementCard(student) {
@@ -557,6 +636,8 @@
 
         ${_renderAbonementCard(student)}
 
+        ${_renderLessonsCard(student)}
+
         ${_renderReportsCard(student, (window.NGE_DATA && window.NGE_DATA.reports) || [], payment)}
 
         <article class="cab-card">
@@ -610,6 +691,15 @@
                     "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
     const d = new Date();
     return months[d.getMonth()] + " " + d.getFullYear();
+  }
+
+  function _monthLabelFromISO(monthISO) {
+    if (!monthISO) return _currentMonthLabel();
+    const months = ["январь", "февраль", "март", "апрель", "май", "июнь",
+                    "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
+    const [y, m] = monthISO.split("-");
+    const idx = parseInt(m, 10) - 1;
+    return (months[idx] || "") + " " + y;
   }
 
   // Very small markdown → HTML (just headings, bullets, paragraphs, line breaks)

@@ -124,14 +124,24 @@ window.NGE_DATA = {
       "format": "индивидуально",
       "schedule": "понедельник 18:00 / четверг 18:00",
       "goal": "подготовка к ЕГЭ (word formation, exam speaking)",
-      "lessons_in_package": 9,
+      "lessons_in_package": 8,
       "subscription_month": "2026-05",
       "lessons_used_this_month": 3,
-      "stability_note": "Дана в одном абонементе 9 уроков: отыграно 3, осталось 6. Май-расписание включает 4, 7 (completed), 14 (предположительно completed — уточнить), 11/18/21/25/28.",
+      "stability_note": "Май-абонемент 8 уроков. Отыграно 3 (4, 7, 14 — completed). 11 — planned (уточнить статус). Дальше 18, 21, 25, 28.",
       "payment_status": "Оплачено",
       "parent_name": "Либова Юлия Игоревна",
       "contract_note": "без договора",
-      "pin": "5376"
+      "pin": "5376",
+      "lessons": [
+        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "перенос из апреля" },
+        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "перенос из апреля" },
+        { "date": "2026-05-11", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "" },
+        { "date": "2026-05-18", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "denis-shalmanov",
