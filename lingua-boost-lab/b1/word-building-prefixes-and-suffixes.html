@@ -961,7 +961,8 @@ body.lb-canon-target .canon-l-mark.lesson-mark-word .lesson-mark-svg{
       try { st = (window.name && window.name.charAt(0) === "{") ? JSON.parse(window.name) : {}; } catch(_){}
       var url = new URLSearchParams(location.search);
       var theme = st.theme || url.get("theme") || localStorage.getItem("nge-theme") || "";
-      var lang  = st.lang  || url.get("lang")  || localStorage.getItem("nge-lang")  || "";
+      // Lessons default to EN — игнорируем сайт-уровень nge-lang. Toggle EN/RU работает внутри урока.
+      var lang  = url.get("lang") || "en";
       var isLight = (theme === "light" || theme === "light-lab");
       var isEn = (lang === "en");
       if (isLight) document.body.classList.add("light");
@@ -988,10 +989,10 @@ body.lb-canon-target .canon-l-mark.lesson-mark-word .lesson-mark-svg{
     </span>
   </a>
   <nav class="canon-l-nav" aria-label="Lesson navigation">
-    <a class="canon-l-link" href="../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
-    <a class="canon-l-link is-active" href="#progress" data-ru="Прогресс" data-en="Progress">Прогресс</a>
-    <a class="canon-l-link" href="#practice" data-ru="Практика" data-en="Practice">Практика</a>
-    <a class="canon-l-link" href="#final" data-ru="Итог" data-en="Final">Итог</a>
+    <a class="canon-l-link" href="../index.html" data-ru="Каталог" data-en="Catalog">Catalog</a>
+    <a class="canon-l-link is-active" href="#progress" data-ru="Прогресс" data-en="Progress">Progress</a>
+    <a class="canon-l-link" href="#practice" data-ru="Практика" data-en="Practice">Practice</a>
+    <a class="canon-l-link" href="#final" data-ru="Итог" data-en="Final">Final</a>
   </nav>
   <div class="canon-l-tools">
     <span class="canon-l-pill lang-toggle" aria-label="Language" data-lang-toggle data-lang-pill aria-label="Toggle interface language">EN</span>
