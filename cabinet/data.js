@@ -43,7 +43,20 @@ window.NGE_DATA = {
       "contact_passport": "4520 965594",
       "contact_phone": "+79166988892",
       "contact_address": "Москва, ул. Ю. Парковая, 15-244",
-      "pin": "1721"
+      "pin": "1721",
+      "lessons_in_package": 8,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-05", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-07", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-12", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-05-19", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-26", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "sova-elena",
@@ -61,7 +74,16 @@ window.NGE_DATA = {
       "contact_phone": "+79671403548",
       "contact_email": "elenavit-2005@mail.ru",
       "contact_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
-      "pin": "2547"
+      "pin": "2547",
+      "lessons_in_package": 4,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-05", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-12", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-19", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-26", "num": 4, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "sova-ekaterina",
@@ -76,7 +98,16 @@ window.NGE_DATA = {
       "parent_phone": "+79671403548",
       "parent_email": "elenavit-2005@mail.ru",
       "parent_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
-      "pin": "6924"
+      "pin": "6924",
+      "lessons_in_package": 4,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-11", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-18", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 4, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "fedor-protasov",
@@ -131,7 +162,14 @@ window.NGE_DATA = {
       "parent_phone": "+79057502111",
       "parent_email": "ryabina8@list.ru",
       "parent_address": "Москва, пос. Сосенское, п. Коммунарка, ул. Ясная, д.5, кв.33",
-      "pin": "7670"
+      "pin": "7670",
+      "lessons": [
+        { "date": "2026-05-01", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-08", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-15", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-22", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-05-29", "num": 5, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "daniella-libova",
@@ -205,7 +243,16 @@ window.NGE_DATA = {
       "parent_passport": "4514 567410 (УФМС России по г.Москве)",
       "parent_email": "platemir@yandex.ru",
       "parent_address": "Москва, Береговой пр-д, д.7, кв.95",
-      "pin": "2512"
+      "pin": "2512",
+      "lessons_in_package": 4,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-11", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-18", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 4, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "yulya-lushina",
@@ -217,7 +264,20 @@ window.NGE_DATA = {
       "price_per_lesson": 2000,
       "payment_status": "Оплачено",
       "parent_name": "Лушин Александр Анатольевич",
-      "pin": "2223"
+      "pin": "2223",
+      "lessons_in_package": 8,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-06", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-11", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-13", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-05-18", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-05-20", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-27", "num": 8, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "yulya-izotova",
@@ -270,7 +330,13 @@ window.NGE_DATA = {
       "parent_passport": "45 24 № 708384 (ГУ МВД по г.Москве)",
       "parent_address": "Москва, Зельев переулок, д.3, кв.4",
       "contract_note": "подписан мамой с критическими пометками жёлтым; дата не проставлена; мама хочет править формулировки",
-      "pin": "9972"
+      "pin": "9972",
+      "lessons": [
+        { "date": "2026-05-07", "num": 1, "status": "planned", "topic": "ЕГЭ: повторение лексики апреля + word formation / vocabulary MCQ" },
+        { "date": "2026-05-14", "num": 2, "status": "planned", "topic": "Reading B2 / B2+: тематический текст + вопросы ЕГЭ" },
+        { "date": "2026-05-21", "num": 3, "status": "planned", "topic": "Writing / email: структура, ответы, собственные вопросы" },
+        { "date": "2026-05-28", "num": 4, "status": "planned", "topic": "Speaking + grammar consolidation: времена, passive, modals" }
+      ]
     },
     {
       "id": "ekaterina-mariya-pair",
@@ -301,7 +367,21 @@ window.NGE_DATA = {
           "parent_address": "Москва, ул. Акад. Волгина, д.8А"
         }
       ],
-      "pin": "3713"
+      "pin": "3713",
+      "lessons_in_package": 9,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 0,
+      "lessons": [
+        { "date": "2026-05-03", "num": 1, "status": "planned", "topic": "" },
+        { "date": "2026-05-07", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-05-10", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-05-17", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" },
+        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
+      ]
     },
     {
       "id": "katya-marakina",
