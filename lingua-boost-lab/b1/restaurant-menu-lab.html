@@ -403,6 +403,47 @@ select.btn-tool { width: 110px; }
 .ingredient-pool[data-active-cat="dessert"]   .drag-item:not([data-type="dessert"]) {
   display: none;
 }
+/* Speaking Frame — interactive slots */
+.frame-hint {
+  font-size: 12px;
+  color: var(--brand-2, #9b5e37);
+  margin: 4px 0 14px;
+  font-style: italic;
+  opacity: 0.85;
+}
+.frame-slot {
+  display: inline-block;
+  padding: 0 7px;
+  margin: 0 1px;
+  border-radius: 5px;
+  background: rgba(212, 163, 115, 0.14);
+  color: var(--brand, #b87c4f);
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent, #d4a373);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.frame-slot.is-fallback {
+  background: transparent;
+  color: var(--faint, #b89b88);
+  font-style: italic;
+  font-weight: 500;
+  border-bottom-style: dotted;
+  opacity: 0.85;
+}
+.frame-slot.frame-write {
+  background: rgba(212, 163, 115, 0.06);
+  border-bottom: 1.5px dashed var(--accent, #d4a373);
+  cursor: text;
+  outline: none;
+}
+.frame-slot.frame-write:hover {
+  background: rgba(212, 163, 115, 0.14);
+}
+.frame-slot.frame-write:focus {
+  background: rgba(212, 163, 115, 0.22);
+  border-bottom-color: var(--brand, #b87c4f);
+  box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.20);
+}
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -961,16 +1002,17 @@ th { background: #fdf3e8; }
               <textarea id="speechDraft" class="speech-draft" placeholder="Click sentence starters above, then edit your speech here..."></textarea>
             </div>
 
-            <div class="speaking-frame">
+            <div class="speaking-frame" id="speakingFrameLive">
               <strong>Speaking Frame: 1.5-2 minute menu pitch</strong>
+              <p class="frame-hint">Filled slots come from your menu and concept above. Underlined slots — click and type your own.</p>
               <ol>
-                <li>Hello, my name is ___, and I am the chef-founder of this restaurant.</li>
-                <li>Our restaurant focuses on ___ cuisine. The atmosphere is ___ and ___.</li>
-                <li>As a starter, we serve ___. Our soup is ___.</li>
-                <li>For the main course, we offer ___ with ___ as a side dish. For dessert, we serve ___.</li>
-                <li>Our signature dish is ___ because ___.</li>
-                <li>It is prepared using ___. We cook it by ___.</li>
-                <li>It contains ingredients such as ___, ___ and ___.</li>
+                <li>Hello, my name is <span class="frame-slot frame-write" data-slot="chefName" contenteditable="true">the chef</span>, and I am the chef-founder of this restaurant.</li>
+                <li>Our restaurant focuses on <span class="frame-slot" data-slot="cuisine" data-fallback="Mediterranean">Mediterranean</span> cuisine. The atmosphere is <span class="frame-slot" data-slot="atmosphere" data-fallback="cozy">cozy</span> and <span class="frame-slot frame-write" data-slot="atmosphere2" contenteditable="true">welcoming</span>.</li>
+                <li>As a starter, we serve <span class="frame-slot" data-slot="starter" data-fallback="our chef's selection">our chef's selection</span>. Our soup is <span class="frame-slot" data-slot="soup" data-fallback="seasonal">seasonal</span>.</li>
+                <li>For the main course, we offer <span class="frame-slot" data-slot="main" data-fallback="our house specialty">our house specialty</span> with <span class="frame-slot" data-slot="side" data-fallback="a fresh garnish">a fresh garnish</span> as a side dish. For dessert, we serve <span class="frame-slot" data-slot="dessert" data-fallback="a sweet finish">a sweet finish</span>.</li>
+                <li>Our signature dish is <span class="frame-slot" data-slot="signature" data-fallback="our chef's pick">our chef's pick</span> because <span class="frame-slot frame-write" data-slot="reason" contenteditable="true">it is fresh and memorable</span>.</li>
+                <li>It is prepared using <span class="frame-slot frame-write" data-slot="prepUsing" contenteditable="true">high-quality ingredients</span>. We cook it by <span class="frame-slot frame-write" data-slot="cookBy" contenteditable="true">slow roasting</span>.</li>
+                <li>It contains ingredients such as <span class="frame-slot frame-write" data-slot="ing1" contenteditable="true">fresh herbs</span>, <span class="frame-slot frame-write" data-slot="ing2" contenteditable="true">olive oil</span> and <span class="frame-slot frame-write" data-slot="ing3" contenteditable="true">a house sauce</span>.</li>
                 <li>I think this menu is successful because it is balanced, attractive and easy to understand.</li>
                 <li>Thank you for listening.</li>
               </ol>
@@ -1114,6 +1156,7 @@ th { background: #fdf3e8; }
     attachRemoveEvents();
     updateMenuSummary();
     updateSpeakingPreview();
+    updateSpeakingFrame();
   }
 
   function updateMenuSummary() {
@@ -1254,8 +1297,19 @@ th { background: #fdf3e8; }
         const inp = document.getElementById('cuisineInput');
         if (inp) inp.value = c;
         updateSpeakingPreview();
+        updateSpeakingFrame();
       });
     });
+    const atmEl = document.getElementById('atmosphereInput');
+    if (atmEl && !atmEl.dataset.frameSyncBound) {
+      atmEl.dataset.frameSyncBound = "true";
+      atmEl.addEventListener('change', updateSpeakingFrame);
+    }
+    const cuisineInp = document.getElementById('cuisineInput');
+    if (cuisineInp && !cuisineInp.dataset.frameSyncBound) {
+      cuisineInp.dataset.frameSyncBound = "true";
+      cuisineInp.addEventListener('input', updateSpeakingFrame);
+    }
     const refresh = document.getElementById('updateMenuPreview');
     if (refresh) refresh.addEventListener('click', updateSpeakingPreview);
     const copyBtn = document.getElementById('copyExampleBtn');
@@ -1318,6 +1372,38 @@ th { background: #fdf3e8; }
       const s1 = document.getElementById('strengthsField'); if (s1) s1.value = '';
       const s2 = document.getElementById('improveField'); if (s2) s2.value = '';
       display.textContent = 'Total: -- / 20';
+    });
+  }
+
+  function updateSpeakingFrame() {
+    const frame = document.getElementById('speakingFrameLive');
+    if (!frame) return;
+    const cuisineEl = document.getElementById('cuisineInput');
+    const cuisine = cuisineEl ? (cuisineEl.value || '').trim() : '';
+    const atmosphereEl = document.getElementById('atmosphereInput');
+    const atmosphere = atmosphereEl ? atmosphereEl.value : '';
+    const sources = {
+      cuisine: cuisine,
+      atmosphere: atmosphere,
+      starter:   (menuState.appetizer && menuState.appetizer[0]) || '',
+      soup:      (menuState.soup && menuState.soup[0]) || '',
+      main:      (menuState.main && menuState.main[0]) || '',
+      side:      (menuState.side && menuState.side[0]) || '',
+      dessert:   (menuState.dessert && menuState.dessert[0]) || '',
+      signature: (menuState.main && menuState.main[0]) || ''
+    };
+    frame.querySelectorAll('.frame-slot[data-slot]').forEach(slot => {
+      if (slot.classList.contains('frame-write')) return; // user-editable, don't touch
+      const key = slot.getAttribute('data-slot');
+      const fallback = slot.getAttribute('data-fallback') || '___';
+      const value = sources[key];
+      if (value) {
+        slot.textContent = value;
+        slot.classList.remove('is-fallback');
+      } else {
+        slot.textContent = fallback;
+        slot.classList.add('is-fallback');
+      }
     });
   }
 
@@ -2636,20 +2722,9 @@ html body footer.canon-l-footer .canon-l-footer-legal {
   html body footer.canon-l-footer .canon-l-footer-legal { font-size: 11px !important; }
 }
 
-/* DARK theme palette — restaurant rosegold inverted to deep cocoa.
-   Triggers when body does NOT have .light (i.e. dark/black-lab theme). */
-html body:not(.light) footer.canon-l-footer {
-  --lb-bg: #2a1810 !important;
-  --lb-text: #fff9f2 !important;
-  --lb-muted: #c9aa8b !important;
-  --lb-line: rgba(184,124,79,0.30) !important;
-  --lb-pill-bg: rgba(184,124,79,0.10) !important;
-  --lb-pill-border: rgba(184,124,79,0.30) !important;
-  --lb-link-hover: #d4a373 !important;
-  --lb-seg-bg: rgba(184,124,79,0.10) !important;
-  --lb-seg-border: rgba(184,124,79,0.30) !important;
-  --lb-seg-btn: #d4a373 !important;
-}
+/* Restaurant — fixed rosegold palette, no dark variant.
+   (Dark-mode overrides removed — у этого урока нет dark mode, тема жёстко
+   фиксируется через lab-theme-sync.js → fixedDisplayThemes → "rosegold".) */
 </style></body>
 </html>
 
