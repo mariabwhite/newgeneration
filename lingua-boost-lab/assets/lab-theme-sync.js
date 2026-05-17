@@ -3,9 +3,9 @@
   const CATALOG_STORAGE_KEY = "nge-theme-lab";
   const SITE_STORAGE_KEYS = ["nge-theme", "nge-cabinet-theme"];
   const UNIVERSAL_STORAGE_KEY = "nge-theme-universal";
-  const DEFAULT_LESSON_THEME = "black-lab";
+  const DEFAULT_LESSON_THEME = "light-lab";
   const PREF_VERSION_KEY = "nge-preferences-version";
-  const PREF_VERSION = "20260515-ru-dark-default";
+  const PREF_VERSION = "20260517-light-ru-default";
   const LANG_STORAGE_KEY = "nge-lang";
   const lessonThemes = new Set(["light-lab", "peach", "green", "rose", "cyan", "amber", "white", "black-lab", "violet"]);
   const darkLessonThemes = new Set(["black-lab", "violet"]);
@@ -29,11 +29,11 @@
   function migrateDefaultPreferences() {
     if (readStorage(PREF_VERSION_KEY) === PREF_VERSION) return;
     if (!readStorage("nge-lang")) writeStorage("nge-lang", "ru");
-    if (!readStorage("nge-theme")) writeStorage("nge-theme", "dark");
+    if (!readStorage("nge-theme")) writeStorage("nge-theme", "light");
     if (!readStorage("nge-cabinet-theme")) writeStorage("nge-cabinet-theme", "dark");
-    if (!readStorage(CATALOG_STORAGE_KEY)) writeStorage(CATALOG_STORAGE_KEY, "dark");
-    if (!readStorage(LESSON_STORAGE_KEY)) writeStorage(LESSON_STORAGE_KEY, "black-lab");
-    if (!readStorage(UNIVERSAL_STORAGE_KEY)) writeStorage(UNIVERSAL_STORAGE_KEY, "black-lab");
+    if (!readStorage(CATALOG_STORAGE_KEY)) writeStorage(CATALOG_STORAGE_KEY, "light");
+    if (!readStorage(LESSON_STORAGE_KEY)) writeStorage(LESSON_STORAGE_KEY, "light-lab");
+    if (!readStorage(UNIVERSAL_STORAGE_KEY)) writeStorage(UNIVERSAL_STORAGE_KEY, "light-lab");
     writeStorage(PREF_VERSION_KEY, PREF_VERSION);
   }
 
