@@ -33,7 +33,7 @@ window.NGE_DATA = {
       "duration": "1.5 часа",
       "lessons_per_week": 2,
       "schedule": "вторник 14:30 / четверг 10:30 (+20 мин)",
-      "stability_note": "Актуализировано 19.05.2026: четверг нужно перенести — время уточнить с учеником. Pending.",
+      "stability_note": "Актуализировано 19.05.2026 (вечер): четверг 10:30 → переносим, следующая дата урока чт-формата = 2 июня (вторник). Точное время уточнить с Андреем. Нужно сходить к нему на квартиру для решения вопроса.",
       "goal": "разговорный английский, школа, подготовка к TOEFL/IELTS",
       "price_per_lesson": 2500,
       "monthly_package": 20000,
@@ -296,7 +296,7 @@ window.NGE_DATA = {
       "goal": "Старлайт 3 / Past Simple, неправильные глаголы, лексика по темам",
       "price_per_lesson": 2000,
       "monthly_package": 18000,
-      "lessons_in_package": 9,
+      "lessons_in_package": 8,
       "subscription_month": "2026-05",
       "lessons_used_this_month": 5,
       "payment_status": "Оплачено",
@@ -305,17 +305,17 @@ window.NGE_DATA = {
       "parent_phone": "+79269754602",
       "parent_email": "meet.me.here@mail.ru",
       "pin": "2799",
-      "stability_note": "Май-абонемент 9 уроков. На 18.05 отыграно 5 (1, 4, 8, 15, 18). 11 мая — единственный пропуск. Дальше 22, 25, 29.",
+      "stability_note": "Май-абонемент 8 уроков (оплачено 8). На 18.05 отыграно 5 (1, 4, 8, 15, 18). 11 мая — пропуск, не в счёт. Дальше 22, 25, 29.",
       "lessons": [
         { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "еда — лексика" },
         { "date": "2026-05-04", "num": 2, "status": "completed", "topic": "магазины + история про Юлию (чтение, лексика)" },
         { "date": "2026-05-08", "num": 3, "status": "completed", "topic": "контейнеры/бутылки/банки + Present Simple" },
-        { "date": "2026-05-11", "num": 4, "status": "missed", "topic": "" },
-        { "date": "2026-05-15", "num": 5, "status": "completed", "topic": "неправильные глаголы, времена, истории" },
-        { "date": "2026-05-18", "num": 6, "status": "completed", "topic": "Swimming pool — лексика и активности (бассейн)" },
-        { "date": "2026-05-22", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-25", "num": 8, "status": "planned", "topic": "" },
-        { "date": "2026-05-29", "num": 9, "status": "planned", "topic": "" }
+        { "date": "2026-05-11", "num": 0, "status": "missed", "topic": "Пропуск (не в счёт абонемента)" },
+        { "date": "2026-05-15", "num": 4, "status": "completed", "topic": "неправильные глаголы, времена, истории" },
+        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Swimming pool — лексика и активности (бассейн)" },
+        { "date": "2026-05-22", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-29", "num": 8, "status": "planned", "topic": "" }
       ]
     },
     {
