@@ -641,7 +641,8 @@
             </label>
           </div>
           <div class="cab-lesson-actions">
-            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportClaudePromptBtn">🤖 Промт для Claude</button>
+            <button type="button" class="cab-action-btn cab-action-btn--primary" id="reportAutoDraftBtn" style="background:#7c3aed;">🪄 Авто-черновик через AI Hub</button>
+            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportClaudePromptBtn">🤖 Промт в буфер (фоллбэк)</button>
             <button type="button" class="cab-action-btn cab-action-btn--primary" id="reportSaveBtn">💾 Сохранить черновик</button>
             <button type="button" class="cab-action-btn cab-action-btn--primary" id="reportPublishBtn" style="display:none; background: #2c8a4e;">✅ Опубликовать (через Claude)</button>
             <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportDeleteBtn" style="display:none; color:#b94d4d;">🗑 Удалить</button>
@@ -765,9 +766,12 @@
     const reportPublishBtn = container.querySelector("#reportPublishBtn");
     const reportDeleteBtn = container.querySelector("#reportDeleteBtn");
     const reportClaudePromptBtn = container.querySelector("#reportClaudePromptBtn");
+    const reportAutoDraftBtn = container.querySelector("#reportAutoDraftBtn");
     const reportSaveBtn = container.querySelector("#reportSaveBtn");
     const reportCancelBtn = container.querySelector("#reportCancelBtn");
     const reportHint = container.querySelector("#reportHint");
+
+    const AI_HUB_URL = "http://127.0.0.1:8765";
 
     function openReportModal(studentId, mode) {
       const student = students.find(s => s.id === studentId);
@@ -894,6 +898,56 @@
         reportHint.style.display = "block";
         reportHint.style.whiteSpace = "pre-wrap";
         reportHint.textContent = "⚠️ Не получилось скопировать. Текст ниже:\n\n" + prompt;
+      }
+    });
+
+    // 🪄 Авто-черновик через AI Hub — синхронный вызов Claude через локальный сервер.
+    // Сервер должен быть запущен (start_hub.bat) и доступен на 127.0.0.1:8765.
+    // Версия сервера должна быть >= 2026-05-19-cabinet-generate.
+    reportAutoDraftBtn.addEventListener("click", async function () {
+      const studentId = reportForm.dataset.studentId;
+      const monthVal = reportMonthEl.value;
+      if (!studentId || !monthVal) return;
+      const student = students.find(s => s.id === studentId);
+      if (!student) return;
+      const prompt = _buildClaudeGeneratePrompt(student, monthVal);
+
+      // UI: lock buttons, show spinner-like hint
+      const oldLabel = reportAutoDraftBtn.textContent;
+      reportAutoDraftBtn.disabled = true;
+      reportClaudePromptBtn.disabled = true;
+      reportSaveBtn.disabled = true;
+      reportAutoDraftBtn.textContent = "🌀 Claude думает…";
+      reportHint.style.display = "block";
+      reportHint.style.whiteSpace = "pre-wrap";
+      reportHint.textContent = "Запрос ушёл в AI Hub. Claude собирает черновик — это займёт 30-120 сек. Не закрывай это окно.";
+
+      const started = Date.now();
+      try {
+        const resp = await fetch(AI_HUB_URL + "/api/generate-report", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: prompt })
+        });
+        if (!resp.ok) {
+          let errMsg = "HTTP " + resp.status;
+          try { const j = await resp.json(); if (j && j.error) errMsg = j.error; } catch (_) {}
+          throw new Error(errMsg);
+        }
+        const result = await resp.json();
+        if (!result || !result.content) throw new Error("Пустой ответ от сервера");
+        reportContentEl.value = result.content;
+        const sec = Math.round((Date.now() - started) / 1000);
+        reportHint.textContent = "✅ Черновик от Claude вставлен (" + sec + " сек). Проверь текст, поправь руками если нужно, → «💾 Сохранить черновик».";
+      } catch (err) {
+        const msg = (err && err.message) ? err.message : String(err);
+        reportHint.textContent = "⚠️ AI Hub не ответил: " + msg
+          + "\n\nПроверь что сервер запущен (start_hub.bat в AI_Chat_Hub).\nЕсли сервер свежий, надо перезапустить — версия должна быть >= 2026-05-19-cabinet-generate.\n\nФоллбэк: жми «🤖 Промт в буфер» → вставь в Claude/Telegram руками.";
+      } finally {
+        reportAutoDraftBtn.disabled = false;
+        reportClaudePromptBtn.disabled = false;
+        reportSaveBtn.disabled = false;
+        reportAutoDraftBtn.textContent = oldLabel;
       }
     });
 
