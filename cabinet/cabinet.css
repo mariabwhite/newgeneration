@@ -1191,7 +1191,7 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
 /* ===== Alerts widget (teacher) ===== */
 .cab-alerts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin: 20px 0 24px;
 }
@@ -1216,6 +1216,7 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
 
 .cab-alert--unpaid::before { background: #FF5A1F; }
 .cab-alert--next::before   { background: #2BB673; }
+.cab-alert--drafts::before { background: #F2B71E; }
 .cab-alert--report::before { background: #3A8DFF; }
 
 .cab-alert-head {
@@ -1258,7 +1259,13 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
   display: inline-block;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 1100px) {
+  .cab-alerts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
   .cab-alerts {
     grid-template-columns: 1fr;
   }
@@ -1672,4 +1679,129 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
   background: var(--accent);
   border-color: var(--accent);
   transform: translateY(-1px);
+}
+
+/* ===== Report cell (teacher table column «Отчёт») ===== */
+.cab-report-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface, transparent);
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.cab-report-cell:hover {
+  transform: translateY(-1px);
+}
+
+.cab-report-cell--none {
+  color: #FF5A1F;
+  border-color: color-mix(in srgb, #FF5A1F 50%, var(--line));
+  background: color-mix(in srgb, #FF5A1F 6%, transparent);
+}
+
+.cab-report-cell--none:hover {
+  background: #FF5A1F;
+  color: #fff;
+  border-color: #FF5A1F;
+}
+
+.cab-report-cell--draft {
+  color: #b58400;
+  border-color: color-mix(in srgb, #F2B71E 55%, var(--line));
+  background: color-mix(in srgb, #F2B71E 14%, transparent);
+}
+
+.cab-report-cell--draft:hover {
+  background: #F2B71E;
+  color: #1a1612;
+  border-color: #F2B71E;
+}
+
+.cab-report-cell--sent {
+  color: #1f7a44;
+  border-color: color-mix(in srgb, #2BB673 50%, var(--line));
+  background: color-mix(in srgb, #2BB673 10%, transparent);
+}
+
+.cab-report-cell--sent:hover {
+  background: #2BB673;
+  color: #fff;
+  border-color: #2BB673;
+}
+
+body.light .cab-report-cell--draft { color: #8a6500; }
+body.light .cab-report-cell--sent  { color: #1a6a3a; }
+
+/* ===== Report dialog (teacher → generate / edit / publish) ===== */
+.cab-report-dialog {
+  /* наследует общие стили cab-lesson-dialog (тот же паттерн) */
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-card, var(--surface));
+  color: var(--text);
+  padding: 26px 28px 22px;
+  max-width: 760px;
+  width: calc(100% - 32px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+}
+
+.cab-report-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.cab-report-dialog .cab-lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+  margin-top: 8px;
+}
+
+.cab-report-dialog .cab-lesson-full {
+  grid-column: 1 / -1;
+}
+
+.cab-report-dialog textarea {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.cab-report-dialog textarea#reportContent {
+  min-height: 240px;
+}
+
+.cab-report-banner {
+  display: block;
+  margin: 6px 0 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #F2B71E 18%, transparent);
+  border: 1px solid color-mix(in srgb, #F2B71E 55%, var(--line));
+  color: #8a6500;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+body.light .cab-report-banner { color: #7a5800; }
+
+@media (max-width: 720px) {
+  .cab-report-dialog .cab-lesson-grid {
+    grid-template-columns: 1fr;
+  }
 }

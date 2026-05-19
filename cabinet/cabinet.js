@@ -363,15 +363,100 @@
     return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
   }
 
+  /* ---------- report state helpers ---------- */
+
+  function _reportStateForStudent(studentId, currentMonth) {
+    const state = getReportOrDraft(studentId, currentMonth);
+    if (!state) return { kind: "none" };
+    if (state.status === "sent") return { kind: "sent", report: state.report, source: state.source };
+    if (state.source === "draft") return { kind: "local-draft", report: state.report };
+    return { kind: "data-draft", report: state.report, dataStatus: state.report.status };
+  }
+
+  function _reportCellHtml(state, studentId) {
+    if (state.kind === "none") {
+      return '<button class="cab-report-cell cab-report-cell--none" type="button" '
+        + 'data-action="open-report-modal" data-student-id="' + _esc(studentId) + '" '
+        + 'title="Создать черновик отчёта">✏️ Сгенерировать</button>';
+    }
+    if (state.kind === "sent") {
+      const date = state.report.sent_date || state.report.updated_at || "";
+      const shortDate = date ? date.slice(0, 10) : "";
+      return '<button class="cab-report-cell cab-report-cell--sent" type="button" '
+        + 'data-action="preview-report" data-student-id="' + _esc(studentId) + '" '
+        + 'title="Опубликован — клик чтобы посмотреть">✅ Опубликован'
+        + (shortDate ? ' · ' + _esc(shortDate) : '') + '</button>';
+    }
+    if (state.kind === "local-draft") {
+      return '<button class="cab-report-cell cab-report-cell--draft cab-report-cell--local" type="button" '
+        + 'data-action="preview-report" data-student-id="' + _esc(studentId) + '" '
+        + 'title="Локальный черновик — клик чтобы открыть/опубликовать">🟡 Черновик</button>';
+    }
+    // data-draft
+    const sublabel = state.dataStatus === "ready to send"
+      ? "готов к отправке"
+      : (state.dataStatus === "source imported" ? "источник" : (state.dataStatus || "источник"));
+    return '<button class="cab-report-cell cab-report-cell--draft cab-report-cell--source" type="button" '
+      + 'data-action="preview-report" data-student-id="' + _esc(studentId) + '" '
+      + 'title="Notion-черновик (' + _esc(sublabel) + ') — клик чтобы открыть/опубликовать">🟡 Черновик · ' + _esc(sublabel) + '</button>';
+  }
+
+  function _buildClaudeGeneratePrompt(student, currentMonth) {
+    const monthLabel = _monthLabelFromISO(currentMonth);
+    const lessons = (student.lessons || [])
+      .filter(l => l.date && l.date.startsWith(currentMonth))
+      .sort((a, b) => a.date.localeCompare(b.date));
+    let p = "📝 Запрос на генерацию отчёта за " + monthLabel + "\n\n";
+    p += "Ученик: " + student.name + " (id: " + student.id + ")\n";
+    p += "Уровень: " + (student.level || "—") + "\n";
+    p += "Формат: " + (student.format || "—") + "\n";
+    p += "Расписание: " + (student.schedule || "—") + "\n";
+    p += "Цель: " + (student.goal || "—") + "\n";
+    p += "Абонемент: " + (student.lessons_in_package || "—") + " уроков, проведено: " + (student.lessons_used_this_month || 0) + "\n";
+    if (student.stability_note) p += "Контекст: " + student.stability_note + "\n";
+    p += "\nКалендарь занятий за " + monthLabel + ":\n";
+    lessons.forEach(l => {
+      const ic = l.status === "completed" ? "✅" : l.status === "missed" ? "❌"
+        : l.status === "cancelled" ? "⛔" : l.status === "rescheduled" ? "🔄" : "📅";
+      p += "- " + l.date + " " + ic + " " + (l.topic || (l.status === "planned" ? "запланирован" : "—")) + "\n";
+    });
+    p += "\nЗадача: собери parent report за " + monthLabel + " для родителя (" + (student.parent_name || "родитель") + ").\n";
+    p += "Формат: # Краткий вывод (3-4 предложения), # Календарь занятий (со статусами), # По прогрессу, # Зоны роста, # Следующая задача, # Майский абонемент (если есть цены).\n";
+    p += "Тон — спокойный, методический, конкретный. Без воды. Маша посмотрит черновик ПЕРЕД публикацией и сможет править руками.\n";
+    p += "После того как соберёшь — Маша вставит текст обратно в модалку «Сгенерировать отчёт» → «Полный текст».";
+    return p;
+  }
+
+  function _buildPublishPrompt(report, student) {
+    let p = "✅ Запрос на публикацию отчёта (status → \"sent\")\n\n";
+    p += "Ученик: " + student.name + " (id: " + student.id + ")\n";
+    p += "Месяц: " + report.month + " (" + (report.month_label || "") + ")\n";
+    p += "Тип: " + (report.type || "parent report") + "\n";
+    p += "Recipient: " + (report.recipient || "родитель") + "\n";
+    p += "Title: " + (report.title || "") + "\n\n";
+    p += "Short message:\n" + (report.short_message || "") + "\n\n";
+    p += "Content (markdown):\n" + (report.content || "") + "\n\n";
+    p += "Действия:\n";
+    p += "1. Добавить/обновить запись в data.js (массив reports) с этими данными + status: \"sent\" + sent_date: \"" + new Date().toISOString().slice(0, 10) + "\"\n";
+    p += "2. Bump-нуть data.js?v=N в cabinet/index.html, login.html, teacher.html, parent.html, student.html\n";
+    p += "3. После того как Маша подтвердит публикацию — она в кабинете нажмёт «🗑 Удалить» на этом черновике (или ты скажешь ей сделать NGECabinet.deleteDraft(\"" + (report.id || "") + "\") в консоли).";
+    return p;
+  }
+
   function renderTeacher(container, students) {
     const grid = _buildScheduleGrid(students);
     const totalSlots = Object.values(grid).reduce((sum, day) => sum + day.length, 0);
     const reports = (window.NGE_DATA && window.NGE_DATA.reports) || [];
     const currentMonth = _currentMonthKey();
 
+    // Состояние отчёта для каждого ученика (sent / draft / nothing)
+    const reportStates = {};
+    students.forEach(s => { reportStates[s.id] = _reportStateForStudent(s.id, currentMonth); });
+
     // Оповещалки
     const unpaid = students.filter(s => !s.payment_status || s.payment_status === "" || s.payment_status === "Не выставлено" || s.payment_status === "Ожидает");
-    const noReport = students.filter(s => !reports.some(r => r.student_id === s.id && r.month === currentMonth));
+    const noSentReport = students.filter(s => reportStates[s.id].kind !== "sent");
+    const pendingDrafts = students.filter(s => reportStates[s.id].kind === "local-draft" || reportStates[s.id].kind === "data-draft");
     const nextLesson = _computeNextLesson(students);
 
     const unpaidHtml = unpaid.length
@@ -384,10 +469,15 @@
          <div class="cab-alert-list">${_esc(nextLesson.studentName)} · ${_esc(_humanDelta(nextLesson.deltaMins))}</div>`
       : `<div class="cab-alert-num">—</div><div class="cab-alert-list">нет занятий с временем</div>`;
 
-    const noReportHtml = noReport.length
-      ? `<div class="cab-alert-num">${noReport.length}</div>
-         <div class="cab-alert-list">${noReport.slice(0, 5).map(s => `<span>${_esc(s.name)}</span>`).join(", ")}${noReport.length > 5 ? " + ещё " + (noReport.length - 5) : ""}</div>`
-      : `<div class="cab-alert-num">✓</div><div class="cab-alert-list">все отчёты есть</div>`;
+    const noReportHtml = noSentReport.length
+      ? `<div class="cab-alert-num">${noSentReport.length}</div>
+         <div class="cab-alert-list">${noSentReport.slice(0, 5).map(s => `<span>${_esc(s.name)}</span>`).join(", ")}${noSentReport.length > 5 ? " + ещё " + (noSentReport.length - 5) : ""}</div>`
+      : `<div class="cab-alert-num">✓</div><div class="cab-alert-list">все отчёты опубликованы</div>`;
+
+    const draftsHtml = pendingDrafts.length
+      ? `<div class="cab-alert-num">${pendingDrafts.length}</div>
+         <div class="cab-alert-list">${pendingDrafts.slice(0, 5).map(s => `<span>${_esc(s.name)}</span>`).join(", ")}${pendingDrafts.length > 5 ? " + ещё " + (pendingDrafts.length - 5) : ""}</div>`
+      : `<div class="cab-alert-num">✓</div><div class="cab-alert-list">нет черновиков на проверке</div>`;
 
     const dayColumns = [1, 2, 3, 4, 5, 6, 7].map(d => {
       const slotsHtml = grid[d].length
@@ -416,6 +506,7 @@
         <td>${_esc(s.parent_name || (s.is_adult ? "взрослый" : "—"))}</td>
         <td>${s.price_per_lesson ? _esc(s.price_per_lesson) + " ₽" : "—"}</td>
         <td>${_esc(s.payment_status || "Не выставлено")}</td>
+        <td>${_reportCellHtml(reportStates[s.id], s.id)}</td>
         <td><code>${_esc(s.pin)}</code></td>
         <td style="white-space: nowrap;">
           <a class="cab-preview-link" href="./student.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет ученика">🎓</a>
@@ -448,8 +539,12 @@
           <div class="cab-alert-head"><span class="cab-alert-icon">📅</span><h4>Следующий урок</h4></div>
           ${nextLessonHtml}
         </article>
+        <article class="cab-alert cab-alert--drafts">
+          <div class="cab-alert-head"><span class="cab-alert-icon">🟡</span><h4>Черновики ждут проверки</h4></div>
+          ${draftsHtml}
+        </article>
         <article class="cab-alert cab-alert--report">
-          <div class="cab-alert-head"><span class="cab-alert-icon">📝</span><h4>Нет отчёта за этот месяц</h4></div>
+          <div class="cab-alert-head"><span class="cab-alert-icon">📝</span><h4>Не опубликован отчёт за месяц</h4></div>
           ${noReportHtml}
         </article>
       </div>
@@ -474,6 +569,7 @@
                 <th>Родитель</th>
                 <th>Цена</th>
                 <th>Оплата</th>
+                <th>Отчёт</th>
                 <th>PIN</th>
                 <th>Превью</th>
               </tr>
@@ -512,6 +608,44 @@
             <button type="button" class="cab-action-btn cab-action-btn--ghost" id="lessonCancelBtn">Отмена</button>
           </div>
           <p class="cab-lesson-hint" id="lessonHint" style="display:none;">✅ Скопировано! Открой Claude → вставь сообщение → я залью в Lesson Log + обновлю счётчик абонемента.</p>
+        </form>
+      </dialog>
+
+      <dialog id="reportDialog" class="cab-report-dialog">
+        <form method="dialog" id="reportForm">
+          <h3 class="cab-lesson-title">
+            <span id="reportModalIcon">✏️</span>
+            <span id="reportModalAction">Сгенерировать отчёт</span> —
+            <span id="reportStudentName"></span>
+          </h3>
+          <div class="cab-report-banner" id="reportModalBadge" style="display:none;">
+            🟡 ЭТО ЧЕРНОВИК. Родитель его не видит — пока ты не нажмёшь «Опубликовать».
+          </div>
+          <div class="cab-lesson-grid">
+            <label>Месяц <input type="month" name="month" id="reportMonth" required></label>
+            <label>Тип
+              <select name="type" id="reportType">
+                <option value="parent report">Parent report (родителю)</option>
+                <option value="student report">Student report (ученику)</option>
+              </select>
+            </label>
+            <label class="cab-lesson-full">Получатель <input type="text" name="recipient" id="reportRecipient" placeholder="напр. Изотова Ольга Игоревна"></label>
+            <label class="cab-lesson-full">Заголовок <input type="text" name="title" id="reportTitle" placeholder="2026-05 — Имя — parent report"></label>
+            <label class="cab-lesson-full">Короткое сообщение (1-2 предложения, увидит родитель в карточке)
+              <textarea name="short_message" id="reportShortMessage" rows="2" placeholder="Юля молодец — закончили блок по теме X, освоили Y..."></textarea>
+            </label>
+            <label class="cab-lesson-full">Полный текст отчёта (markdown — поддерживаются # ## - **жирный**)
+              <textarea name="content" id="reportContent" rows="14" placeholder="# Краткий вывод&#10;&#10;...&#10;&#10;# Календарь занятий — месяц&#10;&#10;- 01.05 — тема&#10;&#10;# По прогрессу&#10;&#10;...&#10;&#10;# Зоны роста&#10;&#10;...&#10;&#10;# Следующая задача&#10;&#10;..."></textarea>
+            </label>
+          </div>
+          <div class="cab-lesson-actions">
+            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportClaudePromptBtn">🤖 Промт для Claude</button>
+            <button type="button" class="cab-action-btn cab-action-btn--primary" id="reportSaveBtn">💾 Сохранить черновик</button>
+            <button type="button" class="cab-action-btn cab-action-btn--primary" id="reportPublishBtn" style="display:none; background: #2c8a4e;">✅ Опубликовать (через Claude)</button>
+            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportDeleteBtn" style="display:none; color:#b94d4d;">🗑 Удалить</button>
+            <button type="button" class="cab-action-btn cab-action-btn--ghost" id="reportCancelBtn">Закрыть</button>
+          </div>
+          <p class="cab-lesson-hint" id="reportHint" style="display:none;"></p>
         </form>
       </dialog>
     `;
@@ -611,6 +745,189 @@
         hint.textContent = "⚠️ Не получилось скопировать автоматом. Текст ниже — скопируй руками:\n\n" + md;
         hint.style.whiteSpace = "pre-wrap";
       }
+    });
+
+    // ============ Report modal wire-up ============
+    const reportDialog = container.querySelector("#reportDialog");
+    const reportForm = container.querySelector("#reportForm");
+    const reportNameEl = container.querySelector("#reportStudentName");
+    const reportMonthEl = container.querySelector("#reportMonth");
+    const reportTypeEl = container.querySelector("#reportType");
+    const reportRecipientEl = container.querySelector("#reportRecipient");
+    const reportTitleEl = container.querySelector("#reportTitle");
+    const reportShortMsgEl = container.querySelector("#reportShortMessage");
+    const reportContentEl = container.querySelector("#reportContent");
+    const reportBadge = container.querySelector("#reportModalBadge");
+    const reportAction = container.querySelector("#reportModalAction");
+    const reportIcon = container.querySelector("#reportModalIcon");
+    const reportPublishBtn = container.querySelector("#reportPublishBtn");
+    const reportDeleteBtn = container.querySelector("#reportDeleteBtn");
+    const reportClaudePromptBtn = container.querySelector("#reportClaudePromptBtn");
+    const reportSaveBtn = container.querySelector("#reportSaveBtn");
+    const reportCancelBtn = container.querySelector("#reportCancelBtn");
+    const reportHint = container.querySelector("#reportHint");
+
+    function openReportModal(studentId, mode) {
+      const student = students.find(s => s.id === studentId);
+      if (!student) return;
+      const month = currentMonth;
+      reportNameEl.textContent = student.name;
+      reportForm.dataset.studentId = studentId;
+      reportForm.dataset.studentName = student.name;
+      reportForm.dataset.month = month;
+      reportForm.dataset.mode = mode;
+      reportMonthEl.value = month;
+      reportHint.style.display = "none";
+      reportHint.textContent = "";
+      reportHint.style.whiteSpace = "";
+
+      if (mode === "create") {
+        reportIcon.textContent = "✏️";
+        reportAction.textContent = "Сгенерировать отчёт";
+        reportBadge.style.display = "none";
+        reportTypeEl.value = "parent report";
+        reportRecipientEl.value = student.parent_name || "родитель";
+        reportTitleEl.value = month + " — " + student.name + " — parent report";
+        reportShortMsgEl.value = "";
+        reportContentEl.value = "";
+        reportPublishBtn.style.display = "none";
+        reportDeleteBtn.style.display = "none";
+        delete reportForm.dataset.reportId;
+        delete reportForm.dataset.source;
+      } else {
+        // edit / preview
+        const state = getReportOrDraft(studentId, month);
+        if (!state) { openReportModal(studentId, "create"); return; }
+        const r = state.report;
+        if (state.status === "sent") {
+          reportIcon.textContent = "✅";
+          reportAction.textContent = "Опубликованный отчёт";
+          reportBadge.style.display = "none";
+        } else {
+          reportIcon.textContent = "🟡";
+          reportAction.textContent = state.source === "draft" ? "Локальный черновик" : "Notion-черновик";
+          reportBadge.style.display = "";
+        }
+        reportTypeEl.value = r.type || "parent report";
+        reportRecipientEl.value = r.recipient || "";
+        reportTitleEl.value = r.title || "";
+        reportShortMsgEl.value = r.short_message || "";
+        reportContentEl.value = r.content || "";
+        reportForm.dataset.reportId = r.id || "";
+        reportForm.dataset.source = state.source;
+        reportPublishBtn.style.display = state.status === "sent" ? "none" : "";
+        reportDeleteBtn.style.display = state.source === "draft" ? "" : "none";
+      }
+
+      if (typeof reportDialog.showModal === "function") reportDialog.showModal();
+      else reportDialog.setAttribute("open", "");
+    }
+
+    function closeReportModal() {
+      reportDialog.close && reportDialog.close();
+      reportDialog.removeAttribute("open");
+    }
+
+    // Делегированный обработчик кликов по кнопкам в колонке «Отчёт»
+    container.addEventListener("click", function (e) {
+      const btn = e.target.closest("[data-action]");
+      if (!btn) return;
+      const action = btn.dataset.action;
+      const sid = btn.dataset.studentId;
+      if (!sid) return;
+      if (action === "open-report-modal") {
+        openReportModal(sid, "create");
+      } else if (action === "preview-report") {
+        openReportModal(sid, "edit");
+      }
+    });
+
+    reportCancelBtn.addEventListener("click", closeReportModal);
+
+    function _collectDraftFromForm() {
+      const studentId = reportForm.dataset.studentId;
+      const monthVal = reportMonthEl.value;
+      if (!studentId || !monthVal) return null;
+      return {
+        student_id: studentId,
+        month: monthVal,
+        month_label: _monthLabelFromISO(monthVal),
+        type: reportTypeEl.value,
+        recipient: reportRecipientEl.value,
+        title: reportTitleEl.value,
+        short_message: reportShortMsgEl.value,
+        content: reportContentEl.value
+      };
+    }
+
+    reportSaveBtn.addEventListener("click", function () {
+      const draft = _collectDraftFromForm();
+      if (!draft) return;
+      try {
+        saveDraft(draft);
+        reportHint.style.display = "block";
+        reportHint.textContent = "✅ Черновик сохранён локально. Закроем окно через 1.5 сек, и ты увидишь жёлтую плашку 🟡 в колонке «Отчёт».";
+        setTimeout(function () {
+          closeReportModal();
+          renderTeacher(container, students);
+        }, 1500);
+      } catch (err) {
+        reportHint.style.display = "block";
+        reportHint.textContent = "⚠️ Ошибка: " + (err && err.message ? err.message : err);
+      }
+    });
+
+    reportClaudePromptBtn.addEventListener("click", async function () {
+      const studentId = reportForm.dataset.studentId;
+      const monthVal = reportMonthEl.value;
+      if (!studentId || !monthVal) return;
+      const student = students.find(s => s.id === studentId);
+      if (!student) return;
+      const prompt = _buildClaudeGeneratePrompt(student, monthVal);
+      try {
+        await navigator.clipboard.writeText(prompt);
+        reportHint.style.display = "block";
+        reportHint.textContent = "✅ Промт скопирован! Открой Claude → вставь → получи готовый markdown-текст → скопируй и вставь обратно сюда в поле «Полный текст отчёта» → нажми «Сохранить черновик».";
+      } catch (e) {
+        reportHint.style.display = "block";
+        reportHint.style.whiteSpace = "pre-wrap";
+        reportHint.textContent = "⚠️ Не получилось скопировать. Текст ниже:\n\n" + prompt;
+      }
+    });
+
+    reportPublishBtn.addEventListener("click", async function () {
+      const draft = _collectDraftFromForm();
+      if (!draft) return;
+      const student = students.find(s => s.id === draft.student_id);
+      if (!student) return;
+      // Сначала фиксируем текущие правки как локальный черновик
+      let saved;
+      try {
+        saved = saveDraft(draft);
+      } catch (err) {
+        reportHint.style.display = "block";
+        reportHint.textContent = "⚠️ Ошибка сохранения: " + (err && err.message ? err.message : err);
+        return;
+      }
+      const prompt = _buildPublishPrompt(saved, student);
+      try {
+        await navigator.clipboard.writeText(prompt);
+        reportHint.style.display = "block";
+        reportHint.textContent = "✅ Промт публикации скопирован! Открой чат с Claude → вставь → Claude перенесёт черновик в data.js со status:\"sent\" + bump-нет ?v=. Пока окно не закрывай — после подтверждения Claude вернись сюда и нажми «🗑 Удалить» чтобы убрать локальный черновик.";
+      } catch (e) {
+        reportHint.style.display = "block";
+        reportHint.style.whiteSpace = "pre-wrap";
+        reportHint.textContent = "⚠️ Не скопировал автоматом. Текст ниже:\n\n" + prompt;
+      }
+    });
+
+    reportDeleteBtn.addEventListener("click", function () {
+      const reportId = reportForm.dataset.reportId;
+      if (!reportId) return;
+      if (!window.confirm("Удалить локальный черновик? Это действие необратимо (но если отчёт уже опубликован в data.js — он останется).")) return;
+      deleteDraft(reportId);
+      closeReportModal();
+      renderTeacher(container, students);
     });
   }
 
