@@ -1255,11 +1255,11 @@
       return `
         <article class="cab-card">
           <h3>Отчёты</h3>
-          <div class="cab-card-row"><span class="cab-row-label">${_esc(currentMonth)}</span><span class="cab-row-value">отчёт пока не загружен</span></div>
+          <div class="cab-card-row"><span class="cab-row-label">${_esc(currentMonth)}</span><span class="cab-row-value">в работе</span></div>
           <p style="margin: 12px 0 14px; font-size: 12px; line-height: 1.55; color: var(--text-3);">
-            Методический отчёт за ${_esc(currentMonth)} ещё в работе. Напишите Марии, чтобы получить его быстрее.
+            Методический отчёт за ${_esc(currentMonth)} готовит преподаватель. Когда он будет готов — здесь появится кнопка «📄 Скачать отчёт». Уведомление придёт в Telegram.
           </p>
-          <a class="cab-action-btn cab-action-btn--ghost" href="${_esc(payment.telegram || "")}" target="_blank" rel="noreferrer">Запросить отчёт у Марии</a>
+          <a class="cab-action-btn cab-action-btn--ghost" href="${_esc(payment.telegram || "")}" target="_blank" rel="noreferrer">💬 Написать Марии</a>
         </article>
       `;
     }
@@ -1270,7 +1270,7 @@
           <div class="cab-report-title">${_esc(r.title || r.type)}</div>
           <div class="cab-report-meta">${_esc(r.month_label || r.month || "")} · ${_esc(r.type || "")}</div>
         </div>
-        <button class="cab-action-btn" type="button" data-action="open-report" data-student="${_esc(student.id)}" data-report="${_esc(r.id)}">Открыть</button>
+        <button class="cab-action-btn cab-action-btn--primary" type="button" data-action="open-report" data-student="${_esc(student.id)}" data-report="${_esc(r.id)}">📄 Скачать отчёт</button>
       </div>
     `).join("");
 
@@ -1279,7 +1279,7 @@
         <h3>Отчёты</h3>
         ${rows}
         <p style="margin-top: 12px; font-size: 11.5px; color: var(--text-3); line-height: 1.55;">
-          Откроется страница, готовая к печати: <kbd>Ctrl/⌘ + P</kbd> → «Сохранить как PDF».
+          Кнопка откроет отчёт в новом окне в формате PDF. Для сохранения: <kbd>Ctrl/⌘ + P</kbd> → «Сохранить как PDF».
         </p>
       </article>
     `;
