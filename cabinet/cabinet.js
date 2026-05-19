@@ -258,10 +258,12 @@
 
         ${_renderAbonementCard(student, { studentView: true })}
 
+        ${_renderHomeworkCard(student)}
+
         ${_renderLessonsCard(student, { interactive: true })}
       </div>
 
-      <p class="cab-mvp-note">Это MVP-версия кабинета. Расширенные функции (домашка, отчёты, тренажёры) добавляются постепенно.</p>
+      <p class="cab-mvp-note">Это MVP-версия кабинета. Расширенные функции (отчёты, тренажёры) добавляются постепенно.</p>
     `;
 
     _wireHomeworkCheckboxes(container, student);
@@ -1045,6 +1047,94 @@
       <article class="cab-card cab-card--wide">
         <h3>Уроки · ${_esc(_monthLabelFromISO(month))}</h3>
         <ul class="cab-lessons-list">${rows}</ul>
+      </article>
+    `;
+  }
+
+  /* ---------- homework card (student view, 3rd module) ---------- */
+  function _renderHomeworkCard(student) {
+    const lessons = Array.isArray(student.lessons) ? student.lessons : [];
+    const hwLessons = lessons.filter(l => l && l.homework);
+
+    if (!hwLessons.length) {
+      return `
+        <article class="cab-card cab-card--homework">
+          <h3>Домашка</h3>
+          <div class="cab-hw-empty">
+            <div class="cab-hw-empty-icon" aria-hidden="true">📭</div>
+            <p class="cab-hw-empty-text">Сейчас ничего не задано. Когда учитель задаст — увидишь здесь.</p>
+          </div>
+        </article>
+      `;
+    }
+
+    const enriched = hwLessons.map(l => ({
+      lesson: l,
+      isDone: _getHwStatus(student.id, l) === "done"
+    }));
+    enriched.sort((a, b) => {
+      if (a.isDone !== b.isDone) return a.isDone ? 1 : -1;
+      return b.lesson.date.localeCompare(a.lesson.date);
+    });
+    const pending = enriched.filter(e => !e.isDone);
+    const done = enriched.filter(e => e.isDone);
+
+    function _hwItem(e, compact) {
+      const hw = e.lesson.homework || {};
+      const dateStr = _formatLessonDate(e.lesson.date);
+      const dow = _dowFromISO(e.lesson.date);
+      const cbCls = "cab-hw-cb cab-hw-cb--big" + (e.isDone ? " is-done" : "");
+      const cb = '<span class="' + cbCls + '" role="checkbox" tabindex="0"'
+        + ' aria-checked="' + e.isDone + '"'
+        + ' data-action="toggle-hw" data-hw-date="' + _esc(e.lesson.date) + '"'
+        + ' title="' + (e.isDone ? 'Сделано — клик чтобы отменить' : 'Отметить как сделанное') + '">'
+        + (e.isDone ? '✓' : '') + '</span>';
+      const titleHtml = hw.module_title
+        ? '<span class="cab-hw-title">' + _esc(hw.module_title) + '</span>'
+        : '';
+      const textHtml = !compact && hw.text
+        ? '<p class="cab-hw-task">' + _esc(hw.text) + '</p>'
+        : '';
+      const btnLabel = hw.module_title || "Открыть в Лаборатории";
+      const btnHtml = !compact && hw.module_url
+        ? '<a class="cab-action-btn cab-action-btn--primary cab-hw-link"'
+          + ' href="' + _esc(hw.module_url) + '" target="_blank" rel="noreferrer">'
+          + '🚀 ' + _esc(btnLabel) + '</a>'
+        : '';
+      return '<div class="cab-hw-item' + (e.isDone ? ' is-done' : '')
+        + (compact ? ' cab-hw-item--compact' : '') + '">'
+        + '<div class="cab-hw-head">'
+        + '<div class="cab-hw-info">'
+        + '<span class="cab-hw-date">' + dateStr + ' · ' + dow + '</span>'
+        + titleHtml
+        + '</div>'
+        + cb
+        + '</div>'
+        + textHtml
+        + btnHtml
+        + '</div>';
+    }
+
+    const pendingHtml = pending.length
+      ? pending.slice(0, 3).map(e => _hwItem(e, false)).join("")
+      : '<p class="cab-hw-allgreen">🎉 Все домашки сделаны — молодец!</p>';
+
+    const doneHtml = done.length
+      ? '<details class="cab-hw-done-list">'
+        + '<summary>Раньше сделано · ' + done.length + '</summary>'
+        + done.slice(0, 5).map(e => _hwItem(e, true)).join("")
+        + '</details>'
+      : "";
+
+    const badge = pending.length
+      ? ' <span class="cab-hw-badge">' + pending.length + '</span>'
+      : '';
+
+    return `
+      <article class="cab-card cab-card--homework">
+        <h3>Домашка${badge}</h3>
+        ${pendingHtml}
+        ${doneHtml}
       </article>
     `;
   }

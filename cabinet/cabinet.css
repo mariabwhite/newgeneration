@@ -1808,3 +1808,200 @@ body.light .cab-report-banner { color: #7a5800; }
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Homework card (student cabinet, 3rd module) ===== */
+.cab-card--homework {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cab-card--homework h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cab-hw-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  background: #FF5A1F;
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.cab-hw-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px;
+  text-align: center;
+  gap: 10px;
+}
+
+.cab-hw-empty-icon {
+  font-size: 32px;
+  opacity: 0.6;
+}
+
+.cab-hw-empty-text {
+  margin: 0;
+  color: var(--text-3);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.cab-hw-allgreen {
+  margin: 8px 0;
+  padding: 14px 16px;
+  background: color-mix(in srgb, #2BB673 10%, transparent);
+  border: 1px solid color-mix(in srgb, #2BB673 40%, var(--line));
+  border-radius: 12px;
+  color: #1f7a44;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+body.light .cab-hw-allgreen { color: #1a6a3a; }
+
+.cab-hw-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent-soft, #FF5A1F) 4%, var(--bg-card, transparent));
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.cab-hw-item.is-done {
+  opacity: 0.55;
+  background: var(--bg-card, transparent);
+}
+
+.cab-hw-item--compact {
+  padding: 8px 12px;
+  gap: 4px;
+}
+
+.cab-hw-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cab-hw-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cab-hw-date {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.cab-hw-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.cab-hw-task {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.cab-hw-link {
+  align-self: stretch;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.cab-hw-cb--big {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: transparent;
+  background: var(--bg-card, transparent);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.cab-hw-cb--big:hover {
+  border-color: var(--accent);
+}
+
+.cab-hw-cb--big.is-done {
+  background: #2BB673;
+  border-color: #2BB673;
+  color: #fff;
+}
+
+.cab-hw-done-list {
+  margin-top: 6px;
+}
+
+.cab-hw-done-list summary {
+  cursor: pointer;
+  padding: 8px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+  list-style: none;
+}
+
+.cab-hw-done-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.cab-hw-done-list summary::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform 0.15s;
+}
+
+.cab-hw-done-list[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.cab-hw-done-list summary:hover {
+  color: var(--text-2);
+}
+
+.cab-hw-done-list[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
