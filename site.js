@@ -1,5 +1,5 @@
 const PREF_VERSION_KEY = "nge-preferences-version";
-const PREF_VERSION = "20260515-ru-dark-default";
+const PREF_VERSION = "20260520-ru-light-default";
 function setTheme(theme) {
   const themes = ["dark", "light"];
   const nextTheme = themes.includes(theme) ? theme : "dark";

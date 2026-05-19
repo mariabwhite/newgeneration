@@ -3,7 +3,7 @@
   const UNIVERSAL_STORAGE_KEY = "nge-theme-universal";
   const LESSON_STORAGE_KEY = "lesson-palette";
   const PREF_VERSION_KEY = "nge-preferences-version";
-  const PREF_VERSION = "20260515-ru-dark-default";
+  const PREF_VERSION = "20260520-ru-light-default";
   const CATALOG_STORAGE_KEY = "nge-theme-lab";
   const SITE_THEMES = ["dark", "light"];
   const LESSON_THEMES = ["light-lab", "peach", "green", "rose", "cyan", "amber", "white", "black-lab", "violet"];
@@ -30,7 +30,7 @@
 
   function normalizeTheme(theme) {
     if (SITE_THEMES.includes(theme)) return theme;
-    return siteThemeFromLesson(theme) || "dark";
+    return siteThemeFromLesson(theme) || "light";
   }
 
   function readRequestedTheme() {
@@ -67,12 +67,14 @@
   function migrateDefaultPreferences() {
     if (readStorage(PREF_VERSION_KEY) === PREF_VERSION) return;
     try {
-      if (!readStorage("nge-lang")) localStorage.setItem("nge-lang", "ru");
-      if (!readStorage("nge-theme")) localStorage.setItem("nge-theme", "dark");
+      // v20260520: force light + ru defaults (overwrites prior dark/en) on main site.
+      // Cabinet keeps its own preference (Maria might prefer cabinet dark).
+      localStorage.setItem("nge-lang", "ru");
+      localStorage.setItem("nge-theme", "light");
+      localStorage.setItem(CATALOG_STORAGE_KEY, "light");
+      localStorage.setItem(LESSON_STORAGE_KEY, "light-lab");
+      localStorage.setItem(UNIVERSAL_STORAGE_KEY, "light-lab");
       if (!readStorage("nge-cabinet-theme")) localStorage.setItem("nge-cabinet-theme", "dark");
-      if (!readStorage(CATALOG_STORAGE_KEY)) localStorage.setItem(CATALOG_STORAGE_KEY, "dark");
-      if (!readStorage(LESSON_STORAGE_KEY)) localStorage.setItem(LESSON_STORAGE_KEY, "black-lab");
-      if (!readStorage(UNIVERSAL_STORAGE_KEY)) localStorage.setItem(UNIVERSAL_STORAGE_KEY, "black-lab");
       localStorage.setItem(PREF_VERSION_KEY, PREF_VERSION);
     } catch (error) {}
   }
@@ -89,7 +91,7 @@
       const value = normalizeLessonTheme(readStorage(key));
       if (value) return value;
     }
-    return "black-lab";
+    return "light-lab";
   }
 
   function writeStoredTheme(lessonTheme) {
