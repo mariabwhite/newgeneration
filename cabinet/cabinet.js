@@ -138,6 +138,89 @@
     return (data.reports || []).filter(r => r.student_id === studentId);
   }
 
+  /* ---------- drafts (localStorage) ---------- */
+  /* MVP-механика: Маша создаёт черновики отчётов локально в браузере.
+     Родитель НИКОГДА не видит локальные черновики — только данные из data.js
+     со статусом "sent". Чтобы опубликовать черновик, Маша нажимает
+     "Опубликовать" → копируется промт для Claude → Claude правит data.js
+     (status: "sent") → bumpает ?v= → родитель видит. */
+
+  const DRAFTS_KEY = "nge-report-drafts";
+
+  function _readDrafts() {
+    try {
+      const raw = localStorage.getItem(DRAFTS_KEY);
+      if (!raw) return [];
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr : [];
+    } catch (_) { return []; }
+  }
+
+  function _writeDrafts(arr) {
+    try { localStorage.setItem(DRAFTS_KEY, JSON.stringify(arr)); } catch (_) {}
+  }
+
+  function getDrafts() {
+    return _readDrafts();
+  }
+
+  function getDraftForStudent(studentId, month) {
+    return _readDrafts().find(d => d.student_id === studentId && d.month === month) || null;
+  }
+
+  function saveDraft(draft) {
+    if (!draft || !draft.student_id || !draft.month) {
+      throw new Error("saveDraft: student_id и month обязательны");
+    }
+    const all = _readDrafts();
+    const idx = all.findIndex(d => d.student_id === draft.student_id && d.month === draft.month);
+    const now = new Date().toISOString();
+    const enriched = Object.assign({}, draft, {
+      id: draft.id || ("local-" + draft.student_id + "-" + draft.month),
+      status: "draft",
+      source: "local",
+      updated_at: now,
+      created_at: (idx >= 0 ? all[idx].created_at : now)
+    });
+    if (idx >= 0) all[idx] = enriched;
+    else all.push(enriched);
+    _writeDrafts(all);
+    return enriched;
+  }
+
+  function deleteDraft(id) {
+    const all = _readDrafts();
+    const filtered = all.filter(d => d.id !== id);
+    _writeDrafts(filtered);
+    return filtered.length !== all.length;
+  }
+
+  /**
+   * Унифицированный поиск отчёта или черновика по ученику и месяцу.
+   * Приоритет: data.js sent > локальный draft > data.js !sent > nothing.
+   * Возвращает { source, report, status } или null.
+   *   source = "data" — из data.js (Notion snapshot)
+   *   source = "draft" — из localStorage (локальный черновик Маши)
+   *   status = "sent" — опубликован (виден родителю)
+   *   status = "draft" — черновик (НЕ виден родителю)
+   */
+  function getReportOrDraft(studentId, month) {
+    const data = window.NGE_DATA || {};
+    const reports = data.reports || [];
+    const dataReport = reports.find(r => r.student_id === studentId && r.month === month);
+    if (dataReport && (dataReport.status === "sent" || dataReport.report_status === "sent")) {
+      return { source: "data", report: dataReport, status: "sent" };
+    }
+    const localDraft = getDraftForStudent(studentId, month);
+    if (localDraft) {
+      return { source: "draft", report: localDraft, status: "draft" };
+    }
+    if (dataReport) {
+      return { source: "data", report: dataReport, status: dataReport.status || "draft" };
+    }
+    return null;
+  }
+
   /* ---------- render: student view ---------- */
 
   function _esc(s) {
@@ -1019,6 +1102,11 @@
     getStudentById,
     getAllStudents,
     getReportsForStudent,
+    getDrafts,
+    getDraftForStudent,
+    saveDraft,
+    deleteDraft,
+    getReportOrDraft,
     renderStudent,
     renderTeacher,
     renderParent,
