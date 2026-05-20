@@ -703,6 +703,92 @@
       font-weight: 700;
     }
 
+    .score-dashboard {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      margin: 18px 0 24px;
+      border: 1px solid rgba(122,95,207,.24);
+      border-radius: 0;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(247,245,255,.92)),
+        radial-gradient(circle at 100% 0%, rgba(255,90,31,.12), transparent 38%);
+    }
+
+    .score-orb {
+      --score: 0;
+      width: 132px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 50%, #fff 0 52%, transparent 53%),
+        conic-gradient(var(--brand-2) calc(var(--score) * 1%), rgba(122,95,207,.13) 0);
+      box-shadow: 0 18px 38px rgba(122,95,207,.16);
+    }
+
+    .score-orb strong {
+      display: block;
+      font: 900 30px/1 var(--display);
+      color: var(--text);
+      letter-spacing: -.02em;
+      text-align: center;
+    }
+
+    .score-orb span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font: 800 10px/1 var(--mono);
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .score-dashboard h3 {
+      margin: 0 0 6px;
+      color: var(--text);
+      font-size: clamp(22px, 2vw, 30px);
+      letter-spacing: -.02em;
+    }
+
+    .score-dashboard p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .score-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .score-metric {
+      border: 1px solid var(--line);
+      padding: 10px;
+      background: rgba(255,255,255,.72);
+    }
+
+    .score-metric b {
+      display: block;
+      color: var(--text);
+      font: 900 18px/1.1 var(--display);
+    }
+
+    .score-metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font: 800 10px/1.2 var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
     .finish-panel {
       margin-top: 24px;
       border: 1px solid var(--line);
@@ -937,6 +1023,18 @@
 
       .level-head {
         grid-template-columns: 112px 1fr;
+      }
+
+      .score-dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .score-orb {
+        width: 124px;
+      }
+
+      .score-metrics {
+        grid-template-columns: 1fr;
       }
 
       .start-btn {
@@ -3294,6 +3392,28 @@
       return `<div class="skill-label"><span class="skill-num">${num}</span><span class="skill-name">${name}</span></div>`;
     }
 
+    function renderScoreDashboard(level) {
+      return `
+        <div class="score-dashboard" data-score-dashboard="${level.code}">
+          <div class="score-orb" data-score-orb="${level.code}" style="--score:0">
+            <div>
+              <strong data-score-percent="${level.code}">0%</strong>
+              <span>AutoScore</span>
+            </div>
+          </div>
+          <div>
+            <h3 data-score-title="${level.code}">0 / 0 objective points</h3>
+            <p data-score-note="${level.code}">Choose answers in Reading, Listening and Grammar. Writing and Speaking stay for teacher review.</p>
+            <div class="score-metrics">
+              <div class="score-metric"><b data-score-skill="${level.code}-reading">0 / 0</b><span>Reading</span></div>
+              <div class="score-metric"><b data-score-skill="${level.code}-listening">0 / 0</b><span>Listening</span></div>
+              <div class="score-metric"><b data-score-skill="${level.code}-grammar">0 / 0</b><span>Grammar</span></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     function renderLevel(level, index) {
       const visualIndex = String(index + 1).padStart(2, "0");
       return `
@@ -3309,6 +3429,7 @@
             </div>
             <button class="start-btn" type="button">Start ${level.code} Test / Начать тест ${level.code}</button>
           </div>
+          ${renderScoreDashboard(level)}
           <div class="test-body">
             <div class="section-grid skill-reading">
               ${skillLabel("01", "Reading")}
@@ -3447,14 +3568,44 @@
       return { card, total, answered, correct };
     }
 
+    function getSkillStats(card, skillClass) {
+      const groups = [...card.querySelectorAll(`.${skillClass} .choice-row, .${skillClass} .grammar-options`)];
+      return {
+        total: groups.length,
+        answered: groups.filter(group => group.querySelector(".is-selected")).length,
+        correct: groups.filter(group => group.querySelector(".is-selected[data-correct='true']")).length
+      };
+    }
+
     function updateLevelScore(level) {
       const { card, total, answered, correct } = getLevelObjectiveStats(level);
+      const percent = total ? Math.round((correct / total) * 100) : 0;
       const score = card.querySelector(`[data-score-for="${level}"]`);
       if (score) score.textContent = `Objective score: ${correct} / ${total} · answered ${answered} / ${total}`;
       const panel = card.querySelector(`[data-level-score="${level}"]`);
       if (panel) {
         panel.innerHTML = `<strong>Objective score: ${correct} / ${total}</strong><small>Answered ${answered} / ${total}. Reading, listening and grammar are checked automatically; writing and speaking remain for teacher review.</small>`;
       }
+      const orb = card.querySelector(`[data-score-orb="${level}"]`);
+      const percentEl = card.querySelector(`[data-score-percent="${level}"]`);
+      const title = card.querySelector(`[data-score-title="${level}"]`);
+      const note = card.querySelector(`[data-score-note="${level}"]`);
+      if (orb) orb.style.setProperty("--score", percent);
+      if (percentEl) percentEl.textContent = `${percent}%`;
+      if (title) title.textContent = `${correct} / ${total} objective points`;
+      if (note) {
+        note.textContent = answered === total
+          ? "Objective part complete. Writing and Speaking are ready for teacher review."
+          : `Answered ${answered} / ${total}. Keep going: the meter updates instantly.`;
+      }
+      [
+        ["reading", getSkillStats(card, "skill-reading")],
+        ["listening", getSkillStats(card, "skill-listening")],
+        ["grammar", getSkillStats(card, "skill-grammar")]
+      ].forEach(([skill, stats]) => {
+        const metric = card.querySelector(`[data-score-skill="${level}-${skill}"]`);
+        if (metric) metric.textContent = `${stats.correct} / ${stats.total}`;
+      });
     }
 
     cards.forEach(card => updateLevelScore(card.dataset.level));
