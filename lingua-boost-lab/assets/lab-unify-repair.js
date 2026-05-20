@@ -292,6 +292,16 @@ body[data-lb-page="english-booster"] .core-line-chip {
       setImportant(node, "margin-right", "auto");
       setImportant(node, "box-sizing", "border-box");
     });
+    document.querySelectorAll("main, .wrap, .shell, .container").forEach(function(container){
+      Array.prototype.forEach.call(container.children || [], function(node){
+        if(!node.matches || !node.matches(".canon-l-collapsible, .canon-l-why, .canon-l-tracker, .wl-tracker, .tracker, .step-tracker, .lesson-score-card, .lesson-flow, .learn-panel, .block, .section, .lesson-section, .lesson-illustration, .activity-section, .mission-card, .round-card, .star-bar, .lab-panel, .practice-zone, .output-card, .module-progress, .lesson-foot")) return;
+        setImportant(node, "width", width);
+        setImportant(node, "max-width", "1320px");
+        setImportant(node, "margin-left", "auto");
+        setImportant(node, "margin-right", "auto");
+        setImportant(node, "box-sizing", "border-box");
+      });
+    });
     if(/^(english-booster|core-trainer|restaurant-menu|grammar-arcade|whispering-library|geo-quest|stars|space-explorers)$/.test(body.dataset.lbPage || "")){
       document.querySelectorAll("main, .wrap, .shell, .container").forEach(function(node){
         setImportant(node, "width", width);
@@ -319,6 +329,15 @@ body[data-lb-page="english-booster"] .core-line-chip {
         setImportant(node, "margin-top", "-1.2cm");
       }
     });
+    if(body.dataset.lbLevel === "a1"){
+      document.querySelectorAll(".step-tracker, .lesson-score-card, .lesson-flow, .learn-panel, .block").forEach(function(node){
+        setImportant(node, "width", width);
+        setImportant(node, "max-width", "1320px");
+        setImportant(node, "margin-left", "auto");
+        setImportant(node, "margin-right", "auto");
+        setImportant(node, "box-sizing", "border-box");
+      });
+    }
     document.querySelectorAll("footer.canon-l-footer, .canon-l-footer").forEach(function(node){
       setImportant(node, "width", "100%");
       setImportant(node, "max-width", "none");
@@ -327,8 +346,9 @@ body[data-lb-page="english-booster"] .core-line-chip {
       setImportant(node, "box-sizing", "border-box");
     });
     document.querySelectorAll(".level-bubble, .lab-level-bubble, .nge-level-badge, .canon-l-level, .canon-l-topbar .canon-l-pill").forEach(function(node){
-      setImportant(node, "background", "color-mix(in srgb, var(--surface, #fff) 88%, var(--accent, #8a3ffc) 12%)");
-      setImportant(node, "border", "1px solid color-mix(in srgb, var(--accent, #8a3ffc) 36%, transparent)");
+      var darkLab = document.documentElement.getAttribute("data-theme") === "black-lab";
+      setImportant(node, "background", darkLab ? "color-mix(in srgb, var(--surface, #fff) 92%, transparent)" : "color-mix(in srgb, var(--surface, #fff) 88%, var(--accent, #8a3ffc) 12%)");
+      setImportant(node, "border", darkLab ? "1px solid var(--line-2, rgba(198,177,255,.22))" : "1px solid color-mix(in srgb, var(--accent, #8a3ffc) 36%, transparent)");
       setImportant(node, "color", "var(--text, #1f1830)");
       setImportant(node, "box-shadow", "none");
     });
