@@ -499,13 +499,20 @@
       `;
     }).join("");
 
+    function _shortParent(name, isAdult) {
+      if (!name) return isAdult ? "взрослый" : "—";
+      // "Анатольева Галина Анатольевна" → "Анатольева Г.А."
+      const parts = name.trim().split(/\s+/);
+      if (parts.length >= 3) return parts[0] + " " + parts[1].charAt(0) + "." + parts[2].charAt(0) + ".";
+      if (parts.length === 2) return parts[0] + " " + parts[1].charAt(0) + ".";
+      return name;
+    }
     const rows = students.map(s => `
       <tr>
         <td>${_esc(s.name)}</td>
-        <td>${_esc(s.level || "—")}</td>
         <td>${_esc(s.format || "—")}</td>
         <td>${_esc(s.schedule || "—")}</td>
-        <td>${_esc(s.parent_name || (s.is_adult ? "взрослый" : "—"))}</td>
+        <td title="${_esc(s.parent_name || "")}">${_esc(_shortParent(s.parent_name, s.is_adult))}</td>
         <td>${s.price_per_lesson ? _esc(s.price_per_lesson) + " ₽" : "—"}</td>
         <td>${_esc(s.payment_status || "Не выставлено")}</td>
         <td>${_reportCellHtml(reportStates[s.id], s.id)}</td>
@@ -565,7 +572,6 @@
             <thead>
               <tr>
                 <th>Имя</th>
-                <th>Уровень</th>
                 <th>Формат</th>
                 <th>Расписание</th>
                 <th>Родитель</th>
