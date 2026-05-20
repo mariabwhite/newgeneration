@@ -569,5 +569,63 @@ window.NGE_DATA = {
     { "level": "B1", "title": "Word Forge: Suffixes & Prefixes", "url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html" },
     { "level": "B2+", "title": "Geo Quest: Articles on the Map", "url": "../lingua-boost-lab/b2-plus/articles-with-geographical-names.html" },
     { "level": "C1", "title": "Stars & Stellar Phenomena", "url": "../lingua-boost-lab/c1/stars-and-stellar-phenomena.html" }
-  ]
+  ],
+  "contracts": {
+    "andrei-kruglov": {
+      "folder": "assets/contracts/andrei-kruglov",
+      "files": ["01_договор_стр1.pdf", "02_договор_стр2_условия.pdf", "03_договор_стр3_подпись.jpg"]
+    },
+    "anya-isaeva": {
+      "folder": "assets/contracts/anya-isaeva",
+      "files": ["01_договор_стр1.webp", "02_договор_стр2_условия.webp", "03_договор_стр3_подпись.webp", "04_согласие_на_ПД.webp"]
+    },
+    "denis-shalmanov": {
+      "folder": "assets/contracts/denis-shalmanov",
+      "files": ["договор_отсканированный.pdf"]
+    },
+    "ivanov-ivan": {
+      "folder": "assets/contracts/ivanov-ivan",
+      "files": ["01_договор_стр1.jpeg", "02_договор_стр2_условия.jpeg", "03_договор_стр3_подпись.jpeg", "04_согласие_на_ПД.jpeg"]
+    },
+    "katya-marakina": {
+      "folder": "assets/contracts/katya-marakina",
+      "files": ["01_договор_стр1.jpeg", "02_договор_стр2.jpeg", "03_договор_стр3.jpeg", "04_доп.png"]
+    },
+    "sofia-pavlova": {
+      "folder": "assets/contracts/sofia-pavlova",
+      "files": ["01_согласие_на_ПД_с_пометками.jpg", "02_договор_стр1_подпись.jpg", "03_договор_стр1_дубль.jpg", "04_договор_стр1_низ.jpg", "05_договор_стр2_оплата.jpg", "06_договор_стр3_форс_мажор.jpg", "07_договор_стр4_срок.jpg", "08_дополнительная_страница.jpg"]
+    },
+    "sova-elena": {
+      "folder": "assets/contracts/sova-family",
+      "files": ["01_общий_договор.pdf", "02_договор_Катя_реквизиты.pdf", "03_реквизиты_Елена.png"],
+      "note": "общий договор семьи Сова — Елена и Катя"
+    },
+    "sova-ekaterina": {
+      "folder": "assets/contracts/sova-family",
+      "files": ["01_общий_договор.pdf", "02_договор_Катя_реквизиты.pdf", "03_реквизиты_Елена.png"],
+      "note": "общий договор семьи Сова — Елена и Катя"
+    },
+    "yulya-izotova": {
+      "folder": "assets/contracts/yulya-izotova",
+      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg", "05_подпись_доп.png"]
+    },
+    "yulya-lushina": {
+      "folder": "assets/contracts/yulya-lushina",
+      "files": ["договор.pdf"]
+    },
+    "ekaterina-mariya-pair": {
+      "byParent": {
+        "Лихолева Елена Сергеевна": {
+          "folder": "assets/contracts/ekaterina-mariya-pair/elena-likholeva",
+          "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"],
+          "child": "Маша Кузнецова"
+        },
+        "Медведева Марина Сергеевна": {
+          "folder": "assets/contracts/ekaterina-mariya-pair/marina-medvedeva",
+          "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"],
+          "child": "Катя Медведева"
+        }
+      }
+    }
+  }
 };

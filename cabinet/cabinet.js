@@ -1260,6 +1260,51 @@
     `;
   }
 
+  function _prettifyContractFilename(filename) {
+    // "01_договор_стр1.jpeg" → "Договор · стр.1"
+    return filename
+      .replace(/\.[a-z0-9]+$/i, "")
+      .replace(/^\d+_/, "")
+      .replace(/_/g, " ")
+      .replace(/\bстр(\d+)\b/g, "стр.$1")
+      .replace(/\bПД\b/g, "ПД")
+      .replace(/^[а-яё]/i, c => c.toUpperCase());
+  }
+
+  function _renderContractFiles(data) {
+    const items = (data.files || []).map(f => {
+      const url = `./${data.folder}/${f}`;
+      const label = _prettifyContractFilename(f);
+      const ext = (f.split(".").pop() || "").toLowerCase();
+      const isImg = ["jpg", "jpeg", "png", "webp", "gif"].indexOf(ext) >= 0;
+      if (isImg) {
+        return `<a href="${_esc(url)}" target="_blank" rel="noreferrer" class="cab-contract-thumb"><img src="${_esc(url)}" alt="${_esc(label)}" loading="lazy"><span>${_esc(label)}</span></a>`;
+      }
+      return `<a href="${_esc(url)}" target="_blank" rel="noreferrer" class="cab-contract-link">📄 ${_esc(label)}</a>`;
+    }).join("");
+    return `<div class="cab-contract-files">${items}</div>`;
+  }
+
+  function _renderContractsCard(student) {
+    const allContracts = (window.NGE_DATA && window.NGE_DATA.contracts) || {};
+    const contracts = allContracts[student.id];
+    if (!contracts) return "";
+
+    if (contracts.byParent) {
+      // Pair: render section per parent (each mom sees her own + partner's)
+      let inner = "";
+      Object.keys(contracts.byParent).forEach(parentName => {
+        const data = contracts.byParent[parentName];
+        const child = data.child ? ` · ${data.child}` : "";
+        inner += `<div class="cab-contract-section"><div class="cab-contract-parent">${_esc(parentName)}${_esc(child)}</div>${_renderContractFiles(data)}</div>`;
+      });
+      return `<article class="cab-card"><h3>📄 Договоры</h3><p class="cab-card-note">Подписанные документы хранятся для прозрачности. Клик по странице — открыть в полный размер.</p>${inner}</article>`;
+    }
+
+    const noteHtml = contracts.note ? `<p class="cab-card-note">${_esc(contracts.note)}</p>` : "";
+    return `<article class="cab-card"><h3>📄 Договор</h3><p class="cab-card-note">Подписанные документы хранятся для прозрачности. Клик по странице — открыть в полный размер.</p>${noteHtml}${_renderContractFiles(contracts)}</article>`;
+  }
+
   function renderParent(container, student) {
     if (!student) {
       container.innerHTML = "<p>Данные не найдены.</p>";
@@ -1307,6 +1352,8 @@
             ${payment.purpose ? `<div class="cab-card-row"><span class="cab-row-label">Назначение</span><span class="cab-row-value" style="font-size:11px;line-height:1.45;">${_esc(payment.purpose)}</span></div>` : ""}
           </div>
         </article>
+
+        ${_renderContractsCard(student)}
 
         ${_renderLessonsCard(student, { interactive: false })}
       </div>
