@@ -306,12 +306,31 @@ body[data-lb-page="english-booster"] .core-line-chip {
         setImportant(node, "transform", "translateX(-92px)");
       });
     }
+    document.querySelectorAll(".lesson-foot").forEach(function(node){
+      setImportant(node, "width", width);
+      setImportant(node, "max-width", "1320px");
+      setImportant(node, "margin-left", "auto");
+      setImportant(node, "margin-right", "auto");
+      setImportant(node, "box-sizing", "border-box");
+      if(body.dataset.lbPage === "prepositions-world"){
+        setImportant(node, "margin-top", "2cm");
+      }
+      if(body.dataset.lbPage === "restaurant-menu"){
+        setImportant(node, "margin-top", "-1.2cm");
+      }
+    });
     document.querySelectorAll("footer.canon-l-footer, .canon-l-footer").forEach(function(node){
       setImportant(node, "width", "100%");
       setImportant(node, "max-width", "none");
       setImportant(node, "margin-left", "0");
       setImportant(node, "margin-right", "0");
       setImportant(node, "box-sizing", "border-box");
+    });
+    document.querySelectorAll(".level-bubble, .lab-level-bubble, .nge-level-badge, .canon-l-level, .canon-l-topbar .canon-l-pill").forEach(function(node){
+      setImportant(node, "background", "color-mix(in srgb, var(--surface, #fff) 88%, var(--accent, #8a3ffc) 12%)");
+      setImportant(node, "border", "1px solid color-mix(in srgb, var(--accent, #8a3ffc) 36%, transparent)");
+      setImportant(node, "color", "var(--text, #1f1830)");
+      setImportant(node, "box-shadow", "none");
     });
     hideFooterLogos();
     lockLevelTypography();

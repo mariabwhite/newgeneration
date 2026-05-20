@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" data-lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -663,7 +663,7 @@ body {
 @media (max-width:650px){.lesson-foot{grid-template-columns:1fr;width:min(100% - 28px,1180px);}.foot-link.next{text-align:left;}}</style>
 
 <link rel="stylesheet" href="../assets/mobile-fix.css?v=1" data-tag="linguaboost-mobile-fix-loaded">
-<link rel="stylesheet" href="../assets/lab-unify-repair.css?v=20260514-hide-why" data-lab-unify-repair>
+<link rel="stylesheet" href="../assets/lab-unify-repair.css?v=20260520-lesson-align" data-lab-unify-repair>
 <style id="prepositions-final-hero-polish">
 .prepositions-picture-hero {
   width: min(100% - 24px, 1560px) !important;
@@ -2220,9 +2220,9 @@ body :is(.practice-item,.practice-q,.section-body,.block-intro,.minitask-detail)
 </section>
 
 <div class="star-bar">
-  <span class="star" id="star1">в­ђ</span><span class="star" id="star2">в­ђ</span>
-  <span class="star" id="star3">в­ђ</span><span class="star" id="star4">в­ђ</span>
-  <span class="star" id="star5">в­ђ</span><span class="star" id="star6">в­ђ</span>
+  <span class="star" id="star1">⭐</span><span class="star" id="star2">⭐</span>
+  <span class="star" id="star3">⭐</span><span class="star" id="star4">⭐</span>
+  <span class="star" id="star5">⭐</span><span class="star" id="star6">⭐</span>
 </div>
 <div class="rail">
   <div class="rail-step" id="rail1"><div class="rail-dot">1</div><div class="rail-label">Flip</div></div>
@@ -2494,7 +2494,7 @@ function resetGap(){Object.keys(gA).forEach(k=>delete gA[k]);selPrep=null;docume
 const MD=[{q:"The keys are ___ my pocket.",o:["on","in","under"],a:"in"},{q:"The bird sits ___ the fence.",o:["on","under","between"],a:"on"},{q:"The shoes are ___ the bed.",o:["above","under","next to"],a:"under"},{q:"The bus stop is ___ the cafe and the bank.",o:["behind","between","above"],a:"between"},{q:"The photo hangs ___ the fireplace.",o:["in","on","above"],a:"above"},{q:"Wait for me ___ the door!",o:["in front of","under","behind"],a:"in front of"}];
 function prepRationale(answer){return answer==='between'?'Between is for something with two things on either side.':answer==='above'?'Above means higher than another object.':answer==='under'?'Under means below another object.':answer==='in front of'?'In front of means at the front, facing the object.':answer==='in'?'In means inside a place or container.':answer==='on'?'On means touching the top surface.':'This preposition shows where the object is.';}
 function buildMCQ(){const c=document.getElementById("mcqBox");MD.forEach((item,i)=>{const d=document.createElement("div");d.className="q-item";d.innerHTML="<div class=\"q-text\">"+(i+1)+". "+item.q+"</div><div class=\"q-opts\">"+item.o.map(op=>"<label class=\"q-opt\"><input type=\"radio\" name=\"m"+i+"\" value=\""+op+"\"> "+op+"</label>").join("")+"</div><div class=\"q-fb\" id=\"mfb"+i+"\"></div>";c.appendChild(d);});}
-function checkMCQ(){let c=0;MD.forEach((item,i)=>{const s=document.querySelector("input[name=\"m"+i+"\"]:checked"),fb=document.getElementById("mfb"+i);if(s&&s.value===item.a){c++;fb.innerHTML="<span class=\"fb-ok\">Correct!</span>";}else fb.textContent="> "+item.a+" - Show me why? "+prepRationale(item.a);});const sc=document.getElementById("mcqSc");sc.textContent=c+"/6";sc.classList.remove("is-hidden");if(c>=4)completeTask(4);}
+function checkMCQ(){let c=0;MD.forEach((item,i)=>{const s=document.querySelector("input[name=\"m"+i+"\"]:checked"),fb=document.getElementById("mfb"+i);if(s&&s.value===item.a){c++;fb.innerHTML="<span class=\"fb-ok\">Correct!</span>";}else fb.textContent="> "+item.a+" - Show me why "+prepRationale(item.a);});const sc=document.getElementById("mcqSc");sc.textContent=c+"/6";sc.classList.remove("is-hidden");if(c>=4)completeTask(4);}
 function resetMCQ(){MD.forEach((_,i)=>{document.querySelectorAll("input[name=\"m"+i+"\"]").forEach(r=>r.checked=false);document.getElementById("mfb"+i).innerHTML="";});document.getElementById("mcqSc").classList.add("is-hidden");}
 
 // SPEAK
@@ -2647,7 +2647,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.interlude.is-interactive').forEach(el=>el.addEventListener('click',()=>speak(el.dataset.speak || el.textContent.trim())));
 });
 </script>
-<script defer src="../assets/lab-unify-repair.js?v=20260514-hide-why" data-lab-unify-repair></script>
+<script defer src="../assets/lab-unify-repair.js?v=20260520-lesson-align" data-lab-unify-repair></script>
 
 <nav class="lesson-foot"><a class="foot-link prev" href="./school-words-and-pronouns.html"><span class="foot-meta">Previous lesson</span><span class="foot-title">School Words &amp; Pronouns</span></a><a class="foot-link" href="../index.html#interactive-lessons"><span class="foot-meta">All lessons</span><span class="foot-title">Lab catalog</span></a><a class="foot-link next" href="./past-simple-adventure.html"><span class="foot-meta">Next lesson</span><span class="foot-title">Past Simple Adventure</span></a></nav>
 <footer class="canon-l-footer" style="--lb-bg:#fff8f0; --lb-text:#2b1c12; --lb-muted:#6b4f3c; --lb-line:rgba(255,105,10,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(255,105,10,.45); --lb-link-hover:#ff690a; --lb-seg-bg:#fff; --lb-seg-border:rgba(255,105,10,.45); --lb-seg-btn:#ff690a;" role="contentinfo">
