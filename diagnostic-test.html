@@ -712,6 +712,59 @@
       text-transform: uppercase;
     }
 
+    .precheck-panel {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+      border: 1px solid var(--skill-line);
+      padding: 12px;
+      background: rgba(255,255,255,.68);
+    }
+
+    .precheck-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text);
+      font: 900 12px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .precheck-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .precheck-item {
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      color: var(--muted);
+      background: rgba(255,255,255,.62);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .precheck-item[data-state="pass"] {
+      border-color: rgba(33,150,96,.42);
+      color: #1f7a51;
+      background: rgba(46,229,157,.13);
+    }
+
+    .precheck-item[data-state="warn"] {
+      border-color: rgba(255,155,47,.46);
+      color: #9a5b00;
+      background: rgba(255,155,47,.13);
+    }
+
+    .precheck-item[data-state="fail"] {
+      border-color: rgba(214,69,69,.38);
+      color: #a13535;
+      background: rgba(214,69,69,.08);
+    }
+
     .listening-meta {
       color: var(--muted);
       font-weight: 700;
@@ -727,6 +780,13 @@
     .recording-status {
       color: var(--muted);
       font-weight: 700;
+    }
+
+    .recording-timer {
+      color: var(--text);
+      font: 800 12px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .speaking-note {
@@ -3348,6 +3408,7 @@
 
     const teacherEmail = "maria.v.burtseva@gmail.com";
     const skillNames = ["reading", "listening", "writing", "speaking", "grammar"];
+    const recordings = {};
 
     function pdfPath(level, skill) {
       const suffix = skillNames.includes(skill) ? skill : "full-test";
@@ -3488,7 +3549,16 @@
           <span>Grammar control</span>
           <span>Vocabulary range</span>
         </div>
-        <div class="writing-checklist">Teacher review: 0-5 for each criterion. The text is included in the final diagnostic summary.</div>
+        <div class="writing-checklist">Automatic pre-check: word count, structure, task coverage and basic mechanics. Teacher still reviews quality.</div>
+        <div class="precheck-panel" data-writing-precheck="${level.code}">
+          <div class="precheck-head"><span>Writing Pre-check</span><strong data-writing-precheck-score="${level.code}">0 / 4</strong></div>
+          <div class="precheck-grid">
+            <div class="precheck-item" data-writing-check="${level.code}-words" data-state="fail">Words: not started</div>
+            <div class="precheck-item" data-writing-check="${level.code}-structure" data-state="fail">Structure: not started</div>
+            <div class="precheck-item" data-writing-check="${level.code}-coverage" data-state="fail">Task points: not started</div>
+            <div class="precheck-item" data-writing-check="${level.code}-mechanics" data-state="fail">Mechanics: not started</div>
+          </div>
+        </div>
       `;
     }
 
@@ -3497,6 +3567,14 @@
         <div class="recording-controls">
           <button class="record-btn" type="button" data-record-level="${level.code}">Start recording</button>
           <span class="recording-status" data-record-status="${level.code}">No recording yet</span>
+          <span class="recording-timer" data-record-timer="${level.code}">00:00</span>
+        </div>
+        <div class="precheck-panel" data-speaking-precheck="${level.code}">
+          <div class="precheck-head"><span>Speaking Pre-check</span><strong data-speaking-precheck-score="${level.code}">0 / 2</strong></div>
+          <div class="precheck-grid">
+            <div class="precheck-item" data-speaking-check="${level.code}-recording" data-state="fail">Recording: missing</div>
+            <div class="precheck-item" data-speaking-check="${level.code}-duration" data-state="fail">Duration: not checked</div>
+          </div>
         </div>
       `;
     }
@@ -3534,6 +3612,8 @@
               <div class="score-metric"><b data-score-skill="${level.code}-reading">0 / 0</b><span>Reading</span></div>
               <div class="score-metric"><b data-score-skill="${level.code}-listening">0 / 0</b><span>Listening</span></div>
               <div class="score-metric"><b data-score-skill="${level.code}-grammar">0 / 0</b><span>Grammar</span></div>
+              <div class="score-metric"><b data-score-skill="${level.code}-writing">0 / 4</b><span>Writing check</span></div>
+              <div class="score-metric"><b data-score-skill="${level.code}-speaking">0 / 2</b><span>Speaking check</span></div>
             </div>
           </div>
         </div>
@@ -3754,14 +3834,123 @@
       };
     }
 
+    function wordCount(text) {
+      return text.trim().split(/\s+/).filter(Boolean).length;
+    }
+
+    function sentenceCount(text) {
+      return text.split(/[.!?]+/).map(item => item.trim()).filter(Boolean).length;
+    }
+
+    function writingTarget(level) {
+      const task = levels.find(item => item.code === level)?.writing || "";
+      const match = task.match(/Write\s+(\d+)-(\d+)\s+words/i);
+      return match ? { min: Number(match[1]), max: Number(match[2]) } : { min: 80, max: 140 };
+    }
+
+    const writingCoverage = {
+      A1: ["study", "easy", "difficult", "improve"],
+      A2: ["changed", "felt", "useful", "interesting"],
+      B1: ["approach", "progress", "mistakes", "examples"],
+      B2: ["digital", "education", "attention", "agree"],
+      C1: ["score", "verdict", "advantages", "risks"],
+      C2: ["assessment", "judgement", "register", "control"]
+    };
+
+    function getWritingPrecheck(level) {
+      const card = document.querySelector(`[data-level="${level}"]`);
+      const textarea = card?.querySelector(`[data-writing-level="${level}"]`);
+      const text = textarea?.value || "";
+      const words = wordCount(text);
+      const target = writingTarget(level);
+      const paragraphs = text.split(/\n\s*\n/).map(item => item.trim()).filter(Boolean).length || (text.trim() ? 1 : 0);
+      const minimumParagraphs = ["B1", "B2", "C1", "C2"].includes(level) ? 2 : 1;
+      const lower = text.toLowerCase();
+      const coverageHits = (writingCoverage[level] || []).filter(key => lower.includes(key)).length;
+      const neededCoverage = level === "A1" || level === "A2" ? 3 : 2;
+      const mechanicsOk = sentenceCount(text) >= (["A1", "A2"].includes(level) ? 3 : 5) && /[.!?]\s*$/.test(text.trim());
+      const checks = [
+        { key: "words", pass: words >= target.min && words <= target.max, warn: words > 0, text: `Words: ${words} / ${target.min}-${target.max}` },
+        { key: "structure", pass: paragraphs >= minimumParagraphs, warn: paragraphs > 0, text: `Structure: ${paragraphs} paragraph${paragraphs === 1 ? "" : "s"} / ${minimumParagraphs}` },
+        { key: "coverage", pass: coverageHits >= neededCoverage, warn: coverageHits > 0, text: `Task points: ${coverageHits} / ${neededCoverage}+` },
+        { key: "mechanics", pass: mechanicsOk, warn: sentenceCount(text) > 0, text: `Mechanics: ${sentenceCount(text)} sentences` }
+      ];
+      return {
+        score: checks.filter(check => check.pass).length,
+        checks
+      };
+    }
+
+    function speakingTargetSeconds(level) {
+      const prompt = levels.find(item => item.code === level)?.speaking || "";
+      const match = prompt.match(/Record\s+(\d+)\s+minutes?/i);
+      return match ? Number(match[1]) * 60 : 60;
+    }
+
+    function getSpeakingPrecheck(level) {
+      const recording = recordings[level];
+      const target = speakingTargetSeconds(level);
+      const duration = recording?.duration || 0;
+      const checks = [
+        { key: "recording", pass: !!recording, warn: false, text: recording ? "Recording: saved" : "Recording: missing" },
+        { key: "duration", pass: duration >= Math.round(target * 0.7), warn: duration > 0, text: `Duration: ${formatTime(duration)} / ${formatTime(target)}` }
+      ];
+      return {
+        score: checks.filter(check => check.pass).length,
+        checks
+      };
+    }
+
+    function precheckState(check) {
+      if (check.pass) return "pass";
+      return check.warn ? "warn" : "fail";
+    }
+
+    function formatTime(seconds) {
+      const safe = Math.max(0, Math.round(seconds || 0));
+      const mins = String(Math.floor(safe / 60)).padStart(2, "0");
+      const secs = String(safe % 60).padStart(2, "0");
+      return `${mins}:${secs}`;
+    }
+
+    function updateWritingPrecheck(level) {
+      const result = getWritingPrecheck(level);
+      const score = document.querySelector(`[data-writing-precheck-score="${level}"]`);
+      if (score) score.textContent = `${result.score} / 4`;
+      result.checks.forEach(check => {
+        const item = document.querySelector(`[data-writing-check="${level}-${check.key}"]`);
+        if (!item) return;
+        item.textContent = check.text;
+        item.dataset.state = precheckState(check);
+      });
+      updateLevelScore(level);
+      return result;
+    }
+
+    function updateSpeakingPrecheck(level) {
+      const result = getSpeakingPrecheck(level);
+      const score = document.querySelector(`[data-speaking-precheck-score="${level}"]`);
+      if (score) score.textContent = `${result.score} / 2`;
+      result.checks.forEach(check => {
+        const item = document.querySelector(`[data-speaking-check="${level}-${check.key}"]`);
+        if (!item) return;
+        item.textContent = check.text;
+        item.dataset.state = precheckState(check);
+      });
+      updateLevelScore(level);
+      return result;
+    }
+
     function updateLevelScore(level) {
       const { card, total, answered, correct } = getLevelObjectiveStats(level);
       const percent = total ? Math.round((correct / total) * 100) : 0;
+      const writingCheck = getWritingPrecheck(level);
+      const speakingCheck = getSpeakingPrecheck(level);
       const score = card.querySelector(`[data-score-for="${level}"]`);
       if (score) score.textContent = `Objective score: ${correct} / ${total} · answered ${answered} / ${total}`;
       const panel = card.querySelector(`[data-level-score="${level}"]`);
       if (panel) {
-        panel.innerHTML = `<strong>Objective score: ${correct} / ${total}</strong><small>Answered ${answered} / ${total}. Reading, listening and grammar are checked automatically; writing and speaking remain for teacher review.</small>`;
+        panel.innerHTML = `<strong>AutoScore: ${correct} / ${total}</strong><small>Answered ${answered} / ${total}. Writing pre-check: ${writingCheck.score} / 4. Speaking pre-check: ${speakingCheck.score} / 2.</small>`;
       }
       const orb = card.querySelector(`[data-score-orb="${level}"]`);
       const percentEl = card.querySelector(`[data-score-percent="${level}"]`);
@@ -3772,8 +3961,8 @@
       if (title) title.textContent = `${correct} / ${total} objective points`;
       if (note) {
         note.textContent = answered === total
-          ? "Objective part complete. Writing and Speaking are ready for teacher review."
-          : `Answered ${answered} / ${total}. Keep going: the meter updates instantly.`;
+          ? "Objective part complete. Writing and Speaking pre-checks reduce teacher review."
+          : `Answered ${answered} / ${total}. Writing and Speaking pre-checks update separately.`;
       }
       [
         ["reading", getSkillStats(card, "skill-reading")],
@@ -3783,6 +3972,10 @@
         const metric = card.querySelector(`[data-score-skill="${level}-${skill}"]`);
         if (metric) metric.textContent = `${stats.correct} / ${stats.total}`;
       });
+      const writingMetric = card.querySelector(`[data-score-skill="${level}-writing"]`);
+      if (writingMetric) writingMetric.textContent = `${writingCheck.score} / 4`;
+      const speakingMetric = card.querySelector(`[data-score-skill="${level}-speaking"]`);
+      if (speakingMetric) speakingMetric.textContent = `${speakingCheck.score} / 2`;
     }
 
     cards.forEach(card => updateLevelScore(card.dataset.level));
@@ -3838,17 +4031,17 @@
         const words = textarea.value.trim().split(/\s+/).filter(Boolean).length;
         const counter = document.querySelector(`[data-writing-count="${textarea.dataset.writingLevel}"]`);
         if (counter) counter.textContent = `${words} words`;
+        updateWritingPrecheck(textarea.dataset.writingLevel);
       };
       textarea.addEventListener("input", updateCount);
       updateCount();
     });
 
-    const recordings = {};
-
     document.querySelectorAll("[data-record-level]").forEach(button => {
       button.addEventListener("click", async () => {
         const level = button.dataset.recordLevel;
         const status = document.querySelector(`[data-record-status="${level}"]`);
+        const timer = document.querySelector(`[data-record-timer="${level}"]`);
         if (button.mediaRecorder && button.mediaRecorder.state === "recording") {
           button.mediaRecorder.stop();
           button.textContent = "Start recording";
@@ -3862,18 +4055,29 @@
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
           const chunks = [];
           const recorder = new MediaRecorder(stream);
+          const startedAt = Date.now();
           button.mediaRecorder = recorder;
+          button.recordTimer = setInterval(() => {
+            if (timer) timer.textContent = formatTime((Date.now() - startedAt) / 1000);
+          }, 500);
           recorder.ondataavailable = event => chunks.push(event.data);
           recorder.onstop = () => {
+            clearInterval(button.recordTimer);
             stream.getTracks().forEach(track => track.stop());
+            const duration = (Date.now() - startedAt) / 1000;
             recordings[level] = new Blob(chunks, { type: "audio/webm" });
-            status.textContent = "Recording saved in this browser. Attach it manually if needed.";
+            recordings[level].duration = duration;
+            if (timer) timer.textContent = formatTime(duration);
+            status.textContent = `Recording saved: ${formatTime(duration)}. Attach it manually if needed.`;
+            updateSpeakingPrecheck(level);
           };
           recorder.start();
           button.textContent = "Stop recording";
           status.textContent = "Recording...";
+          updateSpeakingPrecheck(level);
         } catch (error) {
           status.textContent = "Microphone permission was not granted.";
+          updateSpeakingPrecheck(level);
         }
       });
     });
@@ -3883,6 +4087,12 @@
       const lines = [`Diagnostic level: ${levelCode}`];
       const stats = getLevelObjectiveStats(levelCode);
       lines.push(`Objective score: ${stats.correct} / ${stats.total}; answered ${stats.answered} / ${stats.total}`);
+      const writingCheck = getWritingPrecheck(levelCode);
+      const speakingCheck = getSpeakingPrecheck(levelCode);
+      lines.push(`Writing pre-check: ${writingCheck.score} / 4`);
+      writingCheck.checks.forEach(check => lines.push(`- ${check.text} [${precheckState(check)}]`));
+      lines.push(`Speaking pre-check: ${speakingCheck.score} / 2`);
+      speakingCheck.checks.forEach(check => lines.push(`- ${check.text} [${precheckState(check)}]`));
       card.querySelectorAll(".section-grid").forEach(section => {
         const title = section.querySelector(".skill-name")?.textContent || "Section";
         lines.push(`\n${title}`);
