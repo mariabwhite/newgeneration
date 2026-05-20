@@ -350,13 +350,64 @@
       white-space: nowrap;
     }
 
+    .level-actions {
+      display: grid;
+      gap: 10px;
+      justify-items: stretch;
+    }
+
+    .level-actions .pdf-link {
+      min-height: 42px;
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--brand-2);
+      white-space: nowrap;
+    }
+
     .test-body {
       display: none;
       padding: 0 clamp(18px, 3vw, 30px) clamp(20px, 3vw, 32px);
       border-top: 1px solid var(--line);
     }
 
-    .level-card.open .test-body { display: block; }
+    .level-card.open.is-started .test-body { display: block; }
+
+    .test-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 18px 0 0;
+      position: sticky;
+      top: 64px;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(247,245,255,.96), rgba(247,245,255,.82));
+      backdrop-filter: blur(10px);
+    }
+
+    .flow-step,
+    .next-section-btn {
+      min-height: 38px;
+      border: 1px solid var(--line-2);
+      border-radius: 4px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: var(--muted);
+      font: 800 11px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .flow-step.is-active,
+    .flow-step:hover,
+    .next-section-btn:hover {
+      border-color: rgba(255,155,47,.55);
+      color: var(--accent);
+      background: rgba(255,155,47,.08);
+    }
 
     .section-grid {
       display: grid;
@@ -365,6 +416,10 @@
       padding-top: 22px;
       --skill: var(--accent);
       --skill-soft: rgba(255,155,47,.08);
+    }
+
+    .section-grid.is-current .task-card {
+      box-shadow: 0 18px 42px rgba(40,32,76,.10);
     }
 
     .section-grid.skill-reading {
@@ -610,6 +665,51 @@
     .listening-panel {
       display: grid;
       gap: 12px;
+    }
+
+    .audio-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .audio-stack audio {
+      width: min(360px, 100%);
+      min-height: 40px;
+    }
+
+    .audio-note,
+    .writing-checklist {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .writing-rubric {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .writing-rubric span {
+      border: 1px solid var(--skill-line);
+      padding: 9px 10px;
+      background: rgba(255,255,255,.64);
+      color: #312b3c;
+      font: 800 11px/1.35 var(--mono);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .writing-counter {
+      margin-top: 8px;
+      color: var(--muted);
+      font: 800 12px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .listening-meta {
@@ -3235,20 +3335,6 @@
     const levelNav = document.getElementById("levelNav");
     const topNav = document.getElementById("topNav");
     const levelStack = document.getElementById("levelStack");
-    const correctPositionPlan = (() => {
-      const keyedCount = levels.reduce((sum, level) => {
-        const reading = level.reading.questions.filter(question => typeof question === "object" && Number.isInteger(question.answer)).length;
-        const listening = level.listening.questions.filter(question => typeof question === "object" && Number.isInteger(question.answer)).length;
-        return sum + reading + listening + level.grammar.length;
-      }, 0);
-      const first = Math.round(keyedCount * 0.1);
-      const second = Math.round(keyedCount * 0.3);
-      return [
-        ...Array(first).fill(0),
-        ...Array(second).fill(1),
-        ...Array(Math.max(0, keyedCount - first - second)).fill(2)
-      ];
-    })();
 
     function esc(text) {
       return String(text).replace(/[&<>"']/g, char => ({
@@ -3268,32 +3354,48 @@
       return `assets/diagnostic-pdfs/${level.code}-${suffix}.pdf`;
     }
 
+    function audioPath(level) {
+      return `assets/diagnostic-audio/${level.code}-listening.mp3`;
+    }
+
     function defaultOptions(question) {
       return ["Answer 1", "Answer 2", "Answer 3"];
     }
 
-    function moveCorrectOption(options, answer, target) {
+    function seededIndex(seed, length) {
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i += 1) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      return Math.abs(hash) % length;
+    }
+
+    function shuffleOptions(options, answer, seed) {
       if (!Number.isInteger(answer) || answer < 0 || answer >= options.length) {
         return { options, answer };
       }
-      const next = [...options];
-      const correct = next.splice(answer, 1)[0];
-      next.splice(target, 0, correct);
-      return { options: next, answer: target };
+      const pairs = options.map((option, index) => ({ option, correct: index === answer }));
+      for (let i = pairs.length - 1; i > 0; i -= 1) {
+        const j = seededIndex(`${seed}-${i}`, i + 1);
+        [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+      }
+      const next = pairs.map(item => item.option);
+      const nextAnswer = pairs.findIndex(item => item.correct);
+      return { options: next, answer: nextAnswer };
     }
 
     function normalizeAnswerDistribution() {
-      let cursor = 0;
       levels.forEach(level => {
         ["reading", "listening"].forEach(skill => {
-          level[skill].questions = level[skill].questions.map(question => {
+          level[skill].questions = level[skill].questions.map((question, index) => {
             if (typeof question !== "object" || !Number.isInteger(question.answer)) return question;
-            const moved = moveCorrectOption(question.options, question.answer, correctPositionPlan[cursor++] ?? 2);
+            const moved = shuffleOptions(question.options, question.answer, `${level.code}-${skill}-${index}`);
             return { ...question, options: moved.options, answer: moved.answer };
           });
         });
-        level.grammar = level.grammar.map(item => {
-          const moved = moveCorrectOption(item[1], item[2], correctPositionPlan[cursor++] ?? 2);
+        level.grammar = level.grammar.map((item, index) => {
+          const moved = shuffleOptions(item[1], item[2], `${level.code}-grammar-${index}`);
           return [item[0], moved.options, moved.answer];
         });
       });
@@ -3361,8 +3463,32 @@
       return `
         <div class="listening-panel">
           <div class="listening-meta">Listen to the dialogue. The transcript is hidden from the student.</div>
-          <button class="audio-btn" type="button" data-listen-level="${level.code}">Play audio: female / male voices</button>
+          <div class="audio-stack">
+            <audio controls preload="none" src="${audioPath(level)}" data-audio-source="${audioPath(level)}"></audio>
+            <button class="audio-btn" type="button" data-listen-level="${level.code}">Backup browser voice</button>
+          </div>
+          <div class="audio-note">Main audio file: ${audioPath(level)}. If the recording is not uploaded yet, use the backup browser voice.</div>
         </div>
+      `;
+    }
+
+    function renderSectionActions(nextSkill) {
+      return `
+        <div class="task-actions">
+          ${nextSkill ? `<button class="next-section-btn" type="button" data-next-skill="${nextSkill}">Next section</button>` : ""}
+        </div>
+      `;
+    }
+
+    function renderWritingSupport(level) {
+      return `
+        <div class="writing-rubric" aria-label="Writing assessment rubric">
+          <span>Task response</span>
+          <span>Organisation</span>
+          <span>Grammar control</span>
+          <span>Vocabulary range</span>
+        </div>
+        <div class="writing-checklist">Teacher review: 0-5 for each criterion. The text is included in the final diagnostic summary.</div>
       `;
     }
 
@@ -3427,38 +3553,53 @@
               <h2 class="level-title">${level.code} · ${level.name}</h2>
               <p class="level-desc">${level.desc}</p>
             </div>
-            <button class="start-btn" type="button">Start ${level.code} Test / Начать тест ${level.code}</button>
+            <div class="level-actions">
+              <button class="start-btn" type="button">Start ${level.code} Test / Начать тест ${level.code}</button>
+              <a class="pdf-link" href="${pdfPath(level, "full-test")}" target="_blank" rel="noreferrer">Full test PDF</a>
+            </div>
           </div>
           ${renderScoreDashboard(level)}
           <div class="test-body">
-            <div class="section-grid skill-reading">
+            <div class="test-flow" data-flow="${level.code}">
+              <button class="flow-step is-active" type="button" data-flow-skill="reading">01 Reading</button>
+              <button class="flow-step" type="button" data-flow-skill="listening">02 Listening</button>
+              <button class="flow-step" type="button" data-flow-skill="writing">03 Writing</button>
+              <button class="flow-step" type="button" data-flow-skill="speaking">04 Speaking</button>
+              <button class="flow-step" type="button" data-flow-skill="grammar">05 Grammar</button>
+            </div>
+            <div class="section-grid skill-reading is-current" data-skill="reading">
               ${skillLabel("01", "Reading")}
               <div class="task-card">
                 <h3>${esc(level.reading.title)}</h3>
                 <div class="reading-text">${esc(level.reading.text)}</div>
                 ${renderQuestionList(level.reading.questions, level, "reading")}
+                ${renderSectionActions("listening")}
               </div>
             </div>
-            <div class="section-grid skill-listening">
+            <div class="section-grid skill-listening" data-skill="listening">
               ${skillLabel("02", "Listening")}
               <div class="task-card">
                 <h3>${esc(level.listening.title)}</h3>
                 ${renderListeningPanel(level)}
                 ${renderQuestionList(level.listening.questions, level, "listening")}
+                ${renderSectionActions("writing")}
               </div>
             </div>
-            <div class="section-grid skill-writing">
+            <div class="section-grid skill-writing" data-skill="writing">
               ${skillLabel("03", "Writing")}
               <div class="task-card">
                 <h3>Writing task</h3>
                 <p>${esc(level.writing)}</p>
-                <textarea placeholder="Write your answer here..."></textarea>
+                ${renderWritingSupport(level)}
+                <textarea data-writing-level="${level.code}" placeholder="Write your answer here..."></textarea>
+                <div class="writing-counter" data-writing-count="${level.code}">0 words</div>
                 <div class="task-actions">
                   <a class="pdf-link" href="${pdfPath(level, "writing")}" target="_blank" rel="noreferrer">PDF version</a>
                 </div>
+                ${renderSectionActions("speaking")}
               </div>
             </div>
-            <div class="section-grid skill-speaking">
+            <div class="section-grid skill-speaking" data-skill="speaking">
               ${skillLabel("04", "Speaking")}
               <div class="task-card">
                 <h3>Speaking prompt</h3>
@@ -3468,9 +3609,10 @@
                 <div class="task-actions">
                   <a class="pdf-link" href="${pdfPath(level, "speaking")}" target="_blank" rel="noreferrer">PDF version</a>
                 </div>
+                ${renderSectionActions("grammar")}
               </div>
             </div>
-            <div class="section-grid skill-grammar">
+            <div class="section-grid skill-grammar" data-skill="grammar">
               ${skillLabel("05", "Grammar")}
               <div class="task-card">
                 <h3>Grammatical Range & Accuracy</h3>
@@ -3502,11 +3644,31 @@
       jumps.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + card.id));
     }
 
+    function setActiveSkill(card, skill, scroll = true) {
+      card.querySelectorAll(".section-grid").forEach(section => {
+        section.classList.toggle("is-current", section.dataset.skill === skill);
+      });
+      card.querySelectorAll(".flow-step").forEach(step => {
+        step.classList.toggle("is-active", step.dataset.flowSkill === skill);
+      });
+      if (scroll) {
+        const target = card.querySelector(`[data-skill="${skill}"]`);
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function startLevel(card) {
+      openCard(card);
+      card.classList.add("is-started");
+      const startButton = card.querySelector(".start-btn");
+      if (startButton) startButton.textContent = `Continue ${card.dataset.level} Test`;
+      setActiveSkill(card, "reading");
+    }
+
     document.querySelectorAll(".start-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const card = btn.closest(".level-card");
-        openCard(card);
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        startLevel(card);
       });
     });
 
@@ -3517,6 +3679,21 @@
         event.preventDefault();
         openCard(target);
         target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    document.querySelectorAll(".flow-step").forEach(step => {
+      step.addEventListener("click", () => {
+        const card = step.closest(".level-card");
+        card.classList.add("is-started");
+        setActiveSkill(card, step.dataset.flowSkill);
+      });
+    });
+
+    document.querySelectorAll("[data-next-skill]").forEach(button => {
+      button.addEventListener("click", () => {
+        const card = button.closest(".level-card");
+        setActiveSkill(card, button.dataset.nextSkill);
       });
     });
 
@@ -3644,6 +3821,26 @@
         const level = levels.find(item => item.code === button.dataset.listenLevel);
         if (level) speakDialogue(level.listening.script);
       });
+    });
+
+    document.querySelectorAll("[data-audio-source]").forEach(audio => {
+      fetch(audio.dataset.audioSource, { method: "HEAD" })
+        .then(response => {
+          if (!response.ok) audio.hidden = true;
+        })
+        .catch(() => {
+          audio.hidden = true;
+        });
+    });
+
+    document.querySelectorAll("[data-writing-level]").forEach(textarea => {
+      const updateCount = () => {
+        const words = textarea.value.trim().split(/\s+/).filter(Boolean).length;
+        const counter = document.querySelector(`[data-writing-count="${textarea.dataset.writingLevel}"]`);
+        if (counter) counter.textContent = `${words} words`;
+      };
+      textarea.addEventListener("input", updateCount);
+      updateCount();
     });
 
     const recordings = {};
