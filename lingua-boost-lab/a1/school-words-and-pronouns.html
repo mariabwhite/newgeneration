@@ -1211,10 +1211,80 @@ body.lb-page-school-words .pronoun-helper {
 @media (max-width: 640px) {
   body.lb-page-school-words { --school-spine: min(100% - 28px, 1320px); }
 }
-</style></head>
+</style><style id="codex-a1-lab-stability-20260520">
+/* Codex A1 lesson stability pass: top controls, tracker bar, and long answer chips. */
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.canon-l-level,.lang-toggle,.btn-tool,.palette-select,.level-bubble) {
+  background: color-mix(in srgb, var(--surface) 86%, #B65CFF 14%) !important;
+  border-color: rgba(182, 92, 255, 0.56) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+}
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.lang-toggle,.btn-tool,.palette-select):hover,
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.lang-toggle,.btn-tool,.palette-select):focus-visible {
+  border-color: #B65CFF !important;
+  box-shadow: 0 0 0 2px rgba(182, 92, 255, 0.18) !important;
+}
+html[data-theme="violet"] body :is(.canon-l-audience-btn.is-active,.canon-l-audience-btn[aria-pressed="true"],.btn-tool.is-active,.lang-toggle.is-active) {
+  background: #B65CFF !important;
+  border-color: #B65CFF !important;
+  color: #fff !important;
+}
+body :is(.canon-l-topbar,.friendly-topbar) {
+  align-items: center !important;
+}
+body :is(.canon-l-tools,.friendly-tools,.topbar-tools) {
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+body :is(.step-tracker,.canon-l-tracker) {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(120px, 1fr) auto !important;
+  align-items: center !important;
+  gap: 12px !important;
+  overflow: hidden !important;
+}
+body :is(.step-count,.step-name,.canon-l-tracker-label,.canon-l-tracker-meta) {
+  min-width: 0 !important;
+  white-space: nowrap !important;
+}
+body :is(.step-track,.canon-l-tracker-track,.round-track,.module-progress-track,.lesson-score-track) {
+  height: 4px !important;
+  min-height: 4px !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
+body :is(.step-fill,.canon-l-tracker-fill,.round-fill,.module-progress-fill,.lesson-score-fill) {
+  height: 100% !important;
+  border-radius: inherit !important;
+}
+body .lesson-flow .flow-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+}
+body .lesson-flow .flow-card {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+body :is(.choice-row,.quiz-options,.answer-options,.word-bank,.bank.interactive) {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  max-width: 100% !important;
+}
+body :is(.choice,.answer-btn,.word-chip,.btn,.canon-l-btn) {
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+body :is(.practice-item,.practice-q,.section-body,.block-intro,.minitask-detail) {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+}
+</style>
+</head>
 <body class="lb-page-school-words lb-canon-target">
 <script>
-  /* NGE STATE-BRIDGE вЂ” window.name as cross-page truth on file:// origin. */
+  /* NGE STATE-BRIDGE — window.name as cross-page truth on file:// origin. */
   (function(){
     try {
       var st = {};
@@ -1238,7 +1308,7 @@ body.lb-page-school-words .pronoun-helper {
     } catch(_){}
   })();
 </script>
-<a href="#main-content" class="canon-l-skip-link">РџРµСЂРµР№С‚Рё Рє РѕСЃРЅРѕРІРЅРѕРјСѓ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ</a>
+<a href="#main-content" class="canon-l-skip-link">Перейти к основному содержимому</a>
 
 <header class="canon-l-topbar" style="--lb-bg:#fbf5ff; --lb-text:#1a0030; --lb-muted:#73527d; --lb-line:rgba(156,39,176,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(156,39,176,.34); --lb-link-hover:#9c27b0; --lb-seg-bg:#fff; --lb-seg-border:rgba(156,39,176,.34); --lb-seg-btn:#9c27b0;">
   <a class="canon-l-brand" href="../index.html" aria-label="LinguaBoost Lab">
@@ -1249,10 +1319,10 @@ body.lb-page-school-words .pronoun-helper {
     </span>
   </a>
   <nav class="canon-l-nav" aria-label="Lesson navigation">
-    <a class="canon-l-link" href="../index.html" data-ru="РљР°С‚Р°Р»РѕРі" data-en="Catalog">Catalog</a>
-    <a class="canon-l-link is-active" href="#progress" data-ru="РџСЂРѕРіСЂРµСЃСЃ" data-en="Progress">Progress</a>
-    <a class="canon-l-link" href="#practice" data-ru="РџСЂР°РєС‚РёРєР°" data-en="Practice">Practice</a>
-    <a class="canon-l-link" href="#final" data-ru="Р¤РёРЅР°Р»" data-en="Final">Final</a>
+    <a class="canon-l-link" href="../index.html" data-ru="Каталог" data-en="Catalog">Catalog</a>
+    <a class="canon-l-link is-active" href="#progress" data-ru="Прогресс" data-en="Progress">Progress</a>
+    <a class="canon-l-link" href="#practice" data-ru="Практика" data-en="Practice">Practice</a>
+    <a class="canon-l-link" href="#final" data-ru="Финал" data-en="Final">Final</a>
   </nav>
   <div class="canon-l-tools">
     <span class="canon-l-pill lang-toggle" aria-label="Language" data-lang-toggle data-lang-pill aria-label="Toggle interface language">EN</span>
@@ -1260,17 +1330,17 @@ body.lb-page-school-words .pronoun-helper {
   </div>
 </header>
 <nav class="canon-l-crumbs" aria-label="Breadcrumb" style="--lb-bg:#fbf5ff; --lb-text:#1a0030; --lb-muted:#73527d; --lb-line:rgba(156,39,176,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(156,39,176,.34); --lb-link-hover:#9c27b0; --lb-seg-bg:#fff; --lb-seg-border:rgba(156,39,176,.34); --lb-seg-btn:#9c27b0;">
-  <a href="../../index.html" data-ru="Р“Р»Р°РІРЅР°СЏ" data-en="Home">Р“Р»Р°РІРЅР°СЏ</a>
-  <span class="canon-l-crumbs-sep">В·</span>
+  <a href="../../index.html" data-ru="Главная" data-en="Home">Главная</a>
+  <span class="canon-l-crumbs-sep">·</span>
   <a href="../index.html" data-ru="A1" data-en="A1">A1</a>
-  <span class="canon-l-crumbs-sep">В·</span>
+  <span class="canon-l-crumbs-sep">·</span>
   <span class="canon-l-crumbs-here">School Words</span>
 </nav>
 
 <section id="main-content" class="canon-l-hero is-visual-bright is-hero-soft" style="--lb-bg:#fbf5ff; --lb-text:#1a0030; --lb-muted:#73527d; --lb-line:rgba(156,39,176,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(156,39,176,.34); --lb-link-hover:#9c27b0; --lb-seg-bg:#fff; --lb-seg-border:rgba(156,39,176,.34); --lb-seg-btn:#9c27b0;">
   <img class="canon-l-hero-bg" src="../../assets/%D0%94%D0%BB%D1%8F%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2/Other%20lessons/ef551027-0cbd-4fec-88c5-370b15db92f4.png" alt="" aria-hidden="true">
   <div class="canon-l-hero-inner">
-    <p class="canon-l-hero-eyebrow">A1 В· School &amp; Pronouns</p>
+    <p class="canon-l-hero-eyebrow">A1 · School &amp; Pronouns</p>
     <h1 class="canon-l-hero-title">School Words <em>&amp; Pronouns</em></h1>
     <p class="canon-l-hero-lead">Learn classroom vocabulary, subject pronouns, spelling and short speaking patterns in one guided A1 lesson.</p>
     <div class="canon-l-hero-meta">
@@ -1421,13 +1491,13 @@ body.lb-page-school-words .pronoun-helper {
 <aside class="pronoun-helper" aria-label="Pronoun Helper">
   <h3 class="pronoun-helper-title">Pronoun Helper</h3>
   <dl class="pronoun-helper-list">
-    <dt>I</dt><dd>СЏ</dd>
-    <dt>you</dt><dd>С‚С‹ / РІС‹</dd>
-    <dt>he</dt><dd>РѕРЅ</dd>
-    <dt>she</dt><dd>РѕРЅР°</dd>
-    <dt>it</dt><dd>РѕРЅ / РѕРЅР° / РѕРЅРѕ вЂ” РґР»СЏ РїСЂРµРґРјРµС‚Р° РёР»Рё Р¶РёРІРѕС‚РЅРѕРіРѕ</dd>
-    <dt>we</dt><dd>РјС‹</dd>
-    <dt>they</dt><dd>РѕРЅРё</dd>
+    <dt>I</dt><dd>я</dd>
+    <dt>you</dt><dd>ты / вы</dd>
+    <dt>he</dt><dd>он</dd>
+    <dt>she</dt><dd>она</dd>
+    <dt>it</dt><dd>он / она / оно — для предмета или животного</dd>
+    <dt>we</dt><dd>мы</dd>
+    <dt>they</dt><dd>они</dd>
   </dl>
 </aside>
 
@@ -1487,7 +1557,7 @@ body.lb-page-school-words .pronoun-helper {
         <li>We are in the classroom.</li>
         <li>See you tomorrow!</li>
       </ol>
-      <p class="mini-speech-tip">Try to say 4вЂ“5 of these phrases out loud before clicking through the cards below.</p>
+      <p class="mini-speech-tip">Try to say 4–5 of these phrases out loud before clicking through the cards below.</p>
     </aside>
     <p class="section-copy">Click Listen to hear each phrase. Listen to 8+ phrases to complete!</p>
     <div class="speak-grid" id="speakGrid"></div>
@@ -1576,11 +1646,11 @@ body.lb-page-school-words .pronoun-helper {
       <span class="canon-l-footer-mark" aria-hidden="true">L</span>
       <span class="canon-l-footer-name">LinguaBoost Lab</span>
     </a>
-    <span class="canon-l-footer-meta">School Words &amp; Pronouns В· A1</span>
+    <span class="canon-l-footer-meta">School Words &amp; Pronouns · A1</span>
     <nav class="canon-l-footer-nav" aria-label="Site links">
-      <a href="../index.html" data-ru="РљР°С‚Р°Р»РѕРі" data-en="Catalog">РљР°С‚Р°Р»РѕРі</a>
-      <a href="../../index.html" data-ru="Р“Р»Р°РІРЅР°СЏ" data-en="Home">Р“Р»Р°РІРЅР°СЏ</a>
-      <a href="../../about-project.html" data-ru="Рћ РїСЂРѕРµРєС‚Рµ" data-en="About">Рћ РїСЂРѕРµРєС‚Рµ</a>
+      <a href="../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
+      <a href="../../index.html" data-ru="Главная" data-en="Home">Главная</a>
+      <a href="../../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
     </nav>
   </div>
   <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
@@ -1732,19 +1802,19 @@ function speak(text, opts={}) {
 }// ===== SECTION 1: FLASHCARDS =====
 const flashCards = [
   // Pronouns (7)
-  {en:'I',        ru:'СЏ',                                group:'pronoun'},
-  {en:'you',      ru:'С‚С‹ / РІС‹',                          group:'pronoun'},
-  {en:'he',       ru:'РѕРЅ',                               group:'pronoun'},
-  {en:'she',      ru:'РѕРЅР°',                              group:'pronoun'},
-  {en:'it',       ru:'РѕРЅ / РѕРЅР° / РѕРЅРѕ (РїСЂРµРґРјРµС‚)',          group:'pronoun'},
-  {en:'we',       ru:'РјС‹',                               group:'pronoun'},
-  {en:'they',     ru:'РѕРЅРё',                              group:'pronoun'},
+  {en:'I',        ru:'я',                                group:'pronoun'},
+  {en:'you',      ru:'ты / вы',                          group:'pronoun'},
+  {en:'he',       ru:'он',                               group:'pronoun'},
+  {en:'she',      ru:'она',                              group:'pronoun'},
+  {en:'it',       ru:'он / она / оно (предмет)',          group:'pronoun'},
+  {en:'we',       ru:'мы',                               group:'pronoun'},
+  {en:'they',     ru:'они',                              group:'pronoun'},
   // School words (5)
-  {en:'pencil',   ru:'РєР°СЂР°РЅРґР°С€',                         group:'school'},
-  {en:'ruler',    ru:'Р»РёРЅРµР№РєР°',                          group:'school'},
-  {en:'notebook', ru:'С‚РµС‚СЂР°РґСЊ',                          group:'school'},
-  {en:'backpack', ru:'СЂСЋРєР·Р°Рє',                           group:'school'},
-  {en:'classroom',ru:'РєР»Р°СЃСЃ',                            group:'school'}
+  {en:'pencil',   ru:'карандаш',                         group:'school'},
+  {en:'ruler',    ru:'линейка',                          group:'school'},
+  {en:'notebook', ru:'тетрадь',                          group:'school'},
+  {en:'backpack', ru:'рюкзак',                           group:'school'},
+  {en:'classroom',ru:'класс',                            group:'school'}
 ];
 
 let flippedCount = 0;
@@ -1785,7 +1855,7 @@ const memPairs = [
   {en:'I',        ru:'me'},
   {en:'you',      ru:'you'},
   {en:'pencil',   ru:'pencil'},
-  {en:'ruler',    ru:'Р»РёРЅРµР№РєР°'},
+  {en:'ruler',    ru:'линейка'},
   {en:'notebook', ru:'notebook'},
   {en:'backpack', ru:'backpack'},
 ];
@@ -1936,26 +2006,26 @@ document.getElementById('beeSkipBtn')?.addEventListener('click', skipBee);
 
 // ===== SECTION 4: PRONOUN MATCHING =====
 const pronounPairs = [
-  {en:'I',        ru:'СЏ'},
-  {en:'you',      ru:'С‚С‹ / РІС‹'},
-  {en:'he',       ru:'РѕРЅ'},
-  {en:'she',      ru:'РѕРЅР°'},
-  {en:'we',       ru:'РјС‹'},
-  {en:'they',     ru:'РѕРЅРё'},
-  {en:'it',       ru:'РѕРЅРѕ / СЌС‚Рѕ'},
+  {en:'I',        ru:'я'},
+  {en:'you',      ru:'ты / вы'},
+  {en:'he',       ru:'он'},
+  {en:'she',      ru:'она'},
+  {en:'we',       ru:'мы'},
+  {en:'they',     ru:'они'},
+  {en:'it',       ru:'оно / это'},
 ];
 
 const pronounExamples = {
-  'I': 'I = СЏ > I am a student. / РЇ СѓС‡РµРЅРёРє.',
-  'you': 'you = С‚С‹ / РІС‹ > You are a teacher. / РўС‹ СѓС‡РёС‚РµР»СЊ.',
-  'he': 'he = РѕРЅ > He has a backpack. / РЈ РЅРµРіРѕ РµСЃС‚СЊ СЂСЋРєР·Р°Рє.',
-  'she': 'she = РѕРЅР° > She has a notebook. / РЈ РЅРµС‘ РµСЃС‚СЊ С‚РµС‚СЂР°РґСЊ.',
-  'we': 'we = РјС‹ > We are in the classroom. / РњС‹ РІ РєР»Р°СЃСЃРµ.',
-  'they': 'they = РѕРЅРё > They use a ruler. / РћРЅРё РёСЃРїРѕР»СЊР·СѓСЋС‚ Р»РёРЅРµР№РєСѓ.',
-  'it': 'it = РѕРЅРѕ / СЌС‚Рѕ > It is a school. / Р­С‚Рѕ С€РєРѕР»Р°.'
+  'I': 'I = я > I am a student. / Я ученик.',
+  'you': 'you = ты / вы > You are a teacher. / Ты учитель.',
+  'he': 'he = он > He has a backpack. / У него есть рюкзак.',
+  'she': 'she = она > She has a notebook. / У неё есть тетрадь.',
+  'we': 'we = мы > We are in the classroom. / Мы в классе.',
+  'they': 'they = они > They use a ruler. / Они используют линейку.',
+  'it': 'it = оно / это > It is a school. / Это школа.'
 };
 
-const matchRuShuffled = ['С‚С‹ / РІС‹','РѕРЅРё','РѕРЅ','РјС‹','РѕРЅРѕ / СЌС‚Рѕ','РѕРЅР°','СЏ'];
+const matchRuShuffled = ['ты / вы','они','он','мы','оно / это','она','я'];
 let matchSelected = null, matchCount = 0;
 
 (function buildMatch() {
@@ -2014,24 +2084,24 @@ function onMatchClick() {
 // ===== SECTION 5: QUIZ =====
 const quizBankClean = [
   {q:'"I" is a...',                    opts:['pronoun','noun','verb'],                                   ans:'pronoun'},
-  {q:'РєР°СЂР°РЅРґР°С€ = ?',                   opts:['ruler','notebook','pencil'],                               ans:'pencil'},
+  {q:'карандаш = ?',                   opts:['ruler','notebook','pencil'],                               ans:'pencil'},
   {q:'"She" refers to...',             opts:['a boy','a girl','a thing'],                                ans:'a girl'},
-  {q:'С‚РµС‚СЂР°РґСЊ = ?',                    opts:['backpack','notebook','ruler'],                             ans:'notebook'},
-  {q:'We = ?',                         opts:['РѕРЅРё','РјС‹','РІС‹'],                                           ans:'РјС‹'},
-  {q:'СЂСЋРєР·Р°Рє = ?',                     opts:['backpack','pencil','notebook'],                            ans:'backpack'},
+  {q:'тетрадь = ?',                    opts:['backpack','notebook','ruler'],                             ans:'notebook'},
+  {q:'We = ?',                         opts:['они','мы','вы'],                                           ans:'мы'},
+  {q:'рюкзак = ?',                     opts:['backpack','pencil','notebook'],                            ans:'backpack'},
   {q:'"He" refers to...',              opts:['a girl','a boy','yourself'],                               ans:'a boy'},
-  {q:'Р»РёРЅРµР№РєР° = ?',                    opts:['pencil','ruler','eraser'],                                 ans:'ruler'},
-  {q:'They = ?',                       opts:['РјС‹','РІС‹','РѕРЅРё'],                                           ans:'РѕРЅРё'},
-  {q:'РєР»Р°СЃСЃ = ?',                      opts:['classroom','teacher','homework'],                          ans:'classroom'},
+  {q:'линейка = ?',                    opts:['pencil','ruler','eraser'],                                 ans:'ruler'},
+  {q:'They = ?',                       opts:['мы','вы','они'],                                           ans:'они'},
+  {q:'класс = ?',                      opts:['classroom','teacher','homework'],                          ans:'classroom'},
   {q:'"It" refers to...',              opts:['a person','a thing','a group'],                            ans:'a thing'},
-  {q:'СѓС‡РёС‚РµР»СЊ = ?',                    opts:['student','homework','teacher'],                            ans:'teacher'},
-  {q:'You (plural) = ?',               opts:['РјС‹','РІС‹','РѕРЅРё'],                                           ans:'РІС‹'},
-  {q:'РґРѕРјР°С€РЅРµРµ Р·Р°РґР°РЅРёРµ = ?',           opts:['notebook','homework','pencil'],                            ans:'homework'},
-  {q:'СѓС‡РµРЅРёРє = ?',                     opts:['teacher','student','ruler'],                               ans:'student'},
-  {q:'She = ?',                        opts:['РѕРЅ','РѕРЅР°','РѕРЅРѕ'],                                          ans:'РѕРЅР°'},
-  {q:'Backpack in Russian?',           opts:['С‚РµС‚СЂР°РґСЊ','Р»РёРЅРµР№РєР°','СЂСЋРєР·Р°Рє'],                              ans:'СЂСЋРєР·Р°Рє'},
-  {q:'I = ?',                          opts:['СЏ','С‚С‹','РѕРЅ'],                                             ans:'СЏ'},
-  {q:'Classroom in Russian?',          opts:['РєР»Р°СЃСЃ','СѓСЂРѕРє','С€РєРѕР»Р°'],                                    ans:'РєР»Р°СЃСЃ'},
+  {q:'учитель = ?',                    opts:['student','homework','teacher'],                            ans:'teacher'},
+  {q:'You (plural) = ?',               opts:['мы','вы','они'],                                           ans:'вы'},
+  {q:'домашнее задание = ?',           opts:['notebook','homework','pencil'],                            ans:'homework'},
+  {q:'ученик = ?',                     opts:['teacher','student','ruler'],                               ans:'student'},
+  {q:'She = ?',                        opts:['он','она','оно'],                                          ans:'она'},
+  {q:'Backpack in Russian?',           opts:['тетрадь','линейка','рюкзак'],                              ans:'рюкзак'},
+  {q:'I = ?',                          opts:['я','ты','он'],                                             ans:'я'},
+  {q:'Classroom in Russian?',          opts:['класс','урок','школа'],                                    ans:'класс'},
   {q:'"We" refers to...',              opts:['one person','a group including speaker','others only'],     ans:'a group including speaker'}
 ];
 
@@ -2099,18 +2169,18 @@ function checkQuiz() {
 // ===== SECTION 6: SPEAK ALL =====
 let speakHeard = 0;
 const speakAllClean = [
-  {en:'Hello, I am a student.',   ru:'Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ, СЏ СѓС‡РµРЅРёРє.'},
-  {en:'This is my pencil.',       ru:'Р­С‚Рѕ РјРѕР№ РєР°СЂР°РЅРґР°С€.'},
-  {en:'She has a notebook.',      ru:'РЈ РЅРµС‘ РµСЃС‚СЊ С‚РµС‚СЂР°РґСЊ.'},
-  {en:'We are in the classroom.', ru:'РњС‹ РІ РєР»Р°СЃСЃРµ.'},
-  {en:'They use a ruler.',        ru:'РћРЅРё РёСЃРїРѕР»СЊР·СѓСЋС‚ Р»РёРЅРµР№РєСѓ.'},
-  {en:'He carries a backpack.',   ru:'РћРЅ РЅРѕСЃРёС‚ СЂСЋРєР·Р°Рє.'},
-  {en:'You are a teacher.',       ru:'Р’С‹ СѓС‡РёС‚РµР»СЊ.'},
-  {en:'I do my homework.',        ru:'РЇ РґРµР»Р°СЋ РґРѕРјР°С€РЅРµРµ Р·Р°РґР°РЅРёРµ.'},
-  {en:'It is a school.',          ru:'Р­С‚Рѕ С€РєРѕР»Р°.'},
-  {en:'My name is Maria.',        ru:'РњРµРЅСЏ Р·РѕРІСѓС‚ РњР°СЂРёСЏ.'},
-  {en:'Where is your pencil?',    ru:'Р“РґРµ С‚РІРѕР№ РєР°СЂР°РЅРґР°С€?'},
-  {en:'See you tomorrow!',        ru:'Р”Рѕ Р·Р°РІС‚СЂР°!'}
+  {en:'Hello, I am a student.',   ru:'Здравствуйте, я ученик.'},
+  {en:'This is my pencil.',       ru:'Это мой карандаш.'},
+  {en:'She has a notebook.',      ru:'У неё есть тетрадь.'},
+  {en:'We are in the classroom.', ru:'Мы в классе.'},
+  {en:'They use a ruler.',        ru:'Они используют линейку.'},
+  {en:'He carries a backpack.',   ru:'Он носит рюкзак.'},
+  {en:'You are a teacher.',       ru:'Вы учитель.'},
+  {en:'I do my homework.',        ru:'Я делаю домашнее задание.'},
+  {en:'It is a school.',          ru:'Это школа.'},
+  {en:'My name is Maria.',        ru:'Меня зовут Мария.'},
+  {en:'Where is your pencil?',    ru:'Где твой карандаш?'},
+  {en:'See you tomorrow!',        ru:'До завтра!'}
 ];
 (function buildSpeakAll(){
   const grid = document.getElementById('speakGrid');
@@ -2619,6 +2689,71 @@ body.lb-page-school-words .section-bonus .section-head{
   border-bottom:1px solid var(--school-line) !important;
 }
 body.lb-page-school-words .section-head h2{color:var(--school-ink) !important;font-family:var(--display,"Unbounded","Manrope",system-ui,sans-serif) !important;}
+</style>
+<style id="codex-a1-lab-final-lock-20260520">
+/* Final late-cascade lock: wins over older per-lesson manual styles. */
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.canon-l-level,.lang-toggle,.btn-tool,.palette-select,.level-bubble),
+html[data-theme="violet"] body :is(.friendly-tools .btn-tool,.canon-l-tools .canon-l-pill) {
+  background: color-mix(in srgb, var(--surface) 84%, #B65CFF 16%) !important;
+  border-color: rgba(182, 92, 255, 0.62) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+}
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.lang-toggle,.btn-tool,.palette-select):hover,
+html[data-theme="violet"] body :is(.canon-l-pill,.canon-l-audience-btn,.lang-toggle,.btn-tool,.palette-select):focus-visible {
+  background: color-mix(in srgb, var(--surface) 76%, #B65CFF 24%) !important;
+  border-color: #B65CFF !important;
+  box-shadow: 0 0 0 2px rgba(182, 92, 255, 0.18) !important;
+}
+html[data-theme="violet"] body :is(.canon-l-audience-btn.is-active,.canon-l-audience-btn[aria-pressed="true"],.btn-tool.is-active,.lang-toggle.is-active) {
+  background: #B65CFF !important;
+  border-color: #B65CFF !important;
+  color: #fff !important;
+}
+body :is(.step-track,.canon-l-tracker-track,.round-track,.module-progress-track,.lesson-score-track) {
+  height: 4px !important;
+  min-height: 4px !important;
+}
+body :is(.step-tracker,.canon-l-tracker) {
+  grid-template-columns: auto minmax(120px, 1fr) auto !important;
+  align-items: center !important;
+  gap: 12px !important;
+  overflow: hidden !important;
+}
+body :is(.choice-row,.quiz-options,.answer-options,.word-bank,.bank.interactive) {
+  flex-wrap: wrap !important;
+  max-width: 100% !important;
+}
+body :is(.choice,.answer-btn,.word-chip,.btn,.canon-l-btn) {
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+</style>
+
+<style id="codex-a1-lab-ultra-lock-20260520">
+html body .step-tracker > .step-track.step-track,
+html body .step-tracker .step-track.step-track,
+html body .canon-l-tracker > .canon-l-tracker-track.canon-l-tracker-track,
+html body .round-track.round-track,
+html body .module-progress-track.module-progress-track,
+html body .lesson-score-track.lesson-score-track {
+  height: 4px !important;
+  min-height: 4px !important;
+  max-height: 4px !important;
+  block-size: 4px !important;
+}
+html[data-theme="violet"] body .friendly-tools .btn-tool.btn-tool,
+html[data-theme="violet"] body .canon-l-tools .canon-l-pill.canon-l-pill,
+html[data-theme="violet"] body .canon-l-audience-btn.canon-l-audience-btn,
+html[data-theme="violet"] body .canon-l-level.canon-l-level,
+html[data-theme="violet"] body .lang-toggle.lang-toggle,
+html[data-theme="violet"] body .level-bubble.level-bubble {
+  background: color-mix(in srgb, var(--surface) 84%, #B65CFF 16%) !important;
+  border-color: rgba(182, 92, 255, 0.62) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+}
 </style>
 </body>
 </html>
