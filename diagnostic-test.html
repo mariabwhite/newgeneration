@@ -679,6 +679,21 @@
       min-height: 40px;
     }
 
+    .play-audio-btn {
+      min-height: 48px;
+      border: 0;
+      border-radius: 4px;
+      padding: 0 18px;
+      background: var(--skill);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .audio-fallback-btn {
+      opacity: .78;
+    }
+
     .audio-note,
     .writing-checklist {
       color: var(--muted);
@@ -3525,10 +3540,11 @@
         <div class="listening-panel">
           <div class="listening-meta">Listen to the dialogue. The transcript is hidden from the student.</div>
           <div class="audio-stack">
+            <button class="play-audio-btn" type="button" data-play-audio="${level.code}">Play audio</button>
             <audio controls preload="none" src="${audioPath(level)}" data-audio-source="${audioPath(level)}"></audio>
-            <button class="audio-btn" type="button" data-listen-level="${level.code}">Backup browser voice</button>
+            <button class="audio-btn audio-fallback-btn" type="button" data-listen-level="${level.code}">Backup voice</button>
           </div>
-          <div class="audio-note">Main audio file: ${audioPath(level)}. If the recording is not uploaded yet, use the backup browser voice.</div>
+          <div class="audio-note">If the audio does not start, use Backup voice.</div>
         </div>
       `;
     }
@@ -4016,14 +4032,17 @@
       });
     });
 
-    document.querySelectorAll("[data-audio-source]").forEach(audio => {
-      fetch(audio.dataset.audioSource, { method: "HEAD" })
-        .then(response => {
-          if (!response.ok) audio.hidden = true;
-        })
-        .catch(() => {
-          audio.hidden = true;
-        });
+    document.querySelectorAll("[data-play-audio]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const panel = button.closest(".listening-panel");
+        const audio = panel?.querySelector("[data-audio-source]");
+        try {
+          await audio?.play();
+        } catch (_) {
+          const level = levels.find(item => item.code === button.dataset.playAudio);
+          if (level) speakDialogue(level.listening.script);
+        }
+      });
     });
 
     document.querySelectorAll("[data-writing-level]").forEach(textarea => {
