@@ -51,6 +51,22 @@ body.light .topbar-tools .cab-home-link:focus-visible {
   }
 }
 
+/* FIX 2026-05-20: топбар в кабинете «съезжал» — кнопки уходили за правый край при
+   средней/узкой ширине окна. Разрешаем перенос на 2 строки, чтобы все 3 кнопки
+   (Назад / DARK / Выйти) всегда оставались видны. */
+body[data-page^="cabinet"] .topbar {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+@media (max-width: 1000px) {
+  .topbar-tools .cab-home-link {
+    min-width: 130px;
+    padding-inline: 14px;
+    font-size: 9.5px;
+  }
+}
+
 .cabinet-main {
   /* Только вертикальные отступы — горизонтальные 0 24px тянем из .page-shell.
      Раньше шорткат padding: 34px 0 72px убивал боковые отступы → контент липнул к краям. */
