@@ -608,7 +608,7 @@ a {
 /* ── doc-collapse: ОДНА кнопка-аккордеон, раскрытие показывает суб-документы ── */
 .doc-collapse {
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
   margin-top: 14px;
@@ -630,10 +630,11 @@ body.light .doc-collapse[open] {
 .doc-collapse summary {
   cursor: pointer;
   list-style: none;
-  padding: 14px 22px;
-  display: flex;
+  padding: 18px 18px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 34px;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-family: 'Unbounded', sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -643,28 +644,81 @@ body.light .doc-collapse[open] {
 .doc-collapse summary::-webkit-details-marker { display: none; }
 .doc-collapse summary::marker { content: ""; }
 .doc-collapse-icon {
-  font-size: 16px;
-  line-height: 1;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: rgba(255, 90, 31, 0.08);
   flex-shrink: 0;
+}
+.doc-collapse-icon::before,
+.doc-collapse-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.doc-collapse-icon::before {
+  top: 8px;
+  width: 15px;
+  height: 13px;
+  border: 2px solid var(--accent);
+  border-bottom: 0;
+  border-radius: 9px 9px 0 0;
+}
+.doc-collapse-icon::after {
+  bottom: 8px;
+  width: 18px;
+  height: 15px;
+  background: var(--accent);
+}
+.doc-collapse-icon[data-doc-icon="contract"]::before {
+  display: none;
+}
+.doc-collapse-icon[data-doc-icon="contract"]::after {
+  top: 8px;
+  bottom: auto;
+  width: 18px;
+  height: 22px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 2px;
+  box-shadow: 6px 6px 0 rgba(255, 90, 31, 0.18);
 }
 .doc-collapse-title {
   flex: 1 1 auto;
 }
 .doc-collapse-chevron {
   flex: 0 0 auto;
-  font-size: 14px;
-  color: var(--muted);
-  transition: transform 0.2s ease;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 18px/1 'JetBrains Mono', monospace;
+  font-size: 0;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.doc-collapse-chevron::before {
+  content: "+";
+  font: 700 18px/1 'JetBrains Mono', monospace;
 }
 .doc-collapse[open] .doc-collapse-chevron {
-  transform: rotate(180deg);
   color: var(--accent);
 }
+.doc-collapse[open] .doc-collapse-chevron::before {
+  content: "×";
+}
 .doc-collapse-content {
-  padding: 4px 22px 18px;
+  padding: 0 18px 18px 74px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+.doc-collapse:not([open]) .doc-collapse-content {
+  display: none;
 }
 .doc-sub-item {
   display: flex;
@@ -713,6 +767,20 @@ body.light .doc-sub-item {
 }
 .doc-sub-actions .doc-action--mini:hover {
   opacity: 1;
+}
+.info-card .doc-collapse-content {
+  padding-left: 18px;
+}
+.info-card .doc-sub-item {
+  align-items: flex-start;
+  flex-direction: column;
+}
+.info-card .doc-sub-actions {
+  width: 100%;
+  justify-content: flex-start;
+}
+.info-card .doc-sub-actions button.doc-action {
+  flex: 1 1 110px;
 }
 
 .legal-card {
@@ -1173,9 +1241,9 @@ body.light .level-pill:hover {
           <p data-ru="Информация ученика используется только для организации обучения: диагностики, отчётов, материалов, расписания и связи по занятиям. Обработка ведётся в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Сервисы внешней веб-аналитики (Яндекс.Метрика, Google Analytics) на сайте не используются." data-en="Student information is used only for organising education: diagnostics, reports, materials, scheduling, and lesson communication. Processing is carried out under Federal Law № 152-FZ. External web analytics services (Yandex.Metrika, Google Analytics) are not used on this site.">Информация ученика используется только для организации обучения: диагностики, отчётов, материалов, расписания и связи по занятиям. Обработка ведётся в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Сервисы внешней веб-аналитики (Яндекс.Метрика, Google Analytics) на сайте не используются.</p>
           <details class="doc-collapse">
             <summary>
-              <span class="doc-collapse-icon">🔐</span>
+              <span class="doc-collapse-icon" aria-hidden="true"></span>
               <span class="doc-collapse-title" data-ru="Персональные данные — политика и согласия" data-en="Personal data — policy and consents">Персональные данные — политика и согласия</span>
-              <span class="doc-collapse-chevron">▾</span>
+              <span class="doc-collapse-chevron" aria-hidden="true">+</span>
             </summary>
             <div class="doc-collapse-content">
               <div class="doc-sub-item">
@@ -1184,7 +1252,7 @@ body.light .level-pill:hover {
                 </div>
                 <div class="doc-sub-actions">
                   <button class="doc-action contract-download" type="button" data-doc="assets/documents/privacy-policy.html" onclick="unlockProtectedDocument(this)" data-ru="Открыть" data-en="Open">Открыть</button>
-                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/privacy-policy.docx" onclick="unlockProtectedDocument(this)" data-ru="📥 .docx" data-en="📥 .docx">📥 .docx</button>
+                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/privacy-policy.docx" onclick="unlockProtectedDocument(this)" data-ru=".docx" data-en=".docx">.docx</button>
                 </div>
               </div>
               <div class="doc-sub-item">
@@ -1193,7 +1261,7 @@ body.light .level-pill:hover {
                 </div>
                 <div class="doc-sub-actions">
                   <button class="doc-action contract-download" type="button" data-doc="assets/documents/personal-data-consent-adult.html" onclick="unlockProtectedDocument(this)" data-ru="Открыть" data-en="Open">Открыть</button>
-                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/personal-data-consent-adult.docx" onclick="unlockProtectedDocument(this)" data-ru="📥 .docx" data-en="📥 .docx">📥 .docx</button>
+                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/personal-data-consent-adult.docx" onclick="unlockProtectedDocument(this)" data-ru=".docx" data-en=".docx">.docx</button>
                 </div>
               </div>
               <div class="doc-sub-item">
@@ -1202,7 +1270,7 @@ body.light .level-pill:hover {
                 </div>
                 <div class="doc-sub-actions">
                   <button class="doc-action contract-download" type="button" data-doc="assets/documents/personal-data-consent-child.html" onclick="unlockProtectedDocument(this)" data-ru="Открыть" data-en="Open">Открыть</button>
-                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/personal-data-consent-child.docx" onclick="unlockProtectedDocument(this)" data-ru="📥 .docx" data-en="📥 .docx">📥 .docx</button>
+                  <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/personal-data-consent-child.docx" onclick="unlockProtectedDocument(this)" data-ru=".docx" data-en=".docx">.docx</button>
                 </div>
               </div>
             </div>
@@ -1261,9 +1329,9 @@ body.light .level-pill:hover {
 
     <details class="doc-collapse" style="margin-top: 20px;">
       <summary>
-        <span class="doc-collapse-icon">📄</span>
+        <span class="doc-collapse-icon" data-doc-icon="contract" aria-hidden="true"></span>
         <span class="doc-collapse-title" data-ru="Договор и публичная оферта" data-en="Contract and public offer">Договор и публичная оферта</span>
-        <span class="doc-collapse-chevron">▾</span>
+        <span class="doc-collapse-chevron" aria-hidden="true">+</span>
       </summary>
       <div class="doc-collapse-content">
         <div class="doc-sub-item">
@@ -1272,7 +1340,7 @@ body.light .level-pill:hover {
           </div>
           <div class="doc-sub-actions">
             <button class="doc-action contract-download" type="button" data-doc="assets/documents/new-generation-contract.html" onclick="unlockProtectedDocument(this)" data-ru="Открыть" data-en="Open">Открыть</button>
-            <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/new-generation-contract.docx" onclick="unlockProtectedDocument(this)" data-ru="📥 .docx" data-en="📥 .docx">📥 .docx</button>
+            <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/new-generation-contract.docx" onclick="unlockProtectedDocument(this)" data-ru=".docx" data-en=".docx">.docx</button>
           </div>
         </div>
         <div class="doc-sub-item">
@@ -1281,7 +1349,7 @@ body.light .level-pill:hover {
           </div>
           <div class="doc-sub-actions">
             <button class="doc-action contract-download" type="button" data-doc="assets/documents/public-offer.html" onclick="unlockProtectedDocument(this)" data-ru="Открыть" data-en="Open">Открыть</button>
-            <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/public-offer.docx" onclick="unlockProtectedDocument(this)" data-ru="📥 .docx" data-en="📥 .docx">📥 .docx</button>
+            <button class="doc-action doc-action--mini contract-download" type="button" data-doc="assets/documents/public-offer.docx" onclick="unlockProtectedDocument(this)" data-ru=".docx" data-en=".docx">.docx</button>
           </div>
         </div>
       </div>
