@@ -232,6 +232,40 @@
       .replace(/"/g, "&quot;");
   }
 
+  /* Извлечь "Имя Отчество" из "Фамилия Имя Отчество" */
+  function _parseImyaOtchestvo(fullName) {
+    if (!fullName) return "";
+    const parts = fullName.trim().split(/\s+/);
+    if (parts.length >= 3) return parts[1] + " " + parts[2];
+    if (parts.length === 2) return parts[1];
+    return parts[0];
+  }
+
+  /* Уменьшительное имя ребёнка: explicit nickname или первое слово name */
+  function _studentNickname(student) {
+    if (!student) return "";
+    if (student.nickname) return student.nickname;
+    return student.name.trim().split(/\s+/)[0];
+  }
+
+  /* Приветствие для ученика в его кабинете: взрослому формально, ребёнку дружески */
+  function _greetingForStudent(student) {
+    if (!student) return "Здравствуйте!";
+    if (student.id === "ekaterina-mariya-pair") return "Привет, девочки!";
+    if (student.is_adult) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
+    return "Привет, " + _studentNickname(student);
+  }
+
+  /* Приветствие для родителя: если student взрослый — это он сам;
+     если есть parent_name — формально к родителю; пара — без имени. */
+  function _greetingForParent(student) {
+    if (!student) return "Здравствуйте!";
+    if (student.id === "ekaterina-mariya-pair") return "Здравствуйте!";
+    if (student.is_adult) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
+    if (student.parent_name) return "Здравствуйте, " + _parseImyaOtchestvo(student.parent_name);
+    return "Здравствуйте!";
+  }
+
   function renderStudent(container, student) {
     if (!student) {
       container.innerHTML = "<p>Профиль ученика не найден.</p>";
@@ -241,7 +275,7 @@
     const parent = student.parent_name ? `<div class="cab-card-row"><span class="cab-row-label">Родитель</span><span class="cab-row-value">${_esc(student.parent_name)}</span></div>` : "";
     container.innerHTML = `
       <div class="cab-hero">
-        <h1>Привет, ${_esc(student.name.split(" ")[0])}</h1>
+        <h1>${_esc(_greetingForStudent(student))}</h1>
         <p class="cab-hero-sub">Ваш личный кабинет</p>
       </div>
 
@@ -1321,8 +1355,8 @@
 
     container.innerHTML = `
       <div class="cab-hero">
-        <h1>Кабинет родителя</h1>
-        <p class="cab-hero-sub">Обзор обучения · ${_esc(student.name)}</p>
+        <h1>${_esc(_greetingForParent(student))}</h1>
+        <p class="cab-hero-sub">Кабинет родителя · обзор обучения ${_esc(student.name)}</p>
       </div>
 
       <div class="cab-grid">
