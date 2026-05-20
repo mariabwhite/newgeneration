@@ -29,6 +29,8 @@ window.NGE_DATA = {
       "notion_id": "34d7364c-ba79-81e0-9e00-eb54d63b0dc1",
       "name": "Андрей Круглов",
       "casual_greeting": true,
+      "greeting_student": "Привет, Андрей",
+      "greeting_parent": "Здравствуйте, Юлия Борисовна",
       "level": "B2",
       "format": "индивидуально",
       "duration": "1.5 часа",
@@ -216,6 +218,8 @@ window.NGE_DATA = {
     },
     {
       "id": "denis-shalmanov",
+      "greeting_student": "Здравствуйте, Денис",
+      "greeting_parent": "Здравствуйте, Денис",
       "notion_id": "34d7364c-ba79-81a5-bdd8-ce47d7b050d7",
       "name": "Денис Шалманов",
       "level": "A1",
@@ -265,6 +269,7 @@ window.NGE_DATA = {
     },
     {
       "id": "yulya-lushina",
+      "greeting_student": "Привет, Юлия",
       "notion_id": "34d7364c-ba79-81b5-8215-fdfe91bec709",
       "name": "Юля Лушина",
       "level": "",
@@ -291,6 +296,7 @@ window.NGE_DATA = {
     },
     {
       "id": "yulya-izotova",
+      "greeting_student": "Привет, Юлия",
       "notion_id": "34d7364c-ba79-81fa-8d1b-ed43ce161b3b",
       "name": "Юля Изотова",
       "level": "A1+",
@@ -323,6 +329,7 @@ window.NGE_DATA = {
     },
     {
       "id": "sofia-pavlova",
+      "greeting_student": "Привет, София",
       "notion_id": "34d7364c-ba79-817f-85f8-c6f87fd4d85c",
       "name": "Соня Павлова",
       "level": "B2/B2+",
