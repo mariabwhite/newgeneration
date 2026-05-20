@@ -546,9 +546,14 @@
       if (parts.length === 2) return parts[0] + " " + parts[1].charAt(0) + ".";
       return name;
     }
-    const rows = students.map(s => `
-      <tr>
-        <td>${_esc(s.name)}</td>
+    const rows = students.map(s => {
+      const vacationClass = s.summer_vacation ? " class=\"cab-table-row--vacation\"" : "";
+      const vacationBadge = s.summer_vacation
+        ? ` <span class="cab-vacation-badge" title="${_esc(s.summer_vacation_note || "На каникулах")}">☀ каникулы</span>`
+        : "";
+      return `
+      <tr${vacationClass}>
+        <td>${_esc(s.name)}${vacationBadge}</td>
         <td>${_esc(s.format || "—")}</td>
         <td>${_esc(s.schedule || "—")}</td>
         <td title="${_esc(s.parent_name || "")}">${_esc(_shortParent(s.parent_name, s.is_adult))}</td>
@@ -561,8 +566,8 @@
           <a class="cab-preview-link" href="./parent.html?student=${_esc(s.id)}" target="_blank" title="Открыть кабинет родителя">👪</a>
           <button class="cab-preview-link cab-add-lesson-btn" type="button" data-student-id="${_esc(s.id)}" data-student-name="${_esc(s.name)}" data-lessons-used="${_esc(s.lessons_used_this_month || 0)}" title="Записать урок">➕</button>
         </td>
-      </tr>
-    `).join("");
+      </tr>`;
+    }).join("");
 
     container.innerHTML = `
       <div class="cab-hero">
