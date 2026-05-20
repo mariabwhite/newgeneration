@@ -248,20 +248,24 @@
     return student.name.trim().split(/\s+/)[0];
   }
 
-  /* Приветствие для ученика в его кабинете: взрослому формально, ребёнку дружески */
+  /* Приветствие для ученика в его кабинете: взрослому формально, ребёнку дружески.
+     casual_greeting: true перебивает is_adult и даёт «Привет, <nickname>» (используется
+     для взрослых учеников, с которыми преподаватель на ты — например, Андрей Круглов). */
   function _greetingForStudent(student) {
     if (!student) return "Здравствуйте!";
     if (student.id === "ekaterina-mariya-pair") return "Привет, девочки!";
-    if (student.is_adult) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
+    if (student.is_adult && !student.casual_greeting) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
     return "Привет, " + _studentNickname(student);
   }
 
   /* Приветствие для родителя: если student взрослый — это он сам;
-     если есть parent_name — формально к родителю; пара — без имени. */
+     если есть parent_name — формально к родителю; пара — без имени.
+     casual_greeting: true работает так же — «Привет, <nickname>» вместо ИО. */
   function _greetingForParent(student) {
     if (!student) return "Здравствуйте!";
     if (student.id === "ekaterina-mariya-pair") return "Здравствуйте!";
-    if (student.is_adult) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
+    if (student.is_adult && !student.casual_greeting) return "Здравствуйте, " + _parseImyaOtchestvo(student.name);
+    if (student.is_adult && student.casual_greeting) return "Привет, " + _studentNickname(student);
     if (student.parent_name) return "Здравствуйте, " + _parseImyaOtchestvo(student.parent_name);
     return "Здравствуйте!";
   }

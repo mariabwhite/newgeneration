@@ -28,6 +28,7 @@ window.NGE_DATA = {
       "id": "andrei-kruglov",
       "notion_id": "34d7364c-ba79-81e0-9e00-eb54d63b0dc1",
       "name": "Андрей Круглов",
+      "casual_greeting": true,
       "level": "B2",
       "format": "индивидуально",
       "duration": "1.5 часа",
