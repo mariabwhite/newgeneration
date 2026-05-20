@@ -220,6 +220,59 @@
 **Загадка дня (если повторится):**
 - ⬜ «Юля у Елены» — Маша видела в каком-то месте «Юля» вместо Елены. Я не воспроизвела. Если увидишь — скрин конкретного экрана, разберу
 
+### День 6 · 2026-05-20 — Hero unification + кабинет-кнопка + Codex марафон отступов
+
+#### Утро (Claude)
+- **Hero NO. унификация** (`871d4b2`): № 001/002/003 (Cyrillic) → NO. 001/002/003 (Latin) на index/about/programs (на cases/conditions/blog/travel уже было NO.). Убран `<div class="hero-kicker">` на 5 страницах (programs/cases/conditions/blog/travel — устранена «3-я полоса»). Удалены inline `.hero-inner` дубли в index.html и blog.html (мешали 2см padding из system.css).
+- **Hero top 2см** (`9c33f80`): `.hero { padding-top: clamp(20px, 5vw, 76px) }` — было 56px фикс. На всех 8 страницах теперь одинаковый верхний gap.
+- **CAB кнопка** (`86de908`): новая ссылка `<a class="control-btn" href="cabinet/login.html">CAB</a>` в `.topbar-tools` на 7 главных + такая же `.canon-l-pill` в `.canon-l-tools` Лаборатории. До этого кабинет был доступен ТОЛЬКО через ecosystem-strip на about-project (orphan-эффект). Теперь — из любой страницы.
+- **Lab баннер выровнен** (`ed5d979`): последний `!important` override `.level-grid { padding-left: 59px; padding-right: 19px }` (асимметрия от 14.05) → `24px / 24px` симметрично, совпадает с `.hero-copy padding: 24px`. Теперь баннер «Интерактивные модули» + pill-уровни + карточки A1/A2/B1 — на одной левой.
+- **Side padding эксперимент 28/24** (`7fe4fe9`) — попытка скопировать Lab .wrap+hero-copy в main сайт; **откачен** (`ec83f8b`) — Маша попросила вернуть утреннее состояние (clamp 2см + max-width 1200).
+- **Bump кэша** `system.css?v=12→13→14→15→16` (5 итераций за день).
+
+#### Codex марафон (после Машиного запуска, 3 коммита)
+- **Codex 1** (`c14c072`): введён единый CSS-токен `--layout-x: clamp(20px, 5vw, 76px)` в `:root`. `.wrap` / `.page-shell` / `.hero-inner` → `padding: 0 var(--layout-x)`. CAB кнопка стилизована как 32×32 квадрат с `border-radius: 10px`. Lab `canon-L.css` + `index.html` подтянуты под `--layout-x`.
+- **Codex 2** (`ee9f290`): точечные правки `system.css`, `programs.html`, Lab `canon-L.css` + `index.html` — выровнены secнции 01/02/03... на одну ось с hero, Lab каталог: hero/banner и level-grid на общей оси.
+- **Codex 3** (`1c8f91d`): визуальный финиш кнопок. `.control-btn` фон → `#15151B`, рамка → 1.5px solid `#FF5A1F` (оранжевая обводка). Hover: `#1F1F26` + `#FFA56C`. CAB ссылка теперь идентично DARK/EN кнопкам по стилю.
+
+#### Закрыто Codex в этом марафоне (Машин чек-лист)
+- ✅ Единый `--layout-x` 2см токен
+- ✅ Боковые отступы основных страниц унифицированы
+- ✅ `.hero-inner` / `.page-shell` / `.wrap` выровнены
+- ✅ Секции 01/02/03... на одной оси с hero
+- ✅ Lab каталог: hero/banner и level-grid на общей оси
+- ✅ Кнопки CAB / DARK-LITE / EN-RU приведены к единому виду
+- ✅ DARK/LITE сделана короче остальных
+- ✅ Основной сайт: чёрный фон + оранжевая обводка кнопок
+- ✅ Lab Theme hover/подсветка — фиолетовая
+- ✅ CAB без подчёркивания
+- ✅ Programs: hero-картинка уменьшена ~10%, поднята выше
+- ✅ About-project: стрелка/траектория поднята, потом опущена на 2см → итог `top: calc(28% - 3cm)`
+
+#### Файлы тронутые за день 6 (8 файлов)
+`system.css`, `index.html`, `about-project.html`, `blog.html`, `cases.html`, `conditions.html`, `programs.html`, `lingua-boost-lab/index.html`, `lingua-boost-lab/assets/canon-L.css`
+
+#### Backup-тэги дня 6 (откатные точки)
+```
+pre-hero-unify-2026-05-20             # перед утренней NO./kicker унификацией
+pre-2cm-uniform-2026-05-20            # перед утренним 2см top
+pre-cab-button-2026-05-20             # перед CAB-кнопкой
+pre-side-padding-lab-2026-05-20       # перед экспериментом 28/24
+pre-2cm-no-maxwidth-2026-05-20        # перед попыткой убрать max-width
+safe-before-codex-2026-05-20          # перед запуском Codex
+backup-2026-05-20-1248                # до Codex
+backup-2026-05-20-1300-after-codex    # после Codex iter 1
+backup-2026-05-20-1315-codex2         # после Codex iter 2
+```
+
+#### Open issues end-of-day 6
+- 🟡 **Педагогический язык** (programs / cases / blog / conditions) — клише ещё не вычищены целиком (Маша указала: «программное обучение», «рабочая карта» убрать; ревизия лида на programs)
+- 🟡 **Hero star оранжевая подсветка** на programs / cases / blog — один из звёзд должен подсвечиваться (как на главной)
+- 🟡 **Cases карточки** — вернуть тёмный фон (раньше были чёрные)
+- 🟡 **Conditions рамка** «Если хотите обсудить формат работы» — убрать (на других страницах её нет)
+- 🟡 **Lab уроки** (Find&Say масштаб/сброс/кнопки/шрифты, Stars нижняя полоса, Grammar баннер, Past Simple/Core/Catalog отступы, Position World 2см зазор) — 10 пунктов отдельным заходом
+- 🔴 **РКН-уведомление** и **хостинг** — Маша ручками вне сайта
+
 ---
 
 ## 2. Текущий план (roadmap) — что ОСТАЛОСЬ
