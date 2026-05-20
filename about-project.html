@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -91,19 +91,16 @@
 
   document.addEventListener("DOMContentLoaded", function restore() {
     try {
-      const savedLang = localStorage.getItem("nge-lang");
-      // Idempotent: only toggle if body class is NOT already "en"
-      // (inline state-bridge above already applied class from window.name).
+      const requestedLang = new URLSearchParams(location.search).get("lang");
+      const savedLang = (requestedLang === "en" || requestedLang === "ru")
+        ? requestedLang
+        : localStorage.getItem("nge-lang");
+      // URL wins over stale saved state when moving between pages in one tab.
       if (savedLang === "en" && !document.body.classList.contains("en")) {
         toggleLang();
       }
     } catch (e) {}
-
     markActiveNav();
-    updateExperienceCounter();
-    updateExperienceTicker();
-    // About-me ticker: update once per second without touching the hero counter.
-    setInterval(updateExperienceTicker, 1000);
   });
 </script>
 <style>
@@ -598,8 +595,8 @@ body.light .neuro-definition strong { color: var(--text); }
       var st = {};
       try { st = (window.name && window.name.charAt(0) === "{") ? JSON.parse(window.name) : {}; } catch(_){}
       var url = new URLSearchParams(location.search);
-      var theme = st.theme || url.get("theme") || localStorage.getItem("nge-theme") || "light";
-      var lang  = st.lang  || url.get("lang")  || localStorage.getItem("nge-lang")  || "";
+      var theme = url.get("theme") || st.theme || localStorage.getItem("nge-theme") || "light";
+      var lang  = url.get("lang")  || st.lang  || localStorage.getItem("nge-lang")  || "";
       var isLight = (theme === "light" || theme === "light-lab");
       var isEn = (lang === "en");
       if (isLight) document.body.classList.add("light");
@@ -866,6 +863,6 @@ New Generation English — это не просто индивидуальные
 </footer>
 
 <script defer src="./site.js?v=9"></script>
-<script defer src="./theme-cycle.js?v=8"></script>
+<script defer src="./theme-cycle.js?v=9"></script>
 </body>
 </html>

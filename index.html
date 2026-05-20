@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -866,15 +866,15 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 <body data-page="home">
 <script>
   /* NGE STATE-BRIDGE — window.name as cross-page truth on file:// origin.
-     Priority: window.name > URL > localStorage. Mirrors back to all three so
+     Priority: URL > window.name > localStorage. Mirrors back to all three so
      site.js / theme-cycle.js find consistent state in any path. */
   (function(){
     try {
       var st = {};
       try { st = (window.name && window.name.charAt(0) === "{") ? JSON.parse(window.name) : {}; } catch(_){}
       var url = new URLSearchParams(location.search);
-      var theme = st.theme || url.get("theme") || localStorage.getItem("nge-theme") || "light";
-      var lang  = st.lang  || url.get("lang")  || localStorage.getItem("nge-lang")  || "";
+      var theme = url.get("theme") || st.theme || localStorage.getItem("nge-theme") || "light";
+      var lang  = url.get("lang")  || st.lang  || localStorage.getItem("nge-lang")  || "";
       var isLight = (theme === "light" || theme === "light-lab");
       var isEn = (lang === "en");
       if (isLight) document.body.classList.add("light");
@@ -1191,7 +1191,7 @@ body.light .hero h1 .outline { -webkit-text-stroke-color: var(--text); }
 </footer>
 
 <script defer src="./site.js?v=9"></script>
-  <script defer src="./theme-cycle.js?v=8"></script>
+  <script defer src="./theme-cycle.js?v=9"></script>
 
 <script>
   /* FAQ modal — open/close + Esc handler. */

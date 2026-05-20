@@ -43,23 +43,22 @@
   }
 
   function readActiveLang() {
-    /* window.name first — survives navigation, not blocked by file://. */
-    try {
-      if (window.name && window.name.charAt(0) === "{") {
-        const _st = JSON.parse(window.name);
-        if (_st && (_st.lang === "en" || _st.lang === "ru")) return _st.lang;
-      }
-    } catch (_e) {}
-    /* localStorage — freshest after setLanguage() within same page. */
-    const stored = readStorage("nge-lang");
-    if (stored === "en" || stored === "ru") return stored;
-    /* URL params — fallback for initial load. */
+    /* URL first: an explicit link must beat stale window.name from the previous page. */
     try {
       const requested = new URLSearchParams(window.location.search).get("lang");
       if (requested === "en" || requested === "ru") return requested;
       const match = String(window.location.href || "").match(/[?&]lang=(en|ru)(?:[&#]|$)/);
       if (match) return match[1];
     } catch (error) {}
+    /* window.name survives navigation and keeps file:// pages in one chain. */
+    try {
+      if (window.name && window.name.charAt(0) === "{") {
+        const _st = JSON.parse(window.name);
+        if (_st && (_st.lang === "en" || _st.lang === "ru")) return _st.lang;
+      }
+    } catch (_e) {}
+    const stored = readStorage("nge-lang");
+    if (stored === "en" || stored === "ru") return stored;
     const htmlLang = document.documentElement.getAttribute("lang");
     return htmlLang === "en" ? "en" : "ru";
   }
