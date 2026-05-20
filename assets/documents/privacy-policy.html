@@ -23,7 +23,55 @@
   .footer-back { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 13px; color: #6b6560; }
   .footer-back a { color: #FF5A1F; }
   @media print { body { background: #fff; } main { padding: 24px; } }
+  /* Скрываем контент до прохождения пароля */
+  html.nge-locked body { visibility: hidden; }
 </style>
+<script>
+  /* 🔐 Парольная защита прямого доступа к Privacy Policy
+     Использует тот же SESSION_KEY и HASH, что и conditions.html.
+     Если пользователь уже разблокировал документ через conditions — пройдёт молча. */
+  (function() {
+    var NGE_DOC_HASH = "aa5c8c8b4de084cea3ffd2b034e1d41e0e0d28bbeccaafdd8a3152ca54eabc72";
+    var SESSION_KEY = "nge-doc-pwd";
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === NGE_DOC_HASH) return;
+    } catch (e) { /* sessionStorage недоступен */ }
+
+    document.documentElement.classList.add("nge-locked");
+
+    function sha256(text) {
+      if (!window.crypto || !window.crypto.subtle) return Promise.reject("nosha");
+      var enc = new TextEncoder();
+      return crypto.subtle.digest("SHA-256", enc.encode(text)).then(function(buf) {
+        var arr = Array.from(new Uint8Array(buf));
+        return arr.map(function(b){return b.toString(16).padStart(2,"0");}).join("");
+      });
+    }
+
+    function ask() {
+      var pwd = prompt("🔐 Документ защищён.\nВведите пароль (если вы клиент — пароль был отправлен в Telegram вместе с данными личного кабинета):");
+      if (pwd === null) { window.location.href = "../../conditions.html"; return; }
+      sha256(pwd).then(function(hashHex) {
+        if (hashHex === NGE_DOC_HASH) {
+          try { sessionStorage.setItem(SESSION_KEY, NGE_DOC_HASH); } catch (e) {}
+          document.documentElement.classList.remove("nge-locked");
+        } else {
+          alert("Неверный пароль.");
+          ask();
+        }
+      }).catch(function() {
+        alert("Браузер не поддерживает SHA-256. Откройте Политику через раздел «Условия» на сайте.");
+        window.location.href = "../../conditions.html";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", ask);
+    } else {
+      ask();
+    }
+  })();
+</script>
 </head>
 <body>
 <main>
