@@ -557,6 +557,31 @@
       background: var(--skill-soft);
     }
 
+    .choice-option.is-correct,
+    .grammar-option.is-correct {
+      border-color: rgba(33, 150, 96, .55);
+      background: rgba(46, 229, 157, .18);
+      color: #173f2d;
+    }
+
+    .choice-option.is-wrong,
+    .grammar-option.is-wrong {
+      border-color: rgba(214, 69, 69, .52);
+      background: rgba(214, 69, 69, .10);
+      color: #642020;
+    }
+
+    .question-feedback {
+      margin-top: 10px;
+      min-height: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .question-feedback.is-correct { color: #1f7a51; }
+    .question-feedback.is-wrong { color: #a13535; }
+
     .answer-note {
       width: 100%;
       min-height: 40px;
@@ -654,6 +679,28 @@
       font: 700 12px var(--mono);
       letter-spacing: .12em;
       text-transform: uppercase;
+    }
+
+    .diagnostic-score {
+      margin-top: 18px;
+      border: 1px solid rgba(122,95,207,.24);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fffaf4;
+      color: var(--text);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .diagnostic-score strong {
+      color: var(--brand-2);
+    }
+
+    .diagnostic-score small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 700;
     }
 
     .finish-panel {
@@ -963,6 +1010,35 @@
     }
   </style>
 <link rel="stylesheet" href="system.css?v=22">
+  <style id="diagnostic-light-page-override">
+    body {
+      --bg: #f7f5ff;
+      --bg-2: #ffffff;
+      --card: #ffffff;
+      --text: #1a1326;
+      --muted: #4a4358;
+      --line: rgba(122,95,207,.18);
+      background:
+        radial-gradient(circle at 82% 0%, rgba(122,95,207,.16), transparent 34%),
+        radial-gradient(circle at 8% 28%, rgba(255,155,47,.10), transparent 32%),
+        linear-gradient(180deg, #f7f5ff 0%, #ffffff 100%) !important;
+      color: var(--text) !important;
+    }
+
+    .topbar {
+      background: rgba(247,245,255,.94) !important;
+      border-bottom-color: rgba(122,95,207,.18) !important;
+      color: var(--text) !important;
+    }
+
+    .brand,
+    .brand-name,
+    .brand-sub,
+    .topnav,
+    .lang-btn {
+      color: var(--text) !important;
+    }
+  </style>
   <link rel="icon" type="image/svg+xml" href="assets/nge-favicon.svg">
 </head>
 <body>
@@ -3145,9 +3221,10 @@
                   <p>${esc(item.text)}</p>
                   <div class="choice-row">
                     ${item.options.map((option, optionIndex) => `
-                      <button class="choice-option" type="button" data-option="${optionIndex + 1}">${esc(option)}</button>
+                      <button class="choice-option" type="button" data-option="${optionIndex}" data-correct="${Number.isInteger(item.answer) && optionIndex === item.answer ? "true" : "false"}">${esc(option)}</button>
                     `).join("")}
                   </div>
+                  <div class="question-feedback" aria-live="polite"></div>
                   <input class="answer-note" type="text" placeholder="Short note / короткий комментарий">
                 </div>
               `;
@@ -3168,13 +3245,14 @@
               <p>${index + 1}. ${esc(item[0])}</p>
               <div class="grammar-options">
                 ${item[1].map((option, optionIndex) => `
-                  <button class="grammar-option" type="button" data-option="${optionIndex}">${esc(option)}</button>
+                  <button class="grammar-option" type="button" data-option="${optionIndex}" data-correct="${optionIndex === item[2] ? "true" : "false"}">${esc(option)}</button>
                 `).join("")}
               </div>
+              <div class="question-feedback" aria-live="polite"></div>
             </div>
           `).join("")}
         </div>
-        <div class="score-line" data-score-for="${level.code}">Grammar answers are saved for teacher review.</div>
+        <div class="score-line" data-score-for="${level.code}">Objective score: 0 / 0</div>
         <div class="task-actions">
           <a class="pdf-link" href="${pdfPath(level, "grammar")}" target="_blank" rel="noreferrer">PDF version</a>
         </div>
@@ -3203,6 +3281,10 @@
       return `
         <div class="finish-panel">
           <p>When the level is complete, send the diagnostic summary to the teacher.</p>
+          <div class="diagnostic-score" data-level-score="${level.code}">
+            <strong>Objective score: 0 / 40</strong>
+            <small>Reading, listening and grammar are checked automatically. Writing and speaking remain for teacher review.</small>
+          </div>
           <button class="finish-btn" type="button" data-finish-level="${level.code}">Finish and send by email</button>
         </div>
       `;
@@ -3271,7 +3353,7 @@
               ${skillLabel("05", "Grammar")}
               <div class="task-card">
                 <h3>Grammatical Range & Accuracy</h3>
-                <p>Choose the best answer. The correct answer is not shown on the page.</p>
+                <p>Choose the best answer. The page checks objective answers automatically.</p>
                 ${renderGrammar(level)}
               </div>
             </div>
@@ -3320,8 +3402,10 @@
     document.querySelectorAll(".choice-option").forEach(option => {
       option.addEventListener("click", () => {
         const group = option.closest(".choice-row");
-        group.querySelectorAll(".choice-option").forEach(btn => btn.classList.remove("is-selected"));
+        group.querySelectorAll(".choice-option").forEach(btn => btn.classList.remove("is-selected", "is-correct", "is-wrong"));
         option.classList.add("is-selected");
+        markObjectiveAnswer(option);
+        updateLevelScore(option.closest(".level-card").dataset.level);
       });
     });
 
@@ -3330,20 +3414,50 @@
         const item = option.closest(".grammar-item");
         const level = option.closest(".level-card").dataset.level;
         item.querySelectorAll(".grammar-option").forEach(btn => {
-          btn.classList.remove("is-selected");
+          btn.classList.remove("is-selected", "is-correct", "is-wrong");
         });
         option.classList.add("is-selected");
-        updateScore(level);
+        markObjectiveAnswer(option);
+        updateLevelScore(level);
       });
     });
 
-    function updateScore(level) {
-      const card = document.querySelector(`[data-level="${level}"]`);
-      const total = card.querySelectorAll(".grammar-item").length;
-      const answered = card.querySelectorAll(".grammar-option.is-selected").length;
-      const score = card.querySelector(`[data-score-for="${level}"]`);
-      score.textContent = `Grammar answers selected: ${answered} / ${total}`;
+    function markObjectiveAnswer(option) {
+      const isCorrect = option.dataset.correct === "true";
+      const container = option.closest(".question-card, .grammar-item");
+      const feedback = container?.querySelector(".question-feedback");
+      option.classList.add(isCorrect ? "is-correct" : "is-wrong");
+      if (!isCorrect) {
+        const correctOption = container?.querySelector("[data-correct='true']");
+        correctOption?.classList.add("is-correct");
+      }
+      if (feedback) {
+        feedback.textContent = isCorrect ? "Correct / верно" : "Not quite / неверно";
+        feedback.classList.toggle("is-correct", isCorrect);
+        feedback.classList.toggle("is-wrong", !isCorrect);
+      }
     }
+
+    function getLevelObjectiveStats(level) {
+      const card = document.querySelector(`[data-level="${level}"]`);
+      const options = [...card.querySelectorAll(".choice-row, .grammar-options")];
+      const total = options.length;
+      const answered = options.filter(group => group.querySelector(".is-selected")).length;
+      const correct = options.filter(group => group.querySelector(".is-selected[data-correct='true']")).length;
+      return { card, total, answered, correct };
+    }
+
+    function updateLevelScore(level) {
+      const { card, total, answered, correct } = getLevelObjectiveStats(level);
+      const score = card.querySelector(`[data-score-for="${level}"]`);
+      if (score) score.textContent = `Objective score: ${correct} / ${total} · answered ${answered} / ${total}`;
+      const panel = card.querySelector(`[data-level-score="${level}"]`);
+      if (panel) {
+        panel.innerHTML = `<strong>Objective score: ${correct} / ${total}</strong><small>Answered ${answered} / ${total}. Reading, listening and grammar are checked automatically; writing and speaking remain for teacher review.</small>`;
+      }
+    }
+
+    cards.forEach(card => updateLevelScore(card.dataset.level));
 
     function splitListeningScript(script) {
       const lines = script.split("\n").map(line => line.trim()).filter(Boolean);
@@ -3419,21 +3533,27 @@
     function collectLevelSummary(levelCode) {
       const card = document.querySelector(`[data-level="${levelCode}"]`);
       const lines = [`Diagnostic level: ${levelCode}`];
+      const stats = getLevelObjectiveStats(levelCode);
+      lines.push(`Objective score: ${stats.correct} / ${stats.total}; answered ${stats.answered} / ${stats.total}`);
       card.querySelectorAll(".section-grid").forEach(section => {
         const title = section.querySelector(".skill-name")?.textContent || "Section";
         lines.push(`\n${title}`);
         section.querySelectorAll(".question-card").forEach((question, index) => {
           const prompt = question.querySelector("p")?.textContent || "";
-          const selected = question.querySelector(".choice-option.is-selected")?.textContent || "No option selected";
+          const selectedBtn = question.querySelector(".choice-option.is-selected");
+          const selected = selectedBtn?.textContent || "No option selected";
+          const checked = selectedBtn ? (selectedBtn.dataset.correct === "true" ? "correct" : "wrong") : "not answered";
           const note = question.querySelector(".answer-note")?.value || "";
-          lines.push(`${index + 1}. ${prompt} -> ${selected}${note ? " / " + note : ""}`);
+          lines.push(`${index + 1}. ${prompt} -> ${selected} [${checked}]${note ? " / " + note : ""}`);
         });
         const textarea = section.querySelector("textarea");
         if (textarea) lines.push(textarea.value || "No written answer.");
         section.querySelectorAll(".grammar-item").forEach((item, index) => {
           const prompt = item.querySelector("p")?.textContent || "";
-          const selected = item.querySelector(".grammar-option.is-selected")?.textContent || "No option selected";
-          lines.push(`${index + 1}. ${prompt} -> ${selected}`);
+          const selectedBtn = item.querySelector(".grammar-option.is-selected");
+          const selected = selectedBtn?.textContent || "No option selected";
+          const checked = selectedBtn ? (selectedBtn.dataset.correct === "true" ? "correct" : "wrong") : "not answered";
+          lines.push(`${index + 1}. ${prompt} -> ${selected} [${checked}]`);
         });
       });
       if (recordings[levelCode]) {
