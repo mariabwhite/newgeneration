@@ -30,6 +30,9 @@
   --radius:    14px;
   --radius-lg: 22px;
 
+  /* layout */
+  --layout-x: clamp(20px, 5vw, 76px);
+
   /* fonts */
   --display:   "Unbounded", "Manrope", system-ui, sans-serif;
   --text-font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -249,6 +252,14 @@ body.light .brand--logo .brand-logo-light { display: block; }
   gap: 6px;
 }
 .control-btn:hover { color: var(--text); border-color: var(--text-3); }
+.topbar-tools > a.control-btn[href*="cabinet/login"] {
+  width: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 10px;
+  letter-spacing: 0;
+}
 
 /* --- BUTTONS --- */
 
@@ -381,11 +392,11 @@ h2 {
 .shell { max-width: 1200px; margin: 0 auto; }.wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--layout-x);
 }.page-shell {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 76px);
+  padding: 0 var(--layout-x);
 }section {
   padding: 64px 0;
 }/* в”Ђв”Ђв”Ђ FOOTER в”Ђв”Ђв”Ђ */
@@ -460,7 +471,7 @@ so its own horizontal padding would double-inset the content.
 .wrap .hero {
   padding-left: 0;
   padding-right: 0;
-}.hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 76px); }.hero-stars-bg {
+}.hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 var(--layout-x); }.hero-stars-bg {
   position: absolute;
   z-index: 0;
   right: max(24px, calc((100vw - 1200px) / 2));
