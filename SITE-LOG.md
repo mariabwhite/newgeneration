@@ -252,6 +252,40 @@
 #### Файлы тронутые за день 6 (8 файлов)
 `system.css`, `index.html`, `about-project.html`, `blog.html`, `cases.html`, `conditions.html`, `programs.html`, `lingua-boost-lab/index.html`, `lingua-boost-lab/assets/canon-L.css`
 
+#### Codex 4-я итерация — Lab уроки + педагогический язык
+- **`5de7d40`** Fix Lab section index divider — 06 пунктир + цифра подняты
+- **`2571f0b`** Repair Lab lesson layout and text glitches — A1-цепочка 01-08 выровнена, Hello/Body/School/Prepositions/Past Simple polish, JS-ошибка в Hello убрана, кракозябры устранены
+- **`b078eca`** Refine Lab catalog hero + topbar pills — A1 hero, Lab pills больше не оранжевые в чёрной теме
+- **`8119cad`** Точечная правка about-project.html (translateY −58→−20px) + педагогическая вычитка 6 страниц
+- **`ddbf6b4`** Lab пунктир до края на 01-05 + цифра 06 поднята
+- **`7cf1e2e`** Lab цифра 06 поднята ещё на 5мм
+
+#### Кабинетный блок (Claude, послеобед)
+- **`2686eaf`** Договоры родителей в личные кабинеты — 42 файла, 11 учеников, `cabinet/assets/contracts/<student-id>/` (пара — раздельные подпапки `marina-medvedeva/` + `elena-likholeva/`, семья Сова — общая папка). data.js: блок `contracts: {...}` (byParent для пары). cabinet.js: `_renderContractsCard` + `_renderContractFiles` + `_prettifyContractFilename`. cabinet.css: +93 строки grid-галерея 120px / thumb 150px / link для PDF / секция per-mom
+- **`b052aab`** Pair-split: Катя+Маша → 2 отдельные записи (`ekaterina-medvedeva-solo` PIN 3714, `maria-kuznetsova-solo` PIN 3715). Старая `ekaterina-mariya-pair` помечена `archived: true` (legacy). С 28.05 переходят на раздельный формат (Катя — 18:00, Маша — 19:00)
+- **`2ffe086`** Топбар кнопок «съезд» починен — `body[data-page^="cabinet"] .topbar { flex-wrap: wrap; row-gap: 10px }`, на ширине ≤1000px кнопка «Назад» компактнее
+- **`2294d6a`** Таблица учителя компактнее: 10 → 9 колонок (убран «Уровень»), ФИО родителя → «Фамилия И.О.», шрифт 13→12px, padding 10×12→7×8px
+- **`461e91c`** + **`a0eb12d`** + **`b51017e`** Приветствия в кабинетах: хелперы `_parseImyaOtchestvo` + `_studentNickname` + `_greetingForStudent` + `_greetingForParent`. Андрей особый — `casual_greeting: true` («Привет, Андрей»). Явные `greeting_student` / `greeting_parent` для Дениса / Сони / Юли Л / Юли И. Pair → «Привет, девочки!» / «Здравствуйте!»
+- **`712d37c`** Темы уроков за май для 6 учеников: Катя Сова (ОГЭ/ЕГЭ → книги → неправильные глаголы → финал), Иван (IELTS Reading continuum → IELTS Listening → Grammar МЦК), Даниэлла (Speaking ×2 → ЕГЭ устные → Battle of Levels Музланова), Аня (Города → Present Perfect → Города+PC), Юля Лушина (04+11 missed, среды cancelled), пара (Грамматика → Конспекты → Праздники → Petting → Экология)
+- **`979860f`** Блок 4 — оплаты + четверг + лето: Соня → «Оплачено» (II половина 4 000 ₽), Даниэлла 21.05 cancelled, Андрей перенос на 02.06 14:30, пара перенос на 28.05. Флаг `summer_vacation: true` + бейдж ☀ КАНИКУЛЫ в таблице: Соня (после 28.05) / Сова Катя (с 19.05) / Андрей (после 02.06)
+- **`225cfe2`** MVP-фраза снесена из кабинетов родителя и ученика (учительская инструкция оставлена)
+- **`fdf8d7f`** archived-студенты скрыты из активной таблицы учителя (`students.filter(s => !s.archived)`)
+- **`2ad8ddb`** Андрей stability_note актуализирован (3 урока до каникул 27.05/29.05/02.06), пара stability_note про перенос
+- **`c3fadd7`** Сверка EN/RU — 718 пар, 2 drift'а в blog.html (династия Даниловых: Елизавета Ивановна + Валентина Алексеевна) дописаны
+
+#### Conditions / договор / тесты (вечер)
+- **`b021d9c`** Договор шаблонизирован: убрана оранжевая «New Generation English» сверху, п. 4.2 теперь ссылается на Приложение 1, добавлено Приложение 1 «Параметры абонемента» (Формат / Продолжительность / Стоимость / Кол-во / Итого / Дата / Срок / Расписание / Платформа). Programs лид «вам понять»
+- **`f8268d6`** Conditions: юр-кнопки разнесены по карточкам doc-group
+- **`72bec39`** Formats anchor link — `id="formats"` на index, конкретная кнопка в conditions ведёт куда надо
+- **`11d437e`** Conditions: ОДНА кнопка-аккордеон вместо карточек; договор: TNR 14pt, реквизиты Исполнитель + Заказчик в 2 колонки
+- **`3a32169`** Refine document accordions — CSS-замок вместо эмодзи, прямоугольные кнопки 14px, плюс/крест справа, никаких прыжков
+- **`c0fe1ad`** Privacy под пароль + текущие расценки в Приложение 1 договора
+- **`efc3ad5`** Contract.docx перегенерирован из текущего HTML
+- **`ab00fa0`** Diagnostic test: светлый фон даже при `?theme=dark`, самопроверка reading/listening/grammar, writing/speaking → teacher review
+- **`c736d53`** Все 36 PDF тестов перегенерированы, `<br/>` устранён
+- **`197e44e`** Diagnostic AutoScore с кольцом процента + разбивкой по секциям + PDF не пустые
+- **3 родительских PDF-отчёта** (Соня + пара Катя/Маша)
+
 #### Backup-тэги дня 6 (откатные точки)
 ```
 pre-hero-unify-2026-05-20             # перед утренней NO./kicker унификацией
@@ -263,15 +297,21 @@ safe-before-codex-2026-05-20          # перед запуском Codex
 backup-2026-05-20-1248                # до Codex
 backup-2026-05-20-1300-after-codex    # после Codex iter 1
 backup-2026-05-20-1315-codex2         # после Codex iter 2
+backup-2026-05-20-1320-after-sitelog
+backup-2026-05-20-1402-end-of-day     # финальный тэг дня
 ```
 
-#### Open issues end-of-day 6
-- 🟡 **Педагогический язык** (programs / cases / blog / conditions) — клише ещё не вычищены целиком (Маша указала: «программное обучение», «рабочая карта» убрать; ревизия лида на programs)
-- 🟡 **Hero star оранжевая подсветка** на programs / cases / blog — один из звёзд должен подсвечиваться (как на главной)
-- 🟡 **Cases карточки** — вернуть тёмный фон (раньше были чёрные)
-- 🟡 **Conditions рамка** «Если хотите обсудить формат работы» — убрать (на других страницах её нет)
-- 🟡 **Lab уроки** (Find&Say масштаб/сброс/кнопки/шрифты, Stars нижняя полоса, Grammar баннер, Past Simple/Core/Catalog отступы, Position World 2см зазор) — 10 пунктов отдельным заходом
-- 🔴 **РКН-уведомление** и **хостинг** — Маша ручками вне сайта
+#### Open issues end-of-day 6 (для дня 7)
+- 🟠 **cases.html** — вычистить «инфо-цыганщину» (Варя «собирались систему», Таисия «отдельно поработали с тревогой»), добавить кейсы (ТВ-перевод, врач-онколог)
+- 🟠 **conditions.html** — inline ссылки: ProgressMe + кабинет в блоке «Платформа», ссылка на «первую страницу» в блоке про ПДн
+- 🟠 **blog.html accordion** — открытие одной записи закрывает другую, без наложений
+- 🟡 **Lab A1 линейка** (a1-01 → a1-08) — добить недостающие картинки, прописать связно
+- 🟡 **Lab остальные линейки** (A2 / B1 / B2 / C1 / C2)
+- 🟡 **Lab unification** через `lab-skeleton.css`
+- 🟡 **Listening аудио** — 6 скриптов A1-C2 готовы у Codex (текст), Маша запишет двухголосно
+- 🟡 **Mobile / tablet** — весь сайт (финальный заход перед выкладкой)
+- 🔴 **РКН-уведомление**, **хостинг**, **архив документов** в conditions — Маша ручками вне сайта
+- 🔴 **Первичная выкладка сайта** на выбранный хостинг — после mobile-блока
 
 ---
 
