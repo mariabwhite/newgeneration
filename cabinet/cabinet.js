@@ -545,6 +545,9 @@
       if (parts.length === 2) return parts[0] + " " + parts[1].charAt(0) + ".";
       return name;
     }
+    /* archived students (раз/слиты, оставлены для legacy-данных) — скрываем из таблицы учителя */
+    students = (students || []).filter(s => !s.archived);
+
     const rows = students.map(s => {
       const vacationClass = s.summer_vacation ? " class=\"cab-table-row--vacation\"" : "";
       const vacationBadge = s.summer_vacation

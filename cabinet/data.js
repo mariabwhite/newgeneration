@@ -363,6 +363,8 @@ window.NGE_DATA = {
       "id": "ekaterina-mariya-pair",
       "notion_id": "34d7364c-ba79-81f0-ba7f-d87dcd7dfd19",
       "name": "Екатерина и Мария",
+      "archived": true,
+      "archived_note": "Разнесён на 2 отдельных кабинета 20.05.2026: ekaterina-medvedeva-solo (PIN 3714) + maria-kuznetsova-solo (PIN 3715). Запись оставлена для legacy-данных (отчёты, прежние логи).",
       "level": "",
       "format": "парное занятие",
       "schedule": "четверг 18:00 / воскресенье 13:35",
@@ -393,6 +395,75 @@ window.NGE_DATA = {
       "lessons_in_package": 9,
       "subscription_month": "2026-05",
       "lessons_used_this_month": 5,
+      "lessons": [
+        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
+        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
+        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
+        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
+        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
+        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" },
+        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
+      ]
+    },
+    {
+      "id": "ekaterina-medvedeva-solo",
+      "notion_id": "",
+      "name": "Катя Медведева",
+      "greeting_student": "Привет, Екатерина",
+      "greeting_parent": "Здравствуйте, Марина",
+      "level": "B1",
+      "format": "парное занятие (с Машей)",
+      "schedule": "четверг 18:00 / воскресенье 13:35",
+      "price_per_lesson": 1500,
+      "monthly_package": 6000,
+      "lessons_in_package": 9,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 5,
+      "payment_status": "Оплачено",
+      "payment_note": "Марина Сергеевна оплатила свою половину пакета",
+      "parent_name": "Медведева Марина Сергеевна",
+      "parent_passport": "4523 521762 (04.05.2023)",
+      "parent_phone": "+79165478727",
+      "parent_email": "marine_medvedeva@rambler.ru",
+      "parent_address": "Москва, ул. Островитянова, д.9 кв.947",
+      "pin": "3714",
+      "pair_origin": "ekaterina-mariya-pair",
+      "lessons": [
+        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
+        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
+        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
+        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
+        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
+        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" },
+        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
+      ]
+    },
+    {
+      "id": "maria-kuznetsova-solo",
+      "notion_id": "",
+      "name": "Маша Кузнецова",
+      "greeting_student": "Привет, Мария",
+      "greeting_parent": "Здравствуйте, Елена",
+      "level": "B1",
+      "format": "парное занятие (с Катей)",
+      "schedule": "четверг 18:00 / воскресенье 13:35",
+      "price_per_lesson": 1500,
+      "monthly_package": 6000,
+      "lessons_in_package": 9,
+      "subscription_month": "2026-05",
+      "lessons_used_this_month": 5,
+      "payment_status": "Ожидает",
+      "payment_note": "Елена Сергеевна должна свою половину пакета (6 000 ₽)",
+      "parent_name": "Лихолева Елена Сергеевна",
+      "parent_passport": "4519 568773 (ГУ МВД России по г.Москве)",
+      "parent_email": "ivan-tenaivanova@ya.ru (уточнить)",
+      "parent_address": "Москва, ул. Акад. Волгина, д.8А",
+      "pin": "3715",
+      "pair_origin": "ekaterina-mariya-pair",
       "lessons": [
         { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
         { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
@@ -641,6 +712,14 @@ window.NGE_DATA = {
           "child": "Катя Медведева"
         }
       }
+    },
+    "ekaterina-medvedeva-solo": {
+      "folder": "assets/contracts/ekaterina-mariya-pair/marina-medvedeva",
+      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"]
+    },
+    "maria-kuznetsova-solo": {
+      "folder": "assets/contracts/ekaterina-mariya-pair/elena-likholeva",
+      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"]
     }
   }
 };
