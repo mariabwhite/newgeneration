@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -70,8 +70,8 @@ body[data-page="programs"] .hero-copy {
 
 body[data-page="programs"] .hero-bg-wrap {
   position: absolute;
-  right: 0;
-  top: 46%;
+  right: 1cm;
+  top: calc(46% - 1cm);
   transform: translateY(-50%);
   width: 49.5%;
   max-width: 810px;
@@ -256,6 +256,53 @@ body[data-page="programs"] .hero-media { display: none !important; }
   font-size: 16px;
 }
 
+.summer-intensive {
+  margin: 0 0 34px;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid rgba(255, 90, 31, 0.38);
+  border-radius: 10px;
+  background: rgba(255, 90, 31, 0.06);
+}
+
+.summer-intensive .label {
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.summer-intensive p {
+  margin: 0;
+  max-width: 820px;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.summer-intensive strong {
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.summer-intensive-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
 /* Program tiles */
 .program-tiles {
   display: grid;
@@ -436,6 +483,15 @@ body.light[data-page="programs"] .p-tile.is-main {
   box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.32) inset;
 }
 
+body.light[data-page="programs"] .summer-intensive {
+  background: rgba(255, 90, 31, 0.08);
+  border-color: rgba(255, 90, 31, 0.30);
+}
+
+body.light[data-page="programs"] .summer-intensive strong {
+  color: #12100e;
+}
+
 body.light[data-page="programs"] .p-tile::after {
   background:
     linear-gradient(180deg, rgba(255,253,249,0) 0%, rgba(255,253,249,0.78) 60%, #fffdf9 100%),
@@ -467,6 +523,13 @@ body.light[data-page="programs"] .p-tile.t-biz {
 
 @media (max-width: 900px) {
   .program-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .summer-intensive {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .summer-intensive-mark {
+    width: fit-content;
+  }
 }
 
 @media (max-width: 720px) {
@@ -871,7 +934,7 @@ body.light .tag {
 
 
 </style>
-<link rel="stylesheet" href="./system.css?v=16">
+<link rel="stylesheet" href="./system.css?v=22">
 <link rel="stylesheet" href="./assets/visitor-counter.css">
 <link rel="stylesheet" href="./assets/design-unify.css">
 </head>
@@ -946,7 +1009,7 @@ body.light .tag {
           <span class="line accent" data-ru="обучения" data-en="of study">обучения</span>
         </h1>
 
-        <p class="hero-lead" data-ru="Основные направления работы: экзамены, общий английский, профессиональные задачи и короткие ускоренные форматы. Это рабочая карта того, как можно выстроить обучение под конкретную цель." data-en="The main areas of work: exams, general English, professional goals, and short intensive formats. This is a working map of how learning can be built around a specific goal.">Основные направления работы: экзамены, общий английский, профессиональные задачи и короткие ускоренные форматы. Это рабочая карта того, как можно выстроить обучение под конкретную цель.</p>
+        <p class="hero-lead" data-ru="Здесь собраны основные направления: экзамены, общий английский, профессиональные задачи, ускоренные форматы. Карта того, как выстроить обучение под конкретную цель." data-en="Here are the main directions: exams, general English, professional goals, and intensive formats. A map for building the learning process around a specific goal.">Здесь собраны основные направления: экзамены, общий английский, профессиональные задачи, ускоренные форматы. Карта того, как выстроить обучение под конкретную цель.</p>
 
         <div class="btn-row">
           <a class="btn btn-primary" href="#tracks" data-ru="Смотреть направления" data-en="View tracks">Смотреть направления</a>
@@ -974,7 +1037,16 @@ body.light .tag {
     <section class="content-block program-section programs-catalog" id="tracks">
       <div class="content-block-header">
         <h2 class="content-block-title" data-ru="Программы обучения" data-en="Learning programmes">Программы обучения</h2>
-        <p class="program-intro" data-ru="Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели." data-en="Each programme is a carefully designed system that helps you reach a specific result. Choose the direction that fits your goals.">Каждая программа — это продуманная система, которая помогает достигать конкретного результата. Выбирайте направление под свои цели.</p>
+        <p class="program-intro" data-ru="Программы обучения отличаются целью, темпом и набором навыков. Внутри каждого направления сохраняется одна логика: диагностика, план, практика, обратная связь и регулярное закрепление." data-en="The learning programmes differ by goal, pace, and skill set. Each direction follows the same logic: diagnosis, planning, practice, feedback, and regular consolidation.">Программы обучения отличаются целью, темпом и набором навыков. Внутри каждого направления сохраняется одна логика: диагностика, план, практика, обратная связь и регулярное закрепление.</p>
+      </div>
+
+      <div class="summer-intensive" aria-label="Короткие летние интенсивы">
+        <div>
+          <div class="label" data-ru="Летний формат" data-en="Summer format">Летний формат</div>
+          <strong data-ru="Короткие интенсивы на 2–6 недель" data-en="Short 2–6 week intensives">Короткие интенсивы на 2–6 недель</strong>
+          <p data-ru="Можно собрать быстрый курс под одну задачу: подтянуть базу перед учебным годом, подготовить speaking, разобрать письмо, закрыть пробелы по грамматике или пройти дорожную лексику перед поездкой." data-en="A short course can be built around one task: strengthening the basics before the school year, preparing speaking, working through writing, closing grammar gaps, or practising travel vocabulary before a trip.">Можно собрать быстрый курс под одну задачу: подтянуть базу перед учебным годом, подготовить speaking, разобрать письмо, закрыть пробелы по грамматике или пройти дорожную лексику перед поездкой.</p>
+        </div>
+        <div class="summer-intensive-mark" data-ru="июнь–август" data-en="jun–aug">июнь–август</div>
       </div>
 
       <div class="program-tiles">

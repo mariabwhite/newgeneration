@@ -236,7 +236,7 @@ body.light .brand--logo .brand-logo-light { display: block; }
   min-width: 72px;
   padding: 0 14px;
   border-radius: 10px;
-  border: 1.5px solid #FF5A1F;
+  border: 1.5px solid transparent;
   background: #15151B;
   color: #FFFFFF;
   cursor: pointer;
@@ -260,18 +260,25 @@ body.light .brand--logo .brand-logo-light { display: block; }
 .topbar-tools > a.control-btn[href*="cabinet/login"] {
   width: auto;
   min-width: 72px;
-  border-color: #FF5A1F;
+  border-color: transparent;
 }
 body.light .topbar-tools > a.control-btn[href*="cabinet/login"] {
   background: #15151B;
-  border-color: #FF5A1F;
+  border-color: transparent;
   color: #FFFFFF;
 }
 .topbar-tools > a.control-btn[href*="cabinet/login"]:hover,
-body.light .topbar-tools > a.control-btn[href*="cabinet/login"]:hover {
+.topbar-tools > a.control-btn[href*="cabinet/login"]:focus-visible {
   background: #1F1F26;
-  border-color: #FFA56C;
+  border-color: #FF5A1F;
   color: #FFFFFF;
+}
+body.light .topbar-tools > a.control-btn[href*="cabinet/login"]:hover,
+body.light .topbar-tools > a.control-btn[href*="cabinet/login"]:focus-visible {
+  background: #1F1F26;
+  border-color: #FF5A1F;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.16);
 }
 
 /* --- BUTTONS --- */
@@ -514,6 +521,10 @@ body.light .hero-stars-bg .img-dark { display: none; }body.light .hero-stars-bg 
   grid-template-columns: minmax(0, 1.3fr) minmax(280px, 340px);
   gap: 40px;
   align-items: end;
+}body[data-page="home"] .hero-grid,
+body[data-page="cases"] .hero-grid,
+body[data-page="travel"] .hero-grid {
+  align-items: start;
 }.hero-copy { min-width: 0; }.hero-kicker {
   display: inline-flex; align-items: center; gap: 10px;
   margin-bottom: 18px;
@@ -661,7 +672,7 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }.hero-m
 
 .control-btn--solid {
   background: #15151B;
-  border: 1.5px solid #FF5A1F;
+  border: 1.5px solid transparent;
   color: #FFFFFF;
 }
 
@@ -674,7 +685,7 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }.hero-m
 .control-btn--active {
   min-width: 64px;
   background: #15151B;
-  border: 1.5px solid #FF5A1F;
+  border: 1.5px solid transparent;
   color: #FFFFFF;
 }
 
@@ -691,26 +702,30 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }.hero-m
 
 body.light .control-btn--solid {
   background: #15151B;
-  border-color: #FF5A1F;
+  border-color: transparent;
   color: #FFFFFF;
 }
 
-body.light .control-btn--solid:hover {
+body.light .control-btn--solid:hover,
+body.light .control-btn--solid:focus-visible {
   background: #1F1F26;
-  border-color: #FFA56C;
+  border-color: #FF5A1F;
   color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.16);
 }
 
 body.light .control-btn--active {
   background: #15151B;
-  border-color: #FF5A1F;
+  border-color: transparent;
   color: #FFFFFF;
 }
 
-body.light .control-btn--active:hover {
+body.light .control-btn--active:hover,
+body.light .control-btn--active:focus-visible {
   background: #1F1F26;
-  border-color: #FFA56C;
+  border-color: #FF5A1F;
   color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.16);
 }
 
 /* Cookie banner — theme variables                              */
@@ -771,4 +786,19 @@ body.light {
 }
 .cookie-banner__button:hover {
   background: var(--accent-2, #ff5a1f);
+}
+
+body.light .topbar-tools .control-btn {
+  background: var(--bg) !important;
+  border-color: rgba(255, 90, 31, 0.22) !important;
+  box-shadow: none !important;
+  color: var(--text) !important;
+}
+
+body.light .topbar-tools .control-btn:hover,
+body.light .topbar-tools .control-btn:focus-visible {
+  background: color-mix(in srgb, var(--bg) 88%, #ffffff 12%) !important;
+  border-color: #FF5A1F !important;
+  box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.16) !important;
+  color: var(--text) !important;
 }
