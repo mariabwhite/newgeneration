@@ -709,7 +709,7 @@ body.light .doc-collapse[open] {
   color: var(--accent);
 }
 .doc-collapse[open] .doc-collapse-chevron::before {
-  content: "×";
+  content: "x";
 }
 .doc-collapse-content {
   padding: 0 18px 18px 74px;
@@ -717,8 +717,12 @@ body.light .doc-collapse[open] {
   flex-direction: column;
   gap: 4px;
 }
-.doc-collapse:not([open]) .doc-collapse-content {
-  display: none;
+.doc-collapse:not([open]) > .doc-collapse-content {
+  display: none !important;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .doc-sub-item {
   display: flex;
