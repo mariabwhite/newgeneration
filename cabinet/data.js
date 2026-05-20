@@ -111,12 +111,12 @@ window.NGE_DATA = {
       "pin": "6924",
       "lessons_in_package": 4,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 1,
+      "lessons_used_this_month": 4,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
-        { "date": "2026-05-11", "num": 2, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Финальное повторение завершено — все слова, темы, книжки. Стартовал курс ОГЭ (ramp до конца учебного года)." },
-        { "date": "2026-05-25", "num": 4, "status": "planned", "topic": "" }
+        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "ОГЭ / ЕГЭ — повторение лексики и формат экзамена" },
+        { "date": "2026-05-11", "num": 2, "status": "completed", "topic": "Книги — жанры, рассказы, лексика" },
+        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Неправильные глаголы с предлогом — отработка форм и употребление" },
+        { "date": "2026-05-25", "num": 4, "status": "completed", "topic": "Финальное повторение завершено — все слова, темы, книжки. На каникулы до сентября." }
       ]
     },
     {
@@ -175,9 +175,9 @@ window.NGE_DATA = {
       "parent_address": "Москва, пос. Сосенское, п. Коммунарка, ул. Ясная, д.5, кв.33",
       "pin": "7670",
       "lessons": [
-        { "date": "2026-05-01", "num": 1, "status": "planned", "topic": "" },
-        { "date": "2026-05-08", "num": 2, "status": "planned", "topic": "" },
-        { "date": "2026-05-15", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "IELTS Reading — тексты про время (temporal continuum)" },
+        { "date": "2026-05-08", "num": 2, "status": "completed", "topic": "IELTS Listening — аудирование уровня IELTS" },
+        { "date": "2026-05-15", "num": 3, "status": "completed", "topic": "Grammar — подготовка к МЦК" },
         { "date": "2026-05-22", "num": 4, "status": "planned", "topic": "" },
         { "date": "2026-05-29", "num": 5, "status": "planned", "topic": "" }
       ]
@@ -199,10 +199,10 @@ window.NGE_DATA = {
       "contract_note": "без договора",
       "pin": "5376",
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "ЕГЭ-практика (тему уточнить)" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "ЕГЭ-практика (тему уточнить)" },
+        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "Speaking — устная практика, разговорная часть" },
+        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Speaking — устная практика (продолжение)" },
         {
-          "date": "2026-05-11", "num": 3, "status": "completed", "topic": "устные части ЕГЭ",
+          "date": "2026-05-11", "num": 3, "status": "completed", "topic": "ЕГЭ-практика — устные части, разбор заданий",
           "homework": {
             "text": "Пройти Word Building (префиксы и суффиксы) — упражнения 1 и 2. К следующему уроку.",
             "module_url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html",
@@ -210,7 +210,7 @@ window.NGE_DATA = {
           }
         },
         { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Battle of Levels — чтение (уровень-битва)" },
+        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Battle of Levels — чтение из учебника Музлановой (трудный текст)" },
         { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
         { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
         { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" }
@@ -259,11 +259,11 @@ window.NGE_DATA = {
       "pin": "2512",
       "lessons_in_package": 4,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 1,
+      "lessons_used_this_month": 3,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
-        { "date": "2026-05-11", "num": 2, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Города — функции города (городские объекты) + введение/повторение Present Continuous в контексте городов" },
+        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "Города — конкретная лексика, заканчивали тему" },
+        { "date": "2026-05-11", "num": 2, "status": "completed", "topic": "Present Perfect — теория и Speaking по нему" },
+        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Города — функции города (городские объекты) + Present Continuous в контексте" },
         { "date": "2026-05-25", "num": 4, "status": "planned", "topic": "" }
       ]
     },
@@ -284,14 +284,14 @@ window.NGE_DATA = {
       "subscription_month": "2026-05",
       "lessons_used_this_month": 1,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "planned", "topic": "" },
-        { "date": "2026-05-06", "num": 2, "status": "planned", "topic": "" },
-        { "date": "2026-05-11", "num": 3, "status": "planned", "topic": "" },
-        { "date": "2026-05-13", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Cute vampire English (Pre-A1) — face/body parts, HSKT video, friendly vampire family. Урок собрали в Claude Code сегодня утром." },
-        { "date": "2026-05-20", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-05-04", "num": 1, "status": "missed", "topic": "Пропуск (без занятия)" },
+        { "date": "2026-05-06", "num": 2, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
+        { "date": "2026-05-11", "num": 3, "status": "missed", "topic": "Пропуск (без занятия)" },
+        { "date": "2026-05-13", "num": 4, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
+        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Cute vampire English (Pre-A1) — face/body parts, HSKT video, friendly vampire family. Урок собрали в Claude Code." },
+        { "date": "2026-05-20", "num": 6, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
         { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-27", "num": 8, "status": "planned", "topic": "" }
+        { "date": "2026-05-27", "num": 8, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" }
       ]
     },
     {
@@ -387,13 +387,13 @@ window.NGE_DATA = {
       "pin": "3713",
       "lessons_in_package": 9,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 5,
       "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "planned", "topic": "" },
-        { "date": "2026-05-07", "num": 2, "status": "planned", "topic": "" },
-        { "date": "2026-05-10", "num": 3, "status": "planned", "topic": "" },
-        { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-17", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
+        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
+        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
+        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
+        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
         { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
         { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
         { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" },
