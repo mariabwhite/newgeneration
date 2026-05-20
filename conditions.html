@@ -815,6 +815,77 @@ body.light .doc-sub-item {
   padding: 1.25rem;
 }
 
+/* ───────── Лайтбокс для документов архива ───────── */
+.doc-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px 24px;
+  box-sizing: border-box;
+}
+.doc-lightbox.open {
+  display: flex;
+}
+body.doc-lightbox-lock {
+  overflow: hidden;
+}
+.doc-lightbox-stage {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.doc-lightbox-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.doc-lightbox-stage iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.doc-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.doc-lightbox-close:hover,
+.doc-lightbox-close:focus-visible {
+  background: var(--accent, #FF5A1F);
+  transform: scale(1.08);
+  outline: none;
+}
+@media (max-width: 720px) {
+  .doc-lightbox { padding: 56px 12px 12px; }
+  .doc-lightbox-close { top: 10px; right: 10px; }
+}
+
 /* inline-ссылка внутри текста параграфа — спокойная, оранжевый акцент на hover */
 .inline-link {
   color: inherit;
@@ -1411,32 +1482,32 @@ body.light .level-pill:hover {
 
     </div>
 
-    <details class="documents-archive">
-      <summary data-ru="Архив документов (22 позиции)" data-en="Document archive (22 items)">Архив документов (22 позиции)</summary>
-      <p data-ru="Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Файлы скачиваются напрямую." data-en="Full working selection: qualification courses, certificates, and professional confirmations. Files download directly.">Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Файлы скачиваются напрямую.</p>
+    <details class="documents-archive" data-archive-locked>
+      <summary data-ru="🔐 Архив документов (22 позиции) — введите пароль" data-en="🔐 Document archive (22 items) — password required">🔐 Архив документов (22 позиции) — введите пароль</summary>
+      <p data-ru="Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Пароль выдаётся клиенту вместе с доступом в личный кабинет." data-en="Full working selection: qualification courses, certificates, and professional confirmations. Password is provided to clients with cabinet access.">Полная рабочая подборка: квалификационные курсы, удостоверения и подтверждения. Пароль выдаётся клиенту вместе с доступом в личный кабинет.</p>
       <div class="archive-list">
-        <button class="doc-action" type="button" data-doc="assets/documents/cpm-qualification-2019.png" onclick="unlockProtectedDocument(this)">ЦПМ 2019</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/prosveshchenie-ege-2014.png" onclick="unlockProtectedDocument(this)">Просвещение 2014</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/macmillan-conference-2012.png" onclick="unlockProtectedDocument(this)">Macmillan 2012</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-02.pdf" onclick="unlockProtectedDocument(this)">Документ 02</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-03.pdf" onclick="unlockProtectedDocument(this)">Документ 03</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-04.pdf" onclick="unlockProtectedDocument(this)">Документ 04</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-05.pdf" onclick="unlockProtectedDocument(this)">Документ 05</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-06.pdf" onclick="unlockProtectedDocument(this)">Документ 06</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-07.pdf" onclick="unlockProtectedDocument(this)">Документ 07</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-08.pdf" onclick="unlockProtectedDocument(this)">Документ 08</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-09.pdf" onclick="unlockProtectedDocument(this)">Документ 09</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-10.pdf" onclick="unlockProtectedDocument(this)">Документ 10</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-11.pdf" onclick="unlockProtectedDocument(this)">Документ 11</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-12.pdf" onclick="unlockProtectedDocument(this)">Документ 12</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-13.pdf" onclick="unlockProtectedDocument(this)">Документ 13</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-14.pdf" onclick="unlockProtectedDocument(this)">Документ 14</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-15.pdf" onclick="unlockProtectedDocument(this)">Документ 15</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-16.pdf" onclick="unlockProtectedDocument(this)">Документ 16</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-17.pdf" onclick="unlockProtectedDocument(this)">Документ 17</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-18.pdf" onclick="unlockProtectedDocument(this)">Документ 18</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-19.pdf" onclick="unlockProtectedDocument(this)">Документ 19</button>
-        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-20.pdf" onclick="unlockProtectedDocument(this)">Документ 20</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/cpm-qualification-2019.png" onclick="openDocumentLightbox(this)">ЦПМ 2019</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/prosveshchenie-ege-2014.png" onclick="openDocumentLightbox(this)">Просвещение 2014</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/macmillan-conference-2012.png" onclick="openDocumentLightbox(this)">Macmillan 2012</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-02.pdf" onclick="openDocumentLightbox(this)">Документ 02</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-03.pdf" onclick="openDocumentLightbox(this)">Документ 03</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-04.pdf" onclick="openDocumentLightbox(this)">Документ 04</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-05.pdf" onclick="openDocumentLightbox(this)">Документ 05</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-06.pdf" onclick="openDocumentLightbox(this)">Документ 06</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-07.pdf" onclick="openDocumentLightbox(this)">Документ 07</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-08.pdf" onclick="openDocumentLightbox(this)">Документ 08</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-09.pdf" onclick="openDocumentLightbox(this)">Документ 09</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-10.pdf" onclick="openDocumentLightbox(this)">Документ 10</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-11.pdf" onclick="openDocumentLightbox(this)">Документ 11</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-12.pdf" onclick="openDocumentLightbox(this)">Документ 12</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-13.pdf" onclick="openDocumentLightbox(this)">Документ 13</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-14.pdf" onclick="openDocumentLightbox(this)">Документ 14</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-15.pdf" onclick="openDocumentLightbox(this)">Документ 15</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-16.pdf" onclick="openDocumentLightbox(this)">Документ 16</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-17.pdf" onclick="openDocumentLightbox(this)">Документ 17</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-18.pdf" onclick="openDocumentLightbox(this)">Документ 18</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-19.pdf" onclick="openDocumentLightbox(this)">Документ 19</button>
+        <button class="doc-action" type="button" data-doc="assets/documents/teacher-documents/archive-doc-20.pdf" onclick="openDocumentLightbox(this)">Документ 20</button>
       </div>
       <p class="password-note" data-ru="Если документ не открывается, напишите в Telegram — пришлю файл лично." data-en="If a document does not open, message me on Telegram and I will send it personally.">Если документ не открывается, напишите в Telegram — пришлю файл лично.</p>
     </details>
@@ -1514,6 +1585,98 @@ body.light .level-pill:hover {
       a.click();
       document.body.removeChild(a);
     }
+  }
+
+  /* ───────── Архив документов: ОДИН пароль на всю секцию ───────── */
+  (function () {
+    document.addEventListener("DOMContentLoaded", function () {
+      var archive = document.querySelector("details.documents-archive[data-archive-locked]");
+      if (!archive) return;
+      var summary = archive.querySelector("summary");
+      if (!summary) return;
+      summary.addEventListener("click", async function (e) {
+        if (archive.dataset.archiveUnlocked === "1") return; // уже разблокирован — обычное поведение details
+        e.preventDefault();
+        var verified = sessionStorage.getItem(NGE_DOC_SESSION_KEY) === NGE_DOC_HASH;
+        if (!verified) {
+          var pwd = prompt("🔐 Архив документов защищён паролем.\nПароль выдаётся клиенту вместе с доступом в личный кабинет.\n\nВведите пароль:");
+          if (!pwd) return;
+          try {
+            var hash = await ngeSha256(pwd);
+            if (hash !== NGE_DOC_HASH) {
+              alert("Неверный пароль.\n\nЕсли вы клиент — пароль был отправлен в Telegram вместе с данными личного кабинета.\nПо вопросам: whitenois@mail.ru или Telegram @MariaBurceva_English");
+              return;
+            }
+            sessionStorage.setItem(NGE_DOC_SESSION_KEY, hash);
+          } catch (err) {
+            alert("Не удалось проверить пароль в этом браузере. Откройте сайт в Chrome, Edge или Firefox.");
+            return;
+          }
+        }
+        archive.dataset.archiveUnlocked = "1";
+        archive.open = true;
+        // Замочек убираем из заголовка
+        var titleRu = "Архив документов (22 позиции)";
+        var titleEn = "Document archive (22 items)";
+        summary.setAttribute("data-ru", titleRu);
+        summary.setAttribute("data-en", titleEn);
+        var currentLang = (document.documentElement.lang === "en") ? titleEn : titleRu;
+        summary.textContent = currentLang;
+      });
+    });
+  })();
+
+  /* ───────── Лайтбокс для документов архива ───────── */
+  function openDocumentLightbox(btn) {
+    var doc = btn && btn.dataset ? btn.dataset.doc : null;
+    if (!doc) return;
+    var ext = (doc.split(".").pop() || "").toLowerCase();
+    var box = document.getElementById("doc-lightbox");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "doc-lightbox";
+      box.className = "doc-lightbox";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.innerHTML =
+        '<button class="doc-lightbox-close" type="button" aria-label="Закрыть">✕</button>' +
+        '<div class="doc-lightbox-stage"></div>';
+      document.body.appendChild(box);
+      box.querySelector(".doc-lightbox-close").addEventListener("click", closeDocumentLightbox);
+      box.addEventListener("click", function (e) {
+        if (e.target === box) closeDocumentLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && box.classList.contains("open")) closeDocumentLightbox();
+      });
+    }
+    var stage = box.querySelector(".doc-lightbox-stage");
+    stage.innerHTML = "";
+    if (["jpg", "jpeg", "png", "gif", "webp"].indexOf(ext) >= 0) {
+      var img = document.createElement("img");
+      img.src = doc;
+      img.alt = (btn.textContent || "Документ").trim();
+      stage.appendChild(img);
+    } else if (ext === "pdf") {
+      var iframe = document.createElement("iframe");
+      iframe.src = doc;
+      iframe.setAttribute("title", (btn.textContent || "Документ").trim());
+      stage.appendChild(iframe);
+    } else {
+      window.open(doc, "_blank", "noopener");
+      return;
+    }
+    box.classList.add("open");
+    document.body.classList.add("doc-lightbox-lock");
+  }
+
+  function closeDocumentLightbox() {
+    var box = document.getElementById("doc-lightbox");
+    if (!box) return;
+    box.classList.remove("open");
+    document.body.classList.remove("doc-lightbox-lock");
+    var stage = box.querySelector(".doc-lightbox-stage");
+    if (stage) stage.innerHTML = "";
   }
 </script>
 <script defer src="./site.js?v=9"></script>
