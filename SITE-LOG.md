@@ -332,6 +332,34 @@ backup-2026-05-20-1402-end-of-day     # финальный тэг дня
 - `system.css` / `cabinet/` / `SITE-LOG.md` — не трогать без явного запроса
 - См. правило в CLAUDE.md §2 (история 14 мая — потеря 24 уроков при параллельной работе без зонирования)
 
+### День 7 · 2026-05-21 — SEO foundation (canonical, robots, sitemap)
+
+#### Контекст
+Маша принесла из Downloads docx-аудит «Всесторонний аудит сайта New Generation English» (29К символов, GPT deep-research). Главные риски по аудиту: индексируемые `?theme=` / `?lang=` дубли, отсутствие self-canonical на 5 из 8 страниц, нет `robots.txt` / `sitemap.xml`, нет GTM/GA4, нет onsite-формы, blog/travel как монолитные страницы вместо отдельных URL.
+
+Собрана сводная таблица «Кто что делает» (М-1..М-12 / К-1..К-18 / C-1..C-3) — все остатки из шорт-листа + open issues из дня 6 + 14 рекомендаций аудита + Машин плюсик «пересмотреть содержание тестов». **Хостинг (М-2)** и **Mobile / выкладка (К-1, К-2)** отложены в конец. **РКН (М-1)** тоже в конец — Маша не хочет отключать Дед ВПН прямо сейчас (РКН блочит VPN-IP, проверено: pd.rkn.gov.ru → ERR_CONNECTION_TIMED_OUT). Для М-1 сохранена шпаргалка на рабочем столе: `РКН-шпаргалка-2026-05-21.md` (17 разделов формы с готовыми copy-paste-ответами).
+
+#### Закрыто (3 пункта аудита)
+- **`1fcf5a7`** **К-5** Self-canonical на 5 страниц: `index.html`, `about-project.html`, `programs.html`, `cases.html`, `diagnostic-test.html`. До этого канонический URL был только на conditions/blog/travel.
+- **`1fcf5a7`** **К-8** (частично) Meta description добавлено в `diagnostic-test.html` (раньше отсутствовало). Сам флаг `noindex,nofollow` оставлен — решение «индексировать или нет тест уровня» открыто.
+- **`d2d7d50`** **К-6 + К-7** Создан `robots.txt` (User-agent: * + Disallow: /cabinet/, /_archive/, /_internal/, /_backups/, /audit-shots/, и `?theme=` / `?lang=` дубли) + `sitemap.xml` (7 канонических URL: главная + about-project + programs + cases + conditions + blog + travel). Diagnostic-test исключён (noindex), cabinet исключён (приватный), lingua-boost-lab исключён (WIP). Двойная защита от дублей `?theme=` / `?lang=`: и через robots, и через self-canonical, указывающий на URL без параметров.
+
+#### Тэг точки возврата
+`backup-2026-05-21-pre-seo-foundation` — поставлен на коммите `691266f` до начала SEO-блока. Откат: `git reset --hard backup-2026-05-21-pre-seo-foundation`.
+
+#### Открытые задачи второй волны (продолжение SEO foundation)
+- **К-10** OG / Twitter meta унификация на 5 страницах — индекс (og:image сейчас относительный), about-project / programs / cases (OG/Twitter отсутствует совсем). Diagnostic-test — пропускаем (noindex).
+- **К-11** Расширить JSON-LD — BreadcrumbList sitewide + Person/Organization на about/cases (сейчас только на главной).
+- **К-18** alt-тексты + `rel="noopener"` для `_blank` ссылок.
+- **К-12 + К-13** GTM + GA4 + dataLayer + 8 ключевых событий (view_pricing, click_telegram, start/complete_diagnostic, submit_lead, book_consultation, view_case, outbound_profile_click, scroll_75) — требует, чтобы Маша создала GA4-аккаунт и GTM-контейнер.
+- **К-14** Onsite-форма заявки + thank-you-точка (параллельно с Telegram, не вместо).
+- **К-17** Вынос inline CSS/JS из тяжёлых страниц (diagnostic-test, blog) во внешние минифицированные файлы.
+
+#### Что НЕ тронуто в этой волне
+- Дизайн / визуал — никаких изменений на глаз (всё в `<head>` или в новых файлах).
+- Существующие canonical/OG/Twitter на conditions/blog/travel — оставлены как были.
+- Flag `noindex,nofollow` на diagnostic-test.
+
 ---
 
 ## 2. Текущий план (roadmap) — что ОСТАЛОСЬ
@@ -517,4 +545,4 @@ backup-2026-05-16-pre-cabinet-rewrite
 
 ---
 
-*Последнее обновление: 2026-05-19, день 5 — report flow + schedule sync + journal Андрея + Sонiya parent fix.*
+*Последнее обновление: 2026-05-21, день 7 — SEO foundation (canonical на 5 страниц + robots.txt + sitemap.xml; покрывает К-5/К-6/К-7/К-8 частично из таблицы Кто что делает).*
