@@ -339,21 +339,23 @@ backup-2026-05-20-1402-end-of-day     # финальный тэг дня
 
 Собрана сводная таблица «Кто что делает» (М-1..М-12 / К-1..К-18 / C-1..C-3) — все остатки из шорт-листа + open issues из дня 6 + 14 рекомендаций аудита + Машин плюсик «пересмотреть содержание тестов». **Хостинг (М-2)** и **Mobile / выкладка (К-1, К-2)** отложены в конец. **РКН (М-1)** тоже в конец — Маша не хочет отключать Дед ВПН прямо сейчас (РКН блочит VPN-IP, проверено: pd.rkn.gov.ru → ERR_CONNECTION_TIMED_OUT). Для М-1 сохранена шпаргалка на рабочем столе: `РКН-шпаргалка-2026-05-21.md` (17 разделов формы с готовыми copy-paste-ответами).
 
-#### Закрыто (3 пункта аудита)
+#### Закрыто (7 пунктов аудита)
 - **`1fcf5a7`** **К-5** Self-canonical на 5 страниц: `index.html`, `about-project.html`, `programs.html`, `cases.html`, `diagnostic-test.html`. До этого канонический URL был только на conditions/blog/travel.
 - **`1fcf5a7`** **К-8** (частично) Meta description добавлено в `diagnostic-test.html` (раньше отсутствовало). Сам флаг `noindex,nofollow` оставлен — решение «индексировать или нет тест уровня» открыто.
 - **`d2d7d50`** **К-6 + К-7** Создан `robots.txt` (User-agent: * + Disallow: /cabinet/, /_archive/, /_internal/, /_backups/, /audit-shots/, и `?theme=` / `?lang=` дубли) + `sitemap.xml` (7 канонических URL: главная + about-project + programs + cases + conditions + blog + travel). Diagnostic-test исключён (noindex), cabinet исключён (приватный), lingua-boost-lab исключён (WIP). Двойная защита от дублей `?theme=` / `?lang=`: и через robots, и через self-canonical, указывающий на URL без параметров.
+- **`42627f7`** **К-10** OG / Twitter meta унификация. `index.html`: og:image и twitter:image сделаны абсолютными, добавлен `og:url`. `about-project.html`, `programs.html`, `cases.html`: добавлены полные OG + Twitter блоки (раньше отсутствовали целиком). Картинки распределены: about → `maria-teacher.jpg`, programs → `maria-hero-premium.jpg`, cases → `maria-cases-sidebar-soft.jpg`. Все 8 страниц теперь имеют согласованный `og:type` / `og:site_name` / `og:locale` + `summary_large_image` Twitter Card.
+- **`d3fb808`** **К-11** Структурированные данные расширены за пределы главной. BreadcrumbList на 6 страниц (about/programs/cases/conditions/blog/travel) — `Главная → текущая`. На about-project добавлен AboutPage schema с Person mainEntity (sameAs VK / YouTube / Дзен / Telegram). На cases добавлен CollectionPage schema. На index в существующем `@graph` (Person + EducationalOrganization) пути к картинкам переведены на абсолютные.
+- **`5f125a2`** **К-18** Security best-practice: добавлен `rel="noopener noreferrer"` к 33 ссылкам с `target="_blank"` (раньше открытие внешней ссылки в новой вкладке давало этой странице доступ к window.opener — классическая tabnabbing-уязвимость). Распределение: index — 15, conditions — 5, diagnostic-test — 5, cases — 4, about — 2, programs — 1, blog — 1. travel.html уже был единственной защищённой страницей. Все `<img>` уже имели `alt` (проверено по 8 страницам).
 
 #### Тэг точки возврата
 `backup-2026-05-21-pre-seo-foundation` — поставлен на коммите `691266f` до начала SEO-блока. Откат: `git reset --hard backup-2026-05-21-pre-seo-foundation`.
 
 #### Открытые задачи второй волны (продолжение SEO foundation)
-- **К-10** OG / Twitter meta унификация на 5 страницах — индекс (og:image сейчас относительный), about-project / programs / cases (OG/Twitter отсутствует совсем). Diagnostic-test — пропускаем (noindex).
-- **К-11** Расширить JSON-LD — BreadcrumbList sitewide + Person/Organization на about/cases (сейчас только на главной).
-- **К-18** alt-тексты + `rel="noopener"` для `_blank` ссылок.
-- **К-12 + К-13** GTM + GA4 + dataLayer + 8 ключевых событий (view_pricing, click_telegram, start/complete_diagnostic, submit_lead, book_consultation, view_case, outbound_profile_click, scroll_75) — требует, чтобы Маша создала GA4-аккаунт и GTM-контейнер.
-- **К-14** Onsite-форма заявки + thank-you-точка (параллельно с Telegram, не вместо).
-- **К-17** Вынос inline CSS/JS из тяжёлых страниц (diagnostic-test, blog) во внешние минифицированные файлы.
+- **К-12 + К-13** GTM + GA4 + dataLayer + 8 ключевых событий (view_pricing, click_telegram, start/complete_diagnostic, submit_lead, book_consultation, view_case, outbound_profile_click, scroll_75) — **требует от Маши:** создать GA4-аккаунт и GTM-контейнер на её Google-логине. Инструкция собрана отдельным файлом на рабочем столе: `GTM-GA4-инструкция-2026-05-21.md`.
+- **К-14** Onsite-форма заявки + thank-you-точка (параллельно с Telegram, не вместо). **Требует решения Маши:** куда отправлять лиды (Yandex Forms / TBank Form / своя страница через AI Hub endpoint / SendPulse). Варианты в той же инструкции.
+- **К-17** Вынос inline CSS/JS из тяжёлых страниц (diagnostic-test, blog) во внешние минифицированные файлы. **По правилам CLAUDE.md §6 — одна страница за раз, отдельной сессией.**
+- **К-9** travel.html — расорфанить (добавить входящие ссылки из навигации / блога). Не блокер.
+- **К-15 / К-16** декомпозиция блога на отдельные URL-статьи + service-страницы под ЕГЭ / ОГЭ / IELTS / взрослые / дети — после публикации, второй эшелон.
 
 #### Что НЕ тронуто в этой волне
 - Дизайн / визуал — никаких изменений на глаз (всё в `<head>` или в новых файлах).
@@ -545,4 +547,4 @@ backup-2026-05-16-pre-cabinet-rewrite
 
 ---
 
-*Последнее обновление: 2026-05-21, день 7 — SEO foundation (canonical на 5 страниц + robots.txt + sitemap.xml; покрывает К-5/К-6/К-7/К-8 частично из таблицы Кто что делает).*
+*Последнее обновление: 2026-05-21, день 7 — SEO foundation полная волна (К-5/К-6/К-7/К-10/К-11/К-18 закрыты, К-8 частично). 6 коммитов: 1fcf5a7, d2d7d50, a5cf351, 42627f7, d3fb808, 5f125a2. Ноль визуальных изменений. Точка отката: `backup-2026-05-21-pre-seo-foundation`.*
