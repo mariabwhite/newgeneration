@@ -4,272 +4,48 @@
             "name": "Beginner Plus",
             "desc": "A demanding beginner diagnostic: basic meaning, word order, simple tenses, articles, pronouns, prepositions and careful listening.",
             "reading": {
-                  "title": "Anna's first month at an English club",
-                  "text": "Anna is twelve, but she does not feel like a very small learner. She lives in a quiet town with her parents and her older brother. Twice a week she goes to an English club after school. The classroom is small, and there are only six students, so everyone has to speak. Anna likes this because she wants to understand songs and short videos without translating every word.\n\nAt the club, the teacher gives the students small projects. On Monday they describe their rooms, families and favourite places. On Wednesday they read short messages and answer questions. Anna is not afraid of speaking, but writing is slower for her. She often forgets articles and the letter s in he likes or she plays. At home she keeps a vocabulary notebook. Every evening she writes five new words and one example sentence.",
+                  "title": "Anna's flat and her Saturday",
+                  "text": "Anna is twenty-eight years old. She lives in a small flat in central Moscow. The flat has two rooms: a kitchen and a bedroom. There is a small table in the kitchen and a green plant on the window. Anna's bedroom is bright. There is a bed, a desk and many books on a long shelf. Anna likes blue and white in her flat. She has one cat. The cat sleeps on the bed in the afternoon.\n\nOn Saturday Anna does not go to work. She has a quiet breakfast at home. At 11 o'clock she goes to her favourite café. The café is near the metro station. Anna often meets her friend Lena there. After coffee, they walk to the supermarket and buy bread, cheese and fruit. Anna comes home at 3 p.m. She reads a book in the kitchen and listens to music. The cat is sleeping next to her.",
                   "questions": [
-                        {
-                              "text": "How old is Anna?",
-                              "options": [
-                                    "She is ten.",
-                                    "She is twelve.",
-                                    "She is sixteen."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "Why does Anna like the small group?",
-                              "options": [
-                                    "Everyone has to speak.",
-                                    "There is no homework.",
-                                    "The lessons are shorter."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does Anna want to understand?",
-                              "options": [
-                                    "Songs and short videos.",
-                                    "Long novels.",
-                                    "Maths problems."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What do students do on Monday?",
-                              "options": [
-                                    "Describe rooms, families and favourite places.",
-                                    "Write exams.",
-                                    "Watch films only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is difficult for Anna?",
-                              "options": [
-                                    "Speaking.",
-                                    "Writing.",
-                                    "Listening to songs."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "Which grammar problem is mentioned?",
-                              "options": [
-                                    "Past perfect.",
-                                    "Articles and third-person s.",
-                                    "Reported speech."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "What does Anna write every evening?",
-                              "options": [
-                                    "Five words and one example sentence.",
-                                    "A long story.",
-                                    "A letter to her teacher."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the best title for the text?",
-                              "options": [
-                                    "A difficult exam",
-                                    "Anna's English routine",
-                                    "A family holiday"
-                              ],
-                              "answer": 1
-                        }
+                        { "text": "How old is Anna?", "options": ["She is eighteen.", "She is twenty-eight.", "She is thirty-eight."], "answer": 1 },
+                        { "text": "How many rooms does the flat have?", "options": ["One room.", "Two rooms.", "Three rooms."], "answer": 1 },
+                        { "text": "What is on the window in the kitchen?", "options": ["A book.", "A cat.", "A green plant."], "answer": 2 },
+                        { "text": "What colours does Anna like in her flat?", "options": ["Red and yellow.", "Blue and white.", "Green and pink."], "answer": 1 },
+                        { "text": "When does Anna go to the café?", "options": ["At 9 a.m.", "At 11 a.m.", "At 1 p.m."], "answer": 1 },
+                        { "text": "Who does Anna meet at the café?", "options": ["Her brother.", "Her friend Lena.", "Her teacher."], "answer": 1 },
+                        { "text": "What do Anna and Lena buy at the supermarket?", "options": ["Milk and tea.", "Bread, cheese and fruit.", "Only fruit."], "answer": 1 },
+                        { "text": "What is the best title for the text?", "options": ["Anna's busy week.", "Anna's flat and her Saturday.", "A trip to another city."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "A careful first lesson",
-                  "script": "Amy: Good afternoon. Before we open the book, I want to know how you learn at home.\nJoey: I usually watch short videos, but I do not always write the new words.\nAmy: That is useful, but today I want you to write examples, not only translations.\nJoey: Should I write full sentences?\nAmy: Yes. For example, not just 'library', but 'I go to the library after school on Friday.'\nJoey: I understand. Can I use a small notebook?\nAmy: Yes, and bring it every lesson. We will check five words each week.\nJoey: I like that. It is easier when the words are in my own sentences.",
+                  "title": "Anna meets Lena at the café",
+                  "script": "Anna: Hello, Lena. I am here. Where are you?\nLena: I am at the café, near the window. Can you see me?\nAnna: Yes! I see you now. One minute.\nLena: I am drinking coffee. Do you want coffee or tea?\nAnna: I want a small coffee, please. And one apple cake.\nLena: The cake here is very good. I usually have it on Saturday.\nAnna: Where do you live now, Lena?\nLena: I live in a small flat near the park. It has only one big room.\nAnna: How many windows are there?\nLena: There are two. They are not very big, but the flat is bright.\nAnna: That sounds nice. Are you happy there?\nLena: Yes, I am. The street is quiet, and my neighbours are friendly.",
                   "questions": [
-                        {
-                              "text": "What does the teacher want to know first?",
-                              "options": [
-                                    "How the student learns at home.",
-                                    "What the student ate.",
-                                    "Where the student lives."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does the student usually watch?",
-                              "options": [
-                                    "Long lectures.",
-                                    "Short videos.",
-                                    "News programmes."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "What should the student write?",
-                              "options": [
-                                    "Only translations.",
-                                    "Examples, not only translations.",
-                                    "Nothing at home."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "Which example does the teacher give?",
-                              "options": [
-                                    "I go to the library after school on Friday.",
-                                    "I play football every morning.",
-                                    "I read a novel in summer."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should the student bring every lesson?",
-                              "options": [
-                                    "A small notebook.",
-                                    "A dictionary.",
-                                    "A tablet."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "How many words will they check each week?",
-                              "options": [
-                                    "Three.",
-                                    "Five.",
-                                    "Ten."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "Why does the student like the idea?",
-                              "options": [
-                                    "Words are easier in personal sentences.",
-                                    "There is less homework.",
-                                    "The teacher will not check it."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What skill is the teacher mainly training?",
-                              "options": [
-                                    "Mechanical copying.",
-                                    "Vocabulary in context.",
-                                    "Pronunciation only."
-                              ],
-                              "answer": 1
-                        }
+                        { "text": "Where is Lena?", "options": ["At home.", "At the café, near the window.", "At the supermarket."], "answer": 1 },
+                        { "text": "What is Lena drinking?", "options": ["Tea.", "Water.", "Coffee."], "answer": 2 },
+                        { "text": "What does Anna order to drink?", "options": ["A large tea.", "A small coffee.", "Milk."], "answer": 1 },
+                        { "text": "What food does Anna order?", "options": ["A sandwich.", "An apple cake.", "Bread."], "answer": 1 },
+                        { "text": "When does Lena usually have the cake?", "options": ["On Monday.", "On Saturday.", "Every day."], "answer": 1 },
+                        { "text": "Where is Lena's flat?", "options": ["Near the park.", "Near the river.", "Far from the city."], "answer": 0 },
+                        { "text": "How many windows are there in Lena's flat?", "options": ["One.", "Two.", "Three."], "answer": 1 },
+                        { "text": "How are Lena's neighbours?", "options": ["Noisy.", "Friendly.", "Old."], "answer": 1 }
                   ]
             },
-            "writing": "Extended school diagnostic task. Write 80-100 words about your English learning routine. Include: where you study, what is easy, what is difficult, and one concrete habit that can help you improve.",
-            "speaking": "Record a 60-75 second answer. Introduce yourself, describe one school day, explain what is difficult in English, and give one example of how you practise at home.",
+            "writing": "Write 80-100 words about your home and your weekend. Include: how many rooms your home has, what is in them, what colours you like, and what you usually do on Saturday or Sunday. Try to use at least one of: there is / there are, present simple, on Saturday / at 11 o'clock.",
+            "speaking": "Record a 60-75 second answer. Describe your home: how many rooms, what colours you like, one thing you love in it. Then describe one Saturday morning: what time you get up, what you eat, where you go, and who you usually meet.",
             "grammar": [
-                  [
-                        "Anna ___ twelve years old.",
-                        [
-                              "is",
-                              "are",
-                              "am"
-                        ],
-                        0
-                  ],
-                  [
-                        "She ___ in a quiet town.",
-                        [
-                              "live",
-                              "lives",
-                              "living"
-                        ],
-                        1
-                  ],
-                  [
-                        "There ___ six students in the group.",
-                        [
-                              "is",
-                              "are",
-                              "am"
-                        ],
-                        1
-                  ],
-                  [
-                        "She writes ___ example sentence every evening.",
-                        [
-                              "a",
-                              "an",
-                              "the"
-                        ],
-                        1
-                  ],
-                  [
-                        "My brother ___ English videos.",
-                        [
-                              "watch",
-                              "watches",
-                              "watching"
-                        ],
-                        1
-                  ],
-                  [
-                        "I ___ afraid of speaking.",
-                        [
-                              "am not",
-                              "do not",
-                              "does not"
-                        ],
-                        0
-                  ],
-                  [
-                        "___ your teacher check notebooks?",
-                        [
-                              "Do",
-                              "Does",
-                              "Is"
-                        ],
-                        1
-                  ],
-                  [
-                        "We have English ___ Monday and Wednesday.",
-                        [
-                              "in",
-                              "on",
-                              "at"
-                        ],
-                        1
-                  ],
-                  [
-                        "These are ___ new words.",
-                        [
-                              "Anna",
-                              "Annas",
-                              "Anna's"
-                        ],
-                        2
-                  ],
-                  [
-                        "I like songs, ___ writing is difficult.",
-                        [
-                              "but",
-                              "because",
-                              "or"
-                        ],
-                        0
-                  ],
-                  [
-                        "Choose the best question.",
-                        [
-                              "Where Anna lives?",
-                              "Where does Anna live?",
-                              "Where do Anna live?"
-                        ],
-                        1
-                  ],
-                  [
-                        "The students ___ short messages now.",
-                        [
-                              "read",
-                              "are reading",
-                              "reads"
-                        ],
-                        1
-                  ]
+                  [ "Anna ___ twenty-eight years old.", [ "is", "are", "am" ], 0 ],
+                  [ "She ___ in a small flat in central Moscow.", [ "live", "lives", "living" ], 1 ],
+                  [ "There ___ two rooms in the flat.", [ "is", "are", "am" ], 1 ],
+                  [ "Anna eats ___ apple cake at the café.", [ "a", "an", "the" ], 1 ],
+                  [ "Her cat ___ on the bed in the afternoon.", [ "sleep", "sleeps", "sleeping" ], 1 ],
+                  [ "I ___ at home now, I am at the café.", [ "am not", "do not", "does not" ], 0 ],
+                  [ "___ Anna work on Saturday?", [ "Do", "Does", "Is" ], 1 ],
+                  [ "We meet ___ Saturday morning.", [ "in", "on", "at" ], 1 ],
+                  [ "These are ___ books on the shelf.", [ "Anna", "Annas", "Anna's" ], 2 ],
+                  [ "I love coffee, ___ tea is also nice.", [ "but", "because", "or" ], 0 ],
+                  [ "Choose the best question.", [ "Where Anna lives?", "Where does Anna live?", "Where do Anna live?" ], 1 ],
+                  [ "Lena ___ coffee now.", [ "drinks", "is drinking", "drink" ], 1 ]
             ]
       },
       {
@@ -2112,13 +1888,11 @@
     function renderListeningPanel(level) {
       return `
         <div class="listening-panel">
-          <div class="listening-meta">Listen to the dialogue. The transcript is hidden from the student.</div>
-          <div class="audio-stack">
-            <button class="play-audio-btn" type="button" data-play-audio="${level.code}">Play audio</button>
-            <audio controls preload="none" src="${audioPath(level)}" data-audio-source="${audioPath(level)}"></audio>
-            <button class="audio-btn audio-fallback-btn" type="button" data-listen-level="${level.code}">Backup voice</button>
+          <div class="listening-placeholder" role="status">
+            <div class="lp-icon" aria-hidden="true">🎧</div>
+            <div class="lp-title">Audio recording in progress</div>
+            <div class="lp-note">The listening track for ${level.code} is being recorded by Maria. Please come back later — the audio will play here once published.</div>
           </div>
-          <div class="audio-note">If the audio does not start, use Backup voice.</div>
         </div>
       `;
     }
@@ -2177,7 +1951,12 @@
             <strong>Objective score: 0 / 40</strong>
             <small>Reading, listening and grammar are checked automatically. Writing and speaking remain for teacher review.</small>
           </div>
-          <button class="finish-btn" type="button" data-finish-level="${level.code}">Finish and send by email</button>
+          <div class="finish-actions">
+            <button class="finish-btn" type="button" data-finish-level="${level.code}" aria-label="Send by email"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Send by email</span></button>
+            <button class="finish-btn" type="button" data-finish-telegram="${level.code}" aria-label="Open Telegram to Maria"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg><span>Open Telegram</span></button>
+            <button class="finish-btn" type="button" data-finish-download="${level.code}" aria-label="Download as .txt"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download .txt</span></button>
+          </div>
+          <div class="finish-hint">After downloading, send the .txt to Maria via Telegram <a href="https://t.me/MariaBurceva_English" target="_blank" rel="noopener noreferrer">@MariaBurceva_English</a></div>
         </div>
       `;
     }
@@ -2747,6 +2526,32 @@
         openPrintableResult(level, summary);
         const body = encodeURIComponent(summary);
         window.location.href = `mailto:${teacherEmail}?subject=${subject}&body=${body}`;
+      });
+    });
+
+    document.querySelectorAll("[data-finish-telegram]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const level = button.dataset.finishTelegram;
+        const summary = collectLevelSummary(level);
+        try { await navigator.clipboard.writeText(summary); } catch (_) {}
+        window.open("https://t.me/MariaBurceva_English", "_blank", "noopener");
+      });
+    });
+
+    document.querySelectorAll("[data-finish-download]").forEach(button => {
+      button.addEventListener("click", () => {
+        const level = button.dataset.finishDownload;
+        const summary = collectLevelSummary(level);
+        const today = new Date().toISOString().slice(0, 10);
+        const blob = new Blob([summary], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `Diagnostic-${level}-${today}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       });
     });
 
