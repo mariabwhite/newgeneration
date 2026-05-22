@@ -34,18 +34,18 @@
             "writing": "Write 80-100 words about your home and your weekend. Include: how many rooms your home has, what is in them, what colours you like, and what you usually do on Saturday or Sunday. Try to use at least one of: there is / there are, present simple, on Saturday / at 11 o'clock.",
             "speaking": "Record a 60-75 second answer. Describe your home: how many rooms, what colours you like, one thing you love in it. Then describe one Saturday morning: what time you get up, what you eat, where you go, and who you usually meet.",
             "grammar": [
-                  [ "Anna ___ twenty-eight years old.", [ "is", "are", "am" ], 0 ],
-                  [ "She ___ in a small flat in central Moscow.", [ "live", "lives", "living" ], 1 ],
-                  [ "There ___ two rooms in the flat.", [ "is", "are", "am" ], 1 ],
-                  [ "Anna eats ___ apple cake at the café.", [ "a", "an", "the" ], 1 ],
-                  [ "Her cat ___ on the bed in the afternoon.", [ "sleep", "sleeps", "sleeping" ], 1 ],
-                  [ "I ___ at home now, I am at the café.", [ "am not", "do not", "does not" ], 0 ],
-                  [ "___ Anna work on Saturday?", [ "Do", "Does", "Is" ], 1 ],
-                  [ "We meet ___ Saturday morning.", [ "in", "on", "at" ], 1 ],
-                  [ "These are ___ books on the shelf.", [ "Anna", "Annas", "Anna's" ], 2 ],
-                  [ "I love coffee, ___ tea is also nice.", [ "but", "because", "or" ], 0 ],
-                  [ "Choose the best question.", [ "Where Anna lives?", "Where does Anna live?", "Where do Anna live?" ], 1 ],
-                  [ "Lena ___ coffee now.", [ "drinks", "is drinking", "drink" ], 1 ]
+                  [ "My grandmother ___ in a small village.", [ "is", "are", "am" ], 0 ],
+                  [ "She ___ in the garden every summer.", [ "sit", "sits", "sitting" ], 1 ],
+                  [ "There ___ three rooms in the house.", [ "is", "are", "am" ], 1 ],
+                  [ "The window looks at ___ garden.", [ "a", "an", "the" ], 2 ],
+                  [ "Murka ___ under the bench in the afternoon.", [ "sleep", "sleeps", "sleeping" ], 1 ],
+                  [ "The city ___ quiet, but the village is.", [ "is not", "are not", "am not" ], 0 ],
+                  [ "___ your grandmother live in a village?", [ "Do", "Does", "Is" ], 1 ],
+                  [ "We visit her ___ Sundays.", [ "in", "on", "at" ], 1 ],
+                  [ "The garden is ___ favourite place.", [ "grandmother", "grandmothers", "grandmother's" ], 2 ],
+                  [ "The house is old, ___ it is warm.", [ "but", "because", "or" ], 0 ],
+                  [ "Choose the best question.", [ "Where Murka sleeps?", "Where does Murka sleep?", "Where do Murka sleep?" ], 1 ],
+                  [ "Murka ___ under the bench now.", [ "sleep", "is sleeping", "sleeps" ], 1 ]
             ]
       },
       {
@@ -83,18 +83,18 @@
             "writing": "Write 100-120 words about a recent day that started badly but ended well. Include: what went wrong, what surprised you, how the day ended. Use past simple, past continuous, and at least one of: then, after that, in the end.",
             "speaking": "Record 90 seconds. Describe a day in the last month when something small went wrong (you forgot something, missed something, got lost). Say what happened, what you did, and how the day actually ended.",
             "grammar": [
-                  [ "I ___ up at half past eight instead of seven.", [ "wake", "woke", "waked" ], 1 ],
-                  [ "My alarm ___ work that morning.", [ "do not", "did not", "does not" ], 1 ],
-                  [ "At first the silence felt uncomfortable. ___ , I noticed small things.", [ "Then", "Because", "But" ], 0 ],
-                  [ "The lift ___ repaired when I left home.", [ "is being", "was being", "was been" ], 1 ],
-                  [ "I realised that I ___ my phone at home.", [ "have left", "left", "had left" ], 2 ],
-                  [ "My boss was understanding ___ the lift incident is famous.", [ "because", "so", "but" ], 0 ],
-                  [ "It became ___ day of the week.", [ "better", "the best", "good" ], 1 ],
-                  [ "I went home ___ lunch.", [ "after", "in", "on" ], 0 ],
-                  [ "What ___ the narrator forget at home?", [ "does", "did", "has" ], 1 ],
-                  [ "I was late, ___ my boss was understanding.", [ "but", "so", "because" ], 0 ],
-                  [ "While the narrator ___ , a colleague asked about walking home.", [ "was eating", "ate", "is eating" ], 0 ],
-                  [ "Choose the correct question.", [ "When you woke up?", "When did you wake up?", "When did you woke up?" ], 1 ]
+                  [ "Last weekend I ___ my parents tidy the attic.", [ "helped", "help", "helping" ], 0 ],
+                  [ "While we ___ old boxes, I found a small wooden box.", [ "were sorting", "sorted", "sort" ], 0 ],
+                  [ "The box ___ to my grandfather.", [ "belong", "belonged", "belonging" ], 1 ],
+                  [ "I found ___ small wooden box.", [ "a", "an", "the" ], 0 ],
+                  [ "Inside there ___ old photographs and letters.", [ "was", "were", "are" ], 1 ],
+                  [ "It was ___ box, full of memories.", [ "grandfather", "grandfathers", "grandfather's" ], 2 ],
+                  [ "I learned more in two hours ___ in all my previous twelve years.", [ "then", "than", "that" ], 1 ],
+                  [ "We ___ at the kitchen table to look at the photos.", [ "sat", "sit", "sitting" ], 0 ],
+                  [ "We looked at the photographs ___ dinner.", [ "after", "in", "on" ], 0 ],
+                  [ "My mother said it was good that I ___ the box.", [ "find", "found", "had found" ], 2 ],
+                  [ "At first I felt strange. ___ , my mother explained each photo.", [ "Then", "Because", "But" ], 0 ],
+                  [ "Choose the correct question.", [ "Where the box was?", "Where was the box?", "Where the box did to be?" ], 1 ]
             ]
       },
       {
@@ -132,18 +132,18 @@
             "writing": "Write 130-160 words about an unusual hobby or profession (your own, a friend's, or one you have read about). Explain: how the person became involved, what they have learned from it, and one thing the rest of us could learn from them.",
             "speaking": "Record 2 minutes. Talk about a hobby or activity that has surprised you — your own or someone else's. Explain how it started, what was difficult at first, and how it has changed your view of useful or important time.",
             "grammar": [
-                  [ "Olga ___ a beekeeper for almost six years.", [ "is", "has been", "was" ], 1 ],
-                  [ "She ___ several books before she got her first hive.", [ "read", "has read", "had read" ], 2 ],
-                  [ "She ___ check her email every two minutes; now she watches the hive.", [ "use to", "used to", "uses to" ], 1 ],
-                  [ "Urban bees often produce ___ honey than rural bees.", [ "more diverse", "most diverse", "diverser" ], 0 ],
-                  [ "A city block can host as ___ plant species as a meadow.", [ "much", "many", "more" ], 1 ],
-                  [ "Olga ___ have started later in life, but she began in 2020.", [ "might", "can", "would" ], 0 ],
-                  [ "Bee numbers have grown in some cities; ___ , they have fallen in the countryside.", [ "however", "therefore", "moreover" ], 0 ],
-                  [ "One Moscow beekeeper, ___ used to be a marketing manager, now watches hives.", [ "which", "who", "where" ], 1 ],
-                  [ "If bees ___ flowers and water, they live happily in a city.", [ "will have", "have", "had" ], 1 ],
-                  [ "Olga said that the bees ___ that they were in Moscow.", [ "did not care", "do not care", "had not cared" ], 0 ],
-                  [ "Urban beekeeping ___ rapidly in the last decade.", [ "grew", "has grown", "is growing" ], 1 ],
-                  [ "After two seasons, no one ___ complained about the hive.", [ "have", "has", "had" ], 2 ]
+                  [ "In the last three years some people ___ writing letters again.", [ "have started", "are starting", "started" ], 0 ],
+                  [ "Email ___ over before the revival began.", [ "had taken", "has taken", "took" ], 0 ],
+                  [ "Older generations ___ write letters by hand.", [ "used to", "use to", "uses to" ], 0 ],
+                  [ "Hand-written letters are ___ than digital messages.", [ "more slow", "slower", "most slow" ], 1 ],
+                  [ "The new letter-writers, ___ grew up with smartphones, surprised researchers.", [ "which", "who", "where" ], 1 ],
+                  [ "It ___ have been digital fatigue that started the revival.", [ "must", "can", "should" ], 0 ],
+                  [ "Email had taken over; ___ , letters are now returning.", [ "however", "therefore", "moreover" ], 0 ],
+                  [ "A hand-written letter forces a kind of attention that ___ rare.", [ "became", "has become", "had become" ], 1 ],
+                  [ "If letters ___ disposable, the revival ___ not happen.", [ "were / would", "are / will", "had been / would have" ], 0 ],
+                  [ "Writers said that the slowness ___ the point.", [ "was", "is", "had been" ], 0 ],
+                  [ "Letter writing ___ revived by a young generation.", [ "has been", "is", "had been" ], 0 ],
+                  [ "You ___ multitask while writing a letter.", [ "cannot", "could not", "should not" ], 0 ]
             ]
       },
       {
@@ -181,18 +181,18 @@
             "writing": "Write 180-220 words. Some experts argue that the most effective way to reduce urban traffic is to redesign cities around cyclists and pedestrians rather than improve cars and roads. To what extent do you agree? Support your view with examples and acknowledge one counter-argument.",
             "speaking": "Record 2-3 minutes. Defend a position on rethinking urban transport. Include one concession, one historical or current example (Amsterdam, Paris or another city), and one condition under which your argument might not apply.",
             "grammar": [
-                  [ "Not until the 1970s ___ the city begin to change.", [ "did", "has", "was" ], 0 ],
-                  [ "Historical squares ___ converted into parking lots when the protests started.", [ "are", "were being", "have been" ], 1 ],
-                  [ "By 1980, entire districts ___ redesigned around cyclists.", [ "had been", "have been", "were" ], 0 ],
-                  [ "___ as the world's most bicycle-friendly city, Amsterdam attracts urban planners.", [ "Describing", "Described", "Having described" ], 1 ],
-                  [ "A city designed around cars ___ safe for the people who live in it.", [ "cannot be", "would not", "should be" ], 0 ],
-                  [ "It was the citizens ___ demanded safe streets.", [ "what", "who", "which" ], 1 ],
-                  [ "___ progress in Paris has been slower, behaviour has shifted quickly.", [ "Despite", "However", "Although" ], 2 ],
-                  [ "The mayor's office ___ invest heavily in cargo bikes.", [ "has had to", "had", "must have" ], 0 ],
-                  [ "If Paris ___ from the same baseline, the change ___ easier.", [ "started / would be", "had started / would have been", "starts / will be" ], 1 ],
-                  [ "The transformation was ___ than anyone had expected.", [ "more nuanced", "nuanced more", "the most nuanced" ], 0 ],
-                  [ "___ , Paris has revealed the limits of the model.", [ "However", "Moreover", "Therefore" ], 0 ],
-                  [ "The committee insisted that the lanes ___ widened immediately.", [ "are", "be", "were" ], 1 ]
+                  [ "Not until 2020 ___ this trend become visible.", [ "did", "was", "has" ], 0 ],
+                  [ "Paper textbooks ___ widely predicted to disappear.", [ "were", "are being", "had been" ], 0 ],
+                  [ "By 2015, education journals ___ that paper would disappear.", [ "had suggested", "suggested", "have suggested" ], 0 ],
+                  [ "Students ___ on paper outperform peers reading on screens.", [ "reading", "read", "having read" ], 0 ],
+                  [ "Paper does not buzz or glow; ___ , it does not invite a parallel browser window.", [ "moreover", "however", "therefore" ], 0 ],
+                  [ "Not only ___ paper returning, it is also outperforming digital in studies.", [ "is", "it is", "has" ], 0 ],
+                  [ "___ digital texts are cheaper, students still choose paper for serious reading.", [ "Although", "Despite", "However" ], 0 ],
+                  [ "If schools ___ this trend seriously, they would invest in printed resources.", [ "took", "take", "had taken" ], 0 ],
+                  [ "The difference is small for short pieces, ___ consistent for long ones.", [ "but", "so", "and" ], 0 ],
+                  [ "It is essential that libraries ___ both formats.", [ "offer", "offers", "are offering" ], 0 ],
+                  [ "The shift is ___ than anyone had expected.", [ "more nuanced", "nuanced more", "the most nuanced" ], 0 ],
+                  [ "Universities ___ assume that the digital future is the only future worth planning for.", [ "should not", "cannot", "must" ], 0 ]
             ]
       },
       {
@@ -230,18 +230,18 @@
             "writing": "Write 240-300 words. The epidemic of loneliness has become a major theme in the public discourse of wealthy societies. To what extent should the response be clinical (therapy, medication, apps) and to what extent structural (urban design, public spaces, working hours)? Discuss with examples and qualify your position carefully.",
             "speaking": "Record 3 minutes. Explain why the framing of a social problem often matters as much as the problem itself. Use loneliness as your central example. Include one historical or international comparison and one limitation of your own argument.",
             "grammar": [
-                  [ "It is essential that public policy ___ the structural causes of loneliness.", [ "address", "addresses", "addressed" ], 0 ],
-                  [ "Not only ___ loneliness been redefined as a public health issue; it has also entered policy debates.", [ "it has", "has", "had" ], 1 ],
-                  [ "___ purely as a personal problem, loneliness was ignored by policy makers for decades.", [ "Treating", "Treated", "Having treated" ], 1 ],
-                  [ "If those community institutions ___ stronger, today's loneliness ___ less severe.", [ "had remained / would be", "remained / would be", "remain / will be" ], 0 ],
-                  [ "It is ___ produces loneliness, not how individuals happen to feel about it.", [ "the structure that", "a structure what", "structures who" ], 0 ],
-                  [ "___ the framing been ecological from the start, the policy responses would have been different.", [ "If", "Had", "Should" ], 1 ],
-                  [ "A condition ___ by structural factors cannot be cured by individual treatment alone.", [ "producing", "produced", "being produced" ], 1 ],
-                  [ "___ that clinical care is sometimes essential, the structural causes still remain.", [ "Granting", "Although", "Despite" ], 0 ],
-                  [ "Structural interventions ___ well be slower, but they are more durable.", [ "might", "can", "will" ], 0 ],
-                  [ "The advisory recommended that governments ___ in third places where people gather without spending money.", [ "invest", "invests", "are investing" ], 0 ],
-                  [ "The writer argues, ___ , that pills cannot solve a problem produced by city design.", [ "in essence", "so", "however" ], 0 ],
-                  [ "___ , the epidemic vocabulary attracts attention but distorts the underlying analysis.", [ "In short", "Conversely", "Likewise" ], 0 ]
+                  [ "___ familiar patterns, the brain recognises them faster than it questions them.", [ "Recognising", "Recognised", "Having recognised" ], 0 ],
+                  [ "Not only ___ expertise produce depth, it also produces narrowness.", [ "does", "produces", "has" ], 0 ],
+                  [ "What an expert often lacks ___ awareness of their own blind spots.", [ "had been", "is", "it is" ], 1 ],
+                  [ "It is essential that experts ___ the limits of their own perspective.", [ "name", "names", "are naming" ], 0 ],
+                  [ "A wise client ___ have asked two specialists, not just one.", [ "would", "will", "can" ], 0 ],
+                  [ "___ reliable in its proper domain, expertise still has clear blind spots.", [ "Although", "Despite", "However being" ], 0 ],
+                  [ "Cases ___ on procedural grounds shape a litigator's later thinking.", [ "winning", "won", "being won" ], 1 ],
+                  [ "___ the field acknowledged this paradox earlier, training would have evolved differently.", [ "If", "Had", "Should" ], 1 ],
+                  [ "The cost of expert advice has become greater ___ the cost of seeking a second opinion.", [ "as", "than", "from" ], 1 ],
+                  [ "If institutions ___ this paradox seriously, training would look different.", [ "took", "had taken", "take" ], 0 ],
+                  [ "Doctors are not formally trained in cognitive bias; ___ , the gap remains.", [ "that is to say", "however", "moreover" ], 0 ],
+                  [ "The deeper implication ___ the institutions that train experts.", [ "concerning", "concerns", "concerned" ], 1 ]
             ]
       },
       {
@@ -279,18 +279,18 @@
             "writing": "Write 350-450 words. A respected historian recently argued that collective memory is closer to mythology than to fact, and that one of the historian's central duties is to correct it. Other voices reply that documentary evidence is itself shaped by power and that memory often preserves what records suppress. Discuss both views, and explain to what extent you find the distinction between memory and history useful. Qualify your position carefully.",
             "speaking": "Record 4 minutes as if responding in an academic seminar. Engage with the question: do historians have a duty to challenge collective memory? Construct an argument with one strong concession, one specific historical case, and a final refined position that avoids vague balance.",
             "grammar": [
-                  [ "It is imperative that historians ___ their claims to scrutiny.", [ "expose", "exposes", "are exposing" ], 0 ],
-                  [ "Only after careful examination ___ a memory be treated as evidence.", [ "it can", "can", "should it" ], 1 ],
-                  [ "___ documents critically, historians distinguish memory from history.", [ "To examine", "Examining", "Examined" ], 1 ],
-                  [ "The community ___ have remembered the event quite differently, but the documents tell another story.", [ "might", "could not", "should" ], 0 ],
-                  [ "___ the documents survived, our reconstruction would be more confident.", [ "If", "Had", "Should" ], 1 ],
-                  [ "Stories ___ in oral testimony often outlasted formal records.", [ "preserving", "preserved", "having preserved" ], 1 ],
-                  [ "What collective memory preserves ___ not always what documents record.", [ "has been", "is", "it is" ], 1 ],
-                  [ "___ that documents are also selective, the choice is rarely a clean one.", [ "Considering", "Given", "Having given" ], 1 ],
-                  [ "A community may ___ have been mistaken, even when its conviction was sincere.", [ "much", "well", "very" ], 1 ],
-                  [ "___ the historian dismissed memory entirely, the resulting record ___ been impoverished.", [ "If / would", "Had / would have", "Should / would" ], 1 ],
-                  [ "A degree of conservatism is appropriate ___ professional contexts.", [ "for", "on", "in" ], 2 ],
-                  [ "___ , the most reliable account is constructed when memory and history correct each other.", [ "In other words", "Rather", "Conversely" ], 1 ]
+                  [ "It is imperative that researchers ___ simpler models without sentiment when evidence does not cooperate.", [ "abandon", "abandons", "are abandoning" ], 0 ],
+                  [ "Only when evidence converges ___ simplicity be accepted as proof.", [ "can", "it can", "should" ], 0 ],
+                  [ "___ the simpler model instinctively, scientists sometimes overlook the truth.", [ "Preferring", "Preferred", "Having preferred" ], 0 ],
+                  [ "The universe ___ have no obligation to be elegant.", [ "may", "can", "shall" ], 0 ],
+                  [ "___ the field tolerated complexity earlier, progress would have been faster.", [ "Had", "If", "Should" ], 0 ],
+                  [ "Theories ___ as inelegant are sometimes the more correct ones.", [ "dismissing", "dismissed", "having dismissed" ], 1 ],
+                  [ "What scientists must remember ___ that parsimony is not proof.", [ "be", "is", "it is" ], 1 ],
+                  [ "___ that simplicity is a default, it should not become a doctrine.", [ "Given", "Considering", "Although" ], 0 ],
+                  [ "A research culture may ___ slow the discovery of complex phenomena.", [ "well", "much", "very" ], 0 ],
+                  [ "Pre-genetic models of inheritance were tidy; ___ , they were also wrong.", [ "rather", "however", "conversely" ], 1 ],
+                  [ "The strongest demand for simplification often comes ___ outside the discipline.", [ "from", "of", "for" ], 0 ],
+                  [ "A theory survives because the world behaves the way it predicts, ___ because it pleases our taste for tidiness.", [ "not", "no", "never" ], 0 ]
             ]
       }
 ];
