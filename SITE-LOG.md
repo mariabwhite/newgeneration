@@ -749,3 +749,37 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 — Claude, 2026-05-22 (вечер).
 
 *Последнее обновление: 2026-05-22 (вечер) — Mobile K-1 первая волна: sticky-фикс через overflow-x:clip, бургер-меню инжектится JS-ом, hero-stats 2×2 на мобиле, hero-stars центрирован. Точка отката: `backup-2026-05-22-pre-mobile-K1`. На проверке у Маши.*
+
+---
+
+### День 8 (поздний вечер) · 2026-05-22 — Mobile K-1 вторая волна
+
+После проверки Машей на iPhone (8 скринов из Telegram) Кодекс распарсил список багов:
+
+**H · `!DOCTYPE html>` виден на странице** (КРИТИЧЕСКИЙ РЕГРЕСС МОЕЙ ВОЛНЫ 1) — мой PowerShell bump-скрипт съел первый байт `<` (0x3C) во всех 13 HTML, оставив `BOM + !DOCTYPE`. Браузер видел text-node «!DOCTYPE html>» перед нормальным HTML. Восстановлено byte-level: добавлен `<`, убран BOM (для UTF-8 HTML BOM не нужен).
+
+**I · Topbar horizontal overflow** — CAB+LITE+EN+brand+бургер на 390px не помещались, EN обрезалась справа. В system.css `@media (max-width:720px)` ужал .control-btn: min-width:0, padding 0 10px, font-size 9px, height 30px. На ≤420px — ещё компактнее. Brand-sub «nge · since 2023» скрыта на мобиле.
+
+**J · Hero h1 обрезался** на conditions «Как начинается работа». В system.css `@media (max-width:640px)` clamp снижен с `11vw, 3.5rem` до `9vw, 2.8rem`. На ≤390px новый media с `8.4vw, 2.4rem`.
+
+**F+G · Blog hero разваливался** — каждое слово в столбик, кнопки CTA обрезаны слева. Корень: `assets/css/blog.css` имел base-rule `.hero-grid { 2-кол }` БЕЗ media-перебивки, system.css `@media 900px → 1fr` перекрывался. Добавил в blog.css `@media 768px`: `.hero-grid {1fr !important}`, `.hero-media {max-width:420px}`, `.btn-row {flex-direction:column}`. Bumped `blog.css?v=2`.
+
+**K · Lab topbar** — пока pending. Lab имеет свой `canon-L.css` (read-only по CLAUDE.md). Кодекс жалуется на высокий header + sticky закрывает карточки. Откладываю до явного запроса.
+
+**Bump:** system.css v=31→v=32, site.js v=10→v=11, blog.css v=1→v=2. Через byte-level replace (без BOM-наркомании) — проверено: все 13 HTML начинаются с `3C 21 44 4F` (`<!DO`).
+
+### Open issues end-of-day 8 (поздний вечер)
+
+🟡 **K · Lab mobile topbar** — высокий header, sticky закрывает контент. Отложено.
+
+🔴 **К-1 Mobile (продолжение)** — на повторной проверке Маши после волны 2:
+- DOCTYPE-текст должен пропасть
+- Topbar помещается в 390px
+- Hero h1 переносится без обрезания
+- Blog hero нормально 1-колоночный с полноразмерными CTA
+
+🔴 Винегрет цифр programs/cases/travel — без изменений.
+
+— Claude, 2026-05-22 (поздний вечер).
+
+*Последнее обновление: 2026-05-22 (поздний вечер) — Mobile K-1 волна 2: фикс H/I/J/F/G. Главное: восстановлен `<` потерянный моим прошлым bump-скриптом. Lab (K) — отдельной волной по явному запросу.*

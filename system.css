@@ -565,7 +565,29 @@ body.mobile-menu-lock { overflow: hidden; }
 @media (max-width: 720px) {
   .topnav { display: none !important; }
   .menu-toggle { display: inline-flex; }
-  /* Keep tools pinned right; burger sits between brand and tools */
+  .topbar { gap: 8px; padding: 10px 12px; }
+  .topbar-tools { gap: 6px; }
+  .control-btn,
+  .control-btn--solid,
+  .control-btn--active {
+    min-width: 0;
+    height: 30px;
+    min-height: 30px;
+    padding: 0 10px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    border-radius: 8px;
+  }
+  .brand-sub { display: none; } /* hide "nge · since 2023" on narrow phones */
+  .brand-name { font-size: 13px; }
+  .brand-mark { width: 30px; height: 30px; font-size: 16px; }
+}
+@media (max-width: 420px) {
+  .topbar { gap: 6px; padding: 10px 10px; }
+  .menu-toggle { width: 36px; height: 36px; }
+  .control-btn,
+  .control-btn--solid,
+  .control-btn--active { padding: 0 8px; font-size: 8.5px; }
 }
 
 /* CANONICAL HERO FROM INDEX */
@@ -742,7 +764,11 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }.hero-m
     top: 18%;
     width: min(92vw, 460px);
     opacity: 0.55;
-  }.hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }.hero-stats { grid-template-columns: repeat(2, 1fr); }.hero-stats .cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }.hero-stats .cell:nth-child(2n) { border-right: none; }.hero-stats .cell:nth-last-child(-n+2) { border-bottom: none; }.btn-row { flex-direction: column; }.btn { width: 100%; }
+  }.hero h1 { font-size: clamp(1.85rem, 9vw, 2.8rem); }.hero-stats { grid-template-columns: repeat(2, 1fr); }.hero-stats .cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 14px; }.hero-stats .cell:nth-child(2n) { border-right: none; }.hero-stats .cell:nth-last-child(-n+2) { border-bottom: none; }.hero-stats .num { font-size: clamp(22px, 7vw, 32px); }.btn-row { flex-direction: column; }.btn { width: 100%; }
+}
+@media (max-width: 390px) {
+  .hero h1 { font-size: clamp(1.6rem, 8.4vw, 2.4rem); line-height: 0.98; }
+  .hero { padding: 32px 12px 20px; }
 }/* Mobile safeguard: restore horizontal padding removed by the container-hero fix above.
    At в‰¤640px the hero is still full-bleed (100vw) so content needs its own edge buffer. */
 @media (max-width: 640px) {
