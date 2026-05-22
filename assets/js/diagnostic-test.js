@@ -5,23 +5,23 @@
             "desc": "A demanding beginner diagnostic: basic meaning, word order, simple tenses, articles, pronouns, prepositions and careful listening.",
             "reading": {
                   "title": "Anna's flat and her Saturday",
-                  "text": "Anna is twenty-eight years old. She lives in a small flat in central Moscow. The flat has two rooms: a kitchen and a bedroom. There is a small table in the kitchen and a green plant on the window. Anna's bedroom is bright. There is a bed, a desk and many books on a long shelf. Anna likes blue and white in her flat. She has one cat. The cat sleeps on the bed in the afternoon.\n\nOn Saturday Anna does not go to work. She has a quiet breakfast at home. At 11 o'clock she goes to her favourite café. The café is near the metro station. Anna often meets her friend Lena there. After coffee, they walk to the supermarket and buy bread, cheese and fruit. Anna comes home at 3 p.m. She reads a book in the kitchen and listens to music. The cat is sleeping next to her.",
+                  "text": "Anna is twenty-eight years old. She lives in a small flat in central Moscow. The flat has two rooms: a kitchen and a bedroom. There is a small table in the kitchen and a green plant on the window. Anna's bedroom is bright. There is a bed, a desk and many books on a long shelf. Anna likes blue and white in her flat. She has one cat. The cat sleeps on the bed in the afternoon.\n\nOn Saturday Anna does not go to work. She has a quiet breakfast at home. At 11 o'clock she goes to her favourite cafГ©. The cafГ© is near the metro station. Anna often meets her friend Lena there. After coffee, they walk to the supermarket and buy bread, cheese and fruit. Anna comes home at 3 p.m. She reads a book in the kitchen and listens to music. The cat is sleeping next to her.",
                   "questions": [
                         { "text": "How old is Anna?", "options": ["She is eighteen.", "She is twenty-eight.", "She is thirty-eight."], "answer": 1 },
                         { "text": "How many rooms does the flat have?", "options": ["One room.", "Two rooms.", "Three rooms."], "answer": 1 },
                         { "text": "What is on the window in the kitchen?", "options": ["A book.", "A cat.", "A green plant."], "answer": 2 },
                         { "text": "What colours does Anna like in her flat?", "options": ["Red and yellow.", "Blue and white.", "Green and pink."], "answer": 1 },
-                        { "text": "When does Anna go to the café?", "options": ["At 9 a.m.", "At 11 a.m.", "At 1 p.m."], "answer": 1 },
-                        { "text": "Who does Anna meet at the café?", "options": ["Her brother.", "Her friend Lena.", "Her teacher."], "answer": 1 },
+                        { "text": "When does Anna go to the cafГ©?", "options": ["At 9 a.m.", "At 11 a.m.", "At 1 p.m."], "answer": 1 },
+                        { "text": "Who does Anna meet at the cafГ©?", "options": ["Her brother.", "Her friend Lena.", "Her teacher."], "answer": 1 },
                         { "text": "What do Anna and Lena buy at the supermarket?", "options": ["Milk and tea.", "Bread, cheese and fruit.", "Only fruit."], "answer": 1 },
                         { "text": "What is the best title for the text?", "options": ["Anna's busy week.", "Anna's flat and her Saturday.", "A trip to another city."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "Anna meets Lena at the café",
-                  "script": "Anna: Hello, Lena. I am here. Where are you?\nLena: I am at the café, near the window. Can you see me?\nAnna: Yes! I see you now. One minute.\nLena: I am drinking coffee. Do you want coffee or tea?\nAnna: I want a small coffee, please. And one apple cake.\nLena: The cake here is very good. I usually have it on Saturday.\nAnna: Where do you live now, Lena?\nLena: I live in a small flat near the park. It has only one big room.\nAnna: How many windows are there?\nLena: There are two. They are not very big, but the flat is bright.\nAnna: That sounds nice. Are you happy there?\nLena: Yes, I am. The street is quiet, and my neighbours are friendly.",
+                  "title": "Anna meets Lena at the cafГ©",
+                  "script": "Anna: Hello, Lena. I am here. Where are you?\nLena: I am at the cafГ©, near the window. Can you see me?\nAnna: Yes! I see you now. One minute.\nLena: I am drinking coffee. Do you want coffee or tea?\nAnna: I want a small coffee, please. And one apple cake.\nLena: The cake here is very good. I usually have it on Saturday.\nAnna: Where do you live now, Lena?\nLena: I live in a small flat near the park. It has only one big room.\nAnna: How many windows are there?\nLena: There are two. They are not very big, but the flat is bright.\nAnna: That sounds nice. Are you happy there?\nLena: Yes, I am. The street is quiet, and my neighbours are friendly.",
                   "questions": [
-                        { "text": "Where is Lena?", "options": ["At home.", "At the café, near the window.", "At the supermarket."], "answer": 1 },
+                        { "text": "Where is Lena?", "options": ["At home.", "At the cafГ©, near the window.", "At the supermarket."], "answer": 1 },
                         { "text": "What is Lena drinking?", "options": ["Tea.", "Water.", "Coffee."], "answer": 2 },
                         { "text": "What does Anna order to drink?", "options": ["A large tea.", "A small coffee.", "Milk."], "answer": 1 },
                         { "text": "What food does Anna order?", "options": ["A sandwich.", "An apple cake.", "Bread."], "answer": 1 },
@@ -37,9 +37,9 @@
                   [ "Anna ___ twenty-eight years old.", [ "is", "are", "am" ], 0 ],
                   [ "She ___ in a small flat in central Moscow.", [ "live", "lives", "living" ], 1 ],
                   [ "There ___ two rooms in the flat.", [ "is", "are", "am" ], 1 ],
-                  [ "Anna eats ___ apple cake at the café.", [ "a", "an", "the" ], 1 ],
+                  [ "Anna eats ___ apple cake at the cafГ©.", [ "a", "an", "the" ], 1 ],
                   [ "Her cat ___ on the bed in the afternoon.", [ "sleep", "sleeps", "sleeping" ], 1 ],
-                  [ "I ___ at home now, I am at the café.", [ "am not", "do not", "does not" ], 0 ],
+                  [ "I ___ at home now, I am at the cafГ©.", [ "am not", "do not", "does not" ], 0 ],
                   [ "___ Anna work on Saturday?", [ "Do", "Does", "Is" ], 1 ],
                   [ "We meet ___ Saturday morning.", [ "in", "on", "at" ], 1 ],
                   [ "These are ___ books on the shelf.", [ "Anna", "Annas", "Anna's" ], 2 ],
@@ -51,1708 +51,246 @@
       {
             "code": "A2",
             "name": "Elementary Strong",
-            "desc": "Checks everyday comprehension with more demanding detail, past and future forms, quantifiers, comparison, modal verbs and connected speech.",
+            "desc": "Past simple and past continuous, comparatives, prepositions of time and place, simple modals, everyday narrative reading and listening.",
             "reading": {
-                  "title": "A weekend that did not go exactly as planned",
-                  "text": "Last weekend Pavel travelled to Saint Petersburg with his parents. They left Moscow by train on Friday evening because tickets were cheaper at night. Pavel wanted to sleep, but the carriage was noisy, and a little girl across the aisle was asking her grandmother questions about every station. When the family arrived on Saturday morning, the weather was cold but bright, so they walked along the river before visiting a museum.\n\nIn the afternoon they planned to eat in a famous cafe, but it was full. Instead, they found a small place in a side street. Pavel was disappointed at first, yet the food was excellent, and the owner told them a story about the old building. On Sunday they bought presents for friends and returned home. Pavel was tired, but he decided that unexpected changes can make a trip more interesting.",
+                  "title": "Mark's slow start to a nature park",
+                  "text": "Mark is thirty-two years old. He lives in Saint Petersburg and works in a small office. Last Saturday he wanted a quiet weekend, so he decided to visit a nature park near the city. He planned the trip carefully: he checked the bus times, packed a sandwich, and put a new battery in his camera. He left home at eight in the morning.\n\nThe trip did not start well. The first bus was twenty minutes late, and Mark missed the connection. He had to wait at a small station for almost an hour. He was a little angry, but he decided to read a book. While he was reading, a friendly woman sat next to him. She was also going to the nature park, and she had been there many times. She gave him useful advice about the best lake and the quietest path.\n\nMark finally arrived at noon. The park was beautiful and almost empty. He walked for three hours, took many photographs and ate his sandwich by the lake. He returned home tired but happy. In the end, the slow start became the most interesting part of the day.",
                   "questions": [
-                        {
-                              "text": "Why did the family travel at night?",
-                              "options": [
-                                    "The tickets were cheaper.",
-                                    "They wanted to see the sunrise.",
-                                    "The museum opened at night."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why could Pavel not sleep easily?",
-                              "options": [
-                                    "The carriage was noisy.",
-                                    "He lost his ticket.",
-                                    "He was afraid of trains."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What was the weather like on Saturday morning?",
-                              "options": [
-                                    "Cold but bright.",
-                                    "Rainy and dark.",
-                                    "Hot and windy."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why did they not eat in the famous cafe?",
-                              "options": [
-                                    "It was closed forever.",
-                                    "It was full.",
-                                    "It was too far from the station."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "How did Pavel feel at first about the small cafe?",
-                              "options": [
-                                    "Disappointed.",
-                                    "Angry with his parents.",
-                                    "Completely indifferent."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What made the small cafe interesting?",
-                              "options": [
-                                    "The owner told a story.",
-                                    "A singer performed.",
-                                    "They met Pavel's teacher."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What lesson did Pavel learn?",
-                              "options": [
-                                    "Changes can make a trip interesting.",
-                                    "Trains are always uncomfortable.",
-                                    "Museums are boring."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Which word is closest to unexpected?",
-                              "options": [
-                                    "Planned",
-                                    "Surprising",
-                                    "Expensive"
-                              ],
-                              "answer": 1
-                        }
+                        { "text": "Where does Mark live?", "options": ["Moscow.", "Saint Petersburg.", "Kazan."], "answer": 1 },
+                        { "text": "Why did Mark plan the trip carefully?", "options": ["He wanted a quiet weekend.", "He was going to work.", "His friend invited him."], "answer": 0 },
+                        { "text": "What was the first problem?", "options": ["His camera broke.", "The first bus was twenty minutes late.", "He forgot his sandwich."], "answer": 1 },
+                        { "text": "How long did Mark wait at the station?", "options": ["Almost an hour.", "Twenty minutes.", "Three hours."], "answer": 0 },
+                        { "text": "What was Mark doing when the woman sat next to him?", "options": ["He was eating.", "He was reading a book.", "He was sleeping."], "answer": 1 },
+                        { "text": "What did the woman give Mark?", "options": ["A sandwich.", "Money.", "Useful advice about the park."], "answer": 2 },
+                        { "text": "What time did Mark finally arrive at the park?", "options": ["At noon.", "At eight in the morning.", "In the late evening."], "answer": 0 },
+                        { "text": "What is the main idea of the story?", "options": ["A boring day.", "A trip that started slowly but ended well.", "A trip with a lot of friends."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "Changing a weekend plan",
-                  "script": "Emma: Pavel, the museum tickets for Saturday morning are sold out, so we need a different plan.\nMatthew: Does that mean we are not going to the museum at all?\nEmma: No, we can go after lunch. In the morning, we can walk near the river and take photos.\nMatthew: That sounds fine. What about the cafe you wanted to visit?\nEmma: I called them. There are no tables before four o'clock.\nMatthew: Maybe we can find a smaller place. Sometimes those are better.\nEmma: Exactly. Also, remember to take your notebook. Your teacher asked you to write ten travel words.\nMatthew: I forgot about that. I will write them on the train.",
+                  "title": "Mark asks about the bus to the nature park",
+                  "script": "Mark: Excuse me, is this the bus to the nature park?\nDriver: Yes, but you missed the eight-thirty. The next one leaves at ten.\nMark: Oh no. I really wanted to be there before lunch.\nDriver: Don't worry, it's only an hour by bus. You will still have plenty of time.\nMark: I see. Is there a cafГ© here, or somewhere to sit?\nDriver: Yes, around the corner. The coffee is not great, but the cakes are surprisingly good.\nMark: Thank you. By the way, where do I get off for the lake?\nDriver: The fourth stop. You'll see a wooden sign on the right. Just follow the path.\nMark: Should I buy a return ticket now, or later?\nDriver: Now is better. The driver in the evening can be in a hurry, and the queue is sometimes long.\nMark: Then a return ticket, please. Thank you for your help.",
                   "questions": [
-                        {
-                              "text": "What problem do they have with the museum?",
-                              "options": [
-                                    "Tickets are sold out in the morning.",
-                                    "It is closed all weekend.",
-                                    "It moved to another city."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "When can they go to the museum?",
-                              "options": [
-                                    "After lunch.",
-                                    "Before breakfast.",
-                                    "Next month only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What will they do in the morning?",
-                              "options": [
-                                    "Walk near the river and take photos.",
-                                    "Sleep in the hotel.",
-                                    "Buy school books."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What time are cafe tables available?",
-                              "options": [
-                                    "Before ten.",
-                                    "After four.",
-                                    "At noon exactly."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "What does Pavel suggest?",
-                              "options": [
-                                    "Find a smaller place.",
-                                    "Cancel the trip.",
-                                    "Eat on the train only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What must Pavel take?",
-                              "options": [
-                                    "His notebook.",
-                                    "A sports bag.",
-                                    "A camera charger."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "How many travel words should Pavel write?",
-                              "options": [
-                                    "Five.",
-                                    "Ten.",
-                                    "Twenty."
-                              ],
-                              "answer": 1
-                        },
-                        {
-                              "text": "Where will he write them?",
-                              "options": [
-                                    "On the train.",
-                                    "At the museum desk.",
-                                    "After returning home."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What did Mark miss?", "options": ["The ten o'clock bus.", "The eight-thirty bus.", "The last bus of the day."], "answer": 1 },
+                        { "text": "When does the next bus leave?", "options": ["At nine.", "At ten.", "At eleven."], "answer": 1 },
+                        { "text": "What does the driver say about the cafГ©?", "options": ["The coffee is great.", "The cakes are surprisingly good.", "The cafГ© is closed."], "answer": 1 },
+                        { "text": "Where should Mark get off?", "options": ["The second stop.", "The fourth stop.", "The last stop."], "answer": 1 },
+                        { "text": "How will Mark know where to get off?", "options": ["A wooden sign on the right.", "A man at the door.", "An announcement on the radio."], "answer": 0 },
+                        { "text": "Why is it better to buy a return ticket now?", "options": ["It is cheaper now.", "The driver in the evening can be in a hurry.", "There are no tickets in the evening."], "answer": 1 },
+                        { "text": "What does Mark finally decide to buy?", "options": ["Two tickets.", "A one-way ticket.", "A return ticket."], "answer": 2 },
+                        { "text": "What is the tone of the driver?", "options": ["Angry.", "Helpful.", "Bored."], "answer": 1 }
                   ]
             },
-            "writing": "School email diagnostic task. Write 100-120 words to a friend about a weekend plan that changed. Explain what changed, how you felt, and why the final result was useful or interesting.",
-            "speaking": "Record 90 seconds. Describe a trip or school event that changed unexpectedly. Use past forms, at least one comparison, and one sentence about a future plan.",
+            "writing": "Write 100-120 words about a trip that did not go exactly as you planned. Include: where you wanted to go, what changed, how you reacted, and how the day finished. Use past simple and at least one of past continuous, but, in the end.",
+            "speaking": "Record 90 seconds. Describe a recent trip or weekend outing. Say where you went, what time you left, what went wrong (one small detail), and how it ended. Try to use past simple, past continuous, and one comparative form.",
             "grammar": [
-                  [
-                        "We ___ to Saint Petersburg last weekend.",
-                        [
-                              "go",
-                              "went",
-                              "gone"
-                        ],
-                        1
-                  ],
-                  [
-                        "They ___ by train because it was cheaper.",
-                        [
-                              "travelled",
-                              "were travelling",
-                              "travels"
-                        ],
-                        0
-                  ],
-                  [
-                        "The cafe was ___ than they expected.",
-                        [
-                              "good",
-                              "better",
-                              "best"
-                        ],
-                        1
-                  ],
-                  [
-                        "There were not ___ tables before four.",
-                        [
-                              "some",
-                              "any",
-                              "much"
-                        ],
-                        1
-                  ],
-                  [
-                        "Pavel has ___ travel words to write.",
-                        [
-                              "a few",
-                              "much",
-                              "many of"
-                        ],
-                        0
-                  ],
-                  [
-                        "He ___ write them on the train.",
-                        [
-                              "is going to",
-                              "went to",
-                              "goes to"
-                        ],
-                        0
-                  ],
-                  [
-                        "You ___ take your notebook.",
-                        [
-                              "must",
-                              "must to",
-                              "musting"
-                        ],
-                        0
-                  ],
-                  [
-                        "The tickets ___ sold out.",
-                        [
-                              "was",
-                              "were",
-                              "did"
-                        ],
-                        1
-                  ],
-                  [
-                        "They found a cafe ___ a side street.",
-                        [
-                              "on",
-                              "in",
-                              "at"
-                        ],
-                        1
-                  ],
-                  [
-                        "The owner told ___ a story.",
-                        [
-                              "they",
-                              "them",
-                              "their"
-                        ],
-                        1
-                  ],
-                  [
-                        "If the cafe is full, we ___ another place.",
-                        [
-                              "find",
-                              "will find",
-                              "found"
-                        ],
-                        1
-                  ],
-                  [
-                        "He was tired, ___ he enjoyed the trip.",
-                        [
-                              "but",
-                              "so",
-                              "because"
-                        ],
-                        0
-                  ],
-                  [
-                        "Have you ___ been to Saint Petersburg?",
-                        [
-                              "ever",
-                              "already",
-                              "yet"
-                        ],
-                        0
-                  ],
-                  [
-                        "This is the place ___ we ate lunch.",
-                        [
-                              "where",
-                              "which",
-                              "who"
-                        ],
-                        0
-                  ]
+                  [ "He ___ a sandwich for the trip.", [ "pack", "packed", "packing" ], 1 ],
+                  [ "She ___ him useful advice about the park.", [ "give", "gave", "given" ], 1 ],
+                  [ "While he ___ , a friendly woman sat next to him.", [ "was reading", "read", "is reading" ], 0 ],
+                  [ "He took ___ photographs of the lake.", [ "much", "many", "a" ], 1 ],
+                  [ "The cake was ___ than the coffee.", [ "gooder", "better", "more good" ], 1 ],
+                  [ "It was ___ part of the day.", [ "most interesting", "the most interesting", "interesting most" ], 1 ],
+                  [ "___ Mark arrive on time?", [ "Was", "Did", "Were" ], 1 ],
+                  [ "He had ___ at the station for almost an hour.", [ "waited", "wait", "to wait" ], 2 ],
+                  [ "He left home ___ eight in the morning.", [ "at", "on", "in" ], 0 ],
+                  [ "He was angry, ___ he decided to read.", [ "but", "because", "or" ], 0 ],
+                  [ "___ camera had a new battery.", [ "Marks", "Mark's", "Mark" ], 1 ],
+                  [ "She ___ to the park many times before.", [ "had been", "has been", "went" ], 0 ]
             ]
       },
       {
             "code": "B1",
-            "name": "Intermediate Academic",
-            "desc": "Tests narrative detail, inference, connected grammar, passive voice, conditionals, reported speech and early academic explanation.",
+            "name": "Intermediate Strong",
+            "desc": "Present perfect vs past, past perfect, used to, modals of speculation, conditionals, reported speech, relative clauses, narrative reading and interview-style listening.",
             "reading": {
-                  "title": "Why confidence is not the same as comfort",
-                  "text": "When Sofia joined an online English group, she expected the lessons to feel easier than school. She imagined that speaking from her room would be less stressful than speaking in front of classmates. The first lesson proved the opposite. Because the group was small, the teacher asked everyone to respond several times. Sofia knew many grammar rules, but she paused whenever she had to express a personal opinion.\n\nAfter a month, she noticed a pattern. Her problem was not a lack of knowledge; it was the habit of waiting until a sentence was perfect. The teacher began giving tasks with time limits: thirty seconds to prepare, one minute to speak, and then a short correction. Sofia still made mistakes, but she became more willing to try. By the end of the course, she understood that confidence grows through repeated controlled difficulty, not through avoiding uncomfortable tasks.",
+                  "title": "Sofia learns to cook",
+                  "text": "Sofia had reached her thirty-fifth birthday without ever cooking a proper meal. She had always told herself that she did not have time, but the truth was simpler: she was afraid of failing. When her favourite local cafГ© closed in autumn, she realised that she could not eat sandwiches forever. She decided to learn.\n\nHer first attempts were a disaster. She burnt rice on the very first evening and once tried to follow three recipes at the same time. By the end of the second week, she had filled two notebooks with mistakes. But she also noticed something unexpected: she enjoyed it. She liked the silence of chopping vegetables; she liked the smell that filled her flat. The mistakes did not feel like failures any more вЂ” they felt like steps.\n\nAfter three months Sofia could cook six simple meals without checking a recipe. She invited her sister for dinner, and her sister, who had cooked since she was a teenager, was honestly impressed. Sofia understood that the real change was not the food, but her relationship with patience. If she had started ten years earlier, she would have spent thousands of evenings less worried about cold sandwiches.",
                   "questions": [
-                        {
-                              "text": "What did Sofia expect before joining the group?",
-                              "options": [
-                                    "Online lessons would feel easier.",
-                                    "The teacher would ignore her.",
-                                    "There would be no speaking."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why was the first lesson difficult?",
-                              "options": [
-                                    "Everyone had to respond several times.",
-                                    "The internet failed.",
-                                    "The text was too long."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What was Sofia's real problem?",
-                              "options": [
-                                    "Waiting for perfect sentences.",
-                                    "Not knowing any grammar.",
-                                    "Refusing to do homework."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What kind of tasks did the teacher introduce?",
-                              "options": [
-                                    "Timed speaking tasks.",
-                                    "Only translation tasks.",
-                                    "Silent reading tasks."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What changed by the end?",
-                              "options": [
-                                    "Sofia became more willing to try.",
-                                    "She stopped making mistakes completely.",
-                                    "She left the group."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does controlled difficulty mean here?",
-                              "options": [
-                                    "A challenge with structure and support.",
-                                    "A task with no help.",
-                                    "An exam with no time limit."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Which statement is closest to the main idea?",
-                              "options": [
-                                    "Confidence develops through practice under pressure.",
-                                    "Comfort is always the best learning condition.",
-                                    "Grammar rules are unnecessary."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can be inferred about the teacher?",
-                              "options": [
-                                    "The teacher used pressure carefully.",
-                                    "The teacher disliked mistakes.",
-                                    "The teacher avoided feedback."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What had Sofia never done before she was thirty-five?", "options": ["Travelled abroad.", "Cooked a proper meal.", "Worked in an office."], "answer": 1 },
+                        { "text": "What was the real reason she avoided cooking?", "options": ["Lack of money.", "Fear of failing.", "A medical condition."], "answer": 1 },
+                        { "text": "What happened in autumn?", "options": ["Her sister moved away.", "Her favourite local cafГ© closed.", "She lost her job."], "answer": 1 },
+                        { "text": "What did her first attempts look like?", "options": ["Almost perfect.", "A disaster.", "Better than expected."], "answer": 1 },
+                        { "text": "What did she notice unexpectedly?", "options": ["That she enjoyed the slow parts.", "That she hated chopping.", "That she preferred sandwiches."], "answer": 0 },
+                        { "text": "After three months, how many meals could she cook without a recipe?", "options": ["Two.", "Six.", "Twelve."], "answer": 1 },
+                        { "text": "Why was the sister impressive about the change?", "options": ["She had cooked since she was a teenager.", "She had never cooked before.", "She lived in another country."], "answer": 0 },
+                        { "text": "What was the deeper change for Sofia?", "options": ["Her diet became cheaper.", "Her relationship with patience.", "Her job became easier."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "Teacher feedback after a trial lesson",
-                  "script": "Teacher: Sofia, your reading is stronger than your speaking, but that is not unusual.\nStudent: I felt slow when I had to answer without writing first.\nTeacher: Yes, because you are trying to edit every sentence before you say it. That makes your speech accurate, but hesitant.\nStudent: Should I stop thinking about grammar?\nTeacher: Not exactly. You need two modes: a fluency mode, where you keep speaking, and an accuracy mode, where we correct patterns later.\nStudent: So mistakes are not the main problem?\nTeacher: Repeated mistakes matter, but silence can hide even more. Next week we will use short timed responses and then analyse three grammar patterns.\nStudent: That sounds difficult, but clear.",
+                  "title": "Podcast interview: Sofia on starting late",
+                  "script": "Host: This week on Quiet Wins, we hear from Sofia, who took up cooking at thirty-five.\nSofia: I had spent years pretending I was too busy. The real reason was fear. I thought if I tried and the food was bad, it would somehow prove that I was a disorganised person. So I just bought sandwiches.\nHost: What changed?\nSofia: Our local cafГ© closed. Suddenly I realised I had no fallback. The first month was honestly painful. I burnt rice, I mixed up salt and sugar, and I cried a little after the third disaster.\nHost: And yet you continued.\nSofia: Yes, because something interesting happened. I started to enjoy the slow parts вЂ” chopping, waiting, smelling. I think we live too quickly. Cooking forced me to stop.\nHost: Looking back, what surprised you most?\nSofia: That the real lesson was not about food at all. It was about patience and self-trust. If I had started ten years earlier, I would have saved myself a lot of evening anxiety.",
                   "questions": [
-                        {
-                              "text": "Which skill is stronger for Sofia?",
-                              "options": [
-                                    "Reading.",
-                                    "Speaking.",
-                                    "Writing."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why does she speak slowly?",
-                              "options": [
-                                    "She edits every sentence before speaking.",
-                                    "She does not hear the teacher.",
-                                    "She has no vocabulary at all."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What are the two modes?",
-                              "options": [
-                                    "Fluency and accuracy.",
-                                    "Reading and drawing.",
-                                    "Listening and copying."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can silence hide?",
-                              "options": [
-                                    "Problems that need diagnosis.",
-                                    "Perfect grammar.",
-                                    "A completed task."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What will they do next week?",
-                              "options": [
-                                    "Timed responses and grammar analysis.",
-                                    "Only vocabulary dictation.",
-                                    "A final exam."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "How does the student react?",
-                              "options": [
-                                    "She thinks it is difficult but clear.",
-                                    "She refuses.",
-                                    "She says it is too easy."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the teacher's attitude to mistakes?",
-                              "options": [
-                                    "Repeated mistakes matter, but they can be analysed.",
-                                    "Mistakes are forbidden.",
-                                    "Mistakes are never important."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What kind of feedback is this?",
-                              "options": [
-                                    "Diagnostic and practical.",
-                                    "Purely emotional.",
-                                    "Unrelated to learning."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What had Sofia pretended for years?", "options": ["That she was a great cook.", "That she was too busy.", "That she was on a diet."], "answer": 1 },
+                        { "text": "What was her real reason for avoiding cooking?", "options": ["Lack of equipment.", "Fear that bad food would prove she was disorganised.", "A doctor's advice."], "answer": 1 },
+                        { "text": "What made her finally start?", "options": ["A cooking class.", "Her local cafГ© closed.", "A friend offered to teach her."], "answer": 1 },
+                        { "text": "How did the first month feel?", "options": ["Easy and fun.", "Mildly annoying.", "Honestly painful."], "answer": 2 },
+                        { "text": "What did she begin to enjoy?", "options": ["The fast cooking.", "The slow parts вЂ” chopping, waiting, smelling.", "Watching cooking videos."], "answer": 1 },
+                        { "text": "What general comment does she make about modern life?", "options": ["We sleep too much.", "We live too quickly.", "We eat too little."], "answer": 1 },
+                        { "text": "What was the real lesson according to Sofia?", "options": ["Cooking is cheap.", "Patience and self-trust.", "Sandwiches are better."], "answer": 1 },
+                        { "text": "What would she have done if she had started earlier?", "options": ["Travelled more.", "Saved herself evening anxiety.", "Become a professional chef."], "answer": 1 }
                   ]
             },
-            "writing": "Structured opinion diagnostic task. Write 130-160 words: Some students wait until they can speak perfectly; others believe they should speak even with mistakes. Which approach is better for progress? Explain with examples.",
-            "speaking": "Record 2 minutes. Explain a skill you improved through uncomfortable practice. Give the situation, the difficulty, the strategy and the result.",
+            "writing": "Write 130-160 words. Some people learn a new skill quickly while others take years. What do you think makes the difference вЂ” talent, patience or environment? Explain with one example from your own life.",
+            "speaking": "Record 2 minutes. Describe a skill you tried to learn but felt uncomfortable about at first. What did you fear? What was the turning point? What did you learn about yourself in the process?",
             "grammar": [
-                  [
-                        "Sofia ___ many grammar rules before she joined the group.",
-                        [
-                              "had known",
-                              "has known",
-                              "knows"
-                        ],
-                        0
-                  ],
-                  [
-                        "She expected online lessons ___ easier.",
-                        [
-                              "to be",
-                              "being",
-                              "be"
-                        ],
-                        0
-                  ],
-                  [
-                        "The teacher asked everyone ___ several times.",
-                        [
-                              "respond",
-                              "to respond",
-                              "responding"
-                        ],
-                        1
-                  ],
-                  [
-                        "If she waits for perfection, she ___ fluency.",
-                        [
-                              "will lose",
-                              "lost",
-                              "would have lost"
-                        ],
-                        0
-                  ],
-                  [
-                        "The tasks ___ by the teacher with time limits.",
-                        [
-                              "were designed",
-                              "designed",
-                              "have designing"
-                        ],
-                        0
-                  ],
-                  [
-                        "She became more willing ___ mistakes.",
-                        [
-                              "make",
-                              "to make",
-                              "making"
-                        ],
-                        1
-                  ],
-                  [
-                        "Although the task was stressful, she ___ it useful.",
-                        [
-                              "found",
-                              "has found",
-                              "was found"
-                        ],
-                        0
-                  ],
-                  [
-                        "The teacher said that silence ___ problems.",
-                        [
-                              "can hide",
-                              "could hide",
-                              "will hiding"
-                        ],
-                        1
-                  ],
-                  [
-                        "By the end of the course, she ___ more confident.",
-                        [
-                              "had become",
-                              "has become",
-                              "becomes"
-                        ],
-                        0
-                  ],
-                  [
-                        "She used to ___ before speaking.",
-                        [
-                              "pause",
-                              "pausing",
-                              "paused"
-                        ],
-                        0
-                  ],
-                  [
-                        "A learner ___ avoids difficulty may stop progressing.",
-                        [
-                              "who",
-                              "which",
-                              "where"
-                        ],
-                        0
-                  ],
-                  [
-                        "The more she practised, ___ fluent she became.",
-                        [
-                              "more",
-                              "the more",
-                              "the most"
-                        ],
-                        1
-                  ],
-                  [
-                        "Despite ___ nervous, she answered.",
-                        [
-                              "being",
-                              "be",
-                              "to be"
-                        ],
-                        0
-                  ],
-                  [
-                        "I wish I ___ speaking earlier.",
-                        [
-                              "started",
-                              "had started",
-                              "start"
-                        ],
-                        1
-                  ],
-                  [
-                        "Neither comfort nor speed ___ enough for progress.",
-                        [
-                              "are",
-                              "is",
-                              "were"
-                        ],
-                        1
-                  ],
-                  [
-                        "Her answer was clear, ___ not completely accurate.",
-                        [
-                              "although",
-                              "despite",
-                              "because"
-                        ],
-                        0
-                  ]
+                  [ "By thirty-five, Sofia ___ a proper meal.", [ "had never cooked", "has never cooked", "never cooked" ], 0 ],
+                  [ "By the end of the second week, she ___ two notebooks with mistakes.", [ "filled", "had filled", "has filled" ], 1 ],
+                  [ "She ___ buy sandwiches every day before she started cooking.", [ "use to", "used to", "uses to" ], 1 ],
+                  [ "If she ___ ten years earlier, she ___ less anxious now.", [ "had started / would be", "started / would be", "starts / will be" ], 0 ],
+                  [ "She told herself that she ___ have time.", [ "does not", "did not", "had not" ], 1 ],
+                  [ "It ___ have been her fear that stopped her.", [ "must", "can", "should" ], 0 ],
+                  [ "Her sister, ___ had cooked since she was a teenager, was impressed.", [ "which", "who", "where" ], 1 ],
+                  [ "Salt and sugar ___ mixed up by mistake.", [ "are", "were", "had been" ], 1 ],
+                  [ "Sofia finally ___ up cooking after years of avoiding it.", [ "took", "made", "put" ], 0 ],
+                  [ "She had filled two notebooks ___ the end of the second week.", [ "at", "until", "by" ], 2 ],
+                  [ "___ a new skill at thirty-five takes patience.", [ "To learn", "Learning", "Learn" ], 1 ],
+                  [ "She invited her sister, ___ was honestly impressed.", [ "that", "who", "which" ], 1 ]
             ]
       },
       {
             "code": "B2",
             "name": "Upper-Intermediate Exam Route",
-            "desc": "A hard B2 diagnostic: inference, argument, cohesive writing, complex clauses, inversion, passive structures and exam-style judgement.",
+            "desc": "Inversion, complex passive structures, reduced clauses, advanced modals, formal connectors, argument-style writing, and monologue-style listening (radio segment).",
             "reading": {
-                  "title": "Digital attention and the illusion of productivity",
-                  "text": "Schools often introduce digital platforms with the promise of efficiency. Assignments can be submitted instantly, feedback can be stored, and parents can see progress without waiting for a meeting. Yet efficiency is not the same as learning. A student may move quickly through online tasks while paying only partial attention. Notifications, open tabs and the habit of checking messages can turn a thirty-minute assignment into a sequence of interruptions.\n\nThe problem is not technology itself but the absence of attention training. Students are often told to be responsible online, but they are rarely taught what responsibility looks like in practical terms. A well-designed digital task should include a goal, a time limit, a pause for checking understanding and a short reflection. Without these elements, a platform may produce the appearance of independent work while quietly weakening concentration. The most successful learners are not those who use the most tools, but those who know when to close them.",
+                  "title": "How Amsterdam reshaped urban living",
+                  "text": "Amsterdam is often described as the world's most bicycle-friendly city. Today, more than 800,000 bicycles share the streets with pedestrians, trams and a comparatively small number of cars. Yet this reputation is barely fifty years old. Until the 1960s, Amsterdam was rapidly heading in the opposite direction: cars were dominating the city centre, historical squares were being converted into parking lots, and child traffic deaths had reached unprecedented levels.\n\nThe change did not begin with politicians. It began with citizens. In 1972, the protest movement Stop de Kindermoord вЂ” Stop the Child Murder вЂ” demanded safe streets for children. Their argument was uncomfortable but precise: a city designed around cars cannot be safe for the people who live in it. The oil crisis of 1973 added economic weight to the moral case, and within a decade entire districts had been redesigned around cyclists and pedestrians.\n\nWhat followed was not a single radical decision but a sequence of careful, expensive choices. Cycle lanes were widened. Junctions were rebuilt for visibility. Bicycle parking was treated not as an afterthought but as core infrastructure. By the 2000s, the city was earning international attention; by the 2020s, it was being studied by urban planners from SГЈo Paulo to Seoul.\n\nThe Amsterdam story is sometimes told as if any city could simply repeat the formula. In reality, every transformation requires its own combination of political will, public pressure and patient investment. What Amsterdam offers is not a blueprint but a proof of concept: a city's identity can change when its citizens demand a different relationship with their streets.",
                   "questions": [
-                        {
-                              "text": "What distinction does the text make?",
-                              "options": [
-                                    "Efficiency is not the same as learning.",
-                                    "Parents dislike digital platforms.",
-                                    "Online tasks are always useless."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can interrupt online work?",
-                              "options": [
-                                    "Notifications and open tabs.",
-                                    "Books and pencils.",
-                                    "Teacher feedback."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the central problem?",
-                              "options": [
-                                    "Lack of attention training.",
-                                    "Technology itself.",
-                                    "Too much handwriting."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should a digital task include?",
-                              "options": [
-                                    "Goal, time limit, checking and reflection.",
-                                    "Only speed and points.",
-                                    "A long list of apps."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does appearance of independent work mean?",
-                              "options": [
-                                    "It may look productive without deep focus.",
-                                    "It is always excellent.",
-                                    "It is impossible to observe."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Who are the most successful learners?",
-                              "options": [
-                                    "Those who know when to close tools.",
-                                    "Those with the newest devices.",
-                                    "Those who never use technology."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Which tone best describes the text?",
-                              "options": [
-                                    "Balanced and critical.",
-                                    "Angry and dismissive.",
-                                    "Purely promotional."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can be inferred about digital platforms?",
-                              "options": [
-                                    "They need method, not blind use.",
-                                    "They should be banned.",
-                                    "They replace teachers completely."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What was happening in Amsterdam until the 1960s?", "options": ["Cars were dominating the city centre.", "Cycling had already become the dominant form of transport.", "The city was losing population."], "answer": 0 },
+                        { "text": "What did the protest movement of 1972 demand?", "options": ["A new mayor.", "Safe streets for children.", "Free public transport."], "answer": 1 },
+                        { "text": "What event in 1973 added economic weight to the change?", "options": ["A trade war.", "The oil crisis.", "A bank collapse."], "answer": 1 },
+                        { "text": "How was bicycle parking treated according to the text?", "options": ["As an afterthought.", "As core infrastructure.", "As a temporary measure."], "answer": 1 },
+                        { "text": "Which cities are now studying Amsterdam?", "options": ["Only European cities.", "Planners from SГЈo Paulo to Seoul.", "Only American cities."], "answer": 1 },
+                        { "text": "According to the text, what does Amsterdam offer other cities?", "options": ["An exact blueprint.", "A proof of concept.", "Cheap bicycles."], "answer": 1 },
+                        { "text": "Which factor is NOT presented as essential for transformation?", "options": ["Political will.", "Public pressure.", "Foreign tourism."], "answer": 2 },
+                        { "text": "What is the writer's general view?", "options": ["Every city must copy Amsterdam exactly.", "Urban identity can shift when citizens demand it.", "Cycling is unrealistic outside Europe."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "Interview on online learning",
-                  "script": "Interviewer: Many schools say digital platforms make students more independent. Do you agree?\nTeacher: Partly. A platform can support independence, but it can also disguise passive behaviour. Clicking through tasks is not the same as thinking.\nInterviewer: What should teachers do differently?\nTeacher: They should make the strategy visible. For example, tell students how long to work, what to ignore, when to stop and how to check whether they understood anything.\nInterviewer: So the tool is not enough.\nTeacher: Exactly. The tool creates access. The method creates learning. If the method is weak, the platform simply records weak habits more efficiently.\nInterviewer: That is a rather uncomfortable conclusion.\nTeacher: It is, but it is useful. Technology exposes planning. A careless lesson becomes careless faster online.",
+                  "title": "Radio segment: City Watch on the Paris case",
+                  "script": "Welcome back to City Watch. Today we are looking at Paris, which has been trying for nearly a decade to follow the Amsterdam model. The story is more nuanced than the headlines suggest.\n\nSince 2014, Paris has built over 1,000 kilometres of cycle lanes, reduced car access in the city centre and expanded public squares. Critics often note that progress has been slower and messier than in Amsterdam. They are right, but they often miss the most important difference: Paris started from a much higher car density and a much wider street layout, both designed for traffic.\n\nWhat surprised urban planners was not the resistance вЂ” every transformation produces resistance вЂ” but the speed at which behaviour shifted once infrastructure was provided. Within two years of opening protected lanes, cycling among women and older residents tripled. These are the groups that usually avoid cycling in unsafe conditions, so their participation is a strong indicator of real safety.\n\nHowever, Paris has also revealed the limits of the Amsterdam model. Long suburban commutes still depend on cars. Many delivery vehicles cannot easily be replaced. The mayor's office has had to invest heavily in cargo bikes, electric vans and shared bike systems just to support what was previously taken for granted.\n\nThe lesson is not that Paris is failing or succeeding. It is that urban change is slow, expensive and political вЂ” and that no city can simply import another city's success.",
                   "questions": [
-                        {
-                              "text": "What does the teacher partly agree with?",
-                              "options": [
-                                    "Platforms can support independence.",
-                                    "Platforms always damage learning.",
-                                    "Schools should remove all technology."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can platforms disguise?",
-                              "options": [
-                                    "Passive behaviour.",
-                                    "Excellent handwriting.",
-                                    "Parent meetings."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is not the same as thinking?",
-                              "options": [
-                                    "Clicking through tasks.",
-                                    "Reading deeply.",
-                                    "Asking questions."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should be made visible?",
-                              "options": [
-                                    "The learning strategy.",
-                                    "The teacher's private notes.",
-                                    "The school budget."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does the tool create?",
-                              "options": [
-                                    "Access.",
-                                    "Learning by itself.",
-                                    "Motivation automatically."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What creates learning?",
-                              "options": [
-                                    "Method.",
-                                    "Speed.",
-                                    "Decoration."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does technology expose?",
-                              "options": [
-                                    "Planning.",
-                                    "Personality.",
-                                    "Marks only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the speaker's overall view?",
-                              "options": [
-                                    "Conditional and analytical.",
-                                    "Naively enthusiastic.",
-                                    "Completely negative."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "How long has Paris been trying to follow the Amsterdam model?", "options": ["Nearly a decade.", "Almost fifty years.", "Just three years."], "answer": 0 },
+                        { "text": "How many kilometres of cycle lanes has Paris built since 2014?", "options": ["Over 100.", "Over 1,000.", "Over 10,000."], "answer": 1 },
+                        { "text": "What is the most important difference with Amsterdam?", "options": ["The climate.", "Higher car density and wider streets designed for traffic.", "Tourism levels."], "answer": 1 },
+                        { "text": "What surprised urban planners?", "options": ["The resistance.", "The speed at which behaviour shifted once infrastructure was provided.", "The cost."], "answer": 1 },
+                        { "text": "Which group tripled its cycling within two years?", "options": ["Tourists.", "Women and older residents.", "Teenagers only."], "answer": 1 },
+                        { "text": "Why is the participation of those groups a strong indicator?", "options": ["They usually avoid cycling in unsafe conditions.", "They have more money.", "They live in the city centre."], "answer": 0 },
+                        { "text": "What still depends mostly on cars?", "options": ["School trips.", "Long suburban commutes.", "Tourist sightseeing."], "answer": 1 },
+                        { "text": "What is the central lesson of the segment?", "options": ["Paris has failed.", "Every city should copy Amsterdam.", "Urban change is slow, expensive and political."], "answer": 2 }
                   ]
             },
-            "writing": "IELTS Task 2 / TOEFL independent hybrid. Write 180-220 words: Digital tools improve education only when students are explicitly taught how to manage attention. To what extent do you agree?",
-            "speaking": "Record 2-3 minutes. Defend a position on online learning. Include one concession, one example from school practice, and one condition under which your argument might be wrong.",
+            "writing": "Write 180-220 words. Some experts argue that the most effective way to reduce urban traffic is to redesign cities around cyclists and pedestrians rather than improve cars and roads. To what extent do you agree? Support your view with examples and acknowledge one counter-argument.",
+            "speaking": "Record 2-3 minutes. Defend a position on rethinking urban transport. Include one concession, one historical or current example (Amsterdam, Paris or another city), and one condition under which your argument might not apply.",
             "grammar": [
-                  [
-                        "Had students been trained properly, they ___ fewer distractions.",
-                        [
-                              "would face",
-                              "would have faced",
-                              "will face"
-                        ],
-                        1
-                  ],
-                  [
-                        "Not only ___ tasks faster, but they also submitted better reflections.",
-                        [
-                              "they completed",
-                              "did they complete",
-                              "they did complete"
-                        ],
-                        1
-                  ],
-                  [
-                        "The platform ___ to support independent work.",
-                        [
-                              "is designed",
-                              "designs",
-                              "is designing itself"
-                        ],
-                        0
-                  ],
-                  [
-                        "Students need to know when ___ tools.",
-                        [
-                              "closing",
-                              "to close",
-                              "close"
-                        ],
-                        1
-                  ],
-                  [
-                        "The issue is not whether tools are used, ___ how they are used.",
-                        [
-                              "but",
-                              "whereas",
-                              "despite"
-                        ],
-                        0
-                  ],
-                  [
-                        "A lesson that lacks structure is likely ___ online.",
-                        [
-                              "to fail",
-                              "failing",
-                              "fail"
-                        ],
-                        0
-                  ],
-                  [
-                        "The more interruptions students face, ___ their attention becomes.",
-                        [
-                              "weaker",
-                              "the weaker",
-                              "the weakest"
-                        ],
-                        1
-                  ],
-                  [
-                        "It is essential that each learner ___ a clear goal.",
-                        [
-                              "has",
-                              "have",
-                              "will have"
-                        ],
-                        1
-                  ],
-                  [
-                        "The teacher explained how the task ___ completed.",
-                        [
-                              "should be",
-                              "should",
-                              "has being"
-                        ],
-                        0
-                  ],
-                  [
-                        "If the method were stronger, the result ___ different.",
-                        [
-                              "will be",
-                              "would be",
-                              "would have been"
-                        ],
-                        1
-                  ],
-                  [
-                        "The claim, ___ attractive, is incomplete.",
-                        [
-                              "although",
-                              "despite",
-                              "because"
-                        ],
-                        0
-                  ],
-                  [
-                        "Students are rarely taught ___ responsibility looks like.",
-                        [
-                              "what",
-                              "that",
-                              "which"
-                        ],
-                        0
-                  ],
-                  [
-                        "The task was completed, but the reflection ___ superficial.",
-                        [
-                              "remained",
-                              "remaining",
-                              "has remained to"
-                        ],
-                        0
-                  ],
-                  [
-                        "This is the habit ___ teachers should train explicitly.",
-                        [
-                              "which",
-                              "who",
-                              "where"
-                        ],
-                        0
-                  ],
-                  [
-                        "No sooner had the lesson started ___ messages appeared.",
-                        [
-                              "than",
-                              "then",
-                              "that"
-                        ],
-                        0
-                  ],
-                  [
-                        "The platform records habits, ___ it does not necessarily improve them.",
-                        [
-                              "yet",
-                              "despite",
-                              "whereby"
-                        ],
-                        0
-                  ],
-                  [
-                        "Students should be prevented ___ multitasking during the first attempt.",
-                        [
-                              "from",
-                              "to",
-                              "of"
-                        ],
-                        0
-                  ],
-                  [
-                        "The feedback was detailed enough ___ useful.",
-                        [
-                              "being",
-                              "to be",
-                              "be"
-                        ],
-                        1
-                  ]
+                  [ "Not until the 1970s ___ the city begin to change.", [ "did", "has", "was" ], 0 ],
+                  [ "Historical squares ___ converted into parking lots when the protests started.", [ "are", "were being", "have been" ], 1 ],
+                  [ "By 1980, entire districts ___ redesigned around cyclists.", [ "had been", "have been", "were" ], 0 ],
+                  [ "___ as the world's most bicycle-friendly city, Amsterdam attracts urban planners.", [ "Describing", "Described", "Having described" ], 1 ],
+                  [ "A city designed around cars ___ safe for the people who live in it.", [ "cannot be", "would not", "should be" ], 0 ],
+                  [ "It was the citizens ___ demanded safe streets.", [ "what", "who", "which" ], 1 ],
+                  [ "___ progress in Paris has been slower, behaviour has shifted quickly.", [ "Despite", "However", "Although" ], 2 ],
+                  [ "The mayor's office ___ invest heavily in cargo bikes.", [ "has had to", "had", "must have" ], 0 ],
+                  [ "If Paris ___ from the same baseline, the change ___ easier.", [ "started / would be", "had started / would have been", "starts / will be" ], 1 ],
+                  [ "The transformation was ___ than anyone had expected.", [ "more nuanced", "nuanced more", "the most nuanced" ], 0 ],
+                  [ "___ , Paris has revealed the limits of the model.", [ "However", "Moreover", "Therefore" ], 0 ],
+                  [ "The committee insisted that the lanes ___ widened immediately.", [ "are", "be", "were" ], 1 ]
             ]
       },
       {
             "code": "C1",
             "name": "Advanced Academic",
-            "desc": "Advanced diagnostic for nuanced reading, argument structure, register, academic lexis, reduced clauses, inversion, modality and precision.",
+            "desc": "Inversion, mixed conditionals, reduced participle clauses, advanced modality, register variation, formal discourse markers, and academic monologue listening.",
             "reading": {
-                  "title": "Assessment as interpretation rather than measurement",
-                  "text": "Educational progress is often treated as if it must be visible, numerical and immediate. Test scores, attendance charts and completion rates are attractive because they create the impression of control. Yet the most important changes in learning may be indirect: a student begins to tolerate uncertainty, notices patterns, asks better questions or becomes less dependent on translation. These shifts are difficult to measure, but they often explain later improvement.\n\nThis does not mean that assessment is useless. On the contrary, careful assessment can make invisible progress easier to discuss. The danger appears when numbers become the aim rather than the evidence. A diagnostic test should therefore be read as a map, not a verdict. It shows where the learner is now, which strategies are available and what kind of support is likely to be productive. A strong diagnostic process also accepts asymmetry. One learner may write accurately but speak cautiously; another may understand sophisticated texts yet produce repetitive grammar.\n\nThe teacher's task is to interpret these patterns without turning them into a fixed identity. Feedback should be specific enough to guide action and humane enough to keep the learner moving. In this sense, diagnosis is not a gatekeeping ritual. It is a professional conversation about direction.",
+                  "title": "Why some scientific discoveries are accepted slowly",
+                  "text": "The history of science is full of discoveries that were correct, important and almost universally ignored at the time of their announcement. The pattern is so common that historians of science have given it a name: delayed acceptance. Understanding why this happens matters far beyond the laboratory. It tells us something uncomfortable about the conditions under which human institutions are willing to change their minds.\n\nA famous example is continental drift. When Alfred Wegener proposed in 1912 that continents had once been joined and had slowly drifted apart, he was dismissed for almost half a century. His evidence was strong: matching coastlines, identical fossil records on different continents, geological similarities that simply did not fit fixed-continent models. What Wegener lacked was a plausible mechanism. Without a credible explanation of how the continents moved, geologists preferred their existing framework, however imperfect, to a more accurate but mechanically unexplained alternative.\n\nA similar story unfolded in medicine when Barry Marshall and Robin Warren proposed in the 1980s that most stomach ulcers were caused by a bacterium. The accepted view at the time blamed stress and lifestyle. The bacterial hypothesis contradicted decades of professional consensus, and the researchers were initially treated with polite scepticism. Marshall famously had to swallow a culture of the bacteria himself to provoke ulcers and prove the case. A Nobel Prize followed, but not for almost two more decades.\n\nWhat both stories show is that scientific communities, like other professional communities, do not change their views purely on the strength of evidence. They change when evidence is supported by a credible mechanism, when key respected figures change position, and when the cost of holding the old view becomes greater than the cost of revising it. New ideas are not rejected because scientists are dishonest; they are rejected because the structure of professional credibility rewards continuity until continuity itself becomes embarrassing.\n\nThe lesson is not that we should automatically distrust scientific consensus. Consensus is often correct, and the slow process of acceptance also filters out genuinely flawed ideas. The lesson is more subtle: even rigorous communities are conservative, and the gap between we know and we are willing to admit we know is wider than it appears.",
                   "questions": [
-                        {
-                              "text": "What does the author criticise?",
-                              "options": [
-                                    "The obsession with immediately visible measurement.",
-                                    "All forms of assessment.",
-                                    "Students who ask questions."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Which example of invisible progress is mentioned?",
-                              "options": [
-                                    "Tolerating uncertainty.",
-                                    "Winning a prize.",
-                                    "Memorising all rules."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the danger of numbers?",
-                              "options": [
-                                    "They can become the aim rather than evidence.",
-                                    "They are always inaccurate.",
-                                    "They cannot be discussed."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does map, not a verdict imply?",
-                              "options": [
-                                    "Diagnostics should guide routes, not define identity.",
-                                    "Maps are more beautiful than scores.",
-                                    "Tests should be removed."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is asymmetry in this context?",
-                              "options": [
-                                    "Different strengths across skills.",
-                                    "A mathematical concept only.",
-                                    "A sign of failure."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should feedback do?",
-                              "options": [
-                                    "Guide action and keep the learner moving.",
-                                    "Sound severe and final.",
-                                    "Avoid concrete comments."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the author's view of assessment?",
-                              "options": [
-                                    "Useful when interpreted carefully.",
-                                    "Completely useless.",
-                                    "Only useful for attendance."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What genre is the text closest to?",
-                              "options": [
-                                    "Reflective academic argument.",
-                                    "Personal diary.",
-                                    "Advertisement."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What is meant by delayed acceptance in the text?", "options": ["Slow communication between countries.", "A pattern in which correct, important discoveries are ignored at first.", "Late publication of academic papers."], "answer": 1 },
+                        { "text": "What did Wegener propose in 1912?", "options": ["That continents had once been joined.", "That oceans were getting warmer.", "That fossils were unreliable."], "answer": 0 },
+                        { "text": "What did Wegener's theory lack?", "options": ["Evidence.", "A plausible mechanism.", "Public attention."], "answer": 1 },
+                        { "text": "What was the accepted view of stomach ulcers in the early 1980s?", "options": ["They were caused by a bacterium.", "They were caused by stress and lifestyle.", "They were caused by diet alone."], "answer": 1 },
+                        { "text": "What did Marshall famously do to prove the bacterial hypothesis?", "options": ["He wrote a textbook.", "He swallowed a culture of the bacteria himself.", "He sued the medical journals."], "answer": 1 },
+                        { "text": "According to the writer, when do scientific communities change their views?", "options": ["When the evidence alone is overwhelming.", "When a mechanism, respected figures and rising cost all align.", "When governments intervene."], "answer": 1 },
+                        { "text": "Why does the writer say new ideas are rejected?", "options": ["Scientists are dishonest.", "Professional credibility rewards continuity.", "Universities lack money."], "answer": 1 },
+                        { "text": "What is the writer's final lesson?", "options": ["We should always distrust consensus.", "Rigorous communities are conservative, and the gap between knowing and admitting we know is wider than it appears.", "Science is fundamentally unreliable."], "answer": 1 }
                   ]
             },
             "listening": {
-                  "title": "Academic discussion of diagnostic labels",
-                  "script": "Lecturer: The word level is convenient, but convenience can become dangerous if we forget what it hides.\nStudent: Do you mean that a B2 learner may not really be B2?\nLecturer: Not exactly. The label may be broadly accurate, but it is never a full description. Two learners can share a level and require entirely different routes.\nStudent: For example, one may speak fluently but write inaccurately?\nLecturer: Precisely. Another may read complex texts but avoid spontaneous interaction. The diagnostic question is not simply where the learner belongs, but what kind of support the pattern suggests.\nStudent: So the result is a starting point.\nLecturer: Yes, and a responsible teacher keeps the label provisional. It helps us begin the conversation; it should not end it.",
+                  "title": "Lecture: how acceptance speed differs across disciplines",
+                  "script": "Today's lecture builds on what we discussed about Wegener and continental drift. I want to focus on a slightly different question: not why specific theories are accepted slowly, but how the speed of acceptance varies across disciplines.\n\nIf you compare physics and clinical medicine, the difference is striking. In physics, a clearly demonstrated experimental result, especially one with predictive power, can be incorporated into accepted theory within a few years. Special relativity is often cited as an example: although it took decades to become a standard part of teaching curricula, the physics community engaged with it almost immediately.\n\nClinical medicine moves much more slowly. There are good reasons for this. Medical decisions affect patients directly, and a wrong shift in consensus can cause concrete harm. A degree of conservatism is therefore appropriate. But the same conservatism, applied without reflection, can also produce stubbornness. Barry Marshall's bacterial hypothesis is the obvious example, but there are others вЂ” the slow acceptance of hand hygiene in the nineteenth century being the most famous.\n\nWhat I want you to notice is the role of social proof. In both physics and medicine, change accelerates the moment respected senior figures shift their position. It is rarely the evidence alone that moves the field; it is the willingness of high-status practitioners to publicly revise their view.\n\nThis is not unique to science. It is a property of professional communities in general вЂ” including, I would suggest, the academic communities we ourselves belong to. We are, none of us, immune to the structures of credibility we operate within.",
                   "questions": [
-                        {
-                              "text": "Why can the word level be dangerous?",
-                              "options": [
-                                    "It hides important differences.",
-                                    "It is never convenient.",
-                                    "It has no practical use."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does the lecturer say about labels?",
-                              "options": [
-                                    "They may be broadly accurate but incomplete.",
-                                    "They are always false.",
-                                    "They replace diagnosis."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What example does the student give?",
-                              "options": [
-                                    "Fluent speaking but inaccurate writing.",
-                                    "Perfect writing and no reading.",
-                                    "No vocabulary at all."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the diagnostic question?",
-                              "options": [
-                                    "What support the pattern suggests.",
-                                    "Which label sounds better.",
-                                    "How fast the test can end."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should a responsible teacher do?",
-                              "options": [
-                                    "Keep the label provisional.",
-                                    "Never use labels.",
-                                    "Give only a score."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does provisional mean here?",
-                              "options": [
-                                    "Open to revision.",
-                                    "Completely random.",
-                                    "Officially certified."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the relationship between label and conversation?",
-                              "options": [
-                                    "The label begins it; it should not end it.",
-                                    "The label replaces it.",
-                                    "The conversation should avoid evidence."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the tone?",
-                              "options": [
-                                    "Nuanced and analytical.",
-                                    "Sarcastic and hostile.",
-                                    "Purely narrative."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What is the central question of the lecture?", "options": ["Why all theories are rejected.", "How acceptance speed varies across disciplines.", "Whether science exists."], "answer": 1 },
+                        { "text": "What characteristic of physics speeds up acceptance?", "options": ["Public excitement.", "A clearly demonstrated experimental result, especially with predictive power.", "Funding from industry."], "answer": 1 },
+                        { "text": "What example from physics is given?", "options": ["String theory.", "Special relativity.", "Quantum tunnelling."], "answer": 1 },
+                        { "text": "Why does clinical medicine move more slowly?", "options": ["Medical decisions affect patients directly, so conservatism is appropriate.", "Medical journals are rarer.", "Doctors are paid less."], "answer": 0 },
+                        { "text": "Which nineteenth-century example is mentioned?", "options": ["Discovery of vitamins.", "The slow acceptance of hand hygiene.", "Discovery of antibiotics."], "answer": 1 },
+                        { "text": "What concept is highlighted as decisive for change?", "options": ["Government policy.", "Social proof вЂ” respected senior figures shifting position.", "Mass media coverage."], "answer": 1 },
+                        { "text": "What does the lecturer say is rarely enough by itself?", "options": ["Public protest.", "Evidence alone.", "Computer models."], "answer": 1 },
+                        { "text": "What broader claim does the lecturer make about academic communities?", "options": ["They are completely objective.", "They are not unique вЂ” they too are shaped by structures of credibility.", "They are uninfluenced by senior figures."], "answer": 1 }
                   ]
             },
-            "writing": "TOEFL Integrated/IELTS academic-style task. Write 240-300 words: A diagnostic score should show what to work on next rather than act as a verdict. Discuss the advantages and risks of this view, using examples from language learning.",
-            "speaking": "Record 3 minutes. Explain why two learners with the same CEFR label may need different learning routes. Include examples across reading, listening, writing, speaking and grammar.",
+            "writing": "Write 240-300 words. A common claim is that scientific progress is determined primarily by the strength of evidence. Drawing on historical examples and your own reasoning, discuss the extent to which institutional and social factors shape the acceptance of new scientific ideas. Qualify your position.",
+            "speaking": "Record 3 minutes. Explain why scientific communities sometimes resist correct ideas for decades. Include one historical example, one structural reason, and one limitation of your own argument.",
             "grammar": [
-                  [
-                        "Had the assessment been interpreted narrowly, it ___ the learner's confidence.",
-                        [
-                              "might damage",
-                              "might have damaged",
-                              "will damage"
-                        ],
-                        1
-                  ],
-                  [
-                        "The label is useful, ___ incomplete.",
-                        [
-                              "albeit",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "It is vital that feedback ___ actionable.",
-                        [
-                              "is",
-                              "be",
-                              "will be"
-                        ],
-                        1
-                  ],
-                  [
-                        "What matters most ___ the pattern behind the score.",
-                        [
-                              "is",
-                              "are",
-                              "being"
-                        ],
-                        0
-                  ],
-                  [
-                        "The learner appears ___ stronger control in writing.",
-                        [
-                              "to have developed",
-                              "having developed",
-                              "to developing"
-                        ],
-                        0
-                  ],
-                  [
-                        "Given the limited sample, conclusions should ___ cautiously.",
-                        [
-                              "interpret",
-                              "be interpreted",
-                              "interpreting"
-                        ],
-                        1
-                  ],
-                  [
-                        "Not until later ___ the asymmetry.",
-                        [
-                              "we noticed",
-                              "did we notice",
-                              "we did notice"
-                        ],
-                        1
-                  ],
-                  [
-                        "The teacher's role is less to classify ___ to interpret.",
-                        [
-                              "than",
-                              "rather",
-                              "instead"
-                        ],
-                        0
-                  ],
-                  [
-                        "A score may obscure differences, ___ convenient it seems.",
-                        [
-                              "however",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "The task, ___ designed for advanced learners, was accessible.",
-                        [
-                              "although",
-                              "despite",
-                              "because"
-                        ],
-                        0
-                  ],
-                  [
-                        "Learners differ in the extent ___ they tolerate uncertainty.",
-                        [
-                              "to which",
-                              "where",
-                              "what"
-                        ],
-                        0
-                  ],
-                  [
-                        "The feedback was specific enough ___ action.",
-                        [
-                              "guiding",
-                              "to guide",
-                              "guide"
-                        ],
-                        1
-                  ],
-                  [
-                        "Far from being useless, assessment ___ discussion.",
-                        [
-                              "enables",
-                              "is enabling to",
-                              "enable"
-                        ],
-                        0
-                  ],
-                  [
-                        "The more nuanced the feedback, ___ useful the route.",
-                        [
-                              "more",
-                              "the more",
-                              "most"
-                        ],
-                        1
-                  ],
-                  [
-                        "No single task can account ___ the whole learner.",
-                        [
-                              "for",
-                              "about",
-                              "of"
-                        ],
-                        0
-                  ],
-                  [
-                        "The result should not be mistaken ___ identity.",
-                        [
-                              "for",
-                              "as",
-                              "to"
-                        ],
-                        0
-                  ],
-                  [
-                        "The student wrote accurately, ___ cautiously.",
-                        [
-                              "yet spoke",
-                              "despite spoke",
-                              "whereby speaking"
-                        ],
-                        0
-                  ],
-                  [
-                        "If numbers become the aim, evidence ___ distorted.",
-                        [
-                              "becomes",
-                              "will have",
-                              "would have been"
-                        ],
-                        0
-                  ],
-                  [
-                        "The process requires not only measurement ___ interpretation.",
-                        [
-                              "but also",
-                              "and also",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "A learner may understand complex texts while ___ repetitive grammar.",
-                        [
-                              "producing",
-                              "produce",
-                              "to produce"
-                        ],
-                        0
-                  ],
-                  [
-                        "The conclusion is tentative, ___ still useful.",
-                        [
-                              "yet",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "Teachers should avoid ___ patterns into fixed identities.",
-                        [
-                              "turning",
-                              "to turn",
-                              "turn"
-                        ],
-                        0
-                  ]
+                  [ "___ on matching coastlines, Wegener proposed continental drift.", [ "Drawing", "Drawn", "Being drawn" ], 0 ],
+                  [ "Not only ___ his evidence strong, but it was also internally consistent.", [ "it was", "was", "had" ], 1 ],
+                  [ "What Wegener lacked ___ a credible mechanism.", [ "had been", "was", "it was" ], 1 ],
+                  [ "It is essential that the mechanism ___ explained credibly.", [ "is", "be", "was" ], 1 ],
+                  [ "The community ___ have accepted the theory if a mechanism had been clear.", [ "will", "would", "could not" ], 1 ],
+                  [ "___ imperfect, the fixed-continent model felt safer.", [ "However", "Although", "Despite being" ], 2 ],
+                  [ "A theory ___ by a credible mechanism is more readily accepted.", [ "supporting", "supported", "being supported" ], 1 ],
+                  [ "___ Marshall's evidence was strong, recognition came slowly.", [ "Notwithstanding", "Although", "Whereas" ], 1 ],
+                  [ "The cost of revision had become greater ___ the cost of holding the old view.", [ "as", "than", "from" ], 1 ],
+                  [ "___ Wegener provided a clear mechanism, his theory would have been accepted earlier.", [ "If", "Had", "Should" ], 1 ],
+                  [ "If respected figures ___ position earlier, the consensus ___ moved faster.", [ "shifted / will have", "had shifted / would have", "shift / would" ], 1 ],
+                  [ "The pattern is called delayed acceptance, ___ , slow recognition of correct ideas.", [ "so", "that is to say", "however" ], 1 ]
             ]
       },
       {
             "code": "C2",
             "name": "Proficiency Diagnostic",
-            "desc": "A long advanced diagnostic for precision, register, rhetorical judgement, implication, stance, syntactic control and academic argument.",
+            "desc": "Subjunctive in formal speech, inversion under negative adverbs, cleft sentences, advanced reduced participles, mixed and hypothetical conditionals, fine register control, dense academic argumentation.",
             "reading": {
-                  "title": "Proficiency, judgement and the problem of excessive language",
-                  "text": "At the highest levels, language proficiency is rarely a matter of knowing more grammar in a simple quantitative sense. The learner's challenge becomes rhetorical: choosing how direct to be, deciding which implication can be left unstated, recognising when precision becomes pedantry, and when fluency begins to conceal vagueness. A speaker may produce complex sentences and still fail to sound intellectually controlled if every idea is overstated or every qualification is treated as a decorative flourish.\n\nThis is why advanced diagnostics should not merely ask whether a structure is correct. Correctness remains necessary, but it is no longer sufficient. The stronger question is whether the language is proportionate to the situation. A complaint to an institution, an academic response, a seminar intervention and a personal reflection may all require accurate grammar, yet they demand different degrees of compression, tact and explicitness. The advanced learner must therefore demonstrate not just range, but restraint.\n\nTask design can distort this judgement. A simplistic prompt may reward speed while concealing weak interpretation; an excessively academic prompt may reward familiarity with a genre rather than genuine control. A responsible C2 diagnostic uses several lenses: dense reading, layered listening, extended writing, spontaneous speaking and grammar items that test judgement as well as form. It should ask not only whether an answer is correct, but whether it is purposeful, responsive to context and stylistically mature.\n\nThe best feedback at this level sounds less like a verdict and more like an editorial conversation. It notices when complexity becomes ornament, when caution becomes evasion, and when fluency loses precision. It does not punish ambition, but it asks the learner to choose. At C2, excellence is often the capacity to use less language more exactly.",
+                  "title": "Memory and history: when collective recall becomes myth",
+                  "text": "The historian's first methodological commitment is to distinguish between memory and history. Memory is what a community recalls; history is what survives critical examination. These two often disagree, and the disagreement is itself one of the most interesting subjects of historical inquiry. To collapse them into one category is to surrender to a familiar but profoundly misleading impulse: the idea that what people sincerely remember must be substantially what happened.\n\nThe trouble is that collective memory is not stored; it is reconstructed. Each generation tells the story to the next, and each retelling subtly adjusts what is foregrounded, what is omitted and what is given moral weight. Within two or three generations, the version that prevails is rarely the version that survives in primary documents. It is, instead, the version that best fits the present needs of the community doing the remembering. Whether the topic is a war, a strike, an institution, or a public figure, the same pattern recurs: the past gets reshaped to support what we already want to believe.\n\nThis is not necessarily dishonest. The communities involved are not fabricating events; they are emphasising. They are choosing which details to keep alive and which to let fade. Yet emphasis, sustained across decades, becomes its own kind of distortion. The result is not history but myth вЂ” and myth, while culturally valuable, can produce political damage if mistaken for fact.\n\nWhat protects history from this drift is not the natural good faith of historians but a method: the requirement to ground claims in evidence, to expose evidence to scrutiny, and to revise claims when better evidence appears. The method is uncomfortable because it routinely contradicts what communities feel they know about themselves. It is also indispensable because, without it, the loudest collective memory wins by default, regardless of its truth.\n\nA mature culture is not one that abandons memory. It is one that holds memory and history together without confusing them. It values the emotional truth of what a community has lived through, while accepting that emotional truth is not the same thing as accurate description. To preserve both is harder than to choose either. It demands intellectual honesty in a setting where social comfort usually prefers the opposite.",
                   "questions": [
-                        {
-                              "text": "What is the main claim about highest-level proficiency?",
-                              "options": [
-                                    "It depends on rhetorical judgement, not just more grammar.",
-                                    "It is mainly vocabulary quantity.",
-                                    "It removes the need for accuracy."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "When can fluency become a problem?",
-                              "options": [
-                                    "When it conceals vagueness.",
-                                    "When it is too slow.",
-                                    "When it uses simple words."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why is correctness insufficient?",
-                              "options": [
-                                    "Different contexts require different rhetorical choices.",
-                                    "Correctness is irrelevant.",
-                                    "Grammar cannot be assessed."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does proportionate language mean?",
-                              "options": [
-                                    "Language suited to situation and purpose.",
-                                    "The longest possible answer.",
-                                    "Language without nuance."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can a simplistic prompt conceal?",
-                              "options": [
-                                    "Weak interpretation.",
-                                    "Excellent handwriting.",
-                                    "Fast reading only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What risk does an excessively academic prompt create?",
-                              "options": [
-                                    "It may reward genre familiarity rather than control.",
-                                    "It makes grammar impossible.",
-                                    "It removes vocabulary."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should C2 grammar items test?",
-                              "options": [
-                                    "Judgement as well as form.",
-                                    "Only spelling.",
-                                    "Only speed."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does editorial conversation imply?",
-                              "options": [
-                                    "Precise developmental feedback.",
-                                    "A final punishment.",
-                                    "A casual chat without standards."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What does complexity becomes ornament mean?",
-                              "options": [
-                                    "Complex language used decoratively rather than purposefully.",
-                                    "All complex language is wrong.",
-                                    "Ornament improves clarity."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is excellence at C2 often described as?",
-                              "options": [
-                                    "Using less language more exactly.",
-                                    "Speaking as fast as possible.",
-                                    "Avoiding all risk."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What is the historian's first methodological commitment?", "options": ["To preserve every detail.", "To distinguish between memory and history.", "To remain neutral in all cases."], "answer": 1 },
+                        { "text": "How does the writer define memory and history?", "options": ["Memory is what a community recalls; history is what survives critical examination.", "Memory is older; history is newer.", "Memory is academic; history is political."], "answer": 0 },
+                        { "text": "Why is collective memory unreliable, according to the writer?", "options": ["It is forgotten too quickly.", "It is not stored; it is reconstructed in each retelling.", "It is censored by governments."], "answer": 1 },
+                        { "text": "Which version of the past usually prevails after two or three generations?", "options": ["The one closest to primary documents.", "The one that best fits the present needs of the community.", "The one written by the youngest generation."], "answer": 1 },
+                        { "text": "Why is this drift not necessarily dishonest?", "options": ["Communities are emphasising rather than fabricating.", "Historians actively encourage it.", "Documents are routinely destroyed."], "answer": 0 },
+                        { "text": "What protects history from this drift?", "options": ["The good faith of individual historians.", "A method: evidence, scrutiny, and revision.", "Government regulation."], "answer": 1 },
+                        { "text": "What happens without this method, according to the writer?", "options": ["History becomes more precise.", "The loudest collective memory wins by default.", "Communities stop remembering."], "answer": 1 },
+                        { "text": "What does the writer see as the mark of a mature culture?", "options": ["Choosing memory over history.", "Choosing history over memory.", "Holding memory and history together without confusing them."], "answer": 2 }
                   ]
             },
             "listening": {
-                  "title": "Seminar exchange on advanced assessment",
-                  "script": "Speaker: I would argue that advanced assessment often over-rewards visible complexity.\nInterlocutor: Do you mean long sentences and rare vocabulary?\nSpeaker: Partly, but not only that. The problem is that complexity can imitate thought. A learner may sound impressive while avoiding a precise commitment.\nInterlocutor: So the diagnostic task should force a position?\nSpeaker: It should invite a position and then test whether the learner can qualify it without retreating into vagueness. That is a subtle difference.\nInterlocutor: How would you design such a task?\nSpeaker: I would combine a dense text, a listening extract with competing viewpoints, and a writing prompt that requires judgement rather than summary.\nInterlocutor: And grammar?\nSpeaker: Grammar should test control under pressure: concession, inversion, reduced clauses, register, and the ability to revise a sentence without flattening its meaning.\nInterlocutor: That sounds closer to editing than testing.\nSpeaker: Exactly. At this level, diagnosis is partly editorial. We are not asking whether language exists; we are asking whether it does the right work.",
+                  "title": "Seminar response: pushing back on the memory-history opposition",
+                  "script": "Let me push back briefly on a claim made in your last paper. You wrote that memory and history are opposed, and that the historian's task is to correct memory with evidence. I think this framing, while attractive, conceals more than it reveals.\n\nConsider the following: in many historical contexts, communal memory has preserved patterns that documentary evidence missed entirely. Stories of pre-industrial epidemics, of unrecorded labour movements, of localised famines вЂ” these survived for generations in oral testimony before written sources caught up. Sometimes the documents were never produced, and sometimes they were produced selectively by people with their own interests. Memory, in those cases, was not the failed shadow of history; it was the only available record.\n\nThis does not mean that memory is reliable in the way documents can be. It is selective, suggestible and reshaped by present-day concerns. But the documentary record is also selective. The question, in any concrete case, is not which source is purer but which gives us the more honest reconstruction when combined with the other.\n\nThe danger of a strong opposition between memory and history is that it can seem to authorise the dismissal of communal recollection whenever it conflicts with paperwork. In practice, this dismissal has often served the powerful, because paperwork is more likely to survive when produced by the powerful. A history that systematically privileges documents will systematically under-record what was important to people who could not write, were not allowed to write, or wrote in forms we have not preserved.\n\nSo I would suggest a more dialectical formulation. History is what survives critical examination; memory is what a community lives by. The serious historian does not choose between them. The serious historian uses each to interrogate the other вЂ” and accepts, sometimes uncomfortably, that the most accurate account is produced not by adjudicating between them but by reading them together.",
                   "questions": [
-                        {
-                              "text": "What does advanced assessment over-reward?",
-                              "options": [
-                                    "Visible complexity.",
-                                    "Silence.",
-                                    "Short answers only."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What can complexity imitate?",
-                              "options": [
-                                    "Thought.",
-                                    "Pronunciation.",
-                                    "Attendance."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the subtle difference about position?",
-                              "options": [
-                                    "Qualifying a position without becoming vague.",
-                                    "Avoiding any position.",
-                                    "Changing the topic."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What should the writing prompt require?",
-                              "options": [
-                                    "Judgement rather than summary.",
-                                    "Only copying.",
-                                    "A list of definitions."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Which grammar areas are named?",
-                              "options": [
-                                    "Concession, inversion, reduced clauses and register.",
-                                    "Alphabet and numbers.",
-                                    "Only present simple."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "Why is diagnosis partly editorial?",
-                              "options": [
-                                    "It checks whether language does the right work.",
-                                    "It ignores grammar.",
-                                    "It is only about punctuation."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is meant by flattening meaning?",
-                              "options": [
-                                    "Losing nuance while simplifying.",
-                                    "Improving precision.",
-                                    "Adding evidence."
-                              ],
-                              "answer": 0
-                        },
-                        {
-                              "text": "What is the speaker's attitude?",
-                              "options": [
-                                    "Demanding but principled.",
-                                    "Dismissive of advanced learners.",
-                                    "Opposed to testing."
-                              ],
-                              "answer": 0
-                        }
+                        { "text": "What is the speaker pushing back on?", "options": ["A claim that memory and history are opposed and that historians correct memory.", "A new historical method.", "A particular textbook."], "answer": 0 },
+                        { "text": "What kinds of episodes survived in oral testimony before written sources caught up?", "options": ["Wars only.", "Pre-industrial epidemics, unrecorded labour movements, localised famines.", "Royal weddings."], "answer": 1 },
+                        { "text": "Why were some documents never produced or selectively produced?", "options": ["Because of bad weather.", "Because of the interests of those who could produce them.", "Because of religious bans."], "answer": 1 },
+                        { "text": "Does the speaker claim memory is reliable in the way documents can be?", "options": ["Yes, always.", "No вЂ” it is selective, suggestible and reshaped by present concerns.", "Memory is the only reliable source."], "answer": 1 },
+                        { "text": "What is also true of the documentary record, according to the speaker?", "options": ["It is fully objective.", "It is also selective.", "It is mostly invented."], "answer": 1 },
+                        { "text": "What is the danger of strong opposition between memory and history?", "options": ["It can seem to authorise dismissing communal recollection.", "It speeds up research.", "It encourages translation."], "answer": 0 },
+                        { "text": "Who has often benefited from privileging documents over memory?", "options": ["The poor.", "The powerful.", "The young."], "answer": 1 },
+                        { "text": "What is the speaker's preferred formulation?", "options": ["History replaces memory.", "Memory replaces history.", "A dialectical reading where each interrogates the other."], "answer": 2 }
                   ]
             },
-            "writing": "IELTS Academic/TOEFL advanced hybrid. Write 350-450 words: At the highest levels, language assessment should focus less on visible complexity and more on judgement, register and rhetorical control. Discuss this claim and qualify your position.",
-            "speaking": "Record 4 minutes as if responding in an academic interview. Compare two views of advanced assessment: one based on measurable accuracy, the other on rhetorical judgement. Include concession, counterexample, and a final refined position.",
+            "writing": "Write 350-450 words. A respected historian recently argued that collective memory is closer to mythology than to fact, and that one of the historian's central duties is to correct it. Other voices reply that documentary evidence is itself shaped by power and that memory often preserves what records suppress. Discuss both views, and explain to what extent you find the distinction between memory and history useful. Qualify your position carefully.",
+            "speaking": "Record 4 minutes as if responding in an academic seminar. Engage with the question: do historians have a duty to challenge collective memory? Construct an argument with one strong concession, one specific historical case, and a final refined position that avoids vague balance.",
             "grammar": [
-                  [
-                        "Visible complexity may be impressive, ___ it is not necessarily precise.",
-                        [
-                              "yet",
-                              "despite",
-                              "whereby"
-                        ],
-                        0
-                  ],
-                  [
-                        "Were the prompt simplified too far, it ___ weak interpretation.",
-                        [
-                              "would conceal",
-                              "will conceal",
-                              "concealed"
-                        ],
-                        0
-                  ],
-                  [
-                        "The learner sounded fluent, if ___ evasive.",
-                        [
-                              "some",
-                              "somewhat",
-                              "something"
-                        ],
-                        1
-                  ],
-                  [
-                        "No sooner ___ a position than he qualified it.",
-                        [
-                              "he stated",
-                              "had he stated",
-                              "he had stated"
-                        ],
-                        1
-                  ],
-                  [
-                        "The issue is not so much accuracy ___ rhetorical control.",
-                        [
-                              "as",
-                              "than",
-                              "but"
-                        ],
-                        0
-                  ],
-                  [
-                        "Complexity should be treated as useful ___ purposeful.",
-                        [
-                              "provided it is",
-                              "despite it is",
-                              "whereby it"
-                        ],
-                        0
-                  ],
-                  [
-                        "The feedback, ___ severe, was productive.",
-                        [
-                              "though",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "A sentence may be correct without ___ appropriate.",
-                        [
-                              "being",
-                              "be",
-                              "to be"
-                        ],
-                        0
-                  ],
-                  [
-                        "It is crucial that register ___ assessed explicitly.",
-                        [
-                              "is",
-                              "be",
-                              "will be"
-                        ],
-                        1
-                  ],
-                  [
-                        "The task requires judgement, ___ mere summary.",
-                        [
-                              "rather than",
-                              "instead to",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "Had the learner used fewer qualifiers, the argument ___ stronger.",
-                        [
-                              "might have sounded",
-                              "might sound",
-                              "will sound"
-                        ],
-                        0
-                  ],
-                  [
-                        "The phrase was precise, ___ slightly pedantic.",
-                        [
-                              "albeit",
-                              "despite",
-                              "whereby"
-                        ],
-                        0
-                  ],
-                  [
-                        "Not only ___ the claim, but she refined it.",
-                        [
-                              "she defended",
-                              "did she defend",
-                              "she did defend"
-                        ],
-                        1
-                  ],
-                  [
-                        "The prompt was designed ___ evasive answers.",
-                        [
-                              "to expose",
-                              "exposing",
-                              "expose"
-                        ],
-                        0
-                  ],
-                  [
-                        "The response lacked the restraint ___ C2 writing often requires.",
-                        [
-                              "that",
-                              "who",
-                              "where"
-                        ],
-                        0
-                  ],
-                  [
-                        "The more advanced the learner, ___ subtle the feedback must be.",
-                        [
-                              "more",
-                              "the more",
-                              "most"
-                        ],
-                        1
-                  ],
-                  [
-                        "The argument was not wrong; ___, it was underdeveloped.",
-                        [
-                              "rather",
-                              "despite",
-                              "whereby"
-                        ],
-                        0
-                  ],
-                  [
-                        "A diagnostic should account ___ register and implication.",
-                        [
-                              "for",
-                              "about",
-                              "of"
-                        ],
-                        0
-                  ],
-                  [
-                        "The sentence was revised without ___ its nuance.",
-                        [
-                              "losing",
-                              "to lose",
-                              "lose"
-                        ],
-                        0
-                  ],
-                  [
-                        "The speaker avoided commitment, ___ weakening the answer.",
-                        [
-                              "thereby",
-                              "whereas",
-                              "despite"
-                        ],
-                        0
-                  ],
-                  [
-                        "Useful ___ the framework is, it has limits.",
-                        [
-                              "though",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "The learner's control appears ___ under timed conditions.",
-                        [
-                              "to have improved",
-                              "having improved",
-                              "to improving"
-                        ],
-                        0
-                  ],
-                  [
-                        "The distinction is subtle, ___ pedagogically significant.",
-                        [
-                              "yet",
-                              "despite",
-                              "whereas"
-                        ],
-                        0
-                  ],
-                  [
-                        "The answer was proportionate ___ the task.",
-                        [
-                              "to",
-                              "for",
-                              "with"
-                        ],
-                        0
-                  ],
-                  [
-                        "If feedback becomes too general, it ___ diagnostic value.",
-                        [
-                              "loses",
-                              "would have lost",
-                              "had lost"
-                        ],
-                        0
-                  ],
-                  [
-                        "The evaluator asked whether the register ___ the purpose.",
-                        [
-                              "served",
-                              "has served",
-                              "is serve"
-                        ],
-                        0
-                  ]
+                  [ "It is imperative that historians ___ their claims to scrutiny.", [ "expose", "exposes", "are exposing" ], 0 ],
+                  [ "Only after careful examination ___ a memory be treated as evidence.", [ "it can", "can", "should it" ], 1 ],
+                  [ "___ documents critically, historians distinguish memory from history.", [ "To examine", "Examining", "Examined" ], 1 ],
+                  [ "The community ___ have remembered the event quite differently, but the documents tell another story.", [ "might", "could not", "should" ], 0 ],
+                  [ "___ the documents survived, our reconstruction would be more confident.", [ "If", "Had", "Should" ], 1 ],
+                  [ "Stories ___ in oral testimony often outlasted formal records.", [ "preserving", "preserved", "having preserved" ], 1 ],
+                  [ "What collective memory preserves ___ not always what documents record.", [ "has been", "is", "it is" ], 1 ],
+                  [ "___ that documents are also selective, the choice is rarely a clean one.", [ "Considering", "Given", "Having given" ], 1 ],
+                  [ "A community may ___ have been mistaken, even when its conviction was sincere.", [ "much", "well", "very" ], 1 ],
+                  [ "___ the historian dismissed memory entirely, the resulting record ___ been impoverished.", [ "If / would", "Had / would have", "Should / would" ], 1 ],
+                  [ "A degree of conservatism is appropriate ___ professional contexts.", [ "for", "on", "in" ], 2 ],
+                  [ "___ , the most reliable account is constructed when memory and history correct each other.", [ "In other words", "Rather", "Conversely" ], 1 ]
             ]
       }
 ];
