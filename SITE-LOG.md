@@ -695,4 +695,57 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 
 — Claude, 2026-05-22 день 8 завершено.
 
-*Последнее обновление: 2026-05-22, день 8 — диагностический тест полностью переделан (Reading rewrite + Grammar rewrite + dark theme alignment + 36 PDF regenerated + K-17 blog extracted + numbering unification). Точки отката: `backup-2026-05-22-pre-diagnostic-inline-extract`, `backup-2026-05-22-pre-k17-blog`. Аудио A1/B1 от Маши (ttsMP3), A2-C2 placeholder Zira. Винегрет на conditions/programs/cases/travel — открытая задача.*
+---
+
+### День 8 (вечер) · 2026-05-22 — Mobile K-1 первая волна
+
+Маша посмотрела сайт на телефоне после диагностических правок и нашла серию мобильных багов. Точка отката: `backup-2026-05-22-pre-mobile-K1`.
+
+**A1 · Sticky topbar починен**
+- Корень: `body { overflow-x: hidden }` в system.css создавал scroll-context и ломал `position: sticky` у `.topbar`.
+- Фикс: `overflow-x: hidden` → `overflow-x: clip` с fallback `hidden` для iOS 15.
+- Side-effect: ту же причину Маша описывала как «conditions не скроллится» — header перекрывал контент при медленных скроллах. Починилось вместе с A1.
+
+**A2 · Бургер-меню (вместо сжатой topnav)**
+- Корень: на ≤420px brand+tools занимали всю ширину, под `.topnav` оставался 0px → видны были только CAB/DARK/EN.
+- Решение: бургер-меню. Инжектируется JS-функцией `initMobileMenu()` в `site.js` (без правок HTML на 8 страницах — кнопка и overlay создаются динамически как `.doc-lightbox` в conditions).
+- Видимость: на ≤720px скрывается `.topnav`, показывается `.menu-toggle` (3 полоски). По тапу — full-screen overlay со ссылками крупными буквами (28px Unbounded).
+- Закрытие: тап ✕, тап по фону, ESC, тап по любой ссылке.
+- Body-lock через `mobile-menu-lock`.
+
+**C · Hero-stats 2×2 на мобиле**
+- Было: на ≤640px `.hero-stats` в 1 колонку (4 строки) — «15/598/1-к-1» расползались по экрану.
+- Стало: `grid-template-columns: repeat(2, 1fr)` — 2×2 grid. Бордеры пересчитаны под 2 колонки.
+
+**E · Hero-stars видимый на мобиле**
+- Было: `right: -38%; width: 132vw` — картинка уезжала за viewport.
+- Стало: центрирована через `right: 50%; transform: translateX(50%); width: min(92vw, 460px)` — как фон-карточка над hero-media.
+
+**Bump v=31 sitewide** (system.css), v=10 (site.js). Обновлено в 8 main HTML + 5 cabinet HTML.
+
+### Коммиты дня 8 (вечер)
+```
+(пишет Codex после промта)
+```
+
+### Тэги дня 8 (откатные точки) — обновлены
+- `backup-2026-05-21-pre-seo-foundation`
+- `backup-2026-05-22-pre-diagnostic-inline-extract`
+- `backup-2026-05-22-pre-k17-blog`
+- `backup-2026-05-22-pre-mobile-K1` ← новый
+
+### Open issues end-of-day 8 (вечер)
+
+Закрылись: A1 sticky, A2 topnav-сжатие, B conditions-scroll, C hero-stats, E hero-stars.
+
+🟡 **D · 2-колоночный грид «Как проходят занятия» и др.** — Маша смотрит после первой волны, решение пока отложено.
+
+🔴 **К-1 Mobile (продолжение)** — на проверке Маши:
+- Все 8 страниц + кабинет + Lab на телефоне (после v=31)
+- Возможны новые мелкие правки после визуального обхода
+
+🔴 Винегрет цифр programs/cases/travel — без изменений, ждёт проектное решение.
+
+— Claude, 2026-05-22 (вечер).
+
+*Последнее обновление: 2026-05-22 (вечер) — Mobile K-1 первая волна: sticky-фикс через overflow-x:clip, бургер-меню инжектится JS-ом, hero-stats 2×2 на мобиле, hero-stars центрирован. Точка отката: `backup-2026-05-22-pre-mobile-K1`. На проверке у Маши.*

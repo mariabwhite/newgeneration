@@ -83,7 +83,8 @@ html { font-size: 16px; -webkit-text-size-adjust: 100%; }*,
   font-family: var(--text-font);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden; /* prevent horizontal scroll from 100vw full-bleed heroes */
+  overflow-x: hidden; /* fallback for iOS 15/older */
+  overflow-x: clip;   /* modern: prevents horizontal scroll WITHOUT breaking position:sticky on .topbar */
 }img,
 video,
 canvas {
@@ -476,7 +477,98 @@ h2 {
 .btn-primary,
 .btn-secondary,
 .btn-ghost { min-height: 46px; padding: 0 20px; }
-}/* CANONICAL HERO FROM INDEX */
+}
+
+/* --- MOBILE BURGER MENU (injected by site.js initMobileMenu) --- */
+.menu-toggle {
+  display: none;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.menu-toggle:hover { border-color: var(--accent); }
+.menu-toggle span {
+  display: block;
+  width: 18px; height: 2px;
+  background: var(--text);
+  transition: transform .22s ease, opacity .15s ease;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+  overflow-y: auto;
+}
+.mobile-menu.open { display: block; opacity: 1; }
+.mobile-menu-inner {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 92px 28px 32px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+.mobile-menu-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 20px;
+  font-family: var(--mono);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-menu-close:hover { border-color: var(--accent); color: var(--accent); }
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 12px;
+}
+.mobile-menu-link {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s ease;
+}
+.mobile-menu-link:hover,
+.mobile-menu-link.active { color: var(--accent); }
+body.mobile-menu-lock { overflow: hidden; }
+
+@media (max-width: 720px) {
+  .topnav { display: none !important; }
+  .menu-toggle { display: inline-flex; }
+  /* Keep tools pinned right; burger sits between brand and tools */
+}
+
+/* CANONICAL HERO FROM INDEX */
 .hero {
   position: relative;
   padding: clamp(20px, 5vw, 76px) 24px 32px;
@@ -645,11 +737,12 @@ body.light[data-page="programs"] .hero-media .img-dark { display: none; }.hero-m
   }.hero-stats { grid-template-columns: repeat(2, 1fr); }.hero-stats .cell:nth-child(2) { border-right: none; }.hero-stats .cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 640px) {.hero { padding: 40px 16px 24px; }.hero-stars-bg {
-    right: -38%;
-    top: 30%;
-    width: 132vw;
+    right: 50%;
+    transform: translateX(50%);
+    top: 18%;
+    width: min(92vw, 460px);
     opacity: 0.55;
-  }.hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }.hero-stats { grid-template-columns: 1fr; }.hero-stats .cell { border-right: none; border-bottom: 1px solid var(--line); }.hero-stats .cell:last-child { border-bottom: none; }.btn-row { flex-direction: column; }.btn { width: 100%; }
+  }.hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }.hero-stats { grid-template-columns: repeat(2, 1fr); }.hero-stats .cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }.hero-stats .cell:nth-child(2n) { border-right: none; }.hero-stats .cell:nth-last-child(-n+2) { border-bottom: none; }.btn-row { flex-direction: column; }.btn { width: 100%; }
 }/* Mobile safeguard: restore horizontal padding removed by the container-hero fix above.
    At в‰¤640px the hero is still full-bleed (100vw) so content needs its own edge buffer. */
 @media (max-width: 640px) {

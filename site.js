@@ -104,8 +104,77 @@ function markActiveNav() {
   const currentPage = document.body.dataset.page;
   if (!currentPage) return;
 
-  document.querySelectorAll(".topnav-link[data-nav]").forEach((link) => {
+  document.querySelectorAll(".topnav-link[data-nav], .mobile-menu-link[data-nav]").forEach((link) => {
     link.classList.toggle("active", link.dataset.nav === currentPage);
+  });
+}
+
+function initMobileMenu() {
+  const topbar = document.querySelector(".topbar");
+  const topnav = document.querySelector(".topnav");
+  if (!topbar || !topnav) return;
+  if (document.querySelector(".menu-toggle")) return;
+
+  const tools = topbar.querySelector(".topbar-tools");
+  const burger = document.createElement("button");
+  burger.className = "menu-toggle";
+  burger.type = "button";
+  burger.setAttribute("aria-label", "Меню");
+  burger.setAttribute("aria-expanded", "false");
+  burger.innerHTML = "<span></span><span></span><span></span>";
+  if (tools) topbar.insertBefore(burger, tools);
+  else topbar.appendChild(burger);
+
+  const overlay = document.createElement("div");
+  overlay.className = "mobile-menu";
+  overlay.setAttribute("aria-hidden", "true");
+  const inner = document.createElement("div");
+  inner.className = "mobile-menu-inner";
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "mobile-menu-close";
+  closeBtn.type = "button";
+  closeBtn.setAttribute("aria-label", "Закрыть");
+  closeBtn.textContent = "✕";
+  inner.appendChild(closeBtn);
+  const nav = document.createElement("nav");
+  nav.className = "mobile-menu-nav";
+  nav.setAttribute("aria-label", "Мобильная навигация");
+  topnav.querySelectorAll(".topnav-link").forEach((link) => {
+    const a = document.createElement("a");
+    a.className = "mobile-menu-link";
+    a.href = link.getAttribute("href") || "#";
+    if (link.dataset.nav) a.dataset.nav = link.dataset.nav;
+    if (link.dataset.ru) a.dataset.ru = link.dataset.ru;
+    if (link.dataset.en) a.dataset.en = link.dataset.en;
+    a.textContent = link.textContent;
+    nav.appendChild(a);
+  });
+  inner.appendChild(nav);
+  overlay.appendChild(inner);
+  document.body.appendChild(overlay);
+
+  function open() {
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("mobile-menu-lock");
+  }
+  function close() {
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("mobile-menu-lock");
+  }
+  burger.addEventListener("click", () => {
+    if (overlay.classList.contains("open")) close(); else open();
+  });
+  closeBtn.addEventListener("click", close);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
+  nav.addEventListener("click", (e) => {
+    if (e.target.classList && e.target.classList.contains("mobile-menu-link")) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("open")) close();
   });
 }
 
@@ -116,5 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const storedLang = localStorage.getItem("nge-lang");
   setLanguage(requestedLang || (storedLang === "en" ? "en" : "ru"));
 
+  initMobileMenu();
   markActiveNav();
 });
