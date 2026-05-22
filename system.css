@@ -901,9 +901,30 @@ main section[class*="-cta"] {
 }
 
 /* ============================================================
-   Sect-index outline — оранжевый контур (унификация с filled-accent)
+   Section-number unification — single outline-orange style for
+   all section index classes used across pages (sect-index / terms-index)
    ============================================================ */
-.sect-index {
+.sect-index, .terms-index {
+  color: transparent !important;
+  -webkit-text-stroke: 1px var(--accent) !important;
+}
+.sect-index small, .terms-index small {
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Filled-accent index — only on selected "lead" sections */
+#quick-summary .about-index,
+#zen-channel .about-index {
+  color: var(--accent) !important;
+  -webkit-text-stroke: 0 !important;
+}
+#zen-channel .about-index {
+  margin-bottom: 18px;
+}
+
+/* Other about-index occurrences (if any) — fall back to outline */
+.about-index:not(#quick-summary .about-index) {
+  color: transparent !important;
   -webkit-text-stroke: 1px var(--accent) !important;
 }
 

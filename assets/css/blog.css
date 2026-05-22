@@ -1,0 +1,1343 @@
+/* ============================================================
+   Page-specific styles for blog.
+   system.css is loaded ABOVE so page rules win cascade naturally.
+   No !important needed — kept the file clean as of last refactor.
+   ============================================================ */
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--accent); color: #000; }
+
+/* Topbar / brand / topnav / control-btn — canonical in system.css */
+
+/* ============================================================
+   WRAP
+   ============================================================ */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--layout-x); }
+
+body[data-page="blog"] .wrap > main > .hero .hero-inner {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ============================================================
+   SECTION PRIMITIVES
+   ============================================================ */
+.section { padding: 80px 0; }
+.sect-head {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 40px; margin-bottom: 56px;
+  align-items: end;
+}
+.sect-index {
+  font-family: var(--display);
+  font-size: 72px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  -webkit-text-stroke: 1px var(--text);
+  color: transparent;
+}
+.sect-index small {
+  display: block;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-3);
+  -webkit-text-stroke: 0;
+  color: var(--text-3);
+  margin-top: 8px;
+}
+.sect-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+.sect-title .accent { color: var(--accent); }
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.dash {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  max-width: 1240px; margin: 0 auto;
+}
+
+/* ============================================================
+   HERO (переделан под систему)
+   ============================================================ */
+/* .hero: см. system.css (padding clamp(20px, 5vw, 76px) — top унифицирован 2см) */
+/* .hero-inner: see system.css (max-width + padding 0 clamp(20px, 5vw, 76px)) */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 340px);
+  gap: 40px;
+  align-items: end;
+}
+.hero-copy { min-width: 0; }
+.hero-tag {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3);
+}
+.hero-tag .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+.hero-tag .bar { flex: 1; height: 1px; background: var(--line); }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+.hero-kicker::before {
+  content: ""; width: 18px; height: 1px; background: var(--accent);
+}
+.hero-kicker-secondary {
+  margin-bottom: 28px;
+  font-size: 14px; color: var(--text-2);
+  font-family: var(--mono); letter-spacing: 0.08em;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+  color: var(--text);
+}
+.hero h1 .accent { color: var(--accent); }
+.hero-lead {
+  max-width: 640px;
+  margin: 0 0 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   SECTION PICKER
+   ============================================================ */
+.section-picker {
+  padding: 34px 0 44px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.section-picker-label {
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.subnav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.subnav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color .15s, background .15s, border-color .15s;
+}
+.subnav-link:hover, .subnav-link.active {
+  color: #000;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   BLOG GRID (3 колонки, без карточек)
+   ============================================================ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.blog-entry {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.entry-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.entry-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.dynasty-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1180px;
+}
+.dynasty-epigraph {
+  max-width: 920px;
+  margin: -18px 0 34px;
+  padding: 18px 22px 18px 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-2);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-style: italic;
+  line-height: 1.62;
+}
+.dynasty-epigraph p {
+  margin: 0;
+}
+body.light .dynasty-epigraph {
+  background: rgba(20, 18, 15, 0.04);
+  color: var(--text-2);
+}
+.dynasty-feature {
+  display: block;
+  margin-bottom: 48px;
+  border: 0;
+  width: 100%;
+}
+.dynasty-list .dynasty-feature {
+  display: grid;
+  margin-bottom: 0;
+  min-width: 0;
+}
+.dynasty-list .dynasty-feature > summary {
+  width: 100%;
+  height: 100%;
+}
+.dynasty-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.dynasty-feature summary::-webkit-details-marker {
+  display: none;
+}
+.dynasty-cover {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: none;
+  padding: 30px 26px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dynasty-cover-hook {
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.dynasty-cover-title {
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: 0;
+  color: #fff;
+}
+.dynasty-cover-title span,
+.neural-article-title span {
+  display: block;
+}
+.dynasty-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,90,31,0.82);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform .15s, background .15s;
+}
+.dynasty-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.dynasty-feature[open] .dynasty-toggle::after {
+  content: "−";
+}
+.dynasty-feature summary:hover .dynasty-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.dynasty-feature summary:hover .dynasty-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.dynasty-feature[open] .dynasty-cover {
+  border-bottom-color: var(--line);
+}
+.dynasty-panel {
+  clear: both;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 38px;
+  align-items: start;
+  width: 100%;
+  margin-top: 34px;
+  padding: 42px 0;
+}
+.dynasty-list .dynasty-panel {
+  width: calc(300% + 36px);
+}
+.dynasty-list .dynasty-feature:nth-child(3n + 2) .dynasty-panel {
+  margin-left: calc(-100% - 18px);
+}
+.dynasty-list .dynasty-feature:nth-child(3n) .dynasty-panel {
+  margin-left: calc(-200% - 36px);
+}
+.dynasty-list .dynasty-cover {
+  height: 100%;
+  min-height: 340px;
+  padding: 26px;
+}
+.dynasty-list .dynasty-cover-title {
+  max-width: 280px;
+  font-size: clamp(1.45rem, 2.55vw, 2.05rem);
+}
+.dynasty-list .dynasty-cover-hook {
+  max-width: 260px;
+  font-size: 9px;
+  line-height: 1.5;
+}
+.dynasty-list .dynasty-toggle {
+  min-height: 46px;
+  padding: 0 16px;
+  font-size: 10px;
+}
+.dynasty-copy {
+  max-width: 680px;
+}
+.dynasty-kicker {
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-title {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.3rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+.dynasty-lead,
+.dynasty-copy p {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.dynasty-lead {
+  color: var(--text);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.dynasty-line {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.dynasty-line div {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 18px;
+  align-items: baseline;
+}
+.dynasty-line strong {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dynasty-line span {
+  color: var(--text-2);
+}
+.dynasty-note {
+  margin-top: 20px;
+  padding-left: 18px;
+  border-left: 2px solid var(--accent);
+}
+.travel-read-more {
+  margin-top: 24px;
+}
+.travel-read-more summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,90,31,0.82);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+.travel-read-more summary::-webkit-details-marker {
+  display: none;
+}
+.travel-read-more summary::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.travel-read-more[open] summary::after {
+  content: "−";
+}
+.travel-read-more-body {
+  margin-top: 22px;
+}
+.neural-article-feature {
+  display: block;
+  margin: 44px 0 0;
+  width: 100%;
+}
+.neural-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 44px 0 0;
+}
+.neural-feature-grid .neural-article-feature {
+  display: contents;
+  margin: 0;
+}
+.neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  max-width: none;
+}
+.neural-feature-grid .neural-article-panel {
+  grid-column: 1 / -1;
+}
+.neural-placeholder-card {
+  opacity: 0.62;
+}
+.neural-placeholder-card .neural-article-title {
+  color: rgba(255,255,255,0.78);
+}
+.neural-placeholder-card .neural-article-toggle {
+  border-color: rgba(255,255,255,0.24);
+  color: rgba(255,255,255,0.62);
+}
+.journal-placeholder .dynasty-cover {
+  opacity: 0.78;
+}
+.journal-placeholder .dynasty-cover-title {
+  color: rgba(255,255,255,0.86);
+}
+.journal-placeholder .dynasty-cover-hook {
+  color: rgba(255,255,255,0.64);
+}
+.journal-placeholder .dynasty-toggle {
+  border-color: rgba(255,255,255,0.24);
+  color: rgba(255,255,255,0.62);
+}
+.neural-article-feature summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  width: max-content;
+  max-width: 100%;
+}
+.neural-article-feature summary::-webkit-details-marker {
+  display: none;
+}
+.neural-article-cover {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 420px;
+  padding: 42px 34px 36px;
+  background: #050505;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+  aspect-ratio: 1 / 1;
+  max-width: 520px;
+  margin: 0;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.neural-article-hook {
+  max-width: 390px;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+.neural-article-title {
+  align-self: center;
+  justify-self: start;
+  max-width: min(390px, 100%);
+  font-family: var(--display);
+  font-size: clamp(2.05rem, 3.8vw, 3.45rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+.neural-article-toggle {
+  align-self: end;
+  justify-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 24px;
+  border: 1px solid rgba(255,90,31,0.92);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background .15s;
+}
+.neural-article-toggle::after {
+  content: "+";
+  margin-left: 14px;
+  font-size: 18px;
+  line-height: 1;
+}
+.neural-article-feature[open] .neural-article-toggle::after {
+  content: "−";
+}
+.neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.18);
+}
+.neural-article-feature summary:hover .neural-article-cover {
+  transform: translateY(-3px);
+  border-color: rgba(255,90,31,0.62);
+  box-shadow: 0 34px 96px rgba(0,0,0,0.28);
+}
+.neural-article-panel {
+  clear: both;
+  max-width: 880px;
+  margin: 42px auto 0;
+  padding: clamp(24px, 4vw, 46px);
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+.neural-article-panel h3 {
+  max-width: 760px;
+  margin-bottom: 22px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.neural-article-panel p {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.72;
+}
+.neural-article-panel p:last-child {
+  margin-bottom: 0;
+}
+.neural-article-shot {
+  max-width: 760px;
+  margin: 26px 0 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.neural-article-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.neural-article-shot figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.neural-article-shot-cyborg {
+  max-width: min(456px, 100%);
+  margin-top: 34px;
+  margin-bottom: 30px;
+}
+.neural-article-shot-cyborg img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+.neural-article-shot-cyborg .cyborg-light {
+  display: none;
+}
+body.light .neural-article-shot-cyborg .cyborg-dark {
+  display: none;
+}
+body.light .neural-article-shot-cyborg .cyborg-light {
+  display: block;
+}
+.dynasty-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dynasty-photo {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+.dynasty-photo.wide {
+  grid-column: 1 / -1;
+  min-height: 310px;
+}
+.dynasty-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  filter: grayscale(0.18) contrast(1.04);
+}
+.dynasty-photo figcaption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.74);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.travel-gallery {
+  align-self: start;
+  position: sticky;
+  top: 96px;
+}
+.travel-photo img {
+  filter: saturate(1.02) contrast(1.03);
+}
+.travel-photo.portrait {
+  min-height: 330px;
+}
+.travel-photo.portrait img {
+  object-position: center top;
+}
+body.light .dynasty-photo figcaption {
+  background: rgba(20,18,15,0.78);
+}
+body.light .dynasty-cover,
+body.light .neural-article-cover {
+  background: #fffaf2;
+  color: var(--text);
+  border-color: rgba(20,18,15,0.22);
+  box-shadow: 0 22px 60px rgba(20,18,15,0.08);
+}
+body.light .dynasty-cover-hook {
+  color: var(--text-2);
+}
+body.light .dynasty-cover-title,
+body.light .neural-article-title {
+  color: var(--text);
+}
+body.light .dynasty-toggle,
+body.light .neural-article-toggle {
+  color: var(--text);
+  border-color: rgba(255,90,31,0.92);
+  background: rgba(255,255,255,0.36);
+}
+body.light .dynasty-feature summary:hover .dynasty-toggle,
+body.light .neural-article-feature summary:hover .neural-article-toggle {
+  background: rgba(255,90,31,0.12);
+}
+body.light .dynasty-feature summary:hover .dynasty-cover,
+body.light .neural-article-feature summary:hover .neural-article-cover {
+  border-color: rgba(255,90,31,0.72);
+  box-shadow: 0 28px 76px rgba(20,18,15,0.12);
+}
+.neural-showcase {
+  display: none;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 36px;
+  align-items: center;
+  margin-top: 42px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.neural-showcase-copy {
+  max-width: 640px;
+}
+.neural-showcase-kicker {
+  margin-bottom: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.neural-showcase h3 {
+  max-width: 620px;
+  margin-bottom: 16px;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.neural-showcase p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.neural-showcase .hero-media {
+  --hero-media-x: 50%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1;
+  width: 100%;
+}
+.neural-showcase .hero-media .img-light {
+  --hero-media-x: 19%;
+  --hero-media-y: 50%;
+  --hero-media-zoom: 1.04;
+}
+.neural-showcase .hero-media .img-light {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-dark {
+  display: none;
+}
+body.light .neural-showcase .hero-media .img-light {
+  display: block;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cta-head {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 14px;
+}
+.cta-head::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.cta h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+.cta h2 .accent { color: var(--accent); }
+.cta p {
+  max-width: 620px;
+  margin-bottom: 36px;
+  font-size: 17px; line-height: 1.55;
+  color: var(--text-2);
+}
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px;
+  border-radius: var(--btn);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: all .15s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--accent);
+  color: #000;
+}
+.btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+
+/* Footer / .footer-copy / .footer-links / .footer-link — canonical in system.css */
+
+
+.family-tree-panel {
+  grid-template-columns: 1fr;
+}
+.family-tree-article {
+  max-width: 980px;
+}
+.family-tree-text {
+  margin: 28px 0 0;
+  padding: 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.035);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.05vw, 14px);
+  line-height: 1.72;
+  white-space: pre-wrap;
+}
+.family-tree-text strong {
+  color: #fff;
+  font-family: var(--display);
+  font-size: 1.12em;
+  letter-spacing: 0;
+}
+.family-tree-text .family-role {
+  color: var(--accent);
+  font-weight: 700;
+}
+.family-tree-note {
+  margin-top: 18px;
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+body.light .family-tree-text {
+  background: rgba(20,18,15,0.035);
+  border-color: rgba(20,18,15,0.14);
+}
+body.light .family-tree-text strong {
+  color: var(--text);
+}
+
+
+.dynasty-list .dynasty-feature:nth-child(3) .dynasty-cover-title {
+  max-width: 100%;
+  font-size: clamp(1.35rem, 2.05vw, 1.72rem);
+  line-height: 1.04;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .sect-head { grid-template-columns: 1fr; gap: 24px; }
+  .dynasty-panel { grid-template-columns: 1fr; }
+  .dynasty-list .dynasty-panel {
+    width: 100%;
+    margin-left: 0;
+  }
+  .neural-showcase { grid-template-columns: 1fr; }
+  .neural-showcase .hero-media { max-width: 340px; }
+}
+@media (max-width: 768px) {
+  /* Topbar mobile sizing — canonical in system.css */
+  .hero { padding: 32px 0 24px; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); }
+  .section { padding: 56px 0; }
+  .blog-grid { grid-template-columns: 1fr; gap: 32px; }
+  .dynasty-list {
+    grid-template-columns: 1fr;
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+  .dynasty-feature {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 34px;
+  }
+  .dynasty-feature summary {
+    width: 100%;
+  }
+  .dynasty-cover {
+    aspect-ratio: auto;
+    min-height: 360px;
+    padding: 26px 26px 28px;
+  }
+  .dynasty-cover-title,
+  .neural-article-title {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+  }
+  .dynasty-cover-hook,
+  .neural-article-hook {
+    max-width: 100%;
+  }
+  .dynasty-toggle { width: 100%; padding: 0 16px; }
+  .dynasty-panel {
+    gap: 26px;
+    margin-top: 24px;
+    padding: 0 0 34px;
+  }
+  .dynasty-list .dynasty-panel {
+    width: 100%;
+    margin-left: 0;
+  }
+  .dynasty-copy {
+    max-width: none;
+  }
+  .dynasty-line { padding: 18px; }
+  .dynasty-line div { grid-template-columns: 1fr; gap: 4px; }
+  .dynasty-gallery { grid-template-columns: 1fr; }
+  .travel-gallery {
+    position: static;
+    margin-top: 6px;
+  }
+  .dynasty-photo,
+  .dynasty-photo.wide { min-height: 260px; }
+  .cta { padding: 56px 0; }
+  .subnav { gap: 12px; }
+  .neural-feature-grid { grid-template-columns: 1fr; gap: 16px; }
+  .neural-feature-grid,
+  #neural-tools .neural-feature-grid {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+  .neural-showcase { gap: 24px; margin-top: 32px; }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .dynasty-list,
+  .neural-feature-grid,
+  #neural-tools .neural-feature-grid {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+  .dynasty-feature,
+  .neural-article-feature,
+  #neural-tools .neural-feature-grid .neural-article-feature {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .dynasty-cover,
+  .neural-article-cover {
+    width: 100%;
+    max-width: 100%;
+    min-height: 340px;
+    padding: 24px 26px;
+  }
+  .dynasty-cover-title,
+  .neural-article-title,
+  #neural-tools .neural-feature-grid .neural-article-title {
+    font-size: clamp(1.45rem, 8.2vw, 2rem);
+    line-height: 1.05;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .dynasty-cover-hook,
+  .neural-article-hook,
+  #neural-tools .neural-feature-grid .neural-article-hook {
+    font-size: 8.5px;
+    line-height: 1.45;
+    max-width: 100%;
+  }
+  .dynasty-toggle,
+  .neural-article-toggle,
+  #neural-tools .neural-feature-grid .neural-article-toggle {
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+}
+
+
+
+/* Neural section: keep the three archive cards in one desktop row. */
+.neural-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 22px);
+}
+.neural-feature-grid .neural-article-feature {
+  display: block;
+  margin: 0;
+  min-width: 0;
+}
+.neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  min-width: 0;
+}
+.neural-article-feature summary {
+  width: 100%;
+}
+.neural-article-cover {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(330px, 28vw, 390px);
+  padding: clamp(24px, 2.6vw, 32px);
+  aspect-ratio: auto;
+}
+.neural-article-title {
+  max-width: 100%;
+  font-size: clamp(1.85rem, 2.65vw, 2.8rem);
+  line-height: 0.98;
+}
+.neural-article-hook {
+  max-width: 100%;
+  font-size: clamp(0.78rem, 0.9vw, 1rem);
+}
+.neural-article-toggle {
+  min-height: 50px;
+  padding: 0 16px;
+}
+/* Align the neural feature card with the section 06 archive cards. */
+.neural-article-cover {
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 420px;
+  width: 100%;
+  max-width: 520px;
+  padding: 30px 26px;
+  aspect-ratio: auto;
+}
+.neural-article-title {
+  order: 1;
+  align-self: start;
+  justify-self: start;
+  max-width: 340px;
+  font-size: clamp(1.9rem, 3.4vw, 2.45rem);
+  line-height: 1.04;
+}
+.neural-article-hook {
+  order: 2;
+  max-width: 320px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.neural-article-toggle {
+  order: 4;
+  min-height: 48px;
+  padding: 0 20px;
+}
+body.light .neural-article-hook {
+  color: var(--text-2);
+}
+body.light .neural-placeholder-card .neural-article-title {
+  color: var(--text-2);
+}
+body.light .neural-placeholder-card .neural-article-toggle {
+  border-color: var(--line);
+  color: var(--text-3);
+}
+body.light .journal-placeholder .dynasty-cover-title,
+body.light .journal-placeholder .dynasty-cover-hook,
+body.light .journal-placeholder .dynasty-toggle {
+  color: var(--text-2);
+}
+
+body.light .journal-placeholder .dynasty-cover {
+  background: #fffaf2;
+  border-color: rgba(20,18,15,0.22);
+  box-shadow: 0 22px 60px rgba(20,18,15,0.08);
+}
+
+body.light .journal-placeholder .dynasty-toggle {
+  background: rgba(255,255,255,0.36);
+  border-color: rgba(255,90,31,0.92);
+}
+
+  /* Final neural row override. */
+#neural-tools .neural-feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.7vw, 20px);
+}
+#neural-tools .neural-feature-grid .neural-article-feature {
+  display: block;
+  min-width: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature summary {
+  width: 100%;
+  min-width: 0;
+}
+#neural-tools .neural-article-cover {
+  max-width: none;
+  min-height: clamp(320px, 27vw, 380px);
+  padding: clamp(22px, 2.3vw, 30px);
+}
+#neural-tools .neural-article-title {
+  font-size: clamp(1.72rem, 2.35vw, 2.55rem);
+  line-height: 1;
+}
+#neural-tools .neural-article-toggle {
+  min-height: 48px;
+}
+@media (max-width: 900px) {
+  #neural-tools .neural-feature-grid { grid-template-columns: 1fr; }
+}
+/* Readable article panel inside neural cards. */
+#neural-tools .neural-article-panel {
+  max-width: 920px;
+  margin: 32px auto 0;
+  padding: clamp(24px, 4vw, 44px);
+}
+#neural-tools .neural-article-panel h3 {
+  max-width: 780px;
+  margin: 0 0 18px;
+  font-family: var(--display);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+#neural-tools .neural-article-panel p {
+  max-width: 760px;
+  font-size: 16px;
+  line-height: 1.72;
+}
+#neural-tools .neural-article-shot {
+  max-width: 760px;
+}
+/* Full-width opened neural article panel. */
+#neural-tools .neural-feature-grid .neural-article-panel {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 34px 0 0;
+  padding: clamp(28px, 4vw, 56px);
+}
+#neural-tools .neural-article-panel h3,
+#neural-tools .neural-article-panel p,
+#neural-tools .neural-article-panel .neural-article-shot {
+  max-width: 860px;
+}
+#neural-tools .neural-article-panel h3,
+#neural-tools .neural-article-panel p {
+  margin-left: 0;
+  margin-right: auto;
+}
+/* Neural section grid:
+   - Three details cards in a row at desktop.
+   - When one is open, it spans the full grid; siblings hide.
+   - Single column on narrow phones.
+   Specificity (#neural-tools .neural-feature-grid …) wins over upstream
+   .neural-feature-grid rules without needing !important. */
+#neural-tools .neural-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+#neural-tools .neural-feature-grid .neural-article-feature {
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature > summary {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-cover {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(260px, 26vw, 340px);
+  padding: clamp(18px, 2vw, 24px);
+}
+#neural-tools .neural-feature-grid .neural-article-title {
+  max-width: 100%;
+  font-size: clamp(1.35rem, 2.25vw, 2.05rem);
+  line-height: 1.02;
+}
+#neural-tools .neural-feature-grid .neural-article-hook {
+  max-width: 100%;
+  font-size: 9px;
+  line-height: 1.45;
+}
+#neural-tools .neural-feature-grid .neural-article-toggle {
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 9px;
+}
+
+/* Open state: card spans full grid, siblings hide, panel expands. */
+#neural-tools .neural-feature-grid:has(.neural-article-feature[open]) {
+  grid-template-columns: 1fr;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  justify-items: start;
+}
+#neural-tools .neural-feature-grid:has(.neural-article-feature[open]) .neural-article-feature:not([open]) {
+  display: none;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] > summary {
+  width: min(360px, 100%);
+  max-width: 360px;
+  margin-left: 0;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] > .neural-article-panel {
+  width: 100%;
+  max-width: none;
+  margin: 20px 0 0;
+  padding: clamp(24px, 3vw, 40px);
+  box-sizing: border-box;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] .neural-article-panel h3 {
+  max-width: 820px;
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  line-height: 1.08;
+}
+#neural-tools .neural-feature-grid .neural-article-feature[open] .neural-article-panel p {
+  max-width: 820px;
+}
+
+/* Accordion state for journal article cards: no overlapping panels. */
+.dynasty-list:has(.dynasty-feature[open]) {
+  grid-template-columns: 1fr;
+}
+.dynasty-list:has(.dynasty-feature[open]) .dynasty-feature:not([open]) {
+  display: none;
+}
+.dynasty-list .dynasty-feature[open] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.dynasty-list .dynasty-feature[open] > summary {
+  width: min(360px, 100%);
+  max-width: 360px;
+  height: auto;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-cover {
+  min-height: 300px;
+  aspect-ratio: auto;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-panel,
+.dynasty-list .dynasty-feature:nth-child(3n + 2)[open] .dynasty-panel,
+.dynasty-list .dynasty-feature:nth-child(3n)[open] .dynasty-panel {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 22px;
+  padding-top: 30px;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-title {
+  max-width: 820px;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.08;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-copy {
+  max-width: 760px;
+  min-width: 0;
+}
+.dynasty-list .dynasty-feature[open] .dynasty-gallery {
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  #neural-tools .neural-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  #neural-tools .neural-feature-grid .neural-article-feature[open] > summary {
+    max-width: none;
+  }
+  .dynasty-list .dynasty-feature[open] > summary {
+    width: 100%;
+    max-width: none;
+  }
+}

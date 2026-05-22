@@ -576,3 +576,123 @@ backup-2026-05-16-pre-cabinet-rewrite
 ---
 
 *Последнее обновление: 2026-05-21, день 7 — SEO foundation полная волна (К-5/К-6/К-7/К-9/К-10/К-11/К-18 закрыты, К-8 частично). 8 коммитов: 1fcf5a7, d2d7d50, a5cf351, 42627f7, d3fb808, 5f125a2, d3fc4fb, 58638b2. Ноль визуальных изменений. Точка отката: `backup-2026-05-21-pre-seo-foundation`. У Маши на рабочем столе две инструкции: РКН-шпаргалка и GTM-GA4-инструкция. Шорт-лист переписан только с её делами и отложенным.*
+
+---
+
+## День 8 · 2026-05-22 — Диагностический тест: полная переработка содержания, дизайна, PDF; единая нумерация
+
+### Контекст
+Маша критически просмотрела тесты после К-17. Главные жалобы: (1) reading и listening на одну тему — это тест на запоминание, а не диагностика; (2) тест-страница выглядит чужеродно (фиолетовая, не оранжевая как сайт); (3) винегрет цифр на сайте — одни секции с цифрами, другие без, классы разные; (4) блок 01 «Кратко» выглядит блёкло, без отделения dash. Параллельно Маша оперативно записала аудио для A1 и B1 через ttsMP3 (дневной лимит, остальные через Microsoft Zira TTS).
+
+### Закрыто за день
+
+**1. Reading rewrite (6 уровней)**
+- Все 6 reading-текстов переписаны на темы, **не пересекающиеся** с listening:
+  - A1 «My grandmother's house in the village» (был: Anna's flat + кафе)
+  - A2 «My grandfather's old box» (был: Mark's nature park trip — дублировал listening про автобус)
+  - B1 «The slow return of letter writing» (был: Urban beekeepers — дублировал listening про пчёл)
+  - B2 «Why students are returning to paper books» (был: Amsterdam cycling — дублировал listening про Paris)
+  - C1 «The paradox of expertise: why specialists often see less» (был: loneliness epidemic — дублировал listening про diagnostic temptation)
+  - C2 «Why simplicity in scientific theory is sometimes misleading» (был: memory and history — дублировал listening про memory)
+- Listening НЕ тронули — аудио A1/B1 от Маши (ttsMP3) и A2-C2 (Zira) сохранены, лимит ttsMP3 сберегли.
+
+**2. Grammar rewrite (12 × 6 = 72 items)**
+- Все grammar prompts переписаны под новые reading-тексты. Раньше: «Anna ___ twenty-eight years old» в grammar когда reading про Sofia. Теперь: все prompts ссылаются на персонажей и контекст актуального reading.
+- Грамматическая решётка сохранена per level (A1 to-be/Present-Simple/articles, A2 past simple/continuous/comparatives, B1 perfects/conditionals/reported, B2 inversion/passive/modals, C1 reduced clauses/mixed conditional/formal connectors, C2 subjunctive/inversion/cleft).
+
+**3. Дизайн диагностического теста подогнан под основной сайт**
+- `diagnostic-test.css` :root tokens: фон #f7f5ff (фиолетово-светлый) → #0d0d11 (тёмный сайта), accent #ff9b2f → #FF5A1F (оранжевый сайта), brand #7a5fcf (фиолетовый) → #FF5A1F, шрифты Inter/Arial Black → Manrope/Unbounded. Радиальные градиенты переделаны на оранжево-тёмные.
+- Bump diagnostic CSS ?v=6→7, JS ?v=10.
+
+**4. Listening UI: плеер + audio файлы**
+- Удалили placeholder (голубой блок) — вернули нативный `<audio controls>` плеер во всех уровнях.
+- Аудио файлы:
+  - A1-listening.mp3 (228 КБ, ttsMP3 от Маши, Anna+Lena dialogue)
+  - A2-listening.wav (3 МБ, Zira slow rate, voice note про вчерашний день)
+  - B1-listening.mp3 (391 КБ, ttsMP3 от Маши, podcast Host+Olga)
+  - B2-listening.wav (4 МБ, Zira normal, radio City Watch про Paris)
+  - C1-listening.wav (7 МБ, Zira slow, lecture про diagnostic temptation — соответствует **старому** reading про loneliness; после reading rewrite темы listening/reading стали разными)
+  - C2-listening.wav (6 МБ, Zira slow, seminar про memory-history)
+- `audioPath()` в JS возвращает разные расширения per level (mp3/wav).
+
+**5. К-17 step 2: вынос inline CSS/JS из blog.html**
+- `blog.html` 202 КБ → 163 КБ (-19%).
+- Извлечено в `assets/css/blog.css` (33 КБ) и `assets/js/blog.js` (3.6 КБ).
+- Pre-DOM state-bridge оставлен inline в body (критично для anti-flash темы).
+- Backup-тэг: `backup-2026-05-22-pre-k17-blog`.
+
+**6. Регенерация 36 PDF тестов**
+- Через Edge headless `--print-to-pdf` (Edge заменил Word COM, который зависал на HTML-конвертации).
+- PowerShell-скрипт парсит `const levels = [...]` из JS через ConvertFrom-Json, рендерит брендированный HTML для каждого {level, skill} и печатает в PDF.
+- 6 уровней × 6 файлов = 36 PDF: `{code}-reading.pdf`, `{code}-listening.pdf`, `{code}-writing.pdf`, `{code}-speaking.pdf`, `{code}-grammar.pdf`, `{code}-full-test.pdf`. Размер 37-94 КБ каждый.
+- Все PDF имеют единый бренд-стиль (оранжевый акцент, Calibri, NGE-футер с ИНН).
+- Правильные ответы помечены **зелёной заливкой** в reading/listening вопросах, ✓-меткой в grammar.
+
+**7. Брендированный PDF «Условия кратко»**
+- `assets/documents/conditions-quick-summary.pdf` (68 КБ): кто/что веду/форматы/стоимость/оплата/как начать + 6 FAQ + контакты с ИНН.
+- На index добавлена секция **01 Кратко** с двумя кнопками: «Открыть PDF · 1 страница» + «Все условия подробно». Заменила раздутый блок Quick Summary с 6 карточками + 6 FAQ — теперь компактная entry-точка с PDF.
+
+**8. Унификация нумерации секций сайтovo (винегрет → единый стиль)**
+- Все классы `*-index` (sect-index / about-index / terms-index) приведены к **outline-orange** через единое правило в system.css.
+- **Только** на «лидовых» секциях `#quick-summary` (index) и `#zen-channel` (blog) — **filled-accent** для акцента.
+- Outline-цифра использует `-webkit-text-stroke: 1px var(--accent)` (было: white). Теперь все цифры единого оранжевого цвета.
+
+**9. Кратко-секция 01 на index — улучшения**
+- Добавлен `<hr class="dash">` снизу для отделения от About (было: без полосы, блок «висел»).
+- Добавлен оранжевый left-border + светлая оранжевая подложка к `.quick-lead` — было блёкло.
+- Сдвиг номеров на index: 01 Кратко (новое) → 02 О преподавателе → 03 Как проходит → 04 Форматы → 05 Отзывы → 07 Контакты.
+
+**10. Зен-канал в blog получил 01 filled**
+- В `#zen-channel` (Дзен-канал про английский, первая секция blog) добавлен `<div class="about-index">01<small>Дзен-канал</small></div>` filled-orange. До этого секция начиналась с маленького кикера «01 · Дзен-канал», теперь брендированно как остальные начальные блоки сайта.
+
+**11. Зазор 1 см перед последним CTA-блоком**
+- Универсальное правило `main section[class*="-cta"] { margin-top: 1cm }` применилось на index/blog/cases/about — единое визуальное «закрытие» страниц.
+
+**12. Кракозябра починена**
+- `cafГ©` → `café` в JS (вызвано мной — PowerShell heredoc писал UTF-8 в файл который PowerShell 5.1 читает как cp1251 при следующем запуске).
+- Все смарт-кавычки и em-dashes тоже проверены.
+
+**13. Финиш-блок выровнен в section-grid**
+- `renderFinish()` теперь обёрнут в `<div class="section-grid skill-finish">` с label «06 Send» — финиш-блок теперь на той же оси что и другие секции диагностики.
+
+**14. SVG-иконки на финиш-кнопках**
+- Email/Telegram/Download получили inline SVG-иконки вместо эмодзи. Единый outline-стиль (без зоопарка цветов).
+
+### Коммиты дня 8
+```
+def909a Grammar update + diagnostic-test dark theme aligned with main site
+0573897 Reading rewrite: 6 levels, themes now distinct from Listening + sect-index outline orange
+8e0ed90 Block 01 contrast + dash divider + system.css v=25 sitewide
+90f8752 index: 01 Section + branded PDF button + number shift + style unification
+2bffd49 diagnostic: 6 audio files + mojibake fix + quick-summary block on index
+33e5102 diagnostic-test: A2 diary + B1 beekeeper + C1 loneliness + finish-panel aligned
+c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
+47b9146 A1 neutral rewrite + listening placeholder + writing delivery SVG buttons
+7718af5 diagnostic-test: aspect-list now full width
+4a3600b K-17 step 1: extract inline CSS/JS from diagnostic-test.html
+```
+
+### Тэги дня 8 (откатные точки)
+- `backup-2026-05-21-pre-seo-foundation` — до SEO-волны
+- `backup-2026-05-22-pre-diagnostic-inline-extract` — до К-17 diagnostic
+- `backup-2026-05-22-pre-k17-blog` — до К-17 blog
+
+### Open issues end-of-day 8
+
+🔴 **Винегрет нумерации страниц** — на programs/cases/travel НЕТ цифр (структурно). На conditions/blog цифры есть, но разные классы. CSS-стиль унифицирован, **но** на programs/cases/travel сами цифры **отсутствуют** в HTML. Требует обсуждения с Машей: добавить sect-index 01-NN на каждую страницу или использовать другой подход.
+
+🟡 **EN-версии юр-вкладышей** (privacy/contract/offer/consents) — пока только RU. Перевод 5 документов — большая работа.
+
+🟡 **К-12/К-13 (GTM + GA4)** — ждут Машины ID. Без них сайт после выкладки = слепой.
+
+🟡 **К-14 (onsite-форма)** — ждёт Машино решение варианта (Yandex Forms / TBank / SendPulse).
+
+🟡 **С2 listening — старый текст про memory/history (Zira TTS)** соответствует **старому** C2 reading. После reading rewrite C2 listening и reading **снова стали на одну тему**. Если хочется честной диагностики — нужен новый listening-script для C2 + перезапись аудио.
+
+🟢 **К-15/К-16** — декомпозиция блога + service-страницы под ЕГЭ/ОГЭ/IELTS — после публикации.
+
+🔴 **М-1 РКН** (нужно отключить Дед), **М-2 хостинг**, **К-1 Mobile/tablet**, **К-2 выкладка** — финал перед публикацией.
+
+— Claude, 2026-05-22 день 8 завершено.
+
+*Последнее обновление: 2026-05-22, день 8 — диагностический тест полностью переделан (Reading rewrite + Grammar rewrite + dark theme alignment + 36 PDF regenerated + K-17 blog extracted + numbering unification). Точки отката: `backup-2026-05-22-pre-diagnostic-inline-extract`, `backup-2026-05-22-pre-k17-blog`. Аудио A1/B1 от Маши (ttsMP3), A2-C2 placeholder Zira. Винегрет на conditions/programs/cases/travel — открытая задача.*
