@@ -506,9 +506,13 @@ body[data-page="programs"] .hero-media { display: none !important; }
 .p-tile.t-med { order: 5; }
 
 body.light[data-page="programs"] .p-tile {
-  background: #fffdf9;
-  border-color: rgba(255, 90, 31, 0.18);
-  box-shadow: 0 14px 34px rgba(37, 30, 24, 0.06);
+  /* Maria 27.05: «откровенные белые полосы» — карточки выбивались из cream-фона.
+     Делаем фон карточек ravным фону страницы (var(--bg) = #f4f1ec), но даём явную
+     оранжево-полупрозрачную границу + лёгкую тень — карточка читается как карточка,
+     без визуального «белого блока». */
+  background: var(--bg);
+  border-color: rgba(255, 90, 31, 0.28);
+  box-shadow: 0 6px 18px rgba(37, 30, 24, 0.04);
 }
 
 body.light[data-page="programs"] .p-title,
@@ -647,9 +651,10 @@ body[data-page="programs"] .flip-back {
 
 body.light[data-page="programs"] .flip-front,
 body.light[data-page="programs"] .flip-back {
-  background: #fffdf9;
-  border-color: rgba(255, 90, 31, 0.16);
-  box-shadow: 0 16px 36px rgba(37, 30, 24, 0.07);
+  /* Same fix as .p-tile — flip-card surfaces match page bg, not белый. */
+  background: var(--bg);
+  border-color: rgba(255, 90, 31, 0.22);
+  box-shadow: 0 6px 18px rgba(37, 30, 24, 0.05);
 }
 
 body.light[data-page="programs"] .flip-back {
