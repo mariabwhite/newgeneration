@@ -22,7 +22,12 @@
   }
   .canon-l-hero-title,
   .canon-l-hero-title em {
-    overflow-wrap: anywhere !important;
+    /* break-word ломает только если слово реально не помещается,
+       не дробит по буквам как anywhere. Fixes Classroo/m, Pro/nouns. */
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
   }
   .canon-l-hero-meta {
     flex-wrap: wrap !important;
@@ -41,7 +46,10 @@
     min-width: 0 !important;
     max-width: 100% !important;
     white-space: normal !important;
-    overflow-wrap: anywhere !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
   }
 }`;
 
