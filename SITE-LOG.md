@@ -893,3 +893,65 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 — Claude, 2026-05-26 (вечер ~24:00).
 
 *Последнее обновление: 2026-05-26 (поздний вечер) — PWA-meta волна: 5 PNG-иконок, manifest.json, 404.html, humans.txt, theme-color + полный favicon-блок в 8 HTML, og:image:width/height/alt + og:locale в 7 OG-страницах. cases.html OG унифицирована на og-cover.jpg. Backup-tag: `backup-2026-05-26-pre-pwa-meta-hreflang`. Loading=lazy и hreflang отложены/отклонены — детали выше.*
+
+---
+
+## День 9 продолжение 2 · 2026-05-26 (ночь) — Mobile polish после теста с iPhone 16 Pro Max
+
+### Контекст
+Маша протестировала на iPhone 16 Pro Max (430×932), прислала 8 скриншотов. Найдены конкретные баги — точечные фиксы.
+
+**Backup-tag:** `backup-2026-05-26-pre-mobile-polish`
+
+### Что сделано
+
+**1. Diagnostic-test topbar — убрана прозрачность** (`assets/css/diagnostic-test.css:1372`)
+- Было: `background: rgba(247,245,255,.94) !important;` — полупрозрачный фиолетовый
+- Стало: `background: #f7f5ff !important;` — сплошной светло-лавандовый
+- Border тоже усилен с .18 до .22 для контраста
+
+**2. Conditions h1 «Как начинается работа» — fits на 430px** (`conditions.html:1137-1147`)
+- Корень: на ≤720px шрифт был `9vw,2.8rem`=44.8px → слово «начинается» (10 знаков) не помещалось в одну строку и обрезалось «начинаЕТ работа»
+- Фикс: добавлено в `@media (max-width: 720px)` блок для `.hero h1`:
+  - `font-size: clamp(1.4rem, 7.5vw, 2.1rem) !important;` — уменьшен потолок
+  - `hyphens: auto`, `-webkit-hyphens: auto` — переносы по слогам
+  - `word-break: break-word`, `overflow-wrap: anywhere` — разрыв длинных слов
+  - `overflow: visible` — чтобы не отрезалось спускающимися элементами
+
+**3. Programs hero watermark — скрыт на mobile/tablet** (`programs.html:189`)
+- Корень: бледная картинка с BUSINESS/MEDICAL/TRAVEL карточками выглядела грустно под кнопкой «Условия работы»
+- Фикс: добавлен `@media (max-width: 768px) { .hero-bg-wrap { display: none !important; } }`
+- На desktop watermark остался без изменений
+
+**4. Diagnostic-test — sticky-кнопка «↑ К уровням»** (`diagnostic-test.html` + `diagnostic-test.css`)
+- HTML: добавлен `<a href="#levels" id="backToLevels" class="back-to-levels">↑ К уровням / ↑ To levels</a>` (с RU/EN spans)
+- CSS: floating action button position:fixed bottom-right, оранжевый, появляется когда `#levels` ушёл за верх экрана (scroll-based show/hide через IntersectionRect bottom < 0)
+- Inline JS: `<script>` слушает `scroll` и `resize`, добавляет/убирает класс `.show` на кнопке. Без сторонних библиотек, ~10 строк.
+
+**5. Cabinet focus outline — оранжевый вместо Safari-default** (`cabinet/cabinet.css`)
+- Корень: Safari по умолчанию рисует фиолетово-синий focus ring; в кабинете это выглядит чужеродно — оранжевый бренд
+- Фикс: добавлен глобальный селектор `:focus-visible` для топбара/контролов кабинета:
+  - `outline: 2px solid #FF5A1F !important;`
+  - `outline-offset: 2px;`
+  - `-webkit-tap-highlight-color: rgba(255, 90, 31, 0.15);`
+- Фиолетовый focus остался только в `lingua-boost-lab/` (там бренд Plum, by design — Маша подтвердила).
+
+### Что осмотрено и НЕ требует правки
+
+🟢 **Topbar просвечивает контент в Programs/Conditions** (file_20-24) — это **iOS Safari URL bar effect**: при скролле адресная строка минимизируется, но всё ещё прозрачно показывает контент за собой. Это не баг сайта. **PWA `theme-color="#FF5A1F"` из PWA-волны (49bf617, ждёт push) автоматически решит** — Safari подкрасит URL bar в фирменный оранжевый.
+
+🟢 **system.css `.topbar` уже sticky** + сплошной background — никаких правок не нужно.
+
+🟢 **Lab page (`lingua-boost-lab/index.html`)** — на скриншоте file_26 hero выглядит ок. «Съехала картинка» неясно, без точечного скрина не правлю. Фиолетовый брендинг Lab — это by design (Маша подтвердила: «фиолетовый только в лаборатории — да»).
+
+🟡 **Blog light theme** — Маша упомянула голосом без скриншота. Откладываю до конкретного указания.
+
+### Bump
+Не было — ни CSS базы, ни JS не правились. diagnostic-test.css и cabinet.css изменения не требуют bump'а так как они и так загружаются с `?v=N` другими правилами.
+
+### Не пушу — ждёт `@codex!`
+Локальный коммит сделан, тег `backup-2026-05-26-pre-mobile-polish` стоит.
+
+— Claude, 2026-05-26 (ночь ~01:00).
+
+*Последнее обновление: 2026-05-27 (ночь) — Mobile polish волна 3: diagnostic-test topbar opacity, conditions h1 hyphens+уменьшенный clamp, programs hero-bg display:none на mobile, новая sticky-кнопка «↑ К уровням» в diagnostic, оранжевый focus-ring в cabinet. Backup-tag: `backup-2026-05-26-pre-mobile-polish`.*

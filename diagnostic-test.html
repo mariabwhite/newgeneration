@@ -122,8 +122,29 @@
     </section>
   </main>
 
+  <a href="#levels" id="backToLevels" class="back-to-levels" aria-label="Назад к выбору уровня">
+    <span data-ru-text>↑ К уровням</span>
+    <span data-en-text>↑ To levels</span>
+  </a>
+
   <footer>New Generation English · Diagnostic Test · CEFR A1-C2</footer>
 
+  <script>
+    (function(){
+      var btn = document.getElementById('backToLevels');
+      var levels = document.getElementById('levels');
+      if (!btn || !levels) return;
+      function check(){
+        var rect = levels.getBoundingClientRect();
+        // Show when user scrolled past the levels section
+        if (rect.bottom < 0) btn.classList.add('show');
+        else btn.classList.remove('show');
+      }
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+      check();
+    })();
+  </script>
   <script src="assets/js/diagnostic-test.js?v=10" defer></script>
 </body>
 </html>

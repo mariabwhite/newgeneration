@@ -1370,8 +1370,8 @@
     }
 
     .topbar {
-      background: rgba(247,245,255,.94) !important;
-      border-bottom-color: rgba(122,95,207,.18) !important;
+      background: #f7f5ff !important;
+      border-bottom-color: rgba(122,95,207,.22) !important;
       color: var(--text) !important;
     }
 
@@ -1382,3 +1382,50 @@
     .lang-btn {
       color: var(--text) !important;
     }
+
+/* === Floating "Back to levels" FAB === */
+.back-to-levels {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 18px;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(255, 90, 31, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.18s ease;
+}
+.back-to-levels.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-levels:hover {
+  box-shadow: 0 8px 24px rgba(255, 90, 31, 0.5), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+.back-to-levels:focus-visible {
+  outline: 2px solid #FFC145;
+  outline-offset: 2px;
+}
+@media (max-width: 540px) {
+  .back-to-levels {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
