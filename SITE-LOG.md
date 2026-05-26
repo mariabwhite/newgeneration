@@ -840,3 +840,56 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 — Claude, 2026-05-26 (вечер).
 
 *Последнее обновление: 2026-05-26 — волна полировки после аудита Gemini. OG-картинки → `og-cover.jpg` (-72% hero), diagnostic-test открыт для поиска + в sitemap, MutationObserver → event-based в cases.html (`theme-cycle.js?v=10`), maria-hero-premium.jpg 513→144 КБ. Backup-tag: `backup-2026-05-26-pre-og-cleanup-mutationobserver`.*
+
+---
+
+## День 9 продолжение · 2026-05-26 (вечер) — PWA-meta, иконки и OG-полнота
+
+### Контекст
+После полного аудита Claude (15+ пунктов чек-листа) Маша подтвердила пакеты А+Б+В. Цель — закрыть критичные пробелы PWA/SEO одной волной.
+
+**Backup-tag:** `backup-2026-05-26-pre-pwa-meta-hreflang`
+
+### Что сделано
+
+**1. PNG-иконки сгенерированы из SVG-дизайна** (через `System.Drawing`, рендер 1-в-1: тёмный скруглённый квадрат + оранжевый треугольник + буква N)
+- `assets/favicon-16.png` (16×16, 0.3 КБ)
+- `assets/favicon-32.png` (32×32, 0.5 КБ)
+- `assets/apple-touch-icon.png` (180×180, 2.5 КБ) — iOS «Добавить на главный экран»
+- `assets/android-chrome-192.png` (192×192, 2.6 КБ)
+- `assets/android-chrome-512.png` (512×512, 7.6 КБ) — PWA splash + Android home screen
+
+**2. Новые файлы корня**
+- `manifest.json` — PWA-конфиг (name, theme_color #FF5A1F, background_color #0a0a0a, icons, display=standalone, scope=/, categories=education+languages)
+- `404.html` — брендированная страница ошибки (тёмная тема, оранж акцент, кнопка «На главную», полная карта сайта 8 разделов, контакт в Telegram, footer с ИНН) — `noindex,follow`, чтобы поисковики ушли с битой ссылки на работающие
+- `humans.txt` — визитка проекта (team / thanks / site / project)
+
+**3. Head всех 8 главных HTML расширен** (byte-level replace `<link rel="icon" type="image/svg+xml" ...>` на блок)
+Каждой странице +324 байта в head:
+- 2 PNG favicon-варианта (16, 32)
+- apple-touch-icon (180)
+- manifest link
+- `<meta name="theme-color" content="#FF5A1F">` — Chrome mobile / Telegram / WhatsApp подкрашивают браузерную полосу в фирменный оранжевый
+
+**4. OG-полнота в 7 страницах с OG** (`og-cover.jpg`-страницы + cases.html)
+- cases.html: дополнительно переключена с `maria-cases-sidebar-soft.jpg` (718×1280, портрет) на единый `og-cover.jpg` — для консистентности превью
+- В 7 файлах добавлены под `og:image`:
+  - `og:image:width=1200`, `og:image:height=630` — Telegram/VK не угадывают, сразу знают размер
+  - `og:image:alt="..."` — для accessibility и a11y-краулеров
+  - `og:locale=ru_RU`, `og:locale:alternate=en_US` — корректная локализация для FB/VK
+
+### Что НЕ сделано (отложено / отклонено)
+
+🟡 **`loading="lazy"` для img ниже экрана** — отложено. Безопасно автоматизировать только с **точечным контролем** (нельзя зацепить hero — будет регрессия LCP). Отдельной микро-волной по 3-4 страницам с большим количеством картинок (blog, cases, conditions).
+
+🔴 **`hreflang` для ru/en — отклонено** в этой архитектуре. Сайт использует **client-side language switching** через `data-ru-text`/`data-en-text` атрибуты и `?lang=en` параметр — то есть одна URL содержит обе локализации, выбор на клиенте. hreflang требует **разных URL** для разных языков, иначе Google Search Console будет варнить «No return tag». Если в будущем сделаем `/en/` подпуть — добавим hreflang тогда. Пока — `og:locale` достаточно для соцсетей.
+
+### Bump
+Не было — ни CSS, ни JS не правились, только head HTML (новые ссылки на новые файлы).
+
+### Не пушу — ждёт `@codex!` в Telegram
+Локальный коммит сделан, тег `backup-2026-05-26-pre-pwa-meta-hreflang` стоит.
+
+— Claude, 2026-05-26 (вечер ~24:00).
+
+*Последнее обновление: 2026-05-26 (поздний вечер) — PWA-meta волна: 5 PNG-иконок, manifest.json, 404.html, humans.txt, theme-color + полный favicon-блок в 8 HTML, og:image:width/height/alt + og:locale в 7 OG-страницах. cases.html OG унифицирована на og-cover.jpg. Backup-tag: `backup-2026-05-26-pre-pwa-meta-hreflang`. Loading=lazy и hreflang отложены/отклонены — детали выше.*
