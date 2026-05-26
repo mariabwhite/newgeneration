@@ -111,8 +111,6 @@ canvas {
   margin: 0;
   font-family: var(--text-font), system-ui, sans-serif;
   font-weight: 500;
-  /* Force own stacking context — prevents some iOS sticky glitches in transformed ancestors */
-  will-change: transform;
 }
 body.light .topbar { background: var(--bg); border-bottom-color: var(--line); }
 
@@ -594,25 +592,28 @@ body.mobile-menu-lock { overflow: hidden; }
   .control-btn--active { padding: 0 8px; font-size: 8.5px; }
 }
 
-/* iOS/iPadOS Safari can let sticky headers drift below the visual viewport
-   while the browser chrome collapses. On touch-sized layouts we pin the
-   site topbar to the viewport and reserve its height in the document flow. */
+/* iOS/iPadOS Safari separates the layout viewport from the visible viewport
+   while browser chrome collapses. JS keeps --topbar-visual-offset in sync. */
 @media (max-width: 1024px) {
-  :root { --topbar-fixed-height: 64px; }
+  :root {
+    --topbar-fixed-height: 64px;
+    --topbar-visual-offset: 0px;
+  }
 
   body {
-    padding-top: calc(var(--topbar-fixed-height) + env(safe-area-inset-top, 0px));
+    padding-top: calc(var(--topbar-fixed-height) + var(--topbar-visual-offset, 0px) + env(safe-area-inset-top, 0px));
   }
 
   .topbar {
     position: fixed;
-    top: 0;
+    top: var(--topbar-visual-offset, 0px);
     right: 0;
     left: 0;
     min-height: calc(var(--topbar-fixed-height) + env(safe-area-inset-top, 0px));
     padding-top: calc(10px + env(safe-area-inset-top, 0px));
     z-index: 1000;
-    transform: translateZ(0);
+    transform: none;
+    will-change: auto;
   }
 }
 

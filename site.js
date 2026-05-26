@@ -109,6 +109,36 @@ function markActiveNav() {
   });
 }
 
+function initTopbarViewportPin() {
+  const topbar = document.querySelector(".topbar");
+  if (!topbar || !window.matchMedia("(max-width: 1024px)").matches) return;
+
+  const root = document.documentElement;
+  let rafId = 0;
+
+  function sync() {
+    rafId = 0;
+    const viewport = window.visualViewport;
+    const offset = viewport ? Math.max(0, Math.round(viewport.offsetTop || 0)) : 0;
+    const height = Math.ceil(topbar.getBoundingClientRect().height || 64);
+    root.style.setProperty("--topbar-visual-offset", offset + "px");
+    root.style.setProperty("--topbar-fixed-height", height + "px");
+  }
+
+  function requestSync() {
+    if (rafId) return;
+    rafId = window.requestAnimationFrame(sync);
+  }
+
+  sync();
+  window.addEventListener("resize", requestSync, { passive: true });
+  window.addEventListener("orientationchange", requestSync, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", requestSync, { passive: true });
+    window.visualViewport.addEventListener("scroll", requestSync, { passive: true });
+  }
+}
+
 function initMobileMenu() {
   const topbar = document.querySelector(".topbar");
   const topnav = document.querySelector(".topnav");
@@ -186,5 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setLanguage(requestedLang || (storedLang === "en" ? "en" : "ru"));
 
   initMobileMenu();
+  initTopbarViewportPin();
   markActiveNav();
 });

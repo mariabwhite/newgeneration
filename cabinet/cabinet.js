@@ -1641,9 +1641,45 @@
 
   /* ---------- topbar helpers ---------- */
 
+  function initTopbarViewportPin() {
+    const topbar = document.querySelector(".topbar");
+    if (!topbar || !window.matchMedia("(max-width: 1024px)").matches) return;
+
+    const root = document.documentElement;
+    let rafId = 0;
+
+    function sync() {
+      rafId = 0;
+      const viewport = window.visualViewport;
+      const offset = viewport ? Math.max(0, Math.round(viewport.offsetTop || 0)) : 0;
+      const height = Math.ceil(topbar.getBoundingClientRect().height || 64);
+      root.style.setProperty("--topbar-visual-offset", offset + "px");
+      root.style.setProperty("--topbar-fixed-height", height + "px");
+    }
+
+    function requestSync() {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(sync);
+    }
+
+    sync();
+    window.addEventListener("resize", requestSync, { passive: true });
+    window.addEventListener("orientationchange", requestSync, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", requestSync, { passive: true });
+      window.visualViewport.addEventListener("scroll", requestSync, { passive: true });
+    }
+  }
+
   function wireSignOutButton(buttonId) {
     const btn = document.getElementById(buttonId);
     if (btn) btn.addEventListener("click", signOut);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTopbarViewportPin);
+  } else {
+    initTopbarViewportPin();
   }
 
   /* ---------- expose ---------- */
