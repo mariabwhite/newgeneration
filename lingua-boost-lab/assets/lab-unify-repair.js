@@ -28,6 +28,12 @@
     word-break: normal !important;
     hyphens: auto !important;
     -webkit-hyphens: auto !important;
+    /* Maria 27.05: «модули» (6 букв) разбивалось как «мо-/дули» на каталоге.
+       Не ломать короткие слова: минимум 8 букв всего, 4 до дефиса, 3 после. */
+    -webkit-hyphenate-limit-before: 4;
+    -webkit-hyphenate-limit-after: 3;
+    -webkit-hyphenate-limit-lines: 2;
+    hyphenate-limit-chars: 8 4 3;
   }
   .canon-l-hero-meta {
     flex-wrap: wrap !important;
@@ -44,6 +50,25 @@
   /* A1/уровень-заголовок — отдельный gap от плашки */
   .canon-l-hero-title {
     margin-top: 8px !important;
+  }
+  /* Lesson Flow карточки (1-5 шагов урока) — Maria 27.05 file_50:
+     текст «Активна / Lear-n / Итогово / Reading Check» обрезался справа.
+     Уменьшаем padding-left (был 86px под крупную иконку), убираем min-height,
+     разрешаем перенос по слогам. */
+  .flow-card {
+    padding: 22px 14px 16px 66px !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    min-width: 0 !important;
+  }
+  .flow-card strong,
+  .flow-card small {
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+    display: block;
+    max-width: 100%;
   }
   /* Unify lesson banner widths so blocks line up at one column width.
      Maria 27.05: «все блоки разной ширины». */

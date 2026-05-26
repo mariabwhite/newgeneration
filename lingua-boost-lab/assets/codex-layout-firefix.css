@@ -117,9 +117,12 @@ body:has(.fc-grid) .fc-back {
 }
 body:has(.fc-grid) .fc-word {
   max-width: 100% !important;
-  overflow-wrap: anywhere !important;
+  /* Maria 27.05: «have/brea/kfas/t», «stu/dy», «go/to/cla/ss» — слова рвались по буквам.
+     anywhere → break-word: ломаем ТОЛЬКО если слово реально не помещается. */
+  overflow-wrap: break-word !important;
   word-break: normal !important;
   hyphens: auto !important;
+  -webkit-hyphens: auto !important;
   font-size: clamp(18px, 1.75vw, 24px) !important;
   line-height: 1.02 !important;
   letter-spacing: 0 !important;
@@ -129,7 +132,12 @@ body:has(.fc-grid) .fc-hint { flex-shrink: 0 !important; }
 body:has(.mem-grid) .mem-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
 body:has(.mem-grid) .mem-card { min-width: 0 !important; }
 body:has(.mem-grid) .mc-front,
-body:has(.mem-grid) .mc-back { overflow-wrap: anywhere !important; }
+body:has(.mem-grid) .mc-back {
+  /* Та же фикса для memory-карточек */
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+}
 
 @media (max-width: 900px) {
   :root { --codex-lesson-shell: min(100% - 28px, 1320px); }
