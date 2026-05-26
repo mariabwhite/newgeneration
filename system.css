@@ -594,6 +594,28 @@ body.mobile-menu-lock { overflow: hidden; }
   .control-btn--active { padding: 0 8px; font-size: 8.5px; }
 }
 
+/* iOS/iPadOS Safari can let sticky headers drift below the visual viewport
+   while the browser chrome collapses. On touch-sized layouts we pin the
+   site topbar to the viewport and reserve its height in the document flow. */
+@media (max-width: 1024px) {
+  :root { --topbar-fixed-height: 64px; }
+
+  body {
+    padding-top: calc(var(--topbar-fixed-height) + env(safe-area-inset-top, 0px));
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: calc(var(--topbar-fixed-height) + env(safe-area-inset-top, 0px));
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    z-index: 1000;
+    transform: translateZ(0);
+  }
+}
+
 /* CANONICAL HERO FROM INDEX */
 .hero {
   position: relative;
