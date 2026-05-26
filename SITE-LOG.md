@@ -785,3 +785,58 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 — Claude, 2026-05-22 (поздний вечер).
 
 *Последнее обновление: 2026-05-22 (поздний вечер) — Mobile K-1 волна 2: фикс H/I/J/F/G. Главное: восстановлен `<` потерянный моим прошлым bump-скриптом. Lab (K) — отдельной волной по явному запросу.*
+
+---
+
+## День 9 · 2026-05-26 — Волна полировки после внешнего аудита Gemini («Джеми»)
+
+### Контекст
+Маша принесла внешний разбор сайта от Gemini. Высокая оценка по архитектуре, SEO, микроразметке. Конкретные шероховатости: дублирование inline-стилей, `noindex` на диагностическом тесте, MutationObserver в `cases.html`, неоптимизированные OG-картинки. Решили: автоматизируемые куски делаю в одну волну; рефактор inline CSS откладываем на отдельный спринт (К-17 закрыт частично 22.05, осталось cases/conditions/programs).
+
+**Backup-tag перед волной:** `backup-2026-05-26-pre-og-cleanup-mutationobserver`
+
+### Что сделано
+
+**1. OG-картинки → единый `og-cover.jpg` (1200×630)**
+- Исходники `maria-hero-premium.jpg` (1539×2760, портрет) и `maria-teacher.jpg` (854×1280, портрет) использовались как `og:image` — Telegram/VK кропали тонкой полоской из центра, лица не видно.
+- Создан `assets/og-cover.jpg` через `System.Drawing` — топ-кроп из `maria-hero-premium.jpg` (x=0, y=200, 1539×808), ресайз до 1200×630, JPEG q85. Результат: **73 КБ**.
+- В 6 HTML (`index`, `about-project`, `blog`, `conditions`, `programs`, `travel`) byte-level replace 12 строк: `og:image` и `twitter:image` теперь указывают на `og-cover.jpg`. JSON-LD `image` для `Person`/`EducationalOrganization` оставлен с оригиналами (там портрет уместен).
+- `<img src="assets/maria-hero-premium.jpg">` и `<img src="assets/maria-teacher.jpg">` в hero-секциях НЕ тронуты — это визуальные элементы, не OG.
+- Verify: все 6 HTML начинаются с `<!D`, заканчиваются `</html>`. Размер сошёлся: -10 байт (hero) или -5 (teacher) × 2 замены = ровно ожидаемое.
+
+**2. `diagnostic-test.html` открыт для поисковиков**
+- Удалена строка `<meta name="robots" content="noindex,nofollow">`.
+- В `sitemap.xml` добавлен `<url>` с `<loc>https://newgeneration-english.ru/diagnostic-test.html</loc>`, `lastmod=2026-05-26`, `priority=0.9`.
+- Маша подтвердила: тест — лид-магнит, должен ловить трафик по запросам типа «тест на уровень английского».
+
+**3. MutationObserver → custom event `nge-theme-changed`**
+- В `theme-cycle.js` после `syncLinks(lessonTheme)` (в функции `setTheme`) добавлен `window.dispatchEvent(new CustomEvent("nge-theme-changed", { detail: { theme, lessonTheme } }))`.
+- В `cases.html` строка 2157 заменена: `new MutationObserver(syncVideoPosters).observe(document.body, ...)` → `window.addEventListener("nge-theme-changed", syncVideoPosters)`. Логика та же (синхронизация постеров видео при смене темы), но без watching body.class — меньше лишних срабатываний.
+- **Bump:** `theme-cycle.js?v=9` → `?v=10` во всех 7 HTML (byte-level replace). Размер каждого +1 байт. Verify: head `<!D`, tail `</html>`.
+
+**4. `maria-hero-premium.jpg` оптимизация**
+- Hero на `index.html`, загружается всем посетителям. Было 1539×2760 / **513 КБ**.
+- Ресайз до 892×1600 (max 1600 по высоте, retina-friendly), JPEG q85 → **144 КБ** (**-72%**).
+- Бэкап-копия рядом: `maria-hero-premium-orig-backup.jpg` (можно удалить, если устроит результат, или откатить).
+
+### Что НЕ сделано (отложено)
+
+🟡 **87 других больших изображений** (>200 КБ) в `assets/` — список в `08_Projects/07_Маркетинг-лето-2026/...` или в отчёте сессии. Не тронуты, потому что:
+- `documents/` и `documents/teacher-documents/` — сканы дипломов/сертификатов в архивном качестве (А4 @ 300dpi). Ужимание убьёт читаемость.
+- `dynasty/` и `danilovy/` — исторические семейные фото. Высокое разрешение — это ценность.
+- Marketing-ассеты (`LAB.png`, `BLUE ASSETS.png`, `Лингвабуст 2.png` и др.) — Маше решать, нужны ли они в HD как исходники.
+- `case-library/`, `warm-words/`, `presentations/`, `results-oge-2025/` — большая часть тоже PNG со скриншотов уроков/результатов. По-хорошему — конвертить в JPEG q82 + ресайз, но это меняет тип файла → надо менять ссылки в HTML → не «автомат».
+
+🟡 **Вынос inline `<style>` для `cases.html` / `conditions.html` / `programs.html`** (продолжение К-17) — отложено как отдельный спринт (~2 часа по протоколу CLAUDE.md, одна страница за раз).
+
+🟡 **Форма захвата заявок на сайте** (вместо переброса в Telegram) — отдельный спринт, нужен бот + токен.
+
+🟡 **Мгновенный скоринг в diagnostic-test** — большая фича, делать после М-8 (Машин пересмотр содержания тестов).
+
+### Не пушу — ждёт `@codex!` в Telegram
+
+По правилам CLAUDE.md, GitHub-push — задача Codex. Локальный коммит сделан, тег `backup-2026-05-26-pre-og-cleanup-mutationobserver` стоит, working tree чистое. Маша по возвращении даёт `@codex!` либо просит меня отправить промт через AI Hub.
+
+— Claude, 2026-05-26 (вечер).
+
+*Последнее обновление: 2026-05-26 — волна полировки после аудита Gemini. OG-картинки → `og-cover.jpg` (-72% hero), diagnostic-test открыт для поиска + в sitemap, MutationObserver → event-based в cases.html (`theme-cycle.js?v=10`), maria-hero-premium.jpg 513→144 КБ. Backup-tag: `backup-2026-05-26-pre-og-cleanup-mutationobserver`.*

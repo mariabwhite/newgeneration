@@ -146,6 +146,9 @@
     writeStoredTheme(lessonTheme);
     syncLinks(lessonTheme);
 
+    /* Notify subscribers about theme change — lets pages skip MutationObserver on body.class */
+    try { window.dispatchEvent(new CustomEvent("nge-theme-changed", { detail: { theme: siteTheme, lessonTheme: lessonTheme } })); } catch (_e) {}
+
     /* Keep URL in sync — survives file:// origin isolation between pages */
     try {
       const _u = new URL(window.location.href);
