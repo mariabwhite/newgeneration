@@ -592,28 +592,26 @@ body.mobile-menu-lock { overflow: hidden; }
   .control-btn--active { padding: 0 8px; font-size: 8.5px; }
 }
 
-/* iOS/iPadOS Safari separates the layout viewport from the visible viewport
-   while browser chrome collapses. JS keeps --topbar-visual-offset in sync. */
+/* Mobile Safari: keep the site topbar in normal document flow.
+   It must scroll away with the page instead of sticking/jittering. */
 @media (max-width: 1024px) {
   :root {
     --topbar-fixed-height: 64px;
-    --topbar-visual-offset: 0px;
   }
 
   body {
-    padding-top: calc(var(--topbar-fixed-height) + var(--topbar-visual-offset, 0px) + env(safe-area-inset-top, 0px));
+    padding-top: 0 !important;
   }
 
   .topbar {
-    position: fixed;
-    top: var(--topbar-visual-offset, 0px);
-    right: 0;
-    left: 0;
-    min-height: calc(var(--topbar-fixed-height) + env(safe-area-inset-top, 0px));
-    padding-top: calc(10px + env(safe-area-inset-top, 0px));
-    z-index: 1000;
-    transform: none;
-    will-change: auto;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    z-index: 100;
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: auto !important;
   }
 }
 
