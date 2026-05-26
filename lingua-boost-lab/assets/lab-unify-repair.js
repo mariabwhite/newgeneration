@@ -31,6 +31,22 @@
   }
   .canon-l-hero-meta {
     flex-wrap: wrap !important;
+    /* "$ LAB --LEVEL" badge breathing room — Maria 27.05: «прилипает к A1, прячется за полосу» */
+    margin-top: 18px !important;
+    scroll-margin-top: 80px;
+  }
+  /* Unify lesson banner widths so blocks line up at one column width.
+     Maria 27.05: «все блоки разной ширины». */
+  .canon-l-hero,
+  .canon-l-hero-inner,
+  .canon-l-section,
+  .canon-l-card,
+  .scene-strip {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .canon-l-hero-inner > * {
+    max-width: 100% !important;
   }
   .scene-card {
     min-width: 0 !important;

@@ -2200,17 +2200,26 @@ body.light .cab-hw-allgreen { color: #1a6a3a; }
   -webkit-tap-highlight-color: rgba(255, 90, 31, 0.18) !important;
 }
 
-/* Focus ring on keyboard nav */
+/* Focus ring — BOTH :focus AND :focus-visible to cover Safari's persistent blue ring after tap */
+.cab-topbar a:focus,
 .cab-topbar a:focus-visible,
+.cab-topbar button:focus,
 .cab-topbar button:focus-visible,
+.topbar-tools a:focus,
 .topbar-tools a:focus-visible,
+.topbar-tools button:focus,
 .topbar-tools button:focus-visible,
+.cab-shell a:focus,
 .cab-shell a:focus-visible,
+.cab-shell button:focus,
 .cab-shell button:focus-visible,
+a.control-btn:focus,
 a.control-btn:focus-visible,
+button.control-btn:focus,
 button.control-btn:focus-visible {
   outline: 2px solid #FF5A1F !important;
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.15) !important;
 }
 
 /* Active (pressed) state on the two cabinet topbar buttons —
@@ -2231,4 +2240,39 @@ body.light .topbar-tools .control-btn:active {
   background: rgba(255, 90, 31, 0.12) !important;
   border-color: #FF5A1F !important;
   color: #FF5A1F !important;
+}
+
+/* === RESTING STATE — both cabinet topbar buttons orange by default === */
+/* Maria 27.05: "она как бы в спокойном режиме тоже должна быть оранжевая, а она только при клике" */
+.cab-topbar .cab-home-link,
+.cab-topbar .control-btn,
+.topbar-tools .cab-home-link,
+.topbar-tools .control-btn {
+  border: 1.5px solid #FF5A1F !important;
+  color: #FF5A1F !important;
+  background: transparent !important;
+}
+.cab-topbar .cab-home-link:hover,
+.cab-topbar .control-btn:hover,
+.topbar-tools .cab-home-link:hover,
+.topbar-tools .control-btn:hover {
+  background: rgba(255, 90, 31, 0.10) !important;
+  color: #FF5A1F !important;
+  border-color: #FF5A1F !important;
+}
+body.light .cab-topbar .cab-home-link,
+body.light .cab-topbar .control-btn,
+body.light .topbar-tools .cab-home-link,
+body.light .topbar-tools .control-btn {
+  border: 1.5px solid #FF5A1F !important;
+  color: #FF5A1F !important;
+  background: transparent !important;
+}
+body.light .cab-topbar .cab-home-link:hover,
+body.light .cab-topbar .control-btn:hover,
+body.light .topbar-tools .cab-home-link:hover,
+body.light .topbar-tools .control-btn:hover {
+  background: rgba(255, 90, 31, 0.08) !important;
+  color: #FF5A1F !important;
+  border-color: #FF5A1F !important;
 }
