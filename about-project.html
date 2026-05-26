@@ -541,6 +541,18 @@ body.light .neuro-definition strong { color: var(--text); }
   max-width: 1240px;
   margin: 0 auto 28px;
 }
+/* Special author bio block (was inline style on element — moved here so mobile
+   override actually works). Maria 27.05: фото перебивало текст на mobile. */
+.bio-layout--author {
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 28px;
+}
+@media (max-width: 768px) {
+  .bio-layout,
+  .bio-layout--author { grid-template-columns: 1fr !important; gap: 20px; }
+  .bio-layout .bio-photo,
+  .bio-layout--author .bio-photo { max-width: 100%; margin: 0 auto; }
+}
 .document-box {
   margin-top: 24px;
   padding: 22px;
@@ -801,7 +813,7 @@ body.light .neuro-definition strong { color: var(--text); }
       <div class="articles-grid">
         <div class="article-card">
           <h3 data-ru="Об авторе системы" data-en="About the author">Об авторе системы</h3>
-          <div class="bio-layout" style="grid-template-columns: minmax(260px, 420px) 1fr; align-items: center; gap: 28px;">
+          <div class="bio-layout bio-layout--author">
             <div class="bio-photo hero-media">
               <img src="assets/maria-teacher.jpg" alt="Мария Витальевна" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 240%27%3E%3Crect width=%27200%27 height=%27240%27 fill=%27%23141414%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-size=%2714%27 fill=%27%236a6a6a%27 text-anchor=%27middle%27%3EMARIA%3C/text%3E%3C/svg%3E'">
               <div class="hero-media-frame"></div>
