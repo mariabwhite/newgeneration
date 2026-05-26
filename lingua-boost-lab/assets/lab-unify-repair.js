@@ -102,6 +102,23 @@
     hyphens: auto !important;
     -webkit-hyphens: auto !important;
   }
+  /* P4: Lab topbar — scroll-away поведение как на main site (Codex db5e042).
+     На mobile топбар в нормальном потоке, уезжает вместе со страницей. */
+  .canon-l-topbar {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    z-index: 100 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: auto !important;
+  }
+  /* P6: Скрыть ghost concentric circles справа от уровней на каталоге Lab.
+     Maria 27.05 file_48: «o o» рядом с A1 смотрятся непонятно на mobile. */
+  .level-section::before {
+    display: none !important;
+  }
 }`;
 
   function injectCriticalCss(){
@@ -110,6 +127,18 @@
     style.setAttribute("data-lab-unify-critical", "true");
     style.textContent = criticalCss;
     document.head.appendChild(style);
+  }
+
+  /* Maria 27.05: «LinguaBoost Lab орёт при входе». Дополнительная защита:
+     при загрузке любой Lab-страницы немедленно отменяем любую речь, которая
+     могла начаться. Сам speak() в studio-shell/teaser вызывается только по клику,
+     но если где-то остался артефакт — этот стоп его перекроет. */
+  function stopAutoSpeech(){
+    try {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    } catch(_) {}
   }
 
   var levelCanonCss = `
@@ -484,6 +513,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
   function init(){
     injectCriticalCss();
     injectLevelCanonCss();
+    stopAutoSpeech();
     classifyLesson();
     lockMobileWidths();
     lockDesktopCanon();
