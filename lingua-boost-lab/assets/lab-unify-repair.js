@@ -31,9 +31,19 @@
   }
   .canon-l-hero-meta {
     flex-wrap: wrap !important;
-    /* "$ LAB --LEVEL" badge breathing room — Maria 27.05: «прилипает к A1, прячется за полосу» */
-    margin-top: 18px !important;
-    scroll-margin-top: 80px;
+    /* "$ LAB --LEVEL" badge breathing room — Maria 27.05 (повторно): «прилипает к A1, прячется за полосу».
+       Усилено до 36px, плюс margin-bottom чтобы A1 не липла к фиолетовой плашке. */
+    margin-top: 36px !important;
+    margin-bottom: 18px !important;
+    scroll-margin-top: 100px;
+  }
+  /* Hero block itself — больше воздуха сверху, чтобы Codex'овский fixed-topbar не наезжал */
+  .canon-l-hero {
+    padding-top: 24px !important;
+  }
+  /* A1/уровень-заголовок — отдельный gap от плашки */
+  .canon-l-hero-title {
+    margin-top: 8px !important;
   }
   /* Unify lesson banner widths so blocks line up at one column width.
      Maria 27.05: «все блоки разной ширины». */
