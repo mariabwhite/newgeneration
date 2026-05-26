@@ -119,6 +119,61 @@
   .level-section::before {
     display: none !important;
   }
+  /* P2: Бургер-меню для .canon-l-nav на уроках. Maria 27.05: «ЦЕЛЬ/ГРАММАТИКА/
+     ПРАКТИКА/... — много, полоса жирная, РЕЗУЛЬТАТ обрезается. Сделай сэндвич». */
+  .canon-l-nav.has-burger {
+    position: relative !important;
+  }
+  .canon-l-nav.has-burger .canon-l-link {
+    display: none !important;
+  }
+  .canon-l-nav.has-burger.is-open .canon-l-link {
+    display: block !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid rgba(154, 122, 217, 0.18) !important;
+  }
+  .canon-l-burger {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: transparent !important;
+    border: 1.5px solid rgba(154, 122, 217, 0.34) !important;
+    border-radius: 10px !important;
+    padding: 8px 14px !important;
+    font-family: var(--mono, "JetBrains Mono", monospace) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: var(--text, #1a1326) !important;
+    cursor: pointer !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+  }
+  .canon-l-burger:hover,
+  .canon-l-burger.is-open {
+    border-color: #FF5A1F !important;
+    color: #FF5A1F !important;
+  }
+  .canon-l-burger .canon-l-burger-icon {
+    font-size: 16px !important;
+    line-height: 1 !important;
+  }
+  .canon-l-nav.has-burger.is-open {
+    display: block !important;
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 200 !important;
+    background: var(--bg-card, #fff) !important;
+    border: 1px solid rgba(154, 122, 217, 0.22) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.12) !important;
+    padding: 4px 0 !important;
+  }
+}
+/* P2 desktop: бургер не нужен — табы помещаются */
+@media (min-width: 1025px) {
+  .canon-l-burger { display: none !important; }
 }`;
 
   function injectCriticalCss(){
@@ -139,6 +194,62 @@
         window.speechSynthesis.cancel();
       }
     } catch(_) {}
+  }
+
+  /* P2: Бургер-меню для .canon-l-nav когда табов > 4 (уроки).
+     На каталоге Lab обычно 4 таба — не трогаем. На уроках — 6+ табов
+     («Цель/Грамматика/Практика/Задания/Чтение/Результат») обрезаются на mobile. */
+  function setupNavBurger(){
+    var navs = document.querySelectorAll(".canon-l-nav");
+    if (!navs.length) return;
+    navs.forEach(function(nav){
+      var links = nav.querySelectorAll(".canon-l-link");
+      if (links.length <= 4) return; // 4 и меньше — помещаются
+      if (nav.classList.contains("has-burger")) return; // уже обработан
+
+      nav.classList.add("has-burger");
+
+      // Кнопка ☰
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "canon-l-burger";
+      btn.setAttribute("aria-label", "Меню урока");
+      btn.setAttribute("aria-expanded", "false");
+      btn.innerHTML = '<span class="canon-l-burger-icon">☰</span><span>Меню</span>';
+
+      // Вставить кнопку перед nav
+      nav.parentNode.insertBefore(btn, nav);
+
+      function toggle(){
+        var open = !nav.classList.contains("is-open");
+        nav.classList.toggle("is-open", open);
+        btn.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        toggle();
+      });
+
+      // Клик по ссылке закрывает меню (чтобы не висело при scroll)
+      links.forEach(function(link){
+        link.addEventListener("click", function(){
+          nav.classList.remove("is-open");
+          btn.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Клик вне nav — закрыть
+      document.addEventListener("click", function(e){
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+          nav.classList.remove("is-open");
+          btn.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
   }
 
   var levelCanonCss = `
@@ -514,6 +625,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
     injectCriticalCss();
     injectLevelCanonCss();
     stopAutoSpeech();
+    setupNavBurger();
     classifyLesson();
     lockMobileWidths();
     lockDesktopCanon();
