@@ -955,3 +955,78 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 — Claude, 2026-05-26 (ночь ~01:00).
 
 *Последнее обновление: 2026-05-27 (ночь) — Mobile polish волна 3: diagnostic-test topbar opacity, conditions h1 hyphens+уменьшенный clamp, programs hero-bg display:none на mobile, новая sticky-кнопка «↑ К уровням» в diagnostic, оранжевый focus-ring в cabinet. Backup-tag: `backup-2026-05-26-pre-mobile-polish`.*
+
+---
+
+## День 10 · 2026-05-27 — Большая волна полировки + Lab UX + блог-перепись
+
+### Контекст
+Длинная ночная сессия — Маша тестила на iPhone 16 Pro Max и iPad, прислала ~20 скриншотов, мы с Codex итерировали по очереди. Codex упирался в OpenAI 429-cooldown (ChatGPT Plus ≠ API лимиты), Claude работала автономно когда Codex был offline. **8 локальных коммитов Claude'a** + параллельные коммиты Codex (`8f58e79 Fix mobile topbar pinning`, `f09707d Fix iOS topbar with visual viewport offset`, `db5e042 Let mobile topbar scroll away`).
+
+**Backup-tags поставлены:**
+- `backup-2026-05-26-pre-pwa-meta-hreflang`
+- `backup-2026-05-26-pre-mobile-polish`
+- `backup-2026-05-27-pre-blog-rewrite`
+
+### Что сделано (по коммитам Claude)
+
+**1. `0fdd513` Cabinet: оранжевые кнопки в покое (bump v=25)**
+- Восстановила orange-state border 1.5px solid #FF5A1F (Маша: «в спокойном тоже должна быть оранжевая»)
+- Bumpнула `cabinet.css?v=24 → v=25` — Safari принудительно перетянул свежий CSS
+- Codex чуть подправил толщину (тонкая в покое, толстая на hover) — оставила его рефайнмент
+
+**2. `12f9805` About-project: bio-photo на mobile**
+- Root cause: `<div class="bio-layout" style="grid-template-columns: 260px 1fr">` — inline-style переопределял media-query → 2 колонки на mobile
+- Fix: убрала inline style → `class="bio-layout--author"` + CSS-классы. На ≤768px grid 1fr, фото сверху, текст под
+
+**3. `89a5d0a` Programs: «белые блоки» → cream**
+- `.p-tile` и `.flip-front/back` в `body.light[data-page="programs"]`: `background: #fffdf9` → `var(--bg)` (cream)
+- Карточки сливаются с фоном, читаются через оранжевую границу — без «полу-белых пятен»
+
+**4. `14c7594` Blog rewrite — sections 01-03**
+- Маша: «выцепи из блога лист нетипичных и неискренних формулировок — статьи под мой стиль». Династия НЕ ТРОНУТА (раздел 06).
+- Переписаны 14 параграфов в Дзен-канал, Куба, Топ-5 стран, Нейронки
+- Принципы: убраны параллельные «не Х, а У», штампы («через смысл», «гладкая открытка», «главный герой»), пафосные финалы, антропоморфизация («песочница росла без страха»)
+- EN-spans синхронизированы где bilingual
+
+**5. `650cd2e` Lab badge spacing reinforce**
+- `.canon-l-hero-meta`: margin-top 18px → 36px + margin-bottom 18px (плашка `$ LAB --LEVEL` не прилипает к A1, не прячется за topbar)
+- + `.canon-l-hero` padding-top 24px + `.canon-l-hero-title` margin-top 8px
+
+**6. `c199117` Lab word-breaks + flow-cards + hyphenate**
+- `codex-layout-firefix.css` `.fc-word`: `overflow-wrap: anywhere → break-word` (фикс «have/brea/kfas/t», «stu/dy» на флэшкартах)
+- `lab-unify-repair.js` `.flow-card`: padding-left 86 → 66px, min-height auto, overflow visible (Lesson Flow карточки больше не обрезают текст)
+- `.canon-l-hero-title` `hyphenate-limit-chars: 8 4 3` — короткие слова (модули) НЕ разбиваются, длинные (Classroom) — да
+
+**7. `004987e` Lab topbar scroll-away + ghost circles + speechSynthesis stop**
+- `.canon-l-topbar` на ≤1024px → `position: relative` (mirror Codex'ового db5e042 — уезжает со страницей)
+- `.level-section::before` (concentric circles справа от уровней) — `display: none` на mobile
+- `stopAutoSpeech()` в init() — `window.speechSynthesis.cancel()` при загрузке. Превентивная защита от автозвука («LinguaBoost Lab орёт при входе»)
+
+**8. `87ad1da` Lab burger menu для tabs (6+ links)**
+- Маша: «ЦЕЛЬ/ГРАММАТИКА/ПРАКТИКА/ЗАДАНИЯ/ЧТЕНИЕ/РЕЗУЛЬТАТ — много, полоса жирная, РЕЗУЛЬТАТ обрезается. Сделай сэндвич»
+- JS `setupNavBurger()` в init() добавляет кнопку `☰ Меню` перед каждой `.canon-l-nav` с >4 ссылками
+- На mobile ссылки спрятаны, клик ☰ → выпадушка вертикальный список. Каталог Lab (4 таба) не задет.
+
+### Codex's контрибуция в эту волну
+- `8f58e79 Fix mobile topbar pinning on iOS Safari` — первая попытка
+- `f09707d Fix iOS topbar with visual viewport offset` — через CSS variable + JS
+- `db5e042 Let mobile topbar scroll away` — финальное решение (после уточнения Маши: «не sticky, пусть уезжает»)
+- Запушил все Claude'овские коммиты на GitHub Pages по запросу через @codex! в Telegram
+
+### Hub addons (Claude, отдельная мини-волна)
+В папке `AI_Chat_Hub/`:
+- `agents-monitor.html` — live-дашборд: статусы Claude/Codex/GPT/Perp, очередь зависших промтов, ping-кнопки
+- `watchdog.py` — фоновый Python автопингер зависших @-промтов через 5 мин
+- `archive_chat.py` — поиск/экспорт/архивация чата (без блокировки server)
+- `annotate_screenshot.py` — распознавание красных пометок (Pillow)
+- `AGENTS-PLAYBOOK.md` — правила совместной работы Claude+Codex+GPT+Perplexity, зоны ответственности, параллельная работа
+
+Ярлык на десктопе: «Hub Monitor.lnk» открывает agents-monitor.html.
+
+### Что НЕ запушено (на момент записи)
+8 коммитов локально впереди origin, отправлен промт @codex! 02:21:53. Codex недавно вернулся из 429-cooldown — должен запушить в течение 1-5 мин.
+
+— Claude, 2026-05-27 (03:00).
+
+*Последнее обновление: 2026-05-27 ~03:00 — День 10 большая волна: cabinet orange v=25, about-project bio-photo mobile, programs «белые блоки» → cream, blog sections 01-03 переписаны (династия не тронута), Lab badge spacing + word-breaks + topbar scroll-away + ghost circles hide + autoplay defence + бургер-меню. Codex параллельно: 3 коммита sticky/scroll-away. Hub addons: monitor + watchdog + archiver + annotation + playbook. Backup-tags: pre-pwa-meta-hreflang, pre-mobile-polish, pre-blog-rewrite.*
