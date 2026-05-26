@@ -76,15 +76,16 @@
 body.en:not(.lang-ready) { visibility: hidden; }/* в”Ђв”Ђв”Ђ BASE в”Ђв”Ђв”Ђ */
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }*,
 *::before,
-*::after { box-sizing: border-box; }body {
+*::after { box-sizing: border-box; }html { overflow-x: clip; }body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--text-font);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden; /* fallback for iOS 15/older */
-  overflow-x: clip;   /* modern: prevents horizontal scroll WITHOUT breaking position:sticky on .topbar */
+  overflow-x: clip;   /* modern: prevents horizontal scroll WITHOUT breaking position:sticky on .topbar. */
+  /* NOTE: removed overflow-x:hidden fallback — it broke position:sticky on iPadOS 16-17 Safari. */
+  /* If iOS 15 / older support is needed, gate body{overflow-x:hidden} behind @supports not (overflow-x: clip). */
 }img,
 video,
 canvas {
@@ -92,6 +93,7 @@ canvas {
   height: auto;
 }svg { max-width: 100%; }pre { overflow-x: auto; }/* --- TOPBAR -- canonical etalon A (paper + ink mark + corner accent) --- */
 .topbar {
+  position: -webkit-sticky; /* iOS Safari fallback */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -109,6 +111,8 @@ canvas {
   margin: 0;
   font-family: var(--text-font), system-ui, sans-serif;
   font-weight: 500;
+  /* Force own stacking context — prevents some iOS sticky glitches in transformed ancestors */
+  will-change: transform;
 }
 body.light .topbar { background: var(--bg); border-bottom-color: var(--line); }
 
