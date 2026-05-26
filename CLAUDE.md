@@ -101,4 +101,82 @@ Edit tool иногда обрезает хвост файлов с кирилл�
 
 ---
 
-*Последняя правка: 2026-05-15. При обновлении правил — добавляй дату.*
+## Механика: Claude ↔ Codex ↔ Maria (добавлено 2026-05-24)
+
+Реальный рабочий процесс по сайту — кто что делает и через что.
+
+### Распределение ролей
+- **Claude (эта сессия)** — править файлы локально, читать/диагностировать, обновлять `SITE-LOG.md` и `Шорт лист`. **НЕ пушит в GitHub.**
+- **Codex** (в Telegram через AI Hub) — пушит локальные коммиты на GitHub Pages master, может делать свои правки по конкретному запросу. Триггер `@codex!` (терминальный режим, может запускать команды).
+- **Maria** — принимает решения по дизайну/контенту, проверяет результат на телефоне (`mariabwhite.github.io`), даёт обратную связь.
+
+### AI Hub (мост Claude ↔ Telegram)
+- Локальный HTTP-сервер: `http://127.0.0.1:8765`
+- Chat ID Маши: `335307188`
+- Папка моста: `08_Projects\03_AI Hub — Telegram чат, агенты, диктовка\AI_Chat_Hub\`
+- Картинки из Telegram сохраняются в `AI_Chat_Hub\telegram_media\` — я их читаю как multimodal через Read tool.
+
+**Отправить промт в Telegram-чат Маши/Codex:**
+```powershell
+$body = @{ chatId = "335307188"; text = "@codex! ..." } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://127.0.0.1:8765/api/send-telegram" -Method Post -ContentType "application/json; charset=utf-8" -Body $body
+```
+
+**Прочитать всю историю чата:**
+```powershell
+Invoke-RestMethod -Uri "http://127.0.0.1:8765/api/messages" -Method Get
+```
+
+### Стандартный цикл правок «волной»
+1. **Backup-tag** перед волной: `git tag backup-YYYY-MM-DD-pre-<scope>`.
+2. **Правки** в коде (CSS/JS/HTML).
+3. **Bump version** в HTML-ссылках на CSS/JS — иначе браузеры берут закэшированный старый файл. Делать **только byte-level replace** (см. ниже).
+4. **Verify** — после каждого bump проверить что HTML начинается с `3C 21 44` (`<!D`) и заканчивается на `</html>`.
+5. **Обновить `SITE-LOG.md`** новой записью + при необходимости `Шорт лист`.
+6. **Локальный `git commit`** с понятным сообщением + Co-Authored-By Claude.
+7. **Промт `@codex!` в Telegram** через AI Hub — он запушит на GitHub Pages.
+8. **Проверка Маши** на телефоне (`mariabwhite.github.io`), скрины через Telegram → я читаю и реагирую.
+
+### Bump версий — byte-level через PowerShell
+**Не использовать UTF8.GetString → -replace → UTF8.GetBytes** — этот путь однажды съел первый байт `<` во всех 13 HTML (волна 1 mobile K-1, 2026-05-22). Корень не понят до конца, но симптом: BOM появлялся вместо `<`.
+
+**Правильно — byte-level pattern replace:**
+```powershell
+function Replace-BytesInFile {
+  param([string]$Path, [string]$Search, [string]$Replace)
+  $b = [System.IO.File]::ReadAllBytes($Path)
+  $s = [System.Text.Encoding]::UTF8.GetBytes($Search)
+  $r = [System.Text.Encoding]::UTF8.GetBytes($Replace)
+  $out = New-Object System.Collections.Generic.List[byte]
+  $i = 0
+  while ($i -lt $b.Length) {
+    $match = ($i + $s.Length -le $b.Length)
+    if ($match) { for ($j = 0; $j -lt $s.Length; $j++) { if ($b[$i+$j] -ne $s[$j]) { $match = $false; break } } }
+    if ($match) { foreach ($byte in $r) { $out.Add($byte) }; $i += $s.Length }
+    else { $out.Add($b[$i]); $i++ }
+  }
+  [System.IO.File]::WriteAllBytes($Path, $out.ToArray())
+}
+```
+ASCII-safe, кириллицу не трогает, BOM сохраняет/не добавляет.
+
+### Backup-теги (откатные точки)
+Все теги — в `git tag | grep backup-`. Откат: `git reset --hard <tag>`.
+
+Сегодняшние:
+- `backup-2026-05-21-pre-seo-foundation`
+- `backup-2026-05-22-pre-diagnostic-inline-extract`
+- `backup-2026-05-22-pre-k17-blog`
+- `backup-2026-05-22-pre-mobile-K1`
+
+### Шорт-лист / Резюме сессии — НЕ в git
+В `.gitignore`: `Шорт лист - актуальные дела.md`, `Резюме сессии*.md`, `Listening-скрипты*.md`. Это локальные рабочие документы Маши. SITE-LOG — единственный canonical-журнал в git.
+
+### Источник правды по статусам
+- **Что сделано** → `SITE-LOG.md` (по дням)
+- **Что осталось делать** → `Шорт лист - актуальные дела.md` (М-* для Маши, К-* для Claude, C-* для Codex)
+- **Правила работы AI** → этот файл
+
+---
+
+*Последняя правка: 2026-05-24 — добавлен раздел «Механика». При обновлении правил — добавляй дату.*

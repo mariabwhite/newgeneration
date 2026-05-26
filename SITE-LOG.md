@@ -768,6 +768,8 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 
 **Bump:** system.css v=31→v=32, site.js v=10→v=11, blog.css v=1→v=2. Через byte-level replace (без BOM-наркомании) — проверено: все 13 HTML начинаются с `3C 21 44 4F` (`<!DO`).
 
+**Между моими двумя push'ами Кодекс закоммитил `7114dbe Pages: add nojekyll marker`** — это для GitHub Pages (без него Jekyll-движок может пропускать файлы с `_`-префиксом, типа `_archive/`).
+
 ### Open issues end-of-day 8 (поздний вечер)
 
 🟡 **K · Lab mobile topbar** — высокий header, sticky закрывает контент. Отложено.
