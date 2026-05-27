@@ -771,7 +771,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
     overflow-x: hidden !important;
   }
 
-  .canon-l-topbar {
+  html body .canon-l-topbar {
     position: relative !important;
     width: 100vw !important;
     max-width: 100vw !important;
@@ -786,22 +786,22 @@ body[data-lb-page="english-booster"] .core-line-chip {
     gap: 10px !important;
     overflow: visible !important;
   }
-  .canon-l-brand {
+  html body .canon-l-brand {
     grid-area: brand !important;
     width: auto !important;
     min-width: 0 !important;
     max-width: 100% !important;
     gap: 10px !important;
   }
-  .canon-l-mark {
+  html body .canon-l-mark {
     width: 30px !important;
     height: 30px !important;
     min-width: 30px !important;
   }
-  .canon-l-copy {
+  html body .canon-l-copy {
     min-width: 0 !important;
   }
-  .canon-l-name {
+  html body .canon-l-name {
     display: block !important;
     max-width: 100% !important;
     white-space: nowrap !important;
@@ -810,12 +810,12 @@ body[data-lb-page="english-booster"] .core-line-chip {
     font-size: 16px !important;
     line-height: 1.1 !important;
   }
-  .canon-l-sub,
-  .canon-l-crumbs,
-  .canon-l-tools .palette-select {
+  html body .canon-l-sub,
+  html body .canon-l-crumbs,
+  html body .canon-l-tools .palette-select {
     display: none !important;
   }
-  .canon-l-burger {
+  html body .canon-l-burger {
     grid-area: menu !important;
     position: static !important;
     display: inline-flex !important;
@@ -828,14 +828,14 @@ body[data-lb-page="english-booster"] .core-line-chip {
     border-radius: 10px !important;
     font-size: 0 !important;
   }
-  .canon-l-burger span:not(.canon-l-burger-icon) {
+  html body .canon-l-burger span:not(.canon-l-burger-icon) {
     display: none !important;
   }
-  .canon-l-burger .canon-l-burger-icon {
+  html body .canon-l-burger .canon-l-burger-icon {
     font-size: 18px !important;
     line-height: 1 !important;
   }
-  .canon-l-tools {
+  html body .canon-l-tools {
     grid-area: tools !important;
     position: absolute !important;
     top: 8px !important;
@@ -850,8 +850,8 @@ body[data-lb-page="english-booster"] .core-line-chip {
     width: 86px !important;
     max-width: 86px !important;
   }
-  .canon-l-tools .canon-l-pill,
-  .canon-l-tools button {
+  html body .canon-l-tools .canon-l-pill,
+  html body .canon-l-tools button {
     width: auto !important;
     min-width: 36px !important;
     max-width: 48px !important;
@@ -864,15 +864,15 @@ body[data-lb-page="english-booster"] .core-line-chip {
     letter-spacing: 0 !important;
     white-space: nowrap !important;
   }
-  .canon-l-nav.has-burger,
-  .canon-l-nav {
+  html body .canon-l-nav.has-burger,
+  html body .canon-l-nav {
     grid-column: 1 / -1 !important;
     min-width: 0 !important;
   }
-  .canon-l-nav.has-burger:not(.is-open) {
+  html body .canon-l-nav.has-burger:not(.is-open) {
     display: none !important;
   }
-  .canon-l-nav.has-burger.is-open {
+  html body .canon-l-nav.has-burger.is-open {
     position: absolute !important;
     top: calc(100% + 6px) !important;
     left: 10px !important;
@@ -881,7 +881,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
   }
 
   body.lb-level-a1 .step-tracker,
-  .canon-l-tracker {
+  html body .canon-l-tracker {
     position: relative !important;
     top: auto !important;
     width: calc(100% - 20px) !important;
