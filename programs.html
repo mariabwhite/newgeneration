@@ -201,11 +201,6 @@ body.light[data-page="programs"] .hero-bg-light { display: block; }
 /* Remove boxed hero image container on Programs */
 body[data-page="programs"] .hero-media { display: none !important; }
 
-@media (max-width: 768px) {
-  /* On mobile/tablet the watermark hero-image looks faded and competes with CTA — hide it cleanly. */
-  body[data-page="programs"] .hero-bg-wrap { display: none !important; }
-}
-
 @media (max-width: 900px) {
   body[data-page="programs"] .hero-bg-wrap {
     left: 50%;
@@ -222,6 +217,37 @@ body[data-page="programs"] .hero-media { display: none !important; }
 
   body[data-page="programs"] .hero-bg-edge {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  body[data-page="programs"] .hero-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body[data-page="programs"] .hero-tag { order: 1; }
+  body[data-page="programs"] .hero-grid { order: 2; }
+  body[data-page="programs"] .hero-bg-wrap { order: 3; }
+  body[data-page="programs"] .hero-stats { order: 4; }
+
+  body[data-page="programs"] .hero-bg-wrap {
+    position: relative;
+    display: block !important;
+    left: 50%;
+    right: auto;
+    top: auto;
+    width: min(100%, 560px);
+    margin: 18px 0 24px;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  body[data-page="programs"] .hero-bg-base {
+    opacity: 0.86;
+    filter: saturate(1.02) contrast(1.02);
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 }
 
