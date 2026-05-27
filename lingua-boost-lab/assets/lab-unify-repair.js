@@ -998,6 +998,23 @@ body[data-lb-page="english-booster"] .core-line-chip {
     color: var(--accent, #ff690a) !important;
     text-transform: uppercase !important;
   }
+
+  /* HERO PILL EQUALIZATION — A1/BONUS/SCHOOL WORDS/PRONOUNS равной ширины в 2 колонки */
+  html body .canon-l-hero-meta {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  html body .canon-l-hero-pill {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    justify-self: stretch !important;
+  }
 }
 `;
 
