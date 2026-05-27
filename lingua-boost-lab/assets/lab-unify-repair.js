@@ -763,12 +763,283 @@ body[data-lb-page="english-booster"] .core-line-chip {
   text-overflow:clip !important;
 }`;
 
+  var a1MobileFinalCss = `
+@media (max-width: 720px) {
+  body[data-lb-level="a1"].lb-level-a1,
+  body.lb-level-a1 {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  body.lb-level-a1 .canon-l-topbar {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 160px) 42px 86px !important;
+    grid-template-areas: "brand menu tools" !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 52px !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+    overflow: visible !important;
+  }
+  body.lb-level-a1 .canon-l-brand {
+    grid-area: brand !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 176px) !important;
+    gap: 8px !important;
+  }
+  body.lb-level-a1 .canon-l-mark {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+  }
+  body.lb-level-a1 .canon-l-copy {
+    min-width: 0 !important;
+  }
+  body.lb-level-a1 .canon-l-name {
+    display: block !important;
+    max-width: calc(100vw - 220px) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 17px !important;
+    line-height: 1 !important;
+  }
+  body.lb-level-a1 .canon-l-sub,
+  body.lb-level-a1 .canon-l-crumbs,
+  body.lb-level-a1 .canon-l-tools .palette-select {
+    display: none !important;
+  }
+  body.lb-level-a1 .canon-l-burger {
+    grid-area: menu !important;
+    position: absolute !important;
+    top: 8px !important;
+    right: 106px !important;
+    display: inline-flex !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 10px !important;
+    font-size: 0 !important;
+  }
+  body.lb-level-a1 .canon-l-burger span:not(.canon-l-burger-icon) {
+    display: none !important;
+  }
+  body.lb-level-a1 .canon-l-burger .canon-l-burger-icon {
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+  body.lb-level-a1 .canon-l-tools {
+    grid-area: tools !important;
+    position: absolute !important;
+    top: 8px !important;
+    right: 10px !important;
+    margin-left: 0 !important;
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    min-width: 0 !important;
+    width: 86px !important;
+    max-width: 86px !important;
+  }
+  body.lb-level-a1 .canon-l-tools .canon-l-pill,
+  body.lb-level-a1 .canon-l-tools button {
+    width: auto !important;
+    min-width: 36px !important;
+    max-width: 48px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 8px !important;
+    border-radius: 10px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+  }
+  body.lb-level-a1 .canon-l-nav.has-burger,
+  body.lb-level-a1 .canon-l-nav {
+    grid-column: 1 / -1 !important;
+    min-width: 0 !important;
+  }
+  body.lb-level-a1 .canon-l-nav.has-burger:not(.is-open) {
+    display: none !important;
+  }
+  body.lb-level-a1 .canon-l-nav.has-burger.is-open {
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+  }
+
+  body.lb-level-a1 .step-tracker,
+  body.lb-level-a1 .canon-l-tracker {
+    position: relative !important;
+    top: auto !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+    min-height: 32px !important;
+    margin: 8px auto 12px !important;
+    padding: 5px 8px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(56px, 1fr) auto !important;
+    gap: 7px !important;
+    align-items: center !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+  body.lb-level-a1 .step-name,
+  body.lb-level-a1 .step-count {
+    grid-column: auto !important;
+    max-width: 72px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 9px !important;
+    letter-spacing: 0 !important;
+  }
+  body.lb-level-a1 .step-track {
+    height: 4px !important;
+    min-width: 0 !important;
+  }
+
+  body.lb-level-a1 .vocab-grid,
+  body.lb-level-a1 .goal-grid,
+  body.lb-level-a1 .learn-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.lb-level-a1 .vocab-card,
+  body.lb-level-a1 .vocab-inner,
+  body.lb-level-a1 .vocab-face,
+  body.lb-level-a1 .vocab-en,
+  body.lb-level-a1 .practice-item,
+  body.lb-level-a1 .practice-q,
+  body.lb-level-a1 .bank,
+  body.lb-level-a1 .choice-row {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  body.lb-level-a1 :is(.vocab-word,.vocab-ipa,.word-chip,.sentence-chip,.test-build-chip,.choice,.answer-btn,.drop-slot,.practice-hint,.sample,.formula,.hero-lead,.friendly-lead,.block-intro,.practice-q) {
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    letter-spacing: 0 !important;
+  }
+  body.lb-level-a1 :is(.word-chip,.sentence-chip,.test-build-chip,.choice,.answer-btn,.drop-slot,.practice-hint) {
+    white-space: normal !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: auto !important;
+    line-height: 1.18 !important;
+  }
+  body.lb-level-a1 .vocab-word {
+    display: inline-block !important;
+    max-width: 100% !important;
+    font-size: clamp(16px, 4.4vw, 18px) !important;
+    line-height: 1.18 !important;
+  }
+
+  body.lb-level-a1 .grammar-table-wrap {
+    overflow: visible !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  body.lb-level-a1 .grammar-table,
+  body.lb-level-a1 .grammar-table thead,
+  body.lb-level-a1 .grammar-table tbody,
+  body.lb-level-a1 .grammar-table tr,
+  body.lb-level-a1 .grammar-table th,
+  body.lb-level-a1 .grammar-table td {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  body.lb-level-a1 .grammar-table thead {
+    display: none !important;
+  }
+  body.lb-level-a1 .grammar-table tr {
+    margin: 0 0 10px !important;
+    border: 1px solid var(--line, rgba(8,19,50,.12)) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: var(--surface-2, var(--surface, #fff)) !important;
+  }
+  body.lb-level-a1 .grammar-table td {
+    display: grid !important;
+    grid-template-columns: 86px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: start !important;
+    padding: 10px 11px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line, rgba(8,19,50,.12)) !important;
+    white-space: normal !important;
+  }
+  body.lb-level-a1 .grammar-table td:last-child {
+    border-bottom: 0 !important;
+  }
+  body.lb-level-a1 .grammar-table td::before {
+    content: attr(data-label) !important;
+    font-family: var(--mono, ui-monospace, monospace) !important;
+    font-size: 9px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    color: var(--accent, #ff690a) !important;
+    text-transform: uppercase !important;
+  }
+}
+`;
+
   function injectLevelCanonCss(){
     if(document.querySelector("style[data-lab-level-canon]")) return;
     var style = document.createElement("style");
     style.setAttribute("data-lab-level-canon", "true");
     style.textContent = levelCanonCss;
     document.head.appendChild(style);
+  }
+
+  function injectA1MobileFinalCss(){
+    var style = document.querySelector("style[data-lab-a1-mobile-final]");
+    if(!style){
+      style = document.createElement("style");
+      style.setAttribute("data-lab-a1-mobile-final", "true");
+      style.textContent = a1MobileFinalCss;
+    }
+    var target = document.body || document.documentElement || document.head;
+    if(style.parentNode !== target){
+      target.appendChild(style);
+    }
+  }
+
+  function labelA1GrammarTables(){
+    if(!document.body || document.body.dataset.lbLevel !== "a1") return;
+    document.querySelectorAll(".grammar-table").forEach(function(table){
+      var headers = Array.prototype.map.call(table.querySelectorAll("thead th"), function(th){
+        return th.textContent.trim();
+      });
+      if(!headers.length) return;
+      table.querySelectorAll("tbody tr").forEach(function(row){
+        Array.prototype.forEach.call(row.children, function(cell, index){
+          if(headers[index] && !cell.getAttribute("data-label")){
+            cell.setAttribute("data-label", headers[index]);
+          }
+        });
+      });
+    });
   }
 
   function classifyLesson(){
@@ -1038,6 +1309,8 @@ body[data-lb-page="english-booster"] .core-line-chip {
     stopAutoSpeech();
     setupNavBurger();
     classifyLesson();
+    injectA1MobileFinalCss();
+    labelA1GrammarTables();
     lockMobileWidths();
     lockDesktopCanon();
     hideFooterLogos();
@@ -1054,6 +1327,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
   if(document.readyState === "loading"){
     injectCriticalCss();
     injectLevelCanonCss();
+    injectA1MobileFinalCss();
     document.addEventListener("DOMContentLoaded", init);
   }else{
     init();
@@ -1062,6 +1336,8 @@ body[data-lb-page="english-booster"] .core-line-chip {
   window.addEventListener("resize", lockDesktopCanon);
   window.addEventListener("load", function(){
     classifyLesson();
+    injectA1MobileFinalCss();
+    labelA1GrammarTables();
     lockDesktopCanon();
     hideFooterLogos();
     lockLevelTypography();
