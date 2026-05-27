@@ -1029,4 +1029,48 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 
 — Claude, 2026-05-27 (03:00).
 
-*Последнее обновление: 2026-05-27 ~03:00 — День 10 большая волна: cabinet orange v=25, about-project bio-photo mobile, programs «белые блоки» → cream, blog sections 01-03 переписаны (династия не тронута), Lab badge spacing + word-breaks + topbar scroll-away + ghost circles hide + autoplay defence + бургер-меню. Codex параллельно: 3 коммита sticky/scroll-away. Hub addons: monitor + watchdog + archiver + annotation + playbook. Backup-tags: pre-pwa-meta-hreflang, pre-mobile-polish, pre-blog-rewrite.*
+---
+
+## День 11 · 2026-05-27 (день) — Audit closing: CTA на diagnostic + travel в футере
+
+### Контекст
+Пересмотр аудита 21.05 (`_archive/sessions-and-plans-2026-05/Аудит сайта - 2026-05-21.docx`). Большинство 12 рекомендаций уже закрыты в Днях 7–10. Остались два простых не-визуальных пункта, которые можно закрыть без браузерного прогона.
+
+Параллельно — аудит чистоты сайта:
+- `sitemap.xml`: все `<lastmod>` = 2026-05-21 → реальные mtime = 2026-05-27. Обновлён.
+- **Битые внутренние ссылки** на 8 главных + cabinet: 0. В Lab-уроках и DeepSeek-черновиках (read-only зоны) много битых `../../assets/...` — отчёт сохранён, для Codex.
+- **Dead anchors** `#fragment`: 0 на основном сайте.
+- **TODO / FIXME / XXX / HACK** в коде: 0 (только UI-текст «REVIEW» в Lab-тренере).
+- **alt-тексты**: все 42 картинки на 8 главных страницах имеют alt.
+- **`?theme=/?lang=` хардкоды**: в HTML нет (JS добавляет динамически, `robots.txt` блокирует через `Disallow: /*?theme=` и `/*?lang=`).
+
+### Что сделано
+
+| Файл | Правка | Размер |
+|---|---|---|
+| `sitemap.xml` | Все 8 `<lastmod>` → `2026-05-27` | — |
+| `index.html` | (1) В блок «01 · Кратко» добавлена третья кнопка `<a class="btn" href="diagnostic-test.html">Бесплатный тест уровня</a>` (рядом с PDF + Условия). (2) В `<footer>` параграф `<p class="footer-extra">` со ссылкой на `travel.html`. | 79394 → 79829 (+435) |
+| `cases.html` | (1) В `<div class="btn-row">` hero-блока добавлена кнопка `<a class="btn btn-ghost" href="diagnostic-test.html">Бесплатный тест уровня</a>`. (2) В `<footer>` параграф `footer-extra` со ссылкой на `travel.html`. | 82678 → 83141 (+463) |
+| `about-project.html` | В `<footer>` параграф `footer-extra` со ссылкой на `travel.html`. | +263 |
+| `programs.html` | То же | +263 |
+| `conditions.html` | То же | +263 |
+| `blog.html` | То же | +263 |
+
+### Что НЕ сделано (намеренно)
+
+- **`diagnostic-test.html`** — пропущена для footer-добавки. Эта страница имеет минимальный кастомный футер своей системы локализации (`<footer>New Generation English · Diagnostic Test · CEFR A1-C2</footer>`) — это интенционально для UX лид-магнита. Добавление ссылки на travel отвлекает от теста. Маша подтвердит — внести или нет.
+- **`cabinet/*.html`, `lingua-boost-lab/index.html`** — приватные / Lab-зоны, по CLAUDE.md §5 не трогаем.
+
+### Bump
+Не нужен — CSS/JS не правлены, только HTML.
+
+### Backup-tag
+`backup-2026-05-27-pre-audit-closing` — точка отката перед всей волной.
+
+### Не пушу — ждёт `@codex!` в Telegram
+
+7 правок локально готовы. Push на GitHub Pages — твой `@codex!`.
+
+— Claude, 2026-05-27 (день).
+
+*Последнее обновление: 2026-05-27 (день) — Audit closing: CTA на diagnostic с главной и из cases, travel в footer 6 страниц (diagnostic пропущена — минимальный футер), sitemap lastmod обновлён. Backup-tag: `backup-2026-05-27-pre-audit-closing`.*
