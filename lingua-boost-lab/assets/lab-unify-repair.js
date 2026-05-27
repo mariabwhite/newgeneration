@@ -10,6 +10,15 @@
     min-width: 0 !important;
     box-sizing: border-box !important;
   }
+  html,
+  body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  body[data-lb-level] main *:not(table):not(thead):not(tbody):not(tr):not(th):not(td):not(svg):not(path) {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
   .canon-l-hero-inner {
     margin-inline: auto !important;
     padding-inline: clamp(18px, 6vw, 28px) !important;
@@ -50,6 +59,8 @@
   /* A1/уровень-заголовок — отдельный gap от плашки */
   .canon-l-hero-title {
     margin-top: 8px !important;
+    font-size: clamp(2rem, 10vw, 2.6rem) !important;
+    line-height: 0.98 !important;
   }
   /* Lesson Flow карточки (1-5 шагов урока) — Maria 27.05 file_50:
      текст «Активна / Lear-n / Итогово / Reading Check» обрезался справа.
@@ -169,6 +180,397 @@
     border-radius: 12px !important;
     box-shadow: 0 14px 36px rgba(0,0,0,0.12) !important;
     padding: 4px 0 !important;
+  }
+  /* A1 mobile lesson stability: the progress strip must sit in the page flow,
+     not hover over the final exercises. Also keep short English words readable. */
+  .topbar,
+  .friendly-topbar,
+  .nge-shell-topbar,
+  .canon-l-topbar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    min-height: 54px !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: auto !important;
+  }
+  .brand,
+  .friendly-brand,
+  .nge-shell-brand,
+  .canon-l-brand {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+  .brand-name,
+  .brand-title,
+  .friendly-brand .brand-name,
+  .canon-l-brand-title {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+  }
+  .topbar-tools,
+  .friendly-tools,
+  .nge-shell-tools,
+  .canon-l-tools {
+    margin-left: auto !important;
+    gap: 6px !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+  }
+  .topbar-nav,
+  .friendly-nav {
+    display: none !important;
+  }
+  .menu-btn,
+  .btn-tool,
+  .level-bubble,
+  .audience-switch,
+  .lang-toggle,
+  .theme-toggle,
+  .canon-l-burger,
+  .canon-l-pill {
+    flex: 0 0 auto !important;
+    min-width: 36px !important;
+    max-width: 92px !important;
+    height: 36px !important;
+    padding: 0 9px !important;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+  }
+  .step-tracker,
+  .canon-l-tracker,
+  .wl-tracker,
+  .tracker,
+  .progress-header,
+  .progress-rail,
+  .room-progress,
+  .module-progress-card,
+  .lesson-score-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 1 !important;
+    width: min(100% - 28px, 1180px) !important;
+    max-width: calc(100vw - 28px) !important;
+    margin: 12px auto 16px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    backdrop-filter: none !important;
+  }
+  .step-tracker,
+  .canon-l-tracker,
+  .wl-tracker,
+  .tracker,
+  .progress-header,
+  .progress-rail,
+  .room-progress {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    gap: 8px !important;
+    align-items: center !important;
+    min-height: 40px !important;
+    padding: 8px 10px !important;
+    border-radius: 999px !important;
+  }
+  .lesson-flow,
+  .learn-panel,
+  .block,
+  .lesson-foot,
+  .copyright,
+  .lesson-score-card,
+  .canon-l-section,
+  .canon-l-card {
+    width: min(100% - 28px, 1180px) !important;
+    max-width: calc(100vw - 28px) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+  .flow-grid,
+  .learn-grid,
+  .goal-grid,
+  .output-grid,
+  .check-grid,
+  .prompt-grid,
+  .cert-meta-grid,
+  .test-summary,
+  .story-builder,
+  .course-grid,
+  .round-list,
+  .match-row,
+  .practice-item,
+  .test-shell {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  html body .lesson-flow .flow-grid.flow-grid,
+  html body .learn-panel .learn-grid.learn-grid,
+  html body .block .course-grid.course-grid,
+  html body .block .test-summary.test-summary,
+  html body .block .test-shell.test-shell,
+  html body .block .round-list.round-list,
+  html body .block .check-grid.check-grid,
+  html body .block .story-builder.story-builder,
+  html body .block .practice-item.practice-item {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  html body .lesson-flow .flow-card.flow-card::after {
+    display: none !important;
+  }
+  html body .lesson-flow .flow-card.flow-card,
+  html body .block .course-card.course-card,
+  html body .block .summary-card.summary-card,
+  html body .block .test-task.test-task,
+  html body .block .info-card.info-card,
+  html body .block .now-item.now-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body .lesson-score-card .lesson-score-meta.lesson-score-meta,
+  html body .module-progress-card .module-progress-meta.module-progress-meta {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    white-space: normal !important;
+  }
+  html body .lesson-score-card .lesson-score-meta > *,
+  html body .module-progress-card .module-progress-meta > * {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+  .flow-card,
+  .course-card,
+  .summary-card,
+  .info-card,
+  .now-item,
+  .test-task,
+  .round-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .lesson-score-head,
+  .lesson-score-meta,
+  .module-progress-head,
+  .module-progress-meta,
+  .round-title-line,
+  .block-head {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .lesson-score-meta > *,
+  .module-progress-meta > *,
+  .round-title-line > *,
+  .block-title-wrap,
+  .block-title,
+  .block-intro,
+  .minitask-detail,
+  .practice-q,
+  .build-output,
+  textarea,
+  input,
+  audio {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  html body .canon-l-hero-title.canon-l-hero-title,
+  html body .friendly-title.friendly-title,
+  html body .hero-title.hero-title {
+    max-width: calc(100vw - 96px) !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    font-size: clamp(1.85rem, 8.8vw, 2.25rem) !important;
+    line-height: 0.98 !important;
+  }
+  html body .block p,
+  html body .block small,
+  html body .block li,
+  html body .block label,
+  html body .block h2,
+  html body .block h3,
+  html body .lesson-flow small,
+  html body .lesson-flow strong,
+  html body .learn-panel p,
+  html body .lesson-score-card span,
+  html body .canon-l-hero-lead,
+  html body .hero-lead,
+  html body .friendly-lead {
+    max-width: min(100%, calc(100vw - 96px)) !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    hyphens: manual !important;
+    -webkit-hyphens: manual !important;
+  }
+  html body .canon-l-hero-lead.canon-l-hero-lead,
+  html body .hero-lead.hero-lead,
+  html body .friendly-lead.friendly-lead,
+  html body .block .block-intro.block-intro,
+  html body .block .minitask-detail.minitask-detail {
+    width: min(100%, calc(100vw - 96px)) !important;
+    max-width: min(100%, calc(100vw - 96px)) !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+  html body .block-nav .btn,
+  html body .block-nav .canon-l-btn,
+  html body .input-line .btn,
+  html body .recorder-controls .btn,
+  html body .story-actions .btn {
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+  .step-count,
+  .step-name,
+  .canon-l-tracker-label,
+  .canon-l-tracker-meta,
+  .canon-l-tracker-step,
+  .round-stats,
+  .module-progress-meta,
+  .lesson-score-meta {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .step-track,
+  .canon-l-tracker-track,
+  .round-track,
+  .module-progress-track,
+  .lesson-score-track,
+  .progress-bar,
+  .progress-fill-wrap {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 6px !important;
+  }
+  .grammar-table-wrap,
+  .table-wrap,
+  .responsive-table,
+  .test-shell,
+  .round-panel {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .grammar-table {
+    width: max-content !important;
+    min-width: 620px !important;
+  }
+  .grammar-table th,
+  .grammar-table td {
+    min-width: 130px !important;
+    white-space: normal !important;
+  }
+  .choice-row,
+  .quiz-options,
+  .answer-options,
+  .word-bank,
+  .bank,
+  .interactive,
+  .recorder-controls,
+  .input-line,
+  .story-actions,
+  .block-nav {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+  .choice,
+  .answer-btn,
+  .word-chip,
+  .sentence-chip,
+  .test-build-chip,
+  .practice-hint,
+  .drop-slot,
+  .btn,
+  .canon-l-btn,
+  .course-card,
+  .test-task,
+  .summary-card,
+  .now-item,
+  .info-card {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: manual !important;
+    -webkit-hyphens: manual !important;
+  }
+  .choice,
+  .answer-btn,
+  .word-chip,
+  .sentence-chip,
+  .test-build-chip,
+  .practice-hint,
+  .drop-slot {
+    white-space: normal !important;
+    line-height: 1.25 !important;
+  }
+  .word-chip,
+  .sentence-chip,
+  .test-build-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: 100% !important;
+  }
+  @media (max-width: 420px) {
+    .step-tracker,
+    .canon-l-tracker,
+    .wl-tracker,
+    .tracker,
+    .progress-header,
+    .progress-rail,
+    .room-progress {
+      grid-template-columns: auto minmax(0, 1fr) !important;
+    }
+    .step-name,
+    .canon-l-tracker-meta,
+    .round-stats {
+      grid-column: 1 / -1 !important;
+    }
   }
 }
 /* P2 desktop: бургер не нужен — табы помещаются */
@@ -442,17 +844,26 @@ body[data-lb-page="english-booster"] .core-line-chip {
     var body = document.body;
     if(!body || !body.dataset.lbLevel) return;
     var level = body.dataset.lbLevel;
-    var heroSize = level === "a1" ? "48.24px" : (level === "b2plus" || level === "c1" ? "56px" : "54px");
+    var mobile = window.innerWidth <= 720;
+    var heroSize = mobile
+      ? (level === "a1" ? "36px" : "38px")
+      : (level === "a1" ? "48.24px" : (level === "b2plus" || level === "c1" ? "56px" : "54px"));
     document.querySelectorAll(".canon-l-hero-title, .hero-title, .friendly-title").forEach(function(node){
       setImportant(node, "font-family", '"Unbounded", "Manrope", system-ui, sans-serif');
       setImportant(node, "font-size", heroSize);
       setImportant(node, "line-height", level === "a1" ? ".98" : ".96");
       setImportant(node, "letter-spacing", "0");
+      if(mobile){
+        setImportant(node, "max-width", "calc(100vw - 96px)");
+        setImportant(node, "white-space", "normal");
+        setImportant(node, "overflow-wrap", "break-word");
+        setImportant(node, "word-break", "normal");
+      }
     });
     if(body.dataset.lbPage === "past-simple"){
       document.body.style.setProperty("font-size", "16px", "important");
       document.querySelectorAll(".hero-title, .canon-l-hero-title").forEach(function(node){
-        setImportant(node, "font-size", "48.24px");
+        setImportant(node, "font-size", mobile ? "40px" : "48.24px");
       });
     }
     if(body.dataset.lbPage === "grammar-arcade"){
