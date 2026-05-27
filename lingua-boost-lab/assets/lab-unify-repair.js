@@ -620,7 +620,9 @@
       btn.innerHTML = '<span class="canon-l-burger-icon">☰</span><span>Меню</span>';
 
       // Вставить кнопку перед nav
-      nav.parentNode.insertBefore(btn, nav);
+      var tools = nav.parentNode.querySelector(".canon-l-tools");
+      if(tools) tools.insertBefore(btn, tools.firstChild);
+      else nav.parentNode.insertBefore(btn, nav);
 
       function toggle(){
         var open = !nav.classList.contains("is-open");
@@ -778,8 +780,8 @@ body[data-lb-page="english-booster"] .core-line-chip {
     box-sizing: border-box !important;
     margin: 0 !important;
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto auto !important;
-    grid-template-areas: "brand tools menu" !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas: "brand tools" !important;
     align-items: center !important;
     min-height: 52px !important;
     padding: 8px 12px !important;
@@ -839,11 +841,13 @@ body[data-lb-page="english-booster"] .core-line-chip {
     grid-area: tools !important;
     position: absolute !important;
     top: 8px !important;
-    right: 10px !important;
+    left: calc(100vw - 48px) !important;
+    right: auto !important;
     margin-left: 0 !important;
     display: inline-flex !important;
     flex-wrap: nowrap !important;
     align-items: center !important;
+    justify-content: flex-start !important;
     justify-content: flex-end !important;
     gap: 5px !important;
     min-width: 0 !important;
@@ -1081,6 +1085,8 @@ body[data-lb-page="english-booster"] .core-line-chip {
     else if(path.indexOf("ancient-china") !== -1) page = "ancient-china";
     else if(path.indexOf("space-explorers") !== -1) page = "space-explorers";
     else if(path.indexOf("school-words") !== -1) page = "school-words";
+    else if(path.indexOf("hello-classroom-fun") !== -1) page = "hello-classroom";
+    else if(path.indexOf("body-and-grammar") !== -1) page = "body-grammar";
     else if(path.indexOf("a1-01-present-simple-routines") !== -1) page = "a1-01";
     if(level && !body.dataset.lbLevel) body.dataset.lbLevel = level;
     if(page && !body.dataset.lbPage) body.dataset.lbPage = page;
@@ -1317,15 +1323,292 @@ body[data-lb-page="english-booster"] .core-line-chip {
     ].join(","));
   }
 
+  function setupCompactLessonBurgers(){
+    document.querySelectorAll(".canon-l-nav").forEach(function(nav){
+      if(nav.classList.contains("has-burger")){
+        var existingBtn = nav.parentNode.querySelector(".canon-l-burger");
+        var existingTools = nav.parentNode.querySelector(".canon-l-tools");
+        if(existingBtn && existingTools && existingBtn.parentNode !== existingTools){
+          existingTools.insertBefore(existingBtn, existingTools.firstChild);
+        }
+        return;
+      }
+      var links = nav.querySelectorAll(".canon-l-link");
+      if(!links.length) return;
+      nav.classList.add("has-burger");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "canon-l-burger";
+      btn.setAttribute("aria-label", "Lesson menu");
+      btn.setAttribute("aria-expanded", "false");
+      btn.innerHTML = '<span class="canon-l-burger-icon">☰</span><span>Menu</span>';
+      nav.parentNode.insertBefore(btn, nav);
+      function toggle(){
+        var open = !nav.classList.contains("is-open");
+        nav.classList.toggle("is-open", open);
+        btn.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      btn.addEventListener("click", function(event){
+        event.stopPropagation();
+        toggle();
+      });
+      document.addEventListener("click", function(event){
+        if(!nav.contains(event.target) && !btn.contains(event.target)){
+          nav.classList.remove("is-open");
+          btn.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+  }
+
+  function injectLowerLabMobileCss(){
+    var oldStyle = document.getElementById("codex-lower-lab-mobile-repair-20260527");
+    if(oldStyle && oldStyle.parentNode) oldStyle.parentNode.removeChild(oldStyle);
+    var style = document.createElement("style");
+    style.id = "codex-lower-lab-mobile-repair-20260527";
+    style.textContent = `
+@media (max-width: 720px) {
+  html body[data-lb-page] .canon-l-topbar {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-height: 50px !important;
+    padding: 7px 10px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    grid-template-areas: "brand tools menu" !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow: visible !important;
+  }
+  html body[data-lb-page] .canon-l-brand {
+    grid-area: brand !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 118px) !important;
+    flex: 0 1 calc(100vw - 118px) !important;
+    gap: 8px !important;
+  }
+  html body[data-lb-page] .canon-l-mark {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+  }
+  html body[data-lb-page] .canon-l-copy {
+    min-width: 0 !important;
+  }
+  html body[data-lb-page] .canon-l-name {
+    display: block !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 15px !important;
+    line-height: 1.1 !important;
+  }
+  html body[data-lb-page] .canon-l-sub,
+  html body[data-lb-page] .canon-l-crumbs,
+  html body[data-lb-page] .canon-l-tools .palette-select {
+    display: none !important;
+  }
+  html body[data-lb-page] .canon-l-tools {
+    grid-area: tools !important;
+    position: static !important;
+    width: 86px !important;
+    max-width: 86px !important;
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    justify-content: flex-start !important;
+    transform: translateX(-82px) !important;
+  }
+  html body[data-lb-page] .canon-l-tools .canon-l-pill,
+  html body[data-lb-page] .canon-l-tools button {
+    min-width: 34px !important;
+    max-width: 46px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    padding: 0 7px !important;
+    border-radius: 9px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+  }
+  html body[data-lb-page] .canon-l-burger {
+    position: static !important;
+    display: inline-flex !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 9px !important;
+    font-size: 0 !important;
+  }
+  html body[data-lb-page] .canon-l-burger span:not(.canon-l-burger-icon) {
+    display: none !important;
+  }
+  html body[data-lb-page] .canon-l-burger .canon-l-burger-icon {
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+  html body[data-lb-page] .canon-l-nav.has-burger:not(.is-open) {
+    display: none !important;
+  }
+  html body[data-lb-page] .canon-l-nav.has-burger.is-open {
+    position: absolute !important;
+    top: calc(100% + 6px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    z-index: 400 !important;
+  }
+  html body[data-lb-page="school-words"] {
+    --school-spine: calc(100% - 28px) !important;
+  }
+  html body[data-lb-page="school-words"] :is(section#main-content.canon-l-hero,.canon-l-why,.school-mission,.pronoun-helper,.canon-l-tracker,#school-hud,.a1-system-hud,.section,.interlude,.lesson-foot,footer.canon-l-footer) {
+    width: var(--school-spine) !important;
+    max-width: var(--school-spine) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html body[data-lb-page="prepositions-world"] .canon-l-hero.prepositions-picture-hero {
+    overflow: hidden !important;
+  }
+  html body[data-lb-page="prepositions-world"] .canon-l-hero.prepositions-picture-hero .canon-l-hero-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 20px 18px !important;
+  }
+  html body[data-lb-page="prepositions-world"] .canon-l-hero.prepositions-picture-hero .canon-l-hero-meta {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    margin-top: 14px !important;
+  }
+  html body[data-lb-page="prepositions-world"] .canon-l-hero.prepositions-picture-hero .canon-l-hero-pill {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+    padding: 6px 8px !important;
+  }
+  html body[data-lb-page="prepositions-world"] .canon-l-hero.prepositions-picture-hero .canon-l-hero-pill:nth-child(n+4) {
+    display: none !important;
+  }
+  html body[data-lb-page="easter"] .canon-l-hero,
+  html body[data-lb-page="easter"] .hero {
+    overflow: visible !important;
+  }
+  html body[data-lb-page="easter"] .canon-l-hero-title,
+  html body[data-lb-page="easter"] .hero-title,
+  html body[data-lb-page="easter"] h1 {
+    max-width: min(100%, 285px) !important;
+    font-size: clamp(30px, 9.2vw, 36px) !important;
+    line-height: 1.08 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+  html body[data-lb-page="hello-classroom"] .canon-l-hero-title,
+  html body[data-lb-page="hello-classroom"] .hero-title,
+  html body[data-lb-page="hello-classroom"] h1,
+  html body[data-lb-page="body-grammar"] .canon-l-hero-title,
+  html body[data-lb-page="body-grammar"] .hero-title,
+  html body[data-lb-page="body-grammar"] h1 {
+    max-width: min(100%, 310px) !important;
+    font-size: clamp(34px, 9.5vw, 42px) !important;
+    line-height: 1.02 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+}
+`;
+    document.head.appendChild(style);
+  }
+
+  function applyLowerLabInlineFixes(){
+    classifyLesson();
+    if(window.innerWidth > 720 || !document.body || !document.body.dataset.lbPage) return;
+    document.querySelectorAll(".canon-l-tools").forEach(function(node){
+      setImportant(node, "position", "static");
+      setImportant(node, "top", "auto");
+      setImportant(node, "left", "auto");
+      setImportant(node, "right", "auto");
+      setImportant(node, "width", "86px");
+      setImportant(node, "max-width", "86px");
+      setImportant(node, "overflow", "visible");
+      setImportant(node, "justify-content", "flex-start");
+      setImportant(node, "transform", "translateX(-82px)");
+    });
+    document.querySelectorAll(".canon-l-brand").forEach(function(node){
+      setImportant(node, "max-width", "calc(100vw - 118px)");
+      setImportant(node, "flex", "0 1 calc(100vw - 118px)");
+      setImportant(node, "min-width", "0");
+    });
+    document.querySelectorAll(".canon-l-burger").forEach(function(node){
+      setImportant(node, "position", "static");
+      setImportant(node, "z-index", "410");
+      setImportant(node, "display", "inline-flex");
+    });
+    if(/^(hello-classroom|body-grammar|easter)$/.test(document.body.dataset.lbPage || "")){
+      document.querySelectorAll(".canon-l-hero-title, .hero-title, h1").forEach(function(node){
+        setImportant(node, "font-size", document.body.dataset.lbPage === "easter" ? "34px" : "36px");
+        setImportant(node, "line-height", "1.08");
+        setImportant(node, "max-width", "300px");
+        setImportant(node, "white-space", "normal");
+        setImportant(node, "overflow", "visible");
+        setImportant(node, "text-overflow", "clip");
+        setImportant(node, "word-break", "normal");
+      });
+    }
+    if(document.body.dataset.lbPage === "school-words"){
+      document.querySelectorAll("section#main-content.canon-l-hero,.canon-l-collapsible,.canon-l-why,.school-mission,.pronoun-helper,.canon-l-tracker,#school-hud,.a1-system-hud,.section,.interlude,.lesson-foot,footer.canon-l-footer").forEach(function(node){
+        setImportant(node, "width", "calc(100% - 28px)");
+        setImportant(node, "max-width", "calc(100% - 28px)");
+        setImportant(node, "margin-left", "auto");
+        setImportant(node, "margin-right", "auto");
+        setImportant(node, "box-sizing", "border-box");
+      });
+    }
+    if(document.body.dataset.lbPage === "prepositions-world"){
+      document.querySelectorAll(".prepositions-picture-hero .canon-l-hero-pill:nth-child(n+4)").forEach(function(node){
+        setImportant(node, "display", "none");
+      });
+    }
+  }
+
   function init(){
     injectCriticalCss();
     injectLevelCanonCss();
     stopAutoSpeech();
     setupNavBurger();
     classifyLesson();
+    setupCompactLessonBurgers();
     injectA1MobileFinalCss();
+    injectLowerLabMobileCss();
     labelA1GrammarTables();
     lockMobileWidths();
+    injectLowerLabMobileCss();
+    applyLowerLabInlineFixes();
     lockDesktopCanon();
     hideFooterLogos();
     lockLevelTypography();
@@ -1347,12 +1630,17 @@ body[data-lb-page="english-booster"] .core-line-chip {
     init();
   }
   window.addEventListener("resize", lockMobileWidths);
+  window.addEventListener("resize", applyLowerLabInlineFixes);
   window.addEventListener("resize", lockDesktopCanon);
   window.addEventListener("load", function(){
     classifyLesson();
+    setupCompactLessonBurgers();
     injectA1MobileFinalCss();
+    injectLowerLabMobileCss();
     labelA1GrammarTables();
     lockDesktopCanon();
+    injectLowerLabMobileCss();
+    applyLowerLabInlineFixes();
     hideFooterLogos();
     lockLevelTypography();
   });
