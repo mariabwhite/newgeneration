@@ -778,21 +778,20 @@ body[data-lb-page="english-booster"] .core-line-chip {
     box-sizing: border-box !important;
     margin: 0 !important;
     display: grid !important;
-    grid-template-columns: minmax(0, 160px) 42px 86px !important;
-    grid-template-areas: "brand menu tools" !important;
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    grid-template-areas: "brand tools menu" !important;
     align-items: center !important;
-    justify-content: space-between !important;
     min-height: 52px !important;
-    padding: 8px 10px !important;
-    gap: 8px !important;
+    padding: 8px 12px !important;
+    gap: 10px !important;
     overflow: visible !important;
   }
   body.lb-level-a1 .canon-l-brand {
     grid-area: brand !important;
     width: auto !important;
     min-width: 0 !important;
-    max-width: calc(100vw - 176px) !important;
-    gap: 8px !important;
+    max-width: 100% !important;
+    gap: 10px !important;
   }
   body.lb-level-a1 .canon-l-mark {
     width: 30px !important;
@@ -804,12 +803,12 @@ body[data-lb-page="english-booster"] .core-line-chip {
   }
   body.lb-level-a1 .canon-l-name {
     display: block !important;
-    max-width: calc(100vw - 220px) !important;
+    max-width: 100% !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    font-size: 17px !important;
-    line-height: 1 !important;
+    font-size: 16px !important;
+    line-height: 1.1 !important;
   }
   body.lb-level-a1 .canon-l-sub,
   body.lb-level-a1 .canon-l-crumbs,
@@ -818,9 +817,7 @@ body[data-lb-page="english-booster"] .core-line-chip {
   }
   body.lb-level-a1 .canon-l-burger {
     grid-area: menu !important;
-    position: absolute !important;
-    top: 8px !important;
-    right: 106px !important;
+    position: static !important;
     display: inline-flex !important;
     width: 42px !important;
     min-width: 42px !important;
