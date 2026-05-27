@@ -555,32 +555,11 @@ body.light[data-page="programs"] .summer-intensive strong {
   color: #12100e;
 }
 
-/* Maria 2026-05-27 iPhone test: «белая полоса» внизу cream-карточки —
-   декоративный ::after-градиент рисовал почти-белый (#fffdf9) blend поверх
-   cream-фона страницы (#f4f1ec) — получался видимый «белый блок».
-   Делаем fade в реальный cream страницы — баннер-картинку оставляем. */
-body.light[data-page="programs"] .p-tile::after {
-  background:
-    linear-gradient(180deg, rgba(244,241,236,0) 0%, rgba(244,241,236,0.78) 60%, #f4f1ec 100%),
-    var(--tile-bg, radial-gradient(circle at 50% 60%, rgba(255,90,31,0.08), transparent 70%));
-  opacity: 0.42;
-}
-
+/* Maria 2026-05-27 iPhone test: the decorative tile image/fade renders as a
+   foreign white rectangle on light mobile. Keep the cream card; remove the layer. */
+body.light[data-page="programs"] .p-tile::after,
 body.light[data-page="programs"] .p-tile.has-img::after {
-  background:
-    linear-gradient(180deg, rgba(244,241,236,0.7) 0%, rgba(244,241,236,0.86) 46%, rgba(244,241,236,0.96) 78%, #f4f1ec 100%),
-    var(--tile-img) center/cover no-repeat;
-  opacity: 0.48;
-  filter: saturate(0.58) contrast(0.92) brightness(1.35);
-}
-
-body.light[data-page="programs"] .p-tile.t-exam,
-body.light[data-page="programs"] .p-tile.t-int,
-body.light[data-page="programs"] .p-tile.t-adult,
-body.light[data-page="programs"] .p-tile.t-club,
-body.light[data-page="programs"] .p-tile.t-med,
-body.light[data-page="programs"] .p-tile.t-biz {
-  --tile-img: linear-gradient(180deg, rgba(255,90,31,0.08) 0%, rgba(248,246,242,0.92) 62%, rgba(248,246,242,1) 100%);
+  content: none;
 }
 
 @media (max-width: 1200px) {
