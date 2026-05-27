@@ -1073,4 +1073,38 @@ c6c4e16 rewrite A2/B1/B2/C1/C2 with neutral themes
 
 — Claude, 2026-05-27 (день).
 
-*Последнее обновление: 2026-05-27 (день) — Audit closing: CTA на diagnostic с главной и из cases, travel в footer 6 страниц (diagnostic пропущена — минимальный футер), sitemap lastmod обновлён. Backup-tag: `backup-2026-05-27-pre-audit-closing`.*
+---
+
+## День 11 продолжение · 2026-05-27 (день) — Schema enrichment (Service / Blog / Article)
+
+### Контекст
+По запросу Маши «доделай что могу автоматом без её участия». После CTA + travel-волны остались только невидимые/безопасные доделки в `<head>`. Видимые правки (К-17 вынос inline CSS) намеренно НЕ делал — без браузерного прогона визуальные регрессы поймаем только утром.
+
+### Что сделано
+
+Schema-обогащение `<head>` (только JSON-LD, ноль изменений в UI):
+
+| Файл | Добавлен JSON-LD блок | Тип |
+|---|---|---|
+| `programs.html` | `ItemList` с 6 `Service`-элементами: ОГЭ/ЕГЭ, IELTS/TOEFL, английский для взрослых, разговорный клуб, медицинский, бизнес. Каждый Service содержит `provider: Person (Мария)` и `serviceType`. | `+2621 байт` |
+| `blog.html` | `Blog` с `publisher: EducationalOrganization (NGE)` + `author: Person (Мария)`. После разбиения блога на отдельные URL (стратегический проект) каждая статья получит `BlogPosting`. | `+542 байт` |
+| `travel.html` | `Article` с `author`, `publisher`, `image` (og-cover). Закрывает «orphan article» статус travel-страницы. | `+653 байт` |
+
+### Что НЕ сделано (намеренно)
+
+- **К-17** (вынос inline CSS из `diagnostic-test.html` + `blog.html`) — видимая правка, без iPhone-проверки не запускаю. Готов к отдельному спринту по протоколу CLAUDE.md §6.
+- **Person/Organization schema на cases/conditions** — текущие `CollectionPage` и `BreadcrumbList` достаточны. Дополнения дублируют граф главной — не критично.
+- **Article schema для блог-секций (Дзен/Куба/Топ-5/...)** — только после разбиения блога на отдельные URL.
+- **`diagnostic-test.html` footer travel** — ждёт твоего решения (минимальный кастомный футер для UX лид-магнита).
+
+### Bump
+Не нужен — CSS/JS не правлены.
+
+### Backup-tag
+`backup-2026-05-27-pre-final-cleanup` — точка отката перед schema-волной (отдельный от `pre-audit-closing`).
+
+### Не пушу — ждёт `@codex!`
+
+— Claude, 2026-05-27 (день +1ч).
+
+*Последнее обновление: 2026-05-27 (день +1ч) — Schema enrichment: ItemList со 6 Service на programs, Blog на blog, Article на travel. Невидимо для UI, видимо для Google. Backup-tag: `backup-2026-05-27-pre-final-cleanup`.*
