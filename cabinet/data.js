@@ -504,7 +504,7 @@ window.NGE_DATA = {
         { "date": "2026-05-19", "num": 1, "status": "completed", "topic": "Времена, техники решения ОГЭ" },
         { "date": "2026-05-24", "num": 2, "status": "completed", "topic": "Кулинария и времена, страны мира" },
         { "date": "2026-05-25", "num": 3, "status": "completed", "topic": "Италия: известные люди, чудеса света + немного про Ирландию" },
-        { "date": "2026-05-31", "num": 4, "status": "planned", "topic": "Jerusalem — A City of Three Faiths (speaking-focus, Would, Modals)", "homework": { "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/", "module_title": "Открыть урок Jerusalem", "text": "Интерактивный B1-урок: 17 секций, аудио, говорение, Would-конструкции, модальные глаголы. Можно открыть до занятия — пробежаться по vocabulary, дать ушам привыкнуть к narrator-аудио." } },
+        { "date": "2026-05-31", "num": 4, "status": "planned", "topic": "Jerusalem — A City of Three Faiths (speaking-focus, Would, Modals)", "homework": { "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/?v=4cbcbaf", "module_title": "Открыть урок Jerusalem", "text": "Интерактивный B1-урок: 17 секций, аудио, говорение, Would-конструкции, модальные глаголы. Можно открыть до занятия — пробежаться по vocabulary, дать ушам привыкнуть к narrator-аудио." } },
         { "date": "2026-06-02", "num": 5, "status": "planned", "topic": "" },
         { "date": "2026-06-07", "num": 6, "status": "planned", "topic": "" },
         { "date": "2026-06-09", "num": 7, "status": "planned", "topic": "" },

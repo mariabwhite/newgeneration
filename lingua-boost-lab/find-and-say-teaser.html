@@ -330,7 +330,7 @@ body{
   color:var(--muted);
 }
 .fs-score strong{color:var(--accent);font-size:17px;font-weight:800;font-family:var(--ff-mono);}
-.fs-check{
+.fs-check,.fs-reset{
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -350,6 +350,13 @@ body{
 }
 .fs-check:hover{background:var(--accent-soft);transform:translateY(-1px);box-shadow:0 10px 28px -8px rgba(255,155,47,.85);}
 .fs-check:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.fs-reset{
+  background:transparent;
+  color:var(--muted);
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+.fs-reset:hover{background:rgba(255,255,255,.08);color:var(--text);transform:translateY(-1px);}
 
 /* === Final CTA modal (when all 15 found) ====================== */
 .fs-cta{
@@ -542,7 +549,7 @@ body{
   .fs-foot{flex-direction:column;align-items:stretch;text-align:center;}
   .fs-tip{max-width:none;justify-content:center;}
   .fs-score{order:2;}
-  .fs-check{order:3;align-self:center;}
+  .fs-check,.fs-reset{order:3;align-self:center;}
 }
 @media(max-width:540px){
   .fs-head{gap:12px;}
@@ -619,6 +626,7 @@ body{
     </div>
     <span class="fs-score">Great! You found: <strong id="fs-score">0</strong> of <strong id="fs-score-total">15</strong></span>
     <button class="fs-check" id="fs-check" type="button">Check answers</button>
+    <button class="fs-reset" id="fs-reset" type="button">Reset progress</button>
   </footer>
 
   <p class="fs-credit">Free demo &middot; <a href="index.html">LinguaBoost Lab</a> &middot; 25+ interactive lessons inside</p>
@@ -698,6 +706,7 @@ body{
   var score    = document.getElementById("fs-score");
   var scoreTot = document.getElementById("fs-score-total");
   var checkBtn = document.getElementById("fs-check");
+  var resetBtn = document.getElementById("fs-reset");
   var muteBtn  = document.getElementById("fs-mute");
   var helpBtn  = document.getElementById("fs-help");
   var modalHelp= document.getElementById("fs-modal-help");
@@ -786,6 +795,16 @@ body{
     score.textContent = n;
   }
 
+  function resetProgress(){
+    state.found = {};
+    save();
+    document.querySelectorAll(".fs-hot.is-found,.fs-hot.is-missed").forEach(function(h){h.classList.remove("is-found","is-missed");});
+    document.querySelectorAll(".fs-item.is-found,.fs-item.is-flash").forEach(function(i){i.classList.remove("is-found","is-flash");});
+    ctaSuccess.classList.remove("is-open");
+    ctaSuccess.setAttribute("aria-hidden","true");
+    updateCounters();
+  }
+
   function showSuccess(){
     ctaSuccess.classList.add("is-open");
     ctaSuccess.setAttribute("aria-hidden","false");
@@ -813,6 +832,7 @@ body{
       }
     });
   });
+  resetBtn.addEventListener("click", resetProgress);
 
   // === Voice — Free Dictionary API audio + smart fallback =========
   // Strategy: prefer real human MP3 from dictionaryapi.dev (Wiktionary recordings).
@@ -976,11 +996,7 @@ body{
   document.addEventListener("keydown", function(ev){
     if(ev.altKey && (ev.key === "r" || ev.key === "R")){
       ev.preventDefault();
-      state.found = {};
-      save();
-      document.querySelectorAll(".fs-hot.is-found").forEach(function(h){h.classList.remove("is-found");});
-      document.querySelectorAll(".fs-item.is-found").forEach(function(i){i.classList.remove("is-found");});
-      updateCounters();
+      resetProgress();
     }
     if(ev.altKey && (ev.key === "d" || ev.key === "D")){
       ev.preventDefault();
