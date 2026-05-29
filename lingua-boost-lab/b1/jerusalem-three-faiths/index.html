@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jerusalem — A City of Three Faiths | LinguaBoost Lab</title>
+<meta name="description" content="B1 interactive English lesson about Jerusalem, three faiths, pilgrimage and Mount Sinai. Speaking focus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Manrope:wght@500;700;800&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8ec;--surface:#fffaf2;--accent:#B8861F;--accent2:#8B5E1A;--accent3:#E0A82E;
+  --navy:#1A2845;--text:#2c1500;--muted:#8B6B3D;--ok:#4caf50;--miss:#ef5350;
+  --radius:18px;--shadow:0 4px 20px rgba(0,0,0,.09);
+  --display:'Inter','Nunito',sans-serif;--body:'Nunito',sans-serif;--mono:'SFMono-Regular',Consolas,monospace;
+  --demo-top-width:min(100% - 48px,1240px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:var(--body);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.55}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;padding:10px clamp(16px,3vw,28px);background:color-mix(in srgb,var(--surface) 92%,transparent);border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px)}
+.brand{font-family:var(--display);font-weight:850;font-size:.96rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px}
+.brand-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent3) 0%,var(--accent2) 100%);display:grid;place-items:center;font-weight:900;color:#fff;font-size:.85rem}
+.brand-tag{flex:1;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-left:6px}
+.btn-sm{min-height:32px;padding:0 12px;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(0,0,0,.15);background:transparent;color:var(--muted);transition:all .16s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+
+.lab-hero{width:var(--demo-top-width);max-width:1240px;margin:24px auto 18px;border-radius:18px;padding:clamp(26px,5vw,56px);background-image:linear-gradient(135deg,rgba(26,40,69,.78),rgba(74,45,92,.55) 60%,rgba(184,134,31,.4)),url('assets/img/img-01-old-city.png');background-size:cover;background-position:center;color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.lab-hero-inner{display:grid;grid-template-columns:minmax(0,1.28fr) minmax(220px,.92fr);gap:40px;align-items:center;position:relative;z-index:1}
+.lab-eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fde79f;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.lab-eyebrow::before{content:'';display:inline-block;width:22px;height:2px;background:#fde79f;flex-shrink:0}
+.lab-hero-title{font-family:var(--display);font-weight:900;font-size:clamp(2.05rem,5vw,4.25rem);line-height:.96;letter-spacing:-.02em;margin-bottom:18px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.lab-hero-title em{font-style:normal;color:#FCD66F}
+.lab-hero-lead{color:rgba(255,255,255,.92);font-size:clamp(15px,1.4vw,17px);line-height:1.7;margin-bottom:1.1rem;max-width:760px;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+.lab-hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start}
+.lab-badge{display:inline-grid;place-items:center;padding:.25rem .7rem;border:1px solid rgba(255,255,255,.3);border-radius:999px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(4px)}
+.lab-badge.accent{background:var(--accent3);color:var(--navy);border-color:var(--accent3)}
+.lab-hero-author{margin-top:18px;padding-top:18px;border-top:1px dashed rgba(255,255,255,.25);display:flex;align-items:center;gap:12px}
+.author-mark{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:900;font-size:1.05rem;font-family:var(--display);border:2px solid rgba(255,255,255,.4)}
+.author-name{font-weight:900;font-size:.92rem;color:#fff}
+.author-role{font-size:.7rem;color:rgba(255,255,255,.75);letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono);font-weight:700}
+.lab-hero-visual{width:148px;height:148px;border-radius:1.1rem;background:linear-gradient(135deg,rgba(224,168,46,.85) 0%,rgba(184,134,31,.85) 100%);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;justify-self:end;backdrop-filter:blur(6px)}
+.lab-vis-symbols{font-family:var(--display);font-size:2.3rem;letter-spacing:6px;color:#fff}
+@media(max-width:820px){:root{--demo-top-width:min(100% - 28px,1240px)}.lab-hero-inner{grid-template-columns:1fr;gap:24px}.lab-hero-visual{justify-self:center}}
+
+.progress-wrap{width:var(--demo-top-width);max-width:1240px;margin:0 auto 24px;padding:0 12px}
+.star-bar{display:flex;gap:8px;justify-content:center;margin-bottom:6px}
+.star{font-size:1.4rem;opacity:.28;transition:.4s}
+.star.lit{opacity:1;transform:scale(1.05)}
+.rail{display:flex;gap:6px}
+.rail-step{flex:1;height:8px;border-radius:8px;background:#f3e3c4;transition:.4s}
+.rail-step.done{background:var(--accent)}
+
+.section{width:var(--demo-top-width);max-width:1240px;margin:0 auto 30px;padding:0 12px}
+.section-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.section-hdr .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--display)}
+.section-hdr h2{font-family:var(--display);font-size:1.25rem;font-weight:900;color:var(--text);letter-spacing:-.01em}
+.section-sub{font-size:.78rem;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;margin-left:48px}
+.card{background:var(--surface);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border:1px solid #f3e3c4}
+
+h3{font-family:var(--display);font-size:1.05rem;font-weight:800;margin-bottom:10px;color:var(--text)}
+p{margin-bottom:10px}
+strong{color:var(--text);font-weight:800}
+em{font-style:italic;color:var(--accent2)}
+
+.lesson-img{width:100%;height:auto;border-radius:14px;display:block;margin:12px 0;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.lesson-img.hero-img{aspect-ratio:16/9;object-fit:cover}
+
+.image-slot{background:linear-gradient(135deg,#f7e9c8,#e8d4a0);border:2px dashed var(--accent2);border-radius:12px;padding:36px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin:12px 0;font-weight:700;line-height:1.6}
+.image-slot::before{content:'📷  ';font-size:1.4rem;vertical-align:middle}
+.image-slot .ratio{display:block;font-size:.66rem;opacity:.7;margin-top:6px;letter-spacing:.16em}
+
+.audio-block{background:linear-gradient(135deg,#fff3df,#fbe9c2);border-radius:12px;padding:14px 18px;margin:12px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-left:5px solid var(--accent)}
+.audio-block::before{content:'🎙';font-size:1.4rem}
+.audio-block audio{flex:1;min-width:240px;height:36px}
+.audio-block .label{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+.q-row{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:.18s}
+.q-row:hover{border-color:var(--accent);background:#fff7e8;transform:translateX(3px)}
+.q-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--accent2);color:#fff;font-weight:800;font-size:.8rem;display:grid;place-items:center;font-family:var(--mono)}
+.q-text{flex:1;font-size:.95rem;font-weight:600}
+.q-speak{width:32px;height:32px;border-radius:50%;background:var(--accent3);color:#fff;border:none;cursor:pointer;font-size:.9rem;display:grid;place-items:center;transition:.18s}
+.q-speak:hover{background:var(--accent2);transform:scale(1.08)}
+
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.flip-card{height:110px;perspective:600px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:.45s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;font-weight:800;gap:4px;padding:10px;text-align:center}
+.flip-front{background:#fff3df;border:2px solid #f3e3c4;color:var(--text);font-size:.95rem}
+.flip-front .pos{font-size:.7rem;color:var(--muted);font-weight:600;font-style:italic}
+.flip-back{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);color:#fff;transform:rotateY(180deg);font-size:.78rem;line-height:1.45}
+.flip-back .ex{font-size:.7rem;opacity:.9;font-weight:500;font-style:italic}
+
+.bank{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:14px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.bank-word{background:#fff;border:2px solid var(--accent3);color:var(--accent2);padding:6px 14px;border-radius:50px;font-weight:700;font-size:.88rem;cursor:pointer;transition:.18s;user-select:none;font-family:var(--body)}
+.bank-word:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 3px 8px rgba(0,0,0,.1)}
+.bank-word.selected{background:var(--accent);color:#fff;border-color:var(--accent2);transform:scale(1.05)}
+.bank-word.used{opacity:.25;cursor:not-allowed;pointer-events:none}
+.drag-text{font-size:.95rem;line-height:2.2}
+.drop-gap{display:inline-block;background:#fff;border:2px dashed var(--accent3);min-width:90px;padding:3px 12px;border-radius:8px;cursor:pointer;font-weight:700;color:var(--muted);font-size:.85rem;text-align:center;transition:.18s}
+.drop-gap:hover{border-color:var(--accent);background:#fff7e8}
+.drop-gap.filled{background:#dff0d8;border-style:solid;border-color:var(--ok);color:var(--ok)}
+.drop-gap.wrong{background:#f7d8d8;border-style:solid;border-color:var(--miss);color:var(--miss);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.reading-text{background:#fff3df;border:1px solid #f3e3c4;border-radius:14px;padding:18px 22px;margin-bottom:14px;font-size:.96rem;line-height:1.8}
+.reading-text p{margin-bottom:10px}
+.reading-fact{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(184,134,31,.15)}
+.reading-fact:last-child{border-bottom:none}
+.fact-num{width:36px;height:36px;border-radius:50%;background:var(--accent2);color:#fff;font-weight:900;display:grid;place-items:center;font-family:var(--mono)}
+
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+@media(max-width:720px){.three-col{grid-template-columns:1fr}}
+.faith-card{padding:18px;border-radius:14px;border-top:5px solid;background:#fff3df;border-left:1px solid #f3e3c4;border-right:1px solid #f3e3c4;border-bottom:1px solid #f3e3c4}
+.faith-card.christian{border-top-color:#c54040}
+.faith-card.jewish{border-top-color:#1f5fa8}
+.faith-card.muslim{border-top-color:#2a8a4a}
+.faith-card h4{font-family:var(--display);font-size:1rem;font-weight:900;margin-bottom:8px;color:var(--text)}
+.faith-card p{font-size:.88rem;line-height:1.65}
+
+.mc-item{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.mc-q{font-weight:700;font-size:.95rem;margin-bottom:10px}
+.mc-opts{display:flex;gap:8px;flex-wrap:wrap}
+.mc-opt{padding:8px 18px;border-radius:50px;background:#fff;border:2px solid #f3e3c4;font-weight:700;font-size:.85rem;cursor:pointer;transition:.15s;font-family:var(--body);color:var(--text)}
+.mc-opt:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.mc-opt.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.mc-opt.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+
+.tf-item{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:12px 16px;margin-bottom:8px}
+.tf-q{font-weight:700;font-size:.92rem;margin-bottom:6px}
+.tf-btns{display:flex;gap:8px;flex-wrap:wrap}
+.tf-btn{padding:6px 16px;border-radius:50px;border:2px solid #f3e3c4;background:#fff;font-weight:800;font-size:.82rem;cursor:pointer;transition:.15s;font-family:var(--body);color:var(--text)}
+.tf-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tf-btn.correct{background:var(--ok);color:#fff;border-color:var(--ok)}
+.tf-btn.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+
+.wo-item{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:14px 18px;margin-bottom:10px;font-size:.92rem}
+.wo-item code{font-family:var(--mono);font-size:.84rem;color:var(--accent2);background:#fff;padding:3px 8px;border-radius:6px}
+
+.dialogue{background:linear-gradient(180deg,#fff3df,#fbe9c2);padding:22px;border-radius:14px;margin:14px 0}
+.line{margin-bottom:14px;display:flex;gap:12px;align-items:flex-start}
+.line.emma{flex-direction:row-reverse}
+.speaker{flex-shrink:0;width:46px;height:46px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:900;font-size:.8rem;font-family:var(--mono);background:var(--navy)}
+.line.emma .speaker{background:#c54040}
+.bubble{background:#fff;padding:10px 14px;border-radius:12px;flex:1;cursor:pointer;font-size:.93rem;transition:.2s;border:1px solid rgba(0,0,0,.06)}
+.bubble:hover{box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.line.emma .bubble{background:#fff5f5}
+
+.prompts{display:grid;gap:10px;margin-top:12px}
+.prompt{background:#fff3df;padding:14px 18px;border-radius:12px;cursor:pointer;border-left:4px solid var(--accent);font-size:.95rem;transition:.2s}
+.prompt:hover{background:#fff7e8;transform:translateX(4px)}
+.starters{background:linear-gradient(135deg,#ffeaad,#fbdb78);padding:14px 18px;border-radius:10px;font-size:.85rem;font-style:italic;color:var(--accent2);margin-top:10px;font-weight:600}
+
+table.compare{width:100%;border-collapse:collapse;margin:12px 0;font-size:.86rem;background:#fff;border-radius:10px;overflow:hidden}
+table.compare th,table.compare td{padding:10px 12px;text-align:left;border-bottom:1px solid #f3e3c4}
+table.compare th{background:var(--accent);color:#fff;font-weight:800;font-family:var(--display);letter-spacing:.04em}
+table.compare tr:hover{background:#fff7e8}
+
+.info{background:linear-gradient(135deg,#fff7df 0%,#fbecbe 100%);border-left:5px solid var(--accent);padding:12px 16px;border-radius:10px;margin:12px 0;font-size:.92rem}
+.warn{background:#fff0e0;border-left:5px solid #d8721b;padding:12px 16px;border-radius:10px;margin:12px 0;font-size:.9rem}
+
+details.optional{background:#fff3df;border:1px solid #f3e3c4;border-radius:12px;padding:0;margin:10px 0;overflow:hidden}
+details.optional summary{padding:14px 18px;cursor:pointer;font-weight:800;color:var(--accent2);display:flex;align-items:center;gap:10px;font-family:var(--display)}
+details.optional summary::before{content:'⊕';font-size:1.2rem;color:var(--accent);transition:.18s}
+details.optional[open] summary::before{transform:rotate(45deg)}
+details.optional .opt-body{padding:0 18px 18px}
+
+.match-grid{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin:12px 0}
+@media(max-width:720px){.match-grid{grid-template-columns:1fr}}
+.match-place{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);color:#fff;padding:14px 18px;border-radius:12px;font-weight:800;font-size:1rem;display:flex;align-items:center;font-family:var(--display)}
+.match-desc{background:#fff3df;padding:14px 18px;border-radius:12px;font-size:.92rem;border-left:4px solid var(--accent3)}
+
+footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;color:var(--muted);font-size:.8rem;font-family:var(--mono);letter-spacing:.06em}
+</style>
+</head>
+
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="../../index.html"><span class="brand-mark">L</span>LinguaBoost Lab</a>
+  <span class="brand-tag">New Generation English</span>
+  <a class="btn-sm" href="../../index.html">All Lessons</a>
+</nav>
+
+<div class="lab-hero">
+  <div class="lab-hero-inner">
+    <div>
+      <div class="lab-eyebrow">B1 · Speaking · Lesson 01</div>
+      <h1 class="lab-hero-title">Jerusalem<br><em>A City of Three Faiths</em></h1>
+      <p class="lab-hero-lead">Pilgrims, sacred sites, ancient stories — and the English you need to talk about them. Speaking focus: ask, choose, reason.</p>
+      <div class="lab-hero-badges">
+        <span class="lab-badge accent">B1</span>
+        <span class="lab-badge">2 × 90 min</span>
+        <span class="lab-badge">Speaking focus</span>
+        <span class="lab-badge">Would · Modals</span>
+        <span class="lab-badge">17 sections</span>
+      </div>
+      <div class="lab-hero-author">
+        <div class="author-mark">MB</div>
+        <div>
+          <div class="author-name">Maria Burtseva</div>
+          <div class="author-role">Author · New Generation English</div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-hero-visual" aria-hidden="true"><div class="lab-vis-symbols">✡☩☪</div></div>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="star-bar"><span class="star" id="star1">⭐</span><span class="star" id="star2">⭐</span><span class="star" id="star3">⭐</span><span class="star" id="star4">⭐</span><span class="star" id="star5">⭐</span><span class="star" id="star6">⭐</span></div>
+  <div class="rail"><div class="rail-step" id="rs1"></div><div class="rail-step" id="rs2"></div><div class="rail-step" id="rs3"></div><div class="rail-step" id="rs4"></div><div class="rail-step" id="rs5"></div><div class="rail-step" id="rs6"></div></div>
+</div>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">1</div><h2>Warm-up — Jerusalem in your head</h2></div>
+  <div class="section-sub">4 questions · tap 🔊 to listen</div>
+  <div class="card">
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">Have you ever heard about Jerusalem? What do you know already?</div><button class="q-speak" data-say="Have you ever heard about Jerusalem? What do you know already?">🔊</button></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">Which countries do you imagine when you think of holy cities?</div><button class="q-speak" data-say="Which countries do you imagine when you think of holy cities?">🔊</button></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Would you like to visit Jerusalem? Why or why not?</div><button class="q-speak" data-say="Would you like to visit Jerusalem? Why or why not?">🔊</button></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Have you ever visited a place that felt spiritually special to you?</div><button class="q-speak" data-say="Have you ever visited a place that felt spiritually special to you?">🔊</button></div>
+    <h3 style="margin-top:18px">Predict the topic</h3>
+    <p>Three words. What is today about?</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px">
+      <div class="bank-word" data-say="pilgrimage" style="text-align:center;font-size:1rem">pilgrimage 🔊</div>
+      <div class="bank-word" data-say="holy" style="text-align:center;font-size:1rem">holy 🔊</div>
+      <div class="bank-word" data-say="three faiths" style="text-align:center;font-size:1rem">three faiths 🔊</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">2</div><h2>Vocabulary — tap a card to flip</h2></div>
+  <div class="section-sub">14 key words · tap to see meaning and example</div>
+  <div class="card">
+    <div class="flip-grid">
+      <div class="flip-card" data-word="holy"><div class="flip-inner"><div class="flip-front">holy / sacred<div class="pos">adj</div></div><div class="flip-back"><div>very important in religion</div><div class="ex">Jerusalem is a holy city.</div></div></div></div>
+      <div class="flip-card" data-word="faith"><div class="flip-inner"><div class="flip-front">faith<div class="pos">n</div></div><div class="flip-back"><div>belief in a religion</div><div class="ex">People of every faith come here.</div></div></div></div>
+      <div class="flip-card" data-word="pilgrim"><div class="flip-inner"><div class="flip-front">pilgrim · pilgrimage<div class="pos">n</div></div><div class="flip-back"><div>religious traveller · religious journey</div><div class="ex">Pilgrims travel to holy cities.</div></div></div></div>
+      <div class="flip-card" data-word="temple"><div class="flip-inner"><div class="flip-front">temple<div class="pos">n</div></div><div class="flip-back"><div>a religious building</div><div class="ex">The First Temple stood here.</div></div></div></div>
+      <div class="flip-card" data-word="church"><div class="flip-inner"><div class="flip-front">church<div class="pos">n</div></div><div class="flip-back"><div>a Christian place of worship</div><div class="ex">The church is very old.</div></div></div></div>
+      <div class="flip-card" data-word="mosque"><div class="flip-inner"><div class="flip-front">mosque<div class="pos">n</div></div><div class="flip-back"><div>a Muslim place of worship</div><div class="ex">Al-Aqsa is a famous mosque.</div></div></div></div>
+      <div class="flip-card" data-word="synagogue"><div class="flip-inner"><div class="flip-front">synagogue<div class="pos">n</div></div><div class="flip-back"><div>a Jewish place of worship</div><div class="ex">Jews pray in a synagogue.</div></div></div></div>
+      <div class="flip-card" data-word="worship"><div class="flip-inner"><div class="flip-front">worship<div class="pos">v</div></div><div class="flip-back"><div>to pray to / honour God</div><div class="ex">Muslims worship at Al-Aqsa.</div></div></div></div>
+      <div class="flip-card" data-word="the Old City"><div class="flip-inner"><div class="flip-front">the Old City<div class="pos">n</div></div><div class="flip-back"><div>the historic walled centre</div><div class="ex">The Old City has four quarters.</div></div></div></div>
+      <div class="flip-card" data-word="quarter"><div class="flip-inner"><div class="flip-front">quarter<div class="pos">n</div></div><div class="flip-back"><div>one of 4 areas of a city</div><div class="ex">The Christian Quarter is busy.</div></div></div></div>
+      <div class="flip-card" data-word="ancient"><div class="flip-inner"><div class="flip-front">ancient<div class="pos">adj</div></div><div class="flip-back"><div>extremely old</div><div class="ex">These ancient walls.</div></div></div></div>
+      <div class="flip-card" data-word="the Torah"><div class="flip-inner"><div class="flip-front">the Torah<div class="pos">n</div></div><div class="flip-back"><div>the Jewish holy book</div><div class="ex">The Torah is sacred to Jews.</div></div></div></div>
+      <div class="flip-card" data-word="Mount Sinai"><div class="flip-inner"><div class="flip-front">Mount Sinai<div class="pos">n</div></div><div class="flip-back"><div>mountain where Moses got the Ten Commandments</div><div class="ex">Sacred to three faiths.</div></div></div></div>
+      <div class="flip-card" data-word="breathtaking"><div class="flip-inner"><div class="flip-front">breathtaking<div class="pos">adj</div></div><div class="flip-back"><div>extremely beautiful / impressive</div><div class="ex">The view is breathtaking.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">3</div><h2>Practice — drop the word into the gap</h2></div>
+  <div class="section-sub">click a word, then click a gap</div>
+  <div class="card">
+    <div class="bank">
+      <div class="bank-word" data-w="holy">holy</div>
+      <div class="bank-word" data-w="pilgrims">pilgrims</div>
+      <div class="bank-word" data-w="Old City">Old City</div>
+      <div class="bank-word" data-w="faith">faith</div>
+      <div class="bank-word" data-w="ancient">ancient</div>
+      <div class="bank-word" data-w="temple">temple</div>
+      <div class="bank-word" data-w="worship">worship</div>
+      <div class="bank-word" data-w="mosque">mosque</div>
+      <div class="bank-word" data-w="synagogue">synagogue</div>
+      <div class="bank-word" data-w="breathtaking">breathtaking</div>
+    </div>
+    <div class="drag-text">
+      <p>1. Jerusalem is one of the most <span class="drop-gap" data-correct="holy">⋯</span> cities in the world.</p>
+      <p>2. Every year, thousands of <span class="drop-gap" data-correct="pilgrims">⋯</span> travel to Jerusalem from all over the world.</p>
+      <p>3. The <span class="drop-gap" data-correct="Old City">⋯</span> is surrounded by 500-year-old walls.</p>
+      <p>4. People of every <span class="drop-gap" data-correct="faith">⋯</span> visit Jerusalem.</p>
+      <p>5. The walls of Jerusalem are <span class="drop-gap" data-correct="ancient">⋯</span> — almost 4000 years old.</p>
+      <p>6. A long time ago, the First <span class="drop-gap" data-correct="temple">⋯</span> stood on the same hill.</p>
+      <p>7. Muslims <span class="drop-gap" data-correct="worship">⋯</span> at the Al-Aqsa Mosque.</p>
+      <p>8. Al-Aqsa is one of the most famous <span class="drop-gap" data-correct="mosque">⋯</span>s in the world.</p>
+      <p>9. Jews pray in a <span class="drop-gap" data-correct="synagogue">⋯</span>.</p>
+      <p>10. The view from the Mount of Olives is <span class="drop-gap" data-correct="breathtaking">⋯</span>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">4</div><h2>Reading — Five Things About Jerusalem</h2></div>
+  <div class="section-sub">read · listen · answer True / False</div>
+  <div class="card">
+    <img class="lesson-img hero-img" src="assets/img/img-01-old-city.png" alt="Jerusalem Old City at sunset">
+    <div class="reading-text">
+      <p><strong>Five Things You Didn't Know About Jerusalem</strong></p>
+      <p>Jerusalem is one of the oldest cities in the world. Here are five interesting things about it.</p>
+      <div class="reading-fact"><div class="fact-num">1</div><div><strong>It is holy for three faiths.</strong> Jews, Christians and Muslims all believe Jerusalem is a sacred city. All three faiths have important places inside the Old City — and they are very close to each other.</div></div>
+      <div class="reading-fact"><div class="fact-num">2</div><div><strong>The Old City has four quarters.</strong> They are called the Jewish, Christian, Muslim, and Armenian Quarters. Each one has its own atmosphere, food, and shops.</div></div>
+      <div class="reading-fact"><div class="fact-num">3</div><div><strong>The streets today are not the streets of Jesus.</strong> The streets we walk now are about 2,000 years old, but they stand on top of even older streets. The "real" streets from Jesus's time are deep below.</div></div>
+      <div class="reading-fact"><div class="fact-num">4</div><div><strong>"Jerusalem stone" makes the city golden.</strong> By law, every new building must use a special pale stone. That's why the whole city looks golden at sunset.</div></div>
+      <div class="reading-fact"><div class="fact-num">5</div><div><strong>Pilgrims have been coming for 3,000 years.</strong> Long before tourism, people travelled here for religious reasons. Today, about 4 million visitors come every year.</div></div>
+    </div>
+    <div class="audio-block"><span class="label">Audio 01</span><audio controls preload="metadata" src="assets/audio/audio-01-five-things.mp3"></audio></div>
+
+    <h3 style="margin-top:18px">True / False / Not Stated</h3>
+    <div class="tf-item"><div class="tf-q">1. Jews, Christians and Muslims all consider Jerusalem holy.</div><div class="tf-btns"><button class="tf-btn" data-correct="1">True</button><button class="tf-btn">False</button><button class="tf-btn">Not stated</button></div></div>
+    <div class="tf-item"><div class="tf-q">2. The Armenian Quarter is the largest of the four.</div><div class="tf-btns"><button class="tf-btn">True</button><button class="tf-btn">False</button><button class="tf-btn" data-correct="1">Not stated</button></div></div>
+    <div class="tf-item"><div class="tf-q">3. Modern streets stand on top of older streets.</div><div class="tf-btns"><button class="tf-btn" data-correct="1">True</button><button class="tf-btn">False</button><button class="tf-btn">Not stated</button></div></div>
+    <div class="tf-item"><div class="tf-q">4. The famous golden colour of Jerusalem comes from special stone.</div><div class="tf-btns"><button class="tf-btn" data-correct="1">True</button><button class="tf-btn">False</button><button class="tf-btn">Not stated</button></div></div>
+    <div class="tf-item"><div class="tf-q">5. Tourists started visiting Jerusalem only after 1990.</div><div class="tf-btns"><button class="tf-btn">True</button><button class="tf-btn" data-correct="1">False</button><button class="tf-btn">Not stated</button></div></div>
+
+    <h3 style="margin-top:18px">Speaking</h3>
+    <div class="q-row"><div class="q-num">?</div><div class="q-text">Which of the 5 facts surprised you the most?</div></div>
+    <div class="q-row"><div class="q-num">?</div><div class="q-text">Why do you think Jerusalem is so special?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">5</div><h2>Bridge — Moses and Mount Sinai</h2></div>
+  <div class="section-sub">short story · listen and answer</div>
+  <div class="card">
+    <img class="lesson-img hero-img" src="assets/img/img-02-mount-sinai.png" alt="Mount Sinai at sunrise with pilgrims">
+    <div class="reading-text">
+      <p>Long before Jerusalem became a holy city, a man called <strong>Moses</strong> led the Jewish people through the desert. They walked for many years.</p>
+      <p>One day, Moses climbed a mountain called <strong>Mount Sinai</strong>. There, he received the famous <strong>Ten Commandments</strong> — ten simple rules from God, like <em>"Do not lie"</em> or <em>"Do not steal"</em>. These rules are still important today for Jews, Christians and Muslims.</p>
+      <p>Mount Sinai is in <strong>Egypt</strong>. Today, many pilgrims still climb the mountain at night to see the sunrise from the top.</p>
+    </div>
+    <div class="audio-block"><span class="label">Audio 02</span><audio controls preload="metadata" src="assets/audio/audio-02-moses-sinai.mp3"></audio></div>
+    <h3 style="margin-top:18px">Simple questions</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">Who led the Jewish people through the desert?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">What is the name of the mountain Moses climbed?</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">What did Moses receive there?</div></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Why do pilgrims still climb Mount Sinai today?</div></div>
+    <h3 style="margin-top:18px">Let's talk</h3>
+    <div class="q-row"><div class="q-num">A</div><div class="q-text">Have you ever climbed a mountain that felt special to you?</div></div>
+    <div class="q-row"><div class="q-num">B</div><div class="q-text">Would you climb Mount Sinai at night or in the day? Why?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">6</div><h2>Can you ask these questions?</h2></div>
+  <div class="section-sub">practise asking about Jerusalem · word order</div>
+  <div class="card">
+    <p>Put the words in the correct order. Then ask your teacher!</p>
+    <div class="wo-item">1. <code>have / you / ever / been / to / Jerusalem / ?</code></div>
+    <div class="wo-item">2. <code>where / is / the / Old / City / ?</code></div>
+    <div class="wo-item">3. <code>how / many / quarters / does / the / Old / City / have / ?</code></div>
+    <div class="wo-item">4. <code>why / do / pilgrims / come / here / ?</code></div>
+    <div class="wo-item">5. <code>when / did / Moses / live / ?</code></div>
+    <div class="wo-item">6. <code>which / quarter / is / the / smallest / ?</code></div>
+    <div class="wo-item">7. <code>would / you / like / to / visit / Jerusalem / one day / ?</code></div>
+    <div class="wo-item">8. <code>could / you / tell / me / what / Jerusalem stone / is / ?</code></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">7</div><h2>Listening — why people come to Jerusalem</h2></div>
+  <div class="section-sub">listen · answer</div>
+  <div class="card">
+    <div class="audio-block"><span class="label">Audio 03</span><audio controls preload="metadata" src="assets/audio/audio-03-why-people-come.mp3"></audio></div>
+    <div class="three-col" style="margin-top:14px">
+      <div class="faith-card christian"><img src="assets/img/img-03a-via-dolorosa.png" alt="Via Dolorosa" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:4/3;object-fit:cover"><h4>☩ Christians</h4><p><em>For Christians</em>, Jerusalem is where Jesus spent his final week. They walk along the <strong>Via Dolorosa</strong>. They visit the <strong>Church of the Holy Sepulchre</strong>.</p></div>
+      <div class="faith-card jewish"><img src="assets/img/img-03b-western-wall.png" alt="Western Wall with prayer notes" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:4/3;object-fit:cover"><h4>✡ Jews</h4><p><em>For Jews</em>, Jerusalem is the spiritual centre of their faith. The <strong>Western Wall</strong> is the last piece of the old temple.</p></div>
+      <div class="faith-card muslim"><img src="assets/img/img-03c-dome-of-rock.png" alt="Dome of the Rock" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:4/3;object-fit:cover"><h4>☪ Muslims</h4><p><em>For Muslims</em>, Jerusalem is the third holiest city after Mecca and Medina. The <strong>Al-Aqsa Mosque</strong> is where the Prophet Muhammad went to heaven.</p></div>
+    </div>
+    <h3 style="margin-top:14px">Questions</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">Why do Christians come to Jerusalem?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">What is the Via Dolorosa?</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">What do Jews leave in the Western Wall?</div></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Which Muslim city is more holy than Jerusalem?</div></div>
+    <div class="q-row"><div class="q-num">5</div><div class="q-text">What happened at Al-Aqsa, according to Muslim belief?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">8</div><h2>Places of pilgrimage — match them</h2></div>
+  <div class="section-sub">5 places · 5 descriptions</div>
+  <div class="card">
+    <div class="match-grid">
+      <div class="match-place">Jerusalem</div><div class="match-desc">Holy for Jews, Christians and Muslims — home of the Western Wall, the Church of the Holy Sepulchre and the Dome of the Rock.</div>
+      <div class="match-place">Bethlehem</div><div class="match-desc">A small town near Jerusalem. Christians believe Jesus was born here. Pilgrims visit the Church of the Nativity.</div>
+      <div class="match-place">Mecca</div><div class="match-desc">The holiest city in Islam, in Saudi Arabia. Every Muslim who can must visit it at least once. The journey is called <em>Hajj</em>.</div>
+      <div class="match-place">Mount Sinai</div><div class="match-desc">A mountain in Egypt where Moses received the Ten Commandments.</div>
+      <div class="match-place">Lourdes</div><div class="match-desc">A small town in France. A famous Catholic pilgrimage site where the Virgin Mary appeared in 1858.</div>
+    </div>
+    <h3>Speaking</h3>
+    <div class="q-row"><div class="q-num">A</div><div class="q-text">Which of these places would you most like to visit? Why?</div></div>
+    <div class="q-row"><div class="q-num">B</div><div class="q-text">Have you ever heard about Lourdes before today?</div></div>
+    <div class="q-row"><div class="q-num">C</div><div class="q-text">What makes a place a "pilgrimage place" — religion, history, miracles, or something else?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">9</div><h2>Bonus — Christmas connects Bethlehem and Jerusalem</h2></div>
+  <div class="card">
+    <img class="lesson-img" src="assets/img/img-04-bethlehem-night.png" alt="Bethlehem at night with pilgrims and candles" style="aspect-ratio:3/2;object-fit:cover">
+    <div class="info"><p><strong>Christmas</strong> is the celebration of Jesus's birth, which happened in <strong>Bethlehem</strong> — only 10 km from Jerusalem. Christian pilgrims often visit Bethlehem on Christmas Eve to attend midnight Mass at the Church of the Nativity.</p></div>
+    <h3>Quick speaking</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">How do <em>you</em> celebrate Christmas — or do you?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">In Russia, Christmas is on <strong>7 January</strong>. Why is it different?</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Would you ever spend Christmas Eve in Bethlehem? Why or why not?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">10</div><h2>Dialogue — tourist meets a guide</h2></div>
+  <div class="section-sub">Brian (guide) + Emma (tourist)</div>
+  <div class="card">
+    <div class="audio-block"><span class="label">Audio 04</span><audio controls preload="metadata" src="assets/audio/audio-04-dialogue.mp3"></audio></div>
+    <div class="dialogue">
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="Hi, are you Brian? I booked the half-day Old City tour.">Hi, are you Brian? I booked the half-day Old City tour.</div></div>
+      <div class="line"><div class="speaker">BR</div><div class="bubble" data-speaker="brian" data-say="Yes, that's me. Lovely to meet you, Emma. Have you been to Jerusalem before?">Yes, that's me. Lovely to meet you, Emma. Have you been to Jerusalem before?</div></div>
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="No, never. To be honest, I'm a bit nervous.">No, never. To be honest, I'm a bit nervous.</div></div>
+      <div class="line"><div class="speaker">BR</div><div class="bubble" data-speaker="brian" data-say="Why are you nervous?">Why are you nervous?</div></div>
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="I'm not religious, and people sometimes feel out of place at the holy sites. Should I be worried?">I'm not religious, and people sometimes feel out of place at the holy sites. Should I be worried?</div></div>
+      <div class="line"><div class="speaker">BR</div><div class="bubble" data-speaker="brian" data-say="Not at all. People of every faith come here every day. You just have to dress respectfully.">Not at all. People of every faith come here every day. You just have to dress respectfully.</div></div>
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="Could you tell me what we'll see today?">Could you tell me what we'll see today?</div></div>
+      <div class="line"><div class="speaker">BR</div><div class="bubble" data-speaker="brian" data-say="Of course. We'll start at the Jaffa Gate, walk through the Armenian Quarter, see the Church of the Holy Sepulchre, then the Western Wall, and finish near the Dome of the Rock.">Of course. We'll start at the Jaffa Gate, walk through the Armenian Quarter, see the Church of the Holy Sepulchre, then the Western Wall, and finish near the Dome of the Rock.</div></div>
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="Would you rather see the church now or later?">Would you rather see the church now or later?</div></div>
+      <div class="line"><div class="speaker">BR</div><div class="bubble" data-speaker="brian" data-say="Later. It's quieter in the afternoon.">Later. It's quieter in the afternoon.</div></div>
+      <div class="line emma"><div class="speaker">EM</div><div class="bubble" data-speaker="emma" data-say="Perfect. Let's go.">Perfect. Let's go.</div></div>
+    </div>
+    <h3 style="margin-top:14px">Questions</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">How does Emma feel before the tour?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">What does Brian say about visitors of different faiths?</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Where will they start the tour?</div></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Why do they decide to see the church later?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">11</div><h2>"Would" — quick base</h2></div>
+  <div class="section-sub">three ways to use would</div>
+  <div class="card">
+    <table class="compare">
+      <tr><th>Use</th><th>Structure</th><th>Example</th></tr>
+      <tr><td>Polite wish</td><td>I would like + noun / to-verb</td><td>I <strong>would like</strong> to visit the Wall.</td></tr>
+      <tr><td>Choice of two</td><td>Would you rather + verb + or + verb?</td><td><strong>Would you rather</strong> see the church <strong>or</strong> the Wall?</td></tr>
+      <tr><td>If…</td><td>If + past, would + verb</td><td>If I <strong>had</strong> time, I <strong>would visit</strong> Bethlehem.</td></tr>
+    </table>
+    <div class="warn">⚠ <strong>Don't:</strong><br>❌ I would <em>to</em> visit → ✅ I would visit / I would <strong>like to</strong> visit<br>❌ Would you rather <em>to</em> go? → ✅ Would you rather <strong>go</strong>?<br>❌ If I will have time → ✅ If I <strong>had</strong> time</div>
+    <h3>Mini check — finish the sentence</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">I would ___ to see the Old City one day. <em>(polite wish)</em></div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">Would you ___ go in the morning or in the evening? <em>(choice of two)</em></div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">If I ___ more time, I ___ visit Bethlehem. <em>(if + past, would + verb)</em></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">12</div><h2>Would you rather — Jerusalem only</h2></div>
+  <div class="section-sub">answer in a full sentence + 2 reasons</div>
+  <div class="card">
+    <div class="prompts">
+      <div class="prompt" data-say="Would you rather visit the Western Wall or the Dome of the Rock?">1. Would you rather visit the <strong>Western Wall</strong> or the <strong>Dome of the Rock</strong>?</div>
+      <div class="prompt" data-say="Would you rather try Israeli falafel or Arabic hummus in the Old City?">2. Would you rather try <strong>Israeli falafel</strong> or <strong>Arabic hummus</strong> in the Old City?</div>
+      <div class="prompt" data-say="Would you rather walk through the Christian Quarter or the Muslim Quarter first?">3. Would you rather walk through the <strong>Christian Quarter</strong> or the <strong>Muslim Quarter</strong> first?</div>
+      <div class="prompt" data-say="Would you rather see Jerusalem at sunrise or at sunset?">4. Would you rather see Jerusalem at <strong>sunrise</strong> or at <strong>sunset</strong>?</div>
+      <div class="prompt" data-say="Would you rather sleep inside the Old City walls or in a modern hotel outside?">5. Would you rather sleep <strong>inside the Old City walls</strong> or in a <strong>modern hotel outside</strong>?</div>
+      <div class="prompt" data-say="Would you rather visit Jerusalem with a religious guide or with a historian?">6. Would you rather visit Jerusalem with a <strong>religious guide</strong> or with a <strong>historian</strong>?</div>
+      <div class="prompt" data-say="Would you rather see Jerusalem in one day or in one whole week?">7. Would you rather see Jerusalem in <strong>one day</strong> or in <strong>one whole week</strong>?</div>
+    </div>
+    <div class="starters"><strong>Sentence starters:</strong> <em>I would rather… because… · I'd prefer to… since… · Honestly, I'd choose… because…</em></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">13</div><h2>Modal verbs — optional</h2></div>
+  <div class="section-sub">expand if time</div>
+  <div class="card">
+    <details class="optional">
+      <summary>Expand · 8 tasks on must / should / might / could</summary>
+      <div class="opt-body">
+        <table class="compare"><tr><th>Modal</th><th>Meaning</th><th>Example</th></tr><tr><td><strong>must</strong></td><td>strong obligation</td><td>You <strong>must</strong> cover your shoulders.</td></tr><tr><td><strong>mustn't</strong></td><td>prohibition</td><td>You <strong>mustn't</strong> take photos inside.</td></tr><tr><td><strong>should</strong></td><td>advice</td><td>You <strong>should</strong> visit at sunrise.</td></tr><tr><td><strong>might</strong></td><td>possibility</td><td>It <strong>might</strong> rain later.</td></tr><tr><td><strong>could</strong></td><td>possibility / polite request</td><td>We <strong>could</strong> start at Jaffa Gate.</td></tr></table>
+        <p style="margin-top:10px">A Pilgrim's First Day · choose the modal:</p>
+        <div class="mc-item"><div class="mc-q">1. When you arrive, you ___ feel overwhelmed.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt">should</button><button class="mc-opt" data-correct="1">might</button></div></div>
+        <div class="mc-item"><div class="mc-q">2. You ___ start with the Jaffa Gate.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt" data-correct="1">should</button><button class="mc-opt">might</button></div></div>
+        <div class="mc-item"><div class="mc-q">3. You ___ wear shorts at religious sites.</div><div class="mc-opts"><button class="mc-opt">shouldn't</button><button class="mc-opt">couldn't</button><button class="mc-opt" data-correct="1">mustn't</button></div></div>
+        <div class="mc-item"><div class="mc-q">4. Security ___ ask you to cover up.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt" data-correct="1">might</button><button class="mc-opt">should</button></div></div>
+        <div class="mc-item"><div class="mc-q">5. You ___ try the hummus near Damascus Gate.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt">mustn't</button><button class="mc-opt" data-correct="1">should</button></div></div>
+        <div class="mc-item"><div class="mc-q">6. You ___ visit early to avoid crowds.</div><div class="mc-opts"><button class="mc-opt">should</button><button class="mc-opt">must</button><button class="mc-opt" data-correct="1">could</button></div></div>
+        <div class="mc-item"><div class="mc-q">7. After lunch, you ___ feel tired.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt">mustn't</button><button class="mc-opt" data-correct="1">might</button></div></div>
+        <div class="mc-item"><div class="mc-q">8. By the end of the day, you ___ feel that Jerusalem is unique.</div><div class="mc-opts"><button class="mc-opt">must</button><button class="mc-opt">might</button><button class="mc-opt" data-correct="1">should</button></div></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">14</div><h2>Speaking — three levels</h2></div>
+  <div class="section-sub">Safe → Guided → Freer</div>
+  <div class="card">
+    <h3>A · Safe practice <span class="lab-badge">2-3 min</span></h3>
+    <p>Short answers using lesson vocabulary.</p>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">What is the Old City?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">Name two of the four quarters.</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">What is a pilgrim?</div></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Why is the Western Wall important?</div></div>
+    <div class="q-row"><div class="q-num">5</div><div class="q-text">What is "Jerusalem stone"?</div></div>
+    <h3 style="margin-top:18px">B · Guided <span class="lab-badge">8-10 min</span></h3>
+    <p>Repeat the 7 "Would you rather" prompts from section 12 — <strong>now spoken aloud</strong>. Full sentence + 2 reasons.</p>
+    <div class="starters">Honestly, I'd rather… because… · I'd find it more meaningful to… · If I had the choice, I'd pick… because…</div>
+    <h3 style="margin-top:18px">C · Freer <span class="lab-badge">10-15 min</span></h3>
+    <p>Choose 2 prompts and speak for 2-3 minutes on each.</p>
+    <div class="prompts">
+      <div class="prompt" data-say="Why is Jerusalem so emotional even for people who are not religious?">Why is Jerusalem so emotional even for people who are not religious?</div>
+      <div class="prompt" data-say="If you could meet Jesus, Muhammad or Moses, who would you choose and why?">If you could meet Jesus, Muhammad or Moses, who would you choose and why?</div>
+      <div class="prompt" data-say="Should Jerusalem be shared by all faiths or divided into quarters? Why?">Should Jerusalem be shared by all faiths or divided into quarters? Why?</div>
+      <div class="prompt" data-say="What's one place in your own life that feels sacred to you?">What's one place in your own life that feels sacred to you?</div>
+      <div class="prompt" data-say="Imagine you have to describe Jerusalem to a friend in 3 sentences. What would you say?">Imagine you have to describe Jerusalem to a friend in 3 sentences. What would you say?</div>
+    </div>
+    <div class="starters">What strikes me most is… · I'd argue that… · From my perspective… · On the other hand…</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">15</div><h2>Three places of worship</h2></div>
+  <div class="section-sub">compare church · mosque · synagogue</div>
+  <div class="card">
+    <div class="three-col">
+      <div class="faith-card christian"><img src="assets/img/img-05a-church.png" alt="Church interior with altar" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:1/1;object-fit:cover"><h4>☩ Church</h4><p><strong>See:</strong> altar, cross, candles, stained glass, pews.</p><p><strong>Do:</strong> <em>sit, sing, light candles, kneel.</em></p></div>
+      <div class="faith-card muslim"><img src="assets/img/img-05b-mosque.png" alt="Mosque interior with mihrab" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:1/1;object-fit:cover"><h4>☪ Mosque</h4><p><strong>See:</strong> mihrab, dome, prayer mats, Arabic calligraphy.</p><p><strong>Do:</strong> <em>must remove shoes, wash hands, kneel facing Mecca.</em></p></div>
+      <div class="faith-card jewish"><img src="assets/img/img-05c-synagogue.png" alt="Synagogue interior with Torah ark and menorah" style="width:100%;border-radius:10px;margin-bottom:10px;display:block;aspect-ratio:1/1;object-fit:cover"><h4>✡ Synagogue</h4><p><strong>See:</strong> Torah ark, menorah, Star of David.</p><p><strong>Do:</strong> <em>should cover the head, read from the Torah, pray in Hebrew.</em></p></div>
+    </div>
+    <h3>Speaking</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">What can you see inside a church / mosque / synagogue?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">What do worshippers <em>do</em> there? (use must / should!)</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Which one feels the most peaceful to you, just from looking?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">16</div><h2>Discussion — faith and choice</h2></div>
+  <div class="section-sub">if time allows</div>
+  <div class="card">
+    <div class="prompts">
+      <div class="prompt" data-say="Do you believe in fate or in choice?">Do you believe in fate or in choice?</div>
+      <div class="prompt" data-say="What do you think the future of religion is in the world?">What do you think the future of religion is in the world?</div>
+      <div class="prompt" data-say="Why does a person turn to faith? Why does a person leave faith?">Why does a person turn to faith? Why does a person leave faith?</div>
+      <div class="prompt" data-say="Should children be raised in their parents' religion or choose for themselves later?">Should children be raised in their parents' religion or choose for themselves later?</div>
+      <div class="prompt" data-say="Have your views on religion changed over time? What caused the change?">Have your views on religion changed over time? What caused the change?</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-hdr"><div class="num">17</div><h2>Review · self-check</h2></div>
+  <div class="section-sub">no homework</div>
+  <div class="card">
+    <h3>Quick review</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">Give a word that means "very important in religion" → ?</div></div>
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">Give a word for "a religious traveller" → ?</div></div>
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Word order: have / you / ever / been / to / Jerusalem / ? → ?</div></div>
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Correct this question: "Where Jerusalem is?" → ?</div></div>
+    <div class="mc-item"><div class="mc-q">5. I would ___ to visit Bethlehem someday.</div><div class="mc-opts"><button class="mc-opt">want</button><button class="mc-opt" data-correct="1">like</button><button class="mc-opt">wanted</button></div></div>
+    <div class="mc-item"><div class="mc-q">6. If I ___ in Jerusalem, I would visit the Wall every Friday.</div><div class="mc-opts"><button class="mc-opt">will be</button><button class="mc-opt" data-correct="1">were</button><button class="mc-opt">am</button></div></div>
+    <div class="mc-item"><div class="mc-q">7. Jerusalem is amazing, ___ ?</div><div class="mc-opts"><button class="mc-opt">aren't it</button><button class="mc-opt" data-correct="1">isn't it</button><button class="mc-opt">doesn't it</button></div></div>
+    <h3 style="margin-top:18px">Self-check 🪞</h3>
+    <div class="q-row"><div class="q-num">A</div><div class="q-text">What was easy today?</div></div>
+    <div class="q-row"><div class="q-num">B</div><div class="q-text">What was difficult?</div></div>
+    <div class="q-row"><div class="q-num">C</div><div class="q-text">What should we practise again next time?</div></div>
+  </div>
+</section>
+
+<footer>
+  Lesson by <strong>Maria Burtseva</strong> · NGE · LinguaBoost Lab · B1 · 2 × 90 min<br>
+  <small>tap any 🔊 to listen · flip cards · drop bank words into gaps</small>
+</footer>
+
+<script>
+let voicesLoaded=false,englishVoices={uk:null};
+function loadVoices(){const v=speechSynthesis.getVoices();if(!v.length)return false;englishVoices.uk=v.find(x=>x.lang==='en-GB')||v.find(x=>x.lang.startsWith('en'));voicesLoaded=true;return true}
+speechSynthesis.onvoiceschanged=loadVoices;loadVoices();
+function speak(text,voiceTag){if(!text)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=0.93;if(voicesLoaded){const v=speechSynthesis.getVoices();if(voiceTag==='brian'){u.voice=v.find(x=>x.lang==='en-GB'&&/male|brian|george|daniel|oliver/i.test(x.name))||englishVoices.uk}else if(voiceTag==='emma'){u.voice=v.find(x=>x.lang==='en-GB'&&/female|emma|amy|libby|hazel|kate/i.test(x.name))||englishVoices.uk}else{u.voice=englishVoices.uk}}speechSynthesis.speak(u)}
+document.querySelectorAll('[data-say]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();speak(el.getAttribute('data-say'),el.getAttribute('data-speaker'))}));
+document.querySelectorAll('.flip-card').forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('flipped');if(c.classList.contains('flipped')){const w=c.getAttribute('data-word');if(w)speak(w)}}));
+let selectedBankWord=null;
+document.querySelectorAll('.bank-word[data-w]').forEach(w=>w.addEventListener('click',()=>{if(w.classList.contains('used'))return;if(selectedBankWord)selectedBankWord.classList.remove('selected');if(selectedBankWord===w){selectedBankWord=null;return}selectedBankWord=w;w.classList.add('selected');speak(w.getAttribute('data-w'))}));
+document.querySelectorAll('.drop-gap').forEach(gap=>gap.addEventListener('click',()=>{if(!selectedBankWord||gap.classList.contains('filled'))return;const want=gap.getAttribute('data-correct'),got=selectedBankWord.getAttribute('data-w');if(want===got){gap.classList.add('filled');gap.textContent=got;selectedBankWord.classList.add('used');selectedBankWord.classList.remove('selected');selectedBankWord=null}else{gap.classList.add('wrong');setTimeout(()=>gap.classList.remove('wrong'),400)}}));
+document.querySelectorAll('.mc-opts,.tf-btns').forEach(grp=>grp.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{if(btn.classList.contains('correct')||btn.classList.contains('wrong'))return;const ok=btn.hasAttribute('data-correct');btn.classList.add(ok?'correct':'wrong');if(!ok){const c=grp.querySelector('[data-correct]');if(c)c.classList.add('correct')}speak(btn.textContent)})));
+const completedSections=new Set();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const n=parseInt(e.target.querySelector('.num')?.textContent);if(n&&n<=6&&!completedSections.has(n)){completedSections.add(n);const s=document.getElementById('star'+n),r=document.getElementById('rs'+n);if(s)s.classList.add('lit');if(r)r.classList.add('done')}}}),{threshold:0.5});
+document.querySelectorAll('section.section').forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
