@@ -190,6 +190,40 @@ details.optional .opt-body{padding:0 18px 18px}
 .match-desc{background:#fff3df;padding:14px 18px;border-radius:12px;font-size:.92rem;border-left:4px solid var(--accent3);cursor:pointer}
 
 footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;color:var(--muted);font-size:.8rem;font-family:var(--mono);letter-spacing:.06em}
+
+/* Word-order (Section 6) — bank + slots + check */
+.wo-bank,.wo-slots{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding:8px 10px;border-radius:10px;min-height:44px}
+.wo-bank{background:#fff;border:1px dashed var(--accent3)}
+.wo-slots{background:#fdf6e8;border:1px solid var(--accent3);position:relative}
+.wo-slots:empty::before{content:'tap words above to build the question →';position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.78rem;font-style:italic;font-family:var(--mono)}
+.wo-pill.correct{background:linear-gradient(135deg,#fff7d8,var(--accent3))!important;border-color:var(--accent)!important;color:var(--accent2)!important}
+.wo-pill.wrong{background:#f7d8d8!important;border-color:var(--miss)!important;color:var(--miss)!important;animation:shake .35s}
+.wo-check{margin-top:10px;padding:8px 18px;background:var(--accent);color:#fff;border:none;border-radius:50px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;cursor:pointer;transition:.18s}
+.wo-check:hover{background:var(--accent2);transform:translateY(-1px)}
+.wo-reset{margin-left:6px;background:transparent;color:var(--muted);border:1px solid var(--muted)}
+.wo-reset:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
+
+/* Common Slips (Section 11) — typographic replacement of red/green badges */
+.slips{background:#fff3df;border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0}
+.slips-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;margin-bottom:10px}
+.slip-row{display:grid;grid-template-columns:1fr 30px 1fr;gap:10px;align-items:center;padding:6px 0;font-size:.92rem}
+@media(max-width:680px){.slip-row{grid-template-columns:1fr;gap:4px;border-bottom:1px solid rgba(184,134,31,.15);padding:10px 0}.slip-arrow{display:none}}
+.slip-wrong{color:var(--muted);font-style:italic}
+.slip-wrong s{color:#b86a44;text-decoration:line-through}
+.slip-arrow{color:var(--accent3);text-align:center;font-weight:800;font-size:1.1rem}
+.slip-right{color:var(--accent2);font-weight:600}
+.slip-right strong{color:var(--accent);font-weight:900;background:linear-gradient(transparent 62%,rgba(224,168,46,.4) 62%)}
+
+/* Hint details (Section 12) — collapsible cultural support */
+.hint{margin-top:8px;margin-left:6px}
+.hint summary{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:4px 0;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.hint summary::-webkit-details-marker{display:none}
+.hint summary::before{content:'+';color:var(--accent);font-weight:900;font-size:.9rem;transition:.18s}
+.hint[open] summary::before{content:'−'}
+.hint summary:hover{color:var(--accent2)}
+.hint-body{padding:10px 14px;margin-top:6px;background:#fff;border-radius:10px;font-size:.86rem;line-height:1.55;border-left:3px solid var(--accent3)}
+.hint-body p{margin:4px 0}
+.hint-body strong{color:var(--accent2);font-weight:800}
 </style>
 </head>
 
@@ -444,7 +478,12 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
       <tr><td>Choice of two</td><td>Would you rather + verb + or + verb?</td><td><strong>Would you rather</strong> see the church <strong>or</strong> the Wall?</td></tr>
       <tr><td>If…</td><td>If + past, would + verb</td><td>If I <strong>had</strong> time, I <strong>would visit</strong> Bethlehem.</td></tr>
     </table>
-    <div class="warn"><span class="mark warn-mark" aria-hidden="true"></span><strong>Don't:</strong><br><span class="mark bad" aria-hidden="true"></span>I would <em>to</em> visit → <span class="mark good" aria-hidden="true"></span>I would visit / I would <strong>like to</strong> visit<br><span class="mark bad" aria-hidden="true"></span>Would you rather <em>to</em> go? → <span class="mark good" aria-hidden="true"></span>Would you rather <strong>go</strong>?<br><span class="mark bad" aria-hidden="true"></span>If I will have time → <span class="mark good" aria-hidden="true"></span>If I <strong>had</strong> time</div>
+    <div class="slips">
+      <div class="slips-title">Common slips</div>
+      <div class="slip-row"><span class="slip-wrong">I would <s>to</s> visit</span><span class="slip-arrow">→</span><span class="slip-right">I would visit  ·  I would <strong>like to</strong> visit</span></div>
+      <div class="slip-row"><span class="slip-wrong">Would you rather <s>to</s> go?</span><span class="slip-arrow">→</span><span class="slip-right">Would you rather <strong>go</strong>?</span></div>
+      <div class="slip-row"><span class="slip-wrong">If I <s>will have</s> time</span><span class="slip-arrow">→</span><span class="slip-right">If I <strong>had</strong> time</span></div>
+    </div>
     <h3>Mini check — finish the sentence</h3>
     <div class="q-row"><div class="q-num">1</div><div class="q-text">I would ___ to see the Old City one day. <em>(polite wish)</em></div></div>
     <div class="q-row"><div class="q-num">2</div><div class="q-text">Would you ___ go in the morning or in the evening? <em>(choice of two)</em></div></div>
@@ -458,12 +497,46 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   <div class="card">
     <div class="prompts">
       <div class="prompt" data-say="Would you rather visit the Western Wall or the Dome of the Rock?">1. Would you rather visit the <strong>Western Wall</strong> or the <strong>Dome of the Rock</strong>?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Western Wall</strong> — the last remaining piece of the ancient Jewish temple. People put paper prayer notes in the cracks. Open to everyone, free.</p>
+        <p><strong>Dome of the Rock</strong> — the famous golden Muslim dome. The inside is only for Muslims, but the outside is one of the most photographed places in Jerusalem.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather try Israeli falafel or Arabic hummus in the Old City?">2. Would you rather try <strong>Israeli falafel</strong> or <strong>Arabic hummus</strong> in the Old City?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Falafel</strong> — crispy fried chickpea balls, usually inside a pita with salad and tahini sauce. Quick, hot, street-food vibe.</p>
+        <p><strong>Hummus</strong> — creamy dip made of chickpeas and tahini, eaten cold with warm flatbread. Slower, more like a small meal.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather walk through the Christian Quarter or the Muslim Quarter first?">3. Would you rather walk through the <strong>Christian Quarter</strong> or the <strong>Muslim Quarter</strong> first?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Christian Quarter</strong> — narrow stone streets, churches, the Via Dolorosa, the Holy Sepulchre. Quieter in the morning.</p>
+        <p><strong>Muslim Quarter</strong> — the biggest of the four, loud markets (souks), spices, sweets, more crowded. Best in the first half of the day.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather see Jerusalem at sunrise or at sunset?">4. Would you rather see Jerusalem at <strong>sunrise</strong> or at <strong>sunset</strong>?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Sunrise</strong> — soft golden light from the Mount of Olives, very few people, peaceful. You need to wake up at 4–5 a.m.</p>
+        <p><strong>Sunset</strong> — the walls glow orange, romantic, many tourists. Easier to fit into a normal day.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather sleep inside the Old City walls or in a modern hotel outside?">5. Would you rather sleep <strong>inside the Old City walls</strong> or in a <strong>modern hotel outside</strong>?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Inside the walls</strong> — old guesthouses, stone rooms, sometimes no lift. You feel history outside your window — but nights can be noisy.</p>
+        <p><strong>Modern hotel outside</strong> — air-conditioning, swimming pool, comfort. You lose the late-night atmosphere of the Old City but sleep much better.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather visit Jerusalem with a religious guide or with a historian?">6. Would you rather visit Jerusalem with a <strong>religious guide</strong> or with a <strong>historian</strong>?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>Religious guide</strong> — talks about prayers, rituals, what believers feel. Stories from inside the faith.</p>
+        <p><strong>Historian</strong> — talks about who built what and when, archaeology, real events. Less emotion, more facts.</p>
+      </div></details>
+
       <div class="prompt" data-say="Would you rather see Jerusalem in one day or in one whole week?">7. Would you rather see Jerusalem in <strong>one day</strong> or in <strong>one whole week</strong>?</div>
+      <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
+        <p><strong>One day</strong> — Old City + the three big sites + a market. You catch the highlights, but everything feels rushed.</p>
+        <p><strong>One whole week</strong> — Bethlehem, Mount of Olives, Yad Vashem, Jerusalem at night, plus day trips. You go deeper but need more time and money.</p>
+      </div></details>
     </div>
     <div class="starters"><strong>Sentence starters:</strong> <em>I would rather… because… · I'd prefer to… since… · Honestly, I'd choose… because…</em></div>
   </div>
@@ -578,7 +651,22 @@ function loadVoices(){const v=speechSynthesis.getVoices();if(!v.length)return fa
 speechSynthesis.onvoiceschanged=loadVoices;loadVoices();
 function speak(text,voiceTag){if(!text)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=0.93;if(voicesLoaded){const v=speechSynthesis.getVoices();if(voiceTag==='brian'){u.voice=v.find(x=>x.lang==='en-GB'&&/male|brian|george|daniel|oliver/i.test(x.name))||englishVoices.uk}else if(voiceTag==='emma'){u.voice=v.find(x=>x.lang==='en-GB'&&/female|emma|amy|libby|hazel|kate/i.test(x.name))||englishVoices.uk}else{u.voice=englishVoices.uk}}speechSynthesis.speak(u)}
 document.querySelectorAll('[data-say]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();speak(el.getAttribute('data-say'),el.getAttribute('data-speaker'))}));
-document.querySelectorAll('.flip-card').forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('flipped');if(c.classList.contains('flipped')){const w=c.getAttribute('data-word');if(w)speak(w)}}));
+document.querySelectorAll('.flip-card').forEach(c=>c.addEventListener('click',()=>{
+  c.classList.toggle('flipped');
+  if(c.classList.contains('flipped')){
+    const w=(c.getAttribute('data-word')||'').trim();
+    const back=c.querySelector('.flip-back');
+    const parts=[w];
+    if(back){
+      back.querySelectorAll(':scope > div').forEach(d=>{
+        const txt=(d.textContent||'').trim();
+        if(txt && txt!==w) parts.push(txt);
+      });
+    }
+    const full=parts.filter(Boolean).join('. ');
+    if(full)speak(full);
+  }
+}));
 let selectedBankWord=null;
 document.querySelectorAll('.bank-word[data-w]').forEach(w=>w.addEventListener('click',()=>{if(w.classList.contains('used'))return;if(selectedBankWord)selectedBankWord.classList.remove('selected');if(selectedBankWord===w){selectedBankWord=null;return}selectedBankWord=w;w.classList.add('selected');speak(w.getAttribute('data-w'))}));
 document.querySelectorAll('.drop-gap').forEach(gap=>gap.addEventListener('click',()=>{if(!selectedBankWord||gap.classList.contains('filled'))return;const want=gap.getAttribute('data-correct'),got=selectedBankWord.getAttribute('data-w');if(want===got){gap.classList.add('filled');gap.textContent=got;selectedBankWord.classList.add('used');selectedBankWord.classList.remove('selected');selectedBankWord=null}else{gap.classList.add('wrong');setTimeout(()=>gap.classList.remove('wrong'),400)}}));
@@ -587,20 +675,102 @@ const completedSections=new Set();
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const n=parseInt(e.target.querySelector('.num')?.textContent);if(n&&n<=17&&!completedSections.has(n)){completedSections.add(n);const s=document.getElementById('star'+n),r=document.getElementById('rs'+n);if(s)s.classList.add('lit');if(r)r.classList.add('done')}}}),{threshold:0.45});
 document.querySelectorAll('section.section').forEach(s=>observer.observe(s));
 
-// ── WORD ORDER (Section 6) — shuffle words, click to hear ──
+// Shuffle helper (used by Section 3, 6, 8)
 function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+
+// ── iOS voice warm-up: first user click primes speechSynthesis ──
+(function(){
+  function warm(){
+    try{
+      const u=new SpeechSynthesisUtterance(' ');
+      u.volume=0;u.lang='en-GB';
+      speechSynthesis.speak(u);
+    }catch(e){}
+    document.removeEventListener('click',warm,true);
+    document.removeEventListener('touchstart',warm,true);
+  }
+  document.addEventListener('click',warm,true);
+  document.addEventListener('touchstart',warm,true);
+})();
+
+// ── Section 3 — shuffle bank words on page load (no more 1:1 with sentences) ──
+(function(){
+  document.querySelectorAll('.section .bank').forEach(bank=>{
+    const items=Array.from(bank.querySelectorAll('.bank-word'));
+    if(items.length<2)return;
+    shuffle(items).forEach(it=>bank.appendChild(it));
+  });
+})();
+
+// ── WORD ORDER (Section 6) — pick-to-slot + Check with red highlights ──
 document.querySelectorAll('.wo-item[data-words]').forEach(item=>{
-  const words=item.getAttribute('data-words').split('/');
-  const shuffled=shuffle(words);
-  const container=item.querySelector('.wo-pills');
-  shuffled.forEach(w=>{
+  const correct=item.getAttribute('data-words').split('/');
+  const oldHint=item.querySelector('.wo-hint');
+  if(oldHint) oldHint.textContent=oldHint.textContent.replace(/→ 1 question/,'').replace(/(\d+) words?.*/,'$1 words → tap to build');
+  const oldContainer=item.querySelector('.wo-pills');
+  if(oldContainer) oldContainer.remove();
+
+  const bank=document.createElement('div');bank.className='wo-bank';bank.setAttribute('role','group');bank.setAttribute('aria-label','Word bank');
+  const slots=document.createElement('div');slots.className='wo-slots';slots.setAttribute('role','group');slots.setAttribute('aria-label','Sentence builder');
+  const controls=document.createElement('div');controls.style.marginTop='6px';
+  const check=document.createElement('button');check.className='wo-check';check.type='button';check.textContent='Check';
+  const reset=document.createElement('button');reset.className='wo-check wo-reset';reset.type='button';reset.textContent='Reset';
+  controls.appendChild(check);controls.appendChild(reset);
+
+  item.appendChild(bank);item.appendChild(slots);item.appendChild(controls);
+
+  function makePill(w){
     const pill=document.createElement('button');
+    pill.type='button';
     pill.className='wo-pill';
     pill.textContent=w;
-    pill.addEventListener('click',()=>{speak(w);pill.classList.add('spoken');setTimeout(()=>pill.classList.remove('spoken'),900)});
-    container.appendChild(pill);
+    pill.addEventListener('click',()=>{
+      pill.classList.remove('correct','wrong');
+      if(pill.parentElement===bank){
+        slots.appendChild(pill);
+      }else{
+        bank.appendChild(pill);
+      }
+      speak(w);
+    });
+    return pill;
+  }
+
+  shuffle(correct).forEach(w=>bank.appendChild(makePill(w)));
+
+  check.addEventListener('click',()=>{
+    const placed=Array.from(slots.querySelectorAll('.wo-pill'));
+    placed.forEach((pill,idx)=>{
+      pill.classList.remove('correct','wrong');
+      if(pill.textContent===correct[idx]){
+        pill.classList.add('correct');
+      }else{
+        pill.classList.add('wrong');
+      }
+    });
+    if(placed.length===correct.length && placed.every((p,i)=>p.textContent===correct[i])){
+      speak(correct.filter(w=>w!=='?').join(' '));
+    }
+  });
+
+  reset.addEventListener('click',()=>{
+    Array.from(slots.querySelectorAll('.wo-pill')).forEach(p=>{
+      p.classList.remove('correct','wrong');
+      bank.appendChild(p);
+    });
+    const pills=Array.from(bank.querySelectorAll('.wo-pill'));
+    shuffle(pills).forEach(p=>bank.appendChild(p));
   });
 });
+
+// ── Section 8 — shuffle place names on page load ──
+(function(){
+  const bank=document.getElementById('matchBank');
+  if(!bank)return;
+  const items=Array.from(bank.querySelectorAll('.match-place'));
+  if(items.length<2)return;
+  shuffle(items).forEach(it=>bank.appendChild(it));
+})();
 
 // ── PILGRIMAGE MATCHING (Section 8) — click place, click drop ──
 let selectedPlace=null;
