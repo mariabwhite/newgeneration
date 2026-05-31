@@ -168,7 +168,7 @@ window.NGE_DATA = {
       "monthly_package": 10000,
       "lessons_in_package": 5,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 3,
+      "lessons_used_this_month": 4,
       "payment_status": "Оплачено",
       "parent_name": "Подлесных Татьяна Анатольевна",
       "parent_passport": "4524 514335 (06.11.2024)",
@@ -177,11 +177,11 @@ window.NGE_DATA = {
       "parent_address": "Москва, пос. Сосенское, п. Коммунарка, ул. Ясная, д.5, кв.33",
       "pin": "7670",
       "lessons": [
-        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "IELTS Reading — тексты про время (temporal continuum)" },
-        { "date": "2026-05-08", "num": 2, "status": "completed", "topic": "IELTS Listening — аудирование уровня IELTS" },
-        { "date": "2026-05-15", "num": 3, "status": "completed", "topic": "Grammar — подготовка к МЦК" },
-        { "date": "2026-05-22", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-29", "num": 5, "status": "planned", "topic": "" }
+        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "Чтение — художественные тексты про путешествия во времени" },
+        { "date": "2026-05-08", "num": 2, "status": "completed", "topic": "Аудирование академического уровня + новая лексика" },
+        { "date": "2026-05-15", "num": 3, "status": "completed", "topic": "Грамматика — целенаправленная подготовка к МЦК" },
+        { "date": "2026-05-22", "num": 4, "status": "missed", "topic": "Пропуск (Иван проспал)" },
+        { "date": "2026-05-29", "num": 5, "status": "completed", "topic": "Устная практика — летние планы и каникулы" }
       ]
     },
     {
@@ -235,14 +235,18 @@ window.NGE_DATA = {
       "pin": "6347",
       "lessons_in_package": 5,
       "subscription_month": "2026-05",
-      "lessons_used_this_month": 3,
-      "stability_note": "5 воскресений в мае. Оплачено 7500 ₽ = 3 урока (3, 10, 17). 2 урока (3, 10) — перевал из апреля. 24, 31 мая — к оплате отдельно. Стабильно ходит.",
+      "lessons_used_this_month": 5,
+      "stability_note": "5 воскресений в мае — все проведены. Стабильно ходит, темп ровный без скачков и без откатов. С июня: 4 воскресенья × 2500 ₽ = 10 000 ₽ к оплате.",
       "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "одежда — лексика, описания" },
-        { "date": "2026-05-10", "num": 2, "status": "completed", "topic": "Past Simple / Past Continuous, stative verbs" },
-        { "date": "2026-05-17", "num": 3, "status": "completed", "topic": "дома — лексика, описания" },
-        { "date": "2026-05-24", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-31", "num": 5, "status": "planned", "topic": "" }
+        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Одежда — лексика и описания" },
+        { "date": "2026-05-10", "num": 2, "status": "completed", "topic": "Present Simple / Present Continuous + базовые конструкции" },
+        { "date": "2026-05-17", "num": 3, "status": "completed", "topic": "Дома — лексика, описания, что есть дома" },
+        { "date": "2026-05-24", "num": 4, "status": "completed", "topic": "Повторение темы «дома» (закрепление)" },
+        { "date": "2026-05-31", "num": 5, "status": "completed", "topic": "Город — лексика, городские объекты" },
+        { "date": "2026-06-07", "num": 6, "status": "planned", "topic": "Город — расширяем городскую лексику, описания" },
+        { "date": "2026-06-14", "num": 7, "status": "planned", "topic": "Шоппинг в городе — фразы для магазина (Can I have / How much is / I would like)" },
+        { "date": "2026-06-21", "num": 8, "status": "planned", "topic": "Направления в городе — Go straight / Turn left, right / It is near" },
+        { "date": "2026-06-28", "num": 9, "status": "planned", "topic": "Кофе в городе — заказ кофе (I would like a cappuccino / To go please)" }
       ]
     },
     {
@@ -535,7 +539,7 @@ window.NGE_DATA = {
       "recipient": "Денис Шалманов",
       "status": "ready to send",
       "title": "2026-05 — Денис Шалманов — student report",
-      "short_message": "Денис, спасибо за стабильный темп в мае! 3 из 5 воскресений проведены (одежда, Past Simple / Past Continuous, дома). До конца мая — ещё 2 (24 и 31), к оплате 5 000 ₽.",
+      "short_message": "Денис, спасибо за стабильный темп в мае! Все 5 воскресений проведены: одежда → Present Simple/Continuous → дома → повтор домов → город. Май закрыт полностью, ничего не должны. К оплате за июнь — 10 000 ₽ (4 урока × 2 500).",
       "content": "Добрый день!\n\nОтправляю краткий отчёт по нашим занятиям за май.\n\n# Календарь занятий — май (5 занятий)\n\n- **3 мая** — Одежда: лексика, описания (завершали тему)\n- **10 мая** — Past Simple / Past Continuous, stative verbs\n- **17 мая** — Дома: лексика, описания\n- **24 мая** — *запланирован*\n- **31 мая** — *запланирован*\n\n3 из 5 проведены, 2 впереди.\n\n# По прогрессу\n\n**Мы** идём в стабильном темпе. Темы по бытовой лексике хорошо ложатся, грамматику времён (Past Simple, Past Continuous, stative verbs) разбираем основательно. Видно, что вы спокойно осваиваете новый материал и активно работаете на уроке.\n\n# Зоны роста\n\n- Вывод изученной лексики в свободную речь (пока больше в распознавании)\n- Автоматизм времён — особенно различение Past Simple vs Past Continuous в потоке\n- Расширение бытовой тематики (работа, транспорт, дорога)\n\n# Следующая задача\n\n**Вам** стоит чаще проговаривать новые слова и темы вслух между уроками — даже 10–15 минут речи о прошедшем дне в Past Simple дают сильный эффект. На уроках **мы** продолжаем тематические блоки + закрепление времён в свободной речи.\n\n# Майский абонемент\n\n5 воскресений мая (3, 10, 17, 24, 31). Стоимость занятия 2 500 ₽.\n\n- Оплачено 7 500 ₽ (3 урока: 3, 10, 17) + 2 переноса с апреля\n- К оплате за 24 и 31 мая: **5 000 ₽**\n",
       "notion_url": "https://www.notion.so/3637364cba7981a98085ef806ef7deb2"
     },
