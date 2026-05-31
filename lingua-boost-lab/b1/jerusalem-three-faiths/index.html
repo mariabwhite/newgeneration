@@ -19,6 +19,10 @@
 body{background:var(--bg);font-family:var(--body);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.55}
 
 .topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;padding:10px clamp(16px,3vw,28px);background:color-mix(in srgb,var(--surface) 92%,transparent);border-bottom:1px solid rgba(0,0,0,.09);backdrop-filter:blur(14px)}
+@media(min-width:681px) and (max-width:1180px){
+  .topbar{transition:transform .22s ease}
+  .topbar.tablet-hidden{transform:translateY(-100%)}
+}
 .brand{font-family:var(--display);font-weight:850;font-size:.96rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px}
 .brand-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent3) 0%,var(--accent2) 100%);display:grid;place-items:center;font-weight:900;color:#fff;font-size:.85rem}
 .brand-tag{flex:1;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-left:6px}
@@ -674,6 +678,26 @@ document.querySelectorAll('.mc-opts,.tf-btns').forEach(grp=>grp.querySelectorAll
 const completedSections=new Set();
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const n=parseInt(e.target.querySelector('.num')?.textContent);if(n&&n<=17&&!completedSections.has(n)){completedSections.add(n);const s=document.getElementById('star'+n),r=document.getElementById('rs'+n);if(s)s.classList.add('lit');if(r)r.classList.add('done')}}}),{threshold:0.45});
 document.querySelectorAll('section.section').forEach(s=>observer.observe(s));
+
+// Tablet: keep the lesson bar available without covering exercises while scrolling.
+(function(){
+  const bar=document.querySelector('.topbar');
+  const tablet=window.matchMedia('(min-width:681px) and (max-width:1180px)');
+  let previousY=window.scrollY;
+  function update(){
+    const currentY=window.scrollY;
+    if(!tablet.matches||currentY<28){
+      bar.classList.remove('tablet-hidden');
+    }else if(currentY>previousY+3){
+      bar.classList.add('tablet-hidden');
+    }else if(currentY<previousY-3){
+      bar.classList.remove('tablet-hidden');
+    }
+    previousY=currentY;
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  tablet.addEventListener?.('change',update);
+})();
 
 // Shuffle helper (used by Section 3, 6, 8)
 function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
