@@ -76,13 +76,13 @@ a{color:inherit;text-decoration:none}
 .hero-card{position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
   background:linear-gradient(135deg,var(--bg-2) 0%,var(--surface) 60%,#0a1638 100%);
   box-shadow:0 10px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
-  padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px)}
+  min-height:500px;padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px)}
 .hero-bg{position:absolute;inset:0;z-index:0;
-  background:url("assets/img-hero-clock.png") center/cover no-repeat;
-  opacity:.55;mix-blend-mode:luminosity}
+  background:url("assets/img-hero-clock.png") 72% center/cover no-repeat;
+  opacity:1}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(2,7,22,.85) 0%,rgba(5,16,42,.55) 50%,rgba(10,22,56,.85) 100%)}
-.hero-card > *{position:relative;z-index:1}
+  background:linear-gradient(90deg,rgba(2,7,22,.98) 0%,rgba(2,7,22,.94) 42%,rgba(2,7,22,.38) 57%,rgba(2,7,22,.04) 72%,transparent 100%)}
+.hero-card > *:not(.hero-bg){position:relative;z-index:1}
 
 /* Lesson images (story/listening/synthesis) */
 .lesson-img{width:100%;border-radius:14px;display:block;margin:0 0 18px;
@@ -92,11 +92,11 @@ a{color:inherit;text-decoration:none}
   display:flex;align-items:center;gap:10px;margin-bottom:18px}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
 h1.hero-title{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:.96;
-  font-size:clamp(1.9rem,4.8vw,3.6rem);margin-bottom:18px;color:var(--text)}
+  font-size:clamp(1.9rem,4.8vw,3.6rem);max-width:590px;margin-bottom:18px;color:var(--text)}
 h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 60%,#fff3c8 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero-lead{font-size:clamp(1rem,1.3vw,1.12rem);color:var(--muted);max-width:780px;line-height:1.55;margin-bottom:24px}
-.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.hero-lead{font-size:clamp(1rem,1.3vw,1.12rem);color:var(--muted);max-width:590px;line-height:1.55;margin-bottom:24px}
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;max-width:650px}
 .stat{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .stat-k{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
 .stat-v{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.01em}
@@ -259,6 +259,9 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   font-size:.8rem;font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:2}
 
 @media (max-width:720px){
+  .hero-card{min-height:0}
+  .hero-bg{background-position:66% center;opacity:.9}
+  .hero-bg::after{background:linear-gradient(90deg,rgba(2,7,22,.97) 0%,rgba(2,7,22,.88) 58%,rgba(2,7,22,.28) 100%)}
   .hero-stats{grid-template-columns:1fr 1fr}
   .vocab-box{bottom:14px;right:14px;left:14px;width:auto;justify-content:center}
 }
