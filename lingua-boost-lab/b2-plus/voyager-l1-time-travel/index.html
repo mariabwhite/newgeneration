@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Voyager · L1 — Time, memory, and the watchmaker</title>
+<meta name="description" content="B1+ Lab lesson for Ivan. Original story + science listening on time. Olympiad / IELTS / ЕГЭ practice formats.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020716; --bg-2:#05102a; --surface:#08152e; --card:#0d1e3f; --surface-2:#102248;
+  --text:#e8f0ff; --muted:#8fa8cc; --faint:#4a6a9a;
+  --accent:#f5c842; --accent-2:#ffd966; --accent-on:#0d1020;
+  --brand:#9b7fe8; --brand-2:#c4aff5;
+  --line:rgba(155,127,232,.14); --line-2:rgba(155,127,232,.28); --line-3:rgba(155,127,232,.42);
+  --ok:#34d88a; --miss:#ff5c72;
+  --glow1:rgba(245,200,66,.12); --glow2:rgba(155,127,232,.16);
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;
+  background-image:
+    radial-gradient(ellipse at 70% 0%,var(--glow1),transparent 50%),
+    radial-gradient(ellipse at 20% 90%,var(--glow2),transparent 50%);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* Starfield — three drifting layers for parallax */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;will-change:transform,opacity}
+.star.s1{width:1px;height:1px;opacity:.45}
+.star.s2{width:2px;height:2px;opacity:.65}
+.star.s3{width:3px;height:3px;opacity:.85;box-shadow:0 0 4px rgba(255,255,255,.55)}
+@keyframes twinkle{0%,100%{opacity:var(--op0,.3)}50%{opacity:var(--op1,.9)}}
+@keyframes drift-a{from{transform:translate(0,0)}to{transform:translate(20px,-30px)}}
+@keyframes drift-b{from{transform:translate(0,0)}to{transform:translate(-30px,40px)}}
+@keyframes drift-c{from{transform:translate(0,0)}to{transform:translate(40px,20px)}}
+
+/* Topbar */
+.topbar{
+  position:relative;top:auto;z-index:100;display:flex;align-items:center;gap:14px;
+  padding:12px clamp(16px,3vw,28px);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0;text-decoration:none}
+.brand-mark{width:36px;height:36px;border-radius:9px;border-top-right-radius:0;
+  background:var(--accent);color:var(--accent-on);
+  font-family:var(--display);font-weight:900;font-size:1.1rem;letter-spacing:-.04em;
+  display:grid;place-items:center;position:relative;overflow:hidden;flex-shrink:0}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:12px;height:12px;
+  background:#fff;clip-path:polygon(100% 0,0 0,100% 100%)}
+.brand-copy{display:grid;gap:1px;min-width:0}
+.brand-name{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.01em;color:var(--text);line-height:1}
+.brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+.spacer{flex:1}
+.pill{padding:5px 11px;border-radius:50px;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--line-2);color:var(--muted);background:rgba(0,0,0,.25);white-space:nowrap}
+.pill.accent{background:color-mix(in srgb,var(--accent) 15%,transparent);border-color:var(--accent);color:var(--accent)}
+.pill.brand{background:color-mix(in srgb,var(--brand) 15%,transparent);border-color:var(--brand);color:var(--brand-2)}
+.btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--card);color:var(--muted);
+  font:700 10px/1 var(--mono);letter-spacing:.12em;cursor:pointer;transition:all .15s;
+  text-decoration:none;display:inline-flex;align-items:center;text-transform:uppercase}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Hero snapshot */
+.hero{max-width:1240px;margin:32px auto 12px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.hero-card{position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg-2) 0%,var(--surface) 60%,#0a1638 100%);
+  box-shadow:0 10px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+  padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px)}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+h1.hero-title{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:.96;
+  font-size:clamp(1.9rem,4.8vw,3.6rem);margin-bottom:18px;color:var(--text)}
+h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 60%,#fff3c8 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-lead{font-size:clamp(1rem,1.3vw,1.12rem);color:var(--muted);max-width:780px;line-height:1.55;margin-bottom:24px}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.stat{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat-k{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.stat-v{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.01em}
+
+/* Sections */
+.section{max-width:1240px;margin:0 auto 28px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.section-hdr{display:flex;align-items:center;gap:14px;margin:30px 0 14px}
+.section-num{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.16em;
+  background:var(--brand);color:var(--accent-on);padding:5px 11px;border-radius:50px}
+.section-hdr h2{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.75rem);color:var(--text);letter-spacing:-.02em;line-height:1.1}
+.section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px 0;font-style:italic}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 28px rgba(0,0,0,.28)}
+.card h3{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--accent);margin:18px 0 10px;letter-spacing:.01em}
+.card h3:first-child{margin-top:0}
+.card p{margin-bottom:11px;color:var(--text)}
+.card .info{background:rgba(155,127,232,.07);border-left:3px solid var(--brand);padding:12px 16px;border-radius:8px;font-size:.92rem;color:var(--muted);margin:12px 0}
+.card .info strong{color:var(--brand-2)}
+.card .src{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-weight:700}
+.card .src a{color:var(--accent)}
+
+/* Hover translation */
+.tr{border-bottom:1px dashed var(--brand);cursor:help;position:relative;transition:.18s}
+.tr:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.tr::after{content:attr(data-ru);position:absolute;bottom:100%;left:50%;
+  transform:translateX(-50%) translateY(2px);background:var(--bg-2);color:var(--accent-2);
+  padding:5px 11px;border-radius:8px;font-size:.78rem;font-family:var(--body);font-weight:600;
+  white-space:nowrap;pointer-events:none;opacity:0;transition:.18s;z-index:90;
+  border:1px solid var(--line-2)}
+.tr:hover::after{opacity:1;transform:translateX(-50%) translateY(-6px)}
+.tr.added{background:rgba(245,200,66,.12);color:var(--accent)}
+.tr.flying{animation:flyToVocab .55s ease-out forwards;pointer-events:none}
+@keyframes flyToVocab{
+  0%{transform:scale(1) translate(0,0);opacity:1}
+  60%{transform:scale(.6) translate(20vw,20vh);opacity:.7}
+  100%{transform:scale(.2) translate(40vw,40vh);opacity:0}
+}
+
+.say-word{cursor:pointer;border-bottom:1px dashed var(--accent);padding:0 1px;transition:.15s}
+.say-word:hover{background:rgba(245,200,66,.08);color:var(--accent)}
+
+/* Vocab floating box */
+.vocab-box{position:fixed;bottom:20px;right:20px;background:linear-gradient(135deg,var(--brand),#7a5dd9);
+  color:#fff;padding:14px 20px;border-radius:50px;
+  box-shadow:0 10px 30px rgba(155,127,232,.36);
+  font-family:var(--display);font-weight:800;cursor:pointer;z-index:95;user-select:none;
+  display:flex;align-items:center;gap:10px;transition:.22s;font-size:.92rem}
+.vocab-box:hover{transform:translateY(-2px)}
+.vocab-box.expanded{max-width:420px;width:calc(100% - 40px);border-radius:18px;flex-direction:column;align-items:stretch;padding:18px 20px;cursor:default}
+.vocab-box .vocab-title{cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.vocab-box .vocab-list{display:none;flex-direction:column;gap:5px;max-height:50vh;overflow-y:auto;margin-top:14px;padding-right:4px}
+.vocab-box.expanded .vocab-list{display:flex}
+.vocab-list .vocab-item{background:rgba(255,255,255,.13);padding:7px 12px;border-radius:8px;font-size:.85rem;
+  display:flex;justify-content:space-between;gap:12px;align-items:baseline;line-height:1.3}
+.vocab-list .vocab-item .word{font-weight:800}
+.vocab-list .vocab-item .ru{font-weight:500;opacity:.92;font-size:.78rem;text-align:right}
+.vocab-list .vocab-item.empty{justify-content:center;font-style:italic;opacity:.7;font-size:.82rem;background:transparent}
+.vocab-actions{display:flex;gap:6px;margin-top:12px}
+.vocab-actions button{flex:1;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2);
+  padding:8px 12px;border-radius:8px;font-family:var(--mono);font-size:.68rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
+.vocab-actions button:hover{background:rgba(255,255,255,.25)}
+
+/* Sample answer block */
+.sample{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.22);border-radius:14px;
+  padding:16px 18px;margin:14px 0}
+.sample-h{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.sample p{color:var(--text);font-style:italic;line-height:1.65}
+.sample-phr{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.sample-phr button{background:var(--card);border:1px solid var(--line-2);color:var(--brand-2);
+  padding:7px 12px;border-radius:50px;font-size:.78rem;font-family:var(--body);font-weight:600;
+  cursor:pointer;transition:.15s;text-align:left}
+.sample-phr button::before{content:"♪ ";color:var(--accent);font-weight:900}
+.sample-phr button:hover{background:var(--surface-2);border-color:var(--brand)}
+
+/* Story */
+.story{background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;margin:14px 0;line-height:1.75}
+.story p{margin-bottom:14px;color:var(--text);font-size:1.02rem}
+.story em{color:var(--brand-2);font-style:italic}
+
+/* Listening */
+.listen-box{background:rgba(155,127,232,.06);border:1px solid var(--line-2);border-radius:14px;
+  padding:18px 20px;margin:14px 0;display:flex;flex-direction:column;gap:14px}
+.listen-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.listen-controls button{background:var(--brand);color:#fff;border:none;
+  padding:10px 18px;border-radius:50px;font-family:var(--mono);font-size:.74rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:.18s}
+.listen-controls button.accent{background:var(--accent);color:var(--accent-on)}
+.listen-controls button:hover{transform:translateY(-1px)}
+.listen-status{font-family:var(--mono);font-size:.78rem;color:var(--faint);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.listen-script{font-size:.86rem;color:var(--faint);font-style:italic;line-height:1.6;
+  border-top:1px dashed var(--line-2);padding-top:12px;margin-top:6px;display:none}
+.listen-script.open{display:block}
+
+/* Questions */
+.q-row{display:flex;gap:10px;margin:14px 0 8px;align-items:flex-start}
+.q-num{font-family:var(--mono);font-size:11px;font-weight:800;
+  background:var(--accent);color:var(--accent-on);
+  width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.q-text{flex:1;color:var(--text);line-height:1.5;font-size:.96rem}
+.tfg-opts,.mc-opts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0 34px}
+.tfg-opts button,.mc-opts button{background:var(--card);color:var(--muted);border:1px solid var(--line-2);
+  padding:7px 16px;border-radius:50px;font-family:var(--mono);font-size:.7rem;
+  font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.18s;text-align:left}
+.tfg-opts button:hover,.mc-opts button:hover{border-color:var(--accent);color:var(--accent)}
+.tfg-opts button.right,.mc-opts button.right{background:var(--ok);color:#0a2316;border-color:var(--ok)}
+.tfg-opts button.wrong,.mc-opts button.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+.mc-opts{flex-direction:column;align-items:stretch}
+.mc-opts button{text-transform:none;letter-spacing:.02em;font-family:var(--body);font-weight:600;font-size:.88rem;padding:9px 14px}
+
+/* Build-your-own */
+.byo{display:grid;gap:14px;margin:14px 0}
+.byo-row{background:var(--card);border:1px solid var(--line-2);border-radius:12px;padding:14px 16px}
+.byo-row .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+.byo-row .frame{color:var(--text);line-height:1.7;font-size:.96rem}
+.byo-row input{background:transparent;border:none;border-bottom:1px dashed var(--accent);
+  color:var(--accent);font-family:var(--body);font-size:.96rem;
+  font-weight:700;padding:3px 6px;min-width:120px;outline:none}
+.byo-row input:focus{border-bottom-color:var(--accent-2);background:rgba(245,200,66,.05)}
+
+/* Mini-writing */
+.write{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:16px;margin:14px 0}
+.write textarea{width:100%;min-height:140px;background:transparent;border:none;outline:none;
+  color:var(--text);font-family:var(--body);font-size:.96rem;line-height:1.55;resize:vertical}
+.write .write-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700}
+
+/* IELTS cue card */
+.cue-card{background:linear-gradient(135deg,rgba(155,127,232,.10),rgba(245,200,66,.05));
+  border:1px solid var(--line-2);border-radius:14px;padding:18px 20px;margin:14px 0}
+.cue-card .cue-h{font-family:var(--display);font-weight:800;color:var(--accent);margin-bottom:10px;font-size:1rem;letter-spacing:-.01em}
+.cue-card ul{list-style:none;padding:0;margin:8px 0 0}
+.cue-card li{padding:4px 0 4px 18px;position:relative;color:var(--text)}
+.cue-card li::before{content:"";position:absolute;left:4px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.timer{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.timer button{background:var(--accent);color:var(--accent-on);border:none;
+  padding:10px 18px;border-radius:50px;font-family:var(--mono);font-size:.74rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:.18s}
+.timer button:hover{transform:translateY(-1px)}
+.timer button.brand{background:var(--brand);color:#fff}
+.timer .clock{font-family:var(--display);font-weight:900;color:var(--accent);font-size:1.2rem;letter-spacing:-.02em;
+  background:var(--card);border:1px solid var(--line-2);padding:6px 16px;border-radius:50px}
+
+/* Flip vocab cards */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:14px 0 8px}
+.flip-card{aspect-ratio:1/1.05;perspective:800px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  padding:14px;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid var(--line-2)}
+.flip-front{background:var(--card);color:var(--accent);font-family:var(--display);font-weight:800;font-size:1rem;flex-direction:column;gap:6px}
+.flip-front .pos{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.flip-back{background:var(--surface-2);color:var(--text);transform:rotateY(180deg);font-size:.86rem;line-height:1.4;flex-direction:column;gap:6px}
+.flip-back .ru{color:var(--brand-2);font-weight:700;font-size:.95rem}
+
+/* Footer */
+footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;color:var(--faint);
+  font-size:.8rem;font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:2}
+
+@media (max-width:720px){
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .vocab-box{bottom:14px;right:14px;left:14px;width:auto;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark">N</span>
+    <span class="brand-copy">
+      <span class="brand-name">NG English</span>
+      <span class="brand-sub">LinguaBoost Lab · B1+</span>
+    </span>
+  </a>
+  <span class="pill brand">Voyager · L1</span>
+  <span class="pill accent">60 min</span>
+  <div class="spacer"></div>
+  <a class="btn-sm" href="../../index.html">All lessons</a>
+  <a class="btn-sm" href="../../../index.html">Main</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-card">
+    <div class="eyebrow">Lesson 1 · Time</div>
+    <h1 class="hero-title">A <span class="grad">letter</span> from a watch, and a <span class="grad">crack</span> in light itself</h1>
+    <p class="hero-lead">An original short story about a granddaughter and a logbook that knows too much; a 90-second listening on what real physics actually says about time bending; and one olympiad-style question that pulls both together. We finish with a short piece of writing — done here, on the lesson, not at home.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-k">Level</div><div class="stat-v">B1+</div></div>
+      <div class="stat"><div class="stat-k">Duration</div><div class="stat-v">60 min</div></div>
+      <div class="stat"><div class="stat-k">Formats</div><div class="stat-v">ВсОШ · IELTS · ЕГЭ</div></div>
+      <div class="stat"><div class="stat-k">Writing</div><div class="stat-v">5–7 sentences</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1 · WARM-UP -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">01</div><h2>Warm-up — speaking</h2></div>
+  <div class="section-sub">two minutes · then borrow one phrase from the model below</div>
+  <div class="card">
+    <p><strong>Imagine a letter arrives, addressed to you, from yourself ten years older.</strong></p>
+    <p>Talk for about two minutes. Don't plan — just start. Then read the sample model below and steal one or two phrases for next time.</p>
+
+    <div class="sample">
+      <div class="sample-h">Sample answer · olympiad-level</div>
+      <p>"If I received that letter — say, from myself at twenty-seven — the first thing I would want to know is what kind of person wrote it. Was the older me proud of how I lived, or simply tired? I think I would trust <em>advice</em> less than I would trust a <em>warning</em>, because advice can be wrong, but a warning is usually written by someone who has already lost. The most powerful thing about the letter would not be its content, but the fact that, somewhere, a version of me had the patience to sit down and address me as a stranger."</p>
+      <div class="sample-phr">
+        <button data-say="Was the older me proud of how I lived, or simply tired?">Was the older me proud of how I lived, or simply tired?</button>
+        <button data-say="I would trust advice less than I would trust a warning, because advice can be wrong">I would trust advice less than I would trust a warning…</button>
+        <button data-say="The most powerful thing about the letter would not be its content, but the fact that">The most powerful thing about it would not be its content, but the fact that…</button>
+        <button data-say="a version of me had the patience to sit down and address me as a stranger">…had the patience to address me as a stranger</button>
+      </div>
+    </div>
+    <div class="info"><strong>Why these phrases:</strong> they show three olympiad moves — (1) reframe the question, (2) prefer a sharper word (advice vs warning), (3) lift the focus from <em>what</em> to <em>that</em>. Borrow one for Section 7.</div>
+  </div>
+</section>
+
+<!-- 2 · VOCAB CARDS -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">02</div><h2>Words for today</h2></div>
+  <div class="section-sub">tap any card to flip · tap the word to hear it · these ten will come back in every section</div>
+  <div class="card">
+    <div class="flip-grid">
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="timeline">timeline</span></div><div class="pos">n</div></div>
+        <div class="flip-back"><div class="ru">хронология, ход событий</div><div>the order in which events happen over time</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="twist">twist</span></div><div class="pos">n</div></div>
+        <div class="flip-back"><div class="ru">неожиданный поворот</div><div>a sudden surprise in a story</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="consequence">consequence</span></div><div class="pos">n</div></div>
+        <div class="flip-back"><div class="ru">последствие</div><div>a result of an earlier action</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="deserve">deserve</span></div><div class="pos">v</div></div>
+        <div class="flip-back"><div class="ru">заслуживать</div><div>to earn something through your actions</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="eventually">eventually</span></div><div class="pos">adv</div></div>
+        <div class="flip-back"><div class="ru">в конце концов</div><div>after a long time, in the end</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="contradict">contradict</span></div><div class="pos">v</div></div>
+        <div class="flip-back"><div class="ru">противоречить</div><div>to say or be the opposite of</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="prediction">prediction</span></div><div class="pos">n</div></div>
+        <div class="flip-back"><div class="ru">предсказание</div><div>a guess about what will happen</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="fade">fade</span></div><div class="pos">v</div></div>
+        <div class="flip-back"><div class="ru">постепенно исчезать</div><div>to slowly disappear</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="regret">regret</span></div><div class="pos">n/v</div></div>
+        <div class="flip-back"><div class="ru">сожаление; сожалеть</div><div>feeling sorry about a past choice</div></div>
+      </div></div>
+      <div class="flip-card"><div class="flip-inner">
+        <div class="flip-front"><div><span class="say-word" data-say="interfere">interfere</span></div><div class="pos">v</div></div>
+        <div class="flip-back"><div class="ru">вмешиваться</div><div>to get involved in something that is not your business</div></div>
+      </div></div>
+    </div>
+    <div class="info"><strong>Heads up:</strong> the harder physics words — <em>paradox</em>, <em>relativity</em>, <em>neutrino</em>, <em>nanosecond</em> — show up inside the story and listening as tap-to-hear highlights. You meet them in context, not as a list.</div>
+  </div>
+</section>
+
+<!-- 3 · READING -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">03</div><h2>Reading — short story</h2></div>
+  <div class="section-sub">about 320 words · written for this lesson</div>
+  <div class="card">
+    <h3>The Watchmaker's Apology</h3>
+    <div class="story">
+      <p>Yulia's grandfather had been a watchmaker for fifty-three years before the accident. He could disassemble a pocket watch in the dark and rebuild it by morning. After the stroke, he could no longer hold a screwdriver, and he stopped speaking almost entirely. Yulia visited him every Sunday and read aloud from his old logbooks — careful, dated entries about which gears he had cleaned and which springs he had replaced.</p>
+
+      <p>One Sunday in November, while reading the entry for 14 March 1987, Yulia <span class="tr" data-ru="заметила">noticed</span> something she had read past for months. The customer for that day was a young woman named — Yulia Andreevna Markova. Yulia's own name. Her own patronymic. Her own surname.</p>
+
+      <p>Below the customer's name, in her grandfather's careful handwriting, was a short note:</p>
+
+      <p><em>"She does not know yet. Tell her, gently, that she will. The watch she will bring me has no fault — only that it has been <span class="tr" data-ru="заведены не в ту сторону">wound the wrong way</span> for a very long time."</em></p>
+
+      <p>Yulia set the logbook down. She was eighteen years old. The date 14 March 1987 was nineteen years before her own birth.</p>
+
+      <p>Her grandfather, who had not spoken for four months, opened his eyes and looked at her.</p>
+
+      <p>"Yulia," he said, very slowly. "Do not be afraid of the date. You will go. You will not change anything that matters. You will only — <em>adjust</em>."</p>
+
+      <p>She asked him what he meant. He smiled the way a watchmaker smiles when the spring finally clicks into place — and closed his eyes again.</p>
+
+      <p>By the next Sunday, the logbook entry was still there. The handwriting was still his. But the name on the line for 14 March had <span class="tr" data-ru="изменилось">changed</span>. It now read, in slightly fresher ink: <em>delivered, returned safely, never asked again.</em></p>
+    </div>
+
+    <h3>Quick check</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">Yulia's grandfather had stopped speaking before the Sunday she found her own name in the logbook.</div></div>
+    <div class="tfg-opts" data-correct="t"><button data-ans="t">True</button><button data-ans="f">False</button></div>
+
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">The grandfather's note suggests Yulia will travel back to him because she chooses to.</div></div>
+    <div class="tfg-opts" data-correct="f"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">According to the grandfather, what is Yulia allowed to do when she goes?</div></div>
+    <div class="mc-opts" data-correct="b">
+      <button data-ans="a">a) Change anything that matters to her family</button>
+      <button data-ans="b">b) Adjust something small, but not change anything important</button>
+      <button data-ans="c">c) Bring back a perfect copy of the original pocket watch</button>
+      <button data-ans="d">d) Speak to a younger version of herself</button>
+    </div>
+
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Why does the logbook entry change between Sundays?</div></div>
+    <div class="mc-opts" data-correct="c">
+      <button data-ans="a">a) Her grandfather rewrote it that morning</button>
+      <button data-ans="b">b) A different customer used the same name later</button>
+      <button data-ans="c">c) Yulia has gone and come back — her trip is now part of the recorded past</button>
+      <button data-ans="d">d) The text never changed; Yulia misread it the first time</button>
+    </div>
+    <div class="src">Original story written for this lesson · NG English · L1 · Time</div>
+  </div>
+</section>
+
+<!-- 4 · LISTENING -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">04</div><h2>Listening — what physics actually says about time</h2></div>
+  <div class="section-sub">about 90 seconds · listen twice · the script is hidden until after the questions</div>
+  <div class="card">
+    <p style="color:var(--muted);font-size:.95rem">A short factual piece. Take notes on three points: <strong>(1)</strong> what the 2011 CERN experiment claimed, <strong>(2)</strong> the GPS correction figure, <strong>(3)</strong> Hawking's position on direction of time travel.</p>
+    <div class="listen-box">
+      <div class="listen-controls">
+        <button id="lstPlay">▶ Play listening</button>
+        <button class="accent" id="lstStop">■ Stop</button>
+        <span class="listen-status" id="lstStatus">ready</span>
+      </div>
+      <div class="listen-script" id="lstScript">
+        <strong>Script (open after the questions):</strong><br>
+        In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — fired a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
+        The result was later traced to a faulty cable in the experiment. But the question it asked is still alive. Einstein's <span class="say-word" data-say="relativity">relativity</span> tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would drift by ten kilometres in twenty-four hours.
+        So time, in physics, is not the steady backdrop most of us imagine. It bends near gravity. It runs at different rates for travellers at different speeds. The physicist <span class="say-word" data-say="Stephen Hawking">Stephen Hawking</span> once said that travel into the future — even by millions of years — would, in principle, be allowed by these laws. Travel into the past, he believed, was off limits: it would break the rule that a cause must come before its effect.
+      </div>
+    </div>
+
+    <h3>Check your notes</h3>
+    <div class="q-row"><div class="q-num">1</div><div class="q-text">The neutrinos appeared to arrive at the detector how much earlier than light?</div></div>
+    <div class="mc-opts" data-correct="b">
+      <button data-ans="a">a) 60 microseconds</button>
+      <button data-ans="b">b) 60 nanoseconds</button>
+      <button data-ans="c">c) 38 microseconds</button>
+      <button data-ans="d">d) 15,000 seconds</button>
+    </div>
+
+    <div class="q-row"><div class="q-num">2</div><div class="q-text">The CERN result was later found to be caused by:</div></div>
+    <div class="mc-opts" data-correct="c">
+      <button data-ans="a">a) the moon's gravity</button>
+      <button data-ans="b">b) a software bug</button>
+      <button data-ans="c">c) a faulty cable</button>
+      <button data-ans="d">d) a counting mistake</button>
+    </div>
+
+    <div class="q-row"><div class="q-num">3</div><div class="q-text">Without the daily GPS correction, your map would drift by:</div></div>
+    <div class="mc-opts" data-correct="d">
+      <button data-ans="a">a) ten metres a day</button>
+      <button data-ans="b">b) one kilometre a day</button>
+      <button data-ans="c">c) ten kilometres a year</button>
+      <button data-ans="d">d) ten kilometres a day</button>
+    </div>
+
+    <div class="q-row"><div class="q-num">4</div><div class="q-text">Why does Hawking believe travel into the past is impossible?</div></div>
+    <div class="mc-opts" data-correct="a">
+      <button data-ans="a">a) It would break the rule that a cause comes before its effect</button>
+      <button data-ans="b">b) Spaceships cannot accelerate enough</button>
+      <button data-ans="c">c) The universe is not old enough</button>
+      <button data-ans="d">d) Time bends only forward, never backward</button>
+    </div>
+    <div style="margin-top:14px"><button class="btn-sm" id="revealScript">Show full script</button></div>
+    <div class="src">Original listening script · NG English · L1 · Time</div>
+  </div>
+</section>
+
+<!-- 5 · SYNTHESIS -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">05</div><h2>Synthesis — olympiad style</h2></div>
+  <div class="section-sub">link the story and the science · 6–8 sentences · use at least three vocab words</div>
+  <div class="card">
+    <p>In the story, the grandfather tells Yulia: <em>"You will not change anything that matters. You will only adjust."</em> In the listening, Hawking refuses past-direction travel because <em>a cause must come before its effect.</em></p>
+    <p style="color:var(--accent)"><strong>Big question</strong> — pick one and write 6–8 sentences:</p>
+    <ol style="margin-left:22px;color:var(--text);line-height:1.7">
+      <li>Is "adjust but do not change" a coherent rule, or a polite way of saying <em>do nothing</em>?</li>
+      <li>If you had to design a memory that protected you from regret without changing facts, what would it remove and what would it leave?</li>
+      <li>Is it more dangerous to interfere with the past, or with a prediction about the future?</li>
+    </ol>
+    <div class="write">
+      <textarea placeholder="6–8 sentences. Use at least three vocab words (timeline, twist, consequence, deserve, eventually, contradict, prediction, fade, regret, interfere)."></textarea>
+      <div class="write-meta"><span>Olympiad analytical · self-rated</span><span class="word-count">0 words</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · IELTS PART 2 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">06</div><h2>Speaking — IELTS Part 2 format</h2></div>
+  <div class="section-sub">1 min prep · 1.5–2 min monologue · timer is right here</div>
+  <div class="card">
+    <div class="cue-card">
+      <div class="cue-h">Describe a moment when you were proven wrong about something.</div>
+      <p style="color:var(--muted)">You should say:</p>
+      <ul>
+        <li>what you used to believe</li>
+        <li>how you found out you were wrong</li>
+        <li>whether you accepted it immediately</li>
+        <li>and explain what changed in your thinking afterwards.</li>
+      </ul>
+    </div>
+    <div class="timer">
+      <button id="prepBtn">Start 1 min prep</button>
+      <button class="brand" id="speakBtn">Speak — start timer</button>
+      <span class="clock" id="clockDisp">0:00</span>
+    </div>
+    <h3 style="margin-top:20px">Follow-up questions</h3>
+    <ul style="margin-left:18px;color:var(--text);line-height:1.8">
+      <li>Are some people better than others at admitting they were wrong? What makes the difference?</li>
+      <li>Should schools teach students how to lose an argument well?</li>
+    </ul>
+    <div class="src">Cue-card format follows British Council IELTS · <a href="https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests" target="_blank" rel="noopener">takeielts.britishcouncil.org</a></div>
+  </div>
+</section>
+
+<!-- 7 · BUILD-YOUR-OWN -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">07</div><h2>Build your own sentences</h2></div>
+  <div class="section-sub">fill the gaps with your own ideas · the vocab words make it work</div>
+  <div class="card">
+    <div class="byo">
+      <div class="byo-row">
+        <div class="lab">a · consequence</div>
+        <div class="frame">The hardest <input data-w="consequence" placeholder="word"> of <input placeholder="something I did last week"> was that <input placeholder="what happened next"></div>
+      </div>
+      <div class="byo-row">
+        <div class="lab">b · prediction · eventually</div>
+        <div class="frame">My <input data-w="prediction" placeholder="word"> for the next ten years is that <input placeholder="your idea">, and <input data-w="eventually" placeholder="word"> people will <input placeholder="what they'll do"></div>
+      </div>
+      <div class="byo-row">
+        <div class="lab">c · regret · deserve</div>
+        <div class="frame">I would only <input data-w="regret" placeholder="word"> something I did if I knew the person did not <input data-w="deserve" placeholder="word"> it.</div>
+      </div>
+      <div class="byo-row">
+        <div class="lab">d · contradict · interfere</div>
+        <div class="frame">It's fine when a friend's opinion <input data-w="contradicts" placeholder="word"> mine, but it's not fine when they <input data-w="interfere" placeholder="word"> with my <input placeholder="something personal"></div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin-top:8px">When you're done, read one of them aloud to your teacher. Best one goes into the vocab box on top of the regular click.</p>
+  </div>
+</section>
+
+<!-- 8 · MINI-WRITE + OUTRO -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">08</div><h2>Mini-writing · finish here</h2></div>
+  <div class="section-sub">5–7 sentences · no homework · we read it together at the end</div>
+  <div class="card">
+    <p style="font-size:1.05rem;color:var(--accent)"><strong>The grandfather's rule was «adjust, do not change». Do you keep that rule in your own life, or do you sometimes try to change things that aren't yours to change?</strong></p>
+    <p style="color:var(--muted)">5–7 sentences. Take a position. Use two ideas from today (the watchmaker's note, Hawking's «cause before effect», anything else that stuck) and at least three vocab words.</p>
+    <div class="write">
+      <textarea id="miniWrite" placeholder="Take a side. Defend it briefly. Use one example from your own life if you can."></textarea>
+      <div class="write-meta"><span>Mini-writing · in-class only</span><span class="word-count">0 words</span></div>
+    </div>
+
+    <h3 style="margin-top:22px">What's next</h3>
+    <p>You just finished <strong>L1 of Voyager</strong> — the time block.</p>
+    <p style="color:var(--muted)">In <strong>L2 · <em>Are we alone?</em></strong> we keep the same routine — short reading, short listening, speaking, mini-write — but the question turns outward. Drake equation, Fermi paradox, the idea that the chemistry of life may have arrived from space. Same words come back: <em>consequence, prediction, eventually, contradict</em> — just on a wider stage.</p>
+    <p>Your vocab box carries with you. See you next Sunday.</p>
+  </div>
+</section>
+
+<footer>
+  Voyager · L1 · for Ivan · summer 2026 · LinguaBoost Lab<br>
+  <small>tap any underlined word to add it to your vocab · external resource: British Council IELTS practice format</small>
+</footer>
+
+<script>
+/* ===== Starfield with drift ===== */
+(function(){
+  const sf = document.getElementById('starfield');
+  const layers = [
+    { count: 35, cls: 's1', dur: [40, 70], anim: 'drift-a' },
+    { count: 28, cls: 's2', dur: [55, 90], anim: 'drift-b' },
+    { count: 18, cls: 's3', dur: [70, 120], anim: 'drift-c' }
+  ];
+  layers.forEach(l => {
+    for (let i = 0; i < l.count; i++) {
+      const s = document.createElement('div');
+      s.className = 'star ' + l.cls;
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      const tw = 3 + Math.random()*4;
+      const dr = l.dur[0] + Math.random()*(l.dur[1] - l.dur[0]);
+      s.style.setProperty('--op0', 0.2 + Math.random()*0.25);
+      s.style.setProperty('--op1', 0.65 + Math.random()*0.3);
+      s.style.animation = `twinkle ${tw}s ease-in-out ${Math.random()*5}s infinite, ${l.anim} ${dr}s ease-in-out ${Math.random()*10}s infinite alternate`;
+      sf.appendChild(s);
+    }
+  });
+})();
+
+/* ===== Speech ===== */
+let voicesLoaded = false, englishVoices = { uk: null };
+function loadVoices(){
+  const v = speechSynthesis.getVoices();
+  if (!v.length) return false;
+  englishVoices.uk = v.find(x => x.lang === 'en-GB') || v.find(x => x.lang.startsWith('en'));
+  voicesLoaded = true; return true;
+}
+speechSynthesis.onvoiceschanged = loadVoices; loadVoices();
+(function(){
+  function warm(){ try{ const u=new SpeechSynthesisUtterance(' '); u.volume=0; u.lang='en-GB'; speechSynthesis.speak(u);}catch(e){} document.removeEventListener('click',warm,true); document.removeEventListener('touchstart',warm,true);}
+  document.addEventListener('click',warm,true); document.addEventListener('touchstart',warm,true);
+})();
+function speak(text, lang){
+  if (!text) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'en-GB'; u.rate = 0.93;
+  if (voicesLoaded) {
+    const v = speechSynthesis.getVoices();
+    if (lang && lang !== 'en-GB') u.voice = v.find(x => x.lang === lang) || v.find(x => x.lang.startsWith(lang.split('-')[0])) || englishVoices.uk;
+    else u.voice = englishVoices.uk;
+  }
+  speechSynthesis.speak(u);
+}
+document.querySelectorAll('[data-say]').forEach(el => el.addEventListener('click', e => {
+  e.stopPropagation(); speak(el.getAttribute('data-say'), el.getAttribute('data-lang'));
+}));
+
+/* ===== Flip cards ===== */
+document.querySelectorAll('.flip-card').forEach(c => {
+  c.addEventListener('click', e => {
+    if (e.target.closest('.say-word')) return;
+    c.classList.toggle('flipped');
+  });
+});
+
+/* ===== Hover-translation + vocab box ===== */
+const VOCAB_KEY = 'voyager-l1-vocab';
+let vocabList = [];
+try { vocabList = JSON.parse(localStorage.getItem(VOCAB_KEY) || '[]'); } catch(_) {}
+function saveVocab(){ localStorage.setItem(VOCAB_KEY, JSON.stringify(vocabList)); }
+function renderVocab(){
+  let box = document.getElementById('vocabBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'vocabBox';
+    box.className = 'vocab-box';
+    document.body.appendChild(box);
+    box.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') return;
+      box.classList.toggle('expanded'); renderVocab();
+    });
+  }
+  if (box.classList.contains('expanded')) {
+    const items = vocabList.length
+      ? vocabList.map(v => `<div class="vocab-item"><span class="word">${v.word}</span><span class="ru">${v.ru}</span></div>`).join('')
+      : '<div class="vocab-item empty">Tap any dashed word in the story and it lands here</div>';
+    box.innerHTML =
+      '<div class="vocab-title">My vocab · <span>' + vocabList.length + (vocabList.length===1?' word':' words') + '</span></div>' +
+      '<div class="vocab-list">' + items + '</div>' +
+      '<div class="vocab-actions">' +
+        '<button id="vocabCopy" type="button">Copy</button>' +
+        '<button id="vocabClear" type="button">Clear</button>' +
+      '</div>';
+    document.getElementById('vocabCopy').addEventListener('click', e => { e.stopPropagation(); copyVocab(); });
+    document.getElementById('vocabClear').addEventListener('click', e => { e.stopPropagation(); clearVocab(); });
+  } else {
+    box.innerHTML = 'My vocab · <span>' + vocabList.length + '</span>';
+  }
+}
+function copyVocab(){
+  if (!vocabList.length) return;
+  const text = vocabList.map(v => v.word + ' — ' + v.ru).join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('vocabCopy'); const orig = btn.textContent;
+    btn.textContent = '✓ copied';
+    setTimeout(() => { if (document.getElementById('vocabCopy')) document.getElementById('vocabCopy').textContent = orig; }, 1400);
+  });
+}
+function clearVocab(){
+  if (!vocabList.length) return;
+  if (!confirm('Clear all ' + vocabList.length + ' words?')) return;
+  vocabList = []; saveVocab();
+  document.querySelectorAll('.tr.added').forEach(el => el.classList.remove('added'));
+  renderVocab();
+}
+document.querySelectorAll('.tr[data-ru]').forEach(el => {
+  const word = el.textContent.trim();
+  if (vocabList.some(v => v.word === word)) el.classList.add('added');
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    const ru = el.getAttribute('data-ru');
+    if (vocabList.some(v => v.word === word)) return;
+    vocabList.push({ word, ru }); saveVocab();
+    el.classList.add('flying');
+    speak(word);
+    setTimeout(() => {
+      el.classList.remove('flying'); el.classList.add('added'); renderVocab();
+    }, 550);
+  });
+});
+renderVocab();
+
+/* ===== T/F/NG + MC ===== */
+document.querySelectorAll('.tfg-opts, .mc-opts').forEach(group => {
+  const correct = group.getAttribute('data-correct');
+  group.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => {
+      if (group.dataset.locked) return;
+      group.dataset.locked = '1';
+      group.querySelectorAll('button').forEach(x => {
+        if (x.getAttribute('data-ans') === correct) x.classList.add('right');
+        if (x === b && x.getAttribute('data-ans') !== correct) x.classList.add('wrong');
+      });
+    });
+  });
+});
+
+/* ===== Listening playback ===== */
+const lstScriptText = `In 2011, a team at CERN — the European centre for particle physics in Geneva — fired a beam of tiny particles called neutrinos toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty nanoseconds — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
+The result was later traced to a faulty cable in the experiment. But the question it asked is still alive. Einstein's relativity tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would drift by ten kilometres in twenty-four hours.
+So time, in physics, is not the steady backdrop most of us imagine. It bends near gravity. It runs at different rates for travellers at different speeds. The physicist Stephen Hawking once said that travel into the future — even by millions of years — would, in principle, be allowed by these laws. Travel into the past, he believed, was off limits: it would break the rule that a cause must come before its effect.`;
+document.getElementById('lstPlay').addEventListener('click', () => {
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(lstScriptText);
+  u.lang = 'en-GB'; u.rate = 0.92;
+  if (voicesLoaded) u.voice = englishVoices.uk;
+  document.getElementById('lstStatus').textContent = 'playing…';
+  u.onend = () => { document.getElementById('lstStatus').textContent = 'finished'; };
+  speechSynthesis.speak(u);
+});
+document.getElementById('lstStop').addEventListener('click', () => {
+  speechSynthesis.cancel();
+  document.getElementById('lstStatus').textContent = 'stopped';
+});
+document.getElementById('revealScript').addEventListener('click', () => {
+  document.getElementById('lstScript').classList.toggle('open');
+});
+
+/* ===== Word counters ===== */
+document.querySelectorAll('.write textarea').forEach(t => {
+  const counter = t.parentElement.querySelector('.word-count');
+  t.addEventListener('input', () => {
+    const w = (t.value.trim().match(/\S+/g) || []).length;
+    counter.textContent = w + ' word' + (w === 1 ? '' : 's');
+  });
+});
+
+/* ===== Timer ===== */
+let timerId = null, secs = 0;
+const disp = document.getElementById('clockDisp');
+function fmt(s){ const m = Math.floor(s/60); const ss = s % 60; return m + ':' + String(ss).padStart(2,'0'); }
+function start(target){
+  if (timerId) clearInterval(timerId);
+  secs = 0; disp.textContent = fmt(0);
+  timerId = setInterval(() => {
+    secs++; disp.textContent = fmt(secs);
+    if (secs >= target) { clearInterval(timerId); disp.textContent = 'done · ' + fmt(target); }
+  }, 1000);
+}
+document.getElementById('prepBtn').addEventListener('click', () => start(60));
+document.getElementById('speakBtn').addEventListener('click', () => start(120));
+</script>
+
+</body>
+</html>
