@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,600&family=Nunito:wght@400;700;800;900&family=SF+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fbf2e3;            /* warm clean cream (no green tint) */
@@ -26,10 +26,10 @@
   --shadow:0 10px 30px rgba(220,38,38,.12);
   --good:#2C7A4D;
   --miss:#B23A3A;
-  --display:'Baloo 2', system-ui, sans-serif;
-  --serif:'Cormorant Garamond', Georgia, serif;
-  --body:'Nunito', sans-serif;
-  --mono:'SF Mono', 'JetBrains Mono', Consolas, monospace;
+  --display:'Unbounded', system-ui, sans-serif;
+  --serif:'Unbounded', system-ui, sans-serif;
+  --body:'Manrope', system-ui, sans-serif;
+  --mono:'JetBrains Mono', Consolas, monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -39,7 +39,7 @@ body{
   line-height:1.65;
   min-height:100vh;
   background-image:
-    linear-gradient(180deg, rgba(18,12,8,.38) 0, rgba(18,12,8,.18) 220px, rgba(18,12,8,.06) 420px, transparent 620px);
+    linear-gradient(180deg, transparent 0, transparent 620px);
   background-repeat:no-repeat;
   background-position:0 0;
 }
@@ -271,34 +271,214 @@ body{
 }
 
 /* ========== Footer ========== */
+/* ===== canon-l-footer (unified Lab bottom section) ===== */
+.canon-l-footer{background:var(--lb-bg,#1a1410);border-top:1px solid var(--lb-line,rgba(196,154,85,.22));padding:22px clamp(18px,3vw,28px) 26px;font-family:var(--body);color:var(--lb-text,#FFF8E7);margin-top:48px;box-sizing:border-box;width:100%}
+.canon-l-footer-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--lb-line,rgba(196,154,85,.18))}
+.canon-l-footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex-shrink:0}
+.canon-l-footer-mark{width:26px;height:26px;display:grid;place-items:center;background:#C49A55;color:#1a1410;font-family:var(--display);font-weight:800;font-size:13px;border-radius:7px;border-top-right-radius:0;letter-spacing:-.04em;flex-shrink:0;position:relative;overflow:hidden}
+.canon-l-footer-mark::after{content:"";position:absolute;right:0;top:0;width:9px;height:9px;background:#1a1410;clip-path:polygon(100% 0, 0 0, 100% 100%);z-index:2}
+.canon-l-footer-name{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:-.01em;color:var(--lb-text,#FFF8E7);white-space:nowrap}
+.canon-l-footer-meta{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lb-muted,#C49A55);flex:1 1 220px;text-align:center;min-width:0}
+.canon-l-footer-nav{display:flex;gap:18px;align-items:center;flex-shrink:0}
+.canon-l-footer-nav a{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lb-muted,#C49A55);text-decoration:none;transition:color .15s ease;white-space:nowrap}
+.canon-l-footer-nav a:hover{color:var(--lb-text,#FFF8E7)}
+.canon-l-footer-legal{margin:14px 0 0;font-size:12px;line-height:1.6;color:var(--lb-muted,#C49A55);font-family:var(--body)}
+.canon-l-footer-legal strong{color:var(--lb-text,#FFF8E7);font-weight:600}
+@media (max-width:720px){
+  .canon-l-footer{padding:18px 16px 22px;margin-top:32px}
+  .canon-l-footer-row{gap:12px}
+  .canon-l-footer-meta{text-align:left;flex:1 1 100%;order:3;font-size:9.5px}
+  .canon-l-footer-nav{gap:14px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .canon-l-footer-nav::-webkit-scrollbar{display:none}
+  .canon-l-footer-legal{font-size:11px}
+}
+</style>
+
+<style id="ng-redesign">
+/* ============================================================
+   NG redesign chrome — Stars skeleton, Switzerland palette
+   ============================================================ */
+.atmosphere{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(120% 70% at 50% -12%, rgba(220,38,38,.07), transparent 58%),
+    radial-gradient(80% 60% at 96% 8%, rgba(196,154,85,.08), transparent 55%),
+    radial-gradient(90% 70% at 4% 96%, rgba(58,110,143,.06), transparent 60%);}
+body.no-atmos .atmosphere{display:none}
+
+/* ---- command bar ---- */
+.cmdbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:18px;
+  padding:10px clamp(16px,3vw,30px);min-height:62px;
+  background:color-mix(in srgb,var(--surface) 84%,transparent);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+.cb-brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.cb-mark{width:36px;height:36px;border-radius:9px;border-top-right-radius:0;background:var(--accent);color:#fff;
+  font-family:var(--display);font-weight:800;font-size:1rem;display:grid;place-items:center;position:relative;overflow:hidden;flex-shrink:0}
+.cb-mark::after{content:"";position:absolute;right:0;top:0;width:12px;height:12px;background:var(--surface);clip-path:polygon(100% 0,0 0,100% 100%)}
+.cb-brand-copy{display:grid;gap:1px;line-height:1}
+.cb-name{font-family:var(--display);font-weight:800;font-size:.82rem;letter-spacing:-.01em;color:var(--ink)}
+.cb-sub{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.cb-nav{display:flex;gap:clamp(10px,1.6vw,22px);align-items:center;margin-left:10px}
+.cb-link{font-family:var(--mono);font-size:.67rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:.15s;white-space:nowrap}
+.cb-link:hover{color:var(--accent)}
+.cb-meta{margin-left:auto;display:flex;align-items:center;gap:7px}
+.cb-pill{font-family:var(--mono);font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);
+  background:var(--surface-2);border:1px solid var(--line);padding:5px 11px;border-radius:50px;white-space:nowrap}
+.cb-pill-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cb-icon{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);
+  display:grid;place-items:center;cursor:pointer;font-size:.95rem;transition:.15s;flex-shrink:0}
+.cb-icon:hover{border-color:var(--accent)}
+.cb-icon.off{opacity:.4}
+@media(max-width:860px){.cb-nav{display:none}.cb-sub{display:none}}
+@media(max-width:520px){.cb-pill{display:none}.cb-pill-accent{display:inline-block}}
+
+/* ---- HUD ---- */
+.hud{position:fixed;top:74px;right:18px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:1px;pointer-events:none}
+body.no-hud .hud{display:none}
+.hud-score{font-family:var(--display);font-weight:800;font-size:1.45rem;color:var(--accent);letter-spacing:-.03em;line-height:1;text-shadow:0 2px 16px rgba(220,38,38,.22)}
+.hud-combo{font-family:var(--mono);font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);transition:transform .2s}
+.hud-combo.bump{transform:scale(1.32);color:var(--good)}
+
+/* ---- hero ---- */
+.hero{max-width:1240px;margin:30px auto 0;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.hero-card{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);background:var(--surface);--hero-fade:1}
+.hero-photo{position:absolute;inset:0;z-index:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.hero-photo::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(102deg, rgba(24,17,12,calc(.86*var(--hero-fade))) 0%, rgba(24,17,12,calc(.52*var(--hero-fade))) 30%, rgba(24,17,12,.06) 56%, transparent 72%),
+    linear-gradient(258deg, rgba(251,242,227,calc(.5*var(--hero-fade))) 0%, transparent 42%),
+    linear-gradient(0deg, var(--bg) 0.5%, rgba(251,242,227,calc(.6*var(--hero-fade))) 14%, transparent 40%);}
+.hero-body{position:relative;z-index:1;max-width:620px;padding:clamp(30px,5vw,62px) clamp(22px,4vw,56px);
+  min-height:clamp(390px,46vw,520px);display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:#ffd9b0;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:"";width:26px;height:2px;background:currentColor}
+.hero-title{font-family:var(--display);font-weight:800;line-height:.96;letter-spacing:-.04em;
+  font-size:clamp(2.3rem,5.4vw,4rem);color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.45);margin-bottom:16px;display:flex;flex-direction:column;gap:10px}
+.hero-title-accent{font-family:var(--body);font-weight:700;font-size:clamp(.95rem,1.5vw,1.2rem);letter-spacing:0;color:#ffe9c8;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.hero-lead{color:rgba(255,247,237,.94);font-size:clamp(.98rem,1.25vw,1.08rem);line-height:1.6;max-width:470px;margin-bottom:24px;text-shadow:0 1px 16px rgba(0,0,0,.55)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;
+  font-family:var(--mono);font-weight:800;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;border:1px solid transparent;transition:.18s}
+.hero-btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 26px rgba(220,38,38,.34)}
+.hero-btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.hero-btn-ghost{background:rgba(255,247,237,.14);color:#fff;border-color:rgba(255,247,237,.5);backdrop-filter:blur(4px)}
+.hero-btn-ghost:hover{background:rgba(255,247,237,.24)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hero-chip{font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,247,237,.94);background:rgba(0,0,0,.34);border:1px solid rgba(255,247,237,.25);padding:6px 12px;border-radius:50px;backdrop-filter:blur(4px)}
+.hero-chip b{color:#fff}
+.hero-chip-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* hero — editorial variant */
+body[data-hero="editorial"] .hero-card{display:grid;grid-template-columns:1fr 1.05fr;background:var(--surface)}
+body[data-hero="editorial"] .hero-photo{position:relative;inset:auto;grid-column:2;grid-row:1;min-height:100%}
+body[data-hero="editorial"] .hero-photo::after{
+  background:
+    linear-gradient(90deg, var(--surface) 0%, rgba(255,249,236,calc(.45*var(--hero-fade))) 16%, transparent 44%),
+    linear-gradient(0deg, var(--surface) 0%, transparent 28%);}
+body[data-hero="editorial"] .hero-body{grid-column:1;grid-row:1;min-height:clamp(360px,40vw,470px)}
+body[data-hero="editorial"] .hero-eyebrow{color:var(--accent2)}
+body[data-hero="editorial"] .hero-title{color:var(--ink);text-shadow:none}
+body[data-hero="editorial"] .hero-title-accent{color:var(--accent);text-shadow:none}
+body[data-hero="editorial"] .hero-lead{color:var(--ink-soft);text-shadow:none}
+body[data-hero="editorial"] .hero-btn-ghost{background:var(--surface-2);color:var(--accent2);border-color:var(--line)}
+body[data-hero="editorial"] .hero-chip{color:var(--ink-soft);background:var(--surface-2);border-color:var(--line)}
+body[data-hero="editorial"] .hero-chip b{color:var(--ink)}
+@media(max-width:820px){
+  body[data-hero="editorial"] .hero-card{grid-template-columns:1fr}
+  body[data-hero="editorial"] .hero-photo{grid-column:1;grid-row:2;min-height:230px}
+  body[data-hero="editorial"] .hero-photo::after{background:linear-gradient(0deg, var(--surface) 0%, transparent 34%)}
+}
+
+/* ---- progress rail ---- */
+.progress-wrap{max-width:1100px;margin:26px auto 8px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.prog-inner{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:50px;padding:11px 22px;box-shadow:var(--shadow)}
+.prog-label{font-family:var(--mono);font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.prog-rail{position:relative;flex:1;height:20px;display:flex;align-items:center}
+.prog-track{position:absolute;left:5px;right:5px;top:50%;transform:translateY(-50%);height:4px;border-radius:2px;background:#e8d9c0;overflow:hidden}
+.prog-fill{height:100%;width:0;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .45s ease}
+.progress-dots{position:relative;display:flex;justify-content:space-between;width:100%;z-index:1}
+.progress-dot{width:11px;height:11px;border-radius:50%;background:#dccfb8;border:2px solid var(--surface);padding:0;cursor:pointer;transition:.2s}
+.progress-dot:hover{transform:scale(1.4);background:var(--gold)}
+.progress-dot.lit{background:var(--accent);box-shadow:0 0 0 3px rgba(220,38,38,.16)}
+.prog-count{font-family:var(--mono);font-size:.7rem;font-weight:800;color:var(--ink-soft);white-space:nowrap}
+.prog-count b{color:var(--accent)}
+@media(max-width:600px){.prog-label{display:none}}
+
+/* ---- section block-heads ---- */
+.section-hdr{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.section-hdr .num{width:42px;height:42px;border-radius:11px;border-top-right-radius:0;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:1rem;font-weight:800;padding:0;flex-shrink:0}
+.sh-titlewrap{display:flex;flex-direction:column;min-width:0}
+.sh-kicker{font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--alpine);margin-bottom:3px}
+.section-hdr h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+.sh-badge{margin-left:auto;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px dotted var(--line-2,rgba(220,38,38,.3));border-radius:50px;padding:5px 12px;white-space:nowrap}
+body.no-badges .sh-badge{display:none}
+body.no-badges .sh-kicker{display:none}
 </style>
 </head>
-<body>
+<body data-hero="poster">
 
-<nav class="lab-topbar">
-  <a class="brand" href="https://newgeneration-english.ru/">
-    <span class="brand-mark">N</span>
-    <span class="brand-copy">
-      <span class="brand-name">NG ENGLISH</span>
-      <span class="brand-sub">LinguaBoost Lab · B1</span>
+<div class="atmosphere" aria-hidden="true"></div>
+<div class="hud" id="hud" aria-hidden="true">
+  <div class="hud-score"><span id="hudScore">0</span></div>
+  <div class="hud-combo" id="hudCombo">start</div>
+</div>
+<div id="tweaks-root"></div>
+
+<header class="cmdbar" id="cmdbar">
+  <a class="cb-brand" href="https://newgeneration-english.ru/">
+    <span class="cb-mark">N</span>
+    <span class="cb-brand-copy">
+      <span class="cb-name">NG ENGLISH</span>
+      <span class="cb-sub">LinguaBoost Lab</span>
     </span>
   </a>
-  <span class="spacer"></span>
-  <a class="btn-sm" href="https://newgeneration-english.ru/lingua-boost-lab/">All Lessons</a>
-  <a class="btn-sm" href="https://newgeneration-english.ru/">Back to main</a>
-</nav>
-
-<div class="lab-hero">
-  <img class="hero-banner" src="assets/img/img-banner.png" alt="Switzerland — Mountains, Chocolate & a Bit of Magic · B1 · 90 min · Speaking + Listening focus · 20 sections" onerror="this.style.display='none'">
-</div>
-
-<div class="progress-wrap">
-  <div class="progress-dots" aria-label="Lesson progress">
-    <span class="progress-dot" id="star1"></span><span class="progress-dot" id="star2"></span><span class="progress-dot" id="star3"></span><span class="progress-dot" id="star4"></span><span class="progress-dot" id="star5"></span><span class="progress-dot" id="star6"></span><span class="progress-dot" id="star7"></span><span class="progress-dot" id="star8"></span><span class="progress-dot" id="star9"></span><span class="progress-dot" id="star10"></span><span class="progress-dot" id="star11"></span><span class="progress-dot" id="star12"></span><span class="progress-dot" id="star13"></span><span class="progress-dot" id="star14"></span><span class="progress-dot" id="star15"></span><span class="progress-dot" id="star16"></span><span class="progress-dot" id="star17"></span><span class="progress-dot" id="star18"></span><span class="progress-dot" id="star19"></span><span class="progress-dot" id="star20"></span>
+  <nav class="cb-nav" aria-label="Lesson navigation">
+    <a class="cb-link" href="#s1" data-go="1">Sections</a>
+    <a class="cb-link" href="#vocab" id="navVocab">Vocabulary</a>
+    <a class="cb-link" href="https://newgeneration-english.ru/lingua-boost-lab/">All Lessons</a>
+    <a class="cb-link" href="https://newgeneration-english.ru/">Main</a>
+  </nav>
+  <div class="cb-meta">
+    <span class="cb-pill">B1</span>
+    <span class="cb-pill">90 min</span>
+    <span class="cb-pill cb-pill-accent">Speaking</span>
+    <button class="cb-icon" id="soundBtn" type="button" title="Sound on / off" aria-label="Toggle sound">&#128266;</button>
   </div>
-  <div class="rail">
-    <div class="rail-step" id="rs1"></div><div class="rail-step" id="rs2"></div><div class="rail-step" id="rs3"></div><div class="rail-step" id="rs4"></div><div class="rail-step" id="rs5"></div><div class="rail-step" id="rs6"></div><div class="rail-step" id="rs7"></div><div class="rail-step" id="rs8"></div><div class="rail-step" id="rs9"></div><div class="rail-step" id="rs10"></div><div class="rail-step" id="rs11"></div><div class="rail-step" id="rs12"></div><div class="rail-step" id="rs13"></div><div class="rail-step" id="rs14"></div><div class="rail-step" id="rs15"></div><div class="rail-step" id="rs16"></div><div class="rail-step" id="rs17"></div><div class="rail-step" id="rs18"></div><div class="rail-step" id="rs19"></div><div class="rail-step" id="rs20"></div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-card">
+    <div class="hero-photo"><img src="assets/switzerland-hero.png" alt="Matterhorn at sunset with Swiss chocolate and a skeleton watch resting on the rock"></div>
+    <div class="hero-body">
+      <span class="hero-eyebrow">B1 &middot; LinguaBoost Lab</span>
+      <h1 class="hero-title">Switzerland<span class="hero-title-accent">Mountains, chocolate &amp; a bit of magic</span></h1>
+      <p class="hero-lead">Three Switzerlands in one lesson &mdash; the Alps, the kitchen and the workshop. Speak, listen and taste your way from the Matterhorn to &laquo;Swiss made&raquo;.</p>
+      <div class="hero-cta">
+        <a class="hero-btn hero-btn-primary" href="#s1" data-go="1">Start lesson</a>
+        <button class="hero-btn hero-btn-ghost" id="heroVocab" type="button">Open vocabulary</button>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip"><b>90</b> min</span>
+        <span class="hero-chip"><b>20</b> sections</span>
+        <span class="hero-chip">Speaking + Listening</span>
+        <span class="hero-chip hero-chip-accent">B1</span>
+      </div>
+    </div>
   </div>
+</section>
+
+<div class="progress-wrap" id="progressWrap">
+  <div class="prog-inner">
+    <span class="prog-label">Your route</span>
+    <div class="prog-rail">
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <div class="progress-dots" aria-label="Lesson progress"><button class="progress-dot" id="star1" data-go="1" type="button" title="Section 1" aria-label="Go to section 1"></button><button class="progress-dot" id="star2" data-go="2" type="button" title="Section 2" aria-label="Go to section 2"></button><button class="progress-dot" id="star3" data-go="3" type="button" title="Section 3" aria-label="Go to section 3"></button><button class="progress-dot" id="star4" data-go="4" type="button" title="Section 4" aria-label="Go to section 4"></button><button class="progress-dot" id="star5" data-go="5" type="button" title="Section 5" aria-label="Go to section 5"></button><button class="progress-dot" id="star6" data-go="6" type="button" title="Section 6" aria-label="Go to section 6"></button><button class="progress-dot" id="star7" data-go="7" type="button" title="Section 7" aria-label="Go to section 7"></button><button class="progress-dot" id="star8" data-go="8" type="button" title="Section 8" aria-label="Go to section 8"></button><button class="progress-dot" id="star9" data-go="9" type="button" title="Section 9" aria-label="Go to section 9"></button><button class="progress-dot" id="star10" data-go="10" type="button" title="Section 10" aria-label="Go to section 10"></button><button class="progress-dot" id="star11" data-go="11" type="button" title="Section 11" aria-label="Go to section 11"></button><button class="progress-dot" id="star12" data-go="12" type="button" title="Section 12" aria-label="Go to section 12"></button><button class="progress-dot" id="star13" data-go="13" type="button" title="Section 13" aria-label="Go to section 13"></button><button class="progress-dot" id="star14" data-go="14" type="button" title="Section 14" aria-label="Go to section 14"></button><button class="progress-dot" id="star15" data-go="15" type="button" title="Section 15" aria-label="Go to section 15"></button><button class="progress-dot" id="star16" data-go="16" type="button" title="Section 16" aria-label="Go to section 16"></button><button class="progress-dot" id="star17" data-go="17" type="button" title="Section 17" aria-label="Go to section 17"></button><button class="progress-dot" id="star18" data-go="18" type="button" title="Section 18" aria-label="Go to section 18"></button><button class="progress-dot" id="star19" data-go="19" type="button" title="Section 19" aria-label="Go to section 19"></button><button class="progress-dot" id="star20" data-go="20" type="button" title="Section 20" aria-label="Go to section 20"></button></div>
+    </div>
+    <span class="prog-count"><b id="progDone">0</b> / 20</span>
+  </div>
+  <div class="rail" style="display:none"><div class="rail-step" id="rs1"></div><div class="rail-step" id="rs2"></div><div class="rail-step" id="rs3"></div><div class="rail-step" id="rs4"></div><div class="rail-step" id="rs5"></div><div class="rail-step" id="rs6"></div><div class="rail-step" id="rs7"></div><div class="rail-step" id="rs8"></div><div class="rail-step" id="rs9"></div><div class="rail-step" id="rs10"></div><div class="rail-step" id="rs11"></div><div class="rail-step" id="rs12"></div><div class="rail-step" id="rs13"></div><div class="rail-step" id="rs14"></div><div class="rail-step" id="rs15"></div><div class="rail-step" id="rs16"></div><div class="rail-step" id="rs17"></div><div class="rail-step" id="rs18"></div><div class="rail-step" id="rs19"></div><div class="rail-step" id="rs20"></div></div>
 </div>
 
 <!-- ============ 1 ============ -->
@@ -818,9 +998,20 @@ body{
   </div>
 </section>
 
-<footer>
-  Lesson by <strong>Maria Burtseva</strong> · NGE · LinguaBoost Lab · B1 · 90 min · 20 sections<br>
-  <small>tap text to listen · flip cards · drop bank words into gaps · made for Katya, June 2026</small>
+<footer class="canon-l-footer" style="--lb-bg:#1a1410;--lb-text:#FFF8E7;--lb-muted:#C49A55;--lb-line:rgba(196,154,85,.22)" role="contentinfo">
+  <div class="canon-l-footer-row">
+    <a class="canon-l-footer-brand" href="../../index.html" aria-label="LinguaBoost Lab">
+      <span class="canon-l-footer-mark" aria-hidden="true">L</span>
+      <span class="canon-l-footer-name">LinguaBoost Lab</span>
+    </a>
+    <span class="canon-l-footer-meta">Switzerland — Mountains, Chocolate &amp; a Bit of Magic · B1</span>
+    <nav class="canon-l-footer-nav" aria-label="Site links">
+      <a href="../../index.html">Каталог</a>
+      <a href="../../../index.html">Главная</a>
+      <a href="../../../about-project.html">О проекте</a>
+    </nav>
+  </div>
+  <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
 </footer>
 
 <script>
@@ -1058,5 +1249,89 @@ document.querySelectorAll('.wo-item[data-words]').forEach(item => {
 });
 </script>
 
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script>
+/* ===== redesign behaviour (runs after the lesson's own script) ===== */
+(function(){
+  var META={1:['Overview','3 min'],2:['Warm-up','drag & drop'],3:['Vocabulary','tap to flip'],4:['Reading','true / false'],5:['Practice','tap to match'],6:['Reading','quick quiz'],7:['Listening','audio + tap'],8:['Grammar','build it'],9:['Reading','vocabulary'],10:['Speaking','discuss'],11:['Reading','vocabulary'],12:['Practice','tap to match'],13:['Reading','craft'],14:['Listening','audio + tap'],15:['Culture','read'],16:['Fun fact','speaking'],17:['Fun fact','read'],18:['Fun fact','quick quiz'],19:['Cities','explore'],20:['Speaking','closing']};
+  var secs=document.querySelectorAll('section.section');
+  secs.forEach(function(sec){
+    var hdr=sec.querySelector('.section-hdr'); if(!hdr)return;
+    var numEl=hdr.querySelector('.num'); var h2=hdr.querySelector('h2');
+    var n=parseInt(numEl&&numEl.textContent)||0; sec.id='s'+n;
+    var m=META[n]||['Lesson',''];
+    if(h2){var wrap=document.createElement('div');wrap.className='sh-titlewrap';
+      var kick=document.createElement('span');kick.className='sh-kicker';kick.textContent=m[0];
+      hdr.insertBefore(wrap,h2);wrap.appendChild(kick);wrap.appendChild(h2);}
+    var badge=document.createElement('span');badge.className='sh-badge';badge.textContent=m[1];hdr.appendChild(badge);
+  });
+
+  function goTo(n){var el=document.getElementById('s'+n);if(el){var y=el.getBoundingClientRect().top+window.pageYOffset-74;window.scrollTo({top:y,behavior:'smooth'});}}
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();goTo(parseInt(b.getAttribute('data-go')));});});
+
+  var fill=document.getElementById('progFill'),doneEl=document.getElementById('progDone'),total=secs.length;
+  function updateFill(){var done=0,vh=window.innerHeight;secs.forEach(function(s){if(s.getBoundingClientRect().top<vh*0.55)done++;});done=Math.min(done,total);if(fill)fill.style.width=(done/total*100)+'%';if(doneEl)doneEl.textContent=done;}
+  window.addEventListener('scroll',updateFill,{passive:true});window.addEventListener('resize',updateFill);updateFill();
+
+  var score=0,streak=0,sEl=document.getElementById('hudScore'),cEl=document.getElementById('hudCombo');
+  function render(){if(sEl)sEl.textContent=score;if(cEl){cEl.textContent=streak>1?('x'+streak+' streak'):(score>0?'nice':'start');cEl.classList.add('bump');setTimeout(function(){cEl.classList.remove('bump');},220);}}
+  function award(p,ok){score+=p;if(ok===true)streak++;else if(ok===false)streak=0;render();}
+  var counted={};
+  var hudObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!counted[e.target.id]){counted[e.target.id]=1;award(15,null);}});},{threshold:0.5});
+  secs.forEach(function(s){hudObs.observe(s);});
+  document.addEventListener('click',function(e){var btn=e.target.closest('.mc-opts button, .tf-btn');if(btn&&!btn.classList.contains('correct')&&!btn.classList.contains('wrong')){var ok=btn.hasAttribute('data-correct');award(ok?10:2,ok);}},true);
+
+  var sb=document.getElementById('soundBtn');
+  if(window.speak){var _o=window.speak;window.speak=function(){if(document.body.classList.contains('muted'))return;return _o.apply(this,arguments);};}
+  if(sb)sb.addEventListener('click',function(){document.body.classList.toggle('muted');var m=document.body.classList.contains('muted');sb.classList.toggle('off',m);sb.innerHTML=m?'&#128263;':'&#128266;';if(m&&window.speechSynthesis)speechSynthesis.cancel();});
+
+  function openVocab(){var box=document.getElementById('vocabBox');if(box){box.classList.add('expanded');if(window.renderVocabBox)window.renderVocabBox();}}
+  ['navVocab','heroVocab'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(e){e.preventDefault();openVocab();});});
+})();
+</script>
+
+<script type="text/babel">
+const { useEffect } = React;
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "layout": "poster",
+  "bannerBlend": 1,
+  "accent": "#DC2626",
+  "hud": true,
+  "atmosphere": true,
+  "badges": true
+}/*EDITMODE-END*/;
+function applyTweaks(t){
+  var b=document.body;
+  b.setAttribute('data-hero', t.layout);
+  document.documentElement.style.setProperty('--accent', t.accent);
+  document.querySelectorAll('.hero-card').forEach(function(c){c.style.setProperty('--hero-fade', t.bannerBlend);});
+  b.classList.toggle('no-hud', !t.hud);
+  b.classList.toggle('no-atmos', !t.atmosphere);
+  b.classList.toggle('no-badges', !t.badges);
+}
+function App(){
+  const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  useEffect(function(){applyTweaks(t);},[t]);
+  return (
+    <TweaksPanel>
+      <TweakSection label="Layout" />
+      <TweakRadio label="Hero + bar" value={t.layout} options={["poster","editorial"]} onChange={function(v){setTweak('layout',v);}} />
+      <TweakSlider label="Banner blend" value={t.bannerBlend} min={0} max={1} step={0.05} onChange={function(v){setTweak('bannerBlend',v);}} />
+      <TweakSection label="Palette (Swiss)" />
+      <TweakColor label="Accent" value={t.accent} options={["#DC2626","#9B1C1C","#3A6E8F","#C49A55"]} onChange={function(v){setTweak('accent',v);}} />
+      <TweakSection label="Atmosphere & feedback" />
+      <TweakToggle label="Points / streak HUD" value={t.hud} onChange={function(v){setTweak('hud',v);}} />
+      <TweakToggle label="Warm atmosphere" value={t.atmosphere} onChange={function(v){setTweak('atmosphere',v);}} />
+      <TweakToggle label="Activity badges" value={t.badges} onChange={function(v){setTweak('badges',v);}} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App/>);
+</script>
 </body>
 </html>
