@@ -283,23 +283,30 @@ window.NGE_DATA = {
       "level": "",
       "format": "индивидуально",
       "schedule": "понедельник 12:00",
-      "stability_note": "Расписание актуализировано 19.05.2026: только понедельник 12:00 (среда убрана — никого нет).",
+      "stability_note": "Понедельник 12:00. На неделе 1-7 июня — разовый перенос на среду 3 июня.",
       "price_per_lesson": 2000,
       "payment_status": "Оплачено",
       "parent_name": "Лушин Александр Анатольевич",
       "pin": "2223",
-      "lessons_in_package": 8,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 1,
+      "lessons_in_package": 4,
+      "subscription_month": "2026-06",
+      "lessons_used_this_month": 0,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "missed", "topic": "Пропуск (без занятия)" },
-        { "date": "2026-05-06", "num": 2, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
-        { "date": "2026-05-11", "num": 3, "status": "missed", "topic": "Пропуск (без занятия)" },
-        { "date": "2026-05-13", "num": 4, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Cute vampire English (Pre-A1) — face/body parts, HSKT video, friendly vampire family. Урок собрали в Claude Code." },
-        { "date": "2026-05-20", "num": 6, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" },
-        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-27", "num": 8, "status": "cancelled", "topic": "Среда убрана из расписания (только пн 12:00)" }
+        { "date": "2026-05-18", "num": 1, "status": "completed", "topic": "Cute vampire English v1 (Pre-A1) — face/body parts, HSKT video, friendly vampire family." },
+        { "date": "2026-05-25", "num": 2, "status": "completed", "topic": "" },
+        { "date": "2026-06-01", "num": 3, "status": "rescheduled", "topic": "Перенос с понедельника на среду 3 июня (по договорённости)." },
+        {
+          "date": "2026-06-03",
+          "num": 4,
+          "status": "planned",
+          "topic": "Vampire English v8 — Music & Friends (Pre-A1, 90 min).",
+          "homework": {
+            "module_url": "../lingua-boost-lab/pre-a1/julia-vampire/index.html?v=1",
+            "module_title": "🦇 Открыть урок",
+            "text": "Откройте на айпаде, нажимайте на картинки и значки 🔊 — всё озвучено."
+          }
+        },
+        { "date": "2026-06-08", "num": 5, "status": "planned", "topic": "" }
       ]
     },
     {
@@ -510,7 +517,7 @@ window.NGE_DATA = {
         { "date": "2026-05-19", "num": 1, "status": "completed", "topic": "Времена, техники решения ОГЭ" },
         { "date": "2026-05-24", "num": 2, "status": "completed", "topic": "Кулинария и времена, страны мира" },
         { "date": "2026-05-25", "num": 3, "status": "completed", "topic": "Италия: известные люди, чудеса света + немного про Ирландию" },
-        { "date": "2026-05-31", "num": 4, "status": "planned", "topic": "Jerusalem — A City of Three Faiths (speaking-focus, Would, Modals)", "homework": { "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/?v=f02f55c", "module_title": "Открыть урок Jerusalem", "text": "Интерактивный B1-урок: 20 секций, аудио, говорение, Would-конструкции, модальные глаголы. Можно открыть до занятия — пробежаться по vocabulary, дать ушам привыкнуть к narrator-аудио." } },
+        { "date": "2026-05-31", "num": 4, "status": "planned", "topic": "Jerusalem — A City of Three Faiths (speaking-focus, Would, Modals)", "homework": { "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/?v=4cbcbaf", "module_title": "Открыть урок Jerusalem", "text": "Интерактивный B1-урок: 17 секций, аудио, говорение, Would-конструкции, модальные глаголы. Можно открыть до занятия — пробежаться по vocabulary, дать ушам привыкнуть к narrator-аудио." } },
         { "date": "2026-06-02", "num": 5, "status": "planned", "topic": "" },
         { "date": "2026-06-07", "num": 6, "status": "planned", "topic": "" },
         { "date": "2026-06-09", "num": 7, "status": "planned", "topic": "" },
