@@ -39,18 +39,70 @@ a{color:inherit;text-decoration:none}
 .star.s2{width:2px;height:2px;opacity:.65}
 .star.s3{width:3px;height:3px;opacity:.85;box-shadow:0 0 4px rgba(255,255,255,.55)}
 @keyframes twinkle{0%,100%{opacity:var(--op0,.3)}50%{opacity:var(--op1,.9)}}
-@keyframes drift-a{from{transform:translate(0,0)}to{transform:translate(20px,-30px)}}
-@keyframes drift-b{from{transform:translate(0,0)}to{transform:translate(-30px,40px)}}
-@keyframes drift-c{from{transform:translate(0,0)}to{transform:translate(40px,20px)}}
+@keyframes drift-a{from{transform:translate(0,0)}to{transform:translate(160px,-200px)}}
+@keyframes drift-b{from{transform:translate(0,0)}to{transform:translate(-200px,240px)}}
+@keyframes drift-c{from{transform:translate(0,0)}to{transform:translate(260px,180px)}}
 
-/* Topbar */
+/* Topbar — sticky, auto-hides on scroll down (mobile-friendly) */
 .topbar{
-  position:relative;top:auto;z-index:100;display:flex;align-items:center;gap:14px;
+  position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;
   padding:12px clamp(16px,3vw,28px);
-  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .26s ease;will-change:transform;
 }
+.topbar.tb-hidden{transform:translateY(-100%)}
+/* Teacher notes (collapsible, visible during the lesson, harmless to leave open) */
+details.teacher{margin:16px 0 6px;border:1px dashed rgba(245,200,66,.32);border-radius:10px;background:rgba(245,200,66,.04)}
+details.teacher summary{cursor:pointer;list-style:none;padding:9px 14px;font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;user-select:none}
+details.teacher summary::-webkit-details-marker{display:none}
+details.teacher summary::before{content:"♦ teacher";opacity:.9}
+details.teacher summary>span{opacity:.6;font-size:9.5px;letter-spacing:.16em;margin-left:auto}
+details.teacher[open] summary{border-bottom:1px dashed rgba(245,200,66,.32)}
+details.teacher .t-body{padding:12px 16px 14px;color:var(--brand-2);font-size:.9rem;line-height:1.55}
+details.teacher .t-body ul{margin-left:18px}
+details.teacher .t-body li{padding:2px 0}
+details.teacher .t-body strong{color:var(--accent-2)}
+/* Tabs (Speaking — IELTS / Olympiad) */
+.tab-row{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.tab-row .tab-btn{flex:1;background:transparent;border:none;color:var(--muted);
+  padding:11px 14px;font-family:var(--mono);font-size:10.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  border-bottom:2px solid transparent;transition:.16s}
+.tab-row .tab-btn:hover{color:var(--accent)}
+.tab-row .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-pane{display:none}
+.tab-pane.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* Audio — dark themed (inverts default browser controls) */
+.listen-box audio{
+  width:100%;display:block;border-radius:10px;
+  filter:invert(.88) hue-rotate(180deg) saturate(.85);
+  background:var(--card)
+}
+
+/* Cloze (Use of English) */
+.cloze p.cloze-text{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:12px;padding:14px 16px;line-height:1.85;font-size:1rem;color:var(--text)}
+.cloze p.cloze-text .gap{display:inline-block;min-width:34px;padding:0 6px;border-bottom:2px dashed var(--accent);color:var(--accent);font-weight:800}
+.cloze-row{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;margin:10px 0}
+.cloze-num{font-family:var(--mono);font-size:11px;font-weight:800;background:var(--accent);color:var(--accent-on);width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
+.cloze-opts{display:flex;flex-wrap:wrap;gap:6px}
+.cloze-opts button{background:var(--card);color:var(--muted);border:1px solid var(--line-2);padding:6px 12px;border-radius:50px;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:.15s}
+.cloze-opts button:hover{border-color:var(--accent);color:var(--accent)}
+.cloze-opts button.right{background:var(--ok);color:#0a2316;border-color:var(--ok)}
+.cloze-opts button.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+/* Sentence transformation */
+.transform{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.tr-row{background:var(--card);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px}
+.tr-q{color:var(--text);font-size:.94rem;line-height:1.55;margin-bottom:8px}
+.tr-q strong{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;background:var(--brand);color:#fff;padding:2px 8px;border-radius:6px;vertical-align:middle}
+.tr-row .tr-in{background:transparent;border:1px dashed var(--accent);color:var(--accent);font-family:var(--body);font-size:.96rem;font-weight:700;padding:6px 10px;border-radius:8px;outline:none;width:100%;max-width:340px}
+.tr-row .tr-in.right{border-color:var(--ok);color:var(--ok);border-style:solid}
+.tr-row .tr-in.wrong{border-color:var(--miss);color:var(--miss);border-style:solid}
+.tr-row .tr-model{margin-top:6px;font-family:var(--mono);font-size:.78rem;color:var(--brand-2);font-weight:600;letter-spacing:.04em;display:none}
+.tr-row .tr-model.show{display:block}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0;text-decoration:none}
 .brand-mark{width:36px;height:36px;border-radius:9px;border-top-right-radius:0;
   background:var(--accent);color:var(--accent-on);
@@ -308,7 +360,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   <div class="section-hdr"><div class="section-num">01</div><h2>Warm-up — speaking</h2></div>
   <div class="section-sub">two minutes · then borrow one phrase from the model below</div>
   <div class="card">
-    <p><strong>Imagine a letter arrives, addressed to you, from yourself ten years older.</strong></p>
+    <p data-say="Imagine a letter arrives, addressed to you, from yourself ten years older." style="cursor:pointer;background:rgba(245,200,66,.06);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0"><strong>Imagine a letter arrives, addressed to you, from yourself ten years older.</strong> <span style="font-family:var(--mono);font-size:.72rem;color:var(--brand-2);letter-spacing:.1em;margin-left:8px">♪ tap to hear</span></p>
     <p>Talk for about two minutes. Don't plan — just start. Then read the sample model below and steal one or two phrases for next time.</p>
 
     <div class="sample">
@@ -384,13 +436,13 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <img class="lesson-img" src="assets/img-watchmaker-desk.png" alt="An old wooden desk by a window — a logbook open under a brass lamp, an antique clock, full moon outside" onerror="this.style.display='none'">
     <h3>The Watchmaker's Apology</h3>
     <div class="story">
-      <p>Mia's grandfather had been a watchmaker for fifty-three years before the accident. He could disassemble a pocket watch in the dark and rebuild it by morning. After the stroke, he could no longer hold a screwdriver, and he stopped speaking almost entirely. Mia visited him every Sunday and read aloud from his old logbooks — careful, dated entries about which gears he had cleaned and which springs he had replaced.</p>
+      <p>Mia's grandfather had been a <span class="tr" data-ru="мастер по часам, часовщик">watchmaker</span> for fifty-three years before the <span class="tr" data-ru="несчастный случай, авария">accident</span>. He could <span class="tr" data-ru="разобрать">disassemble</span> a pocket watch in the dark and rebuild it by morning. After the <span class="tr" data-ru="инсульт">stroke</span>, he could no longer hold a <span class="tr" data-ru="отвёртка">screwdriver</span>, and he stopped speaking almost entirely. Mia visited him every Sunday and read aloud from his old <span class="tr" data-ru="журналы учёта работ">logbooks</span> — careful, dated entries about which <span class="tr" data-ru="шестерёнки">gears</span> he had cleaned and which <span class="tr" data-ru="пружины">springs</span> he had replaced.</p>
 
       <p>One Sunday in November, while reading the entry for 14 March 1987, Mia <span class="tr" data-ru="заметила">noticed</span> something she had read past for months. The customer for that day was a young woman named — Mia Andreevna Markova. Mia's own name. Her own patronymic. Her own surname.</p>
 
       <p>Below the customer's name, in her grandfather's careful handwriting, was a short note:</p>
 
-      <p><em>"She does not know yet. Tell her, gently, that she will. The watch she will bring me has no fault — only that it has been <span class="tr" data-ru="заведены не в ту сторону">wound the wrong way</span> for a very long time."</em></p>
+      <p><em>"She does not know yet. Tell her, gently, that she will. The watch she will bring me has no <span class="tr" data-ru="изъян, неисправность">fault</span> — only that it has been <span class="tr" data-ru="заведены не в ту сторону">wound the wrong way</span> for a very long time."</em></p>
 
       <p>Mia set the logbook down. She was eighteen years old. The date 14 March 1987 was nineteen years before her own birth.</p>
 
@@ -398,7 +450,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
 
       <p>"Mia," he said, very slowly. "Do not be afraid of the date. You will go. You will not change anything that matters. You will only — <em>adjust</em>."</p>
 
-      <p>She asked him what he meant. He smiled the way a watchmaker smiles when the spring finally clicks into place — and closed his eyes again.</p>
+      <p>She asked him what he meant. He smiled the way a watchmaker smiles when the spring finally <span class="tr" data-ru="встаёт на место (со щелчком)">clicks into place</span> — and closed his eyes again.</p>
 
       <p>By the next Sunday, the logbook entry was still there. The handwriting was still his. But the name on the line for 14 March had <span class="tr" data-ru="изменилось">changed</span>. It now read, in slightly fresher ink: <em>delivered, returned safely, never asked again.</em></p>
     </div>
@@ -437,11 +489,10 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <img class="lesson-img" src="assets/img-opera-tunnel.png" alt="Underground tunnel with a glowing cyan particle beam — OPERA-style detector" onerror="this.style.display='none'">
     <p style="color:var(--muted);font-size:.95rem">A short factual piece. Take notes on three points: <strong>(1)</strong> what the 2011 CERN experiment claimed, <strong>(2)</strong> the GPS correction figure, <strong>(3)</strong> Hawking's position on direction of time travel.</p>
     <div class="listen-box">
-      <div class="listen-controls">
-        <button id="lstPlay">▶ Play listening</button>
-        <button class="accent" id="lstStop">■ Stop</button>
-        <span class="listen-status" id="lstStatus">ready</span>
-      </div>
+      <audio controls preload="metadata" style="width:100%;display:block;border-radius:10px">
+        <source src="assets/audio/listen-time-physics.mp3" type="audio/mpeg">
+        Your browser does not support audio playback. Use Chrome, Safari, or Edge.
+      </audio>
       <div class="listen-script" id="lstScript">
         <strong>Script (open after the questions):</strong><br>
         In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — fired a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
@@ -487,80 +538,185 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
-<!-- 5 · SYNTHESIS -->
+<!-- 5 · QUOTATION COMMENTARY (olympiad writing format) -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">05</div><h2>Synthesis — olympiad style</h2></div>
-  <div class="section-sub">link the story and the science · 6–8 sentences · use at least three vocab words</div>
+  <div class="section-hdr"><div class="section-num">05</div><h2>Quotation commentary — olympiad writing</h2></div>
+  <div class="section-sub">school/municipal stage format · respond to a quotation in 150–180 words · structured in 3 paragraphs</div>
   <div class="card">
-    <img class="lesson-img" src="assets/img-mirrored-faces.png" alt="Two faces in profile mirrored under a night sky with clocks and a full moon — affect vs change" onerror="this.style.display='none'">
-    <p>In the story, the grandfather tells Mia: <em>"You will not change anything that matters. You will only adjust."</em> In the listening, Hawking refuses past-direction travel because <em>a cause must come before its effect.</em></p>
-    <p style="color:var(--accent)"><strong>Big question</strong> — pick one and write 6–8 sentences:</p>
-    <ol style="margin-left:22px;color:var(--text);line-height:1.7">
-      <li>Is "adjust but do not change" a coherent rule, or a polite way of saying <em>do nothing</em>?</li>
-      <li>If you had to design a memory that protected you from regret without changing facts, what would it remove and what would it leave?</li>
-      <li>Is it more dangerous to interfere with the past, or with a prediction about the future?</li>
+    <img class="lesson-img" src="assets/img-mirrored-faces.png" alt="Two faces in profile mirrored under a night sky with clocks and a full moon" onerror="this.style.display='none'">
+
+    <div style="background:rgba(245,200,66,.06);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 22px;margin:10px 0 18px">
+      <div style="font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Quotation</div>
+      <p style="font-family:var(--display);font-style:italic;font-size:1.12rem;line-height:1.4;color:var(--text);margin:0 0 8px">"You will not change anything that matters. You will only <em>adjust</em>."</p>
+      <p style="font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--brand-2);margin:0">— from the story · the grandfather to Mia</p>
+    </div>
+
+    <h3>Task</h3>
+    <p style="color:var(--text)">Write a commentary on this quotation. <strong>150–180 words.</strong> Use the three-paragraph structure below. Use at least <strong>three vocab words</strong> from today.</p>
+    <ol style="margin-left:22px;color:var(--text);line-height:1.7;margin-top:8px">
+      <li><strong>Interpretation</strong> — what do you think the quotation actually means? (2–3 sentences)</li>
+      <li><strong>Position</strong> — do you agree with the rule? Give one reason and one personal example. (3–4 sentences)</li>
+      <li><strong>Counterpoint</strong> — what is the strongest argument against your position? (2 sentences)</li>
     </ol>
-    <div class="write">
-      <textarea placeholder="6–8 sentences. Use at least three vocab words (timeline, twist, consequence, deserve, eventually, contradict, prediction, fade, regret, interfere)."></textarea>
-      <div class="write-meta"><span>Olympiad analytical · self-rated</span><span class="word-count">0 words</span></div>
+
+    <div class="write" style="margin-top:14px">
+      <textarea placeholder="Open with your interpretation. Move to your position with reason + example. Close with one strong counterpoint. 150–180 words."></textarea>
+      <div class="write-meta"><span>Olympiad commentary · structured · self-rated</span><span class="word-count">0 words</span></div>
     </div>
+
+    <details class="teacher">
+      <summary>For me — what this trains <span>open if needed</span></summary>
+      <div class="t-body">
+        <ul>
+          <li><strong>Quotation commentary</strong> — стандартный школьный/муниципальный формат Writing на ВсОШ. Жюри оценивает: понимание идеи, структуру 3 абзацев, аргументацию, лексику, грамматику.</li>
+          <li>Подскажи Ване не пересказывать сюжет — комментарий это <em>реакция</em> на идею, не отчёт о тексте.</li>
+          <li>Если он застрянет — спроси «<em>что важнее: что-то изменить или просто оставить как было?</em>» Это даёт ему opinion-стартер.</li>
+          <li>Альтернативные цитаты для повторов: "A cause must come before its effect" (Hawking) или "Travel into the future would, in principle, be allowed by these laws" — обе подойдут под тот же формат.</li>
+        </ul>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- 6 · IELTS PART 2 -->
+<!-- 6 · SPEAKING — two tracks: IELTS Part 2 OR Olympiad monologue + dialogue -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">06</div><h2>Speaking — IELTS Part 2 format</h2></div>
-  <div class="section-sub">1 min prep · 1.5–2 min monologue · timer is right here</div>
+  <div class="section-hdr"><div class="section-num">06</div><h2>Speaking — pick the format</h2></div>
+  <div class="section-sub">two parallel tracks · IELTS cue-card or olympiad monologue + dialogue</div>
   <div class="card">
-    <div class="cue-card">
-      <div class="cue-h">Describe a moment when you were proven wrong about something.</div>
-      <p style="color:var(--muted)">You should say:</p>
-      <ul>
-        <li>what you used to believe</li>
-        <li>how you found out you were wrong</li>
-        <li>whether you accepted it immediately</li>
-        <li>and explain what changed in your thinking afterwards.</li>
+    <div class="tab-row" role="tablist">
+      <button class="tab-btn active" data-tab="ielts">A · IELTS Part 2</button>
+      <button class="tab-btn" data-tab="olymp">B · Olympiad monologue + dialogue</button>
+    </div>
+
+    <div class="tab-pane active" data-pane="ielts">
+      <p style="color:var(--muted);font-size:.93rem;margin-bottom:12px">Classic IELTS Part 2 cue-card. <strong>1 min prep · 1.5–2 min monologue.</strong></p>
+      <div class="cue-card">
+        <div class="cue-h">Describe a moment when you were proven wrong about something.</div>
+        <p style="color:var(--muted)">You should say:</p>
+        <ul>
+          <li>what you used to believe</li>
+          <li>how you found out you were wrong</li>
+          <li>whether you accepted it immediately</li>
+          <li>and explain what changed in your thinking afterwards.</li>
+        </ul>
+      </div>
+      <div class="timer">
+        <button id="prepBtn">Start 1 min prep</button>
+        <button class="brand" id="speakBtn">Speak — start timer</button>
+        <span class="clock" id="clockDisp">0:00</span>
+      </div>
+      <h3 style="margin-top:20px">Follow-up (after the monologue)</h3>
+      <ul style="margin-left:18px;color:var(--text);line-height:1.8">
+        <li>Are some people better than others at admitting they were wrong? What makes the difference?</li>
+        <li>Should schools teach students how to lose an argument well?</li>
       </ul>
+      <div class="src">Cue-card format follows British Council IELTS · <a href="https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests" target="_blank" rel="noopener">takeielts.britishcouncil.org</a></div>
     </div>
-    <div class="timer">
-      <button id="prepBtn">Start 1 min prep</button>
-      <button class="brand" id="speakBtn">Speak — start timer</button>
-      <span class="clock" id="clockDisp">0:00</span>
+
+    <div class="tab-pane" data-pane="olymp">
+      <p style="color:var(--muted);font-size:.93rem;margin-bottom:12px">Real all-Russian olympiad oral format (regional / final stage). <strong>3 min prep · 2 min monologue · 2 min dialogue with the teacher.</strong></p>
+      <div class="cue-card">
+        <div class="cue-h">Topic — defend your position</div>
+        <p style="color:var(--text);font-size:1.02rem;margin:8px 0 6px">Schools should teach physics through stories like the watchmaker's, not only through formulas.</p>
+        <p style="color:var(--muted);margin:6px 0 0">Your monologue must contain:</p>
+        <ul>
+          <li>a clear position (agree / disagree / partly)</li>
+          <li>two reasons with one concrete example each</li>
+          <li>one objection you anticipate, and your response to it</li>
+          <li>a closing sentence connecting back to today's reading or listening</li>
+        </ul>
+      </div>
+      <div class="timer">
+        <button id="oPrepBtn">Start 3 min prep</button>
+        <button class="brand" id="oSpeakBtn">Monologue — start 2 min</button>
+        <button class="brand" id="oDialBtn">Dialogue — start 2 min</button>
+        <span class="clock" id="oClockDisp">0:00</span>
+      </div>
+
+      <h3 style="margin-top:20px">Dialogue questions (teacher asks one)</h3>
+      <ul style="margin-left:18px;color:var(--text);line-height:1.8">
+        <li>How would your position change if the audience were primary-school children, not university students?</li>
+        <li>Pick one concept from today's listening (relativity, GPS clocks, faster-than-light) and explain it for a ten-year-old in 30 seconds.</li>
+        <li>If you had to choose one formula-only and one story-only lesson, in what order would you give them — and why?</li>
+      </ul>
+
+      <details class="teacher">
+        <summary>For me — how to run this <span>open if needed</span></summary>
+        <div class="t-body">
+          <ul>
+            <li><strong>Этот формат</strong> — регион/финал ВсОШ. Не путать с IELTS — здесь нет шаблона «what you should say», нужно <strong>защитить позицию</strong>.</li>
+            <li><strong>Подготовка 3 мин</strong> — он пишет план в блокноте, не печатает в окно. Заметки на русском OK, монолог на английском.</li>
+            <li><strong>Монолог 2 мин</strong> — слушай не перебивая. Засеки время. После — задай 1 из dialogue-вопросов.</li>
+            <li><strong>Диалог 2 мин</strong> — это <em>обсуждение</em>, не допрос. Жюри ищет умение поддержать, развить, согласиться/возразить.</li>
+            <li>4 категории оценки: communicative task fulfillment, organization, lexical/grammatical accuracy, phonetics.</li>
+          </ul>
+        </div>
+      </details>
     </div>
-    <h3 style="margin-top:20px">Follow-up questions</h3>
-    <ul style="margin-left:18px;color:var(--text);line-height:1.8">
-      <li>Are some people better than others at admitting they were wrong? What makes the difference?</li>
-      <li>Should schools teach students how to lose an argument well?</li>
-    </ul>
-    <div class="src">Cue-card format follows British Council IELTS · <a href="https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests" target="_blank" rel="noopener">takeielts.britishcouncil.org</a></div>
   </div>
 </section>
 
-<!-- 7 · BUILD-YOUR-OWN -->
+<!-- 7 · USE OF ENGLISH — olympiad task formats -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">07</div><h2>Build your own sentences</h2></div>
-  <div class="section-sub">fill the gaps with your own ideas · the vocab words make it work</div>
+  <div class="section-hdr"><div class="section-num">07</div><h2>Use of English — olympiad practice</h2></div>
+  <div class="section-sub">two standard task types from the school / municipal stage · cloze + sentence transformation</div>
   <div class="card">
     <img class="lesson-img" src="assets/img-sentence-cards.png" alt="Glowing handwritten cards arranged in a flow-chart on a vintage night desk" onerror="this.style.display='none'">
-    <div class="byo">
-      <div class="byo-row">
-        <div class="lab">a · consequence</div>
-        <div class="frame">The hardest <input data-w="consequence" placeholder="word"> of <input placeholder="something I did last week"> was that <input placeholder="what happened next"></div>
+
+    <h3>A · Multiple-choice cloze (6 gaps)</h3>
+    <p style="color:var(--muted);font-size:.93rem">Read the short text. For each gap, choose A, B, C or D. Same passage you already met in lesson — the practice is about precise word choice.</p>
+
+    <div class="cloze">
+      <p class="cloze-text">Time travel has always <span class="gap">(1)</span> writers, but for most of human history it was kept at the safe distance of fiction. The 2011 CERN result, brief as it was, briefly <span class="gap">(2)</span> that distance — for a few months, the idea felt like proper science again. The experiment itself was eventually <span class="gap">(3)</span> to a faulty cable, yet <span class="gap">(4)</span> effect on public thinking was very real. Once you have asked the question seriously, it is much <span class="gap">(5)</span> to put back into the box, and a careful answer matters <span class="gap">(6)</span> than ever.</p>
+
+      <div class="cloze-row"><span class="cloze-num">1</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) bothered</button><button data-ans="b">B) fascinated</button><button data-ans="c">C) repaired</button><button data-ans="d">D) noticed</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">2</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) closed</button><button data-ans="b">B) widened</button><button data-ans="c">C) carried</button><button data-ans="d">D) bent</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">3</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) traced</button><button data-ans="b">B) reached</button><button data-ans="c">C) gathered</button><button data-ans="d">D) presented</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">4</span><div class="cloze-opts" data-correct="c"><button data-ans="a">A) a</button><button data-ans="b">B) —</button><button data-ans="c">C) the</button><button data-ans="d">D) some</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">5</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) easier</button><button data-ans="b">B) harder</button><button data-ans="c">C) sooner</button><button data-ans="d">D) cooler</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">6</span><div class="cloze-opts" data-correct="c"><button data-ans="a">A) less</button><button data-ans="b">B) much</button><button data-ans="c">C) more</button><button data-ans="d">D) even</button></div></div>
+    </div>
+
+    <h3 style="margin-top:24px">B · Sentence transformation (4 items)</h3>
+    <p style="color:var(--muted);font-size:.93rem">Rewrite the second sentence so it means the same as the first, using the word in <strong>CAPITALS</strong>. Write between 2 and 4 words. The capitalised word must stay unchanged.</p>
+
+    <div class="transform">
+      <div class="tr-row">
+        <div class="tr-q">1. Hawking said that travel into the past would never be allowed.<br>According to Hawking, travel into the past <strong>WOULD</strong> ____________ be allowed.</div>
+        <input class="tr-in" placeholder="2–4 words" data-correct="would never">
+        <div class="tr-model">Model: <em>would never</em></div>
       </div>
-      <div class="byo-row">
-        <div class="lab">b · prediction · eventually</div>
-        <div class="frame">My <input data-w="prediction" placeholder="word"> for the next ten years is that <input placeholder="your idea">, and <input data-w="eventually" placeholder="word"> people will <input placeholder="what they'll do"></div>
+      <div class="tr-row">
+        <div class="tr-q">2. Nobody had ever measured a particle faster than light before this experiment.<br>This experiment was the <strong>FIRST</strong> ____________ a particle had been measured faster than light.</div>
+        <input class="tr-in" placeholder="2–4 words" data-correct="first time">
+        <div class="tr-model">Model: <em>first time</em></div>
       </div>
-      <div class="byo-row">
-        <div class="lab">c · regret · deserve</div>
-        <div class="frame">I would only <input data-w="regret" placeholder="word"> something I did if I knew the person did not <input data-w="deserve" placeholder="word"> it.</div>
+      <div class="tr-row">
+        <div class="tr-q">3. The grandfather did not explain his reasons in any detail.<br>The grandfather <strong>AVOIDED</strong> ____________ his reasons in any detail.</div>
+        <input class="tr-in" placeholder="2–4 words" data-correct="avoided explaining">
+        <div class="tr-model">Model: <em>avoided explaining</em> (or just <em>explaining</em>)</div>
       </div>
-      <div class="byo-row">
-        <div class="lab">d · contradict · interfere</div>
-        <div class="frame">It's fine when a friend's opinion <input data-w="contradicts" placeholder="word"> mine, but it's not fine when they <input data-w="interfere" placeholder="word"> with my <input placeholder="something personal"></div>
+      <div class="tr-row">
+        <div class="tr-q">4. If the cable had not been faulty, the result would have been different.<br>Had the cable <strong>NOT</strong> ____________, the result would have been different.</div>
+        <input class="tr-in" placeholder="2–4 words" data-correct="not been faulty">
+        <div class="tr-model">Model: <em>not been faulty</em></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap">
+        <button class="btn-sm" id="checkTransform">Check answers</button>
+        <button class="btn-sm" id="revealTransform">Show model answers</button>
       </div>
     </div>
-    <p style="color:var(--muted);font-size:.92rem;margin-top:8px">When you're done, read one of them aloud to your teacher. Best one goes into the vocab box on top of the regular click.</p>
+
+    <details class="teacher">
+      <summary>For me — what this trains <span>open if needed</span></summary>
+      <div class="t-body">
+        <ul>
+          <li><strong>Cloze</strong> trains collocation + register: <em>fascinated by</em>, <em>traced to</em>, <em>closed the distance</em>, definite article with abstract effects. Real ВсОШ school-stage format.</li>
+          <li><strong>Transformation</strong> trains: modal+adverb order (<em>would never</em>), <em>the first time</em> + present perfect, <em>avoid + gerund</em>, inversion in mixed conditionals.</li>
+          <li>If Ваня угадывает не вспоминая правило — спроси «<em>почему именно это, а не C?</em>» — он сам перейдёт от чутья к объяснению. Это то что меряют олимпиадные жюри.</li>
+        </ul>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -719,7 +875,7 @@ document.querySelectorAll('.tr[data-ru]').forEach(el => {
 renderVocab();
 
 /* ===== T/F/NG + MC ===== */
-document.querySelectorAll('.tfg-opts, .mc-opts').forEach(group => {
+document.querySelectorAll('.tfg-opts, .mc-opts, .cloze-opts').forEach(group => {
   const correct = group.getAttribute('data-correct');
   group.querySelectorAll('button').forEach(b => {
     b.addEventListener('click', () => {
@@ -733,26 +889,47 @@ document.querySelectorAll('.tfg-opts, .mc-opts').forEach(group => {
   });
 });
 
-/* ===== Listening playback ===== */
-const lstScriptText = `In 2011, a team at CERN — the European centre for particle physics in Geneva — fired a beam of tiny particles called neutrinos toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty nanoseconds — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
-The result was later traced to a faulty cable in the experiment. But the question it asked is still alive. Einstein's relativity tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would drift by ten kilometres in twenty-four hours.
-So time, in physics, is not the steady backdrop most of us imagine. It bends near gravity. It runs at different rates for travellers at different speeds. The physicist Stephen Hawking once said that travel into the future — even by millions of years — would, in principle, be allowed by these laws. Travel into the past, he believed, was off limits: it would break the rule that a cause must come before its effect.`;
-document.getElementById('lstPlay').addEventListener('click', () => {
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(lstScriptText);
-  u.lang = 'en-GB'; u.rate = 0.92;
-  if (voicesLoaded) u.voice = englishVoices.uk;
-  document.getElementById('lstStatus').textContent = 'playing…';
-  u.onend = () => { document.getElementById('lstStatus').textContent = 'finished'; };
-  speechSynthesis.speak(u);
+/* ===== Sentence transformation — check + reveal ===== */
+const checkTr = document.getElementById('checkTransform');
+const revealTr = document.getElementById('revealTransform');
+function normTr(s){ return (s||'').toLowerCase().trim().replace(/\s+/g,' ').replace(/[.,;!?]/g,''); }
+if (checkTr) checkTr.addEventListener('click', () => {
+  document.querySelectorAll('.tr-row .tr-in').forEach(inp => {
+    const want = normTr(inp.getAttribute('data-correct'));
+    const got = normTr(inp.value);
+    inp.classList.remove('right','wrong');
+    if (!got) return;
+    if (got === want || want.startsWith(got) || got.includes(want)) inp.classList.add('right');
+    else inp.classList.add('wrong');
+  });
 });
-document.getElementById('lstStop').addEventListener('click', () => {
-  speechSynthesis.cancel();
-  document.getElementById('lstStatus').textContent = 'stopped';
+if (revealTr) revealTr.addEventListener('click', () => {
+  document.querySelectorAll('.tr-row .tr-model').forEach(m => m.classList.toggle('show'));
 });
-document.getElementById('revealScript').addEventListener('click', () => {
+
+/* ===== Listening: native <audio> handles playback. Just script reveal. ===== */
+const revealBtn = document.getElementById('revealScript');
+if (revealBtn) revealBtn.addEventListener('click', () => {
   document.getElementById('lstScript').classList.toggle('open');
 });
+
+/* ===== Topbar auto-hide on scroll down (mobile-friendly) ===== */
+(function(){
+  const tb = document.querySelector('.topbar');
+  if (!tb) return;
+  let lastY = 0, ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > lastY + 6 && y > 80) tb.classList.add('tb-hidden');
+      else if (y < lastY - 4) tb.classList.remove('tb-hidden');
+      lastY = y;
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 /* ===== Word counters ===== */
 document.querySelectorAll('.write textarea').forEach(t => {
@@ -777,6 +954,36 @@ function start(target){
 }
 document.getElementById('prepBtn').addEventListener('click', () => start(60));
 document.getElementById('speakBtn').addEventListener('click', () => start(120));
+
+/* ===== Olympiad timer (Speaking tab B) ===== */
+let oTimerId = null, oSecs = 0;
+const oDisp = document.getElementById('oClockDisp');
+function oStart(target){
+  if (oTimerId) clearInterval(oTimerId);
+  oSecs = 0; if (oDisp) oDisp.textContent = fmt(0);
+  oTimerId = setInterval(() => {
+    oSecs++; if (oDisp) oDisp.textContent = fmt(oSecs);
+    if (oSecs >= target) { clearInterval(oTimerId); if (oDisp) oDisp.textContent = 'done · ' + fmt(target); }
+  }, 1000);
+}
+const oPrepBtn = document.getElementById('oPrepBtn');
+const oSpeakBtn = document.getElementById('oSpeakBtn');
+const oDialBtn = document.getElementById('oDialBtn');
+if (oPrepBtn) oPrepBtn.addEventListener('click', () => oStart(180));
+if (oSpeakBtn) oSpeakBtn.addEventListener('click', () => oStart(120));
+if (oDialBtn) oDialBtn.addEventListener('click', () => oStart(120));
+
+/* ===== Tabs ===== */
+document.querySelectorAll('.tab-row').forEach(row => {
+  row.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+      row.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const card = row.parentElement;
+      card.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.getAttribute('data-pane') === target));
+    });
+  });
+});
 </script>
 
 </body>
