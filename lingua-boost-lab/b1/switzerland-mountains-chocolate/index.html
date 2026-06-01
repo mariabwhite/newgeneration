@@ -46,7 +46,7 @@ body{
 
 /* ========== Top bar ========== */
 .lab-topbar{
-  position:sticky;top:0;z-index:50;
+  position:relative;top:auto;z-index:100;
   display:flex;align-items:center;gap:14px;
   padding:12px clamp(16px,3vw,28px);
   background:rgba(255,247,237,.94);
@@ -55,7 +55,7 @@ body{
 }
 .brand{font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
 .brand-mark{width:34px;height:34px;border-radius:9px;border-top-right-radius:0;background:var(--accent);color:#fff;font-family:var(--display);font-weight:900;font-size:1.05rem;letter-spacing:-.04em;display:grid;place-items:center;position:relative;overflow:hidden;flex-shrink:0}
-.brand-mark::after{content:"";position:absolute;right:0;top:0;width:12px;height:12px;background:var(--bg);clip-path:polygon(100% 0, 0 0, 100% 100%)}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:12px;height:12px;background:#fff;clip-path:polygon(100% 0, 0 0, 100% 100%)}
 .brand-copy{display:grid;gap:1px;min-width:0}
 .brand-name{font-family:var(--display);font-weight:800;font-size:.92rem;letter-spacing:-.01em;line-height:1;color:var(--ink)}
 .brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -243,6 +243,8 @@ body{
 .tr:hover::after{opacity:1;transform:translateX(-50%) translateY(-6px)}
 .tr.added{background:rgba(220,38,38,.08);color:var(--accent2)}
 .tr.flying{animation:flyToVocab .55s ease-out forwards;pointer-events:none}
+.say-word{cursor:pointer;border-bottom:1px dashed var(--alpine);padding:0 1px;transition:.15s}
+.say-word:hover{background:rgba(58,110,143,.10);color:var(--alpine)}
 @keyframes flyToVocab{
   0%{transform:scale(1) translate(0,0);opacity:1}
   60%{transform:scale(.6) translate(20vw,20vh);opacity:.7}
@@ -269,7 +271,27 @@ body{
 }
 
 /* ========== Footer ========== */
-footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;color:var(--muted);font-size:.8rem;font-family:var(--mono);letter-spacing:.06em}
+/* ===== canon-l-footer (unified Lab bottom section) ===== */
+.canon-l-footer{background:var(--lb-bg,#5B0F0F);border-top:1px solid var(--lb-line,rgba(255,215,170,.22));padding:22px clamp(18px,3vw,28px) 26px;font-family:var(--body);color:var(--lb-text,#FFF8E7);margin-top:48px;box-sizing:border-box;width:100%}
+.canon-l-footer-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--lb-line,rgba(255,215,170,.18))}
+.canon-l-footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex-shrink:0}
+.canon-l-footer-mark{width:26px;height:26px;display:grid;place-items:center;background:#E6C68A;color:#5B0F0F;font-family:var(--display);font-weight:800;font-size:13px;border-radius:7px;border-top-right-radius:0;letter-spacing:-.04em;flex-shrink:0;position:relative;overflow:hidden}
+.canon-l-footer-mark::after{content:"";position:absolute;right:0;top:0;width:9px;height:9px;background:#5B0F0F;clip-path:polygon(100% 0, 0 0, 100% 100%);z-index:2}
+.canon-l-footer-name{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:-.01em;color:var(--lb-text,#FFF8E7);white-space:nowrap}
+.canon-l-footer-meta{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lb-muted,#E6C68A);flex:1 1 220px;text-align:center;min-width:0}
+.canon-l-footer-nav{display:flex;gap:18px;align-items:center;flex-shrink:0}
+.canon-l-footer-nav a{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lb-muted,#E6C68A);text-decoration:none;transition:color .15s ease;white-space:nowrap}
+.canon-l-footer-nav a:hover{color:var(--lb-text,#FFF8E7)}
+.canon-l-footer-legal{margin:14px 0 0;font-size:12px;line-height:1.6;color:var(--lb-muted,#E6C68A);font-family:var(--body)}
+.canon-l-footer-legal strong{color:var(--lb-text,#FFF8E7);font-weight:600}
+@media (max-width:720px){
+  .canon-l-footer{padding:18px 16px 22px;margin-top:32px}
+  .canon-l-footer-row{gap:12px}
+  .canon-l-footer-meta{text-align:left;flex:1 1 100%;order:3;font-size:9.5px}
+  .canon-l-footer-nav{gap:14px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .canon-l-footer-nav::-webkit-scrollbar{display:none}
+  .canon-l-footer-legal{font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -383,10 +405,10 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
 
     <h3 style="margin-top:18px">Listen to the peaks (tap to hear)</h3>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px">
-      <span class="bank-word" data-say="Matterhorn">Matterhorn</span>
-      <span class="bank-word" data-say="Jungfrau">Jungfrau</span>
-      <span class="bank-word" data-say="Eiger">Eiger</span>
-      <span class="bank-word" data-say="Aletsch">Aletsch</span>
+      <span class="bank-word" data-say="Matterhorn" data-lang="de-DE">Matterhorn</span>
+      <span class="bank-word" data-say="Jungfrau" data-lang="de-DE">Jungfrau</span>
+      <span class="bank-word" data-say="Eiger" data-lang="de-DE">Eiger</span>
+      <span class="bank-word" data-say="Aletsch" data-lang="de-DE">Aletsch</span>
     </div>
 
     <h3 style="margin-top:18px">Quick check — True / False</h3>
@@ -419,11 +441,11 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   <div class="section-hdr"><div class="num">6</div><h2>Heidi — the story that defined Switzerland</h2></div>
   <div class="section-sub">reading · cultural icon</div>
   <div class="card">
-    <img class="lesson-img" style="width:100%;aspect-ratio:16/8;object-fit:cover;object-position:center 35%;border-radius:14px;margin:10px 0 16px;display:block" src="assets/img/img-03-heidi-village.png" alt="Alpine chalet with red flowers, cows grazing in flower meadow, Matterhorn behind" onerror="this.style.display='none'">
+    <img class="lesson-img" style="width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 75%;border-radius:14px;margin:10px 0 16px;display:block" src="assets/img/img-03-heidi-village.png" alt="Alpine chalet with red flowers, cows grazing in flower meadow, Matterhorn behind" onerror="this.style.display='none'">
     <div class="reading-text">
-      <p>In 1880 a Swiss writer named <strong>Johanna Spyri</strong> <span class="tr" data-ru="опубликовала">published</span> a short book about a little girl. The girl's name was <strong>Heidi</strong>. She lived high in the Alps with her grandfather, drank fresh goat milk, and ran <span class="tr" data-ru="босиком">barefoot</span> through wildflower <span class="tr" data-ru="луга, поля">meadows</span>.</p>
+      <p>In 1880 a Swiss writer named <strong><span class="say-word" data-say="Johanna Spyri" data-lang="de-DE">Johanna Spyri</span></strong> <span class="tr" data-ru="опубликовала">published</span> a short book about a little girl. The girl's name was <strong>Heidi</strong>. She lived high in the Alps with her grandfather, drank fresh goat milk, and ran <span class="tr" data-ru="босиком">barefoot</span> through wildflower <span class="tr" data-ru="луга, поля">meadows</span>.</p>
       <p>The book sold 50 million <span class="tr" data-ru="экземпляров">copies</span>. It was <span class="tr" data-ru="переведена">translated</span> into 50 languages. It became films, anime series, <span class="tr" data-ru="тематические парки">theme parks</span>. For the whole world, <em>Heidi = Switzerland</em>.</p>
-      <p>If you visit the area around <strong>Maienfeld</strong> in eastern Switzerland today, you can find «Heidi's village» — with the chalet, the goats, and Grandfather's hut. The line between fiction and tourism is happily <span class="tr" data-ru="размыта, нечёткая">blurred</span>.</p>
+      <p>If you visit the area around <strong><span class="say-word" data-say="Maienfeld" data-lang="de-DE">Maienfeld</span></strong> in eastern Switzerland today, you can find «Heidi's village» — with the chalet, the goats, and Grandfather's hut. The line between fiction and tourism is happily <span class="tr" data-ru="размыта, нечёткая">blurred</span>.</p>
     </div>
     <div class="info"><strong>Did you know?</strong> The author Johanna Spyri never owned the rights to the name «Heidi». In 1937 a Japanese company made an anime version that became one of the most beloved children's shows in Asia. In Japan, an entire generation grew up calling the Swiss Alps «Heidi mountains».</div>
 
@@ -513,9 +535,9 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   <div class="card">
     <img class="lesson-img hero-img" src="assets/img/img-05-chocolate.png" alt="Swiss chocolate bars unwrapped — Lindt, Toblerone, dark squares" onerror="this.style.display='none'">
     <div class="reading-text">
-      <p>The Swiss did not <span class="tr" data-ru="изобрели">invent</span> chocolate. The Aztecs drank it as a <span class="tr" data-ru="горький">bitter</span> dark <span class="tr" data-ru="жидкость">liquid</span> hundreds of years before any European tasted it. But the Swiss did one thing that changed chocolate forever — in 1875 a man named <strong>Daniel Peter</strong> mixed <em>cocoa</em> with fresh Alpine milk. <strong>Milk chocolate</strong> was born.</p>
+      <p>The Swiss did not <span class="tr" data-ru="изобрели">invent</span> chocolate. The Aztecs drank it as a <span class="tr" data-ru="горький">bitter</span> dark <span class="tr" data-ru="жидкость">liquid</span> hundreds of years before any European tasted it. But the Swiss did one thing that changed chocolate forever — in 1875 a man named <strong><span class="say-word" data-say="Daniel Peter" data-lang="de-DE">Daniel Peter</span></strong> mixed <em>cocoa</em> with fresh Alpine milk. <strong>Milk chocolate</strong> was born.</p>
       <p>A year later, a <span class="tr" data-ru="кондитер">confectioner</span> called <strong>Rudolph Lindt</strong> invented a machine that <span class="tr" data-ru="помешивал">stirred</span> chocolate for 72 hours. The result was <strong>smooth</strong> — so <em>smooth</em> it would <em>melt</em> on your <span class="tr" data-ru="язык">tongue</span> like <span class="tr" data-ru="шёлк">silk</span>. The Swiss had <span class="tr" data-ru="нашли секрет (букв. разгадали код)">cracked the code</span>.</p>
-      <p>Today the three biggest names are <strong>Lindt</strong> (founded 1845, the smooth one), <strong>Toblerone</strong> (those triangular bars shaped like the Matterhorn, since 1908), and <strong>Cailler</strong> (the oldest Swiss chocolate brand, since 1819). The <span class="tr" data-ru="средний (человек)">average</span> Swiss person eats <strong>11 kilograms of chocolate per year</strong> — about three times what most countries eat.</p>
+      <p>Today the three biggest names are <strong><span class="say-word" data-say="Lindt" data-lang="de-DE">Lindt</span></strong> (founded 1845, the smooth one), <strong><span class="say-word" data-say="Toblerone" data-lang="de-DE">Toblerone</span></strong> (those triangular bars shaped like the Matterhorn, since 1908), and <strong><span class="say-word" data-say="Cailler" data-lang="fr-FR">Cailler</span></strong> (the oldest Swiss chocolate brand, since 1819). The <span class="tr" data-ru="средний (человек)">average</span> Swiss person eats <strong>11 kilograms of chocolate per year</strong> — about three times what most countries eat.</p>
     </div>
   </div>
 </section>
@@ -565,10 +587,10 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
 
     <h3 style="margin-top:18px">Listen to the cheese names</h3>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px">
-      <span class="bank-word" data-say="Gruyère">Gruyère</span>
-      <span class="bank-word" data-say="Emmental">Emmental</span>
-      <span class="bank-word" data-say="Raclette">Raclette</span>
-      <span class="bank-word" data-say="Vacherin Mont d'Or">Vacherin Mont d'Or</span>
+      <span class="bank-word" data-say="Gruyère" data-lang="fr-FR">Gruyère</span>
+      <span class="bank-word" data-say="Emmental" data-lang="de-DE">Emmental</span>
+      <span class="bank-word" data-say="Raclette" data-lang="fr-FR">Raclette</span>
+      <span class="bank-word" data-say="Vacherin Mont d'Or" data-lang="fr-FR">Vacherin Mont d'Or</span>
     </div>
 
     <h3 style="margin-top:18px">Quick check — True / False</h3>
@@ -611,7 +633,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
     <h3 style="margin-top:18px">Listen to the watch brands</h3>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px">
       <span class="bank-word" data-say="Rolex">Rolex</span>
-      <span class="bank-word" data-say="Patek Philippe">Patek Philippe</span>
+      <span class="bank-word" data-say="Patek Philippe" data-lang="fr-FR">Patek Philippe</span>
       <span class="bank-word" data-say="Omega">Omega</span>
       <span class="bank-word" data-say="Swiss made">Swiss made</span>
     </div>
@@ -676,7 +698,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   <div class="card">
     <img class="lesson-img" src="assets/img/img-08-icons.png" alt="Roger Federer in white with the Matterhorn in the background" onerror="this.style.display='none'">
     <div class="three-col">
-      <div class="faith-card swiss"><h4><span class="faith-mark">F</span>Roger Federer</h4><p>Born in <strong>Basel</strong>, 1981. 20 Grand Slam titles. The most graceful tennis player who ever lived. Speaks four languages — Swiss German, German, French, and English — depending on which microphone is closer.</p></div>
+      <div class="faith-card swiss"><h4><span class="faith-mark">F</span>Roger Federer</h4><p>Born in <strong><span class="say-word" data-say="Basel" data-lang="de-DE">Basel</span></strong>, 1981. 20 Grand Slam titles. The most graceful tennis player who ever lived. Speaks four languages — Swiss German, German, French, and English — depending on which microphone is closer.</p></div>
       <div class="faith-card alps"><h4><span class="faith-mark">H</span>Heidi</h4><p>Born in a book in <strong>1880</strong>. Lives forever in the Alps. The face of Switzerland for the world's children — and probably the most successful Swiss export after the Matterhorn.</p></div>
       <div class="faith-card gold"><h4><span class="faith-mark">W</span>William Tell</h4><p>A folk hero from the 14th century. The legend says he shot an <strong>apple off his son's head</strong> to save his life from a cruel ruler. Whether he existed or not — every Swiss child knows his story.</p></div>
     </div>
@@ -753,7 +775,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
       <div class="city-card zurich">
         <img class="city-card-img" src="assets/img/img-19a-zurich.png" alt="Zurich — old town churches and boats on the lake" onerror="this.style.display='none'">
         <div class="city-card-body">
-          <h4>Zurich</h4>
+          <h4><span class="say-word" data-say="Zürich" data-lang="de-DE">Zurich</span></h4>
           <p><strong>Population:</strong> 430,000 (largest city)<br>
           <strong>Vibe:</strong> clean, expensive, efficient, German-speaking.<br>
           <strong>Famous for:</strong> banks (UBS, Credit Suisse), ETH (a top engineering university), Lake Zurich. Often voted the <em>best city to live in</em> on Earth.</p>
@@ -762,7 +784,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
       <div class="city-card geneva">
         <img class="city-card-img" src="assets/img/img-19b-geneva.png" alt="Geneva — Jet d'Eau on the lake with mountains in the distance" onerror="this.style.display='none'">
         <div class="city-card-body">
-          <h4>Geneva</h4>
+          <h4><span class="say-word" data-say="Genève" data-lang="fr-FR">Geneva</span></h4>
           <p><strong>Population:</strong> 200,000<br>
           <strong>Vibe:</strong> elegant, international, French-speaking, full of diplomats.<br>
           <strong>Famous for:</strong> the <em>United Nations</em> (European HQ), the Red Cross (founded here in 1863), WHO, the <em>Jet d'Eau</em> (a 140 m water jet on the lake), and just 30 minutes away — <strong>CERN</strong>, where the Higgs boson was discovered.</p>
@@ -771,7 +793,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
       <div class="city-card bern">
         <img class="city-card-img" src="assets/img/img-19c-bern.png" alt="Bern at sunset — clock tower and bridge over Aare river" onerror="this.style.display='none'">
         <div class="city-card-body">
-          <h4>Bern</h4>
+          <h4><span class="say-word" data-say="Bern" data-lang="de-DE">Bern</span></h4>
           <p><strong>Population:</strong> 134,000 (the capital — surprise!)<br>
           <strong>Vibe:</strong> small, beautiful, medieval, German-speaking.<br>
           <strong>Famous for:</strong> a perfectly preserved old town (UNESCO), a clock tower, real live bears in a pit, and the apartment where Einstein lived and wrote his theory of relativity in 1905.</p>
@@ -789,7 +811,7 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
     <div class="prompts">
       <div class="prompt" data-say="Would you rather live in a small chalet in Zermatt with the Matterhorn outside your window, or in a modern apartment in Zurich with everything around you?">1. Would you rather live in a small <strong>chalet in Zermatt</strong> or a modern apartment in <strong>Zurich</strong>?</div>
       <details class="hint"><summary>Need a hint?</summary><div class="hint-body">
-        <p><strong>Zermatt</strong> — a tiny mountain village, no cars allowed, the Matterhorn outside every window. Quiet, snowy, expensive. You see the same hundred people all year.</p>
+        <p><strong><span class="say-word" data-say="Zermatt" data-lang="de-DE">Zermatt</span></strong> — a tiny mountain village, no cars allowed, the Matterhorn outside every window. Quiet, snowy, expensive. You see the same hundred people all year.</p>
         <p><strong>Zurich</strong> — a polished modern city, perfect public transport, museums, lake, top universities. You can have anything — but the price is the price.</p>
       </div></details>
 
@@ -817,9 +839,20 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
-<footer>
-  Lesson by <strong>Maria Burtseva</strong> · NGE · LinguaBoost Lab · B1 · 90 min · 20 sections<br>
-  <small>tap text to listen · flip cards · drop bank words into gaps · made for Katya, June 2026</small>
+<footer class="canon-l-footer" style="--lb-bg:#5B0F0F;--lb-text:#FFF8E7;--lb-muted:#E6C68A;--lb-line:rgba(255,215,170,.22)" role="contentinfo">
+  <div class="canon-l-footer-row">
+    <a class="canon-l-footer-brand" href="../../index.html" aria-label="LinguaBoost Lab">
+      <span class="canon-l-footer-mark" aria-hidden="true">L</span>
+      <span class="canon-l-footer-name">LinguaBoost Lab</span>
+    </a>
+    <span class="canon-l-footer-meta">Switzerland — Mountains, Chocolate &amp; a Bit of Magic · B1</span>
+    <nav class="canon-l-footer-nav" aria-label="Site links">
+      <a href="../../index.html">Каталог</a>
+      <a href="../../../index.html">Главная</a>
+      <a href="../../../about-project.html">О проекте</a>
+    </nav>
+  </div>
+  <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
 </footer>
 
 <script>
@@ -842,21 +875,23 @@ speechSynthesis.onvoiceschanged = loadVoices; loadVoices();
   document.addEventListener('click', warm, true);
   document.addEventListener('touchstart', warm, true);
 })();
-function speak(text, voiceTag) {
+function speak(text, voiceTag, lang) {
   if (!text) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-GB'; u.rate = 0.93;
+  u.lang = lang || 'en-GB'; u.rate = 0.9;
   if (voicesLoaded) {
     const v = speechSynthesis.getVoices();
-    if (voiceTag === 'hans') u.voice = v.find(x => x.lang === 'en-GB' && /male|brian|george|daniel|oliver/i.test(x.name)) || englishVoices.uk;
+    if (lang && lang !== 'en-GB') {
+      u.voice = v.find(x => x.lang === lang) || v.find(x => x.lang.startsWith(lang.split('-')[0])) || englishVoices.uk;
+    } else if (voiceTag === 'hans') u.voice = v.find(x => x.lang === 'en-GB' && /male|brian|george|daniel|oliver/i.test(x.name)) || englishVoices.uk;
     else if (voiceTag === 'anna') u.voice = v.find(x => x.lang === 'en-GB' && /female|emma|amy|libby|hazel|kate/i.test(x.name)) || englishVoices.uk;
     else u.voice = englishVoices.uk;
   }
   speechSynthesis.speak(u);
 }
 document.querySelectorAll('[data-say]').forEach(el => el.addEventListener('click', e => {
-  e.stopPropagation(); speak(el.getAttribute('data-say'), el.getAttribute('data-speaker'));
+  e.stopPropagation(); speak(el.getAttribute('data-say'), el.getAttribute('data-speaker'), el.getAttribute('data-lang'));
 }));
 
 // ───────── shuffle helper ─────────
