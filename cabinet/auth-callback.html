@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Вход… · NG English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;font-family:'Manrope',sans-serif;background:#0e0e10;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;line-height:1.5}
+  .box{max-width:420px;text-align:center}
+  .logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#FF5A1F,#FFC145);display:grid;place-items:center;font-weight:900;font-size:1.6rem;margin:0 auto 18px;color:#fff}
+  h1{font-size:1.4rem;margin:0 0 10px}
+  p{color:#aaa;margin:0 0 24px}
+  .err{color:#ff8c8c;background:rgba(255,140,140,.08);padding:14px 18px;border-radius:10px;text-align:left;font-size:.95rem}
+  a{color:#FFC145;text-decoration:none;font-weight:700}
+  .spinner{width:38px;height:38px;border:3px solid #333;border-top-color:#FFC145;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="box" id="box">
+  <div class="logo">N</div>
+  <div class="spinner" id="spinner"></div>
+  <h1 id="title">Завершаем вход…</h1>
+  <p id="msg">Подождите 1–2 секунды.</p>
+  <div class="err" id="err" style="display:none"></div>
+</div>
+
+<script src="./supabase-client.js?v=1"></script>
+<script>
+(async function () {
+  var titleEl = document.getElementById("title");
+  var msgEl   = document.getElementById("msg");
+  var errEl   = document.getElementById("err");
+  var spinner = document.getElementById("spinner");
+
+  function fail(text, hint) {
+    spinner.style.display = "none";
+    titleEl.textContent = "Не получилось войти";
+    msgEl.textContent = hint || "Попробуйте ещё раз.";
+    errEl.style.display = "";
+    errEl.textContent = text;
+  }
+
+  try {
+    if (!window.NGESupa) return fail("Supabase-клиент не загрузился", "Проверьте интернет и попробуйте снова.");
+
+    // detectSessionInUrl: true в клиенте → токены из URL автоматически
+    // подхватываются при первом обращении к auth.
+    var client = await window.NGESupa.getClient();
+
+    // Подождём пока сессия определится
+    var session = null;
+    for (var i = 0; i < 10; i++) {
+      var s = (await client.auth.getSession()).data && (await client.auth.getSession()).data.session;
+      if (s) { session = s; break; }
+      await new Promise(function (r) { setTimeout(r, 150); });
+    }
+
+    if (!session) return fail("Сессия не установилась", "Возможно ссылка устарела. Запросите новое письмо.");
+
+    var prof = await window.NGESupa.getProfile();
+    if (!prof) {
+      // профиль ещё не создался (триггер мог зависнуть) — обновим вручную
+      var user = session.user;
+      await client.from("profiles").upsert({ id: user.id, email: user.email, role: "student", full_name: user.email });
+      prof = await window.NGESupa.getProfile();
+    }
+
+    titleEl.textContent = "Вход выполнен";
+    msgEl.textContent = "Открываем кабинет…";
+    setTimeout(function () {
+      location.href = window.NGESupa.urlFor(prof ? prof.role : "student");
+    }, 400);
+
+  } catch (e) {
+    fail((e && e.message) || String(e));
+  }
+})();
+</script>
+</body>
+</html>

@@ -45,9 +45,21 @@
       <button type="submit">Войти</button>
       <div class="cab-login-error" id="loginError">Не подошло. Проверьте PIN или пароль.</div>
     </form>
+
+    <div style="margin:24px 0 18px;text-align:center;color:var(--cab-muted, #888);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono', monospace;">
+      — или —
+    </div>
+
+    <form id="emailForm" autocomplete="off">
+      <input id="emailInput" type="email" placeholder="ваш email" maxlength="120" required>
+      <button type="submit">Прислать ссылку для входа</button>
+      <div class="cab-login-error" id="emailError" style="display:none">—</div>
+      <div class="cab-login-error" id="emailOk" style="display:none;color:#4caf50">✓ Письмо отправлено. Откройте почту и кликните по ссылке.</div>
+    </form>
+
     <p class="cab-login-hint">
       Забыли PIN? Напишите Марии в <a href="https://t.me/MariaBurceva_English" target="_blank" rel="noreferrer">Telegram</a>.<br>
-      MVP-версия: данные хранятся локально в браузере и в snapshot'е из Notion.
+      Вход по email — ссылка приходит на почту, не нужно помнить пароль.
     </p>
   </section>
 
@@ -89,8 +101,9 @@
   </section>
 </main>
 
-<script src="./data.js?v=6b97273"></script>
+<script src="./data.js?v=31"></script>
 <script src="./cabinet.js?v=27"></script>
+<script src="./supabase-client.js?v=1"></script>
 <script>
   (function () {
     var btn = document.getElementById("themeToggle");
@@ -165,6 +178,43 @@
     document.getElementById("loginCode").value = "";
     showLogin();
     document.getElementById("loginCode").focus();
+  });
+
+  // ----------- Email magic-link login (Supabase Auth) -----------
+  (async function () {
+    if (!window.NGESupa) return;
+    // Если уже залогинены через Supabase — редирект
+    try {
+      var prof = await window.NGESupa.getProfile();
+      if (prof) {
+        location.href = window.NGESupa.urlFor(prof.role);
+        return;
+      }
+    } catch (_) {}
+  })();
+
+  document.getElementById("emailForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var emailEl = document.getElementById("emailInput");
+    var errEl = document.getElementById("emailError");
+    var okEl = document.getElementById("emailOk");
+    var btn = e.target.querySelector("button[type=submit]");
+    errEl.style.display = "none";
+    okEl.style.display = "none";
+    btn.disabled = true;
+    btn.textContent = "Отправляю…";
+    try {
+      var redirectTo = location.origin + location.pathname.replace(/[^\/]+$/, "") + "auth-callback.html";
+      var res = await window.NGESupa.sendMagicLink(emailEl.value.trim(), redirectTo);
+      if (res && res.error) throw res.error;
+      okEl.style.display = "";
+    } catch (err) {
+      errEl.textContent = "Ошибка: " + (err && err.message ? err.message : err);
+      errEl.style.display = "";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Прислать ссылку для входа";
+    }
   });
 </script>
 

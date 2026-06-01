@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Я в системе · NG English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;font-family:'Manrope',sans-serif;background:#0e0e10;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;line-height:1.5}
+  .box{max-width:520px;width:100%;background:#1a1a1d;border-radius:18px;padding:32px;border:1px solid #2a2a2d}
+  .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#FF5A1F,#FFC145);display:grid;place-items:center;font-weight:900;font-size:1.4rem;margin-bottom:18px;color:#fff}
+  h1{font-size:1.4rem;margin:0 0 8px}
+  .sub{color:#888;margin:0 0 24px;font-size:.92rem}
+  .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #2a2a2d;font-size:.93rem}
+  .row:last-child{border-bottom:0}
+  .row b{color:#FFC145;font-weight:700}
+  .actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{padding:10px 18px;border-radius:10px;border:1px solid #2a2a2d;background:transparent;color:#fff;cursor:pointer;font-family:inherit;font-weight:600}
+  .btn:hover{background:#222}
+  .btn.danger{border-color:#5a2828;color:#ff8c8c}
+  .err{color:#ff8c8c;background:rgba(255,140,140,.08);padding:14px 18px;border-radius:10px;margin-top:16px;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="box" id="box">
+  <div class="logo">N</div>
+  <h1 id="title">Загрузка…</h1>
+  <p class="sub" id="sub">Проверяю сессию.</p>
+  <div id="info" style="display:none">
+    <div class="row"><span>Email</span><b id="email">—</b></div>
+    <div class="row"><span>Роль</span><b id="role">—</b></div>
+    <div class="row"><span>Полное имя</span><b id="name">—</b></div>
+    <div class="row"><span>User ID</span><b id="uid" style="font-size:.75rem;word-break:break-all">—</b></div>
+    <div class="actions">
+      <a class="btn" href="./teacher.html" id="goTeacher" style="display:none">Кабинет учителя →</a>
+      <a class="btn" href="./parent.html"  id="goParent"  style="display:none">Кабинет родителя →</a>
+      <a class="btn" href="./student.html" id="goStudent" style="display:none">Кабинет ученика →</a>
+      <button class="btn danger" id="signout">Выйти</button>
+    </div>
+  </div>
+  <div id="loggedout" style="display:none">
+    <p class="sub">Сессии нет. <a href="./login.html" style="color:#FFC145">Войти</a></p>
+  </div>
+  <div class="err" id="err" style="display:none"></div>
+</div>
+
+<script src="./supabase-client.js?v=1"></script>
+<script>
+(async function () {
+  var titleEl = document.getElementById("title");
+  var subEl   = document.getElementById("sub");
+  var infoEl  = document.getElementById("info");
+  var loggedOut = document.getElementById("loggedout");
+  var errEl   = document.getElementById("err");
+
+  try {
+    var user = await window.NGESupa.getUser();
+    if (!user) {
+      titleEl.textContent = "Вы не залогинены";
+      subEl.style.display = "none";
+      loggedOut.style.display = "";
+      return;
+    }
+    var prof = await window.NGESupa.getProfile();
+    titleEl.textContent = "Вы залогинены";
+    subEl.textContent = "Это smoke-тест Supabase Auth. Кабинет открывается по кнопке внизу.";
+    infoEl.style.display = "";
+    document.getElementById("email").textContent = user.email || "—";
+    document.getElementById("role").textContent  = prof ? prof.role : "(профиль не найден)";
+    document.getElementById("name").textContent  = prof ? (prof.full_name || "—") : "—";
+    document.getElementById("uid").textContent   = user.id;
+
+    if (prof && prof.role === "teacher") document.getElementById("goTeacher").style.display = "";
+    if (prof && prof.role === "parent")  document.getElementById("goParent").style.display = "";
+    if (prof && prof.role === "student") document.getElementById("goStudent").style.display = "";
+
+    document.getElementById("signout").addEventListener("click", async function () {
+      await window.NGESupa.signOut();
+      location.href = "./login.html";
+    });
+  } catch (e) {
+    errEl.style.display = "";
+    errEl.textContent = (e && e.message) || String(e);
+  }
+})();
+</script>
+</body>
+</html>
