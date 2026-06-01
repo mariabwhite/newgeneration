@@ -271,7 +271,27 @@ body{
 }
 
 /* ========== Footer ========== */
-footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;color:var(--muted);font-size:.8rem;font-family:var(--mono);letter-spacing:.06em}
+/* ===== canon-l-footer (unified Lab bottom section) ===== */
+.canon-l-footer{background:var(--lb-bg,#5B0F0F);border-top:1px solid var(--lb-line,rgba(255,215,170,.22));padding:22px clamp(18px,3vw,28px) 26px;font-family:var(--body);color:var(--lb-text,#FFF8E7);margin-top:48px;box-sizing:border-box;width:100%}
+.canon-l-footer-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--lb-line,rgba(255,215,170,.18))}
+.canon-l-footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex-shrink:0}
+.canon-l-footer-mark{width:26px;height:26px;display:grid;place-items:center;background:#E6C68A;color:#5B0F0F;font-family:var(--display);font-weight:800;font-size:13px;border-radius:7px;border-top-right-radius:0;letter-spacing:-.04em;flex-shrink:0;position:relative;overflow:hidden}
+.canon-l-footer-mark::after{content:"";position:absolute;right:0;top:0;width:9px;height:9px;background:#5B0F0F;clip-path:polygon(100% 0, 0 0, 100% 100%);z-index:2}
+.canon-l-footer-name{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:-.01em;color:var(--lb-text,#FFF8E7);white-space:nowrap}
+.canon-l-footer-meta{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lb-muted,#E6C68A);flex:1 1 220px;text-align:center;min-width:0}
+.canon-l-footer-nav{display:flex;gap:18px;align-items:center;flex-shrink:0}
+.canon-l-footer-nav a{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lb-muted,#E6C68A);text-decoration:none;transition:color .15s ease;white-space:nowrap}
+.canon-l-footer-nav a:hover{color:var(--lb-text,#FFF8E7)}
+.canon-l-footer-legal{margin:14px 0 0;font-size:12px;line-height:1.6;color:var(--lb-muted,#E6C68A);font-family:var(--body)}
+.canon-l-footer-legal strong{color:var(--lb-text,#FFF8E7);font-weight:600}
+@media (max-width:720px){
+  .canon-l-footer{padding:18px 16px 22px;margin-top:32px}
+  .canon-l-footer-row{gap:12px}
+  .canon-l-footer-meta{text-align:left;flex:1 1 100%;order:3;font-size:9.5px}
+  .canon-l-footer-nav{gap:14px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .canon-l-footer-nav::-webkit-scrollbar{display:none}
+  .canon-l-footer-legal{font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -819,9 +839,20 @@ footer{max-width:1240px;margin:50px auto 30px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
-<footer>
-  Lesson by <strong>Maria Burtseva</strong> · NGE · LinguaBoost Lab · B1 · 90 min · 20 sections<br>
-  <small>tap text to listen · flip cards · drop bank words into gaps · made for Katya, June 2026</small>
+<footer class="canon-l-footer" style="--lb-bg:#5B0F0F;--lb-text:#FFF8E7;--lb-muted:#E6C68A;--lb-line:rgba(255,215,170,.22)" role="contentinfo">
+  <div class="canon-l-footer-row">
+    <a class="canon-l-footer-brand" href="../../index.html" aria-label="LinguaBoost Lab">
+      <span class="canon-l-footer-mark" aria-hidden="true">L</span>
+      <span class="canon-l-footer-name">LinguaBoost Lab</span>
+    </a>
+    <span class="canon-l-footer-meta">Switzerland — Mountains, Chocolate &amp; a Bit of Magic · B1</span>
+    <nav class="canon-l-footer-nav" aria-label="Site links">
+      <a href="../../index.html">Каталог</a>
+      <a href="../../../index.html">Главная</a>
+      <a href="../../../about-project.html">О проекте</a>
+    </nav>
+  </div>
+  <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
 </footer>
 
 <script>
