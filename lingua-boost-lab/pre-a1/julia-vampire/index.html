@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Julia's Vampire English Lesson · 90 min · v8 MUSIC focus</title>
+
+  <!--
+    ===========================================================================
+    v8 — MUSIC focus. Same design system as v7, theme rewired around music
+    + instruments + like/dislike. Food blocks preserved (B12-B15).
+    Header now carries music chants ("hee-hee guitar! hey-hey drums!").
+    New artwork used:
+      • 4c7d23ee ............... Combined PRONOUNS + MUSICAL INSTRUMENTS poster
+      • 453f46ea ............... 9-panel music dialogue comic ("What is this?")
+    Reused artwork from v7 set:
+      • 0fd0274c ............... Hello Julia hero banner
+      • 91f4215d ............... Pronouns + HAVE/HAS poster (used in B19)
+      • bed900af ............... 8 instruments cards
+      • 0b7e5298 ............... Julia/vampire playing music (5 stickers)
+      • 405ca134 ............... Julia + vampire STANDING (pair)
+      • cfa6c689(1) ............ Julia + vampire SITTING on rug
+      • e9257637(2) ............ Julia + vampire CLAPPING
+      • e1406aa5(1) ............ Julia + vampire DANCING with music notes
+      • c079d387(1) ............ King variant
+      • 27134644 ............... 4 reaction stickers (LIKE / DISLIKE / MUSIC / STAR)
+      • d59e43b7 ............... 10 food cards (KEEP — Maria asked)
+      • cd85c2fb ............... 5 food cards quick (KEEP)
+      • c51fce9a ............... 12 food-activity stickers (KEEP)
+      • 79446708 ............... 4 small food stickers (KEEP)
+      • ba7d65fa ............... Vampire family (B24 outro)
+    YouTube:
+      • WARMUP_1          = VsgpUHUYuJI (NEW — replaces HSKT in B3)
+      • WARMUP_2          = A1vdKfXlB_g (NEW — B3 warm-up)
+      • WARMUP_3          = dBF-Dee6re0 (NEW — B3 warm-up)
+      • INSTRUMENTS       = 6GgzAc5Ezsk (Maria, B11)
+      • DO_YOU_LIKE_MUSIC = 1h6F-YngTi0 (Maria, B17)
+      • DANCE             = Z5lhGTalu28 (Maria, B20)
+    Length: ~90 min · 24 blocks
+    ===========================================================================
+  -->
+
+  <script>
+    window.SONGS = {
+      WARMUP_1:          "VsgpUHUYuJI",
+      WARMUP_2:          "A1vdKfXlB_g",
+      WARMUP_3:          "dBF-Dee6re0",
+      INSTRUMENTS:       "6GgzAc5Ezsk",
+      DO_YOU_LIKE_MUSIC: "1h6F-YngTi0",
+      DANCE:             "Z5lhGTalu28"
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #FFF8FC; --blush: #F8D9E8; --lilac: #E9DDF8; --mist: #FFFFFF;
+      --ink: #4B355D; --ink-soft: #7A638F;
+      --rose: #E6A8C8; --royal-lav: #B99AE8; --pale-gold: #F5D98A; --mint: #DDF5EC; --sky: #DDEEFF;
+      --success: #BFE8C9; --success-ink: #2F7A45; --error: #F4C1C7; --error-ink: #9B3B4C;
+      --line: rgba(75,53,93,.12); --line-soft: rgba(75,53,93,.06);
+      --shadow-1: 0 6px 18px rgba(75,53,93,.06);
+      --shadow-2: 0 14px 30px rgba(75,53,93,.08);
+      --r-tile: 20px; --r-card: 24px; --r-panel: 28px; --r-pill: 999px;
+      --t-fast: 140ms ease;
+      font-family: "Baloo 2","Nunito","Quicksand",ui-rounded,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;
+      color: var(--ink);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink); font-weight: 500;
+      background:
+        radial-gradient(ellipse 70% 50% at 25% -10%, var(--blush), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 80% 100%, var(--lilac), transparent 60%),
+        var(--cream);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(circle at 12% 22%, rgba(185,154,232,.12) 1px, transparent 2px),
+        radial-gradient(circle at 78% 14%, rgba(230,168,200,.12) 1px, transparent 2px),
+        radial-gradient(circle at 38% 78%, rgba(245,217,138,.14) 1px, transparent 2px);
+      background-size: 320px 320px, 280px 280px, 360px 360px;
+    }
+    button, a { font-family: inherit; }
+    button { -webkit-tap-highlight-color: transparent; cursor: pointer; }
+
+    .page { position: relative; z-index: 1; width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 20px 0 64px; }
+    .topline { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 36px; padding: 6px 14px; border-radius: var(--r-pill);
+      border: 1px solid var(--line); background: var(--mist);
+      color: var(--ink-soft); font-weight: 700; font-size: .92rem; box-shadow: var(--shadow-1);
+    }
+    .hero { min-height: 80svh; display: grid; align-content: center; gap: 18px; padding: 22px 0 32px; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(2.2rem,5.6vw,4.6rem); line-height: 1; color: var(--ink); text-align: center; font-weight: 800; }
+    h2 { font-size: clamp(1.6rem,3.6vw,2.8rem); line-height: 1.05; color: var(--ink); text-align: center; font-weight: 800; }
+    h3 { font-size: clamp(1.1rem,2.4vw,1.5rem); color: var(--ink); text-align: center; font-weight: 700; }
+    .tiny { font-size: clamp(.95rem,1.7vw,1.1rem); font-weight: 600; color: var(--ink-soft); text-align: center; }
+
+    .progress {
+      position: relative; z-index: 30;
+      display: flex; justify-content: center; gap: 6px;
+      padding: 8px 12px; margin: 0 auto 14px; width: fit-content;
+      border-radius: var(--r-pill);
+      background: rgba(255,255,255,.65); border: 1px solid var(--line);
+      box-shadow: var(--shadow-1);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      flex-wrap: wrap; max-width: calc(100% - 32px);
+    }
+    .progress a {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--lilac); text-decoration: none; display: block;
+      transition: transform var(--t-fast), background var(--t-fast);
+    }
+    .progress a:hover { transform: scale(1.25); background: var(--royal-lav); }
+    .progress a.active { background: var(--royal-lav); transform: scale(1.4); box-shadow: 0 0 0 4px rgba(185,154,232,.25); }
+    .progress a.done { background: var(--success); }
+
+    .section {
+      margin-top: 28px; padding: clamp(22px,3vw,36px);
+      border: 1px solid var(--line); border-radius: var(--r-panel);
+      background: rgba(255,255,255,.78); box-shadow: var(--shadow-2);
+      display: grid; gap: 22px; overflow: hidden; scroll-margin-top: 84px;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .section-head { display: grid; justify-items: center; gap: 6px; }
+    .time {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 30px; padding: 4px 12px; border-radius: var(--r-pill);
+      background: var(--lilac); color: var(--ink-soft);
+      font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .grid { display: grid; gap: 14px; }
+    .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .five { grid-template-columns: repeat(5, minmax(0,1fr)); }
+
+    .card, .btn {
+      border: 0; border-radius: var(--r-card); font-family: inherit;
+      font-weight: 700; color: var(--ink);
+      transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+    }
+    .card {
+      position: relative; min-height: 132px; padding: 16px 14px 18px;
+      background: var(--mist); border: 1px solid var(--line); box-shadow: var(--shadow-1);
+      display: grid; grid-template-rows: auto 1fr; place-items: center; gap: 8px;
+      text-align: center; font-size: clamp(1.05rem,2.2vw,1.4rem);
+      cursor: pointer; overflow: hidden;
+    }
+    .card small { display: block; font-size: .68em; line-height: 1.25; color: var(--ink-soft); font-weight: 600; }
+    .card .emoji,
+    .card > :first-child:not(small):not(.crown):not(.mini-vamp):not(img) {
+      display: inline-grid; place-items: center;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--blush); font-size: 2rem; line-height: 1;
+      box-shadow: inset 0 0 0 1px var(--line-soft);
+    }
+    .card.pink .emoji   { background: var(--rose); color: white; }
+    .card.mint .emoji   { background: var(--mint); }
+    .card.gold .emoji   { background: var(--pale-gold); }
+    .card.peach .emoji  { background: var(--blush); }
+    .card.lav .emoji    { background: var(--royal-lav); color: white; }
+    .card.pink  { border-top: 3px solid var(--rose); }
+    .card.mint  { border-top: 3px solid var(--mint); }
+    .card.gold  { border-top: 3px solid var(--pale-gold); }
+    .card.peach { border-top: 3px solid var(--blush); }
+    .card.lav   { border-top: 3px solid var(--royal-lav); }
+    .card:hover, .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: rgba(185,154,232,.35); }
+    .card:active, .btn:active { transform: translateY(0) scale(.99); }
+
+    /* music chants in hero — large tappable cheers */
+    .chants {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      width: min(820px, calc(100% - 8px)); margin: 6px auto 0;
+    }
+    .chant {
+      border: 0; border-radius: var(--r-card);
+      padding: 14px 10px; background: var(--mist);
+      border-top: 4px solid var(--royal-lav);
+      box-shadow: var(--shadow-1);
+      font-family: inherit; font-weight: 800; color: var(--ink);
+      font-size: clamp(.95rem,1.9vw,1.15rem); line-height: 1.15;
+      cursor: pointer; transition: transform var(--t-fast), box-shadow var(--t-fast);
+      display: grid; gap: 4px; place-items: center;
+    }
+    .chant .ico { font-size: 1.8rem; line-height: 1; }
+    .chant.rose  { border-top-color: var(--rose); }
+    .chant.gold  { border-top-color: var(--pale-gold); }
+    .chant.mint  { border-top-color: #65C291; }
+    .chant:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: var(--shadow-2); }
+    .chant:active { transform: translateY(0) scale(.97); }
+    @media (max-width: 780px) { .chants { grid-template-columns: repeat(2, 1fr); } }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 52px; padding: 12px 22px; font-size: clamp(1rem,2vw,1.2rem);
+      background: var(--royal-lav); color: white; box-shadow: var(--shadow-1);
+      text-decoration: none;
+    }
+    .btn.pink { background: var(--rose); }
+    .btn.mint { background: var(--mist); color: var(--ink); border: 1px solid var(--line); }
+
+    .video-shell {
+      border: 1px solid var(--line); border-radius: var(--r-panel);
+      padding: clamp(10px,1.8vw,18px); background: var(--mist);
+      box-shadow: var(--shadow-2); position: relative; overflow: hidden;
+    }
+    .video-shell::before {
+      content: "♪"; position: absolute; top: 14px; right: 18px;
+      font-size: 14px; color: var(--royal-lav); opacity: .6; pointer-events: none;
+    }
+    .video-frame { aspect-ratio: 16/9; border-radius: var(--r-tile); overflow: hidden; background: var(--lilac); }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .video-fallback { text-align: center; margin-top: 12px; font-size: .9rem; color: var(--ink-soft); }
+    .video-fallback a {
+      display: inline-block; margin-top: 4px;
+      padding: 8px 16px; border-radius: var(--r-pill);
+      background: var(--lilac); color: var(--ink); text-decoration: none; font-weight: 700;
+    }
+    .song-skip {
+      text-align: center; padding: 22px; font-weight: 700; color: var(--ink-soft);
+      background: rgba(255,255,255,.4); border-radius: var(--r-card);
+      border: 2px dashed rgba(113,56,170,.22);
+    }
+
+    img.scene-banner, img.hero-banner, img.poster-banner {
+      display: block !important;
+      width: 100% !important; max-width: 820px !important;
+      margin: 12px auto !important; object-fit: contain !important;
+      background: transparent !important;
+      border: 1px solid var(--line); border-radius: var(--r-panel); box-shadow: var(--shadow-2);
+      cursor: pointer;
+    }
+    img.hero-banner { max-width: 560px !important; border: 0; box-shadow: none; filter: drop-shadow(0 18px 24px rgba(75,53,93,.12)); }
+    img.poster-banner { max-width: 960px !important; border: 0; box-shadow: none; filter: drop-shadow(0 12px 20px rgba(75,53,93,.10)); }
+    img.scene-banner.tall { aspect-ratio: 3/4 !important; max-width: 520px !important; }
+
+    .card.has-sticker > img.sticker, img.sticker {
+      display: block !important; width: 120px !important; height: 120px !important;
+      object-fit: contain !important; background: transparent !important;
+      border: 0 !important; border-radius: 12px !important;
+      box-shadow: none !important; padding: 0 !important;
+      margin: 0 auto 6px !important;
+      filter: drop-shadow(0 6px 10px rgba(75,53,93,.12)); cursor: pointer;
+    }
+    img.sticker.lg { width: 160px !important; height: 160px !important; }
+    img.sticker.xl { width: 220px !important; height: 220px !important; }
+
+    .image-slot {
+      display: grid; place-items: center;
+      min-height: 180px;
+      border: 2px dashed rgba(113,56,170,.22);
+      border-radius: var(--r-panel);
+      background: rgba(255,255,255,.4);
+      color: var(--ink-soft); font-weight: 700;
+      text-align: center; padding: 18px;
+      font-size: .95rem;
+    }
+    .image-slot::before { content: "♫ "; font-size: 1.5rem; display: block; margin-bottom: 8px; }
+
+    .teacher {
+      padding: 14px 18px; border-radius: var(--r-card);
+      background: var(--mint); border: 1px solid var(--line);
+      font-weight: 700; color: var(--ink); text-align: center; display: grid; gap: 8px;
+    }
+    .teacher > div:first-child { font-size: .85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .08em; }
+    .teacher span { display: inline-block; padding: 5px 11px; border-radius: var(--r-pill); background: rgba(255,255,255,.7); margin: 2px; font-size: .95rem; }
+    .teacher.lilac { background: var(--lilac); }
+    .teacher.blush { background: var(--blush); }
+
+    .pronoun-poster {
+      display: grid; place-items: center; gap: 10px;
+      padding: 22px; border-radius: var(--r-panel);
+      background: linear-gradient(160deg, var(--mist) 0%, var(--lilac) 100%);
+      border: 1px solid var(--line); box-shadow: var(--shadow-1);
+    }
+    .pronoun-poster .word {
+      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; color: var(--royal-lav);
+      letter-spacing: .02em; line-height: 1;
+    }
+    .pronoun-poster .meaning { font-size: clamp(.95rem,1.8vw,1.1rem); color: var(--ink-soft); font-weight: 700; }
+
+    .face, .body { width: min(220px,60vw); margin: auto; position: relative; filter: drop-shadow(0 8px 14px rgba(75,53,93,.08)); }
+    .face { aspect-ratio: 1; }
+    .body { aspect-ratio: .72; }
+    .face .head { position: absolute; inset: 16%; border-radius: 44% 44% 48% 48%; background: linear-gradient(160deg,#FFFCFD 0%,var(--blush) 100%); border: 1.5px solid var(--royal-lav); }
+    .hair { position: absolute; inset: 8% 23% 64%; border-radius: 50% 50% 20% 20%; background: #9C7EC8; }
+    .eye, .nose, .mouth, .ear { position: absolute; display: block; border: 0; cursor: pointer; transition: transform var(--t-fast), filter var(--t-fast); }
+    .eye:hover, .nose:hover, .mouth:hover, .ear:hover { transform: scale(1.08); filter: drop-shadow(0 0 4px var(--royal-lav)); }
+    .eye { top: 43%; width: 14%; height: 14%; border-radius: 50%; background: var(--ink); box-shadow: inset 0 0 0 3px white; }
+    .eye.left { left: 36%; } .eye.right { right: 36%; }
+    .nose { top: 56%; left: 46.5%; width: 9%; height: 8%; border-radius: 50%; background: var(--rose); }
+    .mouth { top: 67%; left: 40%; width: 20%; height: 9%; border-radius: 0 0 999px 999px; background: #C56A9C; }
+    .ear { top: 48%; width: 11%; height: 16%; border-radius: 50%; background: var(--blush); border: 1.5px solid var(--royal-lav); z-index: -1; }
+    .ear.left { left: 12%; } .ear.right { right: 12%; }
+    .part { position: absolute; border: 1.5px solid var(--royal-lav); cursor: pointer; font-size: 0; transition: transform var(--t-fast), filter var(--t-fast); }
+    .part:hover { transform: scale(1.04); filter: drop-shadow(0 0 4px var(--royal-lav)); }
+    .part.head { top: 0; left: 32%; width: 36%; height: 22%; border-radius: 50%; background: #FFFCFD; }
+    .part.shoulders { top: 23%; left: 23%; width: 54%; height: 20%; border-radius: 22px; background: var(--sky); }
+    .part.body { top: 32%; left: 28%; width: 44%; height: 28%; border-radius: 20px; background: var(--blush); }
+    .part.hand { top: 45%; width: 17%; height: 12%; border-radius: 50%; background: #FFFCFD; }
+    .part.hand.left { left: 8%; } .part.hand.right { right: 8%; }
+    .part.knee { top: 72%; width: 22%; height: 10%; border-radius: 999px; background: var(--pale-gold); }
+    .part.knee.left { left: 27%; } .part.knee.right { right: 27%; }
+    .part.foot { bottom: 0; width: 25%; height: 12%; border-radius: 999px; background: var(--mint); }
+    .part.foot.left { left: 22%; } .part.foot.right { right: 22%; }
+
+    .label, .score {
+      min-height: 38px; padding: 8px 16px; border-radius: var(--r-pill);
+      background: var(--mist); border: 1px solid var(--line);
+      color: var(--ink); font-weight: 700; text-align: center; justify-self: center;
+      font-size: clamp(.95rem,1.8vw,1.1rem);
+    }
+    .score { background: var(--pale-gold); border-color: transparent; }
+
+    .react-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      align-items: end; justify-items: center;
+    }
+    .react-tile {
+      background: rgba(255,255,255,.6); border: 1px solid var(--line); border-radius: var(--r-card);
+      box-shadow: var(--shadow-1); padding: 12px 10px 14px;
+      display: grid; gap: 8px; place-items: center; width: 100%; cursor: pointer;
+    }
+    .react-tile img { width: 92px; height: 92px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(75,53,93,.12)); background: transparent; }
+    .react-tile .lab { font-weight: 800; font-size: .95rem; color: var(--ink); text-align: center; }
+
+    .lit { border-color: var(--royal-lav) !important; box-shadow: 0 0 0 4px rgba(185,154,232,.22), var(--shadow-1) !important; }
+    .yes { border-color: var(--success-ink) !important; box-shadow: 0 0 0 4px rgba(191,232,201,.55), var(--shadow-1) !important; }
+    .no { border-color: var(--error-ink) !important; animation: nudge .18s ease both; }
+    @keyframes nudge { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+    .confetti { position: fixed; top: -24px; width: 8px; height: 12px; border-radius: 3px; pointer-events: none; animation: fall 1.3s ease-in forwards; z-index: 20; opacity: .85; }
+    @keyframes fall { to { transform: translateY(105vh) rotate(420deg); opacity: 0; } }
+
+    .finish { min-height: 56svh; align-content: center; text-align: center; }
+
+    @media (max-width: 780px) {
+      .hero { min-height: auto; padding-top: 12px; }
+      .two, .three, .four, .five { grid-template-columns: 1fr; }
+      .react-row { grid-template-columns: repeat(2, 1fr); }
+      .card { min-height: 108px; }
+      .section { padding: 22px; border-radius: var(--r-card); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <nav class="progress" aria-label="lesson progress">
+      <a href="#b1"  data-dot="1"></a><a href="#b2"  data-dot="2"></a><a href="#b3"  data-dot="3"></a><a href="#b4"  data-dot="4"></a>
+      <a href="#b5"  data-dot="5"></a><a href="#b6"  data-dot="6"></a><a href="#b7"  data-dot="7"></a><a href="#b8"  data-dot="8"></a>
+      <a href="#b9"  data-dot="9"></a><a href="#b10" data-dot="10"></a><a href="#b11" data-dot="11"></a><a href="#b12" data-dot="12"></a>
+      <a href="#b13" data-dot="13"></a><a href="#b14" data-dot="14"></a><a href="#b15" data-dot="15"></a><a href="#b16" data-dot="16"></a>
+      <a href="#b17" data-dot="17"></a><a href="#b18" data-dot="18"></a><a href="#b19" data-dot="19"></a><a href="#b20" data-dot="20"></a>
+      <a href="#b21" data-dot="21"></a><a href="#b22" data-dot="22"></a><a href="#b23" data-dot="23"></a><a href="#b24" data-dot="24"></a>
+    </nav>
+
+    <!-- ============================================================== -->
+    <!-- REPETITION ~20%                                                -->
+    <!-- ============================================================== -->
+
+    <!-- B1 · Hello hero + MUSIC CHANTS -->
+    <section class="hero" id="b1">
+      <div class="topline">
+        <span class="pill">Julia Lushina</span><span class="pill">90 min</span><span class="pill">Pre-A1 · v8</span><span class="pill">♪ music focus</span>
+      </div>
+      <img class="hero-banner" src="0fd0274c-61f8-467d-9b99-93c5083753b6.png" alt="Hello Julia">
+      <h1>Hello, Julia</h1>
+      <p class="tiny">tap · listen · play · sing · dance · LOVE music ♪</p>
+      <div class="chants" aria-label="music chants — tap to hear">
+        <button class="chant"      data-say="Hee hee guitar!"><span class="ico">🎸</span>hee-hee guitar!</button>
+        <button class="chant rose" data-say="Hey hey drums!"><span class="ico">🥁</span>hey-hey drums!</button>
+        <button class="chant gold" data-say="Oh yeah piano!"><span class="ico">🎹</span>oh-yeah piano!</button>
+        <button class="chant mint" data-say="I love music!"><span class="ico">💜</span>I LOVE music!</button>
+      </div>
+    </section>
+
+    <!-- B2 · Quick face & body warm-up -->
+    <section class="section" id="b2">
+      <div class="section-head"><span class="time">0 – 4 min</span><h2>Warm-up · face &amp; body</h2><p class="tiny">tap each part — quick</p></div>
+      <div class="grid two">
+        <div>
+          <div class="face" aria-label="face">
+            <div class="hair"></div><div class="head"></div>
+            <button class="ear left" data-word="ears"></button><button class="ear right" data-word="ears"></button>
+            <button class="eye left" data-word="eyes"></button><button class="eye right" data-word="eyes"></button>
+            <button class="nose" data-word="nose"></button><button class="mouth" data-word="mouth"></button>
+          </div>
+          <div class="label" id="faceLabel">tap the face</div>
+        </div>
+        <div>
+          <div class="body" aria-label="body">
+            <button class="part head" data-word="head"></button>
+            <button class="part shoulders" data-word="shoulders"></button>
+            <button class="part body" data-word="body"></button>
+            <button class="part hand left" data-word="hands"></button><button class="part hand right" data-word="hands"></button>
+            <button class="part knee left" data-word="knees"></button><button class="part knee right" data-word="knees"></button>
+            <button class="part foot left" data-word="toes"></button><button class="part foot right" data-word="toes"></button>
+          </div>
+          <div class="label" id="bodyLabel">tap the body</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B3 · Music warm-up · 3 new songs (replaces HSKT) -->
+    <section class="section" id="b3">
+      <div class="section-head"><span class="time">4 – 8 min</span><h2>Music warm-up · sing &amp; move ♪</h2><p class="tiny">three songs · pick one or play all · watch · sing · move</p></div>
+      <div class="video-shell" data-song="WARMUP_1"></div>
+      <div class="video-shell" data-song="WARMUP_2"></div>
+      <div class="video-shell" data-song="WARMUP_3"></div>
+    </section>
+
+    <!-- B4 · Move + dance (quick repetition, music-tilt) -->
+    <section class="section" id="b4">
+      <div class="section-head"><span class="time">8 – 11 min</span><h2>Move &amp; dance</h2><p class="tiny">copy the action</p></div>
+      <div class="grid four">
+        <button class="card action" data-say="Sit down"><span class="emoji">🪑</span>sit down</button>
+        <button class="card action" data-say="Stand up"><span class="emoji">🧍‍♀️</span>stand up</button>
+        <button class="card action" data-say="Clap your hands"><span class="emoji">👏</span>clap hands</button>
+        <button class="card action" data-say="Dance"><span class="emoji">💃</span>dance!</button>
+      </div>
+    </section>
+
+    <!-- B5 · I / YOU / HE / SHE — quick pronoun anchor with standing pair -->
+    <section class="section" id="b5">
+      <div class="section-head"><span class="time">11 – 14 min</span><h2>I · YOU · HE · SHE · quick</h2><p class="tiny">point to me · point to you · who is HE? who is SHE?</p></div>
+      <div class="grid two">
+        <img class="sticker xl" src="405ca134-b46b-4a4c-b6d0-be7024b330fd.png" alt="Julia and vampire standing together" data-say="She is Julia. He is the vampire.">
+        <div class="grid two" style="align-self:center; gap:10px">
+          <button class="card pink" data-say="I am Julia"><span class="emoji">🙋‍♀️</span>I am Julia</button>
+          <button class="card lav"  data-say="You are my friend"><span class="emoji">🫵</span>You are my friend</button>
+          <button class="card peach" data-say="He is the vampire"><span class="emoji">🧛‍♂️</span>He is the vampire</button>
+          <button class="card gold" data-say="She is Julia"><span class="emoji">🧒</span>She is Julia</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- NEW POSTER · PRONOUNS + INSTRUMENTS (#4c7d23ee)                -->
+    <!-- ============================================================== -->
+
+    <!-- B6 · Combined PRONOUNS + INSTRUMENTS poster -->
+    <section class="section" id="b6">
+      <div class="section-head"><span class="time">14 – 18 min</span><h2>Pronouns &amp; instruments · big poster</h2><p class="tiny">look at the poster · tap every word</p></div>
+      <img class="poster-banner" src="4c7d23ee-7440-4711-be08-5a6c11bab815.png" alt="Pronouns and Musical Instruments combined poster">
+      <div class="grid four">
+        <button class="card lav"   data-say="He is a vampire"><span class="emoji">🧛‍♂️</span>HE</button>
+        <button class="card pink"  data-say="She is Julia"><span class="emoji">🧒</span>SHE</button>
+        <button class="card mint"  data-say="It is a piano"><span class="emoji">🎹</span>IT</button>
+        <button class="card gold"  data-say="They are friends"><span class="emoji">👯‍♀️</span>THEY</button>
+      </div>
+      <div class="teacher lilac">
+        <div>Activity · point and say</div>
+        <div><span>Point to HE → "He plays guitar"</span><span>Point to SHE → "She plays piano"</span><span>Point to IT → "It is a violin"</span><span>Point to THEY → "They have music!"</span></div>
+      </div>
+    </section>
+
+    <!-- B7 · HE plays / SHE plays — sentence cards -->
+    <section class="section" id="b7">
+      <div class="section-head"><span class="time">18 – 21 min</span><h2>HE plays · SHE plays</h2><p class="tiny">make a music sentence</p></div>
+      <div class="grid three">
+        <button class="card lav"  data-say="He plays the guitar"><span class="emoji">🎸</span>He plays guitar</button>
+        <button class="card pink" data-say="She plays the piano"><span class="emoji">🎹</span>She plays piano</button>
+        <button class="card mint" data-say="It is a tambourine"><span class="emoji">🪘</span>It is a tambourine</button>
+      </div>
+      <div class="grid three">
+        <button class="card peach" data-say="He plays the drums"><span class="emoji">🥁</span>He plays drums</button>
+        <button class="card gold"  data-say="She plays the violin"><span class="emoji">🎻</span>She plays violin</button>
+        <button class="card lav"   data-say="They play music"><span class="emoji">🎵</span>They play music</button>
+      </div>
+    </section>
+
+    <!-- B8 · WE · pair stickers · sit/stand/clap -->
+    <section class="section" id="b8">
+      <div class="section-head"><span class="time">21 – 25 min</span><h2>WE · together</h2><p class="tiny">we sit · we stand · we clap to the music</p></div>
+      <div class="grid three">
+        <div class="grid" style="gap:8px">
+          <img class="sticker xl" src="cfa6c689-d1e0-427e-8eca-f163780d2860%20(1).png" alt="Julia and vampire sitting" data-say="We sit and listen to music">
+          <button class="card mint" data-say="We sit and listen"><span class="emoji">🪑</span>We sit</button>
+        </div>
+        <div class="grid" style="gap:8px">
+          <img class="sticker xl" src="405ca134-b46b-4a4c-b6d0-be7024b330fd.png" alt="Julia and vampire standing" data-say="We stand together">
+          <button class="card pink" data-say="We stand together"><span class="emoji">🧍‍♀️🧛‍♂️</span>We stand</button>
+        </div>
+        <div class="grid" style="gap:8px">
+          <img class="sticker xl" src="e9257637-35e3-433e-adfe-41292e9e1de1%20(2).png" alt="Julia and vampire clapping" data-say="We clap to the beat">
+          <button class="card gold" data-say="We clap to the beat"><span class="emoji">👏</span>We clap</button>
+        </div>
+      </div>
+      <div class="teacher">
+        <div>Activity · do it with them</div>
+        <div><span>SIT and listen 🎵</span><span>STAND UP with the vampire</span><span>CLAP — 1, 2, 3, 4!</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- MUSIC · CORE                                                   -->
+    <!-- ============================================================== -->
+
+    <!-- B9 · INSTRUMENTS · BIG CARDS POSTER · #bed900af -->
+    <section class="section" id="b9">
+      <div class="section-head"><span class="time">25 – 30 min</span><h2>Music instruments · 8 cards</h2><p class="tiny">tap each one · hear · pretend to play</p></div>
+      <img class="poster-banner" src="bed900af-871a-4f94-bddb-2d52640dd2df.png" alt="Music instruments cards">
+      <div class="grid four">
+        <button class="card pink"  data-say="Piano"><span class="emoji">🎹</span>piano</button>
+        <button class="card mint"  data-say="Drums"><span class="emoji">🥁</span>drums</button>
+        <button class="card gold"  data-say="Guitar"><span class="emoji">🎸</span>guitar</button>
+        <button class="card peach" data-say="Violin"><span class="emoji">🎻</span>violin</button>
+      </div>
+      <div class="grid four">
+        <button class="card lav"   data-say="Flute"><span class="emoji">🪈</span>flute</button>
+        <button class="card pink"  data-say="Trumpet"><span class="emoji">🎺</span>trumpet</button>
+        <button class="card mint"  data-say="Xylophone"><span class="emoji">🎼</span>xylophone</button>
+        <button class="card gold"  data-say="Tambourine"><span class="emoji">🪘</span>tambourine</button>
+      </div>
+      <div class="teacher blush">
+        <div>Pretend &amp; play · mime the sound</div>
+        <div><span>🎸 strum strum</span><span>🥁 boom boom</span><span>🎹 ping ping</span><span>🎺 toot toot</span><span>🎻 weee-eee</span><span>🪈 tweet tweet</span></div>
+      </div>
+    </section>
+
+    <!-- B10 · MUSIC ACTIVITIES · Julia/vampire playing + dancing scene -->
+    <section class="section" id="b10">
+      <div class="section-head"><span class="time">30 – 34 min</span><h2>She plays · He plays · They dance</h2><p class="tiny">who is doing what?</p></div>
+      <img class="poster-banner" src="0b7e5298-9717-4c39-8a75-1a58322b90df.png" alt="Julia and vampire playing music">
+      <div class="grid two">
+        <button class="card pink"  data-say="She plays the piano"><span class="emoji">🎹</span>She plays piano</button>
+        <button class="card mint"  data-say="She plays the drums"><span class="emoji">🥁</span>She plays drums</button>
+        <button class="card peach" data-say="She plays the violin"><span class="emoji">🎻</span>She plays violin</button>
+        <button class="card lav"   data-say="He plays the guitar"><span class="emoji">🎸</span>He plays guitar</button>
+      </div>
+      <div class="teacher lilac">
+        <div>Cracker · I / He / She + play</div>
+        <div><span>I play</span><span>You play</span><span>He plays</span><span>She plays</span><span>We play</span><span>They play</span></div>
+      </div>
+    </section>
+
+    <!-- B11 · ★ MUSIC VIDEO 1 -->
+    <section class="section" id="b11">
+      <div class="section-head"><span class="time">34 – 38 min</span><h2>★ Music time · song 1</h2><p class="tiny">watch · sing · play along ♪</p></div>
+      <div class="video-shell" data-song="INSTRUMENTS"></div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- FOOD · PRESERVED FROM v7                                       -->
+    <!-- ============================================================== -->
+
+    <!-- B12 · FOOD · 10 CARDS BIG POSTER · #d59e43b7 -->
+    <section class="section" id="b12">
+      <div class="section-head"><span class="time">38 – 43 min</span><h2>Food · 10 cards</h2><p class="tiny">tap each food · say it loud</p></div>
+      <img class="poster-banner" src="d59e43b7-3beb-437a-b4e7-f35eb054b4f7.png" alt="Food cards 10 items">
+      <div class="grid five">
+        <button class="card pink"  data-say="Apple"><span class="emoji">🍎</span>apple</button>
+        <button class="card gold"  data-say="Banana"><span class="emoji">🍌</span>banana</button>
+        <button class="card mint"  data-say="Milk"><span class="emoji">🥛</span>milk</button>
+        <button class="card peach" data-say="Bread"><span class="emoji">🍞</span>bread</button>
+        <button class="card lav"   data-say="Cake"><span class="emoji">🍰</span>cake</button>
+      </div>
+      <div class="grid five">
+        <button class="card pink"  data-say="Cheese"><span class="emoji">🧀</span>cheese</button>
+        <button class="card gold"  data-say="Carrot"><span class="emoji">🥕</span>carrot</button>
+        <button class="card mint"  data-say="Salad"><span class="emoji">🥗</span>salad</button>
+        <button class="card peach" data-say="Pizza"><span class="emoji">🍕</span>pizza</button>
+        <button class="card lav"   data-say="Ice cream"><span class="emoji">🍦</span>ice cream</button>
+      </div>
+    </section>
+
+    <!-- B13 · FOOD · quick set 5 cards · #cd85c2fb -->
+    <section class="section" id="b13">
+      <div class="section-head"><span class="time">43 – 46 min</span><h2>Food · quick 5</h2><p class="tiny">remember: apple · banana · milk · bread · cake</p></div>
+      <img class="poster-banner" src="cd85c2fb-d8a7-4747-9231-db4d88a38352.png" alt="Five food cards">
+      <div class="grid five">
+        <button class="card pink"  data-say="Apple"><span class="emoji">🍎</span>apple</button>
+        <button class="card gold"  data-say="Banana"><span class="emoji">🍌</span>banana</button>
+        <button class="card mint"  data-say="Milk"><span class="emoji">🥛</span>milk</button>
+        <button class="card peach" data-say="Bread"><span class="emoji">🍞</span>bread</button>
+        <button class="card lav"   data-say="Cake"><span class="emoji">🍰</span>cake</button>
+      </div>
+    </section>
+
+    <!-- B14 · FOOD ACTIVITIES · I have · 12 stickers · #c51fce9a -->
+    <section class="section" id="b14">
+      <div class="section-head"><span class="time">46 – 51 min</span><h2>I have · 12 foods</h2><p class="tiny">Julia is showing — say "I have ___"</p></div>
+      <img class="poster-banner" src="c51fce9a-b895-4cdb-aa3f-cb3bbb465e2b.png" alt="Twelve food activities">
+      <div class="grid four">
+        <button class="card pink"  data-say="I have an apple"><span class="emoji">🍎</span>I have an apple</button>
+        <button class="card gold"  data-say="I have a banana"><span class="emoji">🍌</span>I have a banana</button>
+        <button class="card mint"  data-say="I have milk"><span class="emoji">🥛</span>I have milk</button>
+        <button class="card peach" data-say="I have cheese"><span class="emoji">🧀</span>I have cheese</button>
+      </div>
+      <div class="grid four">
+        <button class="card lav"   data-say="I have yogurt"><span class="emoji">🥣</span>I have yogurt</button>
+        <button class="card pink"  data-say="I have bread"><span class="emoji">🍞</span>I have bread</button>
+        <button class="card gold"  data-say="I have salad"><span class="emoji">🥗</span>I have salad</button>
+        <button class="card mint"  data-say="I have pizza"><span class="emoji">🍕</span>I have pizza</button>
+      </div>
+      <div class="grid four">
+        <button class="card peach" data-say="I have an egg"><span class="emoji">🥚</span>I have an egg</button>
+        <button class="card lav"   data-say="I have spaghetti"><span class="emoji">🍝</span>I have spaghetti</button>
+        <button class="card pink"  data-say="I have a donut"><span class="emoji">🍩</span>I have a donut</button>
+        <button class="card gold"  data-say="I have ice cream"><span class="emoji">🍦</span>I have ice cream</button>
+      </div>
+    </section>
+
+    <!-- B15 · FOOD MINI · 4 small · #79446708 -->
+    <section class="section" id="b15">
+      <div class="section-head"><span class="time">51 – 54 min</span><h2>Food · mini quiz</h2><p class="tiny">say what Julia has</p></div>
+      <img class="poster-banner" src="79446708-8df2-4ac8-879d-b6d5128253c3.png" alt="Four food stickers">
+      <div class="grid four">
+        <button class="card pink" data-say="She has an apple"><span class="emoji">🍎</span>She has an apple</button>
+        <button class="card gold" data-say="She has a banana"><span class="emoji">🍌</span>She has a banana</button>
+        <button class="card mint" data-say="She has milk"><span class="emoji">🥛</span>She has milk</button>
+        <button class="card peach" data-say="She has a cake"><span class="emoji">🍰</span>She has a cake</button>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- LIKE / DISLIKE · MUSIC-FIRST                                   -->
+    <!-- ============================================================== -->
+
+    <!-- B16 · LIKE / DISLIKE — music + food mix · #27134644 -->
+    <section class="section" id="b16">
+      <div class="section-head"><span class="time">54 – 58 min</span><h2>I LIKE · I DISLIKE</h2><p class="tiny">thumbs up 👍 music · thumbs down 👎 onions</p></div>
+      <img class="poster-banner" src="27134644-31ed-4704-96e1-241a729933f7.png" alt="Like dislike music star stickers">
+      <div class="grid two">
+        <button class="card mint"  data-say="I like music"><span class="emoji">👍🎵</span>I like music</button>
+        <button class="card pink"  data-say="I like guitar"><span class="emoji">👍🎸</span>I like guitar</button>
+        <button class="card gold"  data-say="I like piano"><span class="emoji">👍🎹</span>I like piano</button>
+        <button class="card lav"   data-say="I like cake"><span class="emoji">👍🍰</span>I like cake</button>
+      </div>
+      <div class="grid two">
+        <button class="card peach" data-say="I dislike loud noise"><span class="emoji">👎🔊</span>I dislike loud noise</button>
+        <button class="card mint"  data-say="I dislike broccoli"><span class="emoji">👎🥦</span>I dislike broccoli</button>
+        <button class="card gold"  data-say="I dislike onions"><span class="emoji">👎🧅</span>I dislike onions</button>
+        <button class="card pink"  data-say="I dislike the dark"><span class="emoji">👎🌑</span>I dislike the dark</button>
+      </div>
+    </section>
+
+    <!-- B17 · Do you like music? + ★ MUSIC VIDEO 2 -->
+    <section class="section" id="b17">
+      <div class="section-head"><span class="time">58 – 62 min</span><h2>Do you like music?</h2><p class="tiny">answer · Yes, I do! · No, I don't!</p></div>
+      <div class="grid two">
+        <div class="teacher">
+          <div>Teacher asks</div>
+          <div><span>Do you like music?</span><span>Do you like guitar?</span><span>Do you like piano?</span><span>Do you like drums?</span><span>Do you like cake?</span></div>
+        </div>
+        <div class="teacher lilac">
+          <div>Julia answers</div>
+          <div><span>Yes! I love music!</span><span>Yes! I like guitar.</span><span>Yes! I like piano.</span><span>No! Drums are loud!</span><span>Yes! Cake is yummy!</span></div>
+        </div>
+      </div>
+      <div class="grid two">
+        <button class="card mint"  data-say="Yes, I do!"><span class="emoji">✅</span>Yes, I do!</button>
+        <button class="card peach" data-say="No, I don't!"><span class="emoji">❌</span>No, I don't!</button>
+      </div>
+      <div class="video-shell" data-song="DO_YOU_LIKE_MUSIC"></div>
+    </section>
+
+    <!-- B18 · Reaction stickers · drag react -->
+    <section class="section" id="b18">
+      <div class="section-head"><span class="time">62 – 65 min</span><h2>React!</h2><p class="tiny">teacher names an instrument or food — tap LIKE or DISLIKE</p></div>
+      <div class="react-row">
+        <button class="react-tile" data-say="I like it!"><div class="lab">LIKE</div></button>
+        <button class="react-tile" data-say="I don't like it!"><div class="lab">DISLIKE</div></button>
+        <button class="react-tile" data-say="Music!"><div class="lab">MUSIC</div></button>
+        <button class="react-tile" data-say="Star!"><div class="lab">STAR</div></button>
+      </div>
+      <div class="teacher blush">
+        <div>Game · listen and react</div>
+        <div><span>Guitar → 🎵 MUSIC</span><span>Cake → 👍 LIKE</span><span>Broccoli → 👎 DISLIKE</span><span>Piano → 🎵 MUSIC</span><span>Star at night → ⭐ STAR</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- HAVE / HAS · MUSIC TILT                                        -->
+    <!-- ============================================================== -->
+
+    <!-- B19 · I HAVE · HE HAS · SHE HAS (music examples + #91f4215d) -->
+    <section class="section" id="b19">
+      <div class="section-head"><span class="time">65 – 69 min</span><h2>I HAVE · HE HAS · SHE HAS</h2><p class="tiny">look at the cards — Julia has a teddy, he has a guitar</p></div>
+      <img class="poster-banner" src="91f4215d-866c-441a-9c35-38cacfa70c85.png" alt="Pronouns and have-has poster">
+      <div class="grid three">
+        <button class="card pink"  data-say="I have a tambourine"><span class="emoji">🪘</span>I HAVE<small>a tambourine</small></button>
+        <button class="card lav"   data-say="He has a guitar"><span class="emoji">🎸</span>HE HAS<small>a guitar</small></button>
+        <button class="card gold"  data-say="She has a piano"><span class="emoji">🎹</span>SHE HAS<small>a piano</small></button>
+      </div>
+      <div class="grid two">
+        <button class="card mint"  data-say="We have a band!"><span class="emoji">🎶</span>We have a band!</button>
+        <button class="card peach" data-say="They have drums"><span class="emoji">🥁</span>They have drums</button>
+      </div>
+      <div class="teacher lilac">
+        <div>Rule · cracker</div>
+        <div><span>I · You · We · They → HAVE</span><span>He · She · It → HAS</span></div>
+      </div>
+    </section>
+
+    <!-- B20 · DANCE pair · #e1406aa5(1) + ★ MUSIC VIDEO 3 -->
+    <section class="section" id="b20">
+      <div class="section-head"><span class="time">69 – 74 min</span><h2>Dance with us!</h2><p class="tiny">we dance · we sing · we love music</p></div>
+      <img class="scene-banner" src="e1406aa5-5ea6-4fd5-94f4-f6da3fd13815%20(1).png" alt="Julia and vampire dancing with music notes">
+      <div class="grid two">
+        <button class="card pink" data-say="We dance!"><span class="emoji">💃🕺</span>We dance!</button>
+        <button class="card mint" data-say="We sing!"><span class="emoji">🎤</span>We sing!</button>
+      </div>
+      <div class="video-shell" data-song="DANCE"></div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- WRAP                                                            -->
+    <!-- ============================================================== -->
+
+    <!-- B21 · King's band · #c079d387(1) -->
+    <section class="section" id="b21">
+      <div class="section-head"><span class="time">74 – 77 min</span><h2>The king's band</h2><p class="tiny">tap · say · act</p></div>
+      <img class="scene-banner tall" src="c079d387-4624-4196-a128-5b3570123bb7%20(1).png" alt="King variant with bat friend">
+      <div class="grid two">
+        <button class="card lav"  data-say="He is the king"><span class="emoji">🧛‍♂️👑</span>He is the king</button>
+        <button class="card pink" data-say="He has a guitar"><span class="emoji">🎸</span>He has a guitar</button>
+        <button class="card gold" data-say="It is a cute bat"><span class="emoji">🦇</span>It is a cute bat</button>
+        <button class="card mint" data-say="They sing together"><span class="emoji">🎵</span>They sing together</button>
+      </div>
+    </section>
+
+    <!-- B22 · Show me quiz — instruments + food + characters -->
+    <section class="section" id="b22">
+      <div class="section-head"><span class="time">77 – 81 min</span><h2>Show me</h2><p class="tiny" id="quizPrompt">Show me guitar</p></div>
+      <div class="grid four" id="quizChoices">
+        <button class="card quiz" data-answer="guitar"><span class="emoji">🎸</span>guitar</button>
+        <button class="card quiz" data-answer="piano"><span class="emoji">🎹</span>piano</button>
+        <button class="card quiz" data-answer="drums"><span class="emoji">🥁</span>drums</button>
+        <button class="card quiz" data-answer="violin"><span class="emoji">🎻</span>violin</button>
+        <button class="card quiz" data-answer="flute"><span class="emoji">🪈</span>flute</button>
+        <button class="card quiz" data-answer="trumpet"><span class="emoji">🎺</span>trumpet</button>
+        <button class="card quiz" data-answer="xylophone"><span class="emoji">🎼</span>xylophone</button>
+        <button class="card quiz" data-answer="tambourine"><span class="emoji">🪘</span>tambourine</button>
+        <button class="card quiz" data-answer="apple"><span class="emoji">🍎</span>apple</button>
+        <button class="card quiz" data-answer="cake"><span class="emoji">🍰</span>cake</button>
+        <button class="card quiz" data-answer="banana"><span class="emoji">🍌</span>banana</button>
+        <button class="card quiz" data-answer="bat"><span class="emoji">🦇</span>bat</button>
+      </div>
+      <div class="grid two">
+        <button class="btn mint" id="quizBtn">new round</button>
+        <div class="score" id="score">stars: 0</div>
+      </div>
+    </section>
+
+    <!-- B23 · MUSIC COMIC DIALOGUE · #453f46ea -->
+    <section class="section" id="b23">
+      <div class="section-head"><span class="time">81 – 87 min</span><h2>Talk! · "What is this?"</h2><p class="tiny">read the comic · ask &amp; answer · 9 panels</p></div>
+      <img class="poster-banner" src="453f46ea-2065-430e-8c42-025ead590a5c.png" alt="Music comic dialogue: hello, do you like music, what is this, guitar piano drums violin flute xylophone, goodbye">
+      <div class="grid two">
+        <div class="teacher">
+          <div>Friend asks</div>
+          <div><span>Hello!</span><span>Do you like music?</span><span>What is this?</span><span>And what is this?</span><span>Goodbye!</span></div>
+        </div>
+        <div class="teacher lilac">
+          <div>Julia answers</div>
+          <div><span>Hi!</span><span>Yes, I love music!</span><span>It is a guitar.</span><span>It is a piano.</span><span>Bye! See you!</span></div>
+        </div>
+      </div>
+      <div class="grid three">
+        <button class="card lav"   data-say="It is a guitar"><span class="emoji">🎸</span>It is a guitar</button>
+        <button class="card pink"  data-say="It is a piano"><span class="emoji">🎹</span>It is a piano</button>
+        <button class="card mint"  data-say="It is a drum"><span class="emoji">🥁</span>It is a drum</button>
+        <button class="card peach" data-say="It is a violin"><span class="emoji">🎻</span>It is a violin</button>
+        <button class="card gold"  data-say="It is a flute"><span class="emoji">🪈</span>It is a flute</button>
+        <button class="card lav"   data-say="It is a xylophone"><span class="emoji">🎼</span>It is a xylophone</button>
+      </div>
+      <div class="teacher blush">
+        <div>Role-play · swap parts</div>
+        <div><span>Teacher: "What is this?"</span><span>Julia: "It is a ___."</span><span>Now Julia asks!</span></div>
+      </div>
+    </section>
+
+    <!-- B24 · Great job -->
+    <section class="section finish" id="b24">
+      <h2>Great job, Julia!</h2>
+      <p class="tiny">Hee-hee guitar! Hey-hey drums! Bye-bye 💜♪</p>
+      <img class="scene-banner tall" src="ba7d65fa-c626-4fde-99c9-3b6d810462b6.png" alt="Cute vampire family" style="margin-top:18px">
+      <div class="grid two" style="margin-top: 18px;">
+        <a class="btn pink" href="#b1">↻ start again</a>
+        <button class="btn mint" id="starsBtn">🎉 fireworks</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ===== inject YouTube iframes from SONGS config =====
+    function injectSong(shellEl, key) {
+      const id = (window.SONGS && window.SONGS[key]) || "";
+      if (!id) {
+        shellEl.innerHTML = '<div class="song-skip">🎵 no song yet — paste a YouTube id into <b>SONGS.' + key + '</b> at the top of the file</div>';
+        return;
+      }
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1";
+      iframe.title = key;
+      iframe.loading = "lazy";
+      iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      const frame = document.createElement("div");
+      frame.className = "video-frame";
+      frame.appendChild(iframe);
+      const fb = document.createElement("div");
+      fb.className = "video-fallback";
+      fb.innerHTML = "can't see the video? <a href=\"https://www.youtube.com/watch?v=" + id + "\" target=\"_blank\" rel=\"noopener\">▶ open on YouTube</a>";
+      shellEl.appendChild(frame);
+      shellEl.appendChild(fb);
+    }
+    document.querySelectorAll("[data-song]").forEach(el => injectSong(el, el.dataset.song));
+
+    // ===== quiz (music-heavy) =====
+    const quizWords = ["guitar","piano","drums","violin","flute","trumpet","xylophone","tambourine","apple","cake","banana","bat"];
+    const quizPrompt = document.getElementById("quizPrompt");
+    const scoreEl = document.getElementById("score");
+    let quizWord = "guitar", score = 0;
+    const pick = list => list[Math.floor(Math.random() * list.length)];
+    function setQuizWord() {
+      quizWord = pick(quizWords);
+      quizPrompt.textContent = "Show me " + quizWord;
+    }
+
+    function sparkle(count = 22) {
+      const palette = ["#E6A8C8","#B99AE8","#F5D98A","#DDF5EC","#DDEEFF"];
+      for (let i = 0; i < count; i += 1) {
+        const bit = document.createElement("span");
+        bit.className = "confetti";
+        bit.style.left = Math.random() * 100 + "vw";
+        bit.style.background = palette[i % palette.length];
+        bit.style.animationDelay = Math.random() * .3 + "s";
+        document.body.appendChild(bit);
+        setTimeout(() => bit.remove(), 1500);
+      }
+    }
+    function flash(el, c) {
+      if (!el) return;
+      el.classList.remove("lit","yes","no"); void el.offsetWidth;
+      el.classList.add(c);
+      setTimeout(() => el.classList.remove(c), 700);
+    }
+
+    // ===== TTS =====
+    const synth = window.speechSynthesis;
+    let _voice = null;
+    function pickVoice() {
+      if (!synth) return;
+      const vs = synth.getVoices();
+      _voice = vs.find(v => v.lang.startsWith("en") && /female|girl|kid|samantha|google.*us|zira/i.test(v.name))
+            || vs.find(v => v.lang === "en-US")
+            || vs.find(v => v.lang.startsWith("en")) || null;
+    }
+    if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+    function say(text) {
+      if (!synth || !text) return;
+      try {
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        if (_voice) u.voice = _voice;
+        u.lang = "en-US"; u.rate = .85; u.pitch = 1.18;
+        synth.speak(u);
+      } catch (e) {}
+    }
+
+    // ===== global click handler =====
+    document.addEventListener("click", (e) => {
+      const sayEl = e.target.closest("[data-say]");
+      if (sayEl && sayEl.dataset.say) { flash(sayEl, "lit"); say(sayEl.dataset.say); return; }
+      const img = e.target.closest("img.poster-banner, img.scene-banner, img.hero-banner, img.sticker");
+      if (img && img.alt) { flash(img, "lit"); say(img.alt); return; }
+      const wordEl = e.target.closest("[data-word]");
+      if (wordEl && wordEl.dataset.word) {
+        flash(wordEl, "lit");
+        if (wordEl.closest("#b2")) {
+          if (wordEl.classList.contains("ear") || wordEl.classList.contains("eye") || wordEl.classList.contains("nose") || wordEl.classList.contains("mouth")) {
+            document.getElementById("faceLabel").textContent = wordEl.dataset.word;
+          } else if (wordEl.classList.contains("part")) {
+            document.getElementById("bodyLabel").textContent = wordEl.dataset.word;
+          }
+        }
+        say(wordEl.dataset.word);
+        return;
+      }
+      const quiz = e.target.closest(".quiz");
+      if (quiz) {
+        const ok = quiz.dataset.answer === quizWord;
+        flash(quiz, ok ? "yes" : "no");
+        if (ok) { score += 1; scoreEl.textContent = "stars: " + score; sparkle(18); say("Yes! " + quizWord); setTimeout(setQuizWord, 700); }
+        else { say("Try again"); }
+      }
+    });
+
+    document.getElementById("quizBtn").addEventListener("click", setQuizWord);
+    document.getElementById("starsBtn").addEventListener("click", () => { sparkle(40); say("Great job Julia! Bye bye!"); });
+    setQuizWord();
+
+    // ===== progress dots =====
+    const blocks = Array.from(document.querySelectorAll(".section, .hero"));
+    const dots = Array.from(document.querySelectorAll(".progress a[data-dot]"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = blocks.indexOf(e.target);
+          if (idx >= 0) {
+            dots.forEach((d, i) => {
+              d.classList.toggle("active", i === idx);
+              d.classList.toggle("done", i < idx);
+            });
+          }
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    blocks.forEach(b => io.observe(b));
+  </script>
+</body>
+</html>
