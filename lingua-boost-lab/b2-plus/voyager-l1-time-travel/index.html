@@ -64,6 +64,25 @@ details.teacher .t-body{padding:12px 16px 14px;color:var(--brand-2);font-size:.9
 details.teacher .t-body ul{margin-left:18px}
 details.teacher .t-body li{padding:2px 0}
 details.teacher .t-body strong{color:var(--accent-2)}
+/* Tabs (Speaking — IELTS / Olympiad) */
+.tab-row{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.tab-row .tab-btn{flex:1;background:transparent;border:none;color:var(--muted);
+  padding:11px 14px;font-family:var(--mono);font-size:10.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  border-bottom:2px solid transparent;transition:.16s}
+.tab-row .tab-btn:hover{color:var(--accent)}
+.tab-row .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-pane{display:none}
+.tab-pane.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* Audio — dark themed (inverts default browser controls) */
+.listen-box audio{
+  width:100%;display:block;border-radius:10px;
+  filter:invert(.88) hue-rotate(180deg) saturate(.85);
+  background:var(--card)
+}
+
 /* Cloze (Use of English) */
 .cloze p.cloze-text{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:12px;padding:14px 16px;line-height:1.85;font-size:1rem;color:var(--text)}
 .cloze p.cloze-text .gap{display:inline-block;min-width:34px;padding:0 6px;border-bottom:2px dashed var(--accent);color:var(--accent);font-weight:800}
@@ -341,7 +360,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   <div class="section-hdr"><div class="section-num">01</div><h2>Warm-up — speaking</h2></div>
   <div class="section-sub">two minutes · then borrow one phrase from the model below</div>
   <div class="card">
-    <p><strong>Imagine a letter arrives, addressed to you, from yourself ten years older.</strong></p>
+    <p data-say="Imagine a letter arrives, addressed to you, from yourself ten years older." style="cursor:pointer;background:rgba(245,200,66,.06);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0"><strong>Imagine a letter arrives, addressed to you, from yourself ten years older.</strong> <span style="font-family:var(--mono);font-size:.72rem;color:var(--brand-2);letter-spacing:.1em;margin-left:8px">♪ tap to hear</span></p>
     <p>Talk for about two minutes. Don't plan — just start. Then read the sample model below and steal one or two phrases for next time.</p>
 
     <div class="sample">
@@ -417,13 +436,13 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <img class="lesson-img" src="assets/img-watchmaker-desk.png" alt="An old wooden desk by a window — a logbook open under a brass lamp, an antique clock, full moon outside" onerror="this.style.display='none'">
     <h3>The Watchmaker's Apology</h3>
     <div class="story">
-      <p>Mia's grandfather had been a watchmaker for fifty-three years before the accident. He could disassemble a pocket watch in the dark and rebuild it by morning. After the stroke, he could no longer hold a screwdriver, and he stopped speaking almost entirely. Mia visited him every Sunday and read aloud from his old logbooks — careful, dated entries about which gears he had cleaned and which springs he had replaced.</p>
+      <p>Mia's grandfather had been a <span class="tr" data-ru="мастер по часам, часовщик">watchmaker</span> for fifty-three years before the <span class="tr" data-ru="несчастный случай, авария">accident</span>. He could <span class="tr" data-ru="разобрать">disassemble</span> a pocket watch in the dark and rebuild it by morning. After the <span class="tr" data-ru="инсульт">stroke</span>, he could no longer hold a <span class="tr" data-ru="отвёртка">screwdriver</span>, and he stopped speaking almost entirely. Mia visited him every Sunday and read aloud from his old <span class="tr" data-ru="журналы учёта работ">logbooks</span> — careful, dated entries about which <span class="tr" data-ru="шестерёнки">gears</span> he had cleaned and which <span class="tr" data-ru="пружины">springs</span> he had replaced.</p>
 
       <p>One Sunday in November, while reading the entry for 14 March 1987, Mia <span class="tr" data-ru="заметила">noticed</span> something she had read past for months. The customer for that day was a young woman named — Mia Andreevna Markova. Mia's own name. Her own patronymic. Her own surname.</p>
 
       <p>Below the customer's name, in her grandfather's careful handwriting, was a short note:</p>
 
-      <p><em>"She does not know yet. Tell her, gently, that she will. The watch she will bring me has no fault — only that it has been <span class="tr" data-ru="заведены не в ту сторону">wound the wrong way</span> for a very long time."</em></p>
+      <p><em>"She does not know yet. Tell her, gently, that she will. The watch she will bring me has no <span class="tr" data-ru="изъян, неисправность">fault</span> — only that it has been <span class="tr" data-ru="заведены не в ту сторону">wound the wrong way</span> for a very long time."</em></p>
 
       <p>Mia set the logbook down. She was eighteen years old. The date 14 March 1987 was nineteen years before her own birth.</p>
 
@@ -431,7 +450,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
 
       <p>"Mia," he said, very slowly. "Do not be afraid of the date. You will go. You will not change anything that matters. You will only — <em>adjust</em>."</p>
 
-      <p>She asked him what he meant. He smiled the way a watchmaker smiles when the spring finally clicks into place — and closed his eyes again.</p>
+      <p>She asked him what he meant. He smiled the way a watchmaker smiles when the spring finally <span class="tr" data-ru="встаёт на место (со щелчком)">clicks into place</span> — and closed his eyes again.</p>
 
       <p>By the next Sunday, the logbook entry was still there. The handwriting was still his. But the name on the line for 14 March had <span class="tr" data-ru="изменилось">changed</span>. It now read, in slightly fresher ink: <em>delivered, returned safely, never asked again.</em></p>
     </div>
@@ -519,52 +538,121 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
-<!-- 5 · SYNTHESIS -->
+<!-- 5 · QUOTATION COMMENTARY (olympiad writing format) -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">05</div><h2>Synthesis — olympiad style</h2></div>
-  <div class="section-sub">link the story and the science · 6–8 sentences · use at least three vocab words</div>
+  <div class="section-hdr"><div class="section-num">05</div><h2>Quotation commentary — olympiad writing</h2></div>
+  <div class="section-sub">school/municipal stage format · respond to a quotation in 150–180 words · structured in 3 paragraphs</div>
   <div class="card">
-    <img class="lesson-img" src="assets/img-mirrored-faces.png" alt="Two faces in profile mirrored under a night sky with clocks and a full moon — affect vs change" onerror="this.style.display='none'">
-    <p>In the story, the grandfather tells Mia: <em>"You will not change anything that matters. You will only adjust."</em> In the listening, Hawking refuses past-direction travel because <em>a cause must come before its effect.</em></p>
-    <p style="color:var(--accent)"><strong>Big question</strong> — pick one and write 6–8 sentences:</p>
-    <ol style="margin-left:22px;color:var(--text);line-height:1.7">
-      <li>Is "adjust but do not change" a coherent rule, or a polite way of saying <em>do nothing</em>?</li>
-      <li>If you had to design a memory that protected you from regret without changing facts, what would it remove and what would it leave?</li>
-      <li>Is it more dangerous to interfere with the past, or with a prediction about the future?</li>
-    </ol>
-    <div class="write">
-      <textarea placeholder="6–8 sentences. Use at least three vocab words (timeline, twist, consequence, deserve, eventually, contradict, prediction, fade, regret, interfere)."></textarea>
-      <div class="write-meta"><span>Olympiad analytical · self-rated</span><span class="word-count">0 words</span></div>
+    <img class="lesson-img" src="assets/img-mirrored-faces.png" alt="Two faces in profile mirrored under a night sky with clocks and a full moon" onerror="this.style.display='none'">
+
+    <div style="background:rgba(245,200,66,.06);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 22px;margin:10px 0 18px">
+      <div style="font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Quotation</div>
+      <p style="font-family:var(--display);font-style:italic;font-size:1.12rem;line-height:1.4;color:var(--text);margin:0 0 8px">"You will not change anything that matters. You will only <em>adjust</em>."</p>
+      <p style="font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--brand-2);margin:0">— from the story · the grandfather to Mia</p>
     </div>
+
+    <h3>Task</h3>
+    <p style="color:var(--text)">Write a commentary on this quotation. <strong>150–180 words.</strong> Use the three-paragraph structure below. Use at least <strong>three vocab words</strong> from today.</p>
+    <ol style="margin-left:22px;color:var(--text);line-height:1.7;margin-top:8px">
+      <li><strong>Interpretation</strong> — what do you think the quotation actually means? (2–3 sentences)</li>
+      <li><strong>Position</strong> — do you agree with the rule? Give one reason and one personal example. (3–4 sentences)</li>
+      <li><strong>Counterpoint</strong> — what is the strongest argument against your position? (2 sentences)</li>
+    </ol>
+
+    <div class="write" style="margin-top:14px">
+      <textarea placeholder="Open with your interpretation. Move to your position with reason + example. Close with one strong counterpoint. 150–180 words."></textarea>
+      <div class="write-meta"><span>Olympiad commentary · structured · self-rated</span><span class="word-count">0 words</span></div>
+    </div>
+
+    <details class="teacher">
+      <summary>For me — what this trains <span>open if needed</span></summary>
+      <div class="t-body">
+        <ul>
+          <li><strong>Quotation commentary</strong> — стандартный школьный/муниципальный формат Writing на ВсОШ. Жюри оценивает: понимание идеи, структуру 3 абзацев, аргументацию, лексику, грамматику.</li>
+          <li>Подскажи Ване не пересказывать сюжет — комментарий это <em>реакция</em> на идею, не отчёт о тексте.</li>
+          <li>Если он застрянет — спроси «<em>что важнее: что-то изменить или просто оставить как было?</em>» Это даёт ему opinion-стартер.</li>
+          <li>Альтернативные цитаты для повторов: "A cause must come before its effect" (Hawking) или "Travel into the future would, in principle, be allowed by these laws" — обе подойдут под тот же формат.</li>
+        </ul>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- 6 · IELTS PART 2 -->
+<!-- 6 · SPEAKING — two tracks: IELTS Part 2 OR Olympiad monologue + dialogue -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">06</div><h2>Speaking — IELTS Part 2 format</h2></div>
-  <div class="section-sub">1 min prep · 1.5–2 min monologue · timer is right here</div>
+  <div class="section-hdr"><div class="section-num">06</div><h2>Speaking — pick the format</h2></div>
+  <div class="section-sub">two parallel tracks · IELTS cue-card or olympiad monologue + dialogue</div>
   <div class="card">
-    <div class="cue-card">
-      <div class="cue-h">Describe a moment when you were proven wrong about something.</div>
-      <p style="color:var(--muted)">You should say:</p>
-      <ul>
-        <li>what you used to believe</li>
-        <li>how you found out you were wrong</li>
-        <li>whether you accepted it immediately</li>
-        <li>and explain what changed in your thinking afterwards.</li>
+    <div class="tab-row" role="tablist">
+      <button class="tab-btn active" data-tab="ielts">A · IELTS Part 2</button>
+      <button class="tab-btn" data-tab="olymp">B · Olympiad monologue + dialogue</button>
+    </div>
+
+    <div class="tab-pane active" data-pane="ielts">
+      <p style="color:var(--muted);font-size:.93rem;margin-bottom:12px">Classic IELTS Part 2 cue-card. <strong>1 min prep · 1.5–2 min monologue.</strong></p>
+      <div class="cue-card">
+        <div class="cue-h">Describe a moment when you were proven wrong about something.</div>
+        <p style="color:var(--muted)">You should say:</p>
+        <ul>
+          <li>what you used to believe</li>
+          <li>how you found out you were wrong</li>
+          <li>whether you accepted it immediately</li>
+          <li>and explain what changed in your thinking afterwards.</li>
+        </ul>
+      </div>
+      <div class="timer">
+        <button id="prepBtn">Start 1 min prep</button>
+        <button class="brand" id="speakBtn">Speak — start timer</button>
+        <span class="clock" id="clockDisp">0:00</span>
+      </div>
+      <h3 style="margin-top:20px">Follow-up (after the monologue)</h3>
+      <ul style="margin-left:18px;color:var(--text);line-height:1.8">
+        <li>Are some people better than others at admitting they were wrong? What makes the difference?</li>
+        <li>Should schools teach students how to lose an argument well?</li>
       </ul>
+      <div class="src">Cue-card format follows British Council IELTS · <a href="https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests" target="_blank" rel="noopener">takeielts.britishcouncil.org</a></div>
     </div>
-    <div class="timer">
-      <button id="prepBtn">Start 1 min prep</button>
-      <button class="brand" id="speakBtn">Speak — start timer</button>
-      <span class="clock" id="clockDisp">0:00</span>
+
+    <div class="tab-pane" data-pane="olymp">
+      <p style="color:var(--muted);font-size:.93rem;margin-bottom:12px">Real all-Russian olympiad oral format (regional / final stage). <strong>3 min prep · 2 min monologue · 2 min dialogue with the teacher.</strong></p>
+      <div class="cue-card">
+        <div class="cue-h">Topic — defend your position</div>
+        <p style="color:var(--text);font-size:1.02rem;margin:8px 0 6px">Schools should teach physics through stories like the watchmaker's, not only through formulas.</p>
+        <p style="color:var(--muted);margin:6px 0 0">Your monologue must contain:</p>
+        <ul>
+          <li>a clear position (agree / disagree / partly)</li>
+          <li>two reasons with one concrete example each</li>
+          <li>one objection you anticipate, and your response to it</li>
+          <li>a closing sentence connecting back to today's reading or listening</li>
+        </ul>
+      </div>
+      <div class="timer">
+        <button id="oPrepBtn">Start 3 min prep</button>
+        <button class="brand" id="oSpeakBtn">Monologue — start 2 min</button>
+        <button class="brand" id="oDialBtn">Dialogue — start 2 min</button>
+        <span class="clock" id="oClockDisp">0:00</span>
+      </div>
+
+      <h3 style="margin-top:20px">Dialogue questions (teacher asks one)</h3>
+      <ul style="margin-left:18px;color:var(--text);line-height:1.8">
+        <li>How would your position change if the audience were primary-school children, not university students?</li>
+        <li>Pick one concept from today's listening (relativity, GPS clocks, faster-than-light) and explain it for a ten-year-old in 30 seconds.</li>
+        <li>If you had to choose one formula-only and one story-only lesson, in what order would you give them — and why?</li>
+      </ul>
+
+      <details class="teacher">
+        <summary>For me — how to run this <span>open if needed</span></summary>
+        <div class="t-body">
+          <ul>
+            <li><strong>Этот формат</strong> — регион/финал ВсОШ. Не путать с IELTS — здесь нет шаблона «what you should say», нужно <strong>защитить позицию</strong>.</li>
+            <li><strong>Подготовка 3 мин</strong> — он пишет план в блокноте, не печатает в окно. Заметки на русском OK, монолог на английском.</li>
+            <li><strong>Монолог 2 мин</strong> — слушай не перебивая. Засеки время. После — задай 1 из dialogue-вопросов.</li>
+            <li><strong>Диалог 2 мин</strong> — это <em>обсуждение</em>, не допрос. Жюри ищет умение поддержать, развить, согласиться/возразить.</li>
+            <li>4 категории оценки: communicative task fulfillment, organization, lexical/grammatical accuracy, phonetics.</li>
+          </ul>
+        </div>
+      </details>
     </div>
-    <h3 style="margin-top:20px">Follow-up questions</h3>
-    <ul style="margin-left:18px;color:var(--text);line-height:1.8">
-      <li>Are some people better than others at admitting they were wrong? What makes the difference?</li>
-      <li>Should schools teach students how to lose an argument well?</li>
-    </ul>
-    <div class="src">Cue-card format follows British Council IELTS · <a href="https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests" target="_blank" rel="noopener">takeielts.britishcouncil.org</a></div>
   </div>
 </section>
 
@@ -866,6 +954,36 @@ function start(target){
 }
 document.getElementById('prepBtn').addEventListener('click', () => start(60));
 document.getElementById('speakBtn').addEventListener('click', () => start(120));
+
+/* ===== Olympiad timer (Speaking tab B) ===== */
+let oTimerId = null, oSecs = 0;
+const oDisp = document.getElementById('oClockDisp');
+function oStart(target){
+  if (oTimerId) clearInterval(oTimerId);
+  oSecs = 0; if (oDisp) oDisp.textContent = fmt(0);
+  oTimerId = setInterval(() => {
+    oSecs++; if (oDisp) oDisp.textContent = fmt(oSecs);
+    if (oSecs >= target) { clearInterval(oTimerId); if (oDisp) oDisp.textContent = 'done · ' + fmt(target); }
+  }, 1000);
+}
+const oPrepBtn = document.getElementById('oPrepBtn');
+const oSpeakBtn = document.getElementById('oSpeakBtn');
+const oDialBtn = document.getElementById('oDialBtn');
+if (oPrepBtn) oPrepBtn.addEventListener('click', () => oStart(180));
+if (oSpeakBtn) oSpeakBtn.addEventListener('click', () => oStart(120));
+if (oDialBtn) oDialBtn.addEventListener('click', () => oStart(120));
+
+/* ===== Tabs ===== */
+document.querySelectorAll('.tab-row').forEach(row => {
+  row.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+      row.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const card = row.parentElement;
+      card.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.getAttribute('data-pane') === target));
+    });
+  });
+});
 </script>
 
 </body>
