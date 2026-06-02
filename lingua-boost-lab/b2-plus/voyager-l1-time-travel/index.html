@@ -54,6 +54,7 @@ a{color:inherit;text-decoration:none}
 }
 .topbar.tb-hidden{transform:translateY(-100%)}
 /* Teacher notes (collapsible, visible during the lesson, harmless to leave open) */
+body:not(.teacher-mode) details.teacher{display:none}
 details.teacher{margin:16px 0 6px;border:1px dashed rgba(245,200,66,.32);border-radius:10px;background:rgba(245,200,66,.04)}
 details.teacher summary{cursor:pointer;list-style:none;padding:9px 14px;font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;user-select:none}
 details.teacher summary::-webkit-details-marker{display:none}
@@ -64,6 +65,16 @@ details.teacher .t-body{padding:12px 16px 14px;color:var(--brand-2);font-size:.9
 details.teacher .t-body ul{margin-left:18px}
 details.teacher .t-body li{padding:2px 0}
 details.teacher .t-body strong{color:var(--accent-2)}
+details.homework{margin:24px 0 8px;border:1px solid var(--brand);border-radius:14px;background:rgba(155,127,232,.06);overflow:hidden}
+details.homework summary{cursor:pointer;list-style:none;padding:14px 18px;font-family:var(--display);font-size:1rem;font-weight:800;color:var(--brand-2);display:flex;align-items:center;gap:10px;user-select:none}
+details.homework summary::-webkit-details-marker{display:none}
+details.homework summary>span{opacity:.55;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-left:auto}
+details.homework[open] summary{border-bottom:1px solid var(--line-2)}
+details.homework .hw-body{padding:18px 20px 20px}
+details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:var(--accent);font-size:1rem;letter-spacing:-.01em;margin:6px 0 6px}
+.hw-list{display:flex;flex-direction:column;gap:8px;margin:8px 0 6px}
+.hw-row{background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;color:var(--text);font-size:.94rem;line-height:1.55}
+.hw-row strong{color:var(--brand-2)}
 /* Tabs (Speaking — IELTS / Olympiad) */
 .tab-row{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
 .tab-row .tab-btn{flex:1;background:transparent;border:none;color:var(--muted);
@@ -93,6 +104,12 @@ details.teacher .t-body strong{color:var(--accent-2)}
 .cloze-opts button:hover{border-color:var(--accent);color:var(--accent)}
 .cloze-opts button.right{background:var(--ok);color:#0a2316;border-color:var(--ok)}
 .cloze-opts button.wrong{background:var(--miss);color:#fff;border-color:var(--miss)}
+.open-cloze{display:flex;flex-direction:column;gap:8px;margin:8px 0 4px}
+.open-cloze .oc-row{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:8px 12px}
+.open-cloze .oc-in{background:transparent;border:none;border-bottom:1px dashed var(--accent);color:var(--accent);font-family:var(--body);font-size:.96rem;font-weight:700;padding:4px 6px;outline:none;width:100%;max-width:240px}
+.open-cloze .oc-in:focus{border-bottom-color:var(--accent-2);background:rgba(245,200,66,.05)}
+.open-cloze .oc-in.right{border-bottom-color:var(--ok);color:var(--ok);border-bottom-style:solid}
+.open-cloze .oc-in.wrong{border-bottom-color:var(--miss);color:var(--miss);border-bottom-style:solid}
 /* Sentence transformation */
 .transform{display:flex;flex-direction:column;gap:14px;margin-top:14px}
 .tr-row{background:var(--card);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px}
@@ -211,18 +228,25 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
   padding:8px 12px;border-radius:8px;font-family:var(--mono);font-size:.68rem;font-weight:800;
   letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
 .vocab-actions button:hover{background:rgba(255,255,255,.25)}
+.vocab-add{display:flex;gap:6px;margin:12px 0 0;padding-top:12px;border-top:1px dashed rgba(255,255,255,.22)}
+.vocab-add input{flex:1;background:rgba(58,110,143,.40);border:1px solid rgba(58,110,143,.7);color:#cfe6f7;padding:8px 10px;border-radius:8px;font-family:var(--body);font-size:.84rem;font-weight:600;outline:none;min-width:0}
+.vocab-add input::placeholder{color:rgba(255,255,255,.45);font-weight:500}
+.vocab-add input:focus{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.18)}
+.vocab-add button{flex:0 0 40px;background:rgba(255,255,255,.24);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-family:var(--display);font-size:1.25rem;font-weight:900;cursor:pointer;line-height:1;padding:0;transition:.15s}
+.vocab-add button:hover{background:rgba(255,255,255,.38)}
+.vocab-add-hint{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:10px 0 4px;text-align:center}
 
 /* Sample answer block */
-.sample{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.22);border-radius:14px;
+.sample{background:rgba(155,127,232,.07);border:1px solid rgba(155,127,232,.32);border-radius:14px;
   padding:16px 18px;margin:14px 0}
 .sample-h{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px}
+  color:var(--brand-2);margin-bottom:10px}
 .sample p{color:var(--text);font-style:italic;line-height:1.65}
 .sample-phr{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-.sample-phr button{background:var(--card);border:1px solid var(--line-2);color:var(--brand-2);
+.sample-phr button{background:rgba(155,127,232,.10);border:1px solid var(--brand);color:var(--brand-2);
   padding:7px 12px;border-radius:50px;font-size:.78rem;font-family:var(--body);font-weight:600;
   cursor:pointer;transition:.15s;text-align:left}
-.sample-phr button::before{content:"♪ ";color:var(--accent);font-weight:900}
+.sample-phr button::before{content:"♪ ";color:var(--brand);font-weight:900}
 .sample-phr button:hover{background:var(--surface-2);border-color:var(--brand)}
 
 /* Story */
@@ -364,13 +388,15 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <p>Talk for about two minutes. Don't plan — just start. Then read the sample model below and steal one or two phrases for next time.</p>
 
     <div class="sample">
-      <div class="sample-h">Sample answer · olympiad-level</div>
+      <div class="sample-h">Model · steal a phrase</div>
       <p>"If I received that letter — say, from myself at twenty-seven — the first thing I would want to know is what kind of person wrote it. Was the older me proud of how I lived, or simply tired? I think I would trust <em>advice</em> less than I would trust a <em>warning</em>, because advice can be wrong, but a warning is usually written by someone who has already lost. The most powerful thing about the letter would not be its content, but the fact that, somewhere, a version of me had the patience to sit down and address me as a stranger."</p>
       <div class="sample-phr">
+        <button data-say="The first thing I would want to know is what kind of person wrote it.">The first thing I would want to know is what kind of person wrote it.</button>
         <button data-say="Was the older me proud of how I lived, or simply tired?">Was the older me proud of how I lived, or simply tired?</button>
-        <button data-say="I would trust advice less than I would trust a warning, because advice can be wrong">I would trust advice less than I would trust a warning…</button>
-        <button data-say="The most powerful thing about the letter would not be its content, but the fact that">The most powerful thing about it would not be its content, but the fact that…</button>
-        <button data-say="a version of me had the patience to sit down and address me as a stranger">…had the patience to address me as a stranger</button>
+        <button data-say="I would trust advice less than I would trust a warning, because advice can be wrong.">I would trust advice less than I would trust a warning…</button>
+        <button data-say="Advice can be wrong, but a warning is usually written by someone who has already lost.">…a warning is usually written by someone who has already lost.</button>
+        <button data-say="The most powerful thing about it would not be its content, but the fact that, somewhere, a version of me had the patience to sit down.">The most powerful thing would not be its content, but the fact that…</button>
+        <button data-say="A version of me had the patience to sit down and address me as a stranger.">…a version of me had the patience to address me as a stranger.</button>
       </div>
     </div>
     <div class="info"><strong>Why these phrases:</strong> they show three olympiad moves — (1) reframe the question, (2) prefer a sharper word (advice vs warning), (3) lift the focus from <em>what</em> to <em>that</em>. Borrow one for Section 7.</div>
@@ -477,6 +503,17 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
       <button data-ans="c">c) Mia has gone and come back — her trip is now part of the recorded past</button>
       <button data-ans="d">d) The text never changed; Mia misread it the first time</button>
     </div>
+    <details class="teacher">
+      <summary>For me — answer keys (Quick check) <span>open if needed</span></summary>
+      <div class="t-body">
+        <ol style="margin-left:18px">
+          <li><strong>True</strong> — grandfather had stopped speaking before that Sunday («for four months»).</li>
+          <li><strong>False</strong> — the grandfather frames it as inevitability («You will go»), not a free choice.</li>
+          <li><strong>b</strong> — «adjust but not change anything important».</li>
+          <li><strong>c</strong> — Mia has gone and come back; the trip is now part of the recorded past.</li>
+        </ol>
+      </div>
+    </details>
     <div class="src">Original story written for this lesson · NG English · L1 · Time</div>
   </div>
 </section>
@@ -495,9 +532,9 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
       </audio>
       <div class="listen-script" id="lstScript">
         <strong>Script (open after the questions):</strong><br>
-        In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — fired a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
-        The result was later traced to a faulty cable in the experiment. But the question it asked is still alive. Einstein's <span class="say-word" data-say="relativity">relativity</span> tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would drift by ten kilometres in twenty-four hours.
-        So time, in physics, is not the steady backdrop most of us imagine. It bends near gravity. It runs at different rates for travellers at different speeds. The physicist <span class="say-word" data-say="Stephen Hawking">Stephen Hawking</span> once said that travel into the future — even by millions of years — would, in principle, be allowed by these laws. Travel into the past, he believed, was off limits: it would break the rule that a cause must come before its effect.
+        In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — <span class="tr" data-ru="выпустила (пучок)">fired</span> a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists <span class="tr" data-ru="перепроверили">rechecked</span> it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most <span class="tr" data-ru="незыблемые, тщательно охраняемые">cherished</span> rules — that nothing travels faster than light — had to be <span class="tr" data-ru="пересмотрены">rethought</span>.
+        The result was later <span class="tr" data-ru="прослежено, отслежено">traced</span> to a faulty cable in the experiment. But the question it asked is still alive. Einstein's <span class="say-word" data-say="relativity">relativity</span> tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would <span class="tr" data-ru="смещаться, дрейфовать">drift</span> by ten kilometres in twenty-four hours.
+        So time, in physics, is not the steady <span class="tr" data-ru="фон, задний план">backdrop</span> most of us imagine. It <span class="tr" data-ru="изгибается, искривляется">bends</span> near gravity. It runs at different rates for travellers at different speeds. The physicist <span class="say-word" data-say="Stephen Hawking">Stephen Hawking</span> once said that travel into the future — even by millions of years — would, <span class="tr" data-ru="в принципе">in principle</span>, be allowed by these laws. Travel into the past, he believed, was <span class="tr" data-ru="запретный, недоступный">off limits</span>: it would break the rule that a cause must come before its effect.
       </div>
     </div>
 
@@ -534,45 +571,74 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
       <button data-ans="d">d) Time bends only forward, never backward</button>
     </div>
     <div style="margin-top:14px"><button class="btn-sm" id="revealScript">Show full script</button></div>
+    <details class="teacher">
+      <summary>For me — answer keys (Listening) <span>open if needed</span></summary>
+      <div class="t-body">
+        <ol style="margin-left:18px">
+          <li><strong>b</strong> — 60 nanoseconds (sixty billionths of a second).</li>
+          <li><strong>c</strong> — a faulty cable in the experiment.</li>
+          <li><strong>d</strong> — ten kilometres a day (without the GPS correction).</li>
+          <li><strong>a</strong> — it would break the rule that a cause must come before its effect.</li>
+        </ol>
+      </div>
+    </details>
     <div class="src">Original listening script · NG English · L1 · Time</div>
   </div>
 </section>
 
-<!-- 5 · QUOTATION COMMENTARY (olympiad writing format) -->
+<!-- 5 · LEXICO-GRAMMATICAL MIXED CLOZE -->
 <section class="section">
-  <div class="section-hdr"><div class="section-num">05</div><h2>Quotation commentary — olympiad writing</h2></div>
-  <div class="section-sub">school/municipal stage format · respond to a quotation in 150–180 words · structured in 3 paragraphs</div>
+  <div class="section-hdr"><div class="section-num">05</div><h2>Lex-gram mixed cloze — olympiad practice</h2></div>
+  <div class="section-sub">school / municipal stage standard · 10 gaps · 6 lexical (choose A / B / C / D) + 4 grammatical (write one word)</div>
   <div class="card">
     <img class="lesson-img" src="assets/img-mirrored-faces.png" alt="Two faces in profile mirrored under a night sky with clocks and a full moon" onerror="this.style.display='none'">
 
-    <div style="background:rgba(245,200,66,.06);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 22px;margin:10px 0 18px">
-      <div style="font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Quotation</div>
-      <p style="font-family:var(--display);font-style:italic;font-size:1.12rem;line-height:1.4;color:var(--text);margin:0 0 8px">"You will not change anything that matters. You will only <em>adjust</em>."</p>
-      <p style="font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--brand-2);margin:0">— from the story · the grandfather to Mia</p>
-    </div>
+    <p style="color:var(--muted);font-size:.93rem">Read the text. For gaps 1–6 choose A, B, C or D. For gaps 7–10 write ONE word. Theme follows today's lesson — time, physics, memory.</p>
 
-    <h3>Task</h3>
-    <p style="color:var(--text)">Write a commentary on this quotation. <strong>150–180 words.</strong> Use the three-paragraph structure below. Use at least <strong>three vocab words</strong> from today.</p>
-    <ol style="margin-left:22px;color:var(--text);line-height:1.7;margin-top:8px">
-      <li><strong>Interpretation</strong> — what do you think the quotation actually means? (2–3 sentences)</li>
-      <li><strong>Position</strong> — do you agree with the rule? Give one reason and one personal example. (3–4 sentences)</li>
-      <li><strong>Counterpoint</strong> — what is the strongest argument against your position? (2 sentences)</li>
-    </ol>
+    <div class="cloze">
+      <p class="cloze-text">Time, in everyday life, <span class="gap">(1)</span> more like a habit than a science. We wake up, we eat, we go to bed, and we are quietly <span class="gap">(2)</span> that the day moves at the same speed for everyone. <span class="gap">(3)</span> Einstein, the same speed cannot be guaranteed: a clock on a fast train ticks more slowly than a clock on the platform. The difference is tiny, but it is <span class="gap">(4)</span> real that GPS engineers must build it <span class="gap">(5)</span> their math every day. Hawking later <span class="gap">(6)</span> something almost poetic — that travel into the future is, in principle, possible, <span class="gap">(7)</span> travel into the past would break the rule <span class="gap">(8)</span> which cause comes before effect. Whether or not he was right, the question itself has changed <span class="gap">(9)</span> way we talk about memory: we remember the past, <span class="gap">(10)</span> the future, because the past is the direction of greater disorder.</p>
 
-    <div class="write" style="margin-top:14px">
-      <textarea placeholder="Open with your interpretation. Move to your position with reason + example. Close with one strong counterpoint. 150–180 words."></textarea>
-      <div class="write-meta"><span>Olympiad commentary · structured · self-rated</span><span class="word-count">0 words</span></div>
+      <h3 style="margin-top:18px">Lexical gaps · 1–6</h3>
+      <div class="cloze-row"><span class="cloze-num">1</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) runs</button><button data-ans="b">B) feels</button><button data-ans="c">C) works</button><button data-ans="d">D) looks</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">2</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) sure</button><button data-ans="b">B) told</button><button data-ans="c">C) certain</button><button data-ans="d">D) aware</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">3</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) Before</button><button data-ans="b">B) Since</button><button data-ans="c">C) Without</button><button data-ans="d">D) Among</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">4</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) so</button><button data-ans="b">B) well</button><button data-ans="c">C) very</button><button data-ans="d">D) quite</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">5</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) into</button><button data-ans="b">B) onto</button><button data-ans="c">C) by</button><button data-ans="d">D) through</button></div></div>
+      <div class="cloze-row"><span class="cloze-num">6</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) said</button><button data-ans="b">B) felt</button><button data-ans="c">C) wrote</button><button data-ans="d">D) thought</button></div></div>
+
+      <h3 style="margin-top:18px">Grammatical gaps · 7–10 · write ONE word</h3>
+      <div class="open-cloze">
+        <div class="oc-row"><span class="cloze-num">7</span><input class="oc-in" data-correct="while|whereas|but" placeholder="one word"></div>
+        <div class="oc-row"><span class="cloze-num">8</span><input class="oc-in" data-correct="by|under" placeholder="one word"></div>
+        <div class="oc-row"><span class="cloze-num">9</span><input class="oc-in" data-correct="the" placeholder="one word"></div>
+        <div class="oc-row"><span class="cloze-num">10</span><input class="oc-in" data-correct="not" placeholder="one word"></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn-sm" id="checkOpenCloze">Check gaps 7–10</button>
+        <button class="btn-sm" id="revealOpenCloze">Show keys 7–10</button>
+      </div>
     </div>
 
     <details class="teacher">
-      <summary>For me — what this trains <span>open if needed</span></summary>
+      <summary>For me — keys + what this trains <span>open if needed</span></summary>
       <div class="t-body">
-        <ul>
-          <li><strong>Quotation commentary</strong> — стандартный школьный/муниципальный формат Writing на ВсОШ. Жюри оценивает: понимание идеи, структуру 3 абзацев, аргументацию, лексику, грамматику.</li>
-          <li>Подскажи Ване не пересказывать сюжет — комментарий это <em>реакция</em> на идею, не отчёт о тексте.</li>
-          <li>Если он застрянет — спроси «<em>что важнее: что-то изменить или просто оставить как было?</em>» Это даёт ему opinion-стартер.</li>
-          <li>Альтернативные цитаты для повторов: "A cause must come before its effect" (Hawking) или "Travel into the future would, in principle, be allowed by these laws" — обе подойдут под тот же формат.</li>
-        </ul>
+        <p><strong>Lexical keys (1–6):</strong></p>
+        <ol style="margin-left:18px">
+          <li>B — <em>feels</em> (collocation: «time feels»)</li>
+          <li>A — <em>sure</em> («quietly sure that…»)</li>
+          <li>B — <em>Since</em> (causal: «since Einstein, the same speed cannot…»)</li>
+          <li>A — <em>so</em> («so X that Y» construction)</li>
+          <li>A — <em>into</em> («build it into their math»)</li>
+          <li>A — <em>said</em> (neutral reporting verb)</li>
+        </ol>
+        <p style="margin-top:10px"><strong>Grammatical keys (7–10):</strong></p>
+        <ol start="7" style="margin-left:18px">
+          <li><em>while</em> (или <em>whereas</em>, <em>but</em>) — contrast</li>
+          <li><em>by</em> (или <em>under</em>) — preposition with «which» relative clause</li>
+          <li><em>the</em> — definite article with «way + relative clause»</li>
+          <li><em>not</em> — negation in parallel structure</li>
+        </ol>
+        <p style="margin-top:10px"><strong>Что тренирует:</strong> collocation, дискурсивные коннекторы (<em>since</em> vs <em>before</em>), constructions <em>so…that</em>, артикли с уникальной референцией, предлоги с relative clauses. Все 4 «открытых» пропуска — типичная грамматика школьного/муниципального этапа.</p>
       </div>
     </details>
   </div>
@@ -677,6 +743,20 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
       <div class="cloze-row"><span class="cloze-num">6</span><div class="cloze-opts" data-correct="c"><button data-ans="a">A) less</button><button data-ans="b">B) much</button><button data-ans="c">C) more</button><button data-ans="d">D) even</button></div></div>
     </div>
 
+    <details class="teacher">
+      <summary>For me — cloze answer key (A)<span>open if needed</span></summary>
+      <div class="t-body">
+        <ol style="margin-left:18px">
+          <li><strong>B</strong> — fascinated (collocation: «time travel has always fascinated writers»)</li>
+          <li><strong>A</strong> — closed (closed the distance)</li>
+          <li><strong>A</strong> — traced (traced to a faulty cable)</li>
+          <li><strong>C</strong> — the (the effect — definite article with a specific consequence)</li>
+          <li><strong>B</strong> — harder (much harder to put back)</li>
+          <li><strong>C</strong> — more (more than ever)</li>
+        </ol>
+      </div>
+    </details>
+
     <h3 style="margin-top:24px">B · Sentence transformation (4 items)</h3>
     <p style="color:var(--muted);font-size:.93rem">Rewrite the second sentence so it means the same as the first, using the word in <strong>CAPITALS</strong>. Write between 2 and 4 words. The capitalised word must stay unchanged.</p>
 
@@ -737,6 +817,72 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <p>You just finished <strong>L1 of Voyager</strong> — the time block.</p>
     <p style="color:var(--muted)">In <strong>L2 · <em>Are we alone?</em></strong> we keep the same routine — short reading, short listening, speaking, mini-write — but the question turns outward. Drake equation, Fermi paradox, the idea that the chemistry of life may have arrived from space. Same words come back: <em>consequence, prediction, eventually, contradict</em> — just on a wider stage.</p>
     <p>Your vocab box carries with you. See you next Sunday.</p>
+
+    <details class="homework">
+      <summary>📚 Homework · olympiad practice (optional) <span>tap to open</span></summary>
+      <div class="hw-body">
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:14px">Three short olympiad-style tasks on related themes — memory, cause, prediction. Do at home in any order. Not required, but the lesson sticks better when you try at least one.</p>
+
+        <h4>A · Word formation (5 items)</h4>
+        <p style="color:var(--muted);font-size:.88rem">Read the sentence. Use the word in <strong>CAPITALS</strong> to form a word that fits the gap.</p>
+        <div class="hw-list">
+          <div class="hw-row">1. The result was so strange that the team's first reaction was complete ______ (BELIEVE).</div>
+          <div class="hw-row">2. Time, in physics, does not flow at a ______ rate for every observer (STEAD).</div>
+          <div class="hw-row">3. A single ______ measurement can shake decades of theory (FAULT).</div>
+          <div class="hw-row">4. Mia did not change the past — her grandfather had already ______ what she would do (PREDICT).</div>
+          <div class="hw-row">5. Hawking's view was ______ optimistic: the future open, the past closed (CAUTION).</div>
+        </div>
+
+        <h4 style="margin-top:18px">B · Mini cloze · memory (5 gaps, 4 options each)</h4>
+        <p style="color:var(--muted);font-size:.88rem">Choose A, B, C or D for each gap.</p>
+        <div class="cloze" style="margin-top:8px">
+          <p class="cloze-text">We rarely remember a year as a whole. Instead, the mind <span class="gap">(1)</span> a few sharp moments and lets the rest <span class="gap">(2)</span>. The ones that stay tend <span class="gap">(3)</span> the rule of context: a strong emotion, an unusual place, an unexpected face. Years later we are surprised at <span class="gap">(4)</span> we kept and what we lost. Memory, in this sense, is closer to editing than <span class="gap">(5)</span> recording.</p>
+          <div class="cloze-row"><span class="cloze-num">1</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) drops</button><button data-ans="b">B) keeps</button><button data-ans="c">C) hides</button><button data-ans="d">D) breaks</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">2</span><div class="cloze-opts" data-correct="c"><button data-ans="a">A) repeat</button><button data-ans="b">B) speak</button><button data-ans="c">C) fade</button><button data-ans="d">D) ring</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">3</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) to share</button><button data-ans="b">B) sharing</button><button data-ans="c">C) shared</button><button data-ans="d">D) to be shared</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">4</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) where</button><button data-ans="b">B) what</button><button data-ans="c">C) which</button><button data-ans="d">D) that</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">5</span><div class="cloze-opts" data-correct="d"><button data-ans="a">A) of</button><button data-ans="b">B) at</button><button data-ans="c">C) by</button><button data-ans="d">D) to</button></div></div>
+        </div>
+
+        <h4 style="margin-top:18px">C · Reading T / F / NG · «The Watchmaker's Apology»</h4>
+        <p style="color:var(--muted);font-size:.88rem">Re-read the story carefully (Section 03). For each statement, choose <strong>True</strong>, <strong>False</strong>, or <strong>Not Given</strong>. Trains close reading — the same skill judges look at on the regional Reading round.</p>
+
+        <div class="q-row"><div class="q-num">1</div><div class="q-text">Mia's grandfather had worked as a watchmaker for over fifty years before the accident.</div></div>
+        <div class="tfg-opts" data-correct="t"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <div class="q-row"><div class="q-num">2</div><div class="q-text">Mia found her own full name in the logbook the first time she opened it.</div></div>
+        <div class="tfg-opts" data-correct="f"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <div class="q-row"><div class="q-num">3</div><div class="q-text">According to the note, the watch Mia will bring is broken and beyond repair.</div></div>
+        <div class="tfg-opts" data-correct="f"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <div class="q-row"><div class="q-num">4</div><div class="q-text">The grandfather spoke to Mia in Russian.</div></div>
+        <div class="tfg-opts" data-correct="ng"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <div class="q-row"><div class="q-num">5</div><div class="q-text">By the next Sunday, the entry for 14 March had a different name written on the customer line.</div></div>
+        <div class="tfg-opts" data-correct="t"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <div class="q-row"><div class="q-num">6</div><div class="q-text">The grandfather opened his eyes after months of silence.</div></div>
+        <div class="tfg-opts" data-correct="t"><button data-ans="t">True</button><button data-ans="f">False</button><button data-ans="ng">Not Given</button></div>
+
+        <details class="teacher" style="margin-top:14px">
+          <summary>For me — model answers <span>open if needed</span></summary>
+          <div class="t-body">
+            <p><strong>Word formation answers:</strong></p>
+            <ol style="margin-left:18px">
+              <li>disbelief</li>
+              <li>steady</li>
+              <li>faulty</li>
+              <li>predicted</li>
+              <li>cautiously</li>
+            </ol>
+            <p style="margin-top:8px"><strong>Mini-cloze answers:</strong> 1-B (keeps), 2-C (fade), 3-A (to share), 4-B (what), 5-D (to).</p>
+            <p style="margin-top:8px"><strong>Reading T/F/NG answers:</strong> 1-T (53 years), 2-F (had read past for months), 3-F (no fault — only wound the wrong way), 4-NG (язык не указан), 5-T (name had changed), 6-T (had not spoken for four months + opened his eyes).</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
   </div>
 </section>
 
@@ -746,6 +892,11 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
 </footer>
 
 <script>
+/* ===== Teacher mode (URL ?teacher=1) ===== */
+if (/[?&]teacher=1/.test(location.search) || location.hash === '#teacher') {
+  document.body.classList.add('teacher-mode');
+}
+
 /* ===== Starfield with drift ===== */
 (function(){
   const sf = document.getElementById('starfield');
@@ -831,12 +982,30 @@ function renderVocab(){
     box.innerHTML =
       '<div class="vocab-title">My vocab · <span>' + vocabList.length + (vocabList.length===1?' word':' words') + '</span></div>' +
       '<div class="vocab-list">' + items + '</div>' +
+      '<div class="vocab-add-hint">+ add your own</div>' +
+      '<div class="vocab-add">' +
+        '<input type="text" id="vAddWord" placeholder="word" maxlength="40" autocomplete="off">' +
+        '<input type="text" id="vAddRu" placeholder="перевод" maxlength="60" autocomplete="off">' +
+        '<button id="vAddBtn" type="button" title="add to vocab">+</button>' +
+      '</div>' +
       '<div class="vocab-actions">' +
         '<button id="vocabCopy" type="button">Copy</button>' +
         '<button id="vocabClear" type="button">Clear</button>' +
       '</div>';
     document.getElementById('vocabCopy').addEventListener('click', e => { e.stopPropagation(); copyVocab(); });
     document.getElementById('vocabClear').addEventListener('click', e => { e.stopPropagation(); clearVocab(); });
+    const aw = document.getElementById('vAddWord'), ar = document.getElementById('vAddRu'), ab = document.getElementById('vAddBtn');
+    function doAdd(){
+      const w = (aw.value||'').trim(); const r = (ar.value||'').trim();
+      if (!w || !r) { (w?ar:aw).focus(); return; }
+      if (vocabList.some(v => v.word.toLowerCase() === w.toLowerCase())) { aw.value=''; ar.value=''; aw.focus(); return; }
+      vocabList.push({word: w, ru: r}); saveVocab(); renderVocab();
+    }
+    ab.addEventListener('click', e => { e.stopPropagation(); doAdd(); });
+    [aw, ar].forEach(inp => {
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
+      inp.addEventListener('click', e => e.stopPropagation());
+    });
   } else {
     box.innerHTML = 'My vocab · <span>' + vocabList.length + '</span>';
   }
@@ -903,6 +1072,27 @@ if (checkTr) checkTr.addEventListener('click', () => {
     else inp.classList.add('wrong');
   });
 });
+/* ===== Open cloze (S05 gaps 7-10) — check + reveal ===== */
+const checkOC = document.getElementById('checkOpenCloze');
+const revealOC = document.getElementById('revealOpenCloze');
+function normOC(s){ return (s||'').toLowerCase().trim().replace(/[.,;!?]/g,'') }
+if (checkOC) checkOC.addEventListener('click', () => {
+  document.querySelectorAll('.open-cloze .oc-in').forEach(inp => {
+    const wants = (inp.getAttribute('data-correct') || '').toLowerCase().split('|').map(x => x.trim()).filter(Boolean);
+    const got = normOC(inp.value);
+    inp.classList.remove('right','wrong');
+    if (!got) return;
+    if (wants.includes(got)) inp.classList.add('right');
+    else inp.classList.add('wrong');
+  });
+});
+if (revealOC) revealOC.addEventListener('click', () => {
+  document.querySelectorAll('.open-cloze .oc-in').forEach(inp => {
+    const wants = (inp.getAttribute('data-correct') || '').split('|');
+    if (!inp.value.trim()) { inp.value = wants[0]; inp.classList.add('right'); }
+  });
+});
+
 if (revealTr) revealTr.addEventListener('click', () => {
   document.querySelectorAll('.tr-row .tr-model').forEach(m => m.classList.toggle('show'));
 });
