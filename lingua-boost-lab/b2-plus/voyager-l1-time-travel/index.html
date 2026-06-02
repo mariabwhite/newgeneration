@@ -64,6 +64,16 @@ details.teacher .t-body{padding:12px 16px 14px;color:var(--brand-2);font-size:.9
 details.teacher .t-body ul{margin-left:18px}
 details.teacher .t-body li{padding:2px 0}
 details.teacher .t-body strong{color:var(--accent-2)}
+details.homework{margin:24px 0 8px;border:1px solid var(--brand);border-radius:14px;background:rgba(155,127,232,.06);overflow:hidden}
+details.homework summary{cursor:pointer;list-style:none;padding:14px 18px;font-family:var(--display);font-size:1rem;font-weight:800;color:var(--brand-2);display:flex;align-items:center;gap:10px;user-select:none}
+details.homework summary::-webkit-details-marker{display:none}
+details.homework summary>span{opacity:.55;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-left:auto}
+details.homework[open] summary{border-bottom:1px solid var(--line-2)}
+details.homework .hw-body{padding:18px 20px 20px}
+details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:var(--accent);font-size:1rem;letter-spacing:-.01em;margin:6px 0 6px}
+.hw-list{display:flex;flex-direction:column;gap:8px;margin:8px 0 6px}
+.hw-row{background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;color:var(--text);font-size:.94rem;line-height:1.55}
+.hw-row strong{color:var(--brand-2)}
 /* Tabs (Speaking — IELTS / Olympiad) */
 .tab-row{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
 .tab-row .tab-btn{flex:1;background:transparent;border:none;color:var(--muted);
@@ -213,16 +223,16 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .vocab-actions button:hover{background:rgba(255,255,255,.25)}
 
 /* Sample answer block */
-.sample{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.22);border-radius:14px;
+.sample{background:rgba(155,127,232,.07);border:1px solid rgba(155,127,232,.32);border-radius:14px;
   padding:16px 18px;margin:14px 0}
 .sample-h{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px}
+  color:var(--brand-2);margin-bottom:10px}
 .sample p{color:var(--text);font-style:italic;line-height:1.65}
 .sample-phr{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-.sample-phr button{background:var(--card);border:1px solid var(--line-2);color:var(--brand-2);
+.sample-phr button{background:rgba(155,127,232,.10);border:1px solid var(--brand);color:var(--brand-2);
   padding:7px 12px;border-radius:50px;font-size:.78rem;font-family:var(--body);font-weight:600;
   cursor:pointer;transition:.15s;text-align:left}
-.sample-phr button::before{content:"♪ ";color:var(--accent);font-weight:900}
+.sample-phr button::before{content:"♪ ";color:var(--brand);font-weight:900}
 .sample-phr button:hover{background:var(--surface-2);border-color:var(--brand)}
 
 /* Story */
@@ -364,13 +374,15 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <p>Talk for about two minutes. Don't plan — just start. Then read the sample model below and steal one or two phrases for next time.</p>
 
     <div class="sample">
-      <div class="sample-h">Sample answer · olympiad-level</div>
+      <div class="sample-h">Model · steal a phrase</div>
       <p>"If I received that letter — say, from myself at twenty-seven — the first thing I would want to know is what kind of person wrote it. Was the older me proud of how I lived, or simply tired? I think I would trust <em>advice</em> less than I would trust a <em>warning</em>, because advice can be wrong, but a warning is usually written by someone who has already lost. The most powerful thing about the letter would not be its content, but the fact that, somewhere, a version of me had the patience to sit down and address me as a stranger."</p>
       <div class="sample-phr">
+        <button data-say="The first thing I would want to know is what kind of person wrote it.">The first thing I would want to know is what kind of person wrote it.</button>
         <button data-say="Was the older me proud of how I lived, or simply tired?">Was the older me proud of how I lived, or simply tired?</button>
-        <button data-say="I would trust advice less than I would trust a warning, because advice can be wrong">I would trust advice less than I would trust a warning…</button>
-        <button data-say="The most powerful thing about the letter would not be its content, but the fact that">The most powerful thing about it would not be its content, but the fact that…</button>
-        <button data-say="a version of me had the patience to sit down and address me as a stranger">…had the patience to address me as a stranger</button>
+        <button data-say="I would trust advice less than I would trust a warning, because advice can be wrong.">I would trust advice less than I would trust a warning…</button>
+        <button data-say="Advice can be wrong, but a warning is usually written by someone who has already lost.">…a warning is usually written by someone who has already lost.</button>
+        <button data-say="The most powerful thing about it would not be its content, but the fact that, somewhere, a version of me had the patience to sit down.">The most powerful thing would not be its content, but the fact that…</button>
+        <button data-say="A version of me had the patience to sit down and address me as a stranger.">…a version of me had the patience to address me as a stranger.</button>
       </div>
     </div>
     <div class="info"><strong>Why these phrases:</strong> they show three olympiad moves — (1) reframe the question, (2) prefer a sharper word (advice vs warning), (3) lift the focus from <em>what</em> to <em>that</em>. Borrow one for Section 7.</div>
@@ -495,9 +507,9 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
       </audio>
       <div class="listen-script" id="lstScript">
         <strong>Script (open after the questions):</strong><br>
-        In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — fired a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists rechecked it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most cherished rules — that nothing travels faster than light — had to be rethought.
-        The result was later traced to a faulty cable in the experiment. But the question it asked is still alive. Einstein's <span class="say-word" data-say="relativity">relativity</span> tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would drift by ten kilometres in twenty-four hours.
-        So time, in physics, is not the steady backdrop most of us imagine. It bends near gravity. It runs at different rates for travellers at different speeds. The physicist <span class="say-word" data-say="Stephen Hawking">Stephen Hawking</span> once said that travel into the future — even by millions of years — would, in principle, be allowed by these laws. Travel into the past, he believed, was off limits: it would break the rule that a cause must come before its effect.
+        In 2011, a team at <span class="say-word" data-say="CERN" data-lang="fr-FR">CERN</span> — the European centre for particle physics in Geneva — <span class="tr" data-ru="выпустила (пучок)">fired</span> a beam of tiny particles called <span class="say-word" data-say="neutrinos">neutrinos</span> toward a detector 730 kilometres away in Italy. The result, when it came in, was so strange that the scientists <span class="tr" data-ru="перепроверили">rechecked</span> it 15,000 times. The neutrinos seemed to arrive sixty <span class="say-word" data-say="nanoseconds">nanoseconds</span> — that is, sixty billionths of a second — earlier than light would have. If the result was real, one of physics's most <span class="tr" data-ru="незыблемые, тщательно охраняемые">cherished</span> rules — that nothing travels faster than light — had to be <span class="tr" data-ru="пересмотрены">rethought</span>.
+        The result was later <span class="tr" data-ru="прослежено, отслежено">traced</span> to a faulty cable in the experiment. But the question it asked is still alive. Einstein's <span class="say-word" data-say="relativity">relativity</span> tells us that clocks closer to a large mass — like a planet — tick more slowly than clocks far above. This is not just a theory; it is the reason your phone needs to add about thirty-eight microseconds to its GPS signal every day. Without that correction, your map would <span class="tr" data-ru="смещаться, дрейфовать">drift</span> by ten kilometres in twenty-four hours.
+        So time, in physics, is not the steady <span class="tr" data-ru="фон, задний план">backdrop</span> most of us imagine. It <span class="tr" data-ru="изгибается, искривляется">bends</span> near gravity. It runs at different rates for travellers at different speeds. The physicist <span class="say-word" data-say="Stephen Hawking">Stephen Hawking</span> once said that travel into the future — even by millions of years — would, <span class="tr" data-ru="в принципе">in principle</span>, be allowed by these laws. Travel into the past, he believed, was <span class="tr" data-ru="запретный, недоступный">off limits</span>: it would break the rule that a cause must come before its effect.
       </div>
     </div>
 
@@ -737,6 +749,62 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <p>You just finished <strong>L1 of Voyager</strong> — the time block.</p>
     <p style="color:var(--muted)">In <strong>L2 · <em>Are we alone?</em></strong> we keep the same routine — short reading, short listening, speaking, mini-write — but the question turns outward. Drake equation, Fermi paradox, the idea that the chemistry of life may have arrived from space. Same words come back: <em>consequence, prediction, eventually, contradict</em> — just on a wider stage.</p>
     <p>Your vocab box carries with you. See you next Sunday.</p>
+
+    <details class="homework">
+      <summary>📚 Homework · olympiad practice (optional) <span>tap to open</span></summary>
+      <div class="hw-body">
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:14px">Three short olympiad-style tasks on related themes — memory, cause, prediction. Do at home in any order. Not required, but the lesson sticks better when you try at least one.</p>
+
+        <h4>A · Word formation (5 items)</h4>
+        <p style="color:var(--muted);font-size:.88rem">Read the sentence. Use the word in <strong>CAPITALS</strong> to form a word that fits the gap.</p>
+        <div class="hw-list">
+          <div class="hw-row">1. The result was so strange that the team's first reaction was complete ______ (BELIEVE).</div>
+          <div class="hw-row">2. Time, in physics, does not flow at a ______ rate for every observer (STEAD).</div>
+          <div class="hw-row">3. A single ______ measurement can shake decades of theory (FAULT).</div>
+          <div class="hw-row">4. Mia did not change the past — her grandfather had already ______ what she would do (PREDICT).</div>
+          <div class="hw-row">5. Hawking's view was ______ optimistic: the future open, the past closed (CAUTION).</div>
+        </div>
+
+        <h4 style="margin-top:18px">B · Mini cloze · memory (5 gaps, 4 options each)</h4>
+        <p style="color:var(--muted);font-size:.88rem">Choose A, B, C or D for each gap.</p>
+        <div class="cloze" style="margin-top:8px">
+          <p class="cloze-text">We rarely remember a year as a whole. Instead, the mind <span class="gap">(1)</span> a few sharp moments and lets the rest <span class="gap">(2)</span>. The ones that stay tend <span class="gap">(3)</span> the rule of context: a strong emotion, an unusual place, an unexpected face. Years later we are surprised at <span class="gap">(4)</span> we kept and what we lost. Memory, in this sense, is closer to editing than <span class="gap">(5)</span> recording.</p>
+          <div class="cloze-row"><span class="cloze-num">1</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) drops</button><button data-ans="b">B) keeps</button><button data-ans="c">C) hides</button><button data-ans="d">D) breaks</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">2</span><div class="cloze-opts" data-correct="c"><button data-ans="a">A) repeat</button><button data-ans="b">B) speak</button><button data-ans="c">C) fade</button><button data-ans="d">D) ring</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">3</span><div class="cloze-opts" data-correct="a"><button data-ans="a">A) to share</button><button data-ans="b">B) sharing</button><button data-ans="c">C) shared</button><button data-ans="d">D) to be shared</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">4</span><div class="cloze-opts" data-correct="b"><button data-ans="a">A) where</button><button data-ans="b">B) what</button><button data-ans="c">C) which</button><button data-ans="d">D) that</button></div></div>
+          <div class="cloze-row"><span class="cloze-num">5</span><div class="cloze-opts" data-correct="d"><button data-ans="a">A) of</button><button data-ans="b">B) at</button><button data-ans="c">C) by</button><button data-ans="d">D) to</button></div></div>
+        </div>
+
+        <h4 style="margin-top:18px">C · Long quotation commentary · 200 words</h4>
+        <p style="color:var(--muted);font-size:.88rem">Olympiad writing format — three paragraphs (interpretation / position / counterpoint).</p>
+        <div style="background:rgba(245,200,66,.06);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;margin:8px 0 12px">
+          <p style="font-family:var(--display);font-style:italic;font-size:1.04rem;line-height:1.4;color:var(--text);margin:0 0 4px">"A cause must come before its effect."</p>
+          <p style="font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--brand-2);margin:0">— Stephen Hawking · attributed in popular physics writing</p>
+        </div>
+        <div class="write">
+          <textarea placeholder="Open with what this rule actually means in everyday life. Move to whether you agree (one reason + one example). Close with one strong counterpoint. 200 words."></textarea>
+          <div class="write-meta"><span>Homework essay · olympiad format</span><span class="word-count">0 words</span></div>
+        </div>
+
+        <details class="teacher" style="margin-top:14px">
+          <summary>For me — model answers <span>open if needed</span></summary>
+          <div class="t-body">
+            <p><strong>Word formation answers:</strong></p>
+            <ol style="margin-left:18px">
+              <li>disbelief</li>
+              <li>steady</li>
+              <li>faulty</li>
+              <li>predicted</li>
+              <li>cautiously</li>
+            </ol>
+            <p style="margin-top:8px"><strong>Mini-cloze answers:</strong> 1-B (keeps), 2-C (fade), 3-A (to share), 4-B (what), 5-D (to).</p>
+            <p style="margin-top:8px"><strong>Quotation essay</strong> — оцениваем: 3 абзаца, аргумент + контр-аргумент, ≥3 vocab-слова из урока, 180–220 слов.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
   </div>
 </section>
 
