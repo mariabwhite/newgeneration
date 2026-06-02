@@ -1,6 +1,6 @@
 /* Supabase client + auth helpers
  * Используется новыми кабинетами на magic-link Auth.
- * Старая PIN-механика (cabinet.js + NGECabinet) продолжает работать параллельно.
+ * Отдельный кабинет: вход только через Supabase Auth magic link.
  */
 (function () {
   "use strict";
@@ -78,11 +78,11 @@
     return await c.auth.signOut();
   }
 
-  // Redirect helper — куда отправлять пользователя по роли
+  // Redirect helper — куда отправлять пользователя по роли (v2 = Supabase-based)
   function urlFor(role) {
-    if (role === "teacher") return "./teacher.html";
-    if (role === "parent")  return "./parent.html";
-    if (role === "student") return "./student.html";
+    if (role === "teacher") return "./teacher-v2.html";
+    if (role === "parent")  return "./parent-v2.html";
+    if (role === "student") return "./student-v2.html";
     return "./me.html";
   }
 
