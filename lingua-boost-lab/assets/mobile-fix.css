@@ -671,3 +671,80 @@ button, a.btn, a.module-link, a.hero-link, .draggable, .dropzone,
     margin-left: 0.16em !important;
   }
 }
+
+/* ============================================================
+   LAB CATALOG — mobile unification layer (2026-06-06)
+   - Banner centred with side gutters (was edge-stuck on left)
+   - Topbar pills CAB/Theme/RU same size (Theme had unique border)
+   - Level chips PRE-A1..C2 + INTERACTIVE/FIND&SAY/PREMIUM equalised
+   No HTML changes — pure cascade override.
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* 1. Hero banner — middle of viewport with equal gutters */
+  .hero-banner,
+  .hero-banner img.hero-bg,
+  .hero-banner img.img-dark,
+  .hero-banner img.img-light {
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    border-radius: 16px !important;
+  }
+  .hero-banner {
+    overflow: hidden !important;
+  }
+
+  /* 2. Topbar pills (canon-l-tools) — uniform size, no per-button highlight */
+  .canon-l-tools {
+    display: flex !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+  .canon-l-tools .canon-l-pill {
+    box-sizing: border-box !important;
+    min-width: 56px !important;
+    height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+    line-height: 36px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-radius: 999px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+  }
+  /* Strip the Theme-toggle unique purple border on mobile so all 3 match */
+  .canon-l-tools .canon-l-pill.theme-toggle,
+  .canon-l-tools button.canon-l-pill[id*="ThemeToggle" i] {
+    border-color: var(--canon-l-pill-border, rgba(0,0,0,.18)) !important;
+  }
+
+  /* 3. Level chips (.level) — equal cells in 3-col grid on Lab catalog */
+  .lingua-boost-lab .level-strip,
+  .lingua-boost-lab nav.level-strip,
+  .lingua-boost-lab .level-row,
+  body .level-strip {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding-inline: 14px !important;
+  }
+  .lingua-boost-lab .level,
+  body a.level {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 10px 6px !important;
+    font-size: 12px !important;
+    text-align: center !important;
+    border-radius: 14px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
