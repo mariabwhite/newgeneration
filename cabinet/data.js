@@ -539,6 +539,71 @@ window.NGE_DATA = {
         { "date": "2026-06-09", "num": 7, "status": "planned", "topic": "Тема уточняется", "schedule_note": "вторник 17:00 — тему согласовываем с Машей" },
         { "date": "2026-06-14", "num": 8, "status": "planned", "topic": "Switzerland · Mountains & Chocolate — часть 2 (B1, последний урок до летнего пересбора)", "homework": { "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/?v=v2", "module_title": "Открыть урок Switzerland · часть 2", "text": "Завершаем Switzerland-урок: оставшиеся секции, синтез, mini-writing. Последний урок текущего абонемента до летнего пересбора." } }
       ]
+    },
+    {
+      "id": "timofey",
+      "greeting_student": "Здравствуйте, Тимофей",
+      "greeting_parent": "Здравствуйте, Тимофей",
+      "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
+      "name": "Тимофей",
+      "level": "A2",
+      "format": "индивидуально",
+      "duration": "1 час",
+      "lessons_per_week": 2,
+      "schedule": "понедельник 19:00 / четверг (время согласуется на первой встрече)",
+      "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
+      "price_per_lesson": 2500,
+      "monthly_package": 7500,
+      "weekly_revenue": 5000,
+      "payment_status": "Оплачено",
+      "payment_note": "Июньский блок оплачен (3 урока × 2 500 = 7 500 ₽). Trial 18 июня — бесплатно. Старт платный 22 июня 19:00.",
+      "is_adult": true,
+      "parent_name": "",
+      "pin": "3094",
+      "lessons_in_package": 3,
+      "subscription_month": "2026-06",
+      "lessons_used_this_month": 2,
+      "stability_note": "Стартовый блок-пилот: 3 урока до конца июня по летней цене 2 500 ₽. Дальше продляем помесячно.",
+      "external_platforms": [
+        { "name": "Quizlet · 22 June vocab", "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt", "note": "Flash-cards · 30 слов с урока 22 июня" }
+      ],
+      "lessons": [
+        {
+          "date": "2026-06-18",
+          "num": "T",
+          "status": "completed",
+          "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
+            "module_title": "🎓 Открыть Welcome Pack · университеты + план",
+            "text": "Шорт-лист 9 университетов (Италия + Венгрия) с порогами IELTS/TOEFL по каждой программе + индивидуальный план подготовки."
+          }
+        },
+        {
+          "date": "2026-06-22",
+          "num": 1,
+          "status": "completed",
+          "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
+          "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/timofey-trainer-01/",
+            "module_title": "📚 Открыть домашку · 10 упражнений",
+            "text": "Тренажёр по сегодняшнему уроку: mix of tenses, отработка вокабуляра (30 слов), -ing forms (gerund vs participle vs continuous), said vs told. К следующей встрече 25 июня — пройти все 10 блоков."
+          }
+        },
+        {
+          "date": "2026-06-25",
+          "num": 2,
+          "status": "completed",
+          "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского"
+        },
+        {
+          "date": "2026-06-29",
+          "num": 3,
+          "status": "planned",
+          "topic": "Past Simple + storytelling из деловой практики · чтение B1 в IELTS-формате"
+        }
+      ]
     }
   ],
   "reports": [
