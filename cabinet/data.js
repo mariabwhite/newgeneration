@@ -190,32 +190,27 @@ window.NGE_DATA = {
       "name": "Даниэлла Либова",
       "level": "B2+",
       "format": "индивидуально",
-      "schedule": "понедельник 18:00 / четверг 18:00",
+      "schedule": "понедельник / вторник / четверг · 18:00",
       "goal": "подготовка к ЕГЭ (word formation, exam speaking)",
-      "lessons_in_package": 8,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 4,
-      "stability_note": "Май-абонемент 8 уроков. Отыграно 4 (4, 7, 11, 18 completed). На неделе 19-25.05 уроков нет (плавающий график). Дальше 21, 25, 28 — времена под подтверждение. Расписание плавающее → нужна редактируемость через кабинет (open issue).",
+      "lessons_in_package": 10,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "stability_note": "Июль-интенсив 10 уроков, всё оплачено. Перешли на 3 занятия в неделю (пн/вт/чт 18:00). Старт 29 июня — 1 урок отыгран. Финиш блока 20 июля. Пакет рассчитан примерно на 3 недели работы — плотная подготовительная серия перед стартом учебного года.",
       "payment_status": "Оплачено",
       "parent_name": "Либова Юлия Игоревна",
       "contract_note": "без договора",
       "pin": "5376",
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "Speaking — устная практика, разговорная часть" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Speaking — устная практика (продолжение)" },
-        {
-          "date": "2026-05-11", "num": 3, "status": "completed", "topic": "ЕГЭ-практика — устные части, разбор заданий",
-          "homework": {
-            "text": "Пройти Word Building (префиксы и суффиксы) — упражнения 1 и 2. К следующему уроку.",
-            "module_url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html",
-            "module_title": "Word Building"
-          }
-        },
-        { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Battle of Levels — чтение из учебника Музлановой (трудный текст)" },
-        { "date": "2026-05-21", "num": 6, "status": "cancelled", "topic": "Отменено — Даниэлла не сможет (Маша подтвердила 20.05)" },
-        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" }
+        { "date": "2026-06-29", "num": 1, "status": "completed", "topic": "Старт нового пакета — 10 уроков, интенсив 3×/неделю" },
+        { "date": "2026-06-30", "num": 2, "status": "planned", "topic": "" },
+        { "date": "2026-07-02", "num": 3, "status": "planned", "topic": "" },
+        { "date": "2026-07-06", "num": 4, "status": "planned", "topic": "" },
+        { "date": "2026-07-07", "num": 5, "status": "planned", "topic": "" },
+        { "date": "2026-07-09", "num": 6, "status": "planned", "topic": "" },
+        { "date": "2026-07-13", "num": 7, "status": "planned", "topic": "" },
+        { "date": "2026-07-14", "num": 8, "status": "planned", "topic": "" },
+        { "date": "2026-07-16", "num": 9, "status": "planned", "topic": "" },
+        { "date": "2026-07-20", "num": 10, "status": "planned", "topic": "" }
       ]
     },
     {
