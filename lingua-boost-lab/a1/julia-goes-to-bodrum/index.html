@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Julia Goes to Bodrum · LinguaBoost Lab · Level 0</title>
+<meta name="description" content="Beginner English lesson for kids: Julia goes to Turkey. Numbers, present and past, hotel phrases with voice recording.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF6E6;--surface:#FFFDF7;--accent:#FF8FB1;--accent2:#5BA9D8;--accent3:#FFB84C;
+  --mint:#8FD7B7;--lavender:#C9B1E1;--ink:#2D3142;--muted:#7d6f5a;--ok:#4caf50;--miss:#ef5350;
+  --radius:18px;--shadow:0 4px 20px rgba(0,0,0,.09);
+  --display:'Fredoka','Nunito',sans-serif;--body:'Nunito',sans-serif;--mono:'SFMono-Regular',Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:var(--body);color:var(--ink);min-height:100vh;overflow-x:hidden;line-height:1.55;font-size:17px}
+.topbar{position:relative;z-index:100;display:flex;align-items:center;gap:14px;padding:10px clamp(14px,3vw,24px);background:rgba(255,253,247,.92);border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:blur(14px)}
+.brand{font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand-mark{width:38px;height:38px;border-radius:9px 0 9px 9px;background:#E8542B;color:#fff;font-family:var(--display);font-weight:800;font-size:1.2rem;display:grid;place-items:center;position:relative;overflow:hidden;flex-shrink:0}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:13px;height:13px;background:#fff;clip-path:polygon(100% 0, 0 0, 100% 100%)}
+.brand-copy{display:grid;gap:1px}
+.brand-name{font-weight:800;font-size:.95rem;line-height:1}
+.brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.spacer{flex:1}
+.btn-sm{min-height:32px;padding:0 12px;border-radius:8px;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(0,0,0,.12);background:transparent;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+
+.hero{max-width:980px;margin:18px auto 12px;padding:0 14px}
+.hero-card{background:linear-gradient(135deg,#FFD3DE 0%,#A8D8F0 50%,#FFE0A8 100%);border-radius:24px;padding:24px;box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden}
+.hero-card::before,.hero-card::after{content:"";position:absolute;border-radius:50%;opacity:.4}
+.hero-card::before{width:90px;height:90px;background:#fff;top:-20px;right:-20px}
+.hero-card::after{width:60px;height:60px;background:#fff;bottom:-15px;left:30px}
+.hero-card h1{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.5rem);font-weight:700;color:#fff;text-shadow:2px 2px 0 rgba(45,49,66,.25);line-height:1.1;position:relative;z-index:1}
+.hero-card .sub{font-size:.9rem;color:#fff;font-weight:700;margin-top:6px;letter-spacing:.04em;position:relative;z-index:1}
+.hero-card .tags{margin-top:12px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.hero-card .tag{background:rgba(255,255,255,.85);color:var(--ink);padding:4px 12px;border-radius:99px;font-size:.72rem;font-weight:800;letter-spacing:.04em}
+
+.progress{max-width:980px;margin:0 auto 18px;padding:0 14px}
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.dot{width:14px;height:14px;border-radius:50%;background:#fbe7c6;border:2px solid #f0d29a;transition:.3s;cursor:pointer}
+.dot.lit{background:var(--accent3);border-color:#e89d2c;box-shadow:0 0 0 3px rgba(255,184,76,.25);transform:scale(1.1)}
+
+.section{max-width:980px;margin:0 auto 28px;padding:0 14px}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.section-head .n{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--display);font-weight:700;font-size:1.1rem;display:grid;place-items:center;flex-shrink:0;box-shadow:0 3px 8px rgba(255,143,177,.4)}
+.section-head h2{font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--ink)}
+.section-sub{font-size:.78rem;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-left:50px;margin-bottom:10px}
+
+.card{background:var(--surface);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border:1px solid #f3e3c4;margin-bottom:10px}
+h3{font-family:var(--display);font-size:1.05rem;font-weight:700;margin-bottom:10px}
+p{margin-bottom:8px}
+strong{font-weight:800}
+.verb{background:linear-gradient(transparent 60%,#FFE0A8 60%);font-weight:800;padding:0 2px}
+
+.story p{font-size:1rem;line-height:1.7;margin-bottom:6px}
+.story .speak-line{cursor:pointer;border-radius:8px;padding:4px 8px;transition:.15s;display:inline-block}
+.story .speak-line:hover{background:#fff3df}
+
+.scene{aspect-ratio:16/9;width:100%;background:linear-gradient(135deg,#A8D8F0,#FFE0A8);border-radius:14px;margin:10px 0;display:grid;place-items:center;position:relative;overflow:hidden;border:2px solid rgba(255,255,255,.6)}
+.scene svg{width:80%;height:80%}
+.scene .scene-label{position:absolute;bottom:8px;left:12px;font-family:var(--mono);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(45,49,66,.55);font-weight:800;background:rgba(255,255,255,.7);padding:3px 8px;border-radius:6px}
+
+.audio-row{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#FFE9D6,#FFF3DF);border-radius:14px;padding:12px 16px;margin:10px 0;border-left:5px solid var(--accent3)}
+.audio-row .play-btn{width:44px;height:44px;border-radius:50%;background:var(--accent3);color:#fff;border:none;font-size:1.3rem;cursor:pointer;display:grid;place-items:center;flex-shrink:0;box-shadow:0 3px 8px rgba(255,184,76,.5)}
+.audio-row .play-btn:hover{transform:scale(1.08)}
+.audio-row .label{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.audio-row .text{flex:1;font-weight:700;font-size:.95rem}
+
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.vocab-card{background:#fff;border:2px solid #f3e3c4;border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;transition:.15s;font-weight:700;font-size:.95rem;position:relative}
+.vocab-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,143,177,.2)}
+.vocab-card .emoji{font-size:2rem;display:block;margin-bottom:4px}
+.vocab-card.played{background:#e8f5ff;border-color:var(--accent2)}
+
+.number-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0}
+@media(max-width:540px){.number-grid{grid-template-columns:repeat(3,1fr)}}
+.num-card{aspect-ratio:1;background:#fff;border:3px solid var(--accent3);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.15s;position:relative}
+.num-card:hover{transform:scale(1.06);box-shadow:0 6px 16px rgba(255,184,76,.4)}
+.num-card .digit{font-family:var(--display);font-size:2.2rem;font-weight:700;color:var(--accent2);line-height:1}
+.num-card .word{font-size:.7rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.num-card .emoji{font-size:1.1rem;margin-top:2px}
+.num-card.shake{animation:shake .35s}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+
+.choice-row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.choice{background:#fff;border:2px solid #f3e3c4;border-radius:14px;padding:10px 18px;cursor:pointer;font-weight:700;transition:.15s}
+.choice:hover{border-color:var(--accent);transform:translateY(-1px)}
+.choice.right{background:#e6f7e9;border-color:var(--ok);color:#2e7d32}
+.choice.wrong{background:#fdecec;border-color:var(--miss);color:#c62828;animation:shake .35s}
+
+.q-block{background:#fff3df;border-radius:14px;padding:14px 16px;margin:10px 0}
+.q-block .q-text{font-weight:700;margin-bottom:8px;font-size:.95rem}
+
+.tf-row{display:flex;align-items:center;gap:8px;padding:8px;background:#fff;border-radius:10px;margin-bottom:6px}
+.tf-row .tf-text{flex:1;font-size:.92rem;font-weight:600}
+.tf-btn{padding:6px 14px;border-radius:8px;border:2px solid #f3e3c4;background:#fff;cursor:pointer;font-weight:800;font-size:.8rem;transition:.15s}
+.tf-btn:hover{border-color:var(--accent2)}
+.tf-btn.yes-on{background:#e6f7e9;border-color:var(--ok);color:#2e7d32}
+.tf-btn.no-on{background:#fdecec;border-color:var(--miss);color:#c62828}
+
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+@media(max-width:540px){.match-cols{grid-template-columns:1fr}}
+.match-item{background:#fff;border:2px solid #f3e3c4;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;font-size:.92rem;transition:.15s;text-align:center}
+.match-item:hover{border-color:var(--accent)}
+.match-item.selected{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.03)}
+.match-item.matched{background:#e6f7e9;border-color:var(--ok);color:#2e7d32;pointer-events:none;opacity:.7}
+
+.verb-table{display:grid;grid-template-columns:1fr 50px 1fr;gap:8px;margin:10px 0;background:#fff3df;padding:12px;border-radius:14px}
+.verb-cell{background:#fff;border:2px solid #f3e3c4;border-radius:10px;padding:8px 12px;font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;text-align:center}
+.verb-cell.present{color:var(--accent2)}
+.verb-cell.past{color:var(--accent);background:#fff3df}
+.verb-arrow{display:grid;place-items:center;font-size:1.2rem;color:var(--accent3);font-weight:800}
+
+.say-back{background:linear-gradient(135deg,#FFD3DE,#FFB6CC);border-radius:18px;padding:20px;margin:14px 0;color:var(--ink);box-shadow:0 6px 20px rgba(255,143,177,.3)}
+.say-back .phrase-card{background:#fff;border-radius:14px;padding:16px;margin-bottom:10px;text-align:center}
+.say-back .phrase{font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+.say-back .situation{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.04em;margin-bottom:12px}
+.say-back .ctrl-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.say-back .ctrl{padding:10px 16px;border-radius:50px;border:none;font-family:var(--display);font-weight:700;font-size:.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.say-back .ctrl.listen{background:var(--accent3);color:#fff}
+.say-back .ctrl.record{background:var(--accent);color:#fff}
+.say-back .ctrl.record.recording{background:#ef5350;animation:pulse 1s infinite}
+.say-back .ctrl.play-mine{background:var(--accent2);color:#fff}
+.say-back .ctrl.next{background:var(--mint);color:#fff}
+.say-back .ctrl:disabled{opacity:.4;cursor:not-allowed}
+.say-back .ctrl:not(:disabled):hover{transform:translateY(-2px)}
+.say-back .progress-bar{height:6px;background:rgba(255,255,255,.5);border-radius:3px;margin-top:14px;overflow:hidden}
+.say-back .progress-bar > div{height:100%;background:#fff;width:0%;transition:.4s}
+.say-back .phrase-counter{text-align:center;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;font-weight:800;color:#fff;margin-top:8px}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,83,80,.5)}50%{box-shadow:0 0 0 12px rgba(239,83,80,0)}}
+
+.order-list{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.order-item{background:#fff;border:2px solid #f3e3c4;border-radius:10px;padding:10px 14px;font-weight:700;cursor:move;display:flex;align-items:center;gap:10px}
+.order-item .ord{width:30px;height:30px;border-radius:50%;background:var(--accent3);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.85rem}
+
+.pedestal{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;align-items:end;margin:14px 0}
+.pod{background:linear-gradient(180deg,#FFE0A8,#FFB84C);border-radius:10px 10px 0 0;padding:10px;text-align:center;font-family:var(--display);font-weight:700;cursor:pointer;border:2px solid transparent;transition:.15s}
+.pod.p1{height:130px;background:linear-gradient(180deg,#FFD700,#FFA500)}
+.pod.p2{height:100px;background:linear-gradient(180deg,#D3D3D3,#A8A8A8)}
+.pod.p3{height:80px;background:linear-gradient(180deg,#CD7F32,#A0522D)}
+.pod .place{font-size:.9rem;color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.2)}
+.pod .name-slot{background:#fff;border-radius:8px;padding:6px;margin-top:6px;min-height:32px;font-size:.85rem;color:var(--ink);display:grid;place-items:center}
+.pod.matched{border-color:var(--ok);box-shadow:0 0 0 3px rgba(76,175,80,.3)}
+
+.kid-bank{background:#fff3df;border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.kid-bank-word{background:#fff;border:2px solid var(--accent3);color:var(--ink);padding:6px 14px;border-radius:50px;font-weight:800;cursor:pointer;transition:.15s;font-size:.9rem}
+.kid-bank-word:hover{transform:translateY(-2px);box-shadow:0 3px 8px rgba(255,184,76,.3)}
+.kid-bank-word.used{opacity:.25;pointer-events:none}
+
+.gap-line{font-size:1rem;line-height:2.2;margin:6px 0}
+.gap{display:inline-block;background:#fff;border:2px dashed var(--accent3);min-width:80px;padding:3px 12px;border-radius:8px;font-weight:800;color:var(--muted);text-align:center;cursor:pointer}
+.gap:hover{border-color:var(--accent)}
+.gap.filled{background:#e6f7e9;border-style:solid;border-color:var(--ok);color:#2e7d32}
+.gap.wrong{background:#fdecec;border-style:solid;border-color:var(--miss);color:#c62828;animation:shake .35s}
+
+.reward{background:linear-gradient(135deg,#FFE0A8,#FFB6CC,#A8D8F0);border-radius:18px;padding:24px;text-align:center;color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.15)}
+.reward h2{font-family:var(--display);font-size:2rem;font-weight:700;margin-bottom:8px;color:#fff}
+.reward .stars{font-size:2.5rem;margin:10px 0}
+.reward .word-of-day{display:inline-block;background:rgba(255,255,255,.85);color:var(--ink);padding:8px 20px;border-radius:99px;font-family:var(--display);font-weight:700;font-size:1.1rem;margin-top:10px;text-shadow:none}
+
+footer{max-width:980px;margin:40px auto 24px;padding:0 14px;text-align:center;color:var(--muted);font-size:.78rem;font-family:var(--mono);letter-spacing:.06em}
+.tts-hint{background:#fff3df;border-left:4px solid var(--accent3);padding:8px 12px;border-radius:0 10px 10px 0;font-size:.78rem;color:var(--muted);margin:10px 0}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="https://newgeneration-english.ru/">
+    <span class="brand-mark">N</span>
+    <span class="brand-copy">
+      <span class="brand-name">NG ENGLISH</span>
+      <span class="brand-sub">LinguaBoost Lab · Level 0</span>
+    </span>
+  </a>
+  <span class="spacer"></span>
+  <a class="btn-sm" href="../../index.html">All Lessons</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-card">
+    <h1>Julia Goes to Bodrum 🌴</h1>
+    <p class="sub">Hello, Julia! Today we go on holiday!</p>
+    <div class="tags">
+      <span class="tag">Numbers 1–10</span>
+      <span class="tag">Present + Past</span>
+      <span class="tag">🎤 Hotel phrases</span>
+    </div>
+  </div>
+</section>
+
+<div class="progress">
+  <div class="dots" id="dots"></div>
+</div>
+
+<!-- BLOCK 1 · WARM-UP -->
+<section class="section" id="block-1">
+  <div class="section-head"><div class="n">1</div><h2>Hello, Julia! 👋</h2></div>
+  <div class="section-sub">Warm-up · click and listen</div>
+  <div class="card">
+    <div class="audio-row">
+      <button class="play-btn" data-say="Hello! I'm Julia. I'm going on holiday!" aria-label="Play">▶</button>
+      <div><div class="label">Julia says:</div><div class="text">Hello! I'm Julia. I'm going on holiday!</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:.92rem"><strong>Tap to ask Julia a question:</strong></p>
+    <div class="choice-row">
+      <button class="choice" data-say="To Turkey!">Where? 🌍</button>
+      <button class="choice" data-say="Today!">When? 📅</button>
+      <button class="choice" data-say="With my family!">With who? 👨‍👩‍👧‍👦</button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 2 · STORY PART 1 -->
+<section class="section" id="block-2">
+  <div class="section-head"><div class="n">2</div><h2>Julia wakes up ☀️</h2></div>
+  <div class="section-sub">Story · Present Simple · tap any line to hear</div>
+  <div class="card story">
+    <div class="scene">
+      <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="80" width="80" height="40" fill="#fff" stroke="#FF8FB1" stroke-width="2" rx="4"/>
+        <circle cx="50" cy="65" r="12" fill="#FFD9A8"/>
+        <path d="M40 65 Q50 80 60 65" fill="none" stroke="#2D3142" stroke-width="2"/>
+        <circle cx="160" cy="30" r="14" fill="#FFB84C"/>
+        <path d="M150 30 L130 30 M170 30 L190 30 M160 20 L160 5 M160 40 L160 55" stroke="#FFB84C" stroke-width="2"/>
+        <rect x="100" y="60" width="50" height="60" fill="#A8D8F0" stroke="#5BA9D8" stroke-width="2" rx="4"/>
+        <rect x="110" y="70" width="30" height="40" fill="#fff" stroke="#5BA9D8" stroke-width="1"/>
+      </svg>
+      <div class="scene-label">Block 2 · Julia wakes up</div>
+    </div>
+    <p><span class="speak-line" data-say="Julia wakes up. It is summer.">Julia <span class="verb">wakes</span> up. It is summer.</span></p>
+    <p><span class="speak-line" data-say="Mum comes in. She smiles.">Mum <span class="verb">comes</span> in. She <span class="verb">smiles</span>.</span></p>
+    <p><span class="speak-line" data-say="Julia, we go to Turkey today!">«Julia, we <span class="verb">go</span> to Turkey today!»</span></p>
+    <p><span class="speak-line" data-say="Julia runs to the kitchen.">Julia <span class="verb">runs</span> to the kitchen.</span></p>
+    <p><span class="speak-line" data-say="Dad drinks coffee. John eats breakfast.">Dad <span class="verb">drinks</span> coffee. John <span class="verb">eats</span> breakfast.</span></p>
+    <p><span class="speak-line" data-say="Where do we go? John asks. To Turkey! Dad says.">«Where do we go?» John <span class="verb">asks</span>. «To Turkey!» Dad <span class="verb">says</span>.</span></p>
+    <div class="tts-hint">💡 Tap any line to hear it · tap yellow word to learn the verb</div>
+  </div>
+</section>
+
+<!-- BLOCK 3 · VOCABULARY -->
+<section class="section" id="block-3">
+  <div class="section-head"><div class="n">3</div><h2>Holiday words 🧳</h2></div>
+  <div class="section-sub">Tap each card to hear the word</div>
+  <div class="card">
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </div>
+</section>
+
+<!-- BLOCK 4 · CARDINAL NUMBERS -->
+<section class="section" id="block-4">
+  <div class="section-head"><div class="n">4</div><h2>Numbers 1 – 10 🔢</h2></div>
+  <div class="section-sub">Tap each number to hear it</div>
+  <div class="card">
+    <div class="number-grid" id="num-grid"></div>
+    <div class="q-block" style="margin-top:14px">
+      <div class="q-text">🎧 Listen — which number? Tap it!</div>
+      <div class="audio-row">
+        <button class="play-btn" id="num-quiz-play">▶</button>
+        <div><div class="label">Tap above to hear</div><div class="text" id="num-quiz-text">Press play and listen…</div></div>
+      </div>
+      <p id="num-quiz-feedback" style="text-align:center;font-weight:800;margin-top:8px;color:var(--muted)">Tap a number card above after listening!</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 5 · HOTEL · LISTENING + SAY IT BACK -->
+<section class="section" id="block-5">
+  <div class="section-head"><div class="n">5</div><h2>🏨 At the hotel · 🎤 SAY IT BACK</h2></div>
+  <div class="section-sub">Listen → record your voice → next phrase</div>
+  <div class="card">
+    <h3>Part A · Listen to the family</h3>
+    <div class="scene">
+      <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="20" width="180" height="80" fill="#FFE9D6" stroke="#FFB84C" stroke-width="2" rx="6"/>
+        <rect x="80" y="50" width="40" height="50" fill="#5BA9D8" rx="2"/>
+        <text x="100" y="80" text-anchor="middle" font-family="Fredoka" font-size="18" fill="#fff" font-weight="700">25</text>
+        <circle cx="40" cy="50" r="10" fill="#FFD9A8"/>
+        <circle cx="160" cy="50" r="10" fill="#FFD9A8"/>
+        <text x="100" y="35" text-anchor="middle" font-family="Fredoka" font-size="10" fill="#2D3142" font-weight="700">SUN HOTEL</text>
+      </svg>
+      <div class="scene-label">Hotel reception</div>
+    </div>
+    <div class="audio-row">
+      <button class="play-btn" data-say="We are at the hotel! Our room is number twenty-five. Second floor.">▶</button>
+      <div><div class="label">Family at the hotel:</div><div class="text">Room <strong>25</strong>, Floor <strong>2</strong>, Breakfast at <strong>8</strong></div></div>
+    </div>
+    <p style="margin-top:14px"><strong>Write the numbers you heard:</strong></p>
+    <div class="gap-line">
+      Room number is <span class="gap" data-answer="25" data-type="num">__</span> ·
+      Floor <span class="gap" data-answer="2" data-type="num">__</span> ·
+      Breakfast at <span class="gap" data-answer="8" data-type="num">__</span>
+    </div>
+  </div>
+  <div class="say-back" id="say-back">
+    <h3 style="font-family:var(--display);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.15);text-align:center;margin-bottom:10px">🎤 PART B · SAY IT BACK</h3>
+    <p style="text-align:center;font-size:.85rem;color:#fff;font-weight:700;margin-bottom:14px">Learn 8 hotel phrases. Listen → record yourself → next!</p>
+    <div class="phrase-card">
+      <div class="situation" id="sb-situation">Get ready…</div>
+      <div class="phrase" id="sb-phrase">Press start</div>
+      <div class="ctrl-row">
+        <button class="ctrl listen" id="sb-listen">🔊 Listen</button>
+        <button class="ctrl record" id="sb-record">🎤 My turn</button>
+        <button class="ctrl play-mine" id="sb-play-mine" disabled>▶ Hear me</button>
+        <button class="ctrl next" id="sb-next" disabled>→ Next</button>
+      </div>
+    </div>
+    <div class="progress-bar"><div id="sb-bar"></div></div>
+    <div class="phrase-counter" id="sb-counter">Phrase 1 of 8</div>
+  </div>
+</section>
+
+<!-- BLOCK 6 · STORY PART 2 -->
+<section class="section" id="block-6">
+  <div class="section-head"><div class="n">6</div><h2>The walk on the beach 🏖️</h2></div>
+  <div class="section-sub">Story · Past Simple · yesterday on the beach</div>
+  <div class="card story">
+    <div class="scene">
+      <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="200" height="50" fill="#A8D8F0"/>
+        <rect x="0" y="50" width="200" height="30" fill="#5BA9D8"/>
+        <rect x="0" y="80" width="200" height="20" fill="#FFE0A8"/>
+        <circle cx="170" cy="20" r="12" fill="#FFB84C"/>
+        <path d="M40 80 L40 95 M37 80 L43 80 M30 75 Q40 60 50 75" fill="#FFD9A8" stroke="#2D3142"/>
+        <path d="M60 80 L60 92 M57 80 L63 80" fill="#FFD9A8" stroke="#2D3142"/>
+        <ellipse cx="155" cy="85" rx="6" ry="3" fill="#FFB6CC"/>
+        <text x="100" y="98" text-anchor="middle" font-family="Fredoka" font-size="8" fill="#2D3142" font-weight="700">🌊 BODRUM BEACH</text>
+      </svg>
+      <div class="scene-label">Yesterday · on the beach</div>
+    </div>
+    <p><span class="speak-line" data-say="Yesterday Julia and her family walked on the beach.">Yesterday, Julia and her family <span class="verb">walked</span> on the beach.</span></p>
+    <p><span class="speak-line" data-say="The sun was hot. The sea was blue.">The sun <span class="verb">was</span> hot. The sea <span class="verb">was</span> blue.</span></p>
+    <p><span class="speak-line" data-say="Mum wore a hat. Dad carried a bag.">Mum <span class="verb">wore</span> a hat. Dad <span class="verb">carried</span> a bag.</span></p>
+    <p><span class="speak-line" data-say="They walked by the sea. They saw a small crab.">They <span class="verb">walked</span> by the sea. They <span class="verb">saw</span> a small crab.</span></p>
+    <p><span class="speak-line" data-say="Julia found three seashells. John counted five fish.">Julia <span class="verb">found</span> 3 seashells. John <span class="verb">counted</span> 5 fish.</span></p>
+    <p><span class="speak-line" data-say="They went to the ice cream shop. Julia ate chocolate ice cream.">They <span class="verb">went</span> to the ice cream shop. Julia <span class="verb">ate</span> chocolate ice cream.</span></p>
+    <p><span class="speak-line" data-say="Dad took a photo. They swam in the pool. They were very happy!">Dad <span class="verb">took</span> a photo. They <span class="verb">swam</span> in the pool. They <span class="verb">were</span> very happy!</span></p>
+  </div>
+  <div class="card">
+    <h3>🤔 True or False?</h3>
+    <div id="tf-list"></div>
+  </div>
+</section>
+
+<!-- BLOCK 7 · REGULAR VERBS -->
+<section class="section" id="block-7">
+  <div class="section-head"><div class="n">7</div><h2>Add -ed · Regular Verbs ➕</h2></div>
+  <div class="section-sub">Easy rule: walk → walk + ed = walked</div>
+  <div class="card">
+    <p style="text-align:center;font-size:1.1rem;font-weight:800;color:var(--accent2);margin-bottom:10px">walk + <span style="background:#FFE0A8;padding:2px 8px;border-radius:6px;color:var(--accent)">ED</span> = walked ✨</p>
+    <div class="verb-table" id="reg-verbs"></div>
+    <h3 style="margin-top:14px">Fill the gap:</h3>
+    <p class="gap-line">Yesterday Julia <span class="gap" data-answer="walked" data-type="text">__</span> on the beach.</p>
+    <p class="gap-line">She <span class="gap" data-answer="played" data-type="text">__</span> with John.</p>
+    <p class="gap-line">She <span class="gap" data-answer="smiled" data-type="text">__</span> at Mum.</p>
+    <div class="kid-bank">
+      <span class="kid-bank-word" data-word="walked">walked</span>
+      <span class="kid-bank-word" data-word="played">played</span>
+      <span class="kid-bank-word" data-word="smiled">smiled</span>
+      <span class="kid-bank-word" data-word="laughed">laughed</span>
+      <span class="kid-bank-word" data-word="watched">watched</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 8 · IRREGULAR VERBS -->
+<section class="section" id="block-8">
+  <div class="section-head"><div class="n">8</div><h2>Special verbs · Irregular ✨</h2></div>
+  <div class="section-sub">These don't follow the rule — learn each one!</div>
+  <div class="card">
+    <div class="verb-table" id="irr-verbs"></div>
+    <h3 style="margin-top:14px">Match present → past:</h3>
+    <div class="match-cols" id="irr-match"></div>
+  </div>
+</section>
+
+<!-- BLOCK 9 · ORDINAL NUMBERS -->
+<section class="section" id="block-9">
+  <div class="section-head"><div class="n">9</div><h2>1st · 2nd · 3rd · Ordinal Numbers 🏆</h2></div>
+  <div class="section-sub">First / Second / Third — who wins?</div>
+  <div class="card">
+    <p style="text-align:center;font-weight:800;margin-bottom:8px">🏊 The Swimming Race in the Pool!</p>
+    <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:10px">Drag the names to the pedestal:</p>
+    <div class="kid-bank">
+      <span class="kid-bank-word" data-word="Julia" data-place="1">Julia</span>
+      <span class="kid-bank-word" data-word="John" data-place="2">John</span>
+      <span class="kid-bank-word" data-word="Dad" data-place="3">Dad</span>
+    </div>
+    <div class="pedestal">
+      <div class="pod p2" data-place="2"><div class="place">2nd</div><div class="name-slot">drop name</div></div>
+      <div class="pod p1" data-place="1"><div class="place">🥇 1st</div><div class="name-slot">drop name</div></div>
+      <div class="pod p3" data-place="3"><div class="place">3rd</div><div class="name-slot">drop name</div></div>
+    </div>
+    <h3 style="margin-top:14px">Compare:</h3>
+    <div class="verb-table" id="ord-table"></div>
+    <h3 style="margin-top:14px">Days of holiday:</h3>
+    <p class="gap-line">Monday is the <span class="gap" data-answer="first" data-type="text">__</span> day.</p>
+    <p class="gap-line">Tuesday is the <span class="gap" data-answer="second" data-type="text">__</span> day.</p>
+    <p class="gap-line">My room is on the <span class="gap" data-answer="second" data-type="text">__</span> floor.</p>
+    <div class="kid-bank">
+      <span class="kid-bank-word" data-word="first">first</span>
+      <span class="kid-bank-word" data-word="second">second</span>
+      <span class="kid-bank-word" data-word="third">third</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 10 · LISTENING 2 -->
+<section class="section" id="block-10">
+  <div class="section-head"><div class="n">10</div><h2>Julia tells her day 🎧</h2></div>
+  <div class="section-sub">Listening · Past tense · answer the questions</div>
+  <div class="card">
+    <div class="audio-row">
+      <button class="play-btn" data-say="Yesterday was the second day of holiday. We walked on the beach. I found three seashells. John saw a crab. Dad took a photo. We ate ice cream. I had chocolate. Then we swam in the pool. It was fun!">▶</button>
+      <div><div class="label">Julia tells her story · Listen!</div><div class="text">Tap play to hear (slow)</div></div>
+    </div>
+    <h3 style="margin-top:14px">Answer the questions:</h3>
+    <div class="q-block">
+      <div class="q-text">1. Which day of holiday was it?</div>
+      <div class="choice-row">
+        <button class="choice" data-correct="false">1st</button>
+        <button class="choice" data-correct="true">2nd</button>
+        <button class="choice" data-correct="false">3rd</button>
+      </div>
+    </div>
+    <div class="q-block">
+      <div class="q-text">2. How many seashells did Julia find?</div>
+      <div class="choice-row">
+        <button class="choice" data-correct="false">2</button>
+        <button class="choice" data-correct="true">3</button>
+        <button class="choice" data-correct="false">5</button>
+      </div>
+    </div>
+    <div class="q-block">
+      <div class="q-text">3. What ice cream did Julia eat?</div>
+      <div class="choice-row">
+        <button class="choice" data-correct="true">Chocolate 🍫</button>
+        <button class="choice" data-correct="false">Strawberry 🍓</button>
+        <button class="choice" data-correct="false">Lemon 🍋</button>
+      </div>
+    </div>
+    <div class="q-block">
+      <div class="q-text">4. Did Julia swim?</div>
+      <div class="choice-row">
+        <button class="choice" data-correct="true">Yes, she did 👍</button>
+        <button class="choice" data-correct="false">No, she didn't 👎</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 11 · SPEAKING -->
+<section class="section" id="block-11">
+  <div class="section-head"><div class="n">11</div><h2>Tell Julia about YOU 💬</h2></div>
+  <div class="section-sub">Speaking · use present + past + numbers</div>
+  <div class="card">
+    <p style="text-align:center;font-weight:700;margin-bottom:10px">🎤 Tap each question, then say your answer!</p>
+    <div id="speak-questions"></div>
+  </div>
+</section>
+
+<!-- BLOCK 12 · MEMORY CHECK -->
+<section class="section" id="block-12">
+  <div class="section-head"><div class="n">12</div><h2>Memory check 🎯</h2></div>
+  <div class="section-sub">Quick quiz · then reward!</div>
+  <div class="card">
+    <div id="memory-quiz"></div>
+    <div class="reward" id="reward" style="display:none">
+      <div class="stars">⭐ ⭐ ⭐</div>
+      <h2>Great job, Julia!</h2>
+      <p style="color:#fff;font-weight:700">You learned a lot today!</p>
+      <p style="color:#fff;font-weight:700;margin-top:8px">Word of the day:</p>
+      <div class="word-of-day">HOLIDAY 🌴</div>
+      <p style="color:#fff;font-weight:700;margin-top:14px;font-size:.85rem">Goodbye, Bodrum! See you next lesson! 👋</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Lesson by Maria Burtseva · NG English · LinguaBoost Lab · Level 0 · Julia · Bodrum
+</footer>
+
+<script>
+// ============================
+// TTS — Web Speech API
+// ============================
+const synth = window.speechSynthesis;
+let voice = null;
+function pickVoice(){
+  const voices = synth.getVoices();
+  voice = voices.find(v => v.lang === 'en-GB' && v.name.toLowerCase().includes('female')) ||
+          voices.find(v => v.lang === 'en-GB') ||
+          voices.find(v => v.lang.startsWith('en-US') && v.name.toLowerCase().includes('female')) ||
+          voices.find(v => v.lang.startsWith('en')) || voices[0];
+}
+if(synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+function say(text, rate = 0.85){
+  if(!synth) return;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = voice; u.rate = rate; u.pitch = 1.1;
+  synth.speak(u);
+}
+
+// Tap any [data-say] element
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-say]');
+  if(t){ say(t.dataset.say); }
+});
+
+// ============================
+// Progress dots
+// ============================
+const dotsEl = document.getElementById('dots');
+for(let i=1;i<=12;i++){
+  const d = document.createElement('div');
+  d.className = 'dot'; d.dataset.block = i;
+  d.onclick = () => document.getElementById('block-'+i).scrollIntoView({behavior:'smooth',block:'start'});
+  dotsEl.appendChild(d);
+}
+const blocks = [...document.querySelectorAll('.section[id^="block-"]')];
+function updateDots(){
+  const top = window.scrollY + 200;
+  blocks.forEach((b,i)=>{
+    const r = b.getBoundingClientRect();
+    const inView = b.offsetTop <= top;
+    dotsEl.children[i].classList.toggle('lit', inView);
+  });
+}
+window.addEventListener('scroll', updateDots);
+updateDots();
+
+// ============================
+// BLOCK 3 · Vocabulary
+// ============================
+const vocab = [
+  {w:'suitcase', e:'🧳'},{w:'ticket', e:'🎫'},{w:'airport', e:'✈️'},{w:'hotel', e:'🏨'},
+  {w:'pool', e:'🏊'},{w:'beach', e:'🏖️'},{w:'sea', e:'🌊'},{w:'ice cream', e:'🍦'}
+];
+const vgrid = document.getElementById('vocab-grid');
+vocab.forEach(v => {
+  const c = document.createElement('div');
+  c.className = 'vocab-card';
+  c.innerHTML = `<span class="emoji">${v.e}</span>${v.w}`;
+  c.onclick = () => { say(v.w); c.classList.add('played'); };
+  vgrid.appendChild(c);
+});
+
+// ============================
+// BLOCK 4 · Numbers grid + quiz
+// ============================
+const nums = [
+  {n:1,w:'one',e:'🍦'},{n:2,w:'two',e:'🐟'},{n:3,w:'three',e:'⛵'},{n:4,w:'four',e:'👨‍👩‍👧‍👦'},{n:5,w:'five',e:'🐚'},
+  {n:6,w:'six',e:'⭐'},{n:7,w:'seven',e:'🐦'},{n:8,w:'eight',e:'🌴'},{n:9,w:'nine',e:'🤝'},{n:10,w:'ten',e:'👣'}
+];
+const ngrid = document.getElementById('num-grid');
+nums.forEach(n => {
+  const c = document.createElement('div');
+  c.className = 'num-card';
+  c.dataset.num = n.n;
+  c.innerHTML = `<div class="digit">${n.n}</div><div class="word">${n.w}</div><div class="emoji">${n.e}</div>`;
+  c.onclick = () => {
+    say(n.w);
+    if(numQuizActive && n.n === numQuizTarget){
+      c.style.background = '#e6f7e9'; c.style.borderColor = 'var(--ok)';
+      document.getElementById('num-quiz-feedback').textContent = `✨ Yes! It was "${n.w}"!`;
+      document.getElementById('num-quiz-feedback').style.color = 'var(--ok)';
+      numQuizActive = false;
+      setTimeout(()=>{ c.style.background=''; c.style.borderColor='';}, 1500);
+    } else if(numQuizActive){
+      c.classList.add('shake');
+      setTimeout(()=>c.classList.remove('shake'), 400);
+    }
+  };
+  ngrid.appendChild(c);
+});
+let numQuizActive = false, numQuizTarget = null;
+document.getElementById('num-quiz-play').onclick = () => {
+  const pick = nums[Math.floor(Math.random()*nums.length)];
+  numQuizTarget = pick.n; numQuizActive = true;
+  document.getElementById('num-quiz-text').textContent = `🎧 Listen and tap the number!`;
+  document.getElementById('num-quiz-feedback').textContent = 'Listening… tap the right card!';
+  document.getElementById('num-quiz-feedback').style.color = 'var(--accent2)';
+  setTimeout(()=>say(pick.w), 200);
+};
+
+// ============================
+// BLOCK 5 · SAY-IT-BACK with MediaRecorder
+// ============================
+const sbPhrases = [
+  {p:'Hello!', s:'You walk into the hotel'},
+  {p:'Good morning!', s:'You meet someone in the lift'},
+  {p:'Room twenty-five, please.', s:'At the reception desk'},
+  {p:'Can I have the key, please?', s:'Asking for your room key'},
+  {p:'Where is the pool?', s:'Looking for the swimming pool'},
+  {p:'Where is breakfast?', s:'Hungry in the morning'},
+  {p:'Thank you!', s:'After someone helps you'},
+  {p:'Goodnight!', s:'Before going to bed'}
+];
+let sbIdx = 0, sbRecorder = null, sbChunks = [], sbBlob = null, sbStream = null;
+const sbPhraseEl = document.getElementById('sb-phrase');
+const sbSitEl = document.getElementById('sb-situation');
+const sbCounter = document.getElementById('sb-counter');
+const sbBar = document.getElementById('sb-bar');
+const sbListen = document.getElementById('sb-listen');
+const sbRecord = document.getElementById('sb-record');
+const sbPlay = document.getElementById('sb-play-mine');
+const sbNext = document.getElementById('sb-next');
+
+function loadSbPhrase(){
+  const cur = sbPhrases[sbIdx];
+  sbPhraseEl.textContent = cur.p;
+  sbSitEl.textContent = cur.s.toUpperCase();
+  sbCounter.textContent = `Phrase ${sbIdx+1} of ${sbPhrases.length}`;
+  sbBar.style.width = ((sbIdx)/sbPhrases.length*100)+'%';
+  sbPlay.disabled = true; sbNext.disabled = true;
+  sbBlob = null;
+}
+loadSbPhrase();
+sbListen.onclick = () => say(sbPhrases[sbIdx].p, 0.7);
+sbRecord.onclick = async () => {
+  if(sbRecorder && sbRecorder.state === 'recording'){
+    sbRecorder.stop();
+    return;
+  }
+  try{
+    sbStream = await navigator.mediaDevices.getUserMedia({audio:true});
+    sbChunks = [];
+    sbRecorder = new MediaRecorder(sbStream);
+    sbRecorder.ondataavailable = e => sbChunks.push(e.data);
+    sbRecorder.onstop = () => {
+      sbBlob = new Blob(sbChunks, {type:'audio/webm'});
+      sbStream.getTracks().forEach(t => t.stop());
+      sbPlay.disabled = false; sbNext.disabled = false;
+      sbRecord.classList.remove('recording');
+      sbRecord.textContent = '🎤 Try again';
+    };
+    sbRecorder.start();
+    sbRecord.classList.add('recording');
+    sbRecord.textContent = '⏹ Stop';
+  } catch(err){
+    alert('Microphone is needed for this exercise. Please allow it!');
+  }
+};
+sbPlay.onclick = () => {
+  if(!sbBlob) return;
+  const url = URL.createObjectURL(sbBlob);
+  const a = new Audio(url); a.play();
+};
+sbNext.onclick = () => {
+  sbIdx++;
+  if(sbIdx >= sbPhrases.length){
+    sbPhraseEl.textContent = '🎉 All done!';
+    sbSitEl.textContent = 'YOU LEARNED 8 HOTEL PHRASES!';
+    sbCounter.textContent = '✨ Great speaking, Julia!';
+    sbBar.style.width = '100%';
+    sbListen.disabled = true; sbRecord.disabled = true; sbPlay.disabled = true; sbNext.disabled = true;
+    return;
+  }
+  sbRecord.textContent = '🎤 My turn';
+  loadSbPhrase();
+};
+
+// ============================
+// BLOCK 5 · Number gap fills
+// ============================
+function setupGaps(){
+  document.querySelectorAll('.gap').forEach(g => {
+    g.onclick = () => {
+      const ans = g.dataset.answer;
+      if(g.dataset.type === 'num'){
+        const val = prompt('Type the number:');
+        if(val === null) return;
+        if(val.trim() === ans){ g.textContent = val; g.classList.add('filled'); g.classList.remove('wrong'); }
+        else { g.classList.add('wrong'); setTimeout(()=>g.classList.remove('wrong'), 500); }
+      }
+      // text gaps handled by word bank
+    };
+  });
+}
+setupGaps();
+
+// Word bank drop
+let bankSelectedGap = null;
+document.querySelectorAll('.kid-bank-word').forEach(w => {
+  w.onclick = () => {
+    const word = w.dataset.word;
+    say(word);
+    // For ordinal pedestal:
+    if(w.dataset.place){
+      const place = w.dataset.place;
+      const pod = document.querySelector(`.pod[data-place="${place}"] .name-slot`);
+      if(pod){
+        pod.textContent = word;
+        pod.parentElement.classList.add('matched');
+        w.classList.add('used');
+      }
+      return;
+    }
+    // For text gaps: find next empty gap with matching answer
+    const gap = [...document.querySelectorAll('.gap[data-type="text"]:not(.filled)')]
+      .find(g => g.dataset.answer === word);
+    if(gap){
+      gap.textContent = word; gap.classList.add('filled');
+      w.classList.add('used');
+    } else {
+      // wrong word — shake
+      const anyGap = document.querySelector('.gap[data-type="text"]:not(.filled)');
+      if(anyGap){ anyGap.classList.add('wrong'); setTimeout(()=>anyGap.classList.remove('wrong'), 500); }
+    }
+  };
+});
+
+// ============================
+// BLOCK 6 · True/False
+// ============================
+const tfData = [
+  {t:'The sun was hot', a:true},
+  {t:'Julia ate strawberry ice cream', a:false},
+  {t:'They saw a crab', a:true},
+  {t:'Julia found 5 seashells', a:false},
+  {t:'They swam in the pool', a:true}
+];
+const tfList = document.getElementById('tf-list');
+tfData.forEach(item => {
+  const row = document.createElement('div');
+  row.className = 'tf-row';
+  row.innerHTML = `<div class="tf-text">${item.t}</div>
+    <button class="tf-btn" data-ans="true">YES ✓</button>
+    <button class="tf-btn" data-ans="false">NO ✗</button>`;
+  row.querySelectorAll('.tf-btn').forEach(b => {
+    b.onclick = () => {
+      const correct = b.dataset.ans === String(item.a);
+      row.querySelectorAll('.tf-btn').forEach(x => x.disabled = true);
+      b.classList.add(correct ? 'yes-on' : 'no-on');
+      if(!correct){ b.style.animation = 'shake .35s'; }
+    };
+  });
+  tfList.appendChild(row);
+});
+
+// ============================
+// BLOCK 7 · Regular verbs table
+// ============================
+const regVerbs = [
+  ['walk','walked'],['watch','watched'],['want','wanted'],['play','played'],['smile','smiled'],['laugh','laughed']
+];
+const regTab = document.getElementById('reg-verbs');
+regVerbs.forEach(([p,past]) => {
+  const row = document.createElement('div'); row.style.display = 'contents';
+  row.innerHTML = `<div class="verb-cell present" onclick="say('${p}')">${p}</div>
+    <div class="verb-arrow">→</div>
+    <div class="verb-cell past" onclick="say('${past}')">${past}</div>`;
+  regTab.appendChild(row);
+});
+
+// ============================
+// BLOCK 8 · Irregular verbs
+// ============================
+const irrVerbs = [
+  ['go','went'],['see','saw'],['find','found'],['take','took'],['eat','ate'],['swim','swam']
+];
+const irrTab = document.getElementById('irr-verbs');
+irrVerbs.forEach(([p,past]) => {
+  const row = document.createElement('div'); row.style.display = 'contents';
+  row.innerHTML = `<div class="verb-cell present" onclick="say('${p}')">${p}</div>
+    <div class="verb-arrow">→</div>
+    <div class="verb-cell past" onclick="say('${past}')">${past}</div>`;
+  irrTab.appendChild(row);
+});
+
+// Match game
+const irrMatch = document.getElementById('irr-match');
+const presents = irrVerbs.map(v => v[0]);
+const pasts = irrVerbs.map(v => v[1]).sort(() => Math.random() - 0.5);
+presents.forEach(w => {
+  const el = document.createElement('div'); el.className = 'match-item'; el.textContent = w; el.dataset.match = w; el.dataset.side = 'p';
+  el.onclick = () => handleMatch(el, w);
+  irrMatch.appendChild(el);
+});
+pasts.forEach(w => {
+  const el = document.createElement('div'); el.className = 'match-item'; el.textContent = w; el.dataset.match = irrVerbs.find(v=>v[1]===w)[0]; el.dataset.side = 's';
+  el.onclick = () => handleMatch(el, w);
+  irrMatch.appendChild(el);
+});
+let mSel = null;
+function handleMatch(el, w){
+  say(w);
+  if(el.classList.contains('matched')) return;
+  if(!mSel){ mSel = el; el.classList.add('selected'); return; }
+  if(mSel === el){ el.classList.remove('selected'); mSel = null; return; }
+  if(mSel.dataset.match === el.dataset.match && mSel.dataset.side !== el.dataset.side){
+    mSel.classList.remove('selected'); mSel.classList.add('matched'); el.classList.add('matched');
+    mSel = null;
+  } else {
+    el.classList.add('wrong');
+    setTimeout(()=>{ el.classList.remove('wrong'); mSel.classList.remove('selected'); mSel = null; }, 500);
+  }
+}
+
+// ============================
+// BLOCK 9 · Ordinal table
+// ============================
+const ordPairs = [['one','first'],['two','second'],['three','third'],['four','fourth'],['five','fifth']];
+const ordTab = document.getElementById('ord-table');
+ordPairs.forEach(([c,o]) => {
+  const row = document.createElement('div'); row.style.display = 'contents';
+  row.innerHTML = `<div class="verb-cell present" onclick="say('${c}')">${c}</div>
+    <div class="verb-arrow">→</div>
+    <div class="verb-cell past" onclick="say('${o}')">${o}</div>`;
+  ordTab.appendChild(row);
+});
+
+// ============================
+// BLOCK 10 · Multiple choice
+// ============================
+document.querySelectorAll('#block-10 .choice').forEach(c => {
+  c.onclick = () => {
+    say(c.textContent.replace(/[^a-zA-Z0-9 ]/g,''));
+    if(c.dataset.correct === 'true'){
+      c.classList.add('right');
+      c.parentElement.querySelectorAll('.choice').forEach(x => x.disabled = true);
+    } else {
+      c.classList.add('wrong');
+      setTimeout(()=>c.classList.remove('wrong'), 500);
+    }
+  };
+});
+
+// ============================
+// BLOCK 11 · Speaking questions
+// ============================
+const speakQs = [
+  {q:'How old are you?', hint:'I am ___'},
+  {q:'Do you like the beach?', hint:'Yes / No'},
+  {q:'Can you swim?', hint:'Yes / No'},
+  {q:'What is your favourite ice cream?', hint:'Chocolate / Strawberry / Lemon'},
+  {q:'What did you do yesterday?', hint:'I ___ (past tense!)'},
+  {q:'Where did you go last summer?', hint:'I went to ___'}
+];
+const sq = document.getElementById('speak-questions');
+speakQs.forEach((item,i) => {
+  const block = document.createElement('div');
+  block.className = 'q-block';
+  block.innerHTML = `<div class="q-text">${i+1}. ${item.q}</div>
+    <div class="audio-row" style="background:#fff">
+      <button class="play-btn" data-say="${item.q}">▶</button>
+      <div><div class="label">Your answer hint:</div><div class="text">${item.hint}</div></div>
+    </div>`;
+  sq.appendChild(block);
+});
+
+// ============================
+// BLOCK 12 · Memory check
+// ============================
+const memQ = [
+  {q:'How many seashells did Julia find?', opts:['2','3','5'], ans:'3'},
+  {q:'What was the room number?', opts:['15','25','52'], ans:'25'},
+  {q:'Which floor?', opts:['first','second','third'], ans:'second'},
+  {q:'Past of "go" = ?', opts:['goed','went','gone'], ans:'went'},
+  {q:'Past of "eat" = ?', opts:['eated','ate','aten'], ans:'ate'},
+  {q:'Who was 1st in the swim race?', opts:['Julia','John','Dad'], ans:'Julia'}
+];
+const mq = document.getElementById('memory-quiz');
+let mScore = 0;
+memQ.forEach((item,i) => {
+  const block = document.createElement('div');
+  block.className = 'q-block';
+  block.innerHTML = `<div class="q-text">${i+1}. ${item.q}</div>
+    <div class="choice-row">${item.opts.map(o => `<button class="choice" data-ans="${o}">${o}</button>`).join('')}</div>`;
+  block.querySelectorAll('.choice').forEach(c => {
+    c.onclick = () => {
+      say(c.dataset.ans.replace(/[^a-zA-Z0-9 ]/g,''));
+      if(c.dataset.ans === item.ans){
+        c.classList.add('right');
+        block.querySelectorAll('.choice').forEach(x => x.disabled = true);
+        mScore++;
+        if(mScore === memQ.length){
+          document.getElementById('reward').style.display = 'block';
+          setTimeout(()=>say('Great job Julia! You learned a lot today! Goodbye Bodrum!'), 500);
+        }
+      } else {
+        c.classList.add('wrong');
+        setTimeout(()=>c.classList.remove('wrong'), 500);
+      }
+    };
+  });
+  mq.appendChild(block);
+});
+
+</script>
+</body>
+</html>
