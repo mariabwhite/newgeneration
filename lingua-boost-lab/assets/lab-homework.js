@@ -107,7 +107,8 @@
           lesson_path: location.pathname,
           section_id: 'hw-state:' + roomId,
           section_title: title || location.pathname,
-          score: 0, total: items.length, pct: 0,
+          score: 0, total: items.length,
+          // pct — generated column в БД (score/total*100). Не отправляем.
           misses: items
         };
         fetch(SUPABASE_URL + '/rest/v1/lab_submissions', {
@@ -948,7 +949,7 @@
           items: arr,
           score: 0,
           total: arr.length,
-          pct: 0,
+          // pct — generated column, не отправляем
           misses: misses
         })
       });
