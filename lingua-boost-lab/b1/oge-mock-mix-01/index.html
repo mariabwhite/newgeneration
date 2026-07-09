@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>OGE Mock · Mix #1 (Pair Edition) — LinguaBoost Lab</title>
+<meta name="description" content="OGE 2026 full mock variant for Katya & Masha — housework, birthdays, sports, school ecology, gerund/infinitive, used to, word formation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f8fd;--bg-2:#ffffff;--surface:#ffffff;--surface-2:#eef4fb;--card:#ffffff;
+  --line:#dce7f3;--line-2:#b9cee5;--brand:#1d4ed8;--brand-2:#2563eb;--accent:#2563eb;
+  --accent-2:#1e40af;--text:#0b1c33;--muted:#4b5b75;--faint:#7a8aa3;--ok:#16a34a;--miss:#dc2626;
+  --ribbon:#b45309;--champagne:#e2b45a;
+  --display:'Unbounded','Manrope',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',Consolas,monospace;
+  --serif:'Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:var(--body);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
+  background-image:radial-gradient(at 20% 10%,rgba(37,99,235,.07) 0,transparent 55%),radial-gradient(at 80% 80%,rgba(226,180,90,.10) 0,transparent 55%)}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;padding:10px clamp(14px,3vw,24px);
+  background:rgba(244,248,253,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.brand{font-weight:800;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px}
+.brand-mark{width:38px;height:38px;border-radius:9px 0 9px 9px;background:var(--accent);color:#fff;font-family:var(--display);font-weight:800;font-size:1.2rem;display:grid;place-items:center;position:relative;overflow:hidden}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;background:var(--bg);clip-path:polygon(100% 0,0 0,100% 100%)}
+.brand-name{font-family:var(--display);font-weight:800;font-size:.95rem;line-height:1}
+.brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+.spacer{flex:1}
+.pill{padding:5px 11px;border-radius:50px;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--muted);background:#fff}
+.pill.accent{background:rgba(37,99,235,.10);border-color:var(--accent);color:var(--accent-2)}
+.pill.ribbon{background:rgba(180,83,9,.10);border-color:var(--ribbon);color:var(--ribbon)}
+.btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:#fff;color:var(--muted);font:700 11px/1 var(--mono);letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center;text-transform:uppercase;text-decoration:none}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent-2)}
+
+.hero{max-width:1240px;margin:32px auto 12px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.hero-card{position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
+  background:linear-gradient(135deg,#ffffff 0%,#eef4fb 45%,#dee9f6 100%);
+  box-shadow:0 12px 40px rgba(15,40,80,.10);padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px);min-height:420px}
+.hero-bg{position:absolute;inset:0;background:url("./img/hero-cover.png") center/cover no-repeat;opacity:1;z-index:0;filter:saturate(1.15) brightness(1.05)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.42) 55%,rgba(244,248,253,.62) 100%)}
+.section-img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:0 0 14px;box-shadow:0 6px 18px rgba(15,40,80,.10)}
+.hero-deco{position:absolute;font-size:9rem;opacity:.10;pointer-events:none;line-height:1}
+.hero-deco.dl{top:-10px;right:18px}
+.hero-deco.br{bottom:-30px;left:-10px;font-size:7rem}
+.hero-deco.mid{top:30%;right:30%;font-size:5rem;opacity:.06}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-2);display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;position:relative;z-index:2;background:rgba(37,99,235,.10);border:1px solid var(--accent);padding:7px 14px;border-radius:50px}
+h1.hero-title{font-family:var(--display);font-weight:900;letter-spacing:-.02em;line-height:1;font-size:clamp(2rem,4.8vw,3.6rem);max-width:760px;margin-bottom:18px;color:var(--text);position:relative;z-index:2;text-shadow:0 2px 14px rgba(255,255,255,.65)}
+h1.hero-title .grad{color:var(--accent)}
+h1.hero-title .champ{color:var(--champagne)}
+.hero-lead{font-size:clamp(1rem,1.3vw,1.1rem);color:var(--text);max-width:740px;line-height:1.6;margin-bottom:24px;position:relative;z-index:2;text-shadow:0 1px 8px rgba(255,255,255,.7)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:14px;max-width:780px;position:relative;z-index:2}
+.stat{background:#fff;border:1px solid var(--accent);border-radius:12px;padding:12px 14px}
+.stat-k{font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);margin-bottom:5px}
+.stat-v{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--text)}
+
+.dots-wrap{max-width:1240px;margin:14px auto;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.dot{width:11px;height:11px;border-radius:50%;background:#cfdaeb;border:2px solid #b1c3dd;cursor:pointer;transition:.2s}
+.dot.lit{background:var(--accent);border-color:var(--accent-2);transform:scale(1.15);box-shadow:0 0 8px rgba(37,99,235,.35)}
+
+.section{max-width:1240px;margin:0 auto 28px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.section-hdr{display:flex;align-items:center;gap:14px;margin:28px 0 12px;flex-wrap:wrap}
+.section-num{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.16em;background:var(--accent);color:#fff;padding:5px 11px;border-radius:50px}
+.section-num.exam{background:var(--ribbon)}
+.section-num.speak{background:var(--champagne);color:#3a2b08}
+.section-hdr h2{font-family:var(--display);font-weight:700;font-size:clamp(1.25rem,2.2vw,1.7rem);color:var(--text);letter-spacing:-.01em;line-height:1.15}
+.section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px 0;font-style:italic}
+.task-num{font-family:var(--mono);font-weight:900;color:#fff;background:var(--ribbon);padding:3px 11px;border-radius:6px;font-size:.82rem;letter-spacing:.06em}
+.task-tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:rgba(37,99,235,.10);color:var(--accent-2);border:1px solid var(--accent);border-radius:50px;padding:4px 10px;margin-bottom:10px;margin-left:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 24px rgba(15,40,80,.05);margin-bottom:12px}
+.card h3{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--accent-2);margin:18px 0 10px}
+.card h3:first-child{margin-top:0}
+.passage{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:12px 0;font-family:var(--serif);font-size:1.02rem;line-height:1.8;color:var(--text)}
+.passage p + p{margin-top:10px}
+.info{background:rgba(37,99,235,.07);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 10px 10px 0;font-size:.92rem;color:var(--muted);margin:12px 0}
+.info strong{color:var(--accent-2)}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.vocab-card{background:linear-gradient(135deg,#ffffff,#eef4fb);border:1px solid var(--line-2);border-radius:14px;padding:14px;cursor:pointer;position:relative;min-height:110px;transition:.18s;perspective:600px}
+.vocab-card:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(37,99,235,.10)}
+.vocab-card .v-front,.vocab-card .v-back{display:block}
+.vocab-card .v-back{display:none}
+.vocab-card.flipped .v-front{display:none}
+.vocab-card.flipped .v-back{display:block}
+.vocab-card .word{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--accent-2);margin-bottom:4px}
+.vocab-card .pos{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.vocab-card .def{font-size:.92rem;color:var(--text);line-height:1.5;margin-top:6px}
+.vocab-card .ex{font-style:italic;color:var(--muted);font-size:.85rem;margin-top:6px}
+
+/* Audio row */
+.audio-row{display:flex;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:12px;padding:10px 14px;margin:10px 0;flex-wrap:wrap}
+.audio-label{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent-2);text-transform:uppercase;flex-shrink:0}
+.tts-btn{padding:9px 16px;border-radius:10px;border:none;background:var(--accent);color:#fff;font:700 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.tts-btn:hover{background:var(--brand)}
+.tts-btn.stop{background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2)}
+
+/* Match rows */
+.match-row{display:grid;grid-template-columns:88px 1fr 110px;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+.match-row .label{font-family:var(--mono);font-size:.78rem;font-weight:800;letter-spacing:.14em;color:var(--accent-2)}
+.match-row .stmt{font-size:.94rem;line-height:1.5;color:var(--text)}
+.match-row select{padding:6px 10px;border:2px solid var(--accent);border-radius:8px;background:#fff;color:var(--accent-2);font:700 .9rem var(--mono);cursor:pointer}
+.match-row select.right{background:rgba(22,163,74,.10);border-color:var(--ok);color:var(--ok)}
+.match-row select.wrong{background:rgba(220,38,38,.10);border-color:var(--miss);color:var(--miss)}
+
+/* MCQ short — single answer row */
+.mc1-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.mc1-q{font-size:.96rem;color:var(--text);margin-bottom:10px;line-height:1.55}
+.mc1-opts{display:flex;flex-direction:column;gap:6px}
+.mc1-opts button{background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);padding:9px 14px;border-radius:10px;font:600 .92rem var(--body);cursor:pointer;text-align:left;transition:.18s}
+.mc1-opts button:hover{border-color:var(--accent);color:var(--accent-2)}
+.mc1-opts button.correct{background:rgba(22,163,74,.10);border-color:var(--ok);color:var(--ok)}
+.mc1-opts button.wrong{background:rgba(220,38,38,.10);border-color:var(--miss);color:var(--miss)}
+
+/* T/F/NS rows */
+.tfns-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+.tfns-row .stmt{font-size:.94rem;line-height:1.5}
+.tfns-row .opts{display:flex;gap:6px}
+.tfns-row button{padding:6px 12px;border-radius:8px;border:2px solid var(--line-2);background:var(--surface-2);color:var(--muted);font:700 11px/1 var(--mono);cursor:pointer}
+.tfns-row button:hover{border-color:var(--accent)}
+.tfns-row button.right{background:rgba(22,163,74,.10);border-color:var(--ok);color:var(--ok)}
+.tfns-row button.wrong{background:rgba(220,38,38,.10);border-color:var(--miss);color:var(--miss)}
+
+/* Word formation table */
+.wf-row{display:grid;grid-template-columns:1fr 130px 130px;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+@media(max-width:640px){.wf-row{grid-template-columns:1fr}}
+.wf-row .ctx{font-family:var(--serif);font-size:.98rem;line-height:1.5}
+.wf-row .hint{font-family:var(--mono);font-size:.74rem;font-weight:800;letter-spacing:.14em;color:var(--ribbon);background:var(--surface-2);padding:4px 8px;border-radius:6px;text-align:center;text-transform:uppercase}
+.wf-row input{padding:7px 11px;border:2px solid var(--accent);border-radius:8px;background:#fff;color:var(--accent-2);font:700 .94rem var(--mono);outline:none;width:100%}
+.wf-row input.right{background:rgba(22,163,74,.10);border-color:var(--ok);color:var(--ok)}
+.wf-row input.wrong{background:rgba(220,38,38,.10);border-color:var(--miss);color:var(--miss)}
+
+/* Lexico MCQ inline */
+.lex-gap{font-family:var(--serif);font-size:1.02rem;line-height:2.4;color:var(--text)}
+.lex-sel{padding:4px 10px;border:2px solid var(--accent);border-radius:8px;background:#fff;font:600 .95rem var(--body);color:var(--accent-2);cursor:pointer;margin:0 4px}
+.lex-sel.right{background:rgba(22,163,74,.10);border-color:var(--ok);color:var(--ok)}
+.lex-sel.wrong{background:rgba(220,38,38,.10);border-color:var(--miss);color:var(--miss)}
+
+/* Writing letter */
+.letter-prompt{background:var(--surface-2);border:1px dashed var(--accent);border-radius:10px;padding:14px 16px;font-family:var(--serif);font-size:.96rem;color:var(--text);line-height:1.7;margin:12px 0}
+.write textarea{width:100%;min-height:200px;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:#fff;color:var(--text);font:400 .94rem/1.65 var(--body);resize:vertical;outline:none}
+.write textarea:focus{border-color:var(--accent)}
+.write-meta{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:.78rem;color:var(--faint);font-weight:700;flex-wrap:wrap;gap:8px}
+.write-meta .ok{color:var(--ok)}
+.write-meta .miss{color:var(--miss)}
+.sample-toggle{font:700 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--accent-2);border:1px solid var(--accent);border-radius:8px;padding:8px 14px;cursor:pointer;margin-top:10px}
+.sample-toggle:hover{background:rgba(37,99,235,.06)}
+.sample-reveal{display:none;margin-top:12px;background:rgba(37,99,235,.05);border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 10px 10px 0;font-family:var(--serif);font-size:.95rem;line-height:1.7;color:var(--text);white-space:pre-line}
+.write.show-sample .sample-reveal{display:block}
+
+/* Speaking cue card */
+.cue-card{background:#fff;border:1.5px solid var(--champagne);border-radius:12px;padding:14px 16px;margin:10px 0;position:relative}
+.cue-h{font-family:var(--mono);font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ribbon);margin-bottom:6px}
+.cue-card ol{margin-left:22px;line-height:1.7}
+
+/* Mic drill */
+.mic-row{display:grid;grid-template-columns:1fr 110px;gap:10px;align-items:center;background:var(--surface-2);border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;margin:8px 0}
+.mic-text{font-size:.94rem;line-height:1.5}
+.mic-btn{padding:8px 14px;border-radius:8px;border:none;background:var(--champagne);color:#3a2b08;font:700 11px/1 var(--mono);cursor:pointer;text-transform:uppercase;letter-spacing:.08em}
+.mic-btn.rec{background:var(--miss);color:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}50%{box-shadow:0 0 0 12px rgba(220,38,38,0)}}
+.mic-feedback{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--accent-2);margin-top:4px}
+.mic-transcript{font-style:italic;color:var(--muted);font-size:.86rem;margin-top:4px}
+
+/* Score badge */
+.score-badge{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line-2);font-family:var(--mono);font-size:.78rem;font-weight:800;color:var(--accent-2)}
+
+/* Script details */
+details.script{margin-top:12px;background:var(--surface-2);border:1px dashed var(--line-2);border-radius:10px;padding:10px 14px}
+details.script summary{cursor:pointer;font:700 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+details.script summary:hover{color:var(--accent-2)}
+details.script[open] summary{margin-bottom:8px}
+details.script p{font-family:var(--serif);font-size:.95rem;line-height:1.7;color:var(--text);margin:6px 0}
+details.script p .spk{color:var(--accent-2);font-family:var(--mono);font-size:.78rem;font-weight:800;letter-spacing:.1em;margin-right:6px}
+
+footer{max-width:1240px;margin:40px auto 24px;padding:0 clamp(16px,3vw,28px);text-align:center;color:var(--faint);font-size:.78rem;font-family:var(--mono);letter-spacing:.08em}
+
+/* lab vocab/card safety canon · 2026-06-30 */
+.flip-grid,.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
+.flip-card,.vocab-card{min-height:130px;box-sizing:border-box}
+.flip-front,.flip-back,.vocab-front,.vocab-back{padding:30px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+.flip-front,.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
+.flip-front .pos,.vocab-front .pos{word-break:normal}
+.flip-card .lab-hw-add,.vocab-card .lab-hw-add{z-index:5}
+</style>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after,.friendly-topbar .brand-mark::after,.lab-topbar .brand-mark::after,.cmdbar .brand-mark::after,.cmdbar .cb-mark::after,.canon-l-topbar .brand-mark::after,.canon-l-topbar .canon-l-mark::after,.friendly-topbar .brand-logo-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+.topbar .brand-mark>span[style*="right:0"],.friendly-topbar .brand-mark>span[style*="right:0"],.lab-topbar .brand-mark>span[style*="right:0"],.cmdbar .brand-mark>span[style*="right:0"],.cmdbar .cb-mark>span[style*="right:0"],.canon-l-topbar .brand-mark>span[style*="right:0"],.canon-l-topbar .canon-l-mark>span[style*="right:0"],.friendly-topbar .brand-logo-mark>span[style*="right:0"]{display:none!important}
+</style>
+</head>
+<body data-lab-theme="light">
+<link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+
+<nav class="topbar">
+  <a class="brand" href="https://newgeneration-english.ru/">
+    <span class="brand-mark" aria-hidden="true" style="position:relative;overflow:hidden;border-top-right-radius:0;background:var(--accent);color:#fff"><span style="position:relative;z-index:1;color:#fff!important">N</span></span>
+    <span class="brand-copy">
+      <span class="brand-name">NG ENGLISH</span>
+      <span class="brand-sub">LinguaBoost Lab · OGE Mock</span>
+    </span>
+  </a>
+  <span class="pill ribbon">OGE 2026 · Mix #1</span>
+  <span class="spacer"></span>
+  <a class="btn-sm" href="../../index.html">All lessons</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <span class="eyebrow">OGE 2026 · full format · pair edition</span>
+    <h1 class="hero-title">OGE Mock <span class="grad">#1</span> · <span class="champ">Pair Edition</span></h1>
+    <p class="hero-lead">A complete OGE variant built around the topics we have covered together: helping at home, birthdays and celebrations, sports and music, the school ecology club, the city around us. Grammar focus — gerund/infinitive, used to / would, modal verbs, future forms, word formation, phrasal verbs. Five sections — Listening · Reading · Lexico-grammatical · Writing · Speaking.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-k">Level</div><div class="stat-v">B1 → B1+</div></div>
+      <div class="stat"><div class="stat-k">Tasks</div><div class="stat-v">33 + 3 speaking</div></div>
+      <div class="stat"><div class="stat-k">Sections</div><div class="stat-v">5</div></div>
+      <div class="stat"><div class="stat-k">Time</div><div class="stat-v">~2 h 15 min</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="dots-wrap"><div class="dots" id="dots"></div></div>
+
+<!-- ============================================================
+     VOCAB BOX
+============================================================= -->
+<section class="section" id="block-vocab">
+  <div class="section-hdr"><div class="section-num">V</div><h2>Vocabulary box · 15 key words</h2></div>
+  <p class="section-sub">Tap each card to flip and see the definition + example. These words appear across the whole mock.</p>
+  <div class="card">
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 1 · LISTENING (Tasks 1-11)
+============================================================= -->
+
+<!-- TASKS 1-4 -->
+<section class="section" id="block-1">
+  <div class="section-hdr"><div class="section-num exam">L1-4</div><h2>Listening · Tasks 1-4 · Four short texts · choose one of three</h2></div>
+  <p class="section-sub">You will hear four short statements. For each, choose the answer that matches what the speaker says.</p>
+  <div class="card">
+    <img class="section-img" src="./img/listening-podcast.png" alt="Teen with microphone and headphones recording a podcast" loading="lazy">
+    <span class="task-num">1-4</span><span class="task-tag">Listening · 4 MCQ · 1 point each</span>
+    <div class="audio-row">
+      <span class="audio-label">▶ Speakers A · B · C · D</span>
+      <button class="tts-btn" id="l1-play">▶ Play all 4</button>
+      <button class="tts-btn stop" id="l1-stop">Stop</button>
+    </div>
+    <div id="l1-mcqs" style="margin-top:14px"></div>
+    <details class="script">
+      <summary>📜 Open audio script (after first attempt)</summary>
+      <div id="l1-script"></div>
+    </details>
+    <div class="score-badge"><span>Score</span> <span class="val" id="l1-score">0</span> <span style="opacity:.6">/ 4</span></div>
+  </div>
+</section>
+
+<!-- TASK 5 -->
+<section class="section" id="block-2">
+  <div class="section-hdr"><div class="section-num exam">L5</div><h2>Listening · Task 5 · Match 5 speakers → 6 statements</h2></div>
+  <p class="section-sub">You will hear 5 short monologues (A-E) about hobbies. Match each speaker to one of 6 statements. One statement is extra.</p>
+  <div class="card">
+    <img class="section-img" src="./img/listening-match.png" alt="TV, globe, microphone and clock — free-time icons" loading="lazy">
+    <span class="task-num">5</span><span class="task-tag">Listening · matching · 5 of 6</span>
+    <div class="audio-row">
+      <span class="audio-label">▶ Speakers A · B · C · D · E</span>
+      <button class="tts-btn" id="l5-play">▶ Play all 5</button>
+      <button class="tts-btn stop" id="l5-stop">Stop</button>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-top:10px"><strong>6 statements:</strong></p>
+    <ol style="padding-left:22px;line-height:1.8;font-size:.92rem;color:var(--text);margin-bottom:14px">
+      <li>The speaker watches films with the family and discusses them afterwards.</li>
+      <li>The speaker plays board games at home every weekend.</li>
+      <li>The speaker attends a music school after lessons.</li>
+      <li>The speaker enjoys helping parents with cooking and cleaning.</li>
+      <li>The speaker does sport in the park almost every morning.</li>
+      <li>The speaker likes walking around the city and exploring old streets.</li>
+    </ol>
+    <div id="l5-match"></div>
+    <details class="script">
+      <summary>📜 Open audio script (after first attempt)</summary>
+      <div id="l5-script"></div>
+    </details>
+    <div class="score-badge"><span>Score</span> <span class="val" id="l5-score">0</span> <span style="opacity:.6">/ 5</span></div>
+  </div>
+</section>
+
+<!-- TASKS 6-11 -->
+<section class="section" id="block-3">
+  <div class="section-hdr"><div class="section-num exam">L6-11</div><h2>Listening · Tasks 6-11 · Six MCQ on an interview</h2></div>
+  <p class="section-sub">You will hear an interview with Lena, a 14-year-old who started a Green Birthday Club at her school. For questions 6-11, choose one of three options.</p>
+  <div class="card">
+    <span class="task-num">6-11</span><span class="task-tag">Listening · 6 MCQ · interview</span>
+    <div class="audio-row">
+      <span class="audio-label">▶ Interview · Lena & host</span>
+      <button class="tts-btn" id="l6-play">▶ Play interview</button>
+      <button class="tts-btn stop" id="l6-stop">Stop</button>
+    </div>
+    <div id="l6-mcqs" style="margin-top:14px"></div>
+    <details class="script">
+      <summary>📜 Open audio script (after first attempt)</summary>
+      <div id="l6-script"></div>
+    </details>
+    <div class="score-badge"><span>Score</span> <span class="val" id="l6-score">0</span> <span style="opacity:.6">/ 6</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 · READING (Tasks 12-19)
+============================================================= -->
+
+<!-- TASK 12 -->
+<section class="section" id="block-4">
+  <div class="section-hdr"><div class="section-num exam">R12</div><h2>Reading · Task 12 · Match 7 headings to 6 texts</h2></div>
+  <p class="section-sub">Match headings 1-7 to texts A-F. One heading is extra.</p>
+  <div class="card">
+    <img class="section-img" src="./img/reading-headings.png" alt="Open notebook with topic icons connected by lines" loading="lazy">
+    <span class="task-num">12</span><span class="task-tag">Reading · headings · 7 → 6 texts</span>
+    <p><strong>Headings:</strong></p>
+    <ol style="padding-left:22px;line-height:1.8;font-size:.93rem;margin-bottom:14px">
+      <li>Sharing the chores, sharing the peace</li>
+      <li>The board where the whole family meets</li>
+      <li>Old streets, fresh eyes</li>
+      <li>Music as a second classroom</li>
+      <li>Sport that doesn't need a stadium</li>
+      <li>A birthday party with almost no rubbish</li>
+      <li>Toys that grow up with us</li>
+    </ol>
+    <div id="r12-texts"></div>
+    <div id="r12-match" style="margin-top:14px"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="r12-score">0</span> <span style="opacity:.6">/ 6</span></div>
+  </div>
+</section>
+
+<!-- TASK 13-19 -->
+<section class="section" id="block-5">
+  <div class="section-hdr"><div class="section-num exam">R13-19</div><h2>Reading · Tasks 13-19 · True / False / Not stated · 7</h2></div>
+  <p class="section-sub">Read the text. For questions 13-19, mark each statement True (1), False (2), or Not stated (3).</p>
+  <div class="card">
+    <span class="task-num">13-19</span><span class="task-tag">Reading · T/F/NS · 7 statements</span>
+    <div class="passage">
+      <p>Birthdays look very different around the world, but every country agrees on one idea — the day a person was born is worth celebrating. In Russia, many families still bake a sweet bread called <em>karavay</em> for important birthdays, and most parties include a big cake with candles. The birthday person makes a silent wish, blows out the candles, and the wish, the tradition says, will come true only if it stays secret.</p>
+      <p>In Mexico, children love a colourful tradition called the <em>piñata</em>. A large paper figure full of sweets is hung from a tree or a ceiling. Each guest takes a stick, closes their eyes, and tries to break the piñata so that all the sweets fall on the floor. The whole game is loud, funny and a little dangerous, but the children love it.</p>
+      <p>In Japan, the family\'s style of celebration depends a lot on the age of the birthday person. For older relatives, the family often cooks special red rice called <em>sekihan</em>. For younger children, parents prefer Western-style cakes and pop music. In recent years, online birthday meetings with relatives in other cities have also become popular among Japanese teenagers.</p>
+      <p>What is universal about birthdays is the human need to feel important. A handmade gift, a song sung by friends, a phone call from a grandparent — these small details matter much more than the price of the present. Across cultures, the message is the same: you matter to us, and today we celebrate the fact that you exist.</p>
+    </div>
+    <div id="r13-tfns" style="margin-top:14px"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="r13-score">0</span> <span style="opacity:.6">/ 7</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 · LEXICO-GRAMMATICAL (Tasks 20-34)
+============================================================= -->
+
+<!-- TASK 20-28 -->
+<section class="section" id="block-6">
+  <div class="section-hdr"><div class="section-num exam">G20-28</div><h2>Lexico-grammatical · Tasks 20-28 · Word change · 9 gaps</h2></div>
+  <p class="section-sub">Read the text. Change the word in CAPITAL letters so that it fits the sentence grammatically.</p>
+  <div class="card">
+    <span class="task-num">20-28</span><span class="task-tag">Grammar · word change · connected text</span>
+    <p style="font-family:var(--serif);font-size:1.02rem;line-height:1.7;color:var(--muted);margin-bottom:14px"><strong>The chores that changed our family.</strong> When I was younger, housework was a daily war at home. Now everything has changed. Below — fill in the gaps with the right form of the word in CAPITAL letters.</p>
+    <div id="g20-rows"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="g20-score">0</span> <span style="opacity:.6">/ 9</span></div>
+  </div>
+</section>
+
+<!-- TASK 29-34 -->
+<section class="section" id="block-7">
+  <div class="section-hdr"><div class="section-num exam">G29-34</div><h2>Lexico-grammatical · Tasks 29-34 · Word formation · 6 gaps</h2></div>
+  <p class="section-sub">Form a word that fits the sentence using the CAPITAL letter root.</p>
+  <div class="card">
+    <img class="section-img" src="./img/word-formation.png" alt="Open notebook with empty cells and letter tiles for word building" loading="lazy">
+    <span class="task-num">29-34</span><span class="task-tag">Vocabulary · word formation</span>
+    <p style="font-family:var(--serif);font-size:1.02rem;line-height:1.7;color:var(--muted);margin-bottom:14px"><strong>Our school ecology club.</strong> Read the text and form a word from each CAPITAL root so that it fits the sentence.</p>
+    <div id="g29-rows"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="g29-score">0</span> <span style="opacity:.6">/ 6</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 · WRITING (Task 35)
+============================================================= -->
+
+<section class="section" id="block-8">
+  <div class="section-hdr"><div class="section-num exam">W35</div><h2>Writing · Task 35 · Personal email (100-120 words)</h2></div>
+  <p class="section-sub">Read the extract from Steve's email and write a reply.</p>
+  <div class="card">
+    <img class="section-img" src="./img/writing-email.png" alt="Laptop on a desk with email icons floating above the screen" loading="lazy">
+    <span class="task-num">35</span><span class="task-tag">Email · 100-120 words · ~30 min</span>
+    <div class="letter-prompt">
+      <p>… Sorry for not writing for so long — last week was my 14th birthday and the whole family was busy organising my party. We had a small surprise picnic in the park, and my friends made me a handmade album with photos of our school year. It was the best birthday I have ever had. <strong>How do you usually celebrate your birthday? What present makes you really happy? Do you think handmade gifts are better than shop-bought ones?</strong></p>
+      <p style="margin-top:10px;font-style:italic;color:var(--muted)">Write back soon!<br>Jane</p>
+    </div>
+    <div class="info">
+      <strong>Write an email to Jane.</strong> Answer her three questions · 100–120 words · standard structure (greeting · thank-you opener · main body · sign-off).
+    </div>
+    <div class="write" id="letter-write">
+      <textarea id="letter-ta" placeholder="Dear Jane,&#10;&#10;Thank you for your email! Happy belated birthday — your park picnic sounds wonderful…"></textarea>
+      <div class="write-meta">
+        <span><strong>Target:</strong> 100–120 words · 4 parts (greeting · opener · body with 3 answers · sign-off)</span>
+        <span>words: <strong id="letter-wc">0</strong></span>
+      </div>
+      <button class="sample-toggle" type="button" data-target="letter-write">Show sample reply (open after your own attempt)</button>
+      <div class="sample-reveal">Dear Jane,
+
+Thank you for your email! Happy belated birthday — your park picnic sounds wonderful, and the handmade photo album must be a real treasure.
+
+In our family we usually celebrate birthdays at home. My parents bake a big cake, my friends come over, we play board games, and at midnight everyone signs a paper napkin with a wish for me. It is a small but very warm tradition.
+
+The present that makes me really happy is anything related to books or travel — a new novel, a poster of an old city, a notebook from somewhere far away. I keep them for years.
+
+I definitely think handmade gifts are better than shop-bought ones, because they show that you spent time thinking about the person.
+
+Write back soon!
+Best,
+Masha</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRACTICE BOOSTER · pre-Friday lesson · vocabulary + passive + grammar + extra speaking
+============================================================= -->
+
+<section class="section" id="block-practice-vocab">
+  <div class="section-hdr"><div class="section-num">P-V</div><h2>Practice · Vocabulary deep work · 3 наших темы</h2></div>
+  <p class="section-sub">Match each English word to its Russian translation. Three blocks: chores · birthdays · ecology. Click options to reveal the answer.</p>
+  <div class="card">
+    <span class="task-num">P-V</span><span class="task-tag">Match · 3 темы · 30 пар</span>
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:14px 0 8px">🧹 Household chores · list match (EN → RU)</h3>
+    <p class="section-sub" style="margin-bottom:8px">Choose the Russian translation from the dropdown.</p>
+    <div id="pv-chores"></div>
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">🎂 Birthdays &amp; celebrations · multiple choice</h3>
+    <p class="section-sub" style="margin-bottom:8px">Pick the right meaning of the English phrase.</p>
+    <div id="pv-birthdays"></div>
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">🌱 Ecology · fill in the text (drag the word into the gap)</h3>
+    <p class="section-sub" style="margin-bottom:8px">Drag a word from the bank into the gap. Or click bank → click gap.</p>
+    <div id="pv-ecology-bank" style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px;padding:12px;background:var(--surface-2);border:1px dashed var(--accent);border-radius:10px"></div>
+    <div id="pv-ecology" class="passage" style="line-height:2.4"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="pv-score">0</span> <span style="opacity:.6">/ 30</span></div>
+  </div>
+</section>
+
+<section class="section" id="block-practice-passive">
+  <div class="section-hdr"><div class="section-num">P-PV</div><h2>Practice · Passive Voice — convert active → passive</h2></div>
+  <p class="section-sub">Rewrite each sentence in the passive voice. Type your answer — Check on blur. Topics: chores, birthdays, ecology.</p>
+  <div class="card">
+    <span class="task-num">P-PV</span><span class="task-tag">Passive voice · 8 transformations</span>
+    <div id="pv-passive"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="pv-passive-score">0</span> <span style="opacity:.6">/ 8</span></div>
+  </div>
+</section>
+
+<section class="section" id="block-practice-grammar">
+  <div class="section-hdr"><div class="section-num">P-G</div><h2>Practice · Mixed grammar · modals + gerund/inf + conditionals</h2></div>
+  <p class="section-sub">Choose the option that fits the sentence. Mixed grammar from our June block.</p>
+  <div class="card">
+    <span class="task-num">P-G</span><span class="task-tag">Mixed MCQ · 10 questions</span>
+    <div id="pv-grammar"></div>
+    <div class="score-badge"><span>Score</span> <span class="val" id="pv-grammar-score">0</span> <span style="opacity:.6">/ 10</span></div>
+  </div>
+</section>
+
+<section class="section" id="block-practice-grammar-ext">
+  <div class="section-hdr"><div class="section-num">P-G2</div><h2>Practice · Extended grammar mix · их большой список</h2></div>
+  <p class="section-sub">Gerund/Infinitive · Used to / Would · Word formation families · Prepositions · Phrasal verbs. Click to answer.</p>
+  <div class="card">
+    <span class="task-num">P-G2</span><span class="task-tag">Extended grammar · 5 sub-sections · 22 items</span>
+
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:14px 0 8px">A · Gerund / Infinitive (Ving vs to+inf vs bare inf)</h3>
+    <div id="pg2-gerinf"></div>
+
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">B · Used to / Would / Be used to / Get used to</h3>
+    <div id="pg2-usedto"></div>
+
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">C · Word formation families (type the right form)</h3>
+    <div id="pg2-wordform"></div>
+
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">D · Prepositions &amp; word patterns</h3>
+    <div id="pg2-preps"></div>
+
+    <h3 style="font-family:var(--display);color:var(--accent-2);margin:22px 0 8px">E · Phrasal verbs · match the meaning</h3>
+    <div id="pg2-phrasal"></div>
+
+    <div class="score-badge"><span>Score</span> <span class="val" id="pg2-score">0</span> <span style="opacity:.6">/ 22</span></div>
+  </div>
+</section>
+
+<section class="section" id="block-practice-speaking">
+  <div class="section-hdr"><div class="section-num speak">P-S</div><h2>Practice · Extra speaking cards</h2></div>
+  <p class="section-sub">Six discussion cards on our topics. Use the answer frame: <strong>Direct answer → Reason → Example → Personal detail.</strong> 40-60 seconds each. Tap 🔊 to hear the question.</p>
+  <div class="card">
+    <span class="task-num">P-S</span><span class="task-tag">6 cards · 40-60 sec each · answer frame</span>
+    <div id="pv-speaking-list"></div>
+    <button class="sample-toggle" type="button" data-target="pv-speaking-sample" style="margin-top:14px">Show sample answers (after your own attempt)</button>
+    <div class="write" id="pv-speaking-sample" style="margin-top:0">
+      <div class="sample-reveal">1. Should teenagers help with the housework? Why?
+Yes, teenagers should definitely help with the housework, because our parents work hard all day and sharing the chores is a fair way to thank them. For example, in my family I take out the rubbish and help with cooking on Saturdays. Personally, I don't always enjoy doing the washing-up, but I never refuse — it's part of the deal.
+
+2. Are big birthday parties a waste of money?
+I partly agree. A huge restaurant party with expensive decorations can really be a waste, because the next day there is nothing left except photos. For example, my best birthday was a small picnic in the park with five friends — handmade gifts and one cake. Personally, I prefer small celebrations because they feel more meaningful.
+
+3. What can young people do to protect the environment?
+Young people can do a lot, even at home. We should sort the rubbish, save energy by turning off the lights, and use reusable bottles instead of plastic. For example, our class organised a "no-plastic Friday" last term. Personally, I believe small daily actions matter more than one big eco-event a year.
+
+4. Boys and girls — should they share the same chores?
+Yes, I strongly believe boys and girls should share the same chores. Vacuuming the carpet is not "girls' work", and fixing a lamp is not "boys' work". For example, in my family my brother does the laundry and my mum fixes things. Personally, I think the home is cleaner when everyone helps with everything.
+
+5. Is climate change really a serious problem for our generation?
+Yes, climate change is one of the most serious problems for our generation, because we will live with the consequences for the longest time. For example, summers are already hotter than ten years ago, and some species are becoming endangered. Personally, I think every teenager should learn at least the basics of ecology at school.
+
+6. Handmade gifts vs shop-bought — which is better?
+I definitely prefer handmade gifts, because they show that you spent time thinking about the person. For example, last year my friends made me a photo album from our school trip — I still look at it. Personally, I think the price of a present matters much less than the feeling behind it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 · SPEAKING (Tasks 1-3)
+============================================================= -->
+
+<section class="section" id="block-9">
+  <div class="section-hdr"><div class="section-num speak">S1</div><h2>Speaking · Task 1 · Read aloud (1.5 min prep · 2 min reading)</h2></div>
+  <p class="section-sub">You have 1.5 minutes to prepare and 2 minutes to read the text aloud.</p>
+  <div class="card">
+    <span class="task-num">SP1</span><span class="task-tag">Read aloud · ~9 sentences</span>
+    <div class="passage">
+      <p>In many Russian schools, the eco club has become one of the most popular activities after lessons. Students collect plastic bottles, organise clean-up walks around the neighbourhood, and learn how recycling really works. They also talk about biodiversity and climate change in classes that mix science, music and even sport. Some clubs invite local champions to support outdoor events in the city park near the school. A few schools have started to celebrate "zero-rubbish" birthdays, where the children exchange handmade gifts instead of plastic toys. Through small actions, students get used to thinking carefully about the environment. Teachers say that this is one of the best ways to grow real responsibility. Small steps, repeated every week, can change the whole school culture.</p>
+    </div>
+    <div class="audio-row">
+      <button class="tts-btn" id="sp1-play">🔊 Hear a model reading</button>
+    </div>
+    <div class="mic-row">
+      <div>
+        <div class="mic-text"><strong>Your turn — read the text aloud:</strong></div>
+        <div class="mic-feedback" id="sp1-fb"></div>
+        <div class="mic-transcript" id="sp1-tr"></div>
+      </div>
+      <button class="mic-btn" id="sp1-rec">🎙 Record</button>
+    </div>
+    <div class="info">
+      <strong>Watch out for:</strong> ecology · biodiversity · neighbourhood · responsibility · championships. Pause briefly at commas, longer at full stops, keep the voice steady.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="block-10">
+  <div class="section-hdr"><div class="section-num speak">S2</div><h2>Speaking · Task 2 · Phone survey · 6 questions · 40 s each</h2></div>
+  <p class="section-sub">You are taking part in a phone survey about hobbies and free time. Answer six questions. After the signal, you have 40 seconds for each answer.</p>
+  <div class="card">
+    <span class="task-num">SP2</span><span class="task-tag">6 questions · 40 sec each</span>
+    <p style="font-size:.92rem;color:var(--muted);font-style:italic;margin-bottom:10px"><em>"Hello! We are doing a survey about teenagers, home life and the environment. Please answer six questions. After the signal you will have 40 seconds for each answer. The interview will not take much of your time."</em></p>
+    <div id="sp2-list"></div>
+    <button class="sample-toggle" type="button" data-target="sp2-sample-wrap" style="margin-top:14px">Show sample answers (open after your own attempt)</button>
+    <div class="write" id="sp2-sample-wrap" style="margin-top:0">
+      <div class="sample-reveal">1. What household chores do you usually do at home?
+At home I usually take out the rubbish, make my bed every morning, and on Saturdays I help my mum with the cooking. I don't love doing the washing-up, but I never refuse — it's part of the deal.
+
+2. How often do you and your family recycle paper or plastic?
+We recycle almost every day. We have three small bins in the kitchen — for paper, plastic and glass. Once a week, my dad takes everything to the recycling point near our house.
+
+3. How do you and your family usually celebrate birthdays?
+We throw a small party at home. My mum bakes a big cake, my friends come over, we play board games and we always try to bring handmade gifts. The candles and the wish are the most important part for me.
+
+4. Why is it important for teenagers to help their parents at home?
+It's important because our parents work hard all day, and sharing the chores is a fair way to thank them. Also, learning to cook and clean is a useful skill for our own future life.
+
+5. Some people say that big birthday parties are a waste of money. Do you agree?
+I partly agree. A huge restaurant party with expensive decorations can really be a waste. But a small home party with friends and handmade gifts costs almost nothing — and people remember it for years.
+
+6. What advice would you give to a friend who wants to live in a more eco-friendly way?
+I would advise them to start small. Use a reusable bottle, recycle paper and plastic, walk or cycle to school. You don't have to change everything at once — one new habit a month is already a lot.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="block-11">
+  <div class="section-hdr"><div class="section-num speak">S3</div><h2>Speaking · Task 3 · Monologue · 12 phrases · 2 min</h2></div>
+  <p class="section-sub">You have 1.5 minutes to prepare and 2 minutes to give a monologue. Aim for 10-12 phrases. Open with the topic, cover all four points, close with the topic.</p>
+  <div class="card">
+    <span class="task-num">SP3</span><span class="task-tag">Monologue · 12+ phrases · TV vs Internet</span>
+    <div class="cue-card">
+      <div class="cue-h">Topic · Protecting the environment</div>
+      <p style="font-style:italic;color:var(--text);margin-bottom:10px"><em>"Imagine that you are doing a project «Protecting the environment». You are gathering information for your project and would like to share it with your friends. Speak for not more than 2 minutes (10-12 sentences)."</em></p>
+      <p><strong>Remember to say:</strong></p>
+      <ol>
+        <li>what environmental problems are the most serious in your area;</li>
+        <li>what people can do at home or at school to help the environment;</li>
+        <li>whether you think young people can really make a difference, and why;</li>
+        <li>what your attitude to recycling and other green habits is.</li>
+      </ol>
+    </div>
+    <div class="audio-row">
+      <button class="tts-btn" id="sp3-play">🔊 Hear sample monologue (2 min)</button>
+    </div>
+    <div class="mic-row">
+      <div>
+        <div class="mic-text"><strong>Your turn — record your 2-minute monologue:</strong></div>
+        <div class="mic-feedback" id="sp3-fb"></div>
+        <div class="mic-transcript" id="sp3-tr"></div>
+      </div>
+      <button class="mic-btn" id="sp3-rec">🎙 Record</button>
+    </div>
+    <button class="sample-toggle" type="button" data-target="sp3-write">Show sample monologue (open after your own attempt)</button>
+    <div class="write" id="sp3-write" style="margin-top:0">
+      <div class="sample-reveal">I'm going to give a talk about protecting the environment.
+
+In my area, the most serious problems are air pollution and rubbish on the streets. There are too many cars, and not all people throw their waste in the bins. In summer, the air sometimes feels heavy, and you can see smog above the city.
+
+But people can do a lot, both at home and at school. At home, families should save water, recycle paper and plastic, and turn off the lights when they leave a room. At school, we can organise eco projects, plant trees in the school yard, and bring reusable bottles instead of buying plastic ones.
+
+I really believe that young people can make a real difference. We are the generation that will live with the consequences for the longest time, so we have the strongest reason to act. Of course, one person alone is not enough — but when thousands of students do small things every day, the result is huge.
+
+As for my own attitude, I think recycling and other green habits should not feel like a punishment — they must become a normal part of daily life. I am proud that my family separates the rubbish, and I love our school's no-plastic week.
+
+In conclusion, protecting the environment is not someone else's job — it is ours. That's all I wanted to say. Thank you for listening!</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Lesson by Maria Burtseva · NG English · LinguaBoost Lab · OGE Mock #1 · Mix of Topics · B1
+</footer>
+
+<script>
+/* ============== TTS helpers ============== */
+const synth = window.speechSynthesis;
+let voiceF = null, voiceM = null;
+function pickVoices(){
+  if (!synth) return;
+  const voices = synth.getVoices();
+  const en = voices.filter(v => /^en/i.test(v.lang));
+  voiceF = en.find(v => /female|samantha|victoria|kate|serena|tessa|moira|fiona|karen|zira|hazel|sonia/i.test(v.name))
+        || en.find(v => /uk|gb/i.test(v.lang)) || en[0] || voices[0];
+  voiceM = en.find(v => /male|daniel|alex|fred|tom|david|mark|aaron|oliver|ryan/i.test(v.name) && v !== voiceF)
+        || en.find(v => v !== voiceF) || en[1] || voices[1] || voices[0];
+}
+if (synth) { pickVoices(); synth.onvoiceschanged = pickVoices; }
+function say(text, opts={}){
+  if (!synth) return;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = opts.voice || voiceF; u.rate = opts.rate || 0.92; u.pitch = opts.pitch || 1.0;
+  synth.speak(u);
+}
+function speakSequence(lines, doneCb){
+  if (!synth) return;
+  synth.cancel();
+  let i = 0;
+  function next(){
+    if (i >= lines.length) { if (doneCb) doneCb(); return; }
+    const l = lines[i++];
+    const u = new SpeechSynthesisUtterance(l.text);
+    u.voice = l.voice === 'm' ? voiceM : voiceF;
+    u.rate = l.rate || 0.92;
+    u.pitch = l.voice === 'm' ? 0.92 : 1.08;
+    u.onend = next; u.onerror = next;
+    synth.speak(u);
+  }
+  next();
+}
+function stopSpeaking(){ if (synth) synth.cancel(); }
+
+/* ============== VOCAB BOX ============== */
+const vocab = [
+  {word:'tidy up', pos:'phrasal verb', def:'to make a place neat and clean', ex:'I tidy up my room every Sunday morning.'},
+  {word:'take out the rubbish', pos:'phrase', def:'to carry the rubbish out of the house', ex:'My brother takes out the rubbish every evening.'},
+  {word:'fold clothes', pos:'phrase', def:'to bend clothes neatly for storage', ex:'After the laundry, we fold clothes together.'},
+  {word:'share the chores', pos:'phrase', def:'to divide housework between family members', ex:'In our family we share the chores at the weekend.'},
+  {word:'throw a party', pos:'phrase', def:'to organise a party for friends or family', ex:'My parents threw a surprise party for my birthday.'},
+  {word:'blow out candles', pos:'phrase', def:'to blow air on candles until they go out', ex:'Don\'t forget to make a wish before you blow out the candles!'},
+  {word:'handmade gift', pos:'phrase', def:'a present made by hand, not bought in a shop', ex:'A handmade gift means more than an expensive one.'},
+  {word:'champion', pos:'noun', def:'a person or team that wins a competition', ex:'My cousin is the chess champion of our school.'},
+  {word:'referee', pos:'noun', def:'the person who controls a sports game', ex:'The referee blew the whistle to end the match.'},
+  {word:'biodiversity', pos:'noun', def:'the variety of life on Earth', ex:'Forests are vital for biodiversity.'},
+  {word:'recycling', pos:'noun', def:'the process of turning waste into reusable material', ex:'Our school started a paper recycling project.'},
+  {word:'roundabout', pos:'noun', def:'a circular road junction where traffic moves around a centre', ex:'Take the second exit at the roundabout.'},
+  {word:'take up', pos:'phrasal verb', def:'to start a new hobby or activity', ex:'My sister has taken up the guitar.'},
+  {word:'used to', pos:'modal phrase', def:'a past habit or state that no longer happens', ex:'I used to refuse housework — now I quite like it.'},
+  {word:'look forward to', pos:'phrasal verb', def:'to feel excited about a future event', ex:'I look forward to the school sports day every spring.'}
+];
+const vg = document.getElementById('vocab-grid');
+vocab.forEach(v => {
+  const c = document.createElement('div');
+  c.className = 'vocab-card';
+  c.dataset.en = v.word;
+  c.innerHTML = `
+    <div class="v-front">
+      <div class="word">${v.word}</div>
+      <div class="pos">${v.pos}</div>
+      <div class="def" style="opacity:.65;font-style:italic;font-size:.82rem;margin-top:14px">tap to flip →</div>
+    </div>
+    <div class="v-back">
+      <div class="word">${v.word}</div>
+      <div class="def">${v.def}</div>
+      <div class="ex">${v.ex}</div>
+    </div>`;
+  c.onclick = () => c.classList.toggle('flipped');
+  vg.appendChild(c);
+});
+
+/* ============== TASKS 1-4 · 4 short MCQ ============== */
+const l1Items = [
+  {
+    spk:'A', voice:'f',
+    text:'I don\'t mind doing housework, but my favourite chore by far is vacuuming. I put my headphones on, I play some music, and I move through the whole flat in twenty minutes. Folding clothes, on the other hand, is something I always try to avoid.',
+    q:'1. Which household chore does the speaker enjoy most?',
+    opts:['doing the laundry','vacuuming the carpet','ironing clothes'], a:1
+  },
+  {
+    spk:'B', voice:'m',
+    text:'My sister threw me a surprise party last weekend. The cake was big, the music was loud, but the part I keep thinking about is the handmade gifts. My friends drew cards, wrote a poem, and made a little photo album. Money cannot buy that.',
+    q:'2. What did the speaker like most about the party?',
+    opts:['the cake','the handmade gifts','the loud music'], a:1
+  },
+  {
+    spk:'C', voice:'f',
+    text:'I took up running last year and now I train three times a week with my older brother. We used to play tennis together, but we have given up tennis because the court is too far. On Sundays we usually just walk in the park.',
+    q:'3. How often does the speaker run at the moment?',
+    opts:['every day','three times a week','only on Sundays'], a:1
+  },
+  {
+    spk:'D', voice:'m',
+    text:'Our class is doing an ecology project this term. We didn\'t plant any trees — that was last year. This time we collected over five hundred plastic bottles around the school and sent them to a recycling centre near the river. Our biology teacher said it was our best work yet.',
+    q:'4. What did the speaker\'s class do for the environment this term?',
+    opts:['collected plastic bottles','planted trees in the school yard','wrote letters to the city council'], a:0
+  }
+];
+const l1Wrap = document.getElementById('l1-mcqs');
+const l1Script = document.getElementById('l1-script');
+l1Items.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(it.a);
+  row.innerHTML = `
+    <div class="mc1-q"><strong>${it.q}</strong></div>
+    <div class="mc1-opts">
+      ${it.opts.map((o,j) => `<button data-v="${j}">${String.fromCharCode(49+j)}) ${o}</button>`).join('')}
+    </div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true; });
+      if (b.dataset.v === String(it.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${it.a}"]`).classList.add('correct'); }
+      let ok = 0;
+      document.querySelectorAll('#l1-mcqs .mc1-row').forEach(r => {
+        if (r.querySelector('button.correct') && !r.querySelector('button.wrong')) ok++;
+      });
+      document.getElementById('l1-score').textContent = ok;
+    };
+  });
+  l1Wrap.appendChild(row);
+  const p = document.createElement('p');
+  p.innerHTML = `<span class="spk">Speaker ${it.spk}.</span>${it.text}`;
+  l1Script.appendChild(p);
+});
+document.getElementById('l1-play').onclick = () => {
+  const lines = [];
+  l1Items.forEach(it => {
+    lines.push({text:`Speaker ${it.spk}.`, voice:'m', rate:1.0});
+    lines.push({text:it.text, voice:it.voice});
+  });
+  speakSequence(lines);
+};
+document.getElementById('l1-stop').onclick = stopSpeaking;
+
+/* ============== TASK 5 · matching 5 speakers ============== */
+const l5Speakers = [
+  {letter:'A', voice:'m', text:'I run in the park every morning before school. The fresh air is much better than any energy drink. After twenty minutes of running, I am ready for any maths lesson. Sport in the park costs nothing — that\'s the best part.', match:'5'},
+  {letter:'B', voice:'f', text:'Every Friday evening my family watches a film together. We don\'t just watch — we argue afterwards, we compare it to the book, we look up the director. A film without a long discussion feels half-finished to me.', match:'1'},
+  {letter:'C', voice:'m', text:'On Mondays and Wednesdays I go straight to music school after my regular lessons. I have been playing the violin for four years, and my teacher says I might become a musician one day. Big dream, but I look forward to every rehearsal.', match:'3'},
+  {letter:'D', voice:'f', text:'My favourite free-time activity is walking around the city — not the new shopping centres, but the old streets. I love finding tiny courtyards, unusual buildings, the underpass with old graffiti. The city always has something to show you.', match:'6'},
+  {letter:'E', voice:'f', text:'My grandparents are coming over on Saturday, so we will play board games all evening — Monopoly, Scrabble, chess. We do this every weekend. No phones at the table — just dice, laughter, and a big plate of cookies my mum bakes for everyone.', match:'2'}
+];
+const l5Wrap = document.getElementById('l5-match');
+const l5Script = document.getElementById('l5-script');
+l5Speakers.forEach(sp => {
+  const row = document.createElement('div');
+  row.className = 'match-row';
+  row.innerHTML = `
+    <span class="label">Speaker ${sp.letter}</span>
+    <span class="stmt"><em>Tap ▶ above to listen — then pick a statement number.</em></span>
+    <select data-a="${sp.match}">
+      <option value="" disabled selected>—</option>
+      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
+    </select>`;
+  const sel = row.querySelector('select');
+  sel.onchange = () => {
+    sel.classList.remove('right','wrong');
+    if (sel.value === sel.dataset.a) sel.classList.add('right');
+    else sel.classList.add('wrong');
+    document.getElementById('l5-score').textContent = document.querySelectorAll('#l5-match select.right').length;
+  };
+  l5Wrap.appendChild(row);
+  const p = document.createElement('p');
+  p.innerHTML = `<span class="spk">Speaker ${sp.letter}.</span>${sp.text}`;
+  l5Script.appendChild(p);
+});
+document.getElementById('l5-play').onclick = () => {
+  const lines = [];
+  l5Speakers.forEach(sp => {
+    lines.push({text:`Speaker ${sp.letter}.`, voice:'m', rate:1.0});
+    lines.push({text:sp.text, voice:sp.voice});
+  });
+  speakSequence(lines);
+};
+document.getElementById('l5-stop').onclick = stopSpeaking;
+
+/* ============== TASKS 6-11 · interview MCQ ============== */
+const l6Interview = [
+  {voice:'m', text:'Welcome back to TeenTalk! Today we have Lena, a fourteen-year-old student from Moscow. Lena, you started something called the Green Birthday Club at your school. Thanks for joining us.'},
+  {voice:'f', text:'Hi! Thanks for having me.'},
+  {voice:'m', text:'So tell us, how old were you when you started the club?'},
+  {voice:'f', text:'I was thirteen. It was the year of my birthday party, actually. My mum had bought a lot of plastic plates and balloons, and after the party there were three big bags of rubbish. I felt really uncomfortable about it. So the next week I talked to my biology teacher.'},
+  {voice:'m', text:'And the club grew quickly?'},
+  {voice:'f', text:'Surprisingly fast. We started with six people in my class. Today we have about thirty members from different year groups. We meet every Friday in the eco room.'},
+  {voice:'m', text:'How is your club different from a normal school party?'},
+  {voice:'f', text:'Three rules. First, no plastic plates or cups — we use paper ones, or we ask everyone to bring a reusable cup. Second, no plastic balloons — we decorate with paper flowers and ribbons. Third, no plastic packaging on gifts.'},
+  {voice:'m', text:'Speaking of gifts — what do your members usually give each other?'},
+  {voice:'f', text:'Mostly handmade things — drawings, photo albums, little wooden boxes. Some people bring home-baked cookies. Books are popular too, of course. But the most loved gifts are always the handmade ones.'},
+  {voice:'m', text:'Where do you organise the bigger parties?'},
+  {voice:'f', text:'When the weather is nice, we go to the park near the school. We bring a blanket, fruit, sandwiches, board games. It feels much more like a real celebration than indoors. And there is no cleaning up afterwards — well, almost none.'},
+  {voice:'m', text:'Final question. What is next for you and the club?'},
+  {voice:'f', text:'We want to bring the idea to the primary school next door. Younger children love handmade things — they will help us a lot. That is the plan for the autumn term.'},
+  {voice:'m', text:'Lena, that is such a lovely project. Thank you for being with us today.'},
+  {voice:'f', text:'Thank you for having me!'}
+];
+const l6Qs = [
+  {q:'6. Lena says she started the Green Birthday Club at the age of…', opts:['twelve','thirteen','fourteen'], a:1},
+  {q:'7. How many members does the club have today?', opts:['fifteen','thirty','fifty'], a:1},
+  {q:'8. Which item is NOT allowed at the club\'s parties?', opts:['plastic plates','sweet cake','loud music'], a:0},
+  {q:'9. What kind of gifts are the most popular in the club?', opts:['toy gifts','handmade items','books'], a:1},
+  {q:'10. Where does the club organise outdoor parties?', opts:['in the school yard','in the park near the school','in members\' own gardens'], a:1},
+  {q:'11. What is Lena\'s next plan?', opts:['open a new club in another district','write a book about the club','share the idea with the primary school'], a:2}
+];
+const l6El = document.getElementById('l6-mcqs');
+const l6Script = document.getElementById('l6-script');
+l6Qs.forEach((q, i) => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(q.a);
+  row.innerHTML = `
+    <div class="mc1-q"><strong>${q.q}</strong></div>
+    <div class="mc1-opts">
+      ${q.opts.map((o,j) => `<button data-v="${j}">${String.fromCharCode(49+j)}) ${o}</button>`).join('')}
+    </div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true; });
+      if (b.dataset.v === String(q.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${q.a}"]`).classList.add('correct'); }
+      let ok = 0;
+      document.querySelectorAll('#l6-mcqs .mc1-row').forEach(r => {
+        if (r.querySelector('button.correct') && !r.querySelector('button.wrong')) ok++;
+      });
+      document.getElementById('l6-score').textContent = ok;
+    };
+  });
+  l6El.appendChild(row);
+});
+l6Interview.forEach(line => {
+  const p = document.createElement('p');
+  p.innerHTML = `<span class="spk">${line.voice==='m'?'Host':'Lena'}.</span>${line.text}`;
+  l6Script.appendChild(p);
+});
+document.getElementById('l6-play').onclick = () => speakSequence(l6Interview);
+document.getElementById('l6-stop').onclick = stopSpeaking;
+
+/* ============== TASK 12 · headings ============== */
+const r12Texts = [
+  {letter:'A', body:'In our family, the chores list lives on the fridge. Every Sunday evening, the four of us look at it together and we share the tasks for the week. My brother takes out the rubbish, I do the washing-up, my dad vacuums the carpets, and my mum does the laundry. Since we started the list, we have stopped arguing about who does what.', heading:'1'},
+  {letter:'B', body:'Every Saturday evening, the dining table belongs to the board games. Monopoly, Scrabble, sometimes chess if my grandfather is over. My parents put their phones in a basket near the door, and for three hours we are nothing but four players around a board. It is the most loved tradition in our family.', heading:'2'},
+  {letter:'C', body:'I have been going to a music school after my regular lessons for four years. Two evenings a week, I sit in a small room with a violin in my hands, and I think about nothing else. Most of my friends prefer sport, but for me music is what makes the day complete.', heading:'4'},
+  {letter:'D', body:'You don\'t need a fitness centre to do sport. Almost every morning before school, I run twenty minutes in the park near my house. On Saturdays, my friends and I play street basketball under the trees. We breathe fresh air, we don\'t pay any membership, and the only equipment we really need is a good pair of trainers.', heading:'5'},
+  {letter:'E', body:'When I walk around my city, I avoid the new shopping centres. I look for the old streets instead — the courtyards behind the main avenues, the small underpass that leads to a hidden square. Each old street has a story, and as a teenager I am only now beginning to understand how much I had missed before.', heading:'3'},
+  {letter:'F', body:'My sister threw a "green" birthday party last month. No plastic plates, no plastic balloons, no rubbish bags at the end of the evening. Everyone brought a handmade gift — a drawing, a photo album, a little wooden box. We blew out candles, we made wishes, we had cake, and at midnight there was almost nothing to throw away.', heading:'6'}
+];
+const r12TextsEl = document.getElementById('r12-texts');
+const r12MatchEl = document.getElementById('r12-match');
+r12Texts.forEach(t => {
+  const para = document.createElement('div');
+  para.className = 'passage';
+  para.innerHTML = `<p><strong style="color:var(--accent-2);font-family:var(--mono)">${t.letter}.</strong> ${t.body}</p>`;
+  r12TextsEl.appendChild(para);
+  const row = document.createElement('div');
+  row.className = 'match-row';
+  row.innerHTML = `
+    <span class="label">Text ${t.letter}</span>
+    <span class="stmt">→ Heading number?</span>
+    <select data-a="${t.heading}">
+      <option value="" disabled selected>—</option>
+      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+    </select>`;
+  const sel = row.querySelector('select');
+  sel.onchange = () => {
+    sel.classList.remove('right','wrong');
+    if (sel.value === sel.dataset.a) sel.classList.add('right');
+    else sel.classList.add('wrong');
+    document.getElementById('r12-score').textContent = document.querySelectorAll('#r12-match select.right').length;
+  };
+  r12MatchEl.appendChild(row);
+});
+
+/* ============== TASK 13-19 · T/F/NS ============== */
+const r13Items = [
+  {t:'In Russia, the birthday person should tell their wish out loud while blowing out the candles.', a:2}, // False — silent + secret
+  {t:'The Mexican piñata is filled with sweets and broken by a guest with closed eyes.', a:1}, // True
+  {t:'According to the text, the piñata is considered the safest game at Mexican parties.', a:2}, // False — "a little dangerous"
+  {t:'Japanese families always celebrate birthdays in the same way, regardless of age.', a:2}, // False
+  {t:'Sekihan is a sweet birthday cake that Japanese teenagers love.', a:2}, // False — special red rice for older relatives
+  {t:'Online birthday meetings have become popular among Japanese teenagers.', a:1}, // True
+  {t:'The most expensive presents are mentioned as the most appreciated.', a:2}  // False — handmade matters more
+];
+const r13El = document.getElementById('r13-tfns');
+r13Items.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'tfns-row';
+  row.innerHTML = `<div class="stmt"><strong>${i+13}.</strong> ${it.t}</div>
+    <div class="opts">
+      <button data-v="1">1 · T</button>
+      <button data-v="2">2 · F</button>
+      <button data-v="3">3 · NS</button>
+    </div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('right','wrong'); x.disabled = true; });
+      if (b.dataset.v === String(it.a)) b.classList.add('right');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${it.a}"]`).classList.add('right'); }
+      let ok = 0; document.querySelectorAll('#r13-tfns .tfns-row').forEach(r => {
+        if (r.querySelector('button.right') && !r.querySelector('button.wrong')) ok++;
+      });
+      document.getElementById('r13-score').textContent = ok;
+    };
+  });
+  r13El.appendChild(row);
+});
+
+/* ============== TASKS 20-28 · word change ============== */
+const g20Items = [
+  {ctx:'When I ___ younger, I really hated helping at home.', hint:'BE', a:'was'},
+  {ctx:'My mum ___ all the cleaning by herself, which seemed unfair to everyone.', hint:'USE / DO', a:'used to do'},
+  {ctx:'My dad always says that every member of the family ___ help with the housework.', hint:'MUST', a:'must'},
+  {ctx:'One Sunday, my older sister ___ that all four of us share the chores.', hint:'SUGGEST', a:'suggested'},
+  {ctx:'At first, I really ___ doing the washing-up after dinner.', hint:'NOT / ENJOY', a:"didn't enjoy"},
+  {ctx:'Our parents told us that we ___ tidy our rooms every Saturday morning.', hint:'HAVE', a:'had to'},
+  {ctx:'After a couple of weeks, I got ___ to the new schedule.', hint:'USE', a:'used'},
+  {ctx:'Now the laundry, the cooking, and the cleaning ___ between everyone.', hint:'SHARE', a:'are shared'},
+  {ctx:'Life at home is much ___ than it used to be, and the evenings are calmer.', hint:'GOOD', a:'better'}
+];
+const g20El = document.getElementById('g20-rows');
+g20Items.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'wf-row';
+  row.innerHTML = `
+    <span class="ctx"><strong>${i+20}.</strong> ${it.ctx}</span>
+    <span class="hint">${it.hint}</span>
+    <input type="text" data-a="${it.a}" autocomplete="off" placeholder="…">`;
+  const inp = row.querySelector('input');
+  inp.addEventListener('focus', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('input', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('blur', () => {
+    if (!inp.value.trim()) return;
+    if (inp.value.trim().toLowerCase().replace(/\s+/g,' ') === inp.dataset.a.toLowerCase()) inp.classList.add('right');
+    else inp.classList.add('wrong');
+    document.getElementById('g20-score').textContent = document.querySelectorAll('#g20-rows input.right').length;
+  });
+  g20El.appendChild(row);
+});
+
+/* ============== TASKS 29-34 · word formation ============== */
+const g29Items = [
+  {ctx:'Our school\'s most ___ club is the eco club, which started ten years ago.', hint:'SUCCESS', a:'successful'},
+  {ctx:'Every ___ joins one of three teams: recycling, biodiversity, or green parties.', hint:'STUDY', a:'student'},
+  {ctx:'The club organises ___ events like a "no-plastic Friday" and a Saturday clean-up walk.', hint:'TRADITION', a:'traditional'},
+  {ctx:'Last year, our ___ raised awareness across the whole district.', hint:'ACT', a:'actions'},
+  {ctx:'Inside the club, we have a young ___ who writes songs for our campaigns.', hint:'MUSIC', a:'musician'},
+  {ctx:'For me, the most ___ part is how fast even younger children join in.', hint:'SURPRISE', a:'surprising'}
+];
+const g29El = document.getElementById('g29-rows');
+g29Items.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'wf-row';
+  row.innerHTML = `
+    <span class="ctx"><strong>${i+29}.</strong> ${it.ctx}</span>
+    <span class="hint">${it.hint}</span>
+    <input type="text" data-a="${it.a}" autocomplete="off" placeholder="…">`;
+  const inp = row.querySelector('input');
+  inp.addEventListener('focus', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('input', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('blur', () => {
+    if (!inp.value.trim()) return;
+    if (inp.value.trim().toLowerCase() === inp.dataset.a.toLowerCase()) inp.classList.add('right');
+    else inp.classList.add('wrong');
+    document.getElementById('g29-score').textContent = document.querySelectorAll('#g29-rows input.right').length;
+  });
+  g29El.appendChild(row);
+});
+
+/* ============== TASK 35 · letter word count + sample ============== */
+const letterTa = document.getElementById('letter-ta');
+const letterWc = document.getElementById('letter-wc');
+if (letterTa && letterWc) {
+  letterTa.addEventListener('input', () => {
+    const n = (letterTa.value.match(/\b[\w'-]+\b/g)||[]).length;
+    letterWc.textContent = n;
+    letterWc.style.color = (n >= 90 && n <= 132) ? 'var(--ok)' : (n > 0 ? 'var(--miss)' : '');
+  });
+}
+document.querySelectorAll('.sample-toggle').forEach(btn => {
+  btn.onclick = () => {
+    const w = document.getElementById(btn.dataset.target);
+    if (w) w.classList.toggle('show-sample');
+  };
+});
+
+/* ============== SPEAKING 1 · read aloud ============== */
+document.getElementById('sp1-play').onclick = () => {
+  say("In many Russian schools, the eco club has become one of the most popular activities after lessons. Students collect plastic bottles, organise clean-up walks around the neighbourhood, and learn how recycling really works. They also talk about biodiversity and climate change in classes that mix science, music and even sport. Some clubs invite local champions to support outdoor events in the city park near the school. A few schools have started to celebrate zero-rubbish birthdays, where the children exchange handmade gifts instead of plastic toys. Through small actions, students get used to thinking carefully about the environment. Teachers say that this is one of the best ways to grow real responsibility. Small steps, repeated every week, can change the whole school culture.", {rate:0.88});
+};
+
+/* ============== Mic helper ============== */
+function setupMic(btnId, fbId, trId){
+  const btn = document.getElementById(btnId);
+  const fb = document.getElementById(fbId);
+  const tr = document.getElementById(trId);
+  if (!btn) return;
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Rec) { btn.disabled = true; btn.textContent = '🎙 not supported'; return; }
+  let rec = null, on = false;
+  btn.onclick = () => {
+    if (on) { if (rec) rec.stop(); return; }
+    rec = new Rec();
+    rec.lang = 'en-GB';
+    rec.interimResults = true;
+    rec.continuous = true;
+    let final = '';
+    rec.onstart = () => { on = true; btn.classList.add('rec'); btn.textContent = '⏸ Stop'; fb.textContent = '● recording…'; };
+    rec.onend = () => { on = false; btn.classList.remove('rec'); btn.textContent = '🎙 Record'; fb.textContent = '✓ done'; };
+    rec.onresult = e => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        if (e.results[i].isFinal) final += e.results[i][0].transcript;
+        else interim += e.results[i][0].transcript;
+      }
+      tr.textContent = (final + interim).trim();
+    };
+    rec.start();
+  };
+}
+setupMic('sp1-rec','sp1-fb','sp1-tr');
+setupMic('sp3-rec','sp3-fb','sp3-tr');
+
+/* ============== SPEAKING 2 · phone survey ============== */
+const sp2Qs = [
+  'What hobbies do you usually do after school?',
+  'How much time do you spend reading books in a week?',
+  'Why is cooking with the family a popular activity in many countries?',
+  'Do you prefer travelling abroad or in your own country? Why?',
+  'Some people say that watching TV is a waste of time. Do you agree?',
+  'What advice would you give to someone who wants to find a new hobby?'
+];
+const sp2El = document.getElementById('sp2-list');
+sp2Qs.forEach((q, i) => {
+  const row = document.createElement('div');
+  row.className = 'cue-card';
+  row.innerHTML = `
+    <div class="cue-h">Question ${i+1} · 40 sec</div>
+    <p style="font-family:var(--serif);font-size:1.02rem;color:var(--text);margin-bottom:8px">${q}</p>
+    <div class="audio-row" style="margin:6px 0">
+      <button class="tts-btn" data-q="${i}">🔊 Hear the question</button>
+    </div>`;
+  row.querySelector('button').onclick = () => say(q, {rate:0.92});
+  sp2El.appendChild(row);
+});
+
+/* ============== SPEAKING 3 · sample monologue ============== */
+document.getElementById('sp3-play').onclick = () => {
+  const text = document.querySelector('#sp3-write .sample-reveal').textContent;
+  say(text, {rate:0.94});
+};
+
+/* ============== PRACTICE · Vocabulary deep work · 3 разных формата ============== */
+/* Tally functions */
+function pvUpdateScore() {
+  const a = document.querySelectorAll('#pv-chores select.right').length;
+  const b = document.querySelectorAll('#pv-birthdays .pv-mcq-row.correct').length;
+  const c = document.querySelectorAll('#pv-ecology .pv-gap.right').length;
+  document.getElementById('pv-score').textContent = a + b + c;
+}
+
+/* === 1. CHORES — list match (EN → RU dropdown) === */
+const choresList = [
+  {en:'do the washing-up', ru:'мыть посуду'},
+  {en:'do the laundry', ru:'стирать'},
+  {en:'make the bed', ru:'застилать кровать'},
+  {en:'take out the rubbish', ru:'выносить мусор'},
+  {en:'vacuum the carpet', ru:'пылесосить ковёр'},
+  {en:'mop the floor', ru:'мыть пол'},
+  {en:'dust the shelves', ru:'вытирать пыль с полок'},
+  {en:'fold clothes', ru:'складывать одежду'},
+  {en:'iron clothes', ru:'гладить одежду'},
+  {en:'share responsibilities', ru:'делить обязанности'}
+];
+const choresBox = document.getElementById('pv-chores');
+const choresShuffled = [...choresList].sort(() => Math.random() - 0.5);
+choresList.forEach((p, i) => {
+  const row = document.createElement('div');
+  row.className = 'match-row';
+  row.innerHTML = `
+    <span class="label">${i+1}</span>
+    <span class="stmt"><strong>${p.en}</strong></span>
+    <select data-a="${p.ru}">
+      <option value="" disabled selected>—</option>
+      ${choresShuffled.map(x => `<option value="${x.ru}">${x.ru}</option>`).join('')}
+    </select>`;
+  const sel = row.querySelector('select');
+  sel.onchange = () => {
+    sel.classList.remove('right','wrong');
+    if (sel.value === sel.dataset.a) sel.classList.add('right');
+    else sel.classList.add('wrong');
+    pvUpdateScore();
+  };
+  choresBox.appendChild(row);
+});
+
+/* === 2. BIRTHDAYS — multiple choice (3 options each) === */
+const birthdaysMCQ = [
+  {q:'throw a party', opts:['пойти на вечеринку','устроить вечеринку','пропустить вечеринку'], a:1},
+  {q:'decorate with balloons', opts:['убирать шары','украшать шарами','покупать шары'], a:1},
+  {q:'blow out the candles', opts:['зажигать свечи','задувать свечи','считать свечи'], a:1},
+  {q:'make a wish', opts:['получать подарок','загадывать желание','петь песню'], a:1},
+  {q:'handmade gift', opts:['дорогой подарок','подарок ручной работы','подарок из магазина'], a:1},
+  {q:'organise a surprise party', opts:['отказаться от сюрприза','устроить сюрприз-вечеринку','скрыть сюрприз'], a:1},
+  {q:'birthday traditions', opts:['традиции дня рождения','день рождения друга','тортик на праздник'], a:0},
+  {q:'name days', opts:['тёзки','именины','имена гостей'], a:1},
+  {q:'lucky numbers', opts:['номер телефона','счастливые числа','много гостей'], a:1},
+  {q:'virtual party', opts:['большая вечеринка','онлайн-вечеринка','тихая вечеринка'], a:1}
+];
+const bdBox = document.getElementById('pv-birthdays');
+birthdaysMCQ.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row pv-mcq-row';
+  row.dataset.ans = String(it.a);
+  row.innerHTML = `
+    <div class="mc1-q"><strong>${i+1}. ${it.q}</strong> — pick the translation:</div>
+    <div class="mc1-opts">
+      ${it.opts.map((o, j) => `<button data-v="${j}">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}
+    </div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true; });
+      if (b.dataset.v === String(it.a)) {
+        b.classList.add('correct');
+        row.classList.add('correct');
+      } else {
+        b.classList.add('wrong');
+        row.querySelector(`button[data-v="${it.a}"]`).classList.add('correct');
+      }
+      pvUpdateScore();
+    };
+  });
+  bdBox.appendChild(row);
+});
+
+/* === 3. ECOLOGY — drag word into the text === */
+const ecoBank = ['pollution','recycle','renewable','endangered','deforestation','climate change','eco-friendly','global warming','sort the rubbish','greenhouse gases'];
+const ecoText = [
+  {text:'Air ', gap:'pollution'}, {text:' is one of the biggest problems in modern cities. We should '},
+  {gap:'sort the rubbish'}, {text:' at home and '},
+  {gap:'recycle'}, {text:' paper, plastic and glass. Solar and wind are clean '},
+  {gap:'renewable'}, {text:' energy sources. Pandas and tigers are '},
+  {gap:'endangered'}, {text:' species, partly because of '},
+  {gap:'deforestation'}, {text:' — millions of trees are cut down every year. '},
+  {gap:'Climate change'}, {text:' and '},
+  {gap:'global warming'}, {text:' are linked to '},
+  {gap:'greenhouse gases'}, {text:' from cars and factories. Choose '},
+  {gap:'eco-friendly'}, {text:' products and try to reduce your daily impact.'}
+];
+const ecoBox = document.getElementById('pv-ecology');
+const ecoBankBox = document.getElementById('pv-ecology-bank');
+let pvSelected = null;
+const bankShuffled = [...ecoBank].sort(() => Math.random() - 0.5);
+bankShuffled.forEach(w => {
+  const chip = document.createElement('button');
+  chip.className = 'pv-bank-chip';
+  chip.textContent = w;
+  chip.draggable = true;
+  chip.dataset.w = w;
+  chip.style.cssText = 'padding:7px 13px;background:#fff;border:1.5px solid var(--accent);border-radius:8px;cursor:grab;font-family:var(--body);font-weight:600;color:var(--accent-2);font-size:.92rem';
+  chip.onclick = () => {
+    document.querySelectorAll('.pv-bank-chip.selected').forEach(c => { c.classList.remove('selected'); c.style.background = '#fff' });
+    chip.classList.add('selected');
+    chip.style.background = 'rgba(37,99,235,.18)';
+    pvSelected = w;
+  };
+  chip.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', w); pvSelected = w });
+  ecoBankBox.appendChild(chip);
+});
+ecoText.forEach((part, i) => {
+  if (part.text) {
+    const sp = document.createElement('span');
+    sp.textContent = part.text;
+    ecoBox.appendChild(sp);
+  }
+  if (part.gap) {
+    const gap = document.createElement('span');
+    gap.className = 'pv-gap';
+    gap.dataset.a = part.gap.toLowerCase();
+    gap.style.cssText = 'display:inline-block;min-width:80px;padding:2px 10px;margin:0 4px;border:2px dashed var(--accent);border-radius:6px;background:#fff;color:var(--muted);font-weight:600;cursor:pointer;text-align:center';
+    gap.textContent = '___';
+    gap.addEventListener('dragover', e => e.preventDefault());
+    gap.addEventListener('drop', e => {
+      e.preventDefault();
+      const w = e.dataTransfer.getData('text/plain') || pvSelected;
+      if (!w) return;
+      placeGapWord(gap, w);
+    });
+    gap.onclick = () => {
+      if (!pvSelected) return;
+      placeGapWord(gap, pvSelected);
+    };
+    ecoBox.appendChild(gap);
+  }
+});
+function placeGapWord(gap, w) {
+  gap.textContent = w;
+  gap.style.color = 'var(--text)';
+  gap.style.borderStyle = 'solid';
+  if (w.toLowerCase() === gap.dataset.a) {
+    gap.classList.add('right'); gap.classList.remove('wrong');
+    gap.style.background = 'rgba(22,163,74,.14)';
+    gap.style.borderColor = 'var(--ok)';
+    /* убрать chip из bank */
+    document.querySelectorAll(`.pv-bank-chip[data-w="${w}"]`).forEach(c => c.remove());
+  } else {
+    gap.classList.add('wrong'); gap.classList.remove('right');
+    gap.style.background = 'rgba(220,38,38,.14)';
+    gap.style.borderColor = 'var(--miss)';
+  }
+  pvSelected = null;
+  document.querySelectorAll('.pv-bank-chip.selected').forEach(c => { c.classList.remove('selected'); c.style.background = '#fff' });
+  pvUpdateScore();
+}
+
+/* ============== PRACTICE · Passive Voice transformations ============== */
+const passiveItems = [
+  {prompt:'Active: They sort the rubbish at home every week.', a:'the rubbish is sorted at home every week', hint:'The rubbish ___ (sort)'},
+  {prompt:'Active: My mum does the laundry on Saturdays.', a:'the laundry is done on saturdays', hint:'The laundry ___ (do) by my mum'},
+  {prompt:'Active: We organised a surprise party last weekend.', a:'a surprise party was organised last weekend', hint:'A surprise party ___ (organise)'},
+  {prompt:'Active: People recycle paper, plastic and glass.', a:'paper, plastic and glass are recycled', hint:'Paper, plastic and glass ___ (recycle)'},
+  {prompt:'Active: Air pollution causes serious health problems.', a:'serious health problems are caused by air pollution', hint:'Serious health problems ___ (cause)'},
+  {prompt:'Active: My grandmother made the birthday cake.', a:'the birthday cake was made by my grandmother', hint:'The birthday cake ___ (make)'},
+  {prompt:'Active: Companies will introduce more eco-friendly products next year.', a:'more eco-friendly products will be introduced next year', hint:'More eco-friendly products ___ (introduce)'},
+  {prompt:'Active: Someone has thrown plastic bottles in the river.', a:'plastic bottles have been thrown in the river', hint:'Plastic bottles ___ (throw)'}
+];
+const passiveEl = document.getElementById('pv-passive');
+passiveItems.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'wf-row';
+  row.style.gridTemplateColumns = '1fr 1fr';
+  row.innerHTML = `
+    <span class="ctx"><strong>${i+1}.</strong> ${it.prompt}<br><em style="color:var(--muted);font-size:.86rem">${it.hint}</em></span>
+    <input type="text" data-a="${it.a}" autocomplete="off" placeholder="Type passive form…">`;
+  const inp = row.querySelector('input');
+  inp.addEventListener('focus', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('blur', () => {
+    if (!inp.value.trim()) return;
+    const v = inp.value.trim().toLowerCase().replace(/\.$/,'').replace(/\s+/g,' ');
+    if (v === inp.dataset.a.toLowerCase()) inp.classList.add('right');
+    else inp.classList.add('wrong');
+    document.getElementById('pv-passive-score').textContent = document.querySelectorAll('#pv-passive input.right').length;
+  });
+  passiveEl.appendChild(row);
+});
+
+/* ============== PRACTICE · Mixed grammar MCQ ============== */
+const grammarItems = [
+  {q:'1. You ___ wear a uniform — it\'s a school rule.', opts:['must','should','can'], a:0},
+  {q:'2. ___ you mind helping me with the washing-up?', opts:['Could','Should','Must'], a:0},
+  {q:'3. If we ___ paper and plastic, the rubbish will be smaller.', opts:['will sort','sort','sorted'], a:1},
+  {q:'4. I really enjoy ___ cookies with my mum on Saturdays.', opts:['to bake','baking','bake'], a:1},
+  {q:'5. When I was 6, I ___ ride a bike already.', opts:['can','could','must'], a:1},
+  {q:'6. You ___ throw plastic bottles in the river — it\'s strictly forbidden.', opts:['mustn\'t','don\'t have to','shouldn\'t'], a:0},
+  {q:'7. She used to ___ housework, but now she enjoys it.', opts:['hating','hate','hated'], a:1},
+  {q:'8. If I ___ more time, I would join the eco club.', opts:['have','had','will have'], a:1},
+  {q:'9. The rubbish ___ collected every Tuesday morning.', opts:['is','are','being'], a:0},
+  {q:'10. We ___ to organise a surprise party for grandma next month.', opts:['planning','plan','are planning'], a:2}
+];
+const grammarEl = document.getElementById('pv-grammar');
+grammarItems.forEach((q, i) => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(q.a);
+  row.innerHTML = `
+    <div class="mc1-q"><strong>${q.q}</strong></div>
+    <div class="mc1-opts">
+      ${q.opts.map((o,j) => `<button data-v="${j}">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}
+    </div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true; });
+      if (b.dataset.v === String(q.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${q.a}"]`).classList.add('correct'); }
+      let ok = 0;
+      document.querySelectorAll('#pv-grammar .mc1-row').forEach(r => {
+        if (r.querySelector('button.correct') && !r.querySelector('button.wrong')) ok++;
+      });
+      document.getElementById('pv-grammar-score').textContent = ok;
+    };
+  });
+  grammarEl.appendChild(row);
+});
+
+/* ============== PRACTICE · Extended grammar mix (P-G2) ============== */
+function pg2UpdateScore(){
+  const total = document.querySelectorAll('#block-practice-grammar-ext .mc1-row button.correct:not(.wrong)').length
+    + document.querySelectorAll('#block-practice-grammar-ext input.right').length
+    + document.querySelectorAll('#block-practice-grammar-ext select.right').length;
+  /* count one per row (correct OR right) */
+  const okRows = new Set();
+  document.querySelectorAll('#block-practice-grammar-ext .mc1-row').forEach(r => { if (r.querySelector('button.correct') && !r.querySelector('button.wrong')) okRows.add(r) });
+  const okInputs = document.querySelectorAll('#block-practice-grammar-ext input.right').length;
+  const okSelects = document.querySelectorAll('#block-practice-grammar-ext select.right').length;
+  document.getElementById('pg2-score').textContent = okRows.size + okInputs + okSelects;
+}
+
+/* A · Gerund / Infinitive — 5 MCQ */
+const gerInfItems = [
+  {q:'1. I really enjoy ___ with my family on Saturdays.', opts:['to bake','baking','bake'], a:1, note:'enjoy + Ving'},
+  {q:'2. She managed ___ the problem on her own.', opts:['solving','to solve','solve'], a:1, note:'manage + to+inf'},
+  {q:'3. My mum let me ___ a small surprise party.', opts:['to organise','organising','organise'], a:2, note:'let + bare inf'},
+  {q:'4. I look forward ___ you at the weekend.', opts:['to see','seeing','to seeing'], a:2, note:'look forward TO + Ving'},
+  {q:'5. He suggested ___ paper and plastic separately.', opts:['to recycle','recycling','recycle'], a:1, note:'suggest + Ving'}
+];
+const gerInfEl = document.getElementById('pg2-gerinf');
+gerInfItems.forEach(it => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(it.a);
+  row.innerHTML = `<div class="mc1-q"><strong>${it.q}</strong></div><div class="mc1-opts">${it.opts.map((o,j)=>`<button data-v="${j}">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}</div><div class="mcq-note">${it.note}</div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.classList.add('revealed');
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true });
+      if (b.dataset.v === String(it.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${it.a}"]`).classList.add('correct') }
+      pg2UpdateScore();
+    };
+  });
+  gerInfEl.appendChild(row);
+});
+
+/* B · Used to family — 4 MCQ */
+const usedToItems = [
+  {q:'1. When I was younger, I ___ get up at 7 every morning for school.', opts:['used to','am used to','would'], a:0, note:'used to + V (прошлая привычка)'},
+  {q:'2. After a month, I ___ doing the washing-up. Now it\'s automatic.', opts:['used to','got used to','would'], a:1, note:'get used to + Ving'},
+  {q:'3. Every summer, my grandma ___ bake apple pies. The smell was amazing.', opts:['would','is used to','was used to'], a:0, note:'would = повторяющееся действие'},
+  {q:'4. I ___ sorting the rubbish now — it feels natural.', opts:['used to','am used to','would'], a:1, note:'be used to + Ving (привычно)'}
+];
+const usedToEl = document.getElementById('pg2-usedto');
+usedToItems.forEach(it => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(it.a);
+  row.innerHTML = `<div class="mc1-q"><strong>${it.q}</strong></div><div class="mc1-opts">${it.opts.map((o,j)=>`<button data-v="${j}">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}</div><div class="mcq-note">${it.note}</div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.classList.add('revealed');
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true });
+      if (b.dataset.v === String(it.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${it.a}"]`).classList.add('correct') }
+      pg2UpdateScore();
+    };
+  });
+  usedToEl.appendChild(row);
+});
+
+/* C · Word formation — 5 type-in */
+const wfItems = [
+  {ctx:'1. My (CHILD) ___ was full of long summer holidays at the dacha.', hint:'CHILD', a:'childhood'},
+  {ctx:'2. The actor played his role with great (ACT) ___.', hint:'ACT', a:'action'},
+  {ctx:'3. She has real (MUSIC) ___ talent — listens once, plays back.', hint:'MUSIC', a:'musical'},
+  {ctx:'4. We need new (COLLECT) ___ of fairy tales for the school library.', hint:'COLLECT', a:'collections'},
+  {ctx:'5. The school festival was very (ENTERTAIN) ___ — everyone laughed.', hint:'ENTERTAIN', a:'entertaining'}
+];
+const wfEl = document.getElementById('pg2-wordform');
+wfItems.forEach(it => {
+  const row = document.createElement('div');
+  row.className = 'wf-row';
+  row.innerHTML = `<span class="ctx">${it.ctx}</span><span class="hint">${it.hint}</span><input type="text" data-a="${it.a}" autocomplete="off" placeholder="…">`;
+  const inp = row.querySelector('input');
+  inp.addEventListener('focus', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('input', () => inp.classList.remove('right','wrong'));
+  inp.addEventListener('blur', () => {
+    if (!inp.value.trim()) return;
+    if (inp.value.trim().toLowerCase() === inp.dataset.a) inp.classList.add('right');
+    else inp.classList.add('wrong');
+    pg2UpdateScore();
+  });
+  wfEl.appendChild(row);
+});
+
+/* D · Prepositions — 5 select */
+const prepItems = [
+  {q:'1. She is really good ___ playing the violin.', opts:['at','in','on'], a:0},
+  {q:'2. My brother is crazy ___ board games — plays every weekend.', opts:['for','about','of'], a:1},
+  {q:'3. I am tired ___ doing all the housework alone.', opts:['of','from','with'], a:0},
+  {q:'4. Are you interested ___ joining the eco club this year?', opts:['on','in','to'], a:1},
+  {q:'5. Many teenagers take part ___ school environment projects.', opts:['at','on','in'], a:2}
+];
+const prepEl = document.getElementById('pg2-preps');
+prepItems.forEach(it => {
+  const row = document.createElement('div');
+  row.className = 'mc1-row';
+  row.dataset.ans = String(it.a);
+  row.innerHTML = `<div class="mc1-q"><strong>${it.q}</strong></div><div class="mc1-opts">${it.opts.map((o,j)=>`<button data-v="${j}">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}</div>`;
+  row.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      row.querySelectorAll('button').forEach(x => { x.classList.remove('correct','wrong'); x.disabled = true });
+      if (b.dataset.v === String(it.a)) b.classList.add('correct');
+      else { b.classList.add('wrong'); row.querySelector(`button[data-v="${it.a}"]`).classList.add('correct') }
+      pg2UpdateScore();
+    };
+  });
+  prepEl.appendChild(row);
+});
+
+/* E · Phrasal verbs — match meaning */
+const phrasalItems = [
+  {verb:'take up', meaning:'to start a new hobby or activity'},
+  {verb:'give up', meaning:'to stop doing something'},
+  {verb:'turn down', meaning:'to refuse an offer / lower the volume'},
+  {verb:'eat out', meaning:'to have a meal in a restaurant'},
+  {verb:'carry on', meaning:'to continue doing something'}
+];
+const phrasalEl = document.getElementById('pg2-phrasal');
+const meaningsShuffled = [...phrasalItems].map(x => x.meaning).sort(() => Math.random() - 0.5);
+phrasalItems.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'match-row';
+  row.innerHTML = `
+    <span class="label">${i+1}</span>
+    <span class="stmt"><strong>${it.verb}</strong></span>
+    <select data-a="${it.meaning}">
+      <option value="" disabled selected>—</option>
+      ${meaningsShuffled.map(m => `<option value="${m}">${m}</option>`).join('')}
+    </select>`;
+  const sel = row.querySelector('select');
+  sel.onchange = () => {
+    sel.classList.remove('right','wrong');
+    if (sel.value === sel.dataset.a) sel.classList.add('right');
+    else sel.classList.add('wrong');
+    pg2UpdateScore();
+  };
+  phrasalEl.appendChild(row);
+});
+
+/* ============== PRACTICE · Extra speaking cards ============== */
+const pvSpQs = [
+  'Should teenagers help with the housework? Why?',
+  'Are big birthday parties a waste of money?',
+  'What can young people do to protect the environment?',
+  'Should boys and girls share the same chores?',
+  'Is climate change really a serious problem for our generation?',
+  'Handmade gifts vs shop-bought — which is better?'
+];
+const pvSpEl = document.getElementById('pv-speaking-list');
+pvSpQs.forEach((q, i) => {
+  const row = document.createElement('div');
+  row.className = 'cue-card';
+  row.innerHTML = `
+    <div class="cue-h">Card ${i+1} · 40-60 sec · use the frame</div>
+    <p style="font-family:var(--serif);font-size:1.02rem;color:var(--text);margin-bottom:8px">${q}</p>
+    <div class="audio-row" style="margin:6px 0">
+      <button class="tts-btn" data-q="${i}">🔊 Hear the question</button>
+    </div>`;
+  row.querySelector('button').onclick = () => say(q, {rate:0.92});
+  pvSpEl.appendChild(row);
+});
+
+/* ============== Dots ============== */
+const dotsEl = document.getElementById('dots');
+const blocks = [...document.querySelectorAll('.section[id^="block-"]')];
+blocks.forEach((b) => {
+  const d = document.createElement('div');
+  d.className = 'dot';
+  d.onclick = () => b.scrollIntoView({behavior:'smooth',block:'start'});
+  dotsEl.appendChild(d);
+});
+function updateDots(){
+  const top = window.scrollY + 200;
+  blocks.forEach((b,i) => {
+    const dot = dotsEl.children[i];
+    if (dot) dot.classList.toggle('lit', b.offsetTop <= top);
+  });
+}
+window.addEventListener('scroll', updateDots);
+updateDots();
+</script>
+
+<script src="../../assets/lab-persist.js?v=2" defer></script>
+<script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../../assets/lab-sync.js?v=16" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+<script src="../../assets/lab-homework.js?v=37" defer></script>
+<script src="../../assets/lab-telemost.js?v=1" defer></script>
+<script src="../../assets/lab-vocab-builder.js?v=52" defer></script>
+<script src="../../assets/lab-coach-persist.js?v=1" defer></script>
+<script src="../../assets/lab-ai-feedback.js?v=7" defer></script>
+<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/premium-lesson-guard.js?v=2" defer></script>
+</body>
+</html>

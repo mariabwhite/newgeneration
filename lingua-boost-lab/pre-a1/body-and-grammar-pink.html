@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/canon-L.css?v=11" data-tag="canon-L-loaded">
+<link rel="stylesheet" href="../assets/canon-L.css?v=15" data-tag="canon-L-loaded">
 <script src="../assets/canon-L.js?v=5" defer></script>
 
 <style>
@@ -860,7 +860,7 @@ img{max-width:100%;height:auto;display:block;}
 .foot-title{font-family:var(--display,system-ui,sans-serif);font-size:18px;font-weight:800;letter-spacing:0;}
 @media (max-width:650px){.lesson-foot{grid-template-columns:1fr;width:min(100% - 28px,1180px);}.foot-link.next{text-align:left;}}</style>
 
-<link rel="stylesheet" href="../assets/mobile-fix.css?v=20260606" data-tag="linguaboost-mobile-fix-loaded">
+<link rel="stylesheet" href="../assets/mobile-fix.css?v=20260625a" data-tag="linguaboost-mobile-fix-loaded">
 <link rel="stylesheet" href="../assets/lab-unify-repair.css?v=20260520-lesson-align" data-lab-unify-repair>
 <link rel="stylesheet" href="../assets/interactive-canon-final.css?v=20260511-left-rail" data-tag="interactive-canon-final">
 <style>
@@ -1004,13 +1004,46 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
 @media (max-width:650px){
   html,body{overflow-x:hidden!important;}
   body.lb-canon-target .wrap{width:100%!important;max-width:100%!important;padding-left:14px!important;padding-right:14px!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids{width:100%!important;min-height:570px!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids::after{background:linear-gradient(90deg,rgba(255,245,251,.84) 0%,rgba(255,245,251,.58) 49%,rgba(255,245,251,.08) 68%,transparent 86%)!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{object-position:62% center!important;opacity:1!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-inner{max-width:330px!important;padding-left:12px!important;padding-right:12px!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-title{max-width:330px!important;font-size:clamp(1.95rem, 8.8vw, 2.18rem)!important;line-height:1.02!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-lead{max-width:300px!important;font-size:.9rem!important;line-height:1.45!important;}
-  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-meta{max-width:300px!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;}
+  /* 2026-06-10 v4: КАК HELLO. Cream-veil слева, текст там, картинка справа, квадрат. */
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids{
+    width:100%!important;aspect-ratio:1/1!important;min-height:0!important;max-height:none!important;height:auto!important;
+    padding:24px 22px!important;border-radius:22px!important;
+    display:block!important;overflow:hidden!important;position:relative!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids::after{
+    content:""!important;display:block!important;position:absolute!important;inset:0!important;z-index:1!important;
+    background:linear-gradient(90deg,rgba(255,245,251,.94) 0%,rgba(255,245,251,.78) 42%,rgba(255,245,251,.30) 64%,rgba(255,245,251,0) 82%)!important;
+    pointer-events:none!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
+    object-fit:cover!important;object-position:75% center!important;opacity:1!important;filter:none!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-inner{
+    position:relative!important;z-index:2!important;max-width:62%!important;padding:0!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-eyebrow{
+    display:block!important;color:#8d4d6a!important;background:none!important;padding:0!important;
+    font-weight:700!important;font-size:.72rem!important;letter-spacing:.06em!important;
+    margin:0 0 8px!important;text-transform:uppercase!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-title{
+    display:block!important;max-width:100%!important;
+    font-size:clamp(1.4rem, 6.2vw, 1.7rem)!important;line-height:1.05!important;
+    color:#4a1830!important;text-shadow:none!important;margin:0 0 8px!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-lead{display:none!important;}
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-meta{
+    max-width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;
+    gap:6px!important;margin:10px 0 0!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-pill{
+    background:#fff!important;color:#4a1830!important;
+    border:1px solid rgba(255,79,147,.36)!important;font-weight:600!important;
+    text-shadow:none!important;text-align:center!important;
+    padding:7px 6px!important;font-size:10px!important;line-height:1.15!important;
+    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  }
+  body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-meta > .canon-l-hero-pill:nth-child(n+5){display:none!important;}
   .section{width:100%!important;overflow:hidden!important;}
   .flash-3d,.memory-grid.memory-garden{width:100%!important;max-width:100%!important;gap:12px!important;}
   .flash-card.flash-card-3d,.memory-seed-card{min-width:0!important;}
@@ -1084,7 +1117,7 @@ body.lb-canon-target .passport-textarea{
   grid-template-columns:repeat(3,1fr) !important;
   gap:12px !important;
   width:min(100% - 56px,1180px) !important;
-  max-width:1180px !important;
+  max-width:1240px !important;
   margin:24px auto 0 !important;
   padding:0 !important;
 }
@@ -1157,7 +1190,8 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
 <style id="codex-why-card-grid-20260513">
 .canon-l-why {
   box-sizing: border-box !important;
-  width: min(calc(100% - 48px), 1136px) !important;
+  width: 100% !important;
+  max-width: 1320px !important;
   margin: 18px auto 28px !important;
   padding: clamp(18px, 3vw, 28px) !important;
   display: grid !important;
@@ -1225,8 +1259,19 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
   }
 }
 </style>
+<link rel="stylesheet" href="../assets/lab-banner-canon.css?v=20260610b" data-tag="lab-banner-canon">
+<!-- Course Schema.org for SEO rich snippets -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Body &amp;amp; Grammar Garden - Pre-A1 | LinguaBoost Lab","description":"Pre-A1 English lesson: body words, have/has, this/that/these/those, listening, speaking and a Garden Passport.","url":"https://newgeneration-english.ru/lingua-boost-lab/pre-a1/body-and-grammar-pink.html","inLanguage":"en","educationalLevel":"Pre-A1 (Beginner)","courseMode":"online","isAccessibleForFree":true,"provider":{"@type":"EducationalOrganization","name":"New Generation English","url":"https://newgeneration-english.ru/","sameAs":"https://t.me/MariaBurceva_English"},"audience":{"@type":"EducationalAudience","educationalRole":"student"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","inLanguage":"en"}}
+</script>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after,.friendly-topbar .brand-mark::after,.lab-topbar .brand-mark::after,.cmdbar .brand-mark::after,.cmdbar .cb-mark::after,.canon-l-topbar .brand-mark::after,.canon-l-topbar .canon-l-mark::after,.friendly-topbar .brand-logo-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+.topbar .brand-mark>span[style*="right:0"],.friendly-topbar .brand-mark>span[style*="right:0"],.lab-topbar .brand-mark>span[style*="right:0"],.cmdbar .brand-mark>span[style*="right:0"],.cmdbar .cb-mark>span[style*="right:0"],.canon-l-topbar .brand-mark>span[style*="right:0"],.canon-l-topbar .canon-l-mark>span[style*="right:0"],.friendly-topbar .brand-logo-mark>span[style*="right:0"]{display:none!important}
+</style>
 </head>
 <body class="lb-canon-target">
+<link rel="stylesheet" href="../assets/lab-pilot.css?v=7">
 <script>
   /* NGE STATE-BRIDGE ? window.name as cross-page truth on file:// origin. */
   (function(){
@@ -1252,7 +1297,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
     } catch(_){}
   })();
 </script>
-<a href="#main-content" class="canon-l-skip-link">Перейти к основному содержимому</a>
+<a href="#main-content" class="canon-l-skip-link">Пере№ти к основному содержимому</a>
 
 <!-- TOPBAR -->
 <header class="canon-l-topbar" style="--lb-bg:#fff5fb; --lb-text:#4a1830; --lb-muted:#8d4d6a; --lb-line:rgba(255,79,147,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(255,79,147,.36); --lb-link-hover:#ff4f93; --lb-seg-bg:#fff; --lb-seg-border:rgba(255,79,147,.36); --lb-seg-btn:#ff4f93;">
@@ -1290,7 +1335,10 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
 
   <!-- HERO BANNER (image full size, text overlaid on cream LEFT half) -->
   <section class="canon-l-hero is-visual-bright is-hero-kids" style="--lb-bg:#fff5fb; --lb-text:#4a1830; --lb-muted:#8d4d6a; --lb-line:rgba(255,79,147,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(255,79,147,.36); --lb-link-hover:#ff4f93; --lb-seg-bg:#fff; --lb-seg-border:rgba(255,79,147,.36); --lb-seg-btn:#ff4f93;">
-  <img class="canon-l-hero-bg" src="../../assets/for-lessons/Baby/9b47b1ce-4b9a-4391-916e-6dbde557969e.png?v=20260505-girl" alt="" aria-hidden="true">
+  <picture>
+    <source media="(max-width:820px)" srcset="../assets/for-lessons/Baby/body-grammar-garden-mobile-20260610.png?v=20260610-2">
+    <img class="canon-l-hero-bg" style="object-position:75% center !important" src="../assets/for-lessons/Baby/9b47b1ce-4b9a-4391-916e-6dbde557969e.png?v=20260505-girl" alt="" aria-hidden="true">
+  </picture>
   <div class="canon-l-hero-inner">
     <p class="canon-l-hero-eyebrow">Pre-A1 - Kids</p>
     <h1 class="canon-l-hero-title">Body &amp; Grammar<br><em>Garden</em></h1>
@@ -1378,7 +1426,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
       <span class="interlude-chip">Garden look</span><span class="canon-l-section-name">This / That with the moles</span>
     </h2>
     <div class="lesson-illustration">
-      <img src="../../assets/for-lessons/Baby/ef2a541a-6e48-4c9e-ad46-90d864c4d002.png"
+      <img src="../assets/for-lessons/Baby/ef2a541a-6e48-4c9e-ad46-90d864c4d002.png"
            alt="Pink THIS/THAT whack-a-mole poster">
     </div>
     <div class="feedback">Use <strong>THIS</strong> for things near you, <strong>THAT</strong> for things far from you.</div>
@@ -1425,7 +1473,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
       <span class="interlude-chip">Garden look</span><span class="canon-l-section-name">These little friends</span>
     </h2>
     <div class="lesson-illustration">
-      <img src="../../assets/for-lessons/Baby/e4fde323-04cd-4368-8eb2-30d1ce8c7922.png"
+      <img src="../assets/for-lessons/Baby/e4fde323-04cd-4368-8eb2-30d1ce8c7922.png"
            alt="Four panels of two friends showing hands and saying hello">
     </div>
     <div class="feedback">They show their hands, legs and a happy hello!</div>
@@ -1461,7 +1509,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
       <span class="interlude-chip">Grammar look</span><span class="canon-l-section-name">This / That / These / Those</span>
     </h2>
     <div class="lesson-illustration">
-      <img src="../../assets/for-lessons/Baby/ece8727d-316f-4e83-ad3e-b30964365b55.png"
+      <img src="../assets/for-lessons/Baby/ece8727d-316f-4e83-ad3e-b30964365b55.png"
            alt="Pink this that these those grammar cards">
     </div>
   </section>
@@ -1497,7 +1545,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
       <span class="canon-l-section-name">Speaking cards</span>
     </h2>
     <div class="lesson-illustration">
-      <img src="../../assets/for-lessons/Baby/c4563bd8-e7bf-4394-a38e-44b4f010a8fc.png"
+      <img src="../assets/for-lessons/Baby/c4563bd8-e7bf-4394-a38e-44b4f010a8fc.png"
            alt="Pink speaking cards with body sentences">
     </div>
     <div class="feedback" id="speakingSelfCheck">Speaking checklist: listen, repeat aloud, then tap each card after you say it.</div>
@@ -2174,7 +2222,7 @@ body.lb-canon-target .wrap > .canon-l-hero.is-hero-kids .canon-l-hero-bg{
   checkFinishButton();
 })();
 </script>
-<script defer src="../assets/lab-unify-repair.js?v=20260527-lower-lab-mobile" data-lab-unify-repair></script>
+<script defer src="../assets/lab-unify-repair.js?v=20260708-menu" data-lab-unify-repair></script>
 
 <nav class="lesson-foot" aria-label="Lesson navigation">
   <a class="foot-link prev" href="./hello-classroom-fun.html">
@@ -2280,6 +2328,1045 @@ body.lb-canon-target .lesson-foot{
   }
 }
 </style>
+<style id="codex-body-garden-hello-mobile-banner-20260610">
+@media (max-width:820px){
+  html body.lb-canon-target main.wrap{
+    width:100% !important;
+    max-width:100% !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    overflow-x:hidden !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids{
+    width:calc(100% - 32px) !important;
+    max-width:358px !important;
+    height:calc(100vw - 32px) !important;
+    min-height:0 !important;
+    max-height:358px !important;
+    aspect-ratio:1/1 !important;
+    margin:16px auto 22px !important;
+    padding:0 !important;
+    display:block !important;
+    position:relative !important;
+    overflow:hidden !important;
+    border-radius:22px !important;
+    background:#fff5fb !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids > picture{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
+    overflow:hidden !important;
+    border-radius:inherit !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids::after{
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1 !important;
+    pointer-events:none !important;
+    border:0 !important;
+    border-radius:inherit !important;
+    background:linear-gradient(90deg,rgba(255,245,251,.92) 0%,rgba(255,245,251,.80) 39%,rgba(255,245,251,.28) 61%,rgba(255,245,251,0) 78%) !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-bg{
+    position:absolute !important;
+    width:100% !important;
+    height:100% !important;
+    inset:0 !important;
+    object-fit:cover !important;
+    object-position:75% center !important;
+    opacity:1 !important;
+    filter:none !important;
+    border-radius:inherit !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-inner{
+    position:absolute !important;
+    inset:0 !important;
+    z-index:2 !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    height:100% !important;
+    padding:22px 18px 18px !important;
+    box-sizing:border-box !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:stretch !important;
+    text-align:left !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-eyebrow{
+    display:block !important;
+    width:58% !important;
+    max-width:188px !important;
+    margin:0 0 7px !important;
+    padding:0 !important;
+    background:transparent !important;
+    color:#8d4d6a !important;
+    font-size:.64rem !important;
+    line-height:1.1 !important;
+    font-weight:800 !important;
+    letter-spacing:.06em !important;
+    text-transform:uppercase !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-title{
+    display:block !important;
+    width:58% !important;
+    max-width:188px !important;
+    margin:0 0 10px !important;
+    color:#4a1830 !important;
+    font-size:clamp(1.34rem, 6.1vw, 1.62rem) !important;
+    line-height:1.02 !important;
+    letter-spacing:0 !important;
+    text-shadow:none !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-title em{
+    display:inline !important;
+    color:#ff4f93 !important;
+    font-style:normal !important;
+    white-space:normal !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-lead{
+    display:none !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-meta{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:6px !important;
+    justify-items:stretch !important;
+    align-items:stretch !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-pill{
+    min-width:0 !important;
+    max-width:100% !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:6px 5px !important;
+    border-radius:12px !important;
+    border:1px solid rgba(255,79,147,.36) !important;
+    background:#fff !important;
+    color:#4a1830 !important;
+    font-size:9.5px !important;
+    line-height:1.1 !important;
+    font-weight:800 !important;
+    letter-spacing:0 !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    overflow-wrap:normal !important;
+  }
+  html body.lb-canon-target main.wrap > section.canon-l-hero.canon-l-hero.is-hero-kids .canon-l-hero-meta > .canon-l-hero-pill:nth-child(n+5){
+    display:none !important;
+  }
+}
+</style>
+<style id="codex-body-garden-mobile-square-hard-lock-20260610">
+@media (max-width:820px){
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style]{
+    width:calc(100vw - 32px) !important;
+    max-width:358px !important;
+    height:min(calc(100vw - 32px), 358px) !important;
+    min-height:min(calc(100vw - 32px), 358px) !important;
+    max-height:min(calc(100vw - 32px), 358px) !important;
+    block-size:min(calc(100vw - 32px), 358px) !important;
+    min-block-size:min(calc(100vw - 32px), 358px) !important;
+    max-block-size:min(calc(100vw - 32px), 358px) !important;
+    overflow:hidden !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] > picture,
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-bg{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    block-size:100% !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-title{
+    width:72% !important;
+    max-width:258px !important;
+    font-size:clamp(1.72rem, 8vw, 2rem) !important;
+    line-height:1.02 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    hyphens:none !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-eyebrow{
+    width:72% !important;
+    max-width:258px !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-meta{
+    width:calc(100vw - 68px) !important;
+    max-width:322px !important;
+    box-sizing:border-box !important;
+    padding:0 !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-pill{
+    display:block !important;
+    min-width:0 !important;
+    font-size:9px !important;
+    padding:6px 4px !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+  html body.lb-canon-target.lb-canon-target main#main-content.wrap > section.canon-l-hero.canon-l-hero.canon-l-hero.is-hero-kids.is-hero-kids[style] .canon-l-hero-meta > .canon-l-hero-pill:nth-child(n+5){
+    display:none !important;
+  }
+}
+</style>
+<style id="codex-lab-lower-spine-align-20260610">
+body.lb-canon-target{
+  --codex-lab-lower-spine:min(calc(100% - 2cm),1320px);
+}
+html body.lb-canon-target :is(.canon-l-why,.canon-l-tracker,.section,.lesson-foot,footer.canon-l-footer){
+  box-sizing:border-box !important;
+  width:var(--codex-lab-lower-spine) !important;
+  max-width:1320px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+@media(max-width:820px){
+  body.lb-canon-target{
+    --codex-lab-lower-spine:min(calc(100% - 28px),1320px);
+  }
+  html body.lb-canon-target .canon-l-tracker{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    gap:8px 10px !important;
+    overflow:hidden !important;
+  }
+  html body.lb-canon-target .canon-l-tracker-bar,
+  html body.lb-canon-target .canon-l-tracker-stars{
+    grid-column:1/-1 !important;
+    min-width:0 !important;
+    width:100% !important;
+    overflow:hidden !important;
+  }
+  html body.lb-canon-target .canon-l-tracker-score{
+    min-width:0 !important;
+    max-width:100% !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  html body.lb-canon-target .canon-l-tracker-reset{
+    justify-self:end !important;
+  }
+}
+</style>
+
+<style id="codex-mobile-body-final-20260612">
+@media (max-width: 820px){
+  html body .hero::after,html body .lesson-hero::after{background:linear-gradient(90deg,rgba(255,236,244,.70) 0%,rgba(255,236,244,.36) 26%,rgba(255,236,244,.04) 48%,rgba(255,236,244,0) 74%) !important;}
+  html body .hero-bg,html body .hero img[class*="bg"],html body .lesson-hero img{opacity:1 !important;filter:saturate(1.28) contrast(1.10) brightness(1.08) !important;}
+  html body .hero-title,html body .lesson-hero-title{text-shadow:0 2px 14px rgba(255,244,249,.88);}
+}
+</style>
+
+<style id="codex-mobile-card-rhythm-20260612">
+@media (max-width: 820px){
+  html body .canon-l-why,
+  html body .why-card,
+  html body .why-toggle,
+  html body .why-panel,
+  html body .why-accordion,
+  html body details.why,
+  html body .lesson-why{
+    box-sizing:border-box !important;
+    width:calc(100% - 30px) !important;
+    max-width:calc(100% - 30px) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    border-radius:16px !important;
+    overflow:hidden !important;
+  }
+  html body .canon-l-why-head,
+  html body .why-toggle,
+  html body .why-head,
+  html body .lesson-why-head{
+    min-height:58px !important;
+    display:flex !important;
+    align-items:center !important;
+  }
+  html body .round-card,
+  html body .mission-card,
+  html body .activity-card,
+  html body .task-card,
+  html body .lesson-card,
+  html body .section,
+  html body .block{
+    box-sizing:border-box !important;
+    max-width:calc(100% - 30px) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
+</style>
+
+<style id="codex-mobile-common-spine-1200-20260612">
+@media (max-width: 820px){html,body{max-width:100%;overflow-x:hidden;}html body :is(.canon-l-hero,.module-hero,.hero,.hero-card,.hero-mini,.canon-l-why,.canon-l-tracker,.tracker,.lesson-foot,.booster-mission,.booster-map,.grammar-map,.rules-table,.arcade-mission,.quest-panel,.library-card,.mission-card){box-sizing:border-box !important;width:min(100% - 28px, 1200px) !important;max-width:1200px !important;margin-left:auto !important;margin-right:auto !important;}html body :is(.card,.section,.story-card,.lesson-card,.tab-nav,.tab-content,#blocksContainer){max-width:100% !important;box-sizing:border-box !important;}}
+</style>
+
+<style id="codex-body-mobile-tracker-no-overflow-20260612">
+@media (max-width:820px){body.lb-canon-target .canon-l-tracker{display:grid !important;grid-template-columns:minmax(0,1fr) auto !important;gap:10px 12px !important;overflow:hidden !important;padding:16px 18px !important;}body.lb-canon-target .canon-l-tracker-step{grid-column:1 / 2;min-width:0;}body.lb-canon-target .canon-l-tracker-bar{grid-column:1 / -1;width:100% !important;min-width:0 !important;}body.lb-canon-target .canon-l-tracker-stars{display:none !important;}body.lb-canon-target .canon-l-tracker-score{white-space:nowrap !important;min-width:0 !important;}body.lb-canon-target .canon-l-tracker-reset{grid-column:2 / 3;justify-self:end;}}
+</style>
+
+<style id="codex-body-mobile-tracker-compact-final-20260612">
+@media (max-width:820px){body.lb-canon-target .canon-l-tracker{display:grid !important;grid-template-columns:1fr auto !important;align-items:center !important;gap:8px 10px !important;padding:16px 18px !important;overflow:hidden !important;}body.lb-canon-target .canon-l-tracker-step{grid-column:1 / 2 !important;grid-row:1 !important;}body.lb-canon-target .canon-l-tracker-bar{grid-column:1 / -1 !important;grid-row:2 !important;width:100% !important;min-width:0 !important;}body.lb-canon-target .canon-l-tracker-score#progressText{grid-column:1 / 2 !important;grid-row:3 !important;}body.lb-canon-target .canon-l-tracker-score#scoreDisplay{display:none !important;}body.lb-canon-target .canon-l-tracker-stars{display:none !important;}body.lb-canon-target .canon-l-tracker-reset{grid-column:2 / 3 !important;grid-row:3 !important;justify-self:end !important;max-width:86px !important;padding:8px 14px !important;}}
+</style>
+
+<style id="codex-body-mobile-hide-reset-final-20260612">
+@media (max-width:820px){body.lb-canon-target .canon-l-tracker-reset{display:none !important;}body.lb-canon-target .canon-l-tracker{grid-template-columns:1fr !important;}body.lb-canon-target .canon-l-tracker-score#progressText{grid-column:1 / -1 !important;}}
+</style>
+
+<style id="codex-mobile-topbar-labels-unified-20260612">
+@media (max-width:820px){
+  html body :is(.canon-l-topbar,.topbar,.lab-topbar){
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    min-height:50px !important;
+    padding:8px 14px !important;
+    flex-wrap:nowrap !important;
+  }
+  html body :is(.canon-l-brand,.brand,.lab-brand){
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    min-width:0 !important;
+    flex:1 1 auto !important;
+    text-decoration:none !important;
+  }
+  html body :is(.canon-l-copy,.brand-copy,.lab-brand-copy){
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    min-width:0 !important;
+    max-width:174px !important;
+    overflow:hidden !important;
+  }
+  html body :is(.canon-l-name,.brand-name,.lab-brand-title){
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    font-size:15px !important;
+    line-height:1.05 !important;
+    letter-spacing:0 !important;
+  }
+  html body :is(.canon-l-sub,.brand-tag,.brand-sub,.lab-brand-sub){display:none !important;}
+  html body :is(.canon-l-nav,.topbar-nav,.lab-nav,.topnav){display:none !important;}
+  html body :is(.canon-l-tools,.topbar-tools,.lab-tools){
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:6px !important;
+    flex:0 0 auto !important;
+    max-width:none !important;
+    overflow:visible !important;
+  }
+  html body :is(.canon-l-burger,.canon-l-menu-toggle){
+    display:grid !important;
+    place-items:center !important;
+    width:40px !important;
+    min-width:40px !important;
+    height:31px !important;
+    font-size:0 !important;
+  }
+  html body :is(.canon-l-burger-icon){display:block !important;font-size:18px !important;line-height:1 !important;}
+}
+</style>
+<style id="codex-mobile-sandwich-unified-20260612">
+@media (max-width:820px){
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle){
+    box-sizing:border-box !important;
+    position:relative !important;
+    display:grid !important;
+    place-items:center !important;
+    width:34px !important;
+    min-width:34px !important;
+    max-width:34px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    border-radius:10px !important;
+    font-size:0 !important;
+    line-height:0 !important;
+    color:transparent !important;
+    text-indent:-999px !important;
+  }
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle)::before{
+    content:"" !important;
+    display:block !important;
+    width:15px !important;
+    height:12px !important;
+    border-radius:2px !important;
+    background:linear-gradient(to bottom,
+      currentColor 0 2px,
+      transparent 2px 5px,
+      currentColor 5px 7px,
+      transparent 7px 10px,
+      currentColor 10px 12px) !important;
+    color:rgba(255,255,255,.96) !important;
+    text-indent:0 !important;
+  }
+  html body .canon-l-topbar :is(.canon-l-burger-icon,.canon-l-burger-label,.canon-l-menu-label){
+    display:none !important;
+  }
+  html body .canon-l-topbar .canon-l-tools::before{
+    box-sizing:border-box !important;
+    place-items:center !important;
+    width:34px !important;
+    min-width:34px !important;
+    max-width:34px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    padding:0 !important;
+    border-radius:10px !important;
+    font-size:0 !important;
+    line-height:0 !important;
+    text-indent:-999px !important;
+    color:transparent !important;
+  }
+  html body .canon-l-topbar .canon-l-tools::after{
+    content:"";
+    display:none;
+  }
+}
+</style>
+<script id="codex-mobile-burger-ux-final-20260612">
+(function(){
+  function initBurger(){
+    document.querySelectorAll('.canon-l-topbar').forEach(function(bar){
+      var btn=bar.querySelector('.canon-l-burger,.canon-l-menu-toggle');
+      var nav=bar.querySelector('.canon-l-nav,.topnav,.topbar-nav,.lab-nav');
+      if(!btn||!nav||btn.dataset.codexBurgerUx==='1') return;
+      btn.dataset.codexBurgerUx='1';
+      btn.setAttribute('aria-expanded','false');
+      function setOpen(open){
+        btn.classList.toggle('is-open',open);
+        nav.classList.toggle('is-open',open);
+        btn.setAttribute('aria-expanded',String(open));
+        if(open){
+          nav.style.setProperty('display','grid','important');
+          nav.style.setProperty('visibility','visible','important');
+          nav.style.setProperty('opacity','1','important');
+        }else{
+          nav.style.removeProperty('display');
+          nav.style.removeProperty('visibility');
+          nav.style.removeProperty('opacity');
+        }
+      }
+      btn.addEventListener('click',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(btn.getAttribute('aria-expanded')!=='true');
+      },true);
+      nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){setOpen(false);});});
+      document.addEventListener('click',function(event){if(!bar.contains(event.target)) setOpen(false);});
+    });
+  }
+  initBurger();
+  document.addEventListener('DOMContentLoaded',initBurger);
+  window.addEventListener('load',initBurger);
+})();
+</script>
+<style id="codex-mobile-width-spine-lock-active-20260612">
+@media (max-width: 820px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  html body {
+    --codex-mobile-spine: min(calc(100% - 28px), 1180px) !important;
+  }
+
+  html body .canon-l-hero,
+  html body .hero,
+  html body .hero-mini,
+  html body .lesson-hero,
+  html body .core-hero,
+  html body .main-hero,
+  html body .module-hero,
+  html body .canon-l-tracker,
+  html body .wl-tracker,
+  html body .tracker,
+  html body .step-tracker,
+  html body .progress-header,
+  html body .booster-mission,
+  html body .booster-map,
+  html body .booster-report,
+  html body .arcade-mission,
+  html body .mission-card,
+  html body .mission-brief,
+  html body .round-card,
+  html body .game-card,
+  html body .canon-l-card,
+  html body .lesson-foot,
+  html body .tab-nav,
+  html body .tab-content,
+  html body .utility-strip,
+  html body .core-smart-strip,
+  html body #blocksContainer {
+    box-sizing: border-box !important;
+    width: var(--codex-mobile-spine) !important;
+    max-width: var(--codex-mobile-spine) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+}
+</style>
+<script id="codex-mobile-width-spine-script-20260612">
+(function(){
+  function lockCodexMobileWidths(){
+    if (window.innerWidth > 820) return;
+    var base = document.documentElement.clientWidth || window.innerWidth;
+    var width = Math.max(280, base - 28) + "px";
+    document.querySelectorAll(".canon-l-hero, .hero, .hero-mini, .module-hero, .lesson-hero, .core-hero, .main-hero, .canon-l-tracker, .wl-tracker, .tracker, .step-tracker, .progress-header, .booster-mission, .booster-map, .booster-report, .arcade-mission, .mission-card, .mission-brief, .round-card, .game-card, .canon-l-card, .lesson-foot, .tab-nav, .tab-content, .utility-strip, .core-smart-strip, #blocksContainer").forEach(function(node){
+      node.style.setProperty("box-sizing", "border-box", "important");
+      node.style.setProperty("width", width, "important");
+      node.style.setProperty("inline-size", width, "important");
+      node.style.setProperty("max-width", width, "important");
+      node.style.setProperty("max-inline-size", width, "important");
+      node.style.setProperty("min-width", "0", "important");
+      node.style.setProperty("margin-left", "auto", "important");
+      node.style.setProperty("margin-right", "auto", "important");
+    });
+  }
+  window.addEventListener("load", lockCodexMobileWidths);
+  window.addEventListener("resize", lockCodexMobileWidths);
+  [0, 80, 240, 600, 1200, 2200].forEach(function(ms){ window.setTimeout(lockCodexMobileWidths, ms); });
+})();
+</script>
+<style id="codex-mobile-width-spine-final-20260612">
+@media (max-width: 820px) {
+  html, body { max-width: 100% !important; overflow-x: hidden !important; }
+  html body :is(main,.wrap,.wl-wrap,#main-content) {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  html body .wl-wrap > main,
+  html body main > main {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  html body :is(.canon-l-hero,.hero,.hero-mini,.module-hero,.lesson-hero,.core-hero,.main-hero,.canon-l-tracker,.wl-tracker,.tracker,.step-tracker,.progress-header,.booster-mission,.booster-map,.booster-report,.arcade-mission,.mission-card,.mission-brief,.round-card,.game-card,.canon-l-card,.lesson-foot,.tab-nav,.tab-content,.utility-strip,.core-smart-strip,#blocksContainer) {
+    box-sizing: border-box !important;
+    width: calc(100vw - 28px) !important;
+    inline-size: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    max-inline-size: calc(100vw - 28px) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+}
+</style>
+<script id="codex-mobile-width-spine-final-script-20260612">
+(function(){
+  function fixMobileSpine(){
+    if (window.innerWidth > 820) return;
+    var base = document.documentElement.clientWidth || window.innerWidth;
+    var width = Math.max(280, base - 28) + "px";
+    document.querySelectorAll("main,.wrap,.wl-wrap,#main-content").forEach(function(node){
+      node.style.setProperty("box-sizing","border-box","important");
+      node.style.setProperty("width","100%","important");
+      node.style.setProperty("max-width","100%","important");
+      node.style.setProperty("margin-left","auto","important");
+      node.style.setProperty("margin-right","auto","important");
+      node.style.setProperty("padding-left","14px","important");
+      node.style.setProperty("padding-right","14px","important");
+    });
+    document.querySelectorAll(".wl-wrap > main, main > main").forEach(function(node){
+      node.style.setProperty("width","100%","important");
+      node.style.setProperty("max-width","100%","important");
+      node.style.setProperty("padding-left","0","important");
+      node.style.setProperty("padding-right","0","important");
+      node.style.setProperty("margin-left","0","important");
+      node.style.setProperty("margin-right","0","important");
+    });
+    document.querySelectorAll(".canon-l-hero,.hero,.hero-mini,.module-hero,.lesson-hero,.core-hero,.main-hero,.canon-l-tracker,.wl-tracker,.tracker,.step-tracker,.progress-header,.booster-mission,.booster-map,.booster-report,.arcade-mission,.mission-card,.mission-brief,.round-card,.game-card,.canon-l-card,.lesson-foot,.tab-nav,.tab-content,.utility-strip,.core-smart-strip,#blocksContainer").forEach(function(node){
+      node.style.setProperty("box-sizing","border-box","important");
+      node.style.setProperty("width",width,"important");
+      node.style.setProperty("inline-size",width,"important");
+      node.style.setProperty("max-width",width,"important");
+      node.style.setProperty("max-inline-size",width,"important");
+      node.style.setProperty("min-width","0","important");
+      node.style.setProperty("margin-left","auto","important");
+      node.style.setProperty("margin-right","auto","important");
+      node.style.setProperty("left","auto","important");
+      node.style.setProperty("right","auto","important");
+      node.style.setProperty("transform","none","important");
+    });
+  }
+  window.addEventListener("load", fixMobileSpine);
+  window.addEventListener("resize", fixMobileSpine);
+  [0,80,240,600,1200,2200,3600,5200].forEach(function(ms){ setTimeout(fixMobileSpine, ms); });
+})();
+</script>
+<style id="codex-mobile-width-nested-fix-20260612">
+@media (max-width: 820px) {
+  html body :is(.section-body,.wl-chapter-body,.body,.card-body,.round-body,.activity-body,.exercise-body,.mission-body) :is(.canon-l-card,.task-card,.tile,.wl-activity-card,.wl-shelf-card,.wl-finale-panel,.mission-card,.round-card,.game-card) {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    max-inline-size: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html body :is(.grid,.grid-2,.grid-3,.cards-grid,.task-grid,.tasks-grid,.activity-grid,.wl-activity-grid,.wl-finale-layout,.grammar-pentagon,.trust-grid,.mission-grid,.round-grid) {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html body :is(.hero-h1,.hero-title,.canon-l-hero-title,.round-title,h1,h2,h3,p) {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+</style>
+<script id="codex-mobile-width-nested-fix-script-20260612">
+(function(){
+  function fixNestedMobileWidths(){
+    if (window.innerWidth > 820) return;
+    document.querySelectorAll('.grid,.grid-2,.grid-3,.cards-grid,.task-grid,.tasks-grid,.activity-grid,.wl-activity-grid,.wl-finale-layout,.grammar-pentagon,.trust-grid,.mission-grid,.round-grid').forEach(function(node){
+      node.style.setProperty('box-sizing','border-box','important');
+      node.style.setProperty('width','100%','important');
+      node.style.setProperty('max-width','100%','important');
+      node.style.setProperty('min-width','0','important');
+      node.style.setProperty('grid-template-columns','minmax(0, 1fr)','important');
+      node.style.setProperty('margin-left','0','important');
+      node.style.setProperty('margin-right','0','important');
+    });
+    document.querySelectorAll('.section-body .canon-l-card,.section-body .task-card,.section-body .tile,.section-body .wl-activity-card,.section-body .wl-shelf-card,.section-body .wl-finale-panel,.section-body .mission-card,.section-body .round-card,.section-body .game-card,.wl-chapter-body .canon-l-card,.wl-chapter-body .task-card,.wl-chapter-body .tile,.wl-chapter-body .wl-activity-card,.wl-chapter-body .wl-shelf-card,.wl-chapter-body .wl-finale-panel,.wl-chapter-body .mission-card,.wl-chapter-body .round-card,.wl-chapter-body .game-card,.body .canon-l-card,.body .task-card,.body .tile,.body .wl-activity-card,.body .wl-shelf-card,.body .wl-finale-panel,.body .mission-card,.body .round-card,.body .game-card,.card-body .canon-l-card,.card-body .task-card,.round-body .canon-l-card,.activity-body .canon-l-card,.exercise-body .canon-l-card,.mission-body .canon-l-card').forEach(function(node){
+      node.style.setProperty('box-sizing','border-box','important');
+      node.style.setProperty('width','100%','important');
+      node.style.setProperty('inline-size','100%','important');
+      node.style.setProperty('max-width','100%','important');
+      node.style.setProperty('max-inline-size','100%','important');
+      node.style.setProperty('min-width','0','important');
+      node.style.setProperty('margin-left','0','important');
+      node.style.setProperty('margin-right','0','important');
+    });
+  }
+  window.addEventListener('load', fixNestedMobileWidths);
+  window.addEventListener('resize', fixNestedMobileWidths);
+  [0,100,300,700,1400,2600,4200,6200].forEach(function(ms){ setTimeout(fixNestedMobileWidths, ms); });
+})();
+</script>
+<style id="codex-mobile-width-section-final-20260612">
+@media (max-width: 820px) {
+  html body :is(main,.wrap,#main-content) > section.section,
+  html body :is(main,.wrap,#main-content) > .section {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    max-inline-size: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html body :is(.section-body,.mission-body,.card-body,.round-body,.activity-body,.exercise-body) .mission-card {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    max-inline-size: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+</style>
+<script id="codex-mobile-width-section-final-script-20260612">
+(function(){
+  function fixSections(){
+    if (window.innerWidth > 820) return;
+    document.querySelectorAll('main > section.section,.wrap > section.section,#main-content > section.section,main > .section,.wrap > .section,#main-content > .section').forEach(function(node){
+      node.style.setProperty('box-sizing','border-box','important');
+      node.style.setProperty('width','100%','important');
+      node.style.setProperty('inline-size','100%','important');
+      node.style.setProperty('max-width','100%','important');
+      node.style.setProperty('max-inline-size','100%','important');
+      node.style.setProperty('min-width','0','important');
+      node.style.setProperty('margin-left','0','important');
+      node.style.setProperty('margin-right','0','important');
+    });
+    document.querySelectorAll('.section-body .mission-card,.mission-body .mission-card,.card-body .mission-card,.round-body .mission-card,.activity-body .mission-card,.exercise-body .mission-card').forEach(function(node){
+      node.style.setProperty('box-sizing','border-box','important');
+      node.style.setProperty('width','100%','important');
+      node.style.setProperty('inline-size','100%','important');
+      node.style.setProperty('max-width','100%','important');
+      node.style.setProperty('max-inline-size','100%','important');
+      node.style.setProperty('min-width','0','important');
+      node.style.setProperty('margin-left','0','important');
+      node.style.setProperty('margin-right','0','important');
+    });
+  }
+  window.addEventListener('load', fixSections);
+  window.addEventListener('resize', fixSections);
+  [0,100,300,700,1400,2600,4200,6200,8200].forEach(function(ms){ setTimeout(fixSections, ms); });
+})();
+</script>
+<style id="codex-mobile-visible-block-width-final-20260612">
+@media (max-width: 820px) {
+  html body :is(.canon-l-collapsible,.school-mission-card,.lesson-illustration,.comic-toolbar,.comic-panel,.a1-system-hud) {
+    box-sizing: border-box !important;
+    width: calc(100vw - 28px) !important;
+    inline-size: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    max-inline-size: calc(100vw - 28px) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+  html body :is(.canon-l-collapsible summary,.canon-l-collapsible .canon-l-summary,.school-mission-card > *, .comic-toolbar > *, .comic-panel > *, .lesson-illustration > *) {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+</style>
+<script id="codex-mobile-visible-block-width-final-script-20260612">
+(function(){
+  function fixVisibleBlocks(){
+    if (window.innerWidth > 820) return;
+    var base = document.documentElement.clientWidth || window.innerWidth;
+    var width = Math.max(280, base - 28) + 'px';
+    document.querySelectorAll('.canon-l-collapsible,.school-mission-card,.lesson-illustration,.comic-toolbar,.comic-panel,.a1-system-hud').forEach(function(node){
+      node.style.setProperty('box-sizing','border-box','important');
+      node.style.setProperty('width',width,'important');
+      node.style.setProperty('inline-size',width,'important');
+      node.style.setProperty('max-width',width,'important');
+      node.style.setProperty('max-inline-size',width,'important');
+      node.style.setProperty('min-width','0','important');
+      node.style.setProperty('margin-left','auto','important');
+      node.style.setProperty('margin-right','auto','important');
+      node.style.setProperty('left','auto','important');
+      node.style.setProperty('right','auto','important');
+      node.style.setProperty('transform','none','important');
+    });
+  }
+  window.addEventListener('load', fixVisibleBlocks);
+  window.addEventListener('resize', fixVisibleBlocks);
+  [0,100,300,700,1400,2600,4200,6200,8200,11000].forEach(function(ms){ setTimeout(fixVisibleBlocks, ms); });
+})();
+</script>
+<script src="../assets/lab-persist.js" defer></script>
+<script src="../assets/lab-total.js?v=4" defer></script>
+<script src="../assets/lab-pilot.js?v=3" defer></script>
+<script src="../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../assets/lab-ai-feedback.js?v=6" defer></script>
+<script src="../assets/lab-sync.js?v=16" defer></script>
+<script src="../assets/lab-tabs.js?v=12" defer></script>
+<script src="../assets/lab-homework.js?v=40" defer></script>
+<script src="../assets/lab-telemost.js?v=1" defer></script>
+<script src="../assets/lab-vocab-builder.js?v=52" defer></script>
+<script src="../assets/lab-coach-persist.js?v=1" defer></script>
+<script src="../assets/lab-speech-tester.js?v=14" defer></script>
+<script src="../assets/lab-quick-speak.js?v=4" defer></script>
 </body>
 </html>
+
+<style id="codex-mobile-body-brighten-20260612">
+@media (max-width: 820px){
+  .hero{isolation:isolate;}
+  .hero::after{background:linear-gradient(90deg,rgba(255,236,244,.88) 0%,rgba(255,236,244,.54) 31%,rgba(255,236,244,.08) 58%,rgba(255,236,244,0) 82%) !important;}
+  .hero-bg,.hero img[class*="bg"],.hero picture img{opacity:1 !important;filter:saturate(1.18) contrast(1.06) brightness(1.04) !important;object-position:64% center !important;}
+  .hero-card,.activity-card,.garden-card,.flip-card,.word-card{min-height:188px;}
+  .cards-grid,.flashcards-grid{align-items:stretch;}
+}
+</style>
+
+<style id="codex-mobile-sandwich-strict-final-20260612">
+@media (max-width:820px){
+  html body .canon-l-topbar .canon-l-tools > :is(.canon-l-burger,.canon-l-menu-toggle),
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle){
+    box-sizing:border-box !important;
+    flex:0 0 34px !important;
+    position:relative !important;
+    display:grid !important;
+    place-items:center !important;
+    width:34px !important;
+    min-width:34px !important;
+    max-width:34px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    border-radius:10px !important;
+    font-size:0 !important;
+    line-height:0 !important;
+    color:transparent !important;
+    text-indent:-9999px !important;
+  }
+  html body .canon-l-topbar .canon-l-tools > :is(.canon-l-burger,.canon-l-menu-toggle)::before,
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle)::before{
+    content:"" !important;
+    box-sizing:border-box !important;
+    display:block !important;
+    width:15px !important;
+    min-width:15px !important;
+    height:12px !important;
+    min-height:12px !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:2px !important;
+    background:linear-gradient(to bottom,
+      rgba(255,255,255,.98) 0 2px,
+      transparent 2px 5px,
+      rgba(255,255,255,.98) 5px 7px,
+      transparent 7px 10px,
+      rgba(255,255,255,.98) 10px 12px) !important;
+    text-indent:0 !important;
+    transform:none !important;
+  }
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle) > *{display:none !important;}
+}
+</style>
+<style id="codex-mobile-topbar-visibility-final-20260612">
+@media (max-width:820px){
+  html body .canon-l-topbar :is(.canon-l-name,.brand-name,.lab-brand-title){
+    font-size:13px !important;
+    line-height:1.05 !important;
+    letter-spacing:0 !important;
+  }
+  html body .canon-l-topbar :is(.canon-l-copy,.brand-copy,.lab-brand-copy){
+    max-width:178px !important;
+  }
+  html body .canon-l-topbar .canon-l-tools > :is(.canon-l-burger,.canon-l-menu-toggle),
+  html body .canon-l-topbar :is(.canon-l-burger,.canon-l-menu-toggle){
+    background:var(--lb-seg-btn,var(--accent,var(--brand,#6b7280))) !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+}
+</style>
+<style id="codex-mobile-burger-menu-open-final-20260612">
+@media (max-width:820px){
+  html body .canon-l-topbar .canon-l-nav.is-open,
+  html body .canon-l-topbar .topnav.is-open,
+  html body .canon-l-topbar .topbar-nav.is-open,
+  html body .canon-l-topbar .lab-nav.is-open,
+  html body .canon-l-topbar nav.is-open{
+    box-sizing:border-box !important;
+    position:absolute !important;
+    left:20px !important;
+    right:20px !important;
+    top:56px !important;
+    z-index:50 !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:6px !important;
+    width:auto !important;
+    min-width:0 !important;
+    height:auto !important;
+    max-height:none !important;
+    padding:10px !important;
+    margin:0 !important;
+    overflow:visible !important;
+    border:1px solid var(--lb-line,rgba(0,0,0,.14)) !important;
+    border-radius:14px !important;
+    background:var(--lb-bg,#fff) !important;
+    box-shadow:0 16px 34px rgba(0,0,0,.16) !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+  html body .canon-l-topbar .canon-l-nav.is-open a,
+  html body .canon-l-topbar .topnav.is-open a,
+  html body .canon-l-topbar .topbar-nav.is-open a,
+  html body .canon-l-topbar .lab-nav.is-open a,
+  html body .canon-l-topbar nav.is-open a{
+    display:flex !important;
+    align-items:center !important;
+    min-height:34px !important;
+    padding:0 10px !important;
+    border-radius:10px !important;
+    color:var(--lb-text,currentColor) !important;
+    background:var(--lb-pill-bg,rgba(255,255,255,.75)) !important;
+    text-decoration:none !important;
+    white-space:nowrap !important;
+  }
+}
+</style><style id="codex-mobile-width-spine-lock-20260612">
+@media (max-width: 820px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  body {
+    --codex-mobile-spine: min(calc(100% - 28px), 1180px);
+  }
+
+  body :is(
+    .canon-l-hero,
+    .hero-mini,
+    .lesson-hero,
+    .core-hero,
+    .main-hero,
+    .canon-l-tracker,
+    .wl-tracker,
+    .booster-mission,
+    .booster-map,
+    .booster-report,
+    #blocksContainer,
+    .round-card,
+    .game-card,
+    .mission-card,
+    .mission-brief,
+    .canon-l-why,
+    .canon-l-collapsible-body,
+    .canon-l-card,
+    .lesson-foot,
+    .tab-nav,
+    .tab-content,
+    .utility-strip,
+    .core-smart-strip
+  ) {
+    box-sizing: border-box !important;
+    width: var(--codex-mobile-spine) !important;
+    max-width: var(--codex-mobile-spine) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body main > :is(section, article, div):not(script):not(style),
+  body .wrap > :is(section, article, div):not(script):not(style) {
+    box-sizing: border-box !important;
+    max-width: var(--codex-mobile-spine) !important;
+  }
+}
+</style>
+<style id="codex-mobile-width-spine-lock-v2-20260612">
+@media (max-width: 820px) {
+  html body {
+    --codex-mobile-spine: min(calc(100% - 28px), 1180px) !important;
+  }
+
+  html body :is(
+    .canon-l-hero,
+    .hero-mini,
+    .lesson-hero,
+    .core-hero,
+    .main-hero,
+    .canon-l-tracker,
+    .wl-tracker,
+    .tracker,
+    .step-tracker,
+    .progress-header,
+    .booster-mission,
+    .booster-map,
+    .booster-report,
+    .arcade-mission,
+    .mission-card,
+    .mission-brief,
+    .round-card,
+    .game-card,
+    .canon-l-card,
+    .lesson-foot,
+    .tab-nav,
+    .tab-content,
+    .utility-strip,
+    .core-smart-strip,
+    #blocksContainer
+  ) {
+    box-sizing: border-box !important;
+    width: var(--codex-mobile-spine) !important;
+    max-width: var(--codex-mobile-spine) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  html body :is(.canon-l-hero,.hero-mini,.lesson-hero,.core-hero,.main-hero) {
+    left: auto !important;
+    right: auto !important;
+  }
+}
+</style>
+<style id="codex-mobile-width-spine-lock-v3-specific-20260612">
+@media (max-width: 820px) {
+  html body :is(
+    .canon-l-hero,
+    .hero,
+    .hero-mini,
+    .lesson-hero,
+    .core-hero,
+    .main-hero,
+    .module-hero,
+    .canon-l-tracker,
+    .wl-tracker,
+    .tracker,
+    .step-tracker,
+    .progress-header,
+    .booster-mission,
+    .booster-map,
+    .booster-report,
+    .arcade-mission,
+    .mission-card,
+    .mission-brief,
+    .round-card,
+    .game-card,
+    .canon-l-card,
+    .lesson-foot,
+    .tab-nav,
+    .tab-content,
+    .utility-strip,
+    .core-smart-strip,
+    #blocksContainer
+  ):not(#codexWidthLockA):not(#codexWidthLockB):not(#codexWidthLockC) {
+    box-sizing: border-box !important;
+    width: min(calc(100% - 28px), 1180px) !important;
+    max-width: min(calc(100% - 28px), 1180px) !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+</style>
+
 
