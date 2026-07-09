@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/lingua-boost-lab/assets/premium-lesson-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Voyager · L2 — Are we alone? · Mia's signal</title>
@@ -112,7 +113,7 @@ details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:va
 .open-cloze .oc-in.right{border-bottom-color:var(--ok);color:var(--ok);border-bottom-style:solid}
 .open-cloze .oc-in.wrong{border-bottom-color:var(--miss);color:var(--miss);border-bottom-style:solid}
 
-/* Matching headings (ЕГЭ Reading) */
+/* Matching headings (EGE Reading) */
 .match-bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px;padding:12px;
   background:var(--card);border:1px dashed var(--line-2);border-radius:14px}
 .match-pill{background:var(--surface-2);border:1px solid var(--line-2);
@@ -161,8 +162,7 @@ details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:va
   background:var(--accent);color:var(--accent-on);
   font-family:var(--display);font-weight:900;font-size:1.1rem;letter-spacing:-.04em;
   display:grid;place-items:center;position:relative;overflow:hidden;flex-shrink:0}
-.brand-mark::after{content:"";position:absolute;right:0;top:0;width:12px;height:12px;
-  background:#fff;clip-path:polygon(100% 0,0 0,100% 100%)}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;background:#ffffff;clip-path:polygon(100% 0,0 0,100% 100%);z-index:2;display:block;pointer-events:none}
 .brand-copy{display:grid;gap:1px;min-width:0}
 .brand-name{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.01em;color:var(--text);line-height:1}
 .brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:2px}
@@ -214,7 +214,11 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .section-hdr h2{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.75rem);color:var(--text);letter-spacing:-.02em;line-height:1.1}
 .section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px 0;font-style:italic}
 
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 28px rgba(0,0,0,.28)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 28px rgba(0,0,0,.28);box-sizing:border-box;width:100%;max-width:100%}
+.section{box-sizing:border-box}
+.section>.card,.section>.flip-grid,.section>.section-hdr,.section>.section-sub{box-sizing:border-box;max-width:100%}
+.flip-grid{box-sizing:border-box;width:100%;max-width:100%}
+body{overflow-x:hidden}
 .card h3{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--accent);margin:18px 0 10px;letter-spacing:.01em}
 .card h3:first-child{margin-top:0}
 .card p{margin-bottom:11px;color:var(--text)}
@@ -243,34 +247,44 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .say-word{cursor:pointer;border-bottom:1px dashed var(--accent);padding:0 1px;transition:.15s}
 .say-word:hover{background:rgba(245,200,66,.08);color:var(--accent)}
 
-/* Vocab floating box */
-.vocab-box{position:fixed;bottom:20px;right:20px;background:linear-gradient(135deg,var(--brand),#7a5dd9);
-  color:#fff;padding:14px 20px;border-radius:50px;
-  box-shadow:0 10px 30px rgba(155,127,232,.36);
-  font-family:var(--display);font-weight:800;cursor:pointer;z-index:95;user-select:none;
-  display:flex;align-items:center;gap:10px;transition:.22s;font-size:.92rem}
-.vocab-box:hover{transform:translateY(-2px)}
-.vocab-box.expanded{max-width:420px;width:calc(100% - 40px);border-radius:18px;flex-direction:column;align-items:stretch;padding:18px 20px;cursor:default}
-.vocab-box .vocab-title{cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:space-between}
-.vocab-box .vocab-list{display:none;flex-direction:column;gap:5px;max-height:50vh;overflow-y:auto;margin-top:14px;padding-right:4px}
+/* Vocab floating box — pill в углу, расширяется в карточку под палитру урока */
+.vocab-box{position:fixed;bottom:20px;right:20px;background:var(--accent);
+  color:var(--accent-on);padding:12px 18px;border-radius:50px;
+  box-shadow:0 8px 24px rgba(52,216,138,.35),0 0 0 1px rgba(255,255,255,.04) inset;
+  font-family:var(--mono);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;z-index:95;user-select:none;
+  display:inline-flex;align-items:center;gap:10px;transition:.22s ease}
+.vocab-box:hover{box-shadow:0 10px 30px rgba(52,216,138,.50),0 0 0 1px rgba(255,255,255,.06) inset}
+.vocab-box .vocab-title span{font-family:var(--mono);font-size:.7rem;font-weight:700;opacity:.85;letter-spacing:.14em}
+.vocab-box.expanded{
+  background:var(--card);color:var(--text);
+  max-width:380px;width:calc(100% - 40px);border-radius:16px;
+  flex-direction:column;align-items:stretch;padding:18px 20px;cursor:default;
+  border:1px solid var(--line-2);
+  box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 0 1px var(--line) inset;
+  letter-spacing:0;text-transform:none;font-size:.92rem;font-family:var(--body)}
+.vocab-box.expanded .vocab-title{color:var(--accent-2);font-family:var(--display);font-weight:800;font-size:.95rem;text-transform:none;letter-spacing:-.01em}
+.vocab-box.expanded .vocab-title span{color:var(--accent);font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.vocab-box .vocab-title{cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:space-between;width:100%}
+.vocab-box .vocab-list{display:none;flex-direction:column;gap:6px;max-height:50vh;overflow-y:auto;margin-top:14px;padding-right:4px}
 .vocab-box.expanded .vocab-list{display:flex}
-.vocab-list .vocab-item{background:rgba(255,255,255,.13);padding:7px 12px;border-radius:8px;font-size:.85rem;
-  display:flex;justify-content:space-between;gap:12px;align-items:baseline;line-height:1.3}
-.vocab-list .vocab-item .word{font-weight:800}
-.vocab-list .vocab-item .ru{font-weight:500;opacity:.92;font-size:.78rem;text-align:right}
-.vocab-list .vocab-item.empty{justify-content:center;font-style:italic;opacity:.7;font-size:.82rem;background:transparent}
+.vocab-list .vocab-item{background:var(--surface);border:1px solid var(--line);padding:8px 12px;border-radius:8px;font-size:.86rem;
+  display:flex;justify-content:space-between;gap:12px;align-items:baseline;line-height:1.4;color:var(--text)}
+.vocab-list .vocab-item .word{font-weight:800;color:var(--accent-2)}
+.vocab-list .vocab-item .ru{font-weight:500;color:var(--muted);font-size:.78rem;text-align:right}
+.vocab-list .vocab-item.empty{justify-content:center;font-style:italic;color:var(--faint);font-size:.82rem;background:transparent;border:1px dashed var(--line);text-align:center}
 .vocab-actions{display:flex;gap:6px;margin-top:12px}
-.vocab-actions button{flex:1;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2);
+.vocab-actions button{flex:1;background:var(--surface);color:var(--muted);border:1px solid var(--line-2);
   padding:8px 12px;border-radius:8px;font-family:var(--mono);font-size:.68rem;font-weight:800;
-  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
-.vocab-actions button:hover{background:rgba(255,255,255,.25)}
-.vocab-add{display:flex;gap:6px;margin:12px 0 0;padding-top:12px;border-top:1px dashed rgba(255,255,255,.22)}
-.vocab-add input{flex:1;background:rgba(58,110,143,.40);border:1px solid rgba(58,110,143,.7);color:#cfe6f7;padding:8px 10px;border-radius:8px;font-family:var(--body);font-size:.84rem;font-weight:600;outline:none;min-width:0}
-.vocab-add input::placeholder{color:rgba(255,255,255,.45);font-weight:500}
-.vocab-add input:focus{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.18)}
-.vocab-add button{flex:0 0 40px;background:rgba(255,255,255,.24);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-family:var(--display);font-size:1.25rem;font-weight:900;cursor:pointer;line-height:1;padding:0;transition:.15s}
-.vocab-add button:hover{background:rgba(255,255,255,.38)}
-.vocab-add-hint{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:10px 0 4px;text-align:center}
+  letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.15s}
+.vocab-actions button:hover{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
+.vocab-add{display:flex;gap:6px;margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--line-2)}
+.vocab-add input{flex:1;background:var(--surface);border:1px solid var(--line-2);color:var(--text);padding:8px 10px;border-radius:8px;font-family:var(--body);font-size:.86rem;font-weight:500;outline:none;min-width:0;transition:.15s}
+.vocab-add input::placeholder{color:var(--faint);font-weight:400}
+.vocab-add input:focus{border-color:var(--accent);background:var(--card)}
+.vocab-add button{flex:0 0 40px;background:var(--accent);color:var(--accent-on);border:none;border-radius:8px;font-family:var(--display);font-size:1.25rem;font-weight:900;cursor:pointer;line-height:1;padding:0;transition:.15s}
+.vocab-add button:hover{background:var(--accent-2)}
+.vocab-add-hint{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:10px 0 4px;text-align:center}
 
 /* Sample answer block */
 .sample{background:rgba(155,127,232,.07);border:1px solid rgba(155,127,232,.32);border-radius:14px;
@@ -355,16 +369,21 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
   background:var(--card);border:1px solid var(--line-2);padding:6px 16px;border-radius:50px}
 
 /* Flip vocab cards */
-.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:14px 0 8px}
-.flip-card{aspect-ratio:1/1.05;perspective:800px;cursor:pointer}
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0 8px}
+.flip-card{aspect-ratio:1/1.05;perspective:800px;cursor:pointer;min-height:130px}
 .flip-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
 .flip-card.flipped .flip-inner{transform:rotateY(180deg)}
 .flip-front,.flip-back{position:absolute;inset:0;border-radius:14px;display:flex;align-items:center;justify-content:center;
-  padding:14px;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid var(--line-2)}
-.flip-front{background:var(--card);color:var(--accent);font-family:var(--display);font-weight:800;font-size:1rem;flex-direction:column;gap:6px}
-.flip-front .pos{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;font-weight:700}
-.flip-back{background:var(--surface-2);color:var(--text);transform:rotateY(180deg);font-size:.86rem;line-height:1.4;flex-direction:column;gap:6px}
-.flip-back .ru{color:var(--brand-2);font-weight:700;font-size:.95rem}
+  /* верх 30px — освободить место под кнопку ➕ от lab-homework (top:4px right:4px width:26px) */
+  padding:30px 10px 12px;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid var(--line-2);
+  overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+.flip-front{background:var(--card);color:var(--accent);font-family:var(--display);font-weight:800;
+  font-size:clamp(.78rem,1.4vw,.96rem);line-height:1.2;flex-direction:column;gap:6px}
+.flip-front .pos{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;font-weight:700;word-break:normal}
+.flip-back{background:var(--surface-2);color:var(--text);transform:rotateY(180deg);font-size:.82rem;line-height:1.4;flex-direction:column;gap:5px}
+.flip-back .ru{color:var(--brand-2);font-weight:700;font-size:.9rem}
+/* Ensure ➕ button from lab-homework доступна, поверх flip-inner */
+.flip-card .lab-hw-add{z-index:5}
 .flip-card.recap .flip-front{border:1px solid rgba(52,216,138,.40)}
 .flip-card.recap .flip-front::before{content:"";position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(52,216,138,.7);z-index:2}
 .flip-card.recap .flip-front .pos{color:var(--accent-2)}
@@ -380,16 +399,81 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   .hero-stats{grid-template-columns:1fr 1fr}
   .vocab-box{bottom:14px;right:14px;left:14px;width:auto;justify-content:center}
 }
+
+/* ─── Previously in the series (recap plate) ─── */
+.prev-recap{max-width:1240px;margin:14px auto 6px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.prev-recap-card{position:relative;border:1px solid var(--line-2,rgba(140,220,220,.20));border-radius:20px;padding:22px 26px;
+  background:linear-gradient(135deg,rgba(8,25,30,.85),rgba(15,45,50,.55));
+  backdrop-filter:blur(6px)}
+.prev-recap-eyebrow{font-family:var(--mono);font-weight:800;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand-2,#7ce8d0);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.prev-recap-eyebrow::before{content:"";width:22px;height:1px;background:var(--brand-2,#7ce8d0)}
+.prev-recap ol.recap-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.prev-recap ol.recap-list li{padding:10px 14px;border-left:2px solid var(--brand,#3ec6ad);border-radius:0 10px 10px 0;background:rgba(62,198,173,.06);font-size:.94rem;line-height:1.55;color:var(--text,#e7f5f0)}
+.prev-recap ol.recap-list li b{color:var(--brand-2,#7ce8d0);font-weight:800}
+.prev-recap ol.recap-list li em{color:var(--text,#e7f5f0);font-style:italic}
+.prev-recap ol.recap-list li.now{border-left-color:var(--accent,#ffa94d);background:rgba(255,169,77,.10)}
+.prev-recap ol.recap-list li.now b{color:var(--accent,#ffa94d)}
+@media (max-width:720px){
+  .prev-recap-card{padding:16px 18px}
+  .prev-recap ol.recap-list li{font-size:.88rem;padding:9px 12px}
+}
+</style>
+<style id="lb-canon-bar-20260612">
+/* ==== LinguaBoost Lab CANON BAR (Ancient-China reference) — unified 2026-06-12 ====
+   Sizes/fonts/radius only. Colours stay per-lesson. */
+nav.topbar, header.topbar, header.cmdbar { font-family: var(--display, 'Inter', system-ui, sans-serif) !important; }
+nav.topbar .brand-mark, header.topbar .brand-mark, header.cmdbar .brand-mark {
+  width: 34px !important; height: 34px !important; border-radius: 9px !important;
+  font-size: 18px !important; font-weight: 800 !important;
+  display: grid !important; place-items: center !important;
+}
+nav.topbar .brand-mark img, header.topbar .brand-mark img, header.cmdbar .brand-mark img {
+  width: 100% !important; height: 100% !important; display: block !important;
+}
+nav.topbar .brand-name, header.topbar .brand-name, header.cmdbar .brand-name {
+  font-size: 15px !important; font-weight: 800 !important; letter-spacing: 0.02em !important;
+}
+nav.topbar .brand-sub, header.topbar .brand-sub, header.cmdbar .brand-sub {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11px !important; font-weight: 700 !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important;
+}
+nav.topbar .btn-sm, header.topbar .btn-sm, header.cmdbar .btn-sm,
+nav.topbar > .pill, header.topbar > .pill,
+nav.topbar .tool-pill, header.topbar .tool-pill,
+nav.topbar .level-pill, header.topbar .level-pill {
+  min-width: 38px !important; height: 32px !important; min-height: 32px !important;
+  padding: 0 12px !important; border-radius: 8px !important;
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11px !important; font-weight: 900 !important;
+  letter-spacing: 0.08em !important; text-transform: uppercase !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  text-decoration: none !important;
+}
+footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11.5px !important; letter-spacing: 0.06em !important; }
+@media (max-width: 540px) {
+  nav.topbar .btn-sm, header.topbar .btn-sm {
+    font-size: 9px !important; padding: 0 8px !important;
+    min-height: 28px !important; height: 28px !important;
+  }
+}
+</style>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after,.friendly-topbar .brand-mark::after,.lab-topbar .brand-mark::after,.cmdbar .brand-mark::after,.cmdbar .cb-mark::after,.canon-l-topbar .brand-mark::after,.canon-l-topbar .canon-l-mark::after,.friendly-topbar .brand-logo-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+.topbar .brand-mark>span[style*="right:0"],.friendly-topbar .brand-mark>span[style*="right:0"],.lab-topbar .brand-mark>span[style*="right:0"],.cmdbar .brand-mark>span[style*="right:0"],.cmdbar .cb-mark>span[style*="right:0"],.canon-l-topbar .brand-mark>span[style*="right:0"],.canon-l-topbar .canon-l-mark>span[style*="right:0"],.friendly-topbar .brand-logo-mark>span[style*="right:0"]{display:block!important;background:#fff!important;z-index:10!important}
 </style>
 </head>
 <body>
+<link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
 
 <div id="starfield"></div>
 
 <!-- TOPBAR -->
 <nav class="topbar">
   <a class="brand" href="../../index.html">
-    <span class="brand-mark">N</span>
+    <span class="brand-mark" aria-hidden="true" style="position:relative;overflow:hidden;border-top-right-radius:0;background:var(--accent);color:#fff"><span style="position:relative;z-index:1;color:#fff!important">N</span></span>
     <span class="brand-copy">
       <span class="brand-name">NG English</span>
       <span class="brand-sub">LinguaBoost Lab · B2+</span>
@@ -402,6 +486,54 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   <a class="btn-sm" href="../../../index.html">Main</a>
 </nav>
 
+<!-- LESSON TABS · canon ProgressMe-style -->
+<style>
+.lesson-tabs{position:fixed;top:62px;left:0;right:0;z-index:99;display:flex;gap:8px;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:10px 12px;
+  transition:top .26s cubic-bezier(.4,0,.2,1)}
+.topbar.tb-hidden + .lesson-tabs{top:0}
+.ltab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--line-2);background:var(--card);
+  color:var(--muted);font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.ltab:hover{border-color:var(--accent);color:var(--accent)}
+.ltab.is-active{background:var(--accent);color:var(--accent-on);border-color:var(--accent);
+  box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+.ltab .ltab-count{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:50px;
+  font-size:10px;min-width:20px;text-align:center}
+.ltab.is-active .ltab-count{background:rgba(6,34,21,.32);color:var(--accent-on)}
+@media(max-width:680px){.lesson-tabs{padding:6px 6px;gap:6px;top:54px}
+  .ltab{padding:7px 12px;font-size:9.5px;letter-spacing:.08em}}
+</style>
+<nav class="lesson-tabs" role="tablist" aria-label="Lesson / Homework">
+  <button class="ltab is-active" data-tab="lesson" type="button">📖 Урок</button>
+  <button class="ltab" data-tab="homework" type="button">📚 Моя домашка <span class="ltab-count" id="ltab-hw-count">0</span></button>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ltab');
+  var hwCount = document.getElementById('ltab-hw-count');
+  function setActive(name){ tabs.forEach(function(t){ t.classList.toggle('is-active', t.dataset.tab === name); }); }
+  function getHwKey(){ return 'lab-hw:' + location.pathname; }
+  function refreshCount(){ try { var arr = JSON.parse(localStorage.getItem(getHwKey()) || '[]'); if (hwCount) hwCount.textContent = arr.length; } catch(e){} }
+  function openHomeworkPage(){ window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname); }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var name = t.dataset.tab;
+      setActive(name);
+      if (name === 'homework') { openHomeworkPage(); }
+      else { document.querySelectorAll('.lab-hw-overlay.show').forEach(function(o){ o.classList.remove('show'); }); }
+    });
+  });
+  refreshCount(); setInterval(refreshCount, 1500);
+  document.addEventListener('click', function(e){
+    if (e.target.classList && e.target.classList.contains('lab-hw-overlay')) setActive('lesson');
+    if (e.target.closest && e.target.closest('.lab-hw-close, .lab-hw-modal-close, [data-lab-hw-close]')) setActive('lesson');
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setActive('lesson'); });
+})();
+</script>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-card">
@@ -410,11 +542,22 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <h1 class="hero-title">A <span class="grad">signal</span>, a <span class="grad">letter</span>, and a quadrant of <span class="grad">silence</span></h1>
     <p class="hero-lead">Reyes and Aaron — alone at a SETI outpost in the Atacama desert. On the table between their consoles: the 1987 logbook of Mia's grandfather — the watchmaker from Lesson 1. They've been reading it on slow nights. Tonight, three impossible things will happen between sunset and 04:00. And both of them, separately, will think of one line he wrote: <em>«wound the wrong way for a very long time.»</em></p>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-k">Level</div><div class="stat-v">B2+</div></div>
+      <div class="stat"><div class="stat-k">Level</div><div class="stat-v">B2 / B2+</div></div>
       <div class="stat"><div class="stat-k">Duration</div><div class="stat-v">60 min</div></div>
       <div class="stat"><div class="stat-k">Formats</div><div class="stat-v">Olympiad · IELTS · Exam Practice</div></div>
       <div class="stat"><div class="stat-k">Writing</div><div class="stat-v">5–7 sentences</div></div>
     </div>
+  </div>
+</section>
+
+<!-- PREVIOUSLY (recap plate) -->
+<section class="prev-recap">
+  <div class="prev-recap-card">
+    <div class="prev-recap-eyebrow">Previously in the series</div>
+    <ol class="recap-list">
+      <li><b>L1 · Watchmaker (1995).</b> An old clockmaker fixes a watch for a stranger, thirty years old, named <em>Theo Marshall</em>. His granddaughter <em>Mia</em> sits at his elbow. That evening the clockmaker writes one line about the visitor in the family logbook: <em>"Mind is still wound."</em></li>
+      <li class="now"><b>Now · L2 · Are we alone?</b> Twenty years on. Mia is at a SETI console in the Atacama; her senior, <em>Dr Naomi Reyes</em>, reads the final broadcast. Tonight Proxima returns a rhythm — three short, two long, every nineteen seconds — the same rhythm the clockmaker once drew.</li>
+    </ol>
   </div>
 </section>
 
@@ -570,7 +713,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
           <li><strong>b</strong> — «a page he had read a dozen times».</li>
           <li><strong>b</strong> — Aaron tries to remember whether the watchmaker's metaphor was about something more than a watch — the implication is the signal might «not want to be recorded» the same way the watch «had been wound the wrong way».</li>
         </ol>
-        <p style="margin-top:8px"><strong>Talk-prompt for Ivan after Q4:</strong> «Reyes уже видел эту строку много раз. Почему сегодня она звучит иначе?» — это входная точка к синтезу. Ответ Вани не оценивается, но фиксируем — потом вернёмся в Mini-writing.</p>
+        <p style="margin-top:8px"><strong>Talk-prompt for Ivan after Q4:</strong> «Reyes уже видел эту строку много раз. Почему today она звучит иначе?» — это входная точка к синтезу. Ответ Вани не оценивается, но фиксируем — потом вернёмся в Mini-writing.</p>
       </div>
     </details>
     <div class="src">Original story written for this lesson · NG English · Voyager L2 · Are we alone?</div>
@@ -645,10 +788,10 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
-<!-- 5 · READING · MATCHING HEADINGS (ЕГЭ-style) -->
+<!-- 5 · READING · MATCHING HEADINGS (EGE-style) -->
 <section class="section">
   <div class="section-hdr"><div class="section-num">05</div><h2>Act III — Mia's case file · match the headings</h2></div>
-  <div class="section-sub">ЕГЭ-style reading · 5 dossier entries + 6 headings · one heading is extra</div>
+  <div class="section-sub">EGE-style reading · 5 dossier entries + 6 headings · one heading is extra</div>
   <div class="card">
     <img class="lesson-img" src="assets/img-case-file.png" alt="Overhead view of a metal field desk with an open manila folder, five paper reports, a leather logbook and a green-shaded lamp" onerror="this.style.display='none'">
 
@@ -707,7 +850,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
           <li><strong>E → 6</strong> «The student who returned with the wrong answer» — Mia's 2019 paper was first called wrong, then proven right</li>
         </ul>
         <p style="margin-top:8px"><strong>Unused (distractor):</strong> «5 · Calibration drift in old equipment» — звучит правдоподобно как объяснение пульса (A) или silent quadrant (B), но это именно SETI-rigorous эффект который команда already ruled out в каждом entry («Standard interference checks have ruled out…», «Receivers report normal background noise»). Хорошая ловушка для тех кто прыгает к «boring scientific explanation».</p>
-        <p style="margin-top:10px"><strong>Что тренирует:</strong> ЕГЭ Reading Task 2 — соотнесение текста и заголовка через метафору + ключевое слово. Tier 1 ловушки — false synonyms (heading 5 vs paragraph A); Tier 2 — heading 6 как метафора (Mia = «student», «wrong answer» = academic peer rejection). E как параграф работает только через preserve sense humour — «student returned with the wrong answer, but the answer was right». Tier 3 — heading 4 «uncatalogued entry» = key phrase, ищем в paragraph D («marginal note» = uncatalogued).</p>
+        <p style="margin-top:10px"><strong>Что тренирует:</strong> EGE Reading Task 2 — соотнесение текста и заголовка через метафору + ключевое слово. Tier 1 ловушки — false synonyms (heading 5 vs paragraph A); Tier 2 — heading 6 как метафора (Mia = «student», «wrong answer» = academic peer rejection). E как параграф работает только через preserve sense humour — «student returned with the wrong answer, but the answer was right». Tier 3 — heading 4 «uncatalogued entry» = key phrase, ищем в paragraph D («marginal note» = uncatalogued).</p>
       </div>
     </details>
   </div>
@@ -740,6 +883,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
         <button class="brand" id="speakBtn">Speak — start timer</button>
         <span class="clock" id="clockDisp">0:00</span>
       </div>
+      <div data-coach-config='{"task":"IELTS Part 2. Describe a moment when something familiar suddenly meant something new. Speak for 1.5-2 minutes and explain what changed in your understanding.","criteria":[{"label":"Clear object or moment named","hint":"The familiar thing was... / It happened when...","keywords":["familiar","moment","object","phrase","place","habit","happened"]},{"label":"Change in meaning explained","hint":"At first I thought... but then I realised...","keywords":["at first","then","realised","realized","meaning","changed","understand","reread","reconsider"]},{"label":"Personal consequence included","hint":"Since then... / It made me...","keywords":["since then","made me","now","after that","difference","changed me","I started"]},{"label":"Voyager theme connected","hint":"like the logbook / signal / anomaly in the lesson","keywords":["logbook","signal","anomaly","evidence","message","silence","letter"]},{"label":"B2+ cohesive language used","hint":"however / nevertheless / in retrospect / ultimately","keywords":["however","nevertheless","in retrospect","ultimately","whereas","as a result","therefore"]}]}'></div>
       <h3 style="margin-top:20px">Follow-up (after the monologue)</h3>
       <ul style="margin-left:18px;color:var(--text);line-height:1.8">
         <li>Why do you think familiar things become invisible to us over time — even when they carry important information?</li>
@@ -767,6 +911,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
         <button class="brand" id="oDialBtn">Dialogue — start 2 min</button>
         <span class="clock" id="oClockDisp">0:00</span>
       </div>
+      <div data-coach-config='{"task":"Olympiad speaking. Defend your position: scientists should publish anomalies they cannot yet explain, even without a theory. Give a 2-minute monologue and be ready for dialogue.","criteria":[{"label":"Position stated clearly","hint":"I agree / disagree / partly agree because...","keywords":["agree","disagree","partly","position","I believe","in my view"]},{"label":"Two reasons developed","hint":"Firstly... Secondly... For example...","keywords":["firstly","secondly","reason","for example","for instance","evidence"]},{"label":"Objection anticipated","hint":"Some people may argue... however...","keywords":["objection","some people","critics","however","risk","panic","reputation"]},{"label":"Response to objection given","hint":"I would answer that... / This concern is valid, but...","keywords":["answer","respond","valid","nevertheless","still","therefore"]},{"label":"Lesson evidence connected","hint":"Mia / Aaron / Reyes / logbook / Proxima letter","keywords":["mia","aaron","reyes","logbook","proxima","anomaly","signal","letter"]},{"label":"Formal B2+ register used","hint":"arguably / consequently / publication delay / responsible disclosure","keywords":["arguably","consequently","responsible","publication","disclosure","hypothesis","documentation"]}]}'></div>
 
       <h3 style="margin-top:20px">Dialogue questions (teacher asks one)</h3>
       <ul style="margin-left:18px;color:var(--text);line-height:1.8">
@@ -779,17 +924,24 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
         <summary>For me — how to run this <span>open if needed</span></summary>
         <div class="t-body">
           <ul>
-            <li><strong>Этот формат</strong> — регион/финал ВсОШ. Не путать с IELTS — здесь нет шаблона «what you should say», нужно <strong>защитить позицию</strong>.</li>
+            <li><strong>Этот format</strong> — регион/финал ВсОШ. Не путать с IELTS — here нет шаблона «what you should say», нужно <strong>защитить позицию</strong>.</li>
             <li><strong>Подготовка 3 мин</strong> — он пишет план в блокноте, не печатает в окно. Заметки на русском OK, монолог на английском.</li>
-            <li><strong>Монолог 2 мин</strong> — слушай не перебивая. Засеки время. После — задай 1 из dialogue-вопросов.</li>
+            <li><strong>Монолог 2 мин</strong> — слушай не перебивая. Засеки time. После — задай 1 из dialogue-вопросов.</li>
             <li><strong>Диалог 2 мин</strong> — это <em>обсуждение</em>, не допрос. Жюри ищет умение поддержать, развить, согласиться/возразить.</li>
             <li>4 категории оценки: communicative task fulfillment, organization, lexical/grammatical accuracy, phonetics.</li>
-            <li><strong>Подсказка по dialogue Q2 (survivorship bias):</strong> Ваня может не знать термина — мягко вытащи определение через пример («мы судим Mia успехом, но не знаем сколько других «не тех ответов» так и остались не тем — стоит ли публиковать <em>каждый</em>»). Это его уровень C1-vocab.</li>
+            <li><strong>Hint по dialogue Q2 (survivorship bias):</strong> Vanya может не знать термина — мягко вытащи определение через пример («мы судим Mia успехом, но не знаем сколько других «не тех ответов» так и остались не тем — стоит ли публиковать <em>каждый</em>»). Это его level C1-vocab.</li>
           </ul>
         </div>
       </details>
     </div>
   </div>
+</section>
+
+<!-- 6.5 · SPEECH TRACKER · WPM + benchmark after Press briefing -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">06+</div><h2>Speech tracker · check your pace</h2></div>
+  <p style="color:var(--muted);font-size:.94rem;margin-bottom:10px">Right after your press briefing answer (IELTS or olympiad), press the mic and re-deliver it. The tracker counts your words and gives WPM with a verdict against B2+ targets.</p>
+  <div class="speech-tracker" data-mode="olympiad" data-max-sec="120" data-title="Voyager L2 · Press briefing re-take · 2 min"></div>
 </section>
 
 <!-- 7 · USE OF ENGLISH — Act V — Decoding the Proxima letter -->
@@ -858,13 +1010,13 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
           <li><strong>dependent</strong> (DEPEND) — V → Adj (be dependent ON)</li>
           <li><strong>prediction</strong> (PREDICT) — V → N</li>
           <li><strong>ignorance</strong> (IGNORE) — V → abstract N</li>
-          <li><strong>anomalous</strong> (ANOMALY) — N → Adj (a difficult one — Ваня может написать «anomaly patterns» — это ошибка, нужно прилагательное)</li>
+          <li><strong>anomalous</strong> (ANOMALY) — N → Adj (a difficult one — Vanya может написать «anomaly patterns» — это ошибка, нужно прилагательное)</li>
           <li><strong>published</strong> or <strong>publicised</strong> (PUBLIC) — Adj → past participle (passive)</li>
           <li><strong>denial</strong> (DENY) — V → N (y → ial)</li>
           <li><strong>documentation</strong> (DOCUMENT) — V → abstract N (-ation suffix)</li>
         </ol>
         <p style="margin-top:10px"><strong>Что тренирует:</strong> 8 типов word formation — 3 V→N с разными суффиксами (-tion, -ance, -ial), 2 N→Adj (-ic/-ous), 1 V→Adj (-ent), passive participle (-ed), -ation продуктивный суффикс. Это полный B2-C1 inventory.</p>
-        <p style="margin-top:8px"><strong>Подсказка по №5:</strong> ANOMALY → anomalous — слово относительно редкое для школьника; если затрудняется, дай ему этимологию: <em>«anomaly + -ous, как glamour + -ous = glamorous»</em>.</p>
+        <p style="margin-top:8px"><strong>Hint по №5:</strong> ANOMALY → anomalous — слово относительно редкое для школьника; если затрудняется, дай ему этимологию: <em>«anomaly + -ous, как glamour + -ous = glamorous»</em>.</p>
       </div>
     </details>
   </div>
@@ -888,7 +1040,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
     <p style="color:var(--muted)">In <strong>L3 · <em>The first city</em></strong> we keep the same routine — short reading, short listening, speaking, mini-write — but the question turns inward. How does a settlement become a civilisation? What does «city-ness» need that a tribe does not? Same words come back: <em>signal, anomaly, evidence, hypothesis</em> — applied to archaeology this time.</p>
     <p>Your vocab box carries with you. See you next week.</p>
 
-    <details class="homework">
+    <details class="homework" id="homework-block">
       <summary>📚 Homework · olympiad practice (optional) <span>tap to open</span></summary>
       <div class="hw-body">
         <p style="color:var(--muted);font-size:.92rem;margin-bottom:14px">Three short olympiad-style tasks on related themes — signals, language, evidence. Do at home in any order. Not required, but the lesson sticks better when you try at least one.</p>
@@ -951,7 +1103,7 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
             </ol>
             <p style="margin-top:8px"><strong>B · Mini-cloze answers:</strong> 1-B (listened), 2-A (crowded), 3-C (splits — splits into camps), 4-D (listened — «hasn't listened yet»), 5-A (built a transmitter).</p>
             <p style="margin-top:8px"><strong>C · Listening completion answers:</strong> 1 classified · 2 three · 3 logbook · 4 twelve · 5 decision.</p>
-            <p style="margin-top:8px"><strong>Note on #3 «logbook»:</strong> это callback к L1 — Ваня должен помнить слово. Если он пишет «book» / «notebook» / «notepad» — это близко, можно засчитать как «частично верно»; точное слово показывает что лексика из L1 закрепилась.</p>
+            <p style="margin-top:8px"><strong>Note on #3 «logbook»:</strong> это callback к L1 — Vanya должен помнить слово. Если он пишет «book» / «notebook» / «notepad» — это близко, можно засчитать как «частично верно»; точное слово показывает что лексика из L1 закрепилась.</p>
           </div>
         </details>
       </div>
@@ -959,6 +1111,385 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
 
   </div>
 </section>
+
+<!-- ═══════════ SPEAK MISSION · 3 questions + WPM + recorder ═══════════ -->
+<style>
+.speak-mission{margin:40px auto;max-width:1240px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.speak-card{background:var(--card);border:1px solid var(--line-2);border-radius:18px;padding:clamp(20px,3vw,32px);box-shadow:0 12px 40px rgba(0,0,0,.32),0 0 0 1px var(--line) inset;position:relative;overflow:hidden}
+.speak-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--brand));border-radius:18px 18px 0 0}
+.speak-card-hdr{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.speak-num{background:var(--accent);color:var(--accent-on);border-radius:8px;padding:5px 12px;font:800 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.speak-card-hdr h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2.4vw,1.55rem);color:var(--text);letter-spacing:-.01em}
+.speak-sub{font-size:.94rem;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.speak-sub strong{color:var(--accent-2)}
+.speak-q{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;margin:20px 0 10px;font-family:var(--display);font-size:clamp(1rem,1.5vw,1.08rem);line-height:1.55;color:var(--text);font-weight:500}
+.speak-q .q-num{font-family:var(--mono);font-weight:800;color:var(--accent);margin-right:10px;font-size:.78rem;letter-spacing:.18em}
+.speak-q strong{color:var(--accent-2);font-weight:700}
+.mic-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;background:var(--surface-2);border:1px solid var(--line-2);border-radius:12px;padding:14px 16px;margin:10px 0;transition:border-color .15s}
+.mic-row:focus-within,.mic-row:hover{border-color:var(--line-3)}
+.mic-text{font-size:.92rem;line-height:1.5;color:var(--text)}
+.mic-text strong{color:var(--accent);font-weight:700}
+.mic-meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font:700 11px/1.4 var(--mono);color:var(--muted);min-width:110px;text-align:right}
+.mic-feedback{color:var(--accent);font-weight:800}
+.mic-transcript{font-style:italic;color:var(--brand-2);font-size:.86rem;margin-top:10px;grid-column:1 / -1;border-top:1px dashed var(--line-2);padding-top:10px;line-height:1.6;min-height:1.2em}
+.mic-btn{padding:11px 20px;border-radius:10px;border:none;background:var(--accent);color:var(--accent-on);font:800 11px/1 var(--mono);cursor:pointer;text-transform:uppercase;letter-spacing:.14em;box-shadow:0 0 0 0 var(--accent);transition:.15s}
+.mic-btn:hover{background:var(--accent-2);box-shadow:0 0 24px rgba(52,216,138,.40)}
+.mic-btn.rec{background:var(--miss);color:#fff;animation:pulse-mic 1.2s infinite}
+@keyframes pulse-mic{0%,100%{box-shadow:0 0 0 0 rgba(255,92,114,.55)}50%{box-shadow:0 0 0 14px rgba(255,92,114,0)}}
+.tts-q-btn{padding:7px 12px;border:1px solid var(--brand);background:transparent;color:var(--brand-2);border-radius:8px;font:700 10px/1 var(--mono);cursor:pointer;letter-spacing:.14em;text-transform:uppercase;margin-left:10px;vertical-align:middle;transition:.15s}
+.tts-q-btn:hover{background:var(--brand);color:var(--accent-on)}
+.speak-sample-toggle{margin-top:22px;padding:12px 22px;background:transparent;border:1px dashed var(--brand);color:var(--brand-2);border-radius:10px;font:800 11px/1 var(--mono);cursor:pointer;letter-spacing:.16em;text-transform:uppercase;transition:.15s}
+.speak-sample-toggle:hover{background:var(--surface);color:var(--accent)}
+.speak-sample{display:none;margin-top:14px;padding:18px 20px;background:var(--surface);border-radius:12px;border:1px solid var(--line-2);font-family:var(--body);font-size:.94rem;line-height:1.7;white-space:pre-line;color:var(--text)}
+.speak-sample.show{display:block}
+.speak-tip{font-size:.86rem;color:var(--muted);margin-top:18px;padding:12px 16px;background:rgba(46,196,241,.07);border:1px solid var(--line);border-radius:10px;line-height:1.6}
+.speak-tip strong{color:var(--accent-2)}
+@media(max-width:640px){
+  .mic-row{grid-template-columns:1fr}
+  .mic-meta{align-items:flex-start;text-align:left}
+  .tts-q-btn{display:inline-block;margin:8px 0 0}
+}
+</style>
+
+<section class="speak-mission" id="speak-mission">
+  <div class="speak-card">
+    <div class="speak-card-hdr">
+      <span class="speak-num">SPEAK</span>
+      <h2>🎙 Mission · Three questions, your voice on record</h2>
+    </div>
+    <p class="speak-sub">Goal: 60-90 seconds per answer · target 130-160 words per minute · use the Recap-card vocab from this lesson. Click <strong>🔊 Listen</strong> to hear the question, then <strong>🎙 Record</strong> and speak. WPM and transcript appear automatically.</p>
+
+    <div class="speak-q">
+      <span class="q-num">Q1</span>
+      You are on duty at the radio telescope when a strong, non-natural signal arrives from deep space. <strong>What is the first thing you do, and why?</strong>
+      <button class="tts-q-btn" type="button" data-tts="You are on duty at the radio telescope when a strong, non-natural signal arrives from deep space. What is the first thing you do, and why?">🔊 Listen</button>
+    </div>
+    <div class="mic-row" data-q="1">
+      <div class="mic-text"><strong>Speak now (60-90 s):</strong> include — first action · reason · who you call · what you fear most.</div>
+      <div class="mic-meta">
+        <div class="mic-feedback" id="sp-fb-1">— ready —</div>
+      </div>
+      <button class="mic-btn" type="button" data-mic="1">🎙 Record</button>
+      <div class="mic-transcript" id="sp-tr-1"></div>
+    </div>
+
+    <div class="speak-q">
+      <span class="q-num">Q2</span>
+      The world is split between «answer back» and «stay silent». <strong>Which side are you on, and which two reasons would you give to convince a person from the other side?</strong>
+      <button class="tts-q-btn" type="button" data-tts="The world is split between answer back and stay silent. Which side are you on, and which two reasons would you give to convince a person from the other side?">🔊 Listen</button>
+    </div>
+    <div class="mic-row" data-q="2">
+      <div class="mic-text"><strong>Speak now (60-90 s):</strong> your side · reason 1 · reason 2 · one concession to the other camp.</div>
+      <div class="mic-meta">
+        <div class="mic-feedback" id="sp-fb-2">— ready —</div>
+      </div>
+      <button class="mic-btn" type="button" data-mic="2">🎙 Record</button>
+      <div class="mic-transcript" id="sp-tr-2"></div>
+    </div>
+
+    <div class="speak-q">
+      <span class="q-num">Q3</span>
+      If humanity does decide to reply, you have only <strong>60 seconds of transmission time</strong>. What three pieces of information about Earth would you put inside, and why those three?
+      <button class="tts-q-btn" type="button" data-tts="If humanity does decide to reply, you have only 60 seconds of transmission time. What three pieces of information about Earth would you put inside, and why those three?">🔊 Listen</button>
+    </div>
+    <div class="mic-row" data-q="3">
+      <div class="mic-text"><strong>Speak now (60-90 s):</strong> three items · reason for each · what you deliberately leave out.</div>
+      <div class="mic-meta">
+        <div class="mic-feedback" id="sp-fb-3">— ready —</div>
+      </div>
+      <button class="mic-btn" type="button" data-mic="3">🎙 Record</button>
+      <div class="mic-transcript" id="sp-tr-3"></div>
+    </div>
+
+    <button class="speak-sample-toggle" type="button" id="speak-sample-toggle">Show sample answers (after your own attempt)</button>
+    <div class="speak-sample" id="speak-sample">
+Q1 — First action.
+The first thing I do is stay calm and not touch a single button. I run the standard verification protocol — re-check the signal on at least two independent receivers, look for terrestrial sources, satellite reflections, instrument errors. Only after the signal is confirmed do I notify the duty officer and start the data backup. What I fear most is jumping to a conclusion that turns into a public hoax — credibility is everything.
+
+Q2 — Answer back or stay silent.
+I'd stand on the «stay silent for now» side, but only as a temporary position. My first reason is risk asymmetry: we know almost nothing about the senders, and a hasty reply is irreversible. My second reason is that humanity doesn't have a single agreed voice — who speaks for Earth? Until we agree, silence is honest. The concession to the other camp: yes, eventually we have to answer, otherwise we deny ourselves the most important conversation in our history.
+
+Q3 — Sixty seconds back.
+Three things: a star map showing our position in the Milky Way; the periodic table marked with our biology — carbon, water, oxygen; a short piece of music — Bach, because mathematics in sound is universal. I would deliberately leave out our religions, our wars and our politics — they need centuries of context the message simply cannot carry.
+    </div>
+
+    <div class="speak-tip">
+      💡 Норма WPM для B2+: <strong>130-160 слов/мин</strong>. Меньше 100 — слишком медленно. Больше 180 — глотаешь окончания. Транскрипт под каждым ответом — твоё распознавание; если там «...» вместо слова, значит дикция размыта именно там.
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // TTS для вопросов
+  document.querySelectorAll('.tts-q-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(btn.dataset.tts || '');
+      var voices = window.speechSynthesis.getVoices().filter(function(v){ return /^en/i.test(v.lang); });
+      u.voice = voices.find(function(v){ return /uk|gb/i.test(v.lang); }) || voices[0] || null;
+      u.rate = 0.92; u.pitch = 1.0;
+      window.speechSynthesis.speak(u);
+    });
+  });
+
+  // Mic recorder + Web Speech recognition + WPM
+  function setupMic(qid){
+    var btn = document.querySelector('.mic-btn[data-mic="' + qid + '"]');
+    var fb = document.getElementById('sp-fb-' + qid);
+    var tr = document.getElementById('sp-tr-' + qid);
+    if (!btn) return;
+    var Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Rec) { btn.disabled = true; btn.textContent = '🎙 N/A'; fb.textContent = 'Recognition not supported in this browser'; return; }
+    var rec = null, on = false, startTs = 0, finalText = '';
+    btn.addEventListener('click', function(){
+      if (on) { if (rec) rec.stop(); return; }
+      finalText = '';
+      tr.textContent = '';
+      rec = new Rec();
+      rec.lang = 'en-GB';
+      rec.interimResults = true;
+      rec.continuous = true;
+      rec.onstart = function(){
+        on = true; startTs = Date.now();
+        btn.classList.add('rec'); btn.textContent = '⏸ STOP';
+        fb.textContent = '● recording…';
+      };
+      rec.onend = function(){
+        on = false;
+        btn.classList.remove('rec'); btn.textContent = '🎙 Record';
+        var elapsed = (Date.now() - startTs) / 1000; // seconds
+        var words = (finalText.trim().match(/\b[\w'-]+\b/g) || []).length;
+        var wpm = elapsed > 0 ? Math.round(words / (elapsed / 60)) : 0;
+        var rating = wpm < 100 ? '🐌 slow' : (wpm > 180 ? '⚡ too fast' : '✅ on target');
+        fb.innerHTML = words + ' words · ' + Math.round(elapsed) + ' s<br>' +
+                       '<span style="color:#7a5af5">' + wpm + ' WPM</span> ' + rating;
+      };
+      rec.onerror = function(e){ fb.textContent = '⚠ ' + (e.error || 'error'); };
+      rec.onresult = function(e){
+        var interim = '';
+        for (var i = e.resultIndex; i < e.results.length; i++) {
+          if (e.results[i].isFinal) finalText += e.results[i][0].transcript + ' ';
+          else interim += e.results[i][0].transcript;
+        }
+        tr.textContent = (finalText + interim).trim();
+      };
+      rec.start();
+    });
+  }
+  setupMic(1); setupMic(2); setupMic(3);
+
+  // Sample toggle
+  var toggle = document.getElementById('speak-sample-toggle');
+  var sample = document.getElementById('speak-sample');
+  if (toggle && sample) {
+    toggle.addEventListener('click', function(){
+      sample.classList.toggle('show');
+      toggle.textContent = sample.classList.contains('show') ? 'Hide sample answers' : 'Show sample answers (after your own attempt)';
+    });
+  }
+})();
+</script>
+
+<!-- ═══════════ KEY TERMS · L1 → L2 CALLBACK MAP · 2026-07-09 ═══════════ -->
+<style>
+.terms-card{max-width:1240px;margin:40px auto;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.terms-inner{background:var(--card);border:1px solid var(--line-2);border-radius:18px;padding:clamp(20px,3vw,32px);box-shadow:0 12px 40px rgba(0,0,0,.32),0 0 0 1px var(--line) inset;position:relative;overflow:hidden}
+.terms-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--brand));border-radius:18px 18px 0 0}
+.terms-hdr{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.terms-hdr .num{background:var(--accent);color:var(--accent-on);border-radius:8px;padding:5px 12px;font:800 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.terms-hdr h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2.4vw,1.55rem);color:var(--text);letter-spacing:-.01em}
+.terms-sub{font-size:.94rem;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.terms-sub strong{color:var(--accent-2)}
+.terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:8px 0}
+.term-card{background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;position:relative;transition:.15s}
+.term-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.term-card .en{font-family:var(--display);font-weight:800;font-size:1.02rem;color:var(--text);line-height:1.15}
+.term-card .pos{font:700 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);opacity:.82}
+.term-card .def{font-size:.86rem;color:var(--muted);line-height:1.4;font-style:italic}
+.term-card .cb{margin-top:4px;font:700 10px/1.3 var(--mono);letter-spacing:.06em;color:var(--brand-2);background:rgba(122,90,245,.12);border:1px solid var(--brand);border-radius:6px;padding:5px 8px;display:inline-flex;align-items:center;gap:4px;align-self:flex-start;text-transform:uppercase}
+.term-card .cb::before{content:"↻";font-weight:900;color:var(--brand-2)}
+</style>
+<section class="section terms-card" id="key-terms">
+  <div class="terms-inner">
+    <div class="terms-hdr">
+      <span class="num">Terms · 10</span>
+      <h2>Key vocabulary · L2 with L1 callbacks</h2>
+    </div>
+    <p class="terms-sub">Top-10 terms from <strong>Are we alone?</strong>. The three highlighted cards are <strong>callbacks</strong> from L1 — the same words appeared in <em>The Watchmaker</em> and are load-bearing across the series arc.</p>
+
+    <div class="terms-grid">
+      <article class="term-card"><div class="en">signal</div><span class="pos">n</span><span class="def">a wave or message carrying information across distance</span></article>
+      <article class="term-card"><div class="en">anomaly</div><span class="pos">n</span><span class="def">something that does not fit the expected pattern</span></article>
+      <article class="term-card"><div class="en">broadcast</div><span class="pos">v / n</span><span class="def">to send a signal out to many receivers; the transmission itself</span></article>
+      <article class="term-card"><div class="en">classify</div><span class="pos">v</span><span class="def">to assign something to a category, often officially / secretly</span></article>
+      <article class="term-card"><div class="en">intercept</div><span class="pos">v</span><span class="def">to catch a signal or message not intended for you</span></article>
+      <article class="term-card"><div class="en">transmission</div><span class="pos">n</span><span class="def">the act of sending a radio or electronic signal</span></article>
+      <article class="term-card"><div class="en">sentient</div><span class="pos">adj</span><span class="def">able to think, feel, and be aware of the world</span></article>
+      <article class="term-card"><div class="en">civilisation</div><span class="pos">n</span><span class="def">a complex society with technology, culture, shared institutions</span></article>
+      <article class="term-card"><div class="en">vanish</div><span class="pos">v</span><span class="def">to disappear suddenly and completely</span></article>
+      <article class="term-card"><div class="en">embargo</div><span class="pos">n</span><span class="def">an official restriction on publication or trade for a set period</span></article>
+    </div>
+
+    <p class="terms-sub" style="margin-top:20px;margin-bottom:8px"><strong>L1 callbacks</strong> — same words, different context:</p>
+    <div class="terms-grid">
+      <article class="term-card"><div class="en">logbook</div><span class="pos">n</span><span class="def">L1: watchmaker's shop record book · L2: SETI operations shift log</span><span class="cb">L1 callback</span></article>
+      <article class="term-card"><div class="en">timeline</div><span class="pos">n</span><span class="def">L1: chronology of events being altered · L2: order of events during the pulse night</span><span class="cb">L1 callback</span></article>
+      <article class="term-card"><div class="en">drift</div><span class="pos">v</span><span class="def">L1: how a physical constant slowly shifts · L2: how a signal wanders off frequency</span><span class="cb">L1 callback</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DISCUSSION + TRUE/FALSE · 2026-07-09 ═══════════ -->
+<style>
+.check-card{max-width:1240px;margin:40px auto;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.check-inner{background:var(--card);border:1px solid var(--line-2);border-radius:18px;padding:clamp(20px,3vw,32px);box-shadow:0 12px 40px rgba(0,0,0,.32),0 0 0 1px var(--line) inset;position:relative;overflow:hidden}
+.check-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:18px 18px 0 0}
+.check-hdr{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.check-hdr .num{background:var(--brand);color:var(--accent-on);border-radius:8px;padding:5px 12px;font:800 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.check-hdr h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2.4vw,1.55rem);color:var(--text);letter-spacing:-.01em}
+.check-sub{font-size:.94rem;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.check-sub strong{color:var(--accent-2)}
+.check-block-h{font:800 12px/1 var(--mono);letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin:24px 0 12px;padding-bottom:8px;border-bottom:1px dashed var(--line-2)}
+.disc-q{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;margin:12px 0;font-family:var(--display);font-size:clamp(1rem,1.5vw,1.05rem);line-height:1.5;color:var(--text);font-weight:500}
+.disc-q .qnum{font-family:var(--mono);font-weight:800;color:var(--accent);margin-right:10px;font-size:.78rem;letter-spacing:.18em}
+.disc-q strong{color:var(--accent-2);font-weight:700}
+.tf-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:12px 16px;margin:10px 0;transition:.15s}
+.tf-row:hover{border-color:var(--line-3)}
+.tf-row .stmt{font-size:.94rem;color:var(--text);line-height:1.5}
+.tf-row .stmt .n{color:var(--brand-2);font-weight:800;margin-right:8px;font-family:var(--mono);font-size:.82rem}
+.tf-opts{display:flex;gap:6px}
+.tf-opts button{padding:8px 14px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--text);font:800 11px/1 var(--mono);letter-spacing:.14em;cursor:pointer;text-transform:uppercase;transition:.15s}
+.tf-opts button:hover{border-color:var(--accent)}
+.tf-opts button.right{background:var(--accent);color:var(--accent-on);border-color:var(--accent);cursor:default}
+.tf-opts button.wrong{background:rgba(255,92,114,.16);border-color:#ff5c72;color:#ff9caa;cursor:default}
+.tf-key{display:none;margin-top:8px;font-size:.86rem;color:var(--muted);font-style:italic;background:rgba(46,196,241,.06);border-left:2px solid var(--brand);padding:8px 12px;border-radius:0 6px 6px 0}
+.tf-key.show{display:block}
+.tf-key strong{color:var(--accent-2)}
+@media(max-width:640px){.tf-row{grid-template-columns:1fr}.tf-opts{justify-content:flex-end}}
+</style>
+<section class="section check-card" id="discussion-check">
+  <div class="check-inner">
+    <div class="check-hdr">
+      <span class="num">Discuss · Check</span>
+      <h2>Discussion questions + True / False check</h2>
+    </div>
+    <p class="check-sub">First — five <strong>open questions</strong> to talk through with Maria. No wrong answer; each expects 3-5 sentences and at least one term from Key vocabulary. Then — eight <strong>True / False</strong> statements to lock the plot facts.</p>
+
+    <div class="check-block-h">🎙 Discussion · 5 open questions</div>
+
+    <div class="disc-q"><span class="qnum">Q1</span>Reyes chose a twelve-week publication delay. In her place — would you release <strong>immediately</strong>, or hold the signal back? What is the risk of each choice for science and for society?</div>
+    <div class="disc-q"><span class="qnum">Q2</span>The lecture argues that <strong>silence itself is the message</strong>. Explain what the Fermi paradox means in your own words — and say whether you find «early» or «self-destruct» more convincing.</div>
+    <div class="disc-q"><span class="qnum">Q3</span>In L1 Mia's grandfather quietly re-wound a broken watch and history shifted; in L2 Reyes quietly classified a real signal. Compare the two moments — is «tinkering with a small thing» ever ethically neutral?</div>
+    <div class="disc-q"><span class="qnum">Q4</span>What does the word <strong>classify</strong> mean when a scientist uses it, and what does it mean when a state agency uses it? Give one concrete example of each.</div>
+    <div class="disc-q"><span class="qnum">Q5</span>The signal was labelled <strong>Class-S · sensitive, source-unconfirmed</strong>. Design your own two-line policy: which signals should be public within 24 h, and which deserve an embargo — and why?</div>
+
+    <div class="check-block-h">✅ True / False · 8 statements</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">1</span>Reyes's team detected exactly one anomalous pulse during the night of the incident.</div>
+      <div class="tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>False.</strong> Three anomalies were recorded, all provisionally classified as Class-S.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">2</span>Mia's 2019 paper on unresolved SETI anomalies was well received at the time.</div>
+      <div class="tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>False.</strong> It was dismissed as naïve; vindication came later.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">3</span>The waveform vanished the moment any recorder was engaged.</div>
+      <div class="tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>True.</strong> The behaviour was systematically unpredictable — evasion of measurement, not random.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">4</span>Aaron argued for an immediate public release; Reyes argued for a delay.</div>
+      <div class="tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>True.</strong> Two positions inside the same team; Reyes prevailed with a twelve-week delay.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">5</span>The Drake equation predicts a small number of communicating civilisations in our galaxy.</div>
+      <div class="tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>False.</strong> Optimistic estimates put the galaxy as «crowded» — that mismatch with observed silence is the Fermi paradox.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">6</span>Mia's grandfather's logbook physically lay on the operations desk during the night.</div>
+      <div class="tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>True.</strong> This is a deliberate L1 callback — the same logbook, now witnessing a very different anomaly.</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">7</span>Reyes signed off her transmission with «I take full responsibility for tonight's decision to publish nothing».</div>
+      <div class="tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>True.</strong> Exact wording; note the passive-authority construction — «to publish nothing» rather than «to withhold».</div>
+
+    <div class="tf-row">
+      <div class="stmt"><span class="n">8</span>The lecture presents «we are alone» as the only scientifically credible interpretation of the silence.</div>
+      <div class="tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="tf-key"><strong>False.</strong> The lecture keeps two hypotheses live: «we are early» and «self-destruction filter». No single position is endorsed.</div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('#discussion-check .tf-row').forEach(function(row){
+    var opts = row.querySelectorAll('.tf-opts button');
+    var key = row.nextElementSibling;
+    opts.forEach(function(b){
+      b.addEventListener('click', function(){
+        if (row.dataset.done) return;
+        row.dataset.done = '1';
+        opts.forEach(function(x){ x.classList.add(x.dataset.tf === 't' ? 'right' : 'wrong'); });
+        if (key && key.classList.contains('tf-key')) key.classList.add('show');
+      });
+    });
+  });
+})();
+</script>
+
+<!-- ═══════════ VOYAGER SERIES NAV ═══════════ -->
+<style>
+.voyager-nav{max-width:1240px;margin:32px auto 24px;padding:0 clamp(16px,3vw,28px);display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;position:relative;z-index:2}
+.voyager-nav-link{background:var(--card,#0d2f24);border:1px solid var(--line-2,rgba(46,196,241,.32));border-radius:14px;padding:14px 18px;text-decoration:none;color:var(--text,#e6fff2);display:flex;flex-direction:column;gap:4px;transition:.18s;min-height:72px;justify-content:center}
+.voyager-nav-link:hover{border-color:var(--accent,#34d88a);background:var(--surface,#08221a);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.voyager-nav-link.next{text-align:right}
+.voyager-nav-link .dir{font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#34d88a)}
+.voyager-nav-link .title{font:600 .95rem/1.4 var(--display,"Unbounded","Manrope",sans-serif);color:var(--text,#e6fff2)}
+.voyager-nav-link.disabled{opacity:.32;pointer-events:none;cursor:not-allowed}
+.voyager-nav-series{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 16px;font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#8fccae);text-align:center;border-left:1px dashed var(--line-2,rgba(46,196,241,.32));border-right:1px dashed var(--line-2,rgba(46,196,241,.32))}
+.voyager-nav-series .badge{background:var(--accent,#34d88a);color:var(--accent-on,#062215);padding:4px 10px;border-radius:50px;font-weight:800;letter-spacing:.16em}
+@media(max-width:640px){.voyager-nav{grid-template-columns:1fr;gap:8px}.voyager-nav-link.next{text-align:left}.voyager-nav-series{order:-1;border:none;padding:6px 0;flex-direction:row;gap:10px}.voyager-nav-series .badge{font-size:11px}}
+
+/* lab vocab/card safety canon · 2026-06-30 */
+.flip-grid,.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
+.flip-card,.vocab-card{min-height:130px;box-sizing:border-box}
+.flip-front,.flip-back,.vocab-front,.vocab-back{padding:30px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+.flip-front,.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
+.flip-front .pos,.vocab-front .pos{word-break:normal}
+.flip-card .lab-hw-add,.vocab-card .lab-hw-add{z-index:5}
+</style>
+<nav class="voyager-nav" aria-label="Voyager series navigation">
+  <a class="voyager-nav-link prev" href="../voyager-l1-time-travel/?v=v7" rel="prev">
+    <span class="dir">← Previous</span>
+    <span class="title">L1 · The Watchmaker · Time travel</span>
+  </a>
+  <div class="voyager-nav-series">
+    <span class="badge">Voyager · 2 / 4</span>
+    <span>Are we alone?</span>
+  </div>
+  <a class="voyager-nav-link next" href="../voyager-l3-whose-mind/" rel="next">
+    <span class="dir">Next →</span>
+    <span class="title">L3 · Whose Mind?</span>
+  </a>
+</nav>
 
 <footer>
   Voyager · L2 · Are we alone? · for Ivan · summer 2026 · LinguaBoost Lab<br>
@@ -1298,7 +1829,7 @@ document.querySelectorAll('.tab-row').forEach(row => {
   });
 })();
 
-/* ===== Matching headings (ЕГЭ Reading) ===== */
+/* ===== Matching headings (EGE Reading) ===== */
 (function(){
   const bank = document.getElementById('hBank');
   if (!bank) return;
@@ -1334,6 +1865,110 @@ document.querySelectorAll('.tab-row').forEach(row => {
       picked = null;
     });
   });
+})();
+</script>
+
+<script src="../../assets/lab-persist.js" defer></script>
+<script src="../../assets/speech-tracker.js" defer></script>
+<script src="../../assets/lab-total.js?v=4" defer></script>
+<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
+<script src="../../assets/lab-sync.js?v=16" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+<script src="../../assets/lab-homework.js?v=40" defer></script>
+<script src="../../assets/lab-vocab-builder.js?v=52" defer></script>
+<script src="../../assets/lab-coach-persist.js?v=1" defer></script>
+<script src="../../assets/lab-speech-tester.js?v=14" defer></script>
+
+<!-- Voyager · unified homework pilot v1 (2026-07-01) -->
+<style>
+  #homework-block { scroll-margin-top: 90px; }
+  #homework-block.hw-focus > summary { box-shadow: 0 0 0 3px var(--accent, #34d88a); transition: box-shadow .35s; }
+  @media (max-width: 720px) {
+    #homework-block { padding-inline: 4px; }
+    #homework-block .hw-body { font-size: 15.5px; line-height: 1.55; }
+    #homework-block h4 { font-size: 1rem; margin-top: 22px; }
+    #homework-block .hw-row, #homework-block .q-text { padding: 10px 0; }
+    #homework-block .cloze-text { font-size: 15.5px; line-height: 1.6; }
+  }
+  /* Voyager pilot · section '+ add to homework' — top-right corner */
+  section.section { position: relative; }
+  section.section .lab-hw-section-btn {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    left: auto !important;
+    margin: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    z-index: 10;
+  }
+  section.section .lab-hw-section-btn::before {
+    content: '+';
+    display: block;
+    font: 900 22px/1 system-ui;
+  }
+  section.section .lab-hw-section-btn:not(:empty){ font-size: 0 !important; }
+  @media (max-width: 720px) {
+    section.section .lab-hw-section-btn { top: 10px !important; right: 10px !important; width: 32px !important; height: 32px !important; }
+    section.section .lab-hw-section-btn::before { font-size: 20px; }
+  }
+</style>
+<script>
+(function(){
+  var HW_ID = 'homework-block';
+  function openInlineHomework(source){
+    try {
+      if (window.labSync && typeof window.labSync.emit === 'function') {
+        window.labSync.emit('homework-opened', { source: source || 'top', lessonPath: location.pathname });
+      }
+    } catch(e){}
+    window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname);
+  }
+  function rebindFab(){
+    var fab = document.querySelector('.lab-hw-fab .lab-hw-fab-btn');
+    if (!fab) return false;
+    var clone = fab.cloneNode(true);
+    fab.parentNode.replaceChild(clone, fab);
+    clone.addEventListener('click', function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      openInlineHomework('fab');
+    });
+    var wrap = document.querySelector('.lab-hw-fab');
+    if (wrap) wrap.classList.remove('empty');
+    return true;
+  }
+  var tries = 0;
+  var iv = setInterval(function(){
+    tries++;
+    if (rebindFab() || tries > 20) clearInterval(iv);
+  }, 200);
+  function relabelSectionButtons(){
+    document.querySelectorAll('.lab-hw-section-btn').forEach(function(b){
+      if (!b.dataset.relabeled) {
+        b.textContent = '';
+        b.title = 'Добавить всю секцию в домашку';
+        b.setAttribute('aria-label','Добавить всю секцию в домашку');
+        b.dataset.relabeled = '1';
+      }
+    });
+  }
+  var ivR = setInterval(function(){ relabelSectionButtons(); }, 400);
+  setTimeout(function(){ clearInterval(ivR); }, 6000);
+  try {
+    if (window.labSync && typeof window.labSync.on === 'function') {
+      window.labSync.on('teacher-open-homework', function(){ openInlineHomework('teacher'); });
+    }
+  } catch(e){}
 })();
 </script>
 
