@@ -797,7 +797,13 @@
   }
 
   function openHomeworkPage(){
-    window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname);
+    // v42+ · передаём theme в .homework/ чтобы палитра совпала с уроком.
+    // Раньше .homework/ дефолтил на тёмную палитру, светлые уроки выглядели
+    // криво (vocab-card на #061428 фоне).
+    var theme = new URLSearchParams(location.search).get('theme')
+                || document.documentElement.getAttribute('data-theme')
+                || 'light-lab';
+    window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname) + '&theme=' + encodeURIComponent(theme);
   }
 
   function kindLabel(k){
