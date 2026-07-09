@@ -10,7 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/canon-L.css?v=11" data-tag="canon-L-loaded">
 <link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+<script src="../../assets/canon-L.js?v=5" defer></script>
 <style>
 :root{
   --bg:#fbf0e0;
@@ -853,6 +855,128 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
   </div>
 </section>
 
+<!-- ═══════════ DISCUSSION + TRUE/FALSE · 2026-07-09 ═══════════ -->
+<style>
+.epl-check{max-width:1240px;margin:40px auto;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
+.epl-check-inner{background:var(--surface,#fff8ec);border:1px solid rgba(197,106,92,.28);border-radius:20px;padding:clamp(20px,3vw,36px);box-shadow:0 18px 46px rgba(139,58,46,.10);position:relative;overflow:hidden}
+.epl-check-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--italy,#B84545) 0%,var(--italy,#B84545) 33%,var(--india,#D97706) 33%,var(--india,#D97706) 66%,var(--bali,#2D8B7F) 66%,var(--bali,#2D8B7F) 100%);border-radius:20px 20px 0 0}
+.epl-check-hdr{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.epl-check-hdr .num{background:var(--accent,#C56A5C);color:#fff;border-radius:10px;padding:6px 14px;font:800 11px/1 "JetBrains Mono",monospace;letter-spacing:.18em;text-transform:uppercase}
+.epl-check-hdr h2{margin:0;font-family:"Unbounded","Cormorant Garamond",serif;font-weight:800;font-size:clamp(1.3rem,2.6vw,1.75rem);color:var(--accent2,#8B3A2E);letter-spacing:-.01em}
+.epl-check-sub{font-size:.98rem;color:var(--ink,#2c1608);opacity:.78;margin-bottom:22px;line-height:1.65;font-family:"Manrope",sans-serif}
+.epl-check-sub strong{color:var(--accent2,#8B3A2E)}
+.epl-block-h{font:800 12px/1 "JetBrains Mono",monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--accent2,#8B3A2E);margin:28px 0 14px;padding-bottom:10px;border-bottom:1px dashed rgba(197,106,92,.36);display:flex;align-items:center;gap:8px}
+.epl-disc-q{background:var(--bg,#fbf0e0);border-left:4px solid var(--accent,#C56A5C);border-radius:0 14px 14px 0;padding:16px 20px;margin:14px 0;font-family:"Cormorant Garamond",serif;font-size:clamp(1.05rem,1.6vw,1.15rem);line-height:1.55;color:var(--ink,#2c1608);font-weight:500}
+.epl-disc-q .qnum{font-family:"JetBrains Mono",monospace;font-weight:800;color:var(--accent2,#8B3A2E);margin-right:12px;font-size:.78rem;letter-spacing:.18em}
+.epl-disc-q strong{color:var(--italy,#B84545);font-weight:700;font-style:italic}
+.epl-disc-q em.flag{font-style:normal;font-family:"Manrope",sans-serif;font-size:.86rem;font-weight:600;padding:2px 8px;border-radius:6px;margin-left:6px}
+.epl-disc-q em.italy{background:rgba(184,69,69,.14);color:var(--italy,#B84545)}
+.epl-disc-q em.india{background:rgba(217,119,6,.14);color:var(--india,#D97706)}
+.epl-disc-q em.bali{background:rgba(45,139,127,.14);color:var(--bali,#2D8B7F)}
+.epl-tf-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:var(--bg,#fbf0e0);border:1px solid rgba(197,106,92,.20);border-radius:12px;padding:14px 18px;margin:10px 0;transition:.15s}
+.epl-tf-row:hover{border-color:var(--accent,#C56A5C)}
+.epl-tf-row .stmt{font-size:.98rem;color:var(--ink,#2c1608);line-height:1.5;font-family:"Manrope",sans-serif}
+.epl-tf-row .stmt .n{color:var(--accent2,#8B3A2E);font-weight:800;margin-right:10px;font-family:"JetBrains Mono",monospace;font-size:.82rem}
+.epl-tf-row .stmt .country{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:6px;margin-right:8px;font-weight:700;vertical-align:middle}
+.epl-tf-row .stmt .country.italy{background:rgba(184,69,69,.14);color:var(--italy,#B84545)}
+.epl-tf-row .stmt .country.india{background:rgba(217,119,6,.14);color:var(--india,#D97706)}
+.epl-tf-row .stmt .country.bali{background:rgba(45,139,127,.14);color:var(--bali,#2D8B7F)}
+.epl-tf-opts{display:flex;gap:6px}
+.epl-tf-opts button{padding:9px 16px;border-radius:10px;border:1px solid rgba(197,106,92,.32);background:var(--surface,#fff8ec);color:var(--ink,#2c1608);font:800 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;cursor:pointer;text-transform:uppercase;transition:.15s}
+.epl-tf-opts button:hover{border-color:var(--accent,#C56A5C)}
+.epl-tf-opts button.right{background:var(--bali,#2D8B7F);color:#fff;border-color:var(--bali,#2D8B7F);cursor:default}
+.epl-tf-opts button.wrong{background:rgba(184,69,69,.18);border-color:var(--italy,#B84545);color:var(--italy,#B84545);cursor:default}
+.epl-tf-key{display:none;margin-top:8px;font-size:.9rem;color:var(--ink,#2c1608);font-style:italic;background:rgba(232,180,87,.16);border-left:3px solid var(--gold,#E8B457);padding:10px 14px;border-radius:0 8px 8px 0;font-family:"Cormorant Garamond",serif;line-height:1.55}
+.epl-tf-key.show{display:block}
+.epl-tf-key strong{color:var(--accent2,#8B3A2E);font-weight:700;font-style:normal;font-family:"Manrope",sans-serif}
+@media(max-width:640px){.epl-tf-row{grid-template-columns:1fr}.epl-tf-opts{justify-content:flex-end}}
+</style>
+<section class="section epl-check" id="s07">
+  <div class="section-hdr" style="justify-content:center;text-align:center;padding-bottom:0;margin-bottom:0">
+    <span class="num">07</span>
+    <h2>Discussion &amp; Check</h2>
+  </div>
+  <div class="epl-check-inner">
+    <p class="epl-check-sub">First — five <strong>open questions</strong> for our talk (3-5 sentences each, use at least one vocab item from any of the three countries). Then — eight <strong>True / False</strong> statements to check the plot of Elizabeth Gilbert's journey.</p>
+
+    <div class="epl-block-h">🎙 Discussion · 5 open questions</div>
+
+    <div class="epl-disc-q"><span class="qnum">Q1</span>Gilbert calls Italy the art of pleasure, India the art of silence, Bali the art of balance. Which of the three <strong>arts</strong> do you feel you need the most right now — and why?</div>
+    <div class="epl-disc-q"><span class="qnum">Q2</span>The Italians have a phrase <strong>«il dolce far niente»</strong> <em class="flag italy">Italy</em>. In your culture, is doing nothing seen as art or as laziness? Give one example from your family or country.</div>
+    <div class="epl-disc-q"><span class="qnum">Q3</span>At the ashram Gilbert had to <strong>surrender</strong> her ideas about how meditation should feel <em class="flag india">India</em>. When did you last have to surrender an idea about how life «should» be? What happened after?</div>
+    <div class="epl-disc-q"><span class="qnum">Q4</span>Ketut Liyer, the Balinese medicine man, says balance is not «half-half» but knowing when to give more to one side <em class="flag bali">Bali</em>. Where in your life would «real balance» look unbalanced from outside?</div>
+    <div class="epl-disc-q"><span class="qnum">Q5</span>Gilbert travelled for a whole year to find herself. Do you think a person needs to <strong>leave</strong> to change — or can real change happen without going anywhere?</div>
+
+    <div class="epl-block-h">✅ True / False · 8 statements about the story</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">1</span><span class="country italy">Italy</span>Gilbert travels to Rome mainly to study Italian language and food.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>True.</strong> Rome is her chapter of pleasure: language, pasta, unhurried meals — she calls it «learning to be an Italian» and reclaims her appetite.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">2</span><span class="country italy">Italy</span>«Dolce far niente» means «sweet homework» in Italian.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>False.</strong> It means «the sweetness of doing nothing» — pleasure in idleness itself, not in any task done.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">3</span><span class="country india">India</span>At the ashram she wakes up at 4 a.m. for meditation.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>True.</strong> Pre-dawn silence is a core practice of the ashram — Gilbert struggles with it before she learns to «sit in it».</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">4</span><span class="country india">India</span>Meditation at the ashram comes to her easily from the first week.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>False.</strong> The opposite — her mind is loud and rebellious. She only begins to break through after weeks of discipline and one intense night on the roof.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">5</span><span class="country bali">Bali</span>Ketut Liyer, the medicine man, predicted she would return to Bali before she actually did.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>True.</strong> On her first short visit to Bali he reads her palm and tells her she will come back and stay with him. That prediction is the reason she chooses Bali as the third stop.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">6</span><span class="country bali">Bali</span>In Bali she launches a business selling essential oils.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>False.</strong> In Bali she helps raise money to build a house for Wayan, a local healer and single mother. No essential-oils business.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">7</span><span class="country italy">Italy</span><span class="country india">India</span><span class="country bali">Bali</span>The whole journey is exactly one year long — four months in each country.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="t">TRUE</button><button type="button" data-tf="f">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>True.</strong> That's the structural spine of the book — 12 months, split in three, one lesson per stop.</div>
+
+    <div class="epl-tf-row">
+      <div class="stmt"><span class="n">8</span><span class="country italy">Italy</span><span class="country india">India</span><span class="country bali">Bali</span>Gilbert's main goal is to teach English in each of the three countries.</div>
+      <div class="epl-tf-opts"><button type="button" data-tf="f">TRUE</button><button type="button" data-tf="t">FALSE</button></div>
+    </div>
+    <div class="epl-tf-key"><strong>False.</strong> The journey is not about work — it's a personal search after divorce. She is learning, meditating, healing, not teaching.</div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('#s07 .epl-tf-row').forEach(function(row){
+    var opts = row.querySelectorAll('.epl-tf-opts button');
+    var key = row.nextElementSibling;
+    opts.forEach(function(b){
+      b.addEventListener('click', function(){
+        if (row.dataset.done) return;
+        row.dataset.done = '1';
+        opts.forEach(function(x){ x.classList.add(x.dataset.tf === 't' ? 'right' : 'wrong'); });
+        if (key && key.classList.contains('epl-tf-key')) key.classList.add('show');
+      });
+    });
+  });
+})();
+</script>
+
 <footer>
   Lesson by Maria Burtseva · NG English · LinguaBoost Lab · B1 · Eat, Pray, Love — Three Journeys
 </footer>
@@ -884,17 +1008,36 @@ window.LAB_VOCAB = [
 ];
 </script>
 
-<!-- Lab-протокол · 8 обязательных скриптов (10-пунктовый чек-лист) -->
+<!-- Speech Coach config · Eat Pray Love — share your own travel where you found something -->
+<script type="application/json" id="lab-coach-config">
+{
+  "task": "Talk for 2-3 minutes about a place that taught you something. It doesn't have to be Italy, India, or Indonesia — any city, village, or trip that gave you a lesson about pleasure, silence, or balance. What did the place teach you and how did that change you?",
+  "criteria": [
+    { "label": "Named a specific place", "hint": "Rome / grandmother's dacha / Bali / your neighbourhood", "keywords": ["went to", "lived in", "visited", "stayed at"] },
+    { "label": "One clear lesson in one line", "hint": "«It taught me…», «I learned that…»", "keywords": ["taught me", "learned that", "showed me", "helped me understand"] },
+    { "label": "Sensory detail — sight / sound / smell / taste", "hint": "morning light, smell of coffee, silence of the ashram", "keywords": ["smell", "sound", "silence", "taste", "light", "colour"] },
+    { "label": "Personal emotion, not just facts", "hint": "«I felt lost / free / at home»", "keywords": ["i felt", "i was", "it felt", "i realized"] },
+    { "label": "One vocab item from this lesson", "hint": "pleasure · silence · balance · surrender · savour · wisdom", "keywords": ["pleasure", "silence", "balance", "surrender", "savour", "wisdom", "faith", "healing", "community", "belong"] },
+    { "label": "Contrast — before vs after the place", "hint": "«Before I went there I was… · Now I…»", "keywords": ["before", "after", "then", "now", "used to"] },
+    { "label": "Length ≥ 2 minutes", "hint": "Two full minutes without long pauses", "keywords": [] }
+  ]
+}
+</script>
+
+<!-- Lab-протокол · актуальные версии (ARCHITECTURE.md §14 · 2026-07-09) -->
 <script src="../../assets/lab-persist.js" defer></script>
 <script src="../../assets/lab-total.js?v=4" defer></script>
-<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/lab-pilot.js?v=4" defer></script>
 <script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
 <script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
 <script src="../../assets/lab-sync.js?v=16" defer></script>
 <script src="../../assets/lab-tabs.js?v=12" defer></script>
-<script src="../../assets/lab-homework.js?v=40" defer></script>
+<script src="../../assets/lab-homework.js?v=43" defer></script>
 <script src="../../assets/lab-telemost.js?v=1" defer></script>
 <script src="../../assets/lab-vocab-builder.js?v=52" defer></script>
+<script src="../../assets/lab-lexicon.js?v=1" defer></script>
+<script src="../../assets/lab-coach-persist.js?v=1" defer></script>
+<script src="../../assets/lab-speech-tester.js?v=14" defer></script>
 
 <!-- ========== SCRIPTS ========== -->
 
