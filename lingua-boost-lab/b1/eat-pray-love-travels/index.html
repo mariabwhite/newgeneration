@@ -230,6 +230,132 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
   .reading-text{font-size:1.05rem}
   .reading-text p:first-child::first-letter{font-size:2.2rem}
 }
+
+/* Убираем "+" с флэш-карточек — на них он читается как «уже добавлено», а не «положить в домашку».
+   «В домашку» на этом уроке = кнопка «📚 всю секцию в домашку» на каждой секции. */
+.flip-card .lab-hw-add{display:none !important}
+
+/* Прячем авто-«📖 Vocabulary · 18 слов» — на этом уроке слова живут внутри своих секций (Italy / India / Bali flip-cards), а не одной свалкой сверху. */
+.lab-vocab-section{display:none !important}
+
+/* ========== Reading figure (movie stills) ========== */
+.epl-fig{margin:14px 0;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.epl-fig img{width:100%;height:auto;display:block}
+.epl-fig figcaption{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--ink-soft);
+  background:var(--surface);padding:10px 14px;line-height:1.5;border-top:1px solid var(--line)}
+
+/* ========== Reading · True or False (Tom Sawyer style) ========== */
+.epl-tf{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.epl-tf-row{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--italy);
+  border-radius:12px;padding:14px 16px}
+.epl-tf-q{font-size:1rem;color:var(--ink);margin-bottom:10px;line-height:1.5;font-weight:600;display:flex;gap:8px;align-items:flex-start}
+.epl-tf-n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+  background:var(--italy);color:#fff;font-family:var(--mono);font-weight:800;font-size:.76rem;flex-shrink:0;line-height:1}
+.epl-tf-opts{display:flex;gap:8px;flex-wrap:wrap}
+.epl-tf-opts button{flex:1;min-width:110px;background:#fff;border:1.5px solid var(--line);color:var(--ink);
+  padding:10px 14px;border-radius:10px;font-family:var(--mono);font-weight:800;font-size:.82rem;
+  cursor:pointer;transition:.18s;letter-spacing:.06em}
+.epl-tf-opts button:hover{border-color:var(--italy);color:var(--italy)}
+.epl-tf-opts button.correct{background:rgba(44,122,77,.15);border-color:var(--ok);color:var(--ok)}
+.epl-tf-opts button.wrong{background:rgba(178,58,58,.12);border-color:var(--miss);color:var(--miss)}
+.epl-tf-note{display:none;margin-top:10px;font-family:var(--serif);font-style:italic;font-size:.94rem;
+  color:var(--ink-soft);background:var(--surface-2);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0}
+.epl-tf-row.revealed .epl-tf-note{display:block}
+.epl-tf.india .epl-tf-row{border-left-color:var(--india)}
+.epl-tf.india .epl-tf-n{background:var(--india)}
+.epl-tf.india .epl-tf-opts button:hover{border-color:var(--india);color:var(--india)}
+.epl-tf.bali .epl-tf-row{border-left-color:var(--bali)}
+.epl-tf.bali .epl-tf-n{background:var(--bali)}
+.epl-tf.bali .epl-tf-opts button:hover{border-color:var(--bali);color:var(--bali)}
+.epl-fig.india-fig{border-left:4px solid var(--india)}
+.epl-fig.bali-fig{border-left:4px solid var(--bali)}
+
+/* ========== Italy interactive · Fill the story ========== */
+.epl-gap-wrap{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--italy);
+  border-radius:12px;padding:16px 18px;margin:12px 0}
+.epl-gap-story{font-family:var(--serif);font-size:1.08rem;line-height:1.85;color:var(--ink)}
+.epl-gap-story em{color:var(--italy);font-style:italic;font-weight:600}
+.epl-gap{display:inline-flex;align-items:center;min-width:110px;height:32px;padding:0 12px;
+  margin:0 3px;border:1.5px dashed var(--italy);border-radius:20px;
+  background:#fff;color:var(--italy);font-family:var(--body);font-weight:700;font-size:.94rem;
+  cursor:pointer;transition:.15s;vertical-align:-6px;justify-content:center;text-align:center}
+.epl-gap.filled{border-style:solid;background:var(--surface-2);color:var(--ink)}
+.epl-gap.correct{border-color:var(--ok);background:rgba(44,122,77,.15);color:var(--ok)}
+.epl-gap.wrong{border-color:var(--miss);background:rgba(178,58,58,.12);color:var(--miss)}
+.epl-gap.active{box-shadow:0 0 0 3px rgba(184,69,69,.25);transform:scale(1.04)}
+.epl-gap-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.epl-chip{padding:8px 14px;border-radius:20px;background:#fff;border:1.5px solid var(--italy);
+  color:var(--italy);font-family:var(--body);font-weight:700;font-size:.9rem;cursor:pointer;
+  transition:.15s;user-select:none}
+.epl-chip:hover{background:var(--italy);color:#fff}
+.epl-chip.active{background:var(--italy);color:#fff;box-shadow:0 0 0 4px rgba(184,69,69,.22)}
+.epl-chip.used{opacity:.32;pointer-events:none;text-decoration:line-through}
+.epl-gap-actions{display:flex;gap:10px;margin-top:14px}
+.epl-btn{padding:8px 16px;border-radius:50px;border:1.5px solid var(--italy);background:#fff;color:var(--italy);
+  font-family:var(--mono);font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:.15s}
+.epl-btn:hover{background:var(--italy);color:#fff}
+.epl-gap-note{display:none;margin-top:12px;font-family:var(--serif);font-style:italic;font-size:.95rem;
+  color:var(--ink-soft);background:var(--surface-2);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0}
+.epl-gap-note.on{display:block}
+
+/* ========== Italy interactive · Mic-drill ========== */
+.epl-mic-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}
+.epl-mic-row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);
+  border-left:4px solid var(--italy);border-radius:12px;padding:12px 14px;flex-wrap:wrap}
+.epl-mic-phrase{flex:1;min-width:180px;font-family:var(--serif);font-style:italic;font-size:1.08rem;color:var(--ink)}
+.epl-mic-hint{font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:2px;font-style:normal}
+.epl-mic-btn{width:44px;height:44px;border-radius:50%;border:none;background:var(--italy);color:#fff;
+  font-size:1.15rem;cursor:pointer;display:grid;place-items:center;transition:.15s;flex-shrink:0}
+.epl-mic-btn:hover{transform:scale(1.08)}
+.epl-mic-btn.rec{background:var(--miss);animation:epl-pulse 1s infinite}
+@keyframes epl-pulse{0%,100%{box-shadow:0 0 0 0 rgba(178,58,58,.5)}50%{box-shadow:0 0 0 10px rgba(178,58,58,0)}}
+.epl-mic-fb{flex:0 0 auto;font-family:var(--mono);font-size:.78rem;font-weight:800;padding:5px 12px;border-radius:50px;color:var(--muted);background:transparent;letter-spacing:.06em}
+.epl-mic-fb.ok{background:rgba(44,122,77,.15);color:var(--ok)}
+.epl-mic-fb.miss{background:rgba(178,58,58,.12);color:var(--miss)}
+.epl-mic-fb.rec{background:var(--surface-2);color:var(--italy)}
+.epl-mic-heard{flex-basis:100%;font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:4px;font-style:italic;display:none}
+.epl-mic-heard.on{display:block}
+
+/* India/Bali variants for gap-fill + mic-drill */
+.epl-gap-wrap.india{border-left-color:var(--india)}
+.epl-gap-wrap.india .epl-gap{border-color:var(--india);color:var(--india)}
+.epl-gap-wrap.india .epl-gap.active{box-shadow:0 0 0 3px rgba(217,119,6,.25)}
+.epl-gap-wrap.india .epl-chip{border-color:var(--india);color:var(--india)}
+.epl-gap-wrap.india .epl-chip:hover,.epl-gap-wrap.india .epl-chip.active{background:var(--india);color:#fff}
+.epl-gap-wrap.india .epl-btn{border-color:var(--india);color:var(--india)}
+.epl-gap-wrap.india .epl-btn:hover{background:var(--india);color:#fff}
+.epl-gap-wrap.bali{border-left-color:var(--bali)}
+.epl-gap-wrap.bali .epl-gap{border-color:var(--bali);color:var(--bali)}
+.epl-gap-wrap.bali .epl-gap.active{box-shadow:0 0 0 3px rgba(45,139,127,.25)}
+.epl-gap-wrap.bali .epl-chip{border-color:var(--bali);color:var(--bali)}
+.epl-gap-wrap.bali .epl-chip:hover,.epl-gap-wrap.bali .epl-chip.active{background:var(--bali);color:#fff}
+.epl-gap-wrap.bali .epl-btn{border-color:var(--bali);color:var(--bali)}
+.epl-gap-wrap.bali .epl-btn:hover{background:var(--bali);color:#fff}
+.epl-mic-grid.india .epl-mic-row{border-left-color:var(--india)}
+.epl-mic-grid.india .epl-mic-btn{background:var(--india)}
+.epl-mic-grid.bali .epl-mic-row{border-left-color:var(--bali)}
+.epl-mic-grid.bali .epl-mic-btn{background:var(--bali)}
+
+/* ========== Figure with overlay quote-caption ========== */
+.epl-fig-quote{position:relative;margin:24px 0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.epl-fig-quote img{width:100%;height:auto;display:block}
+.epl-fig-quote .epl-quote{position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(20,10,0,.35) 40%,rgba(20,10,0,.82) 100%);
+  color:#fff;padding:60px 26px 22px;
+  font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.5;
+  text-align:center;letter-spacing:.01em;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.epl-fig-quote .epl-quote em{color:var(--gold);font-style:italic;font-weight:600}
+.epl-fig-quote .epl-quote-mark{font-family:var(--display);font-size:2.4rem;font-weight:900;color:var(--gold);
+  vertical-align:-10px;margin-right:4px;line-height:0}
+.epl-fig-quote .epl-quote-mark.closing{margin-left:4px;margin-right:0;vertical-align:-24px}
+.epl-fig-quote.italy-fig{border-left:4px solid var(--italy)}
+.epl-fig-quote.bali-love-fig{border-left:4px solid var(--bali)}
+@media(max-width:680px){
+  .epl-fig-quote .epl-quote{padding:34px 16px 16px;font-size:1rem}
+  .epl-fig-quote .epl-quote-mark{font-size:1.8rem}
+}
+
 </style>
 </head>
 <body>
@@ -367,27 +493,27 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
     <h3 style="margin-top:22px">🎴 Words you hear in the trailer · 6 cards</h3>
     <p class="section-sub" style="margin-left:0">Tap to flip · ▶ to hear the pronunciation</p>
     <div class="flip-grid" data-country="italy">
-      <div class="flip-card" data-en="crossroads" data-ru="перекрёсток жизни"><button class="tts-btn" data-say="crossroads">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="crossroads" data-tr="перекрёсток жизни"><button class="tts-btn" data-say="crossroads">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">crossroads</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">перекрёсток жизни</div><div class="ex">She is at a crossroads after divorce.</div></div>
       </div></div>
-      <div class="flip-card" data-en="divorce" data-ru="развод"><button class="tts-btn" data-say="divorce">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="divorce" data-tr="развод"><button class="tts-btn" data-say="divorce">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">divorce</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">развод</div><div class="ex">After her divorce she left New York.</div></div>
       </div></div>
-      <div class="flip-card" data-en="sabbatical" data-ru="творческий отпуск, длинный перерыв в работе"><button class="tts-btn" data-say="sabbatical">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="sabbatical" data-tr="творческий отпуск, длинный перерыв в работе"><button class="tts-btn" data-say="sabbatical">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">sabbatical</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">творческий отпуск, длинный перерыв в работе</div><div class="ex">She took a year-long sabbatical.</div></div>
       </div></div>
-      <div class="flip-card" data-en="comfort zone" data-ru="зона комфорта"><button class="tts-btn" data-say="comfort zone">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="comfort zone" data-tr="зона комфорта"><button class="tts-btn" data-say="comfort zone">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">comfort zone</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">зона комфорта</div><div class="ex">She steps out of her comfort zone.</div></div>
       </div></div>
-      <div class="flip-card" data-en="to marvel at" data-ru="восхищаться, изумляться"><button class="tts-btn" data-say="to marvel at">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="to marvel at" data-tr="восхищаться, изумляться"><button class="tts-btn" data-say="to marvel at">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">to marvel at</div><div class="pos">verb</div></div>
         <div class="flip-back"><div class="meaning">восхищаться, изумляться</div><div class="ex">She travels to marvel at the world.</div></div>
       </div></div>
-      <div class="flip-card" data-en="to reconnect with" data-ru="снова обрести связь с (собой)"><button class="tts-btn" data-say="to reconnect with">▶</button><div class="flip-inner">
+      <div class="flip-card" data-w="to reconnect with" data-tr="снова обрести связь с (собой)"><button class="tts-btn" data-say="to reconnect with">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">to reconnect with</div><div class="pos">verb</div></div>
         <div class="flip-back"><div class="meaning">снова обрести связь с (собой)</div><div class="ex">She wants to reconnect with her true self.</div></div>
       </div></div>
@@ -458,50 +584,89 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
       </audio>
     </div>
 
+    <figure class="epl-fig">
+      <img src="assets/img/italy-pizza.jpg" alt="Julia Roberts as Liz Gilbert eating pizza in a small trattoria in Rome — a scene from Eat, Pray, Love (2010)" loading="lazy">
+      <figcaption>Liz in a small trattoria near Piazza Navona — the moment she remembers what pleasure feels like.</figcaption>
+    </figure>
+
     <div class="reading-text">
-      <p>I arrived in <strong>Rome</strong> in the middle of a rainy October. My Italian teacher had told me one phrase before I left New York — <em>il dolce far niente</em>. The sweetness of doing nothing. In Rome, doing nothing is not laziness. It is an <strong>art</strong>.</p>
-      <p>People sit in cafés for two hours over one small espresso. They watch, they talk, they simply <strong>exist</strong>. On my third day, I <strong>ordered</strong> pasta in a small <em>trattoria</em> near Piazza Navona. The waiter smiled and said, <em>take your time</em>. I understood then — I had forgotten what <strong>pleasure</strong> felt like.</p>
+      <p>I arrived in <strong>Rome</strong> in the middle of a rainy October. My apartment was small — one window, one bed, one blue kettle. But when I opened the window the city was there: wet, golden, alive. I knew I had been right to come.</p>
+      <p>My Italian teacher back in New York had given me a phrase before I left. "One phrase," she said, "and you will already understand my country." She wrote it down: <em>il dolce far niente</em>. The sweetness of doing nothing. In Rome, doing nothing is not <strong>laziness</strong>. It is an <strong>art</strong>.</p>
+      <p>For a whole week I watched how Romans practised that art. They sat in cafés for two hours over one small espresso. They talked, they watched people cross the piazza, they laughed and grew quiet again — and no one hurried them. They simply <strong>existed</strong>, and existing was enough.</p>
+      <p>On my third day I found a small <em>trattoria</em> near Piazza Navona. The waiter smiled when I sat down, and smiled again when I could not choose between the pastas. When my plate finally arrived I ate slowly, one bite at a time, trying to <strong>savour</strong> every taste. The waiter passed by, looked at me and said in gentle English: <em>take your time</em>.</p>
+      <p>I understood then. I had forgotten what <strong>pleasure</strong> felt like — not the loud, expensive kind, but the quiet, ordinary kind that lives in one plate of pasta and one afternoon of rain.</p>
+    </div>
+
+    <!-- ===== 1.T · True or False (Tom Sawyer style reading comprehension) ===== -->
+    <h3 style="margin-top:26px">📖 Reading · True or False</h3>
+    <p class="section-sub" style="margin-left:0">5 statements. Read the passage above · click ✓ True or ✗ False · explanation appears after.</p>
+    <div class="epl-tf" id="epl-tf-italy">
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">1</span> Liz's apartment in Rome was big and had many rooms.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> «My apartment was small — one window, one bed, one blue kettle.» Just one of each.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">2</span> Her Italian teacher gave her one phrase before she left New York.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> «One phrase, and you will already understand my country» — <em>il dolce far niente</em>.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">3</span> Romans usually finish their espresso in five minutes and rush away.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> «Two hours over one small espresso» — that's the whole point.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">4</span> The waiter in the trattoria told Liz to hurry.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> He said «take your time» — the opposite of hurrying. That's the Italian way.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">5</span> In Rome, Liz realised she had forgotten what pleasure felt like.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> «Not the loud, expensive kind — the quiet, ordinary kind.» The rain, the pasta, the moment.</div>
+      </div>
     </div>
 
     <h3 style="margin-top:22px">🍝 Vocabulary · 6 cards</h3>
     <p class="section-sub" style="margin-left:0">Tap a card to flip · ▶ to hear the word</p>
     <div class="flip-grid" data-country="italy">
-      <div class="flip-card italy" data-en="pleasure" data-ru="удовольствие">
+      <div class="flip-card italy" data-w="pleasure" data-tr="удовольствие">
         <button class="tts-btn" data-say="pleasure">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">pleasure</div><div class="pos">noun</div></div>
           <div class="flip-back"><div class="meaning">удовольствие</div><div class="ex">Rome taught me pleasure.</div></div>
         </div>
       </div>
-      <div class="flip-card italy" data-en="laziness" data-ru="лень">
+      <div class="flip-card italy" data-w="laziness" data-tr="лень">
         <button class="tts-btn" data-say="laziness">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">laziness</div><div class="pos">noun</div></div>
           <div class="flip-back"><div class="meaning">лень</div><div class="ex">This is not laziness — it is art.</div></div>
         </div>
       </div>
-      <div class="flip-card italy" data-en="dolce far niente" data-ru="сладкое ничегонеделание">
+      <div class="flip-card italy" data-w="dolce far niente" data-tr="сладкое ничегонеделание">
         <button class="tts-btn" data-say="dolce far niente">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">dolce far niente</div><div class="pos">italian</div></div>
           <div class="flip-back"><div class="meaning">сладкое ничегонеделание</div><div class="ex">Il dolce far niente is an art.</div></div>
         </div>
       </div>
-      <div class="flip-card italy" data-en="trattoria" data-ru="небольшой ресторан">
+      <div class="flip-card italy" data-w="trattoria" data-tr="небольшой ресторан">
         <button class="tts-btn" data-say="trattoria">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">trattoria</div><div class="pos">noun</div></div>
           <div class="flip-back"><div class="meaning">небольшой ресторан</div><div class="ex">A small trattoria near the square.</div></div>
         </div>
       </div>
-      <div class="flip-card italy" data-en="to exist" data-ru="существовать / просто быть">
+      <div class="flip-card italy" data-w="to exist" data-tr="существовать / просто быть">
         <button class="tts-btn" data-say="to exist">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">to exist</div><div class="pos">verb</div></div>
           <div class="flip-back"><div class="meaning">существовать / просто быть</div><div class="ex">They simply exist and enjoy.</div></div>
         </div>
       </div>
-      <div class="flip-card italy" data-en="to savour" data-ru="смаковать, наслаждаться">
+      <div class="flip-card italy" data-w="to savour" data-tr="смаковать, наслаждаться">
         <button class="tts-btn" data-say="to savour">▶</button>
         <div class="flip-inner">
           <div class="flip-front"><div class="word">to savour</div><div class="pos">verb</div></div>
@@ -510,7 +675,65 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
       </div>
     </div>
 
-    <h3 style="margin-top:22px">✅ Check yourself · 3 questions</h3>
+    <!-- ===== Interactive 1 · Fill Liz's story ===== -->
+    <h3 style="margin-top:26px">🎯 Interactive · Fill Liz's story</h3>
+    <p class="section-sub" style="margin-left:0">Tap a word from the bank, then tap the gap. Green = correct · red = try again.</p>
+    <div class="epl-gap-wrap" id="epl-gap-italy">
+      <div class="epl-gap-story">
+        "I arrived in <em>Rome</em>. My Italian teacher had told me one phrase — <em>il dolce far niente</em>, the sweetness of doing nothing. In Rome, doing nothing is not
+        <span class="epl-gap" data-ans="laziness"></span>. It is an art. People sit in cafés for two hours over one small
+        <span class="epl-gap" data-ans="espresso"></span>. On my third day, I ordered pasta in a small
+        <span class="epl-gap" data-ans="trattoria"></span> near Piazza Navona. The waiter smiled and said, <em>take your time</em>. I understood then — I had forgotten what
+        <span class="epl-gap" data-ans="pleasure"></span> felt like. Now I want to
+        <span class="epl-gap" data-ans="savour"></span> every bite."
+      </div>
+      <div class="epl-gap-bank" id="epl-gap-italy-bank">
+        <div class="epl-chip" data-word="laziness">laziness</div>
+        <div class="epl-chip" data-word="trattoria">trattoria</div>
+        <div class="epl-chip" data-word="pleasure">pleasure</div>
+        <div class="epl-chip" data-word="espresso">espresso</div>
+        <div class="epl-chip" data-word="savour">savour</div>
+      </div>
+      <div class="epl-gap-actions">
+        <button class="epl-btn" data-epl-check="italy">Check answers</button>
+        <button class="epl-btn" data-epl-reset="italy">Reset</button>
+      </div>
+      <div class="epl-gap-note" id="epl-gap-italy-note">
+        ✅ <strong>All five words are from your vocab cards above.</strong> <em>Laziness</em> is what Romans deny — <em>«not laziness — it is art»</em>. <em>Espresso</em> is the excuse to sit for two hours. <em>Trattoria</em> = tiny family-run restaurant. <em>Pleasure</em> = удовольствие, and to <em>savour</em> = наслаждаться каждой мелочью.
+      </div>
+    </div>
+
+    <!-- ===== Interactive 2 · Say it like a Roman ===== -->
+    <h3 style="margin-top:26px">🎤 Interactive · Say it like a Roman</h3>
+    <p class="section-sub" style="margin-left:0">Tap 🎙, say the phrase out loud. The browser will listen · Chrome only · needs mic permission.</p>
+    <div class="epl-mic-grid" id="epl-mic-italy">
+      <div class="epl-mic-row" data-target="il dolce far niente" data-lang="it-IT">
+        <div class="epl-mic-phrase"><em>Il dolce far niente</em><span class="epl-mic-hint">🇮🇹 Italian · «the sweetness of doing nothing»</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="take your time">
+        <div class="epl-mic-phrase">"Take your time."<span class="epl-mic-hint">what the waiter says · calm, unhurried</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="i had forgotten what pleasure felt like">
+        <div class="epl-mic-phrase">"I had forgotten what pleasure felt like."<span class="epl-mic-hint">past perfect · Liz's realisation</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="doing nothing is not laziness it is an art">
+        <div class="epl-mic-phrase">"Doing nothing is not laziness — it is an art."<span class="epl-mic-hint">the philosophy of Rome</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">✅ Check yourself · 3 questions</h3>
     <p class="section-sub" style="margin-left:0">Click the correct answer · explanation appears after</p>
 
     <div class="mcq-row" data-ans="b">
@@ -570,38 +793,136 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
       </audio>
     </div>
 
+    <figure class="epl-fig india-fig">
+      <img src="assets/img/india-ashram.jpg" alt="An ashram courtyard at dawn — Liz meditating cross-legged among other students, from the film Eat, Pray, Love (2010)" loading="lazy">
+      <figcaption>The stone hall before sunrise. Two hundred people, one hour of silence — and Liz on the seventh day.</figcaption>
+    </figure>
+
     <div class="reading-text">
-      <p>After Italy came <strong>India</strong>. And after pasta came the <em class="india-word">ashram</em>. <strong>Meditation</strong> began at four in the morning. My knees hurt. My mind screamed. I wanted to run out of the hall and never come back.</p>
-      <p>But the teacher told me one thing — do not fight your thoughts. Watch them like clouds. Let them pass. On the seventh day, something quiet happened inside me. A small <strong>silence</strong>. Not empty — full. Like the moment after a bell has finished ringing.</p>
+      <p>After Italy came <strong>India</strong>. If Rome had asked me to eat, this country asked me to be quiet. I flew from a place of tables and pasta to a place of temples and dust, and I did not know if I was ready.</p>
+      <p>I chose an <em class="india-word">ashram</em> in a small village. <strong>Meditation</strong> began at four in the morning. Two hundred people sat cross-legged in a stone hall, in the dark, in silence. Only breathing — and one bell, once every hour.</p>
+      <p>The first week was war. My knees hurt. My back ached. My mind screamed. I made lists of everything I hated about the food, about the heat, about the people I had left behind. I wanted to run out of the hall and never come back.</p>
+      <p>Then the teacher said one thing that changed the week for me. "Do not fight your thoughts. Watch them like clouds. Let them pass." So I stopped fighting. I began to notice my breath instead of my thoughts, and I began to understand what <strong>discipline</strong> really means — not a hard rule, but a soft return, again and again, to what matters.</p>
+      <p>On the seventh day, something quiet happened. A small <strong>silence</strong> — not empty, but full. Like the moment after a bell has finished ringing. It was the first quiet minute of my adult life, and I finally understood what people mean by <strong>faith</strong>: not certainty, but the courage to keep returning.</p>
+    </div>
+
+    <!-- ===== Reading · True or False ===== -->
+    <h3 style="margin-top:26px">📖 Reading · True or False</h3>
+    <p class="section-sub" style="margin-left:0">5 statements. Read the passage · click ✓ True or ✗ False · explanation appears after.</p>
+    <div class="epl-tf india" id="epl-tf-india">
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">1</span> Meditation at the ashram began at four in the morning.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> Before sunrise, before the world starts asking anything from you.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">2</span> The first week at the ashram was easy and calm for Liz.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> «The first week was war.» Knees hurt, mind screamed, she wanted to run.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">3</span> The teacher told her to fight her thoughts until they disappeared.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> The opposite — «watch them like clouds, let them pass». Not fighting; observing.</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">4</span> On the seventh day, she felt a small, full silence — not empty.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> «Not empty — full. Like the moment after a bell has finished ringing.»</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">5</span> Liz began to understand that discipline is «a soft return, again and again, to what matters».</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> That's the ashram's real lesson — discipline is not force, it's coming back.</div>
+      </div>
     </div>
 
     <h3 style="margin-top:22px">🕉 Vocabulary · 6 cards</h3>
     <p class="section-sub" style="margin-left:0">Tap a card to flip · ▶ to hear the word</p>
     <div class="flip-grid" data-country="india">
-      <div class="flip-card india" data-en="silence" data-ru="тишина"><button class="tts-btn" data-say="silence">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="silence" data-tr="тишина"><button class="tts-btn" data-say="silence">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">silence</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">тишина</div><div class="ex">The ashram was full of silence.</div></div>
       </div></div>
-      <div class="flip-card india" data-en="meditation" data-ru="медитация"><button class="tts-btn" data-say="meditation">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="meditation" data-tr="медитация"><button class="tts-btn" data-say="meditation">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">meditation</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">медитация</div><div class="ex">Meditation at 4 a.m. is not easy.</div></div>
       </div></div>
-      <div class="flip-card india" data-en="ashram" data-ru="ашрам, духовный центр"><button class="tts-btn" data-say="ashram">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="ashram" data-tr="ашрам, духовный центр"><button class="tts-btn" data-say="ashram">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">ashram</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">ашрам, духовный центр</div><div class="ex">She spent months at the ashram.</div></div>
       </div></div>
-      <div class="flip-card india" data-en="discipline" data-ru="дисциплина"><button class="tts-btn" data-say="discipline">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="discipline" data-tr="дисциплина"><button class="tts-btn" data-say="discipline">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">discipline</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">дисциплина</div><div class="ex">Silence requires discipline.</div></div>
       </div></div>
-      <div class="flip-card india" data-en="faith" data-ru="вера"><button class="tts-btn" data-say="faith">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="faith" data-tr="вера"><button class="tts-btn" data-say="faith">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">faith</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">вера</div><div class="ex">Faith is a quiet kind of hope.</div></div>
       </div></div>
-      <div class="flip-card india" data-en="to surrender" data-ru="сдаться, отпустить"><button class="tts-btn" data-say="to surrender">▶</button><div class="flip-inner">
+      <div class="flip-card india" data-w="to surrender" data-tr="сдаться, отпустить"><button class="tts-btn" data-say="to surrender">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">to surrender</div><div class="pos">verb</div></div>
         <div class="flip-back"><div class="meaning">сдаться, отпустить</div><div class="ex">She had to surrender her ideas.</div></div>
       </div></div>
+    </div>
+
+    <!-- ===== India · Fill the ashram story ===== -->
+    <h3 style="margin-top:26px">🎯 Interactive · Fill the ashram story</h3>
+    <p class="section-sub" style="margin-left:0">Tap a word from the bank, then tap the gap. Green = correct · red = try again.</p>
+    <div class="epl-gap-wrap india" id="epl-gap-india">
+      <div class="epl-gap-story">
+        "I chose an <span class="epl-gap" data-ans="ashram"></span> in a small village.
+        <span class="epl-gap" data-ans="Meditation"></span> began at four in the morning. Two hundred people sat cross-legged in the dark, in
+        <span class="epl-gap" data-ans="silence"></span>. The teacher said: watch your thoughts like clouds — do not fight, just
+        <span class="epl-gap" data-ans="surrender"></span>. I began to understand what
+        <span class="epl-gap" data-ans="discipline"></span> really means: a soft return, again and again. And
+        <span class="epl-gap" data-ans="faith"></span> — not certainty, but the courage to keep returning."
+      </div>
+      <div class="epl-gap-bank" id="epl-gap-india-bank">
+        <div class="epl-chip" data-word="ashram">ashram</div>
+        <div class="epl-chip" data-word="Meditation">Meditation</div>
+        <div class="epl-chip" data-word="silence">silence</div>
+        <div class="epl-chip" data-word="surrender">surrender</div>
+        <div class="epl-chip" data-word="discipline">discipline</div>
+        <div class="epl-chip" data-word="faith">faith</div>
+      </div>
+      <div class="epl-gap-actions">
+        <button class="epl-btn" data-epl-check="india">Check answers</button>
+        <button class="epl-btn" data-epl-reset="india">Reset</button>
+      </div>
+      <div class="epl-gap-note" id="epl-gap-india-note">
+        ✅ <strong>Six vocab words in six gaps.</strong> <em>Ashram</em> = the spiritual centre. <em>Meditation</em> = the practice. <em>Silence</em> = both room and state. To <em>surrender</em> = to stop fighting your mind. <em>Discipline</em> = the soft return. <em>Faith</em> = the courage to come back.
+      </div>
+    </div>
+
+    <!-- ===== India · Mic-drill ===== -->
+    <h3 style="margin-top:26px">🎤 Interactive · Say it like a quiet mind</h3>
+    <p class="section-sub" style="margin-left:0">Tap 🎙, say the phrase out loud. Chrome only · needs mic permission.</p>
+    <div class="epl-mic-grid india" id="epl-mic-india">
+      <div class="epl-mic-row" data-target="meditation began at four in the morning">
+        <div class="epl-mic-phrase">"Meditation began at four in the morning."<span class="epl-mic-hint">before sunrise · the ashram rule</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="watch your thoughts like clouds">
+        <div class="epl-mic-phrase">"Watch your thoughts like clouds."<span class="epl-mic-hint">the teacher's advice · don't fight, observe</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="a small silence not empty but full">
+        <div class="epl-mic-phrase">"A small silence — not empty, but full."<span class="epl-mic-hint">the seventh-day breakthrough</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="discipline is a soft return again and again">
+        <div class="epl-mic-phrase">"Discipline is a soft return, again and again."<span class="epl-mic-hint">what practice really means</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
     </div>
 
     <h3 style="margin-top:22px">✅ Check yourself · 3 questions</h3>
@@ -664,35 +985,74 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
       </audio>
     </div>
 
+    <figure class="epl-fig bali-fig">
+      <img src="assets/img/bali-ketut.jpg" alt="Ketut Liyer, the old Balinese medicine man, drawing on his porch — Liz visiting his village near Ubud, from Eat, Pray, Love (2010)" loading="lazy">
+      <figcaption>Ketut on his small porch near Ubud. A drawing of four legs, a smiling face — and one green earth.</figcaption>
+    </figure>
+
     <div class="reading-text">
-      <p><strong>Bali</strong> was different. Italy had taught me pleasure. India had taught me silence. Bali asked me to bring both into one life. I met an old <em class="bali-word">medicine man</em> in a village near Ubud. His name was Ketut. He drew a picture for me — a person with four legs and a smiling face, standing on a small green earth.</p>
-      <p>To find <strong>balance</strong>, he said, you must keep your feet on the ground and your heart open. Not too much thinking. Not too much feeling. Just watch, and smile. Bali does the rest.</p>
+      <p><strong>Bali</strong> was different. Italy had taught me pleasure. India had taught me silence. Bali asked me to bring both into one life — to eat and to sit still, to talk and to listen, to belong somewhere without losing myself.</p>
+      <p>I met an old <em class="bali-word">medicine man</em> in a small village near Ubud. His name was Ketut. He was small, wrinkled, and had one tooth that appeared when he smiled — and he smiled often. On my first visit he took my hand, looked at my face and said something in his own language. His helper translated softly: "He says you have the mouth of one who laughs and the eyes of one who has been sad. He can help."</p>
+      <p>Every afternoon for two months I climbed the two steps up to his porch. He would draw pictures for me — pictures of the mind, of the heart, of the body. His favourite drawing was simple: a person with four legs and a smiling face, standing on a small green earth. "Four legs so you cannot fall," he said. "A smile because the earth is round and you belong on it."</p>
+      <p>To find <strong>balance</strong>, he told me, you must keep your feet on the ground and your heart open. Not too much thinking. Not too much feeling. Just watch, and smile. He said the village was my family now, and every neighbour a small teacher, and the rice terraces a slow prayer. He was teaching me <strong>community</strong> without using the word.</p>
+      <p>I began to <strong>belong</strong> there — not to a place, exactly, but to a way of standing in the world. Two legs for the head, two for the heart. A face that remembered how to smile. And a piece of <strong>wisdom</strong> small enough to fold and carry in a pocket: the earth is round, and you belong on it.</p>
+    </div>
+
+    <!-- ===== Reading · True or False ===== -->
+    <h3 style="margin-top:26px">📖 Reading · True or False</h3>
+    <p class="section-sub" style="margin-left:0">5 statements. Read the passage · click ✓ True or ✗ False · explanation appears after.</p>
+    <div class="epl-tf bali" id="epl-tf-bali">
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">1</span> Ketut lived in a small village near Ubud.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> «I met an old medicine man in a small village near Ubud.»</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">2</span> Liz visited Ketut only once during her two months in Bali.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> «Every afternoon for two months I climbed the two steps up to his porch.»</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">3</span> Ketut's favourite drawing was of a person with four legs and a smiling face.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> «Four legs so you cannot fall. A smile because the earth is round and you belong on it.»</div>
+      </div>
+      <div class="epl-tf-row" data-ans="f">
+        <div class="epl-tf-q"><span class="epl-tf-n">4</span> Ketut said balance means thinking a lot and feeling a lot.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>False.</em> The opposite — «Not too much thinking. Not too much feeling. Just watch, and smile.»</div>
+      </div>
+      <div class="epl-tf-row" data-ans="t">
+        <div class="epl-tf-q"><span class="epl-tf-n">5</span> In Bali, Liz began to belong to «a way of standing in the world», not just to a place.</div>
+        <div class="epl-tf-opts"><button data-v="t">✓ True</button><button data-v="f">✗ False</button></div>
+        <div class="epl-tf-note">→ <em>True.</em> That's the whole lesson of Bali — belonging is a posture, not an address.</div>
+      </div>
     </div>
 
     <h3 style="margin-top:22px">🌴 Vocabulary · 6 cards</h3>
     <p class="section-sub" style="margin-left:0">Tap a card to flip · ▶ to hear the word</p>
     <div class="flip-grid" data-country="bali">
-      <div class="flip-card bali" data-en="balance" data-ru="равновесие, баланс"><button class="tts-btn" data-say="balance">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="balance" data-tr="равновесие, баланс"><button class="tts-btn" data-say="balance">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">balance</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">равновесие</div><div class="ex">Bali gave her balance.</div></div>
       </div></div>
-      <div class="flip-card bali" data-en="healing" data-ru="исцеление"><button class="tts-btn" data-say="healing">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="healing" data-tr="исцеление"><button class="tts-btn" data-say="healing">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">healing</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">исцеление</div><div class="ex">The medicine man practised healing.</div></div>
       </div></div>
-      <div class="flip-card bali" data-en="medicine man" data-ru="знахарь, целитель"><button class="tts-btn" data-say="medicine man">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="medicine man" data-tr="знахарь, целитель"><button class="tts-btn" data-say="medicine man">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">medicine man</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">знахарь, целитель</div><div class="ex">The medicine man read her palm.</div></div>
       </div></div>
-      <div class="flip-card bali" data-en="community" data-ru="сообщество"><button class="tts-btn" data-say="community">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="community" data-tr="сообщество"><button class="tts-btn" data-say="community">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">community</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">сообщество</div><div class="ex">The village lived as one community.</div></div>
       </div></div>
-      <div class="flip-card bali" data-en="wisdom" data-ru="мудрость"><button class="tts-btn" data-say="wisdom">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="wisdom" data-tr="мудрость"><button class="tts-btn" data-say="wisdom">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">wisdom</div><div class="pos">noun</div></div>
         <div class="flip-back"><div class="meaning">мудрость</div><div class="ex">His wisdom came from age.</div></div>
       </div></div>
-      <div class="flip-card bali" data-en="to belong" data-ru="принадлежать, быть на месте"><button class="tts-btn" data-say="to belong">▶</button><div class="flip-inner">
+      <div class="flip-card bali" data-w="to belong" data-tr="принадлежать, быть на месте"><button class="tts-btn" data-say="to belong">▶</button><div class="flip-inner">
         <div class="flip-front"><div class="word">to belong</div><div class="pos">verb</div></div>
         <div class="flip-back"><div class="meaning">принадлежать, быть на месте</div><div class="ex">On Bali she began to belong.</div></div>
       </div></div>
@@ -730,6 +1090,76 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
       </div>
       <div class="mcq-note">→ Grounded, open, watching. Balance = <em>middle way</em>. Not the intensity of the ashram, not the abandon of Rome — the still centre between them.</div>
     </div>
+
+    <!-- ===== Bali · Fill the balance story ===== -->
+    <h3 style="margin-top:26px">🎯 Interactive · Fill the balance story</h3>
+    <p class="section-sub" style="margin-left:0">Tap a word from the bank, then tap the gap. Green = correct · red = try again.</p>
+    <div class="epl-gap-wrap bali" id="epl-gap-bali">
+      <div class="epl-gap-story">
+        "I met an old <span class="epl-gap" data-ans="medicine man"></span> in a village near Ubud. He drew a favourite picture — a person with four legs and a smile. To find
+        <span class="epl-gap" data-ans="balance"></span>, he told me, keep your feet on the ground and your heart open. His hands offered
+        <span class="epl-gap" data-ans="healing"></span> not with medicine but with attention. The village became my family — every neighbour a small teacher. He was teaching me
+        <span class="epl-gap" data-ans="community"></span> without using the word. I began to
+        <span class="epl-gap" data-ans="belong"></span> — not to a place, but to a way of standing in the world. And a piece of
+        <span class="epl-gap" data-ans="wisdom"></span> small enough to carry in a pocket."
+      </div>
+      <div class="epl-gap-bank" id="epl-gap-bali-bank">
+        <div class="epl-chip" data-word="medicine man">medicine man</div>
+        <div class="epl-chip" data-word="balance">balance</div>
+        <div class="epl-chip" data-word="healing">healing</div>
+        <div class="epl-chip" data-word="community">community</div>
+        <div class="epl-chip" data-word="belong">belong</div>
+        <div class="epl-chip" data-word="wisdom">wisdom</div>
+      </div>
+      <div class="epl-gap-actions">
+        <button class="epl-btn" data-epl-check="bali">Check answers</button>
+        <button class="epl-btn" data-epl-reset="bali">Reset</button>
+      </div>
+      <div class="epl-gap-note" id="epl-gap-bali-note">
+        ✅ <strong>Six vocab words in six gaps.</strong> <em>Medicine man</em> = the village healer. <em>Balance</em> = the whole lesson of Bali. <em>Healing</em> lived in his attention. <em>Community</em> was the village. To <em>belong</em> = to find your place. <em>Wisdom</em> = the pocket-sized truth he gave.
+      </div>
+    </div>
+
+    <!-- ===== Bali · Mic-drill ===== -->
+    <h3 style="margin-top:26px">🎤 Interactive · Say it like Bali</h3>
+    <p class="section-sub" style="margin-left:0">Tap 🎙, say the phrase out loud. Chrome only · needs mic permission.</p>
+    <div class="epl-mic-grid bali" id="epl-mic-bali">
+      <div class="epl-mic-row" data-target="the earth is round and you belong on it">
+        <div class="epl-mic-phrase">"The earth is round, and you belong on it."<span class="epl-mic-hint">Ketut's pocket wisdom</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="four legs so you cannot fall">
+        <div class="epl-mic-phrase">"Four legs so you cannot fall."<span class="epl-mic-hint">the balance drawing</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="keep your feet on the ground and your heart open">
+        <div class="epl-mic-phrase">"Keep your feet on the ground and your heart open."<span class="epl-mic-hint">Ketut's rule for balance</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+      <div class="epl-mic-row" data-target="not too much thinking not too much feeling just watch and smile">
+        <div class="epl-mic-phrase">"Not too much thinking. Not too much feeling. Just watch, and smile."<span class="epl-mic-hint">the middle way</span></div>
+        <button class="epl-mic-btn" title="Record">🎙</button>
+        <div class="epl-mic-fb">tap 🎙</div>
+        <div class="epl-mic-heard"></div>
+      </div>
+    </div>
+
+    <!-- ===== Bali · Closing image with caption ===== -->
+    <figure class="epl-fig-quote bali-love-fig">
+      <img src="assets/img/bali-love.jpg" alt="Liz and Felipe embrace in a wooden Balinese house — the final scene of the Bali chapter" loading="lazy">
+      <figcaption class="epl-quote">
+        <span class="epl-quote-mark">“</span>
+        Two legs for the head, two for the heart.<br>
+        <em>A face that remembered how to smile.</em>
+        <span class="epl-quote-mark closing">”</span>
+      </figcaption>
+    </figure>
 
   </div>
 </section>
@@ -977,6 +1407,19 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
 })();
 </script>
 
+<!-- ========== Closing image ========== -->
+<section class="section" id="s-close">
+  <figure class="epl-fig-quote italy-fig">
+    <img src="assets/img/italy-gelato.jpg" alt="Liz walking through Rome with a gelato — one of the final Italy scenes" loading="lazy">
+    <figcaption class="epl-quote">
+      <span class="epl-quote-mark">“</span>
+      Take your time.<br>
+      <em>Not the loud, expensive kind of pleasure — the quiet, ordinary kind.</em>
+      <span class="epl-quote-mark closing">”</span>
+    </figcaption>
+  </figure>
+</section>
+
 <footer>
   Lesson by Maria Burtseva · NG English · LinguaBoost Lab · B1 · Eat, Pray, Love — Three Journeys
 </footer>
@@ -1026,7 +1469,7 @@ window.LAB_VOCAB = [
 
 <!-- Lab-протокол · актуальные версии (ARCHITECTURE.md §14 · 2026-07-09) -->
 <script src="../../assets/lab-persist.js?v=3" defer></script>
-<script src="../../assets/lab-send-pill.js?v=1" defer></script>
+<script src="../../assets/lab-send-pill.js?v=2" defer></script>
 <script src="../../assets/lab-total.js?v=4" defer></script>
 <script src="../../assets/lab-pilot.js?v=4" defer></script>
 <script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
@@ -1117,6 +1560,194 @@ document.querySelectorAll('.mcq-row').forEach(row=>{
     });
   },{threshold:.3});
   sections.forEach(s=>io.observe(s));
+})();
+</script>
+
+<!-- ===== Purge "+" (hw-add) from all flip-cards, survives lab-homework.js re-injection ===== -->
+<script>
+(function(){
+  function purge(){
+    document.querySelectorAll('.flip-card .lab-hw-add').forEach(function(b){ b.remove(); });
+  }
+  purge();
+  if (document.body){
+    new MutationObserver(purge).observe(document.body, {childList:true, subtree:true});
+  }
+})();
+</script>
+
+<!-- ===== Italy interactives ===== -->
+<script>
+(function(){
+  // ---------- 0) True/False (Tom Sawyer style reading comprehension) ----------
+  document.querySelectorAll('.epl-tf-row').forEach(function(row){
+    var ans = (row.dataset.ans||'').toLowerCase();
+    row.querySelectorAll('.epl-tf-opts button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (btn.disabled) return;
+        var v = (btn.dataset.v||'').toLowerCase();
+        if (v === ans){
+          btn.classList.add('correct');
+          row.classList.add('revealed');
+          row.querySelectorAll('.epl-tf-opts button').forEach(function(b){ b.disabled = true; });
+        } else {
+          btn.classList.add('wrong'); btn.disabled = true;
+        }
+      });
+    });
+  });
+
+  // ---------- 1) Gap-fill ----------
+  document.querySelectorAll('.epl-gap-wrap').forEach(function(wrap){
+    var bank = wrap.querySelector('.epl-gap-bank');
+    var gaps = [...wrap.querySelectorAll('.epl-gap')];
+    var chips = [...bank.querySelectorAll('.epl-chip')];
+    var activeChip = null, activeGap = null;
+
+    function setActiveChip(c){
+      chips.forEach(x=>x.classList.remove('active'));
+      if (c){ c.classList.add('active'); activeChip = c; } else activeChip = null;
+    }
+    function setActiveGap(g){
+      gaps.forEach(x=>x.classList.remove('active'));
+      if (g){ g.classList.add('active'); activeGap = g; } else activeGap = null;
+    }
+    function tryPlace(){
+      if (!activeChip || !activeGap) return;
+      // Если в gap уже слово — вернуть чип в бэнк
+      if (activeGap.dataset.word){
+        var prev = bank.querySelector('.epl-chip[data-word="'+activeGap.dataset.word+'"]');
+        if (prev) prev.classList.remove('used');
+      }
+      var word = activeChip.dataset.word;
+      activeGap.textContent = word;
+      activeGap.dataset.word = word;
+      activeGap.classList.add('filled');
+      activeGap.classList.remove('correct','wrong','active');
+      activeChip.classList.add('used');
+      setActiveChip(null); setActiveGap(null);
+    }
+
+    chips.forEach(function(c){
+      c.addEventListener('click', function(){
+        if (c.classList.contains('used')) return;
+        if (activeChip === c){ setActiveChip(null); return; }
+        setActiveChip(c);
+        tryPlace();
+      });
+    });
+    gaps.forEach(function(g){
+      g.addEventListener('click', function(){
+        // Если клик по заполненному gap — освободить
+        if (g.dataset.word){
+          var prev = bank.querySelector('.epl-chip[data-word="'+g.dataset.word+'"]');
+          if (prev) prev.classList.remove('used');
+          g.textContent = '';
+          delete g.dataset.word;
+          g.classList.remove('filled','correct','wrong');
+          return;
+        }
+        if (activeGap === g){ setActiveGap(null); return; }
+        setActiveGap(g);
+        tryPlace();
+      });
+    });
+
+    wrap.querySelector('[data-epl-check]').addEventListener('click', function(){
+      var allRight = true;
+      gaps.forEach(function(g){
+        if (g.dataset.word === g.dataset.ans){
+          g.classList.add('correct'); g.classList.remove('wrong');
+        } else {
+          g.classList.add('wrong'); g.classList.remove('correct');
+          allRight = false;
+        }
+      });
+      wrap.querySelector('.epl-gap-note').classList.add('on');
+    });
+    wrap.querySelector('[data-epl-reset]').addEventListener('click', function(){
+      gaps.forEach(function(g){
+        g.textContent=''; delete g.dataset.word;
+        g.classList.remove('filled','correct','wrong','active');
+      });
+      chips.forEach(function(c){ c.classList.remove('used','active'); });
+      wrap.querySelector('.epl-gap-note').classList.remove('on');
+      activeChip = null; activeGap = null;
+    });
+
+    // Shuffle chip order
+    var shuffled = chips.slice().sort(function(){return Math.random()-.5;});
+    shuffled.forEach(function(c){ bank.appendChild(c); });
+  });
+
+  // ---------- 2) Mic-drill (Web Speech API) ----------
+  document.querySelectorAll('.epl-mic-grid').forEach(function(grid){
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR){
+      grid.querySelectorAll('.epl-mic-fb').forEach(function(fb){ fb.textContent='mic not supported'; fb.classList.add('miss'); });
+      grid.querySelectorAll('.epl-mic-btn').forEach(function(b){ b.disabled=true; b.style.opacity=.4; });
+      return;
+    }
+    function normalise(s){
+      return String(s||'').toLowerCase()
+        .replace(/[''`]/g,"'")
+        .replace(/[.,!?;:—–\-]/g,' ')
+        .replace(/\s+/g,' ').trim();
+    }
+    function score(heard, target){
+      var h = normalise(heard).split(' ').filter(Boolean);
+      var t = normalise(target).split(' ').filter(Boolean);
+      if (!t.length) return 0;
+      var hit = 0;
+      t.forEach(function(w){ if (h.indexOf(w) >= 0) hit++; });
+      return hit / t.length;
+    }
+    grid.querySelectorAll('.epl-mic-row').forEach(function(row){
+      var btn = row.querySelector('.epl-mic-btn');
+      var fb  = row.querySelector('.epl-mic-fb');
+      var heardEl = row.querySelector('.epl-mic-heard');
+      var target = row.dataset.target || '';
+      var lang = row.dataset.lang || 'en-US';
+      var rec = null, active = false;
+
+      btn.addEventListener('click', function(){
+        if (active){ try{ rec && rec.stop(); }catch(e){} return; }
+        rec = new SR();
+        rec.lang = lang; rec.interimResults = false; rec.maxAlternatives = 3;
+        active = true;
+        btn.classList.add('rec');
+        fb.className = 'epl-mic-fb rec'; fb.textContent = 'listening…';
+        heardEl.classList.remove('on'); heardEl.textContent='';
+        var heard = '';
+        rec.onresult = function(e){
+          for (var i=0;i<e.results.length;i++){
+            if (e.results[i].isFinal){
+              // Проверяем ВСЕ альтернативы, берём лучшую
+              var best = '';
+              for (var j=0;j<e.results[i].length;j++){
+                var alt = e.results[i][j].transcript;
+                if (score(alt, target) > score(best, target)) best = alt;
+              }
+              heard = best;
+            }
+          }
+        };
+        rec.onerror = function(){ fb.className='epl-mic-fb miss'; fb.textContent='mic error'; };
+        rec.onend = function(){
+          active = false; btn.classList.remove('rec');
+          var s = score(heard, target);
+          heardEl.textContent = 'heard: "' + (heard||'—') + '"';
+          heardEl.classList.add('on');
+          if (s >= 0.75){ fb.className='epl-mic-fb ok'; fb.textContent='✓ great · ' + Math.round(s*100) + '%'; }
+          else if (s >= 0.4){ fb.className='epl-mic-fb miss'; fb.textContent='try again · ' + Math.round(s*100) + '%'; }
+          else { fb.className='epl-mic-fb miss'; fb.textContent='try again'; }
+        };
+        try { rec.start(); }
+        catch(e){ active=false; btn.classList.remove('rec'); fb.className='epl-mic-fb miss'; fb.textContent='mic blocked'; }
+      });
+    });
+  });
+
 })();
 </script>
 
