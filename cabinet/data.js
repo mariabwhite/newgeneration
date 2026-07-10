@@ -1,9 +1,8 @@
-/* Generated snapshot — see _rebuild_cabinet_data.js (recreate via Claude/MCP). */
+﻿/* GENERATED — slim version without PII. Source of truth: Supabase. */
 window.NGE_DATA = {
   "version": 2,
-  "generated": "2026-05-16T16:05:00.000Z",
-  "generated_by": "Claude Opus 4.7 — Notion snapshot + parent data from signed contracts",
-  "note": "PIN derived deterministically from student id. Teacher password SHA-256 hashed. Parent ФИО/passport/email/phone added from scanned contracts on 2026-05-16.",
+  "generated": "2026-06-23T15:35:00.000Z",
+  "generated_by": "gen-slim-data.js — без PII (без паспортов/телефонов/адресов)",
   "teacher": {
     "id": "teacher",
     "name": "Мария Витальевна Бурцева",
@@ -23,6 +22,114 @@ window.NGE_DATA = {
     "kpp": "771301001",
     "purpose": "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается"
   },
+  "contracts": {
+    "denis-shalmanov": {
+      "folder": "documents/_v",
+      "files": [
+        "75a3f76e46cd20c0f092f128b09b7da2.pdf"
+      ],
+      "note": "Подписанный договор оказания услуг. Клик — открыть в новой вкладке."
+    },
+    "timofey": {
+      "folder": "documents/_v",
+      "files": [
+        "2967982f7e0da82ca88dcd8e5c19d557.pdf",
+        "84c5c58a09e3c2a03e82eab79a788885.pdf"
+      ],
+      "note": "Договор оказания услуг + согласие на обработку ПД. Клик — открыть в новой вкладке."
+    },
+    "andrei-kruglov": {
+      "folder": "documents/_v/andrei-kruglov",
+      "files": [
+        "01_договор_стр1.pdf",
+        "02_договор_стр2_условия.pdf",
+        "03_договор_стр3_подпись.jpg"
+      ],
+      "note": "Договор оказания услуг (стр. 1–3 + подпись). Клик — открыть в новой вкладке."
+    },
+    "sova-elena": {
+      "folder": "documents/_v/sova-elena",
+      "files": [
+        "01_договор_общий.pdf",
+        "02_реквизиты_Елена.png"
+      ],
+      "note": "Договор оказания услуг + приложение с реквизитами. Клик — открыть в новой вкладке."
+    },
+    "yulya-izotova": {
+      "folder": "documents/_v/yulya-izotova",
+      "files": [
+        "01_договор_стр1.jpg",
+        "02_договор_стр2_условия.jpg",
+        "03_договор_стр3_подпись.jpg",
+        "04_согласие_на_ПД.jpg",
+        "05_подпись_доп.png"
+      ],
+      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке.",
+      "parentOnly": true
+    },
+    "anya-isaeva": {
+      "folder": "documents/_v/anya-isaeva",
+      "files": [
+        "01_договор_стр1.webp",
+        "02_договор_стр2_условия.webp",
+        "03_договор_стр3_подпись.webp",
+        "04_согласие_на_ПД.webp"
+      ],
+      "parentOnly": true,
+      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
+    },
+    "katya-marakina": {
+      "folder": "documents/_v/katya-marakina",
+      "files": [
+        "01_договор_стр1.jpeg",
+        "02_договор_стр2.jpeg",
+        "03_договор_стр3.jpeg",
+        "04_доп.png"
+      ],
+      "parentOnly": true,
+      "note": "Договор оказания услуг (стр. 1–3 + доп.). Клик — открыть в новой вкладке."
+    },
+    "fedor-protasov": {
+      "folder": "documents/_v/fedor-protasov",
+      "files": [],
+      "missing": true,
+      "parentOnly": true,
+      "note": "Подписанный договор пока не загружен. Нужно подписать договор оказания услуг и согласие на обработку персональных данных; после подписи документ будет закреплён здесь."
+    },
+    "ekaterina-medvedeva-solo": {
+      "folder": "documents/_v/ekaterina-medvedeva-solo",
+      "files": [
+        "01_договор_стр1.jpg",
+        "02_договор_стр2_условия.jpg",
+        "03_договор_стр3_подпись.jpg",
+        "04_согласие_на_ПД.jpg"
+      ],
+      "parentOnly": true,
+      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
+    },
+    "maria-kuznetsova-solo": {
+      "folder": "documents/_v/maria-kuznetsova-solo",
+      "files": [
+        "01_договор_стр1.jpg",
+        "02_договор_стр2_условия.jpg",
+        "03_договор_стр3_подпись.jpg",
+        "04_согласие_на_ПД.jpg"
+      ],
+      "parentOnly": true,
+      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
+    },
+    "ivanov-ivan": {
+      "folder": "documents/_v/ivanov-ivan",
+      "files": [
+        "01_договор_стр1.jpeg",
+        "02_договор_стр2_условия.jpeg",
+        "03_договор_стр3_подпись.jpeg",
+        "04_согласие_на_ПД.jpeg"
+      ],
+      "parentOnly": true,
+      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
+    }
+  },
   "students": [
     {
       "id": "andrei-kruglov",
@@ -34,9 +141,9 @@ window.NGE_DATA = {
       "level": "B2",
       "format": "индивидуально",
       "duration": "1.5 часа",
-      "lessons_per_week": 2,
-      "schedule": "вторник 14:30 / четверг 10:30 (+20 мин)",
-      "stability_note": "Актуализировано 20.05.2026: остаётся 3 урока до летних каникул — 27.05 (вт 14:30), 29.05 (чт 10:30+20мин), 02.06 (вт 14:30 — перенос чт-формата, время как обычное вт). После 02.06 уходит на каникулы до сентября 2026, с высылкой ему форм.",
+      "schedule": "лето 2026 · 3 контрольных встречи (даты в таблице уроков)",
+      "stability_note": "",
+      "summer_plan_note": "Лето 2026: 3 контрольных встречи + материал для самостоятельной работы. См. таблицу уроков.",
       "goal": "разговорный английский, институт, бизнес-английский, подготовка к TOEFL/IELTS",
       "price_per_lesson": 2500,
       "monthly_package": 20000,
@@ -44,61 +151,172 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "is_adult": true,
       "parent_name": "",
-      "contact_passport": "4520 965594",
-      "contact_phone": "+79166988892",
-      "contact_address": "Москва, ул. Ю. Парковая, 15-244",
       "pin": "1721",
-      "lessons_in_package": 8,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 8,
-      "summer_plan_note": "Май-абонемент закрыт (8 из 8). Уходит на каникулы до сентября 2026 с серией заданий по уже пройденным темам. Летом — 3 контрольных встречи (конец июня / июля / августа) по обычному графику (вторник или четверг). Конспект года и летние задания доставляются лично от Маши (не публикуем).",
+      "lessons_in_package": 3,
+      "subscription_month": "лето 2026",
+      "lessons_used_this_month": 0,
       "lessons": [
-        { "date": "2026-05-06", "num": 1, "status": "completed", "topic": "Инструктажи — академическая лексика, структура задания, разбор формата" },
-        { "date": "2026-05-08", "num": 2, "status": "completed", "topic": "Инструктажи — продолжение, отработка формата" },
-        { "date": "2026-05-13", "num": 3, "status": "completed", "topic": "Разнообразие наук — решение типичных задач TOEFL" },
-        { "date": "2026-05-15", "num": 4, "status": "completed", "topic": "Разнообразие наук — решение типичных задач TOEFL" },
-        { "date": "2026-05-20", "num": 5, "status": "completed", "topic": "Разнообразие наук — решение типичных задач TOEFL" },
-        { "date": "2026-05-22", "num": 6, "status": "moved", "topic": "Перенос по инициативе учителя → провели как дополнительный вторник 02.06" },
-        { "date": "2026-05-27", "num": 6, "status": "completed", "topic": "Научный микс — психология моря, атомная наука, квантовая физика" },
-        { "date": "2026-05-29", "num": 7, "status": "completed", "topic": "Закрепление научного блока + история и архитектура" },
-        { "date": "2026-06-02", "num": 8, "status": "completed", "topic": "Инструктажи и деловая среда (последний урок перед каникулами)" },
-        { "date": "2026-06-15", "num": 8.5, "status": "self-study", "topic": "Лето · модуль 1 — Voyager L1 · Time, the watchmaker, neutrinos", "homework": { "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7", "module_title": "🌌 Открыть Voyager L1 · Time", "text": "Самостоятельная работа лета. 8 секций · MP3 listening · lex-gram cloze · sentence transformation · IELTS/Olympiad speaking. Пройди в спокойном темпе до 30.06." } },
-        { "date": "2026-06-30", "num": 9, "status": "planned", "topic": "Летняя контрольная встреча #1 — разбор Voyager L1 + новая мини-тема" },
-        { "date": "2026-07-15", "num": 9.5, "status": "self-study", "topic": "Лето · модуль 2 — Voyager L2 · Are we alone? (SETI quest)", "homework": { "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/", "module_title": "🛸 Открыть Voyager L2 · Are we alone?", "text": "Второй летний модуль. SETI-quest в Атакаме · Reyes + Aaron + логбук деда-часовщика из L1. 3 новых формата заданий vs L1 — matching headings, word formation, listening sentence completion." } },
-        { "date": "2026-07-30", "num": 10, "status": "planned", "topic": "Летняя контрольная встреча #2 — разбор Voyager L2 + новая мини-тема" },
-        { "date": "2026-08-15", "num": 10.5, "status": "self-study", "topic": "Лето · модуль 3 — тема уточняется (Voyager L3 или TOEFL-практика)", "schedule_note": "согласуем после июльской встречи" },
-        { "date": "2026-08-27", "num": 11, "status": "planned", "topic": "Летняя контрольная встреча #3 — финальный разбор, настройка на сентябрь" }
-      ]
+        {
+          "date": "2026-06-30",
+          "num": 9,
+          "status": "planned",
+          "topic": "Летняя встреча #1 — Science Systems · TOEFL iBT prep (C1)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/c1/science-systems-c1-andrew-toefl/",
+            "module_title": "🔬 Открыть Science Systems · TOEFL prep",
+            "text": "C1 + TOEFL iBT prep (ETS 2025 формат). Warm-up в 3-х форматах · 10 научных областей matching · 16 cross-science vocab · 5 reading пассажей с двумя типами вопросов · 2 listening talks (Matthew + Joanna, реальное Polly-аудио) · Listen and Repeat · Retell · Argument · Take an Interview · Writing trio (Build a Sentence · Email · Academic Discussion)."
+          }
+        },
+        {
+          "date": "2026-07-30",
+          "num": 10,
+          "status": "planned",
+          "topic": "Летняя встреча #2 — разбор летнего блока + новая мини-тема",
+          "homework": {
+            "text": "Вторая летняя встреча: разбираем вопросы после Science Systems · TOEFL prep и добавляем новую мини-тему. Материал будет уточнён ближе к занятию."
+          }
+        },
+        {
+          "date": "2026-08-27",
+          "num": 11,
+          "status": "planned",
+          "topic": "Летняя встреча #3 — финальный разбор + настройка на сентябрь"
+        }
+      ],
+      "contracts": {
+        "folder": "documents/_v/andrei-kruglov",
+        "files": [
+          "01_договор_стр1.pdf",
+          "02_договор_стр2_условия.pdf",
+          "03_договор_стр3_подпись.jpg"
+        ],
+        "note": "Договор оказания услуг (3 стр. + подпись). Клик — открыть в новой вкладке."
+      }
     },
     {
       "id": "sova-elena",
       "notion_id": "34d7364c-ba79-81ba-b4d6-e8b07e6ed7f7",
       "name": "Сова Елена Витальевна",
+      "materials": {
+        "folder": "documents/_v/sova-elena",
+        "note": "Отчёт за июль 2026 · темы + компенсация 6 000 ₽",
+        "files": [
+          {
+            "name": "report-sova-elena-2026-07.pdf",
+            "label": "📄 Отчёт за июль 2026",
+            "audience": "student"
+          }
+        ]
+      },
       "level": "A2",
       "format": "индивидуально",
-      "schedule": "вторник 19:00",
-      "goal": "взрослый ученик, медленный темп, через карточки и опоры",
+      "schedule": "четверг 20:00",
+      "goal": "разговорный английский · переезд в Канаду · автоматизация базы",
       "price_per_lesson": 2000,
       "payment_status": "Оплачено",
+      "payment_note": "Оплачен блок 4 занятия · июль 2026.",
       "is_adult": true,
       "parent_name": "",
-      "contact_passport": "4524 №179806 (ГУ МВД по г.Москве, 20.06.2024)",
-      "contact_phone": "+79671403548",
-      "contact_email": "elenavit-2005@mail.ru",
-      "contact_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
       "pin": "2547",
-      "lessons_in_package": 7,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 4,
-      "stability_note": "Май-абонемент 7 уроков (вт 19:00): 4 проведены + 3 оплачены вперёд. Все даты — регулярные вторники, без сдвигов. 28.04→19.05 = первые 4 (grammar×2 + Wind in the Willows + SIM/coffee сегодня). 26.05/2.06/9.06 — оставшиеся 3.",
+      "lessons_in_package": 4,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "summer_plan_note": "Июль 2026 · новый блок 4 занятий · сегодня начали с повторения Bella (медицинская серия).",
+      "stability_note": "",
+      "archived_packages": [
+        {
+          "label": "Май 2026 · 4 занятия (вт 19:00) — грамматический блок + The Wind in the Willows",
+          "lessons": [
+            {
+              "date": "2026-04-28",
+              "num": 1,
+              "status": "completed",
+              "topic": "Грамматика #1 · Simple + Perfect tenses — повторение форм и функций"
+            },
+            {
+              "date": "2026-05-05",
+              "num": 2,
+              "status": "completed",
+              "topic": "Грамматика #2 · Passive Voice + Past Perfect — узнавание в контексте"
+            },
+            {
+              "date": "2026-05-12",
+              "num": 3,
+              "status": "completed",
+              "topic": "The Wind in the Willows — чтение адаптированной книги · лексика · обсуждение"
+            },
+            {
+              "date": "2026-05-19",
+              "num": 4,
+              "status": "completed",
+              "topic": "SIM-карты и кофе — практическая лексика и диалоги (Канада · бытовые ситуации)"
+            }
+          ]
+        },
+        {
+          "label": "Июнь–июль 2026 · 3 занятия (чт 20:00) — Канада-серия: Settling In → City → Bella",
+          "lessons": [
+            {
+              "date": "2026-06-18",
+              "num": 1,
+              "status": "completed",
+              "topic": "Канада · Settling In Toronto — coffee · SIM · directions · drugstore (4 сцены · I'd like / I need · AI Coach)",
+              "homework": {
+                "text": "Lab-модуль · 4 сценария первого дня в Торонто + AI Coach для свободной речи в конце.",
+                "module_url": "../lingua-boost-lab/a2/settling-in-toronto/",
+                "module_title": "🇨🇦 Открыть Settling In Toronto"
+              }
+            },
+            {
+              "date": "2026-06-25",
+              "num": 2,
+              "status": "completed",
+              "topic": "Ориентация в городе — city map · directions · транспорт · как спросить дорогу"
+            },
+            {
+              "date": "2026-07-02",
+              "num": 3,
+              "status": "completed",
+              "topic": "Медицина · Bella Needs Help — pharmacy / walk-in clinic / 911 · Can I…? / Could you…?",
+              "homework": {
+                "text": "Bella-series · Day 3 в Канаде. У Bella головная боль → аптека → клиника → потом она помогает незнакомцу вызвать 911. Три сцены, формула Poster → Vocab → Dialogue → Drill → Speaking template + AI Coach в финале.",
+                "module_url": "../lingua-boost-lab/a2/bella-needs-help/",
+                "module_title": "🏥 Bella Needs Help"
+              }
+            }
+          ]
+        }
+      ],
       "lessons": [
-        { "date": "2026-04-28", "num": 1, "status": "completed", "topic": "Грамматика #1: simple + perfect tenses" },
-        { "date": "2026-05-05", "num": 2, "status": "completed", "topic": "Грамматика #2: passive voice + past perfect" },
-        { "date": "2026-05-12", "num": 3, "status": "completed", "topic": "The Wind in the Willows — чтение книги для детей, лексика, обсуждение" },
-        { "date": "2026-05-19", "num": 4, "status": "completed", "topic": "SIM-карты и кофе — практическая лексика и диалоги" },
-        { "date": "2026-05-26", "num": 5, "status": "planned", "topic": "" },
-        { "date": "2026-06-02", "num": 6, "status": "planned", "topic": "" },
-        { "date": "2026-06-09", "num": 7, "status": "planned", "topic": "" }
+        {
+          "date": "2026-07-09",
+          "num": 1,
+          "status": "completed",
+          "topic": "🏥 Bella Needs Help · повторение — pharmacy / doctor / emergency, закрепление формул Can I…? / Could you…?",
+          "homework": {
+            "text": "Повтор Bella-series · Day 3. Три сцены на автомате, AI Coach в финале — свободно, без опоры на template.",
+            "module_url": "../lingua-boost-lab/a2/bella-needs-help/",
+            "module_title": "🏥 Bella Needs Help (повторение)"
+          }
+        },
+        {
+          "date": "2026-07-14",
+          "num": 2,
+          "status": "planned",
+          "topic": "📅 Урок июльского блока — тему уточним"
+        },
+        {
+          "date": "2026-07-21",
+          "num": 3,
+          "status": "planned",
+          "topic": "📅 Урок июльского блока — тему уточним"
+        },
+        {
+          "date": "2026-07-28",
+          "num": 4,
+          "status": "planned",
+          "topic": "📅 Урок июльского блока — тему уточним"
+        }
       ]
     },
     {
@@ -106,62 +324,195 @@ window.NGE_DATA = {
       "notion_id": "34d7364c-ba79-810e-ac5b-f35b5a113898",
       "name": "Сова Екатерина",
       "nickname": "Катя",
-      "summer_vacation": true,
-      "summer_vacation_note": "На каникулах до сентября 2026 (с 19.05.2026)",
       "level": "B1",
       "format": "индивидуально",
       "schedule": "понедельник 18:00 (на каникулах)",
-      "stability_note": "На 19.05.2026 отпущена на каникулы. Запланированные уроки на этой неделе не проводятся. Возобновление — уточнить с родителем.",
+      "stability_note": "",
       "payment_status": "Оплачено",
       "parent_name": "Сова Елена Витальевна",
-      "parent_passport": "4524 №179806",
-      "parent_phone": "+79671403548",
-      "parent_email": "elenavit-2005@mail.ru",
-      "parent_address": "105203, Москва, ул. Первомайская, д.113, кв.29",
       "pin": "6924",
       "lessons_in_package": 4,
       "subscription_month": "2026-05",
       "lessons_used_this_month": 4,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "ОГЭ / ЕГЭ — повторение лексики и формат экзамена" },
-        { "date": "2026-05-11", "num": 2, "status": "completed", "topic": "Книги — жанры, рассказы, лексика" },
-        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Неправильные глаголы с предлогом — отработка форм и употребление" },
-        { "date": "2026-05-25", "num": 4, "status": "completed", "topic": "Финальное повторение завершено — все слова, темы, книжки. На каникулы до сентября." }
+        {
+          "date": "2026-05-04",
+          "num": 1,
+          "status": "completed",
+          "topic": "ОГЭ / ЕГЭ — повторение лексики и формат экзамена"
+        },
+        {
+          "date": "2026-05-11",
+          "num": 2,
+          "status": "completed",
+          "topic": "Книги — жанры, рассказы, лексика"
+        },
+        {
+          "date": "2026-05-18",
+          "num": 3,
+          "status": "completed",
+          "topic": "Неправильные глаголы с предлогом — отработка форм и употребление"
+        },
+        {
+          "date": "2026-05-25",
+          "num": 4,
+          "status": "completed",
+          "topic": "Финальное повторение завершено — все слова, темы, книжки. На каникулы до сентября."
+        }
       ]
     },
     {
       "id": "fedor-protasov",
       "notion_id": "34d7364c-ba79-8135-bda3-f409c1cf93a2",
       "name": "Фёдор Протасов",
-      "level": "",
-      "format": "индивидуально",
-      "schedule": "вторник 16:00 / четверг 20:00 / пятница 20:00 / воскресенье 14:40",
-      "goal": "Spotlight 9 + страны + Past Simple irregular + there is/are/was/were",
+      "materials": {
+        "folder": "documents/_v/fedor-protasov",
+        "note": "Отчёт за июнь 2026 — для мамы (Мария Петровна).",
+        "files": [
+          {
+            "name": "report-fedor-protasov-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      },
       "level": "A2/B1",
-      "lessons_in_package": 13,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 7,
+      "format": "индивидуально",
+      "duration": "1 час",
+      "schedule": "понедельник 13:00 / четверг 13:00 / воскресенье 12:00",
+      "goal": "Tom Sawyer (адаптированный B1) + Travelling (страны, аэропорт, ролевые) + Past Simple irregular в активной речи",
+      "price_per_lesson": 2500,
+      "lessons_in_package": 14,
+      "subscription_month": "2026-06",
+      "lessons_used_this_month": 13,
+      "summer_plan_note": "Летний блок 10 уроков + 4 экстра · июнь + июль 2026 · 13 / 14 проведено",
       "payment_status": "Оплачено",
-      "payment_note": "Мария Петровна платит еженедельно",
+      "payment_note": "",
       "parent_name": "Протасова Мария Петровна",
-      "contract_note": "бумажный договор, не онлайн",
       "pin": "7186",
-      "stability_note": "Расписание актуализировано 19.05.2026: вт 16:00 / чт 20:00 (раньше 20:15) / пт 20:00 + добавилось воскресенье 14:40 (после Дениса и пары). Май-абонемент: 6 проведено (1, 2, 3, 4, 5, 8), 14/15.05 перенесены на 17.05 — Pinocchio комбинированный.",
+      "stability_note": "",
       "lessons": [
-        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "Туристический английский — Китай (лексика, клише)" },
-        { "date": "2026-05-05", "num": 2, "status": "completed", "topic": "Туристический английский — Италия" },
-        { "date": "2026-05-07", "num": 3, "status": "completed", "topic": "Грамматический юнит" },
-        { "date": "2026-05-08", "num": 4, "status": "completed", "topic": "Повторение неправильных глаголов" },
-        { "date": "2026-05-12", "num": 5, "status": "completed", "topic": "Туристические клише" },
-        { "date": "2026-05-14", "num": 6, "status": "rescheduled", "topic": "Перенесён на 17.05 (технические трудности)" },
-        { "date": "2026-05-15", "num": 7, "status": "rescheduled", "topic": "Перенесён на 17.05 (технические трудности)" },
-        { "date": "2026-05-17", "num": 8, "status": "completed", "topic": "Pinocchio (комбинированный за 14 и 15.05) — чтение, простейшие слова, работа с книгой" },
-        { "date": "2026-05-19", "num": 9, "status": "completed", "topic": "Древний Китай — лексика, история, обсуждение" },
-        { "date": "2026-05-21", "num": 10, "status": "planned", "topic": "" },
-        { "date": "2026-05-22", "num": 11, "status": "planned", "topic": "" },
-        { "date": "2026-05-26", "num": 12, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 13, "status": "planned", "topic": "" },
-        { "date": "2026-05-29", "num": 14, "status": "planned", "topic": "" }
+        {
+          "date": "2026-06-11",
+          "num": 1,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 1 — Whitewashing the Fence",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-06-14",
+          "num": 2,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 2 — The Graveyard",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-06-18",
+          "num": 3,
+          "status": "completed",
+          "topic": "✈️ Travelling · введение — страны, транспорт, базовая лексика"
+        },
+        {
+          "date": "2026-06-21",
+          "num": 4,
+          "status": "completed",
+          "topic": "✈️ Travelling · airport + hotel — диалоги и role-play"
+        },
+        {
+          "date": "2026-06-22",
+          "num": 5,
+          "status": "completed",
+          "topic": "✈️ Travelling · countries + monuments (пн — Speaking-практика)"
+        },
+        {
+          "date": "2026-06-25",
+          "num": 6,
+          "status": "completed",
+          "topic": "✈️ Travelling · role-play (airport + hotel) — активная лексика"
+        },
+        {
+          "date": "2026-06-28",
+          "num": 7,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 3 — Sunday School (Bible Prize)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-06-29",
+          "num": 8,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 4 — Becky on the Fence",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-07-02",
+          "num": 9,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 5 — финал серии + Past Simple irregular drill",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures",
+            "text": "Финал серии. К уроку: пересказ сцен своими словами + неправильные глаголы из текста в активную речь."
+          }
+        },
+        {
+          "date": "2026-07-05",
+          "num": 10,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+          }
+        },
+        {
+          "date": "2026-07-07",
+          "num": 11,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright — travel-серия (открытие)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright"
+          }
+        },
+        {
+          "date": "2026-07-09",
+          "num": 12,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — закрепление ночной travel-программы",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+          }
+        },
+        {
+          "date": "2026-07-10",
+          "num": 13,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · Act 6 — Blood Oath & Trial · показания после Muff Potter",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-07-12",
+          "num": 14,
+          "status": "planned",
+          "topic": "✈️ Travel-программа · продолжение"
+        }
       ]
     },
     {
@@ -172,32 +523,141 @@ window.NGE_DATA = {
       "level": "B1+/B2",
       "format": "индивидуально",
       "duration": "1 час",
-      "schedule": "плавающий — договариваемся еженедельно",
-      "price_per_lesson": 2500,
-      "monthly_package": 10000,
+      "schedule": "вторник 15:00 (90 мин)",
+      "price_per_lesson": 2000,
+      "monthly_package": 8000,
       "lessons_in_package": 4,
-      "subscription_month": "2026-06",
+      "subscription_month": "2026-07",
       "lessons_used_this_month": 1,
       "payment_status": "Оплачено",
-      "payment_note": "Июнь оплачен полностью: 4 урока × 2 500 ₽ = 10 000 ₽. Формат — 1 час, даты согласовываются по неделе.",
-      "stability_note": "Май закрыт: 4 проведено + 1 пропуск. Июньский абонемент 4 урока по часу, формат серии Voyager (B2-plus, time-travel/space-themed). На 02.06 проведён L1. Дальше — L2 Are we alone?, затем L3, L4 по согласованию.",
+      "payment_note": "",
+      "payments": [
+        { "month": "Июль 2026", "package": "4 урока × 2 000 ₽", "amount": "8 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Летний блок · 1 / 4 проведено" },
+        { "month": "Июнь 2026", "package": "4 урока × 2 000 ₽", "amount": "8 000 ₽", "status": "paid", "date": "—", "note": "Полный месяц" }
+      ],
+      "stability_note": "",
+      "summer_plan_note": "📅 Июль 2026 · Voyager L3 + L4 (финал серии). Абонемент 4 урока × 2 000 ₽ = 8 000 ₽. Расписание сохраняется: вторник 15:00, 90 мин. С сентября — плановое повышение ставки до 2 500 ₽ за занятие.",
       "parent_name": "Подлесных Татьяна Анатольевна",
-      "parent_passport": "4524 514335 (06.11.2024)",
-      "parent_phone": "+79057502111",
-      "parent_email": "ryabina8@list.ru",
-      "parent_address": "Москва, пос. Сосенское, п. Коммунарка, ул. Ясная, д.5, кв.33",
       "pin": "7670",
       "lessons": [
-        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "Чтение — художественные тексты про путешествия во времени" },
-        { "date": "2026-05-08", "num": 2, "status": "completed", "topic": "Аудирование академического уровня + новая лексика" },
-        { "date": "2026-05-15", "num": 3, "status": "completed", "topic": "Грамматика — целенаправленная подготовка к МЦК" },
-        { "date": "2026-05-22", "num": 4, "status": "missed", "topic": "Пропуск (Иван проспал)" },
-        { "date": "2026-05-29", "num": 5, "status": "completed", "topic": "Устная практика — летние планы и каникулы" },
-        { "date": "2026-06-02", "num": 1, "status": "completed", "topic": "Voyager L1 · Time travel + The Watchmaker's Apology + Neutrinos (B2-plus, lex-gram cloze, IELTS/Olympiad speaking)", "homework": { "text": "Открыть урок повторно: Use of English (cloze + transformation), Mini-writing, Olympiad Speaking. Reading T/F/NG в Homework — для тренировки close reading.", "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7", "module_title": "Voyager L1 · Time" } },
-        { "date": "2026-06-09", "num": 2, "status": "planned", "topic": "Voyager L2 · Are we alone? — SETI quest at the Atacama outpost (B2-plus, Reading matching headings, Word formation, Listening sentence completion)", "schedule_note": "дата уточняется — согласовываем за неделю", "homework": { "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/", "module_title": "🛸 Открыть Voyager L2 · Are we alone?", "text": "8 секций · 2 MP3 (лекция Drake/Fermi + final broadcast Reyes) · Mia's grandfather's logbook возвращается из L1." } },
-        { "date": "2026-06-16", "num": 3, "status": "planned", "topic": "Voyager L3 — тема уточняется", "schedule_note": "дата уточняется" },
-        { "date": "2026-06-23", "num": 4, "status": "planned", "topic": "Voyager L4 — тема уточняется", "schedule_note": "дата уточняется" }
-      ]
+        {
+          "date": "2026-06-02",
+          "num": 1,
+          "status": "completed",
+          "topic": "Voyager L1 · The Watchmaker (первый раз) — Time travel + Watchmaker's Apology + Neutrinos",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
+            "module_title": "🌌 Открыть Voyager L1 · The Watchmaker",
+            "text": "8 секций, MP3-listening, lex-gram cloze, IELTS/Olympiad Speaking. Открой повторно — конструкции из cloze должны идти на автомате."
+          },
+          "audio_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/assets/audio/listen-time-physics.mp3",
+          "audio_title": "🎧 Listening · what physics actually says about time (90 s)"
+        },
+        {
+          "date": "2026-06-09",
+          "num": 2,
+          "status": "completed",
+          "topic": "Voyager L1 · The Watchmaker (второй раз) — закрепление, ещё раз через тот же модуль",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
+            "module_title": "🌌 Voyager L1 · The Watchmaker (повторение)",
+            "text": "Повтор всего урока. Use of English вторым кругом — без шпаргалок."
+          },
+          "audio_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/assets/audio/listen-time-physics.mp3",
+          "audio_title": "🎧 Listening · time physics (повтор)"
+        },
+        {
+          "date": "2026-06-16",
+          "num": 3,
+          "status": "completed",
+          "topic": "Voyager L2 · Are we alone? (первый раз) — SETI quest at the Atacama outpost",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_title": "🛸 Voyager L2 · Are we alone?",
+            "text": "8 секций · 2 MP3 (Drake/Fermi + final broadcast Reyes). Mia's grandfather's logbook из L1 возвращается."
+          },
+          "audio_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/assets/audio/listen-drake-fermi.mp3",
+          "audio_title": "🎧 Listening · Drake / Fermi lecture (3 мин)"
+        },
+        {
+          "date": "2026-06-30",
+          "num": 4,
+          "status": "completed",
+          "topic": "Voyager L2 · Are we alone? (второй раз) — завершили нить",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_title": "🛸 Voyager L2 · Are we alone? (повторение)",
+            "text": "Повтор закрыт. Глоссарий Voyager L1–L4 (97 пар) и offline-homework — в материалах ниже."
+          },
+          "audio_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/assets/audio/listen-final-broadcast.mp3",
+          "audio_title": "🎧 Listening · final broadcast Reyes (≈50 s)"
+        },
+        {
+          "date": "2026-07-09",
+          "num": 5,
+          "status": "completed",
+          "topic": "🛸 Voyager L2 · Are we alone? — третий проход, финальное закрепление SETI-нити",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_title": "🛸 Voyager L2 · Are we alone? (закрепление)",
+            "text": "Третий проход по L2. Focus: Drake / Fermi / final broadcast Reyes без подсказок."
+          },
+          "audio_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/assets/audio/listen-final-broadcast.mp3",
+          "audio_title": "🎧 Listening · final broadcast Reyes (≈50 s)"
+        },
+        {
+          "date": "2026-07-15",
+          "num": 6,
+          "status": "planned",
+          "topic": "🧠 Voyager L3 · Whose Mind? — EEG blinks, consciousness signal (первый раз)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l3-whose-mind/",
+            "module_title": "🧠 Voyager L3 · Whose Mind? (повтор)"
+          }
+        },
+        {
+          "date": "2026-07-22",
+          "num": 7,
+          "status": "planned",
+          "topic": "Voyager L4 · The Letter Arrived (первый раз) — Day 42 · FATHER · финал арки",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
+            "module_title": "✉️ Voyager L4 · The Letter Arrived",
+            "text": "8 секций · key-transformation · open cloze · финал серии Voyager. Тео получает письмо."
+          }
+        },
+        {
+          "date": "2026-07-29",
+          "num": 8,
+          "status": "planned",
+          "topic": "Voyager L4 · The Letter Arrived (повторение) — финал серии, ретроспектива L1–L4",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
+            "module_title": "✉️ Voyager L4 · The Letter Arrived (повтор)"
+          }
+        }
+      ],
+      "materials": {
+        "folder": "documents/_v/ivanov-ivan",
+        "note": "Учебные материалы Вани (глоссарий и тренировочные) + отчёт для родителя. Клик — открыть в новой вкладке.",
+        "files": [
+          {
+            "name": "voyager-glossary-L1-L4.pdf",
+            "label": "📒 Глоссарий Voyager L1–L4 · 97 EN→RU пар",
+            "audience": "student"
+          },
+          {
+            "name": "voyager-homework-L1-L2-offline.pdf",
+            "label": "📚 Offline-homework L1+L2 (для печати)",
+            "audience": "student"
+          },
+          {
+            "name": "report-ivanov-2026-06.pdf",
+            "label": "📊 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      }
     },
     {
       "id": "daniella-libova",
@@ -205,33 +665,132 @@ window.NGE_DATA = {
       "name": "Даниэлла Либова",
       "level": "B2+",
       "format": "индивидуально",
-      "schedule": "понедельник 18:00 / четверг 18:00",
-      "goal": "подготовка к ЕГЭ (word formation, exam speaking)",
-      "lessons_in_package": 8,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 4,
-      "stability_note": "Май-абонемент 8 уроков. Отыграно 4 (4, 7, 11, 18 completed). На неделе 19-25.05 уроков нет (плавающий график). Дальше 21, 25, 28 — времена под подтверждение. Расписание плавающее → нужна редактируемость через кабинет (open issue).",
+      "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
+      "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
+      "price_per_lesson": 2500,
+      "lessons_in_package": 10,
+      "subscription_month": "2026-06",
+      "lessons_used_this_month": 6,
+      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 6 / 10 · дальше пн / вт / чт 18:00",
+      "stability_note": "",
       "payment_status": "Оплачено",
+      "payment_note": "",
+      "payments": [
+        { "month": "Интенсив · 10 уроков", "package": "10 × 2 500 ₽", "amount": "25 000 ₽", "status": "paid", "date": "26.06.2026", "note": "Интенсив · 26.06 → 17.07 · 6 / 10 проведено" }
+      ],
       "parent_name": "Либова Юлия Игоревна",
-      "contract_note": "без договора",
       "pin": "5376",
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "Speaking — устная практика, разговорная часть" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Speaking — устная практика (продолжение)" },
         {
-          "date": "2026-05-11", "num": 3, "status": "completed", "topic": "ЕГЭ-практика — устные части, разбор заданий",
+          "date": "2026-06-26",
+          "num": 1,
+          "status": "completed",
+          "topic": "Russia · dancing + общая ревизия страноведения",
           "homework": {
-            "text": "Пройти Word Building (префиксы и суффиксы) — упражнения 1 и 2. К следующему уроку.",
-            "module_url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html",
-            "module_title": "Word Building"
+            "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
+            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_title": "Russia · My Homeland"
           }
         },
-        { "date": "2026-05-14", "num": 4, "status": "planned", "topic": "" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Battle of Levels — чтение из учебника Музлановой (трудный текст)" },
-        { "date": "2026-05-21", "num": 6, "status": "cancelled", "topic": "Отменено — Даниэлла не сможет (подтверждено 20.05)" },
-        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" }
-      ]
+        {
+          "date": "2026-06-29",
+          "num": 2,
+          "status": "completed",
+          "topic": "History of Russia + Saint Petersburg",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_title": "Russia · My Homeland"
+          }
+        },
+        {
+          "date": "2026-07-05",
+          "num": 3,
+          "status": "completed",
+          "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_title": "Russia · My Homeland"
+          }
+        },
+        {
+          "date": "2026-07-03",
+          "num": 4,
+          "status": "completed",
+          "topic": "ЕГЭ-формат (Word Formation / Speaking)"
+        },
+        {
+          "date": "2026-07-07",
+          "num": 5,
+          "status": "completed",
+          "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_title": "📚 Открыть Dana's Russia · History Exam"
+          }
+        },
+        {
+          "date": "2026-07-09",
+          "num": 6,
+          "status": "completed",
+          "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_title": "📚 Открыть Dana's Russia · History Exam"
+          }
+        },
+        {
+          "date": "2026-07-10",
+          "num": 7,
+          "status": "planned",
+          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
+        },
+        {
+          "date": "2026-07-14",
+          "num": 8,
+          "status": "planned",
+          "topic": "🚀 Yuri Gagarin · Soviet space triumph — Task 3 интервью «Space & achievements» (5 Q) + Word Formation (explore → exploration, achieve → achievement)"
+        },
+        {
+          "date": "2026-07-15",
+          "num": 9,
+          "status": "planned",
+          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill"
+        },
+        {
+          "date": "2026-07-17",
+          "num": 10,
+          "status": "planned",
+          "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
+        }
+      ],
+      "materials": {
+        "folder": "documents/_v/daniella-libova",
+        "note": "Личные материалы Даны: отчёт за июнь, конспект года и план интенсива на 10 уроков. Клик — открыть в новой вкладке.",
+        "files": [
+          {
+            "name": "report-libova-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          },
+          {
+            "name": "B1-EGE-Dana-conspect-2026.pdf",
+            "label": "📘 Конспект года · B1+ ЕГЭ · 17 глав (+Russia overview · geography · Peter I & Hermitage)",
+            "audience": "all"
+          },
+          {
+            "name": "daniella-intensive-plan-10-lessons.pdf",
+            "label": "🗓 План интенсива · 10 уроков (26.06 → 17.07) · 6 / 10 проведено",
+            "audience": "parent"
+          }
+        ]
+      },
+      "contracts": {
+        "folder": "documents/_v/daniella-libova",
+        "files": [],
+        "note": "Подписанный договор пока не загружен. Нужно подписать договор оказания услуг и согласие на обработку персональных данных; после подписи документ будет закреплён здесь.",
+        "missing": true,
+        "parentOnly": true
+      }
     },
     {
       "id": "denis-shalmanov",
@@ -245,50 +804,202 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "monthly_package": 10000,
       "payment_status": "Оплачено",
-      "payment_note": "Июнь оплачен полностью (10 000 ₽, 4 урока × 2 500) — 31.05.2026. Май закрыт.",
+      "payment_note": "",
       "is_adult": true,
       "parent_name": "",
-      "contract_note": "отсканированный договор, требует визуальной сверки",
       "pin": "6347",
       "lessons_in_package": 4,
-      "subscription_month": "2026-06",
+      "subscription_month": "2026-07",
       "lessons_used_this_month": 0,
-      "stability_note": "Май закрыт полностью (5 уроков проведены). Июнь оплачен 31.05.2026: 4 воскресенья × 2 500 ₽ = 10 000 ₽. Стабильный темп без скачков и откатов.",
+      "summer_plan_note": "Июльский абонемент · слова + будущие времена + направления + предлоги",
+      "stability_note": "",
       "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Одежда — лексика и описания" },
-        { "date": "2026-05-10", "num": 2, "status": "completed", "topic": "Present Simple / Present Continuous + базовые конструкции" },
-        { "date": "2026-05-17", "num": 3, "status": "completed", "topic": "Дома — лексика, описания, что есть дома" },
-        { "date": "2026-05-24", "num": 4, "status": "completed", "topic": "Повторение темы «дома» (закрепление)" },
-        { "date": "2026-05-31", "num": 5, "status": "completed", "topic": "Город — лексика, городские объекты" },
-        { "date": "2026-06-07", "num": 6, "status": "planned", "topic": "Город — расширяем городскую лексику, описания" },
-        { "date": "2026-06-14", "num": 7, "status": "planned", "topic": "Шоппинг в городе — фразы для магазина (Can I have / How much is / I would like)" },
-        { "date": "2026-06-21", "num": 8, "status": "planned", "topic": "Направления в городе — Go straight / Turn left, right / It is near" },
-        { "date": "2026-06-28", "num": 9, "status": "planned", "topic": "Кофе в городе — заказ кофе (I would like a cappuccino / To go please)" }
-      ]
+        {
+          "date": "2026-05-03",
+          "num": 1,
+          "status": "completed",
+          "topic": "Одежда — лексика и описания"
+        },
+        {
+          "date": "2026-05-10",
+          "num": 2,
+          "status": "completed",
+          "topic": "Present Simple / Present Continuous + базовые конструкции"
+        },
+        {
+          "date": "2026-05-17",
+          "num": 3,
+          "status": "completed",
+          "topic": "Дома — лексика, описания, что есть дома"
+        },
+        {
+          "date": "2026-05-24",
+          "num": 4,
+          "status": "completed",
+          "topic": "Повторение темы «дома» (закрепление)"
+        },
+        {
+          "date": "2026-05-31",
+          "num": 5,
+          "status": "completed",
+          "topic": "Город — лексика, городские объекты"
+        },
+        {
+          "date": "2026-06-07",
+          "num": 6,
+          "status": "completed",
+          "topic": "Одежда, обувь, аксессуары · дом и комнаты · повседневные действия · погода · There is/are vs It is · Present Simple vs Continuous · shopping-диалог (cash desk, fitting room, size, change)"
+        },
+        {
+          "date": "2026-06-21",
+          "num": 7,
+          "status": "completed",
+          "topic": "City · adjectives + describing places · vocab: choosing, entertainment, nearby, convenient, area, lively, busy, modern, delivery, crowded, move into",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/city-speaking/",
+            "module_title": "🏙️ Мой город — сегодня и через 50 лет",
+            "text": "Café-диалог + теория Future (will vs going to) + auto-check homework. Словарный запас остаётся на Progressme."
+          }
+        },
+        {
+          "date": "2026-06-28",
+          "num": 8,
+          "status": "completed",
+          "topic": "Мой город · спикинг-марафон + ввод Future (will / going to через тему «город будущего»)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/city-speaking/",
+            "module_title": "🏙️ Открыть «Мой город — сегодня и через 50 лет»",
+            "text": "Future-блок урока (will / going to) + auto-check homework. Плюс словарь 44 слова в Quizlet — файл в Telegram."
+          }
+        },
+        {
+          "date": "2026-07-05",
+          "num": 9,
+          "status": "completed",
+          "is_makeup": true,
+          "topic": "Ориентация в городе + Workbook 01 · A1 Recap (сборка всех тем)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/denis-workbook-01/",
+            "module_title": "📚 Открыть Workbook 01 · A1 Recap",
+            "text": "Рабочая тетрадь · 12 упражнений с автопроверкой + Quizlet 44 слова. Зелёное = верно, красное = поправить."
+          }
+        },
+        {
+          "date": "2026-07-12",
+          "num": 10,
+          "status": "planned",
+          "topic": "Слова + будущие времена (will / going to) — расширение и активная практика"
+        },
+        {
+          "date": "2026-07-19",
+          "num": 11,
+          "status": "planned",
+          "topic": "Направления — turn left / right · straight on · next to · opposite · описать путь"
+        },
+        {
+          "date": "2026-07-29",
+          "num": 12,
+          "status": "planned",
+          "topic": "Предлоги (места и времени) — in / on / at / between / behind · закрытие июльского абонемента"
+        }
+      ],
+      "external_platforms": [
+        {
+          "name": "🎴 Quizlet · 44 слова «City of the future»",
+          "url": "https://quizlet.com/1192178706/voc-flash-cards/?funnelUUID=54bc5263-ba58-45bd-8d9e-b440538e89cd",
+          "note": "Flash-cards · Learn / Match / Test — повторение словаря между уроками"
+        },
+        {
+          "name": "Progressme",
+          "url": "https://progressme.ru/",
+          "note": "Дополнительная платформа для практики между занятиями"
+        }
+      ],
+      "materials": {
+        "folder": "documents/_v/denis-shalmanov",
+        "note": "Отчёт о прогрессе за июнь–июль 2026 + карта словаря. Клик — открыть в новой вкладке.",
+        "files": [
+          {
+            "name": "report-denis-shalmanov-2026-07.pdf",
+            "label": "📄 Отчёт · июнь–июль 2026 · Progress + Vocabulary map",
+            "audience": "all"
+          }
+        ]
+      },
+      "contracts": {
+        "folder": "documents/_v",
+        "files": [
+          "75a3f76e46cd20c0f092f128b09b7da2.pdf"
+        ],
+        "note": "Подписанный договор оказания услуг. Клик — открыть в новой вкладке."
+      }
     },
     {
       "id": "anya-isaeva",
       "notion_id": "34d7364c-ba79-8199-879a-d0400012561e",
       "name": "Аня Исаева",
-      "level": "",
+      "materials": {
+        "folder": "documents/_v/anya-isaeva",
+        "note": "Отчёт за июнь 2026 — для мамы (Наталья Вячеславовна).",
+        "files": [
+          {
+            "name": "report-anya-isaeva-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      },
+      "level": "B1",
       "format": "индивидуально",
       "schedule": "понедельник 17:00",
       "price_per_lesson": 2500,
+      "monthly_package": 10000,
       "payment_status": "Оплачено",
+      "payments": [
+        { "month": "Июль 2026", "package": "4 понедельника × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "07.07.2026", "note": "Весь курс на июль · оплачено мамой (Наталья Вячеславовна)" }
+      ],
       "parent_name": "Исаева Наталья Вячеславовна",
-      "parent_passport": "4514 567410 (УФМС России по г.Москве)",
-      "parent_email": "platemir@yandex.ru",
-      "parent_address": "Москва, Береговой пр-д, д.7, кв.95",
       "pin": "2512",
       "lessons_in_package": 4,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 3,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
       "lessons": [
-        { "date": "2026-05-04", "num": 1, "status": "completed", "topic": "Города — конкретная лексика, заканчивали тему" },
-        { "date": "2026-05-11", "num": 2, "status": "completed", "topic": "Present Perfect — теория и Speaking по нему" },
-        { "date": "2026-05-18", "num": 3, "status": "completed", "topic": "Города — функции города (городские объекты) + Present Continuous в контексте" },
-        { "date": "2026-05-25", "num": 4, "status": "planned", "topic": "" }
-      ]
+        {
+          "date": "2026-07-07",
+          "num": 1,
+          "status": "completed",
+          "topic": "⛪ Религия — мировые религии, культурные традиции, места поклонения, толерантный подход",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
+            "module_title": "⛪ Открыть квест · Anya's Temples Quest",
+            "text": "Интерактивный квест по мировым храмам и религиям — можно повторить дома."
+          }
+        },
+        {
+          "date": "2026-07-14",
+          "num": 2,
+          "status": "planned",
+          "topic": "🏙️ Города — city vocab, urban places, describing places через There is/are + Present Continuous"
+        },
+        {
+          "date": "2026-07-21",
+          "num": 3,
+          "status": "planned",
+          "topic": "⛪ Религия — мировые религии, культурные традиции, места поклонения, толерантный подход",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
+            "module_title": "⛪ Открыть квест · Anya's Temples Quest",
+            "text": "Интерактивный квест по мировым храмам и религиям — 21 июля пройдём вместе на уроке, а после дома можно повторить."
+          }
+        },
+        {
+          "date": "2026-07-28",
+          "num": 4,
+          "status": "planned",
+          "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение"
+        }
+      ],
+      "stability_note": ""
     },
     {
       "id": "yulya-lushina",
@@ -298,7 +1009,7 @@ window.NGE_DATA = {
       "level": "",
       "format": "индивидуально",
       "schedule": "понедельник 12:00",
-      "stability_note": "Понедельник 12:00. На неделе 1-7 июня — разовый перенос на среду 3 июня.",
+      "stability_note": "",
       "price_per_lesson": 2000,
       "payment_status": "Оплачено",
       "parent_name": "Лушин Александр Анатольевич",
@@ -307,9 +1018,24 @@ window.NGE_DATA = {
       "subscription_month": "2026-06",
       "lessons_used_this_month": 0,
       "lessons": [
-        { "date": "2026-05-18", "num": 1, "status": "completed", "topic": "Cute vampire English v1 (Pre-A1) — face/body parts, HSKT video, friendly vampire family." },
-        { "date": "2026-05-25", "num": 2, "status": "completed", "topic": "" },
-        { "date": "2026-06-01", "num": 3, "status": "rescheduled", "topic": "Перенос с понедельника на среду 3 июня (по договорённости)." },
+        {
+          "date": "2026-05-18",
+          "num": 1,
+          "status": "completed",
+          "topic": "Cute vampire English v1 (Pre-A1) — face/body parts, HSKT video, friendly vampire family."
+        },
+        {
+          "date": "2026-05-25",
+          "num": 2,
+          "status": "completed",
+          "topic": ""
+        },
+        {
+          "date": "2026-06-01",
+          "num": 3,
+          "status": "rescheduled",
+          "topic": "Перенос с понедельника на среду 3 июня (по договорённости)."
+        },
         {
           "date": "2026-06-03",
           "num": 4,
@@ -321,7 +1047,12 @@ window.NGE_DATA = {
             "text": "Откройте на айпаде, нажимайте на картинки и значки 🔊 — всё озвучено."
           }
         },
-        { "date": "2026-06-08", "num": 5, "status": "planned", "topic": "" }
+        {
+          "date": "2026-06-08",
+          "num": 5,
+          "status": "planned",
+          "topic": ""
+        }
       ]
     },
     {
@@ -331,31 +1062,123 @@ window.NGE_DATA = {
       "name": "Юля Изотова",
       "level": "A1+",
       "format": "индивидуально",
-      "schedule": "понедельник 16:00 / пятница 15:30",
+      "schedule": "понедельник 16:00 / четверг 16:00",
       "goal": "Старлайт 3 / Past Simple, неправильные глаголы, лексика по темам",
       "price_per_lesson": 2000,
       "monthly_package": 18000,
       "lessons_in_package": 9,
       "subscription_month": "2026-06",
-      "lessons_used_this_month": 8,
+      "lessons_used_this_month": 9,
       "payment_status": "Оплачено",
       "parent_name": "Изотова Ольга Игоревна",
-      "parent_passport": "4510 764054",
-      "parent_phone": "+79269754602",
-      "parent_email": "meet.me.here@mail.ru",
       "pin": "2799",
-      "stability_note": "Май-абонемент 8 уроков (оплачено 8). На 18.05 отыграно 5 (1, 4, 8, 15, 18). 11 мая — пропуск, не в счёт. Дальше 22, 25, 29.",
+      "stability_note": "",
+      "materials": {
+        "folder": "documents/_v/yulya-izotova",
+        "note": "Отчёт за июнь 2026 — для мамы (Ольга Игоревна).",
+        "files": [
+          {
+            "name": "report-yulya-izotova-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      },
       "lessons": [
-        { "date": "2026-05-01", "num": 1, "status": "completed", "topic": "еда — лексика" },
-        { "date": "2026-05-04", "num": 2, "status": "completed", "topic": "магазины + история про Юлию (чтение, лексика)" },
-        { "date": "2026-05-08", "num": 3, "status": "completed", "topic": "контейнеры/бутылки/банки + Present Simple" },
-        { "date": "2026-05-11", "num": 0, "status": "missed", "topic": "Пропуск (не в счёт абонемента)" },
-        { "date": "2026-05-15", "num": 4, "status": "completed", "topic": "неправильные глаголы, времена, истории" },
-        { "date": "2026-05-18", "num": 5, "status": "completed", "topic": "Swimming pool — лексика и активности (бассейн)" },
-        { "date": "2026-05-22", "num": 6, "status": "planned", "topic": "" },
-        { "date": "2026-05-25", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-29", "num": 8, "status": "planned", "topic": "" }
-      ]
+        {
+          "date": "2026-06-01",
+          "num": 1,
+          "status": "completed",
+          "topic": "Старлайт 3 — повторение, Past Simple"
+        },
+        {
+          "date": "2026-06-04",
+          "num": 2,
+          "status": "completed",
+          "topic": "Старлайт 3 — неправильные глаголы, лексика по темам"
+        },
+        {
+          "date": "2026-06-08",
+          "num": 3,
+          "status": "completed",
+          "topic": "Старлайт 3 — продолжение, отработка времён"
+        },
+        {
+          "date": "2026-06-11",
+          "num": 4,
+          "status": "completed",
+          "topic": "Старлайт 3 — закрепление, тематическая лексика"
+        },
+        {
+          "date": "2026-06-15",
+          "num": 5,
+          "status": "completed",
+          "topic": "🇹🇷 Julia goes to Bodrum + Numbers (cardinal & ordinal) — Lab-урок",
+          "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
+            "text": "Lab-урок: Julia goes to Bodrum + Numbers (cardinal & ordinal). Прокликай ещё раз все блоки — лексика, упражнения, говорение.",
+            "status": "done"
+          }
+        },
+        {
+          "date": "2026-06-18",
+          "num": 6,
+          "status": "completed",
+          "topic": "Старлайт 3 — повторение тематической лексики"
+        },
+        {
+          "date": "2026-06-22",
+          "num": 7,
+          "status": "completed",
+          "topic": "🇹🇷 Julia goes to Bodrum — Lab-урок (повтор/закрепление)",
+          "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
+            "text": "Повтори блоки урока — лексика, числа, диалоги.",
+            "status": "done"
+          }
+        },
+        {
+          "date": "2026-06-25",
+          "num": 8,
+          "status": "completed",
+          "topic": "🇹🇷 Julia goes to Bodrum — Lab-урок (продолжение)",
+          "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
+            "text": "Продолжаем разбирать историю Юлии в Бодруме — открой ссылку и пройдись по блокам.",
+            "status": "done"
+          }
+        },
+        {
+          "date": "2026-06-29",
+          "num": 9,
+          "status": "completed",
+          "topic": "🇹🇷 Julia in Bodrum · Day 2 — полное повторение (Lab-урок)",
+          "link": "../lingua-boost-lab/a1/julia-bodrum-day-2/?v=4",
+          "homework": {
+            "module_url": "../lingua-boost-lab/a1/julia-bodrum-day-2/?v=4",
+            "module_title": "🇹🇷 Открыть Julia in Bodrum · Day 2",
+            "text": "Новый Бодрум-урок: вся база первого + 5 свежих блоков повторения (hotel rescue · numbers race · past forms quiz · speaking marathon · postcard Day 2)."
+          }
+        }
+      ],
+      "contracts": {
+        "folder": "documents/_v/yulya-izotova",
+        "files": [
+          "01_договор_стр1.jpg",
+          "02_договор_стр2_условия.jpg",
+          "03_договор_стр3_подпись.jpg",
+          "04_согласие_на_ПД.jpg",
+          "05_подпись_доп.png"
+        ],
+        "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке.",
+        "parentOnly": true
+      }
     },
     {
       "id": "sofia-pavlova",
@@ -372,67 +1195,34 @@ window.NGE_DATA = {
       "lessons_used_this_month": 0,
       "goal": "ЕГЭ: лексика B2+, word formation, writing, speaking",
       "payment_status": "Оплачено",
-      "payment_note": "Полностью оплачено в мае (вторая половина 4 000 ₽ внесена 20.05.2026)",
-      "summer_vacation": true,
-      "summer_vacation_note": "После 28.05 — на летние каникулы до сентября 2026",
+      "payment_note": "",
       "parent_name": "Анатольева Галина Анатольевна",
-      "parent_passport": "45 24 № 708384 (ГУ МВД по г.Москве)",
-      "parent_address": "Москва, Зельев переулок, д.3, кв.4",
-      "contract_note": "подписан мамой с критическими пометками жёлтым; дата не проставлена; мама хочет править формулировки",
       "pin": "9972",
       "lessons": [
-        { "date": "2026-05-07", "num": 1, "status": "planned", "topic": "ЕГЭ: повторение лексики апреля + word formation / vocabulary MCQ" },
-        { "date": "2026-05-14", "num": 2, "status": "planned", "topic": "Reading B2 / B2+: тематический текст + вопросы ЕГЭ" },
-        { "date": "2026-05-21", "num": 3, "status": "planned", "topic": "Writing / email: структура, ответы, собственные вопросы" },
-        { "date": "2026-05-28", "num": 4, "status": "planned", "topic": "Speaking + grammar consolidation: времена, passive, modals" }
-      ]
-    },
-    {
-      "id": "ekaterina-mariya-pair",
-      "notion_id": "34d7364c-ba79-81f0-ba7f-d87dcd7dfd19",
-      "name": "Екатерина и Мария",
-      "archived": true,
-      "archived_note": "Разнесён на 2 отдельных кабинета 20.05.2026: ekaterina-medvedeva-solo (PIN 3714) + maria-kuznetsova-solo (PIN 3715). Запись оставлена для legacy-данных (отчёты, прежние логи).",
-      "level": "",
-      "format": "парное занятие",
-      "schedule": "четверг 18:00 / воскресенье 13:35",
-      "price_per_lesson": 1500,
-      "monthly_package": 12000,
-      "payment_status": "Ожидает",
-      "payment_note": "Лихолева Елена (мама Маши) должна половину пакета",
-      "stability_note": "Пара не подтвердила завтра четверг 21.05 — статус под вопросом (на 20.05.2026)",
-      "parent_name": "Медведева Марина Сергеевна (Катя) / Лихолева Елена Сергеевна (Маша)",
-      "kids": [
         {
-          "name": "Медведева Екатерина",
-          "parent": "Медведева Марина Сергеевна",
-          "parent_passport": "4523 521762 (04.05.2023)",
-          "parent_phone": "+79165478727",
-          "parent_email": "marine_medvedeva@rambler.ru",
-          "parent_address": "Москва, ул. Островитянова, д.9 кв.947"
+          "date": "2026-05-07",
+          "num": 1,
+          "status": "planned",
+          "topic": "ЕГЭ: повторение лексики апреля + word formation / vocabulary MCQ"
         },
         {
-          "name": "Кузнецова Мария",
-          "parent": "Лихолева Елена Сергеевна",
-          "parent_passport": "4519 568773 (ГУ МВД России по г.Москве)",
-          "parent_email": "ivan-tenaivanova@ya.ru (уточнить)",
-          "parent_address": "Москва, ул. Акад. Волгина, д.8А"
+          "date": "2026-05-14",
+          "num": 2,
+          "status": "planned",
+          "topic": "Reading B2 / B2+: тематический текст + вопросы ЕГЭ"
+        },
+        {
+          "date": "2026-05-21",
+          "num": 3,
+          "status": "planned",
+          "topic": "Writing / email: структура, ответы, собственные вопросы"
+        },
+        {
+          "date": "2026-05-28",
+          "num": 4,
+          "status": "planned",
+          "topic": "Speaking + grammar consolidation: времена, passive, modals"
         }
-      ],
-      "pin": "3713",
-      "lessons_in_package": 9,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 5,
-      "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
-        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
-        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
-        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
-        { "date": "2026-05-21", "num": 6, "status": "planned", "topic": "" },
-        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "" },
-        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
       ]
     },
     {
@@ -442,33 +1232,112 @@ window.NGE_DATA = {
       "greeting_student": "Привет, Екатерина",
       "greeting_parent": "Здравствуйте, Марина",
       "level": "B1",
-      "format": "индивидуально (раздельно с Машей с 28.05)",
-      "schedule": "четверг 18:00 / воскресенье 13:35",
-      "stability_note": "С 28.05.2026 переходят на раздельный формат: Катя — 18:00, Маша — 19:00. Завтрашний урок 21.05 не подтверждён → переносится на 28.05.",
+      "format": "парное занятие (с Машей Кузнецовой) · отдельный абонемент / отдельный кабинет",
+      "schedule": "вторник 10:00 / пятница 10:00 (пара)",
+      "stability_note": "",
+      "materials": {
+        "folder": "documents/_v/ekaterina-medvedeva-solo",
+        "note": "Материалы пары Кати + Маши за июнь 2026. Содержание идентично у Маши Кузнецовой — уроки парные.",
+        "files": [
+          {
+            "name": "report-ekaterina-medvedeva-solo-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          },
+          {
+            "name": "pair-eco-modal-conspect-june-2026.pdf",
+            "label": "📘 Конспект июня · Ecology + Modal verbs (для повторения летом)",
+            "audience": "all"
+          }
+        ]
+      },
       "price_per_lesson": 1500,
-      "monthly_package": 6000,
-      "lessons_in_package": 9,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 5,
+      "monthly_package": 3000,
+      "lessons_in_package": 2,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
       "payment_status": "Оплачено",
-      "payment_note": "Марина Сергеевна оплатила свою половину пакета",
+      "payment_note": "",
+      "summer_plan_note": "Летний план июнь-июль 2026: 4 закрытых июньских урока + 2 запланированных июльских (OGE Mock #1 на 1 июля + #2 на 8 июля).",
       "parent_name": "Медведева Марина Сергеевна",
-      "parent_passport": "4523 521762 (04.05.2023)",
-      "parent_phone": "+79165478727",
-      "parent_email": "marine_medvedeva@rambler.ru",
-      "parent_address": "Москва, ул. Островитянова, д.9 кв.947",
       "pin": "3714",
-      "pair_origin": "ekaterina-mariya-pair",
+      "external_platforms": [
+        {
+          "name": "📝 OGE Mock #1 · Pair Edition — открыть напрямую",
+          "url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+          "note": "Полный mock-вариант ОГЭ — открывается без пароля. Пройди до завтрашнего урока."
+        },
+        {
+          "name": "📚 Премиум-библиотека Lab (требует PIN)",
+          "url": "../lingua-boost-lab/premium.html",
+          "note": "Полный каталог премиум-уроков. После PIN откроется библиотека — там выбирай конкретный модуль."
+        }
+      ],
       "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
-        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
-        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
-        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
-        { "date": "2026-05-21", "num": 6, "status": "rescheduled", "topic": "Перенос на 28.05 — не подтвердили завтра" },
-        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "Первый раздельный урок (Катя — 18:00)" },
-        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
+        {
+          "month_label": "Июнь 2026 · абонемент 4/4 · закрыт",
+          "date": "2026-06-04",
+          "num": 1,
+          "status": "completed",
+          "topic": "🌱 Ecology · введение темы — лексика экологии, экологические проблемы"
+        },
+        {
+          "date": "2026-06-11",
+          "num": 2,
+          "status": "completed",
+          "topic": "🌱 Ecology · продолжение — сортировка, переработка, обсуждение, мини-дебаты"
+        },
+        {
+          "date": "2026-06-18",
+          "time": "10:00",
+          "num": 3,
+          "status": "completed",
+          "topic": "📐 Modal Verbs Trainer (Lab) — введение can / could / must / should / have to",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_title": "📐 Modals Deep Dive — интерактивный тренажёр",
+            "text": "Открой ещё раз — повторить вопросы, на которых сомневались."
+          }
+        },
+        {
+          "date": "2026-06-25",
+          "time": "10:00",
+          "num": 4,
+          "status": "completed",
+          "topic": "📐 Modal Verbs Trainer (Lab) — might / may / be able to + нюансы вежливости",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_title": "📐 Modals Deep Dive — закрепление",
+            "text": "Второй проход модуля — отшлифовать формы."
+          }
+        },
+        {
+          "month_label": "Июль 2026 · летний пакет 2 урока · 1/2 · оплачено",
+          "date": "2026-06-30",
+          "time": "10:00",
+          "num": 1,
+          "status": "completed",
+          "topic": "📝 OGE Mock #1 · Pair Edition — полный mock-вариант (housework / birthdays / sports / ecology · gerund/inf · used to · modals · word formation)",
+          "schedule_note": "вторник 10:00 · урок прошёл",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_title": "📝 OGE Mock #1 — повторить материал урока",
+            "text": "Открой ещё раз — отшлифовать темы где сомневались."
+          }
+        },
+        {
+          "date": "2026-07-08",
+          "time": "10:00",
+          "num": 2,
+          "status": "planned",
+          "topic": "📝 OGE Mock #2 — продолжение mock-варианта, разбор по критериям",
+          "schedule_note": "вторник 10:00",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_title": "📝 OGE Mock — повторить",
+            "text": "Повтори OGE Mock #1 перед уроком."
+          }
+        }
       ]
     },
     {
@@ -478,70 +1347,287 @@ window.NGE_DATA = {
       "greeting_student": "Привет, Мария",
       "greeting_parent": "Здравствуйте, Елена",
       "level": "B1",
-      "format": "индивидуально (раздельно с Катей с 28.05)",
-      "schedule": "четверг 19:00 / воскресенье 13:35",
-      "stability_note": "С 28.05.2026 переходят на раздельный формат: Маша — 19:00, Катя — 18:00. Завтрашний урок 21.05 не подтверждён → переносится на 28.05.",
+      "format": "парное занятие (с Катей Медведевой) · отдельный абонемент / отдельный кабинет",
+      "schedule": "вторник 10:00 / пятница 10:00 (пара)",
+      "stability_note": "",
+      "materials": {
+        "folder": "documents/_v/maria-kuznetsova-solo",
+        "note": "Материалы пары Маши + Кати за июнь 2026. Содержание идентично у Кати Медведевой — уроки парные.",
+        "files": [
+          {
+            "name": "report-maria-kuznetsova-solo-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          },
+          {
+            "name": "pair-eco-modal-conspect-june-2026.pdf",
+            "label": "📘 Конспект июня · Ecology + Modal verbs (для повторения летом)",
+            "audience": "all"
+          }
+        ]
+      },
       "price_per_lesson": 1500,
-      "monthly_package": 6000,
-      "lessons_in_package": 9,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 5,
-      "payment_status": "Ожидает",
-      "payment_note": "Елена Сергеевна должна свою половину пакета (6 000 ₽)",
+      "monthly_package": 3000,
+      "lessons_in_package": 2,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "payment_status": "Оплачено",
+      "payment_note": "",
+      "summer_plan_note": "Летний план июнь-июль 2026: 4 закрытых июньских урока + 2 запланированных июльских (OGE Mock #1 на 1 июля + #2 на 8 июля).",
       "parent_name": "Лихолева Елена Сергеевна",
-      "parent_passport": "4519 568773 (ГУ МВД России по г.Москве)",
-      "parent_email": "ivan-tenaivanova@ya.ru (уточнить)",
-      "parent_address": "Москва, ул. Акад. Волгина, д.8А",
       "pin": "3715",
-      "pair_origin": "ekaterina-mariya-pair",
+      "external_platforms": [
+        {
+          "name": "📝 OGE Mock #1 · Pair Edition — открыть напрямую",
+          "url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+          "note": "Полный mock-вариант ОГЭ — открывается без пароля. Пройди до завтрашнего урока."
+        },
+        {
+          "name": "📚 Премиум-библиотека Lab (требует PIN)",
+          "url": "../lingua-boost-lab/premium.html",
+          "note": "Полный каталог премиум-уроков. После PIN откроется библиотека — там выбирай конкретный модуль."
+        }
+      ],
       "lessons": [
-        { "date": "2026-05-03", "num": 1, "status": "completed", "topic": "Введение / повторение всех грамматических тем" },
-        { "date": "2026-05-07", "num": 2, "status": "completed", "topic": "Повторение и конспекты" },
-        { "date": "2026-05-10", "num": 3, "status": "completed", "topic": "Праздники и дни рождения — лексика, диалоги" },
-        { "date": "2026-05-14", "num": 4, "status": "completed", "topic": "Petting — вариант 4 или 5 (формулировку точно уточнить)" },
-        { "date": "2026-05-17", "num": 5, "status": "completed", "topic": "Экология — введение темы" },
-        { "date": "2026-05-21", "num": 6, "status": "rescheduled", "topic": "Перенос на 28.05 — не подтвердили завтра" },
-        { "date": "2026-05-24", "num": 7, "status": "planned", "topic": "" },
-        { "date": "2026-05-28", "num": 8, "status": "planned", "topic": "Первый раздельный урок (Маша — 19:00)" },
-        { "date": "2026-05-31", "num": 9, "status": "planned", "topic": "" }
+        {
+          "month_label": "Июнь 2026 · абонемент 4/4 · закрыт",
+          "date": "2026-06-04",
+          "num": 1,
+          "status": "completed",
+          "topic": "🌱 Ecology · введение темы — лексика экологии, экологические проблемы"
+        },
+        {
+          "date": "2026-06-11",
+          "num": 2,
+          "status": "completed",
+          "topic": "🌱 Ecology · продолжение — сортировка, переработка, обсуждение, мини-дебаты"
+        },
+        {
+          "date": "2026-06-18",
+          "time": "10:00",
+          "num": 3,
+          "status": "completed",
+          "topic": "📐 Modal Verbs Trainer (Lab) — введение can / could / must / should / have to",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_title": "📐 Modals Deep Dive — интерактивный тренажёр",
+            "text": "Открой ещё раз — повторить вопросы, на которых сомневались."
+          }
+        },
+        {
+          "date": "2026-06-25",
+          "time": "10:00",
+          "num": 4,
+          "status": "completed",
+          "topic": "📐 Modal Verbs Trainer (Lab) — might / may / be able to + нюансы вежливости",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_title": "📐 Modals Deep Dive — закрепление",
+            "text": "Второй проход модуля — отшлифовать формы."
+          }
+        },
+        {
+          "month_label": "Июль 2026 · летний пакет 2 урока · 1/2 · оплачено",
+          "date": "2026-06-30",
+          "time": "10:00",
+          "num": 1,
+          "status": "completed",
+          "topic": "📝 OGE Mock #1 · Pair Edition — полный mock-вариант (housework / birthdays / sports / ecology · gerund/inf · used to · modals · word formation)",
+          "schedule_note": "вторник 10:00 · урок прошёл",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_title": "📝 OGE Mock #1 — повторить материал урока",
+            "text": "Открой ещё раз — отшлифовать темы где сомневались."
+          }
+        },
+        {
+          "date": "2026-07-08",
+          "time": "10:00",
+          "num": 2,
+          "status": "planned",
+          "topic": "📝 OGE Mock #2 — продолжение mock-варианта, разбор по критериям",
+          "schedule_note": "вторник 10:00",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_title": "📝 OGE Mock — повторить",
+            "text": "Повтори OGE Mock #1 перед уроком."
+          }
+        }
       ]
     },
     {
       "id": "katya-marakina",
       "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
       "name": "Катя Маракина",
+      "materials": {
+        "folder": "documents/_v/katya-marakina",
+        "note": "Отчёт за май–июнь 2026 — для мамы (Татьяна Владимировна).",
+        "files": [
+          {
+            "name": "report-katya-marakina-2026-06.pdf",
+            "label": "📄 Отчёт за май–июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      },
       "level": "B1",
       "format": "индивидуально",
-      "schedule": "вторник 17:00 + воскресенье 13:00 (по 90 мин)",
-      "schedule_note": "Время воскресенья перенесено 12:00 → 13:00 по просьбе мамы (с июня). Маша думает над форматом — 13:00 в выходной перебивает день; возможно вернёмся к 12:00 или другому окну.",
+      "schedule": "воскресенье 13:30 (90 мин)",
+      "schedule_note": "Время воскресенья перенесено 12:00 → 13:00 по просьбе мамы (с июня). Учитель рассматривает формат — возможно вернёмся к 12:00 или другому окну.",
       "price_per_lesson": 2500,
       "monthly_package": 20000,
-      "lessons_in_package": 8,
-      "subscription_month": "2026-05",
-      "lessons_used_this_month": 4,
-      "stability_note": "Май-июнь абонемент 8 уроков (4 вт + 4 вс) до 14.06.2026. Старт 19.05.2026. С 14.06 — летний пересбор (родители просят остаться на лето; решение в работе). Проведено 4 из 8 (Jerusalem 31.05 закрыт). История: 26.04, 3.05, 10.05 cancelled (согласованные), 17.05 missed (без предупреждения).",
+      "lessons_in_package": 4,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
+      "stability_note": "",
       "payment_status": "Оплачено",
       "parent_name": "Кедрова Татьяна Владимировна",
-      "parent_passport": "45 08 445532",
-      "parent_address": "Москва, Сиреневый б-р, д.44, корп.1, кв.163",
       "pin": "1265",
       "lessons": [
-        { "date": "2026-04-26", "num": 0, "status": "cancelled", "topic": "Согласованный перенос (история до абонемента)" },
-        { "date": "2026-05-03", "num": 0, "status": "cancelled", "topic": "Согласованный перенос (история до абонемента)" },
-        { "date": "2026-05-10", "num": 0, "status": "cancelled", "topic": "Согласованный перенос (история до абонемента)" },
-        { "date": "2026-05-17", "num": 0, "status": "missed", "topic": "Пропуск без предупреждения (история до абонемента)" },
-        { "date": "2026-05-19", "num": 1, "status": "completed", "topic": "Времена, техники решения ОГЭ" },
-        { "date": "2026-05-24", "num": 2, "status": "completed", "topic": "Кулинария и времена, страны мира" },
-        { "date": "2026-05-25", "num": 3, "status": "completed", "topic": "Италия: известные люди, чудеса света + немного про Ирландию" },
-        { "date": "2026-05-31", "num": 4, "status": "completed", "topic": "Jerusalem — A City of Three Faiths (speaking-focus, Would, Modals)", "homework": { "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/?v=4cbcbaf", "module_title": "Открыть урок Jerusalem", "text": "Интерактивный B1-урок: 17 секций, аудио, говорение, Would-конструкции, модальные глаголы. Можно открыть до занятия — пробежаться по vocabulary, дать ушам привыкнуть к narrator-аудио." } },
-        { "date": "2026-06-02", "num": 5, "status": "planned", "topic": "Тема уточняется", "schedule_note": "вторник 17:00 — тему согласовываем с Машей" },
-        { "date": "2026-06-07", "num": 6, "status": "planned", "topic": "Switzerland · Mountains & Chocolate — часть 1 (B1, redesign под Unbounded, hero Маттерхорн+шоколад+часы)", "homework": { "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/?v=v2", "module_title": "Открыть урок Switzerland · часть 1", "text": "Интерактивный B1-урок про Швейцарию. На уроке покрываем Watch-first блок (история Швейцарии), reading и vocabulary первой половины. На следующий урок — продолжение." } },
-        { "date": "2026-06-09", "num": 7, "status": "planned", "topic": "Тема уточняется", "schedule_note": "вторник 17:00 — тему согласовываем с Машей" },
-        { "date": "2026-06-14", "num": 8, "status": "planned", "topic": "Switzerland · Mountains & Chocolate — часть 2 (B1, последний урок до летнего пересбора)", "homework": { "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/?v=v2", "module_title": "Открыть урок Switzerland · часть 2", "text": "Завершаем Switzerland-урок: оставшиеся секции, синтез, mini-writing. Последний урок текущего абонемента до летнего пересбора." } }
+        {
+          "date": "2026-05-19",
+          "num": 1,
+          "status": "completed",
+          "topic": "Времена + техники решения ОГЭ"
+        },
+        {
+          "date": "2026-05-24",
+          "num": 2,
+          "status": "completed",
+          "topic": "Кулинария и времена + страны мира"
+        },
+        {
+          "date": "2026-05-26",
+          "num": 3,
+          "status": "completed",
+          "topic": "Италия: известные люди, чудеса света + немного про Ирландию"
+        },
+        {
+          "date": "2026-05-31",
+          "num": 4,
+          "status": "completed",
+          "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/",
+            "module_title": "Открыть урок Jerusalem · Part 1",
+            "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
+          }
+        },
+        {
+          "date": "2026-06-02",
+          "num": 5,
+          "status": "completed",
+          "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
+            "module_title": "Открыть Jerusalem · секции 18-20",
+            "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
+          }
+        },
+        {
+          "date": "2026-06-07",
+          "num": 6,
+          "status": "completed",
+          "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+            "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
+            "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
+          }
+        },
+        {
+          "date": "2026-06-09",
+          "num": 7,
+          "status": "completed",
+          "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+            "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
+            "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
+          }
+        },
+        {
+          "date": "2026-06-14",
+          "num": 8,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright",
+            "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
+          }
+        },
+        {
+          "date": "2026-07-05",
+          "num": 9,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+          }
+        },
+        {
+          "date": "2026-07-12",
+          "num": 10,
+          "status": "planned",
+          "topic": "Тема согласовывается после летнего пересбора"
+        },
+        {
+          "date": "2026-07-19",
+          "num": 11,
+          "status": "planned",
+          "topic": "Тема согласовывается после летнего пересбора"
+        },
+        {
+          "date": "2026-07-26",
+          "num": 12,
+          "status": "planned",
+          "topic": "Тема согласовывается после летнего пересбора"
+        }
       ]
     },
     {
       "id": "timofey",
+      "materials": {
+        "folder": "documents/_v/timofey",
+        "note": "",
+        "files": [
+          {
+            "name": "A2-Timofey-conspect-2026.pdf",
+            "label": "📘 Конспект пилотного месяца · 12 глав (Trial + Trainer-01/02/03 + разбор письма 06.07 + план Trainer-04)",
+            "audience": "all"
+          },
+          {
+            "name": "report-timofey-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026",
+            "audience": "all"
+          }
+        ],
+        "external_links": [
+          {
+            "url": "../lingua-boost-lab/practice/timofey-trainer-01/",
+            "label": "📘 Workbook 01 · 22 июн · Present tenses · -ing · said/told",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-trainer-02/",
+            "label": "📕 Workbook 02 · 29 июн · Past Tenses · irregular verbs",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
+            "label": "📖 Practical English · Day 1 · 02 июл · интерактивный урок + Homework A–J",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-04-workbook/",
+            "label": "📚 Workbook 04 · 07 июл · Practical English · Day 2 · 12 блоков",
+            "audience": "all"
+          }
+        ]
+      },
       "greeting_student": "Здравствуйте, Тимофей",
       "greeting_parent": "Здравствуйте, Тимофей",
       "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
@@ -550,22 +1636,37 @@ window.NGE_DATA = {
       "format": "индивидуально",
       "duration": "1 час",
       "lessons_per_week": 2,
-      "schedule": "понедельник 19:00 / четверг (время согласуется на первой встрече)",
+      "schedule": "вторник 11:00 / четверг 21:00",
       "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
       "price_per_lesson": 2500,
-      "monthly_package": 7500,
+      "monthly_package": 12500,
       "weekly_revenue": 5000,
       "payment_status": "Оплачено",
-      "payment_note": "Июньский блок оплачен (3 урока × 2 500 = 7 500 ₽). Trial 18 июня — бесплатно. Старт платный 22 июня 19:00.",
+      "payment_note": "",
+      "payments": [
+        { "month": "Июль 2026 · 2-я половина", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "10.07.2026", "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)" },
+        { "month": "Июль 2026", "package": "5 уроков × 2 500 ₽", "amount": "12 500 ₽", "status": "paid", "date": "01.07.2026", "note": "Летний блок" },
+        { "month": "Июнь 2026", "package": "1 trial + 3 × 2 500 ₽", "amount": "7 500 ₽", "status": "paid", "date": "22.06.2026", "note": "Пилот-блок · 1 trial + 3 занятия" }
+      ],
       "is_adult": true,
       "parent_name": "",
       "pin": "3094",
-      "lessons_in_package": 3,
-      "subscription_month": "2026-06",
-      "lessons_used_this_month": 2,
-      "stability_note": "Стартовый блок-пилот: 3 урока до конца июня по летней цене 2 500 ₽. Дальше продляем помесячно.",
+      "lessons_in_package": 5,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 3,
+      "stability_note": "",
+      "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
       "external_platforms": [
-        { "name": "Quizlet · 22 June vocab", "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt", "note": "Flash-cards · 30 слов с урока 22 июня" }
+        {
+          "name": "🛫 TOEFL iBT · Format Tour · Lab",
+          "url": "../lingua-boost-lab/b1/toefl-ibt-format-tour/",
+          "note": "Большой Lab-урок про формат TOEFL iBT — Reading / Listening / Speaking / Writing, пробные задания, стратегии. Проходи между занятиями."
+        },
+        {
+          "name": "Quizlet · 22 June vocab",
+          "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt",
+          "note": "Flash-cards · 30 слов с урока 22 июня"
+        }
       ],
       "lessons": [
         {
@@ -574,9 +1675,9 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
+            "module_url": "../lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
             "module_title": "🎓 Открыть Welcome Pack · университеты + план",
-            "text": "Шорт-лист 9 университетов (Италия + Венгрия) с порогами IELTS/TOEFL по каждой программе + индивидуальный план подготовки."
+            "text": "Шорт-лист 9 университетов (Италия + Венгрия) с порогами IELTS/TOEFL по каждой программе + индивидуальный план подготовки. К первой платной встрече: выбери 3–4 универа, которые тебе ближе — определим точный target-балл."
           }
         },
         {
@@ -587,23 +1688,106 @@ window.NGE_DATA = {
           "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)",
           "homework": {
             "module_url": "../lingua-boost-lab/practice/timofey-trainer-01/",
-            "module_title": "📚 Открыть домашку · 10 упражнений",
-            "text": "Тренажёр по сегодняшнему уроку: mix of tenses, отработка вокабуляра (30 слов), -ing forms (gerund vs participle vs continuous), said vs told. К следующей встрече 25 июня — пройти все 10 блоков."
+            "module_title": "📘 Открыть Workbook 01",
+            "text": "К 25 июня — пройти 10 блоков."
           }
         },
         {
           "date": "2026-06-25",
           "num": 2,
           "status": "completed",
-          "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского"
+          "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/timofey-trainer-02/",
+            "module_title": "📕 Открыть Workbook 02",
+            "text": "К 29 июня — пройти тетрадь по Past Tenses."
+          }
         },
         {
           "date": "2026-06-29",
           "num": 3,
+          "status": "completed",
+          "topic": "Past Simple + storytelling из деловой практики · Workbook 02 feedback · финал пилот-блока"
+        },
+        {
+          "date": "2026-07-02",
+          "num": 4,
+          "status": "completed",
+          "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
+          "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
+            "module_title": "📖 Открыть Practical English · Day 1",
+            "text": "Пройди блоки Homework A–J (~20–25 мин) + 🎤 Your turn после каждой секции."
+          }
+        },
+        {
+          "date": "2026-07-07",
+          "num": 5,
+          "status": "completed",
+          "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/timofey-04-workbook/",
+            "module_title": "📚 Открыть Workbook 04",
+            "text": "К 09 июля — 12 блоков (Practical English · Day 2)."
+          }
+        },
+        {
+          "date": "2026-07-10",
+          "num": 6,
+          "status": "completed",
+          "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive",
+            "text": "Пройди Articles §1–§20 + Prepositions P1–P9. Отметь упражнения, где сомневаешься — разберём во вторник. Practical English · Day 1 остаётся доступен по прежней ссылке в списке материалов."
+          }
+        },
+        {
+          "date": "2026-07-14",
+          "num": 7,
           "status": "planned",
-          "topic": "Past Simple + storytelling из деловой практики · чтение B1 в IELTS-формате"
+          "topic": "Practical English · Day 3 · Present Continuous (I'm doing) vs Present Simple + prepositions of time (at/on/in)"
+        },
+        {
+          "date": "2026-07-16",
+          "num": 8,
+          "status": "planned",
+          "topic": "Practical English · Day 4 · Modals for adult life (can / could / would / should / must) + polite requests"
+        },
+        {
+          "date": "2026-07-21",
+          "num": 9,
+          "status": "planned",
+          "topic": "Тема — будет скоро, согласуем ближе к дате"
+        },
+        {
+          "date": "2026-07-23",
+          "num": 10,
+          "status": "planned",
+          "topic": "Тема — будет скоро, согласуем ближе к дате"
+        },
+        {
+          "date": "2026-07-28",
+          "num": 11,
+          "status": "planned",
+          "topic": "Тема — будет скоро, согласуем ближе к дате"
+        },
+        {
+          "date": "2026-07-30",
+          "num": 12,
+          "status": "planned",
+          "topic": "Тема — будет скоро, согласуем ближе к дате"
         }
-      ]
+      ],
+      "contracts": {
+        "folder": "documents/_v",
+        "files": [
+          "2967982f7e0da82ca88dcd8e5c19d557.pdf",
+          "84c5c58a09e3c2a03e82eab79a788885.pdf"
+        ],
+        "note": "Договор оказания услуг + согласие на обработку ПД. Клик — открыть в новой вкладке."
+      }
     }
   ],
   "reports": [
@@ -739,96 +1923,130 @@ window.NGE_DATA = {
     }
   ],
   "labModules": [
-    { "level": "Pre-A1", "title": "Body & Grammar Garden", "url": "../lingua-boost-lab/pre-a1/body-and-grammar-pink.html" },
-    { "level": "Pre-A1", "title": "Hello! Classroom Fun", "url": "../lingua-boost-lab/pre-a1/hello-classroom-fun.html" },
-    { "level": "A1", "title": "Present Simple Routines", "url": "../lingua-boost-lab/a1/a1-01-present-simple-routines.html" },
-    { "level": "A1", "title": "Present Simple Questions & Negatives", "url": "../lingua-boost-lab/a1/a1-02-present-simple-questions-negatives.html" },
-    { "level": "A1", "title": "Present Simple + Adverbs of Frequency / There is/are", "url": "../lingua-boost-lab/a1/a1-03-present-simple-adverbs-frequency.html" },
-    { "level": "A1", "title": "Have / Has — My Things", "url": "../lingua-boost-lab/a1/a1-04-have-has-my-things.html" },
-    { "level": "A1", "title": "My / Your / His / Her", "url": "../lingua-boost-lab/a1/a1-05-my-your-his-her.html" },
-    { "level": "A1", "title": "Prepositions of Place", "url": "../lingua-boost-lab/a1/a1-06-prepositions-of-place.html" },
-    { "level": "A1", "title": "Instructions & Requests", "url": "../lingua-boost-lab/a1/a1-07-instructions-requests.html" },
-    { "level": "A1", "title": "Final Mission (A1)", "url": "../lingua-boost-lab/a1/a1-08-final-mission.html" },
-    { "level": "A1", "title": "Easter English Lesson", "url": "../lingua-boost-lab/a1/easter-english-lesson.html" },
-    { "level": "A1", "title": "Past Simple Adventure", "url": "../lingua-boost-lab/a1/past-simple-adventure.html" },
-    { "level": "A1", "title": "Prepositions World", "url": "../lingua-boost-lab/a1/prepositions-world.html" },
-    { "level": "A1", "title": "School Words & Pronouns", "url": "../lingua-boost-lab/a1/school-words-and-pronouns.html" },
-    { "level": "A2", "title": "Ancient China Explorer", "url": "../lingua-boost-lab/a2/ancient-china-explorer.html" },
-    { "level": "A2", "title": "Core Trainer A2 → B1", "url": "../lingua-boost-lab/a2/core-trainer-a2-b1.html" },
-    { "level": "A2", "title": "English Booster A2 → B1", "url": "../lingua-boost-lab/a2/english-booster-a2-b1.html" },
-    { "level": "B1", "title": "Ancient China Cultural Studies", "url": "../lingua-boost-lab/b1/ancient-china-cultural-studies.html" },
-    { "level": "B1", "title": "Grammar Arcade: Present Continuous vs Present Perfect", "url": "../lingua-boost-lab/b1/grammar-arcade-pc-pp.html" },
-    { "level": "B1", "title": "Restaurant Menu Lab", "url": "../lingua-boost-lab/b1/restaurant-menu-lab.html" },
-    { "level": "B1", "title": "Space Explorers", "url": "../lingua-boost-lab/b1/space-explorers-english.html" },
-    { "level": "B1", "title": "Whispering Library Quest", "url": "../lingua-boost-lab/b1/whispering-library-quest.html" },
-    { "level": "B1", "title": "Word Forge: Suffixes & Prefixes", "url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html" },
-    { "level": "B2+", "title": "Geo Quest: Articles on the Map", "url": "../lingua-boost-lab/b2-plus/articles-with-geographical-names.html" },
-    { "level": "C1", "title": "Stars & Stellar Phenomena", "url": "../lingua-boost-lab/c1/stars-and-stellar-phenomena.html" }
-  ],
-  "contracts": {
-    "andrei-kruglov": {
-      "folder": "assets/contracts/andrei-kruglov",
-      "files": ["01_договор_стр1.pdf", "02_договор_стр2_условия.pdf", "03_договор_стр3_подпись.jpg"]
+    {
+      "level": "Pre-A1",
+      "title": "Body & Grammar Garden",
+      "url": "../lingua-boost-lab/pre-a1/body-and-grammar-pink.html"
     },
-    "anya-isaeva": {
-      "folder": "assets/contracts/anya-isaeva",
-      "files": ["01_договор_стр1.webp", "02_договор_стр2_условия.webp", "03_договор_стр3_подпись.webp", "04_согласие_на_ПД.webp"]
+    {
+      "level": "Pre-A1",
+      "title": "Hello! Classroom Fun",
+      "url": "../lingua-boost-lab/pre-a1/hello-classroom-fun.html"
     },
-    "denis-shalmanov": {
-      "folder": "assets/contracts/denis-shalmanov",
-      "files": ["договор_отсканированный.pdf"]
+    {
+      "level": "A1",
+      "title": "Present Simple Routines",
+      "url": "../lingua-boost-lab/a1/a1-01-present-simple-routines.html"
     },
-    "ivanov-ivan": {
-      "folder": "assets/contracts/ivanov-ivan",
-      "files": ["01_договор_стр1.jpeg", "02_договор_стр2_условия.jpeg", "03_договор_стр3_подпись.jpeg", "04_согласие_на_ПД.jpeg"]
+    {
+      "level": "A1",
+      "title": "Present Simple Questions & Negatives",
+      "url": "../lingua-boost-lab/a1/a1-02-present-simple-questions-negatives.html"
     },
-    "katya-marakina": {
-      "folder": "assets/contracts/katya-marakina",
-      "files": ["01_договор_стр1.jpeg", "02_договор_стр2.jpeg", "03_договор_стр3.jpeg", "04_доп.png"]
+    {
+      "level": "A1",
+      "title": "Present Simple + Adverbs of Frequency / There is/are",
+      "url": "../lingua-boost-lab/a1/a1-03-present-simple-adverbs-frequency.html"
     },
-    "sofia-pavlova": {
-      "folder": "assets/contracts/sofia-pavlova",
-      "files": ["01_согласие_на_ПД_с_пометками.jpg", "02_договор_стр1_подпись.jpg", "03_договор_стр1_дубль.jpg", "04_договор_стр1_низ.jpg", "05_договор_стр2_оплата.jpg", "06_договор_стр3_форс_мажор.jpg", "07_договор_стр4_срок.jpg", "08_дополнительная_страница.jpg"]
+    {
+      "level": "A1",
+      "title": "Have / Has — My Things",
+      "url": "../lingua-boost-lab/a1/a1-04-have-has-my-things.html"
     },
-    "sova-elena": {
-      "folder": "assets/contracts/sova-family",
-      "files": ["01_общий_договор.pdf", "02_договор_Катя_реквизиты.pdf", "03_реквизиты_Елена.png"],
-      "note": "общий договор семьи Сова — Елена и Катя"
+    {
+      "level": "A1",
+      "title": "My / Your / His / Her",
+      "url": "../lingua-boost-lab/a1/a1-05-my-your-his-her.html"
     },
-    "sova-ekaterina": {
-      "folder": "assets/contracts/sova-family",
-      "files": ["01_общий_договор.pdf", "02_договор_Катя_реквизиты.pdf", "03_реквизиты_Елена.png"],
-      "note": "общий договор семьи Сова — Елена и Катя"
+    {
+      "level": "A1",
+      "title": "Prepositions of Place",
+      "url": "../lingua-boost-lab/a1/a1-06-prepositions-of-place.html"
     },
-    "yulya-izotova": {
-      "folder": "assets/contracts/yulya-izotova",
-      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg", "05_подпись_доп.png"]
+    {
+      "level": "A1",
+      "title": "Instructions & Requests",
+      "url": "../lingua-boost-lab/a1/a1-07-instructions-requests.html"
     },
-    "yulya-lushina": {
-      "folder": "assets/contracts/yulya-lushina",
-      "files": ["договор.pdf"]
+    {
+      "level": "A1",
+      "title": "Final Mission (A1)",
+      "url": "../lingua-boost-lab/a1/a1-08-final-mission.html"
     },
-    "ekaterina-mariya-pair": {
-      "byParent": {
-        "Лихолева Елена Сергеевна": {
-          "folder": "assets/contracts/ekaterina-mariya-pair/elena-likholeva",
-          "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"],
-          "child": "Маша Кузнецова"
-        },
-        "Медведева Марина Сергеевна": {
-          "folder": "assets/contracts/ekaterina-mariya-pair/marina-medvedeva",
-          "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"],
-          "child": "Катя Медведева"
-        }
-      }
+    {
+      "level": "A1",
+      "title": "Easter English Lesson",
+      "url": "../lingua-boost-lab/a1/easter-english-lesson.html"
     },
-    "ekaterina-medvedeva-solo": {
-      "folder": "assets/contracts/ekaterina-mariya-pair/marina-medvedeva",
-      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"]
+    {
+      "level": "A1",
+      "title": "Past Simple Adventure",
+      "url": "../lingua-boost-lab/a1/past-simple-adventure.html"
     },
-    "maria-kuznetsova-solo": {
-      "folder": "assets/contracts/ekaterina-mariya-pair/elena-likholeva",
-      "files": ["01_договор_стр1.jpg", "02_договор_стр2_условия.jpg", "03_договор_стр3_подпись.jpg", "04_согласие_на_ПД.jpg"]
+    {
+      "level": "A1",
+      "title": "Prepositions World",
+      "url": "../lingua-boost-lab/a1/prepositions-world.html"
+    },
+    {
+      "level": "A1",
+      "title": "School Words & Pronouns",
+      "url": "../lingua-boost-lab/a1/school-words-and-pronouns.html"
+    },
+    {
+      "level": "A2",
+      "title": "Ancient China Explorer",
+      "url": "../lingua-boost-lab/a2/ancient-china-explorer.html"
+    },
+    {
+      "level": "A2",
+      "title": "Core Trainer A2 → B1",
+      "url": "../lingua-boost-lab/a2/core-trainer-a2-b1.html"
+    },
+    {
+      "level": "A2",
+      "title": "English Booster A2 → B1",
+      "url": "../lingua-boost-lab/a2/english-booster-a2-b1.html"
+    },
+    {
+      "level": "B1",
+      "title": "Ancient China Cultural Studies",
+      "url": "../lingua-boost-lab/b1/ancient-china-cultural-studies.html"
+    },
+    {
+      "level": "B1",
+      "title": "Grammar Arcade: Present Continuous vs Present Perfect",
+      "url": "../lingua-boost-lab/b1/grammar-arcade-pc-pp.html"
+    },
+    {
+      "level": "B1",
+      "title": "Restaurant Menu Lab",
+      "url": "../lingua-boost-lab/b1/restaurant-menu-lab.html"
+    },
+    {
+      "level": "B1",
+      "title": "Space Explorers",
+      "url": "../lingua-boost-lab/b1/space-explorers-english.html"
+    },
+    {
+      "level": "B1",
+      "title": "Whispering Library Quest",
+      "url": "../lingua-boost-lab/b1/whispering-library-quest.html"
+    },
+    {
+      "level": "B1",
+      "title": "Word Forge: Suffixes & Prefixes",
+      "url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html"
+    },
+    {
+      "level": "B2+",
+      "title": "Geo Quest: Articles on the Map",
+      "url": "../lingua-boost-lab/b2-plus/articles-with-geographical-names.html"
+    },
+    {
+      "level": "C1",
+      "title": "Stars & Stellar Phenomena",
+      "url": "../lingua-boost-lab/c1/stars-and-stellar-phenomena.html"
     }
-  }
+  ]
 };
