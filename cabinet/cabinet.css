@@ -1575,41 +1575,62 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
   white-space: nowrap;
 }
 
+/* external platforms card (pinned links) */
+.cab-card--platforms { background: linear-gradient(135deg, rgba(255,90,31,.08), rgba(255,193,69,.06)); border: 1px solid rgba(255,90,31,.35); }
+.cab-card--platforms h3 { color: var(--accent); }
+.cab-platforms-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+.cab-platform-link { display:flex; flex-direction:column; gap:4px; padding:12px 14px; background:#fff; border:1px solid rgba(255,90,31,.3); border-radius:10px; text-decoration:none; color:var(--text); transition:.18s; }
+.cab-platform-link:hover { border-color:var(--accent); background:rgba(255,90,31,.05); transform:translateX(2px); }
+.cab-platform-name { font-weight:800; font-size:14px; color:var(--accent); }
+.cab-platform-note { font-size:12px; color:var(--muted); line-height:1.5; }
+body.dark .cab-platform-link { background:rgba(0,0,0,.15); color:#fff; }
+
 /* status variants */
 .cab-lesson-row.is-completed {
-  border-color: rgba(43, 182, 115, 0.35);
-  background: rgba(43, 182, 115, 0.06);
+  border-color: rgba(43, 182, 115, 0.6);
+  background: rgba(43, 182, 115, 0.14);
 }
 .cab-lesson-row.is-completed .cab-lesson-num {
-  color: #2BB673;
-  border-color: rgba(43, 182, 115, 0.4);
+  color: #1a8f56;
+  border-color: rgba(43, 182, 115, 0.65);
+  background: rgba(43, 182, 115, 0.18);
+  font-weight: 800;
 }
 .cab-lesson-row.is-completed .cab-lesson-badge {
-  background: rgba(43, 182, 115, 0.16);
-  color: #2BB673;
+  background: rgba(43, 182, 115, 0.28);
+  color: #1a8f56;
+  font-weight: 700;
 }
 
 .cab-lesson-row.is-today {
   border-color: var(--accent);
-  background: rgba(255, 90, 31, 0.08);
-  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.25);
+  background: rgba(255, 90, 31, 0.14);
+  box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.35);
 }
 .cab-lesson-row.is-today .cab-lesson-badge {
-  background: rgba(255, 90, 31, 0.18);
+  background: rgba(255, 90, 31, 0.28);
   color: var(--accent);
+  font-weight: 800;
 }
 
 .cab-lesson-row.is-pending {
-  border-color: rgba(255, 193, 69, 0.4);
-  background: rgba(255, 193, 69, 0.05);
+  border-color: rgba(255, 193, 69, 0.65);
+  background: rgba(255, 193, 69, 0.14);
 }
 .cab-lesson-row.is-pending .cab-lesson-badge {
-  background: rgba(255, 193, 69, 0.18);
-  color: #FFC145;
+  background: rgba(255, 193, 69, 0.30);
+  color: #b88420;
+  font-weight: 700;
 }
 
 .cab-lesson-row.is-future {
-  opacity: 0.6;
+  opacity: 0.95;
+  border-color: rgba(255, 193, 69, 0.45);
+  background: rgba(255, 193, 69, 0.08);
+}
+.cab-lesson-row.is-future .cab-lesson-badge {
+  background: rgba(255, 193, 69, 0.22);
+  color: #b88420;
 }
 
 .cab-lesson-row.is-missed {
@@ -1619,6 +1640,66 @@ body.light .cab-bank-details .cab-card-row { border-color: rgba(0, 0, 0, 0.08); 
 .cab-lesson-row.is-missed .cab-lesson-badge {
   background: rgba(220, 60, 60, 0.18);
   color: #dc3c3c;
+}
+
+/* 2026-07-10 · Timofey ask · двойные галочки 💰 оплачено + ✅ проведено */
+.cab-lessons-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 6px 0 12px;
+  padding: 10px 14px;
+  background: rgba(89, 173, 122, 0.08);
+  border: 1px solid rgba(89, 173, 122, 0.22);
+  border-radius: 10px;
+  font-family: var(--display, "Unbounded", sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #4a3820;
+}
+.cab-lm-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cab-lm-item b {
+  font-weight: 800;
+  font-size: 15px;
+  color: #2a5a3a;
+}
+.cab-lm-item.cab-lm-balance b {
+  color: #b8781e;
+}
+.cab-lm-ico {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.cab-lesson-marks {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+.cab-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 12px;
+  opacity: 0.28;
+  transition: all 0.18s;
+  filter: grayscale(0.8);
+}
+.cab-mark.is-on {
+  opacity: 1;
+  background: rgba(89, 173, 122, 0.22);
+  filter: none;
+  box-shadow: 0 1px 4px rgba(89, 173, 122, 0.28);
 }
 
 .cab-lesson-row.is-cancelled,
@@ -2275,4 +2356,70 @@ body.light .topbar-tools .control-btn:hover {
   background: rgba(255, 90, 31, 0.08) !important;
   color: #FF5A1F !important;
   border: 1.5px solid #FF5A1F !important;
+}
+
+/* === 💳 Payments table === */
+.cab-payments h3 { margin-bottom: 14px; }
+.cab-pay-table-wrap {
+  overflow-x: auto;
+  margin: 4px -4px 0;
+  padding: 0 4px 4px;
+}
+.cab-pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  min-width: 640px;
+}
+.cab-pay-table thead th {
+  text-align: left;
+  padding: 10px 12px 10px 12px;
+  font: 700 10.5px/1 var(--mono, "JetBrains Mono", monospace);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-3, #6a6a6a);
+  border-bottom: 1.5px solid var(--line, rgba(255,255,255,.14));
+  background: transparent;
+}
+.cab-pay-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--line, rgba(255,255,255,.08));
+  vertical-align: top;
+  line-height: 1.5;
+}
+.cab-pay-table tbody tr:last-child td { border-bottom: 0; }
+.cab-pay-table tbody tr:hover td { background: var(--surface-2, rgba(255,255,255,.03)); }
+.cab-pay-month { min-width: 130px; color: var(--text, #fff); }
+.cab-pay-pkg { color: var(--text-2, #a9a9a9); }
+.cab-pay-amount { min-width: 90px; color: var(--accent, #FF5A1F); white-space: nowrap; }
+.cab-pay-status-cell { min-width: 100px; }
+.cab-pay-date { color: var(--text-3, #6a6a6a); white-space: nowrap; }
+.cab-pay-note { color: var(--text-2, #a9a9a9); font-size: 12.5px; max-width: 320px; }
+.cab-pay-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font: 700 10.5px/1 var(--mono, "JetBrains Mono", monospace);
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+.cab-pay-status--ok {
+  background: rgba(66, 216, 137, .14);
+  color: #42d889;
+  border: 1px solid rgba(66, 216, 137, .32);
+}
+.cab-pay-status--pending {
+  background: rgba(255, 200, 0, .12);
+  color: #ffc800;
+  border: 1px solid rgba(255, 200, 0, .32);
+}
+
+body.light .cab-pay-status--ok { background: rgba(61, 124, 71, .12); color: #3d7c47; border-color: rgba(61, 124, 71, .28); }
+body.light .cab-pay-status--pending { background: rgba(184, 150, 74, .14); color: #b8964a; border-color: rgba(184, 150, 74, .32); }
+
+@media (max-width: 720px) {
+  .cab-pay-table { font-size: 12.5px; min-width: 560px; }
+  .cab-pay-note { max-width: 220px; font-size: 11.5px; }
 }

@@ -297,7 +297,14 @@
 
         ${_renderAbonementCard(student, { studentView: true })}
 
+        ${_renderPaymentsCard(student, { studentView: true })}
+
         ${_renderHomeworkCard(student)}
+
+        ${_renderExternalPlatformsCard(student)}
+
+        ${_renderMaterialsCard(student, { studentView: true })}
+        ${_renderContractsCard(student, { studentView: true })}
 
         ${_renderLessonsCard(student, { interactive: true })}
       </div>
@@ -1096,6 +1103,23 @@
     return { cls: "is-future", label: "запланирован" };
   }
 
+  function _renderExternalPlatformsCard(student) {
+    const platforms = Array.isArray(student && student.external_platforms) ? student.external_platforms : [];
+    if (!platforms.length) return "";
+    const items = platforms.map(p => {
+      const name = p.name || p.title || "—";
+      const url  = p.url || "#";
+      const note = p.note || "";
+      const safeUrl = /^https?:\/\//.test(url) ? url : "#";
+      const target = safeUrl === "#" ? "" : 'target="_blank" rel="noreferrer"';
+      return `<a class="cab-platform-link" href="${_esc(safeUrl)}" ${target}>
+        <span class="cab-platform-name">${_esc(name)}</span>
+        ${note ? `<span class="cab-platform-note">${_esc(note)}</span>` : ""}
+      </a>`;
+    }).join("");
+    return `<article class="cab-card cab-card--platforms"><h3>🔗 Закреплённые ресурсы</h3><div class="cab-platforms-list">${items}</div></article>`;
+  }
+
   function _renderLessonsCard(student, opts) {
     opts = opts || {};
     const interactive = !!opts.interactive;
@@ -1103,12 +1127,35 @@
     if (!lessons.length) return "";
 
     const month = student.subscription_month || _currentMonthISO();
+    const hasSummerPlan = !!student.summer_plan_note;
     const todayISO = _todayISO();
     const monthLessons = lessons
-      .filter(l => l.date && l.date.startsWith(month))
+      .filter(l => {
+        if (!l.date) return false;
+        if (hasSummerPlan) return l.date >= "2026-06-01" && l.date <= "2026-08-31";
+        return l.date.startsWith(month);
+      })
       .sort((a, b) => a.date.localeCompare(b.date));
 
     if (!monthLessons.length) return "";
+
+    // 2026-07-10 · Timofey ask · двойные галочки: 💰 оплачено + ✅ проведено
+    // Пул оплаченных считается из payments · sum(amount / price_per_lesson) + trial
+    const price = Number(student.price_per_lesson) || 0;
+    const payments = Array.isArray(student.payments) ? student.payments : [];
+    let paidPool = 0;
+    for (const p of payments) {
+      if (String(p.status || "").toLowerCase() !== "paid") continue;
+      const amt = parseInt(String(p.amount || "").replace(/[^\d]/g, ""), 10);
+      if (!amt || !price) continue;
+      paidPool += Math.round(amt / price);
+      if (/trial/i.test(String(p.package || ""))) paidPool += 1;
+    }
+    // Все уроки в хронологическом порядке — первые paidPool считаем оплаченными
+    const allSorted = lessons.filter(l => l.date).slice().sort((a, b) => a.date.localeCompare(b.date));
+    const paidKeys = new Set(allSorted.slice(0, paidPool).map(l => l.date + "#" + (l.num || "")));
+    const heldCount = allSorted.filter(l => l.status === "completed").length;
+    const balance = Math.max(0, paidPool - heldCount);
 
     const rows = monthLessons.map(l => {
       const badge = _lessonStatusBadge(l, todayISO);
@@ -1118,6 +1165,13 @@
       const topicText = l.topic && l.topic.trim()
         ? `<span class="cab-lesson-topic">${_esc(l.topic)}</span>`
         : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
+      const isPaid = paidKeys.has(l.date + "#" + (l.num || ""));
+      const isHeld = l.status === "completed";
+      const marks = paidPool > 0 ? `
+        <span class="cab-lesson-marks">
+          <span class="cab-mark ${isPaid ? "is-on" : ""}" title="${isPaid ? "Оплачено" : "Не оплачено"}">💰</span>
+          <span class="cab-mark ${isHeld ? "is-on" : ""}" title="${isHeld ? "Проведён" : "Ещё не проведён"}">✅</span>
+        </span>` : "";
       const hw = l.homework;
       let hwChip = "";
       if (hw) {
@@ -1144,17 +1198,89 @@
           ${num}
           <span class="cab-lesson-date">${dateStr} · ${dow}</span>
           <span class="cab-lesson-topic-wrap">${topicText}${hwChip}</span>
+          ${marks}
           <span class="cab-lesson-badge">${badge.label}</span>
         </li>
       `;
     }).join("");
 
-    return `
+    const summary = paidPool > 0 ? `
+      <div class="cab-lessons-summary">
+        <span class="cab-lm-item"><span class="cab-lm-ico">💰</span> Оплачено: <b>${paidPool}</b></span>
+        <span class="cab-lm-item"><span class="cab-lm-ico">✅</span> Проведено: <b>${heldCount}</b></span>
+        <span class="cab-lm-item cab-lm-balance"><span class="cab-lm-ico">📦</span> В запасе: <b>${balance}</b></span>
+      </div>` : "";
+
+    const currentTable = `
       <article class="cab-card cab-card--wide">
-        <h3>Уроки · ${_esc(_monthLabelFromISO(month))}</h3>
+        <h3>Уроки · ${_esc(hasSummerPlan ? "лето 2026" : _monthLabelFromISO(month))}</h3>
+        ${summary}
         <ul class="cab-lessons-list">${rows}</ul>
       </article>
     `;
+
+    /* Архив пройденного (2026-07-09):
+       Новый формат: student.archived_packages = [{ label, lessons[] }, ...]
+       Legacy: student.past_lessons + student.past_lessons_label
+       Оба поддерживаются одновременно, рендерятся как <details> (свёрнуто). */
+    const archivedPackages = Array.isArray(student.archived_packages) ? student.archived_packages.slice() : [];
+    const pastLessons = Array.isArray(student.past_lessons) ? student.past_lessons : [];
+    if (pastLessons.length) {
+      archivedPackages.push({
+        label: student.past_lessons_label || "Прошлый абонемент",
+        lessons: pastLessons
+      });
+    }
+
+    const _renderArchiveRows = (lessons) => {
+      const sorted = lessons.slice().sort((a, b) => a.date.localeCompare(b.date));
+      return sorted.map(l => {
+        const badge = _lessonStatusBadge(l, todayISO);
+        const dateStr = _formatLessonDate(l.date);
+        const dow = _dowFromISO(l.date);
+        const num = l.num ? `<span class="cab-lesson-num">${_esc(l.num)}</span>` : "";
+        const topicText = l.topic && l.topic.trim()
+          ? `<span class="cab-lesson-topic">${_esc(l.topic)}</span>`
+          : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
+        return `
+          <li class="cab-lesson-row ${badge.cls}">
+            ${num}
+            <span class="cab-lesson-date">${dateStr} · ${dow}</span>
+            <span class="cab-lesson-topic-wrap">${topicText}</span>
+            <span class="cab-lesson-badge">${badge.label}</span>
+          </li>
+        `;
+      }).join("");
+    };
+
+    /* Будущий план (future_plan_lessons + future_plan_label) — свёрнутая секция,
+       для показа последующих месяцев без загромождения текущей таблицы. */
+    const futurePlanLessons = Array.isArray(student.future_plan_lessons) ? student.future_plan_lessons : [];
+    let futurePlanTable = "";
+    if (futurePlanLessons.length) {
+      const futureLabel = student.future_plan_label || "План на будущее";
+      const futureRows = _renderArchiveRows(futurePlanLessons);
+      futurePlanTable = `
+        <details class="cab-card cab-card--wide cab-card--future" style="margin-top:12px">
+          <summary style="cursor:pointer;font-family:var(--display,'Unbounded',sans-serif);font-weight:800;font-size:16px;padding:6px 0;opacity:.8">🗓 ${_esc(futureLabel)}</summary>
+          <ul class="cab-lessons-list" style="margin-top:10px">${futureRows}</ul>
+        </details>
+      `;
+    }
+
+    if (!archivedPackages.length) return currentTable + futurePlanTable;
+
+    const archiveTables = archivedPackages.map(pkg => {
+      const rows = _renderArchiveRows(pkg.lessons || []);
+      return `
+        <details class="cab-card cab-card--wide cab-card--past" style="margin-top:12px">
+          <summary style="cursor:pointer;font-family:var(--display,'Unbounded',sans-serif);font-weight:800;font-size:16px;padding:6px 0;opacity:.75">📦 ${_esc(pkg.label || "Прошлый абонемент")}</summary>
+          <ul class="cab-lessons-list" style="margin-top:10px">${rows}</ul>
+        </details>
+      `;
+    }).join("");
+
+    return currentTable + futurePlanTable + archiveTables;
   }
 
   /* ---------- homework card (student view, 3rd module) ---------- */
@@ -1312,6 +1438,46 @@
     `;
   }
 
+  function _renderPaymentsCard(student, opts) {
+    opts = opts || {};
+    const payments = student && Array.isArray(student.payments) ? student.payments : [];
+    if (!payments.length) return "";
+    const rows = payments.map(p => {
+      const isPaid = (p.status || "").toLowerCase() === "paid";
+      const statusHtml = isPaid
+        ? `<span class="cab-pay-status cab-pay-status--ok">✅ Оплачено</span>`
+        : `<span class="cab-pay-status cab-pay-status--pending">⏳ ${_esc(p.status || "ожидает")}</span>`;
+      return `
+        <tr>
+          <td class="cab-pay-month"><b>${_esc(p.month || "")}</b></td>
+          <td class="cab-pay-pkg">${_esc(p.package || "")}</td>
+          <td class="cab-pay-amount"><b>${_esc(p.amount || "")}</b></td>
+          <td class="cab-pay-status-cell">${statusHtml}</td>
+          <td class="cab-pay-date">${_esc(p.date || "—")}</td>
+        </tr>
+      `;
+    }).join("");
+    return `
+      <article class="cab-card cab-card--wide cab-payments">
+        <h3>💳 Оплаты</h3>
+        <div class="cab-pay-table-wrap">
+          <table class="cab-pay-table">
+            <thead>
+              <tr>
+                <th>Пакет</th>
+                <th>Состав</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+                <th>Дата</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </article>
+    `;
+  }
+
   function _prettifyContractFilename(filename) {
     // "01_договор_стр1.jpeg" → "Договор · стр.1"
     return filename
@@ -1324,6 +1490,12 @@
   }
 
   function _renderContractFiles(data) {
+    if (!data.files || !data.files.length) {
+      const missingText = data.missing
+        ? "Подписанный документ пока не загружен. Нужно подписать договор оказания услуг и согласие на обработку персональных данных; после подписи документ будет закреплён здесь."
+        : "Документы пока не загружены.";
+      return `<p class="cab-contract-warn cab-contract-warn--missing">⚠ <strong>${_esc(missingText)}</strong></p>`;
+    }
     const items = (data.files || []).map(f => {
       const url = `./${data.folder}/${f}`;
       const label = _prettifyContractFilename(f);
@@ -1337,10 +1509,57 @@
     return `<div class="cab-contract-files">${items}</div>`;
   }
 
-  function _renderContractsCard(student) {
+  function _renderMaterialsCard(student, opts) {
+    opts = opts || {};
+    const m = student && student.materials;
+    if (!m || !m.folder || !Array.isArray(m.files) || !m.files.length) return "";
+    const isStudent = !!opts.studentView;
+    const files = m.files.filter(f => {
+      if (typeof f === "string") return true;
+      const a = f.audience;
+      if (!a || a === "all") return true;
+      return isStudent ? (a === "student") : (a === "parent");
+    });
+    if (!files.length && !(Array.isArray(m.external_links) && m.external_links.length)) return "";
+    const note = m.note ? `<p class="cab-card-note">${_esc(m.note)}</p>` : "";
+    const items = files.map(f => {
+      const file  = typeof f === "string" ? f : f.name;
+      const label = typeof f === "string" ? _prettifyContractFilename(f) : (f.label || _prettifyContractFilename(f.name));
+      const url   = `./${m.folder}/${file}`;
+      return `<a href="${_esc(url)}" target="_blank" rel="noreferrer" class="cab-contract-link">${_esc(label)}</a>`;
+    }).join("");
+    // external links (Lab workbooks, quizlets, etc.)
+    const externalLinks = Array.isArray(m.external_links) ? m.external_links.filter(l => {
+      if (!l || !l.url) return false;
+      const a = l.audience;
+      if (!a || a === "all") return true;
+      return isStudent ? (a === "student") : (a === "parent");
+    }) : [];
+    const externalItems = externalLinks.map(l => {
+      return `<a href="${_esc(l.url)}" target="_blank" rel="noreferrer" class="cab-contract-link">${_esc(l.label || l.url)}</a>`;
+    }).join("");
+    return `<article class="cab-card"><h3>📚 Материалы курса</h3>${note}<div class="cab-contract-files">${items}${externalItems}</div></article>`;
+  }
+
+  function _renderSecurityNoticeCard() {
+    return `
+      <article class="cab-card" style="border-color:#ff5a36;background:#fff4f0;">
+        <h3 style="color:#ff4f24;">🔐 Данные защищены</h3>
+        <p class="cab-card-note" style="color:#7b2818;">
+          Кабинет работает через зашифрованный vault: данные расшифровываются только после ввода PIN. Без PIN посторонний не видит личные материалы, отчёты и документы.
+        </p>
+      </article>
+    `;
+  }
+
+  function _renderContractsCard(student, opts) {
+    opts = opts || {};
     const allContracts = (window.NGE_DATA && window.NGE_DATA.contracts) || {};
-    const contracts = allContracts[student.id];
+    // Support BOTH legacy global contracts map AND per-student contracts on student object
+    const contracts = (student && student.contracts) || allContracts[student.id];
     if (!contracts) return "";
+    // parentOnly flag — hides the card in the student dashboard (kept for parent view)
+    if (contracts.parentOnly && opts.studentView) return "";
 
     if (contracts.byParent) {
       // Pair: render section per parent (each mom sees her own + partner's)
@@ -1381,6 +1600,12 @@
         </article>
 
         ${_renderAbonementCard(student)}
+
+        ${_renderPaymentsCard(student)}
+
+        ${_renderSecurityNoticeCard()}
+
+        ${_renderMaterialsCard(student)}
 
         ${_renderReportsCard(student, (window.NGE_DATA && window.NGE_DATA.reports) || [], payment)}
 
