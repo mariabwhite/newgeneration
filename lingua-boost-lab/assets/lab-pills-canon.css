@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════════════════════════════
+   lab-pills-canon.css v1 · 2026-07-12
+   Единый канон плавающих пилюль для ВСЕХ Lab-уроков (эталон Speaking Prep 2026)
+   Подключать: <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=1">
+   Обязательно: закомментировать <script src=".../lab-total.js"> — иначе выйдет красный ИТОГ УРОКА
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ▓▓▓ TOP-RIGHT · Video / Telemost ▓▓▓ */
+[class*="telemost"], [class*="lab-telemost"], .lab-telemost-fab,
+button[class*="video"], .lab-video-fab{
+  position: fixed !important;
+  right: 14px !important;
+  top: 72px !important;
+  left: auto !important; bottom: auto !important;
+  transform: scale(1.0) !important;
+  z-index: 31 !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.5) !important;
+}
+
+/* ▓▓▓ LEFT · Numbered TOC (lp-toc 1-N) ▓▓▓ */
+.lp-toc{
+  position: fixed !important;
+  left: 8px !important;
+  top: 100px !important;
+  right: auto !important; bottom: auto !important;
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+  transform-origin: top left !important;
+  z-index: 22 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5) !important;
+}
+.lp-toc .lp-toc-btn{
+  font-size: 12px !important;
+  padding: 9px 12px !important;
+  font-weight: 900 !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+}
+
+/* ▓▓▓ BOTTOM-RIGHT · Lexicon (top) + Итог урока (bottom) — stack step 70px ▓▓▓ */
+.lab-lex-box{
+  position: fixed !important;
+  right: 14px !important;
+  bottom: 84px !important;
+  left: auto !important; top: auto !important;
+  transform: scale(.86) !important;
+  transform-origin: bottom right !important;
+  z-index: 29 !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.55) !important;
+}
+.lab-lex-box:hover{ transform: scale(.86) !important }  /* no hover-pop-up */
+
+.lp-fab, .lp-fab-btn, [class*="lp-fab"]{
+  position: fixed !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  left: auto !important; top: auto !important;
+  transform: scale(1.0) !important;
+  transform-origin: bottom right !important;
+  opacity: 1 !important;
+  z-index: 30 !important;
+  background: var(--surface, #161C26) !important;
+  color: var(--text, #E8ECF0) !important;
+  border: 1px solid rgba(245,200,66,.32) !important;
+  border-radius: 12px !important;
+  padding: 8px 14px !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.5) !important;
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 11px !important; font-weight: 800 !important;
+  letter-spacing: .08em !important;
+  min-height: 36px !important;
+  text-align: left !important;
+  display: block !important; visibility: visible !important;
+}
+.lp-fab:hover, .lp-fab-btn:hover{
+  background: var(--card, #1A2130) !important;
+  border-color: var(--accent, #F5C842) !important;
+}
+
+/* Reset progress под лифтом — только hover proxy или скрыт */
+.lp-report{
+  transform: scale(.86) !important;
+  transform-origin: bottom right !important;
+  z-index: 27 !important;
+  bottom: 120px !important;
+  right: 8px !important;
+}
+
+/* ▓▓▓ СКРЫТО (безопасность) ▓▓▓ */
+#lab-total-block, .lab-total-block, .lab-total-fab, .lab-total-summary,
+[data-lab-total], [id*="lab-total"], [class*="lab-total-"],
+#labTotalFAB, [class*="labTotal"]{
+  display: none !important;
+}
+.lab-hw-top-entry, [data-lab-hw-entry], .lab-hw-mini-counter,
+[class*="hw-top-entry"], [class*="hw-mini"]{
+  display: none !important;
+}
+button[class*="reset-progress"], button[data-reset-progress],
+button[class*="reset-lesson"], #lab-reset-btn{
+  display: none !important;
+}
+button[class*="vocab"][class*="pill"],
+[class*="labVocab"], [id*="labVocab"], [data-lab-vocab-btn],
+.lab-vocab-fab, button.lab-vocab-fab, [class*="vocab-add-fab"]{
+  display: none !important;
+}
+body:not(.teacher-mode) .lp-actions{ display: none !important }
+
+/* ▓▓▓ LESSON / HOMEWORK TABS canon ▓▓▓ */
+.lesson-tabs{
+  position: fixed; top: 62px; left: 0; right: 0; z-index: 99;
+  display: flex; gap: 8px; justify-content: center;
+  background: color-mix(in srgb, var(--bg, #0F1216) 94%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line, rgba(255,255,255,.08));
+  padding: 10px 12px;
+  transition: top .26s cubic-bezier(.4,0,.2,1);
+}
+.topbar.tb-hidden + .lesson-tabs{ top: 0 }
+.ltab{
+  padding: 9px 18px; border-radius: 50px;
+  border: 1.5px solid var(--line-2, rgba(255,255,255,.14));
+  background: var(--card, #1A2130); color: var(--muted, #8A95A5);
+  font: 800 11px/1 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer; transition: .18s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.ltab:hover{ border-color: var(--accent, #F5C842); color: var(--accent, #F5C842) }
+.ltab.is-active{
+  background: var(--accent, #F5C842); color: var(--accent-on, #0F1216);
+  border-color: var(--accent, #F5C842);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent, #F5C842) 40%, transparent);
+}
+.ltab .ltab-count{
+  background: rgba(255,255,255,.18); padding: 2px 8px; border-radius: 50px;
+  font-size: 10px; min-width: 20px; text-align: center;
+}
+.ltab.is-active .ltab-count{ background: rgba(6,34,21,.32); color: var(--accent-on, #0F1216) }
+@media (max-width: 680px){
+  .lesson-tabs{ padding: 6px 6px; gap: 6px; top: 54px }
+  .ltab{ padding: 7px 12px; font-size: 9.5px; letter-spacing: .08em }
+}
+
+/* body top-padding, чтоб hero не залазил под tabs */
+body{ padding-top: 44px !important }
+@media (max-width: 680px){ body{ padding-top: 40px !important } }
+
+/* ▓▓▓ Мобайл — компакт всех pill ▓▓▓ */
+@media (max-width: 720px){
+  .lp-toc{ transform: scale(.85) !important; opacity: .82 !important }
+  .lab-lex-box{ transform: scale(.75) !important }
+  .lp-fab{ transform: scale(.92) !important }
+}

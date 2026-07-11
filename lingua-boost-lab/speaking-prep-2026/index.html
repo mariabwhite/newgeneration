@@ -1446,6 +1446,50 @@ html body > .lab-lex-box{
   </div>
 </header>
 
+<!-- ═══════════ LESSON / HOMEWORK TABS (canon Voyager L2) ═══════════ -->
+<style>
+.lesson-tabs{position:fixed;top:62px;left:0;right:0;z-index:99;display:flex;gap:8px;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:10px 12px;
+  transition:top .26s cubic-bezier(.4,0,.2,1)}
+.topbar.tb-hidden + .lesson-tabs{top:0}
+.ltab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--line-2);background:var(--card);
+  color:var(--muted);font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.ltab:hover{border-color:var(--accent);color:var(--accent)}
+.ltab.is-active{background:var(--accent);color:var(--accent-on);border-color:var(--accent);
+  box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+.ltab .ltab-count{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:50px;
+  font-size:10px;min-width:20px;text-align:center}
+.ltab.is-active .ltab-count{background:rgba(6,34,21,.32);color:var(--accent-on)}
+@media(max-width:680px){.lesson-tabs{padding:6px 6px;gap:6px;top:54px}
+  .ltab{padding:7px 12px;font-size:9.5px;letter-spacing:.08em}}
+/* Отступ на body чтоб hero не «залазил» под tabs */
+body{padding-top:44px}
+</style>
+<nav class="lesson-tabs" role="tablist" aria-label="Lesson / Homework">
+  <button class="ltab is-active" data-tab="lesson" type="button">📖 Урок</button>
+  <button class="ltab" data-tab="homework" type="button">📚 Моя домашка <span class="ltab-count" id="ltab-hw-count">0</span></button>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ltab');
+  var hwCount = document.getElementById('ltab-hw-count');
+  function setActive(name){ tabs.forEach(function(t){ t.classList.toggle('is-active', t.dataset.tab === name); }); }
+  function getHwKey(){ return 'lab-hw:' + location.pathname; }
+  function refreshCount(){ try { var arr = JSON.parse(localStorage.getItem(getHwKey()) || '[]'); if (hwCount) hwCount.textContent = arr.length; } catch(e){} }
+  function openHomeworkPage(){ window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname); }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var name = t.dataset.tab;
+      setActive(name);
+      if (name === 'homework') { openHomeworkPage(); }
+    });
+  });
+  refreshCount(); setInterval(refreshCount, 1500);
+})();
+</script>
+
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" id="hero">
   <div class="hero-card">
