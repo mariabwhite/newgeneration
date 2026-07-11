@@ -268,16 +268,38 @@
   position: relative;
   overflow: hidden;
 }
-.canon-l-mark::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 12px;
-  height: 12px;
-  background: #ff9b2f;
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
-  z-index: 2;
+/* Острый уголок N-марки canon (revised 2026-07-01):
+   БЕЛЫЙ треугольник поверх правого-верхнего угла через ::after overlay.
+   N-марка остаётся квадратной цветной, острый угол = иллюзия.
+   Reason: clip-path вариант обрезал всё что мы туда клали, Маша хочет
+   видимый белый треугольник на всех экранах (desktop + mobile). */
+/* Double-class selector to raise specificity above late inline rules with
+   !important on individual lessons (Ancient China etc.). */
+.canon-l-mark.canon-l-mark,
+.brand-mark.brand-mark {
+  border-radius: 8px 0 8px 8px !important;
+  border-top-right-radius: 0 !important;
+  position: relative !important;
+  overflow: visible !important;
+  clip-path: none !important;
+}
+.canon-l-mark.canon-l-mark::before,
+.brand-mark.brand-mark::before {
+  display: none !important;
+}
+.canon-l-mark.canon-l-mark::after,
+.brand-mark.brand-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 14px !important;
+  height: 14px !important;
+  background: #ffffff !important;
+  clip-path: polygon(100% 0, 0 0, 100% 100%) !important;
+  z-index: 5 !important;
+  display: block !important;
+  pointer-events: none !important;
 }
 .canon-l-mark img,
 .canon-l-mark svg {

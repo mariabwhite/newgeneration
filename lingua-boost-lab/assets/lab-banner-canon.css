@@ -1,0 +1,131 @@
+/* ============================================================
+   LAB BANNER CANON — recipe от Claude Design (2026-06-09)
+   Loaded LAST in <head> of every lesson, выигрывает cascade
+   через тройное повторение класса (specificity 0,0,3,X).
+   Цель: ВСЕ mobile-баннеры по канону Ancient China:
+     - компактные, скруглённые
+     - иллюстрация ЯРКАЯ, не приглушённая
+     - cream side-veil слева — текст читается на цветной solid
+     - title тёмный, лёгкий highlight (не тяжёлая тень)
+     - lead скрыт, pills белые soft-square 2×2 grid
+   ============================================================ */
+
+@media (max-width: 820px) {
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero {
+    min-height: 340px !important;
+    max-height: 380px !important;
+    height: 360px !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    padding: 26px 22px !important;
+    display: grid !important;
+    align-items: center !important;
+    position: relative !important;
+    margin: 16px auto !important;
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+  }
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    opacity: 1 !important;
+    filter: none !important;
+    z-index: 0 !important;
+  }
+
+  /* CREAM SIDE-VEIL — слева непрозрачный фон цвета урока, справа прозрачно */
+  html body .canon-l-hero.canon-l-hero.canon-l-hero::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--lb-bg, #fff8f0) 94%, transparent) 0%,
+      color-mix(in srgb, var(--lb-bg, #fff8f0) 74%, transparent) 40%,
+      color-mix(in srgb, var(--lb-bg, #fff8f0) 22%, transparent) 62%,
+      transparent 80%
+    ) !important;
+    pointer-events: none !important;
+  }
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-inner {
+    position: relative !important;
+    z-index: 1 !important;
+    max-width: 300px !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-eyebrow {
+    margin: 0 0 10px !important;
+    opacity: 0.85 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    font-weight: 800 !important;
+    color: var(--lb-text, #2b1c12) !important;
+  }
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-title {
+    color: var(--lb-text, #2b1c12) !important;
+    font-size: clamp(1.9rem, 8.8vw, 2.3rem) !important;
+    line-height: 1.04 !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) !important;
+    margin: 0 0 14px !important;
+    max-width: 285px !important;
+    font-weight: 800 !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
+  }
+
+  /* Lead скрыт на mobile (China canon) */
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-lead {
+    display: none !important;
+  }
+
+  /* Pills: 2×2 soft-square, белые, темный текст */
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-meta,
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-pills {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    max-width: 300px !important;
+    margin: 4px 0 0 !important;
+  }
+
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-pill {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+    color: var(--lb-text, #2b1c12) !important;
+    border: 1px solid var(--lb-pill-border, rgba(0, 0, 0, 0.12)) !important;
+    text-align: center !important;
+    white-space: normal !important;
+    font-size: 10.5px !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0.05em !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    text-shadow: none !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Cap pills at 4 — 5+ скрыты */
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-meta > :nth-child(n+5),
+  html body .canon-l-hero.canon-l-hero.canon-l-hero .canon-l-hero-pills > :nth-child(n+5) {
+    display: none !important;
+  }
+}

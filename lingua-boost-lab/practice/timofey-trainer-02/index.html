@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Workbook 02 · Past Tenses · Timofey · 29 June</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a0d2e; --bg-2:#2a1845; --surface:#3a2660; --card:#45307a; --surface-2:#553d8e;
+  --text:#f4eaff; --muted:#b9a8d4; --faint:#8a7aab;
+  --accent:#9b59b6; --accent-2:#c98aea; --brand:#ce93d8; --brand-2:#e1bee7;
+  --line:rgba(201,138,234,.16); --line-2:rgba(201,138,234,.32);
+  --ok:#42d889; --miss:#ff5c72;
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.65;
+  background-image:radial-gradient(ellipse at 80% 0%,rgba(155,89,182,.22),transparent 50%),
+                   radial-gradient(ellipse at 10% 90%,rgba(206,147,216,.14),transparent 50%);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;padding:12px clamp(16px,3vw,28px);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);
+  transition:transform .26s cubic-bezier(.4,.0,.2,1);will-change:transform}
+.topbar.is-hidden{transform:translateY(-100%)}
+/* Lesson / Homework tabs (ProgressMe-style) */
+.lesson-tabs{position:fixed;top:62px;left:0;right:0;z-index:99;display:flex;gap:8px;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:10px 12px;transition:top .26s cubic-bezier(.4,.0,.2,1)}
+.topbar.is-hidden + .lesson-tabs{top:0}
+.ltab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--line-2);background:var(--card);
+  color:var(--muted);font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.ltab:hover{border-color:var(--accent);color:var(--accent-2)}
+.ltab.is-active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+.ltab .ltab-count{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:50px;font-size:10px;min-width:20px;text-align:center}
+.ltab.is-active .ltab-count{background:rgba(255,255,255,.32);color:#fff}
+@media(max-width:680px){.lesson-tabs{padding:6px 6px;gap:6px;top:54px}.ltab{padding:7px 12px;font-size:9.5px;letter-spacing:.08em}}
+/* Mobile hero — center the image, lighter gradient overlay so it's actually visible */
+@media(max-width:680px){
+  .hero-card{
+    background-position:center 25% !important;
+    background-image:linear-gradient(180deg,rgba(26,13,46,.18) 0%,rgba(26,13,46,.45) 45%,rgba(26,13,46,.92) 100%),url('./assets/img/hero-banner-w02-v2.jpg') !important;
+    min-height:260px !important;padding:20px 18px !important
+  }
+  .hero-card h1.hero-title{font-size:1.5rem;line-height:1.05;margin-bottom:10px}
+  .hero-card .eyebrow{padding:5px 10px;font-size:10px;letter-spacing:.16em}
+  .hero-card .hero-lead{font-size:.86rem;padding:12px 14px}
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:40px;height:40px;border-radius:8px;border-top-right-radius:0;background:var(--accent);color:#fff;
+  font-family:var(--display);font-weight:900;font-size:22px;display:grid;place-items:center;position:relative;overflow:hidden}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;background:#fff;clip-path:polygon(100% 0,0 0,100% 100%)}
+.brand-copy{display:grid;gap:1px}
+.brand-name{font-family:var(--display);font-weight:800;font-size:15px}
+.brand-sub{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+.spacer{flex:1}
+.pill{padding:5px 11px;border-radius:50px;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--line-2);color:var(--accent-2);background:rgba(46,125,50,.18)}
+.btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--card);color:var(--muted);
+  font:700 11px/1 var(--mono);letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center}
+
+/* Hero — image as background, text overlaid with glass plates */
+.hero{max-width:1240px;margin:24px auto 18px;padding:0 clamp(16px,3vw,28px)}
+.hero-card{position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg-2),var(--surface) 60%,#22134d);
+  padding:clamp(28px,4.5vw,52px);min-height:280px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(46,125,50,.32);border:1px solid var(--accent);
+  padding:7px 14px;border-radius:50px;font:800 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--accent-2);margin-bottom:18px;backdrop-filter:blur(10px)}
+h1.hero-title{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:1;
+  font-size:clamp(1.6rem,4vw,2.8rem);margin-bottom:14px;color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.6)}
+h1.hero-title .grad{background:linear-gradient(120deg,#d3a4ee,#f0d9ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-lead{font-size:1rem;color:var(--text);max-width:740px;line-height:1.6;background:rgba(10,28,46,.55);
+  border:1px solid var(--line-2);border-radius:14px;padding:16px 20px;backdrop-filter:blur(10px)}
+
+/* Section */
+.section{max-width:1240px;margin:0 auto 28px;padding:0 clamp(16px,3vw,28px)}
+.section-hdr{display:flex;align-items:center;gap:14px;margin:30px 0 14px;flex-wrap:wrap}
+.section-num{font:800 11px/1 var(--mono);letter-spacing:.16em;background:var(--accent);color:#fff;padding:5px 11px;border-radius:50px}
+.section-hdr h2{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.6rem);letter-spacing:-.02em;line-height:1.1}
+.section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px;font-style:italic}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 28px rgba(0,0,0,.32)}
+.card p{margin-bottom:11px}
+.task-tag{display:inline-block;font:800 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;background:rgba(66,165,245,.16);color:var(--brand-2);border:1px solid var(--brand);border-radius:50px;padding:4px 10px;margin-bottom:10px}
+.info{background:rgba(102,187,106,.07);border-left:3px solid var(--accent);padding:12px 16px;border-radius:8px;font-size:.92rem;color:var(--muted);margin:12px 0}
+.info strong{color:var(--accent-2)}
+
+/* MCQ */
+.mcq-row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.mcq-q{font-size:.96rem;color:var(--text);margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opts button{background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);padding:9px 14px;border-radius:10px;
+  font-family:var(--body);font-size:.92rem;cursor:pointer;text-align:left;transition:.18s}
+.mcq-opts button:hover{border-color:var(--accent);color:var(--accent-2)}
+.mcq-opts button.correct{background:rgba(66,216,137,.18);border-color:var(--ok);color:var(--ok)}
+.mcq-opts button.wrong{background:rgba(255,92,114,.18);border-color:var(--miss);color:var(--miss)}
+.mcq-note{display:none;margin-top:10px;font:italic 600 .78rem/1.4 var(--mono);color:var(--muted);
+  background:rgba(66,165,245,.08);border-left:3px solid var(--brand);padding:8px 12px;border-radius:0 8px 8px 0}
+.mcq-row.revealed .mcq-note{display:block}
+
+/* Vocab flip */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:14px 0}
+.vocab-card{perspective:1000px;cursor:pointer;height:110px}
+.vocab-card .vocab-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.vocab-card.flipped .vocab-inner{transform:rotateY(180deg)}
+.vocab-card .vocab-front,.vocab-card .vocab-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line-2)}
+.vocab-card .vocab-front{background:var(--card);text-align:center;align-items:center}
+.vocab-card .vocab-front .word{font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--accent-2);line-height:1.2}
+.vocab-card .vocab-front .pos{font:800 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--faint);margin-top:6px;text-transform:uppercase}
+.vocab-card .vocab-back{background:var(--bg-2);transform:rotateY(180deg);color:var(--muted);font-size:.82rem;line-height:1.4}
+.vocab-card .vocab-back .meaning{color:var(--text);font-weight:600;margin-bottom:4px;font-size:.86rem}
+.vocab-card .vocab-back .ex{font-style:italic;color:var(--faint);font-size:.76rem}
+
+/* Gap fill text */
+.gapfill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;line-height:2;font-family:Georgia,serif}
+.gapfill input{display:inline-block;width:110px;font:600 .94rem var(--body);background:var(--bg-2);color:var(--text);border:1px solid var(--line-2);border-radius:6px;padding:3px 8px;outline:none;text-align:center;margin:0 2px}
+.gapfill input:focus{border-color:var(--accent)}
+.gapfill input.correct{background:rgba(66,216,137,.18);border-color:var(--ok);color:var(--ok)}
+.gapfill input.wrong{background:rgba(255,92,114,.18);border-color:var(--miss);color:var(--miss)}
+.gapfill button.check{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;margin-top:14px}
+.check-result{font:800 .78rem/1 var(--mono);letter-spacing:.12em;color:var(--accent-2);margin-left:14px}
+
+/* Match game */
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.match-card{background:var(--card);border:1.5px solid var(--line-2);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;font-size:.92rem;transition:.18s}
+.match-card:hover{border-color:var(--accent)}
+.match-card.selected{border-color:var(--brand);background:rgba(66,165,245,.18)}
+.match-card.matched{background:rgba(66,216,137,.18);border-color:var(--ok);color:var(--ok);cursor:default;opacity:.7}
+
+/* Classify chips */
+.classify-pool{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.classify-pool .chip{background:var(--card);border:1.5px solid var(--line-2);padding:8px 14px;border-radius:50px;cursor:pointer;font-size:.92rem;color:var(--text);transition:.18s}
+.classify-pool .chip:hover{border-color:var(--accent)}
+.classify-pool .chip.selected{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent);transform:translateY(-1px)}
+.classify-pool .chip.placed{opacity:.35;pointer-events:none}
+.classify-pool .chip.correct{background:rgba(66,216,137,.18);border-color:var(--ok);color:var(--ok)}
+.classify-pool .chip.wrong{background:rgba(255,92,114,.18);border-color:var(--miss);color:var(--miss)}
+.classify-bins{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+.classify-bin{background:var(--bg-2);border:2px dashed var(--line-2);border-radius:12px;padding:14px;min-height:120px;cursor:pointer;transition:.18s}
+.classify-bin:hover,.classify-bin.ready{border-color:var(--accent);background:color-mix(in srgb,var(--bg-2) 84%,var(--accent) 16%)}
+.classify-bin h4{color:var(--accent-2);font-family:var(--display);font-size:.95rem;margin-bottom:10px;text-align:center;font-weight:800}
+.classify-bin .placed-items{display:flex;flex-wrap:wrap;gap:6px;min-height:60px}
+.classify-bin .placed-items > span{background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:50px;font-size:.86rem;cursor:pointer}
+.classify-bin .placed-items > span.correct{background:rgba(66,216,137,.18);border-color:var(--ok);color:var(--ok)}
+.classify-bin .placed-items > span.wrong{background:rgba(255,92,114,.18);border-color:var(--miss);color:var(--miss)}
+@media(max-width:680px){.classify-bins{grid-template-columns:1fr}}
+
+/* Builder */
+.builder{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.builder-prompt{font-style:italic;color:var(--muted);margin-bottom:10px}
+.target-line{background:var(--bg-2);border:1.5px dashed var(--line-2);border-radius:8px;padding:14px;min-height:50px;font-family:Georgia,serif;font-size:1rem;line-height:1.7;margin-bottom:12px}
+.target-line .slot{display:inline-block;min-width:90px;border-bottom:2px dotted var(--faint);margin:0 4px;padding:0 4px;color:var(--accent-2);cursor:pointer}
+.target-line .slot.filled{border-bottom-color:var(--accent);font-weight:600}
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.word-bank button{background:var(--surface-2);color:var(--text);border:1px solid var(--line-2);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.92rem}
+.word-bank button:hover{border-color:var(--accent);color:var(--accent-2)}
+.word-bank button.used{opacity:.35;cursor:default}
+.builder-controls{display:flex;gap:8px;align-items:center}
+.builder-controls button{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer}
+.builder-status{font:800 .78rem/1 var(--mono);color:var(--faint)}
+.builder-status.ok{color:var(--ok)}
+
+/* Mic-drill */
+.mic-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--bg-2);padding:10px 14px;border-radius:10px;margin:8px 0;border:1px solid var(--line)}
+.mic-text{flex:1;min-width:200px;font-size:.95rem}
+.mic-btn{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--text);border:1px solid var(--line-2);padding:8px 12px;border-radius:8px;cursor:pointer}
+.mic-btn.rec{background:var(--miss);border-color:var(--miss);color:#fff}
+.mic-feedback{display:none;font:800 .74rem/1 var(--mono);letter-spacing:.1em;color:var(--accent-2);background:rgba(66,216,137,.1);padding:4px 8px;border-radius:6px;margin-top:6px}
+.mic-feedback.miss{color:var(--miss);background:rgba(255,92,114,.1)}
+.mic-feedback.shown{display:inline-block}
+.mic-transcript{display:block;font-style:italic;color:var(--muted);font-size:.84rem;margin-top:4px;width:100%}
+
+/* Write area */
+.write{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.write textarea{width:100%;min-height:140px;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--body);font-size:.96rem;line-height:1.55;resize:vertical}
+.write-meta{display:flex;justify-content:space-between;font:800 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--faint);margin-top:8px}
+
+/* Universities grid */
+.uni-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.uni-card{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:.18s}
+.uni-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.uni-card .uni-name{font-family:var(--display);font-weight:800;color:var(--accent-2);font-size:.96rem;margin-bottom:4px}
+.uni-card .uni-meta{font:600 .78rem/1.3 var(--mono);color:var(--faint);letter-spacing:.04em}
+
+/* Quizlet CTA */
+.quizlet-cta{background:linear-gradient(135deg,rgba(102,187,106,.2),rgba(66,165,245,.12));border:1px solid var(--accent);border-radius:14px;padding:18px 22px;text-align:center;margin:14px 0}
+.quizlet-cta h4{font-family:var(--display);font-weight:800;color:var(--accent-2);margin-bottom:8px;font-size:1.1rem}
+.quizlet-cta a{display:inline-block;background:#0e2c4a;color:#9ee0a3;border:1.5px solid var(--accent);padding:10px 20px;border-radius:50px;font-weight:800;font-size:.92rem;margin-top:8px}
+
+/* Konspekt photos */
+.konspekt{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.konspekt img{width:100%;border-radius:14px;border:1px solid var(--line-2);box-shadow:0 4px 18px rgba(0,0,0,.35);cursor:zoom-in}
+@media(max-width:680px){.konspekt{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .topbar{gap:8px;padding:8px 12px}
+  .brand-mark{width:32px;height:32px;font-size:18px}
+  .brand-name{font-size:13px}
+  .brand-sub{display:none}
+  .pill{padding:4px 8px;font-size:8.5px;letter-spacing:.08em}
+  .pill:nth-of-type(2){display:none}
+  .btn-sm{height:28px;padding:0 8px;font-size:9.5px;letter-spacing:.05em}
+}
+
+footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;color:var(--faint);font:600 .8rem/1 var(--mono);letter-spacing:.06em}
+
+/* lab vocab/card safety canon · 2026-06-30 */
+.flip-grid,.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
+.flip-card,.vocab-card{min-height:130px;box-sizing:border-box}
+.flip-front,.flip-back,.vocab-front,.vocab-back{padding:30px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+.flip-front,.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
+.flip-front .pos,.vocab-front .pos{word-break:normal}
+.flip-card .lab-hw-add,.vocab-card .lab-hw-add{z-index:5}
+</style>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after,.friendly-topbar .brand-mark::after,.lab-topbar .brand-mark::after,.cmdbar .brand-mark::after,.cmdbar .cb-mark::after,.canon-l-topbar .brand-mark::after,.canon-l-topbar .canon-l-mark::after,.friendly-topbar .brand-logo-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+.topbar .brand-mark>span[style*="right:0"],.friendly-topbar .brand-mark>span[style*="right:0"],.lab-topbar .brand-mark>span[style*="right:0"],.cmdbar .brand-mark>span[style*="right:0"],.cmdbar .cb-mark>span[style*="right:0"],.canon-l-topbar .brand-mark>span[style*="right:0"],.canon-l-topbar .canon-l-mark>span[style*="right:0"],.friendly-topbar .brand-logo-mark>span[style*="right:0"]{display:none!important}
+</style>
+  <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=2">
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="../../../cabinet/">
+    <span class="brand-mark" aria-hidden="true" style="position:relative;overflow:hidden;border-top-right-radius:0;background:var(--accent);color:#fff"><span style="position:relative;z-index:1;color:#fff!important">N</span></span>
+    <span class="brand-copy">
+      <span class="brand-name">NG English</span>
+      <span class="brand-sub">LinguaBoost Lab · Workbook</span>
+    </span>
+  </a>
+  <span class="pill">Workbook 02</span>
+  <span class="pill" style="background:rgba(206,147,216,.18);border-color:var(--brand);color:var(--brand-2)">29 June · Past Tenses</span>
+  <div class="spacer"></div>
+  <a class="btn-sm" href="../../../cabinet/">← Cabinet</a>
+  <a class="btn-sm" href="../../../">Main</a>
+</nav>
+
+<nav class="lesson-tabs" role="tablist" aria-label="Lesson / Homework">
+  <button class="ltab is-active" data-tab="lesson" type="button">📖 Урок</button>
+  <button class="ltab" data-tab="homework" type="button">📚 Моя домашка <span class="ltab-count" id="ltab-hw-count">0</span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-card" style="background-image:linear-gradient(95deg,rgba(26,13,46,.92) 0%,rgba(58,38,96,.72) 38%,rgba(58,38,96,.10) 70%,rgba(26,13,46,.05) 100%),url('./assets/img/hero-banner-w02-v2.jpg');background-size:cover;background-position:right center;background-repeat:no-repeat;min-height:340px">
+    <div class="eyebrow">Workbook · Homework · 29 June</div>
+    <h1 class="hero-title">Timofey · <span class="grad">Workbook 02 · Past Tenses</span></h1>
+    <p class="hero-lead">
+      Practice for lesson #3 on 29 June · 10 blocks. Same 30-word vocabulary review · Past Simple / Past Continuous / Past Perfect recognition &amp; substitution · irregular verb forms · signal words (when · while · already · just · by) · sentence builder in past tenses · oral drill · mic-drill. Bring all blocks to our session and tell me what was unclear.
+    </p>
+  </div>
+</section>
+
+<!-- 1 · KONSPEKT + UNI · context -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">📷</div><h2>Your notes + university link</h2></div>
+  <div class="card">
+    <p style="color:var(--muted);font-size:.92rem;margin-bottom:10px">All the words in this workbook come from your own notes. Open the photos if you need to check a word or the -ing scheme.</p>
+    <details>
+      <summary style="cursor:pointer;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-2);font-weight:800;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;padding:10px 14px;display:inline-block">📷 Open notes (2 pages + -ing scheme)</summary>
+      <div class="konspekt" style="margin-top:14px">
+        <img src="./assets/img/konspekt-1.jpg" alt="Timofey · notes · page 1" onclick="window.open(this.src,'_blank')">
+        <img src="./assets/img/konspekt-2.jpg" alt="Timofey · notes · page 2" onclick="window.open(this.src,'_blank')">
+      </div>
+      <img src="./assets/img/ing-scheme.jpg" alt="-ing forms: tense/gerund/participle" style="width:100%;max-width:580px;border-radius:12px;margin-top:14px;border:1px solid var(--line-2);box-shadow:0 4px 18px rgba(0,0,0,.3);cursor:zoom-in" onclick="window.open(this.src,'_blank')">
+    </details>
+
+    <h3 style="font-family:var(--display);font-weight:800;color:var(--accent-2);margin:18px 0 10px;font-size:1.02rem">🎓 University · target programme</h3>
+    <a class="uni-card" href="https://www.uni-miskolc.hu/en/" target="_blank" style="display:block;max-width:520px">
+      <div class="uni-name">University of Miskolc · Hungary</div>
+      <div class="uni-meta">English-taught programmes · official site ↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- 2 · VOCAB FLIP CARDS · 30 words -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">01</div><h2>Vocabulary · 30 words · tap to flip</h2></div>
+  <p class="section-sub">Tap every card at least once. Know EN ↔ RU + example.</p>
+  <div class="card">
+    <div class="vocab-grid">
+      <div class="vocab-card" data-word="road markings"><div class="vocab-inner"><div class="vocab-front"><div class="word">road markings</div><div class="pos">noun pl</div></div><div class="vocab-back"><div class="meaning">дорожная разметка</div><div class="ex">Follow the road markings carefully.</div></div></div></div>
+      <div class="vocab-card" data-word="circle"><div class="vocab-inner"><div class="vocab-front"><div class="word">circle</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">круг (на дороге — круговое движение)</div><div class="ex">Take the second exit at the circle.</div></div></div></div>
+      <div class="vocab-card" data-word="oncoming traffic"><div class="vocab-inner"><div class="vocab-front"><div class="word">going into oncoming traffic</div><div class="pos">phrase</div></div><div class="vocab-back"><div class="meaning">движение по встречной полосе</div><div class="ex">He was fined for going into oncoming traffic.</div></div></div></div>
+      <div class="vocab-card" data-word="hiking"><div class="vocab-inner"><div class="vocab-front"><div class="word">hiking</div><div class="pos">noun · ing</div></div><div class="vocab-back"><div class="meaning">пеший туризм, поход в горы</div><div class="ex">Hiking is a great way to clear your head.</div></div></div></div>
+      <div class="vocab-card" data-word="economic sphere"><div class="vocab-inner"><div class="vocab-front"><div class="word">economic sphere</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">экономическая сфера</div><div class="ex">I work in the economic sphere.</div></div></div></div>
+      <div class="vocab-card" data-word="crediting"><div class="vocab-inner"><div class="vocab-front"><div class="word">crediting</div><div class="pos">noun · ing</div></div><div class="vocab-back"><div class="meaning">кредитование</div><div class="ex">Our crediting policy is conservative.</div></div></div></div>
+      <div class="vocab-card" data-word="banking"><div class="vocab-inner"><div class="vocab-front"><div class="word">banking</div><div class="pos">noun · ing</div></div><div class="vocab-back"><div class="meaning">банковское дело</div><div class="ex">She works in private banking.</div></div></div></div>
+      <div class="vocab-card" data-word="finance"><div class="vocab-inner"><div class="vocab-front"><div class="word">finance</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">финансы</div><div class="ex">He studies corporate finance.</div></div></div></div>
+      <div class="vocab-card" data-word="management"><div class="vocab-inner"><div class="vocab-front"><div class="word">management</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">менеджмент, управление</div><div class="ex">Project management requires patience.</div></div></div></div>
+      <div class="vocab-card" data-word="sales"><div class="vocab-inner"><div class="vocab-front"><div class="word">sales</div><div class="pos">noun pl</div></div><div class="vocab-back"><div class="meaning">продажи</div><div class="ex">Our sales grew 15% last quarter.</div></div></div></div>
+      <div class="vocab-card" data-word="logistics"><div class="vocab-inner"><div class="vocab-front"><div class="word">logistics</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">логистика</div><div class="ex">Logistics is the backbone of trade.</div></div></div></div>
+      <div class="vocab-card" data-word="enterprise logistics"><div class="vocab-inner"><div class="vocab-front"><div class="word">enterprise logistics</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">корпоративная логистика</div><div class="ex">Enterprise logistics covers warehouses and shipping.</div></div></div></div>
+      <div class="vocab-card" data-word="corporate economics"><div class="vocab-inner"><div class="vocab-front"><div class="word">corporate Economics</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">экономика предприятий</div><div class="ex">He majored in corporate economics.</div></div></div></div>
+      <div class="vocab-card" data-word="ATM"><div class="vocab-inner"><div class="vocab-front"><div class="word">ATM machine</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">банкомат</div><div class="ex">There is an ATM machine on the corner.</div></div></div></div>
+      <div class="vocab-card" data-word="schedule"><div class="vocab-inner"><div class="vocab-front"><div class="word">schedule</div><div class="pos">noun · v</div></div><div class="vocab-back"><div class="meaning">расписание; планировать</div><div class="ex">Check the schedule for next week.</div></div></div></div>
+      <div class="vocab-card" data-word="tutor"><div class="vocab-inner"><div class="vocab-front"><div class="word">a tutor</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">репетитор</div><div class="ex">My tutor explained it clearly.</div></div></div></div>
+      <div class="vocab-card" data-word="education"><div class="vocab-inner"><div class="vocab-front"><div class="word">education</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">образование</div><div class="ex">Higher education opens doors.</div></div></div></div>
+      <div class="vocab-card" data-word="do the tasks"><div class="vocab-inner"><div class="vocab-front"><div class="word">do the tasks</div><div class="pos">phrase</div></div><div class="vocab-back"><div class="meaning">выполнять задания</div><div class="ex">You have to do the tasks before class.</div></div></div></div>
+      <div class="vocab-card" data-word="pace"><div class="vocab-inner"><div class="vocab-front"><div class="word">pace</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">темп</div><div class="ex">She works at her own pace.</div></div></div></div>
+      <div class="vocab-card" data-word="speed"><div class="vocab-inner"><div class="vocab-front"><div class="word">speed</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">скорость</div><div class="ex">Reduce your speed in the city.</div></div></div></div>
+      <div class="vocab-card" data-word="split"><div class="vocab-inner"><div class="vocab-front"><div class="word">split</div><div class="pos">verb</div></div><div class="vocab-back"><div class="meaning">разделить (надвое)</div><div class="ex">Let's split the bill.</div></div></div></div>
+      <div class="vocab-card" data-word="share"><div class="vocab-inner"><div class="vocab-front"><div class="word">share</div><div class="pos">verb</div></div><div class="vocab-back"><div class="meaning">делиться, разделять</div><div class="ex">Can I share your notes?</div></div></div></div>
+      <div class="vocab-card" data-word="divide"><div class="vocab-inner"><div class="vocab-front"><div class="word">divide</div><div class="pos">verb</div></div><div class="vocab-back"><div class="meaning">делить (на части)</div><div class="ex">Divide the cake into eight pieces.</div></div></div></div>
+      <div class="vocab-card" data-word="supplies"><div class="vocab-inner"><div class="vocab-front"><div class="word">supplies</div><div class="pos">noun pl</div></div><div class="vocab-back"><div class="meaning">принадлежности, поставки</div><div class="ex">Office supplies are running low.</div></div></div></div>
+      <div class="vocab-card" data-word="labelling"><div class="vocab-inner"><div class="vocab-front"><div class="word">labelling</div><div class="pos">noun · ing</div></div><div class="vocab-back"><div class="meaning">маркировка</div><div class="ex">Labelling errors cause shipping delays.</div></div></div></div>
+      <div class="vocab-card" data-word="intelligible"><div class="vocab-inner"><div class="vocab-front"><div class="word">intelligible</div><div class="pos">adj</div></div><div class="vocab-back"><div class="meaning">понятный, ясный (про речь)</div><div class="ex">Speak slowly to stay intelligible.</div></div></div></div>
+      <div class="vocab-card" data-word="response"><div class="vocab-inner"><div class="vocab-front"><div class="word">response</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">ответ, реакция</div><div class="ex">Choose the best response.</div></div></div></div>
+      <div class="vocab-card" data-word="rubric"><div class="vocab-inner"><div class="vocab-front"><div class="word">rubric</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">критерий оценки</div><div class="ex">Read the rubric before writing.</div></div></div></div>
+      <div class="vocab-card" data-word="band score"><div class="vocab-inner"><div class="vocab-front"><div class="word">band score</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">балл по шкале (IELTS)</div><div class="ex">Target band score 6.5.</div></div></div></div>
+      <div class="vocab-card" data-word="elaboration"><div class="vocab-inner"><div class="vocab-front"><div class="word">elaboration</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">развёртывание идей, разработка</div><div class="ex">Examiners reward elaboration.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2b · VOCAB MCQ · pick from all 30 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">1b</div><h2>Vocabulary MCQ · pick the right word from the bank · 10 sentences</h2></div>
+  <p class="section-sub">All 30 vocabulary words are in each dropdown (shuffled). Pick the one that fits the sentence. Click <strong>Check all</strong> when ready.</p>
+  <div class="card">
+    <div class="task-tag">10 sentences · pick from all 30 vocab words</div>
+    <div id="vmcq-list"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap">
+      <button id="vmcq-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check all</button>
+      <button id="vmcq-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <span id="vmcq-result" style="font:800 .78rem/1 var(--mono);color:var(--accent-2)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 2c · VOCAB GAP-FILL · type the word -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">1c</div><h2>Vocabulary · type the missing word · 10 sentences</h2></div>
+  <p class="section-sub">Read the sentence and type the missing word. Case-insensitive. Click <strong>Check all</strong> when ready.</p>
+  <div class="card">
+    <div class="task-tag">10 sentences · type the word</div>
+    <div id="vgap-list"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap">
+      <button id="vgap-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check all</button>
+      <button id="vgap-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <span id="vgap-result" style="font:800 .78rem/1 var(--mono);color:var(--accent-2)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ORAL DRILL · WHAT DO YOU CALL... -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">02</div><h2>What do you call... · oral drill</h2></div>
+  <p class="section-sub">Speak the answer out loud. Click 🎙 to record — the recognizer fills in the answer. When all done, click <strong>Send to Maria</strong> at the bottom — it opens Telegram with your answers pre-filled.</p>
+  <div class="card">
+    <div class="task-tag">10 questions · oral recall</div>
+    <div id="wdyc-list"></div>
+    <div style="margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <a id="wdyc-send" class="mic-btn" href="#" style="background:linear-gradient(135deg,#FF7A45,#FF5A1F);color:#fff;border-color:#FF5A1F;padding:11px 20px;text-decoration:none;font-size:.86rem">📨 Send answers to Maria (Telegram)</a>
+      <button id="wdyc-copy" class="mic-btn">📋 Copy as text</button>
+      <span id="wdyc-status" style="font-family:var(--mono);font-size:.78rem;color:var(--muted)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 3a · MIX OF TENSES · RECOGNITION · 10 sentences -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">03</div><h2>Tenses · recognition · 10 sentences</h2></div>
+  <p class="section-sub">Read the sentence and choose the tense it is in. Past Simple vs Past Continuous vs Past Perfect (with one Present Perfect distractor).</p>
+  <div class="card">
+    <div class="task-tag">Recognition · 3 past tenses + 1 present perfect distractor</div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>1.</strong> Yesterday I went hiking with my friends. → tense?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "yesterday" — finished past time + irregular verb went → Past Simple.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>2.</strong> While I was preparing the report, the manager called me. → tense of the first clause?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "while" + was/were + -ing → Past Continuous (background action).</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>3.</strong> By 5pm, the team had already finished the schedule. → tense?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "by 5pm" + "had already" + past participle → Past Perfect (action completed before another past moment).</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>4.</strong> Last quarter our sales grew by 15%. → tense?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "Last quarter" — finished past time → Past Simple.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>5.</strong> When you arrived, I was still checking the labelling. → tense of the second clause?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "was still + -ing" — ongoing action when something interrupted it → Past Continuous.</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>6.</strong> Before the meeting started, we had divided the supplies. → tense of the second clause?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "before … started" + had + past participle → Past Perfect (earlier of two past actions).</div></div>
+    <div class="mcq-row" data-ans="d"><div class="mcq-q"><strong>7.</strong> I have just finished the elaboration of my idea. → tense?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "have just + past participle" → Present Perfect (NOT past — the result is connected to now). Watch out for the trap!</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>8.</strong> The crediting policy changed last week. → tense?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "last week" — finished past period + regular verb -ed → Past Simple.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>9.</strong> While she was sharing the costs, her tutor explained the rubric. → tense of the first clause?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "while + was + -ing" → Past Continuous (longer background action; "explained" is the interrupting Past Simple).</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>10.</strong> She had already left when I arrived at the bank. → tense of the first clause?</div>
+      <div class="mcq-opts"><button data-v="a">Past Simple</button><button data-v="b">Past Continuous</button><button data-v="c">Past Perfect</button><button data-v="d">Present Perfect</button></div>
+      <div class="mcq-note">→ "had already + past participle" → Past Perfect (she left BEFORE I arrived).</div></div>
+  </div>
+</section>
+
+<!-- 3b · MIX OF TENSES · SUBSTITUTION · 12 sentences -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">04</div><h2>Tenses · substitution · 12 sentences</h2></div>
+  <p class="section-sub">Choose the correct form of the verb. Past Simple / Past Continuous / Past Perfect. Explanation appears after the click.</p>
+  <div class="card">
+    <div class="task-tag">Substitution · 3 past tenses</div>
+
+    <div class="mcq-row" data-ans="b">
+      <div class="mcq-q"><strong>1.</strong> While I ___ to the office, my phone rang.</div>
+      <div class="mcq-opts">
+        <button data-v="a">walked</button>
+        <button data-v="b">was walking</button>
+        <button data-v="c">had walked</button>
+        <button data-v="d">have walked</button>
+      </div>
+      <div class="mcq-note">→ "while" + длительное действие, прерванное кратким → <strong>Past Continuous</strong> (was walking).</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>2.</strong> By the time the bank opened, the queue ___ to the corner.</div>
+      <div class="mcq-opts">
+        <button data-v="a">stretched</button>
+        <button data-v="b">was stretching</button>
+        <button data-v="c">had stretched</button>
+        <button data-v="d">has stretched</button>
+      </div>
+      <div class="mcq-note">→ "by the time" = к моменту прошлого → <strong>Past Perfect</strong> (had stretched).</div>
+    </div>
+
+    <div class="mcq-row" data-ans="b">
+      <div class="mcq-q"><strong>3.</strong> Yesterday morning I ___ the schedule with my partner.</div>
+      <div class="mcq-opts">
+        <button data-v="a">discuss</button>
+        <button data-v="b">discussed</button>
+        <button data-v="c">was discussing</button>
+        <button data-v="d">had discussed</button>
+      </div>
+      <div class="mcq-note">→ "yesterday morning" — законченное действие в прошлом → <strong>Past Simple</strong>.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>4.</strong> Last summer we ___ in Italy for two weeks.</div>
+      <div class="mcq-opts">
+        <button data-v="a">stay</button>
+        <button data-v="b">were staying</button>
+        <button data-v="c">stayed</button>
+        <button data-v="d">have stayed</button>
+      </div>
+      <div class="mcq-note">→ "last summer" + завершённое действие → <strong>Past Simple</strong>.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="b">
+      <div class="mcq-q"><strong>5.</strong> While the manager ___ the rubric, the trainee was taking notes.</div>
+      <div class="mcq-opts">
+        <button data-v="a">explained</button>
+        <button data-v="b">was explaining</button>
+        <button data-v="c">had explained</button>
+        <button data-v="d">has explained</button>
+      </div>
+      <div class="mcq-note">→ Два параллельных длительных действия → оба в <strong>Past Continuous</strong>.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>6.</strong> After we ___ the contract, the celebrations began.</div>
+      <div class="mcq-opts">
+        <button data-v="a">signed</button>
+        <button data-v="b">were signing</button>
+        <button data-v="c">had signed</button>
+        <button data-v="d">have signed</button>
+      </div>
+      <div class="mcq-note">→ "after" + первое из двух прошлых действий → <strong>Past Perfect</strong> (had signed).</div>
+    </div>
+
+    <div class="mcq-row" data-ans="d">
+      <div class="mcq-q"><strong>7.</strong> When I was a student, I ___ as a tutor on weekends.</div>
+      <div class="mcq-opts">
+        <button data-v="a">work</button>
+        <button data-v="b">have worked</button>
+        <button data-v="c">am working</button>
+        <button data-v="d">worked</button>
+      </div>
+      <div class="mcq-note">→ "when I was a student" — период в прошлом, регулярное действие → <strong>Past Simple</strong>.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="b">
+      <div class="mcq-q"><strong>8.</strong> The screen shows that you ___ the report ten minutes ago.</div>
+      <div class="mcq-opts">
+        <button data-v="a">send</button>
+        <button data-v="b">sent</button>
+        <button data-v="c">were sending</button>
+        <button data-v="d">have sent</button>
+      </div>
+      <div class="mcq-note">→ "ten minutes ago" = точная точка в прошлом → <strong>Past Simple</strong>. С "ago" — никогда Present Perfect.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>9.</strong> Before I joined the company, I ___ never ___ in logistics.</div>
+      <div class="mcq-opts">
+        <button data-v="a">was / working</button>
+        <button data-v="b">did / work</button>
+        <button data-v="c">had / worked</button>
+        <button data-v="d">have / worked</button>
+      </div>
+      <div class="mcq-note">→ "before … joined" + "never" в прошлом → <strong>Past Perfect</strong> (had never worked).</div>
+    </div>
+
+    <div class="mcq-row" data-ans="b">
+      <div class="mcq-q"><strong>10.</strong> While she ___ the labelling, the system crashed.</div>
+      <div class="mcq-opts">
+        <button data-v="a">checked</button>
+        <button data-v="b">was checking</button>
+        <button data-v="c">had checked</button>
+        <button data-v="d">has checked</button>
+      </div>
+      <div class="mcq-note">→ "while" + длительное прерванное действие → <strong>Past Continuous</strong>.</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>11.</strong> The CEO resigned because she ___ already ___ her main goals.</div>
+      <div class="mcq-opts">
+        <button data-v="a">achieved</button>
+        <button data-v="b">was achieving</button>
+        <button data-v="c">had / achieved</button>
+        <button data-v="d">has / achieved</button>
+      </div>
+      <div class="mcq-note">→ Причина в прошлом, ДО другого прошлого действия → <strong>Past Perfect</strong> (had already achieved).</div>
+    </div>
+
+    <div class="mcq-row" data-ans="c">
+      <div class="mcq-q"><strong>12.</strong> Last Friday I ___ at the ATM machine for twenty minutes.</div>
+      <div class="mcq-opts">
+        <button data-v="a">wait</button>
+        <button data-v="b">am waiting</button>
+        <button data-v="c">waited</button>
+        <button data-v="d">had waited</button>
+      </div>
+      <div class="mcq-note">→ "Last Friday" + завершённое действие → <strong>Past Simple</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4b · IRREGULAR VERBS REVIEW · V1/V2/V3 table drill -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">4b</div><h2>Irregular verbs · V1 / V2 / V3 · 12 verbs</h2></div>
+  <p class="section-sub">Read the base form, then type the Past Simple (V2) and Past Participle (V3). Case-insensitive. Click <strong>Check all</strong>.</p>
+  <div class="card">
+    <div class="task-tag">12 verbs · type V2 and V3</div>
+    <table id="irreg-table" style="width:100%;border-collapse:collapse;font-family:var(--body);font-size:.92rem;margin:8px 0">
+      <thead>
+        <tr style="background:var(--bg-2)">
+          <th style="text-align:left;padding:10px 8px;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);border-bottom:1px solid var(--line-2)">V1 · base</th>
+          <th style="text-align:left;padding:10px 8px;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);border-bottom:1px solid var(--line-2)">V2 · Past Simple</th>
+          <th style="text-align:left;padding:10px 8px;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);border-bottom:1px solid var(--line-2)">V3 · Past Participle</th>
+        </tr>
+      </thead>
+      <tbody id="irreg-body"></tbody>
+    </table>
+    <div style="display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap">
+      <button id="irreg-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check all</button>
+      <button id="irreg-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <button id="irreg-reveal" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--brand-2);border:1px solid var(--brand);padding:10px 16px;border-radius:8px;cursor:pointer">Reveal all</button>
+      <span id="irreg-result" style="font:800 .78rem/1 var(--mono);color:var(--accent-2)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · DRAG MATCH RU↔EN -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">05</div><h2>Match · 12 pairs RU ↔ EN</h2></div>
+  <p class="section-sub">Tap a word on the left, then its translation on the right. A correct pair locks green.</p>
+  <div class="card">
+    <div class="match-cols">
+      <div id="match-left"></div>
+      <div id="match-right"></div>
+    </div>
+    <script type="application/json" id="match-data">[
+      {"en":"road markings","ru":"дорожная разметка"},
+      {"en":"oncoming traffic","ru":"встречный поток"},
+      {"en":"hiking","ru":"поход в горы"},
+      {"en":"economic sphere","ru":"экономическая сфера"},
+      {"en":"crediting","ru":"кредитование"},
+      {"en":"banking","ru":"банковское дело"},
+      {"en":"finance","ru":"финансы"},
+      {"en":"management","ru":"управление"},
+      {"en":"logistics","ru":"логистика"},
+      {"en":"a tutor","ru":"репетитор"},
+      {"en":"schedule","ru":"расписание"},
+      {"en":"pace","ru":"темп"}
+    ]</script>
+  </div>
+</section>
+
+<!-- 5 · PAST TENSES CLASSIFY -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">06</div><h2>Past tenses · classify · 12 sentences</h2></div>
+  <p class="section-sub">Tap a sentence, then tap the correct bin: Past Simple, Past Continuous, or Past Perfect.</p>
+  <div class="card">
+    <div class="info">
+      <strong>Quick rules:</strong> <strong>Past Simple</strong> = finished action in the past (yesterday / last week / in 2020). <strong>Past Continuous</strong> = was/were + -ing, ongoing action at a past moment. <strong>Past Perfect</strong> = had + V3, action completed BEFORE another past action ("had already", "by 5pm", "before he came").
+    </div>
+
+    <div class="classify-pool" id="cl-pool">
+      <span class="chip" data-cls="simple">Yesterday he opened the bank.</span>
+      <span class="chip" data-cls="continuous">She was talking on the phone.</span>
+      <span class="chip" data-cls="perfect">We had finished by 5pm.</span>
+      <span class="chip" data-cls="simple">Last week I called my tutor.</span>
+      <span class="chip" data-cls="continuous">The meeting was going on when I arrived.</span>
+      <span class="chip" data-cls="perfect">They had signed the contract before lunch.</span>
+      <span class="chip" data-cls="simple">She studied logistics for two hours.</span>
+      <span class="chip" data-cls="continuous">He was sharing his screen.</span>
+      <span class="chip" data-cls="perfect">I had already checked the schedule.</span>
+      <span class="chip" data-cls="simple">Mary worked at the bank in 2020.</span>
+      <span class="chip" data-cls="continuous">We were dividing the supplies.</span>
+      <span class="chip" data-cls="perfect">The team had divided the tasks before noon.</span>
+    </div>
+
+    <div class="classify-bins">
+      <div class="classify-bin" data-bin="simple">
+        <h4>Past Simple</h4>
+        <div class="placed-items"></div>
+      </div>
+      <div class="classify-bin" data-bin="continuous">
+        <h4>Past Continuous</h4>
+        <div class="placed-items"></div>
+      </div>
+      <div class="classify-bin" data-bin="perfect">
+        <h4>Past Perfect</h4>
+        <div class="placed-items"></div>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:8px"><em>Tap a chip → choose a bin. Tap a chip inside a bin → it returns to the pool. When all are placed → click "Check".</em></p>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap">
+      <button id="cl-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check</button>
+      <button id="cl-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <span id="cl-result" style="font:800 .78rem/1 var(--mono);color:var(--accent-2)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · IRREGULAR VERBS · V2/V3 DRILL -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">07</div><h2>Irregular verbs · V2 vs V3 · 8 sentences</h2></div>
+  <p class="section-sub"><strong>V2</strong> (past form) is used in <em>Past Simple</em> (I <strong>went</strong>). <strong>V3</strong> (past participle) is used after <em>had</em> in <em>Past Perfect</em> (I had <strong>gone</strong>). Pick the right form.</p>
+  <div class="card">
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>1.</strong> Yesterday I ___ to the bank to check my account. (go)</div>
+      <div class="mcq-opts"><button data-v="a">went</button><button data-v="b">gone</button></div>
+      <div class="mcq-note">→ Past Simple → V2 → <strong>went</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>2.</strong> By the time we arrived, he had ___ to the manager. (speak)</div>
+      <div class="mcq-opts"><button data-v="a">spoke</button><button data-v="b">spoken</button></div>
+      <div class="mcq-note">→ Past Perfect ("had + V3") → <strong>spoken</strong>.</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>3.</strong> She ___ the early bus to work last Monday. (take)</div>
+      <div class="mcq-opts"><button data-v="a">took</button><button data-v="b">taken</button></div>
+      <div class="mcq-note">→ Past Simple → V2 → <strong>took</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>4.</strong> They had ___ lunch before I joined them. (eat)</div>
+      <div class="mcq-opts"><button data-v="a">ate</button><button data-v="b">eaten</button></div>
+      <div class="mcq-note">→ Past Perfect → V3 → <strong>eaten</strong>.</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>5.</strong> I ___ the report last night and sent it at midnight. (write)</div>
+      <div class="mcq-opts"><button data-v="a">wrote</button><button data-v="b">written</button></div>
+      <div class="mcq-note">→ Past Simple → V2 → <strong>wrote</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>6.</strong> The CEO had ___ us a clear deadline before she resigned. (give)</div>
+      <div class="mcq-opts"><button data-v="a">gave</button><button data-v="b">given</button></div>
+      <div class="mcq-note">→ Past Perfect → V3 → <strong>given</strong>.</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>7.</strong> We ___ at a small café near the bank. (meet)</div>
+      <div class="mcq-opts"><button data-v="a">met</button><button data-v="b">meet</button></div>
+      <div class="mcq-note">→ Past Simple of meet → V2 → <strong>met</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>8.</strong> When my tutor entered, I had already ___ the rubric. (read)</div>
+      <div class="mcq-opts"><button data-v="a">read [riːd]</button><button data-v="b">read [red]</button></div>
+      <div class="mcq-note">→ V3 of "read" written the same but pronounced <strong>[red]</strong> — Past Perfect: had read.</div></div>
+  </div>
+</section>
+
+<!-- 7 · DEFINITION MATCH · word ↔ EN definition -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">08</div><h2>Define the word · 12 pairs</h2></div>
+  <p class="section-sub">Tap a word on the left, then its English definition on the right. Builds IELTS-style "explain in your own words" skill.</p>
+  <div class="card">
+    <div class="match-cols" style="grid-template-columns:1fr 1.4fr">
+      <div id="defmatch-left"></div>
+      <div id="defmatch-right"></div>
+    </div>
+    <script type="application/json" id="defmatch-data">[
+      {"w":"crediting","d":"the act of lending money that has to be paid back with interest"},
+      {"w":"logistics","d":"managing the movement of goods between places"},
+      {"w":"schedule","d":"a plan of when things happen at fixed times"},
+      {"w":"intelligible","d":"clear enough to be understood"},
+      {"w":"rubric","d":"a guide that explains how something is marked or scored"},
+      {"w":"elaboration","d":"developing or explaining an idea with more detail"},
+      {"w":"oncoming","d":"coming towards you (about traffic)"},
+      {"w":"a tutor","d":"a person who teaches one student privately"},
+      {"w":"hiking","d":"walking for long distance in nature or mountains"},
+      {"w":"pace","d":"the rate or speed at which someone works or moves"},
+      {"w":"ATM machine","d":"a device where you withdraw cash with a card"},
+      {"w":"labelling","d":"putting tags or stickers on products with information"}
+    ]</script>
+  </div>
+</section>
+
+<!-- 7b · WORD-FORMATION · -ing / noun / verb -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">08a</div><h2>Word formation · -ing / noun / verb · 10 sentences</h2></div>
+  <p class="section-sub">Choose the correct form of the word in brackets. Some need -ing, some need a noun form, some — verb.</p>
+  <div class="card">
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>1.</strong> Modern ___ uses AI to plan delivery routes. (logistic)</div>
+      <div class="mcq-opts"><button data-v="a">Logistic</button><button data-v="b">Logistics</button><button data-v="c">Logisting</button></div>
+      <div class="mcq-note">→ Field name as subject → <strong>logistics</strong>.</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>2.</strong> Without a strict ___ policy, the bank lost millions last year. (credit)</div>
+      <div class="mcq-opts"><button data-v="a">credit</button><button data-v="b">credited</button><button data-v="c">crediting</button></div>
+      <div class="mcq-note">→ Participle as adjective → <strong>crediting</strong> policy.</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>3.</strong> We took up ___ as a family hobby last summer. (hike)</div>
+      <div class="mcq-opts"><button data-v="a">hiking</button><button data-v="b">hike</button><button data-v="c">hiked</button></div>
+      <div class="mcq-note">→ Gerund as object of "took up" → <strong>hiking</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>4.</strong> Examiners told me to focus on ___ in my next essay. (elaborate)</div>
+      <div class="mcq-opts"><button data-v="a">elaborate</button><button data-v="b">elaboration</button><button data-v="c">elaborating</button></div>
+      <div class="mcq-note">→ Noun form after preposition "on" → <strong>elaboration</strong>.</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>5.</strong> Let's ___ the team into two groups before the meeting. (split)</div>
+      <div class="mcq-opts"><button data-v="a">splitting</button><button data-v="b">split-up</button><button data-v="c">split</button></div>
+      <div class="mcq-note">→ Bare infinitive after "let's" → <strong>split</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>6.</strong> Better ___ on EU products would solve half of our delivery problems. (label)</div>
+      <div class="mcq-opts"><button data-v="a">Label</button><button data-v="b">Labelling</button><button data-v="c">Labelled</button></div>
+      <div class="mcq-note">→ Gerund as subject → <strong>labelling</strong>.</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>7.</strong> Try to keep a steady ___ during the IELTS speaking part. (pace)</div>
+      <div class="mcq-opts"><button data-v="a">pace</button><button data-v="b">pacing</button><button data-v="c">paced</button></div>
+      <div class="mcq-note">→ Noun "rate/speed" after "a steady" → <strong>pace</strong>.</div></div>
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>8.</strong> Without higher ___, his promotion would be impossible. (educate)</div>
+      <div class="mcq-opts"><button data-v="a">educated</button><button data-v="b">education</button><button data-v="c">educating</button></div>
+      <div class="mcq-note">→ Noun form after "higher" → <strong>education</strong>.</div></div>
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>9.</strong> Can you ___ the next meeting for Wednesday morning? (schedule)</div>
+      <div class="mcq-opts"><button data-v="a">scheduled</button><button data-v="b">scheduling</button><button data-v="c">schedule</button></div>
+      <div class="mcq-note">→ Bare infinitive after "can you" → <strong>schedule</strong> (verb).</div></div>
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>10.</strong> A clear voice keeps your message ___ even at high speed. (intelligible)</div>
+      <div class="mcq-opts"><button data-v="a">intelligible</button><button data-v="b">intelligence</button><button data-v="c">intelligibly</button></div>
+      <div class="mcq-note">→ Adjective complement after "keeps … message" → <strong>intelligible</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 8 · BUILDER · 3 sentences -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">09</div><h2>Sentence builder · 3 sentences</h2></div>
+  <p class="section-sub">Click words in order. One click on a filled slot — undo. Click "Check" when ready.</p>
+  <div class="card">
+
+    <div class="builder" data-answer="Yesterday I worked in the field of corporate economics .">
+      <div class="builder-prompt">Past Simple — one finished action yesterday:</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span class="slot" data-pos="5">___</span>
+        <span class="slot" data-pos="6">___</span>
+        <span class="slot" data-pos="7">___</span>
+        <span>.</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="Yesterday">Yesterday</button>
+        <button data-w="I">I</button>
+        <button data-w="worked">worked</button>
+        <button data-w="in">in</button>
+        <button data-w="the field">the field</button>
+        <button data-w="of">of</button>
+        <button data-w="corporate economics">corporate economics</button>
+        <button data-w="was working">was working</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="While the manager was sharing the schedule , I took notes .">
+      <div class="builder-prompt">Past Continuous + Past Simple — interrupted action:</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span>,</span>
+        <span class="slot" data-pos="5">___</span>
+        <span class="slot" data-pos="6">___</span>
+        <span class="slot" data-pos="7">___</span>
+        <span>.</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="While">While</button>
+        <button data-w="the manager">the manager</button>
+        <button data-w="was sharing">was sharing</button>
+        <button data-w="the">the</button>
+        <button data-w="schedule">schedule</button>
+        <button data-w="I">I</button>
+        <button data-w="took">took</button>
+        <button data-w="notes">notes</button>
+        <button data-w="and">and</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="By 5pm we had already finished the labelling .">
+      <div class="builder-prompt">Past Perfect — action completed before a past moment:</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span class="slot" data-pos="5">___</span>
+        <span class="slot" data-pos="6">___</span>
+        <span class="slot" data-pos="7">___</span>
+        <span>.</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="By 5pm">By 5pm</button>
+        <button data-w="we">we</button>
+        <button data-w="had">had</button>
+        <button data-w="already">already</button>
+        <button data-w="finished">finished</button>
+        <button data-w="the">the</button>
+        <button data-w="labelling">labelling</button>
+        <button data-w="have">have</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · MIC-DRILL -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">10</div><h2>Mic-drill · repeat aloud · 6 sentences</h2></div>
+  <p class="section-sub">Press "Record" — say the sentence. The recognizer shows your match percentage. <strong>Chrome or Edge only.</strong></p>
+  <div class="card">
+    <div class="mic-row" data-target="Yesterday I went hiking with my friends.">
+      <div class="mic-text">1. Yesterday I went hiking with my friends. <em>(Past Simple)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="While I was preparing the report, the manager called.">
+      <div class="mic-text">2. While I was preparing the report, the manager called. <em>(Past Continuous + Past Simple)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="By 5pm our team had already finished the schedule.">
+      <div class="mic-text">3. By 5pm our team had already finished the schedule. <em>(Past Perfect)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="Last quarter our sales grew by fifteen percent.">
+      <div class="mic-text">4. Last quarter our sales grew by fifteen percent. <em>(Past Simple)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="When I was a student, I worked as a tutor on weekends.">
+      <div class="mic-text">5. When I was a student, I worked as a tutor on weekends. <em>(Past Simple)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="The crediting policy had changed before we signed the contract.">
+      <div class="mic-text">6. The crediting policy had changed before we signed the contract. <em>(Past Perfect + Past Simple)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · MINI-WRITE -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">11</div><h2>Mini-write · 5–7 sentences</h2></div>
+  <p class="section-sub">Write a paragraph about your future work. Use <strong>at least 5 words</strong> from the vocab set above (any).</p>
+  <div class="card">
+    <div class="write" id="write-1">
+      <textarea placeholder="I work in the economic sphere — specifically in corporate economics. My responsibilities include…"></textarea>
+      <div class="write-meta"><span><strong>Target:</strong> 5–7 sentences · 70–120 words · 5+ new words</span><span class="wc">words: <strong>0</strong></span></div>
+      <details style="margin-top:12px;background:rgba(66,165,245,.08);border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:10px 14px">
+        <summary style="cursor:pointer;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-2);font-weight:800">🗝 Sample model (open AFTER your own attempt)</summary>
+        <p style="margin-top:8px;font-style:italic;color:var(--muted);line-height:1.7">
+          I work in the economic sphere — specifically in corporate economics and enterprise logistics. My team handles crediting decisions and the company's overall finance strategy. Every Monday my schedule starts with a sales review, and on Fridays we share the results with management. Honestly, the pace is fast, but I enjoy it. After work I sometimes go hiking with friends — it helps me think more clearly. Next year I want to study management abroad — that is why I am working with a tutor on my English.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · QUIZLET CTA -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">12</div><h2>Quizlet · bonus practice</h2></div>
+  <div class="card">
+    <div class="quizlet-cta">
+      <h4>🎴 Flash-cards · all 30 words · Quizlet</h4>
+      <p style="color:var(--muted);font-size:.92rem;line-height:1.5;margin-top:6px">Maria's Quizlet set with all 30 words. Practice as cards, learn mode, match game or test — Quizlet does the spaced repetition for you.</p>
+      <a href="https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt" target="_blank" style="font-size:1rem;padding:12px 24px">🎴 Open Quizlet set ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Workbook 02 · Past Tenses · Timofey · 29 June 2026 · NG English Lab
+</footer>
+
+<!-- MCQ -->
+<script>
+document.querySelectorAll('.mcq-row').forEach(row=>{
+  const ans=(row.dataset.ans||'').toLowerCase();
+  row.querySelectorAll('.mcq-opts button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const v=(btn.dataset.v||'').toLowerCase();
+      row.querySelectorAll('.mcq-opts button').forEach(b=>b.classList.remove('correct','wrong'));
+      if(v===ans){btn.classList.add('correct');row.classList.add('revealed');}
+      else btn.classList.add('wrong');
+    });
+  });
+});
+</script>
+
+<!-- Gap-fill -->
+<script>
+document.querySelectorAll('.gapfill button.check').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const box=document.getElementById(btn.dataset.target);if(!box)return;
+    let ok=0,total=0;
+    box.querySelectorAll('input[data-a]').forEach(inp=>{
+      total++;
+      const v=(inp.value||'').trim().toLowerCase();
+      const expected=(inp.dataset.a||'').trim().toLowerCase();
+      inp.classList.remove('correct','wrong');
+      if(v===expected){inp.classList.add('correct');ok++;}
+      else inp.classList.add('wrong');
+    });
+    const res=document.getElementById(btn.dataset.target+'-result');
+    if(res)res.textContent=ok+' / '+total+' correct';
+  });
+});
+</script>
+
+<!-- Definition match -->
+<script>
+(function(){
+  const el=document.getElementById('defmatch-data'); if(!el)return;
+  const data=JSON.parse(el.textContent);
+  const shuffle=arr=>arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(p=>p[1]);
+  const left=shuffle(data.slice()),right=shuffle(data.slice());
+  const lEl=document.getElementById('defmatch-left'),rEl=document.getElementById('defmatch-right');
+  left.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.style.fontWeight='700';c.textContent=d.w;c.dataset.k=d.w;lEl.appendChild(c);});
+  right.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.style.fontSize='.86rem';c.textContent=d.d;c.dataset.k=d.w;rEl.appendChild(c);});
+  let sel=null;
+  document.querySelectorAll('#defmatch-left .match-card, #defmatch-right .match-card').forEach(c=>{
+    c.addEventListener('click',()=>{
+      if(c.classList.contains('matched'))return;
+      if(!sel){sel=c;c.classList.add('selected');return;}
+      if(sel===c){c.classList.remove('selected');sel=null;return;}
+      if(sel.parentElement===c.parentElement){sel.classList.remove('selected');sel=c;c.classList.add('selected');return;}
+      if(sel.dataset.k===c.dataset.k){sel.classList.add('matched');c.classList.add('matched');sel.classList.remove('selected');sel=null;}
+      else{c.classList.add('wrong');setTimeout(()=>{c.classList.remove('wrong');sel.classList.remove('selected');sel=null;},500);}
+    });
+  });
+})();
+</script>
+
+<!-- Match game -->
+<script>
+(function(){
+  const data=JSON.parse(document.getElementById('match-data').textContent);
+  const shuffle=arr=>arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(p=>p[1]);
+  const left=shuffle(data.slice()),right=shuffle(data.slice());
+  const lEl=document.getElementById('match-left'),rEl=document.getElementById('match-right');
+  left.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.textContent=d.en;c.dataset.k=d.en;lEl.appendChild(c);});
+  right.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.textContent=d.ru;c.dataset.k=d.en;rEl.appendChild(c);});
+  let sel=null;
+  document.querySelectorAll('.match-cols .match-card').forEach(c=>{
+    c.addEventListener('click',()=>{
+      if(c.classList.contains('matched'))return;
+      if(!sel){sel=c;c.classList.add('selected');return;}
+      if(sel===c){c.classList.remove('selected');sel=null;return;}
+      if(sel.parentElement===c.parentElement){sel.classList.remove('selected');sel=c;c.classList.add('selected');return;}
+      if(sel.dataset.k===c.dataset.k){sel.classList.add('matched');c.classList.add('matched');sel.classList.remove('selected');sel=null;}
+      else{c.classList.add('wrong');setTimeout(()=>{c.classList.remove('wrong');sel.classList.remove('selected');sel=null;},500);}
+    });
+  });
+})();
+</script>
+
+<!-- Classify -->
+<script>
+(function(){
+  const pool=document.getElementById('cl-pool');
+  const bins=document.querySelectorAll('.classify-bin');
+  if(!pool || !bins.length)return;
+  let selected=null;
+
+  function clearSelection(){
+    if(selected)selected.classList.remove('selected');
+    selected=null;
+    bins.forEach(b=>b.classList.remove('ready'));
+  }
+
+  function placeChip(bin){
+    if(!selected)return;
+    const sourceChip=selected;
+    const placed=document.createElement('span');
+    placed.innerHTML=sourceChip.innerHTML;
+    placed.dataset.cls=sourceChip.dataset.cls;
+    placed.addEventListener('click',()=>{
+      sourceChip.classList.remove('placed','correct','wrong');
+      placed.remove();
+    });
+    bin.querySelector('.placed-items').appendChild(placed);
+    sourceChip.classList.add('placed');
+    clearSelection();
+  }
+
+  pool.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      if(chip.classList.contains('placed'))return;
+      if(selected===chip){clearSelection();return;}
+      clearSelection();
+      selected=chip;
+      chip.classList.add('selected');
+      bins.forEach(b=>b.classList.add('ready'));
+    });
+  });
+  bins.forEach(bin=>{
+    bin.addEventListener('click',event=>{
+      if(event.target.closest('.placed-items > span'))return;
+      placeChip(bin);
+    });
+  });
+  document.getElementById('cl-check').addEventListener('click',()=>{
+    let ok=0,total=0;
+    bins.forEach(b=>{
+      const binCls=b.dataset.bin;
+      b.querySelectorAll('.placed-items > span').forEach(s=>{
+        total++;
+        s.classList.remove('correct','wrong');
+        if(s.dataset.cls===binCls){s.classList.add('correct');ok++;}
+        else s.classList.add('wrong');
+      });
+    });
+    document.getElementById('cl-result').textContent=ok+' / '+total+' correct';
+  });
+  const resetBtn = document.getElementById('cl-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      bins.forEach(b => { b.querySelectorAll('.placed-items > span').forEach(s => s.remove()); });
+      pool.querySelectorAll('.chip').forEach(c => c.classList.remove('placed','selected','correct','wrong'));
+      clearSelection();
+      document.getElementById('cl-result').textContent = '';
+    });
+  }
+})();
+</script>
+
+<!-- Builder -->
+<script>
+document.querySelectorAll('.builder').forEach(builder=>{
+  const target=builder.dataset.answer||'';
+  const slots=builder.querySelectorAll('.target-line .slot');
+  // shuffle word-bank so the correct order is not telegraphed
+  const bankEl=builder.querySelector('.word-bank');
+  if(bankEl){
+    const kids=Array.from(bankEl.children);
+    for(let i=kids.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [kids[i],kids[j]]=[kids[j],kids[i]];
+    }
+    kids.forEach(k=>bankEl.appendChild(k));
+  }
+  const bank=builder.querySelectorAll('.word-bank button');
+  const status=builder.querySelector('.builder-status');
+  const checkBtn=builder.querySelector('[data-act="check"]');
+  const resetBtn=builder.querySelector('[data-act="reset"]');
+  let filled=[];
+  bank.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(btn.classList.contains('used'))return;
+      const idx=Array.from(slots).findIndex(s=>!s.classList.contains('filled'));
+      if(idx<0)return;
+      slots[idx].textContent=btn.dataset.w;
+      slots[idx].classList.add('filled');
+      btn.classList.add('used');
+      filled.push({slotIdx:idx,btn:btn});
+    });
+  });
+  slots.forEach((slot,idx)=>{
+    slot.addEventListener('click',()=>{
+      if(!slot.classList.contains('filled'))return;
+      const i=filled.findIndex(f=>f.slotIdx===idx);if(i<0)return;
+      slot.textContent='___';slot.classList.remove('filled');filled[i].btn.classList.remove('used');filled.splice(i,1);
+    });
+  });
+  checkBtn.addEventListener('click',()=>{
+    // Build: prepend leading word if exists, append trailing chars
+    const targetLine=builder.querySelector('.target-line');
+    const built=Array.from(targetLine.children).map(el=>{
+      if(el.tagName==='SPAN'&&!el.classList.contains('slot'))return el.textContent;
+      if(el.classList.contains('filled'))return el.textContent;
+      return '___';
+    }).join(' ').replace(/\s+/g,' ').trim();
+    if(built===target.trim()){status.textContent='✓ Correct';status.className='builder-status ok';}
+    else{status.textContent='✗ Try again';status.className='builder-status';}
+  });
+  resetBtn.addEventListener('click',()=>{
+    slots.forEach(s=>{s.textContent='___';s.classList.remove('filled');});
+    bank.forEach(b=>b.classList.remove('used'));filled=[];status.textContent='';status.className='builder-status';
+  });
+});
+</script>
+
+<!-- Vocab flip -->
+<script>
+document.querySelectorAll('.vocab-card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flipped')));
+</script>
+
+<!-- WHAT DO YOU CALL · 10 oral questions + Telegram submit -->
+<script>
+(function(){
+  const list = document.getElementById('wdyc-list');
+  if (!list) return;
+  const questions = [
+    "What painted thing on the asphalt do drivers follow when they want to know where to turn?",
+    "Which device do most people use today instead of going inside the bank to take cash?",
+    "How would you describe the wide area that includes finance, sales, banking and management in one phrase?",
+    "Who do many students hire one-on-one to prepare for an exam outside the school system?",
+    "What outdoor activity is great for the head, involves walking long distances and is often done on weekends?",
+    "Which area of finance specifically focuses on lending money against interest?",
+    "Which workshop task means attaching information tags to bottles, boxes or parcels?",
+    "What document do IELTS examiners use to decide your band score?",
+    "If your boss tells you slow down a bit, what aspect of your work is she asking you to change?",
+    "What discipline covers warehouses, shipping and the whole supply chain?"
+  ];
+  questions.forEach((q,i)=>{
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0';
+    wrap.innerHTML = ''
+      + '<div style="font-size:.94rem;color:var(--text);margin-bottom:8px;line-height:1.5"><strong>'+(i+1)+'.</strong> '+q+'</div>'
+      + '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'
+      +   '<input type="text" data-wdyc-q="'+(i+1)+'" placeholder="Your answer (type or use mic)" style="flex:1;min-width:200px;background:var(--bg-2);color:var(--text);border:1px solid var(--line-2);padding:8px 12px;border-radius:8px;font-family:var(--body);font-size:.92rem">'
+      +   '<button class="mic-btn wdyc-mic" data-target-input="'+i+'">🎙 Speak</button>'
+      + '</div>'
+      + '<span class="mic-feedback" style="display:none;font-family:var(--mono);font-size:.74rem;margin-top:6px"></span>';
+    list.appendChild(wrap);
+  });
+
+  // Mic recognition fills input
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  document.querySelectorAll('.wdyc-mic').forEach(btn => {
+    if (!SR) { btn.disabled = true; btn.title = 'Chrome/Edge only'; return; }
+    const idx = +btn.dataset.targetInput;
+    const wrap = btn.closest('div').parentElement;
+    const input = wrap.querySelector('input[data-wdyc-q]');
+    const fb = wrap.querySelector('.mic-feedback');
+    let rec = null;
+    btn.addEventListener('click', () => {
+      if (rec) { try { rec.stop(); } catch(e){} rec = null; btn.classList.remove('rec'); btn.innerHTML='🎙 Speak'; return; }
+      rec = new SR(); rec.lang='en-US'; rec.interimResults=false; rec.maxAlternatives=1;
+      btn.classList.add('rec'); btn.innerHTML='■ Stop';
+      fb.style.display='none';
+      rec.onresult = ev => {
+        const heard = ev.results[0][0].transcript;
+        input.value = heard;
+        fb.textContent = '✓ "'+heard+'"'; fb.className='mic-feedback shown'; fb.style.display='inline-block';
+      };
+      rec.onerror = () => { fb.textContent='✗ mic error'; fb.className='mic-feedback miss shown'; fb.style.display='inline-block'; };
+      rec.onend = () => { btn.classList.remove('rec'); btn.innerHTML='🎙 Speak'; rec=null; };
+      try { rec.start(); } catch(e){}
+    });
+  });
+
+  function buildAnswersText(){
+    const lines = ['📚 Timofey · Workbook 02 (29 June) · Section 02 oral answers', ''];
+    document.querySelectorAll('#wdyc-list input[data-wdyc-q]').forEach((inp,i)=>{
+      const ans = (inp.value || '').trim() || '— skipped —';
+      lines.push((i+1) + '. ' + questions[i]);
+      lines.push('   → ' + ans);
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+
+  document.getElementById('wdyc-send').addEventListener('click', e => {
+    e.preventDefault();
+    const text = buildAnswersText();
+    const url = 'https://t.me/MariaBurceva_English?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+    document.getElementById('wdyc-status').textContent = '→ Telegram opened';
+  });
+  document.getElementById('wdyc-copy').addEventListener('click', () => {
+    const text = buildAnswersText();
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('wdyc-status').textContent = '✓ copied — paste in Telegram to Maria';
+    }, () => {
+      document.getElementById('wdyc-status').textContent = '✗ copy failed — select text manually';
+    });
+  });
+})();
+</script>
+
+<!-- Mic drill -->
+<script>
+(function(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){document.querySelectorAll('.mic-btn').forEach(b=>{b.disabled=true;b.title='Need Chrome/Edge';});return;}
+  function norm(s){return s.toLowerCase().replace(/[.,!?;:"'’]/g,'').replace(/\s+/g,' ').trim();}
+  function sim(a,b){const sa=new Set(a.split(' ')),sb=new Set(b.split(' '));let inter=0;sa.forEach(w=>{if(sb.has(w))inter++;});const u=new Set([...sa,...sb]).size;return u?inter/u:0;}
+  function wpmLabel(wpm){
+    if (wpm < 100) return wpm+' WPM · можно быстрее (норма 130-160)';
+    if (wpm <= 170) return wpm+' WPM · норма (130-160)';
+    return wpm+' WPM · быстро (норма 130-160)';
+  }
+  document.querySelectorAll('.mic-row').forEach(row=>{
+    const target=norm(row.dataset.target||'');
+    const btn=row.querySelector('.mic-btn');
+    const fb=row.querySelector('.mic-feedback');
+    const tr=row.querySelector('.mic-transcript');
+    let rec=null, t0=0;
+    btn.addEventListener('click',()=>{
+      if(rec){try{rec.stop();}catch(e){}rec=null;btn.classList.remove('rec');btn.innerHTML='🎙 Record';return;}
+      rec=new SR();rec.lang='en-US';rec.interimResults=false;rec.maxAlternatives=1;
+      btn.classList.add('rec');btn.innerHTML='■ Stop';fb.className='mic-feedback';fb.textContent='';tr.textContent='';
+      rec.onstart=()=>{ t0=Date.now(); };
+      rec.onresult=ev=>{
+        const dt=Math.max(.4,(Date.now()-t0)/1000);
+        const heard=norm(ev.results[0][0].transcript);tr.textContent='"'+heard+'"';
+        const words=(heard.match(/\S+/g)||[]).length;
+        const wpm=Math.round(words/dt*60);
+        const score=sim(heard,target);
+        const wpmStr = words>=2 ? ' · '+wpmLabel(wpm) : '';
+        if(score>=.85){fb.textContent='✓ Match · '+Math.round(score*100)+'%'+wpmStr;fb.className='mic-feedback shown';}
+        else if(score>=.6){fb.textContent='~ Close · '+Math.round(score*100)+'%'+wpmStr;fb.className='mic-feedback shown';}
+        else{fb.textContent='✗ Missed · '+Math.round(score*100)+'%'+wpmStr;fb.className='mic-feedback miss shown';}
+        row.dataset.score=score; row.dataset.wpm=wpm; row.dataset.attempted='1';
+      };
+      rec.onerror=()=>{fb.textContent='✗ Mic error';fb.className='mic-feedback miss shown';};
+      rec.onend=()=>{btn.classList.remove('rec');btn.innerHTML='🎙 Record';rec=null;};
+      try{rec.start();}catch(e){}
+    });
+  });
+})();
+</script>
+
+<!-- Word count -->
+<script>
+document.querySelectorAll('.write').forEach(w=>{
+  const ta=w.querySelector('textarea'),wc=w.querySelector('.wc strong');
+  if(!ta||!wc)return;
+  ta.addEventListener('input',()=>{wc.textContent=(ta.value.match(/\b[\w'-]+\b/g)||[]).length;});
+});
+</script>
+
+<link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+<script src="../../assets/lab-persist.js?v=3" defer></script>
+<script src="../../assets/lab-send-pill.js?v=2" defer></script>
+<script src="../../assets/lab-total.js?v=4" defer></script>
+<script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../../assets/lab-sync.js?v=16" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+<script src="../../assets/lab-homework.js?v=40" defer></script>
+<script src="../../assets/lab-vocab-builder.js?v=52" defer></script>
+<script src="../../assets/lab-coach-persist.js?v=1" defer></script>
+<script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
+<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script type="application/json" id="lab-coach-config">
+{
+  "task": "Pick ONE scene from your daily life (driving to university, a banking meeting, a hike) and tell a 90-second story using AT LEAST 7 of the 30 workbook words. Use natural -ing forms where they fit.",
+  "criteria": [
+    { "label": "Workbook noun used", "hint": "circle / banking / finance / sales / logistics / management / mortgage", "keywords": ["circle", "banking", "finance", "sales", "logistics", "management", "mortgage", "crediting", "economic sphere", "road markings"] },
+    { "label": "Workbook -ing form used", "hint": "hiking / banking / crediting / driving / planning", "keywords": ["hiking", "banking", "crediting", "driving", "planning", "running", "working", "studying", "meeting"] },
+    { "label": "Concrete time / setting given", "hint": "yesterday / this morning / last week / when I", "keywords": ["yesterday", "this morning", "last week", "when i", "while i", "on monday", "an hour ago"] },
+    { "label": "Linkers used", "hint": "so / because / however / then / after that", "keywords": ["so", "because", "however", "then", "after that", "and then", "but", "although"] },
+    { "label": "Personal opinion / reaction added", "hint": "I think / I felt / I was happy / it was tough", "keywords": ["i think", "i feel", "i felt", "i was", "it was", "for me", "honestly", "actually"] },
+    { "label": "Pace stays natural", "hint": "120-150 WPM for B1 — not too fast, not too slow", "keywords": [] },
+    { "label": "Closing line delivered", "hint": "In the end / Overall / Finally", "keywords": ["in the end", "overall", "finally", "to sum up", "so that's", "ultimately"] }
+  ]
+}
+</script>
+<script src="../../assets/lab-speech-tester.js?v=14" defer></script>
+<script src="../../assets/lab-quick-speak.js?v=4" defer></script>
+
+<!-- LESSON / HOMEWORK tabs (ProgressMe style) -->
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ltab');
+  var hwCount = document.getElementById('ltab-hw-count');
+  if (!tabs.length) return;
+  function setActive(name){
+    tabs.forEach(function(t){ t.classList.toggle('is-active', t.dataset.tab === name); });
+  }
+  function getHwKey(){ return 'lab_hw_v1_' + location.pathname; }
+  function refreshCount(){
+    try {
+      var arr = JSON.parse(localStorage.getItem(getHwKey()) || '[]');
+      if (hwCount) hwCount.textContent = arr.length;
+    } catch(e){}
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var name = t.dataset.tab;
+      setActive(name);
+      if (name === 'homework') {
+        var fab = document.querySelector('.lab-hw-fab button, .lab-hw-fab .lab-hw-fab-btn');
+        if (fab) fab.click();
+        else alert('Корзинка домашки ещё не загрузилась. Подожди секунду и тапни снова.');
+      } else {
+        document.querySelectorAll('.lab-hw-overlay.show').forEach(function(o){ o.classList.remove('show'); });
+      }
+    });
+  });
+  refreshCount();
+  setInterval(refreshCount, 1500);
+  // Close button or backdrop click → return to Lesson tab
+  document.addEventListener('click', function(e){
+    if (e.target.classList && e.target.classList.contains('lab-hw-overlay')) setActive('lesson');
+    if (e.target.closest('.lab-hw-close, .lab-hw-modal-close, [data-lab-hw-close]')) setActive('lesson');
+  });
+  // Escape key
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setActive('lesson'); });
+})();
+</script>
+
+<!-- TOPBAR auto-hide on scroll-down, show on scroll-up -->
+<script>
+(function(){
+  var tb = document.querySelector('.topbar');
+  if (!tb) return;
+  var lastY = window.scrollY;
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return;
+    requestAnimationFrame(function(){
+      var y = window.scrollY;
+      if (y > lastY + 4 && y > 80) tb.classList.add('is-hidden');
+      else if (y < lastY - 4) tb.classList.remove('is-hidden');
+      lastY = y;
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+})();
+</script>
+
+<!-- 1b · VOCAB MCQ (pick from all 30) -->
+<script>
+(function(){
+  var list = document.getElementById('vmcq-list');
+  if (!list) return;
+  var vocab = ["road markings","circle","oncoming traffic","hiking","economic sphere","crediting","banking","finance","management","sales","logistics","enterprise logistics","corporate economics","ATM machine","schedule","tutor","education","do the tasks","pace","speed","split","share","divide","supplies","labelling","intelligible","response","rubric","band score","elaboration"];
+  var items = [
+    {s:"The shop's daily ___ helps the team plan the day.", a:"schedule"},
+    {s:"Many companies offer ___ to employees who want to grow.", a:"education"},
+    {s:"___ is the discipline that studies how goods move from factory to customer.", a:"logistics"},
+    {s:"Without proper ___, products can't be tracked at customs.", a:"labelling"},
+    {s:"My ___ helps me prepare for IELTS twice a week.", a:"tutor"},
+    {s:"We agreed to ___ the bill three ways at the restaurant.", a:"split"},
+    {s:"A clear speaking ___ makes IELTS Part 3 easier to follow.", a:"pace"},
+    {s:"Try to add ___ when answering Speaking Part 3 questions.", a:"elaboration"},
+    {s:"Hiking on faded ___ at night is dangerous.", a:"road markings"},
+    {s:"The bank's ___ department issues consumer loans.", a:"crediting"}
+  ];
+  function shuffle(a){var x=a.slice();for(var i=x.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x[i];x[i]=x[j];x[j]=t;}return x;}
+  items.forEach(function(it,i){
+    var wrap = document.createElement('div');
+    wrap.style.cssText='background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0';
+    var qHTML = '<div style="font-size:.95rem;color:var(--text);line-height:1.5"><strong>'+(i+1)+'.</strong> '+it.s+'</div>';
+    var sel = document.createElement('select');
+    sel.dataset.expect = it.a;
+    sel.style.cssText='background:var(--bg-2);color:var(--text);border:1.5px solid var(--line-2);border-radius:8px;padding:8px 10px;font-family:var(--body);font-size:.92rem;margin-top:8px;width:100%;max-width:420px';
+    var opts = '<option value="">— pick —</option>';
+    shuffle(vocab).forEach(function(w){ opts += '<option value="'+w+'">'+w+'</option>'; });
+    sel.innerHTML = opts;
+    wrap.innerHTML = qHTML;
+    wrap.appendChild(sel);
+    list.appendChild(wrap);
+  });
+  document.getElementById('vmcq-check').addEventListener('click', function(){
+    var ok=0, total=0;
+    list.querySelectorAll('select').forEach(function(s){
+      total++;
+      var match = s.value && s.value.toLowerCase().trim() === s.dataset.expect.toLowerCase().trim();
+      s.style.borderColor = s.value ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--line-2)';
+      s.style.color = s.value ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--text)';
+      if (match) ok++;
+    });
+    document.getElementById('vmcq-result').textContent = ok + ' / ' + total + ' correct';
+  });
+  document.getElementById('vmcq-reset').addEventListener('click', function(){
+    list.querySelectorAll('select').forEach(function(s){
+      s.value = '';
+      s.style.borderColor = 'var(--line-2)';
+      s.style.color = 'var(--text)';
+    });
+    document.getElementById('vmcq-result').textContent = '';
+  });
+})();
+</script>
+
+<!-- 4b · IRREGULAR VERBS TABLE -->
+<script>
+(function(){
+  var body = document.getElementById('irreg-body');
+  if (!body) return;
+  var verbs = [
+    {v1:'go', v2:'went', v3:'gone'},
+    {v1:'speak', v2:'spoke', v3:'spoken'},
+    {v1:'take', v2:'took', v3:'taken'},
+    {v1:'eat', v2:'ate', v3:'eaten'},
+    {v1:'write', v2:'wrote', v3:'written'},
+    {v1:'give', v2:'gave', v3:'given'},
+    {v1:'meet', v2:'met', v3:'met'},
+    {v1:'read', v2:'read', v3:'read'},
+    {v1:'see', v2:'saw', v3:'seen'},
+    {v1:'do', v2:'did', v3:'done'},
+    {v1:'begin', v2:'began', v3:'begun'},
+    {v1:'find', v2:'found', v3:'found'}
+  ];
+  var inpStyle = 'background:var(--bg-2);color:var(--text);border:1.5px solid var(--line-2);border-radius:6px;padding:6px 10px;font-family:var(--body);font-size:.92rem;width:100%;max-width:160px';
+  verbs.forEach(function(v,i){
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td style="padding:8px;border-bottom:1px solid var(--line);font-weight:700;color:var(--accent-2)">'+v.v1+'</td>' +
+      '<td style="padding:8px;border-bottom:1px solid var(--line)"><input type="text" data-expect="'+v.v2+'" placeholder="V2" autocomplete="off" style="'+inpStyle+'"></td>' +
+      '<td style="padding:8px;border-bottom:1px solid var(--line)"><input type="text" data-expect="'+v.v3+'" placeholder="V3" autocomplete="off" style="'+inpStyle+'"></td>';
+    body.appendChild(tr);
+  });
+  function check(){
+    var ok=0,total=0;
+    body.querySelectorAll('input').forEach(function(inp){
+      total++;
+      var exp = (inp.dataset.expect||'').toLowerCase().trim();
+      var val = (inp.value||'').toLowerCase().trim();
+      var match = val && val === exp;
+      inp.style.borderColor = val ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--line-2)';
+      inp.style.color = val ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--text)';
+      if (match) ok++;
+    });
+    document.getElementById('irreg-result').textContent = ok + ' / ' + total + ' correct';
+  }
+  function reset(){
+    body.querySelectorAll('input').forEach(function(inp){
+      inp.value='';inp.style.borderColor='var(--line-2)';inp.style.color='var(--text)';
+    });
+    document.getElementById('irreg-result').textContent = '';
+  }
+  function reveal(){
+    body.querySelectorAll('input').forEach(function(inp){
+      inp.value = inp.dataset.expect;
+      inp.style.borderColor='var(--brand)';inp.style.color='var(--brand-2)';
+    });
+    document.getElementById('irreg-result').textContent = '— revealed —';
+  }
+  document.getElementById('irreg-check').addEventListener('click', check);
+  document.getElementById('irreg-reset').addEventListener('click', reset);
+  document.getElementById('irreg-reveal').addEventListener('click', reveal);
+})();
+</script>
+
+<!-- 1c · VOCAB GAP-FILL TYPE-IN -->
+<script>
+(function(){
+  var list = document.getElementById('vgap-list');
+  if (!list) return;
+  var items = [
+    {s:"After work I sometimes go ___ with friends in the mountains.", a:["hiking"]},
+    {s:"The ___ machine at the airport accepts foreign cards.", a:["ATM","atm"]},
+    {s:"Let's ___ the team into two groups before lunch.", a:["split","divide"]},
+    {s:"She works in the ___ sphere — banking, finance, you name it.", a:["economic"]},
+    {s:"My ___ told me to focus on speaking.", a:["tutor"]},
+    {s:"Read the ___ before writing — it tells you what examiners look for.", a:["rubric"]},
+    {s:"Our enterprise ___ covers warehouses and shipping.", a:["logistics"]},
+    {s:"The ___ on the road were repainted last week.", a:["road markings","markings"]},
+    {s:"Could you ___ your screen so I can see the slides?", a:["share"]},
+    {s:"We had to ___ the budget between four teams.", a:["split","divide","share"]}
+  ];
+  items.forEach(function(it,i){
+    var wrap = document.createElement('div');
+    wrap.style.cssText='background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0';
+    var qHTML = '<div style="font-size:.95rem;color:var(--text);line-height:1.5"><strong>'+(i+1)+'.</strong> '+it.s+'</div>';
+    var inp = document.createElement('input');
+    inp.type = 'text';
+    inp.dataset.expect = it.a.join('|');
+    inp.placeholder = 'Type the word here';
+    inp.autocomplete = 'off';
+    inp.style.cssText='background:var(--bg-2);color:var(--text);border:1.5px solid var(--line-2);border-radius:8px;padding:8px 12px;font-family:var(--body);font-size:.92rem;margin-top:8px;width:100%;max-width:420px';
+    wrap.innerHTML = qHTML;
+    wrap.appendChild(inp);
+    list.appendChild(wrap);
+  });
+  document.getElementById('vgap-check').addEventListener('click', function(){
+    var ok=0, total=0;
+    list.querySelectorAll('input').forEach(function(inp){
+      total++;
+      var expects = inp.dataset.expect.split('|').map(function(x){return x.toLowerCase().trim();});
+      var val = (inp.value || '').toLowerCase().trim();
+      var match = val && expects.indexOf(val) !== -1;
+      inp.style.borderColor = val ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--line-2)';
+      inp.style.color = val ? (match ? 'var(--ok)' : 'var(--miss)') : 'var(--text)';
+      if (match) ok++;
+    });
+    document.getElementById('vgap-result').textContent = ok + ' / ' + total + ' correct';
+  });
+  document.getElementById('vgap-reset').addEventListener('click', function(){
+    list.querySelectorAll('input').forEach(function(inp){
+      inp.value = '';
+      inp.style.borderColor = 'var(--line-2)';
+      inp.style.color = 'var(--text)';
+    });
+    document.getElementById('vgap-result').textContent = '';
+  });
+})();
+</script>
+</body>
+</html>

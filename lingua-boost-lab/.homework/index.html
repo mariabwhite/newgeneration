@@ -1,0 +1,2294 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Моя домашка · LinguaBoost Lab</title>
+<meta name="description" content="Личная корзинка заданий из Lab-урока — заполни ответы и отправь Марии.">
+<link rel="icon" href="/lingua-boost-lab/assets/linguaboost-lab-favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@500;700;800;900&family=JetBrains+Mono:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* v4 · 2026-07-07 · canon-L clone + event-sourced cloud state + realtime mirror + vocab. */
+:root {
+  --bg: #0A1F3A;
+  --bg-deep: #061428;
+  --card: #10254A;
+  --text: #FFF8E7;
+  --muted: #8FA5C4;
+  --line: rgba(255, 200, 100, 0.24);
+  --accent: #FF5A1F;
+  --accent-on: #FFFFFF;
+  --ok: #16a34a;
+  --warn: #f59e0b;
+  --danger: #dc2626;
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px max(16px, calc((100vw - 1240px) / 2)) 140px;
+}
+
+/* Topbar */
+.hw-topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 16px;
+  min-height: 62px;
+  padding: 10px max(16px, calc((100vw - 1320px) / 2));
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.hw-brand { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.hw-brand-mark {
+  position: relative; width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 8px; background: var(--accent); color: var(--accent-on);
+  font-family: var(--display); font-size: 22px; font-weight: 900;
+  overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+.hw-brand-mark::after {
+  content: ""; position: absolute; top: 0; right: 0;
+  width: 14px; height: 14px; background: var(--bg);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+.hw-brand-mark > span { position: relative; z-index: 1; }
+.hw-brand-copy { display: grid; gap: 2px; }
+.hw-brand-name { font-family: var(--display); font-size: 15px; font-weight: 800; line-height: 1; letter-spacing: .02em; }
+.hw-brand-sub { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
+.hw-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tool-pill {
+  min-height: 32px; min-width: 38px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: color-mix(in srgb, var(--card) 62%, transparent);
+  color: var(--muted);
+  font-family: var(--mono); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+  text-decoration: none; transition: .18s;
+  cursor: pointer;
+}
+.tool-pill:hover { color: var(--accent); border-color: var(--accent); }
+.tool-pill.level { color: var(--accent); border-color: var(--accent); }
+.tool-pill.lesson-back { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
+.tool-pill.lesson-back:hover { filter: brightness(1.1); color: var(--accent-on); }
+.tool-pill.sync[data-status="ok"] { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 60%, var(--line)); }
+.tool-pill.sync[data-status="syncing"] { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 60%, var(--line)); }
+.tool-pill.sync[data-status="offline"] { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 60%, var(--line)); }
+.tool-pill.sync[data-status="teacher"] { color: #d946a0; border-color: #d946a0; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 4px; }
+
+/* Hero */
+.hero-card {
+  border: 1px solid var(--line); border-radius: 20px;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  padding: clamp(22px, 3vw, 34px);
+  margin: 28px 0 24px;
+  box-shadow: 0 14px 38px rgba(0,0,0,.16);
+  display: grid; gap: 12px;
+}
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.hero-title { font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: 0; line-height: 1.06; margin: 0; }
+.hero-lead { color: var(--muted); font-size: clamp(.98rem, 1.4vw, 1.1rem); line-height: 1.55; max-width: 68ch; margin: 0; }
+.hero-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.meta-pill {
+  font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-deep, var(--bg)) 40%, transparent);
+}
+
+/* Teacher banner */
+.teacher-banner {
+  margin: 20px 0 -8px;
+  padding: 14px 20px;
+  border: 1px solid #d946a0;
+  border-radius: 14px;
+  background: color-mix(in srgb, #d946a0 12%, var(--card));
+  color: #fce7f3;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* List of items */
+.list { display: grid; gap: 18px; }
+.item {
+  position: relative;
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border: 1px solid var(--line); border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  display: grid; gap: 16px;
+}
+.item.by-teacher { border-left: 4px solid #d946a0; }
+.item-head { display: flex; align-items: flex-start; gap: 14px; }
+.item-num {
+  flex: 0 0 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 12px; background: var(--accent); color: var(--accent-on);
+  font-family: var(--mono); font-size: 15px; font-weight: 900;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.item-copy { flex: 1; display: grid; gap: 6px; min-width: 0; }
+.item-kind {
+  display: inline-flex; padding: 4px 12px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+  font-family: var(--mono); font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase;
+  align-self: start;
+}
+.item-kind.vocab { background: color-mix(in srgb, #d946a0 14%, transparent); color: #d946a0; border-color: color-mix(in srgb, #d946a0 42%, transparent); }
+.item-kind.by-teacher { background: rgba(217,70,160,.16); color: #fce7f3; border-color: #d946a0; }
+.item-q { font-family: var(--display); font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 800; line-height: 1.3; color: var(--text); margin: 0 42px 0 0; }
+.item-meta { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+.rm {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px; border-radius: 10px;
+  background: color-mix(in srgb, #b53232 26%, transparent);
+  border: 1px solid color-mix(in srgb, #b53232 48%, transparent);
+  color: #ffd9d9;
+  font-size: 18px; line-height: 1; cursor: pointer; transition: .18s;
+}
+.rm:hover { background: rgba(220, 50, 50, .48); color: #fff; }
+
+/* Vocab card */
+.vocab-card {
+  display: grid; gap: 10px; padding: 16px;
+  background: color-mix(in srgb, #d946a0 8%, var(--bg-deep, var(--bg)));
+  border: 1px solid color-mix(in srgb, #d946a0 30%, var(--line));
+  border-radius: 14px;
+}
+.vocab-en { font-family: var(--display); font-size: 1.5rem; font-weight: 900; color: var(--text); line-height: 1.1; }
+.vocab-ipa { font-family: var(--mono); font-size: .9rem; color: var(--muted); }
+.vocab-ru { font-size: 1rem; color: var(--muted); font-weight: 600; }
+.vocab-ex { font-size: .95rem; color: var(--text); font-style: italic; padding: 8px 12px; border-left: 3px solid var(--accent); background: rgba(255,255,255,.03); border-radius: 6px; }
+
+/* Separate teacher-pushed glossary stream */
+.hw-vocab {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--card) 74%, transparent);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+}
+.hw-vocab[hidden] { display: none !important; }
+.hw-vocab-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hw-vocab-title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 900;
+  color: var(--text);
+}
+.hw-vocab-meta {
+  font-family: var(--mono);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hw-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+/* Raw block — вживляем контент секции урока в текущую палитру.
+   2026-07-08 мандат "полное клонирование 1-в-1": max-height 720px + overflow SNAT.
+   Клон теперь полной высоты как в уроке, Speech Coach / Speaking Task 4 / other
+   длинные секции больше не режутся снизу. */
+.raw {
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  color: var(--text);
+}
+.raw > *:first-child { margin-top: 0 !important; }
+/* Мандат Марии 2026-07-08 21:30: клон должен выглядеть 1-в-1 как в уроке.
+   Больше не flatten (background/shadow/border/padding сохраняем как в уроке).
+   Только жёсткие ограничения: не выходить за ширину контейнера. */
+.raw section, .raw .section, .raw .card,
+.raw .story-block, .raw .round-card, .raw .game-card,
+.raw .info-card, .raw .error-card, .raw .prompt-card,
+.raw .now-item, .raw .tile, .raw .output-box,
+.raw [class*="story-block"], .raw [class*="round-card"], .raw [class*="game-card"],
+.raw [class*="prompt-card"] {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.raw .match-wrap, .raw [class*="match-wrap"] {
+  /* 1-в-1 canonical drag-match: 2 колонки английский/русский.
+     Урок объявляет стили в <style>, но cleanRawClone их вырезает; здесь дублируем. */
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px !important;
+  max-width: 100% !important;
+  margin: 10px 0 !important;
+}
+@media (max-width: 680px) {
+  .raw .match-wrap, .raw [class*="match-wrap"] { grid-template-columns: 1fr !important; }
+}
+.raw .match-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.raw .match-col > h4 {
+  font-family: var(--mono);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.raw .match-card {
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 13px;
+  cursor: pointer;
+  font-size: .92rem;
+  color: var(--text);
+  font-weight: 600;
+}
+/* Мандат 1-в-1: цвета текста / заголовков берём от урока, не форсим.
+   Спейсинг стандартизируем только через margin (без forced font-family/font-size). */
+.raw h1, .raw h2, .raw h3, .raw h4 { margin: 12px 0 8px; }
+.raw p { margin: 6px 0; line-height: 1.55; }
+.raw ol, .raw ul { padding-left: 22px; margin: 8px 0; }
+.raw img,
+.raw picture img,
+.raw figure img,
+.raw [class*="img"] img,
+.raw [class*="illustration"] img,
+.raw [class*="photo"] img,
+.raw details img {
+  max-width: min(100%, 720px) !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: min(380px, 48vh) !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  margin: 8px auto !important;
+  display: block !important;
+}
+.raw figure, .raw picture {
+  margin: 8px 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+.raw audio { max-width: 100%; margin: 8px 0; }
+.raw video, .raw iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 420px !important;
+  aspect-ratio: 16 / 9 !important;
+  border-radius: 12px !important;
+  margin: 8px 0 !important;
+  object-fit: cover !important;
+}
+/* Дубли заголовка и метадаты — гасим первый h1/h2/h3 если он совпадает с item-q */
+.raw > h2:first-child, .raw > h3:first-child { display: none !important; }
+/* Все UI-нашлёпки из уроков — прячем */
+.raw .lp-submit, .raw .lp-fab, .raw .lab-hw-fab, .raw .lab-hw-top-entry,
+.raw .lab-hw-overlay, .raw .lp-toc, .raw .lab-hw-add, .raw .lab-hw-section-btn,
+.raw .fab, .raw button.mic-btn.recording,
+.raw .lab-teacher-banner, .raw #labSyncBanner,
+.raw details.teacher, .raw .teacher, .raw .t-body { display: none !important; }
+/* section-hdr: прячем h2/h3 (дубль item-q), но section-num badge + section-sub инструкции — оставляем */
+.raw .section-hdr > h1, .raw .section-hdr > h2, .raw .section-hdr > h3,
+.raw .section-head > h1, .raw .section-head > h2, .raw .section-head > h3 { display: none !important; }
+.raw .section-hdr, .raw .section-head {
+  display: flex !important; align-items: center; gap: 10px !important;
+  margin: 0 0 10px !important; padding: 0 !important;
+  background: transparent !important; border: 0 !important;
+}
+.raw .section-num {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  min-width: 34px; height: 26px; padding: 0 10px !important;
+  border-radius: 999px !important;
+  background: color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  color: var(--accent) !important;
+  font: 900 .78rem/1 var(--mono) !important;
+  letter-spacing: .08em !important;
+}
+.raw .section-sub {
+  display: block !important;
+  margin: 6px 0 12px !important;
+  color: var(--muted) !important;
+  font-style: italic !important;
+  font-size: .92rem !important;
+  padding: 8px 12px !important;
+  border-left: 3px solid color-mix(in srgb, var(--accent) 45%, transparent) !important;
+  background: color-mix(in srgb, var(--accent) 6%, transparent) !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+/* Universal reset для типовых блоков внутри секций урока */
+.raw .ro-bank, .raw .pill-bank, .raw .word-bank, .raw .drag-bank, .raw .bank,
+.raw .vocab-tag-list, .raw .lex-bank, .raw .grams-bank {
+  display: flex !important; flex-wrap: wrap !important; gap: 8px !important; margin: 10px 0 !important;
+  padding: 12px !important;
+  background: color-mix(in srgb, var(--accent) 6%, transparent) !important;
+  border: 1px dashed color-mix(in srgb, var(--accent) 30%, var(--line)) !important;
+  border-radius: 12px !important;
+}
+.raw .ro-pill, .raw .pill-bank > *, .raw .word-bank > *, .raw .drag-bank > *,
+.raw .bank > *, .raw .vocab-tag-list > *, .raw .lex-bank > *, .raw .grams-bank > * {
+  display: inline-flex !important; padding: 6px 12px !important;
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  color: var(--accent) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent) !important;
+  border-radius: 999px !important;
+  font-family: var(--mono) !important; font-size: .88rem !important; font-weight: 700 !important;
+  cursor: pointer; white-space: nowrap;
+}
+.raw .mcq-opts, .raw .art-opts, .raw .ps-opts, .raw .oc-opts, .raw .tfns-opts,
+.raw .mc-opts, .raw .tf-btns, .raw .tf-opts, .raw .choice-opts,
+.raw .choice-row, .raw .quiz-opts, .raw .quiz-options, .raw .answer-options,
+.raw .predict-btns {
+  display: flex !important; flex-wrap: wrap !important; gap: 6px !important; margin: 8px 0 !important;
+}
+.raw .mcq-opts button, .raw .art-opts button, .raw .ps-opts button,
+.raw .oc-opts button, .raw .tfns-opts button, .raw .mc-opts button,
+.raw .tf-btns button, .raw .tf-opts button, .raw .choice-opts button,
+.raw .choice-row button, .raw .quiz-opts button, .raw .quiz-options button,
+.raw .answer-options button, .raw .choice, .raw .choice-btn, .raw .btn-tf {
+  padding: 7px 14px !important; border-radius: 10px !important;
+  background: color-mix(in srgb, var(--card) 80%, transparent) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  font-family: var(--mono) !important; font-size: .84rem !important; font-weight: 700 !important;
+  cursor: pointer;
+}
+.raw button.selected, .raw button[aria-pressed="true"],
+.raw .mcq-opts button.selected, .raw .art-opts button.selected, .raw .ps-opts button.selected,
+.raw .oc-opts button.selected, .raw .tfns-opts button.selected,
+.raw .mc-opts button.selected, .raw .tf-btns button.selected,
+.raw .tfg-opts button.selected, .raw .cloze-opts button.selected,
+.raw .choice-row button.selected, .raw .quiz-opts button.selected,
+.raw .quiz-options button.selected, .raw .answer-options button.selected,
+.raw .choice.selected, .raw .choice-btn.selected, .raw .btn-tf.selected,
+.raw .bank-word.selected, .raw .word-chip.selected, .raw .drag-item.selected,
+.raw .match-place.selected, .raw .match-card.selected, .raw .wo-pill.selected {
+  background: color-mix(in srgb, var(--accent) 24%, var(--card)) !important;
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--line)) !important;
+  color: var(--text) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent) !important;
+}
+.raw button.correct, .raw .mc-opt.correct, .raw .tf-btn.correct,
+.raw button.right, .raw .mc-opt.right, .raw .tf-btn.right,
+.raw .choice.correct, .raw .choice-btn.correct, .raw .btn-tf.correct,
+.raw .choice[data-state="correct"],
+.raw .wo-pill.correct, .raw .wo-pill.right,
+.raw .drop-gap.is-correct, .raw .cloze-gap.is-correct,
+.raw .drop-slot.is-correct, .raw .drop-zone.is-correct,
+.raw .match-drop.is-correct, .raw .match-slot.is-correct {
+  background: color-mix(in srgb, #22c55e 24%, var(--card)) !important;
+  border-color: color-mix(in srgb, #22c55e 72%, var(--line)) !important;
+  color: var(--text) !important;
+}
+.raw button.wrong, .raw .mc-opt.wrong, .raw .tf-btn.wrong,
+.raw .choice.wrong, .raw .choice-btn.wrong, .raw .btn-tf.wrong,
+.raw .choice[data-state="wrong"],
+.raw .wo-pill.wrong, .raw .drop-gap.wrong, .raw .drop-slot.wrong,
+.raw .drop-slot.is-wrong, .raw .drop-zone.wrong, .raw .match-drop.wrong {
+  background: color-mix(in srgb, #ef4444 18%, var(--card)) !important;
+  border-color: color-mix(in srgb, #ef4444 70%, var(--line)) !important;
+  color: var(--text) !important;
+}
+.raw .bank-word.used, .raw .word-chip.used, .raw .drag-item.used,
+.raw .match-place.used, .raw .match-card.used {
+  opacity: .45 !important;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+.raw .drop-gap.filled, .raw .cloze-gap.filled, .raw .drop-slot.filled,
+.raw .drop-zone.filled, .raw .drop.filled, .raw .match-drop.filled, .raw .match-slot.filled {
+  background: color-mix(in srgb, var(--accent) 10%, var(--card)) !important;
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line)) !important;
+  color: var(--text) !important;
+}
+.raw > .flip-card, .raw > .vocab-card {
+  width: min(100%, 380px) !important;
+  max-width: 380px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.raw .flip-card { cursor: pointer; }
+.raw .flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+.raw .ord-bank {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 12px !important;
+  border: 1px dashed var(--line) !important;
+  border-radius: 10px !important;
+}
+.raw .ord-slots {
+  display: grid !important;
+  gap: 8px !important;
+  margin: 10px 0 !important;
+}
+.raw .ord-slot {
+  min-height: 42px !important;
+  border: 2px dashed color-mix(in srgb, var(--accent) 35%, var(--line)) !important;
+  border-radius: 10px !important;
+  padding: 6px !important;
+}
+.raw .ord-card, .raw .ord-chip {
+  display: block !important;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--line) !important;
+  background: color-mix(in srgb, var(--card) 82%, transparent) !important;
+  color: var(--text) !important;
+  cursor: pointer;
+}
+.raw .drop-gap.filled, .raw .cloze-gap.filled,
+.raw .drop.filled, .raw .match-drop.filled, .raw .match-slot.filled {
+  color: var(--text) !important;
+}
+.raw .mcq-note, .raw .tfns-note { color: var(--muted) !important; font-size: .84rem !important; padding: 6px 10px !important; border-radius: 8px !important; margin-top: 6px !important; }
+
+/* TFNS / match rows sometimes arrive from lessons hidden until JS starts.
+   In homework they are static task content, so force them visible.
+   ВАЖНО: display не форсим — Anyas Postcards использует flex 2 col для .match-col,
+   если сделать grid → колонки stacked, правая колонка пропадает. */
+.raw .tfns-row, .raw .tf-row, .raw .tf-item,
+.raw .match-item, .raw .match-card, .raw .match-row {
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 40px !important;
+}
+.raw .tfns-opts, .raw .tf-opts, .raw .match-opts,
+.raw .match-bank, .raw .match-targets,
+.raw [class*="match-bank"], .raw [class*="match-target"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+.raw .tfns-q, .raw .tf-q, .raw .tfns-text,
+.raw .match-q, .raw .match-text, .raw .match-desc {
+  display: block !important;
+  color: var(--text) !important;
+  line-height: 1.55 !important;
+}
+.raw .match-slot, .raw .match-drop, .raw .match-target {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-width: 130px !important;
+  min-height: 34px !important;
+  padding: 6px 10px !important;
+  border: 2px dashed var(--line) !important;
+  border-radius: 10px !important;
+  background: color-mix(in srgb, var(--accent) 7%, transparent) !important;
+  color: var(--muted) !important;
+}
+.raw input, .raw textarea, .raw select {
+  background: color-mix(in srgb, var(--bg-deep, var(--bg)) 62%, transparent) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important; padding: 8px 12px !important;
+  font-family: var(--body) !important;
+  min-width: 2.5rem !important;
+  min-height: 2.35rem !important;
+  width: auto;
+}
+.raw input[type="radio"], .raw input[type="checkbox"] {
+  width: 1.05rem !important;
+  min-width: 1.05rem !important;
+  height: 1.05rem !important;
+  min-height: 1.05rem !important;
+  padding: 0 !important;
+}
+.raw input[type="number"], .raw input.tutor-input {
+  width: 5rem !important;
+  min-width: 5rem !important;
+}
+.raw .play, .raw .play-line, .raw .ctrl.listen, .raw button.listen, .raw button[id*="listen"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 2.4rem !important;
+  min-height: 2.4rem !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--line) !important;
+  background: color-mix(in srgb, var(--accent) 12%, var(--card)) !important;
+  color: var(--text) !important;
+}
+/* Структурные боксы упражнений — только структура + палитро-агностический subtle border/bg через currentColor.
+   На светлом теме — светлый оттенок, на тёмном — тёмный, всегда читаемо. */
+.raw .dialog, .raw .story-card, .raw .listen-box, .raw .reading-card,
+.raw .q-row, .raw .oc-row, .raw .cloze-row, .raw .wf-row, .raw .mic-row,
+.raw .challenge, .raw .task-card, .raw .match-item, .raw .quick-check {
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+/* .your-turn имеет inline linear-gradient — НЕ трогаем bg вообще, только spacing. */
+.raw .your-turn {
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.raw details { margin: 10px 0 !important; padding: 8px 12px !important; border: 1px solid var(--line) !important; border-radius: 10px !important; background: color-mix(in srgb, var(--card) 50%, transparent) !important; }
+.raw summary { cursor: pointer; font-family: var(--mono); font-weight: 800; color: var(--accent); font-size: .88rem; letter-spacing: .06em; }
+
+/* ─── Structural reset — покрывает все 60 уроков через паттерн-селекторы ─── */
+
+/* Дубль item-q — прячем eyebrow/kicker/block-num/block-time/-eyebrow,
+   но section-num и section-sub — оставляем как плашки (badge + инструкция). */
+.raw [class*="section-kicker"],
+.raw [class*="block-head"],
+.raw [class*="block-kicker"],
+.raw [class*="block-num"],
+.raw [class*="block-time"],
+.raw [class*="canon-l-section-num"],
+.raw [class*="canon-l-section-sub"],
+.raw [class*="-eyebrow"],
+.raw [class*="card-eyebrow"] { display: none !important; }
+
+/* Первый h1/h2/h3 внутри .raw — дублирует item-q, прячем */
+.raw > *:first-child > h1:first-child,
+.raw > *:first-child > h2:first-child,
+.raw > *:first-child > h3:first-child,
+.raw > h1:first-child, .raw > h2:first-child, .raw > h3:first-child,
+.raw section:first-child > h1:first-of-type,
+.raw section:first-child > h2:first-of-type,
+.raw > section:first-child > .card > h1:first-of-type,
+.raw > section:first-child > .card > h2:first-of-type,
+.raw [class*="section-name"]:first-of-type,
+.raw [class*="section-title"]:first-of-type,
+.raw [class*="block-title"]:first-of-type { display: none !important; }
+
+/* Любой контейнер-BANK / список пилюль */
+.raw [class*="-bank"], .raw [class*="pill-list"], .raw [class*="chip-list"],
+.raw [class*="tag-list"], .raw [class*="cuisine-pills"], .raw [class*="cue-list"] {
+  display: flex !important; flex-wrap: wrap !important; gap: 8px !important; margin: 10px 0 !important;
+  padding: 12px !important;
+  background: color-mix(in srgb, var(--accent) 6%, transparent) !important;
+  border: 1px dashed color-mix(in srgb, var(--accent) 30%, var(--line)) !important;
+  border-radius: 12px !important;
+}
+/* Пилюли / чипы / word-chip / tag / -pill в любом контейнере */
+.raw [class*="-pill"]:not([class*="section-"]):not([class*="canon-l-hero-pill"]),
+.raw [class*="-chip"], .raw [class*="word-chip"], .raw [class*="chip"],
+.raw [class*="-tag"]:not([class*="tag-list"]),
+.raw [class*="-bank"] > *, .raw [class*="pill-list"] > *, .raw [class*="chip-list"] > * {
+  display: inline-flex !important; align-items: center !important;
+  padding: 6px 12px !important;
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  color: var(--accent) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent) !important;
+  border-radius: 999px !important;
+  font-family: var(--mono) !important; font-size: .86rem !important; font-weight: 700 !important;
+  cursor: pointer; white-space: nowrap; text-decoration: none;
+}
+
+/* Универсальные ROW/ITEM/CARD контейнеры — структура + subtle palette-agnostic outline через currentColor. */
+.raw [class*="-row"]:not([class*="section-"]):not([class*="btn-row"]):not([class*="action-row"]),
+.raw [class*="-item"]:not([class*="tag-list"]):not([class*="pill-list"]):not([class*="drag-item"]) {
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, currentColor 3%, transparent);
+}
+.raw [class*="-card"]:not([class*="vocab-card"]):not([class*="flip-card"]):not([class*="card-head"]):not([class*="card-cover"]):not([class*="card-eyebrow"]):not([class*="card-num"]):not([class*="card-title"]):not([class*="card-top"]) {
+  border-radius: 14px;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+/* Списки OL/UL — reset base для видимости номеров/буллетов на любой палитре */
+.raw ol, .raw ul { padding-left: 24px !important; margin: 10px 0 !important; color: inherit !important; }
+.raw li { margin: 4px 0 !important; color: inherit !important; line-height: 1.6 !important; }
+/* Гарантия что .raw color наследуется от .item — цвет всегда var(--text) урока */
+.raw { color: var(--text); }
+
+/* SAFETY NET для старых items с сохранённой ТЁМНОЙ inline-разметкой из урока.
+   Любой элемент с inline `style="background:*"` внутри .raw принудительно теряет свой bg + color,
+   палитра урока проходит через каскад. */
+.raw *[style*="background"],
+.raw *[style*="rgb"],
+.raw *[style*="rgba"],
+.raw *[style*="#0"], .raw *[style*="#1"], .raw *[style*="#2"], .raw *[style*="#3"] {
+  background: transparent !important;
+  color: inherit !important;
+  background-image: none !important;
+}
+/* Ещё одна тонкая защита: если внутренний контейнер захочет отрисовать фон отличный от палитры — гасим */
+.raw > section > * { background-color: transparent !important; }
+.raw > section { background: transparent !important; }
+
+/* Универсальные OPTS-контейнеры — варианты ответов MCQ/T-F/gap */
+.raw [class*="-opts"], .raw [class*="mcq-opt"]:not([class*="opts"]) ~ [class*="mcq-opt"],
+.raw [class*="mc-opts"] {
+  display: flex !important; flex-wrap: wrap !important; gap: 8px !important; margin: 8px 0 !important;
+}
+/* Кнопки внутри опций */
+.raw [class*="-opts"] > button, .raw [class*="-opts"] > label,
+.raw [class*="mc-opts"] > button, .raw [class*="mc-opts"] > label,
+.raw [class*="choice-btn"], .raw [class*="tf-btn"], .raw [class*="mcq-opt"],
+.raw [class*="mc-opt"], .raw [class*="art-opt"] {
+  padding: 8px 14px !important; border-radius: 10px !important;
+  background: color-mix(in srgb, var(--card) 84%, transparent) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  font-family: var(--mono) !important; font-size: .86rem !important; font-weight: 700 !important;
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: .16s;
+}
+.raw [class*="-opts"] > button:hover, .raw [class*="mcq-opt"]:hover,
+.raw [class*="mc-opt"]:hover, .raw [class*="tf-btn"]:hover {
+  border-color: var(--accent) !important; color: var(--accent) !important;
+}
+
+/* Универсальные BTN — кнопки внутри блока */
+.raw button:not([class*="rm"]):not([class*="lab-hw-"]) {
+  padding: 8px 14px; border-radius: 10px;
+  background: color-mix(in srgb, var(--card) 82%, transparent);
+  color: var(--text);
+  border: 1px solid var(--line);
+  font-family: var(--mono); font-size: .84rem; font-weight: 700;
+  cursor: pointer;
+}
+.raw button:hover { border-color: var(--accent); color: var(--accent); }
+.raw [class*="primary"], .raw button.primary {
+  background: var(--accent) !important; color: var(--accent-on, #fff) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Полоска ответов / note / feedback / hint */
+.raw [class*="-note"], .raw [class*="-feedback"], .raw [class*="-hint"],
+.raw [class*="sample"], .raw [class*="explanation"] {
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: color-mix(in srgb, var(--accent) 8%, transparent) !important;
+  color: var(--muted) !important;
+  font-size: .88rem !important;
+  margin-top: 6px !important;
+}
+
+/* 2026-07-08 мандат 1-в-1: клон несёт весь контент секции.
+   Прячем ТОЛЬКО явные учительские ключи. Sample/model/reveal/listen-script/
+   transcript/note/feedback/hint — это часть материала урока, Маша хочет их видеть
+   в домашке (Voyager warm-up "Model · steal a phrase", grammar tr-model, диалог
+   listen-script для reading). */
+.raw .answer-key, .raw [class*="answer-key"],
+.raw .correct-answer, .raw [class*="correct-answer"],
+.raw details.teacher, .raw details[open].teacher,
+.raw summary:has(+ .t-body), .raw .t-body {
+  display: none !important;
+}
+
+/* Drop-slot / drag-item — для drag&drop заданий */
+.raw [class*="drop-slot"], .raw [class*="drop-zone"] {
+  display: inline-flex !important; align-items: center; justify-content: center !important;
+  min-width: 80px !important; padding: 4px 10px !important; margin: 0 2px !important;
+  border: 2px dashed var(--line) !important; border-radius: 8px !important;
+  background: color-mix(in srgb, var(--card) 50%, transparent) !important;
+  color: var(--muted) !important;
+}
+.raw [class*="drag-item"] {
+  display: inline-flex !important; padding: 6px 12px !important; margin: 2px !important;
+  background: color-mix(in srgb, var(--accent) 20%, transparent) !important;
+  color: var(--accent) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent) !important;
+  border-radius: 999px !important;
+  font-family: var(--mono); font-size: .84rem; font-weight: 700;
+  cursor: grab;
+}
+
+/* UI мусор из уроков — режем ВСЁ что похоже на technical/nav/copyright */
+.raw [class*="lab-hw-"]:not(.lab-hw-host), .raw [class*="lp-fab"], .raw [class*="lp-toc"],
+.raw [class*="lp-submit"], .raw [class*="score-badge"],
+.raw [class*="teacher-banner"], .raw [class*="teacher-mirror"],
+.raw [class*="firehose"], .raw [class*="quick-push"],
+.raw [class*="hw-add"], .raw [class*="hw-fab"],
+.raw script, .raw style, .raw link,
+.raw .canon-l-nav, .raw .canon-l-brand, .raw .canon-l-tools,
+.raw .canon-l-topbar, .raw .canon-l-footer,
+.raw .lab-hero, .raw [class*="hero-banner"], .raw [class*="lesson-hero"],
+.raw > nav, .raw > header, .raw > footer,
+.raw [class*="topbar"]:not(.hw-topbar),
+.raw .snake-overlay, .raw .lb-overlay, .raw .img-story-overlay,
+.raw [class*="lightbox"]:not([class*="lightbox-image"]),
+.raw [class*="tracker"], .raw [class*="progress-bar"],
+.raw [id="progressFill"], .raw [id="progressText"] { display: none !important; }
+
+/* Vocab внутри блока (не наши vocab-card на первом уровне) */
+.raw [class*="vocab-inner"], .raw [class*="flip-inner"] {
+  background: color-mix(in srgb, var(--card) 82%, transparent) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 10px !important; padding: 10px !important; color: var(--text) !important;
+}
+
+/* Play button — плеер линии диалога */
+.raw [class*="play"], .raw button[class*="play"], .raw [class*="tts-btn"], .raw [class*="mic-btn"] {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 10px !important; min-width: 30px !important;
+  background: color-mix(in srgb, var(--accent) 20%, transparent) !important;
+  color: var(--accent) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent) !important;
+  border-radius: 6px !important;
+  font-family: var(--mono); font-size: .82rem;
+}
+
+/* Audio / video full width */
+.raw audio, .raw video { width: 100%; max-width: 100%; }
+
+/* Table универсально */
+.raw table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .92rem; }
+.raw table th, .raw table td { padding: 8px 10px; border: 1px solid var(--line); text-align: left; color: var(--text); }
+.raw table th { background: color-mix(in srgb, var(--accent) 12%, transparent); font-family: var(--mono); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .78rem; }
+
+/* Vocab-card в .raw — раскрываем обе стороны стеком, data-back проявляется под словом */
+.raw .lab-vocab-grid, .raw .vocab-grid, .raw .flip-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 12px !important;
+  margin: 12px 0 !important;
+}
+.raw .vocab-card {
+  display: block !important;
+  padding: 14px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  background: color-mix(in srgb, currentColor 5%, transparent) !important;
+  color: var(--text) !important;
+  cursor: default !important;
+  min-height: auto !important;
+  transform: none !important;
+  perspective: none !important;
+}
+.raw .vocab-card > strong,
+.raw .vocab-card > .word,
+.raw .vocab-card > .vocab-word {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+/* data-back атрибут (Tom Sawyer et al) — проявляем через ::after */
+.raw .vocab-card[data-back]::after {
+  content: "↳ " attr(data-back);
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: .92rem;
+  font-family: var(--body);
+  line-height: 1.4;
+  white-space: normal;
+}
+/* Flip-card / vocab-inner архитектура — обе стороны видны stacked */
+.raw .flip-card {
+  display: block !important;
+  transform: none !important;
+  perspective: none !important;
+  padding: 14px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  background: color-mix(in srgb, currentColor 5%, transparent) !important;
+  min-height: auto !important;
+}
+.raw .flip-inner, .raw .vocab-inner {
+  display: block !important;
+  transform: none !important;
+  transform-style: flat !important;
+  position: static !important;
+  background: transparent !important;
+}
+.raw .flip-front, .raw .flip-back,
+.raw .vocab-front, .raw .vocab-back {
+  display: grid !important;
+  gap: 4px !important;
+  position: static !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  padding: 4px 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+.raw .vocab-back, .raw .flip-back {
+  border-top: 1px dashed var(--line) !important;
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  color: var(--muted) !important;
+}
+.raw .vocab-front .word, .raw .vocab-card .word,
+.raw .flip-front .word, .raw .flip-front > span:first-child {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+  line-height: 1.18;
+}
+.raw .vocab-front .pos, .raw .vocab-card .pos,
+.raw .flip-front .pos, .raw .flip-card .pos {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  display: block;
+}
+.raw .vocab-back .meaning, .raw .vocab-back .ex,
+.raw .vocab-card .meaning, .raw .vocab-card .ex,
+.raw .flip-back .ru, .raw .flip-back > span {
+  display: block;
+  color: var(--text);
+  margin-top: 4px;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.raw .flip-back .ru {
+  color: var(--accent) !important;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* MCQ row — гарантированно виден полностью (вопрос + все кнопки-варианты + note) */
+.raw .mcq-row {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  background: color-mix(in srgb, currentColor 3%, transparent);
+}
+.raw .mcq-q {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.raw .mcq-q .qnum {
+  display: inline-block;
+  min-width: 22px; height: 22px;
+  padding: 0 6px;
+  margin-right: 8px;
+  background: var(--accent);
+  color: var(--accent-on, #fff);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 22px;
+}
+.raw .mcq-opts {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-top: 10px !important;
+}
+.raw .mcq-opts > button {
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+  padding: 10px 14px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 10px !important;
+  background: color-mix(in srgb, var(--card) 82%, transparent) !important;
+  color: var(--text) !important;
+  font: 600 .95rem/1.4 var(--body) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  transition: .16s;
+}
+.raw .mcq-opts > button:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+.raw .mcq-note {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+/* Voyager L3 картинки с overlay — не отрезаем captions */
+.raw figure, .raw .lab-figure { overflow: visible !important; margin: 12px 0; }
+.raw figcaption {
+  color: var(--muted);
+  font-size: .88rem;
+  padding: 6px 4px;
+  font-style: italic;
+  text-align: center;
+}
+/* Reading passages / story-card — без внутреннего скролла */
+.raw .story-card, .raw .reading-card, .raw .listen-box { max-height: none !important; overflow: visible !important; }
+
+/* Gap-fill вопросы (Switzerland warm-up, Voyager L1-L4, Julia Bodrum etc):
+   .q-row > .q-num + .q-text > .drop-gap (underscore field) — FORCE VISIBLE. */
+.raw .q-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  margin: 8px 0 !important;
+  border-radius: 10px !important;
+  background: color-mix(in srgb, currentColor 3%, transparent) !important;
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+.raw .q-num, .raw .cloze-num, .raw .practice-num {
+  flex: 0 0 30px !important;
+  height: 30px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 8px !important;
+  background: var(--accent) !important;
+  color: var(--accent-on, #fff) !important;
+  font-family: var(--mono) !important;
+  font-size: .85rem !important;
+  font-weight: 900 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.raw .q-text, .raw .practice-q, .raw .cloze-text {
+  flex: 1 !important;
+  color: var(--text) !important;
+  font-size: 1rem !important;
+  line-height: 1.55 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+.raw .drop-gap, .raw .cloze-gap, .raw .lex-gap, .raw .pv-gap, .raw .gram-gap {
+  display: inline-block !important;
+  min-width: 100px !important;
+  margin: 0 6px !important;
+  padding: 4px 12px !important;
+  background: color-mix(in srgb, var(--accent) 12%, transparent) !important;
+  border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, transparent) !important;
+  border-radius: 8px !important;
+  color: var(--accent) !important;
+  font-family: var(--mono) !important;
+  font-weight: 800 !important;
+  font-size: .92rem !important;
+  text-align: center !important;
+  letter-spacing: .05em !important;
+  vertical-align: middle !important;
+}
+.raw .drop-gap.filled, .raw .cloze-gap.filled {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  border-style: solid !important;
+  border-color: color-mix(in srgb, var(--accent) 42%, transparent) !important;
+  color: var(--text) !important;
+}
+
+/* Practice items — гарантированно видны (Julia Bodrum, Modals, Interview 12-задачные) */
+.raw .practice-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+  margin: 10px 0 !important;
+  border-radius: 12px !important;
+  background: color-mix(in srgb, currentColor 3%, transparent) !important;
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+.raw .practice-hint {
+  margin-top: 6px !important;
+  font-size: .88rem !important;
+  color: var(--muted) !important;
+  font-style: italic !important;
+}
+
+/* Убираем артефакты lab-pilot: "TASK START · SAMOTEK" и подобные метки */
+.raw [class*="lp-task-tag"], .raw [class*="task-tag"],
+.raw [class*="task-boundary"], .raw [class*="pilot-tag"],
+.raw [class*="samotek"] { display: none !important; }
+
+/* Answer */
+.answer { display: grid; gap: 8px; }
+.answer label {
+  font-family: var(--mono); font-size: 11px; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+}
+.answer textarea {
+  width: 100%; min-height: 140px; resize: vertical;
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px;
+  font: 500 1rem/1.5 var(--body);
+  background: color-mix(in srgb, var(--bg-deep, var(--bg)) 62%, transparent);
+  color: var(--text);
+  transition: .18s;
+}
+.answer textarea:focus { outline: 2px solid color-mix(in srgb, var(--accent) 44%, transparent); border-color: var(--accent); }
+.answer textarea::placeholder { color: var(--muted); opacity: .5; }
+.answer.readonly textarea { pointer-events: none; opacity: .82; }
+/* Teacher view: ответ ученика показывается как читаемый блок, не textarea */
+.answer.teacher-view label { color: #d946a0 !important; }
+.student-answer-view {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  border-left: 3px solid var(--accent);
+  color: var(--text);
+  font: 500 .96rem/1.55 var(--body);
+  white-space: pre-wrap;
+  min-height: auto;
+}
+/* Также — исправляем textarea фон чтоб не был серый на cream палитре: используем card, а не bg-deep */
+.answer textarea {
+  background: color-mix(in srgb, var(--card, #fff) 92%, transparent) !important;
+  border-color: color-mix(in srgb, currentColor 18%, transparent) !important;
+}
+
+.saved-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+.saved-tag[data-state="saved"] { color: var(--ok); }
+.saved-tag[data-state="saving"] { color: var(--warn); }
+
+/* Empty */
+.empty {
+  border: 1px dashed var(--line); border-radius: 18px;
+  padding: 56px 24px; text-align: center;
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  color: var(--muted); line-height: 1.6;
+  display: grid; gap: 14px; justify-items: center;
+}
+.empty .emoji { font-size: 64px; line-height: 1; }
+.empty h2 { font-family: var(--display); font-size: 1.4rem; color: var(--text); font-weight: 800; margin: 0; }
+.empty p { margin: 0; max-width: 46ch; }
+
+/* Actions */
+.actions {
+  position: sticky; bottom: 0; z-index: 15;
+  margin: 32px 0 0;
+  padding: 16px max(16px, calc((100vw - 1240px) / 2)) max(16px, env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg) 96%, transparent) 24%);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+}
+.btn {
+  padding: 12px 20px; border-radius: 12px;
+  border: 1.5px solid var(--line);
+  background: color-mix(in srgb, var(--card) 72%, transparent);
+  color: var(--text);
+  font-family: var(--mono); font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: .2s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-on); box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 42%, transparent); }
+.btn.primary:hover { color: var(--accent-on); filter: brightness(1.08); }
+.btn.danger { color: #ffb3b3; border-color: rgba(255,90,90,.38); background: rgba(255,90,90,.08); }
+.btn.danger:hover { background: rgba(255,90,90,.22); color: #fff; border-color: rgba(255,90,90,.72); }
+.btn:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+.count-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.22); color: inherit; font-size: 11px; font-weight: 900; }
+
+/* Toast */
+.toast {
+  position: fixed; left: 50%; bottom: 100px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--accent); color: var(--accent-on);
+  padding: 14px 24px; border-radius: 14px;
+  font-family: var(--mono); font-size: 12px; font-weight: 900;
+  letter-spacing: .1em; text-transform: uppercase;
+  opacity: 0; pointer-events: none; transition: .28s;
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 52%, transparent);
+  z-index: 30;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--ok); box-shadow: 0 12px 32px rgba(22,163,74,.5); }
+.toast.warn { background: var(--warn); }
+.toast.danger { background: var(--danger); }
+
+/* Footer */
+.hw-footer {
+  margin-top: 60px;
+  padding: 24px max(16px, calc((100vw - 1240px) / 2));
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  color: var(--muted); letter-spacing: .06em;
+  display: grid; gap: 10px; text-align: center;
+}
+.hw-footer a { color: inherit; text-decoration: none; transition: color .18s; }
+.hw-footer a:hover { color: var(--accent); }
+.hw-footer strong { color: var(--text); font-weight: 800; }
+
+/* Mobile */
+@media (max-width: 720px) {
+  main { padding: 20px 12px 120px; }
+  .hw-topbar { padding: 8px 12px; min-height: 54px; gap: 10px; flex-wrap: wrap; }
+  .hw-brand-mark { width: 34px; height: 34px; font-size: 18px; }
+  .hw-brand-sub { display: none; }
+  .hero-card { padding: 20px; border-radius: 16px; }
+  .hero-title { font-size: 1.5rem; line-height: 1.1; }
+  .hero-lead { font-size: .96rem; }
+  .hw-vocab { padding: 14px; border-radius: 14px; }
+  .hw-vocab-grid { grid-template-columns: 1fr; }
+  .item { padding: 18px; border-radius: 14px; }
+  .item-num { width: 36px; flex-basis: 36px; height: 36px; font-size: 13px; }
+  .item-q { font-size: 1.05rem; margin-right: 40px; }
+  .actions { padding: 12px; justify-content: stretch; }
+  .actions .btn { flex: 1; justify-content: center; padding: 12px 14px; font-size: 11px; }
+  .hw-footer { padding: 18px 12px; }
+}
+@media (max-width: 460px) {
+  .actions { flex-direction: column-reverse; gap: 8px; }
+  .actions .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<header class="hw-topbar" role="banner">
+  <a class="hw-brand" href="#" id="brandLink" aria-label="LinguaBoost Lab">
+    <span class="hw-brand-mark" aria-hidden="true"><span>N</span></span>
+    <span class="hw-brand-copy">
+      <span class="hw-brand-name">LinguaBoost Lab</span>
+      <span class="hw-brand-sub" id="brandSub">My Homework</span>
+    </span>
+  </a>
+  <div class="hw-tools">
+    <span class="tool-pill sync" id="syncPill" data-status="syncing" title="Синхронизация с облаком"><span class="dot"></span><span id="syncLabel">SYNC</span></span>
+    <span class="tool-pill level" id="levelPill">LAB</span>
+    <a class="tool-pill lesson-back" id="lessonLink" href="#">↗ Урок</a>
+  </div>
+</header>
+
+<main>
+  <div class="teacher-banner" id="teacherBanner" style="display:none">
+    👀 Teacher mirror — you are viewing <b id="teacherFor">student</b>'s homework live. Read-only, но можно добавить задание кнопкой ниже.
+  </div>
+
+  <section class="hero-card" aria-labelledby="heroTitle">
+    <span class="hero-eyebrow">📚 Моя домашка</span>
+    <h1 class="hero-title" id="heroTitle">Домашка загружается…</h1>
+    <p class="hero-lead" id="heroLead">
+      Заполни ответы и отправь Марии. Всё бетонируется в облако — можешь вернуться с любого устройства.
+    </p>
+    <div class="hero-meta">
+      <span class="meta-pill" id="metaCount">0 заданий</span>
+      <span class="meta-pill" id="metaWho">🎒 —</span>
+      <span class="meta-pill" id="metaLesson">урок</span>
+    </div>
+  </section>
+
+  <section class="hw-vocab" id="vocabSection" hidden aria-labelledby="vocabTitle">
+    <div class="hw-vocab-head">
+      <h2 class="hw-vocab-title" id="vocabTitle">📖 Глоссарий</h2>
+      <span class="hw-vocab-meta" id="vocabMeta">0 слов</span>
+    </div>
+    <div class="hw-vocab-grid" id="vocabGrid"></div>
+  </section>
+
+  <section class="list" id="list" aria-live="polite"></section>
+</main>
+
+<section class="actions" role="toolbar" aria-label="Homework actions">
+  <button class="btn danger" id="clearBtn" type="button">🗑 Очистить</button>
+  <button class="btn primary" id="sendBtn" type="button">📤 Отправить Марии · <span class="count-pill" id="sendCount">0</span></button>
+</section>
+
+<footer class="hw-footer" role="contentinfo">
+  <div>Homework by <strong>Maria Burtseva</strong> · NG English · LinguaBoost Lab</div>
+  <div><a href="/lingua-boost-lab/">← Все уроки</a> · <a href="/">Главная</a> · <a href="/lingua-boost-lab/premium.html">Каталог Premium</a></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function(){
+  // ─── Config ─────────
+  var SUPABASE_URL  = 'https://iqzlphbvmfgoygnozbya.supabase.co';
+  var SUPABASE_ANON = 'sb_publishable_hYhBk3xS90uouUFd_DZWUw_sOv-6JGO';
+  var params = new URLSearchParams(location.search);
+  var lesson = params.get('lesson') || '/lingua-boost-lab/';
+  var asTeacher = params.get('as') === 'teacher';
+  var teacherFor = params.get('for') || '';
+  var lsKey = 'lab-hw:' + lesson;
+  var legacyKey = 'lab_hw_v1_' + lesson;
+  var queueKey = 'lab-hw-queue:' + lesson;
+  var STATE_PREFIX = 'hw-state:';
+  var SUBMIT_TAG = 'homework-batch';
+  var lessonPath = normalizeLessonPath(lesson);
+  var vocabKey = 'lab-vocab-extra:' + lessonPath;
+  var vocabLegacyKey = 'lab-vocab-extras:' + lessonPath;
+
+  // ─── Palette snapshot ─────────
+  try {
+    var themeRaw = localStorage.getItem('lab-theme:' + lesson);
+    if (themeRaw) {
+      var theme = JSON.parse(themeRaw);
+      applyThemeVars(theme);
+    }
+  } catch(e){}
+
+  // ─── DOM refs ─────────
+  var list = document.getElementById('list');
+  var sendBtn = document.getElementById('sendBtn');
+  var sendCount = document.getElementById('sendCount');
+  var clearBtn = document.getElementById('clearBtn');
+  var heroTitle = document.getElementById('heroTitle');
+  var heroLead = document.getElementById('heroLead');
+  var metaCount = document.getElementById('metaCount');
+  var metaWho = document.getElementById('metaWho');
+  var metaLesson = document.getElementById('metaLesson');
+  var brandSub = document.getElementById('brandSub');
+  var levelPill = document.getElementById('levelPill');
+  var lessonLink = document.getElementById('lessonLink');
+  var brandLink = document.getElementById('brandLink');
+  var syncPill = document.getElementById('syncPill');
+  var syncLabel = document.getElementById('syncLabel');
+  var teacherBanner = document.getElementById('teacherBanner');
+  var teacherForEl = document.getElementById('teacherFor');
+  var vocabSection = document.getElementById('vocabSection');
+  var vocabGrid = document.getElementById('vocabGrid');
+  var vocabMeta = document.getElementById('vocabMeta');
+  brandLink.href = lesson;
+  lessonLink.href = lesson;
+
+  // ─── Level pill ─────────
+  var levelMap = { 'a1':'A1','a2':'A2','b1':'B1','b2':'B2','b2-plus':'B2+','c1':'C1','pre-a1':'Pre-A1','practice':'Practice' };
+  var levelMatch = lesson.match(/lingua-boost-lab\/([a-z0-9-]+)\//i);
+  if (levelMatch) { var lvl = levelMatch[1].toLowerCase(); levelPill.textContent = levelMap[lvl] || lvl.toUpperCase(); }
+
+  // ─── Slug pretty ─────────
+  var slugMatch = lesson.match(/\/([^/]+?)(?:\/|\.html?)?$/i);
+  var slug = slugMatch ? slugMatch[1].replace(/\.html?$/i, '') : '';
+  var slugPretty = slug.split('-').map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ').replace(/\bA1\b|\bA2\b|\bB1\b|\bB2\b|\bC1\b/gi, function(m){ return m.toUpperCase(); });
+  if (slugPretty) { heroTitle.textContent = slugPretty; metaLesson.textContent = slugPretty; }
+
+  // ─── Fetch real lesson title/brand ─────────
+  fetch(lesson, { cache: 'no-cache' }).then(function(r){ return r.ok ? r.text() : ''; }).then(function(html){
+    if (!html) return;
+    applyLessonTheme(html);
+    var m = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if (m) {
+      var t = decodeHTML(m[1]).replace(/&middot;/g,'·').replace(/\s*[·|]\s*(B[12]\+?|A[12]|C[12]|Pre-A1|LinguaBoost.*|NG English.*|Lab).*$/i, '').trim();
+      if (t && t.length > 2) { heroTitle.textContent = t; metaLesson.textContent = t; document.title = 'Моя домашка · ' + t; }
+    }
+    var subM = html.match(/class="[^"]*(?:canon-l-sub|brand-sub)[^"]*"[^>]*>([^<]+)</i);
+    if (subM) brandSub.textContent = subM[1].trim();
+    var lvlM = html.match(/class="[^"]*(?:canon-l-level|level-pill)[^"]*"[^>]*>([^<]+)</i);
+    if (lvlM) { var lt = lvlM[1].trim(); if (lt && lt.length <= 12) levelPill.textContent = lt; }
+  }).catch(function(){});
+
+  // ─── Utils ─────────
+  function escapeHTML(s){ return String(s||'').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function decodeHTML(s){
+    var box = document.createElement('textarea');
+    box.innerHTML = String(s || '');
+    return box.value;
+  }
+  function short(s,n){ s=String(s||''); return s.length>n ? s.slice(0,n-1)+'…' : s; }
+  function slugify(s){ return (s||'').toLowerCase().replace(/[^a-zа-яё0-9]+/gi,'-').replace(/^-+|-+$/g,'').slice(0,30); }
+  function normalizeLessonPath(value){
+    try { return new URL(value || '/', location.origin).pathname; }
+    catch(e){ return value || '/lingua-boost-lab/'; }
+  }
+  function applyThemeVars(theme){
+    var root = document.documentElement;
+    Object.keys(theme || {}).forEach(function(k){
+      if (k === '__bodyBg') return;
+      if (/^--[a-z0-9-]+$/i.test(k) && theme[k]) root.style.setProperty(k, theme[k]);
+    });
+    if (!theme['--bg-deep'] && theme['--bg-2']) root.style.setProperty('--bg-deep', theme['--bg-2']);
+    if (!theme['--card'] && theme['--surface']) root.style.setProperty('--card', theme['--surface']);
+    if (!theme['--text'] && theme['--ink']) root.style.setProperty('--text', theme['--ink']);
+    if (!theme['--muted'] && theme['--ink-soft']) root.style.setProperty('--muted', theme['--ink-soft']);
+  }
+  function applyLessonTheme(html){
+    // v5 2026-07-09: раньше искали только :root {}, но уроки объявляют темы
+    // через [data-theme="light-lab"] {}. Из-за этого .homework/ оставался
+    // тёмной дефолтной палитрой на светлом уроке (vocab-card get up был на
+    // #061428 — почти не читался).
+    var themeAttr = new URLSearchParams(location.search).get('theme')
+                    || document.documentElement.getAttribute('data-theme')
+                    || 'light-lab';
+    var htmlStr = String(html || '');
+    var patterns = [
+      new RegExp('\\[data-theme=["\\\']' + themeAttr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '["\\\']\\]\\s*\\{([\\s\\S]*?)\\}', 'i'),
+      /:root\s*\{([\s\S]*?)\}/i
+    ];
+    var m = null;
+    for (var i = 0; i < patterns.length; i++) {
+      m = htmlStr.match(patterns[i]);
+      if (m) break;
+    }
+    if (!m) return;
+    var vars = {};
+    m[1].replace(/\/\*[\s\S]*?\*\//g, '').replace(/(--[a-z0-9-]+)\s*:\s*([^;{}]+);/gi, function(_, key, value){
+      vars[key.trim()] = value.trim();
+      return '';
+    });
+    // Установим data-theme на root чтобы условные правила ([data-theme="light-lab"])
+    // сработали в CSS самой .homework/ (если добавим)
+    document.documentElement.setAttribute('data-theme', themeAttr);
+    applyThemeVars(vars);
+    try { localStorage.setItem('lab-theme:' + lesson, JSON.stringify(vars)); } catch(e){}
+  }
+  function toast(msg, kind){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (kind ? ' ' + kind : '');
+    clearTimeout(t.__hide);
+    t.__hide = setTimeout(function(){ t.className = 'toast'; }, 2800);
+  }
+  function kindLabel(k){
+    return ({ mcq:'Тест',tfns:'True / False / NS',gap:'Пропуск',wf:'Word formation',match:'Match',builder:'Sentence',mic:'Speaking',writing:'Writing',vocab:'Слово','raw-block':'Блок' }[k]) || (k ? k.toUpperCase() : 'Задание');
+  }
+
+  // ─── Sync status ─────────
+  function setSync(status, label){
+    syncPill.setAttribute('data-status', status);
+    syncLabel.textContent = label || status.toUpperCase();
+  }
+  if (asTeacher) setSync('teacher', 'TEACHER');
+
+  // ─── Identity ─────────
+  function getName(){
+    try {
+      var m = localStorage.getItem('lab-student-name');
+      if (m && m[0] === '{') { var d = JSON.parse(m); if (d && d.name) return d.name; }
+      return m || localStorage.getItem('lab_student_name') || localStorage.getItem('nge_student_name') || '';
+    } catch(e){ return ''; }
+  }
+  function setName(n){ try { localStorage.setItem('lab-student-name', n); } catch(e){} }
+  function askName(){
+    var have = getName();
+    if (have) return have;
+    var n = (prompt('Как тебя зовут? Учитель увидит имя рядом с домашкой:') || '').trim();
+    if (n) setName(n);
+    return n;
+  }
+
+  // Room = student key. For teacher mirror = target student passed in ?for=
+  var studentName = asTeacher ? (teacherFor || 'student') : (getName() || '');
+  var studentSlug = slugify(studentName);
+  var roomId = 'student-' + (studentSlug || 'anon');
+  var stateSection = STATE_PREFIX + roomId;
+  metaWho.textContent = '🎒 ' + (studentName || '—');
+  if (asTeacher) {
+    teacherBanner.style.display = '';
+    teacherForEl.textContent = studentName || 'student';
+    clearBtn.style.display = 'none';
+    sendBtn.textContent = '+ ЗАДАНИЕ УЧЕНИКУ';
+    sendBtn.disabled = false;
+  }
+
+  // ─── Local state (source of truth for UI) ─────────
+  function loadLocal(){
+    try {
+      var raw = localStorage.getItem(lsKey);
+      if (!raw && localStorage.getItem(legacyKey)) { raw = localStorage.getItem(legacyKey); localStorage.setItem(lsKey, raw); }
+      var arr = JSON.parse(raw || '[]');
+      return Array.isArray(arr) ? arr : [];
+    } catch(e){ return []; }
+  }
+  function saveLocal(arr){ try { localStorage.setItem(lsKey, JSON.stringify(arr)); } catch(e){} }
+  var state = { items: loadLocal(), rev: 0, remoteAt: 0 };
+
+  // ─── Separate glossary stream ─────────
+  function normalizeVocabWord(item){
+    if (!item) return null;
+    if (typeof item === 'string') item = { word: item };
+    var word = (item.word || item.en || item.title || '').trim();
+    if (!word) return null;
+    return {
+      word: word,
+      ipa: item.ipa || '',
+      ru: item.ru || item.meaning || item.translation || '',
+      example: item.example || item.ex || '',
+      audio: item.audio || ''
+    };
+  }
+  function dedupeVocab(arr){
+    var seen = {};
+    return (arr || []).map(normalizeVocabWord).filter(function(item){
+      if (!item) return false;
+      var key = item.word.toLowerCase();
+      if (seen[key]) return false;
+      seen[key] = true;
+      return true;
+    });
+  }
+  function loadVocabLocal(){
+    try {
+      var raw = localStorage.getItem(vocabKey) || localStorage.getItem(vocabLegacyKey) || '[]';
+      return dedupeVocab(JSON.parse(raw));
+    } catch(e){ return []; }
+  }
+  function saveVocabLocal(arr){
+    try { localStorage.setItem(vocabKey, JSON.stringify(dedupeVocab(arr))); } catch(e){}
+  }
+  var vocabItems = loadVocabLocal();
+  function renderVocabSection(){
+    vocabItems = dedupeVocab(vocabItems);
+    if (!vocabSection || !vocabGrid || !vocabMeta) return;
+    if (!vocabItems.length) {
+      vocabSection.hidden = true;
+      vocabGrid.innerHTML = '';
+      vocabMeta.textContent = '0 слов';
+      return;
+    }
+    vocabSection.hidden = false;
+    vocabMeta.textContent = vocabItems.length + ' ' + (vocabItems.length === 1 ? 'слово' : (vocabItems.length >= 2 && vocabItems.length <= 4 ? 'слова' : 'слов'));
+    vocabGrid.innerHTML = vocabItems.map(function(item){
+      return '<article class="vocab-card">' +
+        '<div class="vocab-en">' + escapeHTML(item.word) + '</div>' +
+        (item.ipa ? '<div class="vocab-ipa">' + escapeHTML(item.ipa) + '</div>' : '') +
+        (item.ru ? '<div class="vocab-ru">' + escapeHTML(item.ru) + '</div>' : '') +
+        (item.example ? '<div class="vocab-ex">' + escapeHTML(item.example) + '</div>' : '') +
+      '</article>';
+    }).join('');
+  }
+  function upsertVocabWord(item){
+    item = normalizeVocabWord(item);
+    if (!item) return;
+    vocabItems = dedupeVocab([item].concat(vocabItems.filter(function(x){ return (x.word || '').toLowerCase() !== item.word.toLowerCase(); })));
+    saveVocabLocal(vocabItems);
+    renderVocabSection();
+  }
+  function removeVocabWord(word){
+    if (!word) return;
+    var key = String(word).toLowerCase();
+    vocabItems = vocabItems.filter(function(x){ return (x.word || '').toLowerCase() !== key; });
+    saveVocabLocal(vocabItems);
+    renderVocabSection();
+  }
+  function pullVocabSnapshot(){
+    if (!sb) return Promise.resolve();
+    var url = SUPABASE_URL + '/rest/v1/lab_submissions?select=misses,created_at&room_id=eq.teacher-vocab&lesson_path=eq.' + encodeURIComponent(lessonPath) + '&section_id=eq.teacher-vocab-snapshot&order=created_at.desc&limit=1';
+    return fetch(url, { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        if (!rows || !rows.length || !Array.isArray(rows[0].misses)) return;
+        vocabItems = dedupeVocab(rows[0].misses);
+        saveVocabLocal(vocabItems);
+        renderVocabSection();
+      }).catch(function(){});
+  }
+
+  // ─── Retry queue ─────────
+  function loadQueue(){ try { return JSON.parse(localStorage.getItem(queueKey) || '[]'); } catch(e){ return []; } }
+  function saveQueue(q){ try { localStorage.setItem(queueKey, JSON.stringify(q)); } catch(e){} }
+  function enqueue(op){ var q = loadQueue(); q.push(op); saveQueue(q); }
+  function flushQueue(){
+    var q = loadQueue();
+    if (!q.length || !navigator.onLine) return Promise.resolve();
+    var head = q[0];
+    return doRequest(head).then(function(ok){
+      if (ok) { q.shift(); saveQueue(q); if (q.length) return flushQueue(); }
+    });
+  }
+  function doRequest(op){
+    return fetch(op.url, {
+      method: op.method || 'POST',
+      headers: op.headers || {},
+      body: op.body ? JSON.stringify(op.body) : undefined
+    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+  }
+
+  // ─── Supabase client ─────────
+  var sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { realtime: { params: { eventsPerSecond: 10 } } }) : null;
+
+  // ─── Cloud pull: last state row for (room, lesson) ─────────
+  function pullState(){
+    setSync('syncing', 'PULLING');
+    var url = SUPABASE_URL + '/rest/v1/lab_submissions?select=misses,created_at&room_id=eq.' + encodeURIComponent(roomId) + '&lesson_path=eq.' + encodeURIComponent(lesson) + '&section_id=eq.' + encodeURIComponent(stateSection) + '&order=created_at.desc&limit=1';
+    return fetch(url, { headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){
+        if (rows && rows.length) {
+          var remoteItems = Array.isArray(rows[0].misses) ? rows[0].misses : [];
+          var remoteAt = new Date(rows[0].created_at).getTime();
+          state.remoteAt = remoteAt;
+          // Merge: если облако новее И у нас нет несохранённых типингов последние 3с — заменяем
+          if (remoteItems.length && (state.items.length === 0 || remoteAt > Date.now() - 1000)) {
+            state.items = remoteItems;
+            saveLocal(remoteItems);
+          }
+        }
+        setSync('ok', 'ONLINE');
+        render();
+      })
+      .catch(function(){ setSync('offline', 'OFFLINE'); });
+  }
+
+  // ─── Cloud push: full snapshot as new event ─────────
+  var pushTimer = null;
+  var lastPushHash = '';
+  function hash(a){ return JSON.stringify(a).length + ':' + JSON.stringify(a).slice(0,80); }
+  function scheduleCloudPush(){
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(cloudPush, 800);
+  }
+  function cloudPush(){
+    if (asTeacher && !state.items.length) return;
+    var payload = {
+      room_id: roomId,
+      lesson_path: lesson,
+      section_id: stateSection,
+      section_title: (heroTitle && heroTitle.textContent) || '',
+      student_role: (asTeacher ? 'teacher:' : 'homework:') + (studentName || 'anon'),
+      score: 0, total: state.items.length, pct: 0,
+      misses: state.items
+    };
+    var h = hash(state.items);
+    if (h === lastPushHash) return;
+    lastPushHash = h;
+    setSync('syncing', 'SAVING');
+    fetch(SUPABASE_URL + '/rest/v1/lab_submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Prefer: 'return=minimal' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if (r.ok) {
+        setSync(asTeacher ? 'teacher' : 'ok', asTeacher ? 'MIRROR · ' + new Date().toTimeString().slice(0,5) : 'SAVED · ' + new Date().toTimeString().slice(0,5));
+        broadcastState(); // sync к другой стороне через broadcast
+      } else throw new Error('non-ok');
+    }).catch(function(){
+      setSync('offline', 'QUEUED');
+      enqueue({
+        url: SUPABASE_URL + '/rest/v1/lab_submissions',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Prefer: 'return=minimal' },
+        body: payload
+      });
+    });
+  }
+
+  // ─── Realtime: broadcast channel (работает на anon без publication) ─────────
+  // Канал = 'hw:<roomId>:<lesson-slug>'. События:
+  //   'state'  — полный snapshot items[] (когда меняем корзинку)
+  //   'typing' — маленький event на каждый keystroke (item.index + текст ответа)
+  //   'ping'   — «я здесь» / heartbeat
+  var bcastChannel = null;
+  var vocabChannel = null;
+  function subscribeVocabFirehose(){
+    if (!sb || vocabChannel) return;
+    try {
+      vocabChannel = sb.channel('lab-firehose-v1', { config: { broadcast: { self: false } } });
+      vocabChannel
+        .on('broadcast', { event: 'vocab-push' }, function(payload){
+          var data = (payload && payload.payload) || {};
+          if (!data.word) return;
+          var byRoom = roomId && data.room_id && data.room_id === roomId;
+          var byLesson = data.lesson_path && normalizeLessonPath(data.lesson_path) === lessonPath;
+          if (!byRoom && !byLesson) return;
+          upsertVocabWord(data);
+        })
+        .on('broadcast', { event: 'vocab-remove' }, function(payload){
+          var data = (payload && payload.payload) || {};
+          if (!data.word) return;
+          if (data.lesson_path && normalizeLessonPath(data.lesson_path) !== lessonPath) return;
+          removeVocabWord(data.word);
+        })
+        .subscribe();
+    } catch(e){}
+  }
+  function subscribeRealtime(){
+    if (!sb) return;
+    var channelName = 'hw:' + roomId + ':' + slugify(lesson);
+    bcastChannel = sb.channel(channelName, { config: { broadcast: { self: false } } });
+    bcastChannel
+      .on('broadcast', { event: 'state' }, function(payload){
+        try {
+          var data = payload && payload.payload;
+          if (!data || !Array.isArray(data.items)) return;
+          // ученик получает от учителя: обновляем UI + toast
+          if (!asTeacher || (asTeacher && data.from === 'student')) {
+            state.items = data.items;
+            state.remoteAt = data.at || Date.now();
+            saveLocal(data.items);
+            render();
+            if (!asTeacher) toast('🔄 Обновление от учителя', 'success');
+          }
+          // учитель получает от ученика: обновляем свою mirror-панель
+          if (asTeacher && data.from === 'student') {
+            state.items = data.items;
+            saveLocal(data.items);
+            render();
+            setSync('teacher', 'LIVE ' + new Date().toTimeString().slice(0,5));
+          }
+        } catch(e){}
+      })
+      .on('broadcast', { event: 'typing' }, function(payload){
+        try {
+          if (!asTeacher) return;
+          var data = payload && payload.payload;
+          if (!data || typeof data.idx !== 'number') return;
+          // учитель видит live-typing: обновляем textarea конкретного item
+          if (state.items[data.idx]) {
+            state.items[data.idx].answer = data.text || '';
+            var textarea = document.getElementById('ans-' + data.idx);
+            if (textarea) {
+              textarea.value = data.text || '';
+              textarea.style.transition = 'background .3s';
+              textarea.style.background = 'color-mix(in srgb, var(--accent) 8%, transparent)';
+              setTimeout(function(){ textarea.style.background = ''; }, 400);
+            } else {
+              render();
+              setSync('teacher', 'TYPING ' + new Date().toTimeString().slice(0,5));
+            }
+          }
+        } catch(e){}
+      })
+      .subscribe(function(status){
+        if (status === 'SUBSCRIBED') {
+          setSync(asTeacher ? 'teacher' : 'ok', asTeacher ? 'MIRROR' : 'LIVE');
+          // отправляем ping что мы онлайн
+          setTimeout(function(){
+            if (bcastChannel) bcastChannel.send({ type: 'broadcast', event: 'ping', payload: { from: asTeacher ? 'teacher' : 'student', at: Date.now() } });
+          }, 400);
+        } else if (status === 'CHANNEL_ERROR' || status === 'CLOSED') {
+          setSync('offline', 'RETRY');
+          setTimeout(subscribeRealtime, 3000);
+        }
+      });
+    return bcastChannel;
+  }
+  // Broadcast state snapshot всем подписчикам
+  function broadcastState(){
+    if (!bcastChannel) return;
+    try {
+      bcastChannel.send({
+        type: 'broadcast',
+        event: 'state',
+        payload: {
+          items: state.items,
+          from: asTeacher ? 'teacher' : 'student',
+          at: Date.now()
+        }
+      });
+    } catch(e){}
+  }
+  // Broadcast typing событий (только у ученика, only heavy debounced)
+  var typingTimer = null;
+  function broadcastTyping(idx, text){
+    if (asTeacher || !bcastChannel) return;
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(function(){
+      try {
+        bcastChannel.send({
+          type: 'broadcast',
+          event: 'typing',
+          payload: { idx: idx, text: text, from: 'student', at: Date.now() }
+        });
+      } catch(e){}
+    }, 300);
+  }
+
+  // ─── Render ─────────
+  function render(){
+    var items = state.items;
+    var wordCase = items.length === 1 ? 'задание' : (items.length >= 2 && items.length <= 4 ? 'задания' : 'заданий');
+    metaCount.textContent = items.length + ' ' + wordCase;
+    sendCount.textContent = items.length;
+    if (!asTeacher) {
+      sendBtn.disabled = clearBtn.disabled = items.length === 0;
+    }
+
+    if (items.length === 0) {
+      list.innerHTML =
+        '<div class="empty">' +
+          '<div class="emoji">📥</div>' +
+          '<h2>' + (asTeacher ? 'У ученика ещё пусто' : 'Пока ничего в корзинке') + '</h2>' +
+          '<p>' + (asTeacher
+            ? 'Ученик пока ничего не положил. Ты можешь добавить задание вручную кнопкой ниже.'
+            : 'Открой урок, нажми <b>➕</b> рядом с любым заданием — оно окажется здесь и сохранится в облако. Возвращайся с любого устройства.') + '</p>' +
+          (asTeacher ? '' : '<a class="btn primary" href="' + escapeHTML(lesson) + '">← Открыть урок</a>') +
+        '</div>';
+      return;
+    }
+
+    list.innerHTML = items.map(function(item, i){
+      var byTeacher = item.by === 'teacher' || (item.author && item.author.indexOf('teacher') === 0);
+      var q = short(item.question || item.title || item.en || 'Задание ' + (i+1), 160);
+      var kindClass = 'item-kind' + (item.kind === 'vocab' ? ' vocab' : '') + (byTeacher ? ' by-teacher' : '');
+      var head =
+        '<div class="item-head">' +
+          '<span class="item-num" aria-hidden="true">' + (i+1) + '</span>' +
+          '<div class="item-copy">' +
+            '<span class="' + kindClass + '">' + (byTeacher ? '👀 ' : '') + escapeHTML(kindLabel(item.kind)) + '</span>' +
+            '<div class="item-q">' + escapeHTML(q) + '</div>' +
+            (item.meta ? '<div class="item-meta">' + escapeHTML(item.meta) + '</div>' : '') +
+          '</div>' +
+        '</div>';
+      var body = '';
+      if (item.kind === 'vocab') {
+        body =
+          '<div class="vocab-card">' +
+            '<div class="vocab-en">' + escapeHTML(item.en || item.title || '') + '</div>' +
+            (item.ipa ? '<div class="vocab-ipa">' + escapeHTML(item.ipa) + '</div>' : '') +
+            (item.ru ? '<div class="vocab-ru">' + escapeHTML(item.ru) + '</div>' : '') +
+            (item.ex ? '<div class="vocab-ex">' + escapeHTML(item.ex) + '</div>' : '') +
+          '</div>';
+      } else if (item.kind === 'raw-block' && item.html) {
+        body = '<div class="raw">' + item.html + '</div>';
+      }
+      // Textarea для ответа:
+      // - Ученик: всегда textarea для ввода
+      // - Учитель + ответ ЕСТЬ: показываем прочитаемо, без большой заглушки
+      // - Учитель + ответа НЕТ: скрываем секцию полностью (не показываем пустое)
+      var answerLabel = item.kind === 'vocab' ? 'Пример со словом · твой' : 'Твой ответ · заметки';
+      var answer = '';
+      if (asTeacher) {
+        if (item.answer && item.answer.trim()) {
+          answer =
+            '<div class="answer readonly teacher-view">' +
+              '<label>💬 Ответ ученика' + (item.saved_at ? ' <span class="saved-tag" data-state="saved">✓ отправлено</span>' : '') + '</label>' +
+              '<div class="student-answer-view">' + escapeHTML(item.answer) + '</div>' +
+            '</div>';
+        }
+        // если ответа нет — вообще ничего не показываем (без пустой заглушки)
+      } else {
+        answer =
+          '<div class="answer">' +
+            '<label for="ans-' + i + '">' + answerLabel + (item.saved_at ? ' <span class="saved-tag" data-state="saved">✓ отправлено</span>' : '') + '</label>' +
+            '<textarea id="ans-' + i + '" data-idx="' + i + '" placeholder="Пиши ответ здесь. Сохраняется в облако автоматом.">' + escapeHTML(item.answer || '') + '</textarea>' +
+          '</div>';
+      }
+      // Крестик X виден ВСЕМ (учитель тоже может убрать лишнее)
+      var rmBtn = '<button class="rm" data-rm="' + i + '" title="Удалить блок" aria-label="Удалить блок">×</button>';
+      return '<article class="item' + (byTeacher ? ' by-teacher' : '') + '" data-item-idx="' + i + '">' + rmBtn + head + body + answer + '</article>';
+    }).join('');
+    hydrateRawAnswers();
+  }
+
+  // ─── Input handlers ─────────
+  var rawChoiceGroupSelector = [
+    '.mcq-opts', '.art-opts', '.ps-opts', '.oc-opts', '.tfns-opts',
+    '.mc-opts', '.tf-btns', '.tf-opts', '.predict-btns',
+    '.tfg-opts', '.cloze-opts', '.choice-opts',
+    '.choice-row', '.quiz-opts', '.quiz-options', '.answer-options',
+    '[class*="mcq-opts"]', '[class*="choice-opts"]', '[class*="choice-row"]',
+    '[class*="quiz-options"]', '[class*="answer-options"]', '[class*="opts"]', '[class*="btns"]'
+  ].join(',');
+  var rawChoiceNodeSelector = 'button, .mc-opt, .tf-btn, .predict-btn, .choice, .choice-btn, .btn-tf, .opt, [role="button"]';
+  function rawArticle(el){ return el && el.closest ? el.closest('.item[data-item-idx]') : null; }
+  function rawItem(article){
+    var idx = article ? +article.dataset.itemIdx : -1;
+    return idx >= 0 && state.items[idx] ? state.items[idx] : null;
+  }
+  function rawControlKey(el, selector){
+    var raw = el.closest('.raw');
+    var nodes = raw ? Array.prototype.slice.call(raw.querySelectorAll(selector)) : [];
+    return String(Math.max(0, nodes.indexOf(el)));
+  }
+  function rawGroupKey(group){
+    var raw = group.closest('.raw');
+    var groups = raw ? Array.prototype.slice.call(raw.querySelectorAll(rawChoiceGroupSelector)) : [];
+    return String(Math.max(0, groups.indexOf(group)));
+  }
+  function ensureRawAnswer(item){
+    if (!item.raw_answer || typeof item.raw_answer !== 'object') item.raw_answer = { choices:{}, fields:{}, checks:{} };
+    item.raw_answer.choices = item.raw_answer.choices || {};
+    item.raw_answer.fields = item.raw_answer.fields || {};
+    item.raw_answer.checks = item.raw_answer.checks || {};
+    item.raw_answer.drops = item.raw_answer.drops || {};
+    item.raw_answer.sequences = item.raw_answer.sequences || {};
+    return item.raw_answer;
+  }
+  function summarizeRawAnswer(raw){
+    var parts = [];
+    Object.keys(raw.choices || {}).forEach(function(k){ if (raw.choices[k]) parts.push(raw.choices[k]); });
+    Object.keys(raw.drops || {}).forEach(function(k){ if (raw.drops[k]) parts.push(raw.drops[k]); });
+    Object.keys(raw.sequences || {}).forEach(function(k){ if (raw.sequences[k]) parts.push(raw.sequences[k].join ? raw.sequences[k].join(' ') : raw.sequences[k]); });
+    Object.keys(raw.fields || {}).forEach(function(k){ if (raw.fields[k]) parts.push(raw.fields[k]); });
+    Object.keys(raw.checks || {}).forEach(function(k){ if (raw.checks[k]) parts.push(raw.checks[k]); });
+    return parts.filter(Boolean).join(' · ');
+  }
+  function persistRawAnswer(article, item){
+    if (!article || !item) return;
+    var raw = ensureRawAnswer(item);
+    item.answer = summarizeRawAnswer(raw);
+    item.saved_at = null;
+    saveLocal(state.items);
+    scheduleCloudPush();
+    broadcastTyping(+article.dataset.itemIdx, item.answer || '');
+  }
+  function resetRawState(article){
+    Array.prototype.forEach.call(article.querySelectorAll('.raw .correct, .raw .wrong, .raw .right, .raw .selected, .raw .is-correct, .raw .is-wrong, .raw .filled, .raw .used, .raw .revealed, .raw [data-state]'), function(node){
+      node.classList.remove('correct','wrong','right','selected','is-correct','is-wrong','filled','used','revealed');
+      if (node.hasAttribute('data-state')) node.removeAttribute('data-state');
+      if (node.hasAttribute('aria-pressed')) node.setAttribute('aria-pressed','false');
+    });
+    Array.prototype.forEach.call(article.querySelectorAll('.raw .drop-gap, .raw .cloze-gap, .raw .drop-slot, .raw .drop-zone, .raw .match-drop, .raw .match-slot, .raw .drop'), function(drop){
+      var initial = drop.getAttribute('data-placeholder') || '';
+      if (initial) drop.textContent = initial;
+    });
+  }
+  function hydrateRawAnswers(){
+    Array.prototype.forEach.call(list.querySelectorAll('.item[data-item-idx]'), function(article){
+      var item = rawItem(article);
+      resetRawState(article);
+      var raw = item && item.raw_answer;
+      if (!raw) return;
+      Array.prototype.forEach.call(article.querySelectorAll(rawChoiceGroupSelector), function(group, gi){
+        var val = raw.choices && raw.choices[String(gi)];
+        if (!val) return;
+        Array.prototype.forEach.call(group.querySelectorAll(rawChoiceNodeSelector), function(btn){
+          var bVal = rawOptionValue(btn);
+          var selected = bVal === val;
+          btn.classList.toggle('selected', selected);
+          btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        });
+      });
+      Array.prototype.forEach.call(article.querySelectorAll('.raw .drop-gap, .raw .cloze-gap, .raw .drop-slot, .raw .drop-zone, .raw .match-drop, .raw .match-slot, .raw .drop'), function(drop, di){
+        var val = raw.drops && raw.drops[String(di)];
+        if (!val) return;
+        drop.textContent = val;
+        drop.classList.add('filled');
+      });
+      Array.prototype.forEach.call(article.querySelectorAll('.raw .wo-item[data-words]'), function(box, bi){
+        var seq = raw.sequences && raw.sequences[String(bi)];
+        if (!seq || !seq.length) return;
+        var bank = box.querySelector('.wo-bank, .wo-pills');
+        var slots = box.querySelector('.wo-slots');
+        if (!bank || !slots) return;
+        seq.forEach(function(word){
+          var pill = Array.prototype.find.call(bank.querySelectorAll('.wo-pill'), function(p){ return p.textContent.trim() === word; });
+          if (pill) slots.appendChild(pill);
+        });
+      });
+      Array.prototype.forEach.call(article.querySelectorAll('.raw input, .raw textarea, .raw select'), function(ctrl, ci){
+        var key = String(ci);
+        if ((ctrl.type === 'checkbox' || ctrl.type === 'radio')) {
+          var checked = raw.checks && raw.checks[key];
+          ctrl.checked = checked === '1' || checked === ctrl.value;
+        } else if (raw.fields && Object.prototype.hasOwnProperty.call(raw.fields, key)) {
+          ctrl.value = raw.fields[key];
+        }
+      });
+    });
+  }
+  function rawOptionValue(el){
+    if (!el) return '';
+    return (el.getAttribute('data-v') || el.getAttribute('data-ans') || el.getAttribute('data-a') ||
+      el.getAttribute('data-w') || el.getAttribute('data-word') || el.getAttribute('data-place') || el.getAttribute('data-grammar') ||
+      el.getAttribute('data-pentagon') ||
+      el.getAttribute('data-value') || el.value || el.textContent || '').trim();
+  }
+  function rawExpectedValue(el){
+    var src = el && el.closest('[data-correct], [data-ans], [data-a], [data-answer], [data-expected]');
+    return src ? (src.getAttribute('data-correct') || src.getAttribute('data-ans') || src.getAttribute('data-a') || src.getAttribute('data-answer') || src.getAttribute('data-expected') || '').trim() : '';
+  }
+  function rawDropKey(drop){
+    return rawControlKey(drop, '.raw .drop-gap, .raw .cloze-gap, .raw .drop-slot, .raw .drop-zone, .raw .match-drop, .raw .match-slot, .raw .drop');
+  }
+  function flashWrong(el){
+    el.classList.add('wrong');
+    setTimeout(function(){ el.classList.remove('wrong'); }, 450);
+  }
+  function pickRawBankWord(article, word){
+    var group = word.closest('.bank, .word-bank, .drag-bank, .pill-bank, .lex-bank, .grams-bank, .bank-interactive, .interactive');
+    if (!group) return false;
+    Array.prototype.forEach.call(group.querySelectorAll('.bank-word, .word-chip, .drag-item, [data-w], [data-word]'), function(node){
+      if (node !== word) node.classList.remove('selected');
+    });
+    if (word.classList.contains('used')) return true;
+    word.classList.toggle('selected');
+    return true;
+  }
+  function placeRawBankWord(article, item, drop){
+    var rawBox = article.querySelector('.raw');
+    var selected = rawBox && rawBox.querySelector('.bank-word.selected:not(.used), .word-chip.selected:not(.used), .drag-item.selected:not(.used), [data-w].selected:not(.used), [data-word].selected:not(.used)');
+    if (!selected) return false;
+    var got = rawOptionValue(selected);
+    var want = rawExpectedValue(drop);
+    if (want && got !== want) {
+      flashWrong(drop);
+      return true;
+    }
+    drop.textContent = got;
+    drop.classList.add('filled');
+    if (want) drop.classList.add('is-correct');
+    selected.classList.remove('selected');
+    selected.classList.add('used');
+    ensureRawAnswer(item).drops[rawDropKey(drop)] = got;
+    persistRawAnswer(article, item);
+    return true;
+  }
+  function pickRawMatchPlace(article, place){
+    var group = place.closest('.match-bank, [class*="match-bank"]') || article;
+    Array.prototype.forEach.call(group.querySelectorAll('.match-place, .match-card, .drag-item, [data-place]'), function(node){
+      if (node !== place) node.classList.remove('selected');
+    });
+    if (place.classList.contains('used')) return true;
+    place.classList.toggle('selected');
+    return true;
+  }
+  function placeRawMatch(article, item, drop){
+    var rawBox = article.querySelector('.raw');
+    var selected = rawBox && rawBox.querySelector('.match-place.selected:not(.used), .match-card.selected:not(.used), .drag-item.selected:not(.used), [data-place].selected:not(.used)');
+    if (!selected) return false;
+    var got = rawOptionValue(selected);
+    var want = rawExpectedValue(drop);
+    if (want && got !== want) {
+      flashWrong(drop);
+      return true;
+    }
+    drop.textContent = got;
+    drop.classList.add('filled');
+    if (want) drop.classList.add('is-correct');
+    selected.classList.remove('selected');
+    selected.classList.add('used');
+    ensureRawAnswer(item).drops[rawDropKey(drop)] = got;
+    persistRawAnswer(article, item);
+    return true;
+  }
+  function toggleRawWordOrder(article, item, pill){
+    var box = pill.closest('.wo-item[data-words], .ord-wrap[data-answer]');
+    if (!box) return false;
+    var bank = box.querySelector('.wo-bank, .wo-pills, .ord-bank');
+    var slots = box.querySelector('.wo-slots, .ord-slots');
+    if (!bank || !slots) return false;
+    pill.classList.remove('correct', 'wrong');
+    if (pill.matches('.ord-card, .ord-chip')) {
+      var emptySlot = Array.prototype.find.call(slots.querySelectorAll('.ord-slot'), function(slot){ return !slot.querySelector('.ord-card, .ord-chip'); });
+      if (pill.closest('.ord-slot')) {
+        bank.appendChild(pill);
+      } else if (emptySlot) {
+        emptySlot.appendChild(pill);
+      } else {
+        slots.appendChild(pill);
+      }
+    } else {
+      (pill.parentElement === bank ? slots : bank).appendChild(pill);
+    }
+    var raw = ensureRawAnswer(item);
+    var boxes = Array.prototype.slice.call(article.querySelectorAll('.raw .wo-item[data-words], .raw .ord-wrap[data-answer]'));
+    raw.sequences[String(Math.max(0, boxes.indexOf(box)))] = Array.prototype.map.call(slots.querySelectorAll('.wo-pill, .ord-card, .ord-chip'), function(p){
+      return rawOptionValue(p);
+    });
+    persistRawAnswer(article, item);
+    return true;
+  }
+  function checkRawWordOrder(article, item, btn){
+    var box = btn.closest('.wo-item[data-words], .ord-wrap[data-answer]');
+    if (!box) return false;
+    var correct = (box.getAttribute('data-words') || box.getAttribute('data-answer') || '').split(/[\/,]/).filter(Boolean);
+    var placed = Array.prototype.slice.call(box.querySelectorAll('.wo-slots .wo-pill, .ord-slots .ord-card, .ord-slots .ord-chip'));
+    placed.forEach(function(pill, idx){
+      pill.classList.remove('correct', 'wrong');
+      pill.classList.add(rawOptionValue(pill) === correct[idx] ? 'correct' : 'wrong');
+    });
+    var raw = ensureRawAnswer(item);
+    var boxes = Array.prototype.slice.call(article.querySelectorAll('.raw .wo-item[data-words], .raw .ord-wrap[data-answer]'));
+    raw.sequences[String(Math.max(0, boxes.indexOf(box)))] = placed.map(function(p){ return rawOptionValue(p); });
+    persistRawAnswer(article, item);
+    return true;
+  }
+  function handleRawChoiceButton(article, item, btn){
+    var group = btn.closest(rawChoiceGroupSelector);
+    if (!group) return false;
+    var raw = ensureRawAnswer(item);
+    Array.prototype.forEach.call(group.querySelectorAll(rawChoiceNodeSelector), function(node){
+      node.classList.remove('selected', 'correct', 'wrong', 'right');
+      if (node.hasAttribute('data-state')) node.removeAttribute('data-state');
+      node.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('selected');
+    btn.setAttribute('aria-pressed', 'true');
+    var expected = rawExpectedValue(btn);
+    var actual = rawOptionValue(btn);
+    var correctMark = (btn.getAttribute('data-correct') || '').trim().toLowerCase();
+    var isCorrect = (btn.hasAttribute('data-correct') && (!expected || correctMark === 'true' || correctMark === '1' || correctMark === actual.toLowerCase())) || (expected && actual === expected);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      if (btn.classList.contains('choice')) btn.setAttribute('data-state', 'correct');
+      var row = btn.closest('.mcq-row, .mc-item, .tf-item, .predict-card, .choice-row, .quiz-item, .grammar-quiz-item');
+      if (row) row.classList.add('revealed');
+    } else if (expected || group.querySelector('[data-correct]')) {
+      btn.classList.add('wrong');
+      if (btn.classList.contains('choice')) btn.setAttribute('data-state', 'wrong');
+      var correctBtn = Array.prototype.find.call(group.querySelectorAll(rawChoiceNodeSelector), function(node){
+        var mark = (node.getAttribute('data-correct') || '').trim().toLowerCase();
+        return rawOptionValue(node) === expected || (node.hasAttribute('data-correct') && (!mark || mark === 'true' || mark === '1'));
+      });
+      if (correctBtn) correctBtn.classList.add('correct');
+      var rowWrong = btn.closest('.mcq-row, .mc-item, .tf-item, .predict-card, .choice-row, .quiz-item, .grammar-quiz-item');
+      if (rowWrong) rowWrong.classList.add('revealed');
+    }
+    raw.choices[rawGroupKey(group)] = rawOptionValue(btn);
+    persistRawAnswer(article, item);
+    return true;
+  }
+  function handleRawPlayButton(btn){
+    var sayNode = btn.closest('[data-say]') || btn;
+    var text = (sayNode.getAttribute('data-say') || '').trim();
+    if (!text) return false;
+    try {
+      if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') return true;
+      window.speechSynthesis.cancel();
+      var utter = new SpeechSynthesisUtterance(text);
+      utter.lang = /^[а-яё]/i.test(text) ? 'ru-RU' : 'en-US';
+      utter.rate = 0.9;
+      window.speechSynthesis.speak(utter);
+      btn.classList.add('playing');
+      setTimeout(function(){ btn.classList.remove('playing'); }, Math.min(3500, Math.max(900, text.length * 45)));
+    } catch(e){}
+    return true;
+  }
+
+  list.addEventListener('input', function(e){
+    if (e.target.matches('textarea[data-idx]')) {
+      var i = +e.target.dataset.idx;
+      if (state.items[i]) {
+        state.items[i].answer = e.target.value;
+        state.items[i].saved_at = null;
+        saveLocal(state.items);
+        scheduleCloudPush();
+        broadcastTyping(i, e.target.value); // live-typing to teacher mirror
+      }
+    } else if (e.target.closest('.raw') && e.target.matches('input, textarea, select')) {
+      var article = rawArticle(e.target);
+      var item = rawItem(article);
+      if (!item) return;
+      var raw = ensureRawAnswer(item);
+      raw.fields[rawControlKey(e.target, '.raw input, .raw textarea, .raw select')] = e.target.value;
+      persistRawAnswer(article, item);
+    }
+  });
+  list.addEventListener('change', function(e){
+    if (!e.target.closest('.raw') || !e.target.matches('input, textarea, select')) return;
+    var article = rawArticle(e.target);
+    var item = rawItem(article);
+    if (!item) return;
+    var raw = ensureRawAnswer(item);
+    var key = rawControlKey(e.target, '.raw input, .raw textarea, .raw select');
+    if (e.target.type === 'checkbox' || e.target.type === 'radio') {
+      raw.checks[key] = e.target.checked ? (e.target.value || '1') : '';
+    } else {
+      raw.fields[key] = e.target.value;
+    }
+    persistRawAnswer(article, item);
+  });
+
+  list.addEventListener('click', function(e){
+    var rm = e.target.closest('[data-rm]');
+    if (rm) {
+      state.items.splice(+rm.dataset.rm, 1);
+      saveLocal(state.items);
+      cloudPush();
+      render();
+      toast('Убрал задание');
+      return;
+    }
+    var rawTarget = e.target.closest('.raw button, .raw .bank-word, .raw .word-chip, .raw .drag-item, .raw [data-w], .raw [data-word], .raw .drop-gap, .raw .cloze-gap, .raw .drop-slot, .raw .drop-zone, .raw .drop, .raw .match-place, .raw .match-card, .raw [data-place], .raw .match-drop, .raw .match-slot, .raw .wo-pill, .raw .ord-card, .raw .ord-chip, .raw .mc-opt, .raw .tf-btn, .raw .btn-tf, .raw .choice, .raw .choice-btn, .raw .predict-btn, .raw .opt, .raw .flip-card, .raw .vocab-card, .raw [role="button"]');
+    if (rawTarget) {
+      if (rawTarget.matches('[data-rm], .rm, [class*="listen"], [id*="listen"], .q-speak')) return;
+      var article = rawArticle(rawTarget);
+      var item = rawItem(article);
+      if (!item) return;
+      e.preventDefault();
+      if (rawTarget.matches('[data-say], [class*="play"]') && handleRawPlayButton(rawTarget)) return;
+      if (rawTarget.matches('.bank-word, .word-chip, .drag-item, [data-w], [data-word]') && pickRawBankWord(article, rawTarget)) return;
+      if (rawTarget.matches('.drop-gap, .cloze-gap, .drop-slot, .drop-zone, .drop') && placeRawBankWord(article, item, rawTarget)) return;
+      if (rawTarget.matches('.match-place, .match-card, [data-place]') && pickRawMatchPlace(article, rawTarget)) return;
+      if (rawTarget.matches('.match-drop, .match-slot, .drop-zone') && placeRawMatch(article, item, rawTarget)) return;
+      if (rawTarget.matches('.wo-check, .ord-check') && checkRawWordOrder(article, item, rawTarget)) return;
+      if (rawTarget.matches('.wo-pill, .ord-card, .ord-chip') && toggleRawWordOrder(article, item, rawTarget)) return;
+      if (rawTarget.matches('.flip-card, .vocab-card')) {
+        rawTarget.classList.toggle('flipped');
+        return;
+      }
+      handleRawChoiceButton(article, item, rawTarget);
+    }
+  });
+
+  clearBtn.addEventListener('click', function(){
+    if (asTeacher) return;
+    if (!confirm('Удалить ВСЕ задания из домашки? Отменить не получится.')) return;
+    state.items = [];
+    saveLocal([]);
+    cloudPush();
+    render();
+    toast('Корзинка пуста');
+  });
+
+  // ─── Teacher: add new item ─────────
+  sendBtn.addEventListener('click', function(){
+    if (asTeacher) {
+      var q = prompt('Что задать ученику? (текстовое задание одной строкой)');
+      if (!q) return;
+      state.items.push({
+        kind: 'writing',
+        question: q,
+        by: 'teacher',
+        author: 'teacher:' + (getName() || 'Maria'),
+        added_at: new Date().toISOString()
+      });
+      saveLocal(state.items);
+      cloudPush();
+      render();
+      toast('Задание добавлено ученику', 'success');
+      return;
+    }
+    // Student: SUBMIT
+    submitHomework();
+  });
+
+  function submitHomework(){
+    var arr = state.items;
+    if (!arr.length) return;
+    var name = askName();
+    if (!name) { toast('Скажи имя — учителю нужно кому написать', 'warn'); return; }
+    studentName = name;
+    studentSlug = slugify(name);
+    roomId = 'student-' + studentSlug;
+    stateSection = STATE_PREFIX + roomId;
+
+    sendBtn.disabled = true;
+    var originalHtml = sendBtn.innerHTML;
+    sendBtn.innerHTML = '📤 Отправляем…';
+
+    var payload = {
+      room_id: roomId,
+      student_role: 'homework:' + name,
+      lesson_path: lesson,
+      lesson_title: heroTitle.textContent || '',
+      section_id: SUBMIT_TAG,
+      section_title: (heroTitle && heroTitle.textContent) || '',
+      items: arr,
+      score: 0, total: arr.length, pct: 0,
+      misses: arr
+    };
+
+    // Канал 1: Cloudflare Function → D1
+    var cf = fetch('/api/homework/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        student_name: name,
+        lesson_path: lesson,
+        lesson_title: payload.lesson_title,
+        section_id: SUBMIT_TAG,
+        items: arr,
+        misses: arr.map(function(it){ return (it.question || it.title || it.en || 'Задание') + ' → ' + (it.answer || '(без ответа)'); })
+      })
+    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+
+    // Канал 2: Supabase INSERT
+    var sbIns = fetch(SUPABASE_URL + '/rest/v1/lab_submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Prefer: 'return=minimal' },
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+
+    Promise.allSettled([cf, sbIns]).then(function(results){
+      var cfOk = results[0].value === true;
+      var sbOk = results[1].value === true;
+      if (cfOk || sbOk) {
+        toast('✅ Отправлено Марии' + (cfOk && sbOk ? ' (2 канала)' : ''), 'success');
+        // не чистим items — оставляем как «сдано», просто помечаем saved_at
+        arr.forEach(function(it){ it.saved_at = Date.now(); });
+        state.items = arr;
+        saveLocal(arr);
+        render();
+      } else {
+        // Оба канала лежат → в retry queue
+        enqueue({
+          url: SUPABASE_URL + '/rest/v1/lab_submissions',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON, Prefer: 'return=minimal' },
+          body: payload
+        });
+        toast('⚠ Оба канала недоступны — сохранила, отправлю позже', 'warn');
+      }
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = originalHtml;
+    });
+  }
+
+  // ─── Init ─────────
+  render();
+  renderVocabSection();
+  if (sb) {
+    pullVocabSnapshot();
+    subscribeVocabFirehose();
+  }
+
+  if (sb && studentSlug) {
+    pullState();
+    subscribeRealtime();
+  } else if (!studentSlug && !asTeacher) {
+    // ученик ещё не назвал имя — облако подключится когда он назовёт
+    setSync('offline', 'IDENTIFY');
+  }
+  // Flush pending queue on load + interval + online event
+  setTimeout(flushQueue, 1200);
+  setInterval(flushQueue, 15000);
+  window.addEventListener('online', function(){ setSync('syncing','SYNC'); flushQueue().then(pullState); });
+  window.addEventListener('offline', function(){ setSync('offline','OFFLINE'); });
+  window.addEventListener('storage', function(e){ if (e.key === lsKey) { state.items = loadLocal(); render(); } });
+
+  // Prompt name on first interaction if student and not named
+  if (!asTeacher && !studentSlug) {
+    setTimeout(function(){
+      var n = askName();
+      if (n) {
+        studentName = n; studentSlug = slugify(n);
+        roomId = 'student-' + studentSlug;
+        stateSection = STATE_PREFIX + roomId;
+        metaWho.textContent = '🎒 ' + n;
+        pullState();
+        subscribeRealtime();
+      }
+    }, 400);
+  }
+})();
+</script>
+<script src="../assets/lab-send-pill.js?v=2" defer></script>
+</body>
+</html>

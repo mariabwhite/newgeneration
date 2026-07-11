@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Practical English · Day 1 · Timofey · 2 July</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Playfair+Display:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f0e6;
+  --surface: #ffffff;
+  --card: #faf6ec;
+  --card-2: #f0e8d6;
+  --text: #2c2620;
+  --muted: #6b6560;
+  --faint: #a09786;
+  --navy: #1a3a5c;
+  --navy-2: #2a5285;
+  --burgundy: #8b1e3f;
+  --gold: #b8964a;
+  --ok: #3d7c47;
+  --miss: #b8433a;
+  --line: rgba(26, 58, 92, .16);
+  --line-2: rgba(26, 58, 92, .32);
+  --accent: #FF5A1F;
+  --accent-on: #0b0b0c;
+  --brand: #FF5A1F;
+  --display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --serif: "Playfair Display", Georgia, serif;
+  --body: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.65;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(26,58,92,.06), transparent 60%),
+    radial-gradient(ellipse at 90% 100%, rgba(139,30,63,.05), transparent 55%);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════ TOPBAR — canon Voyager L1 / Interview Speed Prep ═══════════ */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px clamp(16px, 3vw, 28px);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0; text-decoration: none;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  border-top-right-radius: 0;
+  background: var(--accent);
+  color: var(--accent-on);
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: -.04em;
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute; right: 0; top: 0;
+  width: 14px; height: 14px;
+  background: #ffffff;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2; display: block; pointer-events: none;
+}
+.brand-copy, .brand-text {
+  display: flex; flex-direction: column; gap: 1px;
+  min-width: 0;
+}
+.brand-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: .95rem;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  line-height: 1;
+  white-space: nowrap;
+}
+.brand-sub {
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+.spacer, .topbar-spacer { flex: 1; }
+.pill {
+  padding: 5px 11px;
+  border-radius: 50px;
+  font: 700 9.5px/1 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border: 1px solid var(--line-2);
+  color: var(--muted);
+  background: var(--card);
+  white-space: nowrap;
+}
+.pill.brand { background: color-mix(in srgb, var(--navy) 15%, transparent); border-color: var(--navy); color: var(--navy); }
+.pill.accent { background: color-mix(in srgb, var(--burgundy) 15%, transparent); border-color: var(--burgundy); color: var(--burgundy); }
+.btn-sm {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line-2);
+  background: var(--card);
+  color: var(--muted);
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .15s;
+  text-decoration: none;
+  display: inline-flex; align-items: center;
+}
+.btn-sm:hover { border-color: var(--navy); color: var(--navy); }
+
+/* lesson-tabs · canon ProgressMe-style
+   position:fixed (не sticky!) — body имеет overflow-x:hidden,
+   что ломает position:sticky для потомков. */
+.lesson-tabs {
+  position: fixed; top: 62px; left: 0; right: 0; z-index: 99;
+  display: flex; gap: 8px; justify-content: center;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+  transition: top .26s cubic-bezier(.4,0,.2,1);
+}
+/* Компенсируем высоту fixed-табов — hero не должен нырять под них */
+body { padding-top: 52px; }
+@media(max-width:680px){ body { padding-top: 46px; } }
+.ltab {
+  padding: 9px 18px;
+  border-radius: 50px;
+  border: 1.5px solid var(--line-2);
+  background: var(--card);
+  color: var(--muted);
+  font: 800 11px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .18s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.ltab:hover { border-color: var(--navy); color: var(--navy); }
+.ltab.is-active {
+  background: var(--navy);
+  color: #f6ecd0;
+  border-color: var(--navy);
+  box-shadow: 0 4px 12px rgba(26,58,92,.35);
+}
+.ltab .ltab-count {
+  background: rgba(255,255,255,.18);
+  padding: 2px 8px; border-radius: 50px;
+  font-size: 10px; min-width: 20px; text-align: center;
+}
+.ltab.is-active .ltab-count {
+  background: rgba(246,236,216,.28);
+  color: #f6ecd0;
+}
+@media (max-width: 680px) {
+  .lesson-tabs { padding: 6px 6px; gap: 6px; top: 54px; }
+  .ltab { padding: 7px 12px; font-size: 9.5px; letter-spacing: .08em; }
+}
+@media (max-width: 720px) {
+  .brand-sub { display: none; }
+  .brand-name { font-size: 13px; }
+  /* .brand-mark keep canon 36×36 · 14px corner (Lab-canon) — no mobile shrink */
+  .pill { font-size: 10px; padding: 0 9px; height: 28px; }
+  .btn-sm { height: 28px; padding: 0 10px; font-size: 11px; }
+}
+
+/* ═══════════ HERO ═══════════ */
+.hero {
+  max-width: 1240px;
+  margin: 24px auto 12px;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+.hero-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 44px) clamp(16px, 3vw, 28px);
+  background:
+    url("./assets/hero-banner.png?v=3") center/cover no-repeat,
+    #0b162e;
+  min-height: clamp(320px, 40vw, 480px);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-card > * { max-width: 640px; position: relative; z-index: 1; }
+@media (max-width: 720px) { .hero-card > * { max-width: 100%; } }
+.hero-title { color: #ffffff !important; text-shadow: none !important; }
+.hero-title em { color: #ffcf7a !important; font-style: italic; }
+.hero-eyebrow { color: #ffcf7a !important; text-shadow: none !important; font-weight: 800; }
+.hero-eyebrow::after { background: linear-gradient(to right, #ffcf7a, transparent); }
+.hero-lead { color: #f4ecd8 !important; text-shadow: none !important; font-weight: 500; }
+.hero-chip { color: #ffffff !important; background: rgba(11, 22, 46, .6) !important; border: 1px solid rgba(255, 207, 122, .5) !important; text-shadow: none !important; }
+.hero-eyebrow {
+  font: 700 10.5px/1 var(--mono);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, var(--burgundy), transparent);
+  max-width: 120px;
+  opacity: .5;
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.05;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--burgundy);
+  font-weight: 800;
+}
+.hero-lead {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 640px;
+  margin-bottom: 22px;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.hero-chip {
+  padding: 6px 11px;
+  border-radius: 50px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  color: var(--navy);
+  font: 600 10.5px/1 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 720px) {
+  .hero-title { font-size: 2rem; }
+  .hero-lead { font-size: 1rem; }
+  .hero-chip { font-size: 9.5px; padding: 5px 9px; }
+}
+
+/* ═══════════ SECTION ═══════════ */
+main { padding: 0 0 60px; }
+section.section {
+  max-width: 1240px;
+  margin: 24px auto;
+  padding: clamp(24px, 4vw, 44px) clamp(16px, 3vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 4px 30px rgba(26, 58, 92, .06);
+  position: relative;
+}
+.sec-num {
+  font: 800 10.5px/1 var(--mono);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-num::before {
+  content: "";
+  width: 20px; height: 1.5px;
+  background: var(--gold);
+}
+.sec-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.section-banner {
+  width: 100%;
+  min-height: clamp(120px, 16vw, 180px);
+  border-radius: 14px;
+  margin: 0 0 26px;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(18px, 3vw, 26px) clamp(22px, 3vw, 32px);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(11, 22, 46, .15);
+}
+.section-banner::before {
+  content: attr(data-emoji);
+  position: absolute;
+  right: clamp(-8px, -1vw, 0px);
+  top: clamp(-14px, -1.5vw, -10px);
+  font-size: clamp(90px, 15vw, 170px);
+  line-height: 1;
+  opacity: .16;
+  pointer-events: none;
+}
+.section-banner .sb-eyebrow {
+  display: block;
+  font: 800 10.5px/1 var(--mono);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.section-banner .sb-title {
+  display: block;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.sb-vocab    { background: linear-gradient(135deg, #0b162e 0%, #17324f 55%, #7a2136 100%); }
+.sb-grammar  { background: linear-gradient(135deg, #0b162e 0%, #1b3a5f 55%, #8b6b2a 100%); }
+.sb-reading  { background: linear-gradient(135deg, #142a4a 0%, #0b162e 60%, #3a4a70 100%); }
+.sb-listen   { background: linear-gradient(135deg, #1a1f3a 0%, #4a1e3f 55%, #b25a2a 100%); }
+.sb-speaking { background: linear-gradient(135deg, #4a1e3f 0%, #8b1e3f 45%, #d18944 100%); }
+.sec-lead {
+  color: var(--muted);
+  font-size: .96rem;
+  margin-bottom: 22px;
+  line-height: 1.55;
+}
+.sec-instr {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--card);
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+  font: 600 12px/1.4 var(--mono);
+  letter-spacing: .06em;
+  color: var(--navy);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* ═══════════ WARM-UP MIC ═══════════ */
+.mic-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.mic-prompt {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.mic-model {
+  background: var(--surface);
+  border: 1px dashed var(--line-2);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: .95rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+.mic-model .placeholder {
+  display: inline-block;
+  min-width: 60px;
+  border-bottom: 2px dotted var(--burgundy);
+  color: var(--burgundy);
+  font-weight: 700;
+  padding: 0 4px;
+}
+.mic-tip {
+  font: 500 12.5px/1.5 var(--body);
+  color: var(--muted);
+  margin-top: 12px;
+  padding-left: 26px;
+  position: relative;
+}
+.mic-tip::before {
+  content: "🎤";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.mic-rec-btn {
+  margin-top: 14px;
+  padding: 10px 18px;
+  border: 1.5px solid var(--navy);
+  background: var(--surface);
+  color: var(--navy);
+  border-radius: 50px;
+  font: 700 11px/1 var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.mic-rec-btn:hover {
+  background: var(--navy);
+  color: #f6ecd0;
+}
+.mic-rec-btn.recording {
+  background: var(--burgundy);
+  color: #fff;
+  border-color: var(--burgundy);
+  animation: pulse 1.2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,30,63,.5); }
+  50% { box-shadow: 0 0 0 10px rgba(139,30,63,0); }
+}
+.mic-out {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--card);
+  border-radius: 8px;
+  font-size: .95rem;
+  min-height: 20px;
+  color: var(--text);
+  border: 1px dashed var(--line);
+}
+
+/* ═══════════ PRESENT SIMPLE ═══════════ */
+.ps-list {
+  display: grid;
+  gap: 10px;
+}
+.ps-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.ps-num {
+  width: 28px; height: 28px;
+  background: var(--navy);
+  color: #f6ecd0;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font: 800 12px/1 var(--mono);
+}
+.ps-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.ps-text .gap {
+  display: inline-block;
+  min-width: 90px;
+  padding: 2px 8px;
+  border: 1.5px dashed var(--burgundy);
+  border-radius: 6px;
+  color: var(--burgundy);
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all .15s;
+  background: var(--surface);
+}
+.ps-text .gap.filled {
+  background: var(--card);
+  border-style: solid;
+}
+.ps-text .gap.ok {
+  border-color: var(--ok);
+  color: var(--ok);
+  background: rgba(61, 124, 71, .08);
+}
+.ps-text .gap.miss {
+  border-color: var(--miss);
+  color: var(--miss);
+  background: rgba(184, 67, 58, .08);
+}
+.ps-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 14px;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px dashed var(--line-2);
+}
+.ps-opt-btn {
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--line-2);
+  color: var(--navy);
+  border-radius: 50px;
+  font: 700 12px/1 var(--mono);
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: all .15s;
+}
+.ps-opt-btn:hover { border-color: var(--navy); background: var(--navy); color: #f6ecd0; }
+.ps-opt-btn.used { opacity: .4; }
+
+/* ═══════════ MCQ (multiple-choice question) ═══════════ */
+.mcq-list { display: grid; gap: 16px; }
+.mcq {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.mcq-q {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--navy);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.mcq-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.mcq-opt {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--line-2);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: .96rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all .15s;
+}
+.mcq-opt:hover { border-color: var(--navy); background: rgba(11, 22, 46, .05); }
+.mcq-opt.correct { border-color: #2f8f4d; background: #e9f6ec; color: #1a5c2a; font-weight: 700; }
+.mcq-opt.wrong   { border-color: #b8443a; background: #fbeae7; color: #7c1f16; opacity: .8; }
+.mcq-note {
+  display: none;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  font-size: .93rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+.mcq.revealed .mcq-note { display: block; }
+@media (max-width: 720px) {
+  .mcq { padding: 14px 14px; }
+  .mcq-q { font-size: .98rem; }
+  .mcq-opt { font-size: .92rem; padding: 9px 12px; }
+}
+
+/* ═══════════ TO INFINITIVE DRILL ═══════════ */
+.ti-list { display: grid; gap: 8px; }
+.ti-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.ti-num {
+  width: 26px; height: 26px;
+  background: var(--burgundy);
+  color: #f6ecd0;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font: 800 11px/1 var(--mono);
+}
+.ti-eng {
+  font-size: .98rem;
+  line-height: 1.5;
+}
+.ti-eng strong {
+  color: var(--burgundy);
+  border-bottom: 2px dotted var(--burgundy);
+  cursor: pointer;
+  transition: all .15s;
+}
+.ti-eng strong.fixed {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+.ti-check {
+  padding: 5px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .1em;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all .15s;
+}
+.ti-check:hover { background: var(--navy); color: #f6ecd0; }
+.ti-check.ok {
+  background: rgba(61,124,71,.14);
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+/* ═══════════ ARTICLES MCQ ═══════════ */
+.art-list { display: grid; gap: 10px; }
+.art-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.art-eng {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.art-blank {
+  display: inline-block;
+  min-width: 40px;
+  height: 24px;
+  border-bottom: 2px solid var(--burgundy);
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.art-opts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.art-opt {
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--line-2);
+  border-radius: 8px;
+  font: 800 14px/1 var(--display);
+  color: var(--navy);
+  cursor: pointer;
+  min-width: 54px;
+  text-align: center;
+  transition: all .15s;
+}
+.art-opt:hover { border-color: var(--navy); background: var(--card); }
+.art-opt.picked { border-color: var(--navy); background: var(--navy); color: #f6ecd0; }
+.art-opt.ok { border-color: var(--ok); background: var(--ok); color: #fff; }
+.art-opt.miss { border-color: var(--miss); background: var(--miss); color: #fff; }
+
+/* ═══════════ SURVIVAL MIC-DRILL ═══════════ */
+.sv-list { display: grid; gap: 12px; }
+.sv-card {
+  background: var(--card);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.sv-scene {
+  font: 700 10.5px/1 var(--mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sv-line {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.sv-ru { display: none; }
+.sv-tip {
+  font-size: .9rem;
+  color: var(--muted);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.sv-tip::before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+}
+
+/* ═══════════ VOCAB FLIP CARDS ═══════════ */
+.vc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.vc-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 12px;
+  min-height: 92px;
+  cursor: pointer;
+  perspective: 800px;
+  position: relative;
+}
+.vc-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  min-height: 60px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+.vc-card.flipped .vc-inner { transform: rotateY(180deg); }
+.vc-front, .vc-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.vc-back { transform: rotateY(180deg); }
+.vc-eng {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--navy);
+}
+.vc-example {
+  font-size: .8rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
+  padding: 0 6px;
+}
+
+/* ═══════════ HOMEWORK ═══════════ */
+#homework-block {
+  scroll-margin-top: 90px;
+}
+#homework-block > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 24px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: #f6ecd0;
+  border-radius: 14px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: box-shadow .35s;
+}
+#homework-block > summary::-webkit-details-marker { display: none; }
+#homework-block > summary::before {
+  content: "📖";
+  font-size: 1.4rem;
+}
+#homework-block[open] > summary { border-radius: 14px 14px 0 0; }
+#homework-block.hw-focus > summary {
+  box-shadow: 0 0 0 3px var(--gold);
+}
+.hw-body {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+.hw-body h4 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin: 22px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--line-2);
+}
+.hw-body h4:first-child { margin-top: 0; }
+.hw-item {
+  padding: 10px 0;
+  color: var(--text);
+  font-size: .96rem;
+  line-height: 1.6;
+}
+.hw-item .num {
+  color: var(--burgundy);
+  font-weight: 800;
+  margin-right: 8px;
+}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer {
+  max-width: 900px;
+  margin: 48px auto 0;
+  padding: 24px 20px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  font: 500 12px/1.6 var(--mono);
+  color: var(--muted);
+}
+.footer .nge {
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* ═══════════ MOBILE TUNING ═══════════ */
+@media (max-width: 720px) {
+  section.section { padding: 22px 18px; margin: 26px 8px; }
+  #homework-block > summary { padding: 18px 20px; font-size: 1.05rem; }
+  .hw-body { padding: 18px 16px; }
+  .hw-body { font-size: 15.5px; line-height: 1.55; }
+  .hw-body h4 { font-size: 1rem; margin-top: 18px; }
+  .ps-row { grid-template-columns: 26px 1fr; padding: 12px 14px; }
+  .art-opt { min-width: 46px; padding: 7px 12px; }
+  .vc-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .sec-title { font-size: 1.4rem; }
+  .hero-eyebrow { font-size: 9.5px; }
+  .footer { font-size: 11px; }
+}
+
+/* Progress dot */
+/* .progress-fixed убран — lab-total.js делает свою метрику внизу */
+</style>
+<link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+<style id="lb-canon-bar-20260612">
+/* ==== LinguaBoost Lab CANON BAR (Ancient-China reference) — unified 2026-06-12 ====
+   Sizes/fonts/radius only. Colours stay per-lesson. */
+nav.topbar, header.topbar, header.cmdbar { font-family: var(--display, 'Inter', system-ui, sans-serif) !important; }
+nav.topbar .brand-mark, header.topbar .brand-mark, header.cmdbar .brand-mark {
+  width: 34px !important; height: 34px !important; border-radius: 9px !important;
+  font-size: 18px !important; font-weight: 800 !important;
+  display: grid !important; place-items: center !important;
+}
+nav.topbar .brand-mark img, header.topbar .brand-mark img, header.cmdbar .brand-mark img {
+  width: 100% !important; height: 100% !important; display: block !important;
+}
+nav.topbar .brand-name, header.topbar .brand-name, header.cmdbar .brand-name {
+  font-size: 15px !important; font-weight: 800 !important; letter-spacing: 0.02em !important;
+}
+nav.topbar .brand-sub, header.topbar .brand-sub, header.cmdbar .brand-sub {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11px !important; font-weight: 700 !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important;
+}
+nav.topbar .btn-sm, header.topbar .btn-sm, header.cmdbar .btn-sm,
+nav.topbar > .pill, header.topbar > .pill,
+nav.topbar .tool-pill, header.topbar .tool-pill,
+nav.topbar .level-pill, header.topbar .level-pill {
+  min-width: 38px !important; height: 32px !important; min-height: 32px !important;
+  padding: 0 12px !important; border-radius: 8px !important;
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11px !important; font-weight: 900 !important;
+  letter-spacing: 0.08em !important; text-transform: uppercase !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  text-decoration: none !important;
+}
+footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace !important;
+  font-size: 11.5px !important; letter-spacing: 0.06em !important; }
+@media (max-width: 540px) {
+  nav.topbar .btn-sm, header.topbar .btn-sm {
+    font-size: 9px !important; padding: 0 8px !important;
+    min-height: 28px !important; height: 28px !important;
+  }
+}
+</style>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after,.friendly-topbar .brand-mark::after,.lab-topbar .brand-mark::after,.cmdbar .brand-mark::after,.cmdbar .cb-mark::after,.canon-l-topbar .brand-mark::after,.canon-l-topbar .canon-l-mark::after,.friendly-topbar .brand-logo-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+.topbar .brand-mark>span[style*="right:0"],.friendly-topbar .brand-mark>span[style*="right:0"],.lab-topbar .brand-mark>span[style*="right:0"],.cmdbar .brand-mark>span[style*="right:0"],.cmdbar .cb-mark>span[style*="right:0"],.canon-l-topbar .brand-mark>span[style*="right:0"],.canon-l-topbar .canon-l-mark>span[style*="right:0"],.friendly-topbar .brand-logo-mark>span[style*="right:0"]{display:block!important;background:#fff!important;z-index:10!important}
+</style>
+  <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=2">
+</head>
+<body>
+
+<!-- ═══════════ TOPBAR (canon N-cut-corner) ═══════════ -->
+<nav class="topbar">
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark" aria-hidden="true" style="position:relative;overflow:hidden;border-top-right-radius:0;background:var(--accent);color:#0b0b0c"><span style="position:relative;z-index:1;color:#0b0b0c">N</span></span>
+    <span class="brand-copy">
+      <span class="brand-name">NG English</span>
+      <span class="brand-sub">LinguaBoost Lab · A2+</span>
+    </span>
+  </a>
+  <span class="pill brand">Practical · Day 1</span>
+  <span class="pill accent">55 min</span>
+  <div class="spacer"></div>
+  <a class="btn-sm" href="../../index.html">All lessons</a>
+  <a class="btn-sm" href="../../../index.html">Main</a>
+</nav>
+
+<!-- LESSON TABS · canon ProgressMe-style -->
+<nav class="lesson-tabs" role="tablist" aria-label="Lesson / Homework">
+  <button class="ltab is-active" data-tab="lesson" type="button">📖 Урок</button>
+  <button class="ltab" data-tab="homework" type="button">📚 Моя домашка <span class="ltab-count" id="ltab-hw-count">0</span></button>
+</nav>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ltab');
+  var hwCount = document.getElementById('ltab-hw-count');
+  function setActive(name){ tabs.forEach(function(t){ t.classList.toggle('is-active', t.dataset.tab === name); }); }
+  function getHwKey(){ return 'lab-hw:' + location.pathname; }
+  function refreshCount(){ try { var arr = JSON.parse(localStorage.getItem(getHwKey()) || '[]'); if (hwCount) hwCount.textContent = arr.length; } catch(e){} }
+  function openHomeworkPage(){ window.location.href = '/lingua-boost-lab/.homework/?lesson=' + encodeURIComponent(location.pathname); }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var name = t.dataset.tab;
+      setActive(name);
+      if (name === 'homework') { openHomeworkPage(); }
+    });
+  });
+  refreshCount(); setInterval(refreshCount, 1500);
+})();
+</script>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-eyebrow">🇬🇧 · English for grown-ups · Day 1 · Reset</div>
+    <h1 class="hero-title">Small words,<br><em>big difference.</em></h1>
+    <p class="hero-lead">Ten short blocks — all four present tenses (Simple · Continuous · Perfect · Perfect Continuous), the little word <em>to</em>, articles a / the / —, six survival lines you actually say, and your full business vocabulary. No pressure. Speak, tap, repeat.</p>
+    <div class="hero-meta">
+      <span class="hero-chip">⏱ ≈ 55 min</span>
+      <span class="hero-chip">🎯 A2+ → B1 · present tenses</span>
+      <span class="hero-chip">🎤 speaking · mic-drill</span>
+      <span class="hero-chip">📚 30 vocab</span>
+      <span class="hero-chip">📘 Workbook 01 + 02</span>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ═══════════ SECTION 06 · VOCAB ═══════════ -->
+<section class="section" id="s06">
+  <figure class="section-banner-img" style="margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s06.webp" alt="Section 06 · Vocabulary — Your working vocabulary — 45 cards" style="width:100%;display:block;height:auto">
+  </figure>
+  <div class="sec-num">Section 06</div>
+  <h2 class="sec-title">Full vocabulary — Trial + Workbook 01 &amp; 02</h2>
+  <p class="sec-lead">Everything you already know from all three sessions — 45+ words. Trial words (attention · fatigue · IELTS study) + 30 business words + participles + 12 irregular verbs. Tap a card to flip: front = word, back = example in a present tense.</p>
+  <div class="sec-instr">👆 tap card · 🎤 read example aloud</div>
+
+  <div class="vc-grid">
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">recognize</span></div><div class="vc-back"><span class="vc-example">I <em>recognize</em> this word from the trial.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">considered</span></div><div class="vc-back"><span class="vc-example">Bocconi <em>is considered</em> a top school.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">captivated</span></div><div class="vc-back"><span class="vc-example">I <em>was captivated</em> by the campus.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">fascination</span></div><div class="vc-back"><span class="vc-example">Her fascination with numbers <em>runs</em> deep.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">effortless attention</span></div><div class="vc-back"><span class="vc-example">Kids <em>give</em> effortless attention to games.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">effort</span></div><div class="vc-back"><span class="vc-example">It <em>takes</em> real effort to focus.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">fatigue</span></div><div class="vc-back"><span class="vc-example">Study fatigue <em>is</em> real.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">causes</span></div><div class="vc-back"><span class="vc-example">Stress <em>causes</em> fatigue.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">intensely focused</span></div><div class="vc-back"><span class="vc-example">He <em>is</em> intensely focused on the task.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">distracted</span></div><div class="vc-back"><span class="vc-example">I <em>am</em> distracted today.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">irritable</span></div><div class="vc-back"><span class="vc-example">Fatigue <em>makes</em> people irritable.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">engages</span></div><div class="vc-back"><span class="vc-example">The teacher <em>engages</em> the whole class.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">soothes</span></div><div class="vc-back"><span class="vc-example">Music <em>soothes</em> her.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">certain</span></div><div class="vc-back"><span class="vc-example">I <em>'m</em> certain about it.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">submissions</span></div><div class="vc-back"><span class="vc-example">Deadline for submissions <em>is</em> Friday.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">banking</span></div><div class="vc-back"><span class="vc-example">She <em>works</em> in private banking.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">crediting</span></div><div class="vc-back"><span class="vc-example">Our crediting policy <em>is</em> conservative.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">finance</span></div><div class="vc-back"><span class="vc-example">He <em>has studied</em> corporate finance for two years.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">management</span></div><div class="vc-back"><span class="vc-example">Project management <em>requires</em> patience.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">sales</span></div><div class="vc-back"><span class="vc-example">Our sales <em>have grown</em> 15% this quarter.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">logistics</span></div><div class="vc-back"><span class="vc-example">Logistics <em>is</em> the backbone of trade.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">enterprise logistics</span></div><div class="vc-back"><span class="vc-example">Enterprise logistics <em>covers</em> warehouses and shipping.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">corporate economics</span></div><div class="vc-back"><span class="vc-example">I <em>work</em> in the field of corporate economics.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">economic sphere</span></div><div class="vc-back"><span class="vc-example">She <em>has been working</em> in the economic sphere since 2021.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">schedule</span></div><div class="vc-back"><span class="vc-example">Let me <em>check</em> my schedule.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">a tutor</span></div><div class="vc-back"><span class="vc-example">My tutor <em>told</em> me to <em>focus</em> on speaking.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">education</span></div><div class="vc-back"><span class="vc-example">Higher education <em>opens</em> doors.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">do the tasks</span></div><div class="vc-back"><span class="vc-example">You <em>have to do</em> the tasks before class.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">pace</span></div><div class="vc-back"><span class="vc-example">She <em>works</em> at her own pace.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">speed</span></div><div class="vc-back"><span class="vc-example"><em>Reduce</em> your speed in the city.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">split</span></div><div class="vc-back"><span class="vc-example">Let's <em>split</em> the bill.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">share</span></div><div class="vc-back"><span class="vc-example">Can I <em>share</em> your notes?</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">divide</span></div><div class="vc-back"><span class="vc-example"><em>Divide</em> the cake into eight pieces.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">supplies</span></div><div class="vc-back"><span class="vc-example">Office supplies <em>are running</em> low.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">labelling</span></div><div class="vc-back"><span class="vc-example">Labelling errors <em>cause</em> shipping delays.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">intelligible</span></div><div class="vc-back"><span class="vc-example"><em>Speak</em> slowly to <em>stay</em> intelligible.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">response</span></div><div class="vc-back"><span class="vc-example"><em>Choose</em> the best response.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">rubric</span></div><div class="vc-back"><span class="vc-example"><em>Read</em> the rubric before writing.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">band score</span></div><div class="vc-back"><span class="vc-example">Target band score — 6.5.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">elaboration</span></div><div class="vc-back"><span class="vc-example">Examiners <em>reward</em> elaboration.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">ATM machine</span></div><div class="vc-back"><span class="vc-example">There <em>is</em> an ATM machine on the corner.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">road markings</span></div><div class="vc-back"><span class="vc-example">Follow the road markings carefully.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">circle</span></div><div class="vc-back"><span class="vc-example">Take the second exit at the circle.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">oncoming traffic</span></div><div class="vc-back"><span class="vc-example">He <em>was fined</em> for going into oncoming traffic.</span></div></div></div>
+    <div class="vc-card vocab-card"><div class="vc-inner"><div class="vc-front"><span class="vc-eng">hiking</span></div><div class="vc-back"><span class="vc-example">Hiking <em>is</em> a great way to clear your head.</span></div></div></div>
+  </div>
+
+  <div class="sec-instr" style="margin-top:22px">📚 Bonus vocab from Workbook drills — say each one in a sentence: <b>charming</b> · <b>tiring</b> · <b>exciting</b> · <b>booming</b> · <b>honest</b>. Irregular verbs from Workbook 02 (know all three forms): <b>go / went / gone</b> · <b>speak / spoke / spoken</b> · <b>take / took / taken</b> · <b>eat / ate / eaten</b> · <b>write / wrote / written</b> · <b>give / gave / given</b> · <b>meet / met / met</b> · <b>read / read / read</b> · <b>see / saw / seen</b> · <b>do / did / done</b> · <b>begin / began / begun</b> · <b>find / found / found</b>.</div>
+
+  <div class="sub-eyebrow" style="margin:32px 0 6px;font:800 10.5px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px">
+    <span style="display:inline-block;width:20px;height:1.5px;background:var(--gold)"></span>💼 Vocab in action · three drills · every deck word plays once
+  </div>
+
+  <h3 style="font-family:var(--display);font-weight:800;color:var(--navy);font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.01em;margin:14px 0 6px">Drill 1 · Meaning MCQ · 15 items</h3>
+  <p class="sec-lead" style="margin:0 0 14px">Tap the closest meaning. Green appears after your tap.</p>
+  <div class="mcq-list" id="vocab-drill-1">
+    <div class="mcq"><div class="mcq-q">1. <b>recognize</b></div><div class="mcq-opts"><button class="mcq-opt">to forget</button><button class="mcq-opt" data-correct="1">to identify something you already know</button><button class="mcq-opt">to invent</button></div><div class="mcq-note">✅ <em>recognize</em> = to know something/someone from before.</div></div>
+    <div class="mcq"><div class="mcq-q">2. <b>considered</b></div><div class="mcq-opts"><button class="mcq-opt">forgotten by</button><button class="mcq-opt" data-correct="1">thought of as / seen as</button><button class="mcq-opt">bought by</button></div><div class="mcq-note">✅ <em>considered</em> = generally thought of as.</div></div>
+    <div class="mcq"><div class="mcq-q">3. <b>captivated</b></div><div class="mcq-opts"><button class="mcq-opt">bored</button><button class="mcq-opt" data-correct="1">strongly attracted / drawn in</button><button class="mcq-opt">angry</button></div><div class="mcq-note">✅ <em>captivated</em> = pulled in emotionally.</div></div>
+    <div class="mcq"><div class="mcq-q">4. <b>fascination</b></div><div class="mcq-opts"><button class="mcq-opt">hatred</button><button class="mcq-opt" data-correct="1">strong interest / attraction to a topic</button><button class="mcq-opt">cold indifference</button></div><div class="mcq-note">✅ <em>fascination</em> = deep interest.</div></div>
+    <div class="mcq"><div class="mcq-q">5. <b>effortless attention</b></div><div class="mcq-opts"><button class="mcq-opt">forced focus that tires you</button><button class="mcq-opt" data-correct="1">automatic focus that needs no effort</button><button class="mcq-opt">distraction</button></div><div class="mcq-note">✅ <em>effortless attention</em> = focus that happens naturally.</div></div>
+    <div class="mcq"><div class="mcq-q">6. <b>intensely focused</b></div><div class="mcq-opts"><button class="mcq-opt">half-asleep</button><button class="mcq-opt" data-correct="1">fully concentrated</button><button class="mcq-opt">multitasking</button></div><div class="mcq-note">✅ <em>intensely focused</em> = fully in one task.</div></div>
+    <div class="mcq"><div class="mcq-q">7. <b>distracted</b></div><div class="mcq-opts"><button class="mcq-opt">very calm</button><button class="mcq-opt" data-correct="1">unable to concentrate</button><button class="mcq-opt">very fast</button></div><div class="mcq-note">✅ <em>distracted</em> = pulled away from the task.</div></div>
+    <div class="mcq"><div class="mcq-q">8. <b>irritable</b></div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">easily annoyed</button><button class="mcq-opt">always happy</button><button class="mcq-opt">very slow</button></div><div class="mcq-note">✅ <em>irritable</em> = quick to get annoyed.</div></div>
+    <div class="mcq"><div class="mcq-q">9. <b>engages</b></div><div class="mcq-opts"><button class="mcq-opt">hides something</button><button class="mcq-opt" data-correct="1">holds attention / involves people</button><button class="mcq-opt">breaks a rule</button></div><div class="mcq-note">✅ <em>engages</em> = catches and keeps attention.</div></div>
+    <div class="mcq"><div class="mcq-q">10. <b>soothes</b></div><div class="mcq-opts"><button class="mcq-opt">makes louder</button><button class="mcq-opt" data-correct="1">calms / makes gentler</button><button class="mcq-opt">speeds up</button></div><div class="mcq-note">✅ <em>soothes</em> = calms down.</div></div>
+    <div class="mcq"><div class="mcq-q">11. <b>certain</b></div><div class="mcq-opts"><button class="mcq-opt">doubtful</button><button class="mcq-opt" data-correct="1">sure</button><button class="mcq-opt">rushed</button></div><div class="mcq-note">✅ <em>certain</em> = sure about something.</div></div>
+    <div class="mcq"><div class="mcq-q">12. <b>intelligible</b></div><div class="mcq-opts"><button class="mcq-opt">very loud</button><button class="mcq-opt" data-correct="1">clear / can be understood</button><button class="mcq-opt">secret</button></div><div class="mcq-note">✅ <em>intelligible</em> = understandable.</div></div>
+    <div class="mcq"><div class="mcq-q">13. <b>response</b></div><div class="mcq-opts"><button class="mcq-opt">a question</button><button class="mcq-opt" data-correct="1">an answer or reaction</button><button class="mcq-opt">a request</button></div><div class="mcq-note">✅ <em>response</em> = answer or reply.</div></div>
+    <div class="mcq"><div class="mcq-q">14. <b>rubric</b></div><div class="mcq-opts"><button class="mcq-opt">a joke</button><button class="mcq-opt" data-correct="1">a set of instructions / criteria for a task</button><button class="mcq-opt">an appetizer</button></div><div class="mcq-note">✅ <em>rubric</em> = the criteria a task is judged by (IELTS writing).</div></div>
+    <div class="mcq"><div class="mcq-q">15. <b>band score</b></div><div class="mcq-opts"><button class="mcq-opt">a music award</button><button class="mcq-opt" data-correct="1">an IELTS overall score from 1 to 9</button><button class="mcq-opt">a football score</button></div><div class="mcq-note">✅ <em>band score</em> = the IELTS number that decides your level.</div></div>
+  </div>
+
+  <h3 style="font-family:var(--display);font-weight:800;color:var(--navy);font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.01em;margin:34px 0 6px">Drill 2 · Business gap-fill · drag → gap · 15 items</h3>
+  <p class="sec-lead" style="margin:0 0 14px">Drop the right business word from the shuffled bank. Green tick = correct.</p>
+  <div class="ps-list" id="vocab-drill-2">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I work in <span class="gap" data-ans="finance">___</span> — my area is corporate strategy.</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Our <span class="gap" data-ans="sales">___</span> have grown by fifteen percent this quarter.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">Enterprise <span class="gap" data-ans="logistics">___</span> covers warehouses and shipping.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">Let me check my <span class="gap" data-ans="schedule">___</span> and I'll get back to you.</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">Project <span class="gap" data-ans="management">___</span> requires patience and clear priorities.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">Deadline for <span class="gap" data-ans="submissions">___</span> is Friday afternoon.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">She works in private <span class="gap" data-ans="banking">___</span>.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">Our <span class="gap" data-ans="crediting">___</span> policy is conservative.</div></div>
+    <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">I work in the field of <span class="gap" data-ans="corporate economics">___</span>.</div></div>
+    <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">She has been working in the <span class="gap" data-ans="economic sphere">___</span> since 2021.</div></div>
+    <div class="ps-row"><span class="ps-num">11</span><div class="ps-text">My <span class="gap" data-ans="a tutor">___</span> told me to focus on speaking.</div></div>
+    <div class="ps-row"><span class="ps-num">12</span><div class="ps-text">Higher <span class="gap" data-ans="education">___</span> opens doors — and it's expensive.</div></div>
+    <div class="ps-row"><span class="ps-num">13</span><div class="ps-text">You have to <span class="gap" data-ans="do the tasks">___</span> before every class.</div></div>
+    <div class="ps-row"><span class="ps-num">14</span><div class="ps-text">Examiners reward <span class="gap" data-ans="elaboration">___</span> — added detail after the main answer.</div></div>
+    <div class="ps-row"><span class="ps-num">15</span><div class="ps-text"><span class="gap" data-ans="enterprise logistics">___</span> is what runs warehouses, trucks and labelling in a big group.</div></div>
+  </div>
+  <div class="ps-opts" id="vocab-drill-2-opts">
+    <button class="ps-opt-btn">crediting</button>
+    <button class="ps-opt-btn">finance</button>
+    <button class="ps-opt-btn">a tutor</button>
+    <button class="ps-opt-btn">logistics</button>
+    <button class="ps-opt-btn">sales</button>
+    <button class="ps-opt-btn">management</button>
+    <button class="ps-opt-btn">enterprise logistics</button>
+    <button class="ps-opt-btn">education</button>
+    <button class="ps-opt-btn">schedule</button>
+    <button class="ps-opt-btn">corporate economics</button>
+    <button class="ps-opt-btn">submissions</button>
+    <button class="ps-opt-btn">banking</button>
+    <button class="ps-opt-btn">do the tasks</button>
+    <button class="ps-opt-btn">economic sphere</button>
+    <button class="ps-opt-btn">elaboration</button>
+  </div>
+
+  <h3 style="font-family:var(--display);font-weight:800;color:var(--navy);font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.01em;margin:34px 0 6px">Drill 3 · Sentence-fill MCQ · 15 items</h3>
+  <p class="sec-lead" style="margin:0 0 14px">Tap the vocab word that fits the blank — everyday and IELTS context.</p>
+  <div class="mcq-list" id="vocab-drill-3">
+    <div class="mcq"><div class="mcq-q">1. It takes real ___ to focus on hard tasks.</div><div class="mcq-opts"><button class="mcq-opt">speed</button><button class="mcq-opt" data-correct="1">effort</button><button class="mcq-opt">hiking</button></div><div class="mcq-note">✅ <em>effort</em> — hard work of focusing.</div></div>
+    <div class="mcq"><div class="mcq-q">2. Study ___ hits me at four p.m.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">fatigue</button><button class="mcq-opt">circle</button><button class="mcq-opt">share</button></div><div class="mcq-note">✅ <em>fatigue</em> — deep tiredness.</div></div>
+    <div class="mcq"><div class="mcq-q">3. Stress ___ fatigue and irritability.</div><div class="mcq-opts"><button class="mcq-opt">hikes</button><button class="mcq-opt" data-correct="1">causes</button><button class="mcq-opt">divides</button></div><div class="mcq-note">✅ <em>causes</em> — leads to.</div></div>
+    <div class="mcq"><div class="mcq-q">4. She works at her own ___ — she never rushes.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">pace</button><button class="mcq-opt">supplies</button><button class="mcq-opt">circle</button></div><div class="mcq-note">✅ <em>pace</em> — her rhythm of work.</div></div>
+    <div class="mcq"><div class="mcq-q">5. Reduce your ___ in the city — the limit is fifty.</div><div class="mcq-opts"><button class="mcq-opt">share</button><button class="mcq-opt" data-correct="1">speed</button><button class="mcq-opt">fatigue</button></div><div class="mcq-note">✅ <em>speed</em> — how fast you go.</div></div>
+    <div class="mcq"><div class="mcq-q">6. Let's ___ the bill three ways.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">split</button><button class="mcq-opt">divide</button><button class="mcq-opt">share</button></div><div class="mcq-note">✅ <em>split the bill</em> — natural collocation for restaurants.</div></div>
+    <div class="mcq"><div class="mcq-q">7. Can I ___ your notes for a minute?</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">share</button><button class="mcq-opt">split</button><button class="mcq-opt">divide</button></div><div class="mcq-note">✅ <em>share</em> — borrow / use together.</div></div>
+    <div class="mcq"><div class="mcq-q">8. ___ the cake into eight equal pieces.</div><div class="mcq-opts"><button class="mcq-opt">Split</button><button class="mcq-opt" data-correct="1">Divide</button><button class="mcq-opt">Share</button></div><div class="mcq-note">✅ <em>divide</em> — cut into equal pieces (maths word).</div></div>
+    <div class="mcq"><div class="mcq-q">9. Office ___ are running low — we need more paper.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">supplies</button><button class="mcq-opt">labelling</button><button class="mcq-opt">circles</button></div><div class="mcq-note">✅ <em>supplies</em> — office consumables.</div></div>
+    <div class="mcq"><div class="mcq-q">10. ___ errors on boxes cause shipping delays.</div><div class="mcq-opts"><button class="mcq-opt">Circle</button><button class="mcq-opt" data-correct="1">Labelling</button><button class="mcq-opt">Hiking</button></div><div class="mcq-note">✅ <em>labelling</em> — putting the right sticker/name on a box.</div></div>
+    <div class="mcq"><div class="mcq-q">11. There is an ___ on the corner if you need cash.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">ATM machine</button><button class="mcq-opt">road markings</button><button class="mcq-opt">circle</button></div><div class="mcq-note">✅ <em>ATM machine</em> — cash point.</div></div>
+    <div class="mcq"><div class="mcq-q">12. Follow the ___ carefully near the roundabout.</div><div class="mcq-opts"><button class="mcq-opt">hiking</button><button class="mcq-opt" data-correct="1">road markings</button><button class="mcq-opt">supplies</button></div><div class="mcq-note">✅ <em>road markings</em> — painted lines on the road.</div></div>
+    <div class="mcq"><div class="mcq-q">13. Take the second exit at the ___ .</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">circle</button><button class="mcq-opt">pace</button><button class="mcq-opt">supplies</button></div><div class="mcq-note">✅ <em>circle</em> — the round intersection (roundabout).</div></div>
+    <div class="mcq"><div class="mcq-q">14. He was fined for going into ___ .</div><div class="mcq-opts"><button class="mcq-opt">hiking</button><button class="mcq-opt" data-correct="1">oncoming traffic</button><button class="mcq-opt">supplies</button></div><div class="mcq-note">✅ <em>oncoming traffic</em> — cars driving towards you.</div></div>
+    <div class="mcq"><div class="mcq-q">15. ___ is a great way to clear your head on weekends.</div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">Hiking</button><button class="mcq-opt">Fatigue</button><button class="mcq-opt">Labelling</button></div><div class="mcq-note">✅ <em>hiking</em> — walking in nature.</div></div>
+  </div>
+
+  <div class="your-turn" style="margin-top:26px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · use your vocab live</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Pick three words from the deck that describe your <b>best working day</b>. Say why in one sentence each.</li>
+      <li>Pick two words from the deck that describe your <b>worst working day</b>. Say why.</li>
+      <li>Which word from the deck did you <b>know already</b>, and which one is <b>completely new</b> to you today?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 01 · WARM-UP ═══════════ -->
+<section class="section" id="s01">
+  <div class="sec-num">Section 01</div>
+  <h2 class="sec-title">Warm-up · your usual day</h2>
+  <p class="sec-lead">Drop the right word from your vocab into each gap. The bank at the bottom is <b>shuffled</b> — don't just take them in a row. Then say the whole sentence out loud.</p>
+  <div class="sec-instr">✍️ drag word → gap · ✅ auto-check · 🎤 then say out loud</div>
+
+  <div class="ps-list">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I work in <span class="gap" data-ans="finance">___</span> — my area is corporate strategy.</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Every morning I check my <span class="gap" data-ans="schedule">___</span> before the first meeting.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">My working <span class="gap" data-ans="pace">___</span> is fast, so I stay focused all morning.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">When I feel <span class="gap" data-ans="distracted">___</span>, I take a short break and reset.</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">By afternoon a bit of <span class="gap" data-ans="fatigue">___</span> kicks in.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">It takes real <span class="gap" data-ans="effort">___</span> to keep the numbers clean.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">Our <span class="gap" data-ans="sales">___</span> have grown this quarter.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">Enterprise <span class="gap" data-ans="logistics">___</span> covers warehouses and shipping in our group.</div></div>
+    <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">On weekends I go <span class="gap" data-ans="hiking">___</span> — it clears my head for Monday.</div></div>
+  </div>
+
+  <div class="ps-opts">
+    <button class="ps-opt-btn">logistics</button>
+    <button class="ps-opt-btn">pace</button>
+    <button class="ps-opt-btn">hiking</button>
+    <button class="ps-opt-btn">finance</button>
+    <button class="ps-opt-btn">fatigue</button>
+    <button class="ps-opt-btn">sales</button>
+    <button class="ps-opt-btn">distracted</button>
+    <button class="ps-opt-btn">schedule</button>
+    <button class="ps-opt-btn">effort</button>
+  </div>
+
+  <div class="mic-card" style="margin-top:26px">
+    <div class="mic-prompt">Now read these 9 sentences out loud — one after another, no pause. Read them like a short talk about your usual day.</div>
+    <div class="mic-tip">45–60 секунд, медленно. Смотри в текст, не подглядывай вверх.</div>
+    <ol style="margin:14px 0 16px 22px; padding:0; font-size:.98rem; line-height:1.75; color:var(--text)">
+      <li>I work in <b>finance</b> — my area is corporate strategy.</li>
+      <li>Every morning I check my <b>schedule</b> before the first meeting.</li>
+      <li>My working <b>pace</b> is fast, so I stay focused all morning.</li>
+      <li>When I feel <b>distracted</b>, I take a short break and reset.</li>
+      <li>By afternoon a bit of <b>fatigue</b> kicks in.</li>
+      <li>It takes real <b>effort</b> to keep the numbers clean.</li>
+      <li>Our <b>sales</b> have grown this quarter.</li>
+      <li>Enterprise <b>logistics</b> covers warehouses and shipping in our group.</li>
+      <li>On weekends I go <b>hiking</b> — it clears my head for Monday.</li>
+    </ol>
+    <button class="mic-rec-btn" data-target="mic1-out">🎙 Record &amp; check</button>
+    <div class="mic-out" id="mic1-out">Your speech will appear here.</div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · answer aloud</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Now describe your usual day again <b>without the script</b> — five slow sentences, from memory.</li>
+      <li>What is one small ritual you always do at work that no one notices?</li>
+      <li>Which part of your day gives you the most energy — morning, mid-morning, or after lunch?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 01b · GRAMMAR TABLE ═══════════ -->
+<section class="section" id="s01b">
+  <figure class="section-banner-img" style="margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s01b.webp" alt="Section 01b · Grammar — All 4 present tenses on one page" style="width:100%;display:block;height:auto">
+  </figure>
+  <div class="sec-num">Section 01b</div>
+  <h2 class="sec-title">All four Present tenses on one page</h2>
+  <p class="sec-lead">One line for each tense — shape, when to use it, and a real business sentence. Open, glance, keep going.</p>
+
+  <div style="overflow-x:auto; margin-top: 18px">
+    <table style="width:100%; border-collapse: collapse; font-size: .95rem">
+      <thead>
+        <tr style="background: var(--navy); color: #fff">
+          <th style="padding: 12px 10px; text-align: left; font: 800 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase">Tense</th>
+          <th style="padding: 12px 10px; text-align: left; font: 800 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase">Shape</th>
+          <th style="padding: 12px 10px; text-align: left; font: 800 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase">When to use</th>
+          <th style="padding: 12px 10px; text-align: left; font: 800 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase">Real sentence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--line)">
+          <td style="padding: 12px 10px; font-weight: 800; color: var(--burgundy)">Present Simple</td>
+          <td style="padding: 12px 10px"><code style="background: var(--surface-2); padding: 2px 6px; border-radius: 4px">V / V-s</code></td>
+          <td style="padding: 12px 10px">routine · fact · every day · always / usually / sometimes</td>
+          <td style="padding: 12px 10px; color: var(--text)"><em>I work at Lukoil. She checks emails every morning.</em></td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--line); background: var(--surface-2)">
+          <td style="padding: 12px 10px; font-weight: 800; color: var(--burgundy)">Present Continuous</td>
+          <td style="padding: 12px 10px"><code style="background: #fff; padding: 2px 6px; border-radius: 4px">am/is/are + V-ing</code></td>
+          <td style="padding: 12px 10px">right now · around now · temporary · trend</td>
+          <td style="padding: 12px 10px; color: var(--text)"><em>I'm working on the report right now. We're hiring three engineers this month.</em></td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--line)">
+          <td style="padding: 12px 10px; font-weight: 800; color: var(--burgundy)">Present Perfect</td>
+          <td style="padding: 12px 10px"><code style="background: var(--surface-2); padding: 2px 6px; border-radius: 4px">have/has + V3</code></td>
+          <td style="padding: 12px 10px">result now · life experience · just / already / ever / never / yet</td>
+          <td style="padding: 12px 10px; color: var(--text)"><em>I've sent the invoice. She has already approved the budget.</em></td>
+        </tr>
+        <tr style="background: var(--surface-2)">
+          <td style="padding: 12px 10px; font-weight: 800; color: var(--burgundy)">Present Perfect Continuous</td>
+          <td style="padding: 12px 10px"><code style="background: #fff; padding: 2px 6px; border-radius: 4px">have/has been + V-ing</code></td>
+          <td style="padding: 12px 10px">started in the past · still going · for / since · focus on the process</td>
+          <td style="padding: 12px 10px; color: var(--text)"><em>I've been working on this deck for two hours. We've been waiting since Monday.</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 22px">
+    <div style="font: 800 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 12px">🧠 Quick test · which tense fits? (tap the correct answer)</div>
+    <div class="mcq-list">
+      <div class="mcq"><div class="mcq-q">1. “Today I ______ three <b>submissions</b>.”</div>
+        <div class="mcq-opts"><button class="mcq-opt">finish (Present Simple)</button><button class="mcq-opt">am finishing (Present Continuous)</button><button class="mcq-opt" data-correct="1">have finished (Present Perfect)</button><button class="mcq-opt">have been finishing (Present Perfect Continuous)</button></div>
+        <div class="mcq-note">✅ Present Perfect — result now, часто «сегодня», «уже».</div></div>
+
+      <div class="mcq"><div class="mcq-q">2. “Right now Marco ______ the <b>elaboration</b> for question 4.”</div>
+        <div class="mcq-opts"><button class="mcq-opt">writes (Present Simple)</button><button class="mcq-opt" data-correct="1">is writing (Present Continuous)</button><button class="mcq-opt">has written (Present Perfect)</button><button class="mcq-opt">has been writing (Present Perfect Continuous)</button></div>
+        <div class="mcq-note">✅ Present Continuous — действие прямо сейчас, «right now».</div></div>
+
+      <div class="mcq"><div class="mcq-q">3. “I ______ in <b>enterprise logistics</b> since 2019.”</div>
+        <div class="mcq-opts"><button class="mcq-opt">work (Present Simple)</button><button class="mcq-opt">am working (Present Continuous)</button><button class="mcq-opt">have worked (Present Perfect)</button><button class="mcq-opt" data-correct="1">have been working (Present Perfect Continuous)</button></div>
+        <div class="mcq-note">✅ Present Perfect Continuous — процесс, начался в прошлом, ещё идёт (since / for).</div></div>
+
+      <div class="mcq"><div class="mcq-q">4. “She usually ______ the whole class in 5 minutes.”</div>
+        <div class="mcq-opts"><button class="mcq-opt" data-correct="1">engages (Present Simple)</button><button class="mcq-opt">is engaging (Present Continuous)</button><button class="mcq-opt">has engaged (Present Perfect)</button><button class="mcq-opt">has been engaging (Present Perfect Continuous)</button></div>
+        <div class="mcq-note">✅ Present Simple — рутина / часто / «usually».</div></div>
+    </div>
+
+    <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+      <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · one for each tense</div>
+      <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+        <li>Give me one sentence in <b>Present Simple</b> about your job.</li>
+        <li>Give me one sentence in <b>Present Continuous</b> about a project you are preparing this week.</li>
+        <li>Give me one sentence in <b>Present Perfect Continuous</b> about a skill you have been building for months.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GRAMMAR MAP · four tenses at a glance ═══════════ -->
+<section class="section" id="s01c" aria-label="Four present tenses at a glance">
+  <div class="sec-num">Overview</div>
+  <h2 class="sec-title">Four Present tenses <em>at a glance</em></h2>
+  <p class="sec-lead">Before we drill each tense one by one — here is the whole map. Timeline, trigger words, a real business example for each. Screenshot this page and keep it near your desk.</p>
+  <figure style="margin:14px 0 0;border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(26,58,92,.18);border:1px solid rgba(184,150,74,.18)">
+    <img src="./assets/tenses-map.webp" alt="Four present tenses side by side — Simple (routine), Continuous (right now), Perfect (result now), Perfect Continuous (still going) — each with a timeline and one business example sentence." style="width:100%;display:block;height:auto">
+  </figure>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · scan the map, answer aloud</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Look at the map — pick <b>one tense</b> and say <em>when</em> you use it. In your own words.</li>
+      <li>Give a real business example from your job — one sentence in <b>Present Perfect</b> (result now).</li>
+      <li>Give a real business example — one sentence in <b>Present Perfect Continuous</b> (started in the past, still going).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 02 · PRESENT SIMPLE ═══════════ -->
+<section class="section" id="s02">
+  <div class="sec-num">Section 02</div>
+  <h2 class="sec-title">Present Simple, alive</h2>
+  <p class="sec-lead">Everyday, always, usually — that is Present Simple. Drop the right verb into each blank. Watch the tricky <em>he / she / it</em>: they add <strong>-s</strong>.</p>
+  <div class="sec-instr">✍️ drag word → gap · ✅ auto-check</div>
+
+  <div class="ps-list">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I <span class="gap" data-ans="work">___</span> at Lukoil.</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">She <span class="gap" data-ans="works">___</span> in the finance team.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">We <span class="gap" data-ans="have">___</span> a meeting every Monday.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">He <span class="gap" data-ans="has">___</span> a lot of tasks today.</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">They <span class="gap" data-ans="finish">___</span> at seven every day.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">My colleague <span class="gap" data-ans="drinks">___</span> coffee, not tea.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">I <span class="gap" data-ans="check">___</span> my email in the morning.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">The boss <span class="gap" data-ans="calls">___</span> me twice a week.</div></div>
+    <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">You <span class="gap" data-ans="know">___</span> the answer.</div></div>
+    <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">She <span class="gap" data-ans="knows">___</span> Italian very well.</div></div>
+    <div class="ps-row"><span class="ps-num">11</span><div class="ps-text">We <span class="gap" data-ans="live">___</span> in Moscow.</div></div>
+    <div class="ps-row"><span class="ps-num">12</span><div class="ps-text">He <span class="gap" data-ans="lives">___</span> near the office.</div></div>
+  </div>
+
+  <div class="ps-opts" id="ps-opts">
+    <button class="ps-opt-btn">lives</button>
+    <button class="ps-opt-btn">finish</button>
+    <button class="ps-opt-btn">works</button>
+    <button class="ps-opt-btn">has</button>
+    <button class="ps-opt-btn">know</button>
+    <button class="ps-opt-btn">work</button>
+    <button class="ps-opt-btn">drinks</button>
+    <button class="ps-opt-btn">live</button>
+    <button class="ps-opt-btn">calls</button>
+    <button class="ps-opt-btn">have</button>
+    <button class="ps-opt-btn">knows</button>
+    <button class="ps-opt-btn">check</button>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · answer aloud · use Present Simple</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>What do you do every morning before you open your laptop?</li>
+      <li>Which team do you work with — and who reports to whom?</li>
+      <li>How often does your boss call you during a normal week?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 02b · PRESENT CONTINUOUS ═══════════ -->
+<section class="section" id="s02b">
+  <div class="sec-num">Section 02b</div>
+  <h2 class="sec-title">Present Continuous — <em>right now</em></h2>
+  <p class="sec-lead">Right this moment, this week, this project. Formula: <strong>am / is / are + verb-ing</strong>. Notice: <em>I <strong>am</strong> working</em>, not <em>I <strong>work</strong></em>. Vocabulary from your business list (banking · sales · management · logistics).</p>
+  <div class="sec-instr">✍️ pick the -ing form · ✅ auto-check</div>
+
+  <div class="ps-list">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I <span class="gap" data-ans="am working">___</span> on a new report this week.</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Our team <span class="gap" data-ans="is preparing">___</span> the quarterly presentation.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">Marco <span class="gap" data-ans="is calling">___</span> the client right now.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">We <span class="gap" data-ans="are launching">___</span> a new product in September.</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">The boss <span class="gap" data-ans="is meeting">___</span> the investors today.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">Sales <span class="gap" data-ans="are growing">___</span> in the northern region.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">I <span class="gap" data-ans="am studying">___</span> for the IELTS exam.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">She <span class="gap" data-ans="is finishing">___</span> her master's application.</div></div>
+    <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">They <span class="gap" data-ans="are moving">___</span> the office to a new location.</div></div>
+    <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">The logistics team <span class="gap" data-ans="is checking">___</span> the shipment.</div></div>
+  </div>
+
+  <div class="ps-opts" id="ps-opts-b">
+    <button class="ps-opt-btn">is finishing</button>
+    <button class="ps-opt-btn">are growing</button>
+    <button class="ps-opt-btn">am working</button>
+    <button class="ps-opt-btn">is checking</button>
+    <button class="ps-opt-btn">is preparing</button>
+    <button class="ps-opt-btn">are moving</button>
+    <button class="ps-opt-btn">is calling</button>
+    <button class="ps-opt-btn">am studying</button>
+    <button class="ps-opt-btn">is meeting</button>
+    <button class="ps-opt-btn">are launching</button>
+  </div>
+
+  <div class="sec-instr" style="margin-top:22px">📌 quick rule: Simple = every day / usually. Continuous = right now / this week.</div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · answer aloud · use Present Continuous</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>What are you working on this week at your desk?</li>
+      <li>Which project is your team preparing right now?</li>
+      <li>What deal or negotiation is heating up around you these days?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 02c · PRESENT PERFECT ═══════════ -->
+<section class="section" id="s02c">
+  <div class="sec-num">Section 02c</div>
+  <h2 class="sec-title">Present Perfect — <em>done, but the result is here</em></h2>
+  <p class="sec-lead">Something happened before now, and the result matters today. Formula: <strong>have / has + V3 (past participle)</strong>. Use with <em>already · yet · just · ever · never · this week · for 3 years · since 2023</em>.</p>
+  <figure style="margin:14px 0 18px;border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(26,58,92,.18);border:1px solid rgba(184,150,74,.18)">
+    <img src="./assets/tenses-night.webp" alt="Night desk scene — laptop, notebook and coffee under Big Ben — with two connected cards: Present Continuous flowing into Present Perfect via a checkmark, showing how in-progress action becomes a completed result." style="width:100%;display:block;height:auto">
+    <figcaption style="padding:10px 14px;background:#faf6ec;color:#5a4e3c;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.72rem;letter-spacing:.06em;text-align:center;border-top:1px solid rgba(184,150,74,.18)">Present Continuous → Present Perfect · when the action stops, the result stays</figcaption>
+  </figure>
+  <div class="sec-instr">👇 pick have/has + V3 · match to context</div>
+
+  <div class="ps-list">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I <span class="gap" data-ans="have finished">___</span> the report. (result: it's ready now)</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Marco <span class="gap" data-ans="has signed">___</span> the contract already.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">We <span class="gap" data-ans="have worked">___</span> together for three years.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">She <span class="gap" data-ans="has just sent">___</span> the file. (a minute ago)</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">I <span class="gap" data-ans="have never been">___</span> to Milan.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">The boss <span class="gap" data-ans="has approved">___</span> the budget.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">They <span class="gap" data-ans="have not received">___</span> the shipment yet.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">Sales <span class="gap" data-ans="have grown">___</span> since January.</div></div>
+    <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">I <span class="gap" data-ans="have studied">___</span> English for two years.</div></div>
+    <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">He <span class="gap" data-ans="has moved">___</span> to a new department.</div></div>
+  </div>
+
+  <div class="ps-opts" id="ps-opts-c">
+    <button class="ps-opt-btn">has moved</button>
+    <button class="ps-opt-btn">have grown</button>
+    <button class="ps-opt-btn">has signed</button>
+    <button class="ps-opt-btn">have not received</button>
+    <button class="ps-opt-btn">have finished</button>
+    <button class="ps-opt-btn">has just sent</button>
+    <button class="ps-opt-btn">have worked</button>
+    <button class="ps-opt-btn">has approved</button>
+    <button class="ps-opt-btn">have never been</button>
+    <button class="ps-opt-btn">have studied</button>
+  </div>
+
+  <div class="sec-instr" style="margin-top:22px">📌 tell apart: Simple past — <em>yesterday / last week / in 2020</em>. Perfect — <em>result is now / just / already / yet / for / since</em>.</div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · answer aloud · use Present Perfect</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>What have you already finished today at work?</li>
+      <li>Have you ever presented to a foreign client? Which one?</li>
+      <li>Which decision has your boss approved this week?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 02d · PRESENT PERFECT CONTINUOUS ═══════════ -->
+<section class="section" id="s02d">
+  <div class="sec-num">Section 02d</div>
+  <h2 class="sec-title">Present Perfect Continuous — <em>doing since, still doing</em></h2>
+  <p class="sec-lead">Started in the past, still happening now, and the <strong>process</strong> matters (not the result). Formula: <strong>have / has been + verb-ing</strong>. Use with <em>for · since · all day · lately</em>.</p>
+  <div class="sec-instr">👇 pick have/has been + -ing</div>
+
+  <div class="ps-list">
+    <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I <span class="gap" data-ans="have been working">___</span> on this deal for two weeks.</div></div>
+    <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Sales <span class="gap" data-ans="have been growing">___</span> since spring.</div></div>
+    <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">She <span class="gap" data-ans="has been studying">___</span> English for six months.</div></div>
+    <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">We <span class="gap" data-ans="have been waiting">___</span> for the client's reply all morning.</div></div>
+    <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">Marco <span class="gap" data-ans="has been calling">___</span> customers all day.</div></div>
+    <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">I <span class="gap" data-ans="have been preparing">___</span> for the interview since Monday.</div></div>
+    <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">They <span class="gap" data-ans="have been checking">___</span> the numbers for hours.</div></div>
+    <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">The team <span class="gap" data-ans="has been working">___</span> overtime lately.</div></div>
+  </div>
+
+  <div class="ps-opts" id="ps-opts-d">
+    <button class="ps-opt-btn">has been calling</button>
+    <button class="ps-opt-btn">have been preparing</button>
+    <button class="ps-opt-btn">has been working</button>
+    <button class="ps-opt-btn">have been checking</button>
+    <button class="ps-opt-btn">have been growing</button>
+    <button class="ps-opt-btn">has been studying</button>
+    <button class="ps-opt-btn">have been working</button>
+    <button class="ps-opt-btn">have been waiting</button>
+  </div>
+
+  <div class="sec-instr" style="margin-top:22px">📌 subtle: Perfect (I have worked here for 3 years) — <b>fact</b>. Perfect Continuous (I have been working here for 3 years) — <b>process, activity</b>. Overlap is normal.</div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · answer aloud · use Present Perfect Continuous</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>How long have you been working in corporate economics?</li>
+      <li>What have you been trying to fix in your workflow lately?</li>
+      <li>Which skill have you been improving for the last few months?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 02e · TENSE MIX · CHOOSE THE RIGHT FORM ═══════════ -->
+<section class="section" id="s02e">
+  <div class="sec-num">Section 02e</div>
+  <h2 class="sec-title">Mix drill · pick the right present tense</h2>
+  <p class="sec-lead">All four in one place: <strong>Simple · Continuous · Perfect · Perfect Continuous</strong>. Choose the one that fits the time signal.</p>
+  <div class="sec-instr">👆 tap · get feedback</div>
+
+  <div class="art-list" id="mix-list">
+    <div class="art-row">
+      <div class="art-eng">Every Monday morning we <span class="art-blank"></span> a team meeting.</div>
+      <div class="art-opts" data-correct="have"><button class="art-opt">have</button><button class="art-opt">are having</button><button class="art-opt">have had</button><button class="art-opt">have been having</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">Look — Marco <span class="art-blank"></span> on the phone right now.</div>
+      <div class="art-opts" data-correct="is talking"><button class="art-opt">talks</button><button class="art-opt">is talking</button><button class="art-opt">has talked</button><button class="art-opt">has been talking</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">I <span class="art-blank"></span> for this company since 2021.</div>
+      <div class="art-opts" data-correct="have worked"><button class="art-opt">work</button><button class="art-opt">am working</button><button class="art-opt">have worked</button><button class="art-opt">worked</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">She <span class="art-blank"></span> on the report all morning — she looks tired.</div>
+      <div class="art-opts" data-correct="has been working"><button class="art-opt">works</button><button class="art-opt">is working</button><button class="art-opt">has worked</button><button class="art-opt">has been working</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">We <span class="art-blank"></span> the deal already. It's done.</div>
+      <div class="art-opts" data-correct="have closed"><button class="art-opt">close</button><button class="art-opt">are closing</button><button class="art-opt">have closed</button><button class="art-opt">have been closing</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">Our logistics team <span class="art-blank"></span> shipments every day.</div>
+      <div class="art-opts" data-correct="checks"><button class="art-opt">checks</button><button class="art-opt">is checking</button><button class="art-opt">has checked</button><button class="art-opt">has been checking</button></div>
+    </div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · mix all four tenses · answer aloud</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li><em>Right now</em> — what are you doing at your desk this exact moment? <span style="color:var(--muted);font-size:.85rem">(Present Continuous)</span></li>
+      <li><em>Today</em> — what have you already finished that you're proud of? <span style="color:var(--muted);font-size:.85rem">(Present Perfect)</span></li>
+      <li><em>For months</em> — what skill have you been building slowly? <span style="color:var(--muted);font-size:.85rem">(Present Perfect Continuous)</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 03 · TO ═══════════ -->
+<section class="section" id="s03">
+  <figure class="section-banner-img" style="margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s03.webp" alt="Section 03 · Grammar — The small word to" style="width:100%;display:block;height:auto">
+  </figure>
+  <div class="sec-num">Section 03</div>
+  <h2 class="sec-title">The small word <em style="font-family:var(--display); color: var(--burgundy);">to</em></h2>
+  <p class="sec-lead">After <strong>need · want · have · would like</strong> — always <em>to</em> + verb. Never <em>for</em>. Fix the sentences: tap the broken part and I will show the right form.</p>
+  <div class="sec-instr">👇 tap the broken bit</div>
+
+  <div class="ti-list" id="ti-list">
+    <div class="ti-row"><span class="ti-num">1</span><div class="ti-eng">We need <strong data-fix="to search">search</strong> a place. → we need <em>to search</em> a place.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">2</span><div class="ti-eng">I want <strong data-fix="to learn">learn</strong> English.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">3</span><div class="ti-eng">She has <strong data-fix="to finish">finish</strong> the report.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">4</span><div class="ti-eng">I'd like <strong data-fix="to have">have</strong> coffee, please.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">5</span><div class="ti-eng">He wants <strong data-fix="to move">move</strong> to Milan.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">6</span><div class="ti-eng">We need <strong data-fix="to make">for make</strong> a fire.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">7</span><div class="ti-eng">I have <strong data-fix="to call">call</strong> my boss.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">8</span><div class="ti-eng">They want <strong data-fix="to study">for study</strong> abroad.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">9</span><div class="ti-eng">You need <strong data-fix="to sign">sign</strong> the paper.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">10</span><div class="ti-eng">I'd like <strong data-fix="to ask">ask</strong> a question.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">11</span><div class="ti-eng">She wants <strong data-fix="to leave">leave</strong> early today.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">12</span><div class="ti-eng">We have <strong data-fix="to remind">for remind</strong> him.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">13</span><div class="ti-eng">I need <strong data-fix="to check">for check</strong> the email.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">14</span><div class="ti-eng">He wants <strong data-fix="to speak">speak</strong> to you.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">15</span><div class="ti-eng">I'd like <strong data-fix="to book">book</strong> a table.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">16</span><div class="ti-eng">You need <strong data-fix="to relax">relax</strong>.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">17</span><div class="ti-eng">She has <strong data-fix="to send">send</strong> the file today.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">18</span><div class="ti-eng">We want <strong data-fix="to travel">for travel</strong> in July.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">19</span><div class="ti-eng">I have <strong data-fix="to work">work</strong> late tonight.</div><button class="ti-check">Check</button></div>
+    <div class="ti-row"><span class="ti-num">20</span><div class="ti-eng">Can I <strong data-fix="ask">to ask</strong> a question?</div><button class="ti-check">Check</button></div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · use need / want / would like / have + <em>to</em></div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Name one thing you <b>need to</b> finish this week. Say the full sentence.</li>
+      <li>Name one thing you <b>would like to</b> learn this year. Say the full sentence.</li>
+      <li>Name one thing you <b>have to</b> do tomorrow morning — the boring one. Say the full sentence.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 04 · ARTICLES ═══════════ -->
+<section class="section" id="s04">
+  <div class="sec-num">Section 04</div>
+  <h2 class="sec-title">a · the · nothing</h2>
+  <p class="sec-lead">Three rules only. <strong>a</strong> = one of many, first time. <strong>the</strong> = the exact one we know. <strong>—</strong> = things you cannot count (coffee, money, water, time). Tap the right choice for each blank.</p>
+  <div class="sec-instr">👆 tap: a · the · — · get feedback</div>
+
+  <div class="art-list" id="art-list">
+    <div class="art-row">
+      <div class="art-eng">I have <span class="art-blank"></span> new colleague. His name is Marco.</div>
+      <div class="art-opts" data-correct="a"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng"><span class="art-blank"></span> colleague I mentioned yesterday is here.</div>
+      <div class="art-opts" data-correct="the"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">I drink <span class="art-blank"></span> coffee every morning.</div>
+      <div class="art-opts" data-correct="—"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">Can I have <span class="art-blank"></span> coffee, please? (in a café)</div>
+      <div class="art-opts" data-correct="a"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">We need <span class="art-blank"></span> money for the trip.</div>
+      <div class="art-opts" data-correct="—"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">She has <span class="art-blank"></span> question.</div>
+      <div class="art-opts" data-correct="a"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">Open <span class="art-blank"></span> door, please. (only one door here)</div>
+      <div class="art-opts" data-correct="the"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+    <div class="art-row">
+      <div class="art-eng">I like <span class="art-blank"></span> music.</div>
+      <div class="art-opts" data-correct="—"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div>
+    </div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · practise <em>a / the / —</em> live</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Describe the room you're sitting in right now — use at least three articles (<em>a</em>, <em>the</em>, and one no-article noun like <em>money / time / coffee</em>).</li>
+      <li>What did you order the last time you were in a café? Two sentences: what you asked for and how it was.</li>
+      <li>What did you study at university that still helps you at work? Say it with <em>at university</em> and one <em>the</em>-noun.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 05 · SIX BUSINESS LINES · TENSES IN ACTION ═══════════ -->
+<section class="section" id="s05">
+  <div class="sec-num">Section 05</div>
+  <h2 class="sec-title">Six business lines you actually say — <em>tenses in action</em></h2>
+  <p class="sec-lead">Six adult phrases from your real working day. Each one lives on a different tense from today's lesson. Say each line out loud twice — slow first, natural second. Feel where the tense signal sits.</p>
+  <div class="sec-instr">🎙 read → speak · x2 each · mark the tense in your head</div>
+
+  <div class="sv-list">
+    <div class="sv-card">
+      <div class="sv-scene">🤝 Present Simple · self-intro</div>
+      <div class="sv-line">I work in the strategy team at Lukoil. I usually handle the Milan and Rome accounts.</div>
+      <div class="sv-tip">Present Simple = fact about your job. <em>at</em> + company, <em>in</em> + team. Trigger word: <em>usually</em>.</div>
+    </div>
+    <div class="sv-card">
+      <div class="sv-scene">📊 Present Continuous · this-week project</div>
+      <div class="sv-line">Right now I'm preparing the Q3 deck. This month we're also hiring three engineers.</div>
+      <div class="sv-tip">Present Continuous = right now / this month. Not <em>I prepare</em> — say <em>am preparing</em>. Triggers: <em>right now, this month</em>.</div>
+    </div>
+    <div class="sv-card">
+      <div class="sv-scene">📧 Present Perfect · status update</div>
+      <div class="sv-line">I've already sent the draft. I haven't heard back from the client yet.</div>
+      <div class="sv-tip">Present Perfect = result now. Use <em>already / yet</em>. Never <em>yesterday</em> or <em>at 3 pm</em> — those go with Past Simple.</div>
+    </div>
+    <div class="sv-card">
+      <div class="sv-scene">⏳ Present Perfect Continuous · why it's taking so long</div>
+      <div class="sv-line">I've been working on this deal for two weeks. We've been waiting for their reply since Monday.</div>
+      <div class="sv-tip">Perfect Continuous = process still going. <em>for</em> + duration, <em>since</em> + a point in time. Focus is on the effort, not the result.</div>
+    </div>
+    <div class="sv-card">
+      <div class="sv-scene">🕓 Small polite request · <em>need to</em></div>
+      <div class="sv-line">I need to leave in five minutes — could you send me the file by then?</div>
+      <div class="sv-tip">After <em>need · want · would like · have</em> — always <em>to</em> + verb. Never <em>for</em>. <em>Could you</em> = polite standard for adults.</div>
+    </div>
+    <div class="sv-card">
+      <div class="sv-scene">🗓 Daily stand-up · mixing tenses</div>
+      <div class="sv-line">I have three submissions today. Two are in progress and one is already done.</div>
+      <div class="sv-tip">Three tenses in one report: <em>I have</em> (Simple, fact) · <em>are in progress</em> (Continuous, right now) · <em>is done</em> (Perfect, result). This is exactly how a stand-up sounds.</div>
+    </div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · use the six-line shapes</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>Say your <b>own version of the self-intro</b> — one Present Simple sentence about where and how you work.</li>
+      <li>Give your <b>own daily stand-up in 3 sentences</b>: what you're doing now, what you've already finished, what you've been working on for a while.</li>
+      <li>Ask a colleague a <b>polite request with <em>need to</em></b> — something you really need this week.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 07 · READING ═══════════ -->
+<section class="section" id="s07">
+  <figure class="section-banner-img" style="position:relative;margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s07.webp" alt="Section 07 · Reading — A day at the office · spot the tenses" style="width:100%;display:block;height:auto">
+    <div class="banner-overlay" style="position:absolute;left:4%;top:50%;transform:translateY(-50%);max-width:46%;padding:0 10px;color:#f4ecd8;font-family:var(--body);font-weight:500;font-size:clamp(.85rem,1.4vw,1.15rem);line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.7);pointer-events:none">
+      <span style="display:block;font-family:var(--mono);font-weight:800;font-size:.62em;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:8px">📖 Did you know?</span>
+      Read <b style="color:var(--gold);font-weight:800">200 English words</b> a day and in three months you gain a full IELTS band. Reading trains grammar, vocabulary and rhythm — all at once.
+    </div>
+  </figure>
+  <div class="sec-num">Section 07</div>
+  <h2 class="sec-title">Reading · A day at the office</h2>
+  <p class="sec-lead">Short business text. Read it once at your pace, then answer four multiple-choice questions. All four Present tenses live inside.</p>
+  <div class="sec-instr">📖 read → tap answer · auto-check</div>
+
+  <article style="background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: clamp(18px, 3vw, 26px); margin-top: 18px; font-size: 1rem; line-height: 1.7; color: var(--text)">
+    <p style="margin: 0 0 10px"><b>Timofey works</b> at Lukoil in the strategy team. Every morning he <b>checks</b> his email and <b>drinks</b> a large flat white on the way to the office. Today he <b>is preparing</b> a big presentation for a client from Milan — the meeting starts in three hours and he still <b>is finishing</b> the numbers slide.</p>
+    <p style="margin: 0 0 10px">He <b>has already sent</b> the draft to his boss, but the boss <b>hasn't replied</b> yet. Marco, his colleague, <b>has been working</b> on the same file since Monday and looks tired. “I <b>have been checking</b> these figures for two hours,” Marco says. “Could you help me?”</p>
+    <p style="margin: 0">Timofey nods. <b>Right now</b> they <b>are opening</b> the spreadsheet together. In half an hour the client call begins. Everything <b>is going</b> to be fine — they <b>have handled</b> harder days before.</p>
+  </article>
+
+  <div class="mcq-list" style="margin-top: 22px">
+    <div class="mcq"><div class="mcq-q">1. Where does Timofey work?</div>
+      <div class="mcq-opts"><button class="mcq-opt">In a small start-up</button><button class="mcq-opt" data-correct="1">In the strategy team at Lukoil</button><button class="mcq-opt">In a Milan client's office</button></div>
+      <div class="mcq-note">✅ “Timofey works at Lukoil in the strategy team” — Present Simple, a fact about his job.</div></div>
+
+    <div class="mcq"><div class="mcq-q">2. What is Timofey doing at the moment of the story?</div>
+      <div class="mcq-opts"><button class="mcq-opt">He is drinking coffee outside</button><button class="mcq-opt" data-correct="1">He is preparing a presentation for a Milan client</button><button class="mcq-opt">He is on the client call already</button></div>
+      <div class="mcq-note">✅ “Today he <b>is preparing</b> a big presentation” — Present Continuous = right now.</div></div>
+
+    <div class="mcq"><div class="mcq-q">3. What has Timofey already done?</div>
+      <div class="mcq-opts"><button class="mcq-opt">He has finished the whole presentation</button><button class="mcq-opt" data-correct="1">He has sent the draft to his boss</button><button class="mcq-opt">He has called the Milan client</button></div>
+      <div class="mcq-note">✅ “He <b>has already sent</b> the draft to his boss” — Present Perfect = result now.</div></div>
+
+    <div class="mcq"><div class="mcq-q">4. How long has Marco been checking the figures?</div>
+      <div class="mcq-opts"><button class="mcq-opt">For two days</button><button class="mcq-opt">Since this morning</button><button class="mcq-opt" data-correct="1">For two hours</button></div>
+      <div class="mcq-note">✅ “I <b>have been checking</b> these figures <b>for two hours</b>” — Present Perfect Continuous = process, still going, focus on duration.</div></div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · your version of the story</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>What is one thing YOU are preparing this week at work — right now, still in progress?</li>
+      <li>What have you <b>already</b> finished today that Timofey (in the story) hasn't?</li>
+      <li>Whom have you been checking numbers or drafts with <b>lately</b>? For how long?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 08 · LISTENING ═══════════ -->
+<section class="section" id="s08">
+  <figure class="section-banner-img" style="position:relative;margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s08.webp" alt="Section 08 · Listening — Marco calls Timofey · 45-second business call" style="width:100%;display:block;height:auto">
+    <div class="banner-overlay" style="position:absolute;left:4%;top:50%;transform:translateY(-50%);max-width:46%;padding:0 10px;color:#f4ecd8;font-family:var(--body);font-weight:500;font-size:clamp(.85rem,1.4vw,1.15rem);line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.7);pointer-events:none">
+      <span style="display:block;font-family:var(--mono);font-weight:800;font-size:.62em;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:8px">🎧 Did you know?</span>
+      An average business call uses <b style="color:var(--gold);font-weight:800">all four Present tenses</b> in the first thirty seconds. Listening catches tense signals — <em>since</em>, <em>already</em>, <em>right now</em> — faster than translation.
+    </div>
+  </figure>
+  <div class="sec-num">Section 08</div>
+  <h2 class="sec-title">Listening · Marco calls Timofey</h2>
+  <p class="sec-lead">Short business call. Listen twice — first for the story, second for the detail. Open the script only after you tried both times.</p>
+  <div class="sec-instr">🎧 listen → answer · script hidden</div>
+
+  <div style="margin-top: 16px; padding: 14px 18px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+    <audio controls preload="metadata" style="flex: 1 1 320px; min-width: 260px">
+      <source src="./assets/audio/marco-timofey-call.mp3?v=1" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+    <span style="font: 700 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--burgundy)">🎧 British male · Brian · ~45 sec</span>
+  </div>
+
+  <div style="margin-top: 18px; padding: 18px 22px; background: var(--card); border: 1px solid var(--line); border-radius: 12px">
+    <div style="font: 800 11px/1 var(--mono); letter-spacing: .28em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 14px">📜 Transcript · Marco calls Timofey (~45 sec)</div>
+    <div style="line-height: 1.75; color: var(--text)">
+      <p style="margin: 0 0 8px"><b>Marco:</b> Hi Timofey, are you busy right now?</p>
+      <p style="margin: 0 0 8px"><b>Timofey:</b> Yes, I'm working on the client deck. What's up?</p>
+      <p style="margin: 0 0 8px"><b>Marco:</b> I've been trying to open the numbers file since nine, but it keeps crashing. Have you saved a backup?</p>
+      <p style="margin: 0 0 8px"><b>Timofey:</b> I've already sent the backup to your email. Check the folder “Milan · draft 3”. I usually drop everything there.</p>
+      <p style="margin: 0 0 8px"><b>Marco:</b> Perfect. Have you spoken to the client today?</p>
+      <p style="margin: 0 0 8px"><b>Timofey:</b> Not yet. They haven't confirmed the time. I'm waiting for their reply.</p>
+      <p style="margin: 0"><b>Marco:</b> Got it. I'll open the file now and call you back in ten minutes.</p>
+    </div>
+  </div>
+
+  <div class="mcq-list" style="margin-top: 22px">
+    <div class="mcq"><div class="mcq-q">1. What is Timofey doing when Marco calls?</div>
+      <div class="mcq-opts"><button class="mcq-opt">He is on holiday</button><button class="mcq-opt" data-correct="1">He is working on the client deck</button><button class="mcq-opt">He is having lunch</button></div>
+      <div class="mcq-note">✅ “I'm working on the client deck” — Present Continuous, right now.</div></div>
+
+    <div class="mcq"><div class="mcq-q">2. Since when has Marco been trying to open the file?</div>
+      <div class="mcq-opts"><button class="mcq-opt">Since yesterday evening</button><button class="mcq-opt" data-correct="1">Since nine o'clock</button><button class="mcq-opt">For thirty minutes</button></div>
+      <div class="mcq-note">✅ “I've been trying to open the numbers file since nine” — Present Perfect Continuous + since.</div></div>
+
+    <div class="mcq"><div class="mcq-q">3. Has Timofey already sent the backup?</div>
+      <div class="mcq-opts"><button class="mcq-opt" data-correct="1">Yes, he has already sent it</button><button class="mcq-opt">No, he will send it later</button><button class="mcq-opt">No, he forgot</button></div>
+      <div class="mcq-note">✅ “I've already sent the backup to your email” — Present Perfect, result now.</div></div>
+
+    <div class="mcq"><div class="mcq-q">4. Where does Timofey usually keep drafts?</div>
+      <div class="mcq-opts"><button class="mcq-opt">On his laptop desktop</button><button class="mcq-opt">In printed folders</button><button class="mcq-opt" data-correct="1">In a folder called “Milan · draft 3”</button></div>
+      <div class="mcq-note">✅ “I usually drop everything there” — Present Simple, routine (“usually”).</div></div>
+  </div>
+
+  <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 questions · your business calls</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+      <li>When was the last time a colleague called you asking for a file? What did you tell them?</li>
+      <li>Which folder or system do <b>you</b> usually keep drafts in?</li>
+      <li>Have you spoken to a client today? If yes — in one sentence, what was the topic?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 09 · SPEAKING · ALL 4 TENSES ═══════════ -->
+<section class="section" id="s09">
+  <figure class="section-banner-img" style="position:relative;margin:0 0 18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(26,58,92,.14)">
+    <img src="./assets/banner-s09.webp" alt="Section 09 · Speaking — Your day in all 4 tenses · mic monologue" style="width:100%;display:block;height:auto">
+    <div class="banner-overlay" style="position:absolute;left:4%;top:50%;transform:translateY(-50%);max-width:46%;padding:0 10px;color:#f4ecd8;font-family:var(--body);font-weight:500;font-size:clamp(.85rem,1.4vw,1.15rem);line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.7);pointer-events:none">
+      <span style="display:block;font-family:var(--mono);font-weight:800;font-size:.62em;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:8px">🎙 Little truth</span>
+      Sixty seconds of <b style="color:var(--gold);font-weight:800">your own English</b> beats sixty minutes of someone else's. Speaking turns knowledge into muscle memory — don't wait to feel ready.
+    </div>
+  </figure>
+  <div class="sec-num">Section 09</div>
+  <h2 class="sec-title">Speaking · your day in all four tenses</h2>
+  <p class="sec-lead">One free monologue, 10–12 sentences, about your work this week. You must use each of the four Present tenses at least once. Slow, natural, out loud.</p>
+  <div class="sec-instr">🎤 speak 45–60 sec · mic-drill</div>
+
+  <div class="mic-block">
+    <div class="mic-prompt">Talk about your working week — right now, this week, and what you've done so far. Cover all four tenses (see the checklist).</div>
+    <ul style="margin: 14px 0 8px 20px; padding: 0; line-height: 1.7; color: var(--text)">
+      <li><b>Present Simple</b> — one thing you do every day. <em>“I usually start work at nine.”</em></li>
+      <li><b>Present Continuous</b> — what you're doing right now / this week. <em>“Right now I'm preparing a report.”</em></li>
+      <li><b>Present Perfect</b> — one thing you have already done today. <em>“I've already sent two emails.”</em></li>
+      <li><b>Present Perfect Continuous</b> — one process still going. <em>“I've been working on this project since Monday.”</em></li>
+    </ul>
+    <div class="mic-tip">Try to hit 10–12 sentences. If the mic loses you, take a breath and continue — the counter is at the bottom of the page.</div>
+    <button class="mic-rec-btn" data-target="mic-tenses-out">🎙 Record & check</button>
+    <div class="mic-out" id="mic-tenses-out">Your speech will appear here.</div>
+  </div>
+
+  <details style="margin-top: 22px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px">
+    <summary style="cursor: pointer; font: 800 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--burgundy)">📜 Sample answer (open after you tried)</summary>
+    <div style="margin-top: 12px; line-height: 1.75; color: var(--text)">
+      <p>I usually start my day at eight o'clock and I always drink a large flat white on the way. My office is in central Moscow, so I take the metro every morning. Right now I am preparing a big presentation for a Milan client — the meeting is on Friday and I am still finishing the numbers slide. This week we are also interviewing three new engineers, which is unusual for us.</p>
+      <p>I have already sent the draft to my boss, but he hasn't replied yet. I have also spoken to the client twice this week. I've been working on this project since Monday, so I feel a bit tired, but I have been learning a lot about their business. In the evening I usually go for a short walk to reset. That is my week — busy, but under control.</p>
+    </div>
+  </details>
+</section>
+
+<section class="section">
+  <details class="homework" id="homework-block">
+    <summary>Homework · practical · full pack (grammar + vocab + speaking)</summary>
+    <div class="hw-body">
+      <p style="color: var(--muted); font-size: .95rem; margin-bottom: 20px">Twenty to twenty-five minutes. Slow, out loud, all from your own vocab. Nothing new — only the words you already have. Blocks A–G are the essentials; H, I, J are the Murphy-style grammar deep-dive.</p>
+
+      <h4>A · Vocab drill — match your word to the meaning (10 items · tap the right meaning)</h4>
+      <div class="mcq-list" id="hw-a-list">
+        <div class="mcq"><div class="mcq-q">1. <b>captivated</b></div><div class="mcq-opts"><button class="mcq-opt">tired</button><button class="mcq-opt" data-correct="1">strongly attracted / drawn in</button><button class="mcq-opt">angry</button></div><div class="mcq-note">✅ <em>captivated</em> = pulled in emotionally.</div></div>
+        <div class="mcq"><div class="mcq-q">2. <b>fatigue</b></div><div class="mcq-opts"><button class="mcq-opt">fresh energy</button><button class="mcq-opt" data-correct="1">deep tiredness</button><button class="mcq-opt">small break</button></div><div class="mcq-note">✅ <em>fatigue</em> = deep tiredness.</div></div>
+        <div class="mcq"><div class="mcq-q">3. <b>intensely focused</b></div><div class="mcq-opts"><button class="mcq-opt">doing many things at once</button><button class="mcq-opt" data-correct="1">fully concentrated</button><button class="mcq-opt">half asleep</button></div><div class="mcq-note">✅ <em>intensely focused</em> = fully in one task.</div></div>
+        <div class="mcq"><div class="mcq-q">4. <b>distracted</b></div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">unable to concentrate</button><button class="mcq-opt">very calm</button><button class="mcq-opt">fast</button></div><div class="mcq-note">✅ <em>distracted</em> = pulled away from the task.</div></div>
+        <div class="mcq"><div class="mcq-q">5. <b>engages</b></div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">holds attention</button><button class="mcq-opt">breaks a rule</button><button class="mcq-opt">hides something</button></div><div class="mcq-note">✅ <em>engages</em> = catches and keeps attention.</div></div>
+        <div class="mcq"><div class="mcq-q">6. <b>soothes</b></div><div class="mcq-opts"><button class="mcq-opt">makes louder</button><button class="mcq-opt" data-correct="1">calms</button><button class="mcq-opt">speeds up</button></div><div class="mcq-note">✅ <em>soothes</em> = calms down.</div></div>
+        <div class="mcq"><div class="mcq-q">7. <b>submissions</b></div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">works you send in</button><button class="mcq-opt">meetings</button><button class="mcq-opt">breaks</button></div><div class="mcq-note">✅ <em>submissions</em> = things you submit / hand in.</div></div>
+        <div class="mcq"><div class="mcq-q">8. <b>elaboration</b></div><div class="mcq-opts"><button class="mcq-opt">short answer</button><button class="mcq-opt" data-correct="1">added detail / explanation</button><button class="mcq-opt">apology</button></div><div class="mcq-note">✅ <em>elaboration</em> = extra detail after the main answer.</div></div>
+        <div class="mcq"><div class="mcq-q">9. <b>intelligible</b></div><div class="mcq-opts"><button class="mcq-opt" data-correct="1">clear / can be understood</button><button class="mcq-opt">very fast</button><button class="mcq-opt">very quiet</button></div><div class="mcq-note">✅ <em>intelligible</em> = understandable.</div></div>
+        <div class="mcq"><div class="mcq-q">10. <b>oncoming traffic</b></div><div class="mcq-opts"><button class="mcq-opt">traffic behind you</button><button class="mcq-opt" data-correct="1">traffic coming towards you</button><button class="mcq-opt">parked cars</button></div><div class="mcq-note">✅ <em>oncoming</em> = coming towards you.</div></div>
+      </div>
+
+      <h4>B · Gap-fill · drag your word into the sentence (10 items · shuffled bank)</h4>
+      <div class="ps-list" id="hw-b-list">
+        <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I work in <span class="gap" data-ans="finance">___</span> — my area is corporate strategy.</div></div>
+        <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Our <span class="gap" data-ans="sales">___</span> have grown fifteen percent this quarter.</div></div>
+        <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">Enterprise <span class="gap" data-ans="logistics">___</span> covers warehouses and shipping.</div></div>
+        <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">Let me check my <span class="gap" data-ans="schedule">___</span> and I'll get back to you.</div></div>
+        <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">By 4 p.m. a bit of <span class="gap" data-ans="fatigue">___</span> kicks in.</div></div>
+        <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">I try to stay <span class="gap" data-ans="focused">___</span> for the whole morning block.</div></div>
+        <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">Please follow the road <span class="gap" data-ans="markings">___</span> near the roundabout.</div></div>
+        <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">On weekends I go <span class="gap" data-ans="hiking">___</span> to clear my head.</div></div>
+        <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">He is very <span class="gap" data-ans="honest">___</span> — you can trust his numbers.</div></div>
+        <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">This project is <span class="gap" data-ans="exciting">___</span> — a lot is happening.</div></div>
+      </div>
+      <div class="ps-opts" id="hw-b-opts">
+        <button class="ps-opt-btn">exciting</button>
+        <button class="ps-opt-btn">sales</button>
+        <button class="ps-opt-btn">focused</button>
+        <button class="ps-opt-btn">hiking</button>
+        <button class="ps-opt-btn">schedule</button>
+        <button class="ps-opt-btn">finance</button>
+        <button class="ps-opt-btn">markings</button>
+        <button class="ps-opt-btn">honest</button>
+        <button class="ps-opt-btn">logistics</button>
+        <button class="ps-opt-btn">fatigue</button>
+      </div>
+
+      <h4>C · Discussion · 6 normal questions (speak out loud, use your vocab naturally)</h4>
+      <div class="hw-item"><span class="num">1.</span> What do you do for a living?</div>
+      <div class="hw-item"><span class="num">2.</span> What's your working day usually like?</div>
+      <div class="hw-item"><span class="num">3.</span> When do you feel the most tired at work?</div>
+      <div class="hw-item"><span class="num">4.</span> What helps you stay concentrated on hard tasks?</div>
+      <div class="hw-item"><span class="num">5.</span> Who is your favourite colleague and why?</div>
+      <div class="hw-item"><span class="num">6.</span> What do you like doing on weekends?</div>
+
+      <h4>D · Fix the small word (10 items · tap: to · for · —)</h4>
+      <div class="art-list" id="hw-d-list">
+        <div class="art-row"><div class="art-eng"><b>1.</b> I want <span class="art-blank"></span> speak English better.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>2.</b> She has <span class="art-blank"></span> finish this report today.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>3.</b> We need <span class="art-blank"></span> book a hotel.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>4.</b> I'd like <span class="art-blank"></span> have some tea.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>5.</b> He wants <span class="art-blank"></span> visit Milan next year.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>6.</b> They need <span class="art-blank"></span> send the file.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>7.</b> Can I <span class="art-blank"></span> ask a question?</div><div class="art-opts" data-correct="—"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>8.</b> I have <span class="art-blank"></span> leave in five minutes.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>9.</b> She'd like <span class="art-blank"></span> take a break.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>10.</b> You need <span class="art-blank"></span> relax more.</div><div class="art-opts" data-correct="to"><button class="art-opt">to</button><button class="art-opt">for</button><button class="art-opt">—</button></div></div>
+      </div>
+
+      <h4>E · a / the / — (6 items · tap the right article)</h4>
+      <div class="art-list" id="hw-e-list">
+        <div class="art-row"><div class="art-eng"><b>1.</b> I have <span class="art-blank"></span> new task from the boss.</div><div class="art-opts" data-correct="a"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>2.</b> <span class="art-blank"></span> task is not easy.</div><div class="art-opts" data-correct="The"><button class="art-opt">A</button><button class="art-opt">The</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>3.</b> I drink <span class="art-blank"></span> tea every evening.</div><div class="art-opts" data-correct="—"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>4.</b> Could I have <span class="art-blank"></span> tea, please? (in a café)</div><div class="art-opts" data-correct="a"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>5.</b> Open <span class="art-blank"></span> window, please. (only one window)</div><div class="art-opts" data-correct="the"><button class="art-opt">a</button><button class="art-opt">the</button><button class="art-opt">—</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>6.</b> <span class="art-blank"></span> time is money.</div><div class="art-opts" data-correct="—"><button class="art-opt">A</button><button class="art-opt">The</button><button class="art-opt">—</button></div></div>
+      </div>
+
+      <h4>F · Speaking · your usual working day (offline, use your vocab)</h4>
+      <div class="hw-item">Record a 60-second voice message. Answer: <em>What do you do every day at work?</em> Use nine sentences (like the Warm-up), each one with at least one word from your vocab list (<b>finance / crediting / sales / logistics / schedule / focused / fatigue / hiking / honest</b>). Slow pace. Send the audio to Maria.</div>
+
+      <h4>G · Watch & catch (optional)</h4>
+      <div class="hw-item">Pick one short YouTube video on any topic you like — maximum three minutes, native English. Write down three sentences you hear that use <em>need to / want to / have to</em>. Just three. Bring them to the next lesson.</div>
+
+      <div class="sub-eyebrow" style="margin:32px 0 6px;font:800 10.5px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px">
+        <span style="display:inline-block;width:20px;height:1.5px;background:var(--gold)"></span>🧠 Murphy-style deep dive · grammar drills · blocks H–J
+      </div>
+
+      <h4>H · Multiple choice · pick the right present tense (15 items · tap answer, live feedback)</h4>
+      <div class="art-list" id="hw-h-list">
+        <div class="art-row"><div class="art-eng"><b>1.</b> Marco usually <span class="art-blank"></span> the client every Friday.</div><div class="art-opts" data-correct="calls"><button class="art-opt">call</button><button class="art-opt">calls</button><button class="art-opt">is calling</button><button class="art-opt">has called</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>2.</b> Right now the team <span class="art-blank"></span> the Q3 numbers.</div><div class="art-opts" data-correct="is reviewing"><button class="art-opt">reviews</button><button class="art-opt">is reviewing</button><button class="art-opt">has reviewed</button><button class="art-opt">has been reviewing</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>3.</b> I <span class="art-blank"></span> in banking since 2019.</div><div class="art-opts" data-correct="have worked"><button class="art-opt">work</button><button class="art-opt">am working</button><button class="art-opt">have worked</button><button class="art-opt">worked</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>4.</b> She <span class="art-blank"></span> on this deal all morning — she looks exhausted.</div><div class="art-opts" data-correct="has been working"><button class="art-opt">works</button><button class="art-opt">is working</button><button class="art-opt">has worked</button><button class="art-opt">has been working</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>5.</b> We already <span class="art-blank"></span> the invoice this morning.</div><div class="art-opts" data-correct="have sent"><button class="art-opt">send</button><button class="art-opt">are sending</button><button class="art-opt">have sent</button><button class="art-opt">have been sending</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>6.</b> Every quarter our sales <span class="art-blank"></span> by five percent.</div><div class="art-opts" data-correct="grow"><button class="art-opt">grow</button><button class="art-opt">are growing</button><button class="art-opt">have grown</button><button class="art-opt">have been growing</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>7.</b> The boss <span class="art-blank"></span> three important calls right now.</div><div class="art-opts" data-correct="is having"><button class="art-opt">has</button><button class="art-opt">is having</button><button class="art-opt">has had</button><button class="art-opt">has been having</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>8.</b> Timofey <span class="art-blank"></span> for IELTS for six months.</div><div class="art-opts" data-correct="has been preparing"><button class="art-opt">prepares</button><button class="art-opt">is preparing</button><button class="art-opt">has prepared</button><button class="art-opt">has been preparing</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>9.</b> — Where's Marco? — He <span class="art-blank"></span> to the pharmacy.</div><div class="art-opts" data-correct="has gone"><button class="art-opt">goes</button><button class="art-opt">is going</button><button class="art-opt">has gone</button><button class="art-opt">has been going</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>10.</b> Our office <span class="art-blank"></span> near Belorussky station.</div><div class="art-opts" data-correct="is"><button class="art-opt">is</button><button class="art-opt">is being</button><button class="art-opt">has been</button><button class="art-opt">has been being</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>11.</b> They <span class="art-blank"></span> the new office design for weeks now.</div><div class="art-opts" data-correct="have been discussing"><button class="art-opt">discuss</button><button class="art-opt">are discussing</button><button class="art-opt">have discussed</button><button class="art-opt">have been discussing</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>12.</b> I have never <span class="art-blank"></span> to Milan.</div><div class="art-opts" data-correct="been"><button class="art-opt">go</button><button class="art-opt">going</button><button class="art-opt">been</button><button class="art-opt">been going</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>13.</b> This month we <span class="art-blank"></span> a new pricing model.</div><div class="art-opts" data-correct="are trying"><button class="art-opt">try</button><button class="art-opt">are trying</button><button class="art-opt">have tried</button><button class="art-opt">have been trying</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>14.</b> Our logistics team <span class="art-blank"></span> shipments every single day.</div><div class="art-opts" data-correct="checks"><button class="art-opt">checks</button><button class="art-opt">is checking</button><button class="art-opt">has checked</button><button class="art-opt">has been checking</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>15.</b> She <span class="art-blank"></span> the file — check your inbox.</div><div class="art-opts" data-correct="has just sent"><button class="art-opt">just sends</button><button class="art-opt">is just sending</button><button class="art-opt">has just sent</button><button class="art-opt">has just been sending</button></div></div>
+      </div>
+
+      <h4>I · Gap-fill · drag the correct verb form into the gap (12 items · shuffled bank)</h4>
+      <div class="ps-list" id="hw-i-list">
+        <div class="ps-row"><span class="ps-num">1</span><div class="ps-text">I <span class="gap" data-ans="have worked">___</span> in enterprise logistics since 2019.</div></div>
+        <div class="ps-row"><span class="ps-num">2</span><div class="ps-text">Marco usually <span class="gap" data-ans="calls">___</span> clients on Friday afternoon.</div></div>
+        <div class="ps-row"><span class="ps-num">3</span><div class="ps-text">Right now Anna <span class="gap" data-ans="is writing">___</span> the elaboration for question four.</div></div>
+        <div class="ps-row"><span class="ps-num">4</span><div class="ps-text">We <span class="gap" data-ans="haven't received">___</span> the shipment from Milan yet.</div></div>
+        <div class="ps-row"><span class="ps-num">5</span><div class="ps-text">My colleague <span class="gap" data-ans="drinks">___</span> coffee, not tea.</div></div>
+        <div class="ps-row"><span class="ps-num">6</span><div class="ps-text">She <span class="gap" data-ans="has been studying">___</span> IELTS for the past three months.</div></div>
+        <div class="ps-row"><span class="ps-num">7</span><div class="ps-text">Look, the boss <span class="gap" data-ans="is meeting">___</span> the investors in the glass room right now.</div></div>
+        <div class="ps-row"><span class="ps-num">8</span><div class="ps-text">Our sales <span class="gap" data-ans="have grown">___</span> by fifteen percent this quarter.</div></div>
+        <div class="ps-row"><span class="ps-num">9</span><div class="ps-text">Timofey <span class="gap" data-ans="has just finished">___</span> three submissions.</div></div>
+        <div class="ps-row"><span class="ps-num">10</span><div class="ps-text">Every morning I <span class="gap" data-ans="check">___</span> my schedule before the first meeting.</div></div>
+        <div class="ps-row"><span class="ps-num">11</span><div class="ps-text">They <span class="gap" data-ans="have been waiting">___</span> for the client's reply all morning.</div></div>
+        <div class="ps-row"><span class="ps-num">12</span><div class="ps-text">The new office <span class="gap" data-ans="is">___</span> closer to my flat, which is nice.</div></div>
+      </div>
+      <div class="ps-opts" id="hw-i-opts">
+        <button class="ps-opt-btn">is meeting</button>
+        <button class="ps-opt-btn">has been studying</button>
+        <button class="ps-opt-btn">has just finished</button>
+        <button class="ps-opt-btn">have worked</button>
+        <button class="ps-opt-btn">drinks</button>
+        <button class="ps-opt-btn">is</button>
+        <button class="ps-opt-btn">calls</button>
+        <button class="ps-opt-btn">have grown</button>
+        <button class="ps-opt-btn">is writing</button>
+        <button class="ps-opt-btn">have been waiting</button>
+        <button class="ps-opt-btn">check</button>
+        <button class="ps-opt-btn">haven't received</button>
+      </div>
+
+      <h4>J · Correct the mistake · pick the fixed version (10 items · tap answer)</h4>
+      <div class="art-list" id="hw-j-list">
+        <div class="art-row"><div class="art-eng"><b>1.</b> ❌ <em>I am working here since 2019.</em></div><div class="art-opts" data-correct="I have been working here since 2019."><button class="art-opt">I work here since 2019.</button><button class="art-opt">I have been working here since 2019.</button><button class="art-opt">I worked here since 2019.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>2.</b> ❌ <em>She has been finished the report already.</em></div><div class="art-opts" data-correct="She has finished the report already."><button class="art-opt">She has finished the report already.</button><button class="art-opt">She had finished the report already.</button><button class="art-opt">She is finishing the report already.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>3.</b> ❌ <em>Every day Marco is calling three clients.</em></div><div class="art-opts" data-correct="Every day Marco calls three clients."><button class="art-opt">Every day Marco call three clients.</button><button class="art-opt">Every day Marco calls three clients.</button><button class="art-opt">Every day Marco has called three clients.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>4.</b> ❌ <em>We are having a meeting every Monday morning.</em></div><div class="art-opts" data-correct="We have a meeting every Monday morning."><button class="art-opt">We have a meeting every Monday morning.</button><button class="art-opt">We have been having a meeting every Monday morning.</button><button class="art-opt">We had a meeting every Monday morning.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>5.</b> ❌ <em>Right now the boss have three phone calls.</em></div><div class="art-opts" data-correct="Right now the boss is having three phone calls."><button class="art-opt">Right now the boss has three phone calls.</button><button class="art-opt">Right now the boss is having three phone calls.</button><button class="art-opt">Right now the boss having three phone calls.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>6.</b> ❌ <em>I already send the invoice this morning.</em></div><div class="art-opts" data-correct="I have already sent the invoice this morning."><button class="art-opt">I already sent the invoice this morning.</button><button class="art-opt">I have already sent the invoice this morning.</button><button class="art-opt">I am already sending the invoice this morning.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>7.</b> ❌ <em>They working on the deal for two weeks now.</em></div><div class="art-opts" data-correct="They have been working on the deal for two weeks now."><button class="art-opt">They are working on the deal for two weeks now.</button><button class="art-opt">They have been working on the deal for two weeks now.</button><button class="art-opt">They worked on the deal for two weeks now.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>8.</b> ❌ <em>My team is preparing the report for three days.</em></div><div class="art-opts" data-correct="My team has been preparing the report for three days."><button class="art-opt">My team has prepared the report for three days.</button><button class="art-opt">My team has been preparing the report for three days.</button><button class="art-opt">My team prepare the report for three days.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>9.</b> ❌ <em>Look — Marco is call the client right now.</em></div><div class="art-opts" data-correct="Look — Marco is calling the client right now."><button class="art-opt">Look — Marco is calling the client right now.</button><button class="art-opt">Look — Marco calls the client right now.</button><button class="art-opt">Look — Marco has been called the client right now.</button></div></div>
+        <div class="art-row"><div class="art-eng"><b>10.</b> ❌ <em>She goes to Milan just — she left an hour ago.</em></div><div class="art-opts" data-correct="She has just gone to Milan — she left an hour ago."><button class="art-opt">She just goes to Milan — she left an hour ago.</button><button class="art-opt">She has just gone to Milan — she left an hour ago.</button><button class="art-opt">She just went to Milan — she left an hour ago.</button></div></div>
+      </div>
+
+      <details style="margin-top: 22px; background: var(--card); border-left: 3px solid var(--gold); border-radius: 8px; padding: 12px 16px">
+        <summary style="cursor:pointer; font-family: var(--display); font-weight:800; color: var(--navy); font-size: 1rem">For teacher · answer keys</summary>
+        <div style="margin-top: 12px; font-size: .92rem; line-height: 1.7">
+          <p><strong>A · vocab match:</strong> 1-b · 2-b · 3-b · 4-a · 5-a · 6-b · 7-a · 8-b · 9-a · 10-b.</p>
+          <p><strong>B · vocab gap-fill:</strong> 1. finance / banking / logistics / sales (his choice) · 2. sales · 3. logistics · 4. schedule · 5. fatigue · 6. focused · 7. markings · 8. hiking · 9. honest · 10. exciting.</p>
+          <p><strong>D · to-infinitive:</strong> all answers = <em>to</em>. Exception: 7. <em>Can I ask</em> — no <em>to</em> after modal <em>can</em>.</p>
+          <p><strong>E · articles:</strong> 1. a · 2. The · 3. — · 4. a · 5. the · 6. — (Time is money — proverb).</p>
+          <p><strong>H · MCQ tenses:</strong> 1-b · 2-b · 3-c · 4-d · 5-c · 6-a · 7-b · 8-d · 9-c · 10-a · 11-d · 12-c · 13-b · 14-a · 15-c.</p>
+          <p><strong>I · verb in brackets:</strong> 1. have worked / have been working · 2. calls · 3. is writing · 4. have not received / haven't received · 5. drinks · 6. has been studying · 7. is meeting · 8. have grown · 9. has just finished · 10. check · 11. have been waiting · 12. is.</p>
+          <p><strong>J · correct the mistake:</strong> 1. <em>am working</em> → <em>have been working</em> (since 2019). 2. <em>has been finished</em> → <em>has finished</em>. 3. <em>is calling</em> → <em>calls</em> (every day). 4. ✓ correct — or "we have a meeting" (both accepted). 5. <em>have</em> → <em>is having</em> / <em>has</em>. 6. <em>send</em> → <em>have sent</em> (this morning · result now). 7. <em>working</em> → <em>have been working</em>. 8. <em>is preparing</em> → <em>has been preparing</em> (for three days). 9. <em>is call</em> → <em>is calling</em>. 10. <em>goes just</em> → <em>has just gone</em>.</p>
+        </div>
+      </details>
+    </div>
+  </details>
+</section>
+
+<!-- ============================================================
+     s10 · Trainer-04 · Follow-up chek-list + exercises on 3 focus areas
+     ============================================================ -->
+<section class="section" id="s10">
+  <div class="sec-num">Section 10</div>
+  <h2 class="sec-title">After lesson · чек-лист домашки и три коротких дриля</h2>
+  <p class="sec-lead">По разбору твоего свободного письма 06.07 — три места, которые чиним следующим блоком. Ниже: чек-лист для переписывания «My usual day» и три коротких упражнения на каждую тему. Всё интерактивное — зелёный = верно, красный = попробуй ещё.</p>
+
+  <div style="margin-top:22px;padding:20px 24px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:10px">
+    <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:14px">📋 Домашка на Trainer-04 · чек-лист</div>
+    <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.85;color:var(--text)">
+      <li>Все глаголы в <b>Present Simple</b> (не «will start», не «changing»).</li>
+      <li>После he/she/it/имени/компании — окончание <b>-s</b>: <em>My day <b>starts</b> · She <b>works</b> · The team <b>meets</b></em>.</li>
+      <li>Артикль перед гласной — <b>an</b>: <em>an hour · an interview</em>.</li>
+      <li>Устойчивые сочетания без артикля: <em>at work · go home · have breakfast</em>.</li>
+      <li>Формы прошедшего от неправильных: <em>came</em> (не «comed»), <em>taught</em> (не «teached»), <em>took</em> (не «take»).</li>
+      <li><b>For</b> + отрезок времени: <em>for a year · for three years · for two weeks</em>.</li>
+      <li>Порядок притяжательных: <em>our new schedule</em>, а не «the new our schedule».</li>
+    </ol>
+    <p style="margin:14px 0 0;font-size:.94rem;color:var(--text-2)"><b>Задание:</b> перепиши текст «My usual day» по чек-листу выше и пришли в чат до следующего занятия.</p>
+  </div>
+</section>
+
+<section class="section" id="s10a">
+  <div class="sec-num">Section 10a</div>
+  <h2 class="sec-title">Правило -s для he / she / it · 10 предложений</h2>
+  <p class="sec-lead">Present Simple. Если подлежащее — one person / one thing / one company / one team — глагол получает окончание -s. Никаких других изменений.</p>
+
+  <div style="margin-top:18px">
+    <div class="mcq-list">
+      <div class="mcq"><div class="mcq-q">1. My boss ______ in Milan.</div>
+        <div class="mcq-opts"><button class="mcq-opt" data-correct="1">works</button><button class="mcq-opt">work</button><button class="mcq-opt">working</button></div>
+        <div class="mcq-note">✅ boss = one person (he) → work<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">2. She ______ her email every morning.</div>
+        <div class="mcq-opts"><button class="mcq-opt">check</button><button class="mcq-opt" data-correct="1">checks</button><button class="mcq-opt">is check</button></div>
+        <div class="mcq-note">✅ she → check<b>s</b>. «Every morning» — рутина, Present Simple.</div></div>
+
+      <div class="mcq"><div class="mcq-q">3. Marco ______ the presentation on Fridays.</div>
+        <div class="mcq-opts"><button class="mcq-opt">prepare</button><button class="mcq-opt" data-correct="1">prepares</button><button class="mcq-opt">prepared</button></div>
+        <div class="mcq-note">✅ Marco = one person → prepare<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">4. The team ______ every Monday at 10.</div>
+        <div class="mcq-opts"><button class="mcq-opt">meet</button><button class="mcq-opt">meeting</button><button class="mcq-opt" data-correct="1">meets</button></div>
+        <div class="mcq-note">✅ the team = one group (it) → meet<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">5. Our company ______ enterprise logistics.</div>
+        <div class="mcq-opts"><button class="mcq-opt">cover</button><button class="mcq-opt" data-correct="1">covers</button><button class="mcq-opt">is covers</button></div>
+        <div class="mcq-note">✅ company (it) → cover<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">6. It usually ______ me two hours.</div>
+        <div class="mcq-opts"><button class="mcq-opt">take</button><button class="mcq-opt" data-correct="1">takes</button><button class="mcq-opt">took</button></div>
+        <div class="mcq-note">✅ it → take<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">7. My schedule ______ every week.</div>
+        <div class="mcq-opts"><button class="mcq-opt">change</button><button class="mcq-opt" data-correct="1">changes</button><button class="mcq-opt">changing</button></div>
+        <div class="mcq-note">✅ schedule (it) → change<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">8. The boss ______ me on Wednesdays.</div>
+        <div class="mcq-opts"><button class="mcq-opt">don't call</button><button class="mcq-opt" data-correct="1">doesn't call</button><button class="mcq-opt">not calls</button></div>
+        <div class="mcq-note">✅ отрицание для he/she/it → <b>doesn't</b> + инфинитив (без -s).</div></div>
+
+      <div class="mcq"><div class="mcq-q">9. She ______ English well.</div>
+        <div class="mcq-opts"><button class="mcq-opt">speak</button><button class="mcq-opt" data-correct="1">speaks</button><button class="mcq-opt">speaked</button></div>
+        <div class="mcq-note">✅ she → speak<b>s</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">10. He ______ hard every day.</div>
+        <div class="mcq-opts"><button class="mcq-opt" data-correct="1">tries</button><button class="mcq-opt">try</button><button class="mcq-opt">tryes</button></div>
+        <div class="mcq-note">✅ he → try → tr<b>ies</b> (y → ies после согласной).</div></div>
+    </div>
+
+    <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+      <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 вопроса вслух</div>
+      <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+        <li>Give one sentence about <b>your boss</b> in Present Simple (use -s).</li>
+        <li>Give one sentence about <b>your team</b> — what it does every Monday.</li>
+        <li>Give one sentence about <b>your company</b> — what industry it covers.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s10b">
+  <div class="sec-num">Section 10b</div>
+  <h2 class="sec-title">Артикли a / an / — / the · 8 предложений</h2>
+  <p class="sec-lead">Правило одно: <b>a / an</b> — новое, счётное. <b>the</b> — уже понятно о чём. <b>—</b> (без артикля) — с устойчивыми выражениями (at work · go home · have breakfast) и с неисчисляемыми (supplies, information, work).</p>
+
+  <div style="margin-top:18px">
+    <div class="mcq-list">
+      <div class="mcq"><div class="mcq-q">1. I need ______ hour to finish the report.</div>
+        <div class="mcq-opts"><button class="mcq-opt">a</button><button class="mcq-opt" data-correct="1">an</button><button class="mcq-opt">the</button></div>
+        <div class="mcq-note">✅ hour → звук [aʊ], гласный → <b>an</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">2. After the meeting I go ______.</div>
+        <div class="mcq-opts"><button class="mcq-opt">to home</button><button class="mcq-opt">to a home</button><button class="mcq-opt" data-correct="1">home</button></div>
+        <div class="mcq-note">✅ go home / at home / come home — устойчивое, без предлога и артикля.</div></div>
+
+      <div class="mcq"><div class="mcq-q">3. I'm ______ work until seven today.</div>
+        <div class="mcq-opts"><button class="mcq-opt">on</button><button class="mcq-opt">in</button><button class="mcq-opt" data-correct="1">at</button></div>
+        <div class="mcq-note">✅ <b>at work</b> — устойчивое сочетание. Без артикля.</div></div>
+
+      <div class="mcq"><div class="mcq-q">4. Every morning I ______ breakfast at seven.</div>
+        <div class="mcq-opts"><button class="mcq-opt">do</button><button class="mcq-opt" data-correct="1">have</button><button class="mcq-opt">make</button></div>
+        <div class="mcq-note">✅ have breakfast / lunch / dinner — устойчивое (не «do», не «make»).</div></div>
+
+      <div class="mcq"><div class="mcq-q">5. We take ______ every Monday from the warehouse.</div>
+        <div class="mcq-opts"><button class="mcq-opt">a supplies</button><button class="mcq-opt" data-correct="1">supplies</button><button class="mcq-opt">the supplies</button></div>
+        <div class="mcq-note">✅ supplies — неисчисляемое, никакого «a».</div></div>
+
+      <div class="mcq"><div class="mcq-q">6. The boss has approved ______ new schedule.</div>
+        <div class="mcq-opts"><button class="mcq-opt">the new our</button><button class="mcq-opt" data-correct="1">our new</button><button class="mcq-opt">a our new</button></div>
+        <div class="mcq-note">✅ Порядок: <b>our</b> + adjective + noun. Никаких «the» перед «our».</div></div>
+
+      <div class="mcq"><div class="mcq-q">7. In Russia we don't have foreign ______.</div>
+        <div class="mcq-opts"><button class="mcq-opt">client</button><button class="mcq-opt" data-correct="1">clients</button><button class="mcq-opt">a client</button></div>
+        <div class="mcq-note">✅ Множественное число без артикля («в целом», «в принципе»).</div></div>
+
+      <div class="mcq"><div class="mcq-q">8. I have been working here ______ one year.</div>
+        <div class="mcq-opts"><button class="mcq-opt">since</button><button class="mcq-opt" data-correct="1">for</button><button class="mcq-opt">during</button></div>
+        <div class="mcq-note">✅ <b>for</b> + отрезок времени. <b>since</b> + точка отсчёта.</div></div>
+    </div>
+
+    <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+      <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 вопроса вслух</div>
+      <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+        <li>Give one sentence with <b>an hour</b> about your morning.</li>
+        <li>Give one sentence with <b>at work / go home</b> about your typical Monday.</li>
+        <li>Give one sentence with <b>for + отрезок времени</b> about your current job («I have been working here for…»).</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s10c">
+  <div class="sec-num">Section 10c</div>
+  <h2 class="sec-title">Неправильные глаголы · формы V2 и V3 · 8 предложений</h2>
+  <p class="sec-lead">Раньше отрабатывали 12 глаголов. Здесь 8 самых частых из твоего письма — те, где ты пока ставишь «-ed» вместо второй формы.</p>
+
+  <div style="margin-top:18px">
+    <div class="mcq-list">
+      <div class="mcq"><div class="mcq-q">1. When I ______ to the office, everyone was already there.</div>
+        <div class="mcq-opts"><button class="mcq-opt">comed</button><button class="mcq-opt" data-correct="1">came</button><button class="mcq-opt">come</button></div>
+        <div class="mcq-note">✅ come → came → come. Past Simple → <b>came</b>.</div></div>
+
+      <div class="mcq"><div class="mcq-q">2. She ______ me how to write emails last year.</div>
+        <div class="mcq-opts"><button class="mcq-opt">teached</button><button class="mcq-opt">teach</button><button class="mcq-opt" data-correct="1">taught</button></div>
+        <div class="mcq-note">✅ teach → taught → taught.</div></div>
+
+      <div class="mcq"><div class="mcq-q">3. I ______ your message this morning.</div>
+        <div class="mcq-opts"><button class="mcq-opt">getted</button><button class="mcq-opt">gets</button><button class="mcq-opt" data-correct="1">got</button></div>
+        <div class="mcq-note">✅ get → got → got.</div></div>
+
+      <div class="mcq"><div class="mcq-q">4. Last week I ______ two important calls.</div>
+        <div class="mcq-opts"><button class="mcq-opt">maked</button><button class="mcq-opt">makes</button><button class="mcq-opt" data-correct="1">made</button></div>
+        <div class="mcq-note">✅ make → made → made.</div></div>
+
+      <div class="mcq"><div class="mcq-q">5. He has ______ the company after ten years.</div>
+        <div class="mcq-opts"><button class="mcq-opt">leaved</button><button class="mcq-opt">leaves</button><button class="mcq-opt" data-correct="1">left</button></div>
+        <div class="mcq-note">✅ leave → left → left. После «has» — форма V3 (совпадает с V2 здесь).</div></div>
+
+      <div class="mcq"><div class="mcq-q">6. They ______ the invoice yesterday.</div>
+        <div class="mcq-opts"><button class="mcq-opt">payed</button><button class="mcq-opt" data-correct="1">paid</button><button class="mcq-opt">pays</button></div>
+        <div class="mcq-note">✅ pay → paid → paid.</div></div>
+
+      <div class="mcq"><div class="mcq-q">7. I ______ the box on the shelf.</div>
+        <div class="mcq-opts"><button class="mcq-opt">putted</button><button class="mcq-opt" data-correct="1">put</button><button class="mcq-opt">puts</button></div>
+        <div class="mcq-note">✅ put → put → put. Все три формы одинаковые.</div></div>
+
+      <div class="mcq"><div class="mcq-q">8. The boss ______ that the meeting was postponed.</div>
+        <div class="mcq-opts"><button class="mcq-opt">sayed</button><button class="mcq-opt">said me</button><button class="mcq-opt" data-correct="1">said</button></div>
+        <div class="mcq-note">✅ say → said → said. Плюс: «said» — без прямого дополнения. «Said me» ❌ → «told me» ✓.</div></div>
+    </div>
+
+    <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+      <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 вопроса вслух</div>
+      <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+        <li>Say one sentence with <b>came</b> — when you arrived somewhere last week.</li>
+        <li>Say one sentence with <b>taught / learnt</b> — a colleague who taught you something.</li>
+        <li>Say one sentence with <b>made</b> — a decision or a call you made at work.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s10d">
+  <div class="sec-num">Section 10d</div>
+  <h2 class="sec-title">Устойчивые сочетания (коллокации) · 8 выборов</h2>
+  <p class="sec-lead">Одна из причин, почему письмо звучит по-русски — не «неправильно», а именно «не по-английски». Английский любит устойчивые пары. Ниже — восемь пар из твоего письма, которые исправляем сейчас, чтобы потом писались автоматом.</p>
+
+  <div style="margin-top:18px">
+    <div class="mcq-list">
+      <div class="mcq"><div class="mcq-q">1. Every morning I ______ a coffee before work.</div>
+        <div class="mcq-opts"><button class="mcq-opt">do</button><button class="mcq-opt" data-correct="1">have</button><button class="mcq-opt">make</button></div>
+        <div class="mcq-note">✅ have breakfast / have coffee / have lunch — устойчивое. «Do» и «make» здесь по-английски не звучат.</div></div>
+
+      <div class="mcq"><div class="mcq-q">2. My team has been ______ the internal system for three weeks.</div>
+        <div class="mcq-opts"><button class="mcq-opt">fixing</button><button class="mcq-opt" data-correct="1">improving</button><button class="mcq-opt">repairing</button></div>
+        <div class="mcq-note">✅ improve processes / improve a system — регулярное развитие. Fix — «чинить сломанное».</div></div>
+
+      <div class="mcq"><div class="mcq-q">3. I've been working ______ this company for one year.</div>
+        <div class="mcq-opts"><button class="mcq-opt" data-correct="1">at</button><button class="mcq-opt">in</button><button class="mcq-opt">on</button></div>
+        <div class="mcq-note">✅ work at + компания. Или: I work for + компания.</div></div>
+
+      <div class="mcq"><div class="mcq-q">4. She works ______ the finance team.</div>
+        <div class="mcq-opts"><button class="mcq-opt">at</button><button class="mcq-opt" data-correct="1">in</button><button class="mcq-opt">on</button></div>
+        <div class="mcq-note">✅ work in + отдел / индустрия. In finance / in HR / in logistics.</div></div>
+
+      <div class="mcq"><div class="mcq-q">5. He has ______ a big decision last week.</div>
+        <div class="mcq-opts"><button class="mcq-opt">done</button><button class="mcq-opt" data-correct="1">made</button><button class="mcq-opt">taken</button></div>
+        <div class="mcq-note">✅ make a decision — устойчивое.</div></div>
+
+      <div class="mcq"><div class="mcq-q">6. I ______ the report yesterday and sent it to the boss.</div>
+        <div class="mcq-opts"><button class="mcq-opt">made</button><button class="mcq-opt" data-correct="1">did</button><button class="mcq-opt">had</button></div>
+        <div class="mcq-note">✅ do the report / do the homework / do the task — устойчивое. «Made» здесь звучит как «изготовить».</div></div>
+
+      <div class="mcq"><div class="mcq-q">7. My schedule is ______ Mondays, Wednesdays and Fridays.</div>
+        <div class="mcq-opts"><button class="mcq-opt" data-correct="1">on</button><button class="mcq-opt">at</button><button class="mcq-opt">in</button></div>
+        <div class="mcq-note">✅ on + день недели. On Mondays. On Friday morning.</div></div>
+
+      <div class="mcq"><div class="mcq-q">8. I have a meeting ______ 3 p.m.</div>
+        <div class="mcq-opts"><button class="mcq-opt">on</button><button class="mcq-opt">in</button><button class="mcq-opt" data-correct="1">at</button></div>
+        <div class="mcq-note">✅ at + точное время. at 3 p.m. / at midnight.</div></div>
+    </div>
+
+    <div class="your-turn" style="margin-top:22px;padding:18px 22px;background:linear-gradient(180deg,#faf6ec,#f5f0e6);border-left:4px solid var(--burgundy);border-radius:8px">
+      <div style="font:800 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:10px">🎤 Oral Practice · 3 вопроса вслух</div>
+      <ol style="margin:0;padding:0 0 0 22px;font-size:.98rem;line-height:1.75;color:var(--text)">
+        <li>Say one sentence with <b>have breakfast / lunch / coffee</b> about your morning.</li>
+        <li>Say one sentence with <b>make a decision</b> about your last week at work.</li>
+        <li>Say one sentence with <b>work in + industry</b> about your job.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s11">
+  <div class="sec-num">Section 11</div>
+  <h2 class="sec-title">Финал · что дальше</h2>
+  <p class="sec-lead">Этот урок закрыт. Следующий шаг — <b>Workbook 04 · Practical English · Day 2</b>. Ниже — что войдёт в новую тетрадь.</p>
+
+  <div style="margin-top:20px;padding:22px 26px;border-radius:14px;background:linear-gradient(135deg,#F7EDD3 0%,#F0DFB6 100%);border:1px solid var(--burgundy);box-shadow:0 8px 24px rgba(139,58,46,.14)">
+    <div style="font-family:var(--display,'Manrope');font-weight:800;color:var(--burgundy);font-size:1.2rem;margin-bottom:10px">📚 Workbook 04 · Practical English · Day 2 (готовится)</div>
+    <p style="margin:6px 0 12px;color:var(--text);font-size:.98rem;line-height:1.55">В следующей тетради — четыре блока по твоим точкам роста после разбора письма 06.07:</p>
+    <ul style="margin:0 0 12px 22px;padding:0;font-size:.96rem;line-height:1.7;color:var(--text)">
+      <li><b>Драйв -s для he/she/it</b> — 20 предложений: My boss / She / Marco / The company / The team.</li>
+      <li><b>Артикли a / an / — / the</b> в устойчивых фразах: at work · an hour · go home · take supplies · foreign clients.</li>
+      <li><b>Формы неправильных глаголов V1/V2/V3</b> — расширенный список: come / teach / get / make / leave / pay / put / say.</li>
+      <li><b>Коллокации в бизнес-контексте</b> — have breakfast · improve processes · make a decision · work at / in / for.</li>
+      <li><b>Итоговое письмо</b>: перепиши «My usual day» по всем правилам блока — Workbook 04 автоматически проверит структуру.</li>
+    </ul>
+    <p style="margin:14px 0 0;font-size:.9rem;color:var(--text-2);font-style:italic">Ссылка на Workbook 04 появится в кабинете как домашка к Trainer-04.</p>
+  </div>
+</section>
+
+<section class="section" id="s12">
+  <div class="sec-num">Section 12</div>
+  <h2 class="sec-title">🎙 Mic-drill · repeat aloud · 6 sentences (WPM tracker)</h2>
+  <p class="sec-lead">Press «Record» → say the sentence aloud. Recognizer shows your <b>match %</b> and <b>words per minute</b> (norm 130–160). <strong>Chrome или Edge · разреши микрофон.</strong></p>
+  <style>
+    .mic-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--surface-2);padding:12px 16px;border-radius:10px;margin:10px 0;border:1px solid var(--line)}
+    .mic-text{flex:1;min-width:220px;font-size:.96rem;line-height:1.5;color:var(--text)}
+    .mic-text em{color:var(--burgundy);font-size:.84rem}
+    .mic-btn{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--burgundy);border:1.5px solid var(--burgundy);padding:9px 14px;border-radius:8px;cursor:pointer;transition:.14s}
+    .mic-btn:hover{background:var(--burgundy);color:#fff}
+    .mic-btn.rec{background:#B23A3A;border-color:#B23A3A;color:#fff}
+    .mic-feedback{display:none;font:800 .78rem/1 var(--mono);letter-spacing:.1em;padding:5px 10px;border-radius:6px;background:#dff0d8;color:#2C7A4D;margin-top:6px}
+    .mic-feedback.miss{background:#f7d8d8;color:#B23A3A}
+    .mic-feedback.shown{display:inline-block}
+    .mic-transcript{display:block;font-style:italic;color:var(--text-2);font-size:.86rem;margin-top:4px;width:100%}
+    .wpm-badge{display:inline-block;font:800 .74rem/1 var(--mono);letter-spacing:.1em;padding:5px 9px;border-radius:6px;background:var(--navy);color:#fff;margin-left:8px}
+  </style>
+  <div class="card">
+    <div class="mic-row" data-target="My boss checks the schedule every morning before the meeting.">
+      <div class="mic-text">1. My boss <b>checks</b> the schedule every morning before the meeting. <em>(3rd -s)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="I have breakfast at seven and go to work by underground.">
+      <div class="mic-text">2. I <b>have breakfast</b> at seven and <b>go to work</b> by underground. <em>(коллокации + без артиклей)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="Yesterday I came to the office at nine and made two important calls.">
+      <div class="mic-text">3. Yesterday I <b>came</b> to the office at nine and <b>made</b> two important calls. <em>(came, made — irregular)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="I have been working in this company for one year.">
+      <div class="mic-text">4. I have been working in this company <b>for</b> one year. <em>(for + отрезок)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="The boss has approved our new schedule this week.">
+      <div class="mic-text">5. The boss has approved <b>our new</b> schedule this week. <em>(порядок притяжательных)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+    <div class="mic-row" data-target="My team is preparing a presentation to improve our internal system.">
+      <div class="mic-text">6. My team <b>is preparing</b> a presentation to <b>improve</b> our internal system. <em>(коллокации + Present Continuous)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Mic-drill · Web Speech API + WPM (lab-mic-wpm.js прикручен глобально · v=1) -->
+<script>
+(function(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  document.querySelectorAll('#s12 .mic-row').forEach(function(row){
+    var btn=row.querySelector('.record'), fb=row.querySelector('.mic-feedback'), tr=row.querySelector('.mic-transcript');
+    var target=(row.dataset.target||'').toLowerCase().replace(/[.,?!]/g,'');
+    if(!SR){btn.disabled=true;btn.textContent='SR N/A';btn.title='Chrome or Edge only';return;}
+    var rec=null, startT=0;
+    btn.addEventListener('click',function(){
+      if(btn.classList.contains('rec')){if(rec)rec.stop();return;}
+      rec=new SR();rec.lang='en-US';rec.continuous=false;rec.interimResults=false;
+      btn.classList.add('rec');btn.textContent='● Stop';
+      fb.className='mic-feedback shown';fb.textContent='Listening…';tr.textContent='';
+      startT=Date.now();
+      rec.onresult=function(e){
+        var t=e.results[0][0].transcript.toLowerCase().replace(/[.,?!]/g,'');
+        tr.textContent='"'+e.results[0][0].transcript+'"';
+        var tw=target.split(/\s+/),uw=t.split(/\s+/);
+        var hits=0;tw.forEach(function(w){if(uw.includes(w))hits++;});
+        var pct=Math.round(hits/tw.length*100);
+        var sec=Math.max(0.5,(Date.now()-startT)/1000);
+        var wpm=Math.round(uw.length/sec*60);
+        fb.className='mic-feedback shown'+(pct>=60?'':' miss');
+        fb.innerHTML='Match: '+pct+'% <span class="wpm-badge">'+wpm+' WPM</span>';
+      };
+      rec.onend=function(){btn.classList.remove('rec');btn.textContent='🎙 Record';};
+      rec.onerror=function(){btn.classList.remove('rec');btn.textContent='🎙 Record';fb.className='mic-feedback shown miss';fb.textContent='Error — try again';};
+      rec.start();
+    });
+  });
+})();
+</script>
+
+</main>
+
+<section class="section" id="s-nextbook">
+  <div style="margin-top:20px;padding:24px 28px;border-radius:16px;background:linear-gradient(135deg,#F7EDD3 0%,#F0DFB6 100%);border:1px solid var(--burgundy);box-shadow:0 8px 24px rgba(139,58,46,.14);text-align:center">
+    <div style="font-family:var(--display,'Manrope');font-weight:800;color:var(--burgundy);font-size:1.28rem;margin-bottom:10px">📚 Открыть Workbook 04 · Practical English · Day 2</div>
+    <p style="margin:6px 0 16px;color:var(--text);font-size:.98rem;line-height:1.55;max-width:600px;margin-left:auto;margin-right:auto">12 блоков практики между уроками: vocab 18 · 3rd -s · articles · irregular V2/V3 · collocations · Present Simple vs Continuous · Perfect vs Perfect Continuous · rewrite «My usual day» · build the sentence · mini-write · mic-drill с WPM · speaking finale.</p>
+    <a href="../timofey-04-workbook/" style="display:inline-block;background:var(--burgundy);color:#fff;padding:12px 24px;border-radius:50px;font-family:var(--mono);font-weight:800;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:.16s" onmouseover="this.style.background='#6a2a20'" onmouseout="this.style.background='var(--burgundy)'">Open Workbook 04 →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  Lesson by <b>Maria Burtseva</b> · <span class="nge">NG English · LinguaBoost Lab</span> · A2+ → B1 · Practical English · Day 1 — all four present tenses on business vocabulary
+</footer>
+
+<script>
+(function () {
+  /* ============= Section 02 · Present Simple drag-drop ============= */
+  var psGaps = document.querySelectorAll('.ps-row .gap');
+  var psBtns = document.querySelectorAll('.ps-opt-btn');
+  var currentBtn = null;
+
+  psBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (currentBtn) currentBtn.classList.remove('used');
+      currentBtn = btn;
+      btn.classList.add('used');
+    });
+  });
+
+  psGaps.forEach(function (gap) {
+    gap.addEventListener('click', function () {
+      if (!currentBtn) return;
+      var word = currentBtn.textContent;
+      gap.textContent = word;
+      gap.classList.add('filled');
+      if (word === gap.dataset.ans) {
+        gap.classList.add('ok');
+        gap.classList.remove('miss');
+      } else {
+        gap.classList.add('miss');
+        gap.classList.remove('ok');
+      }
+      currentBtn = null;
+      updateProgress();
+    });
+  });
+
+  /* ============= Section 03 · to-infinitive check ============= */
+  document.querySelectorAll('.ti-row').forEach(function (row) {
+    var checkBtn = row.querySelector('.ti-check');
+    var target = row.querySelector('strong');
+    checkBtn.addEventListener('click', function () {
+      target.classList.add('fixed');
+      var fix = target.dataset.fix;
+      target.textContent = fix;
+      checkBtn.classList.add('ok');
+      checkBtn.textContent = '✓';
+      updateProgress();
+    });
+  });
+
+  /* ============= Section 04 · articles MCQ ============= */
+  document.querySelectorAll('.art-opts').forEach(function (opts) {
+    var correct = opts.dataset.correct;
+    opts.querySelectorAll('.art-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        opts.querySelectorAll('.art-opt').forEach(function (b) {
+          b.classList.remove('picked', 'ok', 'miss');
+        });
+        btn.classList.add(btn.textContent === correct ? 'ok' : 'miss');
+        if (btn.textContent === correct) {
+          // reveal others as neutral
+        } else {
+          opts.querySelectorAll('.art-opt').forEach(function (b) {
+            if (b.textContent === correct) b.classList.add('ok');
+          });
+        }
+        updateProgress();
+      });
+    });
+  });
+
+  /* ============= Section 06 · vocab flip ============= */
+  document.querySelectorAll('.vc-card').forEach(function (card) {
+    card.addEventListener('click', function () { card.classList.toggle('flipped'); });
+  });
+
+  /* ============= Web Speech mic-drill (S01) ============= */
+  document.querySelectorAll('.mic-rec-btn').forEach(function (btn) {
+    var targetId = btn.dataset.target;
+    var out = document.getElementById(targetId);
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      btn.disabled = true;
+      btn.textContent = '🎙 Recording not supported in this browser';
+      return;
+    }
+    var rec = new SR();
+    rec.lang = 'en-US';
+    rec.continuous = false;
+    rec.interimResults = false;
+    btn.addEventListener('click', function () {
+      if (btn.classList.contains('recording')) {
+        rec.stop();
+        return;
+      }
+      out.textContent = 'Listening…';
+      btn.classList.add('recording');
+      btn.textContent = '⏹ Stop';
+      rec.start();
+    });
+    rec.onresult = function (e) {
+      out.textContent = e.results[0][0].transcript;
+    };
+    rec.onerror = function (e) {
+      out.textContent = 'Could not hear. Try again slower.';
+    };
+    rec.onend = function () {
+      btn.classList.remove('recording');
+      btn.textContent = '🎙 Record & check';
+    };
+  });
+
+  /* progress tracker убран — lab-total.js делает динамический CEFR band + summary внизу урока */
+  function updateProgress() {}
+
+  /* Homework: lab-homework.js?v=40 сам управляет entry-point (верхняя вкладка + плюсики).
+     details#homework-block ниже — контент урока с offline-заданиями (не главная точка входа). */
+
+  /* ============= MCQ handler ============= */
+  document.querySelectorAll('.mcq-opt').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var mcq = btn.closest('.mcq');
+      if (!mcq || mcq.classList.contains('revealed')) return;
+      var correct = btn.hasAttribute('data-correct');
+      btn.classList.add(correct ? 'correct' : 'wrong');
+      mcq.classList.add('revealed');
+      if (!correct) {
+        var right = mcq.querySelector('.mcq-opt[data-correct]');
+        if (right) right.classList.add('correct');
+      }
+      mcq.querySelectorAll('.mcq-opt').forEach(function (b) { b.disabled = true; });
+    });
+  });
+})();
+</script>
+
+<!-- ═══════════ OBLIGATORY LAB SCRIPTS ═══════════ -->
+<script src="../../assets/lab-persist.js?v=3" defer></script>
+<script src="../../assets/lab-send-pill.js?v=2" defer></script>
+<script src="../../assets/lab-total.js?v=4" defer></script>
+<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../../assets/lab-sync.js?v=16" defer></script>
+<script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+<script src="../../assets/lab-homework.js?v=40" defer></script>
+<script src="../../assets/lab-vocab-builder.js?v=52" defer></script>
+
+</body>
+</html>

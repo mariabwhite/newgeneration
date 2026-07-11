@@ -12,6 +12,63 @@ html, body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
+
+/* ============================================================
+   PREMIUM OVERFLOW SWEEP · 2026-06-25
+   Keep legacy lesson controls inside the mobile viewport.
+   ============================================================ */
+@media (max-width: 680px) {
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  .topbar,
+  .canon-l-topbar,
+  .appbar,
+  nav.topbar {
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    overflow-x: clip !important;
+  }
+
+  .top-tools,
+  .canon-l-tools,
+  .toolbar,
+  .topbar-tools {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+  }
+
+  .btn-sm,
+  .tool-pill,
+  .canon-l-pill,
+  .canon-l-link,
+  .canon-l-level,
+  .level-pill {
+    box-sizing: border-box !important;
+    max-width: min(100%, 44vw) !important;
+    min-width: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: .06em !important;
+  }
+
+  .spacer {
+    min-width: 0 !important;
+  }
+
+  table {
+    max-width: 100% !important;
+  }
+}
 img, video, iframe, svg, canvas, picture, source {
   max-width: 100%;
 }
@@ -19,14 +76,31 @@ img, video {
   height: auto;
 }
 
-/* Long English words / hashes / URLs must wrap on tiny screens */
+/* Long English words / hashes / URLs must wrap on tiny screens.
+   2026-06-09: hyphens:auto chopped hero titles into "Menu Archi-tect",
+   "Gram-mar Arcade", "уро-ки", "лингвистиче-ской". Now manual only —
+   browser inserts hyphen only at explicit &shy; in markup. */
 @media (max-width: 640px) {
   h1, h2, h3, h4, p, li, td, th, dt, dd,
   .lead, .hero-lead, .lesson-hero-lead,
   .module-title, .section-copy, .section-head h2 {
     overflow-wrap: anywhere;
     word-break: normal;
-    hyphens: auto;
+    hyphens: manual;
+  }
+}
+
+/* HARD STOP for hero titles: never let any inline CSS break a hero
+   heading mid-word. Grammar Arcade had max-width:210px + overflow-wrap:
+   anywhere → "Gram-mar Arcade". Same patterns elsewhere. */
+@media (max-width: 820px) {
+  html body .canon-l-hero-title,
+  html body .canon-l-hero-title em,
+  html body h1.canon-l-hero-title {
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
+    max-width: 100% !important;
   }
 }
 
@@ -724,27 +798,907 @@ button, a.btn, a.module-link, a.hero-link, .draggable, .dropzone,
   }
 
   /* 3. Level chips (.level) — equal cells in 3-col grid on Lab catalog */
-  .lingua-boost-lab .level-strip,
-  .lingua-boost-lab nav.level-strip,
-  .lingua-boost-lab .level-row,
-  body .level-strip {
+  .level-row {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 8px !important;
-    padding-inline: 14px !important;
+    padding-inline: 0 !important;
+    margin-inline: 14px !important;
+    flex-wrap: unset !important;
   }
-  .lingua-boost-lab .level,
-  body a.level {
+  a.level,
+  .level-row .level {
     box-sizing: border-box !important;
     width: 100% !important;
     min-height: 44px !important;
     padding: 10px 6px !important;
     font-size: 12px !important;
     text-align: center !important;
-    border-radius: 14px !important;
+    border-radius: 4px !important;
     white-space: nowrap !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  /* 4. Hero section (Lab catalog) — banner becomes static instead of absolute,
+        sits below copy with equal side gutters, no edge-stick */
+  section.hero {
+    display: block !important;
+    position: relative !important;
+  }
+  section.hero > .hero-banner {
+    position: relative !important;
+    inset: auto !important;
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 16px !important;
+    pointer-events: auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    aspect-ratio: 16 / 9 !important;
+    min-height: 0 !important;
+  }
+  section.hero > .hero-banner img.hero-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    min-height: 0 !important;
+  }
+}
+
+/* ============================================================
+   CANON-L-TOPBAR — mobile layout (2026-06-06)
+   Fixes Easter (and other canon-l-topbar lessons) where logo "LinguaBoost
+   Lab" was getting overlapped by RU/Theme pills on narrow screens.
+   Strategy:
+   - Force topbar to single flex row that doesn't wrap
+   - Brand on left, takes available space, truncates with ellipsis
+   - canon-l-nav (Catalog/Progress/Practice/Final) hidden on mobile
+   - Tools (lang + level pills) flex-shrink:0, always on right
+   - On tiny screens (<380px) hide the canon-l-sub subtitle line
+   ============================================================ */
+@media (max-width: 640px) {
+  .canon-l-topbar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px 14px !important;
+    min-height: 56px !important;
+  }
+  .canon-l-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+  }
+  .canon-l-mark {
+    flex: 0 0 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .canon-l-mark img,
+  .canon-l-mark svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+  .canon-l-copy {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    justify-content: center !important;
+  }
+  .canon-l-name {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .canon-l-sub {
+    font-size: 9px !important;
+    line-height: 1.2 !important;
+    letter-spacing: .12em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .canon-l-nav {
+    display: none !important;
+  }
+  .canon-l-tools {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    display: flex !important;
+    gap: 6px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .canon-l-sub {
+    display: none !important;
+  }
+  .canon-l-tools .canon-l-pill {
+    min-width: 48px !important;
+    padding: 0 10px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* ============================================================
+   WORD FORGE rail — mobile horizontal scroll (2026-06-07)
+   The .rail with 10 .rail-step items overflowed and merged labels
+   ("FROM DRAGVERBS FILL" reading) on mobile. Now scrolls cleanly.
+   ============================================================ */
+@media (max-width: 640px) {
+  .rail {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none;
+    gap: 14px !important;
+    padding: 8px 14px !important;
+    margin-inline: 0 !important;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail-step {
+    flex: 0 0 auto !important;
+    min-width: 64px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+  .rail-dot {
+    flex: 0 0 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+  }
+  .rail-label {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    letter-spacing: .04em !important;
+  }
+}
+
+/* ============================================================
+   HERO CAPSULES — cap at 4 on mobile (2026-06-06)
+   Canon: 2–4 capsules per hero (per CHECKLIST-UNIFIED-2026-05-14 §3.3).
+   Lessons over-pilling on mobile:
+     - whispering-library-quest: 6 wl-pill
+     - word-building-prefixes-and-suffixes: 5 canon-l-hero-pill
+     - body-and-grammar-pink: 5 canon-l-hero-pill
+   Hide 5th, 6th+ pills on mobile so hero doesn't overflow.
+   Desktop unaffected.
+   ============================================================ */
+@media (max-width: 640px) {
+  .canon-l-hero-meta > .canon-l-hero-pill:nth-child(n+5),
+  .hero-meta > .meta-pill:nth-child(n+5),
+  .wl-hero-pills > .wl-pill:nth-child(n+5) {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   UNIFICATION PASS 2026-06-09
+   ------------------------------------------------------------
+   Маша screenshots 09.06 12:35-12:45 — five recurring problems:
+   1) Topbar .canon-l-level (B1 pill) renders BLACK in Word Forge,
+      Grammar Arcade and Whispering Library — invisible on dark
+      Whisper background, ugly on light backgrounds. Should match
+      .lang-toggle (light translucent like RU/EN pill).
+   2) Hero soft-square buttons inconsistent radius/size across
+      lessons — unify to 12px with consistent padding.
+   3) Hero pills inside .canon-l-hero-meta sometimes overflow
+      the hero card on tiny screens — let them wrap and stay
+      readable instead of clipping.
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* 1. TOPBAR LEVEL PILL — light translucent style, matches lang-toggle.
+        Overrides any per-lesson dark variant (Whisper, Word Forge, etc.). */
+  .canon-l-topbar .canon-l-tools .canon-l-pill.canon-l-level,
+  .canon-l-topbar .canon-l-pill.canon-l-level {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    font-weight: 700 !important;
+    letter-spacing: .04em !important;
+  }
+
+  /* 2. HERO PILLS — soft square, readable on any background,
+        prevent vertical clipping when wrapped on narrow screens. */
+  .canon-l-hero-meta {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    row-gap: 8px !important;
+    overflow: visible !important;
+  }
+  .canon-l-hero-meta > .canon-l-hero-pill {
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    border-radius: 12px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+
+  /* 3. HERO card itself — allow pills to render below the visual
+        instead of being chopped by overflow:hidden / fixed height. */
+  .canon-l-hero {
+    overflow: visible !important;
+  }
+  .canon-l-hero-inner {
+    padding-bottom: 28px !important;
+  }
+
+  /* 4. BUTTONS — universal soft-square radius across Lab lessons. */
+  .hero-cta, .hero-actions a, .hero-actions button,
+  .canon-l-hero a, .canon-l-hero button,
+  .canon-l-mission-card a, .canon-l-mission-card button,
+  .canon-l-cta, .lb-btn, .btn-primary, .btn-secondary {
+    border-radius: 12px !important;
+  }
+}
+
+/* ============================================================
+   LAB CATALOG LEVEL CHIPS — SOFT SQUARE on ALL viewports
+   (2026-06-09 v2) Маша: «скруглены как везде на сайте» — 4px
+   слишком резко, возвращаю 10px (мягкий квадрат, как .control-btn
+   на главной и как .lbs-lang-btn по умолчанию в Lab catalog).
+   ============================================================ */
+.level-row .level,
+a.level,
+.level-row a.level {
+  border-radius: 10px !important;
+}
+
+/* ============================================================
+   TOPBAR PILLS — SOFT SQUARE + vertical alignment fix (2026-06-09 v2)
+   1) Was 999px (round) by canon-L.css default. Маша хочет мягкий
+      квадрат как везде на сайте — 10px.
+   2) Пилюля темы (<button>) рендерится на ~1mm выше CAB (<a>) и
+      EN (<button>) из-за разных default line-height / vertical-
+      align между <button> и <a>. Принудительно выравниваю по
+      flex center + margin 0.
+   ============================================================ */
+.canon-l-pill,
+.canon-l-tools .canon-l-pill,
+[data-theme] .canon-l-pill,
+body.light .canon-l-pill,
+body.dark .canon-l-pill {
+  border-radius: 10px !important;
+}
+
+.canon-l-tools {
+  align-items: center !important;
+}
+.canon-l-tools > .canon-l-pill {
+  margin: 0 !important;
+  align-self: center !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+}
+
+/* ============================================================
+   LAB CATALOG BUTTON ALIGNMENT — final mobile guard (2026-06-09)
+   Keeps CAB / THEME / RU and level buttons on one visual baseline
+   with the same soft-square radius.
+   ============================================================ */
+.canon-l-topbar .canon-l-tools {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.canon-l-topbar .canon-l-tools > .canon-l-pill,
+.canon-l-topbar .canon-l-tools > button.canon-l-pill,
+.canon-l-topbar .canon-l-tools > a.canon-l-pill {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  min-width: 56px !important;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  border-radius: 10px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  transform: none !important;
+}
+
+.level-row,
+[data-theme] .level-row,
+body.light .level-row {
+  align-items: stretch !important;
+}
+
+.level-row .level,
+.level-row a.level,
+a.level {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  border-radius: 10px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+@media (max-width: 640px) {
+  body,
+  .wrap,
+  section.hero,
+  .hero,
+  .hero-copy,
+  .hero-actions,
+  .level-row {
+    max-width: 100vw !important;
+    min-width: 0 !important;
+  }
+
+  .wrap {
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  section.hero,
+  .hero {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .hero-copy {
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    transform: none !important;
+  }
+
+  .hero-copy h1,
+  .hero-copy .lead {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .level-row,
+  [data-theme] .level-row,
+  body.light .level-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+  }
+
+  .level-row .level,
+  .level-row a.level,
+  a.level {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 4px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .canon-l-topbar {
+    gap: 8px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .canon-l-brand {
+    flex: 0 0 auto !important;
+  }
+
+  .canon-l-copy {
+    display: none !important;
+  }
+
+  .canon-l-topbar .canon-l-tools {
+    margin-left: auto !important;
+    gap: 6px !important;
+  }
+
+  .canon-l-topbar .canon-l-tools > .canon-l-pill,
+  .canon-l-topbar .canon-l-tools > button.canon-l-pill,
+  .canon-l-topbar .canon-l-tools > a.canon-l-pill {
+    height: 34px !important;
+    min-height: 34px !important;
+    min-width: 52px !important;
+    padding: 0 8px !important;
+    font-size: 10px !important;
+  }
+
+  .hero-copy,
+  .hero-copy h1,
+  .hero-copy .lead {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  .level-row,
+  [data-theme] .level-row,
+  body.light .level-row {
+    width: calc(100vw - 44px) !important;
+    max-width: calc(100vw - 44px) !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+  }
+}
+
+/* ============================================================
+   TOPBAR PILLS — hard mobile equalizer (2026-06-09 v3)
+   Keeps Theme on the same Y axis as CAB/RU/PRE after page-level
+   .theme-toggle button rules run.
+   ============================================================ */
+@media (max-width: 640px) {
+  .canon-l-topbar .canon-l-tools,
+  header.canon-l-topbar .canon-l-tools {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    line-height: 0 !important;
+  }
+
+  .canon-l-topbar .canon-l-tools > .canon-l-pill,
+  .canon-l-topbar .canon-l-tools > a.canon-l-pill,
+  .canon-l-topbar .canon-l-tools > button.canon-l-pill,
+  .canon-l-topbar .canon-l-tools > .theme-toggle,
+  .canon-l-topbar .canon-l-tools > button.theme-toggle {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    min-width: 52px !important;
+    padding: 0 8px !important;
+    margin: 0 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+    font-size: 10px !important;
+    line-height: 34px !important;
+    vertical-align: top !important;
+    transform: none !important;
+    translate: none !important;
+  }
+}
+
+/* ============================================================
+   HERO-KIDS — UNIFY canopy on mobile (2026-06-09 v3, REWORKED)
+   ------------------------------------------------------------
+   Эталон: body-and-grammar-pink.html @ file_230 (13:50).
+   Перевернутые проблемы: в Easter / Hello illustration исчезала
+   из-за `object-position: 62% center` (мальчик уехал за экран),
+   pills вылетали за hero card.
+   ------------------------------------------------------------
+   Решение (одно правило для ВСЕХ is-hero-kids):
+   1) canon-l-hero — position:relative, overflow:hidden,
+      min-height:640px (вмещает текст + 2×2 pills)
+   2) canon-l-hero-bg — абсолютный fill, object-position:center
+      (НЕ 62% — это уносит мальчика; пусть лессоны управляют
+      сами через свои overrides)
+   3) canon-l-hero-inner — relative, z-index:2 поверх bg
+   4) canon-l-hero-meta — grid 2×2, всё помещается ВНУТРИ hero
+   ============================================================ */
+/* ============================================================
+   PER-LESSON FIXES 2026-06-09 (last sweep)
+   ============================================================ */
+@media (max-width: 680px) {
+  /* Core Trainer — hero-mini composition: shrink + show girl */
+  html body.lb-page-core-trainer .hero-mini {
+    min-height: 440px !important;
+    padding: 24px !important;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.72) 38%,rgba(255,255,255,.18) 70%,rgba(255,255,255,.05) 100%),
+      url("../assets/for-lessons/Menu/25425414-2825-4446-b0ef-a4fe13dbda2d.png") center 35%/cover no-repeat !important;
+  }
+  html body.lb-page-core-trainer .hero-mini h1 {
+    font-size: clamp(1.7rem, 6vw, 2.2rem) !important;
+    max-width: 100% !important;
+  }
+  html body.lb-page-core-trainer .mission-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-self: start !important;
+    align-self: start !important;
+    margin-top: 12px !important;
+  }
+  /* Easter — bunny too close to title, push illustration right */
+  html body.lb-page-easter .canon-l-hero.is-hero-kids .canon-l-hero-bg {
+    object-position: 75% center !important;
+  }
+  /* Body & Grammar — 5-й pill GRAMMAR обрезается + цыплёнок снизу */
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-meta {
+    max-width: 320px !important;
+  }
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-pill:nth-child(n+5) {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+  }
+  /* Body & Grammar specifically: chick at bottom needs more room */
+  html body.lb-canon-target:not(.lb-page-hello-classroom-fun):not(.lb-page-easter):not(.lb-page-word-forge) .canon-l-hero.is-hero-kids {
+    min-height: 780px !important;
+  }
+  /* Prepositions World — 3-я pill PLACE WORDS обрезана */
+  html body.lb-page-prepositions-world .canon-l-hero,
+  html body.lb-page-prepositions-of-place .canon-l-hero {
+    overflow: visible !important;
+    min-height: 600px !important;
+  }
+  /* Grammar Arcade — heading max-width слишком узкий, "Gramma\nr".
+     Inline на 2326 имеет 0,0,3,3; нужен 0,0,3,4+ — добавляю h1. */
+  html body.lb-canon-target main.wrap .canon-l-hero h1.canon-l-hero-title,
+  html body[class*="grammar-arcade"] main.wrap .canon-l-hero h1.canon-l-hero-title,
+  html body.lb-canon-target .canon-l-hero h1.canon-l-hero-title.canon-l-hero-title {
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+    white-space: normal !important;
+  }
+  /* Word Forge — pills grid 2×2 (был столбец) + сжать hero */
+  html body[class*="word-building"] .canon-l-hero,
+  html body[class*="word-forge"] .canon-l-hero {
+    min-height: 420px !important;
+    max-height: 580px !important;
+    overflow: hidden !important;
+  }
+  html body[class*="word-building"] .canon-l-hero-meta,
+  html body[class*="word-forge"] .canon-l-hero-meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    max-width: 320px !important;
+    margin-top: 12px !important;
+  }
+  html body[class*="word-building"] .canon-l-hero-pill,
+  html body[class*="word-forge"] .canon-l-hero-pill {
+    min-height: 36px !important;
+    padding: 6px 10px !important;
+    font-size: 10.5px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  /* Word Forge rail — обрезается слева/справа, добавить padding */
+  html body[class*="word-building"] .rail,
+  html body[class*="word-forge"] .rail {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  /* English Booster — pills в столбец, нужен grid + hide watermark */
+  html body.lb-page-english-booster .canon-l-hero-meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    max-width: 320px !important;
+  }
+  html body.lb-page-english-booster .canon-l-hero-meta > * {
+    min-height: 38px !important;
+    padding: 6px 8px !important;
+    font-size: 10px !important;
+  }
+
+  /* Apply to ALL canon-l-hero variants (kids / clean / soft) EXCEPT
+     is-hero-drama which has its own perfect layout (Ancient China). */
+  html body.lb-canon-target .canon-l-hero.is-hero-kids,
+  html body[class*="lb-page-"] .canon-l-hero.is-hero-kids {
+    position: relative !important;
+    min-height: 640px !important;
+    overflow: hidden !important;
+    border-radius: 22px !important;
+  }
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-bg,
+  html body[class*="lb-page-"] .canon-l-hero.is-hero-kids .canon-l-hero-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: right center !important;
+    opacity: 1 !important;
+  }
+  /* Lesson-specific bias for hero illustrations. */
+  html body.lb-page-easter .canon-l-hero .canon-l-hero-bg {
+    object-position: 60% center !important; /* bunny + basket centered-right */
+  }
+  html body.lb-page-hello-classroom-fun .canon-l-hero .canon-l-hero-bg {
+    object-position: right center !important; /* chef on the right */
+  }
+  html body.lb-page-english-booster .canon-l-hero .canon-l-hero-bg {
+    object-position: center center !important; /* kids in middle */
+  }
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-inner,
+  html body[class*="lb-page-"] .canon-l-hero.is-hero-kids .canon-l-hero-inner {
+    position: relative !important;
+    z-index: 2 !important;
+    max-width: 340px !important;
+    padding: 30px 14px 36px !important;
+    box-sizing: border-box !important;
+  }
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-meta,
+  html body[class*="lb-page-"] .canon-l-hero.is-hero-kids .canon-l-hero-meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    max-width: 300px !important;
+    margin-top: 14px !important;
+    margin-bottom: 0 !important;
+    overflow: visible !important;
+  }
+  html body.lb-canon-target .canon-l-hero.is-hero-kids .canon-l-hero-pill,
+  html body[class*="lb-page-"] .canon-l-hero.is-hero-kids .canon-l-hero-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 36px !important;
+    padding: 6px 10px !important;
+    font-size: 10.5px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+}
+
+
+
+/* ============================================================
+   UNIVERSAL BANNER — мерки сняты с Ancient China (2026-06-09)
+   min-height: 390px (как .module-hero у China)
+   border-radius: 28px
+   padding: 28px (clamp min)
+   hero-bg opacity: .28 (фон затемнён, текст контрастный)
+   + gradient overlay для контраста
+   ============================================================ */
+@media (max-width: 680px) {
+  html body.lb-canon-target .canon-l-hero,
+  html body[class*="lb-page-"] .canon-l-hero,
+  html body.lb-canon-target .canon-l-hero.is-hero-kids,
+  html body.lb-canon-target .canon-l-hero.is-hero-clean,
+  html body.lb-canon-target .canon-l-hero.is-hero-soft,
+  html body.lb-canon-target .canon-l-hero.is-hero-drama,
+  html body.lb-canon-target .canon-l-hero.is-hero-cosmic,
+  html body.lb-canon-target .canon-l-hero.is-visual-strong,
+  html body.lb-canon-target .canon-l-hero.is-visual-tall,
+  html body.lb-canon-target .canon-l-hero.wl-hero {
+    min-height: 390px !important;
+    max-height: 460px !important;
+    height: 420px !important;
+    padding: 28px !important;
+    overflow: hidden !important;
+    border-radius: 28px !important;
+    margin-top: 8px !important;
+    margin-bottom: 16px !important;
+    position: relative !important;
+    display: grid !important;
+    align-items: center !important;
+  }
+  html body.lb-canon-target .canon-l-hero .canon-l-hero-bg,
+  html body[class*="lb-page-"] .canon-l-hero .canon-l-hero-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+    opacity: .55 !important;
+    display: block !important;
+    filter: saturate(1.08) contrast(1.05) !important;
+  }
+  html body.lb-canon-target .canon-l-hero .canon-l-hero-inner,
+  html body[class*="lb-page-"] .canon-l-hero .canon-l-hero-inner {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* ============================================================
+   ITERATION Z — точечные правки после Маша's emergency unify
+   ============================================================ */
+@media (max-width: 680px) {
+  /* English Booster — pills вылетают на текст; даём больше высоты */
+  html body.lb-page-english-booster .canon-l-hero {
+    min-height: 520px !important;
+    max-height: 560px !important;
+    height: 520px !important;
+  }
+  html body.lb-page-english-booster .canon-l-hero-meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    max-width: 100% !important;
+    margin-top: 12px !important;
+  }
+  html body.lb-page-english-booster .canon-l-hero-pill {
+    min-height: 32px !important;
+    padding: 4px 8px !important;
+    font-size: 9.5px !important;
+  }
+  /* Whispering Library — унифицировать все 6 pills под один стиль */
+  html body.lb-page-whispering-library .canon-l-hero .canon-l-hero-pill,
+  html body.lb-page-whispering-library .canon-l-hero .wl-pill {
+    background: rgba(255, 215, 100, 0.15) !important;
+    border: 1px solid rgba(245, 200, 66, 0.45) !important;
+    color: #f5c842 !important;
+  }
+  /* Stars — цепь звёзд: визуальный скролл-индикатор */
+  html body[class*="stars-and-stellar"] .canon-l-rail,
+  html body[class*="stars-and-stellar"] .module-rail,
+  html body.lb-canon-target .rail,
+  html body[class*="stars"] .rail {
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    padding-right: 24px !important;
+  }
+  /* Menu Architect — шеф давит на «Architect» — обрезать справа */
+  html body.lb-canon-target .hero-visual img,
+  html body[class*="restaurant"] .hero-visual img {
+    object-position: 75% center !important;
+  }
+}
+
+/* ============================================================
+   ITER AA — fix selectors (body without class) + Booster lead z-index
+   ============================================================ */
+@media (max-width: 680px) {
+  /* Whisper pills — body нет класса, селектим по wl-pill вариантам */
+  html .wl-pill.is-violet,
+  html .wl-pill.is-emerald,
+  html .canon-l-hero-pill.is-violet,
+  html .canon-l-hero-pill.is-emerald {
+    background: rgba(184, 124, 79, 0.18) !important;
+    border: 1px solid rgba(184, 124, 79, 0.55) !important;
+    color: #b87c4f !important;
+  }
+  /* Restaurant Menu — шеф object-position 75% правее */
+  html .hero-visual img,
+  html .hero .hero-visual img {
+    object-position: 75% center !important;
+  }
+  /* English Booster — lead text наезжает на pills, увеличиваем хero */
+  html body.lb-page-english-booster .canon-l-hero,
+  html .lb-page-english-booster .canon-l-hero,
+  html body[class*="english-booster"] .canon-l-hero {
+    min-height: 560px !important;
+    max-height: 600px !important;
+    height: 560px !important;
+  }
+  html body.lb-page-english-booster .canon-l-hero-lead,
+  html body[class*="english-booster"] .canon-l-hero-lead {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-bottom: 16px !important;
+  }
+  html body.lb-page-english-booster .canon-l-hero-meta,
+  html body[class*="english-booster"] .canon-l-hero-meta {
+    position: relative !important;
+    z-index: 3 !important;
+  }
+}
+
+/* ============================================================
+   STARS RAIL & WORD FORGE — горизонтальный скролл-индикатор
+   ============================================================ */
+@media (max-width: 680px) {
+  html body .rail {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: thin !important;
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 88%, transparent 100%) !important;
+    mask-image: linear-gradient(to right, black 0%, black 88%, transparent 100%) !important;
+    padding-right: 30px !important;
+  }
+  html body .rail-step {
+    flex: 0 0 64px !important;
+    min-width: 64px !important;
+  }
+}
+
+/* ============================================================
+   PREMIUM OVERFLOW SWEEP · final cascade guard
+   ============================================================ */
+@media (max-width: 680px) {
+  .topbar,
+  .canon-l-topbar,
+  .appbar,
+  nav.topbar {
+    box-sizing: border-box !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    overflow-x: clip !important;
+  }
+
+  .top-tools,
+  .canon-l-tools,
+  .toolbar,
+  .topbar-tools {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+  }
+
+  .btn-sm,
+  .tool-pill,
+  .canon-l-pill,
+  .canon-l-link,
+  .canon-l-level,
+  .level-pill {
+    box-sizing: border-box !important;
+    max-width: min(100%, 44vw) !important;
+    min-width: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: .06em !important;
+  }
+
+  .spacer {
+    min-width: 0 !important;
+  }
+
+  table {
+    max-width: 100% !important;
   }
 }

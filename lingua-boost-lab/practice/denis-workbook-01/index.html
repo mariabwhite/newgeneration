@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Workbook 01 · A1 Recap · Denis · 05 July</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --bg-2:#ecebe2; --surface:#ffffff; --card:#fbf9f3; --surface-2:#f1eee4;
+  --text:#1c2024; --ink:#1c2024; --muted:#5a6068; --faint:#8a8f97;
+  --accent:#0e7c66; --accent-2:#1ba18a; --accent-soft:rgba(14,124,102,.10);
+  --brand:#c98a3f; --brand-2:#e0a55d; --brand-soft:rgba(201,138,63,.12);
+  --line:rgba(28,32,36,.10); --line-2:rgba(28,32,36,.20);
+  --ok:#5ba872; --miss:#c45a5a;
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;padding:12px clamp(16px,3vw,28px);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);
+  transition:transform .26s cubic-bezier(.4,.0,.2,1);will-change:transform}
+.topbar.is-hidden{transform:translateY(-100%)}
+.lesson-tabs{position:fixed;top:62px;left:0;right:0;z-index:99;display:flex;gap:8px;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:10px 12px;transition:top .26s cubic-bezier(.4,.0,.2,1)}
+.topbar.is-hidden + .lesson-tabs{top:0}
+.ltab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--line-2);background:var(--card);
+  color:var(--muted);font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.ltab:hover{border-color:var(--accent);color:var(--accent-2)}
+.ltab.is-active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent)}
+.ltab .ltab-count{background:rgba(255,255,255,.18);padding:2px 8px;border-radius:50px;font-size:10px;min-width:20px;text-align:center}
+.ltab.is-active .ltab-count{background:rgba(255,255,255,.32);color:#fff}
+@media(max-width:680px){.lesson-tabs{padding:6px 6px;gap:6px;top:54px}.ltab{padding:7px 12px;font-size:9.5px;letter-spacing:.08em}}
+
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:40px;height:40px;border-radius:8px;border-top-right-radius:0;background:var(--accent);color:#fff;
+  font-family:var(--display);font-weight:900;font-size:22px;display:grid;place-items:center;position:relative;overflow:hidden}
+.brand-mark::after{content:"";position:absolute;right:0;top:0;width:14px;height:14px;background:#fff;clip-path:polygon(100% 0,0 0,100% 100%)}
+.brand-copy{display:grid;gap:1px}
+.brand-name{font-family:var(--display);font-weight:800;font-size:15px}
+.brand-sub{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+.spacer{flex:1}
+.pill{padding:5px 11px;border-radius:50px;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--accent);color:var(--accent);background:var(--accent-soft);white-space:nowrap}
+.pill.brand{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--card);color:var(--muted);
+  font:700 11px/1 var(--mono);letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Hero */
+.hero{max-width:1240px;margin:24px auto 18px;padding:0 clamp(16px,3vw,28px)}
+.hero-card{position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(14,124,102,.72) 0%,rgba(27,161,138,.42) 42%,rgba(0,0,0,.28) 78%,rgba(201,138,63,.55) 100%),
+    url("hero.png") center 40% / cover no-repeat;
+  padding:clamp(28px,4.5vw,52px);min-height:320px;box-shadow:0 10px 40px rgba(0,0,0,.12);color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.35);
+  padding:7px 14px;border-radius:50px;font:800 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:18px;backdrop-filter:blur(10px)}
+h1.hero-title{font-family:var(--display);font-weight:900;letter-spacing:-.04em;line-height:1;
+  font-size:clamp(1.6rem,4vw,2.8rem);margin-bottom:14px;color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.28)}
+h1.hero-title .grad{background:linear-gradient(120deg,#fff,#fce8bd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-lead{font-size:1rem;color:#fff;max-width:740px;line-height:1.6;background:rgba(10,28,46,.35);
+  border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:16px 20px;backdrop-filter:blur(10px)}
+
+/* Section */
+.section{max-width:1240px;margin:0 auto 28px;padding:0 clamp(16px,3vw,28px)}
+.section-hdr{display:flex;align-items:center;gap:14px;margin:30px 0 14px;flex-wrap:wrap}
+.section-num{font:800 11px/1 var(--mono);letter-spacing:.16em;background:var(--accent);color:#fff;padding:5px 11px;border-radius:50px}
+.section-hdr h2{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.6rem);letter-spacing:-.02em;line-height:1.1;color:var(--ink)}
+.section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px;font-style:italic}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 2px 14px rgba(0,0,0,.05)}
+.card p{margin-bottom:11px}
+.task-tag{display:inline-block;font:800 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;background:var(--brand-soft);color:var(--brand);border:1px solid var(--brand);border-radius:50px;padding:4px 10px;margin-bottom:10px}
+.info{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0;font-size:.92rem;color:var(--ink);margin:12px 0}
+.info strong{color:var(--accent)}
+
+/* MCQ */
+.mcq-row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.mcq-q{font-size:.96rem;color:var(--text);margin-bottom:10px;line-height:1.55}
+.mcq-q .blank{display:inline-block;min-width:56px;padding:0 8px;border-bottom:2px dashed var(--accent);font-weight:700;color:var(--accent)}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.mcq-opts button{background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);padding:9px 14px;border-radius:10px;
+  font-family:var(--body);font-size:.92rem;cursor:pointer;text-align:left;transition:.18s}
+.mcq-opts button:hover{border-color:var(--accent);color:var(--accent)}
+.mcq-opts button.correct{background:rgba(91,168,114,.15);border-color:var(--ok);color:var(--ok);font-weight:700}
+.mcq-opts button.wrong{background:rgba(196,90,90,.12);border-color:var(--miss);color:var(--miss)}
+.mcq-note{display:none;margin-top:10px;font:italic 600 .78rem/1.4 var(--mono);color:var(--muted);
+  background:var(--brand-soft);border-left:3px solid var(--brand);padding:8px 12px;border-radius:0 8px 8px 0}
+.mcq-row.revealed .mcq-note{display:block}
+
+/* Vocab flip */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:14px 0}
+.vocab-card{perspective:1000px;cursor:pointer;height:130px}
+.vocab-card .vocab-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.vocab-card.flipped .vocab-inner{transform:rotateY(180deg)}
+.vocab-card .vocab-front,.vocab-card .vocab-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;padding:14px 12px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line-2)}
+.vocab-card .vocab-front{background:var(--card);text-align:center;align-items:center}
+.vocab-card .vocab-front .word{font-family:var(--display);font-weight:800;font-size:clamp(.78rem,1.6vw,1rem);color:var(--accent);line-height:1.15;word-break:break-word;hyphens:auto;-webkit-hyphens:auto;padding:0 2px;text-align:center}
+.vocab-card .vocab-tts{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;border:none;display:grid;place-items:center;font-size:.7rem;cursor:pointer;font-family:var(--mono);font-weight:800;z-index:5;line-height:1}
+.vocab-card .vocab-tts:hover{background:var(--accent);transform:scale(1.08)}
+.vocab-card{position:relative}
+.vocab-card .vocab-front .pos{font:800 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--faint);margin-top:8px;text-transform:uppercase}
+.vocab-card .vocab-back{background:var(--accent);transform:rotateY(180deg);color:#fff;font-size:.82rem;line-height:1.4}
+.vocab-card .vocab-back .meaning{color:#fff;font-weight:700;margin-bottom:4px;font-size:.94rem}
+.vocab-card .vocab-back .ex{font-style:italic;color:#e0f4ea;font-size:.78rem}
+
+/* Gap fill text */
+.gapfill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;line-height:2;font-family:Georgia,serif;color:var(--ink)}
+.gapfill input{display:inline-block;width:130px;font:600 .94rem var(--body);background:#fff;color:var(--ink);border:1.5px solid var(--line-2);border-radius:6px;padding:4px 8px;outline:none;text-align:center;margin:0 2px}
+.gapfill input:focus{border-color:var(--accent)}
+.gapfill input.correct{background:rgba(91,168,114,.15);border-color:var(--ok);color:var(--ok)}
+.gapfill input.wrong{background:rgba(196,90,90,.12);border-color:var(--miss);color:var(--miss)}
+.gapfill button.check{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;margin-top:14px}
+.gapfill button.check:hover{background:var(--accent-2)}
+.check-result{font:800 .78rem/1 var(--mono);letter-spacing:.12em;color:var(--accent);margin-left:14px}
+
+/* Match game */
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.match-card{background:var(--card);border:1.5px solid var(--line-2);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;font-size:.92rem;transition:.18s}
+.match-card:hover{border-color:var(--accent);color:var(--accent)}
+.match-card.selected{border-color:var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:700}
+.match-card.matched{background:rgba(91,168,114,.16);border-color:var(--ok);color:var(--ok);cursor:default;font-weight:700;opacity:.85}
+.match-card.wrong{background:rgba(196,90,90,.14);border-color:var(--miss);color:var(--miss);animation:badPulse .3s}
+@keyframes badPulse{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@media(max-width:600px){.match-cols{grid-template-columns:1fr}}
+
+/* Classify chips (demonstratives) */
+.classify-pool{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.classify-pool .chip{background:var(--card);border:1.5px solid var(--line-2);padding:8px 14px;border-radius:50px;cursor:pointer;font-size:.92rem;color:var(--text);transition:.18s}
+.classify-pool .chip:hover{border-color:var(--accent)}
+.classify-pool .chip.selected{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent);transform:translateY(-1px)}
+.classify-pool .chip.placed{opacity:.35;pointer-events:none}
+.classify-pool .chip.correct{background:rgba(91,168,114,.15);border-color:var(--ok);color:var(--ok)}
+.classify-pool .chip.wrong{background:rgba(196,90,90,.12);border-color:var(--miss);color:var(--miss)}
+.classify-bins{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.classify-bin{background:var(--bg-2);border:2px dashed var(--line-2);border-radius:12px;padding:12px;min-height:110px;cursor:pointer;transition:.18s}
+.classify-bin:hover,.classify-bin.ready{border-color:var(--accent);background:color-mix(in srgb,var(--bg-2) 84%,var(--accent) 12%)}
+.classify-bin h4{color:var(--accent);font-family:var(--display);font-size:.9rem;margin-bottom:8px;text-align:center;font-weight:800}
+.classify-bin .placed-items{display:flex;flex-wrap:wrap;gap:6px;min-height:50px}
+.classify-bin .placed-items > span{background:var(--surface);border:1px solid var(--line);padding:5px 10px;border-radius:50px;font-size:.84rem;cursor:pointer}
+.classify-bin .placed-items > span.correct{background:rgba(91,168,114,.16);border-color:var(--ok);color:var(--ok)}
+.classify-bin .placed-items > span.wrong{background:rgba(196,90,90,.14);border-color:var(--miss);color:var(--miss)}
+@media(max-width:680px){.classify-bins{grid-template-columns:1fr 1fr}}
+
+/* Builder */
+.builder{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.builder-prompt{font-style:italic;color:var(--muted);margin-bottom:10px}
+.target-line{background:#fff;border:1.5px dashed var(--line-2);border-radius:8px;padding:14px;min-height:52px;font-family:Georgia,serif;font-size:1rem;line-height:1.8;margin-bottom:12px;color:var(--ink)}
+.target-line .slot{display:inline-block;min-width:78px;border-bottom:2px dotted var(--faint);margin:0 3px;padding:0 4px;color:var(--accent);cursor:pointer}
+.target-line .slot.filled{border-bottom-color:var(--accent);font-weight:600}
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.word-bank button{background:var(--surface-2);color:var(--text);border:1px solid var(--line-2);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.92rem}
+.word-bank button:hover{border-color:var(--accent);color:var(--accent)}
+.word-bank button.used{opacity:.35;cursor:default}
+.builder-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.builder-controls button{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer}
+.builder-controls button:hover{background:var(--accent-2)}
+.builder-status{font:800 .78rem/1 var(--mono);color:var(--faint)}
+.builder-status.ok{color:var(--ok)}
+.builder-status.bad{color:var(--miss)}
+
+/* Mic-drill */
+.mic-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--bg-2);padding:12px 14px;border-radius:10px;margin:8px 0;border:1px solid var(--line)}
+.mic-text{flex:1;min-width:220px;font-size:.95rem;line-height:1.5;color:var(--ink)}
+.mic-text em{color:var(--muted);font-size:.84rem}
+.mic-btn{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--text);border:1px solid var(--line-2);padding:8px 12px;border-radius:8px;cursor:pointer}
+.mic-btn:hover{border-color:var(--accent);color:var(--accent)}
+.mic-btn.rec{background:var(--miss);border-color:var(--miss);color:#fff}
+.mic-feedback{display:none;font:800 .74rem/1 var(--mono);letter-spacing:.1em;color:var(--ok);background:rgba(91,168,114,.14);padding:5px 10px;border-radius:6px;margin-top:6px}
+.mic-feedback.miss{color:var(--miss);background:rgba(196,90,90,.12)}
+.mic-feedback.shown{display:inline-block}
+.mic-transcript{display:block;font-style:italic;color:var(--muted);font-size:.84rem;margin-top:4px;width:100%}
+
+/* Write area */
+.write{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.write textarea{width:100%;min-height:140px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;outline:none;color:var(--ink);font-family:var(--body);font-size:.96rem;line-height:1.55;resize:vertical}
+.write textarea:focus{border-color:var(--accent)}
+.write-meta{display:flex;justify-content:space-between;font:800 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--faint);margin-top:8px}
+
+/* Auxiliary drill */
+.aux-pool{display:flex;flex-wrap:wrap;gap:10px;background:var(--bg-2);border:1.5px dashed var(--line-2);border-radius:12px;padding:12px 14px;margin:12px 0 18px;position:sticky;top:130px;z-index:5;backdrop-filter:blur(6px)}
+.aux-pill{background:#fff;border:2px solid var(--brand);color:var(--brand);padding:8px 18px;border-radius:50px;font-family:var(--mono);font-weight:800;font-size:.94rem;letter-spacing:.04em;cursor:pointer;transition:.18s;user-select:none}
+.aux-pill:hover{background:var(--brand);color:#fff;transform:translateY(-1px)}
+.aux-pill.selected{background:var(--brand);color:#fff;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 30%,transparent);transform:translateY(-2px)}
+.aux-list{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.aux-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:1rem;line-height:1.7;color:var(--ink)}
+.aux-q .num{font-family:var(--mono);font-weight:800;color:var(--muted);margin-right:6px;font-size:.86rem}
+.aux-gap{display:inline-block;min-width:90px;height:28px;padding:2px 12px;margin:0 4px;border:1.5px dashed var(--brand);border-radius:50px;background:var(--brand-soft);color:var(--brand);text-align:center;vertical-align:middle;line-height:24px;font-family:var(--mono);font-weight:700;cursor:pointer;transition:.15s}
+.aux-gap:hover{border-style:solid}
+.aux-gap.filled{border-style:solid;background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.aux-gap.correct{background:rgba(91,168,114,.16);border-color:var(--ok);color:var(--ok);border-style:solid}
+.aux-gap.wrong{background:rgba(196,90,90,.14);border-color:var(--miss);color:var(--miss);border-style:solid}
+.aux-gap:empty::before{content:"___";color:var(--faint);font-weight:500;opacity:.6}
+
+/* Quizlet CTA */
+.quizlet-cta{background:linear-gradient(135deg,var(--accent-soft),var(--brand-soft));border:1px solid var(--accent);border-radius:14px;padding:20px 22px;text-align:center;margin:14px 0}
+.quizlet-cta h4{font-family:var(--display);font-weight:800;color:var(--accent);margin-bottom:8px;font-size:1.12rem}
+.quizlet-cta a{display:inline-block;background:var(--accent);color:#fff;border:1.5px solid var(--accent);padding:11px 22px;border-radius:50px;font-weight:800;font-size:.96rem;margin-top:8px;text-decoration:none;transition:.15s}
+.quizlet-cta a:hover{background:var(--accent-2)}
+
+@media(max-width:680px){
+  .topbar{gap:8px;padding:8px 12px}
+  .brand-mark{width:32px;height:32px;font-size:18px}
+  .brand-name{font-size:13px}
+  .brand-sub{display:none}
+  .pill{padding:4px 8px;font-size:8.5px;letter-spacing:.08em}
+  .btn-sm{height:28px;padding:0 8px;font-size:9.5px;letter-spacing:.05em}
+  .classify-bins{grid-template-columns:1fr 1fr}
+}
+
+footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;color:var(--faint);font:600 .8rem/1 var(--mono);letter-spacing:.06em}
+
+/* Lab canon safety */
+.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
+.vocab-card{min-height:130px;box-sizing:border-box}
+.vocab-front,.vocab-back{padding:20px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
+
+/* Human interactivity — instant feedback */
+.mcq-opts button[disabled]{cursor:default;opacity:.85}
+.mcq-opts button.wrong[disabled]{opacity:.7}
+.classify-bin.wrong-flash{background:rgba(196,90,90,.16)!important;border-color:var(--miss)!important;animation:badPulse .4s}
+.aux-gap.wrong-shake{animation:badPulse .35s;background:rgba(196,90,90,.18)!important;border-color:var(--miss)!important;color:var(--miss)!important;border-style:solid}
+.word-bank button.shake-wrong{animation:badPulse .35s;background:rgba(196,90,90,.16);border-color:var(--miss);color:var(--miss)}
+.target-line .slot.correct{color:var(--ok);border-bottom-color:var(--ok);font-weight:700}
+</style>
+<style id="codex-white-corner-logo-20260701">
+.topbar .brand-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
+.topbar .brand-mark::after{content:""!important;display:block!important;position:absolute!important;right:0!important;top:0!important;bottom:auto!important;width:14px!important;height:14px!important;border:0!important;border-radius:0!important;background:#fff!important;clip-path:polygon(100% 0,0 0,100% 100%)!important;z-index:9!important}
+</style>
+  <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=2">
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="../../../cabinet/">
+    <span class="brand-mark" aria-hidden="true"><span style="position:relative;z-index:1;color:#fff!important">N</span></span>
+    <span class="brand-copy">
+      <span class="brand-name">NG English</span>
+      <span class="brand-sub">LinguaBoost Lab · Workbook</span>
+    </span>
+  </a>
+  <span class="pill">Workbook 01</span>
+  <span class="pill brand">05 July · A1 Recap</span>
+  <div class="spacer"></div>
+  <a class="btn-sm" href="../../../cabinet/">← Cabinet</a>
+  <a class="btn-sm" href="../../">Main</a>
+</nav>
+
+<nav class="lesson-tabs" role="tablist" aria-label="Lesson / Homework">
+  <button class="ltab is-active" data-tab="lesson" type="button">📖 Урок</button>
+  <button class="ltab" data-tab="homework" type="button">📚 Моя домашка <span class="ltab-count" id="ltab-hw-count">0</span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-card">
+    <div class="eyebrow">Workbook · Adult Basics · 05 July</div>
+    <h1 class="hero-title">Denis · <span class="grad">Workbook 01 · A1 Recap</span></h1>
+    <p class="hero-lead">
+      10 blocks · after our lesson on 28 June («My city + Future»). We revise everything you already own — clothes, home, city vocabulary, <strong>There is / are · It is</strong>, <strong>Present Simple vs Continuous</strong>, questions, plurals, <strong>have got</strong>, café dialogue, <strong>frequency</strong>, and softly retest the freshest topic — <strong>Future: will vs going to</strong>. Bring what you did to the next lesson.
+    </p>
+  </div>
+</section>
+
+<!-- 1 · VOCAB · flip cards with TTS · 11 fresh + 8 hard review -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">01</div><h2>Vocab · tap to flip · ▶ to hear</h2></div>
+  <p class="section-sub">The 11 fresh words from your ProgressMe "To learn" list, plus 8 harder words to review from your history. Tap each card, tap ▶ to hear the pronunciation.</p>
+  <div class="card">
+    <div class="task-tag">11 fresh · from 21 June</div>
+    <div class="vocab-grid">
+      <div class="vocab-card"><button class="vocab-tts" data-say="choosing" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">choosing</div><div class="pos">verb · ing</div></div><div class="vocab-back"><div class="meaning">выбор</div><div class="ex">Choosing a good area takes time.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="entertainment" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">entertainment</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">развлечения</div><div class="ex">A lot of entertainment nearby.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="nearby" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">nearby</div><div class="pos">adv / adj</div></div><div class="vocab-back"><div class="meaning">рядом, поблизости</div><div class="ex">The metro is nearby.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="convenient" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">convenient</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">удобный (по расположению)</div><div class="ex">This area is very convenient.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="area" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">area</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">район, зона</div><div class="ex">I live in a quiet area.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="lively" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">lively</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">живой, оживлённый</div><div class="ex">A lively street on weekends.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="busy" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">busy</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">оживлённый, занятой</div><div class="ex">The market is busy in the morning.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="modern" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">modern</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">современный</div><div class="ex">My flat is modern and light.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="delivery" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">delivery</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">доставка</div><div class="ex">Delivery here is fast.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="crowded" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">crowded</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">переполненный, полно людей</div><div class="ex">The bus is crowded at 8 a.m.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="move into" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">move into</div><div class="pos">phrasal verb</div></div><div class="vocab-back"><div class="meaning">въехать (в квартиру/дом)</div><div class="ex">I will move into a new flat.</div></div></div></div>
+    </div>
+
+    <div class="task-tag" style="margin-top:22px;background:var(--brand-soft);color:var(--brand);border-color:var(--brand)">8 hard review · from Learned</div>
+    <div class="vocab-grid">
+      <div class="vocab-card"><button class="vocab-tts" data-say="entrepreneur" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">entrepreneur</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">предприниматель</div><div class="ex">She is a young entrepreneur.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="skyscraper" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">skyscraper</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">небоскрёб</div><div class="ex">A tall skyscraper downtown.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="comfortable" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">comfortable</div><div class="pos">adjective</div></div><div class="vocab-back"><div class="meaning">комфортный, удобный</div><div class="ex">The sofa is comfortable.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="metropolis" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">metropolis</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">мегаполис</div><div class="ex">Moscow is a big metropolis.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="schedule" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">schedule</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">расписание</div><div class="ex">Check the schedule for tomorrow.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="directions" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">directions</div><div class="pos">noun pl</div></div><div class="vocab-back"><div class="meaning">направления, указания дороги</div><div class="ex">Can you give me directions?</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="assistant" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">assistant</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">помощник, продавец</div><div class="ex">The assistant is very friendly.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="capital" title="Play">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">capital</div><div class="pos">noun</div></div><div class="vocab-back"><div class="meaning">столица</div><div class="ex">London is the capital of the UK.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · THERE IS / THERE ARE / IT IS · gap-fill -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">02</div><h2>There is / There are / It is · describe an area · 10 gaps</h2></div>
+  <p class="section-sub">Fill each gap with <strong>There is</strong>, <strong>There are</strong>, or <strong>It is</strong>. Then click <strong>Check</strong>. Case-insensitive; capital <em>T</em> or lowercase both work.</p>
+  <div class="card">
+    <div class="info"><strong>Quick rule:</strong> <em>There is / There are</em> = something exists (single / plural). <em>It is</em> = describing something / weather / time / state.</div>
+    <div class="task-tag">10 gaps · Denis's neighbourhood</div>
+    <div class="gapfill" id="gap2">
+      1. <input data-a="There is|there is" placeholder="?"> a modern café near my house.<br>
+      2. <input data-a="It is|it is" placeholder="?"> lively in the evening.<br>
+      3. <input data-a="There are|there are" placeholder="?"> many people on the street on Saturday.<br>
+      4. <input data-a="It is|it is" placeholder="?"> a very convenient area for shopping.<br>
+      5. <input data-a="There is|there is" placeholder="?"> a bakery on the corner.<br>
+      6. <input data-a="It is|it is" placeholder="?"> cold today in the morning.<br>
+      7. <input data-a="There are|there are" placeholder="?"> two parks nearby.<br>
+      8. <input data-a="There is|there is" placeholder="?"> a bus stop next to the school.<br>
+      9. <input data-a="It is|it is" placeholder="?"> crowded at 8 a.m.<br>
+      10. <input data-a="There are|there are" placeholder="?"> good delivery services in my area.<br>
+      <button class="check" data-target="gap2">Check all</button>
+      <span class="check-result" id="gap2-result"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · ALL 4 PRESENT/FUTURE TENSES MIXED · MCQ 12 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">03</div><h2>Simple · Continuous · will · going to · 12 sentences</h2></div>
+  <p class="section-sub">Four tenses, one exercise, no easy pattern. Read the whole sentence, look for the signal, then choose. Explanation appears after each click.</p>
+  <div class="card">
+    <div class="info">
+      <strong>Signals — quick:</strong>
+      <em>every / usually / always / never / on weekends</em> → Simple ·
+      <em>now / at the moment / right now / Look!</em> → Continuous ·
+      <em>I think / probably / OK, I…</em> → will ·
+      <em>tomorrow / next week / evidence (clouds, sign)</em> → going to.
+    </div>
+    <div class="task-tag">12 questions · Simple / Continuous / will / going to</div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>1.</strong> Right now, I <span class="blank">___</span> a hoodie.</div>
+      <div class="mcq-opts"><button data-v="a">wear</button><button data-v="b">am wearing</button><button data-v="c">will wear</button></div>
+      <div class="mcq-note">→ "right now" → this moment → <strong>Continuous · am wearing</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>2.</strong> Every morning I <span class="blank">___</span> coffee.</div>
+      <div class="mcq-opts"><button data-v="a">am drinking</button><button data-v="b">drinks</button><button data-v="c">drink</button></div>
+      <div class="mcq-note">→ "every morning" → habit → <strong>Simple · drink</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>3.</strong> Look at those clouds — it <span class="blank">___</span> rain.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">is going to</button><button data-v="c">rains</button></div>
+      <div class="mcq-note">→ Visible evidence (clouds) → <strong>going to</strong>. NOT "will" — will = prediction без фактов.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>4.</strong> — It is cold. — OK, I <span class="blank">___</span> close the window.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">am closing</button></div>
+      <div class="mcq-note">→ Decision made in the moment → <strong>will</strong> (NOT "going to" — план не был заранее).</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>5.</strong> My brother <span class="blank">___</span> in the city centre.</div>
+      <div class="mcq-opts"><button data-v="a">live</button><button data-v="b">is living</button><button data-v="c">lives</button></div>
+      <div class="mcq-note">→ Fact + 3rd person singular → <strong>lives</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>6.</strong> Tomorrow I <span class="blank">___</span> visit my parents — the tickets are ready.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">visit</button></div>
+      <div class="mcq-note">→ Уже спланировано (билеты!) → <strong>going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>7.</strong> I think our city <span class="blank">___</span> be more modern in 50 years.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">is going to</button><button data-v="c">is</button></div>
+      <div class="mcq-note">→ "I think" → subjective prediction → <strong>will</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>8.</strong> At the moment they <span class="blank">___</span> a movie.</div>
+      <div class="mcq-opts"><button data-v="a">watch</button><button data-v="b">watches</button><button data-v="c">are watching</button></div>
+      <div class="mcq-note">→ "at the moment" → Continuous → <strong>are watching</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>9.</strong> They <span class="blank">___</span> open a new café near my house — I saw the sign.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">are going to</button><button data-v="c">open</button></div>
+      <div class="mcq-note">→ Есть evidence (знак) → они уже планируют → <strong>are going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>10.</strong> On weekends we usually <span class="blank">___</span> to the park.</div>
+      <div class="mcq-opts"><button data-v="a">are going</button><button data-v="b">goes</button><button data-v="c">go</button></div>
+      <div class="mcq-note">→ "on weekends" + "usually" → habit → <strong>Simple · go</strong>. NOT "are going" — не про этот момент.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>11.</strong> Wait! I <span class="blank">___</span> help you with the bags.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">help</button></div>
+      <div class="mcq-note">→ Spontaneous offer в момент разговора → <strong>will</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>12.</strong> Look! He <span class="blank">___</span> a new jacket today.</div>
+      <div class="mcq-opts"><button data-v="a">wears</button><button data-v="b">is wearing</button><button data-v="c">wear</button></div>
+      <div class="mcq-note">→ "Look!" → this moment → <strong>Continuous · is wearing</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 4 · BUILD THE QUESTION -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">04</div><h2>Build the question · 5 sentences</h2></div>
+  <p class="section-sub">Click the words in the right order. Click a filled slot to undo. Cover both types: <strong>do / does</strong> and <strong>am / is / are</strong>.</p>
+  <div class="card">
+    <div class="task-tag">5 questions · Wh + do/does & am/is/are</div>
+
+    <div class="builder" data-answer="Where do you live ?">
+      <div class="builder-prompt">Ask about where he lives (Present Simple):</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span>?</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="Where">Where</button>
+        <button data-w="do">do</button>
+        <button data-w="you">you</button>
+        <button data-w="live">live</button>
+        <button data-w="are">are</button>
+        <button data-w="living">living</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="What are you doing now ?">
+      <div class="builder-prompt">Ask what he is doing right now (Present Continuous):</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span>?</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="What">What</button>
+        <button data-w="are">are</button>
+        <button data-w="you">you</button>
+        <button data-w="doing">doing</button>
+        <button data-w="now">now</button>
+        <button data-w="do">do</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="How many people are there in your family ?">
+      <div class="builder-prompt">Ask how many people are in his family (There are / Wh):</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span class="slot" data-pos="5">___</span>
+        <span class="slot" data-pos="6">___</span>
+        <span class="slot" data-pos="7">___</span>
+        <span>?</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="How">How</button>
+        <button data-w="many">many</button>
+        <button data-w="people">people</button>
+        <button data-w="are">are</button>
+        <button data-w="there">there</button>
+        <button data-w="in">in</button>
+        <button data-w="your">your</button>
+        <button data-w="family">family</button>
+        <button data-w="is">is</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="Does she like modern cafes ?">
+      <div class="builder-prompt">Ask if she likes modern cafes (Present Simple, 3rd person):</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span>?</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="Does">Does</button>
+        <button data-w="she">she</button>
+        <button data-w="like">like</button>
+        <button data-w="modern">modern</button>
+        <button data-w="cafes">cafes</button>
+        <button data-w="likes">likes</button>
+        <button data-w="Do">Do</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+
+    <div class="builder" data-answer="Why is it so crowded today ?">
+      <div class="builder-prompt">Ask why it is crowded today (to be, Wh):</div>
+      <div class="target-line">
+        <span class="slot" data-pos="0">___</span>
+        <span class="slot" data-pos="1">___</span>
+        <span class="slot" data-pos="2">___</span>
+        <span class="slot" data-pos="3">___</span>
+        <span class="slot" data-pos="4">___</span>
+        <span class="slot" data-pos="5">___</span>
+        <span>?</span>
+      </div>
+      <div class="word-bank">
+        <button data-w="Why">Why</button>
+        <button data-w="is">is</button>
+        <button data-w="it">it</button>
+        <button data-w="so">so</button>
+        <button data-w="crowded">crowded</button>
+        <button data-w="today">today</button>
+        <button data-w="do">do</button>
+      </div>
+      <div class="builder-controls">
+        <button data-act="check">Check</button>
+        <button data-act="reset" style="background:var(--surface-2);color:var(--muted)">Reset</button>
+        <span class="builder-status"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · IRREGULAR PLURALS · MATCH + DEMONSTRATIVES CLASSIFY -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">05</div><h2>Irregular plurals + This/That/These/Those</h2></div>
+  <p class="section-sub">Two parts. <strong>A:</strong> match 8 singular → plural. <strong>B:</strong> classify 8 sentences into the four demonstratives.</p>
+  <div class="card">
+    <h3 style="font-family:var(--display);color:var(--accent);margin-bottom:8px">A · Match singular → irregular plural (8 pairs)</h3>
+    <div class="match-cols">
+      <div id="match-left"></div>
+      <div id="match-right"></div>
+    </div>
+    <script type="application/json" id="match-data">[
+      {"en":"man","ru":"men"},
+      {"en":"woman","ru":"women"},
+      {"en":"child","ru":"children"},
+      {"en":"foot","ru":"feet"},
+      {"en":"tooth","ru":"teeth"},
+      {"en":"mouse","ru":"mice"},
+      {"en":"person","ru":"people"},
+      {"en":"fish","ru":"fish"}
+    ]</script>
+
+    <h3 style="font-family:var(--display);color:var(--accent);margin:24px 0 8px">B · Classify · this / that / these / those (8 phrases)</h3>
+    <div class="info">
+      <strong>Quick rule:</strong> <em>this</em> = one · near · <em>that</em> = one · far · <em>these</em> = many · near · <em>those</em> = many · far
+    </div>
+    <div class="classify-pool" id="cl-pool">
+      <span class="chip" data-cls="this">___ is my new hoodie (in my hand)</span>
+      <span class="chip" data-cls="that">___ is a car on the other street</span>
+      <span class="chip" data-cls="these">___ are my sneakers here</span>
+      <span class="chip" data-cls="those">___ are children in the park across the road</span>
+      <span class="chip" data-cls="this">___ is a modern café next to me</span>
+      <span class="chip" data-cls="those">___ are old buildings far away</span>
+      <span class="chip" data-cls="these">___ are the keys in my pocket</span>
+      <span class="chip" data-cls="that">___ is a busy market over there</span>
+    </div>
+    <div class="classify-bins">
+      <div class="classify-bin" data-bin="this"><h4>this</h4><div class="placed-items"></div></div>
+      <div class="classify-bin" data-bin="that"><h4>that</h4><div class="placed-items"></div></div>
+      <div class="classify-bin" data-bin="these"><h4>these</h4><div class="placed-items"></div></div>
+      <div class="classify-bin" data-bin="those"><h4>those</h4><div class="placed-items"></div></div>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:8px"><em>Tap a chip → tap a bin. Tap a chip inside a bin to send it back.</em></p>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap">
+      <button id="cl-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check</button>
+      <button id="cl-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <span id="cl-result" style="font:800 .78rem/1 var(--mono);color:var(--accent)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · HAVE GOT + APOSTROPHE 'S · gap-fill -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">06</div><h2>Have got &amp; Apostrophe 's · 10 gaps</h2></div>
+  <p class="section-sub">Type the correct form. Use <strong>have got / has got</strong> for possession, and <strong>'s</strong> to say whose. Case-insensitive.</p>
+  <div class="card">
+    <div class="info">
+      <strong>Rule:</strong> <em>I / you / we / they</em> → <em>have got</em>. <em>He / she / it</em> → <em>has got</em>. Possession: <em>Denis's coat</em> (one owner) · <em>my parents' house</em> (many).
+    </div>
+    <div class="task-tag">10 gaps · possession + belonging</div>
+    <div class="gapfill" id="gap6">
+      1. I <input data-a="have got|'ve got|have" placeholder="?"> a new hoodie.<br>
+      2. She <input data-a="has got|'s got|has" placeholder="?"> two brothers.<br>
+      3. My brother <input data-a="has got|'s got|has" placeholder="?"> a car.<br>
+      4. We <input data-a="have got|'ve got|have" placeholder="?"> a small flat in the centre.<br>
+      5. They <input data-a="have got|'ve got|have" placeholder="?"> three children.<br>
+      6. This is Denis<input data-a="'s|`s" style="width:60px" placeholder="?"> jacket.<br>
+      7. That is my sister<input data-a="'s|`s" style="width:60px" placeholder="?"> phone.<br>
+      8. Where are the children<input data-a="'s|`s" style="width:60px" placeholder="?"> books?<br>
+      9. Anna<input data-a="'s|`s" style="width:60px" placeholder="?"> café is on Green Street.<br>
+      10. He <input data-a="has not got|hasn't got|has not|hasn't" placeholder="?"> a bike.<br>
+      <button class="check" data-target="gap6">Check all</button>
+      <span class="check-result" id="gap6-result"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · CAFÉ DIALOGUE + LIKE / PREFER · MCQ 8 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">07</div><h2>Café dialogue · Can / Could / Like / Prefer · 8 choices</h2></div>
+  <p class="section-sub">Same café phrases you already know. Choose the polite / correct option.</p>
+  <div class="card">
+    <div class="info"><strong>Register:</strong> <em>Can I</em> = ok · <em>Could I</em> / <em>May I</em> = more polite. <em>I like</em> = general. <em>I would prefer</em> / <em>I'd prefer</em> = choose one over another.</div>
+    <div class="task-tag">8 choices · café + polite forms</div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>1.</strong> <span class="blank">___</span> I have a latte, please?</div>
+      <div class="mcq-opts"><button data-v="a">Am</button><button data-v="b">Could</button><button data-v="c">Do</button></div>
+      <div class="mcq-note">→ Polite request → <strong>Could I have</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>2.</strong> I <span class="blank">___</span> tea to coffee in the morning.</div>
+      <div class="mcq-opts"><button data-v="a">prefer</button><button data-v="b">like</button><button data-v="c">am liking</button></div>
+      <div class="mcq-note">→ "prefer X to Y" = ставим одно выше другого → <strong>prefer</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>3.</strong> Do you <span class="blank">___</span> herbal tea?</div>
+      <div class="mcq-opts"><button data-v="a">likes</button><button data-v="b">liked</button><button data-v="c">like</button></div>
+      <div class="mcq-note">→ После <em>Do you</em> — базовая форма → <strong>like</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>4.</strong> <span class="blank">___</span> I pay by card?</div>
+      <div class="mcq-opts"><button data-v="a">Can</button><button data-v="b">Am</button><button data-v="c">Do</button></div>
+      <div class="mcq-note">→ Разрешение / возможность → <strong>Can I</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>5.</strong> Sorry, we <span class="blank">___</span> gluten-free cake today.</div>
+      <div class="mcq-opts"><button data-v="a">not have got</button><button data-v="b">haven't got</button><button data-v="c">not have</button></div>
+      <div class="mcq-note">→ Отрицание к <em>have got</em> → <strong>haven't got</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>6.</strong> I <span class="blank">___</span> wearing sneakers to formal shoes.</div>
+      <div class="mcq-opts"><button data-v="a">prefer to</button><button data-v="b">like</button><button data-v="c">prefer</button></div>
+      <div class="mcq-note">→ После <em>prefer</em> → <strong>-ing</strong> вариант ("prefer wearing") без "to". «prefer to» ≠ то же самое.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>7.</strong> <span class="blank">___</span> I have the bathroom key?</div>
+      <div class="mcq-opts"><button data-v="a">Can</button><button data-v="b">Am</button><button data-v="c">Have</button></div>
+      <div class="mcq-note">→ Просьба у продавца → <strong>Can I</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>8.</strong> I don't <span class="blank">___</span> crowded places.</div>
+      <div class="mcq-opts"><button data-v="a">likes</button><button data-v="b">like</button><button data-v="c">liking</button></div>
+      <div class="mcq-note">→ После <em>don't</em> — базовая форма → <strong>like</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 8 · FUTURE · WILL vs GOING TO · MCQ 8 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">08</div><h2>Future · will vs going to · 8 sentences</h2></div>
+  <p class="section-sub">The freshest topic (28 June). <strong>Will</strong> = decision at the moment / prediction. <strong>Going to</strong> = plan already made / obvious from what you see.</p>
+  <div class="card">
+    <div class="info"><strong>Quick rule:</strong> "OK, I <em>will</em> help you" (decide now) · "I <em>am going to</em> study English tomorrow" (already planned). "Look at the sky — it <em>is going to</em> rain" (evidence).</div>
+    <div class="task-tag">8 questions · will vs going to</div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>1.</strong> — It is cold. — OK, I <span class="blank">___</span> close the window.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">going to</button></div>
+      <div class="mcq-note">→ Решение в момент разговора → <strong>will</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>2.</strong> I <span class="blank">___</span> visit my parents this weekend — the tickets are ready.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">going</button></div>
+      <div class="mcq-note">→ Заранее спланировано → <strong>am going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>3.</strong> Look at those clouds — it <span class="blank">___</span> rain.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">is going to</button><button data-v="c">rains</button></div>
+      <div class="mcq-note">→ Очевидное по фактам (тучи) → <strong>is going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>4.</strong> I think our city <span class="blank">___</span> be more modern in 50 years.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">is going to</button><button data-v="c">going to</button></div>
+      <div class="mcq-note">→ Прогноз / мнение → <strong>will</strong> ("I think").</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>5.</strong> Next month I <span class="blank">___</span> move into a new flat.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">move</button></div>
+      <div class="mcq-note">→ План уже принят → <strong>am going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>6.</strong> Wait! I <span class="blank">___</span> help you with the bag.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">am going to</button><button data-v="c">go</button></div>
+      <div class="mcq-note">→ Спонтанное предложение в момент → <strong>will</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>7.</strong> They <span class="blank">___</span> open a new cafe near my house — I saw the sign.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">are going to</button><button data-v="c">open</button></div>
+      <div class="mcq-note">→ Уже планируют (evidence — знак) → <strong>are going to</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>8.</strong> Probably it <span class="blank">___</span> be crowded on the weekend.</div>
+      <div class="mcq-opts"><button data-v="a">will</button><button data-v="b">is going to</button><button data-v="c">going to</button></div>
+      <div class="mcq-note">→ "Probably" → предположение / прогноз → <strong>will</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 9 · FREQUENCY + PREPOSITIONS · MCQ 8 -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">09</div><h2>Frequency &amp; prepositions · 8 sentences</h2></div>
+  <p class="section-sub">Two things at once. <strong>Frequency words</strong> stand BEFORE the main verb (but AFTER <em>to be</em>). <strong>Prepositions of time:</strong> at 8 o'clock · in the morning · on weekends · during the day.</p>
+  <div class="card">
+    <div class="info">
+      <strong>Position:</strong> I <em>usually</em> drink coffee (before verb) · I <em>am usually</em> tired (after to be) · <em>Usually</em>, I drink coffee (comma, at start).
+    </div>
+    <div class="task-tag">8 questions · frequency + at/in/on/during</div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>1.</strong> I <span class="blank">___</span> get up at 7 a.m.</div>
+      <div class="mcq-opts"><button data-v="a">get up usually</button><button data-v="b">usually get up</button><button data-v="c">usually am get up</button></div>
+      <div class="mcq-note">→ Frequency word ПЕРЕД main verb → <strong>usually get up</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>2.</strong> My brother <span class="blank">___</span> tired in the evening.</div>
+      <div class="mcq-opts"><button data-v="a">is often</button><button data-v="b">often is</button><button data-v="c">is often the</button></div>
+      <div class="mcq-note">→ Frequency word ПОСЛЕ <em>to be</em> → <strong>is often</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>3.</strong> I meet my friends <span class="blank">___</span> 6 p.m.</div>
+      <div class="mcq-opts"><button data-v="a">in</button><button data-v="b">on</button><button data-v="c">at</button></div>
+      <div class="mcq-note">→ Точное время → <strong>at</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>4.</strong> I usually cook <span class="blank">___</span> the evening.</div>
+      <div class="mcq-opts"><button data-v="a">in</button><button data-v="b">on</button><button data-v="c">at</button></div>
+      <div class="mcq-note">→ Часть дня → <strong>in the morning / afternoon / evening</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="b"><div class="mcq-q"><strong>5.</strong> We go to the park <span class="blank">___</span> weekends.</div>
+      <div class="mcq-opts"><button data-v="a">in</button><button data-v="b">on</button><button data-v="c">at</button></div>
+      <div class="mcq-note">→ Дни / weekends → <strong>on</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>6.</strong> He works <span class="blank">___</span> the day and rests at night.</div>
+      <div class="mcq-opts"><button data-v="a">on</button><button data-v="b">at</button><button data-v="c">during</button></div>
+      <div class="mcq-note">→ "day" / "week" / "night" (продолжительный отрезок) → <strong>during</strong>.</div></div>
+
+    <div class="mcq-row" data-ans="a"><div class="mcq-q"><strong>7.</strong> I <span class="blank">___</span> drink cappuccino.</div>
+      <div class="mcq-opts"><button data-v="a">rarely</button><button data-v="b">rare</button><button data-v="c">rarely am</button></div>
+      <div class="mcq-note">→ Frequency word ПЕРЕД глаголом → <strong>rarely</strong> (rare = прилагательное).</div></div>
+
+    <div class="mcq-row" data-ans="c"><div class="mcq-q"><strong>8.</strong> The bus is very busy <span class="blank">___</span> 8 in the morning.</div>
+      <div class="mcq-opts"><button data-v="a">on</button><button data-v="b">in</button><button data-v="c">at</button></div>
+      <div class="mcq-note">→ Точное время (8) → <strong>at</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 10 · MIC-DRILL · 6 open questions -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">10</div><h2>Mic-drill · answer aloud · 6 open questions</h2></div>
+  <p class="section-sub">Press <strong>🎙 Record</strong>, answer in a full sentence. The recognizer will show your match to a model. <strong>Chrome or Edge only.</strong> These are Denis-questions — real speaking, not scripted.</p>
+  <div class="card">
+    <div class="task-tag">6 open speaking prompts · mixed grammar</div>
+
+    <div class="mic-row" data-target="I live in a busy area with a lot of entertainment nearby.">
+      <div class="mic-text">1. <strong>Tell me about your area.</strong> Try to use: <em>lively / busy / modern / convenient / nearby.</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+
+    <div class="mic-row" data-target="I am wearing a hoodie and sneakers right now.">
+      <div class="mic-text">2. <strong>What are you wearing right now?</strong> <em>(Present Continuous)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+
+    <div class="mic-row" data-target="I usually drink coffee in the morning and I never drink tea.">
+      <div class="mic-text">3. <strong>What do you usually drink in the morning?</strong> <em>(Present Simple + frequency)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+
+    <div class="mic-row" data-target="I have got a small flat and a big family.">
+      <div class="mic-text">4. <strong>What have you got at home?</strong> <em>(have got)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+
+    <div class="mic-row" data-target="Next month I am going to visit my parents in the countryside.">
+      <div class="mic-text">5. <strong>What are you going to do next month?</strong> <em>(going to)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+
+    <div class="mic-row" data-target="I think our city will be greener and quieter in 50 years.">
+      <div class="mic-text">6. <strong>What will our city be like in 50 years?</strong> <em>(will · prediction)</em></div>
+      <button class="mic-btn record">🎙 Record</button>
+      <span class="mic-feedback"></span><span class="mic-transcript"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · AUXILIARY DRILL · 15 questions with drag pills -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">11</div><h2>Build the question · aux drill · 15 gaps</h2></div>
+  <p class="section-sub">Tap a pill (Do · Does · Am · Is · Are · Will) then tap a gap to place it. Tap a filled gap to remove. Same pill can be used many times. Then <strong>Check</strong>.</p>
+  <div class="card">
+    <div class="info">
+      <strong>Which auxiliary:</strong>
+      <em>Do / Does</em> = Present Simple habits/facts ·
+      <em>Am / Is / Are</em> = Present Continuous or "to be" state · but also with <em>going to</em> ·
+      <em>Will</em> = future decision / prediction / promise.
+    </div>
+    <div class="task-tag">15 questions · pick the right auxiliary</div>
+
+    <div class="aux-pool" id="aux-pool">
+      <button class="aux-pill" data-w="Do">Do</button>
+      <button class="aux-pill" data-w="Does">Does</button>
+      <button class="aux-pill" data-w="Am">Am</button>
+      <button class="aux-pill" data-w="Is">Is</button>
+      <button class="aux-pill" data-w="Are">Are</button>
+      <button class="aux-pill" data-w="Will">Will</button>
+    </div>
+
+    <div class="aux-list" id="aux-list">
+      <div class="aux-q"><span class="num">1.</span> <span class="aux-gap" data-a="Do"></span> you like modern cafés?</div>
+      <div class="aux-q"><span class="num">2.</span> <span class="aux-gap" data-a="Does"></span> your sister work in the centre?</div>
+      <div class="aux-q"><span class="num">3.</span> <span class="aux-gap" data-a="Are"></span> they going to visit us tomorrow?</div>
+      <div class="aux-q"><span class="num">4.</span> What <span class="aux-gap" data-a="Are"></span> you doing right now?</div>
+      <div class="aux-q"><span class="num">5.</span> Where <span class="aux-gap" data-a="Does"></span> Denis go on Sundays?</div>
+      <div class="aux-q"><span class="num">6.</span> Look — <span class="aux-gap" data-a="Is"></span> he wearing a new hoodie?</div>
+      <div class="aux-q"><span class="num">7.</span> Why <span class="aux-gap" data-a="Is"></span> the market so crowded today?</div>
+      <div class="aux-q"><span class="num">8.</span> <span class="aux-gap" data-a="Are"></span> we going to be late?</div>
+      <div class="aux-q"><span class="num">9.</span> When <span class="aux-gap" data-a="Does"></span> she come home?</div>
+      <div class="aux-q"><span class="num">10.</span> <span class="aux-gap" data-a="Are"></span> you going to move into a new flat?</div>
+      <div class="aux-q"><span class="num">11.</span> <span class="aux-gap" data-a="Does"></span> it rain in London every day?</div>
+      <div class="aux-q"><span class="num">12.</span> <span class="aux-gap" data-a="Am"></span> I ready for the interview?</div>
+      <div class="aux-q"><span class="num">13.</span> Where <span class="aux-gap" data-a="Do"></span> your friends live?</div>
+      <div class="aux-q"><span class="num">14.</span> <span class="aux-gap" data-a="Does"></span> he speak English well?</div>
+      <div class="aux-q"><span class="num">15.</span> <span class="aux-gap" data-a="Will"></span> you help me tomorrow, please?</div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">
+      <button id="aux-check" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer">Check all</button>
+      <button id="aux-reset" style="font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);padding:10px 16px;border-radius:8px;cursor:pointer">Reset</button>
+      <span id="aux-result" style="font:800 .78rem/1 var(--mono);color:var(--accent)"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · QUIZLET CTA -->
+<section class="section">
+  <div class="section-hdr"><div class="section-num">12</div><h2>Quizlet · bonus practice · 44 words</h2></div>
+  <div class="card">
+    <div class="quizlet-cta">
+      <h4>🎴 Flash-cards · lesson 28 June · «City of the future»</h4>
+      <p style="color:var(--muted);font-size:.94rem;line-height:1.5;margin-top:6px">The 44-word set I sent you in Telegram. Learn / Match / Test — Quizlet handles the spaced repetition. Great warm-up before our next lesson.</p>
+      <a href="https://quizlet.com/1192178706/voc-flash-cards/?funnelUUID=54bc5263-ba58-45bd-8d9e-b440538e89cd" target="_blank">🎴 Open Quizlet set ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Workbook 01 · A1 Recap · Denis · 05 July 2026 · NG English Lab
+</footer>
+
+<!-- ================== SCRIPTS ================== -->
+
+<!-- Universal TTS helper -->
+<script>
+function tts(text){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-GB';u.rate=.92;u.pitch=1;
+  window.speechSynthesis.speak(u);
+}
+</script>
+
+<!-- Vocab flip + TTS -->
+<script>
+document.querySelectorAll('.vocab-card').forEach(c=>{
+  c.addEventListener('click',e=>{
+    if(e.target.closest('.vocab-tts'))return;
+    c.classList.toggle('flipped');
+  });
+});
+document.querySelectorAll('.vocab-tts').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    tts(btn.dataset.say||'');
+  });
+});
+</script>
+
+<!-- MCQ · shuffle + human check: wrong = локально disabled, correct = блокирует всё + note -->
+<script>
+document.querySelectorAll('.mcq-row').forEach(row=>{
+  const opts=row.querySelector('.mcq-opts');
+  if(opts){
+    const btns=[...opts.querySelectorAll('button')];
+    btns.sort(()=>Math.random()-0.5).forEach(b=>opts.appendChild(b));
+  }
+  const ans=(row.dataset.ans||'').toLowerCase();
+  row.querySelectorAll('.mcq-opts button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(btn.disabled)return;
+      const v=(btn.dataset.v||'').toLowerCase();
+      if(v===ans){
+        btn.classList.add('correct');
+        row.classList.add('revealed');
+        row.querySelectorAll('.mcq-opts button').forEach(b=>{b.disabled=true;});
+      }else{
+        btn.classList.add('wrong');
+        btn.disabled=true;
+      }
+    });
+  });
+});
+</script>
+
+<!-- Gap-fill (multi-answer, case-insensitive) -->
+<script>
+document.querySelectorAll('.gapfill button.check').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const box=document.getElementById(btn.dataset.target);if(!box)return;
+    let ok=0,total=0;
+    box.querySelectorAll('input[data-a]').forEach(inp=>{
+      total++;
+      const raw=(inp.value||'').trim().toLowerCase();
+      const expects=(inp.dataset.a||'').split('|').map(s=>s.trim().toLowerCase());
+      inp.classList.remove('correct','wrong');
+      if(expects.includes(raw)){inp.classList.add('correct');ok++;}
+      else inp.classList.add('wrong');
+    });
+    const res=document.getElementById(btn.dataset.target+'-result');
+    if(res)res.textContent=ok+' / '+total+' correct';
+  });
+});
+</script>
+
+<!-- Match game -->
+<script>
+(function(){
+  const data=JSON.parse(document.getElementById('match-data').textContent);
+  const shuffle=arr=>arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(p=>p[1]);
+  const left=shuffle(data.slice()),right=shuffle(data.slice());
+  const lEl=document.getElementById('match-left'),rEl=document.getElementById('match-right');
+  left.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.textContent=d.en;c.dataset.k=d.en;lEl.appendChild(c);});
+  right.forEach(d=>{const c=document.createElement('div');c.className='match-card';c.textContent=d.ru;c.dataset.k=d.en;rEl.appendChild(c);});
+  let sel=null;
+  document.querySelectorAll('#match-left .match-card, #match-right .match-card').forEach(c=>{
+    c.addEventListener('click',()=>{
+      if(c.classList.contains('matched'))return;
+      if(!sel){sel=c;c.classList.add('selected');return;}
+      if(sel===c){c.classList.remove('selected');sel=null;return;}
+      if(sel.parentElement===c.parentElement){sel.classList.remove('selected');sel=c;c.classList.add('selected');return;}
+      if(sel.dataset.k===c.dataset.k){sel.classList.add('matched');c.classList.add('matched');sel.classList.remove('selected');sel=null;}
+      else{const a=sel,b=c;a.classList.add('wrong');b.classList.add('wrong');setTimeout(()=>{a.classList.remove('wrong','selected');b.classList.remove('wrong');sel=null;},400);}
+    });
+  });
+})();
+</script>
+
+<!-- Classify · human check: правильная постановка → зелёное, неверная → shake + возврат в pool -->
+<script>
+(function(){
+  const pool=document.getElementById('cl-pool');
+  if(!pool)return;
+  const resEl=document.getElementById('cl-result');
+  const totalChips=pool.querySelectorAll('.chip').length;
+  let selected=null;
+  const refreshResult=()=>{
+    const placed=document.querySelectorAll('.classify-bin .placed-items > span').length;
+    resEl.textContent = placed>=totalChips ? ('✓ '+placed+' / '+totalChips+' correct') : (placed+' / '+totalChips);
+  };
+  pool.addEventListener('click',e=>{
+    const chip=e.target.closest('.chip');
+    if(!chip||chip.classList.contains('placed'))return;
+    if(selected===chip){chip.classList.remove('selected');selected=null;return;}
+    if(selected)selected.classList.remove('selected');
+    chip.classList.add('selected');selected=chip;
+  });
+  document.querySelectorAll('.classify-bin').forEach(bin=>{
+    bin.addEventListener('click',()=>{
+      if(!selected)return;
+      const isRight = selected.dataset.cls === bin.dataset.bin;
+      if(isRight){
+        const clone=document.createElement('span');
+        clone.textContent=selected.textContent;
+        clone.classList.add('correct');
+        bin.querySelector('.placed-items').appendChild(clone);
+        selected.classList.add('placed');
+        selected.classList.remove('selected');
+        selected=null;
+        refreshResult();
+      }else{
+        bin.classList.add('wrong-flash');
+        selected.classList.add('wrong');
+        setTimeout(()=>{
+          bin.classList.remove('wrong-flash');
+          if(selected){selected.classList.remove('wrong','selected');selected=null;}
+        },500);
+      }
+    });
+  });
+  document.getElementById('cl-check').addEventListener('click',refreshResult);
+  document.getElementById('cl-reset').addEventListener('click',()=>{
+    document.querySelectorAll('.classify-bin .placed-items').forEach(p=>p.innerHTML='');
+    pool.querySelectorAll('.chip').forEach(c=>c.classList.remove('placed','selected','correct','wrong'));
+    resEl.textContent='';
+    selected=null;
+  });
+})();
+</script>
+
+<!-- Builder · human check: только правильное слово принимается в следующий слот, неверное shake'ается -->
+<script>
+document.querySelectorAll('.builder').forEach(b=>{
+  const slots=b.querySelectorAll('.slot');
+  const bank=b.querySelector('.word-bank');
+  const status=b.querySelector('.builder-status');
+  const answer=(b.dataset.answer||'').trim();
+  const expected=answer.replace(/\s*[?.!]\s*$/,'').split(/\s+/);
+  const btns=[...bank.querySelectorAll('button')];
+  btns.sort(()=>Math.random()-0.5).forEach(btn=>bank.appendChild(btn));
+  bank.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(btn.classList.contains('used'))return;
+      const idx=[...slots].findIndex(s=>!s.classList.contains('filled'));
+      if(idx<0)return;
+      const need=(expected[idx]||'').toLowerCase();
+      if(btn.dataset.w.toLowerCase()===need){
+        const slot=slots[idx];
+        slot.textContent=btn.dataset.w;
+        slot.classList.add('filled','correct');
+        slot.dataset.src=btn.dataset.w;
+        btn.classList.add('used');
+        if(idx===slots.length-1){status.textContent='✓ correct';status.className='builder-status ok';}
+      }else{
+        btn.classList.add('shake-wrong');
+        setTimeout(()=>btn.classList.remove('shake-wrong'),380);
+      }
+    });
+  });
+  slots.forEach((s,i)=>{
+    s.addEventListener('click',()=>{
+      if(!s.classList.contains('filled'))return;
+      const lastFilledIdx=[...slots].map(x=>x.classList.contains('filled')).lastIndexOf(true);
+      if(i!==lastFilledIdx)return;
+      const src=s.dataset.src;
+      const btn=[...bank.querySelectorAll('button')].find(bb=>bb.dataset.w===src&&bb.classList.contains('used'));
+      if(btn)btn.classList.remove('used');
+      s.textContent='___';s.classList.remove('filled','correct');delete s.dataset.src;
+      status.textContent='';status.className='builder-status';
+    });
+  });
+  b.querySelector('[data-act="check"]').addEventListener('click',()=>{
+    const allFilled=[...slots].every(s=>s.classList.contains('filled'));
+    if(allFilled){status.textContent='✓ correct';status.className='builder-status ok';}
+    else{status.textContent='keep going…';status.className='builder-status';}
+  });
+  b.querySelector('[data-act="reset"]').addEventListener('click',()=>{
+    slots.forEach(s=>{s.textContent='___';s.classList.remove('filled','correct');delete s.dataset.src;});
+    bank.querySelectorAll('button').forEach(x=>x.classList.remove('used'));
+    status.textContent='';status.className='builder-status';
+  });
+});
+</script>
+
+<!-- Mic-drill (Web Speech API) + Copy transcript button -->
+<script>
+(function(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  document.querySelectorAll('.mic-row').forEach(row=>{
+    const btn=row.querySelector('.record');
+    const fb=row.querySelector('.mic-feedback');
+    const tr=row.querySelector('.mic-transcript');
+    // Copy transcript button (insert right after record)
+    const copyBtn=document.createElement('button');
+    copyBtn.className='mic-btn';
+    copyBtn.type='button';
+    copyBtn.textContent='📋 Copy';
+    copyBtn.title='Copy your transcript to clipboard, then send it to teacher';
+    btn.parentNode.insertBefore(copyBtn,btn.nextSibling);
+    copyBtn.addEventListener('click',()=>{
+      const txt=(tr.textContent||'').replace(/^"|"$/g,'').trim();
+      if(!txt){copyBtn.textContent='(record first)';setTimeout(()=>copyBtn.textContent='📋 Copy',1200);return;}
+      navigator.clipboard.writeText(txt).then(()=>{
+        copyBtn.textContent='✓ Copied';setTimeout(()=>copyBtn.textContent='📋 Copy',1600);
+      }).catch(()=>{copyBtn.textContent='(fail)';setTimeout(()=>copyBtn.textContent='📋 Copy',1600);});
+    });
+    const target=(row.dataset.target||'').toLowerCase().replace(/[.,?!]/g,'');
+    if(!SR){btn.disabled=true;btn.textContent='SR N/A';btn.title='Speech recognition not supported. Chrome/Edge required.';return;}
+    let rec=null;
+    btn.addEventListener('click',()=>{
+      if(btn.classList.contains('rec')){if(rec)rec.stop();return;}
+      rec=new SR();rec.lang='en-US';rec.continuous=false;rec.interimResults=false;
+      btn.classList.add('rec');btn.textContent='● Stop';
+      fb.className='mic-feedback shown';fb.textContent='Listening…';tr.textContent='';
+      rec.onresult=e=>{
+        const t=e.results[0][0].transcript.toLowerCase().replace(/[.,?!]/g,'');
+        tr.textContent='"'+e.results[0][0].transcript+'"';
+        const tw=target.split(/\s+/),uw=t.split(/\s+/);
+        let hits=0;tw.forEach(w=>{if(uw.includes(w))hits++;});
+        const pct=Math.round(hits/tw.length*100);
+        fb.className='mic-feedback shown'+(pct>=60?'':' miss');
+        fb.textContent='Match: '+pct+'%';
+      };
+      rec.onend=()=>{btn.classList.remove('rec');btn.textContent='🎙 Record';};
+      rec.onerror=()=>{btn.classList.remove('rec');btn.textContent='🎙 Record';fb.className='mic-feedback shown miss';fb.textContent='Error — try again';};
+      rec.start();
+    });
+  });
+})();
+</script>
+
+<!-- Aux drill · click pill → click gap -->
+<script>
+(function(){
+  const pool=document.getElementById('aux-pool');
+  const list=document.getElementById('aux-list');
+  const resEl=document.getElementById('aux-result');
+  if(!pool||!list)return;
+  let sel=null;
+  pool.addEventListener('click',e=>{
+    const p=e.target.closest('.aux-pill');
+    if(!p)return;
+    if(sel===p){p.classList.remove('selected');sel=null;return;}
+    if(sel)sel.classList.remove('selected');
+    p.classList.add('selected');sel=p;
+  });
+  list.addEventListener('click',e=>{
+    const g=e.target.closest('.aux-gap');
+    if(!g)return;
+    // Already correct? Locked. Ignore clicks.
+    if(g.classList.contains('correct'))return;
+    // No pill selected? Do nothing.
+    if(!sel)return;
+    const val=(sel.dataset.w||'').toLowerCase();
+    const exp=(g.dataset.a||'').toLowerCase();
+    if(val===exp){
+      g.textContent=sel.dataset.w;
+      g.classList.add('correct');
+      g.classList.remove('wrong-shake','filled');
+      sel.classList.remove('selected');
+      sel=null;
+      const total=list.querySelectorAll('.aux-gap').length;
+      const done=list.querySelectorAll('.aux-gap.correct').length;
+      resEl.textContent = done>=total ? ('✓ '+done+' / '+total+' correct') : (done+' / '+total);
+    }else{
+      g.classList.add('wrong-shake');
+      setTimeout(()=>g.classList.remove('wrong-shake'),380);
+    }
+  });
+  document.getElementById('aux-check').addEventListener('click',()=>{
+    const total=list.querySelectorAll('.aux-gap').length;
+    const done=list.querySelectorAll('.aux-gap.correct').length;
+    resEl.textContent = done>=total ? ('✓ '+done+' / '+total+' correct') : (done+' / '+total);
+  });
+  document.getElementById('aux-reset').addEventListener('click',()=>{
+    list.querySelectorAll('.aux-gap').forEach(g=>{
+      g.textContent='';
+      g.classList.remove('filled','correct','wrong');
+    });
+    if(sel){sel.classList.remove('selected');sel=null;}
+    resEl.textContent='';
+  });
+})();
+</script>
+
+<!-- Simple lesson-tabs toggle (visual only — no homework injection yet) -->
+<script>
+document.querySelectorAll('.ltab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.ltab').forEach(x=>x.classList.remove('is-active'));
+    t.classList.add('is-active');
+  });
+});
+</script>
+
+
+<script src="../../assets/lab-persist.js?v=3" defer></script>
+<script src="../../assets/lab-send-pill.js?v=2" defer></script>
+<script src="../../assets/lab-total.js?v=4" defer></script>
+<script src="../../assets/lab-homework.js?v=40" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+
+</body>
+</html>

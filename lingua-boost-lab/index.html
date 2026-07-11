@@ -187,7 +187,8 @@ h3 { margin: 0; }/* Topbar */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  /* Shift subject (laptop / plant / cube) slightly leftward, mirrors Premium hero crop */
+  object-position: 30% center;
   min-height: 380px;
 }.hero-copy {
   display: flex;
@@ -830,9 +831,10 @@ body {
   min-height: clamp(520px, 68vh, 760px);
   width: 100%;
   max-width: 100%;
-  border-radius: 0;
-  border-left: 0;
-  border-right: 0;
+  /* Restore bordered card to match Premium look (was: border-radius:0; sides:0) */
+  border-radius: 12px;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
   background: var(--bg);
 }body.light .hero {
   background: #f8f6f2;
@@ -3815,10 +3817,17 @@ body.light .level-grid {
     padding-right: 16px !important;
   }
 }
+
+/* ===== Hero — keep image shifted left, but no visible frame (per Maria's call) ===== */
+/* (рамку убрали — оставляем сдвиг картинки) */
+.wrap .hero .hero-banner img,
+.wrap .hero .hero-banner img.hero-bg {
+  right: clamp(140px, 12vw, 240px) !important;
+}
 </style>
 
-<link rel="stylesheet" href="./assets/canon-L.css?v=11" data-tag="canon-L-loaded">
-<link rel="stylesheet" href="./assets/mobile-fix.css?v=20260606" data-tag="linguaboost-mobile-fix-loaded">
+<link rel="stylesheet" href="./assets/canon-L.css?v=15" data-tag="canon-L-loaded">
+<link rel="stylesheet" href="./assets/mobile-fix.css?v=20260625a" data-tag="linguaboost-mobile-fix-loaded">
 </head>
 <body>
 <script>
@@ -3864,7 +3873,7 @@ body.light .level-grid {
     <a class="canon-l-link" href="index.html" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
   </nav>
   <div class="canon-l-tools">
-    <a class="canon-l-pill" href="https://cabinet.newgeneration-english.ru/login.html" aria-label="Войти в кабинет">CAB</a>
+    <a class="canon-l-pill" href="/cabinet/login.html" aria-label="Войти в кабинет">CAB</a>
     <button id="labThemeToggle" class="canon-l-pill theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false" data-ru="Тема" data-en="Theme">Theme</button>
     <button class="canon-l-pill lang-toggle" type="button" onclick="toggleLang()" aria-label="Toggle language" data-ru="EN" data-en="RU">RU</button>
   </div>
@@ -3879,8 +3888,8 @@ body.light .level-grid {
 
   <section class="hero">
     <div class="hero-banner">
-      <img class="hero-bg img-dark" src="./assets/lab/lab-hero-dark.png" alt="">
-      <img class="hero-bg img-light" src="./assets/lab/lab-hero-light.png" alt="">
+      <img class="hero-bg img-dark" src="./assets/lab/lab-hero-dark.webp" alt="">
+      <img class="hero-bg img-light" src="./assets/lab/lab-hero-light.webp" alt="">
 </div>
     <div class="hero-copy">
       <span class="hero-badge" data-ru="lab --level" data-en="lab --level">lab --<span class="level-word">level</span></span>
@@ -3900,24 +3909,12 @@ body.light .level-grid {
         <a class="level" href="#c2">C2</a>
         <a class="level" href="#interactive-lessons">Interactive</a>
         <a class="level is-bonus" href="./find-and-say-teaser.html?v=reset-progress-1" data-ru="Find &amp; Say" data-en="Find &amp; Say">Find &amp; Say</a>
-        <a class="level is-premium" href="./premium.html" data-ru="🔒 Premium" data-en="🔒 Premium" style="background:linear-gradient(135deg,rgba(217,184,90,0.16) 0%,rgba(217,184,90,0.06) 100%);border:1px solid rgba(217,184,90,0.40);color:#f5d77a;">🔒 Premium</a>
+        <a class="level is-premium" href="./premium.html" data-ru="Premium" data-en="Premium" style="background:rgba(154,122,217,0.10);border:1px solid rgba(154,122,217,0.42);color:var(--text);display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Premium</a>
       </div>
     </div>
   </section>
 
   <main class="level-grid" id="catalog">
-
-    <section class="level-section" id="premium-banner" style="background:linear-gradient(135deg,rgba(26,19,38,0.85) 0%,rgba(33,23,47,0.85) 100%);border:1px solid rgba(217,184,90,0.35);border-radius:18px;padding:clamp(22px,3vw,32px);margin-bottom:24px;position:relative;overflow:hidden;">
-      <div style="position:absolute;inset:0;background:radial-gradient(circle at 92% 12%,rgba(217,184,90,0.18),transparent 38%);pointer-events:none;"></div>
-      <div style="position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;">
-        <div style="flex:1;min-width:280px;">
-          <div style="display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#f5d77a;padding:5px 12px;border:1px solid rgba(217,184,90,0.40);border-radius:50px;background:rgba(217,184,90,0.08);margin-bottom:12px;">Premium · доступ по приглашению</div>
-          <h2 style="font-family:var(--display);font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:900;margin:0 0 6px;line-height:1.2;">Авторская коллекция <span style="color:#f5d77a;">сильных модулей</span></h2>
-          <p style="color:var(--muted);font-size:.96rem;margin:0;max-width:540px;">Voyager, Switzerland, Jerusalem — кинематографичные уроки с оригинальной озвучкой и форматами от ЕГЭ до IELTS / TOEFL / Olympiad. Доступ по коду.</p>
-        </div>
-        <a href="./premium.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:12px;background:linear-gradient(135deg,#d9b85a 0%,#f5d77a 100%);color:#160b05;font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.04em;text-decoration:none;transition:.15s;white-space:nowrap;">Открыть Premium →</a>
-      </div>
-    </section>
 
     <section class="level-section" id="a1">
       <div class="section-head">
@@ -3932,36 +3929,36 @@ body.light .level-grid {
       </div>      <div class="module-grid">
         <article class="module-card" data-lab-lesson="a1-01">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
-          <a class="module-link" href="./a1/a1-01-present-simple-routines.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
+          <a class="module-link" href="./a1/a1-01-present-simple-routines.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card" data-lab-lesson="a1-02">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
-          <a class="module-link" href="./a1/a1-02-present-simple-questions-negatives.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
+          <a class="module-link" href="./a1/a1-02-present-simple-questions-negatives.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-03">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
-          <a class="module-link" href="./a1/a1-03-present-simple-adverbs-frequency.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
+          <a class="module-link" href="./a1/a1-03-present-simple-adverbs-frequency.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-04">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
-          <a class="module-link" href="./a1/a1-04-have-has-my-things.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
+          <a class="module-link" href="./a1/a1-04-have-has-my-things.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-05">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
-          <a class="module-link" href="./a1/a1-05-my-your-his-her.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
+          <a class="module-link" href="./a1/a1-05-my-your-his-her.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-06">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
-          <a class="module-link" href="./a1/a1-06-prepositions-of-place.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
+          <a class="module-link" href="./a1/a1-06-prepositions-of-place.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-07">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
-          <a class="module-link" href="./a1/a1-07-instructions-requests.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
+          <a class="module-link" href="./a1/a1-07-instructions-requests.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card is-complete" data-lab-lesson="a1-08">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
-          <a class="module-link" href="./a1/a1-08-final-mission.html">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
+          <a class="module-link" href="./a1/a1-08-final-mission.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
     </section>
 
@@ -3973,35 +3970,35 @@ body.light .level-grid {
       <div class="module-grid">
         <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
           <a class="module-link" href="#">SOON</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
           <a class="module-link" href="#">SOON</a>
         </article>      </div>
     </section>
@@ -4013,36 +4010,36 @@ body.light .level-grid {
       <div class="module-grid">
         <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
     </section>
     <section class="level-section" id="b2">
@@ -4053,36 +4050,36 @@ body.light .level-grid {
       <div class="module-grid">
         <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
     </section>
     <section class="level-section" id="c1">
@@ -4093,36 +4090,36 @@ body.light .level-grid {
       <div class="module-grid">
         <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
     </section>
     <section class="level-section" id="c2">
@@ -4133,36 +4130,36 @@ body.light .level-grid {
       <div class="module-grid">
         <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">01</span></div>
-          <h3 class="module-title">Урок 1</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 1" data-en="Lesson 1">Урок 1</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">02</span></div>
-          <h3 class="module-title">Урок 2</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 2" data-en="Lesson 2">Урок 2</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">03</span></div>
-          <h3 class="module-title">Урок 3</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 3" data-en="Lesson 3">Урок 3</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">04</span></div>
-          <h3 class="module-title">Урок 4</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 4" data-en="Lesson 4">Урок 4</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">05</span></div>
-          <h3 class="module-title">Урок 5</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 5" data-en="Lesson 5">Урок 5</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">06</span></div>
-          <h3 class="module-title">Урок 6</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 6" data-en="Lesson 6">Урок 6</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">07</span></div>
-          <h3 class="module-title">Урок 7</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 7" data-en="Lesson 7">Урок 7</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C2</span><span class="module-pill">08</span></div>
-          <h3 class="module-title">Урок 8</h3>
-          <a class="module-link" href="#">Открыть</a>
+          <h3 class="module-title" data-ru="Урок 8" data-en="Lesson 8">Урок 8</h3>
+          <a class="module-link" href="#" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
     </section>
 
@@ -4172,64 +4169,76 @@ body.light .level-grid {
       <div class="module-grid">        <article class="module-card">
           <div class="module-meta"><span class="module-pill">Pre-A1</span><span class="module-pill">02</span></div>
           <h3 class="module-title">Hello! Classroom Fun</h3>
-          <a class="module-link" href="./pre-a1/hello-classroom-fun.html">Открыть</a>
+          <a class="module-link" href="./pre-a1/hello-classroom-fun.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">Pre-A1</span><span class="module-pill">03</span></div>
           <h3 class="module-title">Pink English · Body &amp; Grammar</h3>
-          <a class="module-link" href="./pre-a1/body-and-grammar-pink.html">Открыть</a>
+          <a class="module-link" href="./pre-a1/body-and-grammar-pink.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">04</span></div>
           <h3 class="module-title">School Words and Pronouns</h3>
-          <a class="module-link" href="./a1/school-words-and-pronouns.html">Открыть</a>
+          <a class="module-link" href="./a1/school-words-and-pronouns.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">05</span></div>
           <h3 class="module-title">Prepositions World</h3>
-          <a class="module-link" href="./a1/prepositions-world.html">Открыть</a>
+          <a class="module-link" href="./a1/prepositions-world.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">06</span></div>
           <h3 class="module-title">Past Simple Adventure</h3>
-          <a class="module-link" href="./a1/past-simple-adventure.html">Открыть</a>
+          <a class="module-link" href="./a1/past-simple-adventure.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A1</span><span class="module-pill">07</span></div>
           <h3 class="module-title">Easter English Lesson</h3>
-          <a class="module-link" href="./a1/easter-english-lesson.html">Открыть</a>
+          <a class="module-link" href="./a1/easter-english-lesson.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2-B1</span><span class="module-pill">08</span></div>
           <h3 class="module-title">Core Trainer A2-B1</h3>
-          <a class="module-link" href="./a2/core-trainer-a2-b1.html">Открыть</a>
+          <a class="module-link" href="./a2/core-trainer-a2-b1.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">A2-B1</span><span class="module-pill">09</span></div>
           <h3 class="module-title">English Booster · A2 → B1</h3>
-          <a class="module-link" href="./a2/english-booster-a2-b1.html">Открыть</a>
+          <a class="module-link" href="./a2/english-booster-a2-b1.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">10</span></div>
           <h3 class="module-title">Word Forge: Suffixes &amp; Prefixes</h3>
-          <a class="module-link" href="./b1/word-building-prefixes-and-suffixes.html">Открыть</a>
+          <a class="module-link" href="./b1/word-building-prefixes-and-suffixes.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">11</span></div>
           <h3 class="module-title">Ancient China: Cultural Studies</h3>
-          <a class="module-link" href="./b1/ancient-china-cultural-studies.html">Открыть</a>
+          <a class="module-link" href="./b1/ancient-china-cultural-studies.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">12</span></div>
           <h3 class="module-title">Restaurant Menu Lab</h3>
-          <a class="module-link" href="./b1/restaurant-menu-lab.html">Открыть</a>
+          <a class="module-link" href="./b1/restaurant-menu-lab.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B2+</span><span class="module-pill">13</span></div>
           <h3 class="module-title">Geo Quest: Articles on the Map</h3>
-          <a class="module-link" href="./b2-plus/articles-with-geographical-names.html">Открыть</a>
+          <a class="module-link" href="./b2-plus/articles-with-geographical-names.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">14</span></div>
           <h3 class="module-title">Grammar Arcade · Present Continuous vs Present Perfect</h3>
-          <a class="module-link" href="./b1/grammar-arcade-pc-pp.html">Открыть</a>
+          <a class="module-link" href="./b1/grammar-arcade-pc-pp.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">C1</span><span class="module-pill">15</span></div>
           <h3 class="module-title">Stars &amp; Stellar Phenomena</h3>
-          <a class="module-link" href="./c1/stars-and-stellar-phenomena.html">Открыть</a>
+          <a class="module-link" href="./c1/stars-and-stellar-phenomena.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>        <article class="module-card">
           <div class="module-meta"><span class="module-pill">B1</span><span class="module-pill">16</span><span class="module-pill">Quest</span></div>
           <h3 class="module-title">The Whispering Library</h3>
-          <a class="module-link" href="./b1/whispering-library-quest.html">Открыть</a>
+          <a class="module-link" href="./b1/whispering-library-quest.html" data-ru="Открыть" data-en="Open">Открыть</a>
         </article>      </div>
+    </section>
+
+    <section id="premium-collection" style="position:relative;padding:32px 36px;border:1px solid var(--line);border-radius:12px;background:var(--bg-card);overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 94% 10%,rgba(154,122,217,0.12),transparent 42%);pointer-events:none;"></div>
+      <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;">
+        <div style="flex:1;min-width:260px;">
+          <div style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--plum-2,#c5aef0);padding:5px 12px;border:1px solid rgba(154,122,217,0.42);border-radius:50px;background:rgba(154,122,217,0.10);margin-bottom:10px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Premium · по приглашению</div>
+          <h2 style="font-family:var(--display);font-size:clamp(1.1rem,2vw,1.4rem);font-weight:800;margin:0 0 6px;line-height:1.25;color:var(--text);" data-ru="Авторская коллекция — Voyager, Switzerland, Jerusalem, Travel Light" data-en="Authorial collection — Voyager, Switzerland, Jerusalem, Travel Light">Авторская коллекция — Voyager, Switzerland, Jerusalem, Travel Light</h2>
+          <p style="margin:0;font-size:.92rem;color:var(--muted);max-width:520px;" data-ru="5 модулей: кинематографичные квесты + лёгкая разговорная серия Travel Light. Доступ по коду." data-en="5 modules: cinematic quests + light speaking series Travel Light. Access by code.">5 модулей: кинематографичные квесты + лёгкая разговорная серия Travel Light. Доступ по коду.</p>
+        </div>
+        <a class="module-link" href="./premium.html" data-ru="Открыть Premium →" data-en="Open Premium →">Открыть Premium →</a>
+      </div>
     </section>
 
   </main>
