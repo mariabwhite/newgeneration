@@ -1,294 +1,1299 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Lab Premium · NG English</title>
-<meta name="description" content="Премиум-коллекция авторских уроков NG English: Voyager, Switzerland, Jerusalem. Доступ по приглашению.">
+<title>Lab Library · NG English</title>
+<meta name="description" content="Платные уроки лингвистической лаборатории NG English: Voyager, Switzerland, Jerusalem. Доступ по коду.">
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="vault-version" content="v20260710-31-premium-lessons">
 <link rel="icon" type="image/svg+xml" href="../assets/nge-favicon-lab.svg">
+<script src="./assets/lab-theme-sync.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/canon-L.css?v=15" data-tag="canon-L-loaded">
+<link rel="stylesheet" href="./assets/mobile-fix.css?v=20260625a" data-tag="linguaboost-mobile-fix-loaded">
 <style>
+/* ===== Palette (mockup-aligned) ===== */
 :root {
-  --bg:        #0e0a18;
-  --bg-2:      #120c1d;
-  --bg-card:   #1a1326;
-  --bg-card-2: #21172f;
-  --plum:      #9a7ad9;
-  --plum-2:    #c5aef0;
-  --gold:      #d9b85a;
-  --gold-2:    #f5d77a;
-  --gold-soft: rgba(217,184,90,0.10);
-  --gold-border: rgba(217,184,90,0.35);
-  --text:      #f0ebff;
-  --muted:     #bfaee0;
-  --faint:     #8f7daa;
-  --line:      rgba(197,174,240,0.12);
-  --line-2:    rgba(197,174,240,0.22);
-  --ok:        #2ee59d;
-  --miss:      #ff5c72;
-  --mono:      "JetBrains Mono", Consolas, monospace;
-  --display:   "Unbounded", "Manrope", system-ui, sans-serif;
-  --body-font: "Manrope", system-ui, sans-serif;
+  --bg:          #f4f1ff;       /* pale lavender canvas */
+  --bg-hero:     #efe9ff;       /* hero plate, slightly darker */
+  --bg-card:     #ffffff;
+  --bg-card-2:   #faf7ff;
+  --bg-input:    #ffffff;
+  --text:        #1a1326;
+  --muted:       #5f5a70;
+  --faint:       #8a82a0;
+  --line:        rgba(122,95,207,0.18);
+  --line-2:      rgba(122,95,207,0.32);
+  --plum:        #9a7ad9;
+  --plum-2:      #b8a1ec;
+  --plum-deep:   #6b4fb0;
+  --plum-soft:   rgba(154,122,217,0.10);
+  --plum-pill-bg: #ebe2ff;
+  --plum-pill-border: rgba(154,122,217,0.40);
+  --accent:      #ff7430;
+  --accent-2:    #ff5125;
+  --ok:          #26c389;
+  --miss:        #d83a3a;
+  --topbar-bg:   rgba(244,241,255,0.86);
+  --lb-text:     #1a1326;
+  --lb-muted:    #8a82a0;
+  --lb-link-hover: #6b4fb0;
+  --mono:        "JetBrains Mono", Consolas, monospace;
+  --display:     "Unbounded", "Manrope", system-ui, sans-serif;
+  --body-font:   "Manrope", system-ui, sans-serif;
 }
-[data-theme="light"] {
-  --bg:        #f7f5ff;
-  --bg-2:      #f0ecff;
-  --bg-card:   #ffffff;
-  --bg-card-2: #f2eeff;
-  --text:      #1a1326;
-  --muted:     #5f5a70;
-  --faint:     #756d86;
-  --line:      rgba(122,95,207,0.18);
-  --line-2:    rgba(122,95,207,0.30);
-  --gold:      #b48c1e;
-  --gold-2:    #d9aa3e;
-  --gold-soft: rgba(180,140,30,0.10);
-  --gold-border: rgba(180,140,30,0.40);
+[data-theme="dark"], [data-theme="black-lab"], [data-theme="violet"] {
+  --bg:          #0e0a18;
+  --bg-hero:     #1a1326;
+  --bg-card:     #1a1326;
+  --bg-card-2:   #21172f;
+  --bg-input:    #251a36;
+  --text:        #f0ebff;
+  --muted:       #bfaee0;
+  --faint:       #8f7daa;
+  --line:        rgba(197,174,240,0.14);
+  --line-2:      rgba(197,174,240,0.26);
+  --plum-pill-bg: rgba(154,122,217,0.16);
+  --topbar-bg:   rgba(14,10,24,0.86);
+  --lb-text:     #f0ebff;
+  --lb-muted:    #8f7daa;
+  --lb-link-hover: #c5aef0;
 }
+
 * { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
-  margin: 0;
   font-family: var(--body-font);
   color: var(--text);
   background:
-    radial-gradient(circle at 76% 4%, rgba(217,184,90,0.10), transparent 34%),
-    radial-gradient(circle at 12% 36%, rgba(154,122,217,0.18), transparent 30%),
-    radial-gradient(circle at 88% 74%, rgba(217,184,90,0.06), transparent 38%),
+    radial-gradient(circle at 85% 0%, rgba(154,122,217,0.22), transparent 38%),
+    radial-gradient(circle at 5% 30%, rgba(184,161,236,0.16), transparent 32%),
     var(--bg);
   min-height: 100vh;
-  line-height: 1.6;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration: none; }
-.topbar {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; gap: 1.2rem;
-  padding: 14px 28px; border-bottom: 1px solid var(--line);
-  background: rgba(14,10,24,0.92); backdrop-filter: blur(8px);
-}
-[data-theme="light"] .topbar { background: rgba(247,245,255,0.92); }
-.topbar-brand { display:flex; align-items:center; gap:10px; }
-.brand-mark { width:36px; height:36px; border-radius:9px; border-top-right-radius:0; background:var(--gold); color:#160b05; display:grid; place-items:center; font-family:var(--display); font-weight:900; font-size:18px; }
-.brand-copy { display:flex; flex-direction:column; line-height:1.1; }
-.brand-name { font-family:var(--display); font-weight:800; font-size:13px; letter-spacing:.06em; }
-.brand-sub { font-family:var(--mono); font-size:10px; letter-spacing:.18em; color:var(--faint); text-transform:uppercase; }
-.spacer { flex:1; }
-.btn-sm {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:8px 14px; border:1px solid var(--line-2); border-radius:8px;
-  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--text); cursor:pointer; background:transparent; transition:.15s;
-}
-.btn-sm:hover { border-color:var(--gold); color:var(--gold-2); }
+img { display: block; max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+button { font: inherit; cursor: pointer; }
 
-main { max-width: 1100px; margin: 40px auto 80px; padding: 0 22px; }
-
-.hero {
-  border: 1px solid var(--gold-border);
-  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
-  border-radius: 24px; padding: clamp(28px, 4vw, 48px);
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content:""; position:absolute; inset:0;
-  background: radial-gradient(circle at 92% 8%, rgba(217,184,90,0.14), transparent 38%);
-  pointer-events:none;
-}
-.eyebrow {
-  display:inline-block; font-family:var(--mono); font-size:11px;
-  letter-spacing:.22em; text-transform:uppercase; color:var(--gold-2);
-  padding:6px 14px; border:1px solid var(--gold-border); border-radius:50px;
-  background:var(--gold-soft); margin-bottom:18px;
-}
-.hero h1 {
-  font-family:var(--display); font-weight:900;
-  font-size: clamp(1.8rem, 5vw, 3rem); line-height:1.1; margin:0 0 14px;
-}
-.hero h1 .gold { color: var(--gold-2); }
-.hero p.lead {
-  font-size: clamp(1rem, 1.4vw, 1.15rem); color: var(--muted); max-width: 720px; margin: 0 0 22px;
-}
-.meta-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom: 8px; position:relative; z-index:1; }
-.meta-pill {
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
-  padding:6px 12px; border-radius:50px; border:1px solid var(--line-2); color:var(--muted);
-}
-.meta-pill.is-gold { border-color: var(--gold-border); color: var(--gold-2); background: var(--gold-soft); }
-
-.section {
-  margin-top: 36px; padding: 28px; border:1px solid var(--line);
-  border-radius: 18px; background: var(--bg-card);
-}
-.section h2 { font-family:var(--display); font-size: clamp(1.2rem, 2.4vw, 1.5rem); margin: 0 0 16px; }
-.section h2 .num {
-  font-family:var(--mono); font-size:.6em; color:var(--gold-2); margin-right:10px;
-  padding:4px 8px; border:1px solid var(--gold-border); border-radius:6px;
-  letter-spacing:.12em; vertical-align: middle;
+main {
+  max-width: 1320px;
+  margin: 28px auto 80px;
+  padding: 0 clamp(18px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.pin-form { display:flex; flex-direction:column; gap:14px; max-width: 480px; }
-.pin-row { display:flex; gap:10px; }
-.pin-input {
-  flex:1; padding:14px 18px; border-radius:12px;
-  border:1px solid var(--line-2); background:var(--bg-card-2); color:var(--text);
-  font-family:var(--mono); font-size:1rem; letter-spacing:.1em; outline:none; transition:.15s;
+/* ===== Topbar — full nav, override canon-L colors for light theme ===== */
+.canon-l-topbar {
+  background: var(--topbar-bg) !important;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-.pin-input:focus { border-color: var(--gold); background: var(--bg-2); }
-.pin-input.shake { animation: shake .4s; border-color: var(--miss); }
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
+/* Keep nav on one line at common desktop widths — compact gap + font */
+@media (max-width: 1240px) {
+  .canon-l-nav { gap: 14px !important; margin-left: 12px !important; }
+  .canon-l-link { font-size: 9px !important; letter-spacing: 0.14em !important; }
 }
-.btn-gold {
-  display:inline-flex; align-items:center; gap:8px;
-  padding:14px 22px; border-radius:12px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-2) 100%);
-  color:#160b05; font-family:var(--display); font-weight:800; font-size:.95rem;
-  border:none; cursor:pointer; transition:.15s; letter-spacing:.04em;
+@media (max-width: 980px) {
+  .canon-l-nav { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; }
+  .canon-l-nav::-webkit-scrollbar { display: none; }
 }
-.btn-gold:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(217,184,90,0.32); }
-.btn-gold:disabled { opacity:.5; cursor:wait; }
-.pin-msg { font-family:var(--mono); font-size:.85rem; color:var(--muted); min-height: 22px; }
-.pin-msg.is-error { color: var(--miss); }
-.pin-msg.is-ok { color: var(--ok); }
+/* canon-L.css defaults handle .canon-l-mark, .canon-l-name, .canon-l-sub, .canon-l-pill */
+/* We only need light-theme tweaks for the pills (catalog has its own light overrides via lab-theme-sync's themes) */
 
-.cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 8px; }
-.card {
+/* ===== Hero — visible bordered card, image fills entire box ===== */
+.premium-hero {
   position: relative;
-  padding: 22px 22px 24px;
-  background: var(--bg-card-2);
+  background: var(--bg-card);
+  overflow: hidden;
+  min-height: clamp(440px, 56vh, 580px);
+  display: flex;
+  align-items: stretch;
+  border-radius: 12px;
   border: 1px solid var(--line-2);
-  border-radius: 16px;
-  transition: .2s;
 }
-.card.locked { filter: blur(8px) saturate(0.6); user-select:none; pointer-events:none; }
-.card .card-emoji { font-size: 2rem; margin-bottom: 10px; }
-.card .card-tag {
-  position: absolute; top: 16px; right: 16px;
-  font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
-  padding:4px 10px; border-radius:50px; border:1px solid var(--gold-border); color:var(--gold-2); background:var(--gold-soft);
+.premium-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 3.5vw, 52px);
+  max-width: clamp(520px, 55%, 720px);
+  /* Subtle vertical glass to keep text readable over busy image */
+  background: linear-gradient(90deg,
+    rgba(247, 245, 255, 0.92) 0%,
+    rgba(247, 245, 255, 0.82) 55%,
+    rgba(247, 245, 255, 0.0) 100%);
 }
-.card .card-title { font-family:var(--display); font-size:1.05rem; line-height:1.25; margin: 4px 0 8px; }
-.card .card-subtitle { font-size:.92rem; color: var(--muted); margin-bottom: 16px; }
-.card .card-open {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:10px 16px; border-radius:10px;
-  background: var(--gold); color:#160b05; font-family:var(--display); font-weight:700; font-size:.88rem;
-  letter-spacing:.04em; transition:.15s;
+[data-theme="dark"] .premium-hero-copy,
+[data-theme="black-lab"] .premium-hero-copy,
+[data-theme="violet"] .premium-hero-copy {
+  background: linear-gradient(90deg,
+    rgba(14, 10, 24, 0.85) 0%,
+    rgba(14, 10, 24, 0.72) 55%,
+    rgba(14, 10, 24, 0.0) 100%);
 }
-.card .card-open:hover { background: var(--gold-2); }
-.card.unlocked { border-color: var(--gold-border); box-shadow: 0 4px 22px rgba(217,184,90,0.10); }
+.hero-pill-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: clamp(18px, 2.5vw, 26px);
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--plum-pill-bg);
+  color: var(--plum-deep);
+  border: 1px solid var(--plum-pill-border);
+}
+[data-theme="dark"] .hero-pill,
+[data-theme="black-lab"] .hero-pill,
+[data-theme="violet"] .hero-pill { color: var(--plum-2); }
+/* Orange "$ " prefix like catalog .hero-badge — Lab signature */
+.hero-pill.is-cmd::before {
+  content: "$ ";
+  color: var(--accent);
+  font-weight: 800;
+}
+.hero-pill.is-status {
+  background: rgba(38,195,137,0.10);
+  color: #1f8e60;
+  border-color: rgba(38,195,137,0.40);
+}
+[data-theme="dark"] .hero-pill.is-status,
+[data-theme="black-lab"] .hero-pill.is-status,
+[data-theme="violet"] .hero-pill.is-status { color: #4fd9a4; }
+.hero-pill .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(38,195,137,0.20);
+}
+/* Typography — bigger + bolder like catalog hero (visual match) */
+.premium-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
+  color: var(--text);
+  text-shadow: none;
+}
+/* H1 accent — ORANGE, matches what catalog .accent-purple actually renders as */
+/* H1 accent — orange (Lab signature), no shadow */
+.premium-hero h1 .accent {
+  color: var(--accent);
+  font-weight: 800;
+  text-shadow: none;
+}
+[data-theme="dark"] .premium-hero h1 .accent,
+[data-theme="black-lab"] .premium-hero h1 .accent,
+[data-theme="violet"] .premium-hero h1 .accent {
+  color: var(--accent);
+  text-shadow: none;
+}
+/* Lead — match catalog .hero-copy .lead exactly */
+.premium-hero .lead {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 28px;
+  max-width: 540px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+[data-theme="dark"] .premium-hero .lead,
+[data-theme="black-lab"] .premium-hero .lead,
+[data-theme="violet"] .premium-hero .lead {
+  color: #d9ccff;
+  text-shadow: 0 1px 16px rgba(7, 4, 13, 0.72);
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.meta-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-card);
+  transition: transform 0.18s, border-color 0.18s;
+}
+.meta-card:hover { transform: translateY(-1px); }
+.meta-card .icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  display: grid; place-items: center;
+  color: var(--plum-deep);
+}
+[data-theme="dark"] .meta-card .icon,
+[data-theme="black-lab"] .meta-card .icon,
+[data-theme="violet"] .meta-card .icon { color: var(--plum-2); }
+/* Per-card color variants — orange / plum / green rotation */
+.meta-card.is-orange { border-color: rgba(255,116,48,0.42); }
+.meta-card.is-orange .icon { color: var(--accent); }
+.meta-card.is-orange:hover { border-color: rgba(255,116,48,0.70); box-shadow: 0 6px 18px -10px rgba(255,116,48,0.40); }
 
-.hint {
-  margin-top: 20px; padding: 16px 18px;
-  background: rgba(154,122,217,0.06); border-left: 3px solid var(--plum);
-  border-radius: 8px; font-size: .92rem; color: var(--muted);
-}
-.hint b { color: var(--text); }
+.meta-card.is-plum { border-color: rgba(154,122,217,0.42); }
+.meta-card.is-plum .icon { color: var(--plum-deep); }
+[data-theme="dark"] .meta-card.is-plum .icon,
+[data-theme="black-lab"] .meta-card.is-plum .icon,
+[data-theme="violet"] .meta-card.is-plum .icon { color: var(--plum-2); }
+.meta-card.is-plum:hover { border-color: rgba(154,122,217,0.70); box-shadow: 0 6px 18px -10px rgba(154,122,217,0.40); }
 
-footer {
-  max-width: 1100px; margin: 40px auto 30px;
-  padding: 0 22px; text-align:center;
-  color: var(--faint); font-size: .85rem;
+.meta-card.is-green { border-color: rgba(38,195,137,0.42); }
+.meta-card.is-green .icon { color: #1f8e60; }
+[data-theme="dark"] .meta-card.is-green .icon,
+[data-theme="black-lab"] .meta-card.is-green .icon,
+[data-theme="violet"] .meta-card.is-green .icon { color: #4fd9a4; }
+.meta-card.is-green:hover { border-color: rgba(38,195,137,0.70); box-shadow: 0 6px 18px -10px rgba(38,195,137,0.40); }
+.meta-card .icon svg { width: 100%; height: 100%; }
+.meta-card .txt { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+.meta-card .main {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.meta-card .sub {
+  font-family: var(--body-font);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--faint);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+/* Hero illustration — fills the entire hero box (no white zone) */
+.premium-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--bg-card-2);
+}
+.premium-hero-art img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Сдвиг картинки немного левее — основной субъект (стеклянный планшет)
+     ближе к центру композиции вместо прижатого правого края */
+  object-position: 40% center;
+  transition: opacity .25s, filter .25s;
+}
+/* Light theme: small lift in brightness/saturation only */
+.premium-hero-art img.is-light { opacity: 1; filter: brightness(1.05) saturate(1.08); }
+.premium-hero-art img.is-dark  { opacity: 0; filter: none; }
+/* Dark theme: tone DOWN the neon-purple instead of boosting it */
+[data-theme="dark"] .premium-hero-art img.is-light,
+[data-theme="black-lab"] .premium-hero-art img.is-light,
+[data-theme="violet"] .premium-hero-art img.is-light { opacity: 0; }
+[data-theme="dark"] .premium-hero-art img.is-dark,
+[data-theme="black-lab"] .premium-hero-art img.is-dark,
+[data-theme="violet"] .premium-hero-art img.is-dark  { opacity: 1; filter: brightness(0.95) saturate(0.85); }
+/* Soft edge fade on the right where image bleeds beyond visible area */
+.premium-hero-art::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 65%, rgba(244,241,255,0.20) 100%);
+  pointer-events: none;
+}
+[data-theme="dark"] .premium-hero-art::after,
+[data-theme="black-lab"] .premium-hero-art::after,
+[data-theme="violet"] .premium-hero-art::after {
+  background: linear-gradient(90deg, transparent 65%, rgba(14,10,24,0.20) 100%);
+}
+
+@media (max-width: 900px) {
+  .premium-hero { min-height: 520px; }
+  .premium-hero-copy {
+    max-width: 100%;
+    background: linear-gradient(180deg,
+      rgba(247,245,255,0.92) 0%,
+      rgba(247,245,255,0.82) 60%,
+      rgba(247,245,255,0.65) 100%);
+  }
+  [data-theme="dark"] .premium-hero-copy,
+[data-theme="black-lab"] .premium-hero-copy,
+[data-theme="violet"] .premium-hero-copy {
+    background: linear-gradient(180deg,
+      rgba(14,10,24,0.88) 0%,
+      rgba(14,10,24,0.75) 60%,
+      rgba(14,10,24,0.55) 100%);
+  }
+  .premium-hero-art img { object-position: center; }
+}
+
+/* Mobile-only — H1 не должен вылезать за viewport на узких экранах */
+@media (max-width: 520px) {
+  .premium-hero h1 {
+    font-size: clamp(1.85rem, 8.5vw, 2.6rem);
+    letter-spacing: -0.03em;
+  }
+  .premium-hero-copy {
+    padding: clamp(20px, 5vw, 28px);
+  }
+  .hero-meta {
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  }
+  .meta-card { padding: 10px 12px; }
+  .meta-card .main { font-size: 10.5px; letter-spacing: 0.06em; }
+}
+
+/* ===== Catalog ===== */
+.catalog-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  margin-top: 8px;
+}
+.catalog-head h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  color: var(--text);
+}
+.catalog-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--line-2);
+}
+.catalog-pill .grid-icon {
+  display: inline-grid; grid-template: repeat(2,4px) / repeat(2,4px); gap: 2px;
+}
+.catalog-pill .grid-icon span { background: var(--plum-deep); border-radius: 1px; }
+[data-theme="dark"] .catalog-pill .grid-icon span,
+[data-theme="black-lab"] .catalog-pill .grid-icon span,
+[data-theme="violet"] .catalog-pill .grid-icon span { background: var(--plum-2); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+}
+@media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px)  { .cards { grid-template-columns: 1fr; } }
+
+.card {
+  display: flex; flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -16px rgba(122,95,207,0.30); border-color: var(--line-2); }
+.card-cover {
+  position: relative;
+  aspect-ratio: 16/11;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-card-2);
+}
+.card[data-id="voyager-l1"]   .card-cover { background-image: url("./assets/premium-card-voyager-l1.png"); }
+.card[data-id="voyager-l2"]   .card-cover { background-image: url("./assets/premium-card-voyager-l2.png"); }
+.card[data-id="switzerland"]  .card-cover { background-image: url("./assets/premium-card-switzerland.png"); }
+.card[data-id="jerusalem"]    .card-cover { background-image: url("./assets/premium-card-jerusalem.png"); }
+.card[data-id="ancient-china"] .card-cover { background-image: url("./assets/premium-card-ancient-china.png"); background-color: #B8861F; }
+.card[data-id="julia-bodrum"] .card-cover { background-image: url("./assets/premium-card-julia-bodrum.png"); background-color: #FFB6C1; background-position: center; background-size: cover; }
+.card[data-id="stage-vs-screen-ege"] .card-cover { background-image: url("./b1/stage-vs-screen-ege/assets/hero-diptych.jpg"); background-color: #1B5E20; background-position: center; background-size: cover; }
+.card[data-id="dana-russia-history-exam"] .card-cover { background-image: url("./b1/dana-russia-history-exam/assets/hero-banner.png"); background-color: #0D2440; background-position: center; background-size: cover; }
+.card[data-id="bella-needs-help"] .card-cover { background-image: url("./assets/premium-card-bella-needs-help.png"); background-color: #5C3A1F; background-position: center; background-size: cover; }
+.card[data-id="settling-toronto"] .card-cover { background-image: url("./assets/premium-card-settling-toronto.png"); background-color: #4A6356; background-position: center; background-size: cover; }
+.card[data-id="interview-speed-prep"] .card-cover { background-image: url("./assets/premium-card-interview.png"); background-color: #1A2238; background-position: center; background-size: cover; }
+.card[data-id="trial-abroad"] .card-cover { background-image: url("./assets/premium-card-trial-abroad.png"); background-color: #5C3A1F; background-position: center; background-size: cover; }
+.card[data-id="travel-talk"]   .card-cover { background-image: url("./b1/travel-talk-light-and-bright/assets/img/img-hero-sunset.png"); background-color: #FF7B54; }
+.card[data-id="travel-talk-2"] .card-cover { background-image: url("./b1/travel-talk-light-and-bright-2/assets/img/hero.jpg"); background-color: #1B2F4E; }
+.card[data-id="voyager-l3"] .card-cover { background-image: url("./assets/premium-card-voyager-l3.png"); background-color: #0d1b3a; }
+.card[data-id="voyager-l4"] .card-cover { background-image: url("./assets/premium-card-voyager-l4.png"); background-color: #2b1810; background-position: center; background-size: cover; }
+.card[data-id="practical-english-day-1"] .card-cover { background-image: url("./assets/premium-card-practical-english-day-1.png"); background-color: #f4e5c6; background-position: center; background-size: cover; }
+.card[data-id="toefl-ibt-format-tour"] .card-cover { background-image: url("./assets/premium-card-toefl-ibt-format-tour.png"); background-color: #0a1c2e; }
+.card[data-id="speaking-prep-2026"] .card-cover { background-image: url("./assets/premium-card-speaking-prep-2026.png"); background-color: #0F1216; background-position: center; background-size: cover; }
+.card[data-id="science-systems-c1-andrew"] .card-cover { background-image: url("./c1/science-systems-c1-andrew/assets/hero-science-disc.png?v=2"); background-color: #0f1620; background-position: center; background-size: cover; }
+/* New TOEFL + Voyager L3 images do NOT have burned-in labels — HTML overlays show normally */
+/* Around the City + City Speaking — real AI illustrations (1672x941) */
+.card[data-id="around-the-city"] .card-cover { background-image: url("./assets/premium-card-around-the-city.png"); background-color: #1c3d34; background-position: center; background-size: cover; }
+.card[data-id="city-speaking"] .card-cover { background-image: url("./assets/premium-card-city-speaking.png"); background-color: #0d1b3a; background-position: center; background-size: cover; }
+/* Cards are always visible. The Vault only controls whether buttons have real URLs. */
+.card-num {
+  position: absolute; top: 12px; left: 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 4px 10px;
+  border-radius: 50px;
+  background: rgba(14,10,24,0.55);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.card-tag {
+  position: absolute; top: 12px; right: 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 4px 11px;
+  border-radius: 50px;
+  background: var(--plum-pill-bg);
+  color: var(--plum-deep);
+  border: 1px solid var(--plum-pill-border);
+}
+[data-theme="dark"] .card-tag,
+[data-theme="black-lab"] .card-tag,
+[data-theme="violet"] .card-tag { color: var(--plum-2); background: rgba(154,122,217,0.16); }
+.card-body {
+  padding: 18px 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  flex: 1;
+}
+.card-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.02rem;
+  line-height: 1.25;
+  color: var(--text);
+}
+.card-skills {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 4px 0 12px;
+}
+.card-skills .dot { color: var(--plum); margin: 0 6px; }
+.card-open {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 106, 31, 0.70);
+  background: linear-gradient(180deg, #ff7430 0%, #ff5125 100%);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(255, 81, 37, 0.22);
+  font: 700 11.5px/1 var(--mono);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.15s;
+  margin-top: auto;
+}
+.card-open:hover { background: linear-gradient(180deg, #ff8a42 0%, #ff5d2b 100%); border-color: rgba(255,138,66,0.85); }
+.card.is-authorized { border-color: var(--line-2); }
+.card .card-cover { transition: filter 0.4s; }
+
+footer.premium-footer {
+  max-width: 1320px;
+  margin: 40px auto 30px;
+  padding: 0 clamp(18px, 3vw, 32px);
+  text-align: center;
+  color: var(--faint);
+  font-size: 0.83rem;
+}
+.footer-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 106, 31, 0.70);
+  background: linear-gradient(180deg, #ff7430 0%, #ff5125 100%);
+  color: #fff;
+  font: 700 12px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+}
+.footer-login:hover {
+  background: linear-gradient(180deg, #ff8a42 0%, #ff5d2b 100%);
 }
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <a class="topbar-brand" href="./index.html">
-    <span class="brand-mark">N</span>
-    <span class="brand-copy">
-      <span class="brand-name">NG English</span>
-      <span class="brand-sub">LinguaBoost Lab · Premium</span>
+<header class="canon-l-topbar">
+  <a class="canon-l-brand" href="./index.html" aria-label="LinguaBoost Lab · Catalog">
+    <span class="canon-l-mark" aria-hidden="true">L</span>
+    <span class="canon-l-copy">
+      <span class="canon-l-name">LinguaBoost</span>
+      <span class="canon-l-sub" data-ru="Lab · Библиотека" data-en="Lab · Библиотека">Lab · Библиотека</span>
     </span>
   </a>
-  <div class="spacer"></div>
-  <a class="btn-sm" href="./index.html">← Каталог</a>
-  <button class="btn-sm" id="themeBtn" aria-label="Сменить тему">◐ Тема</button>
+  <nav class="canon-l-nav" aria-label="Site navigation">
+    <a class="canon-l-link" href="../about-project.html" data-ru="О проекте" data-en="About">О проекте</a>
+    <a class="canon-l-link" href="../programs.html" data-ru="Программы" data-en="Programmes">Программы</a>
+    <a class="canon-l-link" href="../cases.html" data-ru="Кейсы и видео" data-en="Cases &amp; Video">Кейсы и видео</a>
+    <a class="canon-l-link" href="../conditions.html" data-ru="Условия" data-en="Terms">Условия</a>
+    <a class="canon-l-link" href="../blog.html" data-ru="Дневник и блог" data-en="Journal and blog">Дневник и блог</a>
+    <a class="canon-l-link is-active" href="./index.html" data-ru="Лаборатория" data-en="Lab">Лаборатория</a>
+  </nav>
+  <div class="canon-l-tools">
+    <button class="canon-l-pill" type="button" data-premium-auth aria-label="Войти или выйти из premium">Войти</button>
+    <a class="canon-l-pill" href="/cabinet/login.html" aria-label="Войти в кабинет">CAB</a>
+    <button id="labThemeToggle" class="canon-l-pill theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false" data-ru="Тема" data-en="Theme">Theme</button>
+    <button id="langBtn" class="canon-l-pill lang-toggle" type="button" onclick="toggleLang()" aria-label="Toggle language" data-ru="EN" data-en="RU">EN</button>
+  </div>
 </header>
+<nav class="canon-l-crumbs" aria-label="Breadcrumb">
+  <a href="../index.html" data-ru="Главная" data-en="Home">Главная</a>
+  <span class="canon-l-crumbs-sep">&middot;</span>
+  <a href="./index.html" data-ru="Каталог Lab" data-en="Lab Catalogue">Каталог Lab</a>
+  <span class="canon-l-crumbs-sep">&middot;</span>
+  <span class="canon-l-crumbs-here" data-ru="Библиотека" data-en="Library">Библиотека</span>
+</nav>
 
 <main>
 
-  <section class="hero">
-    <div class="eyebrow">Premium · доступ по приглашению</div>
-    <h1>Авторские уроки <span class="gold">для тех</span>, кто работает <span class="gold">всерьёз</span></h1>
-    <p class="lead">Эту коллекцию я обычно отправляю ученикам индивидуально — кинематографичные модули с оригинальной озвучкой, story-driven форматом и форматами от ЕГЭ до IELTS / TOEFL / Olympiad. Здесь они собраны в один доступ — за тонкий код, который тебе прислали лично.</p>
-    <div class="meta-row">
-      <span class="meta-pill is-gold">4 модуля</span>
-      <span class="meta-pill">B1 → B2-plus</span>
-      <span class="meta-pill">оригинальный контент</span>
-      <span class="meta-pill">edge-tts audio</span>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2><span class="num">01</span>Введи свой код</h2>
-    <div class="pin-form">
-      <div class="pin-row">
-        <input type="text" class="pin-input" id="pinInput" placeholder="например, Watchmaker-1987" autocomplete="off" spellcheck="false">
-        <button class="btn-gold" id="pinBtn">Открыть</button>
+  <!-- ===== HERO ===== -->
+  <section class="premium-hero">
+    <div class="premium-hero-copy">
+      <div class="hero-pill-row">
+        <span class="hero-pill is-cmd" data-ru="Библиотека · доступ по приглашению" data-en="Library · access by invitation">Библиотека · доступ по приглашению</span>
+        <span class="hero-pill is-status" data-ru="Лаборатория активна" data-en="Lab active"><span class="dot"></span>Лаборатория активна</span>
       </div>
-      <div class="pin-msg" id="pinMsg">Код регистронезависимый по буквам, чувствителен к дефисам и цифрам.</div>
+      <h1 data-ru="Платные уроки лингвистической лаборатории" data-en="Premium lessons of the linguistic lab" data-i18n-mode="html">Платные уроки<br><span class="accent">лингвистической</span><br>лаборатории</h1>
+      <p class="lead" data-ru="Кинематографичные English-модули с озвучкой, интерактивными заданиями и форматами от ЕГЭ до IELTS / TOEFL / Olympiad." data-en="Cinematic English modules with voice-over, interactive tasks and formats from EGE to IELTS / TOEFL / Olympiad.">Кинематографичные English-модули с озвучкой, интерактивными заданиями и форматами от ЕГЭ до IELTS / TOEFL / Olympiad.</p>
+      <div class="hero-meta">
+
+        <div class="meta-card is-orange">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+            </svg>
+          </span>
+          <span class="txt">
+            <span class="main" data-ru="4 модуля" data-en="4 modules">4 модуля</span>
+            <span class="sub" data-ru="кинематографичных" data-en="cinematic">кинематографичных</span>
+          </span>
+        </div>
+
+        <div class="meta-card is-plum">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M4 20V12"/><path d="M10 20V8"/><path d="M16 20V14"/><path d="M22 20V4"/>
+            </svg>
+          </span>
+          <span class="txt">
+            <span class="main">B1 → B2+</span>
+            <span class="sub" data-ru="уровни" data-en="levels">уровни</span>
+          </span>
+        </div>
+
+        <div class="meta-card is-green">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="2"/>
+              <ellipse cx="12" cy="12" rx="10" ry="4"/>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
+            </svg>
+          </span>
+          <span class="txt">
+            <span class="main">AI / Science / Culture</span>
+            <span class="sub" data-ru="кросс-темы" data-en="cross-topics">кросс-темы</span>
+          </span>
+        </div>
+
+        <div class="meta-card is-plum">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M2 12h2"/><path d="M6 8v8"/><path d="M10 5v14"/><path d="M14 8v8"/><path d="M18 11v2"/><path d="M22 12h-2" transform="translate(2 0)"/>
+            </svg>
+          </span>
+          <span class="txt">
+            <span class="main">Original audio</span>
+            <span class="sub" data-ru="edge-tts голоса" data-en="edge-tts voices">edge-tts голоса</span>
+          </span>
+        </div>
+
+      </div>
     </div>
-    <div class="hint">
-      <b>Нет кода?</b> Напиши Марии лично — в личных сообщениях или на <a href="mailto:maria.v.burtseva@gmail.com" style="color:var(--gold-2)">maria.v.burtseva@gmail.com</a> — и расскажи в двух словах, кто ты и что тебе интересно. Я отвечу быстро.
+
+    <div class="premium-hero-art" aria-hidden="true">
+      <img class="is-light" src="./assets/premium-hero-light.png" alt="">
+      <img class="is-dark"  src="./assets/premium-hero-dark.png"  alt="">
     </div>
   </section>
 
-  <section class="section">
-    <h2><span class="num">02</span>Что внутри</h2>
-    <div class="cards" id="cards">
-      <article class="card locked" data-id="voyager-l1">
-        <div class="card-tag">B2+</div>
-        <div class="card-emoji">⏳</div>
-        <h3 class="card-title">Voyager L1 · Time, the watchmaker, neutrinos</h3>
-        <p class="card-subtitle">B2-plus · оригинальный рассказ + лекция по физике времени + IELTS/олимпиада</p>
-        <a class="card-open" href="#" target="_blank" rel="noopener">Открыть урок →</a>
-      </article>
-      <article class="card locked" data-id="voyager-l2">
-        <div class="card-tag">B2+</div>
-        <div class="card-emoji">🛸</div>
-        <h3 class="card-title">Voyager L2 · Are we alone? · Mia's signal</h3>
-        <p class="card-subtitle">B2-plus · SETI-квест в Атакаме · 3 аномалии в 3 разных формата · Matching headings + Word formation</p>
-        <a class="card-open" href="#" target="_blank" rel="noopener">Открыть урок →</a>
-      </article>
-      <article class="card locked" data-id="switzerland">
-        <div class="card-tag">B1</div>
-        <div class="card-emoji">🇨🇭</div>
-        <h3 class="card-title">Switzerland · Mountains, Chocolate &amp; Time</h3>
-        <p class="card-subtitle">B1 · кинематографичный модуль про Швейцарию: горы, шоколад, часы · Watch-first + reading + vocabulary</p>
-        <a class="card-open" href="#" target="_blank" rel="noopener">Открыть урок →</a>
-      </article>
-      <article class="card locked" data-id="jerusalem">
-        <div class="card-tag">B1</div>
-        <div class="card-emoji">🕌</div>
-        <h3 class="card-title">Jerusalem · A City of Three Faiths</h3>
-        <p class="card-subtitle">B1 · 17 секций про город трёх религий · narrator-аудио · Would + Modals · Speaking-focus</p>
-        <a class="card-open" href="#" target="_blank" rel="noopener">Открыть урок →</a>
-      </article>
-    </div>
-  </section>
+  <!-- ===== CATALOG ===== -->
+  <div class="catalog-head">
+    <h2 data-ru="Выберите лабораторный модуль" data-en="Choose a lab module">Выберите лабораторный модуль</h2>
+    <a class="catalog-pill" href="./index.html">
+      <span class="grid-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span data-ru="Все модули" data-en="All modules">Все модули</span>
+    </a>
+  </div>
+
+  <div id="cards" style="display:flex;flex-direction:column;gap:48px;">
+
+    <!-- ═══ SERIES 1 · VOYAGER · B2+ OLYMPIC QUEST ═══ -->
+    <section class="series" data-series="voyager" style="--series-color:#9B7FE8;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Voyager · Olympic Quest</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B2+ · narrative arc · for advanced learners</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:600px;">Сюжетный квест на B2+ с героями, которые проходят через все уроки, и сквозным артефактом, меняющимся по ходу серии. Формат IELTS / TOEFL / ВсОШ. Собирается под Ваню.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="voyager-l1">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">L1</span>
+            <span class="card-tag">B2+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Voyager L1 · Time, the watchmaker, neutrinos</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Vocabulary <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="voyager-l2">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">L2</span>
+            <span class="card-tag">B2+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Voyager L2 · Are we alone? · Mia's signal</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Vocabulary <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="voyager-l3">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">L3</span>
+            <span class="card-tag">B2+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Voyager L3 · Whose mind? · Theo's blinks</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Matching Headings <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="voyager-l4">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">L4</span>
+            <span class="card-tag">B2+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Voyager L4 · The night the letter arrived · series finale</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Reported Speech <span class="dot">·</span> Inversion <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 2 · CITIES & CIVILIZATIONS · B1 CULTURAL ═══ -->
+    <section class="series" data-series="cities" style="--series-color:#B8861F;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/>
+          <line x1="9" y1="3" x2="9" y2="18"/>
+          <line x1="15" y1="6" x2="15" y2="21"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Cities &amp; Civilizations</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1 · cultural &amp; historical speaking</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:600px;">90 минут на одну страну: Иерусалим, Швейцария, Древний Китай. Тексты про культуру, аудио на местных голосах, дискуссии и описание фото на B1.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="jerusalem">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Jerusalem · A City of Three Faiths</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Vocabulary <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="switzerland">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Switzerland · Mountains, Chocolate &amp; Time</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Vocabulary <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="ancient-china">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">03</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Ancient China · Cultural Studies</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Vocabulary <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 9 · READING CLASSES · B1 LITERATURE ═══ -->
+    <section class="series" data-series="reading" style="--series-color:#8B5A2B;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Reading Classes</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1 · classics · reading + speaking</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:620px;">Адаптированная классика на B1. Сейчас Tom Sawyer · The Fence, The Graveyard, The Bible Prize. Дальше — Huck Finn. Каждый акт: текст плюс восемь упражнений до финального writing-задания о личном опыте.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="tom-sawyer-three-acts">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/tom-sawyer-three-acts/assets/img/card-cover.png') center/cover, linear-gradient(135deg,#2A1F1A 0%,#5D3A1A 100%);">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Tom Sawyer · Three Adventures</h3>
+            <div class="card-skills">The Fence <span class="dot">·</span> The Graveyard <span class="dot">·</span> The Bible Prize</div>
+            <a class="card-open" href="./b1/tom-sawyer-three-acts/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="eat-pray-love-travels">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/eat-pray-love-travels/assets/hero.png') center/cover, linear-gradient(135deg,#7A3B2A 0%,#D2691E 100%);">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Eat, Pray, Love · Three Journeys</h3>
+            <div class="card-skills">Italy · Eat <span class="dot">·</span> India · Pray <span class="dot">·</span> Indonesia · Love</div>
+            <a class="card-open" href="./b1/eat-pray-love-travels/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 10 · GRAMMAR LAB · B1-B2 GRAMMAR DEEP DIVES ═══ -->
+    <section class="series" data-series="grammar" style="--series-color:#9A6FB0;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Grammar Lab</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1-B2 · grammar deep dives</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:620px;">Грамматика на 90 минут, по одной теме за урок: модальные глаголы, условные предложения, придаточные определительные. В каждом — лексический диктант, минилекция в видео, тренировка форм, устная часть в формате ОГЭ.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="modals-deep-dive">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/modals-deep-dive/assets/img/card-cover-purple.png') center/cover, linear-gradient(135deg,#3D2952 0%,#6B4A86 100%);">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1-B2</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Modals · Deep Dive</h3>
+            <div class="card-skills">Ecology dictation <span class="dot">·</span> 10-modal mini-lecture <span class="dot">·</span> Drills <span class="dot">·</span> Speaking</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="articles-prepositions-deep-dive">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/timofey-articles-prepositions/assets/img/cover-jolly-roger.png') center/cover, linear-gradient(135deg,#3D2952 0%,#6B4A86 100%);">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Articles &amp; Prepositions · Deep Dive</h3>
+            <div class="card-skills">a / an / the / × <span class="dot">·</span> Prepositions time · place · direction <span class="dot">·</span> Golitsynsky drills <span class="dot">·</span> Workbook</div>
+            <a class="card-open" href="./b1/timofey-articles-prepositions/index.html" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 3 · TRAVEL LIGHT · B1 LIGHT SPEAKING ═══ -->
+    <section class="series" data-series="travel-light" style="--series-color:#FF7B54;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" style="display:none"/>
+          <path d="M2.5 19.5 21.5 12 2.5 4.5 2.5 10 18 12 2.5 14z"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Travel Light</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1 · light &amp; bright speaking</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:600px;">80-минутные speaking-уроки про обычный день за границей: первые дни в Канаде, в аптеке, в кафе. Короткие диалоги, видео из Pexels, ролевые игры с шаблонами реплик.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="travel-talk">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Travel Talk · Light &amp; Bright</h3>
+            <div class="card-skills">Speaking <span class="dot">·</span> Small Talk <span class="dot">·</span> Role-Play <span class="dot">·</span> Phrasal Verbs</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="travel-talk-2">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Travel Talk · Light &amp; Bright 2</h3>
+            <div class="card-skills">Airports <span class="dot">·</span> Hotel check-in <span class="dot">·</span> Lost luggage <span class="dot">·</span> Emergencies</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="settling-toronto">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">03</span>
+            <span class="card-tag">A2</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Settling In · First Days in Canada</h3>
+            <div class="card-skills">Coffee shop <span class="dot">·</span> SIM card <span class="dot">·</span> Directions <span class="dot">·</span> Drugstore</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="bella-needs-help">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">04</span>
+            <span class="card-tag">A2</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Bella Needs Help · Pharmacy, Doctor, 911</h3>
+            <div class="card-skills">Pharmacy <span class="dot">·</span> Walk-in clinic <span class="dot">·</span> Emergency call <span class="dot">·</span> Can I…? Could you…?</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 8 · BUSINESS LAB · ADULTS B1+ ═══ -->
+    <section class="series" data-series="business" style="--series-color:#1F3A5F;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="14" rx="2"/>
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Business Lab</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1+ · professionals · interview prep · negotiations · career English</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:620px;">Уроки для тех, кто ведёт английский на работе. Сейчас на полке подготовка к финальному раунду интервью: четыре блока словаря, восемь rescue-фраз для пауз, мок-собеседование на пять вопросов с записью голоса и проверкой по четырём критериям.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="interview-speed-prep">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Interview Speed Prep · The Final Round</h3>
+            <div class="card-skills">Top 5 questions <span class="dot">·</span> STAR method <span class="dot">·</span> Vocabulary load <span class="dot">·</span> Mock interview</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 11 · ADULT BASICS · A1-A2 ADULTS · ABOUT YOU ═══ -->
+    <section class="series" data-series="adult-basics" style="--series-color:#0e7c66;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.5"/>
+          <path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/>
+          <line x1="12" y1="2" x2="12" y2="4"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Adult Basics · About You</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">A1+ / A2 · взрослые · бытовые темы · повторение базовой грамматики</span>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:620px;">Уроки для взрослых на A1-A2: бытовые темы (дом, город, шоппинг, кафе, направления, поездки) + точечное повторение типовых ловушек — Do vs Are, Present Simple vs Continuous, артикль the с местами. Speaking-focus, русские инструкции, мини-роли и self-check.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="around-the-city">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">A1+/A2</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Around the City · Asking for Directions</h3>
+            <div class="card-skills">Vocab 12 directions <span class="dot">·</span> Do vs Are <span class="dot">·</span> Simple vs Continuous <span class="dot">·</span> Role-play</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="city-speaking">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">02</span>
+            <span class="card-tag">A1+ · 90 min</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">My City · Today and 50 Years From Now</h3>
+            <div class="card-skills">Speaking marathon · 15 blocks <span class="dot">·</span> Adjectives <span class="dot">·</span> Future intro (will / going to) <span class="dot">·</span> Vocab: city of the future</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="practical-english-day-1">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">03</span>
+            <span class="card-tag">A2+ → B1 · 55 min</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Practical English · Day 1 · All Present Tenses</h3>
+            <div class="card-skills">Present Simple / Continuous / Perfect / Perfect Continuous <span class="dot">·</span> to-infinitive <span class="dot">·</span> a/the/— articles <span class="dot">·</span> 30 business vocab <span class="dot">·</span> Survival mic-drill</div>
+            <a class="card-open" href="./practice/timofey-03-practical-english/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 6 · TRIAL · 15 MIN TASTE ═══ -->
+    <section class="series" data-series="trial" style="--series-color:#8B5A2B;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 4.5-1 8-5 8-10 V6 z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Trial · 15 min taste</h2>
+      </header>
+      <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:620px;">Мини-уроки на 15 минут. Сейчас один: Going Abroad — для тех, кто учится за границей.</p>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="trial-abroad">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Going Abroad · Your First Semester</h3>
+            <div class="card-skills">Academic vocab <span class="dot">·</span> Lecture listening <span class="dot">·</span> Reading <span class="dot">·</span> AI Live Coach</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══ SERIES 5 · EXAM LAB · B1+ EXAM-FORMAT ═══ -->
+    <section class="series" data-series="exam-lab" style="--series-color:#2E7D32;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          <line x1="9" y1="7" x2="16" y2="7"/>
+          <line x1="9" y1="11" x2="16" y2="11"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Exam Lab</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1+ · exam-format · word formation · speaking tasks 3-4</span>
+      </header>
+      <p style="margin:0 0 18px;font-size:0.92rem;color:var(--muted);max-width:600px;">Уроки под формат экзаменов — школьных ЕГЭ-ОГЭ и международных IELTS / TOEFL. Разбиты по 4 направлениям: ОГЭ · ЕГЭ · IELTS · TOEFL. В каждом — словарь по теме, упражнения на словообразование, Reading, устные секции с таймерами и шаблонами, разбор по критериям.</p>
+
+      <!-- ═══ EXAM GROUP · OGE ═══ -->
+      <div style="display:flex;align-items:center;gap:12px;margin:22px 0 12px;">
+        <span style="font-family:var(--mono,monospace);font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;background:var(--series-color);color:#fff;padding:5px 11px;border-radius:50px;">OGE</span>
+        <h3 style="font-family:var(--display,'Manrope');font-size:1.08rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-.01em;" data-ru="ОГЭ · 9 класс" data-en="OGE · Grade 9">ОГЭ · 9 класс</h3>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--series-color),transparent);opacity:.5;"></span>
+      </div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="oge-mock-mix-01" style="border:1.5px solid var(--series-color);">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/oge-mock-mix-01/img/hero-cover.png') center/cover, linear-gradient(135deg,#2563eb 0%,#1e40af 100%);background-position:center;">
+            <span class="card-num">01</span>
+            <span class="card-tag" style="background:var(--series-color);color:#fff;">NEW · OGE</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">OGE Mock #1 · Pair Edition</h3>
+            <div class="card-skills">Listening 1-11 <span class="dot">·</span> Reading 12-19 <span class="dot">·</span> Lex-Gram 20-34 <span class="dot">·</span> Email 35 <span class="dot">·</span> Speaking 1-3</div>
+            <a class="card-open" href="./b1/oge-mock-mix-01/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="ecology-oge-trainer-01">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/ecology-oge-trainer-01/img/seedling.jpg') center/cover, linear-gradient(135deg,#1a2538 0%,#c2845c 100%);background-position:center;">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1+ · OGE</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Ecology · OGE Trainer</h3>
+            <div class="card-skills">Listening 1-9 <span class="dot">·</span> Reading 10-17 <span class="dot">·</span> Word Formation <span class="dot">·</span> Letter 33 <span class="dot">·</span> Speaking 1-3</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="russia-my-homeland">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/russia-my-homeland/img/baikal-hero.jpg?v=1') center/cover, linear-gradient(135deg,#0033A0 0%,#D52B1E 100%);background-position:center;">
+            <span class="card-num">03</span>
+            <span class="card-tag">B1+ · EGE</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Russia · My Homeland</h3>
+            <div class="card-skills">Geography <span class="dot">·</span> History <span class="dot">·</span> Symbols <span class="dot">·</span> Speaking Task 3 <span class="dot">·</span> Letter Task 35</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ═══ EXAM GROUP · EGE ═══ -->
+      <div style="display:flex;align-items:center;gap:12px;margin:30px 0 12px;">
+        <span style="font-family:var(--mono,monospace);font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;background:var(--series-color);color:#fff;padding:5px 11px;border-radius:50px;">EGE</span>
+        <h3 style="font-family:var(--display,'Manrope');font-size:1.08rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-.01em;" data-ru="ЕГЭ · 11 класс" data-en="EGE · Grade 11">ЕГЭ · 11 класс</h3>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--series-color),transparent);opacity:.5;"></span>
+      </div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="stage-vs-screen-ege">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1+</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Stage vs Screen · Live Performance &amp; Social Media</h3>
+            <div class="card-skills">Word Formation <span class="dot">·</span> Wishes/Conditionals <span class="dot">·</span> Speaking Task 4 <span class="dot">·</span> Self-check</div>
+            <a class="card-open" href="./b1/stage-vs-screen-ege/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="dana-russia-history-exam">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1+ · EGE 2026</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Russian History · Exam Simulator</h3>
+            <div class="card-skills">Listening ×3 <span class="dot">·</span> Reading ×3 <span class="dot">·</span> Grammar &amp; Lexis <span class="dot">·</span> Letter + Essay <span class="dot">·</span> Speaking ×4 · AI Coach</div>
+            <a class="card-open" href="./b1/dana-russia-history-exam/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ═══ EXAM GROUP · TOEFL ═══ -->
+      <div style="display:flex;align-items:center;gap:12px;margin:30px 0 12px;">
+        <span style="font-family:var(--mono,monospace);font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;background:var(--series-color);color:#fff;padding:5px 11px;border-radius:50px;">TOEFL</span>
+        <h3 style="font-family:var(--display,'Manrope');font-size:1.08rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-.01em;">TOEFL iBT</h3>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--series-color),transparent);opacity:.5;"></span>
+      </div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="toefl-ibt-format-tour">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1+/B2</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">TOEFL iBT · Format Tour</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> Writing (Email + Discussion) <span class="dot">·</span> Speaking (SARR)</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="speaking-prep-2026">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">02</span>
+            <span class="card-tag">B2 · Adult</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Speaking Prep 2026 · TOEFL Interview + IELTS</h3>
+            <div class="card-skills">Listen &amp; Repeat <span class="dot">·</span> TOEFL Interview <span class="dot">·</span> IELTS Part 2 Cue-card <span class="dot">·</span> AI Live Coach /10</div>
+            <a class="card-open" href="./speaking-prep-2026/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ═══ EXAM GROUP · ADULT / ADVANCED ═══ -->
+      <div style="display:flex;align-items:center;gap:12px;margin:30px 0 12px;">
+        <span style="font-family:var(--mono,monospace);font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;background:var(--series-color);color:#fff;padding:5px 11px;border-radius:50px;">C1</span>
+        <h3 style="font-family:var(--display,'Manrope');font-size:1.08rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-.01em;">Adult · Advanced (C1)</h3>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--series-color),transparent);opacity:.5;"></span>
+      </div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="science-systems-c1-andrew">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">01</span>
+            <span class="card-tag">C1 · Adult</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Science Systems · Six Worlds in One Frame</h3>
+            <div class="card-skills">Reading <span class="dot">·</span> Listening <span class="dot">·</span> C1 Speaking <span class="dot">·</span> Retell <span class="dot">·</span> Argument <span class="dot">·</span> Model Answers</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ═══ SERIES 4 · KIDS · STORY-DRIVEN — split by level ═══ -->
+    <section class="series" data-series="kids" style="--series-color:#FF6B9D;">
+      <header style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--series-color);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--series-color)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5 12 2"/>
+        </svg>
+        <h2 style="font-family:var(--display,'Manrope');font-size:1.45rem;font-weight:800;margin:0;color:var(--text);letter-spacing:-0.01em;">Kids · Story Adventures</h2>
+        <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">Pre-A1 → A1 → B1 · story-driven · 60 минут чистого FUN</span>
+      </header>
+      <p style="margin:0 0 22px;font-size:0.92rem;color:var(--muted);max-width:600px;">Уроки для младших школьников. В каждом — герой попадает в незнакомое место и идёт через сюжет вместе с ребёнком. Картинки в каждом задании, аудио на нескольких голосах, награда в финале.</p>
+
+      <!-- ── Pre-A1 — самым маленьким, с картинкой через задание ── -->
+      <h3 style="font-family:var(--display,'Manrope');font-size:1.05rem;font-weight:800;margin:8px 0 10px;color:var(--text);display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;padding:3px 10px;border-radius:50px;background:rgba(255,107,157,0.14);color:var(--series-color);font:700 10.5px/1 var(--mono,monospace);letter-spacing:0.18em;text-transform:uppercase;">Pre-A1</span>
+        Совсем маленькие · самостоятельное чтение слов
+      </h3>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:24px;">
+
+        <article class="card" data-id="julia-vampire">
+          <div class="card-cover" aria-hidden="true" style="background:url('./pre-a1/julia-vampire/cover-music.png?v=1') center/cover, linear-gradient(135deg,#e8d5f5 0%,#FFB6C1 100%);background-position:center;">
+            <span class="card-num">01</span>
+            <span class="card-tag">Pre-A1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Julia &amp; Vampire · Music</h3>
+            <div class="card-skills">Pronouns <span class="dot">·</span> Music vocab <span class="dot">·</span> Food <span class="dot">·</span> Listening story</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ── A1 — младшая школа · одиночный текст · Past Simple ── -->
+      <h3 style="font-family:var(--display,'Manrope');font-size:1.05rem;font-weight:800;margin:8px 0 10px;color:var(--text);display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;padding:3px 10px;border-radius:50px;background:rgba(255,107,157,0.14);color:var(--series-color);font:700 10.5px/1 var(--mono,monospace);letter-spacing:0.18em;text-transform:uppercase;">A1</span>
+        Младшая школа · короткие истории и грамматика
+      </h3>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:24px;">
+
+        <article class="card" data-id="julia-bodrum">
+          <div class="card-cover" aria-hidden="true" style="background:url('./a1/julia-goes-to-bodrum/cover.png?v=1') center/cover, linear-gradient(135deg,#FFB6C1 0%,#FF6B9D 100%);background-position:center;">
+            <span class="card-num">01</span>
+            <span class="card-tag">A1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Julia Goes to Bodrum</h3>
+            <div class="card-skills">Numbers <span class="dot">·</span> Past Simple <span class="dot">·</span> Hotel Phrases <span class="dot">·</span> Listening Story</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ── B1 — средняя школа · длинные квесты, многократные времена ── -->
+      <h3 style="font-family:var(--display,'Manrope');font-size:1.05rem;font-weight:800;margin:8px 0 10px;color:var(--text);display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;padding:3px 10px;border-radius:50px;background:rgba(255,107,157,0.14);color:var(--series-color);font:700 10.5px/1 var(--mono,monospace);letter-spacing:0.18em;text-transform:uppercase;">B1</span>
+        Средняя школа · длинные квесты, продвинутые времена
+      </h3>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+
+        <article class="card" data-id="anyas-postcards">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/anyas-postcards/cover.png?v=1') center/cover, linear-gradient(135deg,#FFB6C1 0%,#9B7FE8 100%);background-position:center;">
+            <span class="card-num">01</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Anya's Postcards · Six Countries</h3>
+            <div class="card-skills">Travel <span class="dot">·</span> Present Perfect <span class="dot">·</span> Present Perfect Continuous <span class="dot">·</span> Tense Detective</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="anyas-temples-quest">
+          <div class="card-cover" aria-hidden="true" style="background:url('./b1/anyas-temples-quest/cover.png?v=2') center/cover, linear-gradient(135deg,#D6736B 0%,#88A8C9 60%,#D4B673 100%);background-position:center;">
+            <span class="card-num">02</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Anya's Temples Quest · Six Sacred Stones</h3>
+            <div class="card-skills">World religions <span class="dot">·</span> Sacred architecture <span class="dot">·</span> 4 presents <span class="dot">·</span> Will / Going to</div>
+            <a class="card-open" href="#" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
 
 </main>
 
-<footer>
-  NG English · LinguaBoost Lab Premium · 2026<br>
+<footer class="premium-footer">
+  NG English · LinguaBoost Lab Library · 2026<br>
   <small>Все материалы — авторские, перераспределение по платным курсам без согласования запрещено.</small>
+  <div>
+    <button class="footer-login" type="button" data-premium-auth>Войти</button>
+  </div>
 </footer>
 
 <script>
-/* ===== AES-GCM decrypt for premium URLs ===== */
+/* ===== AES-GCM decrypt for premium URLs (unchanged) ===== */
 const VAULT = {
-  salt: "UJ7vDCG1ldPvjVhNT1/XLw==",
-  iv:   "g7z7h8IRBeJU783r",
-  ct:   "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",
+  salt: "J++0fyAKONpwK5FgA/c4Aw==",
+  iv:   "R4Iq2aoMVq8LKfzI",
+  ct:   "62M1tUG3qlFo/e1jNdIjFdbxbEzLRcFLQd5ySerS41x16IURyB3uOhx+uK6yFNoqPWpslcLckKN+GU0BdOv/VcMTENyOTHr6/IDAo9QtTzeP6y1IQYsMMWaV9ZhuMU5loTaZ7XN1Pw6kxe988rejyzs87I51mgygq3/84fIWWhbRnM1wHBXiEKH4ZVOV1xo04KW8tLHrsTQT49BGZFbUwuMbxbA3TtgBRRJrquIzh0xvl4P1geDFL67+PN3VSyz0efkfU0CnN67x16jucpkhhOjCptu6M4/WFLUVhW8jLmZ3XD8scLC145WMnJ42Uswu7Lb0iMJILhfkpERVQ2CPHEAaLCoExb62cyWmhA2XNcW2fnAPFqFstJCaFOaGfIYwYb4YkCqw28wbfCKJAdQSZsUiLTBvanh9jVILg11bUOakwqdWlsj9Psa+BXPTzAMQ/MQRbYXAtWwEuKP/bp6b6zxlNpEllbcrqRE4Q40JMHiGXXmii01SU9Ui5iwtsRpxk9KVFXdwFCqTD9hIyaf3yTtqZ+zVpL86UeP/BCqjb34nYYngKhhsZI1kkUnJhOm5Ly1zQas6XY+0xoQMc9MxqY0MboemSeuGFRjXK9WyO5RYB3n8ImE99sbn5qVi43kqxtibaAxSpJc8CNXqEulWY6xfzBdaM7IjncYb2uN7NgYV9O5VKyrkEt43hfic3ciLrxsFzIShXiZNo2DTSCPpsNiVCSivRSa6mBEkig3YcC/zxWvh8WCPxLwa7xyKnGnnxjmD9NKXZeu0c7LEa1B8LYVZ1xRGItCXKJvi4yVyyxT501oF/6j3r3sQxKogBQ8PkgunN2geIaui/DAeVNTkJ5B7OfPQVmk87RLhxzfNHOSqmf85h5ukLlx4eSYegdESmLK5bQRcHI6gEUica98STcApbXsUI9rE88HqSNwtLo6tqTO3Fqx5JQrTQk8DYSQQv3ovFpO3PtLl4yufjXO+6kW6ATWkrHSwV1ZD6P2tR3ZRbQ2fl81D5Lj2fPkPwvq4H0XJLAogZhDWNZqNPmcxw0f9E0qcpfoljKAfu/xCIfUARj3bW+LPYbu1xEsGxjqwZ0gZFImaYZnGN7GBtVFHc998TIWU0MP5HMUHBVMQaZlqYOuHnDEHBI8MuvBOkuc7OPjjWgh0wZIoXvXf9tgEBjIoeY8wd0eDlhuNt+oHXjarXuEiRmmkCE9hRAQ6i33cugw3QS+0oL34BqdTTB+lkYjjbG0R2C44TacPJe4qvdX73u/YEwXNkA8FOqXouLSI0LqCA+2G9xqqvyCqrsGLB3u7NFiqChh26gCMbGWFXHUn8E7EwFGNBh8F2XBiOJDkHP+hxZI2LBCcqh1bRfRQquGNnF073J9rKOnTO5iSMhUfCGpD1Y6e0doZdvTH+g4RUa8ILWIWDLAkNT/n6sDOI63zUZXfKKKiyv6u10/j4xPaHT2X+4UONMmzndcIFxc+MfFL7BKRx8KVDBnxqQeZTbTIUg7cEx6T7IgaZNJoLbPyf6qEot9CyGNPDVtIWEWvi/8aGECpsjQrj4rk1OsWEBv49qjbEMPKDcPoDYZa3JIKs5p8934MKi4jK/omk3lsbf3his/2lRBFq9uWgOEs7+nCq6thmdiMcXKI5wR5GuwVM4pGdG1o7Z7GoFkLY1V65AuRcpuKcGt3fPXu05yR3bB8TIo8Q+Vu7WD4xLr0wTCi3SOtpDVL+n66MfOovW4dnXlj0GYZ8pMTd8kNf4FT1yxfrbOd6p2ZB9HJ9oCIgmLa4bRh4DyovE894Zv8G5kR8khpsviZ1TiaHcC1PURCrpq6W39ySAp/GJN6bWkP6FQ3uaJzX0a6IMHeu+DfKSYv/t1kEUvCNERp5aAwaqH7M1205gXOD8iSKmg1vKEXiDyIpVry6GC5W7WC3ugMgxfdZtCfKB82zq6mPF7TD2S7I8csORhtkL8X80+1HZqqDmFp10VTC4FkP/yVIJHwhdWlsuWNsclJ6clf8HmqvW47tlv0zVliyzya5uck8856nQJ8f/5PZHKbXt36j0VUFBwiEMh+N55hhlOUt8/3emE8eDZfMMmniHmg0VhCssDiG2Egq3WLZ1e/k8jTbgobY+/u6lDF0XZJYJx168VRduHY+K/ryspUD8qZHSQv1zGMJiuMvmFPFCWiMTQX2Kjx1nuPVV4Ozkq8qOZLJacTRnUHkRL09FBzA3KKANIzsp/1M7omLVDSOmfABaKr/HPAOX/oSrcSALoo5V5TcXnTPAebohng62PLVqZurLC9RXRd6hF378lEm3Jd4Wz8LZYWTP5IiMLOaKGsc+TEYyQkJOp/1trAL37MxaiUT7jq46dCCFc7hUKmPwul8/QP2GHzw6bSv4E1+BTkte+qncj89ambCRoYLHBJsZcViCZxMJnVn0pe5vsQ1vw+q/qWYupp1yd8ao2y60UQJoWNMpw1YPwbgJvVgC4I5HmQUyyDHLqevNDb8WLjKeMy86NUiFjInfgY+qO6/5a7RfP5+GY2o75n7GzIwcJgJloNMIRYK1CcwAA8jtKBSFlzhRILMROcW08vjbS0LDFmZYDvlmFuII3SNTZZ7G3mDGYJAig517QvmqemoNAKZ065f2rd0pAMODFlDBFEOI/kLaA7bsSpYAxELQjHeL1GZsDPPHqvFYqoFbEPEyxWGM3emu7JFhW7zoKFmALm+ECH1jgIXAw41vV3blzsgGf2dsk0zDpJmJ9pIDalf+tl0LFVAMiGz/v+zBMTSvb+kXSd18rqebiWHUUQE6HpeS97f8i5Hh5Vn9fE+0DedcE+3RYpcxI4Nep8HV9sw6SYNBCyHVbUx6572SNNeNqagkKF2KyrRHZNRX0usSmuSjSOaboMr84/D3D5oQU9s7JX3HKWyrnqyc2+ZtjtEP/xkksDR4D2TEAFj6gBsqO37ldXnLT5KAMBcNksiWVYZTqDkYj6MwV/6Gfyfq+VGr5M09DeZGDkFfn2kbiv9I0omcuk6HYNjhyfOZZenElZSM+avJRrSBgqWefAiAhmscINjZRVTgmi8Ffkwwlvro9aXGOoCUSvAiJvNLp5blvsjQSndH7/dZ/QXxjURK3qOhUpIbrf5S+KQNqvW9COGqetMcBibkjyVO+ovksm0MfGJRuxSahmvYCZ9psxdQvM0RhoINzCTvMoJlN70wnNvpIr8o8V2Z9iHyMZaydorfc7U9XauqsImvih597JeOaVFGD6oOa+vuZZzcVkTTPZPtc/QxOZht5sAOjf2UHruhctSIDq9wy5PoPy993MJewTwcYACudHBDEhI8idSE0S0gKgi3aJR2lUUYJe4UQvrZdHGzwZj2q9w9KE6npfa4BhFeN3xmrrIfjFn0kpbnNhMFnfW05MyuOYwNSTTwcQe45HzX/D9n8OUjdqEbaBYTTBILeVpo9svfvcNKG/xTiryOPcdUgXzCYuGiwuW4eJMTi8o4yE2pkjPbp2QTw0XaLQ2C0CBlFib3VvhkKThD+dBMaUWuIOccKLMGIN0kqRVijUNOrTBcuvihV9/0WnI8YgGqa0H0jU6afL7+5/6R88qSq6A6j1s4CPK4Bn041mTHt49uWTYiAnTCHDUrFNYveGzA4D0VId++11aOxLZL183CwkCMnXEURjAsGjdc9rOK9Feky1CENXVzTvuC3qbKYyNGpXNOUWuCNWTpEbdm2Exxvz084+PBv8W5IgGR+d+4C/+DYrJ6eogCE1JhxpZKzNDdgyZ9fJnBMnk7Hbr8/eOnx35yBddg7s55wnVlwqOWwjq1UADoTVoA28qBxnZKBdHzr9HjnjS31q9X4wiWk85M0JHbUWOM/O8kxpez6r40yCwoSgnBgR7jeHcAymLVC57ZiYvOnJNNeKVYTKrJndmE5Oc64FfoNAcmvD3ZEYFdQ4AcXdyrMO/cH9CtM5W5GEl6XyV/OZr8jolbO5bgu0nyegVBGJtJuIydvc7bdzyu23ZlFvqiSZwrZk+zBS9vOawpYZz9eRXxlQgsDkawSDbxRd2K7mABapFvKKkm5mHwmkStZDgp9dF2U80bmpu67fQbTudCsepfozTdbWJtDLLpq3EdLl7donK1ugQ1Dy4qxK0tzj++O2PAC5pSNa8kGCqV/AgpVh5Rnq5oRt863ClLY4EUayegKakj8t6HfK+pjwsYSAE9p2xtuW4uYPlyQH7W1+NaV0tpyMEOIGuOJINnJGNrFZjfN52kaRfqO5yatIFJ8oi1OOYrK8YnIsPKh7fd6KF5ut24AVb4FzEEiMYEwgqfYZJ9oRm27KMUjqbnvA+tLsOtvzcJW+gSAQahmC6vcCGJR6kHruUcCd0L9qtCx/UDdT3ZiUooAULogKP2V54SguLtDkR806Q98RH54VXwWJiOVxcjKoYHjNKapCMmpkaNx0AGwvnoZtwXcii5U5PcCWApAf1dV9W8GdPfNa+67mitjH6W1I+XrvwRDlc4rMXdLbSiJZUHpB3LcqifQ3L/RPLm4Qbe3dzPE23U4+spotLwzyoSYrybwd+YK4qdyayjab6loHDOh8pLwhyttLmoAlti8gJmPDS5XxWQCaTAjT1N2Ik/VXeO9p12AJMU1RjjinEJVef7++TPW4az3AfSYhlL38jt1haRFRcsF7N8DECIH6IgjC+1TEi+mvoBdBGPD2EPYQHg6UbxlYLxf3/MbtjHliE1O630pYhYUyzYhMt+OuaVhCDwQp+M+QRwQ06rP8DoY6hlHtmoTU+O6yTHtkYrAvCERN3FIABmn0y5TKSIgYVKne3hFr5sdaP/Tw7LteMPFA5KJvCB9Nw6mfD9paqRQYJd5OBod4RraoWMreGZwNLaOyDVdjLMVR57Q12S5uEvVbSIF6lQv4CyuP+zCYt6lOJod3WN1oMbWjsgSF2Gvlfl/qdYHkxnwQXuW/AtfmcmVDH2v6a5dng22Ym27sqR8m55PUpDmG/U0PnBR8fms5TL601kmkdEk0s2c2K7ANKKJUUk/Cj1cCIc81Z86kCAQAAwI068+yT3QwtuQiHHrok5zKzHjnUjjyLk8VIPrjYMEfPf1Rc9TOybc/Wtxtl+C4RRQN2dCxnekym7oROHPbUlUK6uob0zSRkXmzSbXwRtt/0mwZV1VZJewWf9PqFO562hnOaUh6EAlkXuTxTeaRjHz0ggb3wmu8iD18+PtTeJ6Og3ZlBiOz9tOuxB9//FfB56MCOD6pD1C1aQTocBmhYgxdtJAaN/izNUP7gPpQNDPnSSJ7HHrwPVzOSdmVebNzfTNsmziY8H4sQVLLNXPasmAiFUh8BBF91PA9fxtPoTN2cAFCEfXT4Nq4SZKkHXWBL2KKIsN6jzbp8EumTJdk/6XeN9tGqxyTawMaj0o037VyPxUZozO89thXLa4oyGeBRsQ28GxFyHoldr8il4822UU0AODPOmj7FBkjcPAVRsiTi9+caVjRqHiVYISBZ99/CTqe4/FjiEHwT+5CcCMBvucwzYX1ptHJclFWafdwwvIXB7IdnvrOFQIKTdIeS6+Vw6SXJ7SbE1JcTM3i3CRloN/W71H3peCg+obDaZcoHfRF/tMyyjl7ZngiimD5GAvZyN2b1DyNITZuWCO7TbIKibmaSfTX4sipmuQ57jIMSCGjZigaj2qy6cR9OMcnSzm3SeOfxnWRphzne1wMsU4WEDL/72LbiEVpqXZ23fCcfGOOpN//BwZOyJ2YCsBk7SMWGvcuG/FHA65RBKAbKoHL33rsAwOUjRmY8hm0SNZRGAdKzAiWJC3AKh64CDVYSQC4DnAEBp1LqUA6NkdwGvxvVbiCUaWZm7Y3/Qk6l5gSsGfoACOE4y8xW2nykBlcrvwl1x3xF3wcpnIA1LfSKAwf3AeyrZhODii6XQlMnPljhR/QXrjpVMaRvlUJ+m8HXgzFbjfuqZQNwkTpSpqUQvImX4J/gVhNglr0EWx/bplq2yzyDMN5PwXu3NsCSPbP91hiOquEdz6dV8AKBcdmrXyVzus7UJmayqovHod9VizgmajrouHh4G/o3U0FCRW0uX7MOWt7dhuuH0SlSLFld3dYyMXgZBH3wIT7m+fuooactWMSMc23VLMlhYcbq9BzVL3mOZLwURcmQs2fz6fq8LecKb0GfOqmxom8U003fgPY5CZ0/PcaZ8xIHtSJelXBZ0KnBRkiN9ax9Cn4fVzwXDCSAVUhcbgEoyP2hLy0ZkIONwBbbXYyOraylpbeORdgs/F+lQj2D4XiFXsNYDs+FIAEVZ77TH/HjlaCdv5eqXOUjcU7UiOrJ544CDcYGk5Tpa+nCO2E7IH8KfXYLcHAhvnN+Ov8ItlWiJwC4whr+Ddz6C+CczGrVnkLn+Xc5uTrsNizHm8nVjGTUotR9xxL9FuP5Qp2nZpPABebTHoR+EwbXKZdcTuiZrSLypVUxmZfBym5/o0dwjeJbaA+x4O2xLsfu+motqSExXbrcYfpDaaErFaoO4cX/SR+Pw+l6Sl3VdtnIIBxtx1uF3UsQsz7FHRrY7DWqQFkOplKWRRX+4EGaK3kq5NRhzBiilpp3R7+vGX6+gFbqpzWMKijJXl6C+dbZRNQTqmizasMAwTs/FjfvLERAfoHmEwJkh5pJohHWRlPPpiII+OAGUfmiqictiagn4A6H2J355tcCNrEbyyn5aH9aC8WwHaGBA==",
   iter: 200000
 };
-
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 
 async function decryptUrls(pin) {
@@ -296,85 +1301,286 @@ async function decryptUrls(pin) {
   const km = await crypto.subtle.importKey('raw', enc.encode(pin), 'PBKDF2', false, ['deriveKey']);
   const key = await crypto.subtle.deriveKey(
     { name: 'PBKDF2', salt: b64(VAULT.salt), iterations: VAULT.iter, hash: 'SHA-256' },
-    km,
-    { name: 'AES-GCM', length: 256 },
-    false,
-    ['decrypt']
+    km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
   );
   const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(VAULT.iv) }, key, b64(VAULT.ct));
   return JSON.parse(new TextDecoder().decode(plain));
 }
 
-const input = document.getElementById('pinInput');
-const btn   = document.getElementById('pinBtn');
-const msg   = document.getElementById('pinMsg');
 const cards = document.querySelectorAll('.card');
+let serverLessonsMode = null;
+const loginPage = '/lingua-boost-lab/login.html';
+const premiumAuthButtons = [...document.querySelectorAll('[data-premium-auth]')];
+let premiumHasAccess = false;
+let publicLessonsById = {};
 
-async function tryUnlock() {
-  const pin = input.value.trim();
-  if (!pin) {
-    msg.textContent = 'Введи код, который тебе прислали.';
-    msg.className = 'pin-msg is-error';
+function normalizeLessonUrl(url) {
+  if (!url) return '/lingua-boost-lab/premium.html';
+  try {
+    const resolved = new URL(url, window.location.origin + '/lingua-boost-lab/');
+    if (resolved.origin !== window.location.origin) return '/lingua-boost-lab/premium.html';
+    if (!resolved.pathname.startsWith('/lingua-boost-lab/')) return '/lingua-boost-lab/premium.html';
+    if (resolved.pathname.endsWith('/login.html')) return '/lingua-boost-lab/premium.html';
+    return resolved.pathname + resolved.search + resolved.hash;
+  } catch (error) {
+    return '/lingua-boost-lab/premium.html';
+  }
+}
+
+async function loadPublicLessonIndex() {
+  try {
+    const response = await fetch('/lingua-boost-lab/premium-lessons.json', { cache: 'no-store' });
+    if (!response.ok) return;
+    const lessons = await response.json();
+    if (!Array.isArray(lessons)) return;
+    publicLessonsById = Object.fromEntries(lessons.filter(l => l && l.id).map(l => [l.id, l]));
+  } catch (error) {}
+}
+
+async function loadServerLessons() {
+  try {
+    const response = await fetch('/api/premium-lessons', {
+      credentials: 'include',
+      cache: 'no-store',
+    });
+    if (response.status === 404) return null;
+    if (response.status === 401 || response.status === 403) {
+      serverLessonsMode = true;
+      return { authorized: false, status: response.status };
+    }
+    if (!response.ok) {
+      serverLessonsMode = true;
+      return { authorized: false, status: response.status };
+    }
+    const payload = await response.json();
+    if (!payload || !Array.isArray(payload.lessons)) return null;
+    serverLessonsMode = true;
+    return { authorized: true, version: payload.version || VAULT_VERSION, lessons: payload.lessons };
+  } catch (error) {
+    return null;
+  }
+}
+
+function safeNextUrl() {
+  const next = new URLSearchParams(location.search).get('next');
+  if (!next) return '/lingua-boost-lab/premium.html';
+  try {
+    const url = new URL(next, location.origin);
+    if (url.origin !== location.origin) return '/lingua-boost-lab/premium.html';
+    if (!url.pathname.startsWith('/lingua-boost-lab/')) return '/lingua-boost-lab/premium.html';
+    if (url.pathname.endsWith('/login.html')) return '/lingua-boost-lab/premium.html';
+    return url.pathname + url.search + url.hash;
+  } catch (e) {
+    return '/lingua-boost-lab/premium.html';
+  }
+}
+
+function rememberPremiumAccess(lessons) {
+  localStorage.setItem('nge-vault-cache', JSON.stringify(lessons));
+  localStorage.setItem('nge-vault-cache-v', VAULT_VERSION);
+}
+
+function redirectToLogin(nextUrl) {
+  const target = loginPage + '?next=' + encodeURIComponent(normalizeLessonUrl(nextUrl || '/lingua-boost-lab/premium.html'));
+  window.location.replace(target);
+}
+
+function setPremiumAuthState(hasAccess) {
+  premiumHasAccess = !!hasAccess;
+  premiumAuthButtons.forEach((button) => {
+    button.textContent = premiumHasAccess ? 'Выйти' : 'Войти';
+    button.setAttribute('aria-label', premiumHasAccess ? 'Выйти из premium' : 'Войти в premium');
+  });
+}
+
+function clearPremiumCache() {
+  localStorage.removeItem('nge-vault-cache');
+  localStorage.removeItem('nge-vault-cache-v');
+  localStorage.removeItem('nge-vault-pin');
+  sessionStorage.removeItem('nge-vault-cache');
+  sessionStorage.removeItem('nge-vault-cache-v');
+  setPremiumAuthState(false);
+}
+
+premiumAuthButtons.forEach((button) => {
+  button.addEventListener('click', async () => {
+    if (!premiumHasAccess) {
+      redirectToLogin();
+      return;
+    }
+    clearPremiumCache();
+    try {
+      await fetch('/api/premium-logout?next=' + encodeURIComponent('/lingua-boost-lab/login.html'), {
+        credentials: 'include',
+        cache: 'no-store',
+      });
+    } catch (error) {}
+    location.replace('/lingua-boost-lab/login.html');
+  });
+});
+
+cards.forEach(c => {
+  const a = c.querySelector('.card-open');
+  if (!a) return;
+  a.addEventListener('click', e => {
+    if (a.getAttribute('href') === '#') {
+      e.preventDefault();
+      const lesson = publicLessonsById[c.dataset.id];
+      /* Если урок есть в публичном индексе — открыть его напрямую без редиректа на login. */
+      if (lesson && lesson.url) {
+        const direct = new URL(lesson.url, window.location.origin + '/lingua-boost-lab/').href;
+        window.location.href = direct;
+        return;
+      }
+      /* Fallback: карточка не в vault, но имеет оригинальный href (публичный урок вне premium-lessons.json — например /practice/) */
+      const orig = a.dataset.origHref;
+      if (orig && orig !== '#') {
+        window.location.href = new URL(orig, window.location.origin + '/lingua-boost-lab/').href;
+        return;
+      }
+      redirectToLogin(lesson && lesson.url);
+    }
+  });
+});
+
+function applyLessons(lessons) {
+  const byId = Object.fromEntries(lessons.map(l => [l.id, l]));
+  /* Объединяем зашифрованные premium-уроки с публичным индексом — публичные (как OGE Mock) тоже получают правильный href. */
+  const allById = Object.assign({}, publicLessonsById, byId);
+  cards.forEach(c => {
+    c.classList.remove('is-authorized');
+    const a = c.querySelector('.card-open');
+    if (a) {
+      if (!a.dataset.origHref) a.dataset.origHref = a.getAttribute('href') || '#';
+      a.href = '#';
+    }
+  });
+  cards.forEach(c => {
+    const id = c.dataset.id; const l = allById[id]; if (!l) return;
+    const a = c.querySelector('.card-open');
+    a.href = l.url; c.classList.add('is-authorized');
+  });
+  setPremiumAuthState(true);
+}
+
+/* Применяем публичный индекс СРАЗУ после загрузки JSON — публичные карточки работают даже без PIN. */
+function applyPublicLessonsOnly() {
+  cards.forEach(c => {
+    const id = c.dataset.id;
+    const l = publicLessonsById[id];
+    if (!l) return;
+    const a = c.querySelector('.card-open');
+    if (a) a.href = l.url;
+  });
+}
+
+/* version tag — bump it whenever Vault.ct/iv change, so cached browsers re-decrypt */
+const VAULT_VERSION = (document.querySelector('meta[name="vault-version"]')||{}).content || 'v0';
+
+async function bootstrapAccess(){
+  await loadPublicLessonIndex();
+  /* Сразу применить публичный индекс — открытые уроки (без шифрования) кликабельны без PIN. */
+  applyPublicLessonsOnly();
+
+  /* manual lock via hash */
+  if (location.hash === '#lock') {
+    const server = await loadServerLessons();
+    if (server !== null) {
+      location.href = '/api/premium-logout?next=' + encodeURIComponent('/lingua-boost-lab/login.html');
+      return;
+    }
+    clearPremiumCache();
+    location.hash = '';
+    redirectToLogin();
     return;
   }
-  btn.disabled = true;
-  msg.textContent = 'Проверяю…';
-  msg.className = 'pin-msg';
-  try {
-    const lessons = await decryptUrls(pin);
-    // success — unlock
-    const byId = Object.fromEntries(lessons.map(l => [l.id, l]));
-    cards.forEach(c => {
-      const id = c.dataset.id;
-      const l = byId[id];
-      if (!l) return;
-      const a = c.querySelector('.card-open');
-      a.href = l.url;
-      c.classList.remove('locked');
-      c.classList.add('unlocked');
-    });
-    msg.textContent = '✓ Код принят. Карточки активны — выбирай.';
-    msg.className = 'pin-msg is-ok';
-    try { sessionStorage.setItem('nge-premium-pin', pin); } catch(e) {}
-    input.value = '';
-  } catch (e) {
-    btn.disabled = false;
-    input.classList.add('shake');
-    setTimeout(() => input.classList.remove('shake'), 400);
-    msg.textContent = '✗ Код не подошёл. Проверь дефисы и регистр.';
-    msg.className = 'pin-msg is-error';
+
+  const server = await loadServerLessons();
+  if (server) {
+    if (server.authorized) {
+      applyLessons(server.lessons);
+    } else {
+      setPremiumAuthState(false);
+    }
+    return;
+  }
+
+  /* persisted cache: silent unlock — only if version matches current vault */
+  const cachedV = localStorage.getItem('nge-vault-cache-v');
+  const cached  = localStorage.getItem('nge-vault-cache');
+  if (cached && cachedV === VAULT_VERSION) {
+    try { applyLessons(JSON.parse(cached)); return; } catch(e){}
+  }
+
+  /* migration fallback: cached lessons from previous vault version exist. */
+  if (cached) {
+    try {
+      applyLessons(JSON.parse(cached));
+    } catch(e){}
+  }
+  if (!cached) {
+    setPremiumAuthState(false);
   }
 }
 
-btn.addEventListener('click', tryUnlock);
-input.addEventListener('keypress', e => { if (e.key === 'Enter') tryUnlock(); });
+bootstrapAccess();
 
-// auto-unlock if already entered correct PIN in this session
-(async () => {
-  try {
-    const saved = sessionStorage.getItem('nge-premium-pin');
-    if (saved) {
-      input.value = saved;
-      await tryUnlock();
+/* Theme + language toggles — same pattern as Lab catalog (uses lab-theme-sync.js) */
+(function () {
+  function toggleLabTheme() {
+    if (!window.LinguaBoostTheme) return;
+    var current = window.LinguaBoostTheme.resolveLessonTheme();
+    var darkSet = { "black-lab": 1, "violet": 1 };
+    var isDark = !!darkSet[current];
+    var next = isDark ? "light-lab" : "black-lab";
+    /* premium is a lab page (not catalog) — use applyLessonTheme so the
+       data-theme value matches what lab-theme-sync sets on auto-init */
+    window.LinguaBoostTheme.applyLessonTheme(next);
+    updateThemeBtnText();
+  }
+  function updateThemeBtnText() {
+    var btn = document.getElementById("labThemeToggle");
+    if (!btn || !window.LinguaBoostTheme) return;
+    var current = window.LinguaBoostTheme.resolveLessonTheme();
+    var darkSet = { "black-lab": 1, "violet": 1 };
+    var isDark = !!darkSet[current];
+    btn.textContent = isDark ? "LIGHT" : "DARK";
+  }
+  window.toggleLang = function () {
+    var html = document.documentElement;
+    var cur = html.getAttribute("lang") || "ru";
+    var next = cur === "ru" ? "en" : "ru";
+    html.setAttribute("lang", next);
+    try { localStorage.setItem("nge-lang", next); } catch (e) {}
+    if (window.LinguaBoostTheme && typeof window.LinguaBoostTheme.applyLanguage === "function") {
+      window.LinguaBoostTheme.applyLanguage(next);
     }
-  } catch(e) {}
+    var btn = document.getElementById("langBtn");
+    if (btn) btn.textContent = next === "ru" ? "EN" : "RU";
+  };
+  function init() {
+    updateThemeBtnText();
+    var btn = document.getElementById("labThemeToggle");
+    if (btn && !btn.dataset.handlerBound) {
+      btn.dataset.handlerBound = "true";
+      btn.addEventListener("click", toggleLabTheme);
+    }
+    var langBtn = document.getElementById("langBtn");
+    if (langBtn) {
+      var lang = document.documentElement.getAttribute("lang") || "ru";
+      langBtn.textContent = lang === "ru" ? "EN" : "RU";
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+  /* Re-run after lab-theme-sync.js initializes (it runs on DOMContentLoaded too) */
+  window.addEventListener("load", function () { setTimeout(updateThemeBtnText, 50); });
 })();
-
-// theme toggle (same logic as lab-theme-sync.js — minimal local copy)
-const themeBtn = document.getElementById('themeBtn');
-function applyTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  try { localStorage.setItem('nge-theme', t); } catch(e) {}
-}
-themeBtn.addEventListener('click', () => {
-  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
-  applyTheme(cur === 'dark' ? 'light' : 'dark');
-});
-try {
-  const saved = localStorage.getItem('nge-theme');
-  if (saved) applyTheme(saved);
-} catch(e) {}
 </script>
 
 </body>
 </html>
+
