@@ -1317,18 +1317,19 @@ html body > .lab-lex-box{
 .lr-strategy ul{ margin:8px 0 0; padding-left:20px; color: var(--muted); font-size:.94rem; line-height:1.6 }
 .lr-strategy strong{ color: var(--text) }
 
-/* ═══════════ SIDE PANELS · uniform panel + text pair (v3 2026-07-12) ═══════════
-   Референс — 10 PROMPTS · UI DESIGN. Все панели одного размера, всегда справа,
-   text-col тянется до высоты панели (или наоборот), без пустот и панель-лефт-
-   алтернирования. Panel = flex column: image top, caption bottom прижата вниз. */
+/* ═══════════ SIDE PANELS · uniform panel + text pair (v4 2026-07-12) ═══════════
+   Референс — 10 PROMPTS. Панель = компактный тайл (~280 px total), всегда
+   справа, align-items:start чтобы текст-колонка не растягивала панель. Если
+   текст длиннее — панель сидит сверху своей колонки, пустое место ниже; но
+   так короче, чем текст-колонка ниже панели (это выглядит естественно). */
 .ex.has-panel{
-  display:grid; grid-template-columns: 1fr 314px; gap: 22px; align-items:stretch;
+  display:grid; grid-template-columns: 1fr 314px; gap: 22px; align-items:start;
 }
 .ex.has-panel > .side-panel{
   order: 2;
   grid-column: 2;
   width: 314px; max-width: 100%;
-  align-self: stretch;
+  align-self: start;
   display: flex; flex-direction: column; gap: 8px;
   background: color-mix(in srgb, var(--card) 88%, #000 12%);
   border: 1px solid var(--line-2);
@@ -1336,20 +1337,21 @@ html body > .lab-lex-box{
   padding: 14px 14px 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,.45);
 }
-.ex.has-panel > *:not(.side-panel){ grid-column: 1; align-self: stretch; }
+.ex.has-panel > *:not(.side-panel){ grid-column: 1; }
 .side-panel img{
-  display:block; width: 100%; height:auto; border-radius: 10px;
+  display:block; width: 100%; max-height: 220px; height:auto; object-fit: contain;
+  border-radius: 10px;
   border: 1px solid var(--line-2);
   box-shadow: 0 4px 14px rgba(0,0,0,.32);
   flex: 0 0 auto;
 }
 .side-panel-caption{
-  margin-top: auto; padding-top: 6px;
+  margin-top: 2px; padding-top: 6px;
   font-family: var(--mono); font-size: 10px;
   font-weight: 800; letter-spacing:.12em; text-transform:uppercase;
   color: var(--accent, #F5C842); text-align:center;
 }
-/* Legacy alternation — deprecated. Force all panels to right for уhythm. */
+/* Legacy alternation — deprecated. Force all panels to right for rhythm. */
 .ex.has-panel.panel-left{ grid-template-columns: 1fr 314px; }
 .ex.has-panel.panel-left > .side-panel{ order: 2; grid-column: 2; }
 .ex.has-panel.panel-left > *:not(.side-panel){ grid-column: 1; }
@@ -2225,11 +2227,10 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f2) IELTS CUE-CARD · LEVEL 2 (full) ─── -->
-      <div class="ex has-panel panel-left" data-section-id="d-freer">
-        <aside class="side-panel">
-          <img loading="lazy" decoding="async" src="assets/img/panels/n03-mic-drill-cue.png" alt="Mic-drill cue card panel — Describe a place. A clear structure scores better than random ideas.">
-          <div class="side-panel-caption">🎤 how the cue card works</div>
-        </aside>
+      <!-- v4 2026-07-12: убрала .has-panel panel-left и весь <aside> — AI Live Coach
+           внутри этого блока требует full-width, а панель n03-mic-drill-cue уже
+           использована в Level 1 warm-up блоке выше. -->
+      <div class="ex" data-section-id="d-freer">
         <div class="ex-hdr">
           <span class="ex-badge speak">f2 · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card <span class="lvl-badge lvl-2">Level 2 · full 2 min</span></h4>
@@ -2764,11 +2765,8 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f) FREER MIC-DRILL ─── -->
-      <div class="ex has-panel" data-section-id="w-freer">
-        <aside class="side-panel">
-          <img loading="lazy" decoding="async" src="assets/img/panels/n05-ai-feedback.png" alt="AI feedback panel — score 8/10 across Fluency, Coherence, Vocabulary, Pronunciation. Accuracy matters, clarity matters first.">
-          <div class="side-panel-caption">🤖 what the score really checks</div>
-        </aside>
+      <!-- v4 2026-07-12: убрала .has-panel — блок содержит AI Live Coach на всю ширину -->
+      <div class="ex" data-section-id="w-freer">
         <div class="ex-hdr">
           <span class="ex-badge speak">f · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card · 1 min prep · 2 min speaking</h4>
@@ -3130,11 +3128,8 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f) FREER MIC-DRILL ─── -->
-      <div class="ex has-panel" data-section-id="h-freer">
-        <aside class="side-panel">
-          <img loading="lazy" decoding="async" src="assets/img/panels/n08-progress-dashboard.png" alt="Progress dashboard panel — track how your answers improve, 8.5/10. Better answers become more specific, not longer.">
-          <div class="side-panel-caption">📈 what progress looks like</div>
-        </aside>
+      <!-- v4 2026-07-12: убрала .has-panel — блок содержит AI Live Coach на всю ширину -->
+      <div class="ex" data-section-id="h-freer">
         <div class="ex-hdr">
           <span class="ex-badge speak">f · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card · 1 min prep · 2 min speaking</h4>
