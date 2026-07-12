@@ -517,20 +517,20 @@ footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospac
   <div class="section-hdr"><div class="section-num">02</div><h2>Vocab · 14 words for the letter and the night</h2></div>
   <p class="section-sub">School-level B1+/B2 vocabulary — olympiad-friendly, not C1-abstract. Every word comes back in reading, UoE and the speak mission.</p>
   <div class="flip-grid" id="flipGrid">
-    <div class="flip-card" data-en="envelope" data-pos="n." data-ru="конверт" data-def="paper holder that closes around a letter"></div>
-    <div class="flip-card" data-en="to seal" data-pos="v." data-ru="запечатать" data-def="to close a letter or container so no one can open it"></div>
-    <div class="flip-card" data-en="handwriting" data-pos="n." data-ru="почерк" data-def="the way one person forms letters by hand"></div>
-    <div class="flip-card" data-en="signature" data-pos="n." data-ru="подпись" data-def="your name written by hand at the end of a letter"></div>
-    <div class="flip-card" data-en="recipient" data-pos="n." data-ru="получатель" data-def="the person who is meant to receive something"></div>
-    <div class="flip-card" data-en="to admit" data-pos="v." data-ru="признать, согласиться" data-def="to agree that something difficult is true"></div>
-    <div class="flip-card" data-en="to reveal" data-pos="v." data-ru="раскрыть, обнаружить" data-def="to show or tell something that was hidden"></div>
-    <div class="flip-card" data-en="to forgive" data-pos="v." data-ru="простить" data-def="to stop being angry with someone for something they did"></div>
-    <div class="flip-card" data-en="to hide" data-pos="v. (hid, hidden)" data-ru="прятать, скрывать" data-def="to put something out of sight; to keep information from someone"></div>
-    <div class="flip-card" data-en="silence" data-pos="n." data-ru="тишина, молчание" data-def="complete absence of sound or speech"></div>
-    <div class="flip-card" data-en="truth" data-pos="n." data-ru="правда" data-def="something that is real, not invented"></div>
-    <div class="flip-card" data-en="secret" data-pos="n. / adj." data-ru="тайна, секретный" data-def="information you keep hidden from others"></div>
-    <div class="flip-card" data-en="relative" data-pos="n." data-ru="родственник" data-def="a member of your family"></div>
-    <div class="flip-card" data-en="apology" data-pos="n." data-ru="извинение" data-def="a statement saying sorry for something you did"></div>
+    <div class="flip-card" data-w="envelope" data-pos="n." data-tr="конверт" data-def="paper holder that closes around a letter"></div>
+    <div class="flip-card" data-w="to seal" data-pos="v." data-tr="запечатать" data-def="to close a letter or container so no one can open it"></div>
+    <div class="flip-card" data-w="handwriting" data-pos="n." data-tr="почерк" data-def="the way one person forms letters by hand"></div>
+    <div class="flip-card" data-w="signature" data-pos="n." data-tr="подпись" data-def="your name written by hand at the end of a letter"></div>
+    <div class="flip-card" data-w="recipient" data-pos="n." data-tr="получатель" data-def="the person who is meant to receive something"></div>
+    <div class="flip-card" data-w="to admit" data-pos="v." data-tr="признать, согласиться" data-def="to agree that something difficult is true"></div>
+    <div class="flip-card" data-w="to reveal" data-pos="v." data-tr="раскрыть, обнаружить" data-def="to show or tell something that was hidden"></div>
+    <div class="flip-card" data-w="to forgive" data-pos="v." data-tr="простить" data-def="to stop being angry with someone for something they did"></div>
+    <div class="flip-card" data-w="to hide" data-pos="v. (hid, hidden)" data-tr="прятать, скрывать" data-def="to put something out of sight; to keep information from someone"></div>
+    <div class="flip-card" data-w="silence" data-pos="n." data-tr="тишина, молчание" data-def="complete absence of sound or speech"></div>
+    <div class="flip-card" data-w="truth" data-pos="n." data-tr="правда" data-def="something that is real, not invented"></div>
+    <div class="flip-card" data-w="secret" data-pos="n. / adj." data-tr="тайна, секретный" data-def="information you keep hidden from others"></div>
+    <div class="flip-card" data-w="relative" data-pos="n." data-tr="родственник" data-def="a member of your family"></div>
+    <div class="flip-card" data-w="apology" data-pos="n." data-tr="извинение" data-def="a statement saying sorry for something you did"></div>
   </div>
 
   <details class="teacher">
@@ -1449,7 +1449,7 @@ body.lab-teacher-on .lab-vocab-section .vocab-card .extra-mark{left:40px!importa
   }
   document.querySelectorAll('.tr[data-ru]').forEach(function(el){
     el.addEventListener('click', function(){
-      add(el.textContent.trim(), el.dataset.ru);
+      add(el.textContent.trim(), el.dataset.tr);
       el.classList.add('added');
     });
   });
@@ -1462,7 +1462,7 @@ body.lab-teacher-on .lab-vocab-section .vocab-card .extra-mark{left:40px!importa
 (function(){
   var grid = document.getElementById('flipGrid'); if (!grid) return;
   Array.prototype.forEach.call(grid.children, function(card){
-    var en = card.dataset.en, pos = card.dataset.pos, ru = card.dataset.ru, def = card.dataset.def;
+    var en = card.dataset.w, pos = card.dataset.pos, ru = card.dataset.tr, def = card.dataset.def;
     card.innerHTML =
       '<div class="flip-inner">' +
         '<div class="flip-front"><span>'+en+'</span><span class="pos">'+pos+'</span></div>' +
@@ -1785,5 +1785,7 @@ body.lab-teacher-on .lab-vocab-section .vocab-card .extra-mark{left:40px!importa
 })();
 </script>
 
+
+<script src="../../assets/lab-clean-bottom-dock.js?v=1" defer></script>
 </body>
 </html>

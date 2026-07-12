@@ -533,20 +533,20 @@ footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospac
   <div class="section-hdr"><div class="section-num">02</div><h2>Vocab · 14 words from the case file</h2></div>
   <p class="section-sub">Tap a card to flip. Add what you want to remember — they will surface again across reading, listening, and speaking.</p>
   <div class="flip-grid" id="flipGrid">
-    <div class="flip-card" data-en="consciousness" data-pos="n." data-ru="сознание" data-def="being awake and able to think"></div>
-    <div class="flip-card" data-en="locked-in syndrome" data-pos="n." data-ru="синдром &quot;запертого&quot;" data-def="when a person cannot move but is still awake"></div>
-    <div class="flip-card" data-en="thinking" data-pos="n." data-ru="мышление" data-def="the act of using your mind to understand"></div>
-    <div class="flip-card" data-en="brain activity" data-pos="n." data-ru="активность мозга" data-def="electrical signals that the brain produces"></div>
-    <div class="flip-card" data-en="awareness" data-pos="n." data-ru="осознанность; знание о чём-то" data-def="knowing that something is happening"></div>
-    <div class="flip-card" data-en="aware" data-pos="adj." data-ru="осознающий, заметивший" data-def="knowing about something or someone"></div>
-    <div class="flip-card" data-en="to figure out" data-pos="v. phr." data-ru="догадаться, разобраться" data-def="to find an answer by thinking carefully"></div>
-    <div class="flip-card" data-en="standard" data-pos="n." data-ru="эталон, стандарт" data-def="a level that other things are compared to"></div>
-    <div class="flip-card" data-en="to control" data-pos="v." data-ru="управлять, контролировать" data-def="to make something do what you want"></div>
-    <div class="flip-card" data-en="to reflect" data-pos="v." data-ru="отражать; повторять" data-def="to show or copy something exactly"></div>
-    <div class="flip-card" data-en="unusual" data-pos="adj." data-ru="необычный" data-def="different from what is normal or expected"></div>
-    <div class="flip-card" data-en="limit" data-pos="n." data-ru="предел, граница" data-def="the point you cannot go past"></div>
-    <div class="flip-card" data-en="silent" data-pos="adj." data-ru="молчаливый, тихий" data-def="not making any sound; not speaking"></div>
-    <div class="flip-card" data-en="to wind (wound)" data-pos="v." data-ru="заводить (часы, пружину)" data-def="to turn a key or handle to give energy to a clock spring"></div>
+    <div class="flip-card" data-w="consciousness" data-pos="n." data-tr="сознание" data-def="being awake and able to think"></div>
+    <div class="flip-card" data-w="locked-in syndrome" data-pos="n." data-tr="синдром &quot;запертого&quot;" data-def="when a person cannot move but is still awake"></div>
+    <div class="flip-card" data-w="thinking" data-pos="n." data-tr="мышление" data-def="the act of using your mind to understand"></div>
+    <div class="flip-card" data-w="brain activity" data-pos="n." data-tr="активность мозга" data-def="electrical signals that the brain produces"></div>
+    <div class="flip-card" data-w="awareness" data-pos="n." data-tr="осознанность; знание о чём-то" data-def="knowing that something is happening"></div>
+    <div class="flip-card" data-w="aware" data-pos="adj." data-tr="осознающий, заметивший" data-def="knowing about something or someone"></div>
+    <div class="flip-card" data-w="to figure out" data-pos="v. phr." data-tr="догадаться, разобраться" data-def="to find an answer by thinking carefully"></div>
+    <div class="flip-card" data-w="standard" data-pos="n." data-tr="эталон, стандарт" data-def="a level that other things are compared to"></div>
+    <div class="flip-card" data-w="to control" data-pos="v." data-tr="управлять, контролировать" data-def="to make something do what you want"></div>
+    <div class="flip-card" data-w="to reflect" data-pos="v." data-tr="отражать; повторять" data-def="to show or copy something exactly"></div>
+    <div class="flip-card" data-w="unusual" data-pos="adj." data-tr="необычный" data-def="different from what is normal or expected"></div>
+    <div class="flip-card" data-w="limit" data-pos="n." data-tr="предел, граница" data-def="the point you cannot go past"></div>
+    <div class="flip-card" data-w="silent" data-pos="adj." data-tr="молчаливый, тихий" data-def="not making any sound; not speaking"></div>
+    <div class="flip-card" data-w="to wind (wound)" data-pos="v." data-tr="заводить (часы, пружину)" data-def="to turn a key or handle to give energy to a clock spring"></div>
   </div>
 
   <details class="teacher">
@@ -1449,7 +1449,7 @@ Ladies and gentlemen — three years ago Theo Marshall stopped answering us. Two
   }
   document.querySelectorAll('.tr[data-ru]').forEach(function(el){
     el.addEventListener('click', function(){
-      add(el.textContent.trim(), el.dataset.ru);
+      add(el.textContent.trim(), el.dataset.tr);
       el.classList.add('added');
     });
   });
@@ -1462,7 +1462,7 @@ Ladies and gentlemen — three years ago Theo Marshall stopped answering us. Two
 (function(){
   var grid = document.getElementById('flipGrid'); if (!grid) return;
   Array.prototype.forEach.call(grid.children, function(card){
-    var en = card.dataset.en, pos = card.dataset.pos, ru = card.dataset.ru, def = card.dataset.def;
+    var en = card.dataset.w, pos = card.dataset.pos, ru = card.dataset.tr, def = card.dataset.def;
     card.innerHTML =
       '<div class="flip-inner">' +
         '<div class="flip-front"><span>'+en+'</span><span class="pos">'+pos+'</span></div>' +
@@ -1760,5 +1760,7 @@ Ladies and gentlemen — three years ago Theo Marshall stopped answering us. Two
 })();
 </script>
 
+
+<script src="../../assets/lab-clean-bottom-dock.js?v=1" defer></script>
 </body>
 </html>
