@@ -68,8 +68,11 @@ img{display:block;max-width:100%}
 .tool-pill.level{background:var(--accent);color:var(--navy);border-color:var(--accent2)}
 
 /* ===== HERO ===== */
-.lab-hero{width:var(--demo-width);max-width:1180px;margin:24px auto 18px;border-radius:var(--radius-l);overflow:hidden;box-shadow:var(--shadow);background:#06131F;position:relative}
+.lab-hero{width:var(--demo-width);max-width:1180px;margin:24px auto 18px;border-radius:var(--radius-l);overflow:hidden;box-shadow:var(--shadow);background:#06131F;position:relative;isolation:isolate}
 .hero-banner{width:100%;height:auto;display:block}
+.hero-overlay{position:absolute;left:0;top:0;bottom:0;width:52%;padding:clamp(20px,4vw,44px);display:flex;flex-direction:column;justify-content:center;gap:14px;background:linear-gradient(90deg,rgba(6,19,31,.88) 0%,rgba(6,19,31,.72) 55%,rgba(6,19,31,0) 100%);pointer-events:none;z-index:2}
+.hero-overlay .hero-eyebrow,.hero-overlay .hero-title,.hero-overlay .hero-lead,.hero-overlay .hero-badges{margin:0}
+@media(max-width:720px){.hero-overlay{width:100%;background:linear-gradient(180deg,rgba(6,19,31,.85) 0%,rgba(6,19,31,.65) 55%,rgba(6,19,31,.15) 100%)}.hero-overlay .hero-lead{display:none}}
 .hero-placeholder{aspect-ratio:16/6;background:
   linear-gradient(135deg, rgba(6,20,38,.90), rgba(15,42,68,.75)),
   radial-gradient(circle at 70% 30%, rgba(198,139,59,.45), transparent 55%),
@@ -308,6 +311,17 @@ footer .by{display:block;margin-top:6px;font-size:.7rem;opacity:.8}
 <!-- ===== HERO ===== -->
 <div class="lab-hero">
   <img class="hero-banner" src="assets/img/hero-banner.webp" alt="Treasure Island · Three Adventures. Jim Hawkins stands beside a bearded pirate in a tricorn hat, both leaning over a spread treasure map; the Hispaniola with a black pirate flag anchors in the bay behind them; a tropical island glows at right. Robert Louis Stevenson · Reading + Speaking · Courage and Choice.">
+  <div class="hero-overlay">
+    <div class="hero-eyebrow">NG English · Reading Classes</div>
+    <div class="hero-title">Treasure Island · <em>Three Adventures</em></div>
+    <div class="hero-lead">Robert Louis Stevenson · Adapted for B1 readers. Pirates, mutiny, courage, choice — and one boy who says yes.</div>
+    <div class="hero-badges">
+      <span class="hero-badge">B1 Reading</span>
+      <span class="hero-badge">90 minutes</span>
+      <span class="hero-badge">Speaking</span>
+      <span class="hero-badge">Classic Adventure</span>
+    </div>
+  </div>
 </div>
 
 <!-- ===== LESSON META ===== -->
