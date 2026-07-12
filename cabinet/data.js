@@ -806,7 +806,9 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
-        { "month": "Июль 2026", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Июльский абонемент · слова + будущие времена + направления + предлоги" }
+        { "month": "Июль 2026", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Июльский абонемент · слова + будущие времена + направления + предлоги" },
+        { "month": "Июнь 2026", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "01.06.2026", "note": "Июньский блок · город + повторение + Future (will vs going to)" },
+        { "month": "Май 2026", "package": "5 уроков × 2 500 ₽", "amount": "12 500 ₽", "status": "paid", "date": "01.05.2026", "note": "Май закрыт полностью · одежда → Present Simple/Continuous → дома → повтор → город" }
       ],
       "is_adult": true,
       "parent_name": "",
