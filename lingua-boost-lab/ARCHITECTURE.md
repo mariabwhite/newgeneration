@@ -22,7 +22,7 @@ lingua-boost-lab/<level>/<slug>.html         ← для одностраничн
 <script src="../assets/lab-pilot.js?v=..." defer></script>
 <script src="../assets/lab-mic-wpm.js?v=..." defer></script>
 <script src="../assets/lab-ai-feedback.js?v=..." defer></script>
-<script src="../assets/lab-sync.js?v=16" defer></script>
+<script src="../assets/lab-sync.js?v=17" defer></script>
 <script src="../assets/lab-tabs.js?v=12" defer></script>
 <script src="../assets/lab-homework.js?v=38" defer></script>
 <script src="../assets/lab-vocab-builder.js?v=48" defer></script>
@@ -252,7 +252,7 @@ Task: `Talk for 2-3 minutes on the topic of this lesson: <title>. Explain the ke
 <script src="../../assets/lab-pilot.js?v=4" defer></script>
 <script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
 <script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
-<script src="../../assets/lab-sync.js?v=16" defer></script>
+<script src="../../assets/lab-sync.js?v=17" defer></script>
 <script src="../../assets/lab-tabs.js?v=12" defer></script>
 <script src="../../assets/lab-homework.js?v=43" defer></script>
 <script src="../../assets/lab-telemost.js?v=1" defer></script>
