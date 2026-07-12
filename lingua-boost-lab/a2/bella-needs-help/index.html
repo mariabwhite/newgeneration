@@ -297,38 +297,27 @@ button[data-say]:hover{background:var(--accent)}
 <!-- PROGRESS DOTS -->
 <div class="progress"><div class="dots" id="dots" aria-hidden="true"></div></div>
 
-<!-- KEY VOCABULARY · tap to flip -->
-<section class="section" id="sec-vocab">
-  <div class="section-head"><div class="n">💊</div><h2>Key vocabulary · tap to flip<span class="section-tag">Deck of 12</span></h2></div>
-  <div class="card">
-    <div class="lab-vocab-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px">
-      <div class="vocab-card" data-back="аптека · I need a pharmacy."><strong>pharmacy</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="рецепт от врача · Do you have a prescription?"><strong>prescription</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="обезболивающее · I need a painkiller."><strong>painkiller</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="сироп от кашля · One bottle of cough syrup."><strong>cough syrup</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="температура (жар) · I have a fever."><strong>fever</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="скорая помощь · Call an ambulance!"><strong>ambulance</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="клиника без записи · Go to a walk-in clinic."><strong>walk-in clinic</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="срочный случай · It's an emergency."><strong>emergency</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="аллергия · I have an allergy to nuts."><strong>allergy</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="укол, инъекция · The nurse gave me an injection."><strong>injection</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="врач (общей практики) · I need to see a doctor."><strong>doctor</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="больной, плохо · I feel sick."><strong>sick</strong><br><span style="font-size:.78rem;opacity:.6">adj</span></div>
-    </div>
-  </div>
-</section>
-<style>
-.lab-vocab-grid .vocab-card{background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:14px 10px;cursor:pointer;text-align:center;transition:.2s;line-height:1.3}
-.lab-vocab-grid .vocab-card:hover{border-color:#999;transform:translateY(-2px)}
-.lab-vocab-grid .vocab-card.flipped{background:#e8f4f8;border-color:#3a7c9e;font-size:.85rem;font-weight:600}
-.lab-vocab-grid .vocab-card.flipped strong{display:block;color:#1c4d6e;margin-bottom:4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
-.lab-vocab-grid .vocab-card.flipped::after{content:attr(data-back);color:#2a3a48;font-size:.84rem}
-.lab-vocab-grid .vocab-card.flipped span{display:none}
-</style>
+<!-- KEY VOCABULARY · standard lab-vocab-builder cards (v2 2026-07-12)
+     Раньше здесь стояли 12 статичных .vocab-card с собственным CSS + JS-flipper.
+     lab-vocab-builder.js добавлял extras (bandages/plasters/…) в тот же grid со
+     стандартным стилем — получалась каша (12 бледных + 4 с иконками 🔊/⭐/+/×).
+     Теперь единый источник: window.LAB_VOCAB → builder сам рендерит секцию
+     «📖 Vocabulary» сверху страницы с flip-cards, TTS, add-to-homework, star, del. -->
 <script>
-document.querySelectorAll('#sec-vocab .vocab-card').forEach(c=>{
-  c.addEventListener('click',()=>c.classList.toggle('flipped'));
-});
+window.LAB_VOCAB = [
+  { word:'pharmacy',       ipa:'/ˈfɑːr.mə.si/',       ru:'аптека',                  example:'I need a pharmacy.' },
+  { word:'prescription',   ipa:'/prɪˈskrɪp.ʃən/',     ru:'рецепт от врача',         example:'Do you have a prescription?' },
+  { word:'painkiller',     ipa:'/ˈpeɪnˌkɪl.ər/',      ru:'обезболивающее',          example:'I need a painkiller.' },
+  { word:'cough syrup',    ipa:'/kɒf ˈsɪr.əp/',       ru:'сироп от кашля',          example:'One bottle of cough syrup.' },
+  { word:'fever',          ipa:'/ˈfiː.vər/',          ru:'температура (жар)',       example:'I have a fever.' },
+  { word:'ambulance',      ipa:'/ˈæm.bjə.ləns/',      ru:'скорая помощь',           example:'Call an ambulance!' },
+  { word:'walk-in clinic', ipa:'/ˌwɔːk.ɪn ˈklɪn.ɪk/', ru:'клиника без записи',      example:'Go to a walk-in clinic.' },
+  { word:'emergency',      ipa:'/ɪˈmɜː.dʒən.si/',     ru:'срочный случай',          example:"It's an emergency." },
+  { word:'allergy',        ipa:'/ˈæl.ə.dʒi/',         ru:'аллергия',                example:'I have an allergy to nuts.' },
+  { word:'injection',      ipa:'/ɪnˈdʒek.ʃən/',       ru:'укол, инъекция',          example:'The nurse gave me an injection.' },
+  { word:'doctor',         ipa:'/ˈdɒk.tər/',          ru:'врач',                    example:'I need to see a doctor.' },
+  { word:'sick',           ipa:'/sɪk/',               ru:'больной, плохо',          example:'I feel sick.' }
+];
 </script>
 
 <!-- GRAMMAR FOCUS -->
