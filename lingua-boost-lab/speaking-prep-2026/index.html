@@ -346,9 +346,17 @@ h1.hero-title .grad{ color:var(--accent) }
   aspect-ratio: 16/9; box-shadow: 0 6px 18px rgba(0,0,0,.35);
   transition: .18s;
 }
-.room-banner-row .rb img{ width: 100%; height: 100%; object-fit: cover; display:block; transition:.4s }
+.room-banner-row .rb img{ width: 100%; height: 100%; object-fit: cover; display:block; transition:.4s; }
+/* Room 1 — центровка объектов в кадрах: 1-я правее, 2-я левее, 3-я левее + крупнее (2026-07-12) */
+#pane-digital .room-banner-row .rb{ overflow:hidden; }
+#pane-digital .room-banner-row .rb:nth-child(1) img{ transform: scale(1.14) translateX(8%); transform-origin: center; }
+#pane-digital .room-banner-row .rb:nth-child(2) img{ transform: scale(1.14) translateX(-8%); transform-origin: center; }
+#pane-digital .room-banner-row .rb:nth-child(3) img{ transform: scale(1.24) translateX(-6%); transform-origin: center; }
 .room-banner-row .rb:hover{ border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(245,200,66,.18) }
 .room-banner-row .rb:hover img{ transform: scale(1.03) }
+#pane-digital .room-banner-row .rb:nth-child(1):hover img{ transform: scale(1.18) translateX(8%); }
+#pane-digital .room-banner-row .rb:nth-child(2):hover img{ transform: scale(1.18) translateX(-8%); }
+#pane-digital .room-banner-row .rb:nth-child(3):hover img{ transform: scale(1.28) translateX(-6%); }
 .room-banner-row .rb-label{
   position: absolute; left: 10px; bottom: 8px; z-index:2;
   font-family: var(--mono); font-size: 10px; font-weight: 800;
@@ -579,6 +587,48 @@ h1.hero-title .grad{ color:var(--accent) }
 .cue-card .cc-list{ list-style:none; padding-left:0 }
 .cue-card .cc-list li{ padding:4px 0 4px 20px; position:relative; color: var(--muted); font-size:.95rem }
 .cue-card .cc-list li::before{ content:"•"; position:absolute; left:6px; top:4px; color: var(--accent) }
+.cue-card.lvl-1{
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(56,189,148,.06) 100%);
+  border-color: rgba(56,189,148,.36);
+}
+.cue-card.lvl-1 .cc-tag{ color: #56d9a8 }
+.cue-card.lvl-1 .cc-list li::before{ color: #56d9a8 }
+.lvl-badge{
+  display:inline-block; margin-left:8px; padding:3px 9px; border-radius:50px;
+  font-family:var(--mono); font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  background:rgba(56,189,148,.16); color:#7ee9be; border:1px solid rgba(56,189,148,.4);
+  vertical-align:middle;
+}
+.lvl-badge.lvl-2{ background:rgba(245,200,66,.16); color:var(--accent); border-color:rgba(245,200,66,.44); }
+.cc-prep{ margin-top:14px; padding:10px 14px; background:rgba(255,255,255,.03); border-left:2px solid var(--accent);
+  border-radius:6px; font-size:.9rem; color:var(--muted); font-style:italic }
+
+/* ─── VIDEO WRAP ─── */
+.video-wrap{
+  position:relative; border-radius:14px; overflow:hidden;
+  border:1px solid var(--line-2); background:#000;
+  aspect-ratio: 16/9; margin-top:12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.42);
+}
+.video-wrap video{ width:100%; height:100%; display:block; object-fit:cover }
+.video-caption{
+  margin-top:10px; padding:12px 16px; border-radius:10px;
+  background:rgba(245,200,66,.05); border-left:3px solid var(--accent);
+  font-size:.94rem; color:var(--muted); line-height:1.5;
+}
+.video-caption strong{ color:var(--text); font-weight:800 }
+.video-qs{ margin-top:12px; display:grid; grid-template-columns:1fr; gap:8px }
+.video-qs .vq{
+  padding:10px 14px; border:1px solid var(--line-2); border-radius:10px;
+  background:var(--card); font-size:.95rem; color:var(--text);
+  display:flex; align-items:flex-start; gap:10px;
+}
+.video-qs .vq::before{
+  content:"Q"; flex:0 0 auto; font-family:var(--mono); font-weight:900;
+  font-size:10px; padding:3px 7px; border-radius:5px; margin-top:2px;
+  background:rgba(245,200,66,.16); color:var(--accent); border:1px solid rgba(245,200,66,.32);
+  letter-spacing:.12em;
+}
 
 /* ─── LEXICON PILL fallback ─── */
 #labLexiconPill:not(.ready){ display:none }
@@ -864,11 +914,7 @@ html body [class*="hw-mini"]{
   pointer-events: none !important;
 }
 
-html body .lesson-tabs{
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
+/* .lesson-tabs OSTAVLYAEM видимой — «УРОК / МОЯ ДОМАШКА» строка (2026-07-12) */
 
 html body .lab-hw-section-btn{
   display: none !important;
@@ -981,14 +1027,14 @@ html body .lab-telemost-fab{
   z-index: 31 !important;
 }
 
-html body .lesson-tabs,
+/* .lesson-tabs OSTAVLYAEM видимой — «УРОК / МОЯ ДОМАШКА» строка (2026-07-12) */
 html body .lab-hw-top-entry,
 html body .lab-hw-fab,
 html body .lab-hw-section-btn,
 html body .lab-hw-mini-counter,
 html body #labVocabBox,
 html body #lab-reset-btn,
-html body [data-lab-homework-top],
+html body [data-lab-homework-top]:not(.ltab),
 html body [data-lab-hw-entry],
 html body [class*="hw-top-entry"],
 html body [class*="hw-mini"]{
@@ -1226,6 +1272,51 @@ html body > .lab-lex-box{
 }
 .lr-score b{ color: var(--accent); font-family:var(--display); font-size:14px }
 
+/* ─── Reveal button + hidden target text (real TOEFL: no text on screen) ─── */
+.lr-tier{
+  font-family:var(--mono); font-size:10px; font-weight:800; letter-spacing:.16em;
+  text-transform:uppercase; color: var(--muted); margin-bottom:8px;
+  padding:3px 9px; border-radius:20px; background: rgba(255,255,255,.04);
+  border:1px solid var(--line-2); display:inline-block;
+}
+.lr-item.lr-hide .lr-target{ filter: blur(9px); user-select:none; pointer-events:none; transition:.28s }
+.lr-item.lr-hide.lr-shown .lr-target{ filter:none; user-select:auto; pointer-events:auto }
+.lr-reveal{
+  padding:7px 12px; border-radius:8px; border:1px solid var(--line-2);
+  background: transparent; color: var(--muted); cursor:pointer;
+  font-family:var(--mono); font-size:11px; font-weight:800;
+  letter-spacing:.10em; text-transform:uppercase; transition:.14s;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.lr-reveal:hover{ color: var(--accent); border-color: var(--accent) }
+.lr-item.lr-shown .lr-reveal{ background: rgba(245,200,66,.08); color: var(--accent); border-color: var(--accent) }
+.lr-play.spent{ opacity:.4; cursor:not-allowed; text-decoration:line-through }
+
+/* ─── Context picture (TOEFL 2026 · static image sets the scene) ─── */
+.lr-context{
+  display:grid; grid-template-columns: 220px 1fr; gap: 16px; align-items:center;
+  padding:14px 16px; border:1px solid var(--line-2); border-radius:12px;
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(245,200,66,.04) 100%);
+  margin-bottom:14px;
+}
+.lr-context img{ width:220px; height:124px; object-fit:cover; border-radius:10px;
+  border:1px solid var(--line-2); display:block; }
+.lr-context-caption{ font-size:.94rem; color:var(--muted); line-height:1.5 }
+.lr-context-caption strong{ color:var(--text); font-weight:800 }
+@media (max-width: 640px){
+  .lr-context{ grid-template-columns:1fr }
+  .lr-context img{ width:100%; height:auto; aspect-ratio:16/9 }
+}
+
+/* ─── Strategy panel below the 7 items ─── */
+.lr-strategy{
+  margin-top:16px; padding:14px 18px; border-radius:12px;
+  background: rgba(56,189,148,.06); border:1px solid rgba(56,189,148,.28);
+  border-left: 3px solid #56d9a8;
+}
+.lr-strategy ul{ margin:8px 0 0; padding-left:20px; color: var(--muted); font-size:.94rem; line-height:1.6 }
+.lr-strategy strong{ color: var(--text) }
+
 /* ═══════════ TOEFL TASK 2 · INTERVIEW (4-Q sequence) ═══════════ */
 .iv-setup{
   background: rgba(125,168,217,.06); border-left:3px solid var(--brand);
@@ -1251,6 +1342,10 @@ html body > .lab-lex-box{
   font-family:var(--mono); font-size:10.5px; font-weight:800; letter-spacing:.10em; text-transform:uppercase;
 }
 .iv-play:hover{ background: rgba(245,200,66,.10) }
+.iv-play.iv-live{
+  background: #ff4d4d; color:#fff; border-color:#ff4d4d;
+  animation: pulseRec 1.2s infinite; font-weight:900;
+}
 .iv-notes{
   width:100%; min-height:140px; background: var(--bg-2); color: var(--text);
   border:1px solid var(--line-2); border-radius:10px; padding:12px 14px;
@@ -1953,16 +2048,128 @@ body{padding-top:44px}
         <img loading="lazy" decoding="async" src="assets/img/banner-coach.webp" alt="Mic-Drill · Speak Fast — Speak under pressure. Organise, answer, keep going.">
       </div>
 
-      <!-- ─── f) FREER MIC-DRILL (Cue Card) ─── -->
+      <!-- ─── e2) MIND-READER VIDEO · digital footprint proof ─── -->
+      <div class="ex" data-section-id="d-video">
+        <div class="ex-hdr">
+          <span class="ex-badge">e2 · watch · 2:28</span>
+          <h4>Amazing "mind reader" · what your digital footprint actually leaks</h4>
+        </div>
+        <p class="ex-sub">
+          A street-magic setup that isn't magic. Every "impossible" answer comes from a team backstage googling the same person you just met — same tools any stranger has. Watch once for the trick, once for the vocab.
+        </p>
+
+        <div class="video-wrap">
+          <video controls preload="metadata" playsinline
+                 poster="assets/img/d-2-scroll-feed.webp"
+                 src="assets/video/mind-reader-digital.mp4"
+                 aria-label="Amazing mind reader — digital footprint proof video, 2 minutes 28 seconds">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+
+        <div class="video-caption">
+          <strong>Watch for:</strong> the moment his "psychic" facts flip from creepy to boring — the second you realise it was all public info. That flip is what a <span class="tr" data-ru="цифровой след">digital footprint</span> feels like from the outside.
+        </div>
+
+        <div class="video-qs" data-video-qs>
+          <div class="vq" data-en="Which private detail felt most exposed to you — and why?">Which private detail felt most exposed to you — and why?</div>
+          <div class="vq" data-en="Name three sources the 'mind reader' probably used to build his script.">Name three sources the "mind reader" probably used to build his script.</div>
+          <div class="vq" data-en="Would you have opted out of one thing on your public profile after seeing this?">Would you have opted out of one thing on your public profile after seeing this?</div>
+        </div>
+      </div>
+
+      <!-- ─── f1) IELTS CUE-CARD · LEVEL 1 (warm-up) ─── -->
+      <div class="ex" data-section-id="d-freer-lvl1">
+        <div class="ex-hdr">
+          <span class="ex-badge speak">f1 · 🎤 mic-drill · cue card</span>
+          <h4>IELTS Part 2 cue-card <span class="lvl-badge">Level 1 · warm-up</span></h4>
+        </div>
+        <p class="ex-sub">Softer entry — shorter card, 30-second prep, ~1 minute speaking. Use it before the Level 2 card to warm the voice up.</p>
+
+        <div class="cue-card lvl-1">
+          <span class="cc-tag">IELTS Part 2 · Level 1 · warm-up</span>
+          <div class="cc-topic">Describe an app or website you check every single day.</div>
+          <ul class="cc-list">
+            <li>What it is and when you started using it</li>
+            <li>What you actually do there (scroll, post, search, message)</li>
+            <li>How much of your day it takes</li>
+            <li>Why you keep coming back to it</li>
+          </ul>
+          <div class="cc-prep">Prep: 30 seconds. Speak: ~1 minute. Don't try to sound clever — try to sound clear.</div>
+        </div>
+
+        <div class="coach" id="coach-digital-lvl1" data-coach-config="digital-lvl1">
+          <div class="coach-title">
+            <span class="ai-pulse"></span>
+            <h4>AI Live Coach · warm-up · predicted /8</h4>
+          </div>
+          <p class="coach-intro">Tap <strong>Start recording</strong> and speak for about a minute. Checklist below lights up as you cover each hook.</p>
+          <div class="coach-unsupported">⚠️ Live speech recognition is not supported here. Open in <strong>Chrome</strong> or <strong>Edge</strong> on desktop. You can still type your answer below.</div>
+          <div class="share-code">
+            <span class="code-label">Teacher-mirror code</span>
+            <span class="code-digits" data-role="digits">----</span>
+            <button class="code-copy" data-role="copy">Copy URL</button>
+            <span class="code-status" data-role="status">offline</span>
+          </div>
+          <div class="coach-layout">
+            <div class="coach-criteria">
+              <h5>Criteria checklist · real-time</h5>
+              <ul class="c-checks" data-role="checks">
+                <li data-cid="name"><span class="check-mark">✓</span><span>App / site named<span class="label-sub">Instagram / TikTok / YouTube / X / Telegram</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="when"><span class="check-mark">✓</span><span>When you started<span class="label-sub">years ago / since school / during lockdown</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="what"><span class="check-mark">✓</span><span>What you do there<span class="label-sub">scroll / post / message / search / share</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="time"><span class="check-mark">✓</span><span>Time spent<span class="label-sub">hours / minutes / most of / half of my</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="reason"><span class="check-mark">✓</span><span>Why you come back<span class="label-sub">because / it helps / I like / addictive</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="feeling"><span class="check-mark">✓</span><span>How it makes you feel<span class="label-sub">bored / relaxed / anxious / connected</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="concl"><span class="check-mark">✓</span><span>Wrap-up<span class="label-sub">overall / to be honest / in general / so</span></span><span class="check-pts">+1</span></li>
+                <li data-cid="vocab"><span class="check-mark">✓</span><span>B2 word used<span class="label-sub">algorithm / feed / notification / addictive / curate</span></span><span class="check-pts">+1</span></li>
+              </ul>
+            </div>
+            <div class="coach-live">
+              <div class="coach-controls">
+                <button class="coach-btn" data-role="start">▶ Start recording</button>
+                <span class="coach-clock" data-role="clock">--:--</span>
+                <span class="coach-status" data-role="status-live">tap to start · 1:00 max</span>
+                <button class="coach-btn outline" data-role="reset" style="margin-left:auto">Reset</button>
+              </div>
+              <div class="coach-transcript" data-role="transcript" aria-live="polite"></div>
+              <div class="coach-stats">
+                <div data-stat="words"><span>Words</span><strong data-role="words">0</strong></div>
+                <div data-stat="pace"><span>Pace · wpm</span><strong data-role="pace">--</strong></div>
+                <div data-stat="linkers"><span>Linkers</span><strong data-role="linkers">0</strong></div>
+                <div data-stat="b2"><span>B2+ vocab</span><strong data-role="b2">0</strong></div>
+                <div data-stat="pause"><span>Longest pause · s</span><strong data-role="pause">0</strong></div>
+              </div>
+              <div class="coach-score">
+                <div>
+                  <div class="score-label">Predicted score</div>
+                  <div class="score-big"><strong data-role="score">—</strong><small>/ 8</small></div>
+                </div>
+                <div class="score-hint" data-role="hint">Press Start and speak for about a minute. Cover all six ticks and you're at 7+.</div>
+              </div>
+            </div>
+          </div>
+          <details class="coach-fallback">
+            <summary>Mic doesn't work? Type your answer instead</summary>
+            <textarea data-role="fallback-text" placeholder="Type or paste your 1-minute answer here…"></textarea>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <button class="coach-btn" data-role="grade-text">Grade my text</button>
+              <span class="coach-status" data-role="fallback-status"></span>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- ─── f2) IELTS CUE-CARD · LEVEL 2 (full) ─── -->
       <div class="ex" data-section-id="d-freer">
         <div class="ex-hdr">
-          <span class="ex-badge speak">f · 🎤 mic-drill · freer</span>
-          <h4>IELTS Part 2 cue-card · 1 min prep · 2 min speaking</h4>
+          <span class="ex-badge speak">f2 · 🎤 mic-drill · freer</span>
+          <h4>IELTS Part 2 cue-card <span class="lvl-badge lvl-2">Level 2 · full 2 min</span></h4>
         </div>
         <p class="ex-sub">Read the cue card. Take one minute of quiet prep (don't write full sentences — 5 bullet notes maximum). Then tap the mic and go for two minutes without stopping.</p>
 
         <div class="cue-card">
-          <span class="cc-tag">IELTS Part 2 · cue card</span>
+          <span class="cc-tag">IELTS Part 2 · Level 2 · cue card</span>
           <div class="cc-topic">Describe a time you regretted something you shared online.</div>
           <ul class="cc-list">
             <li>What it was and when you shared it</li>
@@ -2247,6 +2454,180 @@ body{padding-top:44px}
             <span class="sc-chip time">Time used: <b class="time-used">0.0 s</b></span>
           </div>
         </div>
+      </div>
+
+      <!-- ─── TOEFL w1) TASK 1 · LISTEN & REPEAT — 7 items, progressive length, hidden text ─── -->
+      <div class="ex lr-block" data-section-id="w-toefl-1">
+        <div class="ex-hdr">
+          <span class="ex-badge speak">🎯 w1 · TOEFL Task 1 · Listen and Repeat · 7 items</span>
+          <h4>Hear it once. Repeat it verbatim. The text is hidden — that's the whole point.</h4>
+        </div>
+        <p class="ex-sub">
+          Real TOEFL 2026 format: static context picture, sentence read <strong>once</strong>, no text on screen. Items get longer — <strong>5–7 words</strong> at first, <strong>15–18 words</strong> by the end. AI scores memory, pronunciation, rhythm, intonation, fluency.
+        </p>
+
+        <div class="lr-context">
+          <img loading="lazy" decoding="async" src="assets/img/w-1-interview-scales.webp" alt="Context: interview room with mic and scales — you are the candidate">
+          <div class="lr-context-caption"><strong>Context:</strong> you are the candidate in a work interview. Every sentence you hear is something a real interviewer or colleague could say.</div>
+        </div>
+
+        <div class="lr-list">
+          <div class="lr-item lr-hide" data-lr-target="Flexible hours mean better sleep." data-lr-len="5">
+            <div class="lr-tier">1 · warm-up · 5 words</div>
+            <div class="lr-target">Flexible hours mean better sleep.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="A tight deadline focuses the mind." data-lr-len="6">
+            <div class="lr-tier">2 · warm-up · 6 words</div>
+            <div class="lr-target">A tight deadline focuses the mind.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="Every good job is a real trade-off." data-lr-len="7">
+            <div class="lr-tier">3 · short · 7 words</div>
+            <div class="lr-target">Every good job is a real trade-off.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="Burnout is easier to prevent than to recover from." data-lr-len="10">
+            <div class="lr-tier">4 · medium · 10 words</div>
+            <div class="lr-target">Burnout is easier to prevent than to recover from.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="Autonomy at work matters more than a bigger take-home pay check." data-lr-len="12">
+            <div class="lr-tier">5 · medium · 12 words</div>
+            <div class="lr-target">Autonomy at work matters more than a bigger take-home pay check.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="A ninety-minute commute is a tax you pay every single day, whether you notice it or not." data-lr-len="17">
+            <div class="lr-tier">6 · long · 17 words</div>
+            <div class="lr-target">A ninety-minute commute is a tax you pay every single day, whether you notice it or not.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+
+          <div class="lr-item lr-hide" data-lr-target="Candidates who quietly negotiate flexible hours before signing rarely regret the deal a year later, whatever the salary was." data-lr-len="18">
+            <div class="lr-tier">7 · long · 18 words · TOEFL peak</div>
+            <div class="lr-target">Candidates who quietly negotiate flexible hours before signing rarely regret the deal a year later, whatever the salary was.</div>
+            <div class="lr-controls">
+              <button class="lr-play" type="button">▶ Hear once</button>
+              <button class="lr-mic" type="button">🎤 Repeat</button>
+              <button class="lr-reveal" type="button">👁 Reveal text</button>
+              <span class="lr-clock">00:00</span>
+            </div>
+            <div class="lr-said"></div>
+            <div class="lr-score">Mic-match: <b class="lr-hits">0</b> / 7</div>
+          </div>
+        </div>
+
+        <div class="lr-strategy">
+          <strong style="color:var(--accent-2)">Memory strategy for long items (6-7):</strong>
+          <ul>
+            <li><strong>Chunk by clause:</strong> "candidates who quietly negotiate flexible hours" · "before signing" · "rarely regret the deal a year later" · "whatever the salary was".</li>
+            <li><strong>Hold the intonation, not the words.</strong> If you catch the melody, the words follow.</li>
+            <li><strong>Don't rush the first three words.</strong> The whole sentence sits on top of them.</li>
+            <li><strong>Don't drop articles</strong> (<em>a, the</em>) — the AI scores every one.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── TOEFL w2) TASK 2 · INTERVIEW ─── -->
+      <div class="ex" data-section-id="w-toefl-2">
+        <div class="ex-hdr">
+          <span class="ex-badge speak">🎯 w2 · TOEFL Task 2 · Take an Interview</span>
+          <h4>4 sequential questions · 45 sec per answer · tutor-scored / 4</h4>
+        </div>
+        <p class="ex-sub">A simulated interview format — 4 questions on personal work priorities, opinion, and reasoning. Click ▶ on each question to hear it, jot notes in the box, and speak your answer.</p>
+
+        <div class="iv-setup">
+          "You've agreed to a short interview about how you think about work. The researcher will ask you four questions on money, hours, and trade-offs. Answer as fully and honestly as you can. Each answer should be about 45 seconds."
+        </div>
+
+        <div class="iv-list">
+          <div class="iv-item">
+            <div class="iv-tag">Q1 · personal experience</div>
+            <p>Think of a job — real or imagined — where the pay was great but the hours or workload were brutal. Would you take it now? What would change your mind?</p>
+            <button class="iv-play" data-iv-say="Think of a job, real or imagined, where the pay was great but the hours or workload were brutal. Would you take it now? What would change your mind?">▶ Play Q1</button>
+          </div>
+          <div class="iv-item">
+            <div class="iv-tag">Q2 · self-reflection</div>
+            <p>Some people optimise their career for take-home pay; others for autonomy and flexible hours. Which are you closer to, and why?</p>
+            <button class="iv-play" data-iv-say="Some people optimise their career for take-home pay. Others optimise for autonomy and flexible hours. Which are you closer to, and why?">▶ Play Q2</button>
+          </div>
+          <div class="iv-item">
+            <div class="iv-tag">Q3 · opinion</div>
+            <p>Do you think a long commute is a fair price for a better-paid job? Give one concrete reason from your own life or someone you know.</p>
+            <button class="iv-play" data-iv-say="Do you think a long commute is a fair price for a better-paid job? Give one concrete reason from your own life, or someone you know.">▶ Play Q3</button>
+          </div>
+          <div class="iv-item">
+            <div class="iv-tag">Q4 · policy opinion</div>
+            <p>Some governments now cap the standard working week at 35 hours. Do you think that's fair to workers, to employers, or to the economy overall?</p>
+            <button class="iv-play" data-iv-say="Some governments now cap the standard working week at 35 hours. Do you think that's fair to workers, to employers, or to the economy overall?">▶ Play Q4</button>
+          </div>
+        </div>
+
+        <textarea class="iv-notes" placeholder="Q1 – The job I'd take / walk away from is…&#10;&#10;Q2 – I'm closer to…&#10;&#10;Q3 – A long commute is / isn't a fair price because…&#10;&#10;Q4 – I would / wouldn't support a 35-hour cap because…"></textarea>
+        <div class="iv-notes-meta">
+          <span><strong>Target:</strong> ~45 sec per answer · 4 short paragraphs · position + 1 example each</span>
+          <span class="wc">words: <strong data-iv-wc>0</strong></span>
+        </div>
+
+        <button class="iv-sample-toggle" type="button">Show ETS-style high-level sample answer</button>
+        <div class="iv-sample" hidden>
+          <span class="q-label">Q1.</span> Honestly, five years ago I'd have said yes to the brutal-hours job without blinking — the take-home would've bought me freedom later, or so I thought. Now I'd walk away. What changed my mind was watching two friends hit real burnout on that exact trade. Neither of them "won" the runway they were chasing — they just spent it on recovery. So the question stopped being "how much" and became "for how long, and at what cost".
+
+          <span class="q-label">Q2.</span> I'm closer to the autonomy camp — but not because I don't care about money. I care about it a lot. What I've realised is that autonomy compounds. Flexible hours mean I sleep enough, which means I make better decisions, which means my take-home actually grows over ten years, not just this quarter. Optimising for pay alone is a one-year game. Optimising for autonomy is a decade game.
+
+          <span class="q-label">Q3.</span> A long commute can be a fair price — but only if you know what you're paying for. My cousin took a job an hour and a half each way for double the salary. On paper, brilliant. In reality, three hours a day meant no gym, no cooking, and a slow drift into resentment. He lasted eleven months. So the fair price test is: does the money buy back the time the commute steals? If not, the maths only works in a spreadsheet.
+
+          <span class="q-label">Q4.</span> I'd support a 35-hour cap cautiously — as a floor, not a ceiling. It protects the workers who don't have the leverage to say no to overtime, and it forces companies to actually plan workload instead of squeezing bodies. The trade-off is that some industries — hospitals, startups, seasonal work — genuinely need surge weeks. So I'd support the cap with a clear opt-in for paid overtime, tracked and transparent. The point isn't fewer hours — it's honest hours.
+        </div>
+
+        <div class="lr-score" style="margin-top:14px">Tutor score: <b>—</b> / 4</div>
       </div>
 
       <div class="mini-banner">
@@ -2835,8 +3216,13 @@ body{padding-top:44px}
         e.stopPropagation();
         /* data-w not data-en — canon-L eats [data-en][data-ru] containers */
         var word = card.getAttribute('data-w') || (card.querySelector('.v-en') && card.querySelector('.v-en').textContent) || '';
-        if ('speechSynthesis' in window && word){
-          var u = new SpeechSynthesisUtterance(word);
+        /* Если карта уже перевёрнута — озвучиваем ещё и example (2026-07-12) */
+        var flipped = card.classList.contains('flipped');
+        var exEl = card.querySelector('.v-example');
+        var exText = (flipped && exEl) ? String(exEl.textContent || '').replace(/[""]/g,'').trim() : '';
+        var text = exText ? (word + '. ' + exText) : word;
+        if ('speechSynthesis' in window && text){
+          var u = new SpeechSynthesisUtterance(text);
           u.lang = 'en-GB';
           u.rate = 0.92;
           window.speechSynthesis.cancel();
@@ -2860,6 +3246,48 @@ body{padding-top:44px}
         } catch(_e){}
       });
     }
+  });
+})();
+</script>
+
+<!-- ═══════════ ROOM 1 IMAGES · CLICK-TO-SPEAK + VIDEO Q-CARDS (2026-07-12) ═══════════ -->
+<script>
+(function(){
+  function speak(text){
+    if (!('speechSynthesis' in window) || !text) return;
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 0.94;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+
+  /* Three Room 1 mini-hero images — click plays the label */
+  document.querySelectorAll('#pane-digital .room-banner-row .rb').forEach(function(rb){
+    rb.style.cursor = 'pointer';
+    rb.setAttribute('role','button');
+    rb.setAttribute('tabindex','0');
+    var img = rb.querySelector('img');
+    var lbl = rb.querySelector('.rb-label');
+    var alt = (img && img.getAttribute('alt')) || '';
+    var text = (lbl && lbl.textContent.trim()) || alt;
+    rb.setAttribute('aria-label','Play voice: ' + text);
+    rb.addEventListener('click', function(){ speak(text); });
+    rb.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); speak(text); }
+    });
+  });
+
+  /* Video Q-cards — click to speak the question */
+  document.querySelectorAll('[data-video-qs] .vq').forEach(function(q){
+    q.style.cursor = 'pointer';
+    q.setAttribute('role','button');
+    q.setAttribute('tabindex','0');
+    var en = q.getAttribute('data-en') || q.textContent.trim();
+    q.setAttribute('aria-label','Play question: ' + en);
+    q.addEventListener('click', function(){ speak(en); });
+    q.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); speak(en); }
+    });
   });
 })();
 </script>
@@ -3009,8 +3437,14 @@ body{padding-top:44px}
     var targetTokens = tokens(target);
     var maxScore = 7;
 
+    var revealBtn = item.querySelector('.lr-reveal');
+    var isHiddenMode = item.classList.contains('lr-hide'); // TOEFL-strict mode: text blurred
+    var heardOnce = false;
+
     if (playBtn){
       playBtn.addEventListener('click', function(){
+        // TOEFL-strict: block second listen
+        if (heardOnce && isHiddenMode){ return; }
         if ('speechSynthesis' in window){
           var u = new SpeechSynthesisUtterance(target);
           u.lang = 'en-US';
@@ -3018,6 +3452,18 @@ body{padding-top:44px}
           window.speechSynthesis.cancel();
           window.speechSynthesis.speak(u);
         }
+        if (isHiddenMode){
+          heardOnce = true;
+          playBtn.classList.add('spent');
+          playBtn.setAttribute('aria-disabled','true');
+          playBtn.textContent = '✓ Heard';
+        }
+      });
+    }
+    if (revealBtn){
+      revealBtn.addEventListener('click', function(){
+        item.classList.add('lr-shown');
+        revealBtn.textContent = '👁 Text shown';
       });
     }
 
@@ -3089,6 +3535,11 @@ body{padding-top:44px}
       micBtn.textContent = '🎤 Repeat';
       if (rec){ try{ rec.stop(); }catch(_){} }
       clearInterval(tickId);
+      // Auto-reveal target text after mic stops (TOEFL-strict items)
+      if (isHiddenMode && !item.classList.contains('lr-shown')){
+        item.classList.add('lr-shown');
+        if (revealBtn) revealBtn.textContent = '👁 Text shown';
+      }
     }
     if (micBtn) micBtn.addEventListener('click', start);
   });
@@ -3098,6 +3549,23 @@ body{padding-top:44px}
 <!-- ═══════════ TOEFL Task 2 · Interview (per-Q play + notes + sample toggle) ═══════════ -->
 <script>
 (function(){
+  /* Short beep before speaking (TOEFL 2026 signals "start now") */
+  function beep(){
+    try{
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      var ctx = new AC();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = 'sine'; osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.22, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.22);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + 0.24);
+    }catch(_){}
+  }
+
   document.querySelectorAll('[data-iv-say]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var text = btn.getAttribute('data-iv-say') || '';
@@ -3109,7 +3577,14 @@ body{padding-top:44px}
         window.speechSynthesis.speak(u);
         var orig = btn.textContent;
         btn.textContent = '■ Speaking…';
-        u.onend = function(){ btn.textContent = orig; };
+        u.onend = function(){
+          /* Countdown 3→2→1→BEEP → «start speaking now» state */
+          btn.textContent = '⏱ 3…';
+          setTimeout(function(){ btn.textContent = '⏱ 2…'; }, 800);
+          setTimeout(function(){ btn.textContent = '⏱ 1…'; }, 1600);
+          setTimeout(function(){ beep(); btn.textContent = '🎤 Speak now · 45 s'; btn.classList.add('iv-live'); }, 2400);
+          setTimeout(function(){ btn.textContent = orig; btn.classList.remove('iv-live'); }, 2400 + 45000);
+        };
       }
     });
   });
@@ -3140,6 +3615,21 @@ body{padding-top:44px}
   var LINKERS = ['however','whereas','in contrast','on the other hand','unlike','while','although','though','moreover','furthermore','besides','as well as','on top of that','on balance','granted','that said','the flip side','trade-off','in terms of'];
 
   var CONFIGS = {
+    'digital-lvl1': {
+      duration: 60,
+      topicHints: /(app|website|instagram|tiktok|youtube|telegram|whatsapp|feed|scroll|notification|social|online|internet)/,
+      criteria: {
+        name:    /(instagram|tiktok|youtube|telegram|whatsapp|x\.com|twitter|reddit|snapchat|facebook|the app|the site|this app)/,
+        when:    /(years? ago|since (school|university|childhood|lockdown|last)|for (a )?(long|while)|started (using|when))/,
+        what:    /(scroll|post|message|dm|chat|share|watch|search|browse|read|comment|like|save)/,
+        time:    /(hours|minutes|half of my|most of my|too much|first thing|every|all day|before bed)/,
+        reason:  /(because|since|it helps|i like|addictive|convenient|entertaining|informative|habit|distraction|keeps me)/,
+        feeling: /(bored|relaxed|anxious|tired|connected|happy|overwhelmed|entertained|calm|excited|lonely)/,
+        concl:   /(overall|to be honest|in general|so|honestly|all in all)/,
+        vocab:   /(algorithm|feed|notification|addictive|curate|scroll|content|reels?|stories|digital footprint|surveillance)/
+      },
+      b2Vocab: ['algorithm','feed','notification','addictive','curate','scroll','content','reels','stories','digital footprint','surveillance','engagement','platform','audience','followers']
+    },
     'digital': {
       duration: 120,
       topicHints: /(digital|online|social media|internet|instagram|tiktok|snapchat|facebook|twitter|x\.com|share|posted|footprint)/,
@@ -3396,18 +3886,23 @@ body{padding-top:44px}
 <script src="../assets/lab-pilot.js?v=3" defer></script>
 <script src="../assets/lab-mic-wpm.js?v=1" defer></script>
 <script src="../assets/lab-ai-feedback.js?v=6" defer></script>
+<!-- speaking-prep-2026 — teacher-баннер lab-sync выключен: конфликтует с строкой «УРОК / МОЯ ДОМАШКА» (2026-07-12) -->
+<script>try{localStorage.removeItem('lab-teacher-mode');}catch(e){}</script>
+<style id="speaking-prep-kill-teacher-banner">
+html body .lab-teacher-banner{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+</style>
 <script src="../assets/lab-sync.js?v=16" defer></script>
 <script src="../assets/lab-tabs.js?v=12" defer></script>
 <script src="../assets/lab-telemost.js?v=1" defer></script>
 <script src="../assets/lab-coach-persist.js?v=1" defer></script>
 
 <style id="speaking-prep-final-floating-dock">
-html body .lesson-tabs,
+/* .lesson-tabs OSTAVLYAEM видимой — «УРОК / МОЯ ДОМАШКА» строка (2026-07-12) */
 html body .lab-hw-top-entry,
 html body .lab-hw-fab,
 html body .lab-hw-section-btn,
 html body .lab-hw-mini-counter,
-html body [data-lab-homework-top],
+html body [data-lab-homework-top]:not(.ltab),
 html body [data-lab-hw-entry],
 html body [class*="hw-top-entry"],
 html body [class*="hw-mini"]{
@@ -3531,14 +4026,14 @@ window.addEventListener('load', function(){
   var st = document.createElement('style');
   st.id = 'speaking-prep-runtime-floating-dock';
   st.textContent = `
-html body .lesson-tabs,
+/* .lesson-tabs OSTAVLYAEM видимой — «УРОК / МОЯ ДОМАШКА» строка (2026-07-12) */
 html body .lab-hw-top-entry,
 html body .lab-hw-fab,
 html body .lab-hw-section-btn,
 html body .lab-hw-mini-counter,
 html body #labVocabBox,
 html body #lab-reset-btn,
-html body [data-lab-homework-top],
+html body [data-lab-homework-top]:not(.ltab),
 html body [data-lab-hw-entry],
 html body [class*="hw-top-entry"],
 html body [class*="hw-mini"]{display:none!important;visibility:hidden!important;pointer-events:none!important}
