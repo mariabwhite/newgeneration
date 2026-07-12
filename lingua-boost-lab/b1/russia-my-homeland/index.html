@@ -1191,6 +1191,24 @@ updateDots();
 <script src="../../assets/lab-coach-persist.js?v=1" defer></script>
 <script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
 <script src="../../assets/lab-pilot.js?v=3" defer></script>
+
+<!-- Speech Coach палитра · scoped override 2026-07-12
+     lab-speech-tester.js читает var(--card, fallback) и var(--text, fallback);
+     у Russia --card=#fff (light) без --text → color падает в #f3eee5 (cream)
+     на белом фоне = блёклый нечитаемый блок. Скопим тут rich-navy палитру
+     ТОЛЬКО внутри .lab-coach-section, остальной light-lab урок сохраняется. -->
+<style id="russia-coach-palette-2026-07-12">
+  .lab-coach-section{--card:#0e1a2e !important;--text:#f0efe6 !important;--surface:#1a2842 !important;--accent:#c9a35c !important;--line:rgba(201,163,92,.22) !important}
+  .lab-coach-section{background:linear-gradient(135deg,#1a2842 0%,#0e1a2e 100%) !important;color:#f0efe6 !important;border:1px solid rgba(201,163,92,.28) !important}
+  .lab-coach-section .lc-transcript{background:#06111f !important;color:#f0efe6 !important}
+  .lab-coach-section .lc-crit .lc-crit-text{color:#f0efe6 !important}
+  .lab-coach-section .lc-crit .lc-crit-hint{color:#c9a35c !important;opacity:.85}
+  .lab-coach-section .lab-coach-toggle h2{color:#c9a35c !important}
+  .lab-coach-section .lc-crit-h{color:#c9a35c !important}
+  .lab-coach-section .lc-stat .lc-lbl{color:#c9a35c !important}
+  .lab-coach-section .lc-stat .lc-val{color:#f0efe6 !important}
+</style>
+
 <script type="application/json" id="lab-coach-config">
 {
   "task": "Tell us about your homeland — Russia. Talk for 2-3 minutes about its places, people, traditions and why it matters to you.",
@@ -1206,5 +1224,7 @@ updateDots();
 }
 </script>
 <script src="../../assets/lab-speech-tester.js?v=14" defer></script>
+
+<script src="../../assets/lab-clean-bottom-dock.js?v=1" defer></script>
 </body>
 </html>
