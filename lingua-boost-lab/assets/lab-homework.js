@@ -57,6 +57,44 @@
     return 'lab-hw:' + location.pathname;
   }
   var HW_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней: хватает на завтра / послезавтра и перенос урока
+
+  /* v42 2026-07-12 · ONE-TIME MIGRATION: старый lab-vocab: (от lab-vocab-saver)
+     переливаем в lab-hw: как vocab-items. Раньше слово попадало в два разных
+     store через два разных плюсика — дубль. Теперь одна корзина. */
+  function migrateLegacyVocab(){
+    try {
+      var oldKey = 'lab-vocab:' + location.pathname;
+      var oldRaw = localStorage.getItem(oldKey);
+      if (!oldRaw) return;
+      var old = JSON.parse(oldRaw || '[]');
+      if (!Array.isArray(old) || !old.length) { localStorage.removeItem(oldKey); return; }
+      var hw = JSON.parse(localStorage.getItem(hwKey()) || '[]');
+      var seen = {};
+      hw.forEach(function(x){
+        if (x && x.kind === 'vocab' && x.question) seen[x.question.toLowerCase()] = true;
+      });
+      old.forEach(function(v){
+        var word = (v && v.word || '').trim();
+        if (!word) return;
+        var q = '📖 ' + word;
+        if (seen[q.toLowerCase()]) return;
+        hw.push({
+          ts: Date.now(),
+          kind: 'vocab',
+          section_id: 'legacy-vocab',
+          section_title: 'Vocabulary',
+          question: q,
+          correct: (v.ru || '').trim(),
+          student_answer: ''
+        });
+        seen[q.toLowerCase()] = true;
+      });
+      localStorage.setItem(hwKey(), JSON.stringify(hw));
+      localStorage.removeItem(oldKey);
+    } catch(e){}
+  }
+  migrateLegacyVocab();
+
   function loadHw(){
     try { return JSON.parse(localStorage.getItem(hwKey()) || '[]'); }
     catch(e){ return []; }
