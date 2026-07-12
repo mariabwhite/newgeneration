@@ -203,8 +203,8 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "lessons_in_package": 14,
       "subscription_month": "2026-06",
-      "lessons_used_this_month": 13,
-      "summer_plan_note": "Летний блок 10 уроков + 4 экстра · июнь + июль 2026 · 13 / 14 проведено",
+      "lessons_used_this_month": 14,
+      "summer_plan_note": "Летний блок 10 уроков + 4 экстра · июнь + июль 2026 · 14 / 14 проведено",
       "payment_status": "Оплачено",
       "payment_note": "",
       "parent_name": "Протасова Мария Петровна",
@@ -329,8 +329,22 @@ window.NGE_DATA = {
         {
           "date": "2026-07-12",
           "num": 14,
+          "status": "completed",
+          "topic": "📖 Tom Sawyer · финальная глава — закрытие серии Three Adventures",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-07-13",
+          "num": 15,
           "status": "planned",
-          "topic": "✈️ Travel-программа · продолжение"
+          "topic": "🏴‍☠️ Treasure Island · Three Adventures — открытие новой серии (Black Spot · Apple Barrel · The Cave)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
+            "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures"
+          }
         }
       ]
     },
