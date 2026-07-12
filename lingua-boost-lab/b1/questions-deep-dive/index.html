@@ -402,6 +402,26 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
 .qb-status.ok{color:var(--ok)}
 .qb-status.err{color:var(--err)}
 
+/* ============ LOCOMOTIVE diagram (Word Order pane) ============ */
+.loco-diagram{display:flex;flex-wrap:nowrap;align-items:stretch;gap:6px;overflow-x:auto;padding:12px 4px 16px;scrollbar-width:thin}
+.loco-wagon{flex:0 0 auto;min-width:120px;padding:12px 10px;border-radius:12px;background:var(--card);border:2px solid var(--accent);text-align:center;box-shadow:var(--shadow);position:relative}
+.loco-wagon[data-role="subject"]{border-color:var(--accent)}
+.loco-wagon[data-role="verb"]{border-color:var(--accent2)}
+.loco-wagon[data-role="object"]{border-color:var(--accent3)}
+.loco-wagon[data-role="manner"]{border-color:var(--muted)}
+.loco-wagon[data-role="place"]{border-color:var(--accent2);background:color-mix(in srgb,var(--highlight) 50%, var(--card))}
+.loco-wagon[data-role="time"]{border-color:var(--accent3);background:color-mix(in srgb,#FDE1CE 40%, var(--card))}
+.loco-role{font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.loco-label{font-family:var(--display);font-weight:900;font-size:.86rem;color:var(--text);margin-bottom:4px;letter-spacing:.02em}
+.loco-eg{font-family:Georgia,serif;font-style:italic;font-size:.9rem;color:var(--accent)}
+.loco-arrow{align-self:center;font-size:1.4rem;color:var(--accent);flex:0 0 auto}
+@media(max-width:820px){.loco-diagram{overflow-x:scroll}.loco-wagon{min-width:110px}.loco-arrow{font-size:1.1rem}}
+
+/* ============ WRITING BOX (Reading pane) ============ */
+.writing-box{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent3);border-radius:10px;padding:14px 16px;margin:12px 0;line-height:1.8}
+.writing-box input[type="text"]{border:1.5px solid var(--line);border-radius:6px;padding:6px 10px;font-family:var(--display);font-size:.94rem;background:#fff;outline:none}
+.writing-box input[type="text"]:focus{border-color:var(--accent)}
+
 /* ============ GAPFILL inputs (dialogue W.3.a) ============ */
 .gapfill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;line-height:2;font-family:Georgia,serif;color:var(--text)}
 .gapfill p{margin:6px 0}
@@ -453,6 +473,8 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <div class="subtabs" role="tablist" aria-label="Grammar sub-tabs">
     <button class="sub-tab active" data-pane="articles" role="tab" aria-selected="true"><span class="icon">🔵</span> Basics · Yes/No + Wh</button>
     <button class="sub-tab" data-pane="prepositions" role="tab" aria-selected="false"><span class="icon">🟣</span> Advanced · Alt / Tag / Polite / Indirect</button>
+    <button class="sub-tab" data-pane="wordorder" role="tab" aria-selected="false"><span class="icon">🚂</span> Word Order · Паровоз</button>
+    <button class="sub-tab" data-pane="readlisten" role="tab" aria-selected="false"><span class="icon">🎧</span> Reading + Listening</button>
     <button class="sub-tab" data-pane="workbook" role="tab" aria-selected="false"><span class="icon">📕</span> Workbook</button>
   </div>
 </div>
@@ -827,6 +849,257 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
 <!-- =============================================== -->
 <!-- =============== WORKBOOK PANE ================= -->
 <!-- =============================================== -->
+<section id="pane-wordorder" class="pane" role="tabpanel" aria-label="Word Order">
+
+  <div class="section-hdr">
+    <div class="num">🚂</div>
+    <h2>Word Order · «Паровоз» · SVOMPT + Frequency adverbs</h2>
+    <span class="tag">Афанасьева / Михеева · вагончики</span>
+  </div>
+
+  <!-- =============================================== -->
+  <!-- WO.1 · The Locomotive · SVOMPT formula -->
+  <!-- =============================================== -->
+  <div class="rule-card">
+    <h3><span class="rule-num">WO.1</span> The Locomotive · вагончики английского предложения</h3>
+    <p>English is strict about word order. Every sentence is a train — вагончики стоят в одном порядке.</p>
+    <div class="loco-diagram">
+      <div class="loco-wagon" data-role="subject"><div class="loco-role">🚂 who?</div><div class="loco-label">SUBJECT</div><div class="loco-eg">Nick</div></div>
+      <div class="loco-arrow">→</div>
+      <div class="loco-wagon" data-role="verb"><div class="loco-role">🎬 does what?</div><div class="loco-label">VERB</div><div class="loco-eg">has</div></div>
+      <div class="loco-arrow">→</div>
+      <div class="loco-wagon" data-role="object"><div class="loco-role">📦 what?</div><div class="loco-label">OBJECT</div><div class="loco-eg">lunch</div></div>
+      <div class="loco-arrow">→</div>
+      <div class="loco-wagon" data-role="manner"><div class="loco-role">💫 how?</div><div class="loco-label">MANNER</div><div class="loco-eg">quickly</div></div>
+      <div class="loco-arrow">→</div>
+      <div class="loco-wagon" data-role="place"><div class="loco-role">📍 where?</div><div class="loco-label">PLACE</div><div class="loco-eg">in the kitchen</div></div>
+      <div class="loco-arrow">→</div>
+      <div class="loco-wagon" data-role="time"><div class="loco-role">🕐 when?</div><div class="loco-label">TIME</div><div class="loco-eg">every morning</div></div>
+    </div>
+    <div class="eg" style="margin-top:14px"><strong>Nick has lunch quickly in the kitchen every morning.</strong> ← every wagon in its place.</div>
+    <div class="ru">S · V · O · M · P · T — субъект · глагол · объект · манера · место · время. Правило-«паровоз»: если поменять вагончики местами, поезд с рельсов.</div>
+    <div class="warn"><strong>Two exceptions:</strong> (1) <em>Time</em> can also stand at the very start: «Every morning, Nick has lunch in the kitchen.» — comma required. (2) <em>Place</em> and <em>Time</em> together = Place first, Time second (never «every morning in the kitchen»).</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">WO.1.a</span> Spot the wrong wagon · 10 items</h3>
+    <p class="intro">Read each sentence — one has a wagon out of order. Pick the correct version.</p>
+    <div class="mc-list mc-sentence" data-ex="WO.1.a">
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">1.</span> Nick / has lunch / every morning / in the kitchen.</div><div class="mc-opts"><button class="mc-opt" data-v="A">Nick every morning has lunch in the kitchen.</button><button class="mc-opt" data-v="B">Nick has lunch in the kitchen every morning.</button><button class="mc-opt" data-v="C">Nick has in the kitchen lunch every morning.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">2.</span> Anna / borrowed / some books / from the library / yesterday.</div><div class="mc-opts"><button class="mc-opt" data-v="A">Anna borrowed some books from the library yesterday.</button><button class="mc-opt" data-v="B">Anna yesterday borrowed some books from the library.</button><button class="mc-opt" data-v="C">Anna borrowed yesterday some books from the library.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">3.</span> Nelly / has been / in London / since June.</div><div class="mc-opts"><button class="mc-opt" data-v="A">Nelly has been since June in London.</button><button class="mc-opt" data-v="B">Nelly in London has been since June.</button><button class="mc-opt" data-v="C">Nelly has been in London since June.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">4.</span> We / will be flying / over the ocean / tomorrow morning.</div><div class="mc-opts"><button class="mc-opt" data-v="A">We tomorrow morning will be flying over the ocean.</button><button class="mc-opt" data-v="B">We will be flying over the ocean tomorrow morning.</button><button class="mc-opt" data-v="C">We will be flying tomorrow morning over the ocean.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">5.</span> They / go / to the park / on Sundays.</div><div class="mc-opts"><button class="mc-opt" data-v="A">They go to the park on Sundays.</button><button class="mc-opt" data-v="B">They go on Sundays to the park.</button><button class="mc-opt" data-v="C">They to the park go on Sundays.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">6.</span> I / met / Mike / in 1990 / in Rome.</div><div class="mc-opts"><button class="mc-opt" data-v="A">I met in 1990 Mike in Rome.</button><button class="mc-opt" data-v="B">I in 1990 met Mike in Rome.</button><button class="mc-opt" data-v="C">I met Mike in Rome in 1990.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">7.</span> The children / were playing / quietly / in the garden / all afternoon.</div><div class="mc-opts"><button class="mc-opt" data-v="A">The children were playing quietly in the garden all afternoon.</button><button class="mc-opt" data-v="B">The children were playing in the garden quietly all afternoon.</button><button class="mc-opt" data-v="C">The children in the garden were playing quietly all afternoon.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">8.</span> She / read / the letter / carefully / at the table.</div><div class="mc-opts"><button class="mc-opt" data-v="A">She carefully read the letter at the table.</button><button class="mc-opt" data-v="B">She read the letter carefully at the table.</button><button class="mc-opt" data-v="C">She read at the table the letter carefully.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">9.</span> My brother / has canned / a lot of fruit / since August.</div><div class="mc-opts"><button class="mc-opt" data-v="A">My brother a lot of fruit has canned since August.</button><button class="mc-opt" data-v="B">My brother has canned since August a lot of fruit.</button><button class="mc-opt" data-v="C">My brother has canned a lot of fruit since August.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">10.</span> The Niagara Falls / attract / a lot of tourists / every summer.</div><div class="mc-opts"><button class="mc-opt" data-v="A">The Niagara Falls attract a lot of tourists every summer.</button><button class="mc-opt" data-v="B">The Niagara Falls every summer attract a lot of tourists.</button><button class="mc-opt" data-v="C">Every summer the Niagara Falls a lot of tourists attract.</button></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">WO.1.b</span> Build the sentence · «Собери паровоз» · 8 items</h3>
+    <p class="intro">Click the wagons in the correct order. Every prompt tells you the tense.</p>
+    <div class="builder-block" data-ex="WO.1.b">
+      <div class="qb-item" data-answer="Nick has lunch in the kitchen every morning ."><div class="qb-prompt"><strong>1.</strong> Nick / lunch · kitchen · every morning <em>(Present Simple habit)</em></div><div class="qb-bank"><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="Nick">Nick</button><button class="qb-w" data-w="every">every</button><button class="qb-w" data-w="lunch">lunch</button><button class="qb-w" data-w="in">in</button><button class="qb-w" data-w="has">has</button><button class="qb-w" data-w="kitchen">kitchen</button><button class="qb-w" data-w="morning">morning</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="Anna borrowed some books from the library yesterday ."><div class="qb-prompt"><strong>2.</strong> Anna / books · library · yesterday <em>(Past Simple)</em></div><div class="qb-bank"><button class="qb-w" data-w="from">from</button><button class="qb-w" data-w="borrowed">borrowed</button><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="Anna">Anna</button><button class="qb-w" data-w="library">library</button><button class="qb-w" data-w="some">some</button><button class="qb-w" data-w="yesterday">yesterday</button><button class="qb-w" data-w="books">books</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="Nelly has been in London since June ."><div class="qb-prompt"><strong>3.</strong> Nelly / London / June <em>(Present Perfect)</em></div><div class="qb-bank"><button class="qb-w" data-w="in">in</button><button class="qb-w" data-w="been">been</button><button class="qb-w" data-w="Nelly">Nelly</button><button class="qb-w" data-w="has">has</button><button class="qb-w" data-w="London">London</button><button class="qb-w" data-w="since">since</button><button class="qb-w" data-w="June">June</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="We will be flying over the ocean tomorrow morning ."><div class="qb-prompt"><strong>4.</strong> We / ocean · tomorrow morning <em>(Future Continuous)</em></div><div class="qb-bank"><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="be">be</button><button class="qb-w" data-w="flying">flying</button><button class="qb-w" data-w="ocean">ocean</button><button class="qb-w" data-w="We">We</button><button class="qb-w" data-w="tomorrow">tomorrow</button><button class="qb-w" data-w="over">over</button><button class="qb-w" data-w="will">will</button><button class="qb-w" data-w="morning">morning</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="I met Mike in Rome in 1990 ."><div class="qb-prompt"><strong>5.</strong> I / Mike · Rome · 1990 <em>(Past Simple · Place → Time)</em></div><div class="qb-bank"><button class="qb-w" data-w="Mike">Mike</button><button class="qb-w" data-w="met">met</button><button class="qb-w" data-w="I">I</button><button class="qb-w" data-w="Rome">Rome</button><button class="qb-w" data-w="in">in</button><button class="qb-w" data-w="1990">1990</button><button class="qb-w" data-w="in">in</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="She read the letter carefully at the table ."><div class="qb-prompt"><strong>6.</strong> She / letter · carefully · table <em>(SVOMP)</em></div><div class="qb-bank"><button class="qb-w" data-w="letter">letter</button><button class="qb-w" data-w="carefully">carefully</button><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="She">She</button><button class="qb-w" data-w="read">read</button><button class="qb-w" data-w="table">table</button><button class="qb-w" data-w="at">at</button><button class="qb-w" data-w="the">the</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="The children played quietly in the garden all afternoon ."><div class="qb-prompt"><strong>7.</strong> The children / quietly · garden · all afternoon <em>(Past Simple · SVMPT)</em></div><div class="qb-bank"><button class="qb-w" data-w="in">in</button><button class="qb-w" data-w="quietly">quietly</button><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="all">all</button><button class="qb-w" data-w="garden">garden</button><button class="qb-w" data-w="afternoon">afternoon</button><button class="qb-w" data-w="children">children</button><button class="qb-w" data-w="the">the</button><button class="qb-w" data-w="played">played</button><button class="qb-w" data-w="The">The</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+      <div class="qb-item" data-answer="The Niagara Falls attract a lot of tourists every summer ."><div class="qb-prompt"><strong>8.</strong> Niagara Falls / tourists · every summer</div><div class="qb-bank"><button class="qb-w" data-w="a">a</button><button class="qb-w" data-w="Falls">Falls</button><button class="qb-w" data-w="Niagara">Niagara</button><button class="qb-w" data-w="of">of</button><button class="qb-w" data-w="tourists">tourists</button><button class="qb-w" data-w="every">every</button><button class="qb-w" data-w="lot">lot</button><button class="qb-w" data-w="summer">summer</button><button class="qb-w" data-w="attract">attract</button><button class="qb-w" data-w="The">The</button></div><div class="qb-line"><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span class="qb-slot"></span><span>.</span></div><div class="qb-actions"><button class="qb-check">Check</button><button class="qb-reset">Reset</button><span class="qb-status"></span></div></div>
+    </div>
+  </div>
+
+  <!-- =============================================== -->
+  <!-- WO.2 · FREQUENCY ADVERBS position -->
+  <!-- =============================================== -->
+  <div class="rule-card" style="border-left-color:var(--accent3)">
+    <h3><span class="rule-num">WO.2</span> Frequency adverbs · где стоят слова частотности</h3>
+    <p>These are special wagons — they NEVER sit in the SVOMPT chain. They have their own rule.</p>
+    <ul>
+      <li><strong>BEFORE the main verb:</strong> <em>Nelly <strong>often</strong> comes home late.</em> · <em>We <strong>all</strong> live in Moscow.</em> · <em>They <strong>never</strong> ride home on a bike.</em></li>
+      <li><strong>AFTER <em>to be</em>:</strong> <em>She is <strong>always</strong> on time.</em> · <em>They are <strong>never</strong> at home on Sundays.</em> · <em>Bill is <strong>also</strong> ill.</em></li>
+      <li><strong>BETWEEN modal/aux and verb:</strong> <em>You <strong>can also</strong> use the app.</em> · <em>She <strong>has already</strong> called.</em></li>
+    </ul>
+    <p><strong>The full family:</strong></p>
+    <div class="eg" style="line-height:2"><strong>always · usually · often · sometimes · rarely · seldom · never · already · still · just · both · also · all · ever</strong></div>
+    <div class="ru">Слова частотности сидят вплотную к главному глаголу: перед смысловым, но после to be / после первого вспомогательного.</div>
+    <div class="warn">Common mistake: «She always is on time.» → wrong. «She is always on time.» → correct. To be = always after.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">WO.2.a</span> Place the frequency adverb · 10 items</h3>
+    <p class="intro">Pick the version with the adverb in the right slot.</p>
+    <div class="mc-list mc-sentence" data-ex="WO.2.a">
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">1.</span> Nelly / comes home late / <strong>often</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">Nelly comes often home late.</button><button class="mc-opt" data-v="B">Nelly often comes home late.</button><button class="mc-opt" data-v="C">Nelly comes home often late.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">2.</span> She / feels sad / <strong>sometimes</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">She sometimes feels sad.</button><button class="mc-opt" data-v="B">She feels sometimes sad.</button><button class="mc-opt" data-v="C">She feels sad sometimes.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">3.</span> She / is / on time / <strong>always</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">She always is on time.</button><button class="mc-opt" data-v="B">She on time is always.</button><button class="mc-opt" data-v="C">She is always on time.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">4.</span> Bill / is / ill / <strong>also</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">Bill is also ill.</button><button class="mc-opt" data-v="B">Bill also is ill.</button><button class="mc-opt" data-v="C">Also Bill is ill.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">5.</span> They / have / arrived / <strong>just</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">They just have arrived.</button><button class="mc-opt" data-v="B">They have just arrived.</button><button class="mc-opt" data-v="C">They have arrived just.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">6.</span> We / live in Moscow / <strong>all</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">We live all in Moscow.</button><button class="mc-opt" data-v="B">All we live in Moscow.</button><button class="mc-opt" data-v="C">We all live in Moscow.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">7.</span> They / are at home / on Sundays / <strong>never</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">They are never at home on Sundays.</button><button class="mc-opt" data-v="B">They never are at home on Sundays.</button><button class="mc-opt" data-v="C">They are at home never on Sundays.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">8.</span> She / has / called / <strong>already</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">She has called already.</button><button class="mc-opt" data-v="B">She has already called.</button><button class="mc-opt" data-v="C">She already has called.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">9.</span> I / drink cappuccino / <strong>rarely</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">I drink rarely cappuccino.</button><button class="mc-opt" data-v="B">I drink cappuccino rarely.</button><button class="mc-opt" data-v="C">I rarely drink cappuccino.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">10.</span> You / can / use the app / <strong>also</strong></div><div class="mc-opts"><button class="mc-opt" data-v="A">You can also use the app.</button><button class="mc-opt" data-v="B">You also can use the app.</button><button class="mc-opt" data-v="C">You can use the app also.</button></div></div>
+    </div>
+  </div>
+
+  <!-- =============================================== -->
+  <!-- WO.3 · Speak the paravozik aloud -->
+  <!-- =============================================== -->
+  <div class="card" style="background:linear-gradient(135deg,var(--card),#FDE1CE)">
+    <h3><span class="ex-num">WO.3</span> 🎤 Speak the locomotive aloud · 10 lines</h3>
+    <p class="intro">Every line is a full SVOMPT sentence — read it once naturally, once slowly. Tap ▶ to hear the model.</p>
+    <div class="mic-list" data-ex="WO.3">
+      <div class="prompt"><button class="play" data-say="Nick has lunch in the kitchen every morning.">▶</button><span class="num">1.</span><span class="prompt-text">Nick has lunch in the kitchen every morning. <em style="color:var(--muted)">S · V · O · P · T</em></span></div>
+      <div class="prompt"><button class="play" data-say="Anna borrowed some books from the library yesterday.">▶</button><span class="num">2.</span><span class="prompt-text">Anna borrowed some books from the library yesterday.</span></div>
+      <div class="prompt"><button class="play" data-say="Nelly has been in London since June.">▶</button><span class="num">3.</span><span class="prompt-text">Nelly has been in London since June.</span></div>
+      <div class="prompt"><button class="play" data-say="We will be flying over the ocean tomorrow morning.">▶</button><span class="num">4.</span><span class="prompt-text">We will be flying over the ocean tomorrow morning.</span></div>
+      <div class="prompt"><button class="play" data-say="I met Mike in Rome in 1990.">▶</button><span class="num">5.</span><span class="prompt-text">I met Mike in Rome in 1990.</span></div>
+      <div class="prompt"><button class="play" data-say="She always feels sad and unhappy in the evening.">▶</button><span class="num">6.</span><span class="prompt-text">She always feels sad and unhappy in the evening. <em style="color:var(--muted)">frequency + place + time</em></span></div>
+      <div class="prompt"><button class="play" data-say="They have just arrived from Moscow.">▶</button><span class="num">7.</span><span class="prompt-text">They have just arrived from Moscow.</span></div>
+      <div class="prompt"><button class="play" data-say="Bill is also ill today.">▶</button><span class="num">8.</span><span class="prompt-text">Bill is also ill today.</span></div>
+      <div class="prompt"><button class="play" data-say="The Niagara Falls attract a lot of tourists every summer.">▶</button><span class="num">9.</span><span class="prompt-text">The Niagara Falls attract a lot of tourists every summer.</span></div>
+      <div class="prompt"><button class="play" data-say="You can also book the tour online after eight.">▶</button><span class="num">10.</span><span class="prompt-text">You can also book the tour online after eight.</span></div>
+    </div>
+    <div class="starters"><strong>Micro-technique</strong>
+      When you hesitate, whisper «who? does what? what? where? when?» to yourself — the paravozik pulls the words in the right order automatically.
+    </div>
+  </div>
+
+</section>
+
+
+<section id="pane-readlisten" class="pane" role="tabpanel" aria-label="Reading + Listening">
+
+  <div class="section-hdr">
+    <div class="num">🎧</div>
+    <h2>Reading + Listening · questions in real context</h2>
+    <span class="tag">read → hear → answer → discuss</span>
+  </div>
+
+  <!-- =============================================== -->
+  <!-- R.1 · READING · Two travellers, two styles -->
+  <!-- =============================================== -->
+  <div class="rule-card">
+    <h3><span class="rule-num">R.1</span> Reading · «Two travellers, two styles»</h3>
+    <p>Read the article twice: first for gist (who is who?), then for detail. Then answer 10 mixed questions (Yes/No + Wh + Subject/Object + Alt + Indirect).</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">R.1.a</span> Article · 220 words · B1</h3>
+    <p class="intro" style="color:var(--text);font-family:Georgia,serif;font-size:1.02rem;line-height:1.75;background:#F5FAFA;padding:18px 22px;border-radius:12px;border-left:3px solid var(--accent);font-style:normal">
+      <strong>Two travellers, two styles</strong><br><br>
+      Lena and Marco met at a hostel in Rome three years ago. Lena is a slow traveller: she books one place, stays for two weeks, learns the names of the café owners on her street, and rarely takes photos. «I want to feel the city, not to collect it,» she says.<br><br>
+      Marco is the opposite. He is a checklist traveller: seven countries a month, two hundred photos a day, and a spreadsheet where he ranks every restaurant. He has already visited forty-three countries; Lena has visited eleven.<br><br>
+      Last summer they decided to travel together to Iceland. It was a disaster and a revelation at the same time. On day one, Marco wanted to drive around the whole ring road; Lena wanted to sit by a single glacier and read. On day three, they compromised: they moved once every two days and cooked their own meals in each hostel.<br><br>
+      By the end of the trip, Lena had taken more photos than usual, and Marco had learnt three Icelandic words. «I think we changed each other a little,» Lena says. «Not enough to swap styles — but enough to understand.»<br><br>
+      They're planning a second trip. This time, Georgia. Marco is already reading about Tbilisi. Lena is looking for a small village with a river.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">R.1.b</span> Comprehension · 10 questions · mixed types</h3>
+    <p class="intro">Choose the answer that matches the article. Notice which question types you meet.</p>
+    <div class="mc-list mc-sentence" data-ex="R.1.b">
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">1.</span> Where did Lena and Marco meet? <em>(Wh)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">At a hostel in Iceland</button><button class="mc-opt" data-v="B">At a hostel in Rome</button><button class="mc-opt" data-v="C">On a plane to Tbilisi</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">2.</span> Does Lena take many photos? <em>(Yes/No)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">No, she rarely takes photos.</button><button class="mc-opt" data-v="B">Yes, she takes hundreds.</button><button class="mc-opt" data-v="C">The article doesn't say.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">3.</span> How many countries has Marco visited so far? <em>(Wh · Present Perfect)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Eleven</button><button class="mc-opt" data-v="B">Seven</button><button class="mc-opt" data-v="C">Forty-three</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">4.</span> Who suggested the compromise on day three? <em>(Subject question)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Only Marco did.</button><button class="mc-opt" data-v="B">They both agreed together.</button><button class="mc-opt" data-v="C">Only Lena did.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">5.</span> Was the Iceland trip a success or a disaster? <em>(Alternative)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Both — a disaster AND a revelation.</button><button class="mc-opt" data-v="B">A pure disaster.</button><button class="mc-opt" data-v="C">A pure success.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">6.</span> Marco ranks restaurants in a spreadsheet, doesn't he? <em>(Tag)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">No, he doesn't.</button><button class="mc-opt" data-v="B">Yes, but only fancy ones.</button><button class="mc-opt" data-v="C">Yes, he does.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">7.</span> Could you tell me where they're going next? <em>(Indirect)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">To Iceland again.</button><button class="mc-opt" data-v="B">To Georgia.</button><button class="mc-opt" data-v="C">Back to Rome.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">8.</span> What did Marco learn during the Iceland trip? <em>(Wh)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Three Icelandic words.</button><button class="mc-opt" data-v="B">How to drive on ice.</button><button class="mc-opt" data-v="C">How to cook fish.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">9.</span> Who is reading about Tbilisi already? <em>(Subject question)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Lena is.</button><button class="mc-opt" data-v="B">Nobody is.</button><button class="mc-opt" data-v="C">Marco is.</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">10.</span> Have they finished changing each other? <em>(Yes/No)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Yes, completely.</button><button class="mc-opt" data-v="B">No, only a little — enough to understand.</button><button class="mc-opt" data-v="C">The article says nothing about it.</button></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">R.1.c</span> Write 3 questions ABOUT the article · practice</h3>
+    <p class="intro">Now flip the exercise — write 3 of your OWN questions about Lena and Marco. Use different types. Type them below.</p>
+    <div class="writing-box">
+      <p><strong>Model:</strong> <em>Have you ever travelled with someone whose style is opposite to yours? / Would you rather be a slow traveller or a checklist traveller?</em></p>
+      <p style="margin-top:10px"><strong>Your Q1 (Yes/No):</strong> <input type="text" style="width:75%" placeholder="Type your question…"></p>
+      <p><strong>Your Q2 (Wh + tense):</strong> <input type="text" style="width:75%" placeholder="Type your question…"></p>
+      <p><strong>Your Q3 (Indirect / polite):</strong> <input type="text" style="width:75%" placeholder="Type your question…"></p>
+    </div>
+  </div>
+
+  <!-- =============================================== -->
+  <!-- L.1 · LISTENING · Hotel front-desk call -->
+  <!-- =============================================== -->
+  <div class="rule-card" style="border-left-color:var(--accent3);margin-top:32px">
+    <h3><span class="rule-num">L.1</span> Listening · «A phone call to the front desk»</h3>
+    <p>You will «hear» a short dialogue between a hotel guest (Katya) and the front desk (Anna). The audio is voiced by Web Speech — click ▶ to play the whole scene twice.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="ex-num">L.1.a</span> Listen twice · then answer</h3>
+    <p class="intro">Tap ▶ for the whole scene. Then answer 6 questions. Turn on subtitles only after your first try.</p>
+
+    <div style="margin:16px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="play play-scene" data-say="Front desk. Good evening, this is Anna, how can I help you? Hi Anna. This is Katya from room three-oh-four. I'm sorry to call so late. I was wondering if the pool is still open. Oh, the pool closed at nine, I'm afraid. But the sauna is open until eleven. Would you like me to book a slot for you? That would be great, thank you. Could I come down in about twenty minutes? Of course. Would you rather share the sauna or have it to yourself? By myself, please, if possible. Absolutely. I'll block the slot from nine-forty to ten-ten. Is there anything else? Actually, yes. Do you know if breakfast is served in the room or only in the restaurant tomorrow? Both are available. I'll send you the menu right now. Perfect. Thank you so much. Have a great evening. You too, Katya. Good night." style="padding:12px 22px;background:var(--accent);color:#fff;border:none;border-radius:8px;font:800 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">▶ Play whole scene</button>
+      <button type="button" class="show-transcript" style="padding:10px 18px;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:8px;font:800 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Show transcript</button>
+    </div>
+
+    <div class="transcript-box" hidden style="margin:14px 0;padding:16px 20px;background:#F5FAFA;border-radius:10px;border-left:3px solid var(--accent);font-family:Georgia,serif;font-size:.96rem;line-height:1.7">
+      <p><strong>Anna:</strong> Front desk. Good evening, this is Anna, how can I help you?</p>
+      <p><strong>Katya:</strong> Hi Anna. This is Katya from room 304. I'm sorry to call so late. I was wondering if the pool is still open.</p>
+      <p><strong>Anna:</strong> Oh, the pool closed at nine, I'm afraid. But the sauna is open until eleven. Would you like me to book a slot for you?</p>
+      <p><strong>Katya:</strong> That would be great, thank you. Could I come down in about twenty minutes?</p>
+      <p><strong>Anna:</strong> Of course. Would you rather share the sauna or have it to yourself?</p>
+      <p><strong>Katya:</strong> By myself, please, if possible.</p>
+      <p><strong>Anna:</strong> Absolutely. I'll block the slot from 9:40 to 10:10. Is there anything else?</p>
+      <p><strong>Katya:</strong> Actually, yes. Do you know if breakfast is served in the room or only in the restaurant tomorrow?</p>
+      <p><strong>Anna:</strong> Both are available. I'll send you the menu right now.</p>
+      <p><strong>Katya:</strong> Perfect. Thank you so much. Have a great evening.</p>
+      <p><strong>Anna:</strong> You too, Katya. Good night.</p>
+    </div>
+
+    <div class="mc-list mc-sentence" data-ex="L.1.a" style="margin-top:18px">
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">1.</span> What time did the pool close? <em>(Wh)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">At 9 p.m.</button><button class="mc-opt" data-v="B">At 10 p.m.</button><button class="mc-opt" data-v="C">At 11 p.m.</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">2.</span> Katya used a very polite frame. Which one? <em>(Indirect)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Can I ask you…</button><button class="mc-opt" data-v="B">Do you know…</button><button class="mc-opt" data-v="C">I was wondering if…</button></div></div>
+      <div class="mc-item" data-a="B"><div class="mc-q"><span class="num">3.</span> Does Katya want to share the sauna? <em>(Yes/No)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Yes, with anyone.</button><button class="mc-opt" data-v="B">No, she wants it to herself.</button><button class="mc-opt" data-v="C">She hasn't decided.</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">4.</span> Anna offered an alternative. Which question type is «Would you rather share or have it to yourself?»</div><div class="mc-opts"><button class="mc-opt" data-v="A">Alternative question</button><button class="mc-opt" data-v="B">Tag question</button><button class="mc-opt" data-v="C">Yes/No question</button></div></div>
+      <div class="mc-item" data-a="C"><div class="mc-q"><span class="num">5.</span> How long is Katya's sauna slot? <em>(Wh · How long)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Ten minutes</button><button class="mc-opt" data-v="B">Twenty minutes</button><button class="mc-opt" data-v="C">Thirty minutes (9:40 → 10:10)</button></div></div>
+      <div class="mc-item" data-a="A"><div class="mc-q"><span class="num">6.</span> Is breakfast served in the room only, in the restaurant only, or both? <em>(Alt)</em></div><div class="mc-opts"><button class="mc-opt" data-v="A">Both — room service AND restaurant</button><button class="mc-opt" data-v="B">Only in the room</button><button class="mc-opt" data-v="C">Only in the restaurant</button></div></div>
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,var(--card),#FDE1CE)">
+    <h3><span class="ex-num">L.1.b</span> 🎤 Role-play · take Katya's part · 6 lines</h3>
+    <p class="intro">Play only Anna's lines (▶). Say Katya's lines out loud. Feel how polite the whole call sounds — every request wrapped in Could / Would / I was wondering.</p>
+    <div class="mic-list" data-ex="L.1.b">
+      <div class="prompt"><button class="play" data-say="Front desk. Good evening, how can I help you?">▶</button><span class="num">1. Anna:</span><span class="prompt-text">Front desk. Good evening, how can I help you? <em style="color:var(--muted)">→ Katya: Hi. This is Katya from room 304…</em></span></div>
+      <div class="prompt"><button class="play" data-say="The pool closed at nine, I'm afraid. But the sauna is open until eleven.">▶</button><span class="num">2. Anna:</span><span class="prompt-text">The pool closed at nine. But the sauna is open. <em style="color:var(--muted)">→ Katya: Could I book a slot?</em></span></div>
+      <div class="prompt"><button class="play" data-say="Would you rather share the sauna or have it to yourself?">▶</button><span class="num">3. Anna:</span><span class="prompt-text">Would you rather share or have it to yourself? <em style="color:var(--muted)">→ Katya: By myself, please…</em></span></div>
+      <div class="prompt"><button class="play" data-say="I'll block the slot from nine-forty to ten-ten. Is there anything else?">▶</button><span class="num">4. Anna:</span><span class="prompt-text">I'll block the slot. Is there anything else? <em style="color:var(--muted)">→ Katya: Yes, actually. Do you know if…</em></span></div>
+      <div class="prompt"><button class="play" data-say="Both are available. I'll send you the menu right now.">▶</button><span class="num">5. Anna:</span><span class="prompt-text">Both are available. <em style="color:var(--muted)">→ Katya: Perfect. Thank you so much.</em></span></div>
+      <div class="prompt"><button class="play" data-say="Have a great evening. You too, Katya. Good night.">▶</button><span class="num">6. Anna:</span><span class="prompt-text">Have a great evening. <em style="color:var(--muted)">→ Katya: Thanks, you too. Good night.</em></span></div>
+    </div>
+    <div class="starters"><strong>Polite voice check</strong>
+      Say every Katya line twice: once businesslike, once soft and warm. Feel the difference — same words, two different personalities. Aim for warm.
+    </div>
+  </div>
+
+</section>
+<script>
+/* transcript reveal */
+document.querySelectorAll('.show-transcript').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const box = btn.closest('.card').querySelector('.transcript-box');
+    if (!box) return;
+    if (box.hasAttribute('hidden')) { box.removeAttribute('hidden'); btn.textContent = 'Hide transcript'; }
+    else { box.setAttribute('hidden',''); btn.textContent = 'Show transcript'; }
+  });
+});
+</script>
+
+
 <section id="pane-workbook" class="pane" role="tabpanel" aria-label="Workbook">
 
   <div class="section-hdr">
