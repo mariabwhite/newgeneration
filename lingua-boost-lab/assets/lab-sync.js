@@ -8,15 +8,17 @@
    Мария каждую вторую сессию оставалась без банера, потому что Codex/новый
    Chrome чистили localStorage. Теперь банер прибит намертво: любой её URL
    → yellow bar сверху. Ученики через cabinet URL получают ?role=student → OK.
-   v10 → v17: пропущены версии, чтобы cache-buster сбросил Fastly. */
+   v10 → v17: пропущены версии, чтобы cache-buster сбросил Fastly.
+
+   Остальная логика (без изменений):
    • С URL ?sync=<roomId>&role=teacher|student — двусторонняя live-комната.
    • Без ?sync — solo-mode: каждый submit идёт в Supabase lab_submissions.
    • Имя ученика → 'student-<slug>' room_id (модалка на первый submit).
    • ВСЕГДА broadcast в общий канал 'lab-firehose-v1' (teacher-live видит).
-   • НОВОЕ v6: URL ?observe=<student-id> — пассивный режим зеркала.
-     Iframe подписан на firehose, фильтрует dom-state events от этого
-     ученика, применяет их к своему DOM. Маша видит как ученик
-     заполняет форму в реальном времени без всякого ?sync= setup. */
+   • URL ?observe=<student-id> — пассивный режим зеркала. Iframe подписан
+     на firehose, фильтрует dom-state events от этого ученика, применяет
+     их к своему DOM. Маша видит как ученик заполняет форму в реальном
+     времени без всякого ?sync= setup. */
 (function(){
   if (window.__labSyncLoaded) return;
   window.__labSyncLoaded = true;
