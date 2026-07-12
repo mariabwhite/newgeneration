@@ -340,7 +340,27 @@ window.NGE_DATA = {
           "date": "2026-07-13",
           "num": 15,
           "status": "planned",
-          "topic": "🏴‍☠️ Treasure Island · Three Adventures — открытие новой серии (Black Spot · Apple Barrel · The Cave)",
+          "topic": "🏴‍☠️ Treasure Island · Act 1 — The Black Spot (открытие новой серии)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
+            "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-07-16",
+          "num": 16,
+          "status": "planned",
+          "topic": "🏴‍☠️ Treasure Island · Act 2 — The Apple Barrel (заговор на борту)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
+            "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures"
+          }
+        },
+        {
+          "date": "2026-07-19",
+          "num": 17,
+          "status": "planned",
+          "topic": "🏴‍☠️ Treasure Island · Act 3 — The Cave (финал серии)",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
             "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures"
