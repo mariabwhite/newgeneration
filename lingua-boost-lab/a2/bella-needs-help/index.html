@@ -297,28 +297,19 @@ button[data-say]:hover{background:var(--accent)}
 <!-- PROGRESS DOTS -->
 <div class="progress"><div class="dots" id="dots" aria-hidden="true"></div></div>
 
-<!-- KEY VOCABULARY · standard lab-vocab-builder cards (v2 2026-07-12)
-     Раньше здесь стояли 12 статичных .vocab-card с собственным CSS + JS-flipper.
-     lab-vocab-builder.js добавлял extras (bandages/plasters/…) в тот же grid со
-     стандартным стилем — получалась каша (12 бледных + 4 с иконками 🔊/⭐/+/×).
-     Теперь единый источник: window.LAB_VOCAB → builder сам рендерит секцию
-     «📖 Vocabulary» сверху страницы с flip-cards, TTS, add-to-homework, star, del. -->
-<script>
-window.LAB_VOCAB = [
-  { word:'pharmacy',       ipa:'/ˈfɑːr.mə.si/',       ru:'аптека',                  example:'I need a pharmacy.' },
-  { word:'prescription',   ipa:'/prɪˈskrɪp.ʃən/',     ru:'рецепт от врача',         example:'Do you have a prescription?' },
-  { word:'painkiller',     ipa:'/ˈpeɪnˌkɪl.ər/',      ru:'обезболивающее',          example:'I need a painkiller.' },
-  { word:'cough syrup',    ipa:'/kɒf ˈsɪr.əp/',       ru:'сироп от кашля',          example:'One bottle of cough syrup.' },
-  { word:'fever',          ipa:'/ˈfiː.vər/',          ru:'температура (жар)',       example:'I have a fever.' },
-  { word:'ambulance',      ipa:'/ˈæm.bjə.ləns/',      ru:'скорая помощь',           example:'Call an ambulance!' },
-  { word:'walk-in clinic', ipa:'/ˌwɔːk.ɪn ˈklɪn.ɪk/', ru:'клиника без записи',      example:'Go to a walk-in clinic.' },
-  { word:'emergency',      ipa:'/ɪˈmɜː.dʒən.si/',     ru:'срочный случай',          example:"It's an emergency." },
-  { word:'allergy',        ipa:'/ˈæl.ə.dʒi/',         ru:'аллергия',                example:'I have an allergy to nuts.' },
-  { word:'injection',      ipa:'/ɪnˈdʒek.ʃən/',       ru:'укол, инъекция',          example:'The nurse gave me an injection.' },
-  { word:'doctor',         ipa:'/ˈdɒk.tər/',          ru:'врач',                    example:'I need to see a doctor.' },
-  { word:'sick',           ipa:'/sɪk/',               ru:'больной, плохо',          example:'I feel sick.' }
-];
-</script>
+<!-- KEY VOCABULARY · v3 2026-07-12 · единый стиль с Step 1 Vocabulary (.vw class)
+     История: v1 — статичные .vocab-card + собственный flip; v2 — LAB_VOCAB через
+     builder (иконки 🔊⭐+×). Мария указала: хочу как Step 1 · Vocabulary во
+     втором упражнении — .vw карточки (var(--card-2) box, word в display font
+     accent3, ru в italic muted, click → say(word) TTS). Восстанавливаем single
+     source: sceneVocab.intro в JS + data-scene="intro" grid здесь; existing
+     JS at line ~1351 рендерит .vw cards. -->
+<section class="section" id="sec-vocab">
+  <div class="section-head"><div class="n">💊</div><h2>Key vocabulary · tap to hear<span class="section-tag">Deck of 12</span></h2></div>
+  <div class="card">
+    <div class="vocab-row" data-scene="intro"></div>
+  </div>
+</section>
 
 <!-- GRAMMAR FOCUS -->
 <section class="section">
@@ -1190,6 +1181,20 @@ updateDots();
 
 /* === VOCAB per scene === */
 const sceneVocab = {
+  intro: [
+    {w:'pharmacy',       ru:'аптека'},
+    {w:'prescription',   ru:'рецепт от врача'},
+    {w:'painkiller',     ru:'обезболивающее'},
+    {w:'cough syrup',    ru:'сироп от кашля'},
+    {w:'fever',          ru:'температура / жар'},
+    {w:'ambulance',      ru:'скорая помощь'},
+    {w:'walk-in clinic', ru:'клиника без записи'},
+    {w:'emergency',      ru:'срочный случай'},
+    {w:'allergy',        ru:'аллергия'},
+    {w:'injection',      ru:'укол, инъекция'},
+    {w:'doctor',         ru:'врач'},
+    {w:'sick',           ru:'больной, плохо'}
+  ],
   pharmacy: [
     {w:'headache', ru:'головная боль'},
     {w:'sore throat', ru:'болит горло'},
