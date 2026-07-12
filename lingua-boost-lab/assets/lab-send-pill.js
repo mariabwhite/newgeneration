@@ -29,20 +29,31 @@
   }
 
   function loadSDK(){
+    /* v4 2026-07-12 · fallback chain — vendor локал → jsdelivr → unpkg.
+       Используется для broadcast'а в realtime channel (INSERT идёт direct fetch
+       без SDK). Если SDK не грузится — INSERT всё равно прошёл, просто teacher-live
+       не получит push-события в моменте (увидит через SELECT lab_submissions). */
+    var SOURCES = [
+      '/lingua-boost-lab/assets/vendor/supabase.js',
+      'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js',
+      'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js'
+    ];
     return new Promise(function(resolve, reject){
       if (window.supabase && window.supabase.createClient) return resolve(window.supabase);
-      var existing = document.querySelector('script[src*="@supabase/supabase-js"]');
-      if (existing) {
-        existing.addEventListener('load', function(){ resolve(window.supabase); });
-        existing.addEventListener('error', function(){ reject(new Error('sdk fail')); });
-        return;
+      var idx = 0;
+      function tryNext(){
+        if (idx >= SOURCES.length) return reject(new Error('sdk fail · all CDN paths dead'));
+        var s = document.createElement('script');
+        s.src = SOURCES[idx++];
+        s.async = true;
+        s.onload = function(){
+          if (window.supabase && window.supabase.createClient) resolve(window.supabase);
+          else tryNext();
+        };
+        s.onerror = function(){ tryNext(); };
+        document.head.appendChild(s);
       }
-      var s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
-      s.async = true;
-      s.onload = function(){ resolve(window.supabase); };
-      s.onerror = function(){ reject(new Error('sdk fail')); };
-      document.head.appendChild(s);
+      tryNext();
     });
   }
 
@@ -323,33 +334,34 @@
         } catch(e){ /* silent — не блокируем UX если lab_state недоступна */ }
 
         /* 3. Broadcast firehose section-submit → teacher-live лента.
-              Realtime broadcast без SDK — через REST /realtime/v1/api/broadcast. */
+              Возвращаем SDK channel — REST /realtime/v1/api/broadcast НЕ доставляет
+              subscribed clients в стандартном режиме (нужны Realtime Auth policies).
+              SDK broadcast работает надёжно. Vendor-локал (см. loadSDK) обеспечивает
+              что SDK загружается без CDN. */
         try {
-          await fetch(SUPABASE_URL + '/realtime/v1/api/broadcast', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              apikey: SUPABASE_ANON,
-              Authorization: 'Bearer ' + SUPABASE_ANON
-            },
-            body: JSON.stringify({
-              messages: [{
-                topic: 'lab-firehose-v1',
-                event: 'section-submit',
-                payload: {
-                  room_id: roomId, name: name, role: 'submit:' + name,
-                  lesson_path:   location.pathname,
-                  lesson_title:  title,
-                  section_id:    'full-lesson-submit',
-                  section_title: title.slice(0, 80),
-                  score:         meta.score, total: meta.total,
-                  ts:            Date.now()
-                },
-                private: false
-              }]
-            })
+          var sb = await loadSDK();
+          var client = sb.createClient(SUPABASE_URL, SUPABASE_ANON);
+          var ch = client.channel('lab-firehose-v1', { config: { broadcast: { self: false }}});
+          await new Promise(function(res){
+            var done = false;
+            ch.subscribe(function(status){
+              if (!done && status === 'SUBSCRIBED') { done = true; res(); }
+            });
+            setTimeout(function(){ if (!done) { done = true; res(); } }, 2500);
           });
-        } catch(e){ /* silent — INSERT уже прошёл, лента живёт и без broadcast */ }
+          ch.send({
+            type: 'broadcast', event: 'section-submit',
+            payload: {
+              room_id: roomId, name: name, role: 'submit:' + name,
+              lesson_path:   location.pathname,
+              lesson_title:  title,
+              section_id:    'full-lesson-submit',
+              section_title: title.slice(0, 80),
+              score:         meta.score, total: meta.total,
+              ts:            Date.now()
+            }
+          });
+        } catch(e){ /* silent — INSERT уже прошёл, teacher-live увидит через SELECT poll */ }
 
         /* Success */
         btn.disabled = true;

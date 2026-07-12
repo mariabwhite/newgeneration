@@ -86,14 +86,31 @@
   }
 
   function loadSDK(){
+    /* v18 2026-07-12 · fallback chain: локальный vendor → jsdelivr → unpkg.
+       Раньше был только jsdelivr — если CDN режется у ученика/учителя, весь
+       live-режим (lesson-open · dom-state · section-submit · vocab-push)
+       умирал молча. Теперь всегда есть 3 попытки. */
+    var SOURCES = [
+      '/lingua-boost-lab/assets/vendor/supabase.js',
+      'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js',
+      'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js'
+    ];
     return new Promise(function(resolve, reject){
       if (window.supabase && window.supabase.createClient) return resolve(window.supabase);
-      var s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
-      s.async = true;
-      s.onload = function(){ resolve(window.supabase); };
-      s.onerror = function(){ reject(new Error('Supabase SDK load failed')); };
-      document.head.appendChild(s);
+      var idx = 0;
+      function tryNext(){
+        if (idx >= SOURCES.length) return reject(new Error('Supabase SDK load failed · all CDN paths dead'));
+        var s = document.createElement('script');
+        s.src = SOURCES[idx++];
+        s.async = true;
+        s.onload = function(){
+          if (window.supabase && window.supabase.createClient) resolve(window.supabase);
+          else tryNext();
+        };
+        s.onerror = function(){ tryNext(); };
+        document.head.appendChild(s);
+      }
+      tryNext();
     });
   }
 
