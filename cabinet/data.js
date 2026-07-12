@@ -1492,7 +1492,7 @@ window.NGE_DATA = {
       "monthly_package": 20000,
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 1,
+      "lessons_used_this_month": 2,
       "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
       "stability_note": "",
       "payment_status": "Оплачено",
@@ -1585,8 +1585,12 @@ window.NGE_DATA = {
         {
           "date": "2026-07-12",
           "num": 10,
-          "status": "planned",
-          "topic": "Тема согласовывается после летнего пересбора"
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+          "homework": {
+            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+          }
         },
         {
           "date": "2026-07-19",
