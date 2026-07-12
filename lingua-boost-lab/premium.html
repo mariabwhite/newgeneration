@@ -433,6 +433,21 @@ main {
 .card[data-id="trial-abroad"] .card-cover { background-image: url("./assets/premium-card-trial-abroad.webp"); background-color: #5C3A1F; background-position: center; background-size: cover; }
 .card[data-id="travel-talk"]   .card-cover { background-image: url("./b1/travel-talk-light-and-bright/assets/img/img-hero-sunset.webp"); background-color: #FF7B54; }
 .card[data-id="travel-talk-2"] .card-cover { background-image: url("./b1/travel-talk-light-and-bright-2/assets/img/hero.jpg"); background-color: #1B2F4E; }
+.card[data-id="travel-talk-3"] .card-cover { background-image: url("./b1/travel-talk-hotel-checkin/assets/img/preview-cover.png"); background-color: #1B2F4E; }
+
+/* ═══════ SERIES CAROUSEL · когда карточек 5+ ═══════ */
+.series-carousel{position:relative;margin:0 -4px}
+.series-carousel .cards{display:flex !important;grid-template-columns:none !important;gap:18px !important;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 20px;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--series-color,#9a9a9a) transparent;-webkit-overflow-scrolling:touch}
+.series-carousel .cards::-webkit-scrollbar{height:6px}
+.series-carousel .cards::-webkit-scrollbar-track{background:transparent}
+.series-carousel .cards::-webkit-scrollbar-thumb{background:var(--series-color,#9a9a9a);border-radius:3px;opacity:.5}
+.series-carousel .cards > .card{flex:0 0 clamp(260px,29%,320px);scroll-snap-align:start;min-width:0}
+.series-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid rgba(0,0,0,.14);color:#1a1a2e;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.14);font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:800;transition:.18s;padding:0}
+.series-nav:hover{background:var(--series-color,#333);color:#fff;border-color:var(--series-color,#333);transform:translateY(-50%) scale(1.08)}
+.series-nav.prev{left:-8px}
+.series-nav.next{right:-8px}
+.series-nav[disabled]{opacity:.28;pointer-events:none}
+@media(max-width:680px){.series-nav{width:36px;height:36px;font-size:14px}.series-nav.prev{left:2px}.series-nav.next{right:2px}}
 .card[data-id="voyager-l3"] .card-cover { background-image: url("./assets/premium-card-voyager-l3.webp"); background-color: #0d1b3a; }
 .card[data-id="voyager-l4"] .card-cover { background-image: url("./assets/premium-card-voyager-l4.webp"); background-color: #2b1810; background-position: center; background-size: cover; }
 .card[data-id="practical-english-day-1"] .card-cover { background-image: url("./assets/premium-card-practical-english-day-1.webp"); background-color: #f4e5c6; background-position: center; background-size: cover; }
@@ -897,6 +912,9 @@ footer.premium-footer {
         <span style="font-family:var(--mono,monospace);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--series-color);font-weight:700;">B1 · light &amp; bright speaking</span>
       </header>
       <p style="margin:0 0 16px;font-size:0.92rem;color:var(--muted);max-width:600px;">80-минутные speaking-уроки про обычный день за границей: первые дни в Канаде, в аптеке, в кафе. Короткие диалоги, видео из Pexels, ролевые игры с шаблонами реплик.</p>
+      <div class="series-carousel">
+      <button class="series-nav prev" type="button" aria-label="Previous">‹</button>
+      <button class="series-nav next" type="button" aria-label="Next">›</button>
       <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
 
         <article class="card" data-id="travel-talk">
@@ -923,9 +941,21 @@ footer.premium-footer {
           </div>
         </article>
 
-        <article class="card" data-id="settling-toronto">
+        <article class="card" data-id="travel-talk-3">
           <div class="card-cover" aria-hidden="true">
             <span class="card-num">03</span>
+            <span class="card-tag">B1</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Travel Talk · Part 3 · Hotel Check-in</h3>
+            <div class="card-skills">Room types <span class="dot">·</span> Airbnb <span class="dot">·</span> Brian &amp; Emma dialogue <span class="dot">·</span> 5 tenses</div>
+            <a class="card-open" href="./b1/travel-talk-hotel-checkin/" rel="noopener"><span data-ru="Открыть модуль" data-en="Open module">Открыть модуль</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card" data-id="settling-toronto">
+          <div class="card-cover" aria-hidden="true">
+            <span class="card-num">04</span>
             <span class="card-tag">A2</span>
           </div>
           <div class="card-body">
@@ -937,7 +967,7 @@ footer.premium-footer {
 
         <article class="card" data-id="bella-needs-help">
           <div class="card-cover" aria-hidden="true">
-            <span class="card-num">04</span>
+            <span class="card-num">05</span>
             <span class="card-tag">A2</span>
           </div>
           <div class="card-body">
@@ -948,6 +978,7 @@ footer.premium-footer {
         </article>
 
       </div>
+      </div><!-- /.series-carousel -->
     </section>
 
     <!-- ═══ SERIES 8 · BUSINESS LAB · ADULTS B1+ ═══ -->
@@ -1602,6 +1633,34 @@ bootstrapAccess();
   }
   /* Re-run after lab-theme-sync.js initializes (it runs on DOMContentLoaded too) */
   window.addEventListener("load", function () { setTimeout(updateThemeBtnText, 50); });
+})();
+</script>
+
+<!-- Series carousel controls (prev/next + disabled state at edges) -->
+<script>
+(function(){
+  document.querySelectorAll('.series-carousel').forEach(function(box){
+    var cards = box.querySelector('.cards');
+    var prev  = box.querySelector('.series-nav.prev');
+    var next  = box.querySelector('.series-nav.next');
+    if (!cards || !prev || !next) return;
+    function step(){
+      var card = cards.querySelector('.card');
+      if (!card) return 320;
+      var gap = parseInt(getComputedStyle(cards).columnGap || '18', 10) || 18;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function update(){
+      var max = cards.scrollWidth - cards.clientWidth - 2;
+      prev.toggleAttribute('disabled', cards.scrollLeft <= 2);
+      next.toggleAttribute('disabled', cards.scrollLeft >= max);
+    }
+    prev.addEventListener('click', function(){ cards.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function(){ cards.scrollBy({ left:  step(), behavior: 'smooth' }); });
+    cards.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 })();
 </script>
 
