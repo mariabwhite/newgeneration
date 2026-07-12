@@ -1497,6 +1497,21 @@ window.LAB_VOCAB = [
 ];
 </script>
 
+<!-- Speech Coach палитра · scoped override 2026-07-12
+     lab-speech-tester.js читает var(--card, fallback) и var(--text, fallback);
+     у EPL палитра cream-warm без этих переменных → блок падал в блёклый cream+cream.
+     Задаём --card тёмный warm-brown + --text кремовый ТОЛЬКО внутри .lab-coach-section,
+     остальной light-lab урок сохраняет свою палитру. -->
+<style id="epl-coach-palette-2026-07-12">
+  .lab-coach-section{--card:#2c1608 !important;--text:#f5e7d0 !important;--surface:#3a1e0f !important}
+  .lab-coach-section{background:linear-gradient(135deg,#3a1e0f 0%,#2c1608 100%) !important;color:#f5e7d0 !important;border:1px solid rgba(232,180,87,.28) !important}
+  .lab-coach-section .lc-transcript{background:#1a0d05 !important;color:#f5e7d0 !important}
+  .lab-coach-section .lc-crit .lc-crit-text{color:#f5e7d0 !important}
+  .lab-coach-section .lc-crit .lc-crit-hint{color:#c8a778 !important}
+  .lab-coach-section .lab-coach-toggle h2{color:#E8B457 !important}
+  .lab-coach-section .lc-crit-h{color:#E8B457 !important}
+</style>
+
 <!-- Speech Coach config · Eat Pray Love — share your own travel where you found something -->
 <script type="application/json" id="lab-coach-config">
 {
