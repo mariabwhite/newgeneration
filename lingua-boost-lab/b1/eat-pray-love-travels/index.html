@@ -7,11 +7,13 @@
 <title>Eat, Pray, Love — Three Journeys · B1 Lab Lesson</title>
 <meta name="description" content="B1 interactive English lesson inspired by Elizabeth Gilbert's «Eat, Pray, Love»: Italy — pleasure, India — silence, Indonesia — balance. Reading + listening + vocab.">
 <meta name="robots" content="index, follow">
+<link rel="icon" href="/lingua-boost-lab/assets/linguaboost-lab-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/canon-L.css?v=11" data-tag="canon-L-loaded">
 <link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+<link rel="stylesheet" href="../../assets/mobile-fix.css?v=20260609s">
 <script src="../../assets/canon-L.js?v=5" defer></script>
 <style>
 :root{
@@ -38,7 +40,7 @@
   --demo-top-width:min(100% - 44px, 1240px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);font-family:var(--body);color:var(--ink);min-height:100vh;overflow-x:hidden;line-height:1.65}
 a{color:inherit;text-decoration:none}
 
@@ -64,7 +66,7 @@ a{color:inherit;text-decoration:none}
 /* ========== Hero — image with text overlay ========== */
 .lab-hero{max-width:1240px;margin:32px auto 24px;padding:0 22px}
 .lab-hero-card{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
-  background-image:linear-gradient(180deg,rgba(20,10,0,.28) 0%,rgba(20,10,0,.32) 42%,rgba(20,10,0,.72) 100%),url('assets/hero.png');
+  background-image:linear-gradient(180deg,rgba(20,10,0,.28) 0%,rgba(20,10,0,.32) 42%,rgba(20,10,0,.72) 100%),url('assets/hero.webp');
   background-size:cover;background-position:center 35%;background-repeat:no-repeat;
   min-height:clamp(340px,42vw,520px);display:flex;flex-direction:column;justify-content:flex-end;
   padding:clamp(24px,3.6vw,44px)}
@@ -218,6 +220,20 @@ a{color:inherit;text-decoration:none}
 /* ========== Footer ========== */
 footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;color:var(--muted);
   font:600 .78rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+/* ===== canon-l-footer (unified Lab bottom section) ===== */
+.canon-l-footer{background:var(--lb-bg,var(--surface));border-top:1px solid var(--lb-line,var(--line));padding:22px clamp(18px,3vw,28px) 26px;font-family:var(--body);color:var(--lb-text,var(--ink));margin-top:48px;box-sizing:border-box;width:100%;max-width:none;text-align:left;text-transform:none;letter-spacing:0}
+.canon-l-footer-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--lb-line,rgba(197,106,92,.18))}
+.canon-l-footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex-shrink:0}
+.canon-l-footer-mark{width:26px;height:26px;display:grid;place-items:center;background:var(--accent);color:#fff;font-family:var(--display);font-weight:800;font-size:13px;border-radius:7px;border-top-right-radius:0;letter-spacing:-.04em;flex-shrink:0;position:relative;overflow:hidden}
+.canon-l-footer-mark::after{content:"";position:absolute;right:0;top:0;width:9px;height:9px;background:var(--surface);clip-path:polygon(100% 0,0 0,100% 100%);z-index:2}
+.canon-l-footer-name{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:-.01em;color:var(--lb-text,var(--ink));white-space:nowrap}
+.canon-l-footer-meta{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lb-muted,var(--muted));flex:1 1 220px;text-align:center;min-width:0}
+.canon-l-footer-nav{display:flex;gap:18px;align-items:center;flex-shrink:0}
+.canon-l-footer-nav a{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lb-muted,var(--muted));text-decoration:none;transition:color .15s ease;white-space:nowrap}
+.canon-l-footer-nav a:hover{color:var(--accent2)}
+.canon-l-footer-legal{margin:14px 0 0;font-size:12px;line-height:1.6;color:var(--lb-muted,var(--muted));font-family:var(--body);letter-spacing:0;text-transform:none}
+.canon-l-footer-legal strong{color:var(--lb-text,var(--ink));font-weight:600}
+.btn-sm,.mcq-opts button,.epl-tf-opts button,.epl-gap-actions button,.epl-mic-btn{min-height:44px}
 
 /* Mobile adjustments */
 @media(max-width:680px){
@@ -226,9 +242,26 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
   .brand-name{font-size:.84rem}
   .brand-sub{display:none}
   .btn-sm{padding:6px 10px;font-size:.62rem}
+  .lab-hero{max-width:100%;margin:18px auto 18px;padding:0 10px;overflow:hidden}
+  .lab-hero-card{width:100%;max-width:100%;min-height:420px;padding:24px 18px;background-position:center center}
+  .lab-eyebrow{font-size:.58rem;letter-spacing:.16em;gap:7px;flex-wrap:wrap}
+  .lab-eyebrow::before{width:22px}
+  .lab-hero h1{font-size:2rem;line-height:1.08;overflow-wrap:break-word;text-wrap:balance}
+  .lab-hero .lab-lead{max-width:100%;font-size:.9rem;line-height:1.45;padding:10px 12px;white-space:normal;overflow-wrap:break-word}
+  .hero-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:.58rem;letter-spacing:.08em}
+  .hero-meta span{padding:5px 7px;text-align:center;min-width:0}
   .hero-banner{aspect-ratio:16/9}
+  .section{max-width:100%;padding:0 12px}
+  .lp-toc{display:none!important}
+  .speaking-bottom-dock{left:auto!important;right:54px!important}
   .reading-text{font-size:1.05rem}
   .reading-text p:first-child::first-letter{font-size:2.2rem}
+  .canon-l-footer{padding:18px 16px 22px;margin-top:32px}
+  .canon-l-footer-row{gap:12px}
+  .canon-l-footer-meta{text-align:left;flex:1 1 100%;order:3;font-size:9.5px}
+  .canon-l-footer-nav{gap:14px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .canon-l-footer-nav::-webkit-scrollbar{display:none}
+  .canon-l-footer-legal{font-size:11px}
 }
 
 /* Убираем "+" с флэш-карточек — на них он читается как «уже добавлено», а не «положить в домашку».
@@ -377,7 +410,7 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
 
 <!-- ========== HERO — image + overlay text ========== -->
 <section class="lab-hero">
-  <div class="lab-hero-card">
+  <div class="lab-hero-card hero-card">
     <div class="lab-eyebrow">B1 · Reading · Listening · Vocabulary</div>
     <h1>Eat, <em>Pray,</em> <span class="amp">&amp;</span> <em>Love</em> — <br>Three Journeys</h1>
     <p class="lab-lead">Inspired by Elizabeth Gilbert's memoir. One year, three countries, three lessons in being human — pleasure in <strong>Rome</strong>, silence in an <strong>Indian ashram</strong>, and balance on the island of <strong>Bali</strong>.</p>
@@ -1421,8 +1454,20 @@ footer{max-width:1240px;margin:44px auto 28px;padding:0 22px;text-align:center;c
   </figure>
 </section>
 
-<footer>
-  Lesson by Maria Burtseva · NG English · LinguaBoost Lab · B1 · Eat, Pray, Love — Three Journeys
+<footer class="canon-l-footer" role="contentinfo">
+  <div class="canon-l-footer-row">
+    <a class="canon-l-footer-brand" href="../../index.html" aria-label="LinguaBoost Lab">
+      <span class="canon-l-footer-mark" aria-hidden="true">L</span>
+      <span class="canon-l-footer-name">LinguaBoost Lab</span>
+    </a>
+    <span class="canon-l-footer-meta">Eat, Pray, Love — Three Journeys · B1</span>
+    <nav class="canon-l-footer-nav" aria-label="Site links">
+      <a href="../../index.html">Каталог</a>
+      <a href="../../../index.html">Главная</a>
+      <a href="../../../about-project.html">О проекте</a>
+    </nav>
+  </div>
+  <p class="canon-l-footer-legal">LinguaBoost Lab &copy; 2026. Lesson design, texts, tasks, structure and interface are human-directed and AI-assisted. Created by the project owner with Claude and Codex as production tools. All rights reserved. Copying, republication and commercial use without permission are prohibited.</p>
 </footer>
 
 <!-- Vocab deck — 18 core words (6 per country) -->
@@ -1752,5 +1797,7 @@ document.querySelectorAll('.mcq-row').forEach(row=>{
 })();
 </script>
 
+
+<script src="../../assets/lab-clean-bottom-dock.js?v=1" defer></script>
 </body>
 </html>

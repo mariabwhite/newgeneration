@@ -1317,6 +1317,42 @@ html body > .lab-lex-box{
 .lr-strategy ul{ margin:8px 0 0; padding-left:20px; color: var(--muted); font-size:.94rem; line-height:1.6 }
 .lr-strategy strong{ color: var(--text) }
 
+/* ═══════════ SIDE PANELS · 314-px square infographics (2026-07-12) ═══════════ */
+.ex.has-panel{
+  display:grid; grid-template-columns: 1fr 314px; gap: 22px; align-items:start;
+}
+.ex.has-panel > .side-panel{
+  order: 2;
+  grid-column: 2;
+  position: sticky; top: 130px;
+  width: 314px; max-width: 100%;
+}
+.ex.has-panel > *:not(.side-panel){ grid-column: 1; }
+.side-panel img{
+  display:block; width: 100%; height:auto; border-radius: 14px;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+.side-panel-caption{
+  margin-top: 8px; font-family: var(--mono); font-size: 10px;
+  font-weight: 800; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted); text-align:center;
+}
+/* Alternating side: even blocks — panel on the left */
+.ex.has-panel.panel-left{ grid-template-columns: 314px 1fr; }
+.ex.has-panel.panel-left > .side-panel{ order: 0; grid-column: 1; }
+.ex.has-panel.panel-left > *:not(.side-panel){ grid-column: 2; }
+@media (max-width: 980px){
+  .ex.has-panel, .ex.has-panel.panel-left{
+    grid-template-columns: 1fr;
+  }
+  .ex.has-panel > .side-panel, .ex.has-panel.panel-left > .side-panel{
+    order: -1; grid-column: 1; width: 100%; max-width: 380px; margin: 0 auto 14px;
+    position: static;
+  }
+  .ex.has-panel > *:not(.side-panel), .ex.has-panel.panel-left > *:not(.side-panel){ grid-column: 1; }
+}
+
 /* ═══════════ TOEFL TASK 2 · INTERVIEW (4-Q sequence) ═══════════ */
 .iv-setup{
   background: rgba(125,168,217,.06); border-left:3px solid var(--brand);
@@ -1620,6 +1656,18 @@ body{padding-top:44px}
   </div>
   <p class="section-sub">Two very different beasts — one 4-minute Interview, one 11-minute conversation. Same voice wins both if it's <span class="tr" data-ru="уверенный и с фактами">confident and specific</span>.</p>
 
+  <div class="ex has-panel panel-left" style="margin-bottom:22px">
+    <aside class="side-panel">
+      <img loading="lazy" decoding="async" src="assets/img/panels/n10-top-navigation.png" alt="Top navigation panel — WHY, ROOMS, WORDS, FINAL, My Homework. Move from concept to drills to vocabulary to submission.">
+      <div class="side-panel-caption">🧭 route of this lesson</div>
+    </aside>
+    <div class="ex-hdr">
+      <span class="ex-badge">01 · route</span>
+      <h4>Know the route before you start</h4>
+    </div>
+    <p class="ex-sub">One button, four steps: <strong>WHY</strong> the exam works like this → <strong>ROOMS</strong> where you actually speak → <strong>WORDS</strong> you collected → <strong>FINAL</strong> send. A clear route reduces hesitation and wasted clicks.</p>
+  </div>
+
   <div class="brief-grid">
     <div class="brief-card">
       <span class="b-tag">TOEFL iBT · new 2026</span>
@@ -1697,7 +1745,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── a) VOCAB FLIP-CARDS ─── -->
-      <div class="ex" data-section-id="d-vocab">
+      <div class="ex has-panel" data-section-id="d-vocab">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n06-vocabulary-panel.png" alt="Vocabulary panel — B2 words that actually help: trade-off, commute, burnout, privacy, vibrant. Useful words beat difficult words.">
+          <div class="side-panel-caption">📖 what this block does</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge">a · vocab flip</span>
           <h4>12 B2 words — tap to flip, 🔊 to hear, ＋ to save</h4>
@@ -2161,7 +2213,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f2) IELTS CUE-CARD · LEVEL 2 (full) ─── -->
-      <div class="ex" data-section-id="d-freer">
+      <div class="ex has-panel panel-left" data-section-id="d-freer">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n03-mic-drill-cue.png" alt="Mic-drill cue card panel — Describe a place. A clear structure scores better than random ideas.">
+          <div class="side-panel-caption">🎤 how the cue card works</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge speak">f2 · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card <span class="lvl-badge lvl-2">Level 2 · full 2 min</span></h4>
@@ -2457,7 +2513,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── TOEFL w1) TASK 1 · LISTEN & REPEAT — 7 items, progressive length, hidden text ─── -->
-      <div class="ex lr-block" data-section-id="w-toefl-1">
+      <div class="ex lr-block has-panel" data-section-id="w-toefl-1">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n04-recording-screen.png" alt="Recording screen panel — TOEFL answer 45 seconds. Say your choice in the first sentence.">
+          <div class="side-panel-caption">🎯 recording screen looks like this</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge speak">🎯 w1 · TOEFL Task 1 · Listen and Repeat · 7 items</span>
           <h4>Hear it once. Repeat it verbatim. The text is hidden — that's the whole point.</h4>
@@ -2692,7 +2752,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f) FREER MIC-DRILL ─── -->
-      <div class="ex" data-section-id="w-freer">
+      <div class="ex has-panel" data-section-id="w-freer">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n05-ai-feedback.png" alt="AI feedback panel — score 8/10 across Fluency, Coherence, Vocabulary, Pronunciation. Accuracy matters, clarity matters first.">
+          <div class="side-panel-caption">🤖 what the score really checks</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge speak">f · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card · 1 min prep · 2 min speaking</h4>
@@ -2932,7 +2996,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── d) GUIDED MIC-DRILL ─── -->
-      <div class="ex" data-section-id="h-guided">
+      <div class="ex has-panel panel-left" data-section-id="h-guided">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n02-lesson-overview.png" alt="Lesson overview panel — One topic, three exam moves: TOEFL Interview 45 sec, IELTS Part 2 (1 min prep + 2 min talk), IELTS Part 3 defend your point.">
+          <div class="side-panel-caption">🧭 same topic, three exam moves</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge speak">d · 🎤 mic-drill · guided</span>
           <h4>3 fast Part 1 style prompts · 45 s each · target vocab scored live</h4>
@@ -3050,7 +3118,11 @@ body{padding-top:44px}
       </div>
 
       <!-- ─── f) FREER MIC-DRILL ─── -->
-      <div class="ex" data-section-id="h-freer">
+      <div class="ex has-panel" data-section-id="h-freer">
+        <aside class="side-panel">
+          <img loading="lazy" decoding="async" src="assets/img/panels/n08-progress-dashboard.png" alt="Progress dashboard panel — track how your answers improve, 8.5/10. Better answers become more specific, not longer.">
+          <div class="side-panel-caption">📈 what progress looks like</div>
+        </aside>
         <div class="ex-hdr">
           <span class="ex-badge speak">f · 🎤 mic-drill · freer</span>
           <h4>IELTS Part 2 cue-card · 1 min prep · 2 min speaking</h4>
@@ -3154,6 +3226,24 @@ body{padding-top:44px}
     <h2>Final — send your homework</h2>
   </div>
   <p class="section-sub">Each mic-drill and debate has a "＋ to homework" button. Once you have your set, open <a href="../.homework/index.html" style="color:var(--accent);border-bottom:1px dashed var(--accent)">My Homework</a> and hit send.</p>
+
+  <div class="ex has-panel">
+    <aside class="side-panel">
+      <img loading="lazy" decoding="async" src="assets/img/panels/n07-final-send.png" alt="Final send homework panel — 3 recordings, saved lexicon, final reflection. Submitting the full set shows both fluency and progress.">
+      <div class="side-panel-caption">📤 what your submission includes</div>
+    </aside>
+    <div class="ex-hdr">
+      <span class="ex-badge">04 · final send</span>
+      <h4>Everything the teacher sees in one send</h4>
+    </div>
+    <p class="ex-sub">Your final set: three mic-drill recordings, your saved lexicon of the day, and one short reflection line. Small corrections are easier when your answers are saved — so send even if you don't feel 100%.</p>
+    <ul style="margin:0; padding-left:20px; color:var(--muted); font-size:.95rem; line-height:1.7;">
+      <li><strong>3 recordings</strong> — one per mic-drill</li>
+      <li><strong>Saved lexicon</strong> — the ＋ chips you collected today</li>
+      <li><strong>Final reflection</strong> — one sentence: which room was hardest and why</li>
+    </ul>
+    <p style="margin-top:14px;"><a class="cta primary" href="../.homework/index.html">📤 Open My Homework →</a></p>
+  </div>
 </section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
