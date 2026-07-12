@@ -805,12 +805,15 @@ window.NGE_DATA = {
       "monthly_package": 10000,
       "payment_status": "Оплачено",
       "payment_note": "",
+      "payments": [
+        { "month": "Июль 2026", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Июльский абонемент · слова + будущие времена + направления + предлоги" }
+      ],
       "is_adult": true,
       "parent_name": "",
       "pin": "6347",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 2,
       "summer_plan_note": "Июльский абонемент · слова + будущие времена + направления + предлоги",
       "stability_note": "",
       "lessons": [
@@ -887,8 +890,13 @@ window.NGE_DATA = {
         {
           "date": "2026-07-12",
           "num": 10,
-          "status": "planned",
-          "topic": "Слова + будущие времена (will / going to) — расширение и активная практика"
+          "status": "completed",
+          "topic": "Слова + будущие времена (will / going to) — расширение и активная практика",
+          "homework": {
+            "module_url": "../lingua-boost-lab/practice/denis-workbook-02/",
+            "module_title": "📚 Открыть Workbook 02 · Denis's Fixes",
+            "text": "Рабочая тетрадь · 14 упражнений с автопроверкой + Quizlet. Фикс-тем на его слабые места: Wh-words, Present tenses vs will/going to, Have got, Prepositions, Ordinals + Cardinals, Directions match. Зелёное = верно, красное = поправить."
+          }
         },
         {
           "date": "2026-07-19",
