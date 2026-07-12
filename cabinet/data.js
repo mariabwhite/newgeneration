@@ -1,7 +1,7 @@
-﻿/* GENERATED — slim version without PII. Source of truth: Supabase. */
+/* GENERATED — slim version without PII. Source of truth: Supabase. */
 window.NGE_DATA = {
   "version": 2,
-  "generated": "2026-06-23T15:35:00.000Z",
+  "generated": "2026-07-12T11:19:07.400Z",
   "generated_by": "gen-slim-data.js — без PII (без паспортов/телефонов/адресов)",
   "teacher": {
     "id": "teacher",
@@ -21,114 +21,6 @@ window.NGE_DATA = {
     "inn": "7710140679",
     "kpp": "771301001",
     "purpose": "Перевод средств по договору № 5181572792 Бурцева Мария Витальевна НДС не облагается"
-  },
-  "contracts": {
-    "denis-shalmanov": {
-      "folder": "documents/_v",
-      "files": [
-        "75a3f76e46cd20c0f092f128b09b7da2.pdf"
-      ],
-      "note": "Подписанный договор оказания услуг. Клик — открыть в новой вкладке."
-    },
-    "timofey": {
-      "folder": "documents/_v",
-      "files": [
-        "2967982f7e0da82ca88dcd8e5c19d557.pdf",
-        "84c5c58a09e3c2a03e82eab79a788885.pdf"
-      ],
-      "note": "Договор оказания услуг + согласие на обработку ПД. Клик — открыть в новой вкладке."
-    },
-    "andrei-kruglov": {
-      "folder": "documents/_v/andrei-kruglov",
-      "files": [
-        "01_договор_стр1.pdf",
-        "02_договор_стр2_условия.pdf",
-        "03_договор_стр3_подпись.jpg"
-      ],
-      "note": "Договор оказания услуг (стр. 1–3 + подпись). Клик — открыть в новой вкладке."
-    },
-    "sova-elena": {
-      "folder": "documents/_v/sova-elena",
-      "files": [
-        "01_договор_общий.pdf",
-        "02_реквизиты_Елена.png"
-      ],
-      "note": "Договор оказания услуг + приложение с реквизитами. Клик — открыть в новой вкладке."
-    },
-    "yulya-izotova": {
-      "folder": "documents/_v/yulya-izotova",
-      "files": [
-        "01_договор_стр1.jpg",
-        "02_договор_стр2_условия.jpg",
-        "03_договор_стр3_подпись.jpg",
-        "04_согласие_на_ПД.jpg",
-        "05_подпись_доп.png"
-      ],
-      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке.",
-      "parentOnly": true
-    },
-    "anya-isaeva": {
-      "folder": "documents/_v/anya-isaeva",
-      "files": [
-        "01_договор_стр1.webp",
-        "02_договор_стр2_условия.webp",
-        "03_договор_стр3_подпись.webp",
-        "04_согласие_на_ПД.webp"
-      ],
-      "parentOnly": true,
-      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
-    },
-    "katya-marakina": {
-      "folder": "documents/_v/katya-marakina",
-      "files": [
-        "01_договор_стр1.jpeg",
-        "02_договор_стр2.jpeg",
-        "03_договор_стр3.jpeg",
-        "04_доп.png"
-      ],
-      "parentOnly": true,
-      "note": "Договор оказания услуг (стр. 1–3 + доп.). Клик — открыть в новой вкладке."
-    },
-    "fedor-protasov": {
-      "folder": "documents/_v/fedor-protasov",
-      "files": [],
-      "missing": true,
-      "parentOnly": true,
-      "note": "Подписанный договор пока не загружен. Нужно подписать договор оказания услуг и согласие на обработку персональных данных; после подписи документ будет закреплён здесь."
-    },
-    "ekaterina-medvedeva-solo": {
-      "folder": "documents/_v/ekaterina-medvedeva-solo",
-      "files": [
-        "01_договор_стр1.jpg",
-        "02_договор_стр2_условия.jpg",
-        "03_договор_стр3_подпись.jpg",
-        "04_согласие_на_ПД.jpg"
-      ],
-      "parentOnly": true,
-      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
-    },
-    "maria-kuznetsova-solo": {
-      "folder": "documents/_v/maria-kuznetsova-solo",
-      "files": [
-        "01_договор_стр1.jpg",
-        "02_договор_стр2_условия.jpg",
-        "03_договор_стр3_подпись.jpg",
-        "04_согласие_на_ПД.jpg"
-      ],
-      "parentOnly": true,
-      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
-    },
-    "ivanov-ivan": {
-      "folder": "documents/_v/ivanov-ivan",
-      "files": [
-        "01_договор_стр1.jpeg",
-        "02_договор_стр2_условия.jpeg",
-        "03_договор_стр3_подпись.jpeg",
-        "04_согласие_на_ПД.jpeg"
-      ],
-      "parentOnly": true,
-      "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке."
-    }
   },
   "students": [
     {
@@ -162,7 +54,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Летняя встреча #1 — Science Systems · TOEFL iBT prep (C1)",
           "homework": {
-            "module_url": "../lingua-boost-lab/c1/science-systems-c1-andrew-toefl/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/c1/science-systems-c1-andrew-toefl/",
             "module_title": "🔬 Открыть Science Systems · TOEFL prep",
             "text": "C1 + TOEFL iBT prep (ETS 2025 формат). Warm-up в 3-х форматах · 10 научных областей matching · 16 cross-science vocab · 5 reading пассажей с двумя типами вопросов · 2 listening talks (Matthew + Joanna, реальное Polly-аудио) · Listen and Repeat · Retell · Argument · Take an Interview · Writing trio (Build a Sentence · Email · Academic Discussion)."
           }
@@ -182,16 +74,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Летняя встреча #3 — финальный разбор + настройка на сентябрь"
         }
-      ],
-      "contracts": {
-        "folder": "documents/_v/andrei-kruglov",
-        "files": [
-          "01_договор_стр1.pdf",
-          "02_договор_стр2_условия.pdf",
-          "03_договор_стр3_подпись.jpg"
-        ],
-        "note": "Договор оказания услуг (3 стр. + подпись). Клик — открыть в новой вкладке."
-      }
+      ]
     },
     {
       "id": "sova-elena",
@@ -223,70 +106,6 @@ window.NGE_DATA = {
       "lessons_used_this_month": 1,
       "summer_plan_note": "Июль 2026 · новый блок 4 занятий · сегодня начали с повторения Bella (медицинская серия).",
       "stability_note": "",
-      "archived_packages": [
-        {
-          "label": "Май 2026 · 4 занятия (вт 19:00) — грамматический блок + The Wind in the Willows",
-          "lessons": [
-            {
-              "date": "2026-04-28",
-              "num": 1,
-              "status": "completed",
-              "topic": "Грамматика #1 · Simple + Perfect tenses — повторение форм и функций"
-            },
-            {
-              "date": "2026-05-05",
-              "num": 2,
-              "status": "completed",
-              "topic": "Грамматика #2 · Passive Voice + Past Perfect — узнавание в контексте"
-            },
-            {
-              "date": "2026-05-12",
-              "num": 3,
-              "status": "completed",
-              "topic": "The Wind in the Willows — чтение адаптированной книги · лексика · обсуждение"
-            },
-            {
-              "date": "2026-05-19",
-              "num": 4,
-              "status": "completed",
-              "topic": "SIM-карты и кофе — практическая лексика и диалоги (Канада · бытовые ситуации)"
-            }
-          ]
-        },
-        {
-          "label": "Июнь–июль 2026 · 3 занятия (чт 20:00) — Канада-серия: Settling In → City → Bella",
-          "lessons": [
-            {
-              "date": "2026-06-18",
-              "num": 1,
-              "status": "completed",
-              "topic": "Канада · Settling In Toronto — coffee · SIM · directions · drugstore (4 сцены · I'd like / I need · AI Coach)",
-              "homework": {
-                "text": "Lab-модуль · 4 сценария первого дня в Торонто + AI Coach для свободной речи в конце.",
-                "module_url": "../lingua-boost-lab/a2/settling-in-toronto/",
-                "module_title": "🇨🇦 Открыть Settling In Toronto"
-              }
-            },
-            {
-              "date": "2026-06-25",
-              "num": 2,
-              "status": "completed",
-              "topic": "Ориентация в городе — city map · directions · транспорт · как спросить дорогу"
-            },
-            {
-              "date": "2026-07-02",
-              "num": 3,
-              "status": "completed",
-              "topic": "Медицина · Bella Needs Help — pharmacy / walk-in clinic / 911 · Can I…? / Could you…?",
-              "homework": {
-                "text": "Bella-series · Day 3 в Канаде. У Bella головная боль → аптека → клиника → потом она помогает незнакомцу вызвать 911. Три сцены, формула Poster → Vocab → Dialogue → Drill → Speaking template + AI Coach в финале.",
-                "module_url": "../lingua-boost-lab/a2/bella-needs-help/",
-                "module_title": "🏥 Bella Needs Help"
-              }
-            }
-          ]
-        }
-      ],
       "lessons": [
         {
           "date": "2026-07-09",
@@ -295,7 +114,7 @@ window.NGE_DATA = {
           "topic": "🏥 Bella Needs Help · повторение — pharmacy / doctor / emergency, закрепление формул Can I…? / Could you…?",
           "homework": {
             "text": "Повтор Bella-series · Day 3. Три сцены на автомате, AI Coach в финале — свободно, без опоры на template.",
-            "module_url": "../lingua-boost-lab/a2/bella-needs-help/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/bella-needs-help/",
             "module_title": "🏥 Bella Needs Help (повторение)"
           }
         },
@@ -398,7 +217,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 1 — Whitewashing the Fence",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
           }
         },
@@ -408,7 +227,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 2 — The Graveyard",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
           }
         },
@@ -442,7 +261,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 3 — Sunday School (Bible Prize)",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
           }
         },
@@ -452,7 +271,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 4 — Becky on the Fence",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
           }
         },
@@ -462,7 +281,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 5 — финал серии + Past Simple irregular drill",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures",
             "text": "Финал серии. К уроку: пересказ сцен своими словами + неправильные глаголы из текста в активную речь."
           }
@@ -473,7 +292,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
             "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
           }
         },
@@ -483,7 +302,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "✈️ Travel Talk · Light & Bright — travel-серия (открытие)",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
             "module_title": "✈️ Открыть Travel Talk · Light & Bright"
           }
         },
@@ -493,7 +312,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — закрепление ночной travel-программы",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
             "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
           }
         },
@@ -503,7 +322,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Tom Sawyer · Act 6 — Blood Oath & Trial · показания после Muff Potter",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/tom-sawyer-three-acts/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/tom-sawyer-three-acts/",
             "module_title": "📖 Открыть Tom Sawyer · Three Adventures"
           }
         },
@@ -532,8 +351,22 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
-        { "month": "Июль 2026", "package": "4 урока × 2 000 ₽", "amount": "8 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Летний блок · 1 / 4 проведено" },
-        { "month": "Июнь 2026", "package": "4 урока × 2 000 ₽", "amount": "8 000 ₽", "status": "paid", "date": "—", "note": "Полный месяц" }
+        {
+          "month": "Июль 2026",
+          "package": "4 урока × 2 000 ₽",
+          "amount": "8 000 ₽",
+          "status": "paid",
+          "date": "01.07.2026",
+          "note": "Летний блок · 1 / 4 проведено"
+        },
+        {
+          "month": "Июнь 2026",
+          "package": "4 урока × 2 000 ₽",
+          "amount": "8 000 ₽",
+          "status": "paid",
+          "date": "—",
+          "note": "Полный месяц"
+        }
       ],
       "stability_note": "",
       "summer_plan_note": "📅 Июль 2026 · Voyager L3 + L4 (финал серии). Абонемент 4 урока × 2 000 ₽ = 8 000 ₽. Расписание сохраняется: вторник 15:00, 90 мин. С сентября — плановое повышение ставки до 2 500 ₽ за занятие.",
@@ -546,7 +379,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Voyager L1 · The Watchmaker (первый раз) — Time travel + Watchmaker's Apology + Neutrinos",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
             "module_title": "🌌 Открыть Voyager L1 · The Watchmaker",
             "text": "8 секций, MP3-listening, lex-gram cloze, IELTS/Olympiad Speaking. Открой повторно — конструкции из cloze должны идти на автомате."
           },
@@ -559,7 +392,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Voyager L1 · The Watchmaker (второй раз) — закрепление, ещё раз через тот же модуль",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l1-time-travel/?v=v7",
             "module_title": "🌌 Voyager L1 · The Watchmaker (повторение)",
             "text": "Повтор всего урока. Use of English вторым кругом — без шпаргалок."
           },
@@ -572,7 +405,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Voyager L2 · Are we alone? (первый раз) — SETI quest at the Atacama outpost",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
             "module_title": "🛸 Voyager L2 · Are we alone?",
             "text": "8 секций · 2 MP3 (Drake/Fermi + final broadcast Reyes). Mia's grandfather's logbook из L1 возвращается."
           },
@@ -585,7 +418,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Voyager L2 · Are we alone? (второй раз) — завершили нить",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
             "module_title": "🛸 Voyager L2 · Are we alone? (повторение)",
             "text": "Повтор закрыт. Глоссарий Voyager L1–L4 (97 пар) и offline-homework — в материалах ниже."
           },
@@ -598,7 +431,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "🛸 Voyager L2 · Are we alone? — третий проход, финальное закрепление SETI-нити",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l2-are-we-alone/",
             "module_title": "🛸 Voyager L2 · Are we alone? (закрепление)",
             "text": "Третий проход по L2. Focus: Drake / Fermi / final broadcast Reyes без подсказок."
           },
@@ -611,7 +444,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "🧠 Voyager L3 · Whose Mind? — EEG blinks, consciousness signal (первый раз)",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l3-whose-mind/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l3-whose-mind/",
             "module_title": "🧠 Voyager L3 · Whose Mind? (повтор)"
           }
         },
@@ -621,7 +454,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Voyager L4 · The Letter Arrived (первый раз) — Day 42 · FATHER · финал арки",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
             "module_title": "✉️ Voyager L4 · The Letter Arrived",
             "text": "8 секций · key-transformation · open cloze · финал серии Voyager. Тео получает письмо."
           }
@@ -632,7 +465,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Voyager L4 · The Letter Arrived (повторение) — финал серии, ретроспектива L1–L4",
           "homework": {
-            "module_url": "../lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
             "module_title": "✉️ Voyager L4 · The Letter Arrived (повтор)"
           }
         }
@@ -676,7 +509,14 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
-        { "month": "Интенсив · 10 уроков", "package": "10 × 2 500 ₽", "amount": "25 000 ₽", "status": "paid", "date": "26.06.2026", "note": "Интенсив · 26.06 → 17.07 · 6 / 10 проведено" }
+        {
+          "month": "Интенсив · 10 уроков",
+          "package": "10 × 2 500 ₽",
+          "amount": "25 000 ₽",
+          "status": "paid",
+          "date": "26.06.2026",
+          "note": "Интенсив · 26.06 → 17.07 · 6 / 10 проведено"
+        }
       ],
       "parent_name": "Либова Юлия Игоревна",
       "pin": "5376",
@@ -688,7 +528,7 @@ window.NGE_DATA = {
           "topic": "Russia · dancing + общая ревизия страноведения",
           "homework": {
             "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
-            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
             "module_title": "Russia · My Homeland"
           }
         },
@@ -698,7 +538,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "History of Russia + Saint Petersburg",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
             "module_title": "Russia · My Homeland"
           }
         },
@@ -708,7 +548,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/russia-my-homeland/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
             "module_title": "Russia · My Homeland"
           }
         },
@@ -724,7 +564,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
             "module_title": "📚 Открыть Dana's Russia · History Exam"
           }
         },
@@ -734,7 +574,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
             "module_title": "📚 Открыть Dana's Russia · History Exam"
           }
         },
@@ -783,13 +623,6 @@ window.NGE_DATA = {
             "audience": "parent"
           }
         ]
-      },
-      "contracts": {
-        "folder": "documents/_v/daniella-libova",
-        "files": [],
-        "note": "Подписанный договор пока не загружен. Нужно подписать договор оказания услуг и согласие на обработку персональных данных; после подписи документ будет закреплён здесь.",
-        "missing": true,
-        "parentOnly": true
       }
     },
     {
@@ -806,8 +639,22 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
-        { "month": "Июль 2026", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "01.07.2026", "note": "Июльский абонемент · слова + будущие времена + направления + предлоги" },
-        { "month": "Июнь 2026", "package": "3 урока × 2 500 ₽", "amount": "7 500 ₽", "status": "paid", "date": "01.06.2026", "note": "Июньский блок · город + повторение + Future (will vs going to)" }
+        {
+          "month": "Июль 2026",
+          "package": "4 урока × 2 500 ₽",
+          "amount": "10 000 ₽",
+          "status": "paid",
+          "date": "01.07.2026",
+          "note": "Июльский абонемент · слова + будущие времена + направления + предлоги"
+        },
+        {
+          "month": "Июнь 2026",
+          "package": "3 урока × 2 500 ₽",
+          "amount": "7 500 ₽",
+          "status": "paid",
+          "date": "01.06.2026",
+          "note": "Июньский блок · город + повторение + Future (will vs going to)"
+        }
       ],
       "is_adult": true,
       "parent_name": "",
@@ -860,7 +707,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "City · adjectives + describing places · vocab: choosing, entertainment, nearby, convenient, area, lively, busy, modern, delivery, crowded, move into",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/city-speaking/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/city-speaking/",
             "module_title": "🏙️ Мой город — сегодня и через 50 лет",
             "text": "Café-диалог + теория Future (will vs going to) + auto-check homework. Словарный запас остаётся на Progressme."
           }
@@ -871,7 +718,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Мой город · спикинг-марафон + ввод Future (will / going to через тему «город будущего»)",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/city-speaking/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/city-speaking/",
             "module_title": "🏙️ Открыть «Мой город — сегодня и через 50 лет»",
             "text": "Future-блок урока (will / going to) + auto-check homework. Плюс словарь 44 слова в Quizlet — файл в Telegram."
           }
@@ -883,7 +730,7 @@ window.NGE_DATA = {
           "is_makeup": true,
           "topic": "Ориентация в городе + Workbook 01 · A1 Recap (сборка всех тем)",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/denis-workbook-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/denis-workbook-01/",
             "module_title": "📚 Открыть Workbook 01 · A1 Recap",
             "text": "Рабочая тетрадь · 12 упражнений с автопроверкой + Quizlet 44 слова. Зелёное = верно, красное = поправить."
           }
@@ -894,7 +741,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Слова + будущие времена (will / going to) — расширение и активная практика",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/denis-workbook-02/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/denis-workbook-02/",
             "module_title": "📚 Открыть Workbook 02 · Denis's Fixes",
             "text": "Рабочая тетрадь · 14 упражнений с автопроверкой + Quizlet. Фикс-тем на его слабые места: Wh-words, Present tenses vs will/going to, Have got, Prepositions, Ordinals + Cardinals, Directions match. Зелёное = верно, красное = поправить."
           }
@@ -939,13 +786,6 @@ window.NGE_DATA = {
             "audience": "all"
           }
         ]
-      },
-      "contracts": {
-        "folder": "documents/_v",
-        "files": [
-          "75a3f76e46cd20c0f092f128b09b7da2.pdf"
-        ],
-        "note": "Подписанный договор оказания услуг. Клик — открыть в новой вкладке."
       }
     },
     {
@@ -970,7 +810,14 @@ window.NGE_DATA = {
       "monthly_package": 10000,
       "payment_status": "Оплачено",
       "payments": [
-        { "month": "Июль 2026", "package": "4 понедельника × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "07.07.2026", "note": "Весь курс на июль · оплачено мамой (Наталья Вячеславовна)" }
+        {
+          "month": "Июль 2026",
+          "package": "4 понедельника × 2 500 ₽",
+          "amount": "10 000 ₽",
+          "status": "paid",
+          "date": "07.07.2026",
+          "note": "Весь курс на июль · оплачено мамой (Наталья Вячеславовна)"
+        }
       ],
       "parent_name": "Исаева Наталья Вячеславовна",
       "pin": "2512",
@@ -984,7 +831,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "⛪ Религия — мировые религии, культурные традиции, места поклонения, толерантный подход",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
             "module_title": "⛪ Открыть квест · Anya's Temples Quest",
             "text": "Интерактивный квест по мировым храмам и религиям — можно повторить дома."
           }
@@ -1001,7 +848,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "⛪ Религия — мировые религии, культурные традиции, места поклонения, толерантный подход",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
             "module_title": "⛪ Открыть квест · Anya's Temples Quest",
             "text": "Интерактивный квест по мировым храмам и религиям — 21 июля пройдём вместе на уроке, а после дома можно повторить."
           }
@@ -1056,7 +903,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Vampire English v8 — Music & Friends (Pre-A1, 90 min).",
           "homework": {
-            "module_url": "../lingua-boost-lab/pre-a1/julia-vampire/index.html?v=1",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire/index.html?v=1",
             "module_title": "🦇 Открыть урок",
             "text": "Откройте на айпаде, нажимайте на картинки и значки 🔊 — всё озвучено."
           }
@@ -1130,7 +977,7 @@ window.NGE_DATA = {
           "topic": "🇹🇷 Julia goes to Bodrum + Numbers (cardinal & ordinal) — Lab-урок",
           "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/julia-goes-to-bodrum/",
             "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
             "text": "Lab-урок: Julia goes to Bodrum + Numbers (cardinal & ordinal). Прокликай ещё раз все блоки — лексика, упражнения, говорение.",
             "status": "done"
@@ -1149,7 +996,7 @@ window.NGE_DATA = {
           "topic": "🇹🇷 Julia goes to Bodrum — Lab-урок (повтор/закрепление)",
           "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/julia-goes-to-bodrum/",
             "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
             "text": "Повтори блоки урока — лексика, числа, диалоги.",
             "status": "done"
@@ -1162,7 +1009,7 @@ window.NGE_DATA = {
           "topic": "🇹🇷 Julia goes to Bodrum — Lab-урок (продолжение)",
           "link": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/julia-goes-to-bodrum/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/julia-goes-to-bodrum/",
             "module_title": "🇹🇷 Открыть Julia goes to Bodrum",
             "text": "Продолжаем разбирать историю Юлии в Бодруме — открой ссылку и пройдись по блокам.",
             "status": "done"
@@ -1175,24 +1022,12 @@ window.NGE_DATA = {
           "topic": "🇹🇷 Julia in Bodrum · Day 2 — полное повторение (Lab-урок)",
           "link": "../lingua-boost-lab/a1/julia-bodrum-day-2/?v=4",
           "homework": {
-            "module_url": "../lingua-boost-lab/a1/julia-bodrum-day-2/?v=4",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/julia-bodrum-day-2/?v=4",
             "module_title": "🇹🇷 Открыть Julia in Bodrum · Day 2",
             "text": "Новый Бодрум-урок: вся база первого + 5 свежих блоков повторения (hotel rescue · numbers race · past forms quiz · speaking marathon · postcard Day 2)."
           }
         }
-      ],
-      "contracts": {
-        "folder": "documents/_v/yulya-izotova",
-        "files": [
-          "01_договор_стр1.jpg",
-          "02_договор_стр2_условия.jpg",
-          "03_договор_стр3_подпись.jpg",
-          "04_согласие_на_ПД.jpg",
-          "05_подпись_доп.png"
-        ],
-        "note": "Договор оказания услуг + согласие на обработку персональных данных. Клик — открыть в новой вкладке.",
-        "parentOnly": true
-      }
+      ]
     },
     {
       "id": "sofia-pavlova",
@@ -1308,7 +1143,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📐 Modal Verbs Trainer (Lab) — введение can / could / must / should / have to",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/modals-deep-dive/",
             "module_title": "📐 Modals Deep Dive — интерактивный тренажёр",
             "text": "Открой ещё раз — повторить вопросы, на которых сомневались."
           }
@@ -1320,7 +1155,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📐 Modal Verbs Trainer (Lab) — might / may / be able to + нюансы вежливости",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/modals-deep-dive/",
             "module_title": "📐 Modals Deep Dive — закрепление",
             "text": "Второй проход модуля — отшлифовать формы."
           }
@@ -1334,7 +1169,7 @@ window.NGE_DATA = {
           "topic": "📝 OGE Mock #1 · Pair Edition — полный mock-вариант (housework / birthdays / sports / ecology · gerund/inf · used to · modals · word formation)",
           "schedule_note": "вторник 10:00 · урок прошёл",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/oge-mock-mix-01/",
             "module_title": "📝 OGE Mock #1 — повторить материал урока",
             "text": "Открой ещё раз — отшлифовать темы где сомневались."
           }
@@ -1347,7 +1182,7 @@ window.NGE_DATA = {
           "topic": "📝 OGE Mock #2 — продолжение mock-варианта, разбор по критериям",
           "schedule_note": "вторник 10:00",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/oge-mock-mix-01/",
             "module_title": "📝 OGE Mock — повторить",
             "text": "Повтори OGE Mock #1 перед уроком."
           }
@@ -1423,7 +1258,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📐 Modal Verbs Trainer (Lab) — введение can / could / must / should / have to",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/modals-deep-dive/",
             "module_title": "📐 Modals Deep Dive — интерактивный тренажёр",
             "text": "Открой ещё раз — повторить вопросы, на которых сомневались."
           }
@@ -1435,7 +1270,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📐 Modal Verbs Trainer (Lab) — might / may / be able to + нюансы вежливости",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/modals-deep-dive/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/modals-deep-dive/",
             "module_title": "📐 Modals Deep Dive — закрепление",
             "text": "Второй проход модуля — отшлифовать формы."
           }
@@ -1449,7 +1284,7 @@ window.NGE_DATA = {
           "topic": "📝 OGE Mock #1 · Pair Edition — полный mock-вариант (housework / birthdays / sports / ecology · gerund/inf · used to · modals · word formation)",
           "schedule_note": "вторник 10:00 · урок прошёл",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/oge-mock-mix-01/",
             "module_title": "📝 OGE Mock #1 — повторить материал урока",
             "text": "Открой ещё раз — отшлифовать темы где сомневались."
           }
@@ -1462,7 +1297,7 @@ window.NGE_DATA = {
           "topic": "📝 OGE Mock #2 — продолжение mock-варианта, разбор по критериям",
           "schedule_note": "вторник 10:00",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/oge-mock-mix-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/oge-mock-mix-01/",
             "module_title": "📝 OGE Mock — повторить",
             "text": "Повтори OGE Mock #1 перед уроком."
           }
@@ -1487,7 +1322,6 @@ window.NGE_DATA = {
       "level": "B1",
       "format": "индивидуально",
       "schedule": "воскресенье 13:30 (90 мин)",
-      "schedule_note": "Время воскресенья перенесено 12:00 → 13:00 по просьбе мамы (с июня). Учитель рассматривает формат — возможно вернёмся к 12:00 или другому окну.",
       "price_per_lesson": 2500,
       "monthly_package": 20000,
       "lessons_in_package": 4,
@@ -1523,7 +1357,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/",
             "module_title": "Открыть урок Jerusalem · Part 1",
             "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
           }
@@ -1534,7 +1368,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
             "module_title": "Открыть Jerusalem · секции 18-20",
             "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
           }
@@ -1545,7 +1379,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
             "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
             "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
           }
@@ -1556,7 +1390,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
             "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
             "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
           }
@@ -1567,7 +1401,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
             "module_title": "✈️ Открыть Travel Talk · Light & Bright",
             "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
           }
@@ -1578,7 +1412,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
             "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
           }
         },
@@ -1588,7 +1422,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "❓ Ask Me & Anything · Questions Deep Dive — Yes/No · Wh · Subject vs Object · Alt · Tag · Polite ladder (Can/Could/May/Would you mind) · Indirect",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/questions-deep-dive/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/",
             "module_title": "❓ Открыть Questions Deep Dive · Grammar Lab 03",
             "text": "3 таба: Basics (Yes/No + Wh + Subject/Object) · Advanced (Alt/Tag/Polite/Indirect) · Workbook (Big Mix 30 MCQ + Airport dialogue). Travel-flavour. Зелёное = верно, красное = поправить."
           }
@@ -1663,9 +1497,30 @@ window.NGE_DATA = {
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
-        { "month": "Июль 2026 · 2-я половина", "package": "4 урока × 2 500 ₽", "amount": "10 000 ₽", "status": "paid", "date": "10.07.2026", "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)" },
-        { "month": "Июль 2026", "package": "5 уроков × 2 500 ₽", "amount": "12 500 ₽", "status": "paid", "date": "01.07.2026", "note": "Летний блок" },
-        { "month": "Июнь 2026", "package": "1 trial + 3 × 2 500 ₽", "amount": "7 500 ₽", "status": "paid", "date": "22.06.2026", "note": "Пилот-блок · 1 trial + 3 занятия" }
+        {
+          "month": "Июль 2026 · 2-я половина",
+          "package": "4 урока × 2 500 ₽",
+          "amount": "10 000 ₽",
+          "status": "paid",
+          "date": "10.07.2026",
+          "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)"
+        },
+        {
+          "month": "Июль 2026",
+          "package": "5 уроков × 2 500 ₽",
+          "amount": "12 500 ₽",
+          "status": "paid",
+          "date": "01.07.2026",
+          "note": "Летний блок"
+        },
+        {
+          "month": "Июнь 2026",
+          "package": "1 trial + 3 × 2 500 ₽",
+          "amount": "7 500 ₽",
+          "status": "paid",
+          "date": "22.06.2026",
+          "note": "Пилот-блок · 1 trial + 3 занятия"
+        }
       ],
       "is_adult": true,
       "parent_name": "",
@@ -1694,7 +1549,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана",
           "homework": {
-            "module_url": "../lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
             "module_title": "🎓 Открыть Welcome Pack · университеты + план",
             "text": "Шорт-лист 9 университетов (Италия + Венгрия) с порогами IELTS/TOEFL по каждой программе + индивидуальный план подготовки. К первой платной встрече: выбери 3–4 универа, которые тебе ближе — определим точный target-балл."
           }
@@ -1706,7 +1561,7 @@ window.NGE_DATA = {
           "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
           "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/timofey-trainer-01/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-trainer-01/",
             "module_title": "📘 Открыть Workbook 01",
             "text": "К 25 июня — пройти 10 блоков."
           }
@@ -1717,7 +1572,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/timofey-trainer-02/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-trainer-02/",
             "module_title": "📕 Открыть Workbook 02",
             "text": "К 29 июня — пройти тетрадь по Past Tenses."
           }
@@ -1735,7 +1590,7 @@ window.NGE_DATA = {
           "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
           "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-03-practical-english/",
             "module_title": "📖 Открыть Practical English · Day 1",
             "text": "Пройди блоки Homework A–J (~20–25 мин) + 🎤 Your turn после каждой секции."
           }
@@ -1746,7 +1601,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок",
           "homework": {
-            "module_url": "../lingua-boost-lab/practice/timofey-04-workbook/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-04-workbook/",
             "module_title": "📚 Открыть Workbook 04",
             "text": "К 09 июля — 12 блоков (Practical English · Day 2)."
           }
@@ -1757,7 +1612,7 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
             "module_title": "📚 Открыть Articles & Prepositions · Deep Dive",
             "text": "Пройди Articles §1–§20 + Prepositions P1–P9. Отметь упражнения, где сомневаешься — разберём во вторник. Practical English · Day 1 остаётся доступен по прежней ссылке в списке материалов."
           }
@@ -1798,15 +1653,7 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Тема — будет скоро, согласуем ближе к дате"
         }
-      ],
-      "contracts": {
-        "folder": "documents/_v",
-        "files": [
-          "2967982f7e0da82ca88dcd8e5c19d557.pdf",
-          "84c5c58a09e3c2a03e82eab79a788885.pdf"
-        ],
-        "note": "Договор оказания услуг + согласие на обработку ПД. Клик — открыть в новой вкладке."
-      }
+      ]
     }
   ],
   "reports": [
@@ -1945,127 +1792,127 @@ window.NGE_DATA = {
     {
       "level": "Pre-A1",
       "title": "Body & Grammar Garden",
-      "url": "../lingua-boost-lab/pre-a1/body-and-grammar-pink.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/body-and-grammar-pink.html"
     },
     {
       "level": "Pre-A1",
       "title": "Hello! Classroom Fun",
-      "url": "../lingua-boost-lab/pre-a1/hello-classroom-fun.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/hello-classroom-fun.html"
     },
     {
       "level": "A1",
       "title": "Present Simple Routines",
-      "url": "../lingua-boost-lab/a1/a1-01-present-simple-routines.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-01-present-simple-routines.html"
     },
     {
       "level": "A1",
       "title": "Present Simple Questions & Negatives",
-      "url": "../lingua-boost-lab/a1/a1-02-present-simple-questions-negatives.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-02-present-simple-questions-negatives.html"
     },
     {
       "level": "A1",
       "title": "Present Simple + Adverbs of Frequency / There is/are",
-      "url": "../lingua-boost-lab/a1/a1-03-present-simple-adverbs-frequency.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-03-present-simple-adverbs-frequency.html"
     },
     {
       "level": "A1",
       "title": "Have / Has — My Things",
-      "url": "../lingua-boost-lab/a1/a1-04-have-has-my-things.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-04-have-has-my-things.html"
     },
     {
       "level": "A1",
       "title": "My / Your / His / Her",
-      "url": "../lingua-boost-lab/a1/a1-05-my-your-his-her.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-05-my-your-his-her.html"
     },
     {
       "level": "A1",
       "title": "Prepositions of Place",
-      "url": "../lingua-boost-lab/a1/a1-06-prepositions-of-place.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-06-prepositions-of-place.html"
     },
     {
       "level": "A1",
       "title": "Instructions & Requests",
-      "url": "../lingua-boost-lab/a1/a1-07-instructions-requests.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-07-instructions-requests.html"
     },
     {
       "level": "A1",
       "title": "Final Mission (A1)",
-      "url": "../lingua-boost-lab/a1/a1-08-final-mission.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/a1-08-final-mission.html"
     },
     {
       "level": "A1",
       "title": "Easter English Lesson",
-      "url": "../lingua-boost-lab/a1/easter-english-lesson.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/easter-english-lesson.html"
     },
     {
       "level": "A1",
       "title": "Past Simple Adventure",
-      "url": "../lingua-boost-lab/a1/past-simple-adventure.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/past-simple-adventure.html"
     },
     {
       "level": "A1",
       "title": "Prepositions World",
-      "url": "../lingua-boost-lab/a1/prepositions-world.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/prepositions-world.html"
     },
     {
       "level": "A1",
       "title": "School Words & Pronouns",
-      "url": "../lingua-boost-lab/a1/school-words-and-pronouns.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a1/school-words-and-pronouns.html"
     },
     {
       "level": "A2",
       "title": "Ancient China Explorer",
-      "url": "../lingua-boost-lab/a2/ancient-china-explorer.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/ancient-china-explorer.html"
     },
     {
       "level": "A2",
       "title": "Core Trainer A2 → B1",
-      "url": "../lingua-boost-lab/a2/core-trainer-a2-b1.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/core-trainer-a2-b1.html"
     },
     {
       "level": "A2",
       "title": "English Booster A2 → B1",
-      "url": "../lingua-boost-lab/a2/english-booster-a2-b1.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/english-booster-a2-b1.html"
     },
     {
       "level": "B1",
       "title": "Ancient China Cultural Studies",
-      "url": "../lingua-boost-lab/b1/ancient-china-cultural-studies.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/ancient-china-cultural-studies.html"
     },
     {
       "level": "B1",
       "title": "Grammar Arcade: Present Continuous vs Present Perfect",
-      "url": "../lingua-boost-lab/b1/grammar-arcade-pc-pp.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/grammar-arcade-pc-pp.html"
     },
     {
       "level": "B1",
       "title": "Restaurant Menu Lab",
-      "url": "../lingua-boost-lab/b1/restaurant-menu-lab.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/restaurant-menu-lab.html"
     },
     {
       "level": "B1",
       "title": "Space Explorers",
-      "url": "../lingua-boost-lab/b1/space-explorers-english.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/space-explorers-english.html"
     },
     {
       "level": "B1",
       "title": "Whispering Library Quest",
-      "url": "../lingua-boost-lab/b1/whispering-library-quest.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/whispering-library-quest.html"
     },
     {
       "level": "B1",
       "title": "Word Forge: Suffixes & Prefixes",
-      "url": "../lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/word-building-prefixes-and-suffixes.html"
     },
     {
       "level": "B2+",
       "title": "Geo Quest: Articles on the Map",
-      "url": "../lingua-boost-lab/b2-plus/articles-with-geographical-names.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/articles-with-geographical-names.html"
     },
     {
       "level": "C1",
       "title": "Stars & Stellar Phenomena",
-      "url": "../lingua-boost-lab/c1/stars-and-stellar-phenomena.html"
+      "url": "https://newgeneration-english.ru/lingua-boost-lab/c1/stars-and-stellar-phenomena.html"
     }
   ]
 };

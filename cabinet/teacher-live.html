@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Lab · Teacher Live · firehose</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e15; --bg-2:#0f1520; --surface:#161e2e; --surface-2:#1c2638;
+  --line:#27334a; --accent:#fbbf24; --accent-2:#f59e0b;
+  --text:#f3eee5; --muted:#7a8499;
+  --good:#22c55e; --bad:#ef4444; --info:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 'Manrope',system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:1400px;margin:0 auto;padding:24px 28px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:14px}
+h1{font:800 1.65rem/1.1 'Unbounded',sans-serif;letter-spacing:-.01em;display:flex;align-items:center;gap:12px}
+.dot-live{width:11px;height:11px;border-radius:50%;background:var(--good);animation:livePulse 1.6s ease-in-out infinite}
+@keyframes livePulse{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.status{font:700 12px/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:8px 14px;background:var(--surface);border:1px solid var(--line);border-radius:50px}
+.status.live{color:var(--good);border-color:var(--good)}
+
+.layout{display:grid;grid-template-columns:340px 1fr;gap:20px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}}
+
+.side{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;align-self:flex-start;position:sticky;top:18px}
+.side h3{font:800 .85rem/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.side h3 .cnt{background:var(--accent);color:#1a1a2e;padding:2px 9px;border-radius:50px;font:900 11px/1 'JetBrains Mono',monospace}
+
+.student{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;background:var(--surface-2);margin-bottom:8px;cursor:pointer;border:1.5px solid transparent;transition:border-color .15s}
+.student:hover{border-color:var(--accent-2)}
+.student.active{border-color:var(--accent);background:#2a1e0f}
+.student .av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 .85rem/1 'Manrope',sans-serif;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1a2e;flex-shrink:0}
+.student .nm{font:700 .92rem/1.2 'Manrope',sans-serif;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.student .live-dot{width:8px;height:8px;border-radius:50%;background:#475569}
+.student .live-dot.on{background:var(--good);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.student .lp{font:600 .76rem/1.3 'JetBrains Mono',monospace;color:var(--muted);width:100%;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.empty-side{color:var(--muted);font:500 .88rem/1.5 'Manrope',sans-serif;padding:14px 4px;text-align:center}
+
+.main{display:flex;flex-direction:column;gap:18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar button{padding:9px 14px;background:var(--surface);border:1.5px solid var(--line);color:var(--text);border-radius:10px;font:700 .82rem/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.toolbar button:hover{border-color:var(--accent-2)}
+.toolbar button.active{background:var(--accent);color:#1a1a2e;border-color:var(--accent)}
+.toolbar .spacer{flex:1}
+.toolbar .filter{color:var(--muted);font:600 .82rem/1 'Manrope',sans-serif}
+
+.feed{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;flex:1;min-height:500px;max-height:78vh;overflow-y:auto}
+.feed::-webkit-scrollbar{width:8px}
+.feed::-webkit-scrollbar-track{background:transparent}
+.feed::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+
+.evt{display:flex;gap:14px;padding:12px 14px;border-radius:10px;background:var(--surface-2);margin-bottom:8px;border-left:3px solid var(--accent-2);animation:evtIn .25s ease-out}
+@keyframes evtIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+.evt.submit{border-left-color:var(--good)}
+.evt.scroll{border-left-color:var(--info)}
+.evt.open{border-left-color:#a855f7}
+.evt.homework{border-left-color:#fbbf24}
+.evt .icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(251,191,36,.12);border-radius:8px}
+.evt.submit .icon{background:rgba(34,197,94,.18)}
+.evt.scroll .icon{background:rgba(59,130,246,.18)}
+.evt.open .icon{background:rgba(168,85,247,.18)}
+.evt.homework .icon{background:rgba(251,191,36,.22)}
+.evt .body{flex:1;min-width:0}
+.evt .body .who{font:800 .82rem/1.2 'JetBrains Mono',monospace;letter-spacing:.06em;color:var(--accent);margin-bottom:4px}
+.evt .body .msg{font:600 .94rem/1.45 'Manrope',sans-serif;color:var(--text);word-break:break-word}
+.evt .body .msg em{font-style:normal;color:var(--accent);background:rgba(251,191,36,.16);padding:1px 6px;border-radius:4px}
+.evt .body .msg .answer{color:var(--good);font-weight:700}
+.evt .body .msg .wrong{color:var(--bad);font-weight:700}
+.evt .body .meta{font:500 .78rem/1.4 'Manrope',sans-serif;color:var(--muted);margin-top:4px;display:flex;gap:14px;flex-wrap:wrap}
+.evt .body .meta .lp{font:600 .76rem/1.3 'JetBrains Mono',monospace}
+.evt .ts{font:600 .76rem/1.3 'JetBrains Mono',monospace;color:var(--muted);flex-shrink:0;align-self:flex-start}
+
+.empty-feed{color:var(--muted);font:500 .92rem/1.5 'Manrope',sans-serif;padding:60px 20px;text-align:center}
+.empty-feed .em{font-size:48px;display:block;margin-bottom:16px}
+
+.mirror-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:none;flex-direction:column;gap:10px}
+.mirror-box.show{display:flex;animation:mirIn .25s ease-out}
+@keyframes mirIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.mirror-bar{display:flex;justify-content:space-between;align-items:center;font:700 .82rem/1 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase}
+.mirror-bar .close{background:transparent;border:1.5px solid var(--line);color:var(--text);padding:5px 10px;border-radius:6px;cursor:pointer;font:700 .76rem/1 'JetBrains Mono',monospace;letter-spacing:.08em}
+.mirror-bar .close:hover{border-color:var(--accent)}
+.mirror-frame{width:100%;height:72vh;border:1px solid var(--line);border-radius:10px;background:#fff}
+
+/* v3 State per lesson · панель полной истории ученика (независима от live-firehose) */
+.state-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:none;flex-direction:column;gap:10px}
+.state-box.show{display:flex;animation:mirIn .25s ease-out}
+.state-bar{display:flex;justify-content:space-between;align-items:center;font:700 .82rem/1 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase}
+.state-bar .close{background:transparent;border:1.5px solid var(--line);color:var(--text);padding:5px 10px;border-radius:6px;cursor:pointer;font:700 .76rem/1 'JetBrains Mono',monospace;letter-spacing:.08em}
+.state-tbl{width:100%;border-collapse:collapse;font:600 .88rem/1.35 'Manrope',sans-serif}
+.state-tbl th{text-align:left;padding:8px 10px;font:800 .74rem/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.state-tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.state-tbl tr:hover td{background:var(--surface-2)}
+.state-tbl .lp-col{font:600 .8rem/1.35 'JetBrains Mono',monospace;color:var(--text);cursor:pointer}
+.state-tbl .lp-col:hover{color:var(--accent)}
+.state-tbl .pct{display:inline-block;padding:2px 9px;border-radius:50px;font:900 .78rem/1 'JetBrains Mono',monospace}
+.state-tbl .pct.good{background:rgba(34,197,94,.18);color:var(--good)}
+.state-tbl .pct.mid{background:rgba(251,191,36,.18);color:var(--accent)}
+.state-tbl .pct.low{background:rgba(239,68,68,.18);color:var(--bad)}
+.state-tbl .pct.zero{background:var(--surface-2);color:var(--muted)}
+.state-tbl .ts{font:500 .76rem/1.3 'JetBrains Mono',monospace;color:var(--muted);white-space:nowrap}
+.state-tbl .sec{font:500 .78rem/1.3 'JetBrains Mono',monospace;color:var(--muted)}
+.state-empty{color:var(--muted);font:500 .88rem/1.5 'Manrope',sans-serif;padding:20px;text-align:center}
+.side .st-btn{background:transparent;border:1px solid var(--line);color:var(--muted);padding:3px 8px;border-radius:6px;font:800 .68rem/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-left:6px}
+.side .st-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.bar{display:flex;gap:12px;align-items:center;font:600 .82rem/1 'JetBrains Mono',monospace;color:var(--muted);background:var(--surface-2);padding:10px 14px;border-radius:8px}
+.bar .ch{padding:3px 8px;border-radius:5px;background:var(--bg);color:var(--accent);font:800 .76rem/1 'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span class="dot-live"></span> Lab · Teacher Live</h1>
+    <div class="status" id="status">⏳ connecting…</div>
+  </header>
+
+  <div class="bar">
+    <span>channel:</span> <span class="ch" id="chBadge">lab-firehose-v1</span>
+    <span class="spacer" style="flex:1"></span>
+    <span>events received: <b id="evtCount">0</b></span>
+    <span>·</span>
+    <span>active students: <b id="studCount">0</b></span>
+  </div>
+
+  <div class="layout" style="margin-top:18px">
+    <aside class="side">
+      <h3>👥 ученики онлайн <span class="cnt" id="onlineN">0</span></h3>
+      <div id="students"><div class="empty-side">пока никого…<br>попроси ученика открыть урок</div></div>
+    </aside>
+
+    <div class="main">
+      <div class="toolbar">
+        <button data-filter="all" class="active">всё</button>
+        <button data-filter="submit">📋 сдачи</button>
+        <button data-filter="dom-state">⌨ действия</button>
+        <button data-filter="homework">📚 домашка</button>
+        <button data-filter="open">📖 открыли урок</button>
+        <span class="spacer"></span>
+        <button id="clearFeed">🗑 clear feed</button>
+      </div>
+
+      <div class="feed" id="feed">
+        <div class="empty-feed"><span class="em">⏳</span>Жду первого события…<br><small>Открой урок в другой вкладке — он сам отметится здесь.</small></div>
+      </div>
+
+      <div class="mirror-box" id="mirrorBox">
+        <div class="mirror-bar">
+          <span>👁 OBSERVE · <span id="mirrorWho">—</span> · <span id="mirrorLesson">—</span></span>
+          <button class="close" onclick="closeMirror()">× закрыть</button>
+        </div>
+        <iframe class="mirror-frame" id="mirrorFrame" src="about:blank"></iframe>
+      </div>
+
+      <!-- v3 · State per lesson (полная история ученика по всем урокам) -->
+      <div class="state-box" id="stateBox">
+        <div class="state-bar">
+          <span>📥 STATE · <span id="stateWho">—</span> · <span id="stateN">0</span> уроков</span>
+          <button class="close" onclick="closeStateBox()">× закрыть</button>
+        </div>
+        <div id="stateBody" style="max-height:60vh;overflow-y:auto"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL  = "https://iqzlphbvmfgoygnozbya.supabase.co";
+const SUPABASE_ANON = "sb_publishable_hYhBk3xS90uouUFd_DZWUw_sOv-6JGO";
+
+const state = {
+  students: new Map(),  // room_id -> { name, lastLessonPath, lastSeen, online }
+  feed: [],             // array of events
+  filter: 'all',
+  evtCount: 0
+};
+
+function fmtTime(ts){
+  const d = new Date(ts || Date.now());
+  return d.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+}
+function shortLesson(p){
+  return (p||'').replace('/lingua-boost-lab/','').replace(/\/$/,'').slice(0,50);
+}
+function displayName(p){
+  if (p.name) return p.name;
+  if (p.room_id && /^student-/.test(p.room_id)) return p.room_id.replace(/^student-/,'');
+  if (p.room_id) return p.room_id;
+  return 'anonymous';
+}
+function avatarLetter(name){
+  return (name || '?').trim()[0].toUpperCase();
+}
+function esc(s){
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function updateStudents(){
+  const sideEl = document.getElementById('students');
+  const arr = [...state.students.entries()].sort((a,b)=>b[1].lastSeen - a[1].lastSeen);
+  document.getElementById('onlineN').textContent = arr.filter(([,s])=>s.online).length;
+  document.getElementById('studCount').textContent = arr.length;
+  if (!arr.length){
+    sideEl.innerHTML = '<div class="empty-side">пока никого…<br>попроси ученика открыть урок</div>';
+    return;
+  }
+  sideEl.innerHTML = arr.map(([rid, s])=>`
+    <div class="student ${s.online?'':''}" data-room="${esc(rid)}" title="Клик по имени → live-зеркало · «📥» → полная история">
+      <div class="av" onclick="openMirror('${esc(rid)}','${esc(s.lastLessonPath||'')}','${esc(s.name||rid)}')" style="cursor:pointer">${esc(avatarLetter(s.name||rid))}</div>
+      <div style="flex:1;min-width:0" onclick="openMirror('${esc(rid)}','${esc(s.lastLessonPath||'')}','${esc(s.name||rid)}')" style="cursor:pointer">
+        <div class="nm">${esc(s.name || rid.replace(/^student-/,''))}</div>
+        <div class="lp">${esc(shortLesson(s.lastLessonPath))} · клик → зеркало</div>
+      </div>
+      <button class="st-btn" onclick="event.stopPropagation(); openStateBox('${esc(rid)}','${esc(s.name||rid)}')" title="Полная история по всем урокам">📥 state</button>
+      <div class="live-dot ${s.online?'on':''}"></div>
+    </div>
+  `).join('');
+}
+
+/* ================================================
+   v3 · State per lesson · SELECT из lab_state
+   ================================================ */
+async function openStateBox(roomId, name){
+  const box = document.getElementById('stateBox');
+  const body = document.getElementById('stateBody');
+  document.getElementById('stateWho').textContent = name || roomId;
+  document.getElementById('stateN').textContent = '…';
+  body.innerHTML = '<div class="state-empty">⏳ загружаю историю…</div>';
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'start'});
+  try {
+    const { data, error } = await client
+      .from('lab_state')
+      .select('lesson_path, pct, score, total, last_section, updated_at')
+      .eq('room_id', roomId)
+      .order('updated_at', { ascending: false })
+      .limit(200);
+    if (error) throw error;
+    if (!data || !data.length){
+      body.innerHTML = '<div class="state-empty">Пока пусто.<br><small>Ученик ещё не открывал уроки, либо у него отключён облачный persist.</small></div>';
+      document.getElementById('stateN').textContent = '0';
+      return;
+    }
+    document.getElementById('stateN').textContent = data.length;
+    const rows = data.map(r => {
+      const pct = r.pct == null ? 0 : r.pct;
+      const cls = r.pct == null ? 'zero' : pct >= 80 ? 'good' : pct >= 50 ? 'mid' : 'low';
+      const scoreLabel = (r.score != null && r.total != null) ? `${r.score}/${r.total}` : '—';
+      const when = new Date(r.updated_at).toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'});
+      return `
+        <tr>
+          <td class="lp-col" onclick="openMirror('${esc(roomId)}','${esc(r.lesson_path)}','${esc(name||roomId)}')" title="Клик → live-зеркало на этом уроке">${esc(shortLesson(r.lesson_path))}</td>
+          <td><span class="pct ${cls}">${r.pct == null ? '—' : pct + '%'}</span> <span style="color:var(--muted);font:600 .78rem/1 'JetBrains Mono',monospace">${scoreLabel}</span></td>
+          <td class="sec">${esc(r.last_section || '—')}</td>
+          <td class="ts">${esc(when)}</td>
+        </tr>
+      `;
+    }).join('');
+    body.innerHTML = `
+      <table class="state-tbl">
+        <thead>
+          <tr>
+            <th>урок</th>
+            <th>прогресс</th>
+            <th>последняя секция</th>
+            <th>обновлено</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  } catch(e){
+    const msg = (e && e.message) || String(e);
+    if (/lab_state/i.test(msg) || /42P01/i.test(msg) || /not found/i.test(msg)){
+      body.innerHTML = '<div class="state-empty">Таблица <code>lab_state</code> ещё не создана.<br><small>Как только миграция накатится — история появится автоматически.</small></div>';
+    } else {
+      body.innerHTML = '<div class="state-empty">⚠️ Ошибка: ' + esc(msg) + '</div>';
+    }
+    document.getElementById('stateN').textContent = '—';
+  }
+}
+
+function closeStateBox(){
+  const box = document.getElementById('stateBox');
+  box.classList.remove('show');
+  document.getElementById('stateBody').innerHTML = '';
+}
+
+/* Pre-populate: SELECT top recent from lab_state → seed students Map с офлайн-историей.
+   Позволяет открыть teacher-live утром и сразу увидеть кто чем вчера занимался,
+   без ожидания firehose lesson-open. */
+async function seedFromLabState(){
+  try {
+    const { data, error } = await client
+      .from('lab_state')
+      .select('room_id, name, lesson_path, updated_at, pct')
+      .order('updated_at', { ascending: false })
+      .limit(200);
+    if (error) return;
+    if (!data || !data.length) return;
+    const seen = new Set();
+    data.forEach(r => {
+      if (!r.room_id || seen.has(r.room_id)) return;
+      seen.add(r.room_id);
+      if (!state.students.has(r.room_id)){
+        state.students.set(r.room_id, {
+          name: r.name || '',
+          lastLessonPath: r.lesson_path || '',
+          lastSeen: new Date(r.updated_at).getTime(),
+          online: false,
+          seededFromCloud: true
+        });
+      }
+    });
+    updateStudents();
+  } catch(e){ /* table absent — silent */ }
+}
+
+function openMirror(roomId, lessonPath, name){
+  if (!lessonPath) { alert('У ученика пока нет открытого урока'); return; }
+  const box = document.getElementById('mirrorBox');
+  const frame = document.getElementById('mirrorFrame');
+  const base = 'https://newgeneration-english.ru' + lessonPath;
+  const url = base + (base.includes('?')?'&':'?') + 'observe=' + encodeURIComponent(roomId) + '&role=teacher';
+  frame.src = url;
+  document.getElementById('mirrorWho').textContent = name || roomId;
+  document.getElementById('mirrorLesson').textContent = shortLesson(lessonPath);
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function closeMirror(){
+  const box = document.getElementById('mirrorBox');
+  box.classList.remove('show');
+  document.getElementById('mirrorFrame').src = 'about:blank';
+}
+
+function bumpStudent(p){
+  const rid = p.room_id || 'anon';
+  const existing = state.students.get(rid) || { name:'', lastLessonPath:'', lastSeen:0, online:false };
+  existing.name = p.name || existing.name;
+  existing.lastLessonPath = p.lesson_path || existing.lastLessonPath;
+  existing.lastSeen = Date.now();
+  existing.online = true;
+  state.students.set(rid, existing);
+  updateStudents();
+}
+setInterval(()=>{
+  let changed = false;
+  const now = Date.now();
+  state.students.forEach((s)=>{
+    if (s.online && now - s.lastSeen > 90000) { s.online = false; changed = true; }
+  });
+  if (changed) updateStudents();
+}, 15000);
+
+function renderEvent(type, p){
+  const who = displayName(p);
+  let body = '';
+  if (type === 'lesson-open') {
+    body = `<div class="msg">📖 открыл урок <em>${esc(shortLesson(p.lesson_path))}</em></div>`;
+  } else if (type === 'dom-state') {
+    const what = p.kind || 'other';
+    let action = '';
+    if (what === 'gap') {
+      action = p.text ? `вставил <em>«${esc(p.text)}»</em> в пропуск` : `тронул пропуск`;
+    } else if (what === 'mcq') {
+      const cls = (p.classes||[]).join(' ');
+      const verdict = /\bcorrect|right\b/.test(cls) ? '<span class="answer">верно</span>' :
+                      /\bwrong\b/.test(cls) ? '<span class="wrong">неверно</span>' : '';
+      action = `ответил на тест ${verdict}`;
+    } else if (what === 'tfns') {
+      const cls = (p.classes||[]).join(' ');
+      const verdict = /\bright\b/.test(cls) ? '<span class="answer">верно</span>' :
+                      /\bwrong\b/.test(cls) ? '<span class="wrong">неверно</span>' : '';
+      action = `True/False ${verdict}`;
+    } else if (what === 'writing') {
+      action = p.value ? `пишет: <em>${esc(p.value.slice(0,140))}</em>` : 'начал писать';
+    } else if (what === 'input') {
+      action = p.value ? `ввёл <em>${esc(p.value)}</em>` : 'кликнул в поле';
+    } else if (what === 'match') {
+      action = 'тронул match';
+    } else if (what === 'mic') {
+      action = 'mic-drill';
+    } else {
+      const cls = (p.classes||[]).join(' ');
+      action = cls ? `действие: <em>${esc(cls)}</em>` : 'действие';
+    }
+    body = `<div class="msg">${action}</div>`;
+  } else if (type === 'section-submit') {
+    const pct = p.total ? Math.round(p.score/p.total*100) : 0;
+    const cls = pct >= 80 ? 'answer' : (pct >= 50 ? '' : 'wrong');
+    body = `<div class="msg">📋 сдал «<em>${esc(p.section_title || p.section_id || '')}</em>» <span class="${cls}">${p.score}/${p.total} · ${pct}%</span></div>`;
+  } else if (type === 'homework-batch') {
+    body = `<div class="msg">📚 отправил домашку <em>${p.count} заданий</em></div>`;
+  } else if (type === 'scroll-to') {
+    body = `<div class="msg">↕ прыгнул к секции #${esc(p.id||'?')}</div>`;
+  }
+  const cssType = type === 'lesson-open' ? 'open' :
+                  type === 'section-submit' ? 'submit' :
+                  type === 'homework-batch' ? 'homework' :
+                  type === 'scroll-to' ? 'scroll' : 'dom';
+  const icon = type === 'lesson-open' ? '📖' :
+               type === 'section-submit' ? '📋' :
+               type === 'homework-batch' ? '📚' :
+               type === 'scroll-to' ? '↕' : '⌨';
+  return `
+    <div class="evt ${cssType}" data-type="${type}">
+      <div class="icon">${icon}</div>
+      <div class="body">
+        <div class="who">${esc(who)}</div>
+        ${body}
+        <div class="meta">
+          <span class="lp">${esc(shortLesson(p.lesson_path))}</span>
+          ${p.section_title ? `<span>· ${esc(p.section_title)}</span>` : ''}
+        </div>
+      </div>
+      <div class="ts">${fmtTime(p.ts)}</div>
+    </div>
+  `;
+}
+
+function pushEvent(type, p){
+  state.evtCount++;
+  document.getElementById('evtCount').textContent = state.evtCount;
+  state.feed.unshift({type, p, html: renderEvent(type, p)});
+  if (state.feed.length > 200) state.feed.length = 200;
+  renderFeed();
+}
+
+function renderFeed(){
+  const feed = document.getElementById('feed');
+  const filtered = state.filter === 'all' ? state.feed :
+    state.feed.filter(e => state.filter === 'open' ? e.type === 'lesson-open' :
+                           state.filter === 'submit' ? e.type === 'section-submit' :
+                           state.filter === 'homework' ? e.type === 'homework-batch' :
+                           state.filter === 'dom-state' ? e.type === 'dom-state' : true);
+  if (!filtered.length){
+    feed.innerHTML = `<div class="empty-feed"><span class="em">⏳</span>Жду событий…</div>`;
+    return;
+  }
+  feed.innerHTML = filtered.map(e => e.html).join('');
+}
+
+document.querySelectorAll('.toolbar button[data-filter]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.toolbar button[data-filter]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    state.filter = b.dataset.filter;
+    renderFeed();
+  });
+});
+document.getElementById('clearFeed').addEventListener('click', ()=>{
+  state.feed = []; renderFeed();
+});
+
+// ---- Connect ----
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+const firehose = client.channel('lab-firehose-v1', { config:{ broadcast:{ self:false }}});
+
+firehose
+  .on('broadcast', { event:'lesson-open' }, ({payload})=>{
+    bumpStudent(payload);
+    pushEvent('lesson-open', payload);
+  })
+  .on('broadcast', { event:'dom-state' }, ({payload})=>{
+    bumpStudent(payload);
+    pushEvent('dom-state', payload);
+  })
+  .on('broadcast', { event:'section-submit' }, ({payload})=>{
+    bumpStudent(payload);
+    pushEvent('section-submit', payload);
+  })
+  .on('broadcast', { event:'homework-batch' }, ({payload})=>{
+    bumpStudent(payload);
+    pushEvent('homework-batch', payload);
+  })
+  .subscribe((status)=>{
+    const s = document.getElementById('status');
+    if (status === 'SUBSCRIBED') {
+      s.textContent = '🟢 LIVE · firehose-v1';
+      s.classList.add('live');
+      /* v3: подтянуть офлайн-историю из lab_state как только connect живой */
+      seedFromLabState();
+    }
+    else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') { s.textContent = '🔴 connection error'; s.classList.remove('live'); }
+  });
+
+// Timeout — если за 10 секунд не подключились, дать понять что что-то не так
+setTimeout(()=>{
+  const s = document.getElementById('status');
+  if (!s.classList.contains('live')) {
+    s.textContent = '⚠️ не подключилось за 10s — проверь Supabase и интернет';
+    s.style.color = '#fbbf24';
+  }
+}, 10000);
+</script>
+</body>
+</html>

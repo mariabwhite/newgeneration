@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Vocab Builder · авто-IPA для Lab-уроков</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1419;--surface:#1b232d;--surface-2:#222b39;--line:#2a3540;
+  --accent:#7c3aed;--accent-2:#fbbf24;--text:#f3eee5;--muted:#9aa0ab;
+  --good:#22c55e;--bad:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 'Manrope',system-ui,sans-serif;min-height:100vh}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 28px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px}
+h1{font:800 1.7rem/1.1 'Unbounded',sans-serif;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+.card h3{font:800 .88rem/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+textarea{width:100%;min-height:200px;padding:14px 16px;border-radius:10px;border:1.5px solid var(--line);background:#0a0f15;color:var(--text);font:600 .95rem/1.6 'JetBrains Mono',monospace;outline:none;resize:vertical}
+textarea:focus{border-color:var(--accent)}
+
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.btn{padding:12px 24px;background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;border:0;border-radius:10px;cursor:pointer;font:800 12px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 6px 18px rgba(124,58,237,.32);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(124,58,237,.42)}
+.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.btn.amber{background:linear-gradient(135deg,#f59e0b 0%,#fbbf24 100%);color:#1a1a2e;box-shadow:0 6px 18px rgba(245,158,11,.32)}
+.btn.amber:hover{box-shadow:0 10px 24px rgba(245,158,11,.42)}
+.btn.outline{background:transparent;color:var(--accent-2);border:1.5px solid var(--accent-2);box-shadow:none}
+.btn.outline:hover{background:rgba(251,191,36,.12);box-shadow:none}
+
+.options{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.options label{display:inline-flex;align-items:center;gap:6px;font:600 .82rem 'Manrope',sans-serif;color:var(--muted);cursor:pointer}
+.options input{accent-color:var(--accent)}
+
+.status{padding:10px 14px;border-radius:8px;background:var(--surface-2);font:600 .88rem 'JetBrains Mono',monospace;color:var(--accent-2);margin-top:14px;display:none}
+.status.show{display:block;animation:fadeIn .25s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.status.fail{color:#ef4444}
+
+table{width:100%;border-collapse:collapse;margin-top:10px;font:600 .88rem/1.4 'Manrope',sans-serif}
+th{text-align:left;padding:10px 12px;background:var(--surface-2);font:800 .76rem/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+td.word{font:800 .92rem 'Manrope',sans-serif;color:var(--text)}
+td.ipa{font:500 .88rem 'JetBrains Mono',monospace;color:var(--accent-2)}
+td.ru{color:#c5b8e6}
+td.ex{font-style:italic;color:var(--muted);font-size:.85rem}
+td.del{text-align:center;width:40px}
+td.del button{background:transparent;border:0;color:#ef4444;cursor:pointer;font-size:18px;padding:4px 8px;border-radius:6px}
+td.del button:hover{background:rgba(239,68,68,.12)}
+
+.snippet{margin-top:18px;background:#0a0f15;border:1.5px solid var(--accent);border-radius:10px;padding:16px 18px;font:500 .85rem/1.6 'JetBrains Mono',monospace;color:#c5a3ff;white-space:pre-wrap;word-wrap:break-word;max-height:280px;overflow-y:auto}
+
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);padding:12px 22px;border-radius:50px;background:#1a1a2e;color:#fff;font:700 .9rem 'Manrope',sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.32);opacity:0;transition:opacity .2s;z-index:99999;pointer-events:none}
+.toast.show{opacity:1}
+
+.empty{padding:40px 10px;text-align:center;color:var(--muted);font:500 .9rem 'Manrope',sans-serif}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid var(--accent-2);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>📖 Vocab Builder</h1>
+      <p class="sub">Введи список слов — авто IPA + RU перевод + пример. Готовый snippet вставляешь в любой Lab-урок.</p>
+    </div>
+    <a href="./teacher" style="color:var(--accent-2);text-decoration:none;font:700 .82rem 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:50px;background:rgba(251,191,36,.12)">← в кабинет</a>
+  </header>
+
+  <div class="card">
+    <h3>1. Вставь список слов · по одному на строку</h3>
+    <textarea id="wordsInput" placeholder="environment&#10;pollution&#10;sustainability&#10;greenhouse effect&#10;recycle&#10;biodiversity"></textarea>
+
+    <div class="options">
+      <label><input type="checkbox" id="optExample" checked> добавить пример</label>
+      <label><input type="checkbox" id="optBritish" checked> British English IPA</label>
+      <label>Тема (для лучшего примера): <input type="text" id="optTopic" placeholder="ecology / interview / travel…" style="margin-left:6px;padding:5px 10px;background:#0a0f15;border:1px solid var(--line);color:var(--text);border-radius:6px;width:200px"></label>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="genBtn">🚀 Сгенерировать</button>
+      <button class="btn outline" id="clearBtn">Очистить</button>
+      <span style="color:var(--muted);font:600 .82rem 'JetBrains Mono',monospace">Pollinations · gpt-oss-20b · бесплатно</span>
+    </div>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="card" id="resultCard" style="display:none">
+    <h3>2. Результат · можно редактировать</h3>
+    <table id="resultTable">
+      <thead><tr><th>Слово</th><th>IPA</th><th>RU</th><th>Пример</th><th></th></tr></thead>
+      <tbody id="resultBody"></tbody>
+    </table>
+
+    <div class="row">
+      <button class="btn amber" id="buildBtn">📋 Собрать snippet</button>
+      <button class="btn outline" id="addRowBtn">+ строка</button>
+    </div>
+  </div>
+
+  <div class="card" id="snippetCard" style="display:none">
+    <h3>3. Snippet для урока · копируй и вставляй перед &lt;/body&gt;</h3>
+    <div class="snippet" id="snippet"></div>
+    <div class="row">
+      <button class="btn" id="copyBtn">📋 Копировать</button>
+      <span style="color:var(--muted);font:600 .82rem 'JetBrains Mono',monospace">Вставь как &lt;script&gt;…&lt;/script&gt; в HTML урока — lab-vocab-builder подхватит автоматом</span>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const out = {
+  status: document.getElementById('status'),
+  resultCard: document.getElementById('resultCard'),
+  resultBody: document.getElementById('resultBody'),
+  snippetCard: document.getElementById('snippetCard'),
+  snippet: document.getElementById('snippet'),
+  toast: document.getElementById('toast'),
+};
+
+function showStatus(msg, kind){
+  out.status.className = 'status show ' + (kind === 'fail' ? 'fail' : '');
+  out.status.innerHTML = (kind === 'loading' ? '<span class="spinner"></span>' : '') + msg;
+}
+function hideStatus(){ out.status.classList.remove('show'); }
+function toast(msg){
+  out.toast.textContent = msg;
+  out.toast.classList.add('show');
+  clearTimeout(out.toast.__tt);
+  out.toast.__tt = setTimeout(()=>out.toast.classList.remove('show'), 2500);
+}
+
+function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+async function callPollinations(systemPrompt, userPrompt){
+  const body = JSON.stringify({
+    messages: [
+      { role:'system', content: systemPrompt },
+      { role:'user', content: userPrompt }
+    ],
+    model:'openai', private:true,
+    seed: Math.floor(Math.random()*1e6)
+  });
+  const r = await fetch('https://text.pollinations.ai/openai', {
+    method:'POST', headers:{'Content-Type':'application/json'}, body
+  });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const data = await r.json().catch(async () => ({raw: await r.text()}));
+  return (data?.choices?.[0]?.message?.content || data?.raw || '').trim();
+}
+
+function tryParseJSON(text){
+  // Извлечь JSON массив из ответа (модель может обернуть в ```json … ```)
+  const m = text.match(/\[[\s\S]*\]/);
+  if (!m) return null;
+  try { return JSON.parse(m[0]); } catch(e){ return null; }
+}
+
+async function generate(){
+  const lines = document.getElementById('wordsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if (!lines.length) { showStatus('⚠ Введи хотя бы одно слово', 'fail'); return; }
+  if (lines.length > 40) { showStatus('⚠ Максимум 40 слов за раз', 'fail'); return; }
+
+  const wantExample = document.getElementById('optExample').checked;
+  const british = document.getElementById('optBritish').checked;
+  const topic = document.getElementById('optTopic').value.trim();
+
+  document.getElementById('genBtn').disabled = true;
+  showStatus(`Запрашиваю Pollinations для ${lines.length} слов…`, 'loading');
+
+  const systemPrompt =
+    `Ты лингвист-практик. Для каждого английского слова дай: IPA-транскрипцию (${british ? 'British English' : 'American English'}, только символы между / /), краткий русский перевод (1-3 слова), ` +
+    (wantExample ? `короткий естественный пример в одном предложении ${topic ? '(тема урока: ' + topic + ')' : ''}` : 'пример пиши пустой строкой') +
+    `. Отвечай СТРОГО в формате JSON массива без markdown, без пояснений: [{"word":"...","ipa":"/.../","ru":"...","example":"..."}, ...]`;
+
+  const userPrompt = 'Слова: ' + JSON.stringify(lines);
+
+  try {
+    const raw = await callPollinations(systemPrompt, userPrompt);
+    const arr = tryParseJSON(raw);
+    if (!arr || !Array.isArray(arr)) throw new Error('AI вернул не-JSON: ' + raw.slice(0, 200));
+    render(arr);
+    hideStatus();
+    toast(`✓ Готово · ${arr.length} слов`);
+  } catch(e) {
+    showStatus('⚠ Ошибка: ' + e.message + ' · попробуй ещё раз через минуту', 'fail');
+  }
+  document.getElementById('genBtn').disabled = false;
+}
+
+let currentRows = [];
+
+function render(arr){
+  currentRows = arr;
+  out.resultCard.style.display = '';
+  out.resultBody.innerHTML = arr.map((it, i) => `
+    <tr data-i="${i}">
+      <td class="word"><input value="${esc(it.word||'')}" style="background:transparent;border:0;color:var(--text);font:inherit;width:100%;outline:none" onchange="updateCell(${i},'word',this.value)"></td>
+      <td class="ipa"><input value="${esc(it.ipa||'')}" style="background:transparent;border:0;color:var(--accent-2);font:500 .88rem JetBrains Mono;width:100%;outline:none" onchange="updateCell(${i},'ipa',this.value)"></td>
+      <td class="ru"><input value="${esc(it.ru||'')}" style="background:transparent;border:0;color:#c5b8e6;font:inherit;width:100%;outline:none" onchange="updateCell(${i},'ru',this.value)"></td>
+      <td class="ex"><input value="${esc(it.example||'')}" style="background:transparent;border:0;color:var(--muted);font-style:italic;width:100%;outline:none" onchange="updateCell(${i},'example',this.value)"></td>
+      <td class="del"><button onclick="removeRow(${i})">×</button></td>
+    </tr>
+  `).join('');
+  out.snippetCard.style.display = 'none';
+}
+
+window.updateCell = function(i, field, val){
+  if (currentRows[i]) currentRows[i][field] = val;
+};
+window.removeRow = function(i){
+  currentRows[i] = null;
+  document.querySelector(`tr[data-i="${i}"]`).remove();
+};
+
+function buildSnippet(){
+  const arr = currentRows.filter(Boolean).filter(r => (r.word||'').trim());
+  if (!arr.length) { toast('⚠ Пусто'); return; }
+  const lines = arr.map(r => {
+    const parts = [];
+    parts.push(`word:${JSON.stringify(r.word.trim())}`);
+    if (r.ipa) parts.push(`ipa:${JSON.stringify(r.ipa.trim())}`);
+    if (r.ru) parts.push(`ru:${JSON.stringify(r.ru.trim())}`);
+    if (r.example) parts.push(`example:${JSON.stringify(r.example.trim())}`);
+    return '  { ' + parts.join(', ') + ' }';
+  });
+  const code = '<script>\nwindow.LAB_VOCAB = [\n' + lines.join(',\n') + '\n];\n<\/script>';
+  out.snippet.textContent = code;
+  out.snippetCard.style.display = '';
+  out.snippetCard.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function copyToClipboard(){
+  try {
+    await navigator.clipboard.writeText(out.snippet.textContent);
+    toast('✓ Скопировано');
+  } catch(e) {
+    const r = document.createRange(); r.selectNode(out.snippet);
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    document.execCommand('copy'); sel.removeAllRanges();
+    toast('✓ Скопировано');
+  }
+}
+
+document.getElementById('genBtn').addEventListener('click', generate);
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  document.getElementById('wordsInput').value = '';
+  out.resultCard.style.display = 'none';
+  out.snippetCard.style.display = 'none';
+  hideStatus();
+});
+document.getElementById('buildBtn').addEventListener('click', buildSnippet);
+document.getElementById('addRowBtn').addEventListener('click', ()=>{
+  currentRows.push({word:'', ipa:'', ru:'', example:''});
+  render(currentRows);
+});
+document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+</script>
+</body>
+</html>

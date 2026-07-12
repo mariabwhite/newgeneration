@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Lab · Teacher Mirror</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1419;--surface:#1b232d;--line:#2a3540;--accent:#D52B1E;--text:#f3eee5;--muted:#9aa0ab}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 'Manrope',system-ui,sans-serif;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+h1{font:800 1.8rem/1.1 'Unbounded',sans-serif;letter-spacing:-.01em;margin:0 0 6px}
+.sub{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+label{display:block;font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+input,select{width:100%;padding:11px 14px;background:#0a0f15;border:1.5px solid var(--line);border-radius:10px;color:var(--text);font:600 .95rem 'Manrope',sans-serif;outline:none;margin-bottom:14px}
+input:focus,select:focus{border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+button{padding:12px 22px;background:var(--accent);color:#fff;border:none;border-radius:10px;font:800 12px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+button:hover{background:#b81e12}
+.mirror{display:none;margin-top:18px}
+.mirror.show{display:block}
+.mirror-bar{display:flex;justify-content:space-between;align-items:center;background:#1a2538;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:10px;font:600 .88rem 'JetBrains Mono',monospace}
+.mirror-bar strong{color:var(--accent)}
+.mirror-bar .room{color:#7bd9a7}
+iframe{width:100%;height:80vh;border:1px solid var(--line);border-radius:10px;background:#fff}
+.feed{background:#0a0f15;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:280px;overflow-y:auto;font:600 .85rem 'JetBrains Mono',monospace}
+.feed .entry{padding:7px 10px;margin-bottom:6px;border-left:3px solid var(--accent);background:#13192a;border-radius:0 6px 6px 0}
+.feed .entry.scroll{border-left-color:#7bd9a7}
+.feed .entry .ts{color:var(--muted);font-size:.78rem;margin-left:8px}
+.share{background:#22293a;border:1px solid #36405a;border-radius:10px;padding:12px 14px;margin-bottom:10px;font:600 .88rem 'JetBrains Mono',monospace;word-break:break-all}
+.share .label{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+.share a{color:#8ee3b5;text-decoration:none}
+.share a:hover{text-decoration:underline}
+.copy-btn{margin-left:10px;padding:4px 10px;font-size:.75rem;background:#2e7d32}
+.note{background:rgba(213,43,30,.10);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.88rem;color:#ffcccc;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📡 Lab · Teacher Mirror</h1>
+  <p class="sub">Двусторонняя сессия: ученик открывает свою ссылку, ты — свою. TOC-клики и сдача разделов идут в обе стороны через Supabase Realtime.</p>
+  <p style="margin-bottom:18px"><a href="./teacher-live" style="display:inline-block;padding:9px 16px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1a2e;border-radius:50px;text-decoration:none;font:800 .82rem/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase">⚡ Live-лента всех учеников</a></p>
+
+  <div class="card" id="setup">
+    <label>Lab-урок · slug или полный URL</label>
+    <select id="lessonSelect">
+      <option value="">— выбери из списка —</option>
+      <optgroup label="Pre-A1">
+        <option value="pre-a1/body-and-grammar-pink.html">Body & Grammar Pink</option>
+        <option value="pre-a1/hello-classroom-fun.html">Hello Classroom Fun</option>
+        <option value="pre-a1/julia-vampire/">Julia Vampire</option>
+      </optgroup>
+      <optgroup label="A1">
+        <option value="a1/a1-01-present-simple-routines.html">A1-01 · Present Simple Routines</option>
+        <option value="a1/a1-02-present-simple-questions-negatives.html">A1-02 · Questions & Negatives</option>
+        <option value="a1/a1-03-present-simple-adverbs-frequency.html">A1-03 · Adverbs of Frequency</option>
+        <option value="a1/a1-04-have-has-my-things.html">A1-04 · Have/Has</option>
+        <option value="a1/a1-05-my-your-his-her.html">A1-05 · Possessives</option>
+        <option value="a1/a1-06-prepositions-of-place.html">A1-06 · Prepositions of Place</option>
+        <option value="a1/a1-07-instructions-requests.html">A1-07 · Instructions/Requests</option>
+        <option value="a1/a1-08-final-mission.html">A1-08 · Final Mission</option>
+        <option value="a1/around-the-city/">Around the City</option>
+        <option value="a1/city-speaking/">City Speaking</option>
+        <option value="a1/easter-english-lesson.html">Easter English</option>
+        <option value="a1/julia-bodrum-day-2/">Julia Bodrum Day 2</option>
+        <option value="a1/julia-goes-to-bodrum/">Julia Goes to Bodrum</option>
+        <option value="a1/past-simple-adventure.html">Past Simple Adventure</option>
+        <option value="a1/prepositions-world.html">Prepositions World</option>
+        <option value="a1/school-words-and-pronouns.html">School Words & Pronouns</option>
+      </optgroup>
+      <optgroup label="A2">
+        <option value="a2/ancient-china-explorer.html">Ancient China Explorer</option>
+        <option value="a2/bella-needs-help/">Bella Needs Help</option>
+        <option value="a2/core-trainer-a2-b1.html">Core Trainer A2-B1</option>
+        <option value="a2/english-booster-a2-b1.html">English Booster A2-B1</option>
+        <option value="a2/settling-in-toronto/">Settling in Toronto</option>
+      </optgroup>
+      <optgroup label="B1">
+        <option value="b1/ancient-china-cultural-studies.html">Ancient China · Cultural Studies</option>
+        <option value="b1/anyas-postcards/">Anya's Postcards</option>
+        <option value="b1/ecology-oge-trainer-01/">Ecology · OGE Trainer</option>
+        <option value="b1/grammar-arcade-pc-pp.html">Grammar Arcade PC/PP</option>
+        <option value="b1/interview-speed-prep/">Interview Speed Prep (Полина)</option>
+        <option value="b1/jerusalem-three-faiths/">Jerusalem · Three Faiths</option>
+        <option value="b1/modals-deep-dive/">Modals Deep Dive</option>
+        <option value="b1/restaurant-menu-lab.html">Restaurant Menu Lab</option>
+        <option value="b1/russia-my-homeland/">Russia · My Homeland</option>
+        <option value="b1/space-explorers-english.html">Space Explorers</option>
+        <option value="b1/stage-vs-screen-ege/">Stage vs Screen EGE</option>
+        <option value="b1/switzerland-mountains-chocolate/">Switzerland · Mountains & Chocolate</option>
+        <option value="b1/toefl-ibt-format-tour/">TOEFL iBT Format Tour</option>
+        <option value="b1/tom-sawyer-three-acts/">Tom Sawyer · Three Acts</option>
+        <option value="b1/travel-talk-light-and-bright/">Travel Talk · Light & Bright</option>
+        <option value="b1/whispering-library-quest.html">Whispering Library Quest</option>
+        <option value="b1/word-building-prefixes-and-suffixes.html">Word Building · Prefixes & Suffixes</option>
+      </optgroup>
+      <optgroup label="B2+">
+        <option value="b2-plus/articles-with-geographical-names.html">Articles · Geographical Names</option>
+        <option value="b2-plus/voyager-l1-time-travel/">Voyager L1 · Time Travel</option>
+        <option value="b2-plus/voyager-l2-are-we-alone/">Voyager L2 · Are We Alone</option>
+        <option value="b2-plus/voyager-l3-whose-mind/">Voyager L3 · Whose Mind</option>
+      </optgroup>
+      <optgroup label="C1">
+        <option value="c1/stars-and-stellar-phenomena.html">Stars & Stellar Phenomena</option>
+      </optgroup>
+      <optgroup label="Practice / Trial">
+        <option value="practice/timofey-trainer-01/">Timofey Trainer 01</option>
+        <option value="trial-academic-abroad/">Trial · Academic Abroad</option>
+      </optgroup>
+    </select>
+    <input id="lessonCustom" placeholder="…или вставь полный URL урока на newgeneration-english.ru" type="text">
+
+    <div class="row">
+      <div>
+        <label>Room ID (короткое слово)</label>
+        <input id="roomId" type="text" placeholder="например: ivanovo-26-06" maxlength="40">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button onclick="startMirror()">▶ Открыть сессию</button>
+      </div>
+    </div>
+    <div class="note">Подсказка: придумай <strong>уникальный room ID</strong> для каждого урока (например <em>maria-26jun-russia</em>). Один room = одна сессия. Скопируй ссылку ученика — он откроет её на своём устройстве (phone/tablet/Chrome — любое).</div>
+  </div>
+
+  <div class="mirror" id="mirror">
+    <div class="share">
+      <div class="label">📤 Ссылка для ученика</div>
+      <a id="studentLink" href="#" target="_blank">—</a>
+      <button class="copy-btn" onclick="copyLink('studentLink')">copy</button>
+    </div>
+    <div class="share" style="border-color:#D52B1E">
+      <div class="label">👁 Твоя ссылка (учитель)</div>
+      <a id="teacherLink" href="#" target="_blank">—</a>
+      <button class="copy-btn" onclick="copyLink('teacherLink')">copy</button>
+    </div>
+
+    <div class="mirror-bar">
+      <span>🟢 sync · room: <span class="room" id="roomShow">—</span></span>
+      <span>role: <strong>teacher</strong></span>
+    </div>
+
+    <iframe id="mirrorFrame" src="about:blank"></iframe>
+
+    <div style="margin-top:14px">
+      <label>Лента событий ученика · live</label>
+      <div class="feed" id="feed"><div class="entry">ждём первое событие…</div></div>
+    </div>
+
+    <div style="margin-top:18px">
+      <label>📚 История сданных разделов в этой комнате (из Supabase)</label>
+      <div class="feed" id="history" style="max-height:360px"><div class="entry">загружаю историю…</div></div>
+      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;align-items:center">
+        <button onclick="loadHistory()" style="background:#2e7d32">🔄 обновить</button>
+        <button onclick="loadAllRooms()" style="background:#1a4cbf">📊 все недавние из БД</button>
+        <input id="searchName" type="text" placeholder="поиск по имени (Тимофей, Юля, Аня…)" style="flex:1;min-width:180px;margin:0">
+        <button onclick="searchByName()" style="background:#f59e0b;color:#1a1a2e">🔍 найти</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL  = "https://iqzlphbvmfgoygnozbya.supabase.co";
+const SUPABASE_ANON = "sb_publishable_hYhBk3xS90uouUFd_DZWUw_sOv-6JGO";
+const ORIGIN = "https://newgeneration-english.ru";
+const LAB_PREFIX = "/lingua-boost-lab/";
+
+function lessonURL(){
+  const custom = document.getElementById('lessonCustom').value.trim();
+  if (custom) return custom.replace(/[?#].*$/,'');
+  const slug = document.getElementById('lessonSelect').value;
+  if (!slug) return null;
+  return ORIGIN + LAB_PREFIX + slug;
+}
+function roomVal(){
+  return (document.getElementById('roomId').value || '').trim().toLowerCase().replace(/[^a-z0-9-]/g,'-');
+}
+function copyLink(id){
+  const a = document.getElementById(id);
+  navigator.clipboard.writeText(a.href).then(()=>{
+    a.style.color = '#ffd700';
+    setTimeout(()=>a.style.color='', 700);
+  });
+}
+
+let channel = null;
+let supaClient = null;
+let currentRoom = '';
+
+async function loadHistory(){
+  if (!supaClient) supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  if (!currentRoom) return;
+  const h = document.getElementById('history');
+  h.innerHTML = '<div class="entry">…</div>';
+  const { data, error } = await supaClient
+    .from('lab_submissions')
+    .select('*')
+    .eq('room_id', currentRoom)
+    .order('created_at', { ascending: false })
+    .limit(50);
+  if (error) {
+    h.innerHTML = '<div class="entry" style="border-left-color:#D52B1E">⚠ '+error.message+
+      '<br><em>Если таблица не создана — учителю нужно выполнить supabase/migrations/20260624_lab_submissions.sql</em></div>';
+    return;
+  }
+  if (!data || !data.length) {
+    h.innerHTML = '<div class="entry">пока пусто · ученик ещё не сдавал разделов</div>';
+    return;
+  }
+  h.innerHTML = data.map(r=>{
+    const t = new Date(r.created_at).toLocaleString('ru-RU');
+    const lessonShort = r.lesson_path.replace('/lingua-boost-lab/','').replace(/\/$/,'');
+    if (r.section_id === 'homework-batch') {
+      const items = Array.isArray(r.misses) ? r.misses : [];
+      const itemsHTML = items.map(it => {
+        const kind = ({mcq:'Тест',tfns:'T/F/NS',gap:'Пропуск',wf:'Word formation',match:'Match',builder:'Sentence',mic:'Speaking',writing:'Writing'}[it.kind] || it.kind || '?');
+        let inner = '<div style="color:#fbbf24;font-weight:700;margin-bottom:3px">'+escapeHTML(it.question||'(без вопроса)')+'</div>';
+        if (it.correct) inner += '<div style="color:#7bd9a7;font-size:.82rem">правильно: '+escapeHTML(it.correct)+'</div>';
+        if (it.student_answer) inner += '<div style="color:#ff9c9c;font-size:.82rem">ученик: '+escapeHTML(it.student_answer)+'</div>';
+        return '<div style="background:#2a2415;border-left:3px solid #fbbf24;border-radius:0 6px 6px 0;padding:8px 12px;margin:6px 0"><span style="font:800 .7rem JetBrains Mono;letter-spacing:.14em;text-transform:uppercase;color:#fbbf24">'+escapeHTML(kind)+'</span>'+inner+'</div>';
+      }).join('');
+      return '<div class="entry" style="border-left-color:#fbbf24;background:#1f1a0e"><strong style="color:#fbbf24">📚 ДОМАШКА · '+items.length+' заданий</strong><br><span style="color:#9aa0ab;font-size:.8rem">'+lessonShort+' · '+(r.student_role||'student')+' · '+t+'</span>'+itemsHTML+'</div>';
+    }
+    const pct = r.total ? Math.round(r.score/r.total*100) : 0;
+    return '<div class="entry"><strong style="color:#7bd9a7">'+r.score+'/'+r.total+' · '+pct+'%</strong>'+
+      ' — '+escapeHTML(r.section_title||r.section_id)+
+      '<br><span style="color:#9aa0ab;font-size:.8rem">'+lessonShort+' · '+(r.student_role||'student')+' · '+t+'</span></div>';
+  }).join('');
+}
+
+function escapeHTML(s){
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function slugifyName(s){
+  return (s||'').toLowerCase().replace(/[^a-zа-яё0-9]+/gi,'-').replace(/^-+|-+$/g,'');
+}
+
+async function searchByName(){
+  const inputEl = document.getElementById('searchName');
+  const raw = (inputEl.value || '').trim();
+  if (!raw) { alert('Введи имя — например «Тимофей»'); return; }
+  if (!supaClient) supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  const h = document.getElementById('history');
+  h.innerHTML = '<div class="entry">ищу записи по «'+raw+'»…</div>';
+  const slug = slugifyName(raw);
+  const candidates = ['student-' + slug];
+  // Plus: search by role pattern
+  const { data, error } = await supaClient
+    .from('lab_submissions')
+    .select('*')
+    .or(`room_id.in.(${candidates.map(c=>'"'+c+'"').join(',')}),student_role.ilike.%${raw}%`)
+    .order('created_at', { ascending: false })
+    .limit(80);
+  if (error) { h.innerHTML = '<div class="entry">⚠ '+error.message+'</div>'; return; }
+  if (!data.length) {
+    h.innerHTML = '<div class="entry">по «'+escapeHTML(raw)+'» пока ничего нет. Ученик ещё не сдавал разделов и не отправлял домашку.</div>';
+    return;
+  }
+  h.innerHTML = '<div class="entry" style="background:#2a1e0f;border-left-color:#f59e0b"><strong style="color:#f59e0b">🔍 '+data.length+' записей по «'+escapeHTML(raw)+'»</strong></div>' +
+    data.map(r=>{
+      const t = new Date(r.created_at).toLocaleString('ru-RU');
+      const lessonShort = r.lesson_path.replace('/lingua-boost-lab/','').replace(/\/$/,'');
+      if (r.section_id === 'homework-batch') {
+        const items = Array.isArray(r.misses) ? r.misses : [];
+        return '<div class="entry" style="border-left-color:#fbbf24;background:#1f1a0e"><strong style="color:#fbbf24">📚 ДОМАШКА · '+items.length+' заданий</strong><br><span style="color:#9aa0ab;font-size:.8rem">'+escapeHTML(lessonShort)+' · '+escapeHTML(r.student_role||'')+' · '+t+'</span></div>';
+      }
+      const pct = r.total ? Math.round(r.score/r.total*100) : 0;
+      return '<div class="entry"><strong style="color:#7bd9a7">'+r.score+'/'+r.total+' · '+pct+'%</strong> — '+escapeHTML(r.section_title||r.section_id)+'<br><span style="color:#9aa0ab;font-size:.8rem">'+escapeHTML(lessonShort)+' · '+escapeHTML(r.student_role||'')+' · '+t+'</span></div>';
+    }).join('');
+}
+
+// Enter в поле = поиск
+document.addEventListener('DOMContentLoaded', ()=>{
+  const inp = document.getElementById('searchName');
+  if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') searchByName(); });
+});
+
+async function loadAllRooms(){
+  if (!supaClient) supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  const h = document.getElementById('history');
+  h.innerHTML = '<div class="entry">собираю по всем комнатам…</div>';
+  const { data, error } = await supaClient
+    .from('lab_submissions')
+    .select('room_id, lesson_path, score, total, section_title, created_at')
+    .order('created_at', { ascending: false })
+    .limit(100);
+  if (error) { h.innerHTML = '<div class="entry">⚠ '+error.message+'</div>'; return; }
+  if (!data.length) { h.innerHTML = '<div class="entry">в БД пока ничего</div>'; return; }
+  h.innerHTML = data.map(r=>{
+    const pct = r.total ? Math.round(r.score/r.total*100) : 0;
+    const t = new Date(r.created_at).toLocaleString('ru-RU');
+    const lessonShort = r.lesson_path.replace('/lingua-boost-lab/','').replace(/\/$/,'');
+    return '<div class="entry"><strong>['+r.room_id+']</strong> '+r.score+'/'+r.total+' · '+pct+'% '+
+      '— '+(r.section_title||'?')+'<br><span style="color:#9aa0ab;font-size:.8rem">'+lessonShort+' · '+t+'</span></div>';
+  }).join('');
+}
+
+function startMirror(){
+  const url = lessonURL();
+  const room = roomVal();
+  if (!url || !room) { alert('Выбери урок + придумай room ID'); return; }
+
+  const studentURL = url + (url.includes('?')?'&':'?') + 'sync='+encodeURIComponent(room)+'&role=student';
+  const teacherURL = url + (url.includes('?')?'&':'?') + 'sync='+encodeURIComponent(room)+'&role=teacher';
+
+  document.getElementById('studentLink').href = studentURL;
+  document.getElementById('studentLink').textContent = studentURL;
+  document.getElementById('teacherLink').href = teacherURL;
+  document.getElementById('teacherLink').textContent = teacherURL;
+  document.getElementById('roomShow').textContent = room;
+  document.getElementById('mirror').classList.add('show');
+
+  // Open the lesson in iframe with teacher role
+  document.getElementById('mirrorFrame').src = teacherURL;
+
+  // Subscribe to events for the activity feed
+  supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  if (channel) channel.unsubscribe();
+  channel = supaClient.channel('lab-sync:'+room, { config:{ broadcast:{ self:false }}});
+  channel
+    .on('broadcast', { event:'scroll-to' }, (p)=>logEvent('scroll', p.payload))
+    .on('broadcast', { event:'section-submit' }, (p)=>{ logEvent('submit', p.payload); setTimeout(loadHistory, 1500); })
+    .on('broadcast', { event:'dom-state' }, (p)=>logEvent('dom', p.payload))
+    .subscribe();
+  currentRoom = room;
+  loadHistory();
+}
+
+function logEvent(type, payload){
+  const feed = document.getElementById('feed');
+  if (feed.children.length === 1 && feed.children[0].textContent.includes('ждём')) {
+    feed.innerHTML = '';
+  }
+  const e = document.createElement('div');
+  e.className = 'entry ' + type;
+  const ts = new Date().toLocaleTimeString();
+  if (type === 'scroll') {
+    e.innerHTML = '↕ <strong>'+(payload.role||'?')+'</strong> прыгнул к секции #' + ((payload.idx||0)+1) + ' ('+payload.id+') <span class="ts">'+ts+'</span>';
+  } else if (type === 'submit') {
+    e.innerHTML = '📋 <strong>'+(payload.role||'?')+'</strong> сдал «'+payload.section+'» · <strong style="color:#7bd9a7">'+payload.score+'/'+payload.total+'</strong> <span class="ts">'+ts+'</span>';
+  }
+  feed.insertBefore(e, feed.firstChild);
+}
+</script>
+</body>
+</html>

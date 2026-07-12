@@ -1139,24 +1139,6 @@
 
     if (!monthLessons.length) return "";
 
-    // 2026-07-10 · Timofey ask · двойные галочки: 💰 оплачено + ✅ проведено
-    // Пул оплаченных считается из payments · sum(amount / price_per_lesson) + trial
-    const price = Number(student.price_per_lesson) || 0;
-    const payments = Array.isArray(student.payments) ? student.payments : [];
-    let paidPool = 0;
-    for (const p of payments) {
-      if (String(p.status || "").toLowerCase() !== "paid") continue;
-      const amt = parseInt(String(p.amount || "").replace(/[^\d]/g, ""), 10);
-      if (!amt || !price) continue;
-      paidPool += Math.round(amt / price);
-      if (/trial/i.test(String(p.package || ""))) paidPool += 1;
-    }
-    // Все уроки в хронологическом порядке — первые paidPool считаем оплаченными
-    const allSorted = lessons.filter(l => l.date).slice().sort((a, b) => a.date.localeCompare(b.date));
-    const paidKeys = new Set(allSorted.slice(0, paidPool).map(l => l.date + "#" + (l.num || "")));
-    const heldCount = allSorted.filter(l => l.status === "completed").length;
-    const balance = Math.max(0, paidPool - heldCount);
-
     const rows = monthLessons.map(l => {
       const badge = _lessonStatusBadge(l, todayISO);
       const dateStr = _formatLessonDate(l.date);
@@ -1165,13 +1147,6 @@
       const topicText = l.topic && l.topic.trim()
         ? `<span class="cab-lesson-topic">${_esc(l.topic)}</span>`
         : `<span class="cab-lesson-topic cab-lesson-topic--empty">—</span>`;
-      const isPaid = paidKeys.has(l.date + "#" + (l.num || ""));
-      const isHeld = l.status === "completed";
-      const marks = paidPool > 0 ? `
-        <span class="cab-lesson-marks">
-          <span class="cab-mark ${isPaid ? "is-on" : ""}" title="${isPaid ? "Оплачено" : "Не оплачено"}">💰</span>
-          <span class="cab-mark ${isHeld ? "is-on" : ""}" title="${isHeld ? "Проведён" : "Ещё не проведён"}">✅</span>
-        </span>` : "";
       const hw = l.homework;
       let hwChip = "";
       if (hw) {
@@ -1198,23 +1173,14 @@
           ${num}
           <span class="cab-lesson-date">${dateStr} · ${dow}</span>
           <span class="cab-lesson-topic-wrap">${topicText}${hwChip}</span>
-          ${marks}
           <span class="cab-lesson-badge">${badge.label}</span>
         </li>
       `;
     }).join("");
 
-    const summary = paidPool > 0 ? `
-      <div class="cab-lessons-summary">
-        <span class="cab-lm-item"><span class="cab-lm-ico">💰</span> Оплачено: <b>${paidPool}</b></span>
-        <span class="cab-lm-item"><span class="cab-lm-ico">✅</span> Проведено: <b>${heldCount}</b></span>
-        <span class="cab-lm-item cab-lm-balance"><span class="cab-lm-ico">📦</span> В запасе: <b>${balance}</b></span>
-      </div>` : "";
-
     const currentTable = `
       <article class="cab-card cab-card--wide">
         <h3>Уроки · ${_esc(hasSummerPlan ? "лето 2026" : _monthLabelFromISO(month))}</h3>
-        ${summary}
         <ul class="cab-lessons-list">${rows}</ul>
       </article>
     `;
