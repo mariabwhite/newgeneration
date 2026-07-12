@@ -54,6 +54,45 @@
 
 ## 1. Хронология — что сделано
 
+### День 2026-06-26 (ночь) — урок Андрея + premium vault repack
+
+- **Новый Lab-урок**: `/lingua-boost-lab/c1/science-systems-c1-andrew/` — C1 Adult, Science Systems · Six Worlds in One Frame.
+  - 14 секций: warm-up · 10 fields · 16 vocab cards (без русского) · 5 reading micro-texts + pick-the-title · 2 listening transcript+MCQ · Retell+Argument с Speech Coach (multi-coach v=11) · 4 model C1 answers · Lesson Score · Homework.
+  - Hero: картинка-диск (Машин референс) `assets/hero-science-disc.png` + dark gradient mask 95deg.
+  - Палитра финал: cream `#f4efe6` + slate `#2a3140` + green `#4a9d5d` + champagne brand.
+  - Все 11 Lab-скриптов на актуальных версиях (vocab-builder v=25 etc).
+- **Premium catalog**: добавлен в Exam Lab series как карточка 05.
+- **Vault**: написан Node `repack-premium-vault.mjs` (AES-GCM decrypt → push → encrypt тем же ключом), bump до **v17**, PIN не меняется (`Watchmaker-2026-Q3`). Теперь 23 урока в премиум.
+- **AI Hub**: запускается через `08_Projects\03_AI Hub.../AI_Chat_Hub\start_hub.ps1`, не через `Запустить Джарвис.bat` (тот запускает HUD).
+- **Win+H**: не работает на этой Windows (нет registry key + нет client.exe). Bypass — Google Docs Voice Typing в Chrome.
+
+### День 2026-06-25 — Lab theme-adaptive + cabinet vault pipeline разъяснён
+
+**Lab modules (все 49 уроков):**
+- Theme-adaptive через CSS variables (var(--accent), var(--brand), var(--surface), var(--card)) + color-mix. Каждый Lab-модуль теперь подстраивается под палитру урока (Voyager лавандовый, Modals голубой, Dana тёмный, TOEFL белый).
+- Унифицированы лимиты ширины: `max-width:1180px; width:calc(100% - 24px)`.
+- Версии: lab-vocab-builder v=25 · lab-speech-tester v=11 (multi-coach via data-coach-config) · lab-quick-speak v=4 (instant fallback + async AI) · lab-pilot.css v=5 · lab-total.js v=4 · lab-homework.js v=14 · lab-ai-feedback.js v=6 · lab-sync.js v=13.
+- Plus-button: top:4 right:4 (не перекрывает SHOW), селекторы расширены `.dict-row, .trans-row, .rewrite-row`.
+
+**Production cabinet — encrypted vault, не data.js:**
+- `site-public-clean/cabinet/vault/*.enc` (AES-256-GCM, PBKDF2(PIN, salt, 600000)) — публичные blobs.
+- Источник правды: `nge-cabinet/data.js` (приватный repo, не деплоится).
+- Генератор: `scripts/gen-vault.js`. Workflow: edit nge-cabinet → run gen-vault → push site-public-clean cabinet/vault.
+- sessionStorage key: `nge_vault_payload_v2` (Codex переименовал чтобы старый payload не использовался).
+- GitHub Pages cache `max-age=600` → 10 минут на cabinet.js. После регена обязательный Ctrl+Shift+R + повторный PIN.
+- **Не путать с legacy `site/cabinet/data.js`** — он живёт на mariabwhite.github.io, не на основном домене.
+
+**Юля Изотова 8/9 + Тимофей 2/3:** vault регенирован дважды (мой Тимофей + Codex Юля homework полировка 39e4cde/c982dd4).
+
+**timofey-trainer-01:** добавлен lab-quick-speak v=4 (был пропуск); Sentence builder секция 09 — word-bank теперь Fisher-Yates shuffle на загрузке.
+
+**Кнопка «Отправить учителю» (lab-homework.js):**
+- Supabase REST INSERT в `lab_submissions` (URL `https://iqzlphbvmfgoygnozbya.supabase.co`, anon `sb_publishable_hYhBk3xS90uouUFd_DZWUw_sOv-6JGO`) ✅ работает.
+- Realtime broadcast канал `lab-firehose-v1` event `homework-batch` → teacher-live.html.
+- POST `http://127.0.0.1:8765/api/send-telegram` — silent fail если AI Hub лежит → причина «не пришло в TG».
+
+**Открыто на завтра:** массовый русский → English в HTML 45 уроков (правило 0 русского в Lab-HTML).
+
 ### День 1 · 2026-05-15 — index/about-project polish
 - Hero rewrite (98 ЕГЭ, ghost-кнопки, dedupe)
 - FAQ модалка (10 Q&A)

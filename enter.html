@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Lab / Cabinet · вход</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, system-ui, "Segoe UI", sans-serif; background: #161616; color: #eee; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+  .card { background: #1f1f1f; padding: 36px 32px; border-radius: 16px; max-width: 360px; width: 100%; border: 1px solid #2a2a2a; }
+  h1 { font-size: 1.05rem; margin: 0 0 6px; font-weight: 700; letter-spacing: .01em; }
+  .sub { font-size: .85rem; color: #888; margin-bottom: 22px; }
+  label { display: block; font-size: .8rem; color: #aaa; margin-bottom: 8px; letter-spacing: .04em; text-transform: uppercase; }
+  input[type="password"], input[type="text"] { width: 100%; padding: 13px 14px; font-size: 1rem; background: #111; color: #eee; border: 1px solid #333; border-radius: 9px; letter-spacing: .04em; }
+  input:focus { outline: none; border-color: #FF5A1F; box-shadow: 0 0 0 3px rgba(255, 90, 31, .18); }
+  button { margin-top: 16px; width: 100%; padding: 13px; font-size: 1rem; background: #FF5A1F; color: #fff; border: none; border-radius: 9px; cursor: pointer; font-weight: 600; letter-spacing: .02em; }
+  button:hover { background: #e64a14; }
+  .err { margin-top: 14px; color: #ff8a7a; font-size: .9rem; min-height: 1.2em; }
+  .foot { margin-top: 18px; font-size: .78rem; color: #666; text-align: center; }
+  a { color: #aaa; }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xlgcv1yjbs");
+</script>
+</head>
+<body>
+<form class="card" method="POST" action="/api/gate/enter">
+  <h1>Lab / Cabinet</h1>
+  <div class="sub">Введи код доступа, который тебе прислали.</div>
+  <label for="pin">Код</label>
+  <input id="pin" type="password" name="pin" autocomplete="off" autofocus spellcheck="false">
+  <input type="hidden" name="from" id="from">
+  <button type="submit">Войти</button>
+  <div class="err" id="err"></div>
+  <div class="foot"><a href="/">← на главную</a></div>
+</form>
+<script>
+  // Подхватить ?from=... из URL и подставить в скрытое поле
+  const params = new URLSearchParams(location.search);
+  document.getElementById("from").value = params.get("from") || "/";
+  if (params.get("e") === "1") {
+    document.getElementById("err").textContent = "Код не подошёл. Проверь дефисы и регистр.";
+  }
+</script>
+</body>
+</html>
