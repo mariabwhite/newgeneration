@@ -913,6 +913,11 @@ window.NGE_DATA = {
       ],
       "external_platforms": [
         {
+          "name": "🧭 Quizlet · Directions (12 июля)",
+          "url": "https://quizlet.com/1194315564/directions-flash-cards/?funnelUUID=ef64143a-aba4-4c60-b4b7-f855080c33b0",
+          "note": "Flash-cards · направления — turn left / right, straight ahead, opposite, along, through, up, from, at."
+        },
+        {
           "name": "🎴 Quizlet · 44 слова «City of the future»",
           "url": "https://quizlet.com/1192178706/voc-flash-cards/?funnelUUID=54bc5263-ba58-45bd-8d9e-b440538e89cd",
           "note": "Flash-cards · Learn / Match / Test — повторение словаря между уроками"
