@@ -258,43 +258,48 @@ button[data-say]:hover{background:var(--accent)}
 <!-- PROGRESS DOTS -->
 <div class="progress"><div class="dots" id="dots" aria-hidden="true"></div></div>
 
-<!-- KEY VOCABULARY -->
+<!-- KEY VOCABULARY · v2 2026-07-12 · .vw class (canon Bella pattern, click→TTS) -->
 <section class="section" id="sec-vocab">
-  <div class="section-hdr"><h2 style="font-size:1.2rem;font-weight:800">💼 Key vocabulary · tap to flip</h2></div>
+  <div class="section-hdr"><h2 style="font-size:1.2rem;font-weight:800">💼 Key vocabulary · tap to hear</h2></div>
   <div class="card">
-    <div class="lab-vocab-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
-      <div class="vocab-card" data-back="собеседование · The interview lasted 40 minutes."><strong>job interview</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="резюме · Send your CV by Friday."><strong>CV / résumé</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="должность · I applied for a senior position."><strong>position</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="навыки · Soft skills matter as much as hard skills."><strong>skills</strong><br><span style="font-size:.78rem;opacity:.6">noun pl</span></div>
-      <div class="vocab-card" data-back="опыт · 5 years of relevant experience."><strong>experience</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="обязанность · One of my main responsibilities."><strong>responsibility</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="командная работа · Strong teamwork culture."><strong>teamwork</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="срок · We met every deadline."><strong>deadline</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="повышение · I'm hoping for a promotion."><strong>promotion</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="зарплата · The salary is negotiable."><strong>salary</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="достижение · My biggest achievement."><strong>achievement</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-      <div class="vocab-card" data-back="метод STAR (Situation/Task/Action/Result) · Use the STAR method."><strong>STAR method</strong><br><span style="font-size:.78rem;opacity:.6">noun</span></div>
-    </div>
+    <div class="vocab-row" id="ispVocabRow"></div>
   </div>
 </section>
 <style>
-.lab-vocab-grid .vocab-card{background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:14px 10px;cursor:pointer;text-align:center;transition:.2s;line-height:1.3}
-.lab-vocab-grid .vocab-card:hover{border-color:#999;transform:translateY(-2px)}
-.lab-vocab-grid .vocab-card.flipped{background:#e6f0ff;border-color:#1a4d8a;font-size:.85rem;font-weight:600}
-.lab-vocab-grid .vocab-card.flipped strong{display:block;color:#0d2d57;margin-bottom:4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
-.lab-vocab-grid .vocab-card.flipped::after{content:attr(data-back);color:#1a2a40;font-size:.84rem}
-.lab-vocab-grid .vocab-card.flipped span{display:none}
-
-/* lab vocab/card safety canon · 2026-06-30 */
-.flip-grid,.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
-.flip-card,.vocab-card{min-height:130px;box-sizing:border-box}
-.flip-front,.flip-back,.vocab-front,.vocab-back{padding:30px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
-.flip-front,.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
-.flip-front .pos,.vocab-front .pos{word-break:normal}
-.flip-card .lab-hw-add,.vocab-card .lab-hw-add{z-index:5}
+#sec-vocab .vocab-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:4px}
+#sec-vocab .vw{background:var(--card-2,#f7f8fb);border:1px solid var(--line,rgba(0,0,0,.08));border-radius:8px;padding:10px 12px;cursor:pointer;transition:.15s;display:flex;justify-content:space-between;align-items:center;gap:8px}
+#sec-vocab .vw:hover{border-color:var(--accent,#1a4d8a);background:var(--paper-2,#eaf0f7)}
+#sec-vocab .vw .w{font-family:var(--display,'Manrope',sans-serif);font-weight:700;font-size:.98rem;color:var(--accent3,#0d2d57);line-height:1.15}
+#sec-vocab .vw .pos{font-size:.7rem;color:var(--muted,#6b7f97);opacity:.7;font-style:italic;line-height:1;margin-left:6px}
+#sec-vocab .vw .ru{font-size:.78rem;color:var(--muted,#6b7f97);font-style:italic;text-align:right;flex-shrink:0}
 </style>
-<script>document.querySelectorAll('#sec-vocab .vocab-card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flipped')));</script>
+<script>
+(function(){
+  var VOC = [
+    {w:'job interview',   pos:'noun',    ru:'собеседование'},
+    {w:'CV / résumé',     pos:'noun',    ru:'резюме'},
+    {w:'position',        pos:'noun',    ru:'должность'},
+    {w:'skills',          pos:'noun pl', ru:'навыки'},
+    {w:'experience',      pos:'noun',    ru:'опыт'},
+    {w:'responsibility',  pos:'noun',    ru:'обязанность'},
+    {w:'teamwork',        pos:'noun',    ru:'командная работа'},
+    {w:'deadline',        pos:'noun',    ru:'срок'},
+    {w:'promotion',       pos:'noun',    ru:'повышение'},
+    {w:'salary',          pos:'noun',    ru:'зарплата'},
+    {w:'achievement',     pos:'noun',    ru:'достижение'},
+    {w:'STAR method',     pos:'method',  ru:'метод STAR'}
+  ];
+  var host = document.getElementById('ispVocabRow');
+  if (!host) return;
+  VOC.forEach(function(v){
+    var el = document.createElement('div');
+    el.className = 'vw';
+    el.innerHTML = '<span class="w">'+v.w+' <span class="pos">'+v.pos+'</span></span><span class="ru">'+v.ru+'</span>';
+    el.onclick = function(){ if (typeof say === 'function') say(v.w); };
+    host.appendChild(el);
+  });
+})();
+</script>
 
 <!-- MINIMUM-VIABLE RUN · what to hit if time is tight -->
 <section class="section">
