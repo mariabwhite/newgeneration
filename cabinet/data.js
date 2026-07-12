@@ -1586,10 +1586,11 @@ window.NGE_DATA = {
           "date": "2026-07-12",
           "num": 10,
           "status": "completed",
-          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+          "topic": "❓ Ask Me & Anything · Questions Deep Dive — Yes/No · Wh · Subject vs Object · Alt · Tag · Polite ladder (Can/Could/May/Would you mind) · Indirect",
           "homework": {
-            "module_url": "../lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
-            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+            "module_url": "../lingua-boost-lab/b1/questions-deep-dive/",
+            "module_title": "❓ Открыть Questions Deep Dive · Grammar Lab 03",
+            "text": "3 таба: Basics (Yes/No + Wh + Subject/Object) · Advanced (Alt/Tag/Polite/Indirect) · Workbook (Big Mix 30 MCQ + Airport dialogue). Travel-flavour. Зелёное = верно, красное = поправить."
           }
         },
         {
