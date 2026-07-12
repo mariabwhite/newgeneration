@@ -9,7 +9,7 @@
 <meta name="description" content="B1 grammar deep-dive on English questions: Yes/No, Wh-, alternative, tag, subject vs object questions across every tense, plus polite ladders (Can / Could / Would you mind / I was wondering) and indirect questions. Travel-flavour drills and mic practice for LinguaBoost Lab.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;900&family=Georgia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Manrope:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;900&family=Georgia&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F0F5F5;
@@ -24,7 +24,8 @@
   --err:#D24E4E;
   --highlight:#D9F0EF;
   --mono:'JetBrains Mono',ui-monospace,monospace;
-  --display:'Manrope',system-ui,sans-serif;
+  --display:'Unbounded','Manrope',system-ui,sans-serif;
+  --body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
   --serif:Georgia,serif;
   --shadow:0 4px 14px rgba(93,58,86,.10);
 }
@@ -33,12 +34,13 @@ html,body{margin:0;padding:0}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:var(--display);
-  font-size:16px;line-height:1.55;
+  font-family:var(--body);
+  font-size:16px;line-height:1.65;font-weight:400;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.25}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.25;font-weight:700}
+strong,b{font-weight:600}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -76,60 +78,50 @@ a:hover{text-decoration:underline}
 .topbar .tool-pill:hover{background:var(--accent);color:#fff}
 .topbar .tool-pill.level{background:var(--accent);color:#fff}
 
-/* ============ HERO — gradient + text overlay (image hidden — old cover mismatched theme) ============ */
-.lab-hero{max-width:1320px;margin:0 auto;position:relative;overflow:hidden;
-  background:
-    radial-gradient(circle at 12% 22%, rgba(58,174,169,.28), transparent 55%),
-    radial-gradient(circle at 88% 78%, rgba(232,139,98,.24), transparent 55%),
-    linear-gradient(135deg, #0F2E33 0%, #113E42 45%, #1B565A 100%);
-  min-height:clamp(240px,32vw,420px);
-  display:flex;align-items:center;justify-content:center;
-}
-.lab-hero .hero-banner{display:none}
-.lab-hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 60px);
-  mix-blend-mode:screen;opacity:.35;
-}
+/* ============ HERO — travel banner + overlay ============ */
+.lab-hero{max-width:1320px;margin:0 auto;position:relative;overflow:hidden;background:#0F5540}
+.lab-hero .hero-banner{display:block;width:100%;height:auto;max-height:460px;object-fit:cover;object-position:center}
 .hero-overlay{
   position:absolute;inset:0;
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:20px 24px;
   pointer-events:none;
 }
-.hero-overlay > *{max-width:min(46vw,520px)}
+.hero-overlay > *{max-width:min(58vw,780px)}
 .hero-eyebrow-overlay{
   font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:900;
-  font-size:11px;
-  letter-spacing:.28em;text-transform:uppercase;
+  font-size:clamp(13px,1.1vw,16px);
+  letter-spacing:.32em;text-transform:uppercase;
   color:var(--accent3);
-  margin-bottom:clamp(10px,1.6vw,16px);
-  text-shadow:0 2px 8px rgba(0,0,0,.5);
+  margin-bottom:clamp(14px,2vw,22px);
+  text-shadow:0 2px 8px rgba(0,0,0,.6);
 }
 .hero-title-overlay{
   font-family:var(--display);font-weight:900;
-  font-size:clamp(1.4rem,3.6vw,3rem);
-  letter-spacing:-0.02em;line-height:1.02;
+  font-size:clamp(2.4rem,6.8vw,5.6rem);
+  letter-spacing:-0.025em;line-height:.98;
   color:#FBF5E4;margin:0;
-  text-shadow:0 4px 16px rgba(0,0,0,.55);
+  text-shadow:0 6px 24px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(4px,.4vw,10px);
 }
-.hero-title-overlay .amp{color:var(--accent3);font-family:Georgia,serif;font-style:italic;font-weight:400}
-.hero-meta-overlay{display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:clamp(14px,2vw,22px)}
+.hero-title-overlay .line1{display:block;color:#FBF5E4}
+.hero-title-overlay .line2{display:block;color:var(--accent3)}
+.hero-title-overlay .amp{color:var(--accent3);font-family:Georgia,serif;font-style:italic;font-weight:400;padding:0 .12em 0 0}
+.hero-meta-overlay{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:clamp(20px,2.6vw,32px)}
 .hero-meta-overlay span{
-  min-width:38px;height:32px;padding:0 12px;
+  min-width:46px;height:38px;padding:0 16px;
   display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(36,24,50,.55);border-radius:8px;
+  background:rgba(15,46,51,.65);border-radius:10px;
   font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:11px;font-weight:900;
-  letter-spacing:.08em;text-transform:uppercase;
+  font-size:clamp(11.5px,.9vw,13.5px);font-weight:900;
+  letter-spacing:.10em;text-transform:uppercase;
   color:#FDE1CE;
   border:1px solid rgba(245,231,195,.4);
   backdrop-filter:blur(4px);
 }
 @media (max-width:640px){
-  .hero-overlay > *{max-width:82vw}
+  .hero-overlay > *{max-width:88vw}
+  .hero-title-overlay{font-size:clamp(1.9rem,8vw,2.6rem)}
 }
 /* Portrait teaching posters — compact reading size, click to enlarge */
 .rule-infographic{
@@ -177,7 +169,7 @@ a:hover{text-decoration:underline}
 }
 .sub-tab{
   flex:1;padding:12px 14px;background:transparent;border:none;cursor:pointer;
-  font-family:var(--display);font-weight:800;font-size:.92rem;
+  font-family:var(--display);font-weight:600;font-size:.92rem;
   color:var(--muted);letter-spacing:.02em;
   border-bottom:3px solid transparent;transition:.2s;
   display:flex;align-items:center;justify-content:center;gap:8px;
@@ -200,7 +192,7 @@ a:hover{text-decoration:underline}
   font-family:var(--mono);font-weight:900;font-size:.9rem;
 }
 .section-hdr h2{
-  font-size:1.35rem;font-weight:800;color:var(--text);
+  font-size:1.35rem;font-weight:700;color:var(--text);
   letter-spacing:-0.01em;
 }
 .section-hdr .tag{
@@ -220,7 +212,7 @@ a:hover{text-decoration:underline}
   margin-right:8px;
 }
 .rule-card h3{
-  font-size:1.05rem;font-weight:800;margin-bottom:8px;color:var(--text);
+  font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--text);
   display:flex;align-items:center;flex-wrap:wrap;gap:6px;
 }
 .rule-card p{margin:6px 0;font-size:.92rem}
@@ -244,7 +236,7 @@ a:hover{text-decoration:underline}
   padding:22px 24px;margin:18px 0;box-shadow:var(--shadow);
 }
 .card h3{
-  font-size:1.05rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;
+  font-size:1.05rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;
 }
 .card h3 .ex-num{
   font-family:var(--mono);font-weight:900;color:var(--accent3);
@@ -406,6 +398,26 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
 .wo-poster{display:block;width:100%;max-width:100%;height:auto;margin:12px 0 14px;border-radius:12px;border:1px solid var(--line);box-shadow:0 4px 14px rgba(15,46,51,.10);cursor:zoom-in;transition:.18s}
 .wo-poster:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,46,51,.16)}
 
+/* ============ Portrait posters — real 2-column flex (content left · poster right) ============ */
+.rule-card.has-portrait, .card.has-portrait{
+  display:flex;flex-direction:row;align-items:flex-start;gap:26px;
+}
+.portrait-content{flex:1 1 auto;min-width:0;order:1}
+.portrait-content > *:first-child{margin-top:0}
+.portrait-content > *:last-child{margin-bottom:0}
+.portrait-poster{
+  flex:0 0 320px;display:block;width:320px;max-width:320px;height:auto;
+  margin:0;border-radius:14px;
+  border:1px solid var(--line);box-shadow:0 6px 18px rgba(15,46,51,.14);
+  cursor:zoom-in;transition:.18s;
+  align-self:flex-start;order:2;
+}
+.portrait-poster:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,46,51,.20)}
+@media(max-width:820px){
+  .rule-card.has-portrait, .card.has-portrait{flex-direction:column;align-items:center}
+  .portrait-poster{flex:0 0 auto;width:100%;max-width:360px}
+}
+
 /* ============ LOCOMOTIVE diagram (Word Order pane) ============ */
 .loco-diagram{display:flex;flex-wrap:nowrap;align-items:stretch;gap:6px;overflow-x:auto;padding:12px 4px 16px;scrollbar-width:thin}
 .loco-wagon{flex:0 0 auto;min-width:120px;padding:12px 10px;border-radius:12px;background:var(--card);border:2px solid var(--accent);text-align:center;box-shadow:var(--shadow);position:relative}
@@ -460,10 +472,10 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
 
 <!-- ===== HERO — banner with text overlay ===== -->
 <div class="lab-hero">
-  <img class="hero-banner" src="assets/img/hero-banner.webp?v=3" alt="Deep-violet Grammar Lab desk with an open airport-departures notebook on the left showing question templates (Do / Does / Did · Is / Are / Was · Have / Has · Would you mind · I was wondering if) and a passport, boarding pass and a laptop on the right with the Grammar Lab dashboard showing green ticks next to Yes/No, Wh-, Alternative, Tag and Polite.">
+  <img class="hero-banner" src="assets/img/hero-travel-banner.png" alt="Travel-themed hero banner — dark green background with a suitcase and colourful signposts on the left, an airplane, control tower and city skyline in the middle, and a backpack, compass, notebook, camera, hot-air balloon and Big Ben on the right. Travel-flavour cover for the Questions Deep Dive lesson.">
   <div class="hero-overlay">
     <div class="hero-eyebrow-overlay">Grammar Lab · Deep Dive · 03</div>
-    <h1 class="hero-title-overlay">Ask Me <span class="amp">&amp;</span> Anything</h1>
+    <h1 class="hero-title-overlay"><span class="line1">Ask Me</span><span class="line2"><span class="amp">&amp;</span>Anything</span></h1>
     <div class="hero-meta-overlay">
       <span>Yes/No · Wh · Alt · Tag</span>
       <span>Polite ladder</span>
@@ -497,7 +509,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- B.1 · YES / NO QUESTIONS across the tenses -->
   <!-- =============================================== -->
-  <div class="rule-card">
+  <div class="rule-card has-portrait">
+    <img class="portrait-poster" src="assets/img/portrait/B1-yes-no.png" alt="B.1 · Yes / No questions — auxiliary + subject + verb. The very shape of an English question: an auxiliary in front of the subject. Airplane in sky. Sample questions: Do you like flying? · Did you book the hotel? · Is the plane boarding? · Have you been to Prague? · Will you upgrade your seat?">
+    <div class="portrait-content">
     <h3><span class="rule-num">B.1</span> Yes / No questions · auxiliary + subject + verb</h3>
     <p>The very shape of an English question: an auxiliary in front of the subject. Which auxiliary → depends on the tense.</p>
     <ul>
@@ -512,6 +526,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     <div class="eg"><strong>Do</strong> you like flying? · <strong>Did</strong> you book the hotel? · <strong>Is</strong> the plane boarding? · <strong>Have</strong> you been to Prague? · <strong>Will</strong> you upgrade your seat?</div>
     <div class="ru">Правило: аукс перед подлежащим. Главный глагол потом. Никаких «Do you liked?» и «Are you booked?».</div>
     <div class="warn">Not: «You like flying?» (без Do) — так спрашивают только очень informal. На B1/B2 — держим Do/Does/Did в начале.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -549,7 +564,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- B.2 · WH-QUESTIONS -->
   <!-- =============================================== -->
-  <div class="rule-card" style="border-left-color:var(--accent3)">
+  <div class="rule-card has-portrait" style="border-left-color:var(--accent3)">
+    <img class="portrait-poster" src="assets/img/portrait/B2-wh-signpost.png" alt="B.2 · Wh-questions — the seven basics + How-family. Wooden signpost with 8 arrows: What · Whose · Where · Which · When · Why · Who · How-family. Wh-word comes first, then the same Yes/No frame.">
+    <div class="portrait-content">
     <h3><span class="rule-num">B.2</span> Wh-questions · the seven basics + How-family</h3>
     <p>Wh-word comes first, then the same Yes/No frame (auxiliary + subject + verb).</p>
     <ul>
@@ -572,6 +589,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     </ul>
     <div class="eg"><strong>What</strong> time do you land? · <strong>Where</strong> are you staying? · <strong>How long</strong> is the layover?</div>
     <div class="ru">Формула: Wh + Do/Does/Did/Is/Are/Have/Will + подлежащее + глагол.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -609,7 +627,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- B.3 · SUBJECT vs OBJECT questions -->
   <!-- =============================================== -->
-  <div class="rule-card">
+  <div class="rule-card has-portrait">
+    <img class="portrait-poster" src="assets/img/portrait/B3-subject-object.png" alt="B.3 · Subject vs Object questions — when to drop the auxiliary. Green backpack + wooden suitcase with passport, sunglasses, world traveler sticker. If the Wh-word IS the subject — no auxiliary, no inversion. Examples: Who met you? (Subject) · Who did you meet? (Object) · What happened? · Which flight costs the least?">
+    <div class="portrait-content">
     <h3><span class="rule-num">B.3</span> Subject vs Object questions · when to drop the auxiliary</h3>
     <p>If the Wh-word IS the subject — <strong>no auxiliary, no inversion</strong>. Just Wh + verb.</p>
     <ul>
@@ -620,6 +640,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     <div class="eg"><strong>What</strong> happened? · <strong>Who</strong> called you? · <strong>How many people</strong> booked this tour? · <strong>Which flight</strong> costs the least?</div>
     <div class="ru">Правило: Wh-слово = подлежащее → вспомогательный НЕ нужен. Wh-слово = дополнение → нужен Do/Does/Did.</div>
     <div class="warn">Test yourself: if the answer names a doer (Anna called me), the question is Subject. If the answer names a receiver (I called Anna), the question is Object.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -642,7 +663,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- B.4 · MIC-DRILL · say it aloud -->
   <!-- =============================================== -->
-  <div class="card" style="background:linear-gradient(135deg,var(--card),#FCE7D6)">
+  <div class="card has-portrait" style="background:linear-gradient(135deg,var(--card),#FCE7D6)">
+    <img class="portrait-poster" src="assets/img/portrait/B4-mic-drill.png" alt="B.4 · Mic-drill — ask 12 questions aloud. Orange numbered list card with ▶ play buttons: 1. Do you like flying? 2. Where are you staying tonight? 3. Have you ever been to Iceland? 4. Who booked this trip? 5. How long is the layover in Doha? Big «12 ВОПРОСОВ →» button at the bottom.">
+    <div class="portrait-content">
     <h3><span class="ex-num">B.4</span> 🎤 Mic-drill · ask 12 questions aloud</h3>
     <p class="intro">Read each question — say it out loud twice, then tap ▶ to hear it back. Focus on falling intonation on Wh-questions and rising intonation on Yes/No.</p>
     <div class="mic-list" data-ex="B.4">
@@ -661,6 +684,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     </div>
     <div class="starters"><strong>Intonation cue</strong>
       Yes/No → rising ↗ ("Do you… ↗?") · Wh → falling ↘ ("Where are you… ↘?") · Alternative → rise on first option, fall on second ("Terminal 1 ↗ or 2 ↘?")
+    </div>
     </div>
   </div>
 
@@ -681,12 +705,15 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- A.1 · ALTERNATIVE QUESTIONS -->
   <!-- =============================================== -->
-  <div class="rule-card">
+  <div class="rule-card has-portrait">
+    <img class="portrait-poster" src="assets/img/portrait/A1-alternative.png" alt="A.1 · Alternative questions · X or Y — wooden signpost with two arrows TEA ↗ and COFFEE ↘, hot-air balloon. Two options, one rising, one falling tone.">
+    <div class="portrait-content">
     <h3><span class="rule-num">A.1</span> Alternative questions · X or Y</h3>
     <p>Same frame as a Yes/No question, but with <em>or</em> offering two options. Intonation: <strong>rise on X, fall on Y</strong>.</p>
     <div class="eg">Would you like <strong>tea</strong> ↗ or <strong>coffee</strong> ↘? · Are we flying <strong>morning</strong> ↗ or <strong>evening</strong> ↘? · Do you prefer the <strong>window</strong> ↗ or the <strong>aisle</strong> ↘?</div>
     <div class="ru">Строим как Yes/No вопрос, но добавляем «or Y». Голос: ↗ на первое слово, ↘ на второе.</div>
     <div class="warn">Answer is NOT «Yes» / «No». The listener must pick one: <em>"Tea, please."</em> Not «Yes, please» — that would mean neither.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -707,7 +734,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- A.2 · TAG QUESTIONS -->
   <!-- =============================================== -->
-  <div class="rule-card" style="border-left-color:var(--accent3)">
+  <div class="rule-card has-portrait" style="border-left-color:var(--accent3)">
+    <img class="portrait-poster" src="assets/img/portrait/A2-tag.png" alt="A.2 · Tag questions · statement + mirror — green speech bubble STATEMENT «You booked it» + orange speech bubble MIRROR TAG «didn't you?», smiling lips in the middle. Same auxiliary, flipped polarity.">
+    <div class="portrait-content">
     <h3><span class="rule-num">A.2</span> Tag questions · positive → negative, negative → positive</h3>
     <p>A tag question is a mini-question at the end of a statement, asking for confirmation. The auxiliary in the tag mirrors the statement, but flips polarity.</p>
     <ul>
@@ -723,6 +752,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     <div class="eg">You booked the hotel, <strong>didn't you</strong>? · The flight isn't full, <strong>is it</strong>? · Katya can speak German, <strong>can't she</strong>?</div>
     <div class="ru">Хвост зеркалит утверждение: аукс тот же, знак наоборот. Интонация вниз ↘ = «жду подтверждения». Вверх ↗ = «реально спрашиваю».</div>
     <div class="warn">Two curious exceptions: «I am… → <strong>aren't I</strong>?» (not <em>amn't I</em>). «Let's… → <strong>shall we</strong>?»</div>
+    </div>
   </div>
 
   <div class="card">
@@ -745,7 +775,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- A.3 · POLITE LADDER -->
   <!-- =============================================== -->
-  <div class="rule-card">
+  <div class="rule-card has-portrait">
+    <img class="portrait-poster" src="assets/img/portrait/A3-polite-ladder.png" alt="A.3 · The Polite Ladder · 5 steps of «could you please» — wooden 5-step ladder: 1 Waiter · 2 Hotel receptionist · 3 Airport officer · 4 Colleague · 5 Elderly stranger. Bare → Can → Could → May → Would you mind.">
+    <div class="portrait-content">
     <h3><span class="rule-num">A.3</span> The Polite Ladder · 5 steps of «could you please»</h3>
     <p>Native English builds politeness in visible steps. Learn the ladder — climb it depending on who you're talking to and how much you're asking.</p>
     <ol>
@@ -758,6 +790,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     <div class="eg">Casual: <em>Give me your ticket.</em> · Neutral: <em>Can I see your ticket?</em> · Polite: <em>Could I see your ticket, please?</em> · Formal: <em>May I see your ticket?</em> · Very polite: <em>Would you mind showing me your ticket?</em></div>
     <div class="ru">Формула: чем выше уровень — тем менее прямо звучит. Отель / кафе / аэропорт → минимум Could I / Could you.</div>
     <div class="warn">«Would you mind + -ing» → форма герундий, НЕ инфинитив: <em>«Would you mind opening the window?»</em>, не «Would you mind to open…».</div>
+    </div>
   </div>
 
   <div class="card">
@@ -780,7 +813,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- A.4 · INDIRECT QUESTIONS -->
   <!-- =============================================== -->
-  <div class="rule-card" style="border-left-color:var(--accent2)">
+  <div class="rule-card has-portrait" style="border-left-color:var(--accent2)">
+    <img class="portrait-poster" src="assets/img/portrait/A4-indirect-matryoshka.png" alt="A.4 · Indirect questions · wrap it politely — two matryoshka dolls in travel outfits: outer polite doll with speech ribbon «Do you know…», inner doll shows the direct «where the metro is?». Word order goes back to subject + verb.">
+    <div class="portrait-content">
     <h3><span class="rule-num">A.4</span> Indirect questions · wrap a question inside a polite frame</h3>
     <p>Direct: <em>Where is the bus stop?</em> → Indirect: <em>Do you know where the bus stop is?</em></p>
     <p><strong>What changes:</strong></p>
@@ -792,6 +827,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     <div class="eg">Direct: <em>Where is the metro?</em> → Indirect: <em>Could you tell me <strong>where the metro is</strong>?</em><br>Direct: <em>Does the shop take cash?</em> → Indirect: <em>Do you know <strong>if the shop takes cash</strong>?</em></div>
     <div class="ru">Внутри косвенного вопроса — обычный порядок как в утверждении. Никаких «is the metro», «does the shop take» после «где / если».</div>
     <div class="warn">Very common mistake: «Could you tell me where <em>is</em> the metro?» — no. Correct: «Could you tell me where the metro <em>is</em>?»</div>
+    </div>
   </div>
 
   <div class="card">
@@ -827,7 +863,9 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
 
   <!-- A.5 · MIC-DRILL polite + indirect -->
   <!-- =============================================== -->
-  <div class="card" style="background:linear-gradient(135deg,var(--card),#FDE1CE)">
+  <div class="card has-portrait" style="background:linear-gradient(135deg,var(--card),#FDE1CE)">
+    <img class="portrait-poster" src="assets/img/portrait/A5-mic-drill.png" alt="A.5 · Mic-drill · politeness in action — orange podcast microphone with orange sound waves, black headphones, red vintage rotary phone, small hotel bell. Warmer voice = more polite.">
+    <div class="portrait-content">
     <h3><span class="ex-num">A.5</span> 🎤 Mic-drill · politeness in action · 10 lines</h3>
     <p class="intro">Say each line aloud twice — once as direct, once as polite. Then tap ▶ to compare with a native voice. Notice the smoother musical shape of the polite versions.</p>
     <div class="mic-list" data-ex="A.5">
@@ -844,6 +882,7 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
     </div>
     <div class="starters"><strong>Voice tip</strong>
       Polite English lives in the voice: soften the vowels, pull the pitch down at the end, breathe between clauses. Faster ≠ ruder — flatter and lower = ruder. Warmer and rounder = more polite.
+    </div>
     </div>
   </div>
 
@@ -993,9 +1032,19 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- R.1 · READING · Two travellers, two styles -->
   <!-- =============================================== -->
-  <div class="rule-card">
+  <div class="rule-card has-portrait">
+    <img class="portrait-poster" src="assets/img/portrait/R1-two-travellers.png" alt="R.1 · Reading · Two travellers, two styles — split scene: left half Lena at a Rome café with a cappuccino and a notebook (Caffè Roma), right half Marco with a spreadsheet of countries, a camera, three passports and a Travel Checklist. Yellow airplane trail connects both. 220-word article, gist then detail.">
+    <div class="portrait-content">
     <h3><span class="rule-num">R.1</span> Reading · «Two travellers, two styles»</h3>
-    <p>Read the article twice: first for gist (who is who?), then for detail. Then answer 10 mixed questions (Yes/No + Wh + Subject/Object + Alt + Indirect).</p>
+    <p>Read the article twice: <strong>first for gist</strong> (who is who?), <strong>then for detail</strong>. Only then answer the 10 mixed questions below — Yes/No · Wh · Subject/Object · Alternative · Tag · Indirect.</p>
+    <ul>
+      <li><strong>Gist reading:</strong> speed up. Skip words you don't know. Grab the shape: <em>Who is Lena? Who is Marco? What happened?</em></li>
+      <li><strong>Detail reading:</strong> slow down. Circle numbers, names, dates: <em>how many countries?</em> <em>which trip?</em> <em>what changed?</em></li>
+      <li><strong>Watch the question type</strong> before you answer — a Yes/No question wants a <em>yes/no</em> answer, a Wh-question wants a fact, an Indirect question sneaks the answer inside politeness.</li>
+    </ul>
+    <div class="eg" style="margin-top:14px"><strong>Lena's own words:</strong> «I want to feel the city, not to collect it.» — a whole personality in ten words. Notice how a good writer packs identity into a single quote.</div>
+    <div class="ru" style="margin-top:8px"><strong>Совет:</strong> сперва пробежать глазами (gist), потом вернуться и подметить цифры и имена (detail). Читать один раз и сразу отвечать — почти всегда ловушка на B1.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -1041,9 +1090,19 @@ footer .by{display:block;margin-top:6px;font-size:10px;opacity:.8;letter-spacing
   <!-- =============================================== -->
   <!-- L.1 · LISTENING · Hotel front-desk call -->
   <!-- =============================================== -->
-  <div class="rule-card" style="border-left-color:var(--accent3);margin-top:32px">
+  <div class="rule-card has-portrait" style="border-left-color:var(--accent3);margin-top:32px">
+    <img class="portrait-poster" src="assets/img/portrait/L1-hotel-desk.png" alt="L.1 · Listening · A phone call to the front desk — split scene: hotel receptionist Anna at the reception desk with a phone, dashed line to Katya in a bathrobe on the edge of a hotel bed, evening lamp light. Sauna, breakfast, polite English.">
+    <div class="portrait-content">
     <h3><span class="rule-num">L.1</span> Listening · «A phone call to the front desk»</h3>
-    <p>You will «hear» a short dialogue between a hotel guest (Katya) and the front desk (Anna). The audio is voiced by Web Speech — click ▶ to play the whole scene twice.</p>
+    <p>A short evening dialogue between a hotel guest (<strong>Katya</strong>, room 304) and the front-desk receptionist (<strong>Anna</strong>). Click ▶ to play the whole scene twice — once for gist, once for detail.</p>
+    <ul>
+      <li><strong>Listen for question types.</strong> Every polite request in this scene uses one — Yes/No, Wh, Alternative, Indirect. Try to catch them.</li>
+      <li><strong>Watch for softeners:</strong> <em>«I was wondering if…»</em>, <em>«Could I…»</em>, <em>«Would you like me to…»</em>, <em>«Would you rather…»</em> — these are the same tools we drilled in the Advanced tab, but now spoken naturally.</li>
+      <li><strong>Sub-tasks:</strong> <em>Sauna</em> · <em>breakfast</em> · <em>pool</em>. Track what closes, what opens, what gets booked.</li>
+    </ul>
+    <div class="eg" style="margin-top:14px"><strong>Katya's opening:</strong> «Hi Anna. This is Katya from room 304. I'm sorry to call so late. I was wondering if the pool is still open.» — three polite frames in one line: <em>self-introduction · apology · indirect question</em>. That's the register you're building.</div>
+    <div class="ru" style="margin-top:8px"><strong>Совет:</strong> первое прослушивание — общий сюжет (что просит Катя, что отвечает Анна). Второе — детали (время, номер комнаты, время сауны). Только потом отвечать.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -1522,7 +1581,53 @@ document.querySelectorAll('.mc-list').forEach(list => {
 <script src="../../assets/lab-pilot.js?v=3" defer></script>
 <script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
 <script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
+<!-- teacher-баннер + status-badge lab-sync выключены: конфликтуют со стилем страницы -->
+<script>
+try{localStorage.removeItem('lab-teacher-mode');}catch(e){}
+/* Monkey-patch appendChild: убиваем status-pill lab-sync ДО того как он попадёт в DOM */
+(function(){
+  var origAppend = HTMLBodyElement.prototype.appendChild;
+  HTMLBodyElement.prototype.appendChild = function(node){
+    try{
+      if (node && node.nodeType === 1 && node.tagName === 'DIV' && node.style){
+        var s = (node.style.cssText || node.getAttribute('style') || '') + '';
+        var t = (node.textContent || '') + '';
+        if ((s.indexOf('position:fixed') > -1 || s.indexOf('position: fixed') > -1) &&
+            (s.indexOf('top:14px') > -1 || s.indexOf('top: 14px') > -1)){
+          return node; // silently skip append — pill never appears
+        }
+        if (/teacher|room|connect|sync|🟢|🔴|🔌/i.test(t) && s.indexOf('position:fixed') > -1){
+          return node;
+        }
+      }
+    }catch(e){}
+    return origAppend.call(this, node);
+  };
+})();
+</script>
+<style id="questions-kill-teacher-banner">
+html body .lab-teacher-banner{display:none!important;visibility:hidden!important;pointer-events:none!important}
+/* Any leftover fixed pill at top:14px — nuke */
+html body > div[style*="position:fixed"][style*="top:14px"]{display:none!important;visibility:hidden!important}
+</style>
 <script src="../../assets/lab-sync.js?v=17" defer></script>
+<script>
+/* Extra safety net — periodic sweep in case appendChild patch missed something */
+(function(){
+  function killStatusBadges(){
+    document.querySelectorAll('body > div').forEach(function(el){
+      var s = el.getAttribute('style') || '';
+      if (s.indexOf('position:fixed') === -1 && s.indexOf('position: fixed') === -1) return;
+      if (s.indexOf('top:14px') === -1 && s.indexOf('top: 14px') === -1) return;
+      var t = (el.textContent || '').trim().toLowerCase();
+      if (/teacher|room|connect|sync|🟢|🔴|🔌/i.test(t)) el.style.display = 'none';
+    });
+  }
+  new MutationObserver(killStatusBadges).observe(document.body, {childList:true, subtree:false});
+  setInterval(killStatusBadges, 500);
+  killStatusBadges();
+})();
+</script>
 <script src="../../assets/lab-tabs.js?v=12" defer></script>
 <script src="../../assets/lab-homework.js?v=40" defer></script>
 <script src="../../assets/lab-telemost.js?v=1" defer></script>
