@@ -4,37 +4,37 @@
 <script src="/lingua-boost-lab/assets/premium-lesson-guard.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Julia's Vampire English · Lesson 2 · Sunny Day · Colors, Numbers & Family (Pre-A1)</title>
-<meta name="description" content="Pre-A1 English story lesson for Julia · sunny orange palette · colors, numbers 1–10, family words, songs, vampire friends.">
+  <title>Julia's Vampire English · Lesson 2 · Verbs, Music & Play (Pre-A1)</title>
+<meta name="description" content="Pre-A1 English lesson for Julia · sunny orange palette · action verbs, music instruments, «I play / I can», quick recap of colors + numbers + family.">
 
   <!--
     ===========================================================================
-    Julia · Vampire English · Lesson 2 · «Sunny Day»
+    Julia · Vampire English · Lesson 2 · «Verbs, Music & Play»
     Соседний урок к julia-vampire (v8 · Music & Friends).
-    Тема: Colors + Numbers 1–10 + Family — базовые понятия Pre-A1.
+    Основная тема: action verbs + music instruments + «I play / I can».
+    Секция повторения (компактная): colors + numbers + family + feelings.
+    Тема ШКОЛЬНЫЕ ПРЕДМЕТЫ — сознательно НЕ включена (по просьбе Марии).
     Палитра: нежно-оранжевая (cream + peach + apricot + warm orange).
     Ассеты: переиспользуем картинки из ../julia-vampire/ (не дублируем).
-    Songs (Super Simple Songs · Maria's proven list):
-      • WARMUP_1  = VsgpUHUYuJI   (warm-up)
-      • WARMUP_2  = A1vdKfXlB_g   (warm-up)
-      • RAINBOW   = tRNy2i75tCc   (Rainbow Colors — Super Simple)
-      • NUMBERS   = DR-cfDsHCGA   (Numbers 1–10 — Super Simple)
-      • FAMILY    = FHaObkHEkHQ   (Finger Family — Super Simple)
-      • HAPPY     = l4WNrvVjiTw   (If You're Happy — Super Simple)
-      • DANCE     = Z5lhGTalu28   (Dance — переиспользуем из lesson 1)
-    Длина: ~75 min · 18 блоков (компактнее lesson 1).
+    Songs (Super Simple Songs):
+      • WARMUP        = VsgpUHUYuJI   (warm-up · action)
+      • ACTIONS       = BQ9q4U2P6-o   (Animal Actions — jump like a monkey)
+      • HEAD_SHLDRS   = h4eueDYPTIg   (Head Shoulders Knees & Toes)
+      • INSTRUMENTS   = 6GgzAc5Ezsk   (Music instruments — из lesson 1)
+      • DANCE         = Z5lhGTalu28   (Dance — из lesson 1)
+      • HAPPY         = l4WNrvVjiTw   (If You're Happy)
+    Длина: ~70 min · 15 блоков.
     ===========================================================================
   -->
 
   <script>
     window.SONGS = {
-      WARMUP_1: "VsgpUHUYuJI",
-      WARMUP_2: "A1vdKfXlB_g",
-      RAINBOW:  "tRNy2i75tCc",
-      NUMBERS:  "DR-cfDsHCGA",
-      FAMILY:   "FHaObkHEkHQ",
-      HAPPY:    "l4WNrvVjiTw",
-      DANCE:    "Z5lhGTalu28"
+      WARMUP:      "VsgpUHUYuJI",
+      ACTIONS:     "BQ9q4U2P6-o",
+      HEAD_SHLDRS: "h4eueDYPTIg",
+      INSTRUMENTS: "6GgzAc5Ezsk",
+      DANCE:       "Z5lhGTalu28",
+      HAPPY:       "l4WNrvVjiTw"
     };
   </script>
 
@@ -125,6 +125,15 @@
       background: var(--lilac); color: var(--ink-soft);
       font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
     }
+    .section.recap {
+      background: rgba(255,247,220,.85);
+      border-color: rgba(255,144,72,.20);
+    }
+    .section.recap .time {
+      background: rgba(255,144,72,.14);
+      color: #A04010;
+    }
+
     .grid { display: grid; gap: 14px; }
     .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -164,11 +173,27 @@
     .card:hover, .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: rgba(255,144,72,.35); }
     .card:active, .btn:active { transform: translateY(0) scale(.99); }
 
-    /* colored circle chip (для B4 · colors) */
+    /* recap · small tile (mini) — for review section */
+    .card.mini {
+      min-height: 88px; padding: 10px 8px 12px; font-size: clamp(.9rem,1.6vw,1.05rem);
+    }
+    .card.mini .emoji { width: 44px; height: 44px; font-size: 1.4rem; }
+
+    /* colored circle chip */
     .card.color-chip .emoji {
       background: var(--emoji-bg, var(--blush));
       box-shadow: inset 0 0 0 2px rgba(255,255,255,.9), 0 4px 12px rgba(107,52,16,.15);
     }
+
+    /* verb-card · big text with verb accent */
+    .card.verb {
+      min-height: 152px;
+    }
+    .card.verb .verb-text {
+      font-size: clamp(1.2rem, 2.4vw, 1.55rem); font-weight: 800; color: var(--royal-lav);
+      text-transform: lowercase; letter-spacing: .01em; line-height: 1.1;
+    }
+    .card.verb small { font-size: .82em; color: var(--ink-soft); margin-top: 2px; }
 
     .chants {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
@@ -257,18 +282,21 @@
     .teacher.lilac { background: var(--lilac); }
     .teacher.blush { background: var(--blush); }
 
-    /* Numbers big tiles (для B7) */
-    .num-tile {
-      display: grid; place-items: center; gap: 4px;
-      background: var(--mist); border: 1px solid var(--line); border-radius: var(--r-card);
-      padding: 18px 10px; box-shadow: var(--shadow-1);
+    /* "I can" hero pill row */
+    .ican-row {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px;
+    }
+    .ican-pill {
+      display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px;
+      padding: 14px 16px; border-radius: var(--r-card);
+      background: linear-gradient(135deg, var(--pale-gold) 0%, var(--blush) 100%);
+      border: 1px solid var(--line); box-shadow: var(--shadow-1);
       cursor: pointer; transition: transform var(--t-fast), box-shadow var(--t-fast);
+      font-weight: 800; color: var(--ink); text-align: left;
     }
-    .num-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
-    .num-tile .n {
-      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; color: var(--royal-lav); line-height: 1;
-    }
-    .num-tile .w { font-size: clamp(.95rem, 1.6vw, 1.1rem); color: var(--ink-soft); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .ican-pill:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .ican-pill .ico { font-size: 1.9rem; line-height: 1; }
+    .ican-pill .txt { font-size: clamp(1rem,1.8vw,1.15rem); }
 
     .label, .score {
       min-height: 38px; padding: 8px 16px; border-radius: var(--r-pill);
@@ -291,6 +319,7 @@
       .hero { min-height: auto; padding-top: 12px; }
       .two, .three, .four, .five { grid-template-columns: 1fr; }
       .card { min-height: 108px; }
+      .card.mini { min-height: 78px; }
       .section { padding: 22px; border-radius: var(--r-card); }
     }
   </style>
@@ -308,7 +337,7 @@
     <span class="canon-l-mark" aria-hidden="true"></span>
     <span class="canon-l-copy">
       <span class="canon-l-name">LinguaBoost Lab</span>
-      <span class="canon-l-sub">Pre-A1 &middot; Julia &amp; Vampire &middot; Sunny Day</span>
+      <span class="canon-l-sub">Pre-A1 &middot; Julia &amp; Vampire &middot; Verbs &amp; Play</span>
     </span>
   </a>
   <nav class="canon-l-nav" aria-label="Lesson navigation">
@@ -327,39 +356,40 @@
       <a href="#b1"  data-dot="1"></a><a href="#b2"  data-dot="2"></a><a href="#b3"  data-dot="3"></a><a href="#b4"  data-dot="4"></a>
       <a href="#b5"  data-dot="5"></a><a href="#b6"  data-dot="6"></a><a href="#b7"  data-dot="7"></a><a href="#b8"  data-dot="8"></a>
       <a href="#b9"  data-dot="9"></a><a href="#b10" data-dot="10"></a><a href="#b11" data-dot="11"></a><a href="#b12" data-dot="12"></a>
-      <a href="#b13" data-dot="13"></a><a href="#b14" data-dot="14"></a><a href="#b15" data-dot="15"></a><a href="#b16" data-dot="16"></a>
-      <a href="#b17" data-dot="17"></a><a href="#b18" data-dot="18"></a>
+      <a href="#b13" data-dot="13"></a><a href="#b14" data-dot="14"></a><a href="#b15" data-dot="15"></a>
     </nav>
 
     <!-- B1 · Sunny hello hero + orange chants -->
     <section class="hero" id="b1">
       <div class="topline">
-        <span class="pill">Julia Lushina</span><span class="pill">75 min</span><span class="pill">Pre-A1 · Lesson 2</span><span class="pill">☀ sunny day</span>
+        <span class="pill">Julia Lushina</span><span class="pill">70 min</span><span class="pill">Pre-A1 · Lesson 2</span><span class="pill">☀ verbs &amp; play</span>
       </div>
       <img class="hero-banner" src="../julia-vampire/0fd0274c-61f8-467d-9b99-93c5083753b6.webp" alt="Hello Julia">
       <h1>Hello again, Julia!</h1>
-      <p class="tiny">tap · listen · look · say · sing along ☀</p>
+      <p class="tiny">jump · run · play · sing · dance · I CAN do it! ☀</p>
       <div class="chants" aria-label="orange chants — tap to hear">
-        <button class="chant"      data-say="Yay-yay sunshine!"><span class="ico">☀</span>yay-yay sunshine!</button>
-        <button class="chant rose" data-say="Woo-hoo colors!"><span class="ico">🌈</span>woo-hoo colors!</button>
-        <button class="chant gold" data-say="One two three!"><span class="ico">🔢</span>one · two · three!</button>
-        <button class="chant mint" data-say="I love my family!"><span class="ico">💛</span>I LOVE my family!</button>
+        <button class="chant"      data-say="I can jump!"><span class="ico">🦘</span>I can jump!</button>
+        <button class="chant rose" data-say="I can play!"><span class="ico">🎸</span>I can play!</button>
+        <button class="chant gold" data-say="I can dance!"><span class="ico">💃</span>I can dance!</button>
+        <button class="chant mint" data-say="I can sing!"><span class="ico">🎤</span>I can sing!</button>
       </div>
     </section>
 
-    <!-- B2 · KEY VOCABULARY · sunny words -->
+    <!-- B2 · KEY VOCABULARY · verbs + music -->
     <section class="section" id="sec-vocab">
-      <div class="section-head"><h2>☀ Magic words · tap to see meaning!</h2><p class="tiny">10 sunny words</p></div>
+      <div class="section-head"><h2>☀ Magic words · tap to see meaning!</h2><p class="tiny">12 action &amp; music words</p></div>
       <div class="lab-vocab-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;padding:0 14px">
-        <div class="vocab-card" data-back="солнце · a big sun"><span style="font-size:1.8rem">☀</span><br><strong>sun</strong></div>
-        <div class="vocab-card" data-back="радуга · a rainbow"><span style="font-size:1.8rem">🌈</span><br><strong>rainbow</strong></div>
-        <div class="vocab-card" data-back="красный · red apple"><span style="font-size:1.8rem">🔴</span><br><strong>red</strong></div>
-        <div class="vocab-card" data-back="жёлтый · yellow sun"><span style="font-size:1.8rem">🟡</span><br><strong>yellow</strong></div>
-        <div class="vocab-card" data-back="один · one bat"><span style="font-size:1.8rem">1️⃣</span><br><strong>one</strong></div>
-        <div class="vocab-card" data-back="два · two bats"><span style="font-size:1.8rem">2️⃣</span><br><strong>two</strong></div>
-        <div class="vocab-card" data-back="мама"><span style="font-size:1.8rem">👩</span><br><strong>mom</strong></div>
-        <div class="vocab-card" data-back="папа"><span style="font-size:1.8rem">👨</span><br><strong>dad</strong></div>
-        <div class="vocab-card" data-back="счастливый · I am happy!"><span style="font-size:1.8rem">😊</span><br><strong>happy</strong></div>
+        <div class="vocab-card" data-back="прыгать · jump like a monkey!"><span style="font-size:1.8rem">🦘</span><br><strong>jump</strong></div>
+        <div class="vocab-card" data-back="бегать · run fast!"><span style="font-size:1.8rem">🏃‍♀️</span><br><strong>run</strong></div>
+        <div class="vocab-card" data-back="играть · play the guitar / play football"><span style="font-size:1.8rem">🎮</span><br><strong>play</strong></div>
+        <div class="vocab-card" data-back="петь · sing a song"><span style="font-size:1.8rem">🎤</span><br><strong>sing</strong></div>
+        <div class="vocab-card" data-back="танцевать · dance!"><span style="font-size:1.8rem">💃</span><br><strong>dance</strong></div>
+        <div class="vocab-card" data-back="хлопать · clap-clap!"><span style="font-size:1.8rem">👏</span><br><strong>clap</strong></div>
+        <div class="vocab-card" data-back="гитара · play the guitar"><span style="font-size:1.8rem">🎸</span><br><strong>guitar</strong></div>
+        <div class="vocab-card" data-back="барабаны · play the drums"><span style="font-size:1.8rem">🥁</span><br><strong>drums</strong></div>
+        <div class="vocab-card" data-back="пианино · play the piano"><span style="font-size:1.8rem">🎹</span><br><strong>piano</strong></div>
+        <div class="vocab-card" data-back="футбол · play football"><span style="font-size:1.8rem">⚽</span><br><strong>football</strong></div>
+        <div class="vocab-card" data-back="могу · I CAN do it!"><span style="font-size:1.8rem">💪</span><br><strong>can</strong></div>
         <div class="vocab-card" data-back="летучая мышка"><span style="font-size:1.8rem">🦇</span><br><strong>bat</strong></div>
       </div>
     </section>
@@ -378,223 +408,269 @@
     </style>
     <script>document.querySelectorAll('#sec-vocab .vocab-card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flipped')));</script>
 
-    <!-- B3 · Sunny warm-up · 2 videos -->
+    <!-- B3 · Warm-up song -->
     <section class="section" id="b3">
-      <div class="section-head"><span class="time">0 – 5 min</span><h2>Sunny warm-up · sing &amp; move ☀</h2><p class="tiny">two songs · sing along · clap · jump</p></div>
-      <div class="video-shell" data-song="WARMUP_1"></div>
-      <div class="video-shell" data-song="WARMUP_2"></div>
+      <div class="section-head"><span class="time">0 – 5 min</span><h2>Sunny warm-up ☀</h2><p class="tiny">sing along · get moving</p></div>
+      <div class="video-shell" data-song="WARMUP"></div>
     </section>
 
-    <!-- B4 · COLORS · big color chips -->
-    <section class="section" id="b4">
-      <div class="section-head"><span class="time">5 – 10 min</span><h2>🌈 Colors · big cards</h2><p class="tiny">tap · say the color · point around the room</p></div>
+    <!-- ============================================================== -->
+    <!-- РАЗМИНКА-ПОВТОРЕНИЕ · quick recap · colors + numbers + family + feelings -->
+    <!-- (Юля всё это уже знает — быстро освежаем, дальше основной урок) -->
+    <!-- ============================================================== -->
+
+    <!-- B4 · RECAP: colors + numbers + family (compact, 3×4 tiny cards) -->
+    <section class="section recap" id="b4">
+      <div class="section-head"><span class="time">5 – 9 min</span><h2>☀ Быстрое повторение · colors · numbers · family</h2><p class="tiny">Julia уже это знает — просто освежаем, поехали дальше!</p></div>
+
+      <h3 style="text-align:left;color:var(--ink-soft);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em">🌈 Colors — 4 quick</h3>
       <div class="grid four">
-        <button class="card color-chip" style="--emoji-bg:#FF6B6B" data-say="Red"><span class="emoji">🔴</span>red</button>
-        <button class="card color-chip" style="--emoji-bg:#FFA94D" data-say="Orange"><span class="emoji">🟠</span>orange</button>
-        <button class="card color-chip" style="--emoji-bg:#FFD43B" data-say="Yellow"><span class="emoji">🟡</span>yellow</button>
-        <button class="card color-chip" style="--emoji-bg:#95E484" data-say="Green"><span class="emoji">🟢</span>green</button>
+        <button class="card mini color-chip" style="--emoji-bg:#FF6B6B" data-say="Red"><span class="emoji">🔴</span>red</button>
+        <button class="card mini color-chip" style="--emoji-bg:#FFD43B" data-say="Yellow"><span class="emoji">🟡</span>yellow</button>
+        <button class="card mini color-chip" style="--emoji-bg:#74C0FC" data-say="Blue"><span class="emoji">🔵</span>blue</button>
+        <button class="card mini color-chip" style="--emoji-bg:#95E484" data-say="Green"><span class="emoji">🟢</span>green</button>
       </div>
+
+      <h3 style="text-align:left;color:var(--ink-soft);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em">🔢 Numbers — 5 quick</h3>
+      <div class="grid five">
+        <button class="card mini" data-say="One"><span class="emoji">1️⃣</span>one</button>
+        <button class="card mini" data-say="Two"><span class="emoji">2️⃣</span>two</button>
+        <button class="card mini" data-say="Three"><span class="emoji">3️⃣</span>three</button>
+        <button class="card mini" data-say="Four"><span class="emoji">4️⃣</span>four</button>
+        <button class="card mini" data-say="Five"><span class="emoji">5️⃣</span>five</button>
+      </div>
+
+      <h3 style="text-align:left;color:var(--ink-soft);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em">👨‍👩‍👧 Family — 4 quick</h3>
       <div class="grid four">
-        <button class="card color-chip" style="--emoji-bg:#74C0FC" data-say="Blue"><span class="emoji">🔵</span>blue</button>
-        <button class="card color-chip" style="--emoji-bg:#B197FC" data-say="Purple"><span class="emoji">🟣</span>purple</button>
-        <button class="card color-chip" style="--emoji-bg:#F8C8D8" data-say="Pink"><span class="emoji">🩷</span>pink</button>
-        <button class="card color-chip" style="--emoji-bg:#212529;color:#fff" data-say="Black"><span class="emoji" style="color:white">⚫</span>black</button>
+        <button class="card mini pink"  data-say="Mom"><span class="emoji">👩</span>mom</button>
+        <button class="card mini lav"   data-say="Dad"><span class="emoji">👨</span>dad</button>
+        <button class="card mini gold"  data-say="Sister"><span class="emoji">👧</span>sister</button>
+        <button class="card mini peach" data-say="Baby"><span class="emoji">👶</span>baby</button>
       </div>
-      <div class="teacher lilac">
-        <div>Point &amp; say</div>
-        <div><span>The sun is YELLOW</span><span>The apple is RED</span><span>The bat is BLACK</span><span>Julia's dress — what color?</span></div>
+
+      <h3 style="text-align:left;color:var(--ink-soft);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em">😊 Feelings — 4 quick</h3>
+      <div class="grid four">
+        <button class="card mini gold"  data-say="Happy"><span class="emoji">😊</span>happy</button>
+        <button class="card mini mint"  data-say="Sad"><span class="emoji">😢</span>sad</button>
+        <button class="card mini pink"  data-say="Angry"><span class="emoji">😠</span>angry</button>
+        <button class="card mini peach" data-say="Sleepy"><span class="emoji">😴</span>sleepy</button>
       </div>
     </section>
 
-    <!-- B5 · ★ RAINBOW SONG -->
-    <section class="section" id="b5">
-      <div class="section-head"><span class="time">10 – 14 min</span><h2>★ Rainbow song</h2><p class="tiny">watch · sing · point to the colors</p></div>
-      <div class="video-shell" data-song="RAINBOW"></div>
+    <!-- B5 · RECAP · mini-quiz Show me -->
+    <section class="section recap" id="b5">
+      <div class="section-head"><span class="time">9 – 12 min</span><h2>☀ Mini-quiz повторения</h2><p class="tiny" id="recapPrompt">Show me red</p></div>
+      <div class="grid four" id="recapChoices">
+        <button class="card mini quiz-recap" data-answer="red"><span class="emoji">🔴</span>red</button>
+        <button class="card mini quiz-recap" data-answer="yellow"><span class="emoji">🟡</span>yellow</button>
+        <button class="card mini quiz-recap" data-answer="blue"><span class="emoji">🔵</span>blue</button>
+        <button class="card mini quiz-recap" data-answer="green"><span class="emoji">🟢</span>green</button>
+        <button class="card mini quiz-recap" data-answer="three"><span class="emoji">3️⃣</span>three</button>
+        <button class="card mini quiz-recap" data-answer="five"><span class="emoji">5️⃣</span>five</button>
+        <button class="card mini quiz-recap" data-answer="mom"><span class="emoji">👩</span>mom</button>
+        <button class="card mini quiz-recap" data-answer="dad"><span class="emoji">👨</span>dad</button>
+        <button class="card mini quiz-recap" data-answer="happy"><span class="emoji">😊</span>happy</button>
+        <button class="card mini quiz-recap" data-answer="sad"><span class="emoji">😢</span>sad</button>
+        <button class="card mini quiz-recap" data-answer="baby"><span class="emoji">👶</span>baby</button>
+        <button class="card mini quiz-recap" data-answer="sister"><span class="emoji">👧</span>sister</button>
+      </div>
+      <div class="grid two">
+        <button class="btn mint" id="recapBtn">next round</button>
+        <div class="score" id="recapScore">stars: 0</div>
+      </div>
     </section>
 
-    <!-- B6 · The vampire's colors — apply to characters -->
+    <!-- ============================================================== -->
+    <!-- ⭐ ОСНОВНАЯ ЧАСТЬ · ACTION VERBS + MUSIC + I CAN                -->
+    <!-- ============================================================== -->
+
+    <!-- B6 · ACTION VERBS · 12 big cards -->
     <section class="section" id="b6">
-      <div class="section-head"><span class="time">14 – 18 min</span><h2>The vampire's colors</h2><p class="tiny">what color is the vampire? Julia? the bat?</p></div>
-      <img class="scene-banner" src="../julia-vampire/405ca134-b46b-4a4c-b6d0-be7024b330fd.webp" alt="Julia and vampire standing together" data-say="Julia is pink. The vampire is black and red.">
-      <div class="grid three">
-        <button class="card pink"  data-say="Julia is pink"><span class="emoji">🧒</span>Julia is PINK</button>
-        <button class="card lav"   data-say="The vampire is black"><span class="emoji">🧛‍♂️</span>Vampire is BLACK</button>
-        <button class="card peach" data-say="The bat is grey"><span class="emoji">🦇</span>The bat is GREY</button>
-        <button class="card gold"  data-say="The sun is yellow"><span class="emoji">☀</span>Sun is YELLOW</button>
-        <button class="card mint"  data-say="The castle is white"><span class="emoji">🏰</span>Castle is WHITE</button>
-        <button class="card pink"  data-say="The rose is red"><span class="emoji">🌹</span>Rose is RED</button>
+      <div class="section-head"><span class="time">12 – 18 min</span><h2>⚡ Action verbs · 12 big cards</h2><p class="tiny">tap each verb · do the action! · say it loud</p></div>
+      <div class="grid four">
+        <button class="card verb pink" data-say="Jump"><span class="emoji">🦘</span><span class="verb-text">jump</span></button>
+        <button class="card verb gold" data-say="Run"><span class="emoji">🏃‍♀️</span><span class="verb-text">run</span></button>
+        <button class="card verb mint" data-say="Walk"><span class="emoji">🚶‍♀️</span><span class="verb-text">walk</span></button>
+        <button class="card verb lav"  data-say="Dance"><span class="emoji">💃</span><span class="verb-text">dance</span></button>
       </div>
-    </section>
-
-    <!-- B7 · NUMBERS 1–10 · big tiles -->
-    <section class="section" id="b7">
-      <div class="section-head"><span class="time">18 – 23 min</span><h2>🔢 Numbers 1–10</h2><p class="tiny">tap each number · count out loud</p></div>
-      <div class="grid five">
-        <button class="num-tile" data-say="One"><div class="n">1</div><div class="w">one</div></button>
-        <button class="num-tile" data-say="Two"><div class="n">2</div><div class="w">two</div></button>
-        <button class="num-tile" data-say="Three"><div class="n">3</div><div class="w">three</div></button>
-        <button class="num-tile" data-say="Four"><div class="n">4</div><div class="w">four</div></button>
-        <button class="num-tile" data-say="Five"><div class="n">5</div><div class="w">five</div></button>
+      <div class="grid four">
+        <button class="card verb peach" data-say="Sing"><span class="emoji">🎤</span><span class="verb-text">sing</span></button>
+        <button class="card verb pink"  data-say="Clap"><span class="emoji">👏</span><span class="verb-text">clap</span></button>
+        <button class="card verb gold"  data-say="Stomp"><span class="emoji">🦶</span><span class="verb-text">stomp</span></button>
+        <button class="card verb mint"  data-say="Spin"><span class="emoji">🌀</span><span class="verb-text">spin</span></button>
       </div>
-      <div class="grid five">
-        <button class="num-tile" data-say="Six"><div class="n">6</div><div class="w">six</div></button>
-        <button class="num-tile" data-say="Seven"><div class="n">7</div><div class="w">seven</div></button>
-        <button class="num-tile" data-say="Eight"><div class="n">8</div><div class="w">eight</div></button>
-        <button class="num-tile" data-say="Nine"><div class="n">9</div><div class="w">nine</div></button>
-        <button class="num-tile" data-say="Ten"><div class="n">10</div><div class="w">ten</div></button>
+      <div class="grid four">
+        <button class="card verb lav"   data-say="Sit down"><span class="emoji">🪑</span><span class="verb-text">sit</span></button>
+        <button class="card verb peach" data-say="Stand up"><span class="emoji">🧍‍♀️</span><span class="verb-text">stand</span></button>
+        <button class="card verb pink"  data-say="Sleep"><span class="emoji">😴</span><span class="verb-text">sleep</span></button>
+        <button class="card verb gold"  data-say="Fly"><span class="emoji">🦇</span><span class="verb-text">fly</span></button>
       </div>
       <div class="teacher blush">
-        <div>Count with Julia</div>
-        <div><span>1 · one apple 🍎</span><span>2 · two bats 🦇🦇</span><span>3 · three cakes 🍰🍰🍰</span><span>...up to 10!</span></div>
+        <div>Do it with Julia · TPR round</div>
+        <div><span>JUMP! 🦘</span><span>RUN! 🏃‍♀️</span><span>DANCE! 💃</span><span>CLAP! 👏</span><span>SPIN! 🌀</span><span>SIT! 🪑</span><span>STAND! 🧍‍♀️</span><span>SLEEP! 😴</span></div>
       </div>
     </section>
 
-    <!-- B8 · ★ NUMBERS song -->
+    <!-- B7 · ★ ACTION SONG (Animal Actions) -->
+    <section class="section" id="b7">
+      <div class="section-head"><span class="time">18 – 22 min</span><h2>★ Song · Animal Actions</h2><p class="tiny">watch · copy every action</p></div>
+      <div class="video-shell" data-song="ACTIONS"></div>
+    </section>
+
+    <!-- B8 · JUMP LIKE A MONKEY · animals + verbs -->
     <section class="section" id="b8">
-      <div class="section-head"><span class="time">23 – 27 min</span><h2>★ Numbers song</h2><p class="tiny">watch · count · clap for every number</p></div>
-      <div class="video-shell" data-song="NUMBERS"></div>
-    </section>
-
-    <!-- B9 · How many? Count bats + friends -->
-    <section class="section" id="b9">
-      <div class="section-head"><span class="time">27 – 31 min</span><h2>How many?</h2><p class="tiny">tap · say the number</p></div>
+      <div class="section-head"><span class="time">22 – 27 min</span><h2>🐒 Like an animal!</h2><p class="tiny">tap · make the sound · do the action</p></div>
       <div class="grid three">
-        <button class="card gold"  data-say="Two bats"><span class="emoji">🦇🦇</span>2 bats</button>
-        <button class="card pink"  data-say="Three cakes"><span class="emoji">🍰🍰🍰</span>3 cakes</button>
-        <button class="card mint"  data-say="Four apples"><span class="emoji">🍎🍎🍎🍎</span>4 apples</button>
-        <button class="card lav"   data-say="Five stars"><span class="emoji">⭐⭐⭐⭐⭐</span>5 stars</button>
-        <button class="card peach" data-say="Six friends"><span class="emoji">👫👭👬</span>6 friends</button>
-        <button class="card gold"  data-say="Ten fingers"><span class="emoji">🖐🖐</span>10 fingers</button>
-      </div>
-    </section>
-
-    <!-- B10 · FAMILY · big vampire family -->
-    <section class="section" id="b10">
-      <div class="section-head"><span class="time">31 – 36 min</span><h2>👨‍👩‍👧 Family · vampire family</h2><p class="tiny">tap each · say who they are</p></div>
-      <img class="scene-banner" src="../julia-vampire/ba7d65fa-c626-4fde-99c9-3b6d810462b6.webp" alt="Cute vampire family">
-      <div class="grid five">
-        <button class="card pink"  data-say="Mom"><span class="emoji">👩</span>mom</button>
-        <button class="card lav"   data-say="Dad"><span class="emoji">👨</span>dad</button>
-        <button class="card gold"  data-say="Sister"><span class="emoji">👧</span>sister</button>
-        <button class="card mint"  data-say="Brother"><span class="emoji">👦</span>brother</button>
-        <button class="card peach" data-say="Baby"><span class="emoji">👶</span>baby</button>
+        <button class="card verb gold"  data-say="Jump like a monkey"><span class="emoji">🐒</span><span class="verb-text">jump like a monkey</span></button>
+        <button class="card verb mint"  data-say="Swim like a fish"><span class="emoji">🐟</span><span class="verb-text">swim like a fish</span></button>
+        <button class="card verb lav"   data-say="Fly like a bat"><span class="emoji">🦇</span><span class="verb-text">fly like a bat</span></button>
+        <button class="card verb pink"  data-say="Run like a cat"><span class="emoji">🐈</span><span class="verb-text">run like a cat</span></button>
+        <button class="card verb peach" data-say="Hop like a bunny"><span class="emoji">🐰</span><span class="verb-text">hop like a bunny</span></button>
+        <button class="card verb gold"  data-say="Roar like a lion"><span class="emoji">🦁</span><span class="verb-text">roar like a lion</span></button>
       </div>
       <div class="teacher lilac">
-        <div>Point &amp; say</div>
-        <div><span>This is my MOM</span><span>This is my DAD</span><span>This is my SISTER</span><span>This is my BROTHER</span><span>This is a BABY</span></div>
+        <div>Teacher says → Julia does!</div>
+        <div><span>Jump like a monkey!</span><span>Swim like a fish!</span><span>Fly like a bat!</span><span>Roar like a LION! 🦁</span></div>
       </div>
     </section>
 
-    <!-- B11 · ★ FINGER FAMILY song -->
-    <section class="section" id="b11">
-      <div class="section-head"><span class="time">36 – 41 min</span><h2>★ Finger family song</h2><p class="tiny">watch · sing · wiggle your fingers 🖐</p></div>
-      <div class="video-shell" data-song="FAMILY"></div>
-    </section>
-
-    <!-- B12 · MY FAMILY · sentences -->
-    <section class="section" id="b12">
-      <div class="section-head"><span class="time">41 – 45 min</span><h2>My family</h2><p class="tiny">Julia says · repeat after her</p></div>
-      <div class="grid two">
-        <div class="teacher">
-          <div>Julia says</div>
-          <div><span>This is my mom.</span><span>This is my dad.</span><span>This is my sister.</span><span>I love my family!</span></div>
-        </div>
-        <div class="teacher lilac">
-          <div>Now YOU say</div>
-          <div><span>This is MY mom!</span><span>This is MY dad!</span><span>This is MY family!</span></div>
-        </div>
-      </div>
-      <div class="grid two">
-        <button class="card pink" data-say="I love my mom"><span class="emoji">💛👩</span>I love my mom</button>
-        <button class="card lav"  data-say="I love my dad"><span class="emoji">💛👨</span>I love my dad</button>
-      </div>
-    </section>
-
-    <!-- B13 · FEELINGS · happy / sad / angry -->
-    <section class="section" id="b13">
-      <div class="section-head"><span class="time">45 – 49 min</span><h2>How do I feel?</h2><p class="tiny">tap · make the face · say the word</p></div>
+    <!-- B9 · MUSIC INSTRUMENTS · 8 cards (Julia LOVES music) -->
+    <section class="section" id="b9">
+      <div class="section-head"><span class="time">27 – 33 min</span><h2>🎵 Music instruments · 8 cards</h2><p class="tiny">tap · pretend to play · make the sound</p></div>
+      <img class="poster-banner" src="../julia-vampire/bed900af-871a-4f94-bddb-2d52640dd2df.webp" alt="Music instruments cards">
       <div class="grid four">
-        <button class="card gold"  data-say="Happy"><span class="emoji">😊</span>happy</button>
-        <button class="card mint"  data-say="Sad"><span class="emoji">😢</span>sad</button>
-        <button class="card pink"  data-say="Angry"><span class="emoji">😠</span>angry</button>
-        <button class="card peach" data-say="Sleepy"><span class="emoji">😴</span>sleepy</button>
+        <button class="card pink"  data-say="Piano"><span class="emoji">🎹</span>piano</button>
+        <button class="card mint"  data-say="Drums"><span class="emoji">🥁</span>drums</button>
+        <button class="card gold"  data-say="Guitar"><span class="emoji">🎸</span>guitar</button>
+        <button class="card peach" data-say="Violin"><span class="emoji">🎻</span>violin</button>
+      </div>
+      <div class="grid four">
+        <button class="card lav"   data-say="Flute"><span class="emoji">🪈</span>flute</button>
+        <button class="card pink"  data-say="Trumpet"><span class="emoji">🎺</span>trumpet</button>
+        <button class="card mint"  data-say="Xylophone"><span class="emoji">🎼</span>xylophone</button>
+        <button class="card gold"  data-say="Tambourine"><span class="emoji">🪘</span>tambourine</button>
       </div>
       <div class="teacher blush">
-        <div>Ask &amp; answer</div>
-        <div><span>Are you happy? — YES, I am!</span><span>Are you sad? — NO, I am NOT!</span></div>
+        <div>Pretend &amp; play · mime the sound</div>
+        <div><span>🎸 strum-strum</span><span>🥁 boom-boom</span><span>🎹 ping-ping</span><span>🎺 toot-toot</span><span>🎻 weee-eee</span></div>
       </div>
     </section>
 
-    <!-- B14 · ★ IF YOU'RE HAPPY song -->
-    <section class="section" id="b14">
-      <div class="section-head"><span class="time">49 – 53 min</span><h2>★ If you're happy song</h2><p class="tiny">clap · stomp · shout HOORAY 🎉</p></div>
-      <div class="video-shell" data-song="HAPPY"></div>
-    </section>
-
-    <!-- B15 · Dance with the vampires · reuse from lesson 1 -->
-    <section class="section" id="b15">
-      <div class="section-head"><span class="time">53 – 58 min</span><h2>Dance with us!</h2><p class="tiny">we dance · we sing · together</p></div>
-      <img class="scene-banner" src="../julia-vampire/e1406aa5-5ea6-4fd5-94f4-f6da3fd13815%20(1).png" alt="Julia and vampire dancing with music notes">
-      <div class="grid two">
-        <button class="card pink" data-say="We dance!"><span class="emoji">💃🕺</span>We dance!</button>
-        <button class="card mint" data-say="We sing!"><span class="emoji">🎤</span>We sing!</button>
+    <!-- B10 · «I play the guitar» — verb + instrument -->
+    <section class="section" id="b10">
+      <div class="section-head"><span class="time">33 – 38 min</span><h2>🎸 I PLAY the guitar</h2><p class="tiny">verb «play» + music</p></div>
+      <img class="poster-banner" src="../julia-vampire/0b7e5298-9717-4c39-8a75-1a58322b90df.webp" alt="Julia and vampire playing music">
+      <div class="grid three">
+        <button class="card verb lav"  data-say="I play the guitar"><span class="emoji">🎸</span><span class="verb-text">I play the guitar</span></button>
+        <button class="card verb pink" data-say="I play the piano"><span class="emoji">🎹</span><span class="verb-text">I play the piano</span></button>
+        <button class="card verb mint" data-say="I play the drums"><span class="emoji">🥁</span><span class="verb-text">I play the drums</span></button>
+        <button class="card verb gold" data-say="I play the violin"><span class="emoji">🎻</span><span class="verb-text">I play the violin</span></button>
+        <button class="card verb peach" data-say="I play the flute"><span class="emoji">🪈</span><span class="verb-text">I play the flute</span></button>
+        <button class="card verb lav"  data-say="I play music"><span class="emoji">🎵</span><span class="verb-text">I play music</span></button>
       </div>
-      <div class="video-shell" data-song="DANCE"></div>
-    </section>
-
-    <!-- B16 · Show me quiz — colors + numbers + family -->
-    <section class="section" id="b16">
-      <div class="section-head"><span class="time">58 – 64 min</span><h2>Show me</h2><p class="tiny" id="quizPrompt">Show me red</p></div>
-      <div class="grid four" id="quizChoices">
-        <button class="card quiz" data-answer="red"><span class="emoji">🔴</span>red</button>
-        <button class="card quiz" data-answer="yellow"><span class="emoji">🟡</span>yellow</button>
-        <button class="card quiz" data-answer="green"><span class="emoji">🟢</span>green</button>
-        <button class="card quiz" data-answer="blue"><span class="emoji">🔵</span>blue</button>
-        <button class="card quiz" data-answer="one"><span class="emoji">1️⃣</span>one</button>
-        <button class="card quiz" data-answer="two"><span class="emoji">2️⃣</span>two</button>
-        <button class="card quiz" data-answer="five"><span class="emoji">5️⃣</span>five</button>
-        <button class="card quiz" data-answer="ten"><span class="emoji">🔟</span>ten</button>
-        <button class="card quiz" data-answer="mom"><span class="emoji">👩</span>mom</button>
-        <button class="card quiz" data-answer="dad"><span class="emoji">👨</span>dad</button>
-        <button class="card quiz" data-answer="sister"><span class="emoji">👧</span>sister</button>
-        <button class="card quiz" data-answer="baby"><span class="emoji">👶</span>baby</button>
-      </div>
-      <div class="grid two">
-        <button class="btn mint" id="quizBtn">new round</button>
-        <div class="score" id="score">stars: 0</div>
+      <div class="teacher lilac">
+        <div>Rule · magic word PLAY</div>
+        <div><span>I PLAY + guitar / piano / drums / music</span><span>the vampire PLAYS guitar</span><span>Julia PLAYS piano</span></div>
       </div>
     </section>
 
-    <!-- B17 · Talk! Simple dialogue -->
-    <section class="section" id="b17">
-      <div class="section-head"><span class="time">64 – 70 min</span><h2>Talk! · "What color is it?"</h2><p class="tiny">ask &amp; answer with the vampire</p></div>
+    <!-- B11 · «I play football» — sports & games (verb «play» keeps going) -->
+    <section class="section" id="b11">
+      <div class="section-head"><span class="time">38 – 43 min</span><h2>⚽ I PLAY football</h2><p class="tiny">verb «play» + games &amp; sports</p></div>
+      <div class="grid three">
+        <button class="card verb gold" data-say="I play football"><span class="emoji">⚽</span><span class="verb-text">I play football</span></button>
+        <button class="card verb pink" data-say="I play tag"><span class="emoji">🏃‍♀️</span><span class="verb-text">I play tag</span></button>
+        <button class="card verb mint" data-say="I play hide-and-seek"><span class="emoji">🙈</span><span class="verb-text">I play hide-and-seek</span></button>
+        <button class="card verb lav"  data-say="I play with the ball"><span class="emoji">⚾</span><span class="verb-text">I play with a ball</span></button>
+        <button class="card verb peach" data-say="I play with dolls"><span class="emoji">🪆</span><span class="verb-text">I play with dolls</span></button>
+        <button class="card verb gold" data-say="I play with the vampire"><span class="emoji">🧛‍♂️</span><span class="verb-text">I play with the vampire</span></button>
+      </div>
+      <div class="teacher blush">
+        <div>Same magic word PLAY · works with music AND games!</div>
+        <div><span>I play the guitar 🎸</span><span>I play football ⚽</span><span>I play with the vampire 🧛‍♂️</span></div>
+      </div>
+    </section>
+
+    <!-- B12 · «I CAN…» hero pills — golden phrases -->
+    <section class="section" id="b12">
+      <div class="section-head"><span class="time">43 – 49 min</span><h2>💪 I CAN…</h2><p class="tiny">golden phrase · say what YOU can do</p></div>
+      <div class="ican-row">
+        <button class="ican-pill" data-say="I can jump"><span class="ico">🦘</span><span class="txt">I can jump</span></button>
+        <button class="ican-pill" data-say="I can sing"><span class="ico">🎤</span><span class="txt">I can sing</span></button>
+        <button class="ican-pill" data-say="I can dance"><span class="ico">💃</span><span class="txt">I can dance</span></button>
+        <button class="ican-pill" data-say="I can play the guitar"><span class="ico">🎸</span><span class="txt">I can play the guitar</span></button>
+        <button class="ican-pill" data-say="I can play football"><span class="ico">⚽</span><span class="txt">I can play football</span></button>
+        <button class="ican-pill" data-say="I can fly like a bat"><span class="ico">🦇</span><span class="txt">I can fly like a bat</span></button>
+      </div>
       <div class="grid two">
         <div class="teacher">
-          <div>Friend asks</div>
-          <div><span>Hi Julia!</span><span>What color is this?</span><span>How many bats?</span><span>Who is this?</span><span>Are you happy?</span></div>
+          <div>Teacher asks</div>
+          <div><span>Can you jump?</span><span>Can you sing?</span><span>Can you play the guitar?</span><span>Can you dance?</span><span>Can you fly like a bat?</span></div>
         </div>
         <div class="teacher lilac">
           <div>Julia answers</div>
-          <div><span>Hi!</span><span>It is RED · YELLOW · BLUE...</span><span>Two bats! 🦇🦇</span><span>This is my MOM · DAD · SISTER!</span><span>YES, I am HAPPY!</span></div>
+          <div><span>YES, I can!</span><span>YES, I can jump!</span><span>YES, I can sing!</span><span>NO, I can't! 😜</span></div>
         </div>
-      </div>
-      <div class="grid three">
-        <button class="card lav"   data-say="It is red"><span class="emoji">🔴</span>It is red</button>
-        <button class="card pink"  data-say="It is yellow"><span class="emoji">🟡</span>It is yellow</button>
-        <button class="card mint"  data-say="It is blue"><span class="emoji">🔵</span>It is blue</button>
-      </div>
-      <div class="teacher blush">
-        <div>Role-play · swap parts</div>
-        <div><span>Teacher: "What color is this?"</span><span>Julia: "It is ___."</span><span>Now Julia asks!</span></div>
       </div>
     </section>
 
-    <!-- B18 · Great job -->
-    <section class="section finish" id="b18">
-      <h2>Great job, Julia!</h2>
-      <p class="tiny">Sunny day, colors, family — bye bye ☀🌈💛</p>
-      <img class="scene-banner tall" src="../julia-vampire/ba7d65fa-c626-4fde-99c9-3b6d810462b6.webp" alt="Cute vampire family" style="margin-top:18px">
-      <div class="grid two" style="margin-top: 18px;">
+    <!-- B13 · Head, Shoulders, Knees & Toes — action song classic -->
+    <section class="section" id="b13">
+      <div class="section-head"><span class="time">49 – 53 min</span><h2>★ Head · Shoulders · Knees &amp; Toes</h2><p class="tiny">the classic — touch every part!</p></div>
+      <div class="video-shell" data-song="HEAD_SHLDRS"></div>
+    </section>
+
+    <!-- B14 · Talk! "What can you do?" -->
+    <section class="section" id="b14">
+      <div class="section-head"><span class="time">53 – 60 min</span><h2>Talk! · "What can you do?"</h2><p class="tiny">ask &amp; answer with the vampire</p></div>
+      <img class="scene-banner" src="../julia-vampire/405ca134-b46b-4a4c-b6d0-be7024b330fd.webp" alt="Julia and vampire standing together">
+      <div class="grid two">
+        <div class="teacher">
+          <div>Vampire asks</div>
+          <div><span>Hi Julia!</span><span>What can you do?</span><span>Can you play the piano?</span><span>Can you jump like a monkey?</span><span>Do you like music?</span></div>
+        </div>
+        <div class="teacher lilac">
+          <div>Julia answers</div>
+          <div><span>Hi vampire!</span><span>I can sing · dance · play!</span><span>YES, I can play the piano!</span><span>YES! Watch — 🦘 jump!</span><span>YES, I LOVE music!</span></div>
+        </div>
+      </div>
+      <div class="grid three">
+        <button class="card verb lav"  data-say="I can play the guitar"><span class="emoji">🎸</span><span class="verb-text">I can play guitar</span></button>
+        <button class="card verb pink" data-say="I can sing a song"><span class="emoji">🎤</span><span class="verb-text">I can sing</span></button>
+        <button class="card verb mint" data-say="I can jump high"><span class="emoji">🦘</span><span class="verb-text">I can jump high</span></button>
+      </div>
+      <div class="teacher blush">
+        <div>Role-play · swap parts</div>
+        <div><span>Vampire: "What can you do?"</span><span>Julia: "I can ___!"</span><span>Now Julia asks!</span></div>
+      </div>
+    </section>
+
+    <!-- B15 · Quiz Show me the verb + dance finale -->
+    <section class="section" id="b15">
+      <div class="section-head"><span class="time">60 – 68 min</span><h2>🎯 Show me the verb!</h2><p class="tiny" id="verbPrompt">Show me jump</p></div>
+      <div class="grid four" id="verbChoices">
+        <button class="card verb quiz-verb" data-answer="jump"><span class="emoji">🦘</span><span class="verb-text">jump</span></button>
+        <button class="card verb quiz-verb" data-answer="run"><span class="emoji">🏃‍♀️</span><span class="verb-text">run</span></button>
+        <button class="card verb quiz-verb" data-answer="dance"><span class="emoji">💃</span><span class="verb-text">dance</span></button>
+        <button class="card verb quiz-verb" data-answer="sing"><span class="emoji">🎤</span><span class="verb-text">sing</span></button>
+        <button class="card verb quiz-verb" data-answer="play the guitar"><span class="emoji">🎸</span><span class="verb-text">play the guitar</span></button>
+        <button class="card verb quiz-verb" data-answer="play the piano"><span class="emoji">🎹</span><span class="verb-text">play the piano</span></button>
+        <button class="card verb quiz-verb" data-answer="play football"><span class="emoji">⚽</span><span class="verb-text">play football</span></button>
+        <button class="card verb quiz-verb" data-answer="fly"><span class="emoji">🦇</span><span class="verb-text">fly</span></button>
+        <button class="card verb quiz-verb" data-answer="jump like a monkey"><span class="emoji">🐒</span><span class="verb-text">jump like a monkey</span></button>
+        <button class="card verb quiz-verb" data-answer="swim like a fish"><span class="emoji">🐟</span><span class="verb-text">swim like a fish</span></button>
+        <button class="card verb quiz-verb" data-answer="clap"><span class="emoji">👏</span><span class="verb-text">clap</span></button>
+        <button class="card verb quiz-verb" data-answer="sleep"><span class="emoji">😴</span><span class="verb-text">sleep</span></button>
+      </div>
+      <div class="grid two">
+        <button class="btn mint" id="verbBtn">next round</button>
+        <div class="score" id="verbScore">stars: 0</div>
+      </div>
+
+      <h3 style="margin-top:12px">🎉 Great job, Julia!</h3>
+      <p class="tiny">Now let's dance to celebrate ☀</p>
+      <div class="video-shell" data-song="DANCE"></div>
+      <div class="grid two" style="margin-top:12px">
         <a class="btn pink" href="#b1">↻ start again</a>
         <button class="btn mint" id="starsBtn">🎉 fireworks</button>
       </div>
@@ -626,15 +702,21 @@
     }
     document.querySelectorAll("[data-song]").forEach(el => injectSong(el, el.dataset.song));
 
-    const quizWords = ["red","yellow","green","blue","one","two","five","ten","mom","dad","sister","baby"];
-    const quizPrompt = document.getElementById("quizPrompt");
-    const scoreEl = document.getElementById("score");
-    let quizWord = "red", score = 0;
     const pick = list => list[Math.floor(Math.random() * list.length)];
-    function setQuizWord() {
-      quizWord = pick(quizWords);
-      quizPrompt.textContent = "Show me " + quizWord;
-    }
+
+    // === recap quiz (colors + numbers + family + feelings) ===
+    const recapWords = ["red","yellow","blue","green","three","five","mom","dad","happy","sad","baby","sister"];
+    const recapPrompt = document.getElementById("recapPrompt");
+    const recapScoreEl = document.getElementById("recapScore");
+    let recapWord = "red", recapScore = 0;
+    function setRecapWord() { recapWord = pick(recapWords); recapPrompt.textContent = "Show me " + recapWord; }
+
+    // === main quiz (verbs) ===
+    const verbWords = ["jump","run","dance","sing","play the guitar","play the piano","play football","fly","jump like a monkey","swim like a fish","clap","sleep"];
+    const verbPrompt = document.getElementById("verbPrompt");
+    const verbScoreEl = document.getElementById("verbScore");
+    let verbWord = "jump", verbScore = 0;
+    function setVerbWord() { verbWord = pick(verbWords); verbPrompt.textContent = "Show me " + verbWord; }
 
     function sparkle(count = 22) {
       const palette = ["#FFB07A","#FF9048","#FFE0A6","#FFD4A0","#FFE8CE"];
@@ -681,18 +763,30 @@
       if (sayEl && sayEl.dataset.say) { flash(sayEl, "lit"); say(sayEl.dataset.say); return; }
       const img = e.target.closest("img.poster-banner, img.scene-banner, img.hero-banner, img.sticker");
       if (img && img.alt) { flash(img, "lit"); say(img.alt); return; }
-      const quiz = e.target.closest(".quiz");
-      if (quiz) {
-        const ok = quiz.dataset.answer === quizWord;
-        flash(quiz, ok ? "yes" : "no");
-        if (ok) { score += 1; scoreEl.textContent = "stars: " + score; sparkle(18); say("Yes! " + quizWord); setTimeout(setQuizWord, 700); }
+
+      const recapTile = e.target.closest(".quiz-recap");
+      if (recapTile) {
+        const ok = recapTile.dataset.answer === recapWord;
+        flash(recapTile, ok ? "yes" : "no");
+        if (ok) { recapScore += 1; recapScoreEl.textContent = "stars: " + recapScore; sparkle(14); say("Yes! " + recapWord); setTimeout(setRecapWord, 700); }
+        else { say("Try again"); }
+        return;
+      }
+
+      const verbTile = e.target.closest(".quiz-verb");
+      if (verbTile) {
+        const ok = verbTile.dataset.answer === verbWord;
+        flash(verbTile, ok ? "yes" : "no");
+        if (ok) { verbScore += 1; verbScoreEl.textContent = "stars: " + verbScore; sparkle(20); say("Yes! " + verbWord); setTimeout(setVerbWord, 700); }
         else { say("Try again"); }
       }
     });
 
-    document.getElementById("quizBtn").addEventListener("click", setQuizWord);
+    document.getElementById("recapBtn").addEventListener("click", setRecapWord);
+    document.getElementById("verbBtn").addEventListener("click", setVerbWord);
     document.getElementById("starsBtn").addEventListener("click", () => { sparkle(40); say("Great job Julia! Bye bye!"); });
-    setQuizWord();
+    setRecapWord();
+    setVerbWord();
 
     const blocks = Array.from(document.querySelectorAll(".section, .hero"));
     const dots = Array.from(document.querySelectorAll(".progress a[data-dot]"));
