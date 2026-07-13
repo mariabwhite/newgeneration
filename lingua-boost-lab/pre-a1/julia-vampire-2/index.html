@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="/lingua-boost-lab/assets/premium-lesson-guard.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Julia's Vampire English · Lesson 2 · Sunny Day · Colors, Numbers & Family (Pre-A1)</title>
+<meta name="description" content="Pre-A1 English story lesson for Julia · sunny orange palette · colors, numbers 1–10, family words, songs, vampire friends.">
+
+  <!--
+    ===========================================================================
+    Julia · Vampire English · Lesson 2 · «Sunny Day»
+    Соседний урок к julia-vampire (v8 · Music & Friends).
+    Тема: Colors + Numbers 1–10 + Family — базовые понятия Pre-A1.
+    Палитра: нежно-оранжевая (cream + peach + apricot + warm orange).
+    Ассеты: переиспользуем картинки из ../julia-vampire/ (не дублируем).
+    Songs (Super Simple Songs · Maria's proven list):
+      • WARMUP_1  = VsgpUHUYuJI   (warm-up)
+      • WARMUP_2  = A1vdKfXlB_g   (warm-up)
+      • RAINBOW   = tRNy2i75tCc   (Rainbow Colors — Super Simple)
+      • NUMBERS   = DR-cfDsHCGA   (Numbers 1–10 — Super Simple)
+      • FAMILY    = FHaObkHEkHQ   (Finger Family — Super Simple)
+      • HAPPY     = l4WNrvVjiTw   (If You're Happy — Super Simple)
+      • DANCE     = Z5lhGTalu28   (Dance — переиспользуем из lesson 1)
+    Длина: ~75 min · 18 блоков (компактнее lesson 1).
+    ===========================================================================
+  -->
+
+  <script>
+    window.SONGS = {
+      WARMUP_1: "VsgpUHUYuJI",
+      WARMUP_2: "A1vdKfXlB_g",
+      RAINBOW:  "tRNy2i75tCc",
+      NUMBERS:  "DR-cfDsHCGA",
+      FAMILY:   "FHaObkHEkHQ",
+      HAPPY:    "l4WNrvVjiTw",
+      DANCE:    "Z5lhGTalu28"
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* SUNNY ORANGE palette — parallel to lesson 1 lilac palette */
+      --cream: #FFF7ED; --blush: #FFE0BF; --lilac: #FFD4A0; --mist: #FFFFFF;
+      --ink: #6B3410; --ink-soft: #A46030;
+      --rose: #FFB07A; --royal-lav: #FF9048; --pale-gold: #FFE0A6; --mint: #FFE8CE; --sky: #FFF0DA;
+      --success: #C6E8B8; --success-ink: #3C7A2A; --error: #F4C1B0; --error-ink: #A03B20;
+      --line: rgba(107,52,16,.14); --line-soft: rgba(107,52,16,.07);
+      --shadow-1: 0 6px 18px rgba(107,52,16,.07);
+      --shadow-2: 0 14px 30px rgba(107,52,16,.09);
+      --r-tile: 20px; --r-card: 24px; --r-panel: 28px; --r-pill: 999px;
+      --t-fast: 140ms ease;
+      font-family: "Baloo 2","Nunito","Quicksand",ui-rounded,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;
+      color: var(--ink);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink); font-weight: 500;
+      background:
+        radial-gradient(ellipse 70% 50% at 25% -10%, var(--blush), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 80% 100%, var(--lilac), transparent 60%),
+        var(--cream);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(circle at 12% 22%, rgba(255,144,72,.12) 1px, transparent 2px),
+        radial-gradient(circle at 78% 14%, rgba(255,176,122,.12) 1px, transparent 2px),
+        radial-gradient(circle at 38% 78%, rgba(255,224,166,.16) 1px, transparent 2px);
+      background-size: 320px 320px, 280px 280px, 360px 360px;
+    }
+    button, a { font-family: inherit; }
+    button { -webkit-tap-highlight-color: transparent; cursor: pointer; }
+
+    .page { position: relative; z-index: 1; width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 20px 0 64px; }
+    .topline { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 36px; padding: 6px 14px; border-radius: var(--r-pill);
+      border: 1px solid var(--line); background: var(--mist);
+      color: var(--ink-soft); font-weight: 700; font-size: .92rem; box-shadow: var(--shadow-1);
+    }
+    .hero { min-height: 80svh; display: grid; align-content: center; gap: 18px; padding: 22px 0 32px; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(2.2rem,5.6vw,4.6rem); line-height: 1; color: var(--ink); text-align: center; font-weight: 800; }
+    h2 { font-size: clamp(1.6rem,3.6vw,2.8rem); line-height: 1.05; color: var(--ink); text-align: center; font-weight: 800; }
+    h3 { font-size: clamp(1.1rem,2.4vw,1.5rem); color: var(--ink); text-align: center; font-weight: 700; }
+    .tiny { font-size: clamp(.95rem,1.7vw,1.1rem); font-weight: 600; color: var(--ink-soft); text-align: center; }
+
+    .progress {
+      position: relative; z-index: 30;
+      display: flex; justify-content: center; gap: 6px;
+      padding: 8px 12px; margin: 0 auto 14px; width: fit-content;
+      border-radius: var(--r-pill);
+      background: rgba(255,255,255,.65); border: 1px solid var(--line);
+      box-shadow: var(--shadow-1);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      flex-wrap: wrap; max-width: calc(100% - 32px);
+    }
+    .progress a {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--lilac); text-decoration: none; display: block;
+      transition: transform var(--t-fast), background var(--t-fast);
+    }
+    .progress a:hover { transform: scale(1.25); background: var(--royal-lav); }
+    .progress a.active { background: var(--royal-lav); transform: scale(1.4); box-shadow: 0 0 0 4px rgba(255,144,72,.25); }
+    .progress a.done { background: var(--success); }
+
+    .section {
+      margin-top: 28px; padding: clamp(22px,3vw,36px);
+      border: 1px solid var(--line); border-radius: var(--r-panel);
+      background: rgba(255,255,255,.78); box-shadow: var(--shadow-2);
+      display: grid; gap: 22px; overflow: hidden; scroll-margin-top: 84px;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .section-head { display: grid; justify-items: center; gap: 6px; }
+    .time {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 30px; padding: 4px 12px; border-radius: var(--r-pill);
+      background: var(--lilac); color: var(--ink-soft);
+      font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .grid { display: grid; gap: 14px; }
+    .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .five { grid-template-columns: repeat(5, minmax(0,1fr)); }
+
+    .card, .btn {
+      border: 0; border-radius: var(--r-card); font-family: inherit;
+      font-weight: 700; color: var(--ink);
+      transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+    }
+    .card {
+      position: relative; min-height: 132px; padding: 16px 14px 18px;
+      background: var(--mist); border: 1px solid var(--line); box-shadow: var(--shadow-1);
+      display: grid; grid-template-rows: auto 1fr; place-items: center; gap: 8px;
+      text-align: center; font-size: clamp(1.05rem,2.2vw,1.4rem);
+      cursor: pointer; overflow: hidden;
+    }
+    .card small { display: block; font-size: .68em; line-height: 1.25; color: var(--ink-soft); font-weight: 600; }
+    .card .emoji,
+    .card > :first-child:not(small):not(.crown):not(.mini-vamp):not(img) {
+      display: inline-grid; place-items: center;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--blush); font-size: 2rem; line-height: 1;
+      box-shadow: inset 0 0 0 1px var(--line-soft);
+    }
+    .card.pink .emoji   { background: var(--rose); color: white; }
+    .card.mint .emoji   { background: var(--mint); }
+    .card.gold .emoji   { background: var(--pale-gold); }
+    .card.peach .emoji  { background: var(--blush); }
+    .card.lav .emoji    { background: var(--royal-lav); color: white; }
+    .card.pink  { border-top: 3px solid var(--rose); }
+    .card.mint  { border-top: 3px solid var(--mint); }
+    .card.gold  { border-top: 3px solid var(--pale-gold); }
+    .card.peach { border-top: 3px solid var(--blush); }
+    .card.lav   { border-top: 3px solid var(--royal-lav); }
+    .card:hover, .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: rgba(255,144,72,.35); }
+    .card:active, .btn:active { transform: translateY(0) scale(.99); }
+
+    /* colored circle chip (для B4 · colors) */
+    .card.color-chip .emoji {
+      background: var(--emoji-bg, var(--blush));
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.9), 0 4px 12px rgba(107,52,16,.15);
+    }
+
+    .chants {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      width: min(820px, calc(100% - 8px)); margin: 6px auto 0;
+    }
+    .chant {
+      border: 0; border-radius: var(--r-card);
+      padding: 14px 10px; background: var(--mist);
+      border-top: 4px solid var(--royal-lav);
+      box-shadow: var(--shadow-1);
+      font-family: inherit; font-weight: 800; color: var(--ink);
+      font-size: clamp(.95rem,1.9vw,1.15rem); line-height: 1.15;
+      cursor: pointer; transition: transform var(--t-fast), box-shadow var(--t-fast);
+      display: grid; gap: 4px; place-items: center;
+    }
+    .chant .ico { font-size: 1.8rem; line-height: 1; }
+    .chant.rose  { border-top-color: var(--rose); }
+    .chant.gold  { border-top-color: var(--pale-gold); }
+    .chant.mint  { border-top-color: #E89B4C; }
+    .chant:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: var(--shadow-2); }
+    .chant:active { transform: translateY(0) scale(.97); }
+    @media (max-width: 780px) { .chants { grid-template-columns: repeat(2, 1fr); } }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 52px; padding: 12px 22px; font-size: clamp(1rem,2vw,1.2rem);
+      background: var(--royal-lav); color: white; box-shadow: var(--shadow-1);
+      text-decoration: none;
+    }
+    .btn.pink { background: var(--rose); }
+    .btn.mint { background: var(--mist); color: var(--ink); border: 1px solid var(--line); }
+
+    .video-shell {
+      border: 1px solid var(--line); border-radius: var(--r-panel);
+      padding: clamp(10px,1.8vw,18px); background: var(--mist);
+      box-shadow: var(--shadow-2); position: relative; overflow: hidden;
+    }
+    .video-shell::before {
+      content: "☀"; position: absolute; top: 14px; right: 18px;
+      font-size: 14px; color: var(--royal-lav); opacity: .6; pointer-events: none;
+    }
+    .video-frame { aspect-ratio: 16/9; border-radius: var(--r-tile); overflow: hidden; background: var(--lilac); }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .video-fallback { text-align: center; margin-top: 12px; font-size: .9rem; color: var(--ink-soft); }
+    .video-fallback a {
+      display: inline-block; margin-top: 4px;
+      padding: 8px 16px; border-radius: var(--r-pill);
+      background: var(--lilac); color: var(--ink); text-decoration: none; font-weight: 700;
+    }
+    .song-skip {
+      text-align: center; padding: 22px; font-weight: 700; color: var(--ink-soft);
+      background: rgba(255,255,255,.4); border-radius: var(--r-card);
+      border: 2px dashed rgba(255,144,72,.22);
+    }
+
+    img.scene-banner, img.hero-banner, img.poster-banner {
+      display: block !important;
+      width: 100% !important; max-width: 820px !important;
+      margin: 12px auto !important; object-fit: contain !important;
+      background: transparent !important;
+      border: 1px solid var(--line); border-radius: var(--r-panel); box-shadow: var(--shadow-2);
+      cursor: pointer;
+    }
+    img.hero-banner { max-width: 560px !important; border: 0; box-shadow: none; filter: drop-shadow(0 18px 24px rgba(107,52,16,.12)); }
+    img.poster-banner { max-width: 960px !important; border: 0; box-shadow: none; filter: drop-shadow(0 12px 20px rgba(107,52,16,.10)); }
+    img.scene-banner.tall { aspect-ratio: 3/4 !important; max-width: 520px !important; }
+
+    img.sticker {
+      display: block !important; width: 120px !important; height: 120px !important;
+      object-fit: contain !important; background: transparent !important;
+      border: 0 !important; border-radius: 12px !important;
+      box-shadow: none !important; padding: 0 !important;
+      margin: 0 auto 6px !important;
+      filter: drop-shadow(0 6px 10px rgba(107,52,16,.12)); cursor: pointer;
+    }
+    img.sticker.lg { width: 160px !important; height: 160px !important; }
+    img.sticker.xl { width: 220px !important; height: 220px !important; }
+
+    .teacher {
+      padding: 14px 18px; border-radius: var(--r-card);
+      background: var(--mint); border: 1px solid var(--line);
+      font-weight: 700; color: var(--ink); text-align: center; display: grid; gap: 8px;
+    }
+    .teacher > div:first-child { font-size: .85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .08em; }
+    .teacher span { display: inline-block; padding: 5px 11px; border-radius: var(--r-pill); background: rgba(255,255,255,.7); margin: 2px; font-size: .95rem; }
+    .teacher.lilac { background: var(--lilac); }
+    .teacher.blush { background: var(--blush); }
+
+    /* Numbers big tiles (для B7) */
+    .num-tile {
+      display: grid; place-items: center; gap: 4px;
+      background: var(--mist); border: 1px solid var(--line); border-radius: var(--r-card);
+      padding: 18px 10px; box-shadow: var(--shadow-1);
+      cursor: pointer; transition: transform var(--t-fast), box-shadow var(--t-fast);
+    }
+    .num-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .num-tile .n {
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; color: var(--royal-lav); line-height: 1;
+    }
+    .num-tile .w { font-size: clamp(.95rem, 1.6vw, 1.1rem); color: var(--ink-soft); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+
+    .label, .score {
+      min-height: 38px; padding: 8px 16px; border-radius: var(--r-pill);
+      background: var(--mist); border: 1px solid var(--line);
+      color: var(--ink); font-weight: 700; text-align: center; justify-self: center;
+      font-size: clamp(.95rem,1.8vw,1.1rem);
+    }
+    .score { background: var(--pale-gold); border-color: transparent; }
+
+    .lit { border-color: var(--royal-lav) !important; box-shadow: 0 0 0 4px rgba(255,144,72,.22), var(--shadow-1) !important; }
+    .yes { border-color: var(--success-ink) !important; box-shadow: 0 0 0 4px rgba(198,232,184,.55), var(--shadow-1) !important; }
+    .no { border-color: var(--error-ink) !important; animation: nudge .18s ease both; }
+    @keyframes nudge { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+    .confetti { position: fixed; top: -24px; width: 8px; height: 12px; border-radius: 3px; pointer-events: none; animation: fall 1.3s ease-in forwards; z-index: 20; opacity: .85; }
+    @keyframes fall { to { transform: translateY(105vh) rotate(420deg); opacity: 0; } }
+
+    .finish { min-height: 56svh; align-content: center; text-align: center; }
+
+    @media (max-width: 780px) {
+      .hero { min-height: auto; padding-top: 12px; }
+      .two, .three, .four, .five { grid-template-columns: 1fr; }
+      .card { min-height: 108px; }
+      .section { padding: 22px; border-radius: var(--r-card); }
+    }
+  </style>
+  <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=2">
+</head>
+<body>
+<link rel="stylesheet" href="../../assets/lab-pilot.css?v=7">
+<link rel="stylesheet" href="../../assets/canon-L.css?v=15" data-tag="canon-L-loaded">
+<script src="../../assets/canon-L.js?v=5" defer></script>
+
+<a href="#main-content" class="canon-l-skip-link">Перейти к основному содержимому</a>
+
+<header class="canon-l-topbar" style="--lb-bg:#fff7ed; --lb-text:#6b3410; --lb-muted:#a46030; --lb-line:rgba(255,144,72,.22); --lb-pill-bg:#fff; --lb-pill-border:rgba(255,144,72,.45); --lb-link-hover:#ff9048; --lb-seg-bg:#fff; --lb-seg-border:rgba(255,144,72,.45); --lb-seg-btn:#ff9048;">
+  <a class="canon-l-brand" href="../../index.html" aria-label="LinguaBoost Lab">
+    <span class="canon-l-mark" aria-hidden="true"></span>
+    <span class="canon-l-copy">
+      <span class="canon-l-name">LinguaBoost Lab</span>
+      <span class="canon-l-sub">Pre-A1 &middot; Julia &amp; Vampire &middot; Sunny Day</span>
+    </span>
+  </a>
+  <nav class="canon-l-nav" aria-label="Lesson navigation">
+    <a class="canon-l-link" href="../../index.html" data-ru="Каталог" data-en="Catalog">Каталог</a>
+    <a class="canon-l-link" href="#b1" data-ru="К началу" data-en="Start">К началу</a>
+  </nav>
+  <div class="canon-l-tools">
+    <span class="canon-l-pill lang-toggle" aria-label="Language" data-lang-toggle data-lang-pill>EN</span>
+    <span class="canon-l-pill canon-l-level" aria-label="Level">PRE</span>
+  </div>
+</header>
+
+  <main id="main-content" class="page">
+
+    <nav class="progress" aria-label="lesson progress">
+      <a href="#b1"  data-dot="1"></a><a href="#b2"  data-dot="2"></a><a href="#b3"  data-dot="3"></a><a href="#b4"  data-dot="4"></a>
+      <a href="#b5"  data-dot="5"></a><a href="#b6"  data-dot="6"></a><a href="#b7"  data-dot="7"></a><a href="#b8"  data-dot="8"></a>
+      <a href="#b9"  data-dot="9"></a><a href="#b10" data-dot="10"></a><a href="#b11" data-dot="11"></a><a href="#b12" data-dot="12"></a>
+      <a href="#b13" data-dot="13"></a><a href="#b14" data-dot="14"></a><a href="#b15" data-dot="15"></a><a href="#b16" data-dot="16"></a>
+      <a href="#b17" data-dot="17"></a><a href="#b18" data-dot="18"></a>
+    </nav>
+
+    <!-- B1 · Sunny hello hero + orange chants -->
+    <section class="hero" id="b1">
+      <div class="topline">
+        <span class="pill">Julia Lushina</span><span class="pill">75 min</span><span class="pill">Pre-A1 · Lesson 2</span><span class="pill">☀ sunny day</span>
+      </div>
+      <img class="hero-banner" src="../julia-vampire/0fd0274c-61f8-467d-9b99-93c5083753b6.webp" alt="Hello Julia">
+      <h1>Hello again, Julia!</h1>
+      <p class="tiny">tap · listen · look · say · sing along ☀</p>
+      <div class="chants" aria-label="orange chants — tap to hear">
+        <button class="chant"      data-say="Yay-yay sunshine!"><span class="ico">☀</span>yay-yay sunshine!</button>
+        <button class="chant rose" data-say="Woo-hoo colors!"><span class="ico">🌈</span>woo-hoo colors!</button>
+        <button class="chant gold" data-say="One two three!"><span class="ico">🔢</span>one · two · three!</button>
+        <button class="chant mint" data-say="I love my family!"><span class="ico">💛</span>I LOVE my family!</button>
+      </div>
+    </section>
+
+    <!-- B2 · KEY VOCABULARY · sunny words -->
+    <section class="section" id="sec-vocab">
+      <div class="section-head"><h2>☀ Magic words · tap to see meaning!</h2><p class="tiny">10 sunny words</p></div>
+      <div class="lab-vocab-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;padding:0 14px">
+        <div class="vocab-card" data-back="солнце · a big sun"><span style="font-size:1.8rem">☀</span><br><strong>sun</strong></div>
+        <div class="vocab-card" data-back="радуга · a rainbow"><span style="font-size:1.8rem">🌈</span><br><strong>rainbow</strong></div>
+        <div class="vocab-card" data-back="красный · red apple"><span style="font-size:1.8rem">🔴</span><br><strong>red</strong></div>
+        <div class="vocab-card" data-back="жёлтый · yellow sun"><span style="font-size:1.8rem">🟡</span><br><strong>yellow</strong></div>
+        <div class="vocab-card" data-back="один · one bat"><span style="font-size:1.8rem">1️⃣</span><br><strong>one</strong></div>
+        <div class="vocab-card" data-back="два · two bats"><span style="font-size:1.8rem">2️⃣</span><br><strong>two</strong></div>
+        <div class="vocab-card" data-back="мама"><span style="font-size:1.8rem">👩</span><br><strong>mom</strong></div>
+        <div class="vocab-card" data-back="папа"><span style="font-size:1.8rem">👨</span><br><strong>dad</strong></div>
+        <div class="vocab-card" data-back="счастливый · I am happy!"><span style="font-size:1.8rem">😊</span><br><strong>happy</strong></div>
+        <div class="vocab-card" data-back="летучая мышка"><span style="font-size:1.8rem">🦇</span><br><strong>bat</strong></div>
+      </div>
+    </section>
+    <style>
+    .lab-vocab-grid .vocab-card{background:#fff;border:2px solid #ffd4a0;border-radius:14px;padding:12px 8px;cursor:pointer;text-align:center;transition:.2s;line-height:1.3;font-size:.9rem}
+    .lab-vocab-grid .vocab-card:hover{border-color:#ff9048;transform:translateY(-3px)}
+    .lab-vocab-grid .vocab-card.flipped{background:#ffeacf;border-color:#e07030}
+    .lab-vocab-grid .vocab-card.flipped::after{content:attr(data-back);color:#6b3410;font-size:.78rem;display:block;margin-top:6px;font-weight:600}
+
+    .flip-grid,.vocab-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;box-sizing:border-box;width:100%;max-width:100%}
+    .flip-card,.vocab-card{min-height:130px;box-sizing:border-box}
+    .flip-front,.flip-back,.vocab-front,.vocab-back{padding:30px 10px 12px!important;box-sizing:border-box;overflow:hidden;word-break:break-word;hyphens:auto;-webkit-hyphens:auto}
+    .flip-front,.vocab-front{font-size:clamp(.78rem,1.4vw,.96rem)!important;line-height:1.2}
+    .flip-front .pos,.vocab-front .pos{word-break:normal}
+    .flip-card .lab-hw-add,.vocab-card .lab-hw-add{z-index:5}
+    </style>
+    <script>document.querySelectorAll('#sec-vocab .vocab-card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flipped')));</script>
+
+    <!-- B3 · Sunny warm-up · 2 videos -->
+    <section class="section" id="b3">
+      <div class="section-head"><span class="time">0 – 5 min</span><h2>Sunny warm-up · sing &amp; move ☀</h2><p class="tiny">two songs · sing along · clap · jump</p></div>
+      <div class="video-shell" data-song="WARMUP_1"></div>
+      <div class="video-shell" data-song="WARMUP_2"></div>
+    </section>
+
+    <!-- B4 · COLORS · big color chips -->
+    <section class="section" id="b4">
+      <div class="section-head"><span class="time">5 – 10 min</span><h2>🌈 Colors · big cards</h2><p class="tiny">tap · say the color · point around the room</p></div>
+      <div class="grid four">
+        <button class="card color-chip" style="--emoji-bg:#FF6B6B" data-say="Red"><span class="emoji">🔴</span>red</button>
+        <button class="card color-chip" style="--emoji-bg:#FFA94D" data-say="Orange"><span class="emoji">🟠</span>orange</button>
+        <button class="card color-chip" style="--emoji-bg:#FFD43B" data-say="Yellow"><span class="emoji">🟡</span>yellow</button>
+        <button class="card color-chip" style="--emoji-bg:#95E484" data-say="Green"><span class="emoji">🟢</span>green</button>
+      </div>
+      <div class="grid four">
+        <button class="card color-chip" style="--emoji-bg:#74C0FC" data-say="Blue"><span class="emoji">🔵</span>blue</button>
+        <button class="card color-chip" style="--emoji-bg:#B197FC" data-say="Purple"><span class="emoji">🟣</span>purple</button>
+        <button class="card color-chip" style="--emoji-bg:#F8C8D8" data-say="Pink"><span class="emoji">🩷</span>pink</button>
+        <button class="card color-chip" style="--emoji-bg:#212529;color:#fff" data-say="Black"><span class="emoji" style="color:white">⚫</span>black</button>
+      </div>
+      <div class="teacher lilac">
+        <div>Point &amp; say</div>
+        <div><span>The sun is YELLOW</span><span>The apple is RED</span><span>The bat is BLACK</span><span>Julia's dress — what color?</span></div>
+      </div>
+    </section>
+
+    <!-- B5 · ★ RAINBOW SONG -->
+    <section class="section" id="b5">
+      <div class="section-head"><span class="time">10 – 14 min</span><h2>★ Rainbow song</h2><p class="tiny">watch · sing · point to the colors</p></div>
+      <div class="video-shell" data-song="RAINBOW"></div>
+    </section>
+
+    <!-- B6 · The vampire's colors — apply to characters -->
+    <section class="section" id="b6">
+      <div class="section-head"><span class="time">14 – 18 min</span><h2>The vampire's colors</h2><p class="tiny">what color is the vampire? Julia? the bat?</p></div>
+      <img class="scene-banner" src="../julia-vampire/405ca134-b46b-4a4c-b6d0-be7024b330fd.webp" alt="Julia and vampire standing together" data-say="Julia is pink. The vampire is black and red.">
+      <div class="grid three">
+        <button class="card pink"  data-say="Julia is pink"><span class="emoji">🧒</span>Julia is PINK</button>
+        <button class="card lav"   data-say="The vampire is black"><span class="emoji">🧛‍♂️</span>Vampire is BLACK</button>
+        <button class="card peach" data-say="The bat is grey"><span class="emoji">🦇</span>The bat is GREY</button>
+        <button class="card gold"  data-say="The sun is yellow"><span class="emoji">☀</span>Sun is YELLOW</button>
+        <button class="card mint"  data-say="The castle is white"><span class="emoji">🏰</span>Castle is WHITE</button>
+        <button class="card pink"  data-say="The rose is red"><span class="emoji">🌹</span>Rose is RED</button>
+      </div>
+    </section>
+
+    <!-- B7 · NUMBERS 1–10 · big tiles -->
+    <section class="section" id="b7">
+      <div class="section-head"><span class="time">18 – 23 min</span><h2>🔢 Numbers 1–10</h2><p class="tiny">tap each number · count out loud</p></div>
+      <div class="grid five">
+        <button class="num-tile" data-say="One"><div class="n">1</div><div class="w">one</div></button>
+        <button class="num-tile" data-say="Two"><div class="n">2</div><div class="w">two</div></button>
+        <button class="num-tile" data-say="Three"><div class="n">3</div><div class="w">three</div></button>
+        <button class="num-tile" data-say="Four"><div class="n">4</div><div class="w">four</div></button>
+        <button class="num-tile" data-say="Five"><div class="n">5</div><div class="w">five</div></button>
+      </div>
+      <div class="grid five">
+        <button class="num-tile" data-say="Six"><div class="n">6</div><div class="w">six</div></button>
+        <button class="num-tile" data-say="Seven"><div class="n">7</div><div class="w">seven</div></button>
+        <button class="num-tile" data-say="Eight"><div class="n">8</div><div class="w">eight</div></button>
+        <button class="num-tile" data-say="Nine"><div class="n">9</div><div class="w">nine</div></button>
+        <button class="num-tile" data-say="Ten"><div class="n">10</div><div class="w">ten</div></button>
+      </div>
+      <div class="teacher blush">
+        <div>Count with Julia</div>
+        <div><span>1 · one apple 🍎</span><span>2 · two bats 🦇🦇</span><span>3 · three cakes 🍰🍰🍰</span><span>...up to 10!</span></div>
+      </div>
+    </section>
+
+    <!-- B8 · ★ NUMBERS song -->
+    <section class="section" id="b8">
+      <div class="section-head"><span class="time">23 – 27 min</span><h2>★ Numbers song</h2><p class="tiny">watch · count · clap for every number</p></div>
+      <div class="video-shell" data-song="NUMBERS"></div>
+    </section>
+
+    <!-- B9 · How many? Count bats + friends -->
+    <section class="section" id="b9">
+      <div class="section-head"><span class="time">27 – 31 min</span><h2>How many?</h2><p class="tiny">tap · say the number</p></div>
+      <div class="grid three">
+        <button class="card gold"  data-say="Two bats"><span class="emoji">🦇🦇</span>2 bats</button>
+        <button class="card pink"  data-say="Three cakes"><span class="emoji">🍰🍰🍰</span>3 cakes</button>
+        <button class="card mint"  data-say="Four apples"><span class="emoji">🍎🍎🍎🍎</span>4 apples</button>
+        <button class="card lav"   data-say="Five stars"><span class="emoji">⭐⭐⭐⭐⭐</span>5 stars</button>
+        <button class="card peach" data-say="Six friends"><span class="emoji">👫👭👬</span>6 friends</button>
+        <button class="card gold"  data-say="Ten fingers"><span class="emoji">🖐🖐</span>10 fingers</button>
+      </div>
+    </section>
+
+    <!-- B10 · FAMILY · big vampire family -->
+    <section class="section" id="b10">
+      <div class="section-head"><span class="time">31 – 36 min</span><h2>👨‍👩‍👧 Family · vampire family</h2><p class="tiny">tap each · say who they are</p></div>
+      <img class="scene-banner" src="../julia-vampire/ba7d65fa-c626-4fde-99c9-3b6d810462b6.webp" alt="Cute vampire family">
+      <div class="grid five">
+        <button class="card pink"  data-say="Mom"><span class="emoji">👩</span>mom</button>
+        <button class="card lav"   data-say="Dad"><span class="emoji">👨</span>dad</button>
+        <button class="card gold"  data-say="Sister"><span class="emoji">👧</span>sister</button>
+        <button class="card mint"  data-say="Brother"><span class="emoji">👦</span>brother</button>
+        <button class="card peach" data-say="Baby"><span class="emoji">👶</span>baby</button>
+      </div>
+      <div class="teacher lilac">
+        <div>Point &amp; say</div>
+        <div><span>This is my MOM</span><span>This is my DAD</span><span>This is my SISTER</span><span>This is my BROTHER</span><span>This is a BABY</span></div>
+      </div>
+    </section>
+
+    <!-- B11 · ★ FINGER FAMILY song -->
+    <section class="section" id="b11">
+      <div class="section-head"><span class="time">36 – 41 min</span><h2>★ Finger family song</h2><p class="tiny">watch · sing · wiggle your fingers 🖐</p></div>
+      <div class="video-shell" data-song="FAMILY"></div>
+    </section>
+
+    <!-- B12 · MY FAMILY · sentences -->
+    <section class="section" id="b12">
+      <div class="section-head"><span class="time">41 – 45 min</span><h2>My family</h2><p class="tiny">Julia says · repeat after her</p></div>
+      <div class="grid two">
+        <div class="teacher">
+          <div>Julia says</div>
+          <div><span>This is my mom.</span><span>This is my dad.</span><span>This is my sister.</span><span>I love my family!</span></div>
+        </div>
+        <div class="teacher lilac">
+          <div>Now YOU say</div>
+          <div><span>This is MY mom!</span><span>This is MY dad!</span><span>This is MY family!</span></div>
+        </div>
+      </div>
+      <div class="grid two">
+        <button class="card pink" data-say="I love my mom"><span class="emoji">💛👩</span>I love my mom</button>
+        <button class="card lav"  data-say="I love my dad"><span class="emoji">💛👨</span>I love my dad</button>
+      </div>
+    </section>
+
+    <!-- B13 · FEELINGS · happy / sad / angry -->
+    <section class="section" id="b13">
+      <div class="section-head"><span class="time">45 – 49 min</span><h2>How do I feel?</h2><p class="tiny">tap · make the face · say the word</p></div>
+      <div class="grid four">
+        <button class="card gold"  data-say="Happy"><span class="emoji">😊</span>happy</button>
+        <button class="card mint"  data-say="Sad"><span class="emoji">😢</span>sad</button>
+        <button class="card pink"  data-say="Angry"><span class="emoji">😠</span>angry</button>
+        <button class="card peach" data-say="Sleepy"><span class="emoji">😴</span>sleepy</button>
+      </div>
+      <div class="teacher blush">
+        <div>Ask &amp; answer</div>
+        <div><span>Are you happy? — YES, I am!</span><span>Are you sad? — NO, I am NOT!</span></div>
+      </div>
+    </section>
+
+    <!-- B14 · ★ IF YOU'RE HAPPY song -->
+    <section class="section" id="b14">
+      <div class="section-head"><span class="time">49 – 53 min</span><h2>★ If you're happy song</h2><p class="tiny">clap · stomp · shout HOORAY 🎉</p></div>
+      <div class="video-shell" data-song="HAPPY"></div>
+    </section>
+
+    <!-- B15 · Dance with the vampires · reuse from lesson 1 -->
+    <section class="section" id="b15">
+      <div class="section-head"><span class="time">53 – 58 min</span><h2>Dance with us!</h2><p class="tiny">we dance · we sing · together</p></div>
+      <img class="scene-banner" src="../julia-vampire/e1406aa5-5ea6-4fd5-94f4-f6da3fd13815%20(1).png" alt="Julia and vampire dancing with music notes">
+      <div class="grid two">
+        <button class="card pink" data-say="We dance!"><span class="emoji">💃🕺</span>We dance!</button>
+        <button class="card mint" data-say="We sing!"><span class="emoji">🎤</span>We sing!</button>
+      </div>
+      <div class="video-shell" data-song="DANCE"></div>
+    </section>
+
+    <!-- B16 · Show me quiz — colors + numbers + family -->
+    <section class="section" id="b16">
+      <div class="section-head"><span class="time">58 – 64 min</span><h2>Show me</h2><p class="tiny" id="quizPrompt">Show me red</p></div>
+      <div class="grid four" id="quizChoices">
+        <button class="card quiz" data-answer="red"><span class="emoji">🔴</span>red</button>
+        <button class="card quiz" data-answer="yellow"><span class="emoji">🟡</span>yellow</button>
+        <button class="card quiz" data-answer="green"><span class="emoji">🟢</span>green</button>
+        <button class="card quiz" data-answer="blue"><span class="emoji">🔵</span>blue</button>
+        <button class="card quiz" data-answer="one"><span class="emoji">1️⃣</span>one</button>
+        <button class="card quiz" data-answer="two"><span class="emoji">2️⃣</span>two</button>
+        <button class="card quiz" data-answer="five"><span class="emoji">5️⃣</span>five</button>
+        <button class="card quiz" data-answer="ten"><span class="emoji">🔟</span>ten</button>
+        <button class="card quiz" data-answer="mom"><span class="emoji">👩</span>mom</button>
+        <button class="card quiz" data-answer="dad"><span class="emoji">👨</span>dad</button>
+        <button class="card quiz" data-answer="sister"><span class="emoji">👧</span>sister</button>
+        <button class="card quiz" data-answer="baby"><span class="emoji">👶</span>baby</button>
+      </div>
+      <div class="grid two">
+        <button class="btn mint" id="quizBtn">new round</button>
+        <div class="score" id="score">stars: 0</div>
+      </div>
+    </section>
+
+    <!-- B17 · Talk! Simple dialogue -->
+    <section class="section" id="b17">
+      <div class="section-head"><span class="time">64 – 70 min</span><h2>Talk! · "What color is it?"</h2><p class="tiny">ask &amp; answer with the vampire</p></div>
+      <div class="grid two">
+        <div class="teacher">
+          <div>Friend asks</div>
+          <div><span>Hi Julia!</span><span>What color is this?</span><span>How many bats?</span><span>Who is this?</span><span>Are you happy?</span></div>
+        </div>
+        <div class="teacher lilac">
+          <div>Julia answers</div>
+          <div><span>Hi!</span><span>It is RED · YELLOW · BLUE...</span><span>Two bats! 🦇🦇</span><span>This is my MOM · DAD · SISTER!</span><span>YES, I am HAPPY!</span></div>
+        </div>
+      </div>
+      <div class="grid three">
+        <button class="card lav"   data-say="It is red"><span class="emoji">🔴</span>It is red</button>
+        <button class="card pink"  data-say="It is yellow"><span class="emoji">🟡</span>It is yellow</button>
+        <button class="card mint"  data-say="It is blue"><span class="emoji">🔵</span>It is blue</button>
+      </div>
+      <div class="teacher blush">
+        <div>Role-play · swap parts</div>
+        <div><span>Teacher: "What color is this?"</span><span>Julia: "It is ___."</span><span>Now Julia asks!</span></div>
+      </div>
+    </section>
+
+    <!-- B18 · Great job -->
+    <section class="section finish" id="b18">
+      <h2>Great job, Julia!</h2>
+      <p class="tiny">Sunny day, colors, family — bye bye ☀🌈💛</p>
+      <img class="scene-banner tall" src="../julia-vampire/ba7d65fa-c626-4fde-99c9-3b6d810462b6.webp" alt="Cute vampire family" style="margin-top:18px">
+      <div class="grid two" style="margin-top: 18px;">
+        <a class="btn pink" href="#b1">↻ start again</a>
+        <button class="btn mint" id="starsBtn">🎉 fireworks</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function injectSong(shellEl, key) {
+      const id = (window.SONGS && window.SONGS[key]) || "";
+      if (!id) {
+        shellEl.innerHTML = '<div class="song-skip">☀ no song yet — paste a YouTube id into <b>SONGS.' + key + '</b> at the top of the file</div>';
+        return;
+      }
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1";
+      iframe.title = key;
+      iframe.loading = "lazy";
+      iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      const frame = document.createElement("div");
+      frame.className = "video-frame";
+      frame.appendChild(iframe);
+      const fb = document.createElement("div");
+      fb.className = "video-fallback";
+      fb.innerHTML = "can't see the video? <a href=\"https://www.youtube.com/watch?v=" + id + "\" target=\"_blank\" rel=\"noopener\">▶ open on YouTube</a>";
+      shellEl.appendChild(frame);
+      shellEl.appendChild(fb);
+    }
+    document.querySelectorAll("[data-song]").forEach(el => injectSong(el, el.dataset.song));
+
+    const quizWords = ["red","yellow","green","blue","one","two","five","ten","mom","dad","sister","baby"];
+    const quizPrompt = document.getElementById("quizPrompt");
+    const scoreEl = document.getElementById("score");
+    let quizWord = "red", score = 0;
+    const pick = list => list[Math.floor(Math.random() * list.length)];
+    function setQuizWord() {
+      quizWord = pick(quizWords);
+      quizPrompt.textContent = "Show me " + quizWord;
+    }
+
+    function sparkle(count = 22) {
+      const palette = ["#FFB07A","#FF9048","#FFE0A6","#FFD4A0","#FFE8CE"];
+      for (let i = 0; i < count; i += 1) {
+        const bit = document.createElement("span");
+        bit.className = "confetti";
+        bit.style.left = Math.random() * 100 + "vw";
+        bit.style.background = palette[i % palette.length];
+        bit.style.animationDelay = Math.random() * .3 + "s";
+        document.body.appendChild(bit);
+        setTimeout(() => bit.remove(), 1500);
+      }
+    }
+    function flash(el, c) {
+      if (!el) return;
+      el.classList.remove("lit","yes","no"); void el.offsetWidth;
+      el.classList.add(c);
+      setTimeout(() => el.classList.remove(c), 700);
+    }
+
+    const synth = window.speechSynthesis;
+    let _voice = null;
+    function pickVoice() {
+      if (!synth) return;
+      const vs = synth.getVoices();
+      _voice = vs.find(v => v.lang.startsWith("en") && /female|girl|kid|samantha|google.*us|zira/i.test(v.name))
+            || vs.find(v => v.lang === "en-US")
+            || vs.find(v => v.lang.startsWith("en")) || null;
+    }
+    if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+    function say(text) {
+      if (!synth || !text) return;
+      try {
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        if (_voice) u.voice = _voice;
+        u.lang = "en-US"; u.rate = .85; u.pitch = 1.18;
+        synth.speak(u);
+      } catch (e) {}
+    }
+
+    document.addEventListener("click", (e) => {
+      const sayEl = e.target.closest("[data-say]");
+      if (sayEl && sayEl.dataset.say) { flash(sayEl, "lit"); say(sayEl.dataset.say); return; }
+      const img = e.target.closest("img.poster-banner, img.scene-banner, img.hero-banner, img.sticker");
+      if (img && img.alt) { flash(img, "lit"); say(img.alt); return; }
+      const quiz = e.target.closest(".quiz");
+      if (quiz) {
+        const ok = quiz.dataset.answer === quizWord;
+        flash(quiz, ok ? "yes" : "no");
+        if (ok) { score += 1; scoreEl.textContent = "stars: " + score; sparkle(18); say("Yes! " + quizWord); setTimeout(setQuizWord, 700); }
+        else { say("Try again"); }
+      }
+    });
+
+    document.getElementById("quizBtn").addEventListener("click", setQuizWord);
+    document.getElementById("starsBtn").addEventListener("click", () => { sparkle(40); say("Great job Julia! Bye bye!"); });
+    setQuizWord();
+
+    const blocks = Array.from(document.querySelectorAll(".section, .hero"));
+    const dots = Array.from(document.querySelectorAll(".progress a[data-dot]"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = blocks.indexOf(e.target);
+          if (idx >= 0) {
+            dots.forEach((d, i) => {
+              d.classList.toggle("active", i === idx);
+              d.classList.toggle("done", i < idx);
+            });
+          }
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    blocks.forEach(b => io.observe(b));
+  </script>
+<script src="../../assets/lab-persist.js?v=3" defer></script>
+<script src="../../assets/lab-send-pill.js?v=4" defer></script>
+<script src="../../assets/lab-total.js?v=4" defer></script>
+<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
+<script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
+<script src="../../assets/lab-sync.js?v=18" defer></script>
+<script src="../../assets/lab-tabs.js?v=12" defer></script>
+<script src="../../assets/lab-homework.js?v=42" defer></script>
+<script src="../../assets/lab-telemost.js?v=1" defer></script>
+<script src="../../assets/lab-vocab-builder.js?v=53" defer></script>
+<script src="../../assets/lab-coach-persist.js?v=1" defer></script>
+
+<script src="../../assets/lab-clean-bottom-dock.js?v=1" defer></script>
+</body>
+</html>
