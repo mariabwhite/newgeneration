@@ -933,9 +933,15 @@ window.NGE_DATA = {
       "lessons_used_this_month": 3,
       "summer_plan_note": "Летний абонемент 4 × 2 000 ₽ · 🦇 vampire-серия Pre-A1 · растянут на июнь–июль из-за переносов. Осталось 1 занятие: 20.07.",
       "materials": {
-        "folder": "",
+        "folder": "documents/_v/yulya-lushina",
         "note": "",
-        "files": [],
+        "files": [
+          {
+            "name": "yulya-lushina-contract.pdf",
+            "label": "📄 Договор оказания услуг · Лушин Александр Анатольевич",
+            "audience": "parent"
+          }
+        ],
         "external_links": [
           {
             "url": "../lingua-boost-lab/pre-a1/julia-vampire/",
@@ -944,7 +950,7 @@ window.NGE_DATA = {
           },
           {
             "url": "../lingua-boost-lab/pre-a1/julia-vampire-2/",
-            "label": "☀ Lesson 2 · Sunny Day · Colors, Numbers, Family (Pre-A1)",
+            "label": "☀ Lesson 2 · Verbs & Play (Pre-A1)",
             "audience": "all"
           }
         ]
