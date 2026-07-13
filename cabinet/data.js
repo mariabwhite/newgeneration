@@ -930,8 +930,8 @@ window.NGE_DATA = {
       "pin": "2223",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 2,
-      "summer_plan_note": "Летний абонемент 4 × 2 000 ₽ · 🦇 vampire-серия Pre-A1 · растянут на июнь–июль из-за переносов. Осталось 2 занятия: сегодня 13.07 · следующее 20.07.",
+      "lessons_used_this_month": 3,
+      "summer_plan_note": "Летний абонемент 4 × 2 000 ₽ · 🦇 vampire-серия Pre-A1 · растянут на июнь–июль из-за переносов. Осталось 1 занятие: 20.07.",
       "materials": {
         "folder": "",
         "note": "",
@@ -970,12 +970,12 @@ window.NGE_DATA = {
         {
           "date": "2026-07-13",
           "num": 3,
-          "status": "planned",
-          "topic": "🦇 Vampire English · Music & Friends (Pre-A1) — сегодня.",
+          "status": "completed",
+          "topic": "🦇 Vampire English · Music & Friends (Pre-A1) — прошли сегодня.",
           "homework": {
             "module_url": "../lingua-boost-lab/pre-a1/julia-vampire/index.html?v=1",
             "module_title": "🦇 Открыть урок",
-            "text": "Сегодня проходим на занятии. Потом можно открыть на айпаде и повторить: тыкать в картинки и в значки 🔊 — всё озвучено."
+            "text": "Можно открыть на айпаде и повторить: тыкать в картинки и в значки 🔊 — всё озвучено."
           }
         },
         {
