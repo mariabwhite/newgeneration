@@ -857,7 +857,7 @@ window.NGE_DATA = {
       "pin": "2512",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 1,
+      "lessons_used_this_month": 2,
       "lessons": [
         {
           "date": "2026-07-07",
@@ -871,24 +871,29 @@ window.NGE_DATA = {
           }
         },
         {
-          "date": "2026-07-14",
+          "date": "2026-07-13",
           "num": 2,
-          "status": "planned",
-          "topic": "🏙️ Города — city vocab, urban places, describing places через There is/are + Present Continuous"
-        },
-        {
-          "date": "2026-07-21",
-          "num": 3,
-          "status": "planned",
-          "topic": "⛪ Религия — мировые религии, культурные традиции, места поклонения, толерантный подход",
+          "status": "completed",
+          "topic": "⛪ Финал Temples Quest — закрыли последние храмы, повторили Present tenses + will / going to",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-temples-quest/?theme=light-lab&lang=ru",
-            "module_title": "⛪ Открыть квест · Anya's Temples Quest",
-            "text": "Интерактивный квест по мировым храмам и религиям — 21 июля пройдём вместе на уроке, а после дома можно повторить."
+            "module_title": "⛪ Повторить квест · Anya's Temples Quest",
+            "text": "Пройди квест ещё раз дома — освежить лексику по храмам и закрепить Present tenses и will / going to перед новым квестом про рынок."
           }
         },
         {
-          "date": "2026-07-28",
+          "date": "2026-07-20",
+          "num": 3,
+          "status": "planned",
+          "topic": "🛍️ Anya's Market Quest — food, shopping и первый заход в Past Simple",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-market-quest/?theme=light-lab&lang=ru",
+            "module_title": "🛍️ Открыть квест · Anya's Market Quest",
+            "text": "Новый квест: рынок, кафе, магазины и Past Simple. Пройдём вместе на уроке, дома можно повторить."
+          }
+        },
+        {
+          "date": "2026-07-27",
           "num": 4,
           "status": "planned",
           "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение"
