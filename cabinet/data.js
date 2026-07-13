@@ -939,7 +939,12 @@ window.NGE_DATA = {
         "external_links": [
           {
             "url": "../lingua-boost-lab/pre-a1/julia-vampire/",
-            "label": "🦇 Vampire English · Music & Friends (Pre-A1) — открыть урок",
+            "label": "🦇 Lesson 1 · Music & Friends (Pre-A1)",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/pre-a1/julia-vampire-2/",
+            "label": "☀ Lesson 2 · Sunny Day · Colors, Numbers, Family (Pre-A1)",
             "audience": "all"
           }
         ]
@@ -982,11 +987,11 @@ window.NGE_DATA = {
           "date": "2026-07-20",
           "num": 4,
           "status": "planned",
-          "topic": "🦇 Vampire English · Music & Friends (Pre-A1) — финал абонемента.",
+          "topic": "☀ Vampire English · Lesson 2 · Sunny Day (Colors, Numbers, Family) — финал абонемента.",
           "homework": {
-            "module_url": "../lingua-boost-lab/pre-a1/julia-vampire/index.html?v=1",
-            "module_title": "🦇 Открыть урок",
-            "text": "К уроку — открыть на айпаде и пройтись по картинкам ещё раз. Всё озвучено, помощь родителя не нужна — Юля жмёт сама."
+            "module_url": "../lingua-boost-lab/pre-a1/julia-vampire-2/",
+            "module_title": "☀ Открыть Lesson 2 · Sunny Day",
+            "text": "К уроку — открыть на айпаде: цвета 🌈 · счёт до 10 🔢 · семья 👨‍👩‍👧 · песенки. Всё озвучено, помощь родителя не нужна — Юля жмёт сама."
           }
         }
       ]
