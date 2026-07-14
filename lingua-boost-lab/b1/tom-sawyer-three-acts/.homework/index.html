@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fedor · Workbook · Tom Sawyer — Vocab &amp; Grammar Recap</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2E7CC; --surface:#FFFDF5; --card:#FBF5E4; --surface-2:#F1E2BC;
+  --text:#2C1500; --ink:#2C1500; --muted:#8B6B3D; --faint:#A88D65;
+  --navy:#2A1F1A; --navy-2:#1a1410;
+  --burgundy:#8B5A2B; --burgundy-2:#5D3A1A;
+  --gold:#C68B3B; --cream:#F1E2BC;
+  --line:rgba(139,90,43,0.18); --line-2:rgba(139,90,43,0.32);
+  --ok:#4C7C3F; --miss:#B14545;
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,sans-serif;
+  --serif:"Playfair Display","Times New Roman",serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;padding:12px clamp(16px,3vw,28px);background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);flex-wrap:wrap}
+.brand-copy{display:grid;gap:1px}
+.brand-name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.brand-sub{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.spacer{flex:1}
+.btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--card);color:var(--muted);font:700 11px/1 var(--mono);letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn-sm:hover{border-color:var(--burgundy);color:var(--burgundy)}
+
+.hero{max-width:1240px;margin:24px auto 18px;padding:0 clamp(16px,3vw,28px)}
+.hero-card{position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  background:linear-gradient(135deg,rgba(42,31,26,.84) 0%,rgba(26,20,16,.68) 40%,rgba(139,90,43,.66) 100%),url('../assets/img/hero-fence-cover.webp') center/cover;
+  padding:clamp(28px,4.5vw,52px);min-height:320px;box-shadow:0 10px 40px rgba(0,0,0,.14);color:#fff}
+.hero-inner{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);padding:7px 14px;border-radius:50px;font:800 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:18px;backdrop-filter:blur(10px)}
+h1.hero-title{font-family:var(--serif);font-style:italic;font-weight:700;letter-spacing:-.02em;line-height:1.05;font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:14px;color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.35)}
+h1.hero-title .grad{background:linear-gradient(120deg,#fff,var(--cream));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:normal;font-weight:500}
+.hero-lead{font-size:1rem;color:#fff;max-width:820px;line-height:1.6;background:rgba(10,20,40,.42);border:1px solid rgba(255,255,255,.20);border-radius:14px;padding:16px 20px;backdrop-filter:blur(10px)}
+.hero-stat{display:inline-flex;gap:14px;margin-top:20px;flex-wrap:wrap}
+.hero-stat .st{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.24);border-radius:12px;padding:10px 14px;min-width:110px}
+.hero-stat .st b{display:block;font-family:var(--display);font-size:1.35rem;color:var(--cream)}
+.hero-stat .st span{font:800 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+
+.toc{max-width:1240px;margin:0 auto 28px;padding:0 clamp(16px,3vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.toc a{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:11px;font-family:var(--mono);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--burgundy);transition:.18s}
+.toc a:hover{transform:translateY(-2px);border-color:var(--gold);color:var(--burgundy-2)}
+.toc a .n{width:28px;height:28px;border-radius:50%;background:var(--burgundy);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:.85rem;flex-shrink:0}
+
+.section{max-width:1240px;margin:0 auto 36px;padding:0 clamp(16px,3vw,28px)}
+.section-hdr{display:flex;align-items:center;gap:14px;margin:32px 0 16px;flex-wrap:wrap}
+.section-num{font:800 11px/1 var(--mono);letter-spacing:.16em;background:var(--burgundy);color:#fff;padding:6px 11px;border-radius:50px;text-transform:uppercase}
+.section-hdr h2{font-family:var(--serif);font-style:italic;font-weight:700;font-size:clamp(1.4rem,2.3vw,1.75rem);letter-spacing:-.01em;line-height:1.1;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 2px 12px rgba(0,0,0,.04);margin-bottom:14px}
+.task-tag{display:inline-block;font:800 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;background:rgba(198,139,59,.14);color:var(--gold);border:1px solid var(--gold);border-radius:50px;padding:4px 10px;margin-bottom:12px}
+.info{background:rgba(139,90,43,.10);border-left:3px solid var(--burgundy);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.88rem;color:var(--ink);margin:10px 0;font-family:var(--serif);font-style:italic}
+
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:12px 0}
+.vocab-card{perspective:1000px;cursor:pointer;height:120px;position:relative}
+.vocab-card .vocab-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.vocab-card.flipped .vocab-inner{transform:rotateY(180deg)}
+.vocab-card .vocab-front,.vocab-card .vocab-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:11px;padding:12px 10px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line-2)}
+.vocab-card .vocab-front{background:var(--card);text-align:center;align-items:center}
+.vocab-card .vocab-front .word{font-family:var(--display);font-weight:800;font-size:.94rem;color:var(--burgundy);line-height:1.15}
+.vocab-card .vocab-front .pos{font:800 9px/1 var(--mono);letter-spacing:.16em;color:var(--faint);margin-top:6px;text-transform:uppercase}
+.vocab-card .vocab-tts{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;border:none;display:grid;place-items:center;font-size:.62rem;cursor:pointer;font-family:var(--mono);font-weight:800;z-index:5;line-height:1}
+.vocab-card .vocab-tts:hover{background:var(--burgundy);transform:scale(1.08)}
+.vocab-card .vocab-back{background:linear-gradient(135deg,var(--burgundy) 0%,var(--burgundy-2) 100%);transform:rotateY(180deg);color:#fff;font-size:.78rem;line-height:1.35;text-align:center;align-items:center}
+.vocab-card .vocab-back .meaning{color:#fff;font-weight:700;margin-bottom:3px;font-size:.9rem}
+.vocab-card .vocab-back .ex{font-style:italic;color:var(--cream);font-size:.72rem;line-height:1.35}
+
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:680px){.match-wrap{grid-template-columns:1fr}}
+.match-col{display:flex;flex-direction:column;gap:5px}
+.match-col h4{font-family:var(--mono);font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.match-card{background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:.9rem;color:var(--text);transition:.15s;font-weight:600}
+.match-card:hover{border-color:var(--burgundy);background:var(--surface-2)}
+.match-card.sel{background:var(--burgundy);color:#fff;border-color:var(--burgundy-2)}
+.match-card.done{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok);cursor:default;font-weight:700}
+.match-card.bad{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.gapfill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0;line-height:2;font-family:Georgia,serif;color:var(--ink)}
+.gapfill input{display:inline-block;width:130px;font:600 .92rem var(--body);background:#fff;color:var(--ink);border:1.5px solid var(--line-2);border-radius:6px;padding:4px 8px;outline:none;text-align:center;margin:0 2px}
+.gapfill input.wide{width:220px}
+.gapfill input:focus{border-color:var(--burgundy)}
+.gapfill input.correct{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok)}
+.gapfill input.wrong{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss)}
+.gapfill button.check{font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--burgundy);color:#fff;border:none;padding:9px 14px;border-radius:8px;cursor:pointer;margin-top:12px}
+.gapfill button.check:hover{background:var(--burgundy-2)}
+.check-result{font:800 .78rem/1 var(--mono);letter-spacing:.12em;color:var(--burgundy);margin-left:12px}
+
+.mcq-row{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin:8px 0}
+.mcq-q{font-size:.94rem;color:var(--text);margin-bottom:8px;line-height:1.5}
+.mcq-q .b{font-family:var(--mono);font-weight:800;color:var(--burgundy);font-size:.78rem;margin-right:6px}
+.mcq-opts{display:flex;flex-direction:column;gap:5px}
+.mcq-opts button{background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);padding:8px 12px;border-radius:8px;font-family:var(--body);font-size:.9rem;cursor:pointer;text-align:left;transition:.15s}
+.mcq-opts button:hover{border-color:var(--burgundy);color:var(--burgundy)}
+.mcq-opts button.correct{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok);font-weight:700}
+.mcq-opts button.wrong{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss)}
+
+.odd-row{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 14px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.odd-row .n{font-family:var(--mono);font-weight:800;color:var(--burgundy);font-size:.76rem}
+.odd-row .cat{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
+.odd-btn{background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);padding:6px 12px;border-radius:7px;font:600 .88rem var(--body);cursor:pointer;transition:.15s}
+.odd-btn:hover{border-color:var(--burgundy);color:var(--burgundy)}
+.odd-btn.correct{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok);font-weight:700}
+.odd-btn.wrong{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss)}
+
+.reveal-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:7px}
+.reveal-ru{font-family:Georgia,serif;color:var(--ink);font-size:.96rem;margin-bottom:5px}
+.reveal-en{display:none;background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 11px;font-family:var(--mono);font-size:.86rem;color:var(--ok);font-weight:700;margin-top:6px}
+.reveal-item.open .reveal-en{display:block}
+.reveal-btn{font:800 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--burgundy);color:var(--burgundy);padding:4px 10px;border-radius:6px;cursor:pointer}
+.reveal-btn:hover{background:var(--burgundy);color:#fff}
+
+.cloze{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:10px 0;font-family:Georgia,serif;color:var(--ink);font-size:1rem;line-height:2.1}
+.cloze input{display:inline-block;width:120px;font:600 .9rem var(--body);background:#fff;color:var(--ink);border:1.5px solid var(--line-2);border-radius:6px;padding:3px 6px;outline:none;text-align:center;margin:0 2px}
+.cloze input:focus{border-color:var(--burgundy)}
+.cloze input.correct{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok)}
+.cloze input.wrong{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss)}
+
+.vtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:.9rem}
+.vtable th{background:var(--surface-2);color:var(--burgundy);font-family:var(--mono);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 10px;border:1px solid var(--line-2);text-align:left}
+.vtable td{padding:8px 10px;border:1px solid var(--line-2);background:var(--card)}
+.vtable input{width:100%;font:600 .9rem var(--body);background:#fff;color:var(--ink);border:1.5px solid var(--line-2);border-radius:5px;padding:4px 8px;outline:none}
+.vtable input.correct{background:rgba(76,124,63,.14);border-color:var(--ok);color:var(--ok)}
+.vtable input.wrong{background:rgba(177,69,69,.10);border-color:var(--miss);color:var(--miss)}
+.vtable td.base{font-weight:700;color:var(--burgundy);font-family:var(--mono);font-size:.86rem}
+
+.done-wrap{text-align:center;margin:32px 0 12px}
+.done-btn{font:800 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--burgundy);color:#fff;border:none;padding:14px 32px;border-radius:10px;cursor:pointer;box-shadow:0 6px 18px rgba(139,90,43,.28)}
+.done-btn:hover{background:var(--burgundy-2)}
+.done-btn.checked{background:var(--ok)}
+
+footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;color:var(--muted);font:600 .8rem/1.6 var(--mono);letter-spacing:.06em}
+
+@media(max-width:600px){
+  .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+  .gapfill input,.cloze input{width:100px}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="../"><span class="brand-copy">
+    <span class="brand-name">Tom Sawyer · Workbook</span>
+    <span class="brand-sub">Fedor · Recap · A2+ → B1</span>
+  </span></a>
+  <div class="spacer"></div>
+  <a class="btn-sm" href="../">← Back to lesson</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-inner">
+      <div class="eyebrow">Vocab &amp; Grammar Workbook · Three Adventures · 14 July 2026</div>
+      <h1 class="hero-title">Tom Sawyer<br><span class="grad">Vocab &amp; Grammar Recap</span></h1>
+      <p class="hero-lead">Full recap of the series — every word from the vocab-box of Acts I through VII plus a compact Murphy B1 grammar drill. Eight vocabulary exercises, eight grammar exercises, all interactive, all with instant check.</p>
+      <div class="hero-stat">
+        <div class="st"><b>60</b><span>Words</span></div>
+        <div class="st"><b>8</b><span>Vocab exercises</span></div>
+        <div class="st"><b>8</b><span>Grammar exercises</span></div>
+        <div class="st"><b>▶ TTS</b><span>On every word</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="toc">
+  <a href="#flip"><span class="n">📇</span> 60 flip cards</a>
+  <a href="#vocab"><span class="n">A</span> Vocabulary · 8</a>
+  <a href="#grammar"><span class="n">B</span> Grammar · 8</a>
+</nav>
+
+<!-- ============================================================
+     📇 FLIP CARDS · overview of 60 words
+     ============================================================ -->
+<section class="section" id="flip">
+  <div class="section-hdr"><div class="section-num">📇 Vocab-box</div><h2>60 flip cards · full series</h2></div>
+  <div class="card">
+    <div class="task-tag">Click a card to flip · click ▶ for audio · order by Acts I → VII</div>
+    <div class="vocab-grid">
+      <div class="vocab-card"><button class="vocab-tts" data-say="fence">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">fence</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">забор</div><div class="ex">Aunt Polly told Tom to paint the fence.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="clever">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">clever</div><div class="pos">adj · I</div></div><div class="vocab-back"><div class="meaning">хитрый, умный</div><div class="ex">Tom is a very clever boy.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="trick">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">trick</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">хитрость</div><div class="ex">He played a clever trick.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="paint">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">paint</div><div class="pos">verb · I</div></div><div class="vocab-back"><div class="meaning">красить</div><div class="ex">They painted the fence.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="mischief">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">mischief</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">шалость</div><div class="ex">Tom is full of mischief.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="apple">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">apple</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">яблоко</div><div class="ex">Ben was eating an apple.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="idea">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">idea</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">идея</div><div class="ex">Tom had a brilliant idea.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="shade">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">shade</div><div class="pos">noun · I</div></div><div class="vocab-back"><div class="meaning">тень</div><div class="ex">He sat in the shade.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="hot">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">hot</div><div class="pos">adj · I</div></div><div class="vocab-back"><div class="meaning">жарко</div><div class="ex">It was a hot summer day.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="finished">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">finished</div><div class="pos">verb · I</div></div><div class="vocab-back"><div class="meaning">закончил</div><div class="ex">He finished by evening.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="happy">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">happy</div><div class="pos">adj · I</div></div><div class="vocab-back"><div class="meaning">счастливый</div><div class="ex">Tom felt happy and rich.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="things">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">things</div><div class="pos">n·pl · I</div></div><div class="vocab-back"><div class="meaning">вещи</div><div class="ex">He collected small things.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="graveyard">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">graveyard</div><div class="pos">noun · II</div></div><div class="vocab-back"><div class="meaning">кладбище</div><div class="ex">They walked through the graveyard.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="midnight">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">midnight</div><div class="pos">noun · II</div></div><div class="vocab-back"><div class="meaning">полночь</div><div class="ex">At midnight they heard a noise.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="witness">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">witness</div><div class="pos">n/v · II</div></div><div class="vocab-back"><div class="meaning">свидетель</div><div class="ex">He was a witness to the crime.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="murder">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">murder</div><div class="pos">noun · II</div></div><div class="vocab-back"><div class="meaning">убийство</div><div class="ex">They saw a murder.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="scared">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">scared</div><div class="pos">adj · II</div></div><div class="vocab-back"><div class="meaning">испуганный</div><div class="ex">The boys were scared.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="promise">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">promise</div><div class="pos">n/v · II</div></div><div class="vocab-back"><div class="meaning">обещание</div><div class="ex">They made a blood promise.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="heavy">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">heavy</div><div class="pos">adj · II</div></div><div class="vocab-back"><div class="meaning">тяжёлый</div><div class="ex">The secret was heavy.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="trees">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">trees</div><div class="pos">n·pl · II</div></div><div class="vocab-back"><div class="meaning">деревья</div><div class="ex">They hid behind tall trees.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="shaking">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">shaking</div><div class="pos">adj · II</div></div><div class="vocab-back"><div class="meaning">дрожащий</div><div class="ex">Their hands were shaking.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="sleep">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">sleep</div><div class="pos">n/v · II</div></div><div class="vocab-back"><div class="meaning">сон / спать</div><div class="ex">He could not sleep.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="people">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">people</div><div class="pos">n·pl · II</div></div><div class="vocab-back"><div class="meaning">люди</div><div class="ex">People believed Muff was guilty.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="them">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">them</div><div class="pos">pron · II</div></div><div class="vocab-back"><div class="meaning">их</div><div class="ex">Nobody saw them.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="prize">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">prize</div><div class="pos">noun · III</div></div><div class="vocab-back"><div class="meaning">приз</div><div class="ex">The Bible was the prize.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="Bible">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">Bible</div><div class="pos">noun · III</div></div><div class="vocab-back"><div class="meaning">Библия</div><div class="ex">He won a Bible he could not read.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="ticket">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">ticket</div><div class="pos">noun · III</div></div><div class="vocab-back"><div class="meaning">жетон</div><div class="ex">Tom traded for many tickets.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="treasures">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">treasures</div><div class="pos">n·pl · III</div></div><div class="vocab-back"><div class="meaning">сокровища</div><div class="ex">Pockets full of small treasures.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="Judge">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">Judge</div><div class="pos">noun · III</div></div><div class="vocab-back"><div class="meaning">судья</div><div class="ex">Judge Thatcher smiled at him.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="disciples">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">disciples</div><div class="pos">n·pl · III</div></div><div class="vocab-back"><div class="meaning">апостолы</div><div class="ex">Name the first two disciples!</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="laugh">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">laugh</div><div class="pos">verb · III</div></div><div class="vocab-back"><div class="meaning">смеяться</div><div class="ex">People started to laugh.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="fraud">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">fraud</div><div class="pos">noun · III</div></div><div class="vocab-back"><div class="meaning">обманщик</div><div class="ex">Everyone saw he was a fraud.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="engaged">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">engaged</div><div class="pos">adj · IV</div></div><div class="vocab-back"><div class="meaning">помолвлены</div><div class="ex">They said they were engaged.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="forgive">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">forgive</div><div class="pos">verb · IV</div></div><div class="vocab-back"><div class="meaning">простить</div><div class="ex">Becky refused to forgive him.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="yellow">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">yellow</div><div class="pos">adj · IV</div></div><div class="vocab-back"><div class="meaning">жёлтый</div><div class="ex">She had a yellow ribbon.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="slate">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">slate</div><div class="pos">noun · IV</div></div><div class="vocab-back"><div class="meaning">грифельная доска</div><div class="ex">He drew on his slate.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="gum">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">gum</div><div class="pos">noun · IV</div></div><div class="vocab-back"><div class="meaning">жвачка</div><div class="ex">Tom offered her gum.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="Amy">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">Amy</div><div class="pos">name · IV</div></div><div class="vocab-back"><div class="meaning">Эми Lawrence</div><div class="ex">He mentioned Amy — a mistake!</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="brass">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">brass</div><div class="pos">adj · IV</div></div><div class="vocab-back"><div class="meaning">латунный</div><div class="ex">A shiny brass knob.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="woods">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">woods</div><div class="pos">n·pl · IV</div></div><div class="vocab-back"><div class="meaning">лес</div><div class="ex">They ran off to the woods.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="raft">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">raft</div><div class="pos">noun · V</div></div><div class="vocab-back"><div class="meaning">плот</div><div class="ex">They left on a small raft.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="island">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">island</div><div class="pos">noun · V</div></div><div class="vocab-back"><div class="meaning">остров</div><div class="ex">They hid on a small island.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="drowned">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">drowned</div><div class="pos">verb · V</div></div><div class="vocab-back"><div class="meaning">утонул</div><div class="ex">The town thought they had drowned.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="sneaked">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">sneaked</div><div class="pos">verb · V</div></div><div class="vocab-back"><div class="meaning">прокрался</div><div class="ex">Tom sneaked home to spy.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="pew">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">pew</div><div class="pos">noun · V</div></div><div class="vocab-back"><div class="meaning">церковная скамья</div><div class="ex">The pews were full.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="aisle">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">aisle</div><div class="pos">noun · V</div></div><div class="vocab-back"><div class="meaning">проход в церкви</div><div class="ex">They walked down the aisle.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="funeral">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">funeral</div><div class="pos">noun · V</div></div><div class="vocab-back"><div class="meaning">похороны</div><div class="ex">Their own funeral.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="oath">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">oath</div><div class="pos">noun · VI</div></div><div class="vocab-back"><div class="meaning">клятва</div><div class="ex">They swore a blood oath.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="swore">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">swore</div><div class="pos">verb · VI</div></div><div class="vocab-back"><div class="meaning">поклялся</div><div class="ex">They swore never to tell.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="jail">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">jail</div><div class="pos">noun · VI</div></div><div class="vocab-back"><div class="meaning">тюрьма</div><div class="ex">Muff Potter was in jail.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="trial">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">trial</div><div class="pos">noun · VI</div></div><div class="vocab-back"><div class="meaning">суд</div><div class="ex">The trial began that morning.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="innocent">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">innocent</div><div class="pos">adj · VI</div></div><div class="vocab-back"><div class="meaning">невиновный</div><div class="ex">Muff Potter was innocent.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="guilty">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">guilty</div><div class="pos">adj · VI</div></div><div class="vocab-back"><div class="meaning">виновный</div><div class="ex">Injun Joe was guilty.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="escaped">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">escaped</div><div class="pos">verb · VI</div></div><div class="vocab-back"><div class="meaning">сбежал</div><div class="ex">Injun Joe escaped through the window.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="picnic">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">picnic</div><div class="pos">noun · VII</div></div><div class="vocab-back"><div class="meaning">пикник</div><div class="ex">The children went on a picnic.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="torches">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">torches</div><div class="pos">n·pl · VII</div></div><div class="vocab-back"><div class="meaning">факелы</div><div class="ex">They carried torches.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="tunnels">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">tunnels</div><div class="pos">n·pl · VII</div></div><div class="vocab-back"><div class="meaning">туннели</div><div class="ex">The cave had endless tunnels.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="candle">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">candle</div><div class="pos">noun · VII</div></div><div class="vocab-back"><div class="meaning">свеча</div><div class="ex">Becky's candle was almost gone.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="lost">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">lost</div><div class="pos">adj · VII</div></div><div class="vocab-back"><div class="meaning">потерянный</div><div class="ex">They were completely lost.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="string">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">string</div><div class="pos">noun · VII</div></div><div class="vocab-back"><div class="meaning">верёвка</div><div class="ex">Tom used a string as a guide.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="daylight">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">daylight</div><div class="pos">noun · VII</div></div><div class="vocab-back"><div class="meaning">дневной свет</div><div class="ex">Finally he saw daylight.</div></div></div></div>
+      <div class="vocab-card"><button class="vocab-tts" data-say="exhausted">▶</button><div class="vocab-inner"><div class="vocab-front"><div class="word">exhausted</div><div class="pos">adj · VII</div></div><div class="vocab-back"><div class="meaning">измотанный</div><div class="ex">Both children were exhausted.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     A · VOCABULARY · 8 exercises
+     ============================================================ -->
+<section class="section" id="vocab">
+  <div class="section-hdr"><div class="section-num">A · Vocabulary</div><h2>Eight exercises · 12 items each</h2></div>
+
+  <!-- V1 · Match -->
+  <div class="card">
+    <div class="task-tag">V.1 · Match · English ↔ Russian · 12 pairs</div>
+    <p class="info">Click an English word, then click its Russian meaning. Correct pair turns green.</p>
+    <div class="match-wrap" data-match="mV1">
+      <div class="match-col"><h4>English</h4>
+        <div class="match-card" data-en="fence">fence</div>
+        <div class="match-card" data-en="graveyard">graveyard</div>
+        <div class="match-card" data-en="witness">witness</div>
+        <div class="match-card" data-en="prize">prize</div>
+        <div class="match-card" data-en="engaged">engaged</div>
+        <div class="match-card" data-en="funeral">funeral</div>
+        <div class="match-card" data-en="trial">trial</div>
+        <div class="match-card" data-en="oath">oath</div>
+        <div class="match-card" data-en="innocent">innocent</div>
+        <div class="match-card" data-en="fraud">fraud</div>
+        <div class="match-card" data-en="candle">candle</div>
+        <div class="match-card" data-en="exhausted">exhausted</div>
+      </div>
+      <div class="match-col"><h4>Russian</h4>
+        <div class="match-card" data-ru="candle">свеча</div>
+        <div class="match-card" data-ru="fence">забор</div>
+        <div class="match-card" data-ru="graveyard">кладбище</div>
+        <div class="match-card" data-ru="witness">свидетель</div>
+        <div class="match-card" data-ru="prize">приз</div>
+        <div class="match-card" data-ru="engaged">помолвлены</div>
+        <div class="match-card" data-ru="funeral">похороны</div>
+        <div class="match-card" data-ru="trial">суд</div>
+        <div class="match-card" data-ru="oath">клятва</div>
+        <div class="match-card" data-ru="innocent">невиновный</div>
+        <div class="match-card" data-ru="fraud">обманщик</div>
+        <div class="match-card" data-ru="exhausted">измотанный</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2 · Gap-fill with bank -->
+  <div class="card">
+    <div class="task-tag">V.2 · Gap-fill · 12 sentences · type the missing word</div>
+    <p class="info"><b>Word bank:</b> paint · trick · midnight · scared · promise · Bible · disciples · forgive · funeral · witness · candle · exhausted.</p>
+    <div class="gapfill" id="gV2">
+      <p><b>1.</b> Aunt Polly told Tom to <input data-a="paint"> the fence.</p>
+      <p><b>2.</b> Tom played a clever <input data-a="trick"> on Ben Rogers.</p>
+      <p><b>3.</b> The boys entered the graveyard at <input data-a="midnight">.</p>
+      <p><b>4.</b> They were very <input data-a="scared"> after seeing the murder.</p>
+      <p><b>5.</b> They made a blood <input data-a="promise"> never to tell.</p>
+      <p><b>6.</b> The prize at Sunday School was a beautiful <input data-a="Bible|bible">.</p>
+      <p><b>7.</b> Tom could not name the first two <input data-a="disciples">.</p>
+      <p><b>8.</b> Becky refused to <input data-a="forgive"> him for a long time.</p>
+      <p><b>9.</b> The town started to plan a <input data-a="funeral"> for the boys.</p>
+      <p><b>10.</b> At the trial Tom stood up as a <input data-a="witness">.</p>
+      <p><b>11.</b> In the cave Becky's <input data-a="candle"> was almost gone.</p>
+      <p><b>12.</b> When rescuers found them, both children were <input data-a="exhausted">.</p>
+      <button class="check" data-target="gV2">✓ Check</button><span class="check-result" id="gV2-result"></span>
+    </div>
+  </div>
+
+  <!-- V3 · Definition MCQ -->
+  <div class="card">
+    <div class="task-tag">V.3 · Definition MCQ · 10 items · choose the best meaning</div>
+    <div class="mcq-row" data-ans="clever plan to fool someone"><div class="mcq-q"><span class="b">1.</span> <b>trick</b> — what does it mean?</div>
+      <div class="mcq-opts"><button data-v="clever plan to fool someone">clever plan to fool someone</button><button data-v="a painting tool">a painting tool</button><button data-v="a short song">a short song</button></div></div>
+    <div class="mcq-row" data-ans="place where dead people are buried"><div class="mcq-q"><span class="b">2.</span> <b>graveyard</b> — what does it mean?</div>
+      <div class="mcq-opts"><button data-v="place where dead people are buried">place where dead people are buried</button><button data-v="a small garden">a small garden</button><button data-v="a workshop">a workshop</button></div></div>
+    <div class="mcq-row" data-ans="person who saw an event happen"><div class="mcq-q"><span class="b">3.</span> <b>witness</b> — who is that?</div>
+      <div class="mcq-opts"><button data-v="person who saw an event happen">person who saw an event happen</button><button data-v="a court judge">a court judge</button><button data-v="a religious teacher">a religious teacher</button></div></div>
+    <div class="mcq-row" data-ans="followers of Jesus"><div class="mcq-q"><span class="b">4.</span> <b>disciples</b> — who are they?</div>
+      <div class="mcq-opts"><button data-v="followers of Jesus">followers of Jesus (12 apostles)</button><button data-v="school teachers">school teachers</button><button data-v="thieves">thieves</button></div></div>
+    <div class="mcq-row" data-ans="person pretending to be smart"><div class="mcq-q"><span class="b">5.</span> <b>fraud</b> — what does it mean?</div>
+      <div class="mcq-opts"><button data-v="person pretending to be smart">person pretending to be smart or successful</button><button data-v="a hero">a hero</button><button data-v="a banker">a banker</button></div></div>
+    <div class="mcq-row" data-ans="a very serious promise"><div class="mcq-q"><span class="b">6.</span> <b>oath</b> — what is that?</div>
+      <div class="mcq-opts"><button data-v="a very serious promise">a very serious promise</button><button data-v="a short joke">a short joke</button><button data-v="a garden tool">a garden tool</button></div></div>
+    <div class="mcq-row" data-ans="opposite of guilty"><div class="mcq-q"><span class="b">7.</span> <b>innocent</b> — meaning?</div>
+      <div class="mcq-opts"><button data-v="opposite of guilty">opposite of guilty · not responsible for a crime</button><button data-v="very rich">very rich</button><button data-v="not intelligent">not intelligent</button></div></div>
+    <div class="mcq-row" data-ans="wooden bench in a church"><div class="mcq-q"><span class="b">8.</span> <b>pew</b> — what is that?</div>
+      <div class="mcq-opts"><button data-v="wooden bench in a church">wooden bench in a church</button><button data-v="a small hat">a small hat</button><button data-v="a cave tunnel">a cave tunnel</button></div></div>
+    <div class="mcq-row" data-ans="extremely tired, no energy left"><div class="mcq-q"><span class="b">9.</span> <b>exhausted</b> — meaning?</div>
+      <div class="mcq-opts"><button data-v="extremely tired, no energy left">extremely tired, no energy left</button><button data-v="excited">excited</button><button data-v="hungry">hungry</button></div></div>
+    <div class="mcq-row" data-ans="playful, not serious trouble"><div class="mcq-q"><span class="b">10.</span> <b>mischief</b> — meaning?</div>
+      <div class="mcq-opts"><button data-v="playful, not serious trouble">playful, not serious trouble</button><button data-v="a real crime">a real crime</button><button data-v="a school lesson">a school lesson</button></div></div>
+  </div>
+
+  <!-- V4 · Odd one out -->
+  <div class="card">
+    <div class="task-tag">V.4 · Odd one out · 8 rows · click the word that doesn't belong</div>
+    <div class="odd-row" data-ans="funeral"><span class="n">1.</span><span class="cat">Fence:</span>
+      <button class="odd-btn" data-v="fence">fence</button><button class="odd-btn" data-v="paint">paint</button><button class="odd-btn" data-v="shade">shade</button><button class="odd-btn" data-v="funeral">funeral</button></div>
+    <div class="odd-row" data-ans="Bible"><span class="n">2.</span><span class="cat">Night crime:</span>
+      <button class="odd-btn" data-v="graveyard">graveyard</button><button class="odd-btn" data-v="midnight">midnight</button><button class="odd-btn" data-v="murder">murder</button><button class="odd-btn" data-v="Bible">Bible</button></div>
+    <div class="odd-row" data-ans="apple"><span class="n">3.</span><span class="cat">Court:</span>
+      <button class="odd-btn" data-v="jail">jail</button><button class="odd-btn" data-v="trial">trial</button><button class="odd-btn" data-v="innocent">innocent</button><button class="odd-btn" data-v="apple">apple</button></div>
+    <div class="odd-row" data-ans="engaged"><span class="n">4.</span><span class="cat">Cave:</span>
+      <button class="odd-btn" data-v="cave">cave</button><button class="odd-btn" data-v="tunnels">tunnels</button><button class="odd-btn" data-v="candle">candle</button><button class="odd-btn" data-v="engaged">engaged</button></div>
+    <div class="odd-row" data-ans="disciples"><span class="n">5.</span><span class="cat">Feelings:</span>
+      <button class="odd-btn" data-v="clever">clever</button><button class="odd-btn" data-v="scared">scared</button><button class="odd-btn" data-v="exhausted">exhausted</button><button class="odd-btn" data-v="disciples">disciples</button></div>
+    <div class="odd-row" data-ans="Judge"><span class="n">6.</span><span class="cat">Water escape:</span>
+      <button class="odd-btn" data-v="raft">raft</button><button class="odd-btn" data-v="island">island</button><button class="odd-btn" data-v="drowned">drowned</button><button class="odd-btn" data-v="Judge">Judge</button></div>
+    <div class="odd-row" data-ans="picnic"><span class="n">7.</span><span class="cat">Church:</span>
+      <button class="odd-btn" data-v="pew">pew</button><button class="odd-btn" data-v="aisle">aisle</button><button class="odd-btn" data-v="Bible">Bible</button><button class="odd-btn" data-v="picnic">picnic</button></div>
+    <div class="odd-row" data-ans="prize"><span class="n">8.</span><span class="cat">Promise/oath:</span>
+      <button class="odd-btn" data-v="oath">oath</button><button class="odd-btn" data-v="promise">promise</button><button class="odd-btn" data-v="swore">swore</button><button class="odd-btn" data-v="prize">prize</button></div>
+  </div>
+
+  <!-- V5 · Word formation -->
+  <div class="card">
+    <div class="task-tag">V.5 · Word formation · type the missing form · 10 items</div>
+    <div class="gapfill" id="gV5">
+      <p><b>1.</b> noun: <em>guilt</em> · adjective: <input data-a="guilty"></p>
+      <p><b>2.</b> adjective: <em>innocent</em> · noun: <input data-a="innocence"></p>
+      <p><b>3.</b> verb: <em>forgive</em> · noun: <input data-a="forgiveness"></p>
+      <p><b>4.</b> noun: <em>witness</em> · verb (to see + report): <input data-a="witness|to witness"></p>
+      <p><b>5.</b> noun: <em>promise</em> · verb: <input data-a="promise|to promise"></p>
+      <p><b>6.</b> verb: <em>scare</em> · adjective (frightened): <input data-a="scared"></p>
+      <p><b>7.</b> adjective: <em>heavy</em> · noun (weight): <input data-a="heaviness"></p>
+      <p><b>8.</b> noun: <em>funeral</em> · adjective: <input data-a="funereal"></p>
+      <p><b>9.</b> verb: <em>escape</em> · past simple: <input data-a="escaped"></p>
+      <p><b>10.</b> verb: <em>swear</em> · past simple: <input data-a="swore"></p>
+      <button class="check" data-target="gV5">✓ Check</button><span class="check-result" id="gV5-result"></span>
+    </div>
+  </div>
+
+  <!-- V6 · Collocations -->
+  <div class="card">
+    <div class="task-tag">V.6 · Collocations · 10 pairs · pick the verb that goes with the noun</div>
+    <div class="mcq-row" data-ans="make"><div class="mcq-q"><span class="b">1.</span> ___ a promise</div>
+      <div class="mcq-opts"><button data-v="make">make</button><button data-v="do">do</button><button data-v="say">say</button></div></div>
+    <div class="mcq-row" data-ans="keep"><div class="mcq-q"><span class="b">2.</span> ___ a promise (not break it)</div>
+      <div class="mcq-opts"><button data-v="keep">keep</button><button data-v="hold">hold</button><button data-v="save">save</button></div></div>
+    <div class="mcq-row" data-ans="break"><div class="mcq-q"><span class="b">3.</span> ___ an oath (fail to keep it)</div>
+      <div class="mcq-opts"><button data-v="break">break</button><button data-v="cancel">cancel</button><button data-v="lose">lose</button></div></div>
+    <div class="mcq-row" data-ans="tell"><div class="mcq-q"><span class="b">4.</span> ___ the truth</div>
+      <div class="mcq-opts"><button data-v="tell">tell</button><button data-v="say">say</button><button data-v="speak">speak</button></div></div>
+    <div class="mcq-row" data-ans="commit"><div class="mcq-q"><span class="b">5.</span> ___ a murder</div>
+      <div class="mcq-opts"><button data-v="commit">commit</button><button data-v="do">do</button><button data-v="make">make</button></div></div>
+    <div class="mcq-row" data-ans="serve"><div class="mcq-q"><span class="b">6.</span> ___ time in jail</div>
+      <div class="mcq-opts"><button data-v="serve">serve</button><button data-v="have">have</button><button data-v="do">do</button></div></div>
+    <div class="mcq-row" data-ans="win"><div class="mcq-q"><span class="b">7.</span> ___ a prize</div>
+      <div class="mcq-opts"><button data-v="win">win</button><button data-v="gain">gain</button><button data-v="reach">reach</button></div></div>
+    <div class="mcq-row" data-ans="attend"><div class="mcq-q"><span class="b">8.</span> ___ a funeral</div>
+      <div class="mcq-opts"><button data-v="attend">attend</button><button data-v="visit">visit</button><button data-v="watch">watch</button></div></div>
+    <div class="mcq-row" data-ans="light"><div class="mcq-q"><span class="b">9.</span> ___ a candle</div>
+      <div class="mcq-opts"><button data-v="light">light</button><button data-v="burn">burn</button><button data-v="fire">fire</button></div></div>
+    <div class="mcq-row" data-ans="get"><div class="mcq-q"><span class="b">10.</span> ___ lost (in the cave)</div>
+      <div class="mcq-opts"><button data-v="get">get</button><button data-v="become">become</button><button data-v="fall">fall</button></div></div>
+  </div>
+
+  <!-- V7 · Synonyms / Antonyms -->
+  <div class="card">
+    <div class="task-tag">V.7 · Synonyms &amp; Antonyms · 10 items · pick the correct pair</div>
+    <div class="mcq-row" data-ans="brave"><div class="mcq-q"><span class="b">1.</span> Antonym of <b>scared</b> =</div>
+      <div class="mcq-opts"><button data-v="brave">brave</button><button data-v="clever">clever</button><button data-v="lost">lost</button></div></div>
+    <div class="mcq-row" data-ans="innocent"><div class="mcq-q"><span class="b">2.</span> Antonym of <b>guilty</b> =</div>
+      <div class="mcq-opts"><button data-v="innocent">innocent</button><button data-v="poor">poor</button><button data-v="scared">scared</button></div></div>
+    <div class="mcq-row" data-ans="cheat"><div class="mcq-q"><span class="b">3.</span> Synonym of <b>fraud</b> (person) =</div>
+      <div class="mcq-opts"><button data-v="cheat">cheat</button><button data-v="hero">hero</button><button data-v="witness">witness</button></div></div>
+    <div class="mcq-row" data-ans="smart"><div class="mcq-q"><span class="b">4.</span> Synonym of <b>clever</b> =</div>
+      <div class="mcq-opts"><button data-v="smart">smart</button><button data-v="scared">scared</button><button data-v="lost">lost</button></div></div>
+    <div class="mcq-row" data-ans="dark"><div class="mcq-q"><span class="b">5.</span> Antonym of <b>daylight</b> =</div>
+      <div class="mcq-opts"><button data-v="dark">dark / darkness</button><button data-v="candle">candle</button><button data-v="promise">promise</button></div></div>
+    <div class="mcq-row" data-ans="tired"><div class="mcq-q"><span class="b">6.</span> Synonym of <b>exhausted</b> =</div>
+      <div class="mcq-opts"><button data-v="tired">tired · worn out</button><button data-v="happy">happy</button><button data-v="clever">clever</button></div></div>
+    <div class="mcq-row" data-ans="light"><div class="mcq-q"><span class="b">7.</span> Antonym of <b>heavy</b> =</div>
+      <div class="mcq-opts"><button data-v="light">light</button><button data-v="deep">deep</button><button data-v="hot">hot</button></div></div>
+    <div class="mcq-row" data-ans="pardon"><div class="mcq-q"><span class="b">8.</span> Synonym of <b>forgive</b> =</div>
+      <div class="mcq-opts"><button data-v="pardon">pardon</button><button data-v="blame">blame</button><button data-v="scare">scare</button></div></div>
+    <div class="mcq-row" data-ans="captured"><div class="mcq-q"><span class="b">9.</span> Antonym of <b>escaped</b> =</div>
+      <div class="mcq-opts"><button data-v="captured">was captured</button><button data-v="ran">ran</button><button data-v="finished">finished</button></div></div>
+    <div class="mcq-row" data-ans="reward"><div class="mcq-q"><span class="b">10.</span> Synonym of <b>prize</b> =</div>
+      <div class="mcq-opts"><button data-v="reward">reward / trophy</button><button data-v="promise">promise</button><button data-v="funeral">funeral</button></div></div>
+  </div>
+
+  <!-- V8 · Cloze passage -->
+  <div class="card">
+    <div class="task-tag">V.8 · Cloze passage · full recap · 12 blanks</div>
+    <p class="info"><b>Words to use:</b> paint · trick · midnight · witness · promise · Bible · fraud · engaged · funeral · trial · innocent · candle.</p>
+    <div class="cloze" id="clz">
+      Aunt Polly told Tom to <input data-a="paint"> the fence, but he found a clever <input data-a="trick"> so his friends did the work. Later, at <input data-a="midnight">, the boys went to the graveyard and became the only <input data-a="witness"> to a murder. They made a blood <input data-a="promise"> never to tell. At Sunday School Tom won the <input data-a="Bible|bible"> as a prize — but everyone soon saw he was a <input data-a="fraud">. He also said he and Becky were <input data-a="engaged"> — until he mentioned Amy. When the town thought the boys had drowned, it planned a <input data-a="funeral">. At the <input data-a="trial"> Tom told the truth and Muff Potter was found <input data-a="innocent">. Later, in the cave, Becky's <input data-a="candle"> was almost gone.
+      <br><br>
+      <button class="check" data-target="clz">✓ Check</button><span class="check-result" id="clz-result"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     B · GRAMMAR · 8 exercises · Murphy B1
+     ============================================================ -->
+<section class="section" id="grammar">
+  <div class="section-hdr"><div class="section-num">B · Grammar</div><h2>Eight exercises · Murphy B1 base</h2></div>
+
+  <!-- G1 · Past Simple gap-fill -->
+  <div class="card">
+    <div class="task-tag">G.1 · Past Simple · type the correct form · 10 items</div>
+    <p class="info">Regular verbs add <em>-ed</em>. Irregular verbs — memorise: go/went, see/saw, tell/told, run/ran, think/thought, stand/stood, find/found, swear/swore, take/took, know/knew.</p>
+    <div class="gapfill" id="g1">
+      <p><b>1.</b> Yesterday Tom (go) <input data-a="went"> to the fence with a brush.</p>
+      <p><b>2.</b> The boys (see) <input data-a="saw"> the murder in the graveyard.</p>
+      <p><b>3.</b> Aunt Polly (tell) <input data-a="told"> him to paint the fence.</p>
+      <p><b>4.</b> They (run) <input data-a="ran"> away to a small island.</p>
+      <p><b>5.</b> The town (think) <input data-a="thought"> the boys were dead.</p>
+      <p><b>6.</b> Tom (stand) <input data-a="stood"> up as a witness.</p>
+      <p><b>7.</b> Tom and Becky (find) <input data-a="found"> the way out of the cave.</p>
+      <p><b>8.</b> The boys (swear) <input data-a="swore"> a blood oath.</p>
+      <p><b>9.</b> Injun Joe (escape) <input data-a="escaped"> through the window.</p>
+      <p><b>10.</b> Becky (forgive) <input data-a="forgave"> Tom in the end.</p>
+      <button class="check" data-target="g1">✓ Check</button><span class="check-result" id="g1-result"></span>
+    </div>
+  </div>
+
+  <!-- G2 · Past Simple vs Past Continuous -->
+  <div class="card">
+    <div class="task-tag">G.2 · Past Simple vs Past Continuous · MCQ · 10 items</div>
+    <p class="info">Long action in the past → Past Continuous (<em>was/were + V-ing</em>). Short action → Past Simple. Often together: <em>While Tom was painting, Ben came.</em></p>
+    <div class="mcq-row" data-ans="was painting"><div class="mcq-q"><span class="b">1.</span> When Ben arrived, Tom ___ the fence.</div>
+      <div class="mcq-opts"><button data-v="was painting">was painting</button><button data-v="painted">painted</button><button data-v="is painting">is painting</button></div></div>
+    <div class="mcq-row" data-ans="were walking"><div class="mcq-q"><span class="b">2.</span> The boys ___ through the trees when they saw the light.</div>
+      <div class="mcq-opts"><button data-v="were walking">were walking</button><button data-v="walked">walked</button><button data-v="are walking">are walking</button></div></div>
+    <div class="mcq-row" data-ans="was sitting"><div class="mcq-q"><span class="b">3.</span> Muff Potter ___ in jail while the real killer was free.</div>
+      <div class="mcq-opts"><button data-v="was sitting">was sitting</button><button data-v="sat">sat</button><button data-v="is sitting">is sitting</button></div></div>
+    <div class="mcq-row" data-ans="broke"><div class="mcq-q"><span class="b">4.</span> Tom ___ the oath and told the truth.</div>
+      <div class="mcq-opts"><button data-v="broke">broke</button><button data-v="was breaking">was breaking</button><button data-v="breaks">breaks</button></div></div>
+    <div class="mcq-row" data-ans="was drawing"><div class="mcq-q"><span class="b">5.</span> While Becky ___ on her slate, Tom watched her.</div>
+      <div class="mcq-opts"><button data-v="was drawing">was drawing</button><button data-v="drew">drew</button><button data-v="draws">draws</button></div></div>
+    <div class="mcq-row" data-ans="ran"><div class="mcq-q"><span class="b">6.</span> The boys ___ away when it started to rain.</div>
+      <div class="mcq-opts"><button data-v="ran">ran</button><button data-v="were running">were running</button><button data-v="run">run</button></div></div>
+    <div class="mcq-row" data-ans="was looking"><div class="mcq-q"><span class="b">7.</span> Aunt Polly ___ for Tom while he was on the island.</div>
+      <div class="mcq-opts"><button data-v="was looking">was looking</button><button data-v="looked">looked</button><button data-v="is looking">is looking</button></div></div>
+    <div class="mcq-row" data-ans="were carrying"><div class="mcq-q"><span class="b">8.</span> The children ___ torches when they entered the cave.</div>
+      <div class="mcq-opts"><button data-v="were carrying">were carrying</button><button data-v="carried">carried</button><button data-v="carry">carry</button></div></div>
+    <div class="mcq-row" data-ans="stood"><div class="mcq-q"><span class="b">9.</span> Tom ___ up and spoke while everyone was silent.</div>
+      <div class="mcq-opts"><button data-v="stood">stood</button><button data-v="was standing">was standing</button><button data-v="stands">stands</button></div></div>
+    <div class="mcq-row" data-ans="was shaking"><div class="mcq-q"><span class="b">10.</span> His voice ___ as he spoke at the trial.</div>
+      <div class="mcq-opts"><button data-v="was shaking">was shaking</button><button data-v="shook">shook</button><button data-v="shakes">shakes</button></div></div>
+  </div>
+
+  <!-- G3 · Error correction -->
+  <div class="card">
+    <div class="task-tag">G.3 · Error correction · type the correct sentence · 10 items</div>
+    <p class="info">Each sentence has ONE mistake (verb form, article, preposition, or word order). Type the whole corrected sentence.</p>
+    <div class="gapfill" id="g3">
+      <p><b>1.</b> "Tom go to the graveyard yesterday."<br>→ <input class="wide" data-a="Tom went to the graveyard yesterday|Tom went to the graveyard yesterday."></p>
+      <p><b>2.</b> "They was scared."<br>→ <input class="wide" data-a="They were scared|They were scared."></p>
+      <p><b>3.</b> "Aunt Polly telled him to paint the fence."<br>→ <input class="wide" data-a="Aunt Polly told him to paint the fence|Aunt Polly told him to paint the fence."></p>
+      <p><b>4.</b> "The boys runned away on a raft."<br>→ <input class="wide" data-a="The boys ran away on a raft|The boys ran away on a raft."></p>
+      <p><b>5.</b> "Muff Potter was in the jail."<br>→ <input class="wide" data-a="Muff Potter was in jail|Muff Potter was in jail."></p>
+      <p><b>6.</b> "They saw a murder at the night."<br>→ <input class="wide" data-a="They saw a murder at night|They saw a murder at night."></p>
+      <p><b>7.</b> "Tom is very clever than Sid."<br>→ <input class="wide" data-a="Tom is cleverer than Sid|Tom is cleverer than Sid.|Tom is more clever than Sid"></p>
+      <p><b>8.</b> "Becky don't forgive him."<br>→ <input class="wide" data-a="Becky didn't forgive him|Becky didn't forgive him."></p>
+      <p><b>9.</b> "If Tom will tell the truth, Muff will be free."<br>→ <input class="wide" data-a="If Tom tells the truth, Muff will be free|If Tom tells the truth, Muff will be free."></p>
+      <p><b>10.</b> "The cave was more darker than the graveyard."<br>→ <input class="wide" data-a="The cave was darker than the graveyard|The cave was darker than the graveyard."></p>
+      <button class="check" data-target="g3">✓ Check</button><span class="check-result" id="g3-result"></span>
+    </div>
+  </div>
+
+  <!-- G4 · Reported speech -->
+  <div class="card">
+    <div class="task-tag">G.4 · Sentence transformation · direct → reported · 8 items</div>
+    <p class="info">Direct: <em>"I am tired," he said.</em> Reported: <em>He said (that) he was tired.</em> Tense shifts back (Present → Past, Past → Past Perfect).</p>
+    <div class="gapfill" id="g4">
+      <p><b>1.</b> Tom said, "I am clever." → Tom said (that) he <input data-a="was"> clever.</p>
+      <p><b>2.</b> Aunt Polly said, "I need help." → Aunt Polly said (that) she <input data-a="needed"> help.</p>
+      <p><b>3.</b> Becky said, "I will not forgive you." → Becky said (that) she <input data-a="would not|wouldn't"> forgive him.</p>
+      <p><b>4.</b> Tom said, "I have seen the murder." → Tom said (that) he <input data-a="had seen"> the murder.</p>
+      <p><b>5.</b> The judge said, "Muff Potter is innocent." → The judge said (that) Muff Potter <input data-a="was"> innocent.</p>
+      <p><b>6.</b> Tom said, "I will help him." → Tom said (that) he <input data-a="would"> help him.</p>
+      <p><b>7.</b> Injun Joe said, "I killed the doctor." → Injun Joe said (that) he <input data-a="had killed"> the doctor.</p>
+      <p><b>8.</b> Becky said, "I am scared." → Becky said (that) she <input data-a="was"> scared.</p>
+      <button class="check" data-target="g4">✓ Check</button><span class="check-result" id="g4-result"></span>
+    </div>
+  </div>
+
+  <!-- G5 · Word order -->
+  <div class="card">
+    <div class="task-tag">G.5 · Word order · arrange to make a correct sentence · 8 items</div>
+    <div class="gapfill" id="g5">
+      <p><b>1.</b> [fence / painted / Tom / the] → <input class="wide" data-a="Tom painted the fence|Tom painted the fence."></p>
+      <p><b>2.</b> [at / went / midnight / graveyard / to / the / they] → <input class="wide" data-a="They went to the graveyard at midnight|They went to the graveyard at midnight."></p>
+      <p><b>3.</b> [scared / very / were / they] → <input class="wide" data-a="They were very scared|They were very scared."></p>
+      <p><b>4.</b> [Muff Potter / in / was / jail] → <input class="wide" data-a="Muff Potter was in jail|Muff Potter was in jail."></p>
+      <p><b>5.</b> [truth / Tom / at / the / told / trial / the] → <input class="wide" data-a="Tom told the truth at the trial|Tom told the truth at the trial."></p>
+      <p><b>6.</b> [candle / gone / almost / Becky's / was] → <input class="wide" data-a="Becky's candle was almost gone|Becky's candle was almost gone."></p>
+      <p><b>7.</b> [forgive / did / Becky / not / him] → <input class="wide" data-a="Becky did not forgive him|Becky did not forgive him.|Becky didn't forgive him|Becky didn't forgive him."></p>
+      <p><b>8.</b> [cave / the / found / out / the / way / of / they] → <input class="wide" data-a="They found the way out of the cave|They found the way out of the cave."></p>
+      <button class="check" data-target="g5">✓ Check</button><span class="check-result" id="g5-result"></span>
+    </div>
+  </div>
+
+  <!-- G6 · Articles + Prepositions -->
+  <div class="card">
+    <div class="task-tag">G.6 · Articles &amp; Prepositions · 10 blanks</div>
+    <p class="info"><b>Articles:</b> a/an (first mention) · the (specific) · — (proper names). <b>Prepositions:</b> at midnight, on Sunday, in the morning, at school, in the cave.</p>
+    <div class="gapfill" id="g6">
+      <p><b>1.</b> Aunt Polly gave Tom <input data-a="an"> old brush.</p>
+      <p><b>2.</b> They lived by <input data-a="the"> Mississippi River.</p>
+      <p><b>3.</b> Tom went to <input data-a="-|—"> Sunday School every week.</p>
+      <p><b>4.</b> The killer used <input data-a="a"> knife.</p>
+      <p><b>5.</b> They arrived <input data-a="at"> the graveyard.</p>
+      <p><b>6.</b> The murder happened <input data-a="at"> midnight.</p>
+      <p><b>7.</b> Aunt Polly was worried <input data-a="on"> Sunday afternoon.</p>
+      <p><b>8.</b> The children got lost <input data-a="in"> a large cave.</p>
+      <p><b>9.</b> The book was published <input data-a="in"> 1876.</p>
+      <p><b>10.</b> Becky was <input data-a="the"> most beautiful girl in the class.</p>
+      <button class="check" data-target="g6">✓ Check</button><span class="check-result" id="g6-result"></span>
+    </div>
+  </div>
+
+  <!-- G7 · Verb table -->
+  <div class="card">
+    <div class="task-tag">G.7 · Verb table · base / past simple / past participle · 10 verbs</div>
+    <table class="vtable" id="g7">
+      <thead><tr><th>Base (V1)</th><th>Past Simple (V2)</th><th>Past Participle (V3)</th></tr></thead>
+      <tbody>
+        <tr><td class="base">go</td><td><input data-a="went"></td><td><input data-a="gone"></td></tr>
+        <tr><td class="base">see</td><td><input data-a="saw"></td><td><input data-a="seen"></td></tr>
+        <tr><td class="base">tell</td><td><input data-a="told"></td><td><input data-a="told"></td></tr>
+        <tr><td class="base">run</td><td><input data-a="ran"></td><td><input data-a="run"></td></tr>
+        <tr><td class="base">think</td><td><input data-a="thought"></td><td><input data-a="thought"></td></tr>
+        <tr><td class="base">stand</td><td><input data-a="stood"></td><td><input data-a="stood"></td></tr>
+        <tr><td class="base">find</td><td><input data-a="found"></td><td><input data-a="found"></td></tr>
+        <tr><td class="base">swear</td><td><input data-a="swore"></td><td><input data-a="sworn"></td></tr>
+        <tr><td class="base">take</td><td><input data-a="took"></td><td><input data-a="taken"></td></tr>
+        <tr><td class="base">forgive</td><td><input data-a="forgave"></td><td><input data-a="forgiven"></td></tr>
+      </tbody>
+    </table>
+    <button class="check" data-target="g7" style="margin-top:14px;font:800 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--burgundy);color:#fff;border:none;padding:9px 14px;border-radius:8px;cursor:pointer">✓ Check all</button>
+    <span class="check-result" id="g7-result"></span>
+  </div>
+
+  <!-- G8 · Translation with grammar focus -->
+  <div class="card">
+    <div class="task-tag">G.8 · Translation · Ru → En · grammar focus · 10 items · reveal</div>
+    <p class="info">Say each sentence out loud, then click <b>Reveal</b> for the target grammar structure.</p>
+    <div class="reveal-item"><div class="reveal-ru"><b>1.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Past Simple]</span> Том покрасил забор за один день.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">Tom painted the fence in one day.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>2.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Past Continuous]</span> Когда Бен пришёл, Том красил забор.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">When Ben arrived, Tom was painting the fence.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>3.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Present Perfect]</span> Ты когда-нибудь видел настоящее кладбище ночью?</div><button class="reveal-btn">Reveal</button><div class="reveal-en">Have you ever seen a real graveyard at night?</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>4.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Article the]</span> Они жили у реки Миссисипи.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">They lived by the Mississippi River.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>5.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Preposition at]</span> Убийство случилось в полночь.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">The murder happened at midnight.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>6.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Comparative]</span> Пещера была опаснее кладбища.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">The cave was more dangerous than the graveyard.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>7.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Modal should]</span> Том знал, что должен помочь Маффу Поттеру.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">Tom knew (that) he should help Muff Potter.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>8.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Conditional 1]</span> Если Том расскажет правду, Мафф будет свободен.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">If Tom tells the truth, Muff will be free.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>9.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Conditional 2]</span> Если бы я была Бекки, я бы простила Тома раньше.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">If I were Becky, I would forgive Tom sooner.</div></div>
+    <div class="reveal-item"><div class="reveal-ru"><b>10.</b> <span style="color:var(--muted);font-family:var(--mono);font-size:.72rem">[Reported speech]</span> Том сказал, что он видел убийство.</div><button class="reveal-btn">Reveal</button><div class="reveal-en">Tom said (that) he had seen the murder.</div></div>
+  </div>
+
+  <div class="done-wrap">
+    <button class="done-btn" id="doneBtn">✓ Done · Send to teacher</button>
+  </div>
+</section>
+
+<footer>
+  Fedor · Workbook · Tom Sawyer — Three Adventures Recap · 14 July 2026<br>
+  NG English · LinguaBoost Lab · A2+ → B1
+</footer>
+
+<script>
+function tts(text){
+  if(!('speechSynthesis' in window) || !text) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB'; u.rate = 0.92;
+  window.speechSynthesis.speak(u);
+}
+document.querySelectorAll('.vocab-card').forEach(c => {
+  c.addEventListener('click', e => { if (e.target.closest('.vocab-tts')) return; c.classList.toggle('flipped'); });
+});
+document.querySelectorAll('.vocab-tts').forEach(b => {
+  b.addEventListener('click', e => { e.stopPropagation(); tts(b.dataset.say || ''); });
+});
+document.querySelectorAll('[data-match]').forEach(box => {
+  let sel = null;
+  box.querySelectorAll('.match-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.classList.contains('done')) return;
+      if (!sel) { sel = card; card.classList.add('sel'); return; }
+      if (sel === card) { card.classList.remove('sel'); sel = null; return; }
+      const a = sel.dataset.en || sel.dataset.ru;
+      const b = card.dataset.en || card.dataset.ru;
+      const oneEn = sel.dataset.en && card.dataset.ru;
+      const oneRu = sel.dataset.ru && card.dataset.en;
+      if ((oneEn || oneRu) && a === b) {
+        sel.classList.remove('sel'); sel.classList.add('done');
+        card.classList.add('done'); sel = null;
+      } else {
+        card.classList.add('bad'); sel.classList.add('bad');
+        setTimeout(() => { card.classList.remove('bad'); if (sel) sel.classList.remove('bad','sel'); sel = null; }, 400);
+      }
+    });
+  });
+});
+document.querySelectorAll('button.check').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const box = document.getElementById(targetId);
+    if (!box) return;
+    let ok = 0, total = 0;
+    box.querySelectorAll('input[data-a]').forEach(inp => {
+      total++;
+      const raw = (inp.value || '').trim().toLowerCase().replace(/\.$/, '');
+      const expects = (inp.dataset.a || '').split('|').map(s => s.trim().toLowerCase().replace(/\.$/, ''));
+      inp.classList.remove('correct','wrong');
+      if (expects.includes(raw)) { inp.classList.add('correct'); ok++; }
+      else inp.classList.add('wrong');
+    });
+    const res = document.getElementById(targetId + '-result');
+    if (res) res.textContent = ok + ' / ' + total + ' correct';
+  });
+});
+document.querySelectorAll('.mcq-row').forEach(row => {
+  const opts = row.querySelector('.mcq-opts');
+  if (opts) {
+    const btns = [...opts.querySelectorAll('button')];
+    btns.sort(() => Math.random() - 0.5).forEach(b => opts.appendChild(b));
+  }
+  const ans = (row.dataset.ans || '').toLowerCase();
+  row.querySelectorAll('.mcq-opts button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      const v = (btn.dataset.v || btn.textContent || '').trim().toLowerCase();
+      if (v === ans) {
+        btn.classList.add('correct');
+        row.querySelectorAll('.mcq-opts button').forEach(b => b.disabled = true);
+      } else {
+        btn.classList.add('wrong'); btn.disabled = true;
+      }
+    });
+  });
+});
+document.querySelectorAll('.odd-row').forEach(row => {
+  const ans = (row.dataset.ans || '').toLowerCase();
+  row.querySelectorAll('.odd-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.disabled) return;
+      const v = (b.dataset.v || '').toLowerCase();
+      if (v === ans) {
+        b.classList.add('correct');
+        row.querySelectorAll('.odd-btn').forEach(x => x.disabled = true);
+      } else { b.classList.add('wrong'); b.disabled = true; }
+    });
+  });
+});
+document.querySelectorAll('.reveal-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.classList.toggle('open');
+    btn.textContent = btn.parentElement.classList.contains('open') ? 'Hide' : 'Reveal';
+  });
+});
+const doneBtn = document.getElementById('doneBtn');
+if (doneBtn) {
+  doneBtn.addEventListener('click', () => {
+    doneBtn.classList.add('checked');
+    doneBtn.textContent = '✓ Teacher notified';
+    setTimeout(() => { window.location.href = '../'; }, 1600);
+  });
+}
+</script>
+</body>
+</html>
