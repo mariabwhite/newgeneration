@@ -521,17 +521,74 @@ button[data-say]:hover{background:var(--accent3)}
   /* top-tools: чуть подвинуть чтоб бургер попал в первую строку */
   .top-tools,.canon-l-tools{flex:0 0 auto!important}
 
-  /* ltab (Урок / Моя домашка) — до иконки: У / Д */
-  .ltab{padding:0!important;width:26px!important;height:26px!important;font-size:0!important;
-    justify-content:center;align-items:center;position:relative;overflow:hidden;border-radius:8px!important}
-  .ltab[data-tab="lesson"]::before{content:"У";font-size:.72rem;font-weight:800}
-  .ltab[data-tab="homework"]::before{content:"Д";font-size:.72rem;font-weight:800}
-  .ltab .ltab-count{position:absolute;top:-4px;right:-4px;font-size:9px!important;
-    padding:0 4px!important;min-width:14px!important;height:14px;line-height:14px!important;
-    border-radius:8px!important;background:#F5C842!important;color:#0D2440!important}
-  .ltab .ltab-count:empty,.ltab .ltab-count:contains("0"){display:none}
-  .lesson-tabs{padding:4px!important;gap:4px!important}
+  /* ltab (Урок / Моя домашка) — вернуть pill, надпись 📖 L / 📚 H (латиница) */
+  .lesson-tabs{padding:5px 8px!important;gap:6px!important}
+  .ltab{padding:4px 10px!important;height:24px!important;width:auto!important;
+    font-size:0!important;line-height:1!important;border-radius:50px!important;
+    display:inline-flex!important;align-items:center;justify-content:center;
+    position:relative;overflow:visible!important;letter-spacing:.06em!important}
+  .ltab[data-tab="lesson"]::before{content:"📖 L";font-size:11px;font-weight:800;letter-spacing:.08em}
+  .ltab[data-tab="homework"]::before{content:"📚 H";font-size:11px;font-weight:800;letter-spacing:.08em}
+  .ltab .ltab-count{position:static!important;margin-left:5px!important;font-size:9px!important;
+    padding:1px 5px!important;min-width:14px!important;height:14px!important;line-height:12px!important;
+    border-radius:50px!important;background:#F5C842!important;color:#0D2440!important}
+  .ltab .ltab-count:empty{display:none!important}
+
+  /* Teacher banner — оставить только: 🎓 Teacher · path + input + Enter (без хвостов) */
+  .lab-teacher-banner{flex-wrap:wrap!important;padding:6px 10px!important;gap:6px!important;font-size:11px!important}
+  .lab-teacher-banner > span:nth-of-type(1){font-size:11px!important;letter-spacing:.05em!important}
+  .lab-teacher-banner > span:nth-of-type(3){display:none!important}
+  .lab-teacher-banner > a[href*="teacher=off"]{display:none!important}
+  .lab-teacher-banner input#labTeacherWord{width:calc(100vw - 160px)!important;max-width:260px!important;font-size:11px!important;padding:4px 10px!important}
+  .lab-teacher-banner button#labTeacherAdd{padding:5px 10px!important;font-size:10px!important;letter-spacing:.1em!important}
+
+  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R */
+  .speaking-bottom-dock{padding:4px!important;gap:4px!important;flex-direction:column!important;
+    right:8px!important;bottom:10px!important;background:transparent!important;box-shadow:none!important}
+  .speaking-bottom-dock button{width:32px!important;height:32px!important;padding:0!important;
+    font-size:0!important;border-radius:50%!important;overflow:hidden;position:relative;
+    display:inline-flex!important;align-items:center;justify-content:center;min-height:0!important;
+    box-shadow:0 2px 6px rgba(0,0,0,.25)}
+  .speaking-bottom-dock button[data-clean-lex]::before{content:"V";font-size:13px;font-weight:800;color:inherit}
+  .speaking-bottom-dock button[data-clean-total]::before{content:"R";font-size:13px;font-weight:800;color:inherit}
+
+  /* Лифт .lp-toc → одна свёрнутая кнопка (тап раскрывает список) */
+  .lp-toc{max-height:36px!important;overflow:hidden!important;width:40px!important;
+    padding:3px!important;transition:max-height .25s ease;
+    border-radius:12px!important;box-shadow:0 4px 10px rgba(0,0,0,.12)!important}
+  .lp-toc.is-open{max-height:70vh!important;overflow-y:auto!important;width:44px!important;
+    -webkit-overflow-scrolling:touch}
+  .lp-toc::before{content:"☰";display:block;text-align:center;font-size:14px;
+    padding:2px 0;color:#0D2440;pointer-events:none}
+  .lp-toc.is-open::before{content:"✕"}
+  .lp-toc-btn{width:30px!important;height:26px!important;font-size:10.5px!important;
+    padding:0!important;margin:0!important;border-radius:6px!important}
 }
+
+/* Micro-JS для лифта: тап на свёрнутый .lp-toc открывает, тап после выбора закрывает */
+</style>
+<script>
+document.addEventListener('click', function(e){
+  var toc = e.target.closest('.lp-toc');
+  if (!toc) {
+    document.querySelectorAll('.lp-toc.is-open').forEach(function(el){ el.classList.remove('is-open'); });
+    return;
+  }
+  if (window.matchMedia('(max-width:640px)').matches){
+    if (!toc.classList.contains('is-open')){
+      var isBtn = e.target.closest('.lp-toc-btn');
+      if (!isBtn){ e.preventDefault(); }
+      toc.classList.add('is-open');
+    } else {
+      if (e.target.closest('.lp-toc-btn')){
+        setTimeout(function(){ toc.classList.remove('is-open'); }, 200);
+      }
+    }
+  }
+}, true);
+</script>
+<style id="mobile-declutter-cont">
+/* end of compact-v3 */
 </style>
 <style id="codex-white-corner-logo-20260701">
 .topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
