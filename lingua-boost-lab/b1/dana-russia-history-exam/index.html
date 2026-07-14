@@ -546,10 +546,13 @@ button[data-say]:hover{background:var(--accent3)}
   .lab-teacher-banner input#labTeacherWord{width:calc(100vw - 160px)!important;max-width:260px!important;font-size:11px!important;padding:4px 10px!important}
   .lab-teacher-banner button#labTeacherAdd{padding:5px 10px!important;font-size:10px!important;letter-spacing:.1em!important}
 
-  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R, вплотную к правому краю */
-  .speaking-bottom-dock{padding:2px!important;gap:4px!important;flex-direction:column!important;
-    align-items:flex-end!important;width:34px!important;min-width:0!important;
-    right:0!important;bottom:12px!important;background:transparent!important;box-shadow:none!important}
+  /* Speaking bottom dock (Вокабуляр / Результаты) → жёстко в правый нижний угол viewport'а */
+  .speaking-bottom-dock{position:fixed!important;top:auto!important;left:auto!important;
+    right:0!important;bottom:calc(env(safe-area-inset-bottom,0px) + 80px)!important;
+    padding:2px!important;gap:4px!important;flex-direction:column!important;
+    align-items:flex-end!important;width:34px!important;min-width:0!important;max-width:34px!important;
+    background:transparent!important;box-shadow:none!important;
+    transform:none!important;margin:0!important;z-index:75!important}
   .speaking-bottom-dock button{width:30px!important;height:30px!important;padding:0!important;
     font-size:0!important;border-radius:50%!important;overflow:hidden;position:relative;
     display:inline-flex!important;align-items:center;justify-content:center;min-height:0!important;
