@@ -534,17 +534,18 @@ button[data-say]:hover{background:var(--accent3)}
     border-radius:50px!important;background:#F5C842!important;color:#0D2440!important}
   .ltab .ltab-count:empty{display:none!important}
 
-  /* Teacher banner — оставить только: 🎓 Teacher · path + input + Enter (без хвостов) */
-  .lab-teacher-banner{flex-wrap:wrap!important;padding:6px 10px!important;gap:6px!important;font-size:11px!important}
+  /* Teacher banner — открепить от верха, чтобы урок был виден с первого экрана */
+  .lab-teacher-banner{position:static!important;flex-wrap:wrap!important;padding:6px 10px!important;gap:6px!important;font-size:11px!important}
+  body.lab-teacher-on{padding-top:0!important}
   .lab-teacher-banner > span:nth-of-type(1){font-size:11px!important;letter-spacing:.05em!important}
   .lab-teacher-banner > span:nth-of-type(3){display:none!important}
   .lab-teacher-banner > a[href*="teacher=off"]{display:none!important}
   .lab-teacher-banner input#labTeacherWord{width:calc(100vw - 160px)!important;max-width:260px!important;font-size:11px!important;padding:4px 10px!important}
   .lab-teacher-banner button#labTeacherAdd{padding:5px 10px!important;font-size:10px!important;letter-spacing:.1em!important}
 
-  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R, прижаты к правому краю */
-  .speaking-bottom-dock{padding:3px!important;gap:4px!important;flex-direction:column!important;
-    right:2px!important;bottom:10px!important;background:transparent!important;box-shadow:none!important}
+  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R, вплотную к правому краю */
+  .speaking-bottom-dock{padding:2px!important;gap:4px!important;flex-direction:column!important;
+    right:0!important;bottom:12px!important;background:transparent!important;box-shadow:none!important}
   .speaking-bottom-dock button{width:30px!important;height:30px!important;padding:0!important;
     font-size:0!important;border-radius:50%!important;overflow:hidden;position:relative;
     display:inline-flex!important;align-items:center;justify-content:center;min-height:0!important;
@@ -553,8 +554,8 @@ button[data-say]:hover{background:var(--accent3)}
   .speaking-bottom-dock button[data-clean-total]::before{content:"R";font-size:12px;font-weight:800;color:inherit}
 
   /* Лифт .lp-toc → одна свёрнутая кнопка (тап раскрывает список) */
-  .lp-toc{width:36px!important;padding:4px!important;transition:max-height .25s ease;
-    border-radius:12px!important;background:#FDF9EE!important;
+  .lp-toc{width:36px!important;min-height:36px!important;padding:4px!important;transition:max-height .25s ease;
+    border-radius:12px!important;background:#FDF9EE!important;z-index:60!important;
     border:1px solid rgba(27,58,92,.22)!important;
     box-shadow:0 4px 12px rgba(0,0,0,.14)!important}
   .lp-toc:not(.is-open) .lp-toc-btn{display:none!important}
