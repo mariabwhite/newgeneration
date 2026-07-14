@@ -4,22 +4,21 @@
 <script src="/lingua-boost-lab/assets/premium-lesson-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Hippocrates · L1 — First Diagnosis: The Language of Emergency · NG English Lab</title>
+<title>Hippocrates · L1 — First Diagnosis: The Language of Emergency</title>
 <meta name="description" content="B2+ Medical English lab lesson. Original ER short story + emergency medicine listening. Core symptom vocabulary, differential diagnosis, olympiad / IELTS / clinical formats.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Hippocrates · pale hospital palette · light-lab (Bella-style scaffold, medical adaptation) */
-  --bg:#F4F7FB; --bg-2:#E6EEF7; --surface:#FFFFFF; --card:#FFFFFF; --surface-2:#F9FBFD;
-  --text:#25323F; --muted:#657485; --faint:#9FAFC0;
-  --accent:#3C6A8A; --accent-2:#6FA3C4; --accent-on:#FFFFFF;
-  --brand:#7EAF8B; --brand-2:#4E8E63;
-  --line:rgba(60,106,138,.12); --line-2:rgba(60,106,138,.24); --line-3:rgba(60,106,138,.38);
-  --ok:#7EAF8B; --miss:#C97A7A;
-  --glow1:rgba(228,206,122,.10); --glow2:rgba(126,175,139,.10);
-  --display:"Fraunces",Georgia,serif;
+  --bg:#020716; --bg-2:#05102a; --surface:#08152e; --card:#0d1e3f; --surface-2:#102248;
+  --text:#e8f0ff; --muted:#8fa8cc; --faint:#4a6a9a;
+  --accent:#f5c842; --accent-2:#ffd966; --accent-on:#0d1020;
+  --brand:#9b7fe8; --brand-2:#c4aff5;
+  --line:rgba(155,127,232,.14); --line-2:rgba(155,127,232,.28); --line-3:rgba(155,127,232,.42);
+  --ok:#34d88a; --miss:#ff5c72;
+  --glow1:rgba(245,200,66,.12); --glow2:rgba(155,127,232,.16);
+  --display:"Unbounded","Manrope",system-ui,sans-serif;
   --body:"Manrope",system-ui,sans-serif;
   --mono:"JetBrains Mono",Consolas,monospace;
 }
@@ -34,9 +33,12 @@ body{
 }
 a{color:inherit;text-decoration:none}
 
-/* Starfield — disabled in Hippocrates (dark-cosmos artifact, replaced by pale hospital body) */
-#starfield{display:none}
-.star{display:none}
+/* Starfield — three drifting layers for parallax */
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;will-change:transform,opacity}
+.star.s1{width:1px;height:1px;opacity:.45}
+.star.s2{width:2px;height:2px;opacity:.65}
+.star.s3{width:3px;height:3px;opacity:.85;box-shadow:0 0 4px rgba(255,255,255,.55)}
 @keyframes twinkle{0%,100%{opacity:var(--op0,.3)}50%{opacity:var(--op1,.9)}}
 @keyframes drift-a{from{transform:translate(0,0)}to{transform:translate(160px,-200px)}}
 @keyframes drift-b{from{transform:translate(0,0)}to{transform:translate(-200px,240px)}}
@@ -94,7 +96,7 @@ details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:va
 }
 
 /* Cloze (Use of English) */
-.cloze p.cloze-text{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;line-height:1.85;font-size:1rem;color:var(--text)}
+.cloze p.cloze-text{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:12px;padding:14px 16px;line-height:1.85;font-size:1rem;color:var(--text)}
 .cloze p.cloze-text .gap{display:inline-block;min-width:34px;padding:0 6px;border-bottom:2px dashed var(--accent);color:var(--accent);font-weight:800}
 .cloze-row{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;margin:10px 0}
 .cloze-num{font-family:var(--mono);font-size:11px;font-weight:800;background:var(--accent);color:var(--accent-on);width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
@@ -130,7 +132,7 @@ details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:va
 .brand-sub{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:2px}
 .spacer{flex:1}
 .pill{padding:5px 11px;border-radius:50px;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
-  border:1px solid var(--line-2);color:var(--muted);background:var(--surface-2);white-space:nowrap}
+  border:1px solid var(--line-2);color:var(--muted);background:rgba(0,0,0,.25);white-space:nowrap}
 .pill.accent{background:color-mix(in srgb,var(--accent) 15%,transparent);border-color:var(--accent);color:var(--accent)}
 .pill.brand{background:color-mix(in srgb,var(--brand) 15%,transparent);border-color:var(--brand);color:var(--brand-2)}
 .btn-sm{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--card);color:var(--muted);
@@ -141,14 +143,14 @@ details.homework .hw-body h4{font-family:var(--display);font-weight:800;color:va
 /* Hero snapshot */
 .hero{max-width:1240px;margin:32px auto 12px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
 .hero-card{position:relative;border:1px solid var(--line-2);border-radius:24px;overflow:hidden;
-  background:linear-gradient(135deg,#25445F 0%,#3C6A8A 60%,#25445F 100%);
-  box-shadow:0 10px 40px rgba(37,68,95,.24),inset 0 1px 0 rgba(255,255,255,.06);
-  min-height:500px;padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px);color:#F9FBFD}
+  background:linear-gradient(135deg,var(--bg-2) 0%,var(--surface) 60%,#0a1638 100%);
+  box-shadow:0 10px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+  min-height:500px;padding:clamp(28px,4.5vw,52px) clamp(22px,4vw,52px)}
 .hero-bg{position:absolute;inset:0;z-index:0;
   background:url("assets/img-hero-er.webp") 72% center/cover no-repeat;
   opacity:1}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(37,68,95,.96) 0%,rgba(37,68,95,.90) 42%,rgba(37,68,95,.38) 57%,rgba(37,68,95,.04) 72%,transparent 100%)}
+  background:linear-gradient(90deg,rgba(2,7,22,.98) 0%,rgba(2,7,22,.94) 42%,rgba(2,7,22,.38) 57%,rgba(2,7,22,.04) 72%,transparent 100%)}
 .hero-card > *:not(.hero-bg){position:relative;z-index:1}
 
 /* Lesson images (story/listening/synthesis) */
@@ -176,7 +178,7 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .section-hdr h2{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.75rem);color:var(--text);letter-spacing:-.02em;line-height:1.1}
 .section-sub{font-size:.92rem;color:var(--muted);margin:0 0 14px 0;font-style:italic}
 
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 20px rgba(37,50,63,.08)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 28px rgba(0,0,0,.28)}
 .card h3{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--accent);margin:18px 0 10px;letter-spacing:.01em}
 .card h3:first-child{margin-top:0}
 .card p{margin-bottom:11px;color:var(--text)}
@@ -248,7 +250,7 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .sample-phr button:hover{background:var(--surface-2);border-color:var(--brand)}
 
 /* Story */
-.story{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;
+.story{background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:14px;
   padding:22px 24px;margin:14px 0;line-height:1.75}
 .story p{margin-bottom:14px;color:var(--text);font-size:1.02rem}
 .story em{color:var(--brand-2);font-style:italic}
@@ -316,28 +318,17 @@ h1.hero-title .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--acc
 .timer .clock{font-family:var(--display);font-weight:900;color:var(--accent);font-size:1.2rem;letter-spacing:-.02em;
   background:var(--card);border:1px solid var(--line-2);padding:6px 16px;border-radius:50px}
 
-/* Vocab tiles · bella-style static grid (word + POS on top · RU + EN definition below · single view) */
-.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0 8px}
-.flip-card{cursor:default}
-.flip-inner{position:relative;width:100%;height:100%;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 14px rgba(37,50,63,.06);transition:.15s}
-.flip-card:hover .flip-inner{border-color:var(--accent-2);box-shadow:0 6px 20px rgba(60,106,138,.12);transform:translateY(-1px)}
-.flip-card.flipped .flip-inner{transform:none}
-.flip-front,.flip-back{position:static;display:flex;padding:0;text-align:left;border:none;background:none;-webkit-backface-visibility:visible;backface-visibility:visible;transform:none!important}
-.flip-front{color:var(--accent);font-family:var(--display);font-weight:700;font-size:1.08rem;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px dashed var(--line-2)}
-.flip-front .pos{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;font-weight:700;background:var(--surface-2);padding:3px 8px;border-radius:50px}
-.flip-back{color:var(--text);font-size:.86rem;line-height:1.45;flex-direction:column;gap:5px}
-.flip-back .ru{color:var(--brand-2);font-weight:700;font-size:.88rem;font-style:italic}
-
-/* Medical fact panels · bella-signature info-cards (light variant) */
-.medical-fact{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0}
-.medical-fact .mf-eyebrow{font-family:var(--mono);font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.medical-fact .mf-eyebrow::before{content:"◆";color:var(--gold);font-size:.8rem}
-.medical-fact .mf-body{font-size:.94rem;line-height:1.6;color:var(--text);font-family:var(--body)}
-.medical-fact .mf-body strong{color:var(--accent);font-weight:700}
-.medical-fact.mf-green{border-left-color:var(--brand)}
-.medical-fact.mf-green .mf-eyebrow::before{color:var(--brand)}
-.medical-fact.mf-blue{border-left-color:var(--accent-2)}
-.medical-fact.mf-blue .mf-eyebrow::before{color:var(--accent-2)}
+/* Flip vocab cards */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:14px 0 8px}
+.flip-card{aspect-ratio:1/1.05;perspective:800px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  padding:14px;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid var(--line-2)}
+.flip-front{background:var(--card);color:var(--accent);font-family:var(--display);font-weight:800;font-size:1rem;flex-direction:column;gap:6px}
+.flip-front .pos{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.flip-back{background:var(--surface-2);color:var(--text);transform:rotateY(180deg);font-size:.86rem;line-height:1.4;flex-direction:column;gap:6px}
+.flip-back .ru{color:var(--brand-2);font-weight:700;font-size:.95rem}
 
 /* Footer */
 footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;color:var(--faint);
@@ -346,24 +337,24 @@ footer{max-width:1240px;margin:48px auto 28px;padding:0 22px;text-align:center;c
 @media (max-width:720px){
   .hero-card{min-height:0}
   .hero-bg{background-position:66% center;opacity:.9}
-  .hero-bg::after{background:linear-gradient(90deg,rgba(37,68,95,.96) 0%,rgba(37,68,95,.86) 58%,rgba(37,68,95,.28) 100%)}
+  .hero-bg::after{background:linear-gradient(90deg,rgba(2,7,22,.97) 0%,rgba(2,7,22,.88) 58%,rgba(2,7,22,.28) 100%)}
   .hero-stats{grid-template-columns:1fr 1fr}
   .vocab-box{bottom:14px;right:14px;left:14px;width:auto;justify-content:center}
 }
 
-/* ─── Series overview · Hippocrates 7 lessons (bella .overview-card style) ─── */
+/* ─── Previously / About-the-quest recap plate ─── */
 .prev-recap{max-width:1240px;margin:14px auto 6px;padding:0 clamp(16px,3vw,28px);position:relative;z-index:2}
-.prev-recap-card{position:relative;border:1px solid var(--line-2);border-radius:20px;padding:22px 26px;
-  background:var(--surface);
-  box-shadow:0 4px 20px rgba(37,50,63,.06)}
-.prev-recap-eyebrow{font-family:var(--mono);font-weight:800;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.prev-recap-eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+.prev-recap-card{position:relative;border:1px solid var(--line-2,rgba(255,220,120,.20));border-radius:20px;padding:22px 26px;
+  background:linear-gradient(135deg,rgba(30,20,10,.86),rgba(55,35,15,.55));
+  backdrop-filter:blur(6px)}
+.prev-recap-eyebrow{font-family:var(--mono);font-weight:800;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand-2,#f5c842);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.prev-recap-eyebrow::before{content:"";width:22px;height:1px;background:var(--brand-2,#f5c842)}
 .prev-recap ol.recap-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.prev-recap ol.recap-list li{padding:10px 14px;border-left:2px solid var(--accent-2);border-radius:0 10px 10px 0;background:var(--surface-2);font-size:.94rem;line-height:1.55;color:var(--text)}
-.prev-recap ol.recap-list li b{color:var(--accent);font-weight:800}
-.prev-recap ol.recap-list li em{color:var(--brand-2);font-style:italic}
-.prev-recap ol.recap-list li.now{border-left-color:var(--gold);background:color-mix(in srgb,var(--gold) 14%,var(--surface-2))}
-.prev-recap ol.recap-list li.now b{color:var(--accent)}
+.prev-recap ol.recap-list li{padding:10px 14px;border-left:2px solid var(--brand,#c9962c);border-radius:0 10px 10px 0;background:rgba(201,150,44,.06);font-size:.94rem;line-height:1.55;color:var(--text,#f4ecd6)}
+.prev-recap ol.recap-list li b{color:var(--brand-2,#f5c842);font-weight:800}
+.prev-recap ol.recap-list li em{color:var(--text,#f4ecd6);font-style:italic}
+.prev-recap ol.recap-list li.now{border-left-color:var(--accent,#e88428);background:rgba(232,132,40,.10)}
+.prev-recap ol.recap-list li.now b{color:var(--accent,#e88428)}
 @media (max-width:720px){
   .prev-recap-card{padding:16px 18px}
   .prev-recap ol.recap-list li{font-size:.88rem;padding:9px 12px}
@@ -616,21 +607,6 @@ footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospac
   <div class="card">
     <img class="lesson-img" src="assets/img-triage-desk.webp" alt="Emergency department triage desk at night — a computer screen with vital signs, a stethoscope, an attending in scrubs" onerror="this.style.display='none'">
     <p style="color:var(--muted);font-size:.95rem">A short briefing from an emergency medicine attending. Take notes on three points: <strong>(1)</strong> the three questions the attending drills into juniors, <strong>(2)</strong> what "the ABCD" stands for in the stroke check, <strong>(3)</strong> the attending's rule about family testimony.</p>
-
-    <div class="medical-fact">
-      <div class="mf-eyebrow">Rule 1 · The three questions</div>
-      <div class="mf-body">Not the twelve on the intake sheet. <strong>Three</strong>, in this order: <em>When did it start? What were you doing? Have you taken anything?</em> These get juniors 80% of the way to the right differential before they touch the patient. Nothing on the intake form bypasses the timeline.</div>
-    </div>
-
-    <div class="medical-fact mf-green">
-      <div class="mf-eyebrow">Rule 2 · FAST stroke check</div>
-      <div class="mf-body">For anyone over forty who looks off, run <strong>FAST</strong> — <em>Face</em> (does one side droop?), <em>Arm</em> (can they hold both arms up for ten seconds?), <em>Speech</em> (is it slurred?), <em>Time</em> (when did symptoms start?). Not <strong>ABCD</strong> — that's the airway drill. The time-since-onset decides whether the thrombolysis window is still open. Miss the time, miss the drug.</div>
-    </div>
-
-    <div class="medical-fact mf-blue">
-      <div class="mf-eyebrow">Rule 3 · Never take the diagnosis from family</div>
-      <div class="mf-body">Take the <strong>timeline</strong> from them. Take the <strong>medication list</strong> from them. Do <em>not</em> take the diagnosis. They will hand you one — «it's his heart», «it's a migraine», «it's the flu» — because they are frightened and want a word to hold. If they were right, everyone wins. If they were wrong, you will have found what they missed — and that is the difference between a doctor and a very concerned bystander.</div>
-    </div>
     <div class="listen-box">
       <audio controls preload="metadata" style="width:100%;display:block;border-radius:10px">
         <source src="assets/audio/listen-triage-briefing.mp3" type="audio/mpeg">
@@ -1007,14 +983,14 @@ footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospac
 <!-- ═══════════ VOYAGER SERIES NAV ═══════════ -->
 <style>
 .voyager-nav{max-width:1240px;margin:32px auto 24px;padding:0 clamp(16px,3vw,28px);display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;position:relative;z-index:2}
-.voyager-nav-link{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:4px;transition:.18s;min-height:72px;justify-content:center;box-shadow:0 4px 14px rgba(37,50,63,.06)}
-.voyager-nav-link:hover{border-color:var(--accent);background:var(--surface-2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(60,106,138,.12)}
+.voyager-nav-link{background:var(--card,#0d2f24);border:1px solid var(--line-2,rgba(46,196,241,.32));border-radius:14px;padding:14px 18px;text-decoration:none;color:var(--text,#e6fff2);display:flex;flex-direction:column;gap:4px;transition:.18s;min-height:72px;justify-content:center}
+.voyager-nav-link:hover{border-color:var(--accent,#34d88a);background:var(--surface,#08221a);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .voyager-nav-link.next{text-align:right}
-.voyager-nav-link .dir{font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-.voyager-nav-link .title{font:600 .95rem/1.4 var(--display,"Fraunces",Georgia,serif);color:var(--text)}
-.voyager-nav-link.disabled{opacity:.4;pointer-events:none;cursor:not-allowed}
-.voyager-nav-series{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 16px;font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:center;border-left:1px dashed var(--line-2);border-right:1px dashed var(--line-2)}
-.voyager-nav-series .badge{background:var(--accent);color:var(--accent-on);padding:4px 10px;border-radius:50px;font-weight:800;letter-spacing:.16em}
+.voyager-nav-link .dir{font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#34d88a)}
+.voyager-nav-link .title{font:600 .95rem/1.4 var(--display,"Unbounded","Manrope",sans-serif);color:var(--text,#e6fff2)}
+.voyager-nav-link.disabled{opacity:.32;pointer-events:none;cursor:not-allowed}
+.voyager-nav-series{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 16px;font:800 10.5px/1 var(--mono,"JetBrains Mono",monospace);letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#8fccae);text-align:center;border-left:1px dashed var(--line-2,rgba(46,196,241,.32));border-right:1px dashed var(--line-2,rgba(46,196,241,.32))}
+.voyager-nav-series .badge{background:var(--accent,#34d88a);color:var(--accent-on,#062215);padding:4px 10px;border-radius:50px;font-weight:800;letter-spacing:.16em}
 @media(max-width:640px){.voyager-nav{grid-template-columns:1fr;gap:8px}.voyager-nav-link.next{text-align:left}.voyager-nav-series{order:-1;border:none;padding:6px 0;flex-direction:row;gap:10px}.voyager-nav-series .badge{font-size:11px}}
 
 /* lab vocab/card safety canon · 2026-06-30 */
@@ -1032,9 +1008,9 @@ footer { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospac
   </span>
   <div class="voyager-nav-series">
     <span class="badge">Hippocrates · 1 / 7</span>
-    <span>First Diagnosis: The Language of Emergency</span>
+    <span>First Diagnosis</span>
   </div>
-  <a class="voyager-nav-link next" href="../l2-what-is-psychology/" rel="next">
+  <a class="voyager-nav-link next" href="../l2-what-is-psychology/" rel="next" data-todo="L2 not built yet — placeholder link">
     <span class="dir">Next →</span>
     <span class="title">L2 · What is Psychology? · Legend of Psyche</span>
   </a>
