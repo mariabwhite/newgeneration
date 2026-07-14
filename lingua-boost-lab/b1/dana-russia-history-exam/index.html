@@ -534,9 +534,12 @@ button[data-say]:hover{background:var(--accent3)}
     border-radius:50px!important;background:#F5C842!important;color:#0D2440!important}
   .ltab .ltab-count:empty{display:none!important}
 
-  /* Teacher banner — открепить от верха, чтобы урок был виден с первого экрана */
-  .lab-teacher-banner{position:static!important;flex-wrap:wrap!important;padding:6px 10px!important;gap:6px!important;font-size:11px!important}
-  body.lab-teacher-on{padding-top:0!important}
+  /* Teacher banner — вернуть fixed вверху (как было — красиво), 2 строки */
+  .lab-teacher-banner{position:fixed!important;top:0!important;left:0!important;right:0!important;
+    flex-wrap:wrap!important;padding:6px 10px!important;gap:6px 8px!important;
+    min-height:60px!important;font-size:11px!important;z-index:100!important}
+  /* body padding: место под teacher(60) + topbar(47) + ltab(35) = ~150px, чтобы hero был виден сразу */
+  body.lab-teacher-on{padding-top:150px!important}
   .lab-teacher-banner > span:nth-of-type(1){font-size:11px!important;letter-spacing:.05em!important}
   .lab-teacher-banner > span:nth-of-type(3){display:none!important}
   .lab-teacher-banner > a[href*="teacher=off"]{display:none!important}
@@ -553,42 +556,72 @@ button[data-say]:hover{background:var(--accent3)}
   .speaking-bottom-dock button[data-clean-lex]::before{content:"V";font-size:12px;font-weight:800;color:inherit}
   .speaking-bottom-dock button[data-clean-total]::before{content:"R";font-size:12px;font-weight:800;color:inherit}
 
-  /* Лифт .lp-toc → одна свёрнутая кнопка (тап раскрывает список) */
-  .lp-toc{width:36px!important;min-height:36px!important;padding:4px!important;transition:max-height .25s ease;
-    border-radius:12px!important;background:#FDF9EE!important;z-index:60!important;
-    border:1px solid rgba(27,58,92,.22)!important;
-    box-shadow:0 4px 12px rgba(0,0,0,.14)!important}
-  .lp-toc:not(.is-open) .lp-toc-btn{display:none!important}
-  .lp-toc.is-open{max-height:70vh!important;overflow-y:auto!important;width:42px!important;
-    -webkit-overflow-scrolling:touch}
-  .lp-toc::before{content:"☰";display:block;text-align:center;font-size:15px;
-    padding:3px 0;color:#0D2440;pointer-events:none;font-weight:800}
-  .lp-toc.is-open::before{content:"✕";padding-bottom:6px;border-bottom:1px solid rgba(27,58,92,.14);margin-bottom:4px}
-  .lp-toc-btn{width:32px!important;height:26px!important;font-size:10.5px!important;
-    padding:0!important;margin:0 auto!important;border-radius:6px!important;display:block!important}
+  /* Лифт .lp-toc — по умолчанию скрыт, показывается по тапу на свою кнопку */
+  .lp-toc{display:none!important}
+  .lp-toc.is-open{display:block!important;position:fixed!important;
+    left:6px!important;bottom:80px!important;top:auto!important;
+    width:44px!important;max-height:60vh!important;overflow-y:auto!important;
+    padding:6px 4px!important;-webkit-overflow-scrolling:touch;
+    background:#FDF9EE!important;border:1px solid rgba(27,58,92,.22)!important;
+    border-radius:12px!important;box-shadow:0 8px 20px rgba(0,0,0,.2)!important;
+    z-index:70!important}
+  .lp-toc.is-open .lp-toc-btn{width:36px!important;height:28px!important;font-size:11px!important;
+    padding:0!important;margin:2px auto!important;border-radius:6px!important;display:block!important}
+
+  /* Своя видимая кнопка-лифт */
+  .lp-toc-mobile-btn{position:fixed!important;left:8px!important;bottom:96px!important;
+    width:38px;height:38px;border-radius:50%;background:#0D2440;color:#F5EDD8;
+    border:0;cursor:pointer;font-size:15px;font-weight:800;
+    z-index:70;box-shadow:0 4px 12px rgba(0,0,0,.28);
+    display:inline-flex;align-items:center;justify-content:center}
 }
 
-/* Micro-JS для лифта: тап на свёрнутый .lp-toc открывает, тап после выбора закрывает */
+/* Мобильный лифт: своя видимая кнопка-триггер + логика открытия/закрытия */
 </style>
 <script>
-document.addEventListener('click', function(e){
-  var toc = e.target.closest('.lp-toc');
-  if (!toc) {
-    document.querySelectorAll('.lp-toc.is-open').forEach(function(el){ el.classList.remove('is-open'); });
-    return;
+(function(){
+  var mm = window.matchMedia('(max-width:640px)');
+  function ensureButton(){
+    if (!mm.matches) return;
+    var toc = document.querySelector('.lp-toc');
+    if (!toc || document.querySelector('.lp-toc-mobile-btn')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'lp-toc-mobile-btn';
+    btn.setAttribute('aria-label','Оглавление урока');
+    btn.textContent = '☰';
+    btn.onclick = function(e){
+      e.stopPropagation();
+      var isOpen = toc.classList.toggle('is-open');
+      btn.textContent = isOpen ? '✕' : '☰';
+    };
+    document.body.appendChild(btn);
   }
-  if (window.matchMedia('(max-width:640px)').matches){
-    if (!toc.classList.contains('is-open')){
-      var isBtn = e.target.closest('.lp-toc-btn');
-      if (!isBtn){ e.preventDefault(); }
-      toc.classList.add('is-open');
-    } else {
-      if (e.target.closest('.lp-toc-btn')){
-        setTimeout(function(){ toc.classList.remove('is-open'); }, 200);
-      }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureButton);
+  } else {
+    ensureButton();
+  }
+  setTimeout(ensureButton, 800);
+  setTimeout(ensureButton, 2000);
+
+  document.addEventListener('click', function(e){
+    if (!mm.matches) return;
+    var toc = document.querySelector('.lp-toc.is-open');
+    if (!toc) return;
+    if (e.target.closest('.lp-toc-btn')){
+      setTimeout(function(){
+        toc.classList.remove('is-open');
+        var b = document.querySelector('.lp-toc-mobile-btn'); if (b) b.textContent = '☰';
+      }, 200);
+      return;
     }
-  }
-}, true);
+    if (!e.target.closest('.lp-toc') && !e.target.closest('.lp-toc-mobile-btn')){
+      toc.classList.remove('is-open');
+      var b = document.querySelector('.lp-toc-mobile-btn'); if (b) b.textContent = '☰';
+    }
+  }, true);
+})();
 </script>
 <style id="mobile-declutter-cont">
 /* end of compact-v3 */
