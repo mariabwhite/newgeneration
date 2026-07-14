@@ -542,27 +542,29 @@ button[data-say]:hover{background:var(--accent3)}
   .lab-teacher-banner input#labTeacherWord{width:calc(100vw - 160px)!important;max-width:260px!important;font-size:11px!important;padding:4px 10px!important}
   .lab-teacher-banner button#labTeacherAdd{padding:5px 10px!important;font-size:10px!important;letter-spacing:.1em!important}
 
-  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R */
-  .speaking-bottom-dock{padding:4px!important;gap:4px!important;flex-direction:column!important;
-    right:8px!important;bottom:10px!important;background:transparent!important;box-shadow:none!important}
-  .speaking-bottom-dock button{width:32px!important;height:32px!important;padding:0!important;
+  /* Speaking bottom dock (Вокабуляр / Результаты) → маленькие круги V / R, прижаты к правому краю */
+  .speaking-bottom-dock{padding:3px!important;gap:4px!important;flex-direction:column!important;
+    right:2px!important;bottom:10px!important;background:transparent!important;box-shadow:none!important}
+  .speaking-bottom-dock button{width:30px!important;height:30px!important;padding:0!important;
     font-size:0!important;border-radius:50%!important;overflow:hidden;position:relative;
     display:inline-flex!important;align-items:center;justify-content:center;min-height:0!important;
     box-shadow:0 2px 6px rgba(0,0,0,.25)}
-  .speaking-bottom-dock button[data-clean-lex]::before{content:"V";font-size:13px;font-weight:800;color:inherit}
-  .speaking-bottom-dock button[data-clean-total]::before{content:"R";font-size:13px;font-weight:800;color:inherit}
+  .speaking-bottom-dock button[data-clean-lex]::before{content:"V";font-size:12px;font-weight:800;color:inherit}
+  .speaking-bottom-dock button[data-clean-total]::before{content:"R";font-size:12px;font-weight:800;color:inherit}
 
   /* Лифт .lp-toc → одна свёрнутая кнопка (тап раскрывает список) */
-  .lp-toc{max-height:36px!important;overflow:hidden!important;width:40px!important;
-    padding:3px!important;transition:max-height .25s ease;
-    border-radius:12px!important;box-shadow:0 4px 10px rgba(0,0,0,.12)!important}
-  .lp-toc.is-open{max-height:70vh!important;overflow-y:auto!important;width:44px!important;
+  .lp-toc{width:36px!important;padding:4px!important;transition:max-height .25s ease;
+    border-radius:12px!important;background:#FDF9EE!important;
+    border:1px solid rgba(27,58,92,.22)!important;
+    box-shadow:0 4px 12px rgba(0,0,0,.14)!important}
+  .lp-toc:not(.is-open) .lp-toc-btn{display:none!important}
+  .lp-toc.is-open{max-height:70vh!important;overflow-y:auto!important;width:42px!important;
     -webkit-overflow-scrolling:touch}
-  .lp-toc::before{content:"☰";display:block;text-align:center;font-size:14px;
-    padding:2px 0;color:#0D2440;pointer-events:none}
-  .lp-toc.is-open::before{content:"✕"}
-  .lp-toc-btn{width:30px!important;height:26px!important;font-size:10.5px!important;
-    padding:0!important;margin:0!important;border-radius:6px!important}
+  .lp-toc::before{content:"☰";display:block;text-align:center;font-size:15px;
+    padding:3px 0;color:#0D2440;pointer-events:none;font-weight:800}
+  .lp-toc.is-open::before{content:"✕";padding-bottom:6px;border-bottom:1px solid rgba(27,58,92,.14);margin-bottom:4px}
+  .lp-toc-btn{width:32px!important;height:26px!important;font-size:10.5px!important;
+    padding:0!important;margin:0 auto!important;border-radius:6px!important;display:block!important}
 }
 
 /* Micro-JS для лифта: тап на свёрнутый .lp-toc открывает, тап после выбора закрывает */
