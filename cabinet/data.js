@@ -481,14 +481,14 @@ window.NGE_DATA = {
           "audio_title": "🎧 Listening · final broadcast Reyes (≈50 s)"
         },
         {
-          "date": "2026-07-15",
+          "date": "2026-07-14",
           "num": 6,
           "status": "completed",
-          "topic": "🧠 Voyager L3 · Whose Mind? — EEG blinks, consciousness signal (первый раз)",
+          "topic": "🧠 Voyager L3 · Whose Mind? — EEG blinks, consciousness signal (первый проход, не завершили — продолжим 22.07)",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l3-whose-mind/",
-            "module_title": "🧠 Voyager L3 · Whose Mind? (повтор)",
-            "text": "✅ Домашка сдана до урока. Разбираем на следующем занятии — фокус на EEG-lexicon и consciousness signal в cloze."
+            "module_title": "🧠 Открыть Voyager L3 · Whose Mind?",
+            "text": "Сегодня прошли Voyager L3 не полностью — продолжим 22.07. К следующему занятию: дочитать секции которые не разобрали, вернуться к EEG-lexicon и consciousness signal в cloze."
           }
         },
         {
