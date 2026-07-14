@@ -636,7 +636,12 @@ window.NGE_DATA = {
           "date": "2026-07-15",
           "num": 9,
           "status": "planned",
-          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill"
+          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
+          "homework": {
+            "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+          }
         },
         {
           "date": "2026-07-17",
