@@ -121,8 +121,13 @@ window.NGE_DATA = {
         {
           "date": "2026-07-14",
           "num": 2,
-          "status": "planned",
-          "topic": "📅 Урок июльского блока — тему уточним"
+          "status": "completed",
+          "topic": "🏥 Bella Needs Help · продолжение медицинской серии — pharmacy / doctor / emergency · формулы Can I…? / Could you…?",
+          "homework": {
+            "text": "Bella Needs Help — пройти сцены на автомате, AI Coach в финале без опоры на template.",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/bella-needs-help/",
+            "module_title": "🏥 Открыть Bella Needs Help"
+          }
         },
         {
           "date": "2026-07-21",
@@ -1739,12 +1744,12 @@ window.NGE_DATA = {
         {
           "date": "2026-07-14",
           "num": 7,
-          "status": "planned",
+          "status": "completed",
           "topic": "Practical English · Day 3 · все настоящие времена + will + going to · Milan-office бизнес-контекст",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-05-workbook/",
-            "module_title": "📚 Открыть Workbook 05 · Day 3",
-            "text": "К 14 июля — 12 блоков: Translation drill 20 · Vocab drills 3 · Diagnostic dictation 6 · Say it back 12 · Fill-by-ear 12 · Negative rewrite 8 · Time signals · Q→A · Milan podcast · Find the mistake 13 (по твоим тетрадям 08.07 и 13.07) · Boss voicemails · Self-diary · Milan email."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles &amp; Prepositions · Deep Dive",
+            "text": "Articles &amp; Prepositions · Deep Dive — a/an/the/× по 20 правилам Голицынского + at/on/in по времени/месту. Слева лифт с секциями 01-12, справа кнопки «в домашку» на каждой секции, внизу vocab-bank с 24 фразами."
           }
         },
         {
