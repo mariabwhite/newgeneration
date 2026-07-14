@@ -317,7 +317,7 @@
         var tBannerPre = document.createElement('div');
         tBannerPre.className = 'lab-teacher-banner';
         tBannerPre.innerHTML =
-          '<span>🎓 Teacher · ' + location.pathname.replace('/lingua-boost-lab/','').replace(/\/$/,'').slice(0,40) + '</span>' +
+          '<span>🎓 Teacher · ' + (function(p){var m=p.match(/lingua-boost-lab\/([^?#]+)/i);if(m)return m[1].replace(/\/$/,'').slice(0,40);var last=p.split('/').filter(Boolean).slice(-3).join('/');return (last.replace(/%[0-9A-F]{2}/gi,'').slice(-40))||'lesson';})(location.pathname) + '</span>' +
           '<span style="display:inline-flex;align-items:center;gap:6px;margin-left:14px">'+
             '<input id="labTeacherWord" type="text" placeholder="+ слово в корзиночку (или кликни в текст)" '+
               'style="padding:5px 12px;border-radius:50px;border:0;background:rgba(255,255,255,.92);color:#1a1a2e;'+
@@ -464,7 +464,7 @@
           var tBanner = document.createElement('div');
           tBanner.className = 'lab-teacher-banner';
           tBanner.innerHTML =
-            '<span>🎓 Teacher · ' + location.pathname.replace('/lingua-boost-lab/','').replace(/\/$/,'').slice(0,40) + '</span>' +
+            '<span>🎓 Teacher · ' + (function(p){var m=p.match(/lingua-boost-lab\/([^?#]+)/i);if(m)return m[1].replace(/\/$/,'').slice(0,40);var last=p.split('/').filter(Boolean).slice(-3).join('/');return (last.replace(/%[0-9A-F]{2}/gi,'').slice(-40))||'lesson';})(location.pathname) + '</span>' +
             '<span style="display:inline-flex;align-items:center;gap:6px;margin-left:14px">'+
               '<input id="labTeacherWord" type="text" placeholder="+ слово в корзиночку (или кликни в текст)" '+
                 'style="padding:5px 12px;border-radius:50px;border:0;background:rgba(255,255,255,.92);color:#1a1a2e;'+
