@@ -541,8 +541,8 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "lessons_in_package": 10,
       "subscription_month": "2026-06",
-      "lessons_used_this_month": 6,
-      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 6 / 10 · дальше пн / вт / чт 18:00",
+      "lessons_used_this_month": 7,
+      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 7 / 10 · дальше пн / вт / чт 18:00",
       "stability_note": "",
       "payment_status": "Оплачено",
       "payment_note": "",
@@ -553,7 +553,7 @@ window.NGE_DATA = {
           "amount": "25 000 ₽",
           "status": "paid",
           "date": "26.06.2026",
-          "note": "Интенсив · 26.06 → 17.07 · 6 / 10 проведено"
+          "note": "Интенсив · 26.06 → 17.07 · 7 / 10 проведено"
         }
       ],
       "parent_name": "Либова Юлия Игоревна",
@@ -619,14 +619,18 @@ window.NGE_DATA = {
         {
           "date": "2026-07-10",
           "num": 7,
-          "status": "planned",
+          "status": "missed",
           "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
         },
         {
           "date": "2026-07-14",
           "num": 8,
-          "status": "planned",
-          "topic": "🚀 Yuri Gagarin · Soviet space triumph — Task 3 интервью «Space & achievements» (5 Q) + Word Formation (explore → exploration, achieve → achievement)"
+          "status": "completed",
+          "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена · повторный прогон",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_title": "📚 Открыть Dana's Russia · History Exam"
+          }
         },
         {
           "date": "2026-07-15",
@@ -639,6 +643,12 @@ window.NGE_DATA = {
           "num": 10,
           "status": "planned",
           "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
+        },
+        {
+          "date": "2026-07-24",
+          "num": 11,
+          "status": "planned",
+          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
         }
       ],
       "materials": {
@@ -657,7 +667,7 @@ window.NGE_DATA = {
           },
           {
             "name": "daniella-intensive-plan-10-lessons.pdf",
-            "label": "🗓 План интенсива · 10 уроков (26.06 → 17.07) · 6 / 10 проведено",
+            "label": "🗓 План интенсива · 10 уроков (26.06 → 17.07) · 7 / 10 проведено",
             "audience": "parent"
           }
         ]
