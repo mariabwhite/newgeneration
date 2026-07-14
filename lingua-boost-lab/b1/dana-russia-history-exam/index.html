@@ -496,6 +496,42 @@ button[data-say]:hover{background:var(--accent3)}
   .hero-title{font-size:1.2rem!important}
   .section-head h2{font-size:.8rem!important}
 }
+
+/* ── Sandwich burger for lift · 2026-07-14 · Дана ── */
+.mobile-burger{display:none}
+@media(max-width:640px){
+  .mobile-burger{display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;padding:0;margin-left:auto;
+    background:transparent;border:1px solid rgba(27,58,92,.22);border-radius:8px;
+    color:#0D2440;font-size:16px;line-height:1;cursor:pointer;flex:0 0 auto}
+  .mobile-burger:active{background:rgba(27,58,92,.06)}
+  .canon-l-nav{display:none!important}
+  .canon-l-nav.is-open{
+    display:flex!important;position:absolute;left:0;right:0;top:100%;
+    flex-direction:column!important;align-items:stretch!important;
+    background:#FDF9EE;border-top:1px solid rgba(27,58,92,.14);
+    border-bottom:1px solid rgba(27,58,92,.14);
+    padding:6px 12px!important;gap:0!important;overflow:visible!important;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);z-index:50}
+  .canon-l-nav.is-open .canon-l-link{
+    padding:10px 12px!important;font-size:.85rem!important;
+    border-bottom:1px solid rgba(27,58,92,.08);text-align:left}
+  .canon-l-nav.is-open .canon-l-link:last-child{border-bottom:0}
+  header.topbar.canon-l-topbar{position:relative}
+  /* top-tools: чуть подвинуть чтоб бургер попал в первую строку */
+  .top-tools,.canon-l-tools{flex:0 0 auto!important}
+
+  /* ltab (Урок / Моя домашка) — до иконки: У / Д */
+  .ltab{padding:0!important;width:26px!important;height:26px!important;font-size:0!important;
+    justify-content:center;align-items:center;position:relative;overflow:hidden;border-radius:8px!important}
+  .ltab[data-tab="lesson"]::before{content:"У";font-size:.72rem;font-weight:800}
+  .ltab[data-tab="homework"]::before{content:"Д";font-size:.72rem;font-weight:800}
+  .ltab .ltab-count{position:absolute;top:-4px;right:-4px;font-size:9px!important;
+    padding:0 4px!important;min-width:14px!important;height:14px;line-height:14px!important;
+    border-radius:8px!important;background:#F5C842!important;color:#0D2440!important}
+  .ltab .ltab-count:empty,.ltab .ltab-count:contains("0"){display:none}
+  .lesson-tabs{padding:4px!important;gap:4px!important}
+}
 </style>
 <style id="codex-white-corner-logo-20260701">
 .topbar .brand-mark,.friendly-topbar .brand-mark,.lab-topbar .brand-mark,.cmdbar .brand-mark,.cmdbar .cb-mark,.canon-l-topbar .brand-mark,.canon-l-topbar .canon-l-mark,.friendly-topbar .brand-logo-mark{position:relative!important;overflow:visible!important;border-top-right-radius:0!important}
@@ -516,6 +552,7 @@ button[data-say]:hover{background:var(--accent3)}
       <span class="brand-sub canon-l-sub">EXAM · ЕГЭ 2026</span>
     </span>
   </a>
+  <button class="mobile-burger" type="button" aria-label="Меню разделов" aria-expanded="false" onclick="var n=document.querySelector('.canon-l-nav');var o=n.classList.toggle('is-open');this.setAttribute('aria-expanded',o);this.textContent=o?'✕':'☰'">☰</button>
   <nav class="topnav canon-l-nav" aria-label="Lesson navigation">
     <a class="canon-l-link" href="#block-4">Listening</a>
     <a class="canon-l-link" href="#block-7">Reading</a>
