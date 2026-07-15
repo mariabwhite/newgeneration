@@ -1,4 +1,5 @@
-/* lab-homework.js v44 · 2026-07-15 — расширен decorateSections: добавлены section[class*="mission"] (speak-mission/world-mission/school-mission/arcade-mission/booster-mission/passport-mission и др.) и section.grammar-map — покрыты все пропущенные content-секции.
+/* lab-homework.js v45 · 2026-07-15 — расширен decorateSections: добавлены canon-l-card, wl-chapter, wl-finale, wl-comic, intro-reading, booster-part, vocab-panel, now-result-zone, time-sort-bank/box, passport-finale — полный охват всех типов секций.
+   v44 · 2026-07-15 — расширен decorateSections: добавлены section[class*="mission"] (speak-mission/world-mission/school-mission/arcade-mission/booster-mission/passport-mission и др.) и section.grammar-map — покрыты все пропущенные content-секции.
    v43 · 2026-07-15 — кнопка «в домашку» ТОЛЬКО на уровне секции/блока (убраны addBtn вызовы на микро-элементах: .mcq-row/.gap/.wf-row и т.д.). Один «📚 всю секцию в домашку» на блок, без + на каждой фразе.
    v42 2026-07-12 · one-store migration lab-vocab → lab-hw.
    v37 · 2026-07-07 — раскрытие data-back для vocab-card в клоне.
@@ -548,7 +549,7 @@
 
   // Кнопка «📚 весь блок в домашку» на каждой секции
   function decorateSections(){
-    document.querySelectorAll('section.section, section.lab-section, section.lesson-section, section.block, section.canon-l-section, section[class*="section-"], section[id^="block-"], section[id^="block"], section[id^="sec-"], section[id^="sec"], section[id^="section-"], section[id^="b"][id$="1"], section[id^="b"][id$="2"], section[id^="b"][id$="3"], section[id^="b"][id$="4"], section[id^="b"][id$="5"], section[id^="b"][id$="6"], section[id^="b"][id$="7"], section[id^="b"][id$="8"], section[id^="b"][id$="9"], section[class*="mission"], section.grammar-map, .lesson-section, .lab-block, .lb-block').forEach(function(sec){
+    document.querySelectorAll('section.section, section.lab-section, section.lesson-section, section.block, section.canon-l-section, section.canon-l-card, section[class*="section-"], section[id^="block-"], section[id^="block"], section[id^="sec-"], section[id^="sec"], section[id^="section-"], section[id^="b"][id$="1"], section[id^="b"][id$="2"], section[id^="b"][id$="3"], section[id^="b"][id$="4"], section[id^="b"][id$="5"], section[id^="b"][id$="6"], section[id^="b"][id$="7"], section[id^="b"][id$="8"], section[id^="b"][id$="9"], section[class*="mission"], section.grammar-map, section.wl-chapter, section.wl-finale, section.wl-comic, section.intro-reading, section[class*="booster-part"], section.vocab-panel, section.now-result-zone, section.time-sort-bank, section.time-sort-box, section.passport-finale, .lesson-section, .lab-block, .lb-block').forEach(function(sec){
       if (sec.__hwSecBtn) return;
       sec.__hwSecBtn = true;
       var btn = document.createElement('button');
