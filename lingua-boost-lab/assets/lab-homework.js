@@ -1,4 +1,6 @@
-/* lab-homework.js v37 · 2026-07-07 — раскрытие data-back для vocab-card в клоне.
+/* lab-homework.js v43 · 2026-07-15 — кнопка «в домашку» ТОЛЬКО на уровне секции/блока (убраны addBtn вызовы на микро-элементах: .mcq-row/.gap/.wf-row и т.д.). Один «📚 всю секцию в домашку» на блок, без + на каждой фразе.
+   v42 2026-07-12 · one-store migration lab-vocab → lab-hw.
+   v37 · 2026-07-07 — раскрытие data-back для vocab-card в клоне.
    v37: клон .vocab-card теперь тоже проявляет data-back атрибут — если у карточки
         нет отдельного .vocab-back содержимого, ставим data-back-visible=1 чтоб CSS
         мог показать оборот через ::after. Также — сохраняем figure/figcaption без
@@ -535,30 +537,9 @@
   }
 
   function scanAndDecorate(){
-    document.querySelectorAll('.mcq-row, .mc-item, .choice-row, .choice-card, .qcard, .question-card, .q-item, .mc1-row, .pv-mcq-row, .q-row').forEach(function(el){ addBtn(el, 'mcq'); });
-    document.querySelectorAll('.tfns-row, .tf-row, .tf-item, .predict-card').forEach(function(el){ addBtn(el, 'tfns'); });
-    document.querySelectorAll('.gap, .gram-gap, .gapfill, .cloze-gap, .lex-gap, .pv-gap, .cloze-row, .oc-row, .line-q').forEach(function(el){
-      if (el.matches('.gap') && el.closest('.mc-item, .mcq-row, .tf-item, .predict-card')) return;
-      addBtn(el, 'gap');
-    });
-    document.querySelectorAll('.wf-row, .wordform-row').forEach(function(el){ addBtn(el, 'wf'); });
-    document.querySelectorAll('.match-item, .match-card, .match-row, .pair-row, .match-wrap').forEach(function(el){ addBtn(el, 'match'); });
-    document.querySelectorAll('.builder, .reorder-row, .order-row, .ord-wrap').forEach(function(el){ addBtn(el, 'builder'); });
-    document.querySelectorAll('.mic-row, .speech-row, .speak-row').forEach(function(el){ addBtn(el, 'mic'); });
-    document.querySelectorAll('.write textarea, textarea.writing-area, textarea[data-write], .open-writing textarea, .free-write textarea').forEach(function(el){ addBtn(el, 'writing'); });
-    document.querySelectorAll('.vocab-card, .word-card, .vocabulary-item, .flip-card').forEach(function(el){ addBtn(el, 'vocab'); });
-    document.querySelectorAll('.cue-card, .post, .prompt-card, .task-card, .speaking-task, .writing-task, .prompt, .quiz-item, .tile, .now-item, .output-box').forEach(function(el){ addBtn(el, 'builder'); });
-    document.querySelectorAll('.dict-row, .dictation-row').forEach(function(el){ addBtn(el, 'gap'); });
-    document.querySelectorAll('.trans-row, .transform-row, .rewrite-row, .tr-row').forEach(function(el){ addBtn(el, 'builder'); });
-    // v33 · 2026-07-07 · расширение: universal exercise + drill patterns
-    document.querySelectorAll('.exercise, .exercise-row, .ex-row, .ex-item, .drill, .drill-item, .drill-row, .task, .task-row').forEach(function(el){ addBtn(el, 'builder'); });
-    document.querySelectorAll('.mic-drill-row, .mic-drill, .speaking-drill, .voice-row').forEach(function(el){ addBtn(el, 'mic'); });
-    document.querySelectorAll('.timofey-block, .voyager-quest, .quest-row, .story-block').forEach(function(el){ addBtn(el, 'builder'); });
-    document.querySelectorAll('.card').forEach(function(el){
-      if (el.__hwHost || el.closest('.lab-hero, .topbar, nav, header, footer')) return;
-      if (el.querySelector('.lab-hw-host')) return;
-      if (el.querySelector('.mcq-row, .mc-item, .tf-item, .predict-card, .ord-wrap, .line-q, .match-wrap, .prompt, .quiz-item, .flip-card') || el.querySelector('h3 .ex-num, h3')) addBtn(el, 'builder');
-    });
+    // v43: кнопка «в домашку» только на уровне секции/блока.
+    // addBtn() на микро-элементах (.mcq-row/.gap/.wf-row и т.д.) убран —
+    // иначе + рисовался на каждой отдельной фразе/строке.
     decorateSections();
   }
 
