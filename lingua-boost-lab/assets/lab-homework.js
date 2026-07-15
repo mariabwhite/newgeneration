@@ -1,4 +1,5 @@
-/* lab-homework.js v45 · 2026-07-15 — расширен decorateSections: добавлены canon-l-card, wl-chapter, wl-finale, wl-comic, intro-reading, booster-part, vocab-panel, now-result-zone, time-sort-bank/box, passport-finale — полный охват всех типов секций.
+/* lab-homework.js v46 · 2026-07-15 — добавлен section.card (Ancient China Explorer): section.card, section.canon-l-card.
+   v45 · 2026-07-15 — расширен decorateSections: добавлены canon-l-card, wl-chapter, wl-finale, wl-comic, intro-reading, booster-part, vocab-panel, now-result-zone, time-sort-bank/box, passport-finale — полный охват всех типов секций.
    v44 · 2026-07-15 — расширен decorateSections: добавлены section[class*="mission"] (speak-mission/world-mission/school-mission/arcade-mission/booster-mission/passport-mission и др.) и section.grammar-map — покрыты все пропущенные content-секции.
    v43 · 2026-07-15 — кнопка «в домашку» ТОЛЬКО на уровне секции/блока (убраны addBtn вызовы на микро-элементах: .mcq-row/.gap/.wf-row и т.д.). Один «📚 всю секцию в домашку» на блок, без + на каждой фразе.
    v42 2026-07-12 · one-store migration lab-vocab → lab-hw.
