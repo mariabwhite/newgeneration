@@ -1,4 +1,11 @@
-/* lab-sync.js v20 — NAIL-DOWN teacher-banner + realtime sync + persist + firehose.
+/* lab-sync.js v21 — NAIL-DOWN teacher-banner + realtime sync + persist + firehose.
+   v21 (2026-07-15): Железная видимость ввода ученика.
+   Добавлена переменная isRealTeacher — true только при явном teacher-флаге
+   (teacher=on, teacher=1, role=teacher, observe=…). До v21: любой ученик без
+   ?role=student получал role='teacher' (из-за v17 default teacherMode=true) и
+   maybeSend() возвращался раньше → ни один keystroke не летел в firehose.
+   Теперь maybeSend проверяет isRealTeacher, а не role; teacherMode (жёлтый банер)
+   остаётся прибитым по умолчанию — они независимы.
    v20 (2026-07-15): Лифт забетонирован. Исправлен selector секций (section.section →
    полный набор section.section|block|lab-section|canon-l-section|lesson-section во
    ВСЕХ трёх местах: bindTocTeleport, bindTocBroadcast, submit handler).
@@ -57,6 +64,11 @@
   var explicitOff = (roleParam === 'student') || observeMode || (teacherParam === 'off');
   var teacherMode = !explicitOff;   // v17: default TRUE
   if (roleParam === 'teacher') teacherMode = true;
+  // isRealTeacher: true ТОЛЬКО при явном преподавательском флаге.
+  // teacherMode (баннер) по умолчанию=true для Маши; но ученик без ?role=student
+  // тоже попадал в teacherMode и молча не слал dom-state. Теперь блокируем
+  // broadcast только реальному учителю, не «случайному» teacherMode.
+  var isRealTeacher = (roleParam === 'teacher') || (teacherParam === 'on') || (teacherParam === '1') || observeMode;
   // Sticky localStorage — сохраняем on, чтобы будущие v17-off URL не проскакивали
   if (teacherMode) { try { localStorage.setItem('lab-teacher-mode', 'on'); } catch(e){} }
   if (teacherMode) {
@@ -427,7 +439,10 @@
         firehose.on('broadcast', { event:'dom-state' }, function(p){
           var data = p.payload || {};
           if (data.lesson_path !== location.pathname) return;
-          if (data.role === 'teacher' || data.role === 'observer') return;
+          // v21: не фильтруем по role='teacher' — до v21 ученик без ?role=student
+          // отправлял dom-state с role='teacher', и учитель их игнорировал.
+          // Теперь isRealTeacher блокирует отправку в maybeSend → фильтр role здесь лишний.
+          if (data.role === 'observer') return;
           var el = resolvePath(data.path);
           if (!el) return;
           muteOutgoing = true;
@@ -749,7 +764,7 @@
       // ---- Live broadcast ученика — ВСЕГДА в firehose + (если sync) в room ----
       var sendThrottle = {};
       function maybeSend(el){
-        if (role === 'teacher' || observeMode) return; // учитель и observer не транслируют
+        if (isRealTeacher) return; // только явный учитель/observer не транслирует (v21)
         var path = pathOf(el);
         if (!path) return;
         var now = Date.now();
