@@ -1,4 +1,9 @@
-/* lab-sync.js v17 — NAIL-DOWN teacher-banner + realtime sync + persist + firehose.
+/* lab-sync.js v20 — NAIL-DOWN teacher-banner + realtime sync + persist + firehose.
+   v20 (2026-07-15): Лифт забетонирован. Исправлен selector секций (section.section →
+   полный набор section.section|block|lab-section|canon-l-section|lesson-section во
+   ВСЕХ трёх местах: bindTocTeleport, bindTocBroadcast, submit handler).
+   Добавлен nav-sync через firehose — двусторонний лифт без зависимости от channel:
+   любой клик кнопки TOC → broadcast nav-sync → партнёр на том же уроке едет следом.
    v17 (2026-07-12): teacherMode DEFAULT = true. Yellow banner всегда сверху,
    пока URL явно НЕ содержит один из выключателей:
      ?role=student      — cabinet передаёт студенту
@@ -25,6 +30,11 @@
 
   var SUPABASE_URL  = "https://iqzlphbvmfgoygnozbya.supabase.co";
   var SUPABASE_ANON = "sb_publishable_hYhBk3xS90uouUFd_DZWUw_sOv-6JGO";
+
+  // Полный selector секций — совпадает с lab-pilot.js v4+.
+  // Раньше везде стоял только 'section.section', из-за чего уроки с section.block
+  // (A1-линейка и др.) не получали лифт, submit и nav-sync.
+  var ALL_SECTIONS = 'section.section, section.block, section.lab-section, section.canon-l-section, section.lesson-section';
 
   function qs(name){
     var m = location.search.match(new RegExp('[?&]'+name+'=([^&]+)'));
@@ -547,7 +557,7 @@
         setTimeout(function bindTocTeleport(){
           var toc = document.querySelector('.lp-toc');
           if (!toc) return setTimeout(bindTocTeleport, 400);
-          var sectionEls = [].slice.call(document.querySelectorAll('section.section'));
+          var sectionEls = [].slice.call(document.querySelectorAll(ALL_SECTIONS));
           toc.querySelectorAll('.lp-toc-btn').forEach(function(btn, i){
             btn.addEventListener('click', function(e){
               e.stopPropagation();
@@ -662,6 +672,32 @@
         }
       });
 
+      // ---- nav-sync: двусторонний лифт через firehose ----
+      // Получаем клик лифта от партнёра (учитель↔ученик) на том же уроке.
+      // Работает во всех режимах — не зависит от channel/syncParam.
+      firehose.on('broadcast', { event: 'nav-sync' }, function(p) {
+        var data = p.payload || {};
+        if (data.lesson_path !== location.pathname) return; // другой урок
+        if (data.room_id && data.room_id === roomId) return; // сам отправил
+        if (muteOutgoing) return;
+        var sec = data.section_id ? document.getElementById(data.section_id) : null;
+        if (!sec && typeof data.idx === 'number') {
+          var secs = [].slice.call(document.querySelectorAll(ALL_SECTIONS));
+          sec = secs[data.idx] || null;
+        }
+        if (!sec) return;
+        muteOutgoing = true;
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Подсветить активную кнопку лифта
+        var toc = document.querySelector('.lp-toc');
+        if (toc && typeof data.idx === 'number') {
+          [].forEach.call(toc.querySelectorAll('.lp-toc-btn'), function(b, j) {
+            b.classList.toggle('active', j === data.idx);
+          });
+        }
+        setTimeout(function() { muteOutgoing = false; }, 1200);
+      });
+
       // ---- Sync-room (двусторонний urok) ----
       if (!soloMode) {
         channel = client.channel('lab-sync:'+roomId, {
@@ -754,26 +790,32 @@
       var bodyObs = new MutationObserver(function(){ bindLiveSync(); });
       bodyObs.observe(document.body, { childList:true, subtree:true });
 
-      // ---- TOC broadcast (только sync) ----
-      if (!soloMode) {
-        (function bindTocBroadcast(){
-          var toc = document.querySelector('.lp-toc');
-          if (!toc) return setTimeout(bindTocBroadcast, 300);
-          var sectionEls = [].slice.call(document.querySelectorAll('section.section'));
-          toc.querySelectorAll('.lp-toc-btn').forEach(function(btn, i){
-            btn.addEventListener('click', function(){
-              if (muteOutgoing) return;
-              var sec = sectionEls[i];
-              if (sec && sec.id) {
-                channel.send({
-                  type: 'broadcast', event: 'scroll-to',
-                  payload: { id: sec.id, idx: i, role: role }
-                });
-              }
-            }, true);
-          });
-        })();
-      }
+      // ---- TOC: nav-sync через firehose (все режимы) + channel scroll-to (sync mode) ----
+      // bindNavSync вызывается ВСЕГДА — независимо от soloMode/syncParam.
+      // Это обеспечивает двусторонний лифт учитель↔ученик через firehose.
+      (function bindNavSync(){
+        var toc = document.querySelector('.lp-toc');
+        if (!toc) return setTimeout(bindNavSync, 300);
+        var sectionEls = [].slice.call(document.querySelectorAll(ALL_SECTIONS));
+        toc.querySelectorAll('.lp-toc-btn').forEach(function(btn, i){
+          btn.addEventListener('click', function(){
+            if (muteOutgoing) return;
+            var sec = sectionEls[i];
+            if (!sec || !sec.id) return;
+            // Firehose nav-sync — партнёр получит и поедет следом
+            firehose.send({ type: 'broadcast', event: 'nav-sync', payload: {
+              room_id: roomId, role: role,
+              section_id: sec.id, idx: i,
+              lesson_path: location.pathname, ts: Date.now()
+            }});
+            // Channel scroll-to (только в sync mode — дополнительный канал)
+            if (channel && syncParam) {
+              channel.send({ type: 'broadcast', event: 'scroll-to',
+                payload: { id: sec.id, idx: i, role: role }});
+            }
+          }, true);
+        });
+      })();
 
       // --- Submit handler — работает В ОБОИХ режимах.
       //     Solo: спросить имя на первом submit, потом persist в lab_submissions.
@@ -784,7 +826,7 @@
         var b = e.target.closest('.lp-submit');
         if (!b) return;
         setTimeout(async function(){
-          var sec = b.closest('section.section');
+          var sec = b.closest(ALL_SECTIONS);
           if (!sec) return;
           var report = sec.querySelector('.lp-report');
           if (!report) return;
