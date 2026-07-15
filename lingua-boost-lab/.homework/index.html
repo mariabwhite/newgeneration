@@ -135,9 +135,11 @@ main {
   padding: 24px;
   box-shadow: 0 12px 30px rgba(0,0,0,.12);
   display: grid; gap: 16px;
+  min-width: 0; /* grid item fix: prevent expanding beyond .list track */
+  overflow: hidden;
 }
 .item.by-teacher { border-left: 4px solid #d946a0; }
-.item-head { display: flex; align-items: flex-start; gap: 14px; }
+.item-head { display: flex; align-items: flex-start; gap: 14px; min-width: 0; }
 .item-num {
   flex: 0 0 44px; height: 44px;
   display: grid; place-items: center;
@@ -1809,6 +1811,14 @@ main {
       var rmBtn = '<button class="rm" data-rm="' + i + '" title="Удалить блок" aria-label="Удалить блок">×</button>';
       return '<article class="item' + (byTeacher ? ' by-teacher' : '') + '" data-item-idx="' + i + '">' + rmBtn + head + body + answer + '</article>';
     }).join('');
+    // Post-process: strip fixed-pixel width/max-width from .raw elements (for items cached before v43 fix)
+    list.querySelectorAll('.raw [style]').forEach(function(el){
+      var s = el.getAttribute('style') || '';
+      s = s.replace(/\b(?:width|max-width|min-width)\s*:[^;]*\d+px[^;]*(?:!important\s*)?;?\s*/gi, '');
+      s = s.replace(/^\s*;+/, '').replace(/;+\s*$/, '');
+      if (s.trim()) el.setAttribute('style', s);
+      else el.removeAttribute('style');
+    });
     hydrateRawAnswers();
   }
 

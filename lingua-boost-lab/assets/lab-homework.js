@@ -458,6 +458,8 @@
     clone.querySelectorAll('[style]').forEach(function(el){
       var s = el.getAttribute('style') || '';
       // 1-в-1 mandate — inline background / color больше не режем.
+      // Но убираем фиксированные пиксельные width/max-width/min-width (они из lesson-layout-context, ломают домашку)
+      s = s.replace(/\b(?:width|max-width|min-width)\s*:[^;]*\d+px[^;]*(?:!important\s*)?;?\s*/gi, '');
       s = s.replace(/^\s*;+/, '').replace(/;+\s*$/, '');
       if (s.trim()) el.setAttribute('style', s);
       else el.removeAttribute('style');
@@ -581,6 +583,8 @@
         // фон карточки урока, а Мария просит "выглядит абсолютно как в уроке".
         clone.querySelectorAll('[style]').forEach(function(el){
           var s = el.getAttribute('style') || '';
+          // v43: strip fixed-pixel width/max-width/min-width (set by lesson JS for lesson layout context, breaks homework)
+          s = s.replace(/\b(?:width|max-width|min-width)\s*:[^;]*\d+px[^;]*(?:!important\s*)?;?\s*/gi, '');
           s = s.replace(/^\s*;+/, '').replace(/;+\s*$/, '');
           if (s.trim()) el.setAttribute('style', s);
           else el.removeAttribute('style');
