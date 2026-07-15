@@ -228,6 +228,11 @@ main {
   padding: 18px;
   background: color-mix(in srgb, var(--card) 60%, transparent);
   color: var(--text);
+  /* grid-item fix: min-width:0 prevents expanding beyond grid track (CSS Grid spec) */
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 .raw > *:first-child { margin-top: 0 !important; }
 /* Мандат Марии 2026-07-08 21:30: клон должен выглядеть 1-в-1 как в уроке.
@@ -786,6 +791,8 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
   gap: 12px !important;
   margin: 12px 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 .raw .vocab-card {
   display: block !important;
