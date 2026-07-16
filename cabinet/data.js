@@ -1755,8 +1755,25 @@ window.NGE_DATA = {
         {
           "date": "2026-07-16",
           "num": 8,
-          "status": "planned",
-          "topic": "Practical English · Day 4 · Modals for adult life (can / could / would / should / must) + polite requests"
+          "status": "completed",
+          "topic": "📚 Articles & Prepositions · закрепление + Set Phrases (без артикля / THE / A-AN) + Questions · Deep Dive",
+          "homework": {
+            "text": "К следующему уроку: артикли §10 A.10–A.13 (Games/instruments, скриншот присылай в чат) + Quizlet Set Phrases (без артикля / THE / A-AN — go to school, in the morning, have a shower и т.д.) + Workbook 05 в личном кабинете.",
+            "modules": [
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+                "title": "📚 Артикли · §10 A.10–A.13"
+              },
+              {
+                "url": "https://quizlet.com/fi/1195003799/set-phrases-flash-cards/",
+                "title": "🔤 Quizlet · Set Phrases"
+              },
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-05-workbook/",
+                "title": "📓 Workbook 05"
+              }
+            ]
+          }
         },
         {
           "date": "2026-07-21",

@@ -1154,10 +1154,14 @@
         const isDone = hwStatus === "done";
         const chipDoneCls = isDone ? " is-done" : "";
         let chip = "";
-        if (hw.module_url) {
-          const title = hw.module_title || "Домашка";
+        const _mods = Array.isArray(hw.modules) && hw.modules.length
+          ? hw.modules
+          : (hw.module_url ? [{ url: hw.module_url, title: hw.module_title || "Домашка" }] : []);
+        if (_mods.length) {
           const tooltip = hw.text || "";
-          chip = `<a class="cab-lesson-hw${chipDoneCls}" href="${_esc(hw.module_url)}" target="_blank" rel="noreferrer" title="${_esc(tooltip)}">→ ${_esc(title)}</a>`;
+          chip = _mods.map(m =>
+            `<a class="cab-lesson-hw${chipDoneCls}" href="${_esc(m.url)}" target="_blank" rel="noreferrer" title="${_esc(tooltip)}">→ ${_esc(m.title || "Домашка")}</a>`
+          ).join(" ");
         } else if (hw.text) {
           chip = `<span class="cab-lesson-hw cab-lesson-hw--text${chipDoneCls}" title="${_esc(hw.text)}">📝 домашка</span>`;
         }
@@ -1287,17 +1291,25 @@
         + ' data-action="toggle-hw" data-hw-date="' + _esc(e.lesson.date) + '"'
         + ' title="' + (e.isDone ? 'Сделано — клик чтобы отменить' : 'Отметить как сделанное') + '">'
         + (e.isDone ? '✓' : '') + '</span>';
+      const _hwMods = Array.isArray(hw.modules) && hw.modules.length
+        ? hw.modules
+        : (hw.module_url ? [{ url: hw.module_url, title: hw.module_title || "Открыть в Лаборатории" }] : []);
       const titleHtml = hw.module_title
         ? '<span class="cab-hw-title">' + _esc(hw.module_title) + '</span>'
-        : '';
+        : (_hwMods.length > 1
+            ? '<span class="cab-hw-title">Домашка · ' + _hwMods.length + ' материала</span>'
+            : '');
       const textHtml = !compact && hw.text
         ? '<p class="cab-hw-task">' + _esc(hw.text) + '</p>'
         : '';
-      const btnLabel = hw.module_title || "Открыть в Лаборатории";
-      const btnHtml = !compact && hw.module_url
-        ? '<a class="cab-action-btn cab-action-btn--primary cab-hw-link"'
-          + ' href="' + _esc(hw.module_url) + '" target="_blank" rel="noreferrer">'
-          + '🚀 ' + _esc(btnLabel) + '</a>'
+      const btnHtml = !compact && _hwMods.length
+        ? (_hwMods.length > 1 ? '<div style="display:flex;flex-wrap:wrap;gap:8px;">' : '')
+          + _hwMods.map(m =>
+              '<a class="cab-action-btn cab-action-btn--primary cab-hw-link"'
+              + ' href="' + _esc(m.url) + '" target="_blank" rel="noreferrer">'
+              + '🚀 ' + _esc(m.title || "Открыть") + '</a>'
+            ).join('')
+          + (_hwMods.length > 1 ? '</div>' : '')
         : '';
       return '<div class="cab-hw-item' + (e.isDone ? ' is-done' : '')
         + (compact ? ' cab-hw-item--compact' : '') + '">'
