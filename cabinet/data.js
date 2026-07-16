@@ -206,10 +206,10 @@ window.NGE_DATA = {
       "schedule": "понедельник 13:00 / четверг 13:00 / воскресенье 12:00",
       "goal": "Tom Sawyer (адаптированный B1) + Travelling (страны, аэропорт, ролевые) + Past Simple irregular в активной речи",
       "price_per_lesson": 2500,
-      "lessons_in_package": 14,
-      "subscription_month": "2026-06",
-      "lessons_used_this_month": 14,
-      "summer_plan_note": "Летний блок 10 уроков + 4 экстра · июнь + июль 2026 · 14 / 14 проведено",
+      "lessons_in_package": 9,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 8,
+      "summer_plan_note": "Июль 2026 · 9 уроков · 8 проведено · 1 остался (28.07 — под вопросом переноса на сентябрь).",
       "payment_status": "Оплачено",
       "payment_note": "",
       "parent_name": "Протасова Мария Петровна",
@@ -353,14 +353,14 @@ window.NGE_DATA = {
           }
         },
         {
-          "date": "2026-07-17",
+          "date": "2026-07-16",
           "num": 15,
-          "status": "planned",
-          "topic": "🏴‍☠️ Treasure Island · Act 1 — The Black Spot (открытие новой серии) · 🟡 оплачено",
+          "status": "completed",
+          "topic": "🏴‍☠️ Treasure Island · Act 1 — The Black Spot (открытие новой серии)",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
             "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures",
-            "text": "🟡 Оплачено. Четверг 17.07 в 13:00. Начинаем новую серию Treasure Island."
+            "text": "Стартовали новую серию: Билли Бонс, черная метка, Джим и мама в трактире Admiral Benbow. Прогони урок целиком — vocab по акту 1, listening и вопросы по сюжету."
           }
         },
         {
@@ -1649,9 +1649,9 @@ window.NGE_DATA = {
       "is_adult": true,
       "parent_name": "",
       "pin": "3094",
-      "lessons_in_package": 5,
+      "lessons_in_package": 9,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 3,
+      "lessons_used_this_month": 5,
       "stability_note": "",
       "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
       "external_platforms": [
