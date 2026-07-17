@@ -638,6 +638,18 @@ window.NGE_DATA = {
           }
         },
         {
+          "date": "2026-07-17",
+          "num": 10,
+          "status": "completed",
+          "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
+        },
+        {
+          "date": "2026-07-24",
+          "num": 11,
+          "status": "planned",
+          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
+        },
+        {
           "date": "2026-07-15",
           "num": 9,
           "status": "planned",
@@ -647,18 +659,6 @@ window.NGE_DATA = {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
             "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
           }
-        },
-        {
-          "date": "2026-07-17",
-          "num": 10,
-          "status": "planned",
-          "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
-        },
-        {
-          "date": "2026-07-24",
-          "num": 11,
-          "status": "planned",
-          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
         }
       ],
       "materials": {
