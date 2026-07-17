@@ -639,8 +639,19 @@ window.NGE_DATA = {
         },
         {
           "date": "2026-07-17",
-          "num": 10,
+          "num": 9,
           "status": "completed",
+          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
+          "homework": {
+            "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+          }
+        },
+        {
+          "date": "2026-07-20",
+          "num": 10,
+          "status": "planned",
           "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
         },
         {
@@ -648,17 +659,6 @@ window.NGE_DATA = {
           "num": 11,
           "status": "planned",
           "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
-        },
-        {
-          "date": "2026-07-15",
-          "num": 9,
-          "status": "planned",
-          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
-          "homework": {
-            "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
-          }
         }
       ],
       "materials": {
