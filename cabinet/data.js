@@ -857,12 +857,17 @@ window.NGE_DATA = {
       "name": "Аня Исаева",
       "materials": {
         "folder": "documents/_v/anya-isaeva",
-        "note": "Отчёт за июнь 2026 — для мамы (Наталья Вячеславовна).",
+        "note": "Отчёт за июнь 2026 — для мамы. 100 неправильных глаголов — распечатать и класть в тетрадь.",
         "files": [
           {
             "name": "report-anya-isaeva-2026-06.pdf",
             "label": "📄 Отчёт за июнь 2026 (для мамы)",
             "audience": "parent"
+          },
+          {
+            "name": "irregular-verbs-100.pdf",
+            "label": "🐉 100 неправильных глаголов · дракончики",
+            "audience": "student"
           }
         ]
       },
@@ -886,7 +891,7 @@ window.NGE_DATA = {
       "pin": "2512",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 2,
+      "lessons_used_this_month": 3,
       "lessons": [
         {
           "date": "2026-07-07",
@@ -911,18 +916,18 @@ window.NGE_DATA = {
           }
         },
         {
-          "date": "2026-07-20",
+          "date": "2026-07-19",
           "num": 3,
-          "status": "planned",
+          "status": "completed",
           "topic": "🛍️ Anya's Market Quest — 6 stalls субботнего рынка, Past Simple (regular + irregular) + Past Continuous + used to",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-market-quest/?theme=light-lab&lang=ru",
-            "module_title": "🛍️ Открыть квест · Anya's Market Quest",
-            "text": "Новый квест — 18 секций с картой рынка, аудированием (2:30 mp3), 6 прилавками и полным Past Simple. Пройдём вместе на уроке, дома можно повторить."
+            "module_title": "🛍️ Anya's Market Quest — доделать",
+            "text": "Дописать письмо из квеста · повторить слова (16 market words + 100 неправильных глаголов из «дракончиков» в разделе Материалы)."
           }
         },
         {
-          "date": "2026-07-27",
+          "date": "2026-08-02",
           "num": 4,
           "status": "planned",
           "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение"
