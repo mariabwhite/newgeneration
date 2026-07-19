@@ -892,6 +892,7 @@ window.NGE_DATA = {
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
       "lessons_used_this_month": 3,
+      "summer_plan_note": "Июль-август 2026 · квесты Ani (Temples → Market → финал)",
       "lessons": [
         {
           "date": "2026-07-07",
