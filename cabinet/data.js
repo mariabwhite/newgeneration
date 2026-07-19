@@ -1448,7 +1448,7 @@ window.NGE_DATA = {
       "monthly_package": 20000,
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 2,
+      "lessons_used_this_month": 3,
       "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
       "stability_note": "",
       "payment_status": "Оплачено",
@@ -1561,14 +1561,22 @@ window.NGE_DATA = {
         {
           "date": "2026-07-19",
           "num": 11,
-          "status": "planned",
-          "topic": "Тема согласовывается после летнего пересбора"
+          "status": "completed",
+          "topic": "🎯 Questions · Deep Dive («Ask Me & Anything») — глубокое погружение в типы вопросов",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
+            "module_title": "🎯 Открыть Questions · Deep Dive"
+          }
         },
         {
           "date": "2026-07-26",
           "num": 12,
           "status": "planned",
-          "topic": "Тема согласовывается после летнего пересбора"
+          "topic": "🎯 Questions · Deep Dive — продолжение · закрытие июльского абонемента",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
+            "module_title": "🎯 Открыть · Questions · Deep Dive"
+          }
         }
       ]
     },
