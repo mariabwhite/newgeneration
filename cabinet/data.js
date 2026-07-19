@@ -1622,6 +1622,11 @@ window.NGE_DATA = {
             "url": "../lingua-boost-lab/practice/timofey-05-workbook/",
             "label": "📚 Workbook 05 · 14 июл · Practical English · Day 3 · все настоящие + will + going to",
             "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
+            "label": "🎯 Deep Dive 06 · Verb TO BE · 5 units + mega mix (79 items) · 19 июл — фундамент, проходить по 1 юниту в день",
+            "audience": "all"
           }
         ]
       },
@@ -1800,11 +1805,19 @@ window.NGE_DATA = {
           "num": "8b",
           "status": "completed",
           "is_makeup": true,
-          "topic": "📕 РТ 6 · Глагол to be (формы, place в предложении) + разделение частей предложения (subject / verb / object / particle)",
+          "topic": "📕 РТ 6 · Fix your leaks (10 blocks) + разделение частей предложения + Deep Dive TO BE",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/?theme=light-lab&lang=ru#pane-workbook",
-            "module_title": "📕 Открыть РТ 6 · to be + parts of a sentence",
-            "text": "Пройди W.16 (Verb to be · 8 items) и W.17 (Subject / Verb / Object / Particle · 8 items) в подвкладке РТ 6. Если что-то тормозит — отметь, обсудим на следующем уроке."
+            "text": "К четвергу 23.07: (1) 10 блоков Fix your leaks в РТ 6 (F.1–F.10) · по 1 в день, каждый ≤15 мин. (2) Начать Deep Dive 06 · Verb TO BE — пройти хотя бы Unit 1 (am/is/are positive). Остальные юниты — до следующего урока. Это фундамент, без него дальше грамматика не собирается.",
+            "modules": [
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/?theme=light-lab&lang=ru#pane-workbook",
+                "title": "📕 РТ 6 · Fix your leaks · 10 blocks"
+              },
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
+                "title": "🎯 Deep Dive 06 · Verb TO BE (5 units + mega mix)"
+              }
+            ]
           }
         },
         {
