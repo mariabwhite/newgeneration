@@ -719,7 +719,7 @@ window.NGE_DATA = {
       "pin": "6347",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 2,
+      "lessons_used_this_month": 3,
       "summer_plan_note": "Июльский абонемент · слова + будущие времена + направления + предлоги",
       "stability_note": "",
       "lessons": [
@@ -807,11 +807,16 @@ window.NGE_DATA = {
         {
           "date": "2026-07-19",
           "num": 11,
-          "status": "planned",
-          "topic": "Направления — turn left / right · straight on · next to · opposite · описать путь"
+          "status": "completed",
+          "topic": "Направления — turn left / right · straight on · next to · opposite · описать путь · Around the City (directions + hotel check-in)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a1/around-the-city/?theme=light-lab&lang=ru",
+            "module_title": "🧭 Доделать урок · Around the City",
+            "text": "Доделать урок до конца · долистать Quizlet (Directions) · послушать аудирование от Канады."
+          }
         },
         {
-          "date": "2026-07-29",
+          "date": "2026-07-26",
           "num": 12,
           "status": "planned",
           "topic": "Предлоги (места и времени) — in / on / at / between / behind · закрытие июльского абонемента"
