@@ -922,15 +922,15 @@ window.NGE_DATA = {
           "topic": "🛍️ Anya's Market Quest — 6 stalls субботнего рынка, Past Simple (regular + irregular) + Past Continuous + used to",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/anyas-market-quest/?theme=light-lab&lang=ru",
-            "module_title": "🛍️ Anya's Market Quest — доделать",
-            "text": "Дописать письмо из квеста · повторить слова (16 market words + 100 неправильных глаголов из «дракончиков» в разделе Материалы)."
+            "module_title": "🛍️ Anya's Market Quest — домашка",
+            "text": "1️⃣ Повторить слова — обязательно записать (100%). 2️⃣ Дописать письмо — прислать скриншот или фото от руки. 3️⃣ В квесте пройти всё, что между грамматическими таблицами и пунктом 6. 4️⃣ Следующий урок — 2 августа в 12:00."
           }
         },
         {
           "date": "2026-08-02",
           "num": 4,
           "status": "planned",
-          "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение"
+          "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение · время: 12:00"
         }
       ],
       "stability_note": ""
