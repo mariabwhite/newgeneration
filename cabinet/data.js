@@ -1671,7 +1671,7 @@ window.NGE_DATA = {
       "pin": "3094",
       "lessons_in_package": 9,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 5,
+      "lessons_used_this_month": 6,
       "stability_note": "",
       "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
       "external_platforms": [
@@ -1793,6 +1793,18 @@ window.NGE_DATA = {
                 "title": "📓 Workbook 05"
               }
             ]
+          }
+        },
+        {
+          "date": "2026-07-19",
+          "num": "8b",
+          "status": "completed",
+          "is_makeup": true,
+          "topic": "📕 РТ 6 · Глагол to be (формы, place в предложении) + разделение частей предложения (subject / verb / object / particle)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/?theme=light-lab&lang=ru#pane-workbook",
+            "module_title": "📕 Открыть РТ 6 · to be + parts of a sentence",
+            "text": "Пройди W.16 (Verb to be · 8 items) и W.17 (Subject / Verb / Object / Particle · 8 items) в подвкладке РТ 6. Если что-то тормозит — отметь, обсудим на следующем уроке."
           }
         },
         {
