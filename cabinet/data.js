@@ -949,9 +949,9 @@ window.NGE_DATA = {
       "schedule": "понедельник 12:00",
       "stability_note": "",
       "price_per_lesson": 2000,
-      "monthly_package": 8000,
-      "payment_status": "Оплачено",
-      "payment_note": "Абонемент 4 × 2 000 ₽ = 8 000 ₽ · растянут почти на месяц из-за переносов (болели по очереди).",
+      "monthly_package": 6000,
+      "payment_status": "🟢 Июль закрыт · август → к оплате",
+      "payment_note": "🟢 Июль оплачен и закрыт (4/4 уроков · vampire-серия Pre-A1). Новый абонемент: 3 урока × 2 000 ₽ = 6 000 ₽ · даты 27.07 · 03.08 · 10.08. ⚠ С сентября ждём повышение цен.",
       "payments": [
         {
           "month": "Июнь–июль 2026",
@@ -959,15 +959,22 @@ window.NGE_DATA = {
           "amount": "8 000 ₽",
           "status": "paid",
           "date": "15.06.2026",
-          "note": "Летний абонемент · растянут почти на месяц (переносы)"
+          "note": "🟢 Летний абонемент закрыт 20.07 · прошли всю vampire-серию Pre-A1 (Music & Friends → Verbs, Music & Play → Food)"
+        },
+        {
+          "month": "Август 2026",
+          "package": "3 урока × 2 000 ₽",
+          "amount": "6 000 ₽",
+          "status": "planned",
+          "note": "Новый абонемент из 3 уроков-понедельников: 27.07 · 03.08 · 10.08. ⚠ С сентября — повышение цен."
         }
       ],
       "parent_name": "Лушин Александр Анатольевич",
       "pin": "2223",
-      "lessons_in_package": 4,
-      "subscription_month": "2026-07",
-      "lessons_used_this_month": 3,
-      "summer_plan_note": "Летний абонемент 4 × 2 000 ₽ · 🦇 vampire-серия Pre-A1 · растянут на июнь–июль из-за переносов. Осталось 1 занятие: 20.07.",
+      "lessons_in_package": 3,
+      "subscription_month": "2026-08",
+      "lessons_used_this_month": 0,
+      "summer_plan_note": "🟢 Июль закрыт (4/4 vampire-серии Pre-A1). Новый абонемент из 3 уроков × 2 000 ₽ = 6 000 ₽ · даты 27.07 · 03.08 · 10.08. ⚠ С сентября — повышение цен.",
       "materials": {
         "folder": "documents/_v/yulya-lushina",
         "note": "",
@@ -1028,12 +1035,45 @@ window.NGE_DATA = {
         {
           "date": "2026-07-20",
           "num": 4,
-          "status": "planned",
-          "topic": "☀ Vampire English · Lesson 2 · Sunny Day (Colors, Numbers, Family) — финал абонемента.",
+          "status": "completed",
+          "topic": "🍎 Vampire English · Lesson 2 · Verbs, Music & Play — начали тему ЕДА! Julia's Lesson: I eat / I love / I don't love, poke the food (морковка · яблоко · банан · пирог · молоко · печенье), pronouns bridge (He loves pizza / She loves strawberries), music instruments, Animal Actions + poke the animals (кот/пёс/корова/утка/овца/пчела/лев/пиг), Head Shoulders. Закрыли летний абонемент 🟢.",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
-            "module_title": "☀ Открыть Lesson 2 · Sunny Day",
-            "text": "К уроку — открыть на айпаде: цвета 🌈 · счёт до 10 🔢 · семья 👨‍👩‍👧 · песенки. Всё озвучено, помощь родителя не нужна — Юля жмёт сама."
+            "module_title": "☀ Открыть Lesson 2 · Verbs, Music & Play",
+            "text": "Откройте на айпаде: 22 секции с картинками · нажимайте всё · тыкайте морковку/яблоко/кота/собаку — они говорят! Плюс новые видео Head Shoulders + Animal Actions. Юля жмёт сама, помощь не нужна."
+          }
+        },
+        {
+          "date": "2026-07-27",
+          "num": 5,
+          "status": "planned",
+          "topic": "🍎 Продолжаем тему ЕДА · What do you eat? / What do you love? · закрепляем pronouns He/She/I + food.",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
+            "module_title": "🍎 Повторить Lesson 2 · Food",
+            "text": "Перед уроком открыть на айпаде: секции 🍦 broccoli · 🍎 food yum/yuck · 🥕 poke the food · 👥 He/She/I + food. Просто тыкаем и слушаем."
+          }
+        },
+        {
+          "date": "2026-08-03",
+          "num": 6,
+          "status": "planned",
+          "topic": "☀ Новая тема (согласуем на 4-м уроке) — план после закрытия еды.",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
+            "module_title": "☀ Пока — повторение",
+            "text": "Пока новый урок не готов — тыкаем в vampire-2 то, что понравилось."
+          }
+        },
+        {
+          "date": "2026-08-10",
+          "num": 7,
+          "status": "planned",
+          "topic": "☀ Финал августовского абонемента · закрепляем · слушаем песенки.",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
+            "module_title": "☀ Открыть vampire-2",
+            "text": "К последнему летнему уроку — просто повторить любимое: клике́ры + песенки Warmup / Head Shoulders / Animal Actions."
           }
         }
       ]
