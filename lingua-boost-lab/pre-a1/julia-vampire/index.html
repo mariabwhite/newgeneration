@@ -970,19 +970,22 @@
             || vs.find(v => v.lang.startsWith("en")) || null;
     }
     if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
-    function say(text) {
-      if (!synth || !text) return;
-      try {
-        synth.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        if (_voice) { u.voice = _voice; u.lang = _voice.lang; }
-        else u.lang = "en-US";
-        u.rate = 0.95;   // было .85
-        u.pitch = 1.0;   // было 1.18 (высокий питч давал «жуткого» эффекта)
-        u.volume = 1;
-        synth.speak(u);
-      } catch (e) {}
+    // === Audio: MP3-first, browser TTS DISABLED (2026-07-20, per Maria — «жуткий голос») ===
+    // MP3 в ./voice/<slug>.mp3 через ttsmp3.com Amy British. Нет файла — тихо, TTS не запускается.
+    function slugify(text) {
+      return String(text || "").toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
     }
+    const _audioCache = {};
+    function say(text) {
+      if (!text) return;
+      const slug = slugify(text);
+      if (!slug) return;
+      let a = _audioCache[slug];
+      if (!a) { a = _audioCache[slug] = new Audio("voice/" + slug + ".mp3"); a.preload = "none"; }
+      try { a.pause(); a.currentTime = 0; a.play().catch(() => {}); } catch (e) {}
+    }
+    window._say = say;
 
     // ===== global click handler =====
     document.addEventListener("click", (e) => {

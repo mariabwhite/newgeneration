@@ -696,10 +696,9 @@
       </div>
     </section>
 
-    <!-- B7 · ★ ACTION SONG (Animal Actions) — 2 videos -->
+    <!-- B7 · ★ ACTION SONG (Animal Actions) -->
     <section class="section" id="b10">
-      <div class="section-head"><span class="time">18 – 24 min</span><h2>★ Song · Animal Actions</h2><p class="tiny">two songs · watch · copy every action</p></div>
-      <div class="video-shell" data-song="ACTIONS"></div>
+      <div class="section-head"><span class="time">18 – 22 min</span><h2>★ Song · Animal Actions</h2><p class="tiny">watch · copy every action</p></div>
       <div class="video-shell" data-song="ACTIONS_2"></div>
     </section>
 
@@ -837,10 +836,9 @@
       </div>
     </section>
 
-    <!-- B13 · Head, Shoulders, Knees & Toes — action song classic (2 videos) -->
+    <!-- B13 · Head, Shoulders, Knees & Toes — action song classic -->
     <section class="section" id="b16">
-      <div class="section-head"><span class="time">49 – 55 min</span><h2>★ Head · Shoulders · Knees &amp; Toes</h2><p class="tiny">two versions · touch every part!</p></div>
-      <div class="video-shell" data-song="HEAD_SHLDRS"></div>
+      <div class="section-head"><span class="time">49 – 53 min</span><h2>★ Head · Shoulders · Knees &amp; Toes</h2><p class="tiny">the classic — touch every part!</p></div>
       <div class="video-shell" data-song="HEAD_SHLDRS_2"></div>
     </section>
 
@@ -979,36 +977,26 @@
       setTimeout(() => el.classList.remove(c), 700);
     }
 
-    const synth = window.speechSynthesis;
-    let _voice = null;
-    function pickVoice() {
-      if (!synth) return;
-      const vs = synth.getVoices();
-      // приоритет: MS Natural neural (Aria/Sonia/Jenny) → Google UK/US Female → Apple → MS legacy
-      _voice =
-           vs.find(v => v.lang.startsWith("en") && /aria|sonia|jenny|libby|clara/i.test(v.name))
-        || vs.find(v => v.lang.startsWith("en") && /google.*(us|uk).*female/i.test(v.name))
-        || vs.find(v => v.lang.startsWith("en") && /google.*(us|uk)/i.test(v.name))
-        || vs.find(v => v.lang.startsWith("en") && /samantha|karen|serena|moira|tessa/i.test(v.name))
-        || vs.find(v => v.lang.startsWith("en") && /zira/i.test(v.name))
-        || vs.find(v => v.lang === "en-GB")
-        || vs.find(v => v.lang === "en-US")
-        || vs.find(v => v.lang.startsWith("en")) || null;
+    // === Audio: MP3-first, browser TTS DISABLED (2026-07-20, per Maria) ===
+    // Browser SpeechSynthesis отключён — слишком жуткий голос. Ищем MP3-файл в ./voice/<slug>.mp3.
+    // Если нет — тихо, никакой TTS. MP3 генерятся через ttsmp3.com (Amy British).
+    function slugify(text) {
+      return String(text || "").toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
     }
-    if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+    const _audioCache = {};
     function say(text) {
-      if (!synth || !text) return;
-      try {
-        synth.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        if (_voice) { u.voice = _voice; u.lang = _voice.lang; }
-        else u.lang = "en-US";
-        u.rate = 0.95;   // было .85 (слишком медленно)
-        u.pitch = 1.0;   // было 1.18 (высокий питч давал «жуткого» эффекта)
-        u.volume = 1;
-        synth.speak(u);
-      } catch (e) {}
+      if (!text) return;
+      const slug = slugify(text);
+      if (!slug) return;
+      let a = _audioCache[slug];
+      if (!a) {
+        a = _audioCache[slug] = new Audio("voice/" + slug + ".mp3");
+        a.preload = "none";
+      }
+      try { a.pause(); a.currentTime = 0; a.play().catch(() => {}); } catch (e) {}
     }
+    window._say = say;
 
     document.addEventListener("click", (e) => {
       const sayEl = e.target.closest("[data-say]");
