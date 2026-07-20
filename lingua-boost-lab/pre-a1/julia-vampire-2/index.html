@@ -28,18 +28,26 @@
   -->
 
   <script>
-    /* 5 песен на урок (Super Simple / kids · активные, с движением):
-       BROCCOLI     — Do You Like Broccoli Ice Cream? · food opener + like/dislike — frN3nvhIHUk
-       YES_VEG      — Yes Yes Vegetables · action food song — -ynGyaSaLmk
-       ACTIONS      — Animal Actions (jump/swim/fly/roar) — BQ9q4U2P6-o
-       HEAD_SHLDRS  — Head Shoulders Knees & Toes · classic full-body — h4eueDYPTIg
-       DANCE        — Dance · финал — Z5lhGTalu28  */
+    /* песни урока (Super Simple / kids · активные, с движением):
+       WARMUP_A      — открывающий разогрев #1 — VsgpUHUYuJI
+       WARMUP_B      — открывающий разогрев #2 — A1vdKfXlB_g
+       BROCCOLI      — Do You Like Broccoli Ice Cream? · food opener + like/dislike — frN3nvhIHUk
+       YES_VEG       — veggies song (Julia's pick 2026-07-20) — kt319a0GkCc
+       ACTIONS       — Animal Actions (jump/swim/fly/roar) — BQ9q4U2P6-o
+       ACTIONS_2     — второй animal-actions ролик (Julia's pick) — CT86Dl442jA
+       HEAD_SHLDRS   — Head Shoulders Knees & Toes · classic full-body — h4eueDYPTIg
+       HEAD_SHLDRS_2 — второй HSKT ролик (Julia's pick) — WX8HmogNyCY
+       DANCE         — Dance · финал — Z5lhGTalu28  */
     window.SONGS = {
-      BROCCOLI:    "frN3nvhIHUk",
-      YES_VEG:     "-ynGyaSaLmk",
-      ACTIONS:     "BQ9q4U2P6-o",
-      HEAD_SHLDRS: "h4eueDYPTIg",
-      DANCE:       "Z5lhGTalu28"
+      WARMUP_A:      "VsgpUHUYuJI",
+      WARMUP_B:      "A1vdKfXlB_g",
+      BROCCOLI:      "frN3nvhIHUk",
+      YES_VEG:       "kt319a0GkCc",
+      ACTIONS:       "BQ9q4U2P6-o",
+      ACTIONS_2:     "CT86Dl442jA",
+      HEAD_SHLDRS:   "h4eueDYPTIg",
+      HEAD_SHLDRS_2: "WX8HmogNyCY",
+      DANCE:         "Z5lhGTalu28"
     };
   </script>
 
@@ -320,13 +328,81 @@
 
     .finish { min-height: 56svh; align-content: center; text-align: center; }
 
+    /* poke clickers — Julia's favourite tap-tap style (mimics lesson-1 face/body poke) */
+    .poke-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px; padding: 4px 0;
+    }
+    .poke-grid .poke-tile {
+      border: 0 !important; border-radius: 50% !important;
+      aspect-ratio: 1; padding: 6px;
+      background: linear-gradient(160deg, var(--pale-gold) 0%, var(--blush) 100%);
+      box-shadow: var(--shadow-1), inset 0 -6px 12px rgba(107,52,16,.08);
+      display: grid; place-items: center; gap: 2px;
+      cursor: pointer; font-family: inherit; color: var(--ink);
+      transition: transform 140ms cubic-bezier(.4,1.4,.5,1), box-shadow var(--t-fast);
+    }
+    .poke-grid .poke-tile:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-2), inset 0 -6px 12px rgba(107,52,16,.08); }
+    .poke-grid .poke-tile:active { transform: scale(.84); box-shadow: 0 2px 6px rgba(107,52,16,.18), inset 0 8px 14px rgba(107,52,16,.18); }
+    .poke-grid .poke-tile.lit { animation: poke-wobble .5s ease; box-shadow: 0 0 0 5px rgba(255,144,72,.28), var(--shadow-2), inset 0 -6px 12px rgba(107,52,16,.08) !important; }
+    @keyframes poke-wobble {
+      0%   { transform: scale(1); }
+      25%  { transform: scale(.78) rotate(-6deg); }
+      55%  { transform: scale(1.1) rotate(4deg); }
+      80%  { transform: scale(.95) rotate(-2deg); }
+      100% { transform: scale(1); }
+    }
+    .poke-grid .poke-tile .poke-face { font-size: clamp(2.4rem, 7vw, 3.8rem); line-height: 1; filter: drop-shadow(0 4px 6px rgba(107,52,16,.12)); }
+    .poke-grid .poke-tile .poke-lab  { font-size: clamp(.7rem, 1.3vw, .85rem); font-weight: 800; color: var(--ink-soft); text-align: center; padding: 0 4px; line-height: 1.15; }
+    .poke-grid .poke-tile:nth-child(2n) { background: linear-gradient(160deg, var(--blush) 0%, var(--rose) 100%); color: var(--ink); }
+    .poke-grid .poke-tile:nth-child(3n) { background: linear-gradient(160deg, var(--mint) 0%, var(--pale-gold) 100%); }
+    .poke-grid .poke-tile:nth-child(5n) { background: linear-gradient(160deg, var(--sky) 0%, var(--lilac) 100%); }
+    .poke-grid .poke-tile:nth-child(7n) { background: linear-gradient(160deg, var(--pale-gold) 0%, var(--royal-lav) 100%); color: white; }
+    .poke-grid .poke-tile:nth-child(7n) .poke-lab { color: rgba(255,255,255,.9); }
+
+    /* lesson footer — orange (lesson-2 palette) */
+    .lesson-footer {
+      margin: 40px auto 0; width: min(1080px, calc(100% - 32px));
+      padding: 26px 28px; border-radius: var(--r-panel);
+      background: linear-gradient(160deg, rgba(255,255,255,.92) 0%, var(--blush) 100%);
+      border: 1px solid var(--line); box-shadow: var(--shadow-1);
+      color: var(--ink); font-weight: 700;
+      display: grid; gap: 18px; position: relative; z-index: 1;
+    }
+    .lesson-footer .footer-brand { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+    .lesson-footer .footer-mark {
+      display: grid; place-items: center;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--royal-lav); color: white; font-size: 1.4rem;
+      box-shadow: var(--shadow-1);
+    }
+    .lesson-footer .footer-brand strong { display: block; font-size: 1.05rem; }
+    .lesson-footer .footer-sub { display: block; font-size: .82rem; color: var(--ink-soft); font-weight: 600; margin-top: 2px; }
+    .lesson-footer .footer-links {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    }
+    .lesson-footer .footer-links a {
+      display: inline-flex; align-items: center;
+      min-height: 40px; padding: 8px 16px; border-radius: var(--r-pill);
+      background: rgba(255,255,255,.85); border: 1px solid var(--line);
+      color: var(--ink); text-decoration: none; font-weight: 700; font-size: .95rem;
+      transition: transform var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+    }
+    .lesson-footer .footer-links a:hover { transform: translateY(-1px); border-color: rgba(255,144,72,.5); background: #fff; }
+    .lesson-footer .footer-teacher {
+      text-align: center; font-size: .85rem; color: var(--ink-soft); font-weight: 600;
+      border-top: 1px dashed var(--line); padding-top: 14px;
+    }
+
     @media (max-width: 780px) {
       .hero { min-height: auto; padding-top: 12px; }
       .two, .three, .four, .five { grid-template-columns: 1fr; }
       .card { min-height: 108px; }
       .card.mini { min-height: 78px; }
       .section { padding: 22px; border-radius: var(--r-card); }
+      .poke-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
     }
+    @media (max-width: 480px) { .poke-grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
   <link rel="stylesheet" href="/lingua-boost-lab/assets/lab-pills-canon.css?v=2">
 </head>
@@ -358,11 +434,12 @@
   <main id="main-content" class="page">
 
     <nav class="progress" aria-label="lesson progress">
-      <a href="#b1"  data-dot="1"></a><a href="#b2"  data-dot="2"></a><a href="#b3"  data-dot="3"></a><a href="#b4"  data-dot="4"></a>
-      <a href="#b5"  data-dot="5"></a><a href="#b6"  data-dot="6"></a><a href="#b7"  data-dot="7"></a><a href="#b8"  data-dot="8"></a>
-      <a href="#b9"  data-dot="9"></a><a href="#b10" data-dot="10"></a><a href="#b11" data-dot="11"></a><a href="#b12" data-dot="12"></a>
-      <a href="#b13" data-dot="13"></a><a href="#b14" data-dot="14"></a><a href="#b15" data-dot="15"></a>
-      <a href="#b16" data-dot="16"></a><a href="#b17" data-dot="17"></a><a href="#b18" data-dot="18"></a>
+      <a href="#b1"  data-dot="1"></a><a href="#b19" data-dot="2"></a><a href="#b2"  data-dot="3"></a><a href="#b3"  data-dot="4"></a>
+      <a href="#b4"  data-dot="5"></a><a href="#b5"  data-dot="6"></a><a href="#b20" data-dot="7"></a><a href="#b6"  data-dot="8"></a>
+      <a href="#b7"  data-dot="9"></a><a href="#b8"  data-dot="10"></a><a href="#b9"  data-dot="11"></a><a href="#b10" data-dot="12"></a>
+      <a href="#b11" data-dot="13"></a><a href="#b21" data-dot="14"></a><a href="#b12" data-dot="15"></a><a href="#b13" data-dot="16"></a>
+      <a href="#b14" data-dot="17"></a><a href="#b15" data-dot="18"></a><a href="#b16" data-dot="19"></a><a href="#b17" data-dot="20"></a>
+      <a href="#b18" data-dot="21"></a>
     </nav>
 
     <!-- B1 · Sunny hello hero + orange chants -->
@@ -379,6 +456,13 @@
         <button class="chant gold" data-say="I can dance!"><span class="ico">💃</span>I can dance!</button>
         <button class="chant mint" data-say="I can sing!"><span class="ico">🎤</span>I can sing!</button>
       </div>
+    </section>
+
+    <!-- B19 · Warm-up · two Super Simple songs (added 2026-07-20 · Julia's picks) -->
+    <section class="section" id="b19">
+      <div class="section-head"><span class="time">0 – 6 min</span><h2>☀ Warm-up · two songs to move</h2><p class="tiny">watch · sing along · copy every action</p></div>
+      <div class="video-shell" data-song="WARMUP_A"></div>
+      <div class="video-shell" data-song="WARMUP_B"></div>
     </section>
 
     <!-- B2 · KEY VOCABULARY · verbs + music + food -->
@@ -463,6 +547,25 @@
       <div class="teacher blush">
         <div>Mime with Julia</div>
         <div><span>EAT the apple 🍎</span><span>DRINK the milk 🥛</span><span>BAKE a cake 🧁</span><span>YUM! 😋</span><span>YUCK! 🤢</span></div>
+      </div>
+    </section>
+
+    <!-- B20 · Poke the food · quick clicker (Julia loves face-poke from lesson 1!) -->
+    <section class="section" id="b20">
+      <div class="section-head"><span class="time">13 – 15 min</span><h2>🥕 Poke the food!</h2><p class="tiny">жамкай еду · listen · YUM or YUCK?</p></div>
+      <div class="poke-grid">
+        <button class="poke-tile" data-say="Carrot! Crunch crunch!"><span class="poke-face">🥕</span><span class="poke-lab">carrot · crunch</span></button>
+        <button class="poke-tile" data-say="Apple! Crunch!"><span class="poke-face">🍎</span><span class="poke-lab">apple · crunch</span></button>
+        <button class="poke-tile" data-say="Banana! Yum!"><span class="poke-face">🍌</span><span class="poke-lab">banana · yum</span></button>
+        <button class="poke-tile" data-say="Cake! Mmm!"><span class="poke-face">🍰</span><span class="poke-lab">cake · mmm</span></button>
+        <button class="poke-tile" data-say="Ice cream! Yay!"><span class="poke-face">🍦</span><span class="poke-lab">ice cream · yay</span></button>
+        <button class="poke-tile" data-say="Broccoli! Yuck!"><span class="poke-face">🥦</span><span class="poke-lab">broccoli · yuck</span></button>
+        <button class="poke-tile" data-say="Milk! Glug glug!"><span class="poke-face">🥛</span><span class="poke-lab">milk · glug</span></button>
+        <button class="poke-tile" data-say="Cookie! Nom nom!"><span class="poke-face">🍪</span><span class="poke-lab">cookie · nom</span></button>
+      </div>
+      <div class="teacher">
+        <div>Teacher says · Julia pokes!</div>
+        <div><span>Poke the carrot!</span><span>Poke the cake!</span><span>Poke the broccoli!</span><span>YUM or YUCK? 👍 👎</span></div>
       </div>
     </section>
 
@@ -569,10 +672,11 @@
       </div>
     </section>
 
-    <!-- B7 · ★ ACTION SONG (Animal Actions) -->
+    <!-- B7 · ★ ACTION SONG (Animal Actions) — 2 videos -->
     <section class="section" id="b10">
-      <div class="section-head"><span class="time">18 – 22 min</span><h2>★ Song · Animal Actions</h2><p class="tiny">watch · copy every action</p></div>
+      <div class="section-head"><span class="time">18 – 24 min</span><h2>★ Song · Animal Actions</h2><p class="tiny">two songs · watch · copy every action</p></div>
       <div class="video-shell" data-song="ACTIONS"></div>
+      <div class="video-shell" data-song="ACTIONS_2"></div>
     </section>
 
     <!-- B8 · JUMP LIKE A MONKEY · animals + verbs -->
@@ -589,6 +693,25 @@
       <div class="teacher lilac">
         <div>Teacher says → Julia does!</div>
         <div><span>Jump like a monkey!</span><span>Swim like a fish!</span><span>Fly like a bat!</span><span>Roar like a LION! 🦁</span></div>
+      </div>
+    </section>
+
+    <!-- B21 · Animal sounds clicker (Julia loves poke-clickers · added 2026-07-20) -->
+    <section class="section" id="b21">
+      <div class="section-head"><span class="time">27 – 30 min</span><h2>🐾 Poke the animals!</h2><p class="tiny">жамкай зверей · listen to the sound · repeat it!</p></div>
+      <div class="poke-grid">
+        <button class="poke-tile" data-say="Cat! Meow meow!"><span class="poke-face">🐈</span><span class="poke-lab">cat · meow</span></button>
+        <button class="poke-tile" data-say="Dog! Woof woof!"><span class="poke-face">🐶</span><span class="poke-lab">dog · woof</span></button>
+        <button class="poke-tile" data-say="Cow! Moo moo!"><span class="poke-face">🐮</span><span class="poke-lab">cow · moo</span></button>
+        <button class="poke-tile" data-say="Duck! Quack quack!"><span class="poke-face">🦆</span><span class="poke-lab">duck · quack</span></button>
+        <button class="poke-tile" data-say="Sheep! Baa baa!"><span class="poke-face">🐑</span><span class="poke-lab">sheep · baa</span></button>
+        <button class="poke-tile" data-say="Pig! Oink oink!"><span class="poke-face">🐷</span><span class="poke-lab">pig · oink</span></button>
+        <button class="poke-tile" data-say="Bee! Bzzz bzzz!"><span class="poke-face">🐝</span><span class="poke-lab">bee · bzzz</span></button>
+        <button class="poke-tile" data-say="Lion! Roar!"><span class="poke-face">🦁</span><span class="poke-lab">lion · roar</span></button>
+      </div>
+      <div class="teacher blush">
+        <div>Julia asks · vampire copies!</div>
+        <div><span>What does the cat say?</span><span>What does the lion say?</span><span>What does the duck say?</span><span>The bat says «bzzz-fly!» 🦇</span></div>
       </div>
     </section>
 
@@ -672,10 +795,11 @@
       </div>
     </section>
 
-    <!-- B13 · Head, Shoulders, Knees & Toes — action song classic -->
+    <!-- B13 · Head, Shoulders, Knees & Toes — action song classic (2 videos) -->
     <section class="section" id="b16">
-      <div class="section-head"><span class="time">49 – 53 min</span><h2>★ Head · Shoulders · Knees &amp; Toes</h2><p class="tiny">the classic — touch every part!</p></div>
+      <div class="section-head"><span class="time">49 – 55 min</span><h2>★ Head · Shoulders · Knees &amp; Toes</h2><p class="tiny">two versions · touch every part!</p></div>
       <div class="video-shell" data-song="HEAD_SHLDRS"></div>
+      <div class="video-shell" data-song="HEAD_SHLDRS_2"></div>
     </section>
 
     <!-- B14 · Talk! "What can you do?" -->
@@ -735,6 +859,24 @@
     </section>
 
   </main>
+
+  <footer class="lesson-footer" aria-label="Lesson footer">
+    <div class="footer-brand">
+      <span class="footer-mark" aria-hidden="true">☀</span>
+      <div>
+        <strong>Julia's Vampire English</strong>
+        <span class="footer-sub">Pre-A1 · Lesson 2 · Verbs, Music &amp; Play</span>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="../julia-vampire/">← Lesson 1 · Music &amp; Friends</a>
+      <a href="../../index.html">📚 Каталог</a>
+      <a href="#b1">↻ К началу</a>
+    </div>
+    <div class="footer-teacher">
+      With ♥ from teacher Maria · New Generation English
+    </div>
+  </footer>
 
   <script>
     function injectSong(shellEl, key) {
@@ -866,14 +1008,14 @@
 <script src="../../assets/lab-persist.js?v=3" defer></script>
 <script src="../../assets/lab-send-pill.js?v=4" defer></script>
 <script src="../../assets/lab-total.js?v=4" defer></script>
-<script src="../../assets/lab-pilot.js?v=3" defer></script>
+<script src="../../assets/lab-pilot.js?v=4" defer></script>
 <script src="../../assets/lab-mic-wpm.js?v=1" defer></script>
 <script src="../../assets/lab-ai-feedback.js?v=6" defer></script>
 <script src="../../assets/lab-sync.js?v=21" defer></script>
 <link rel="stylesheet" href="/lingua-boost-lab/assets/mobile-compact.css?v=1">
 <script src="/lingua-boost-lab/assets/mobile-compact.js?v=1" defer></script>
 <script src="../../assets/lab-tabs.js?v=12" defer></script>
-<script src="../../assets/lab-homework.js?v=47" defer></script>
+<script src="../../assets/lab-homework.js?v=48" defer></script>
 <script src="../../assets/lab-telemost.js?v=1" defer></script>
 <script src="../../assets/lab-vocab-builder.js?v=53" defer></script>
 <script src="../../assets/lab-coach-persist.js?v=1" defer></script>
