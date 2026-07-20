@@ -975,8 +975,11 @@
       try {
         synth.cancel();
         const u = new SpeechSynthesisUtterance(text);
-        if (_voice) u.voice = _voice;
-        u.lang = "en-US"; u.rate = .85; u.pitch = 1.18;
+        if (_voice) { u.voice = _voice; u.lang = _voice.lang; }
+        else u.lang = "en-US";
+        u.rate = 0.95;   // было .85
+        u.pitch = 1.0;   // было 1.18 (высокий питч давал «жуткого» эффекта)
+        u.volume = 1;
         synth.speak(u);
       } catch (e) {}
     }
