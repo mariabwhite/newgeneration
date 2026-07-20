@@ -995,6 +995,11 @@ window.NGE_DATA = {
             "url": "../lingua-boost-lab/pre-a1/julia-vampire-2/",
             "label": "☀ Lesson 2 · Verbs & Play (Pre-A1)",
             "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/pre-a1/julia-vampire-3/",
+            "label": "🌱 Lesson 3 · Phrases, Story & Comic (Pre-A1)",
+            "audience": "all"
           }
         ]
       },
@@ -1047,33 +1052,33 @@ window.NGE_DATA = {
           "date": "2026-07-27",
           "num": 5,
           "status": "planned",
-          "topic": "🍎 Продолжаем тему ЕДА · What do you eat? / What do you love? · закрепляем pronouns He/She/I + food.",
+          "topic": "🌱 Vampire English · Lesson 3 · Phrases, Story & Comic — старт! HAVE/HAS + CAN/CAN'T + история про Julia and the Magic Castle + комикс «What can Julia do?»",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
-            "module_title": "🍎 Повторить Lesson 2 · Food",
-            "text": "Перед уроком открыть на айпаде: секции 🍦 broccoli · 🍎 food yum/yuck · 🥕 poke the food · 👥 He/She/I + food. Просто тыкаем и слушаем."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-3/",
+            "module_title": "🌱 Открыть Lesson 3 · Phrases, Story & Comic",
+            "text": "Перед уроком открыть на айпаде: 16 секций · новый салатовый урок. Кликеры (Poke Julia's toys 🧸), фразы I have · I can, комикс и история про волшебный замок. Всё озвучено, Юля жмёт сама."
           }
         },
         {
           "date": "2026-08-03",
           "num": 6,
           "status": "planned",
-          "topic": "☀ Новая тема (согласуем на 4-м уроке) — план после закрытия еды.",
+          "topic": "🌱 Vampire English · Lesson 3 — продолжаем: закрепляем фразы HAVE/HAS + CAN/CAN'T + прочитаем историю целиком.",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
-            "module_title": "☀ Пока — повторение",
-            "text": "Пока новый урок не готов — тыкаем в vampire-2 то, что понравилось."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-3/",
+            "module_title": "🌱 Повторить Lesson 3",
+            "text": "Открыть vampire-3: секции 🎁 I have / 💪 I can + прочитать историю «Julia and the Magic Castle». Юля читает + жмёт кнопки ▶."
           }
         },
         {
           "date": "2026-08-10",
           "num": 7,
           "status": "planned",
-          "topic": "☀ Финал августовского абонемента · закрепляем · слушаем песенки.",
+          "topic": "🌱 Финал августовского абонемента · quiz «Show me the phrase» + комикс + любимые песенки.",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-2/",
-            "module_title": "☀ Открыть vampire-2",
-            "text": "К последнему летнему уроку — просто повторить любимое: клике́ры + песенки Warmup / Head Shoulders / Animal Actions."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/pre-a1/julia-vampire-3/",
+            "module_title": "🌱 Открыть vampire-3 (finale)",
+            "text": "Последний летний урок — открыть vampire-3, пройти quiz «Show me the phrase» (12 фраз), повторить комикс + песенки (Warmup / Instruments / HSKT / Dance)."
           }
         }
       ]
