@@ -103,8 +103,8 @@ window.NGE_DATA = {
       "pin": "2547",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 1,
-      "summer_plan_note": "Июль 2026 · новый блок 4 занятий · сегодня начали с повторения Bella (медицинская серия).",
+      "lessons_used_this_month": 2,
+      "summer_plan_note": "Июль 2026 · блок 4 занятий · пройдено 2 (Bella 09.07 + 14.07), впереди Perm 21.07 + 28.07.",
       "stability_note": "",
       "lessons": [
         {
