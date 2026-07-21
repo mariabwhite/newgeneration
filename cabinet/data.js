@@ -85,6 +85,11 @@ window.NGE_DATA = {
         "note": "",
         "files": [
           {
+            "name": "report-sova-elena-2026-07.html",
+            "label": "📄 Отчёт за июль 2026 (темы, что делали, что дальше)",
+            "audience": "student"
+          },
+          {
             "label": "🏛 Perm · A City of Many Lives — текущий урок",
             "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/elena-perm-many-lives/",
             "audience": "student"
