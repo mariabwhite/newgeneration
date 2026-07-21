@@ -82,11 +82,11 @@ window.NGE_DATA = {
       "name": "Сова Елена Витальевна",
       "materials": {
         "folder": "documents/_v/sova-elena",
-        "note": "Отчёт за июль 2026 · темы + компенсация 6 000 ₽",
+        "note": "",
         "files": [
           {
-            "name": "report-sova-elena-2026-07.pdf",
-            "label": "📄 Отчёт за июль 2026",
+            "label": "🏛 Perm · A City of Many Lives — текущий урок",
+            "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/elena-perm-many-lives/",
             "audience": "student"
           }
         ]
