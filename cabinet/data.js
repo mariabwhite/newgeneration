@@ -144,12 +144,7 @@ window.NGE_DATA = {
           "date": "2026-07-28",
           "num": 4,
           "status": "planned",
-          "topic": "🏛 Perm · продолжение — «Would» + Would you rather · Perm today (Currentzis, Diaghilev Festival, Kama embankment) · Diaghilev finale",
-          "homework": {
-            "text": "Продолжаем Perm · A City of Many Lives. Секции 11-20: 'Would' base + Would you rather Perm-edition → modal verbs → speaking 3 levels → three famous people from Perm → discussion identity → review self-check → Beauty from the Urals → Perm today (Diaghilev Festival + Currentzis + PERMM) → Sergei Diaghilev — the Perm boy who conquered Paris. Всё интерактивно, финал — speaking про то, поехала бы ли в Пермь и почему.",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/elena-perm-many-lives/",
-            "module_title": "🏛 Perm · продолжение (секции 11-20)"
-          }
+          "topic": "🔁 Повторение · закрепление ранее пройденного (Bella + Perm · vocabulary + formulas + speaking review)"
         }
       ]
     },
