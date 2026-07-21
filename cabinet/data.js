@@ -556,8 +556,8 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "lessons_in_package": 10,
       "subscription_month": "2026-06",
-      "lessons_used_this_month": 7,
-      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 7 / 10 · дальше пн / вт / чт 18:00",
+      "lessons_used_this_month": 9,
+      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 9 / 10 · остался перенос 24.07 (Great Patriotic War · миссед 10.07).",
       "stability_note": "",
       "payment_status": "Оплачено",
       "payment_note": "",
@@ -659,10 +659,15 @@ window.NGE_DATA = {
           }
         },
         {
-          "date": "2026-07-20",
+          "date": "2026-07-21",
           "num": 10,
-          "status": "planned",
-          "topic": "🇷🇺 Финал интенсива · Russia · what makes us proud — Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов"
+          "status": "completed",
+          "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов",
+          "homework": {
+            "text": "Пройти Russian History · Exam Simulator ещё раз в тренажёрном режиме — все секции с ✓ Check. Особое внимание на Task 3 (5 вопросов) и Task 4 (сравнение фото · 12–15 фраз). Word Formation review — прогнать ошибочные пары.",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_title": "📚 Открыть Russian History · Exam Simulator"
+          }
         },
         {
           "date": "2026-07-24",
