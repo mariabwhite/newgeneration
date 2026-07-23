@@ -1521,9 +1521,9 @@
 
   function _renderSecurityNoticeCard() {
     return `
-      <article class="cab-card" style="border-color:#ff5a36;background:#fff4f0;">
-        <h3 style="color:#ff4f24;">🔐 Данные защищены</h3>
-        <p class="cab-card-note" style="color:#7b2818;">
+      <article class="cab-card cab-card--security">
+        <h3>🔐 Данные защищены</h3>
+        <p class="cab-card-note">
           Кабинет работает через зашифрованный vault: данные расшифровываются только после ввода PIN. Без PIN посторонний не видит личные материалы, отчёты и документы.
         </p>
       </article>
