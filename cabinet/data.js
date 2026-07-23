@@ -1747,9 +1747,9 @@ window.NGE_DATA = {
       "is_adult": true,
       "parent_name": "",
       "pin": "3094",
-      "lessons_in_package": 9,
+      "lessons_in_package": 10,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 6,
+      "lessons_used_this_month": 8,
       "stability_note": "",
       "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
       "external_platforms": [
@@ -1896,20 +1896,32 @@ window.NGE_DATA = {
         {
           "date": "2026-07-23",
           "num": 9,
-          "status": "planned",
-          "topic": "Тема — будет скоро, согласуем ближе к дате"
+          "status": "completed",
+          "topic": "📚 Articles & Prepositions · Deep Dive · продолжение",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
+          }
         },
         {
           "date": "2026-07-27",
           "num": 10,
           "status": "planned",
-          "topic": "Тема — будет скоро, согласуем ближе к дате"
+          "topic": "📚 Articles & Prepositions · Deep Dive",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
+          }
         },
         {
           "date": "2026-07-30",
           "num": 11,
           "status": "planned",
-          "topic": "Тема — будет скоро, согласуем ближе к дате"
+          "topic": "📚 Articles & Prepositions · Deep Dive",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
+          }
         }
       ]
     }
