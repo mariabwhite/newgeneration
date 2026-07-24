@@ -399,7 +399,7 @@ window.NGE_DATA = {
       "monthly_package": 8000,
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 1,
+      "lessons_used_this_month": 3,
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
@@ -409,7 +409,7 @@ window.NGE_DATA = {
           "amount": "8 000 ₽",
           "status": "paid",
           "date": "01.07.2026",
-          "note": "Летний блок · 1 / 4 проведено"
+          "note": "Летний блок · 3 / 4 проведено"
         },
         {
           "month": "Июнь 2026",
@@ -504,22 +504,23 @@ window.NGE_DATA = {
         {
           "date": "2026-07-22",
           "num": 7,
-          "status": "planned",
-          "topic": "Voyager L4 · The Letter Arrived (первый раз) — Day 42 · FATHER · финал арки",
+          "status": "completed",
+          "topic": "🧠 Voyager L3 · Whose Mind? — второй проход, закрыли EEG-нить и consciousness signal",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
-            "module_title": "✉️ Voyager L4 · The Letter Arrived",
-            "text": "8 секций · key-transformation · open cloze · финал серии Voyager. Тео получает письмо."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l3-whose-mind/",
+            "module_title": "🧠 Voyager L3 · Whose Mind? (закрепление)",
+            "text": "Повтор L3 закрыт. К 29.07 — открыть Voyager L4 · The Letter Arrived, пройти первые 3–4 секции до занятия."
           }
         },
         {
           "date": "2026-07-29",
           "num": 8,
           "status": "planned",
-          "topic": "Voyager L4 · The Letter Arrived (повторение) — финал серии, ретроспектива L1–L4",
+          "topic": "✉️ Voyager L4 · The Letter Arrived (первый раз) — Day 42 · FATHER · финал арки",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
-            "module_title": "✉️ Voyager L4 · The Letter Arrived (повтор)"
+            "module_title": "✉️ Открыть Voyager L4 · The Letter Arrived",
+            "text": "8 секций · key-transformation · open cloze · финал серии Voyager. Тео получает письмо от Father."
           }
         }
       ],
