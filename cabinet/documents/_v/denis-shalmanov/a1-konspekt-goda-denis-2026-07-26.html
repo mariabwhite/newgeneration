@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 · Денис · конспект года + июльское расширение</title>
+<style>
+  :root{
+    --bg:#E9E7E2;
+    --paper:#FFFFFF;
+    --cream:#EFEEE9;
+    --cream-soft:#F4F3EE;
+    --orange:#E8542B;
+    --orange-soft:#F4A86A;
+    --gold:#F4C84B;
+    --ink:#1F1F1F;
+    --ink-2:#2C2C2C;
+    --muted:#7B7B7B;
+    --rule:#D9D7D2;
+    --tag-bg:#FFF1E8;
+    --tag-border:#F0C7AE;
+    --tag-ink:#A5421F;
+    --table-head:#F7F4EE;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:14.5px; line-height:1.6;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .page{
+    width:210mm; min-height:297mm; margin:18px auto;
+    background:var(--paper);
+    box-shadow:0 12px 40px rgba(0,0,0,.10);
+    padding:0 0 32px;
+  }
+  .hero{ background:var(--cream); padding:30px 44px 30px; position:relative; }
+  .hero::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:4px;
+    background:linear-gradient(90deg,var(--orange) 0%,var(--orange) 55%,var(--gold) 100%);
+  }
+  .brandline{display:flex; align-items:center; gap:12px; margin-bottom:10px;}
+  .logo{
+    width:38px;height:38px;border-radius:9px;background:var(--orange);
+    color:#fff;font-weight:800;font-size:22px;display:grid;place-items:center;line-height:1;
+    box-shadow:0 2px 4px rgba(232,84,43,.25);
+  }
+  .brand-name{font-weight:800;letter-spacing:.06em;font-size:14.5px;}
+  .brand-sub{font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:500;margin-top:2px;}
+  .kicker{margin-top:14px;font-size:11px;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;font-weight:700;}
+  h1.title{font-size:34px;line-height:1.1;margin:6px 0 6px;color:var(--ink);letter-spacing:-.01em;font-weight:800;}
+  p.subtitle{margin:0;font-size:14.5px;color:var(--ink-2);max-width:62ch;}
+
+  .meta{
+    padding:18px 44px 4px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px 22px;
+  }
+  .meta dt{font-size:10.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:600;margin-bottom:3px;}
+  .meta dd{margin:0;font-size:14px;font-weight:700;}
+  .meta-rule{margin:18px 44px 8px;border:0;height:1px;background:var(--rule);}
+
+  .toc-wrap{padding:6px 44px 0;}
+  .toc-title{font-size:12px;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;font-weight:700;margin:14px 0 12px;}
+  .toc{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px 24px;
+    background:var(--cream-soft); border:1px solid var(--rule); border-radius:14px;
+    padding:18px 22px;
+  }
+  .toc a{color:var(--ink-2); text-decoration:none; font-size:13.5px; line-height:1.6; display:block; padding:2px 0;}
+  .toc a:hover{color:var(--orange);}
+  .toc a .num{display:inline-block; width:22px; color:var(--orange); font-weight:700;}
+
+  section.chapter{padding:24px 44px 4px; scroll-margin-top:14px;}
+  h2{
+    margin:8px 0 14px; padding-left:14px; position:relative;
+    font-size:20px; font-weight:800; letter-spacing:-.005em;
+  }
+  h2::before{content:""; position:absolute; left:0; top:6px; bottom:6px; width:4px; background:var(--orange); border-radius:2px;}
+  h2 .ch-num{color:var(--orange); margin-right:6px;}
+  .back{display:inline-block; font-size:11px; letter-spacing:.18em; color:var(--muted); text-transform:uppercase; text-decoration:none; margin-left:10px; font-weight:600;}
+  .back:hover{color:var(--orange);}
+  .lead{font-size:14.5px; color:var(--ink-2); margin:0 0 12px;}
+
+  h3{font-size:13px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;font-weight:700;margin:18px 0 8px;}
+  ul.bul{list-style:none;padding:0;margin:0 0 12px;}
+  ul.bul li{position:relative;padding:4px 0 4px 22px;}
+  ul.bul li::before{content:"";position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--orange);}
+  ul.bul li b, ul.bul li .lex{color:var(--orange);font-weight:700;margin-right:6px;}
+
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 14px;}
+  .tag{
+    font-size:12.5px;font-weight:600;color:var(--tag-ink);
+    background:var(--tag-bg); border:1px solid var(--tag-border);
+    padding:4px 10px; border-radius:999px;
+  }
+
+  table.t{
+    width:100%; border-collapse:collapse; margin:10px 0 14px;
+    font-size:13.5px;
+  }
+  table.t th, table.t td{
+    text-align:left; vertical-align:top; padding:8px 10px;
+    border-bottom:1px solid var(--rule);
+  }
+  table.t th{
+    background:var(--table-head); font-weight:700; font-size:12px;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--ink-2);
+  }
+  table.t td.eng{font-weight:600; color:var(--ink);}
+  table.t td.ru{color:var(--ink-2);}
+  table.t.compact th, table.t.compact td{padding:6px 8px; font-size:12.5px;}
+
+  .callout{
+    background:var(--cream-soft); border-left:4px solid var(--orange);
+    padding:12px 16px; border-radius:0 10px 10px 0;
+    margin:14px 0; font-size:13.5px;
+  }
+  .callout strong{color:var(--orange);}
+
+  .lex-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px 22px; margin:4px 0 14px;}
+  .lex-grid .item{font-size:13.5px; padding:3px 0; border-bottom:1px dashed var(--rule);}
+  .lex-grid .item b{color:var(--ink); font-weight:700;}
+  .lex-grid .item span{color:var(--muted); margin-left:6px; font-size:12.5px;}
+
+  .foot{
+    margin:28px 0 0; padding:22px 44px 26px;
+    background:var(--cream-soft); border-top:1px solid var(--rule);
+  }
+  .foot-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14px;}
+  .foot-brand .logo{width:30px;height:30px;font-size:18px;border-radius:7px;}
+  .foot-meta{margin-top:10px; font-size:11.5px; color:var(--muted); line-height:1.55;}
+
+  @page{size:A4; margin:0;}
+  @media print{
+    html,body{background:#fff;}
+    .page{box-shadow:none; margin:0; width:210mm;}
+    .hero,.foot{print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+    section.chapter{break-inside:avoid-page;}
+    h2{break-after:avoid;}
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">Maria · Personal Tutor</div>
+      </div>
+    </div>
+    <div class="kicker">A1 · базовая грамматика и лексика · расширенная версия</div>
+    <h1 class="title">Конспект для Дениса</h1>
+    <p class="subtitle">Вся грамматика и словарь, которые мы прошли — в одном месте. Расширено словарём из двух рабочих тетрадей (Vancouver + Toronto) и урока «city-speaking»: указатели дороги, переезд и новый район, кафе-скрипты, будущее время. Используйте как справочник между уроками и для самостоятельного повторения.</p>
+  </header>
+
+  <dl class="meta">
+    <div><dt>Период</dt><dd>сентябрь 2026 → июль 2026</dd></div>
+    <div><dt>Уровень</dt><dd>A1 → A1+ (переход к A2)</dd></div>
+    <div><dt>Формат</dt><dd>индивидуально, 90 мин</dd></div>
+    <div><dt>Главная цель</dt><dd>понимать фильмы и речь людей</dd></div>
+    <div><dt>Главный фронт</dt><dd>автоматизм речи, произношение, понимание на слух</dd></div>
+    <div><dt>Расписание</dt><dd>воскресенье 10:30</dd></div>
+    <div><dt>Источники</dt><dd>уроки · workbook-01 · workbook-02 · city-speaking</dd></div>
+    <div><dt>Обновлено</dt><dd>26 июля 2026</dd></div>
+    <div><dt>Тетради</dt><dd>Vancouver arc · Toronto arc</dd></div>
+  </dl>
+  <hr class="meta-rule">
+
+  <div class="toc-wrap">
+    <div class="toc-title">Оглавление · 19 глав</div>
+    <nav class="toc">
+      <a href="#c1"><span class="num">1.</span>Verb to be — am / is / are</a>
+      <a href="#c2"><span class="num">2.</span>Present Simple — обычные действия</a>
+      <a href="#c3"><span class="num">3.</span>Present Continuous — прямо сейчас</a>
+      <a href="#c4"><span class="num">4.</span>Present Simple vs Continuous</a>
+      <a href="#c5"><span class="num">5.</span>Вопросы · Do/Does · Am/Is/Are · Wh- (полный набор)</a>
+      <a href="#c6"><span class="num">6.</span>There is / There are</a>
+      <a href="#c7"><span class="num">7.</span>It is — погода, время, описание</a>
+      <a href="#c8"><span class="num">8.</span>Have got / Has got · Can / Can't</a>
+      <a href="#c9"><span class="num">9.</span>Frequency adverbs · Time markers</a>
+      <a href="#c10"><span class="num">10.</span>Множественное число и притяжение</a>
+      <a href="#c11"><span class="num">11.</span>Одежда · дом (базовый словарь)</a>
+      <a href="#c12"><span class="num">12.</span>This / that / these / those <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c13"><span class="num">13.</span>Future · will vs going to <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c14"><span class="num">14.</span>Directions — спросить и объяснить дорогу <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c15"><span class="num">15.</span>City · расширенный словарь <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c16"><span class="num">16.</span>Переезд и новый район (Vancouver · Toronto) <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c17"><span class="num">17.</span>Café + Restaurant scripts <span style="color:var(--orange);font-weight:700">· new</span></a>
+      <a href="#c18"><span class="num">18.</span>Готовые фразы для города (магазин · кофе · дорога)</a>
+      <a href="#c19"><span class="num">19.</span>Mix practice — 5 упражнений + ключи</a>
+    </nav>
+  </div>
+
+  <!-- ============ 1 ============ -->
+  <section class="chapter" id="c1">
+    <h2><span class="ch-num">1.</span>Verb to be — am / is / are</h2>
+    <p class="lead">Главный глагол A1. Без него нельзя сказать «я устал», «это вкусно», «они дома». Один из трёх вариантов — <em>am</em>, <em>is</em>, <em>are</em>.</p>
+
+    <h3>Формы</h3>
+    <table class="t compact">
+      <thead><tr><th>Лицо</th><th>Полная форма</th><th>Короткая</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td class="eng">am</td><td class="eng">I'm</td><td class="ru"><em>I am tired. / I'm at home.</em></td></tr>
+        <tr><td>you / we / they</td><td class="eng">are</td><td class="eng">you're / we're / they're</td><td class="ru"><em>You are right. / They're here.</em></td></tr>
+        <tr><td>he / she / it</td><td class="eng">is</td><td class="eng">he's / she's / it's</td><td class="ru"><em>She is busy. / It's cold.</em></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Отрицание и вопрос</h3>
+    <ul class="bul">
+      <li><b>Отрицание:</b> <em>I am not / He isn't / They aren't.</em></li>
+      <li><b>Вопрос:</b> ставим глагол вперёд — <em>Are you tired? · Is he at home? · Am I right?</em></li>
+      <li><b>Короткий ответ:</b> <em>Yes, I am. / No, I'm not. / Yes, he is. / No, he isn't.</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Типичная ошибка:</strong> <em>I tired</em> ❌ → <em>I am tired</em> ✓. В русском глагол «есть/быть» опускается, в английском — никогда.
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="chapter" id="c2">
+    <h2><span class="ch-num">2.</span>Present Simple — обычные действия <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Когда? Каждый день, всегда, обычно, по воскресеньям. Привычки и факты.</p>
+
+    <h3>Формы</h3>
+    <table class="t compact">
+      <thead><tr><th>Лицо</th><th>Утверждение</th><th>Отрицание</th><th>Вопрос</th></tr></thead>
+      <tbody>
+        <tr><td>I / you / we / they</td><td class="eng">I work</td><td class="eng">I don't work</td><td class="eng">Do you work?</td></tr>
+        <tr><td>he / she / it</td><td class="eng">he works</td><td class="eng">he doesn't work</td><td class="eng">Does he work?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Главное правило 3-го лица</h3>
+    <ul class="bul">
+      <li><b>he / she / it</b> — добавляем <em>-s</em>: <em>He works. She lives. It rains.</em></li>
+      <li>После <em>does</em> и <em>doesn't</em> — <strong>убираем</strong> <em>-s</em>: <em>Does he work? · He doesn't work.</em></li>
+    </ul>
+
+    <h3>Примеры</h3>
+    <ul class="bul">
+      <li><em>I wake up at 6 a.m. every day.</em></li>
+      <li><em>I drink coffee in the morning.</em></li>
+      <li><em>She lives in Moscow.</em></li>
+      <li><em>We don't work on Sundays.</em></li>
+      <li><em>Do you like tea?</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Маркеры Present Simple:</strong> <em>every day · usually · always · often · sometimes · never · on Mondays · in the morning</em>.
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="chapter" id="c3">
+    <h2><span class="ch-num">3.</span>Present Continuous — прямо сейчас <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Когда? Прямо сейчас, в этот момент, сегодня, временно.</p>
+
+    <h3>Форма</h3>
+    <p><b>am / is / are + V-ing</b></p>
+    <table class="t compact">
+      <thead><tr><th>Утверждение</th><th>Отрицание</th><th>Вопрос</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">I am working</td><td class="eng">I am not working</td><td class="eng">Are you working?</td></tr>
+        <tr><td class="eng">he is working</td><td class="eng">he isn't working</td><td class="eng">Is he working?</td></tr>
+        <tr><td class="eng">they are working</td><td class="eng">they aren't working</td><td class="eng">Are they working?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Примеры</h3>
+    <ul class="bul">
+      <li><em>I am reading right now.</em></li>
+      <li><em>She is cooking dinner.</em></li>
+      <li><em>They are watching TV.</em></li>
+      <li><em>What are you doing?</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Маркеры Present Continuous:</strong> <em>now · right now · at the moment · today · this week</em>.
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="chapter" id="c4">
+    <h2><span class="ch-num">4.</span>Present Simple vs Continuous <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Главное отличие: «обычно» vs «прямо сейчас».</p>
+
+    <table class="t">
+      <thead><tr><th>Smysl</th><th>Present Simple</th><th>Present Continuous</th></tr></thead>
+      <tbody>
+        <tr><td>Привычка / факт</td><td class="eng">I work every day.</td><td>—</td></tr>
+        <tr><td>Прямо сейчас</td><td>—</td><td class="eng">I am working right now.</td></tr>
+        <tr><td>Расписание</td><td class="eng">The train leaves at 7.</td><td>—</td></tr>
+        <tr><td>Временно (на этой неделе)</td><td>—</td><td class="eng">I am working from home this week.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Глаголы, которые НЕ ставим в Continuous (stative)</h3>
+    <div class="tag-row">
+      <span class="tag">like</span>
+      <span class="tag">love</span>
+      <span class="tag">hate</span>
+      <span class="tag">want</span>
+      <span class="tag">know</span>
+      <span class="tag">understand</span>
+      <span class="tag">need</span>
+      <span class="tag">have (= иметь)</span>
+      <span class="tag">remember</span>
+      <span class="tag">believe</span>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:-4px"><em>I am liking coffee</em> ❌ → <em>I like coffee</em> ✓</p>
+
+    <div class="callout">
+      <strong>Быстрый тест:</strong> если можно поставить <em>now / right now</em> — Continuous. Если можно <em>usually / every day</em> — Simple.
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="chapter" id="c5">
+    <h2><span class="ch-num">5.</span>Вопросы — Do/Does · Am/Is/Are · Wh- <a class="back" href="#">↑ к оглавлению</a></h2>
+
+    <h3>Общие вопросы (Yes / No)</h3>
+    <ul class="bul">
+      <li><b>Do you / Does he</b> — для Present Simple. <em>Do you work? · Does she like tea?</em></li>
+      <li><b>Am I / Is he / Are you</b> — для глагола to be и Continuous. <em>Are you tired? · Is he working?</em></li>
+    </ul>
+
+    <h3>Короткие ответы</h3>
+    <table class="t compact">
+      <thead><tr><th>Вопрос</th><th>Yes</th><th>No</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Do you work?</td><td class="eng">Yes, I do.</td><td class="eng">No, I don't.</td></tr>
+        <tr><td class="eng">Does he live here?</td><td class="eng">Yes, he does.</td><td class="eng">No, he doesn't.</td></tr>
+        <tr><td class="eng">Are you tired?</td><td class="eng">Yes, I am.</td><td class="eng">No, I'm not.</td></tr>
+        <tr><td class="eng">Is she at home?</td><td class="eng">Yes, she is.</td><td class="eng">No, she isn't.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Wh-вопросы — спрашиваем «что / где / когда / почему»</h3>
+    <table class="t compact">
+      <thead><tr><th>Слово</th><th>Значение</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">What</td><td class="ru">что</td><td class="eng">What do you do?</td></tr>
+        <tr><td class="eng">Where</td><td class="ru">где / куда</td><td class="eng">Where do you live?</td></tr>
+        <tr><td class="eng">When</td><td class="ru">когда</td><td class="eng">When does the shop open?</td></tr>
+        <tr><td class="eng">Why</td><td class="ru">почему</td><td class="eng">Why are you tired?</td></tr>
+        <tr><td class="eng">Who</td><td class="ru">кто</td><td class="eng">Who is that?</td></tr>
+        <tr><td class="eng">How</td><td class="ru">как</td><td class="eng">How are you?</td></tr>
+        <tr><td class="eng">How many</td><td class="ru">сколько (счётное)</td><td class="eng">How many rooms are there?</td></tr>
+        <tr><td class="eng">How much</td><td class="ru">сколько (несчётное / цена)</td><td class="eng">How much is it?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Полный набор Wh-слов (из workbook-02)</h3>
+    <div class="tag-row">
+      <span class="tag">What</span>
+      <span class="tag">Where</span>
+      <span class="tag">When</span>
+      <span class="tag">Who</span>
+      <span class="tag">Whose</span>
+      <span class="tag">Which</span>
+      <span class="tag">Why</span>
+      <span class="tag">How</span>
+      <span class="tag">How much</span>
+      <span class="tag">How many</span>
+    </div>
+    <p style="font-size:13px;color:var(--ink-2);margin-top:-4px"><em>Whose</em> = чей (<em>Whose jacket is this?</em>) · <em>Which</em> = какой из (<em>Which bus goes to Chinatown?</em>).</p>
+
+    <h3>Двойная форма — Simple или Continuous?</h3>
+    <ul class="bul">
+      <li><em>Where <b>do</b> you live?</em> — где живёшь вообще (Simple)</li>
+      <li><em>Where <b>are</b> you living?</em> — где живёшь сейчас, временно (Continuous)</li>
+      <li><em>What <b>do</b> you do?</em> — кем работаешь / чем занимаешься (Simple, профессия)</li>
+      <li><em>What <b>are</b> you doing?</em> — что делаешь прямо сейчас (Continuous)</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Формула Wh-вопроса:</strong> Wh + do/does/am/is/are + подлежащее + глагол. <em>Where do you live? · What is she doing?</em>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section class="chapter" id="c6">
+    <h2><span class="ch-num">6.</span>There is / There are <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Используем когда говорим «есть / находится» что-то в каком-то месте. Описываем комнату, дом, город.</p>
+
+    <table class="t compact">
+      <thead><tr><th>Форма</th><th>Когда</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">There is + 1 предмет</td><td>один объект, единственное число</td><td class="eng">There is a table in the kitchen.</td></tr>
+        <tr><td class="eng">There are + много</td><td>много объектов, множественное</td><td class="eng">There are two chairs in the room.</td></tr>
+        <tr><td class="eng">There isn't / aren't</td><td>отрицание</td><td class="eng">There isn't a fridge. · There aren't any windows.</td></tr>
+        <tr><td class="eng">Is there…? / Are there…?</td><td>вопрос</td><td class="eng">Is there a bathroom? · Are there many shops?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Примеры описания</h3>
+    <ul class="bul">
+      <li><em>There is a sofa in the living room.</em></li>
+      <li><em>There are three windows in the bedroom.</em></li>
+      <li><em>There is a park near my house.</em></li>
+      <li><em>There aren't many cafés in this street.</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Не путаем с It is:</strong> <em>There is a park</em> (есть, существует) ≠ <em>It is a park</em> (это парк). <em>There</em> — про наличие, <em>It</em> — про идентификацию.
+    </div>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section class="chapter" id="c7">
+    <h2><span class="ch-num">7.</span>It is — погода, время, описание <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Универсальная конструкция «оно / это / так». В русском часто без подлежащего: «холодно», «3 часа». В английском всегда нужен <em>It is</em>.</p>
+
+    <table class="t compact">
+      <thead><tr><th>Тема</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td>Погода</td><td class="eng">It is cold today. · It is warm. · It is raining.</td></tr>
+        <tr><td>Время</td><td class="eng">It is 6 p.m. · It is late. · It is morning.</td></tr>
+        <tr><td>День / сезон</td><td class="eng">It is Monday. · It is winter. · It is the weekend.</td></tr>
+        <tr><td>Состояние / атмосфера</td><td class="eng">It is quiet here. · It is busy in the city.</td></tr>
+        <tr><td>Идентификация</td><td class="eng">It is a café. · It is my favourite shop.</td></tr>
+        <tr><td>Цена</td><td class="eng">It is 49 dollars.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Главная ошибка:</strong> <em>Cold today</em> ❌ → <em>It is cold today</em> ✓. По-русски можно без подлежащего, по-английски — нет.
+    </div>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section class="chapter" id="c8">
+    <h2><span class="ch-num">8.</span>Have got / Has got · Can / Can't <a class="back" href="#">↑ к оглавлению</a></h2>
+
+    <h3>Have got — что есть у человека</h3>
+    <table class="t compact">
+      <thead><tr><th>Лицо</th><th>Утверждение</th><th>Вопрос</th></tr></thead>
+      <tbody>
+        <tr><td>I / you / we / they</td><td class="eng">I have got a car.</td><td class="eng">Have you got a car?</td></tr>
+        <tr><td>he / she / it</td><td class="eng">He has got a car.</td><td class="eng">Has he got a car?</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13.5px;color:var(--ink-2)">Сокращения: <em>I've got · He's got · I haven't got · He hasn't got</em>.</p>
+
+    <h3>Can / Can't — могу / не могу</h3>
+    <ul class="bul">
+      <li><b>can</b> — возможность, умение. <em>I can speak English. · I can swim.</em></li>
+      <li><b>can't</b> (cannot) — запрет, невозможность. <em>I can't drive. · You can't smoke here.</em></li>
+      <li><b>Вопрос:</b> <em>Can you help me? · Can I have a coffee?</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>После can / can't</strong> — глагол без <em>to</em>: <em>I can to go</em> ❌ → <em>I can go</em> ✓.
+    </div>
+  </section>
+
+  <!-- ============ 9 ============ -->
+  <section class="chapter" id="c9">
+    <h2><span class="ch-num">9.</span>Frequency adverbs · Time markers <a class="back" href="#">↑ к оглавлению</a></h2>
+
+    <h3>Как часто</h3>
+    <table class="t compact">
+      <thead><tr><th>Слово</th><th>Значение</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">always</td><td class="ru">всегда</td><td class="eng">I always drink coffee.</td></tr>
+        <tr><td class="eng">usually</td><td class="ru">обычно</td><td class="eng">I usually work from home.</td></tr>
+        <tr><td class="eng">often</td><td class="ru">часто</td><td class="eng">I often go to the park.</td></tr>
+        <tr><td class="eng">sometimes</td><td class="ru">иногда</td><td class="eng">I sometimes cook dinner.</td></tr>
+        <tr><td class="eng">rarely</td><td class="ru">редко</td><td class="eng">I rarely watch TV.</td></tr>
+        <tr><td class="eng">never</td><td class="ru">никогда</td><td class="eng">I never drink tea.</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13.5px;color:var(--ink-2)"><strong>Место в предложении:</strong> между подлежащим и глаголом — <em>I <strong>usually</strong> work</em>. Но с <em>to be</em> — после: <em>I am <strong>always</strong> tired</em>.</p>
+
+    <h3>Когда (time markers)</h3>
+    <div class="tag-row">
+      <span class="tag">at 6 a.m.</span>
+      <span class="tag">at night</span>
+      <span class="tag">in the morning</span>
+      <span class="tag">in the evening</span>
+      <span class="tag">in the afternoon</span>
+      <span class="tag">on Monday</span>
+      <span class="tag">on weekends</span>
+      <span class="tag">during the day</span>
+      <span class="tag">every day</span>
+      <span class="tag">once a week</span>
+    </div>
+
+    <div class="callout">
+      <strong>Предлоги времени:</strong> <em>at</em> — точное время / момент · <em>in</em> — часть дня / месяц / год · <em>on</em> — день недели / дата.
+    </div>
+  </section>
+
+  <!-- ============ 10 ============ -->
+  <section class="chapter" id="c10">
+    <h2><span class="ch-num">10.</span>Множественное число и притяжение <a class="back" href="#">↑ к оглавлению</a></h2>
+
+    <h3>Правильное множественное — добавляем -s / -es</h3>
+    <div class="lex-grid">
+      <div class="item"><b>book → books</b> <span>обычное -s</span></div>
+      <div class="item"><b>box → boxes</b> <span>после -x, -ch, -sh, -s → -es</span></div>
+      <div class="item"><b>baby → babies</b> <span>-y после согласной → -ies</span></div>
+      <div class="item"><b>knife → knives</b> <span>-f / -fe → -ves</span></div>
+    </div>
+
+    <h3>Неправильное множественное — запомнить</h3>
+    <div class="lex-grid">
+      <div class="item"><b>man → men</b> <span>мужчина → мужчины</span></div>
+      <div class="item"><b>woman → women</b> <span>женщина → женщины</span></div>
+      <div class="item"><b>child → children</b> <span>ребёнок → дети</span></div>
+      <div class="item"><b>foot → feet</b> <span>нога → ноги</span></div>
+      <div class="item"><b>tooth → teeth</b> <span>зуб → зубы</span></div>
+      <div class="item"><b>person → people</b> <span>человек → люди</span></div>
+      <div class="item"><b>mouse → mice</b> <span>мышь → мыши</span></div>
+      <div class="item"><b>fish → fish</b> <span>не меняется</span></div>
+      <div class="item"><b>sheep → sheep</b> <span>не меняется</span></div>
+    </div>
+
+    <h3>Притяжение через апостроф</h3>
+    <ul class="bul">
+      <li><b>'s</b> — у одного человека. <em>Denis's jacket. · My friend's house.</em></li>
+      <li><b>s'</b> — у группы. <em>my parents' house · the students' books.</em></li>
+    </ul>
+  </section>
+
+  <!-- ============ 11 ============ -->
+  <section class="chapter" id="c11">
+    <h2><span class="ch-num">11.</span>Одежда · дом (базовый словарь) <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Базовый словарь первого полугодия. Городская лексика вынесена в отдельную главу — см. <a href="#c15" style="color:var(--orange);font-weight:700;text-decoration:none">§15 · City · расширенный словарь</a>.</p>
+
+    <h3>Одежда</h3>
+    <div class="lex-grid">
+      <div class="item"><b>jacket</b> <span>куртка</span></div>
+      <div class="item"><b>shirt</b> <span>рубашка</span></div>
+      <div class="item"><b>T-shirt</b> <span>футболка</span></div>
+      <div class="item"><b>jeans</b> <span>джинсы</span></div>
+      <div class="item"><b>trousers</b> <span>брюки</span></div>
+      <div class="item"><b>dress</b> <span>платье</span></div>
+      <div class="item"><b>skirt</b> <span>юбка</span></div>
+      <div class="item"><b>shoes</b> <span>обувь</span></div>
+      <div class="item"><b>boots</b> <span>ботинки</span></div>
+      <div class="item"><b>hat</b> <span>шапка / шляпа</span></div>
+      <div class="item"><b>coat</b> <span>пальто</span></div>
+      <div class="item"><b>scarf</b> <span>шарф</span></div>
+      <div class="item"><b>gloves</b> <span>перчатки</span></div>
+      <div class="item"><b>socks</b> <span>носки</span></div>
+      <div class="item"><b>size</b> <span>размер</span></div>
+      <div class="item"><b>colour</b> <span>цвет</span></div>
+      <div class="item"><b>to wear</b> <span>носить</span></div>
+      <div class="item"><b>to try on</b> <span>примерять</span></div>
+      <div class="item"><b>fitting room</b> <span>примерочная</span></div>
+      <div class="item"><b>medium / small / large</b> <span>средний / маленький / большой</span></div>
+    </div>
+
+    <h3>Дом — комнаты и предметы</h3>
+    <div class="lex-grid">
+      <div class="item"><b>house</b> <span>дом</span></div>
+      <div class="item"><b>flat / apartment</b> <span>квартира</span></div>
+      <div class="item"><b>kitchen</b> <span>кухня</span></div>
+      <div class="item"><b>bedroom</b> <span>спальня</span></div>
+      <div class="item"><b>living room</b> <span>гостиная</span></div>
+      <div class="item"><b>bathroom</b> <span>ванная</span></div>
+      <div class="item"><b>garage</b> <span>гараж</span></div>
+      <div class="item"><b>garden</b> <span>сад</span></div>
+      <div class="item"><b>floor</b> <span>этаж / пол</span></div>
+      <div class="item"><b>wall</b> <span>стена</span></div>
+      <div class="item"><b>window</b> <span>окно</span></div>
+      <div class="item"><b>door</b> <span>дверь</span></div>
+      <div class="item"><b>table</b> <span>стол</span></div>
+      <div class="item"><b>chair</b> <span>стул</span></div>
+      <div class="item"><b>bed</b> <span>кровать</span></div>
+      <div class="item"><b>sofa</b> <span>диван</span></div>
+      <div class="item"><b>fridge</b> <span>холодильник</span></div>
+      <div class="item"><b>lamp</b> <span>лампа</span></div>
+      <div class="item"><b>cupboard</b> <span>шкафчик</span></div>
+      <div class="item"><b>shelf</b> <span>полка</span></div>
+    </div>
+
+    <div class="callout">
+      <strong>Городская лексика:</strong> базовый набор (shop · park · street · train station · corner · и т. п.) переехал в <a href="#c15" style="color:var(--orange);font-weight:700;text-decoration:none">§15 · City · расширенный словарь</a> — там он собран вместе с прилагательными, будущим городом и переездом.
+    </div>
+  </section>
+
+  <!-- ============ 12 · NEW · This / that / these / those ============ -->
+  <section class="chapter" id="c12">
+    <h2><span class="ch-num">12.</span>This / that / these / those <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Указатели «этот / тот». Выбор зависит от двух вещей: <b>близко или далеко</b> и <b>один или много</b>.</p>
+
+    <table class="t compact">
+      <thead><tr><th>Слово</th><th>Когда</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">this</td><td>один · рядом (в руках, у себя)</td><td class="eng">This is my new hoodie.</td></tr>
+        <tr><td class="eng">that</td><td>один · далеко (там, на другой стороне)</td><td class="eng">That is a car on the other street.</td></tr>
+        <tr><td class="eng">these</td><td>много · рядом (здесь у меня)</td><td class="eng">These are my sneakers here.</td></tr>
+        <tr><td class="eng">those</td><td>много · далеко (вон те)</td><td class="eng">Those are children in the park across the road.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Тренажёр из workbook (по 2 примера)</h3>
+    <ul class="bul">
+      <li><b>this:</b> <em>This is my new hoodie (in my hand). · This is a modern café next to me.</em></li>
+      <li><b>that:</b> <em>That is a car on the other street. · That is a busy market over there. · That is the landlord's car over there by the corner.</em></li>
+      <li><b>these:</b> <em>These are my sneakers here. · These are the keys in my pocket. · These are the lease papers — right here on the table.</em></li>
+      <li><b>those:</b> <em>Those are children in the park across the road. · Those are old buildings far away.</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Быстрый тест:</strong> могу дотронуться? — <em>this / these</em>. Показываю пальцем «вон там»? — <em>that / those</em>.
+    </div>
+  </section>
+
+  <!-- ============ 13 · NEW · Future ============ -->
+  <section class="chapter" id="c13">
+    <h2><span class="ch-num">13.</span>Future · will vs going to <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Два способа сказать про будущее. Главное — <b>решение принято прямо сейчас</b> или <b>уже был план</b>.</p>
+
+    <h3>Правило одной секунды</h3>
+    <table class="t compact">
+      <thead><tr><th>Ситуация</th><th>Выбор</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td>Решаю в моменте разговора</td><td class="eng">will</td><td class="eng">— It's chilly here. — OK, I <b>will</b> turn the heating up.</td></tr>
+        <tr><td>Обещание</td><td class="eng">will</td><td class="eng">I <b>will</b> call you tomorrow, I promise.</td></tr>
+        <tr><td>Предсказание («я думаю, что…»)</td><td class="eng">will</td><td class="eng">It <b>will</b> rain tonight, I think.</td></tr>
+        <tr><td>План был заранее</td><td class="eng">going to</td><td class="eng">On Saturday I <b>am going to</b> visit my parents.</td></tr>
+        <tr><td>Вижу знак → скоро будет</td><td class="eng">going to</td><td class="eng">Look at the sky — it <b>is going to</b> rain.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Формы</h3>
+    <ul class="bul">
+      <li><b>will:</b> I / you / he / she / it / we / they <b>will</b> + глагол. Отрицание: <em>won't</em>. Вопрос: <em>Will you…?</em></li>
+      <li><b>going to:</b> am / is / are + <b>going to</b> + глагол. <em>I am going to · She is going to · They are going to.</em></li>
+    </ul>
+
+    <h3>Примеры «в моменте»</h3>
+    <ul class="bul">
+      <li><em>Wait! I <b>will</b> grab the directions from my phone for you.</em></li>
+      <li><em>Wait! I <b>will</b> show you the directions on my phone.</em></li>
+      <li><em><b>Will</b> you show me the directions tomorrow, please?</em></li>
+      <li><em>I <b>will</b> move into a new flat.</em></li>
+    </ul>
+
+    <h3>Примеры «план заранее»</h3>
+    <ul class="bul">
+      <li><em>What <b>are</b> you <b>going to</b> do tonight?</em></li>
+      <li><em>On Sunday we <b>are going to</b> visit the museum.</em></li>
+      <li><em>I <b>am going to</b> learn phrasal verbs next month.</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Ошибка №1:</strong> <em>I will visit my parents on Saturday</em> ❌ (план уже был!) → <em>I <b>am going to</b> visit my parents on Saturday</em> ✓.
+    </div>
+  </section>
+
+  <!-- ============ 14 · NEW · Directions ============ -->
+  <section class="chapter" id="c14">
+    <h2><span class="ch-num">14.</span>Directions — спросить и объяснить дорогу <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Из workbook-02 (Vancouver arc). Реальные фразы для города — как остановить прохожего, как переспросить, как понять указания.</p>
+
+    <h3>Ключевые слова</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">directions</td><td class="ru">указания пути</td></tr>
+        <tr><td class="eng">turn left / right</td><td class="ru">поверни налево / направо</td></tr>
+        <tr><td class="eng">go straight</td><td class="ru">идти прямо</td></tr>
+        <tr><td class="eng">on the corner</td><td class="ru">на углу</td></tr>
+        <tr><td class="eng">two blocks away</td><td class="ru">через два квартала</td></tr>
+        <tr><td class="eng">three blocks west</td><td class="ru">три квартала на запад</td></tr>
+        <tr><td class="eng">two blocks north / south / east / west</td><td class="ru">по сторонам света</td></tr>
+        <tr><td class="eng">traffic lights</td><td class="ru">светофор</td></tr>
+        <tr><td class="eng">right there / right here</td><td class="ru">прямо там / прямо тут</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Prepositions of direction (из §14 workbook-02)</h3>
+    <div class="tag-row">
+      <span class="tag">through <em style="color:var(--muted)">сквозь</em></span>
+      <span class="tag">behind <em style="color:var(--muted)">сзади</em></span>
+      <span class="tag">down <em style="color:var(--muted)">вниз (по улице)</em></span>
+      <span class="tag">opposite <em style="color:var(--muted)">напротив</em></span>
+      <span class="tag">at <em style="color:var(--muted)">у (точка)</em></span>
+      <span class="tag">up <em style="color:var(--muted)">вверх (по лестнице)</em></span>
+      <span class="tag">along <em style="color:var(--muted)">вдоль</em></span>
+      <span class="tag">from <em style="color:var(--muted)">от (места)</em></span>
+      <span class="tag">straight <em style="color:var(--muted)">прямо</em></span>
+    </div>
+
+    <h3>Как спросить (8 вопросов)</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Excuse me, how do I get to Stanley Park from here?</td><td class="ru">Извините, как добраться до Stanley Park?</td></tr>
+        <tr><td class="eng">Where is the nearest SkyTrain station?</td><td class="ru">Где ближайшая станция SkyTrain?</td></tr>
+        <tr><td class="eng">Is Granville Island far from Downtown?</td><td class="ru">Гренвилл-Айленд далеко от центра?</td></tr>
+        <tr><td class="eng">I'm looking for a hospital. Could you help me?</td><td class="ru">Я ищу больницу. Не поможете?</td></tr>
+        <tr><td class="eng">Which bus goes to Chinatown, please?</td><td class="ru">Какой автобус идёт в Chinatown?</td></tr>
+        <tr><td class="eng">Sorry, could you say that again, please?</td><td class="ru">Извините, повторите, пожалуйста.</td></tr>
+        <tr><td class="eng">Could you speak more slowly, please?</td><td class="ru">Не могли бы вы говорить медленнее?</td></tr>
+        <tr><td class="eng">Could you show me on the map?</td><td class="ru">Можете показать на карте?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Как ответить (8 ответов)</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Sure — take the SkyTrain to Waterfront, then walk two blocks north.</td><td class="ru">Конечно — сядь на SkyTrain до Waterfront, потом два квартала на север.</td></tr>
+        <tr><td class="eng">Right at the corner — Burrard Station, one minute from here.</td><td class="ru">Прямо на углу — станция Burrard, минута отсюда.</td></tr>
+        <tr><td class="eng">Not at all — about ten minutes by taxi, or a short ferry ride.</td><td class="ru">Совсем нет — минут 10 на такси или короткая поездка на пароме.</td></tr>
+        <tr><td class="eng">Of course — St. Paul's Hospital is three blocks west, on Burrard Street.</td><td class="ru">Конечно — St. Paul's три квартала на запад, на Burrard Street.</td></tr>
+        <tr><td class="eng">Take the number 3 — it stops right by the Millennium Gate.</td><td class="ru">Садись на тройку — она останавливается у Millennium Gate.</td></tr>
+        <tr><td class="eng">Sure. Burrard Station, then two blocks west.</td><td class="ru">Да. Станция Burrard, потом два квартала на запад.</td></tr>
+        <tr><td class="eng">Of course. Left. Two blocks. Then right.</td><td class="ru">Конечно. Налево. Два квартала. Потом направо.</td></tr>
+        <tr><td class="eng">Yes, look — you are here, and the hospital is right there.</td><td class="ru">Да, смотри — ты здесь, а больница вон там.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Развёрнутое объяснение — с предлогами</h3>
+    <div class="callout" style="font-family:var(--serif),Georgia,serif;font-style:italic;line-height:1.75">
+      Sure! First, go <b>straight</b> on this road until you see a supermarket. It's <b>opposite</b> the post office. Then turn <b>left at</b> the traffic lights and walk <b>along</b> the park. The library is <b>behind</b> the red building. You'll need to go <b>through</b> a small gate and <b>up</b> some stairs.
+    </div>
+
+    <div class="callout">
+      <strong>Три волшебных слова, если не понял:</strong> <em>Sorry, could you say that again? · Could you speak more slowly? · Could you show me on the map?</em> — с ними никогда не заблудишься.
+    </div>
+  </section>
+
+  <!-- ============ 15 · NEW · City · расширенный словарь ============ -->
+  <section class="chapter" id="c15">
+    <h2><span class="ch-num">15.</span>City · расширенный словарь <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Всё, что мы прошли про город: как описать (прилагательные) · что там есть (места) · какой район (характеристика) · будущий город. Собрано из city-speaking и обеих тетрадей.</p>
+
+    <h3>12 прилагательных · какой город / район</h3>
+    <div class="lex-grid">
+      <div class="item"><b>modern</b> <span>современный</span></div>
+      <div class="item"><b>busy</b> <span>оживлённый, шумный</span></div>
+      <div class="item"><b>quiet</b> <span>тихий</span></div>
+      <div class="item"><b>crowded</b> <span>многолюдный, переполненный</span></div>
+      <div class="item"><b>lively</b> <span>живой, бойкий</span></div>
+      <div class="item"><b>historic</b> <span>исторический</span></div>
+      <div class="item"><b>expensive</b> <span>дорогой</span></div>
+      <div class="item"><b>affordable</b> <span>доступный, недорогой</span></div>
+      <div class="item"><b>safe</b> <span>безопасный</span></div>
+      <div class="item"><b>green</b> <span>зелёный (с природой)</span></div>
+      <div class="item"><b>convenient</b> <span>удобный (по расположению)</span></div>
+      <div class="item"><b>charming</b> <span>очаровательный, милый</span></div>
+    </div>
+
+    <h3>13 объектов города (drop-map из урока)</h3>
+    <div class="lex-grid">
+      <div class="item"><b>skyscraper</b> <span>небоскрёб</span></div>
+      <div class="item"><b>stadium</b> <span>стадион</span></div>
+      <div class="item"><b>church</b> <span>церковь</span></div>
+      <div class="item"><b>supermarket</b> <span>супермаркет</span></div>
+      <div class="item"><b>post office</b> <span>почта</span></div>
+      <div class="item"><b>bridge</b> <span>мост</span></div>
+      <div class="item"><b>restaurant</b> <span>ресторан</span></div>
+      <div class="item"><b>cafe</b> <span>кафе</span></div>
+      <div class="item"><b>street</b> <span>улица</span></div>
+      <div class="item"><b>park</b> <span>парк</span></div>
+      <div class="item"><b>traffic lights</b> <span>светофор</span></div>
+      <div class="item"><b>school</b> <span>школа</span></div>
+      <div class="item"><b>train station</b> <span>железнодорожный вокзал</span></div>
+    </div>
+
+    <h3>Характеристика района (workbook-01)</h3>
+    <div class="lex-grid">
+      <div class="item"><b>area</b> <span>район, зона</span></div>
+      <div class="item"><b>neighbourhood / neighborhood</b> <span>район (где живёшь)</span></div>
+      <div class="item"><b>nearby</b> <span>рядом, поблизости</span></div>
+      <div class="item"><b>entertainment</b> <span>развлечения</span></div>
+      <div class="item"><b>delivery</b> <span>доставка</span></div>
+      <div class="item"><b>schedule</b> <span>расписание</span></div>
+      <div class="item"><b>comfortable</b> <span>комфортный, удобный</span></div>
+      <div class="item"><b>metropolis</b> <span>мегаполис</span></div>
+      <div class="item"><b>capital</b> <span>столица</span></div>
+      <div class="item"><b>downtown</b> <span>центр города</span></div>
+      <div class="item"><b>choosing</b> <span>выбор</span></div>
+      <div class="item"><b>directions</b> <span>указания пути</span></div>
+      <div class="item"><b>assistant</b> <span>помощник, продавец</span></div>
+      <div class="item"><b>entrepreneur</b> <span>предприниматель</span></div>
+    </div>
+
+    <h3>Город будущего · 7 слов</h3>
+    <div class="lex-grid">
+      <div class="item"><b>flying car</b> <span>летающая машина</span></div>
+      <div class="item"><b>self-driving car</b> <span>беспилотник, автомобиль без водителя</span></div>
+      <div class="item"><b>drone</b> <span>дрон</span></div>
+      <div class="item"><b>robot</b> <span>робот</span></div>
+      <div class="item"><b>green roof</b> <span>зелёная крыша (с растениями)</span></div>
+      <div class="item"><b>solar panel</b> <span>солнечная панель</span></div>
+      <div class="item"><b>eco-district</b> <span>эко-район</span></div>
+    </div>
+
+    <h3>Каркасы для speaking · «расскажи про свой город»</h3>
+    <ul class="bul">
+      <li><em>What is your city like? Is it busy or quiet? — My city is …</em></li>
+      <li><em>Is your district safe at night? — Yes, it is … / No, it is not very …</em></li>
+      <li><em>Is the metro crowded in the morning? — The metro is …</em></li>
+      <li><em>What transport is the most convenient? — The most convenient transport is … because …</em></li>
+      <li><em>Is there a charming place near your home? — There is a … It is …</em></li>
+      <li><em>Is the city centre lively or quiet on Saturday evenings? — On Saturday evenings the centre is …</em></li>
+      <li><em>Is your neighbourhood expensive or affordable? — My neighbourhood is … because …</em></li>
+      <li><em>Is your area green? — My area is … There are …</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Формула на любой вопрос про город:</strong> <em>My city / area / neighbourhood is <span style="color:var(--orange)">[прилагательное]</span> because there is / are <span style="color:var(--orange)">[объект]</span> nearby.</em>
+    </div>
+  </section>
+
+  <!-- ============ 16 · NEW · Переезд ============ -->
+  <section class="chapter" id="c16">
+    <h2><span class="ch-num">16.</span>Переезд и новый район · Vancouver + Toronto <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Словарь из workbook-02 — то, что нужно, когда только-только приехал в новый город: снять квартиру, найти аптеку, разобраться с транспортом.</p>
+
+    <h3>Переезд и жильё</h3>
+    <div class="lex-grid">
+      <div class="item"><b>settle in</b> <span>устраиваться, обживаться</span></div>
+      <div class="item"><b>move into</b> <span>въехать в квартиру / дом</span></div>
+      <div class="item"><b>lease</b> <span>договор аренды</span></div>
+      <div class="item"><b>landlord</b> <span>арендодатель</span></div>
+      <div class="item"><b>neighborhood</b> <span>район, окрестности</span></div>
+      <div class="item"><b>downtown</b> <span>центр города</span></div>
+      <div class="item"><b>area</b> <span>район, зона</span></div>
+    </div>
+
+    <h3>Транспорт и связь</h3>
+    <div class="lex-grid">
+      <div class="item"><b>subway</b> <span>метро (US/CA)</span></div>
+      <div class="item"><b>SkyTrain</b> <span>наземное метро (Vancouver)</span></div>
+      <div class="item"><b>transit pass</b> <span>проездной</span></div>
+      <div class="item"><b>SIM card</b> <span>сим-карта</span></div>
+      <div class="item"><b>delivery</b> <span>доставка</span></div>
+      <div class="item"><b>schedule</b> <span>расписание</span></div>
+    </div>
+
+    <h3>Магазины и услуги</h3>
+    <div class="lex-grid">
+      <div class="item"><b>drugstore</b> <span>аптека (US/CA)</span></div>
+      <div class="item"><b>coffee shop</b> <span>кофейня</span></div>
+      <div class="item"><b>supermarket</b> <span>супермаркет</span></div>
+    </div>
+
+    <h3>Погода и ощущения</h3>
+    <div class="lex-grid">
+      <div class="item"><b>chilly</b> <span>прохладно</span></div>
+      <div class="item"><b>comfortable</b> <span>комфортно (по ощущениям)</span></div>
+    </div>
+
+    <h3>Готовые предложения (workbook-02 · MCQ)</h3>
+    <ul class="bul">
+      <li><em>My landlord lives two blocks from downtown.</em></li>
+      <li><em>Right now, my wife is signing the lease with the landlord.</em></li>
+      <li><em>The drugstore is two blocks away, on the corner.</em></li>
+      <li><em>May I ask you for directions to the drugstore?</em></li>
+      <li><em>We are settling in Toronto.</em></li>
+      <li><em>Get a transit pass — it's cheaper.</em></li>
+      <li><em>I need a Canadian SIM card.</em></li>
+      <li><em>It's chilly today.</em></li>
+    </ul>
+
+    <div class="callout">
+      <strong>Ложные друзья:</strong> в US/CA <em>drugstore</em> — аптека, а не «нарко-магазин». В UK то же самое — <em>chemist's / pharmacy</em>. <em>Downtown</em> ≠ «даунтаун-район», это <b>центр города</b>.
+    </div>
+  </section>
+
+  <!-- ============ 17 · NEW · Café + Restaurant scripts ============ -->
+  <section class="chapter" id="c17">
+    <h2><span class="ch-num">17.</span>Café + Restaurant scripts <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Готовые диалоги из city-speaking · §8-9. Учить как блоки — на реальной кассе или столике достанешь без промедления.</p>
+
+    <h3>Café · слова</h3>
+    <div class="lex-grid">
+      <div class="item"><b>payment</b> <span>оплата</span></div>
+      <div class="item"><b>to pay</b> <span>платить</span></div>
+      <div class="item"><b>cash</b> <span>наличные</span></div>
+      <div class="item"><b>tip</b> <span>чаевые</span></div>
+      <div class="item"><b>herbal tea</b> <span>травяной чай</span></div>
+      <div class="item"><b>mocha</b> <span>мокко</span></div>
+      <div class="item"><b>special offers</b> <span>спецпредложения</span></div>
+      <div class="item"><b>loyalty discount</b> <span>скидка для постоянных</span></div>
+      <div class="item"><b>gluten-free</b> <span>без глютена</span></div>
+      <div class="item"><b>to-go</b> <span>с собой</span></div>
+      <div class="item"><b>still / sparkling</b> <span>без газа / с газом</span></div>
+      <div class="item"><b>bathroom key</b> <span>ключ от туалета</span></div>
+    </div>
+
+    <h3>Café · диалог у баристы</h3>
+    <table class="t compact">
+      <thead><tr><th>Роль</th><th>Реплика</th></tr></thead>
+      <tbody>
+        <tr><td>You</td><td class="eng">Can I have a large latte, please?</td></tr>
+        <tr><td>Barista</td><td class="eng">Sure. What milk?</td></tr>
+        <tr><td>You</td><td class="eng">Oat milk, please. And a carrot cake. Is the carrot cake gluten-free?</td></tr>
+        <tr><td>Barista</td><td class="eng">Yes, it's gluten-free.</td></tr>
+        <tr><td>You</td><td class="eng">Perfect. Could you heat this up for me?</td></tr>
+        <tr><td>Barista</td><td class="eng">Of course. For here or to go?</td></tr>
+        <tr><td>You</td><td class="eng">Could I get this to-go?</td></tr>
+        <tr><td>Barista</td><td class="eng">Sure. That's eight euros twenty.</td></tr>
+        <tr><td>You</td><td class="eng">Can I pay by card?</td></tr>
+        <tr><td>Barista</td><td class="eng">Yes, of course. Tap here.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Restaurant · диалог за столиком</h3>
+    <table class="t compact">
+      <thead><tr><th>Роль</th><th>Реплика</th></tr></thead>
+      <tbody>
+        <tr><td>You</td><td class="eng">Excuse me. Is this seat taken?</td></tr>
+        <tr><td>Customer</td><td class="eng">No, go ahead.</td></tr>
+        <tr><td>You</td><td class="eng">Thanks. Can I have a glass of water, please?</td></tr>
+        <tr><td>Server</td><td class="eng">Still or sparkling?</td></tr>
+        <tr><td>You</td><td class="eng">Still, please. One more thing — what's the Wi-Fi password?</td></tr>
+        <tr><td>Server</td><td class="eng">It's on the receipt. Anything else?</td></tr>
+        <tr><td>You</td><td class="eng">Could I get some extra napkins?</td></tr>
+        <tr><td>Server</td><td class="eng">Right away.</td></tr>
+        <tr><td>You</td><td class="eng">And one quick question — do you offer any loyalty discounts?</td></tr>
+        <tr><td>Server</td><td class="eng">Yes, with our app — five percent off every visit.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>«Универсальные ключи»:</strong> <em>Can I have…? · Could I get…? · Is this … taken? · One quick question — …?</em> — с этими 4 конструкциями закрываются 80% ситуаций в кафе и ресторане.
+    </div>
+  </section>
+
+  <!-- ============ 18 · было 12 · Готовые фразы для города ============ -->
+  <section class="chapter" id="c18">
+    <h2><span class="ch-num">18.</span>Готовые фразы для города <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Фразы которые мы будем отрабатывать в июне. Запомните как блоки — это рабочий набор для реальных ситуаций.</p>
+
+    <h3>В магазине — что сказать</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Can I help you?</td><td class="ru">Чем я могу помочь?</td></tr>
+        <tr><td class="eng">I am looking for a jacket.</td><td class="ru">Я ищу куртку.</td></tr>
+        <tr><td class="eng">What size do you need?</td><td class="ru">Какой размер вам нужен?</td></tr>
+        <tr><td class="eng">I need a medium.</td><td class="ru">Мне нужен средний.</td></tr>
+        <tr><td class="eng">Do you have it in blue?</td><td class="ru">Есть в синем?</td></tr>
+        <tr><td class="eng">Can I try it on?</td><td class="ru">Можно примерить?</td></tr>
+        <tr><td class="eng">The fitting room is over there.</td><td class="ru">Примерочная вон там.</td></tr>
+        <tr><td class="eng">How much is it?</td><td class="ru">Сколько стоит?</td></tr>
+        <tr><td class="eng">I would like to buy this.</td><td class="ru">Я хотел бы купить это.</td></tr>
+        <tr><td class="eng">Cash or card?</td><td class="ru">Наличные или карта?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Как заказать кофе</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Can I have a cappuccino, please?</td><td class="ru">Можно капучино, пожалуйста?</td></tr>
+        <tr><td class="eng">I would like a large latte.</td><td class="ru">Я хотел бы большой латте.</td></tr>
+        <tr><td class="eng">To go or to drink here?</td><td class="ru">С собой или здесь?</td></tr>
+        <tr><td class="eng">To go, please.</td><td class="ru">С собой, пожалуйста.</td></tr>
+        <tr><td class="eng">With milk / without sugar.</td><td class="ru">С молоком / без сахара.</td></tr>
+        <tr><td class="eng">Anything else?</td><td class="ru">Что-нибудь ещё?</td></tr>
+        <tr><td class="eng">That's all, thank you.</td><td class="ru">Это всё, спасибо.</td></tr>
+        <tr><td class="eng">How much is it?</td><td class="ru">Сколько с меня?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Спросить направление</h3>
+    <table class="t compact">
+      <thead><tr><th>Английский</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="eng">Excuse me, where is the bank?</td><td class="ru">Извините, где банк?</td></tr>
+        <tr><td class="eng">How can I get to the museum?</td><td class="ru">Как пройти к музею?</td></tr>
+        <tr><td class="eng">Is it far?</td><td class="ru">Это далеко?</td></tr>
+        <tr><td class="eng">Go straight.</td><td class="ru">Идите прямо.</td></tr>
+        <tr><td class="eng">Turn left / right.</td><td class="ru">Поверните налево / направо.</td></tr>
+        <tr><td class="eng">It is near.</td><td class="ru">Это рядом.</td></tr>
+        <tr><td class="eng">It is on the corner.</td><td class="ru">Это на углу.</td></tr>
+        <tr><td class="eng">Next to the café.</td><td class="ru">Рядом с кафе.</td></tr>
+        <tr><td class="eng">Thank you very much.</td><td class="ru">Спасибо большое.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Описать свой город</h3>
+    <div class="tag-row">
+      <span class="tag">I live in…</span>
+      <span class="tag">It is a big / small city</span>
+      <span class="tag">There is a park near my house</span>
+      <span class="tag">There are many shops</span>
+      <span class="tag">I like / I don't like…</span>
+      <span class="tag">I usually go to…</span>
+    </div>
+
+    <div class="callout">
+      <strong>Между уроками:</strong> возьмите 5 фраз из этого блока в день, проговорите вслух 3 раза. К концу недели — вы знаете весь набор автоматически.
+    </div>
+  </section>
+
+  <!-- ============ 19 · было 13 · Mix practice ============ -->
+  <section class="chapter" id="c19">
+    <h2><span class="ch-num">19.</span>Mix practice — 5 упражнений <a class="back" href="#">↑ к оглавлению</a></h2>
+    <p class="lead">Микс всех тем: <em>to be · Present Simple · Present Continuous · Do/Does · There is/are · It is · Can · Wh-questions</em>. Делайте сами — на уроке разберём, что получилось.</p>
+
+    <h3>Упражнение 1 · Gap fill — вставьте правильную форму</h3>
+    <ol style="padding-left:22px;line-height:1.9">
+      <li>I usually ____ coffee in the morning, but today I ____ tea.</li>
+      <li>She ____ a doctor, she ____ in a hospital.</li>
+      <li>____ there a bus stop near here? — Yes, ____ is.</li>
+      <li>What ____ you ____ right now? — I ____ reading a book.</li>
+      <li>It ____ cold today, so I ____ a warm jacket.</li>
+      <li>He ____ got two cars and a bike.</li>
+      <li>____ you speak French? — No, I ____.</li>
+      <li>There ____ many shops on this street.</li>
+    </ol>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:4px">Слова на выбор: <em>am / is / are · do / does · drink / drinks · works · drinking · doing · has · can / can't · isn't / aren't · wearing</em></p>
+
+    <h3>Упражнение 2 · Choose the right option</h3>
+    <ol style="padding-left:22px;line-height:1.9">
+      <li>I [ <b>am</b> / <b>is</b> / <b>are</b> ] tired today.</li>
+      <li>He [ <b>work</b> / <b>works</b> / <b>working</b> ] in a bank.</li>
+      <li>[ <b>Do</b> / <b>Does</b> / <b>Are</b> ] you like coffee?</li>
+      <li>There [ <b>is</b> / <b>are</b> ] a table and two chairs in the kitchen.</li>
+      <li>She is [ <b>read</b> / <b>reads</b> / <b>reading</b> ] a book now.</li>
+      <li>[ <b>How many</b> / <b>How much</b> ] is this jacket?</li>
+      <li>I [ <b>can</b> / <b>can to</b> ] speak English a little.</li>
+      <li>It [ <b>is</b> / <b>are</b> / <b>am</b> ] very cold in winter.</li>
+    </ol>
+
+    <h3>Упражнение 3 · Word order — соберите вопрос</h3>
+    <p>Расставьте слова в правильном порядке:</p>
+    <ol style="padding-left:22px;line-height:1.9">
+      <li>where / you / do / live / ?</li>
+      <li>doing / what / he / is / ?</li>
+      <li>are / many / how / there / rooms / your house / in / ?</li>
+      <li>often / how / you / coffee / do / drink / ?</li>
+      <li>can / I / try / on / this / jacket / ?</li>
+    </ol>
+
+    <h3>Упражнение 4 · Переведите на английский</h3>
+    <ol style="padding-left:22px;line-height:1.9">
+      <li>В моей квартире три комнаты.</li>
+      <li>Я обычно работаю дома, но сегодня я в кафе.</li>
+      <li>Сколько стоит этот кофе?</li>
+      <li>Где автобусная остановка?</li>
+      <li>У меня есть машина, но я не вожу.</li>
+      <li>Извините, можно мне капучино с собой?</li>
+      <li>Сегодня тепло. Я не ношу куртку.</li>
+    </ol>
+
+    <h3>Упражнение 5 · Build the question — постройте вопрос к ответу</h3>
+    <p>Ответ дан — нужно задать правильный вопрос.</p>
+    <table class="t compact">
+      <thead><tr><th>Вопрос</th><th>Ответ</th></tr></thead>
+      <tbody>
+        <tr><td>_____________________?</td><td class="ru">— I live in Moscow.</td></tr>
+        <tr><td>_____________________?</td><td class="ru">— Yes, I do. I drink coffee every morning.</td></tr>
+        <tr><td>_____________________?</td><td class="ru">— She is reading a book.</td></tr>
+        <tr><td>_____________________?</td><td class="ru">— It is 5 dollars.</td></tr>
+        <tr><td>_____________________?</td><td class="ru">— No, I can't drive.</td></tr>
+        <tr><td>_____________________?</td><td class="ru">— There are four chairs in the kitchen.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:18px">
+      <strong>Как делать:</strong> прорабатывайте по одному упражнению в день. 10–15 минут. Не подсматривайте в ключи до конца — лучше один спор на уроке, чем гладкое «вроде понятно».
+    </div>
+
+    <h3>Ключи (только после самостоятельной работы)</h3>
+    <div style="background:var(--cream-soft);padding:14px 18px;border-radius:10px;font-size:13px;color:var(--ink-2);line-height:1.7">
+      <p style="margin:0 0 8px"><strong style="color:var(--orange)">1.</strong> drink · am drinking | is · works | Is · there | are / doing · am | is · am wearing | has | Do / can't | aren't</p>
+      <p style="margin:0 0 8px"><strong style="color:var(--orange)">2.</strong> am | works | Do | is | reading | How much | can | is</p>
+      <p style="margin:0 0 8px"><strong style="color:var(--orange)">3.</strong> Where do you live? · What is he doing? · How many rooms are there in your house? · How often do you drink coffee? · Can I try on this jacket?</p>
+      <p style="margin:0 0 8px"><strong style="color:var(--orange)">4.</strong> There are three rooms in my flat. · I usually work at home, but today I am at a café. · How much is this coffee? · Where is the bus stop? · I have got a car, but I don't drive. · Excuse me, can I have a cappuccino to go? · It is warm today. I am not wearing a jacket.</p>
+      <p style="margin:0"><strong style="color:var(--orange)">5.</strong> Where do you live? · Do you drink coffee every morning? · What is she doing? · How much is it? · Can you drive? · How many chairs are there in the kitchen?</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>Мария Витальевна Бурцева</div>
+    </div>
+    <div class="foot-meta">
+      New Generation English · Личный кабинет · Конспект A1 для Дениса · расширенная версия (26 июля 2026).<br>
+      Источники: годовой конспект + workbook-01 + workbook-02 + city-speaking.<br>
+      Готово к печати: Ctrl/⌘ + P → «Сохранить как PDF».
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

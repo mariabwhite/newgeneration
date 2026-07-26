@@ -728,11 +728,11 @@ window.NGE_DATA = {
       "payments": [
         {
           "month": "Июль 2026",
-          "package": "4 урока × 2 500 ₽",
+          "package": "4 урока × 2 500 ₽ · закрыт 4/4",
           "amount": "10 000 ₽",
           "status": "paid",
           "date": "01.07.2026",
-          "note": "Июльский абонемент · слова + будущие времена + направления + предлоги"
+          "note": "Июльский абонемент · закрыт 4/4 · слова + будущие времена + направления + предлоги + финальный тест A1"
         },
         {
           "month": "Июнь 2026",
@@ -748,8 +748,8 @@ window.NGE_DATA = {
       "pin": "6347",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 3,
-      "summer_plan_note": "Июльский абонемент · слова + будущие времена + направления + предлоги",
+      "lessons_used_this_month": 4,
+      "summer_plan_note": "Июльский абонемент · закрыт 4/4 · слова + будущие времена + направления + предлоги + финальный тест A1",
       "stability_note": "",
       "lessons": [
         {
@@ -847,8 +847,13 @@ window.NGE_DATA = {
         {
           "date": "2026-07-26",
           "num": 12,
-          "status": "planned",
-          "topic": "Предлоги (места и времени) — in / on / at / between / behind · закрытие июльского абонемента"
+          "status": "completed",
+          "topic": "Предлоги (места и времени) — in / on / at / between / behind · закрытие июльского абонемента · финальный тест A1 (22 главы: грамматика, словарь, listening, reading)",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/denis-test/",
+            "module_title": "🧪 Открыть Финальный тест A1 · 22 главы",
+            "text": "Рабочая тетрадь-тест · 22 главы · 240+ упражнений · 2 вкладки (Grammar / Vocab & skills) + 4 упражнения на печать слов + аудирование (8 диктантов) + чтение (Vancouver story · 10 True/False/NS). Каждая глава — свой прогресс-индикатор: серый → оранжевый → золотой (100%). Прогресс сохраняется в браузере."
+          }
         }
       ],
       "external_platforms": [
@@ -870,8 +875,13 @@ window.NGE_DATA = {
       ],
       "materials": {
         "folder": "documents/_v/denis-shalmanov",
-        "note": "Отчёт о прогрессе за июнь–июль 2026 + карта словаря. Клик — открыть в новой вкладке.",
+        "note": "Конспект года · вся грамматика + словарь (19 глав) + июльское расширение (directions, переезд, café-scripts, Future, City vocab). Плюс отчёт за июнь-июль. Клик — открыть в новой вкладке.",
         "files": [
+          {
+            "name": "a1-konspekt-goda-denis-2026-07-26.html",
+            "label": "📘 Конспект года · A1 · 19 глав · грамматика + словарь",
+            "audience": "all"
+          },
           {
             "name": "report-denis-shalmanov-2026-07.pdf",
             "label": "📄 Отчёт · июнь–июль 2026 · Progress + Vocabulary map",
