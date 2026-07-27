@@ -984,7 +984,7 @@ window.NGE_DATA = {
       "name": "Катя Жижина",
       "level": "A2",
       "format": "индивидуально",
-      "schedule": "воскресенье 16:30",
+      "schedule": "понедельник 16:00",
       "price_per_lesson": 2500,
       "monthly_package": 10000,
       "payment_status": "Оплачено",
