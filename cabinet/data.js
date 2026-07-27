@@ -977,6 +977,50 @@ window.NGE_DATA = {
       "stability_note": ""
     },
     {
+      "id": "katya-zhizhina",
+      "greeting_student": "Привет, Катя",
+      "greeting_parent": "Здравствуйте, Александра",
+      "notion_id": "3aa7364c-ba79-8175-ba5e-cb56d562bfa1",
+      "name": "Катя Жижина",
+      "level": "A2",
+      "format": "индивидуально",
+      "schedule": "воскресенье 16:30",
+      "price_per_lesson": 2500,
+      "monthly_package": 10000,
+      "payment_status": "Оплачено",
+      "payments": [
+        {
+          "month": "Июль 2026",
+          "package": "1 занятие × 2 500 ₽ (вводный, разово)",
+          "amount": "2 500 ₽",
+          "status": "paid",
+          "date": "27.07.2026",
+          "note": "Вводный урок · разово. Абонемент 4 × 2 500 обсуждается после вводного."
+        }
+      ],
+      "is_adult": false,
+      "parent_name": "Александра",
+      "pin": "7375",
+      "lessons_in_package": 1,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "summer_plan_note": "Старт со вводного 27.07.2026 · перспектива ВШЭ биохим",
+      "stability_note": "",
+      "lessons": [
+        {
+          "date": "2026-07-27",
+          "num": 1,
+          "status": "completed",
+          "topic": "Вводный · послушать английский вживую · составить программу"
+        }
+      ],
+      "materials": {
+        "folder": "documents/_v/katya-zhizhina",
+        "note": "Материалы курса будут появляться по мере прохождения тем.",
+        "files": []
+      }
+    },
+    {
       "id": "yulya-lushina",
       "greeting_parent": "Здравствуйте, Александр Анатольевич",
       "greeting_student": "Привет, Юлия",
