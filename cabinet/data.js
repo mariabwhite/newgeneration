@@ -1011,7 +1011,12 @@ window.NGE_DATA = {
           "date": "2026-07-27",
           "num": 1,
           "status": "completed",
-          "topic": "Вводный · послушать английский вживую · составить программу"
+          "topic": "Vibe Check · вводный · Small-talk toolkit + 12 tenses reference + диалог/монолог",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-01-vibe-check/",
+            "module_title": "🎯 Открыть Vibe Check · вводный",
+            "text": "Первый интерактивный урок: Small-talk toolkit (6 фраз) · Grammar reference (12 tenses cheatsheet) · диалог Kimberly + Joanna · монолог Kimberly. Открыть с компа/планшета."
+          }
         }
       ],
       "materials": {
