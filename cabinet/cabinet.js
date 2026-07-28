@@ -1501,9 +1501,10 @@
     if (!files.length && !(Array.isArray(m.external_links) && m.external_links.length)) return "";
     const note = m.note ? `<p class="cab-card-note">${_esc(m.note)}</p>` : "";
     const items = files.map(f => {
+      const isExternal = typeof f === "object" && f && f.url;
       const file  = typeof f === "string" ? f : f.name;
-      const label = typeof f === "string" ? _prettifyContractFilename(f) : (f.label || _prettifyContractFilename(f.name));
-      const url   = `./${m.folder}/${file}`;
+      const label = typeof f === "string" ? _prettifyContractFilename(f) : (f.label || _prettifyContractFilename(f.name || f.url));
+      const url   = isExternal ? f.url : `./${m.folder}/${file}`;
       return `<a href="${_esc(url)}" target="_blank" rel="noreferrer" class="cab-contract-link">${_esc(label)}</a>`;
     }).join("");
     // external links (Lab workbooks, quizlets, etc.)
