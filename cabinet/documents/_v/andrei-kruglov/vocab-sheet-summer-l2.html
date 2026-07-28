@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summer Systems · Vocabulary Sheet · Andrew</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --cream:#EFEEE9;
+    --cream-soft:#F4F3EE;
+    --orange:#E8542B;
+    --orange-soft:#F0A86A;
+    --gold:#F4C84B;
+    --ink:#1F1F1F;
+    --ink-2:#2C2C2C;
+    --muted:#8B8B8B;
+    --muted-2:#A8A6A0;
+    --rule:#D9D7D2;
+    --footer-bg:#F1F0EB;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#E9E7E2;color:var(--ink);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:14.5px;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .page{
+    width:210mm;min-height:297mm;margin:18px auto;background:var(--bg);
+    box-shadow:0 12px 40px rgba(0,0,0,.10);
+    padding:0 0 28px;
+  }
+  .hero{background:var(--cream);padding:26px 44px 26px;position:relative;}
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:linear-gradient(90deg,var(--orange) 0%,var(--orange) 55%,var(--gold) 100%);
+  }
+  .brandline{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .logo{
+    width:38px;height:38px;border-radius:9px 0 9px 9px;background:var(--orange);
+    color:white;font-weight:800;font-family:"Manrope",sans-serif;
+    font-size:22px;display:grid;place-items:center;line-height:1;
+    box-shadow:0 2px 4px rgba(232,84,43,.25);
+    position:relative;overflow:hidden;
+  }
+  .logo::after{
+    content:"";position:absolute;top:0;right:0;
+    width:11px;height:11px;background:#fff;
+    clip-path:polygon(100% 0,0 0,100% 100%);
+  }
+  .brand-name{font-weight:800;letter-spacing:.06em;font-size:14.5px;color:var(--ink);}
+  .brand-sub{font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:500;margin-top:2px;}
+  .kicker{margin-top:16px;font-size:11px;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;font-weight:700;}
+  h1.title{
+    font-family:"Manrope","Inter",sans-serif;
+    font-weight:800;font-size:34px;line-height:1.05;margin:6px 0 6px;color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .subtitle{font-size:14px;color:var(--ink-2);margin:0;max-width:660px;}
+  .meta{padding:20px 44px 6px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px 22px;}
+  .meta dt{font-size:10.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:600;margin-bottom:3px;}
+  .meta dd{margin:0;font-size:14px;font-weight:700;color:var(--ink);}
+  .meta-rule{margin:16px 44px 8px;border:0;height:1px;background:var(--rule);}
+
+  .body{padding:6px 44px 8px;}
+  h2{
+    font-family:"Inter",sans-serif;
+    font-size:15.5px;font-weight:700;color:var(--ink);
+    margin:20px 0 8px;padding-left:12px;position:relative;
+  }
+  h2::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:4px;background:var(--orange);border-radius:2px;}
+  h2 .count{color:var(--muted);font-weight:500;font-size:12px;margin-left:6px;letter-spacing:.10em;}
+  .section-lead{font-size:12.5px;color:var(--muted);margin:0 0 8px;line-height:1.45;}
+
+  table.vt{width:100%;border-collapse:collapse;margin:4px 0 10px;font-size:13px;}
+  table.vt th,table.vt td{text-align:left;vertical-align:top;padding:7px 9px;border-bottom:1px solid var(--rule);}
+  table.vt th{background:var(--cream-soft);font-weight:700;font-size:10.5px;letter-spacing:.10em;text-transform:uppercase;color:var(--ink-2);}
+  table.vt td.term{color:var(--orange);font-weight:700;white-space:nowrap;width:28%;}
+  table.vt td.pos{color:var(--muted);font-style:italic;font-size:11.5px;white-space:nowrap;width:12%;}
+  table.vt td.def{color:var(--ink-2);}
+  table.vt td.def em{color:var(--muted);font-style:italic;display:block;margin-top:2px;font-size:12px;}
+
+  .passage{
+    margin:8px 0 14px;padding:14px 18px;
+    background:var(--cream-soft);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;
+    font-size:12.5px;line-height:1.55;color:var(--ink-2);
+  }
+  .passage p{margin:0 0 6px;}
+  .passage p:last-child{margin-bottom:0;}
+  .passage mark{background:rgba(232,84,43,.18);color:var(--ink);padding:1px 3px;border-radius:3px;font-weight:600;}
+
+  ul.bul{list-style:none;padding:0;margin:0 0 10px;}
+  ul.bul li{position:relative;padding:4px 0 4px 20px;margin:0;font-size:13px;color:var(--ink-2);}
+  ul.bul li::before{content:"";position:absolute;left:4px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange);}
+  ul.bul li b{color:var(--ink);font-weight:700;}
+
+  .focus-box{
+    background:var(--cream-soft);
+    border-left:4px solid var(--orange);
+    padding:12px 16px;
+    margin:12px 0 10px;
+    border-radius:0 8px 8px 0;
+    font-size:13px;
+  }
+  .focus-box strong{color:var(--orange);}
+  .focus-box ol{margin:6px 0 0;padding-left:20px;}
+  .focus-box ol li{margin:4px 0;}
+
+  .footer{
+    margin:22px 44px 0;padding-top:14px;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;color:var(--muted);letter-spacing:.06em;
+  }
+  .foot-brand{display:flex;align-items:center;gap:10px;}
+  .foot-brand .logo{width:26px;height:26px;font-size:14px;border-radius:6px 0 6px 6px;}
+  .foot-brand .logo::after{width:8px;height:8px;}
+  .foot-name{font-weight:700;color:var(--ink-2);letter-spacing:.08em;font-size:12px;}
+  .foot-sub{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:500;}
+
+  @media print{
+    body{background:white;}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">LinguaBoost Lab · vocabulary sheet</div>
+      </div>
+    </div>
+    <div class="kicker">Summer Systems · C1 · TOEFL iBT prep</div>
+    <h1 class="title">Vocabulary Sheet · full lesson map</h1>
+    <p class="subtitle">Every C1 item Andrew meets in Summer Systems L2 — hedges, weather adjectives, transferable academic core, and the Reading 1 passage. The register that separates TOEFL band 4.5 from band 5.0.</p>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Student</dt><dd>Andrew Kruglov</dd></div>
+    <div><dt>Lesson</dt><dd>Summer L2 · C1</dd></div>
+    <div><dt>TOEFL target</dt><dd>Band 5.0–5.5</dd></div>
+    <div><dt>Date</dt><dd>28 · 07 · 2026</dd></div>
+  </dl>
+  <hr class="meta-rule">
+
+  <div class="body">
+
+    <!-- 1 · Hedges -->
+    <h2>1 · «As It Seems» — C1 hedges <span class="count">5 items</span></h2>
+    <p class="section-lead">The single feature that lifts a band 4.5 essay/speech to band 5.0. Weave one hedge into every C1 answer, never two in the same sentence — this is register, not decoration.</p>
+    <table class="vt">
+      <thead><tr><th>Hedge</th><th>Register</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="term">seemingly</td><td class="pos">adverb</td><td class="def">The policy has produced <b>seemingly</b> contradictory outcomes across regions.<em>Signals “on the surface — but let me qualify”.</em></td></tr>
+        <tr><td class="term">apparently</td><td class="pos">adverb</td><td class="def"><b>Apparently</b>, the correlation weakens once income is controlled for.<em>Attributes the claim to visible evidence, not personal conviction.</em></td></tr>
+        <tr><td class="term">it appears that…</td><td class="pos">sentence starter</td><td class="def"><b>It appears that</b> reef sections recovering fastest also had the lowest local pollution.<em>Formal opener; safer than “I think that”.</em></td></tr>
+        <tr><td class="term">one might argue (that)…</td><td class="pos">discussion opener</td><td class="def"><b>One might argue that</b> summer tourism has already reached a structural limit.<em>Introduces a stance without committing to it.</em></td></tr>
+        <tr><td class="term">to a certain extent</td><td class="pos">quantifier hedge</td><td class="def">Automation offsets labour shortages <b>to a certain extent</b>, but not in specialised trades.<em>Partial agreement — powerful concession move.</em></td></tr>
+      </tbody>
+    </table>
+
+    <!-- 2 · Weather adjectives -->
+    <h2>2 · Ten C1 weather adjectives · upgrade every «it's hot» / «it's cold» <span class="count">10 items</span></h2>
+    <p class="section-lead">Practical, transferable, TOEFL-friendly. Ten adjectives that instantly move Andrew from B2 to C1 the moment a native asks «how's the weather over there?»</p>
+    <table class="vt">
+      <thead><tr><th>Adjective</th><th>What it names</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="term">scorching</td><td class="def">Extremely hot — hot enough to feel painful.</td><td class="def">«A <b>scorching</b> afternoon in Seville.»</td></tr>
+        <tr><td class="term">sweltering</td><td class="def">Hot AND humid — makes you sweat just walking.</td><td class="def">«<b>Sweltering</b> July in Moscow.»</td></tr>
+        <tr><td class="term">muggy</td><td class="def">Warm and heavy with humidity — sticky, oppressive.</td><td class="def">«A <b>muggy</b> evening after the rain.»</td></tr>
+        <tr><td class="term">balmy</td><td class="def">Pleasantly warm, gentle, with a soft breeze.</td><td class="def">«A <b>balmy</b> night on the terrace.»</td></tr>
+        <tr><td class="term">crisp</td><td class="def">Cool, fresh, dry, invigorating — the way early autumn feels.</td><td class="def">«A <b>crisp</b> September morning.»</td></tr>
+        <tr><td class="term">breezy</td><td class="def">With a light, pleasant wind.</td><td class="def">«A <b>breezy</b> afternoon at the coast.»</td></tr>
+        <tr><td class="term">drizzling</td><td class="def">Very light, continuous rain — barely wet but constant.</td><td class="def">«It's been <b>drizzling</b> all morning.»</td></tr>
+        <tr><td class="term">torrential</td><td class="def">Very heavy, pouring rain — you can't see through it.</td><td class="def">«<b>Torrential</b> rain flooded the roads.»</td></tr>
+        <tr><td class="term">overcast</td><td class="def">Completely covered with grey clouds — no sun visible.</td><td class="def">«A gloomy, <b>overcast</b> day.»</td></tr>
+        <tr><td class="term">crystal-clear</td><td class="def">Perfectly clear sky, not a single cloud — long visibility.</td><td class="def">«A <b>crystal-clear</b> morning over the lake.»</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">LinguaBoost Lab · Summer L2 · 1 / 3</div>
+      </div>
+    </div>
+    <div>newgeneration-english.ru · Andrew · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">LinguaBoost Lab · vocabulary sheet</div>
+      </div>
+    </div>
+    <div class="kicker">Summer Systems · C1 · TOEFL iBT prep</div>
+    <h1 class="title">C1 transferable academic core</h1>
+    <p class="subtitle">Sixteen high-frequency C1 words &amp; collocations Andrew can carry into <em>any</em> TOEFL topic, any academic essay, any business discussion.</p>
+  </div>
+
+  <div class="body">
+
+    <!-- 3 · Academic core 16 -->
+    <h2>3 · C1 academic core · flip-card set <span class="count">16 items</span></h2>
+    <p class="section-lead">Not «summer trivia» — these are the register-lifters that show up in every TOEFL reading, listening and speaking task. Learn one row, use it in one week.</p>
+    <table class="vt">
+      <thead><tr><th>Term</th><th>POS</th><th>Meaning · example</th></tr></thead>
+      <tbody>
+        <tr><td class="term">pivotal</td><td class="pos">adj</td><td class="def">Absolutely central, decisive (upgrade of «very important»).<em>Peer review plays a <b>pivotal</b> role in academic publishing.</em></td></tr>
+        <tr><td class="term">to underscore</td><td class="pos">verb</td><td class="def">To emphasise formally (upgrade of «to show» / «to stress»).<em>The 2023 data <b>underscore</b> the urgency of adaptation policy.</em></td></tr>
+        <tr><td class="term">to give rise to</td><td class="pos">phrase</td><td class="def">To cause / produce (formal, essay-friendly).<em>Overreliance on air travel <b>gives rise to</b> significant emissions.</em></td></tr>
+        <tr><td class="term">notwithstanding</td><td class="pos">connector</td><td class="def">Despite / in spite of (high-C1 register).<em><b>Notwithstanding</b> the cost, the policy has broad public support.</em></td></tr>
+        <tr><td class="term">to a certain extent</td><td class="pos">hedge</td><td class="def">Partly, not fully — softens a claim.<em><b>To a certain extent</b>, technology can offset labour shortages.</em></td></tr>
+        <tr><td class="term">arguably</td><td class="pos">hedge</td><td class="def">It can be argued that — sounds informed, not dogmatic.<em><b>Arguably</b>, the most valuable asset of any firm is its people.</em></td></tr>
+        <tr><td class="term">compelling evidence</td><td class="pos">collocation</td><td class="def">Very strong evidence that is hard to reject.<em>There is <b>compelling evidence</b> that early intervention improves outcomes.</em></td></tr>
+        <tr><td class="term">to strike a balance between</td><td class="pos">collocation</td><td class="def">To find the right proportion of two competing things.<em>It is crucial <b>to strike a balance between</b> growth and sustainability.</em></td></tr>
+        <tr><td class="term">overriding concern</td><td class="pos">collocation</td><td class="def">The most important worry, more important than all others.<em>Data privacy remains the <b>overriding concern</b> in this partnership.</em></td></tr>
+        <tr><td class="term">far-reaching implications</td><td class="pos">collocation</td><td class="def">Consequences that go well beyond the immediate case.<em>The court's ruling has <b>far-reaching implications</b> for future contracts.</em></td></tr>
+        <tr><td class="term">to constitute</td><td class="pos">verb</td><td class="def">To form / to be (upgrade of plain «to be»).<em>Renewable sources now <b>constitute</b> a third of national output.</em></td></tr>
+        <tr><td class="term">to warrant</td><td class="pos">verb</td><td class="def">To justify / to make necessary (formal).<em>These findings <b>warrant</b> a full independent review.</em></td></tr>
+        <tr><td class="term">discernible</td><td class="pos">adj</td><td class="def">Noticeable, able to be perceived (formal upgrade of «visible»).<em>There is a <b>discernible</b> shift in consumer preferences.</em></td></tr>
+        <tr><td class="term">to leverage</td><td class="pos">verb (biz)</td><td class="def">To use something to maximum advantage.<em>The company <b>leveraged</b> its brand to enter new markets.</em></td></tr>
+        <tr><td class="term">stakeholder</td><td class="pos">noun (biz)</td><td class="def">Any party with an interest in the outcome — investors, staff, customers, community.<em>Every major decision requires <b>stakeholder</b> consultation.</em></td></tr>
+        <tr><td class="term">trade-off</td><td class="pos">noun (biz/acad)</td><td class="def">A compromise where you accept a loss on one side to gain on another.<em>There is always a <b>trade-off</b> between speed and accuracy.</em></td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">LinguaBoost Lab · Summer L2 · 2 / 3</div>
+      </div>
+    </div>
+    <div>newgeneration-english.ru · Andrew · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 3 ============ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">LinguaBoost Lab · vocabulary sheet</div>
+      </div>
+    </div>
+    <div class="kicker">Summer Systems · Reading 1</div>
+    <h1 class="title">Reading 1 · Heat mortality</h1>
+    <p class="subtitle">Heat mortality, urban heat island, public-health register — the language Andrew needs to write and speak about climate impact at band 5.0+.</p>
+  </div>
+
+  <div class="body">
+
+    <div class="passage">
+      <p><strong>The passage · highlighted collocations</strong></p>
+      <p>In recent decades, <mark>epidemiologists have documented</mark> a <mark>striking pattern</mark> across Southern Europe: heat has <mark>quietly overtaken</mark> cold as the <mark>leading weather-related cause of excess mortality</mark>. A large 2023 Lancet study <mark>estimated</mark> that more than 61 000 people <mark>died from</mark> the 2022 European summer heatwaves — a figure that <mark>would have seemed almost unthinkable a generation ago</mark>.</p>
+      <p>However, <mark>the impact is uneven</mark>. Elderly residents in <mark>dense inner-city neighbourhoods</mark>, where the <mark>urban heat island effect intensifies night-time temperatures</mark>, are <mark>far more vulnerable than</mark> younger populations in rural areas. <mark>Chronic cardiovascular and respiratory conditions</mark> are often the <mark>underlying cause</mark>; heat is <mark>the trigger</mark>.</p>
+      <p><mark>Public-health experts increasingly argue that</mark> summer heat should be <mark>treated as a permanent infrastructure problem, not an occasional emergency</mark> — requiring <mark>cool centres, shaded transit and building retrofits</mark>, <mark>rather than short-term warnings alone</mark>.</p>
+    </div>
+
+    <h2>4 · Key TOEFL / public-health terms <span class="count">7 items</span></h2>
+    <table class="vt">
+      <thead><tr><th>Term</th><th>What it means · why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="term">excess mortality</td><td class="def">Deaths beyond the statistically expected level.<em>Standard metric in every epidemiology paper.</em></td></tr>
+        <tr><td class="term">urban heat island effect</td><td class="def">Cities becoming several degrees hotter than surrounding countryside — asphalt + buildings + traffic.<em>TOEFL classic; also IELTS Task 1.</em></td></tr>
+        <tr><td class="term">underlying cause · trigger</td><td class="def">Medicine + disaster analysis pair: chronic reason vs. immediate event.<em>Strong in cause-and-effect writing.</em></td></tr>
+        <tr><td class="term">chronic cardiovascular / respiratory conditions</td><td class="def">Long-term diseases of the heart / lungs.<em>Any health-policy passage uses this pair.</em></td></tr>
+        <tr><td class="term">infrastructure problem</td><td class="def">Structural, permanent issue needing physical investment.<em>Reframe device: turns an “event” into a “system”.</em></td></tr>
+        <tr><td class="term">building retrofits</td><td class="def">Modifying existing buildings for a new purpose (here: heat resilience).<em>Every sustainability essay.</em></td></tr>
+        <tr><td class="term">shaded transit / cool centres</td><td class="def">Adaptive urban solutions — cooled public spaces, shaded transport routes.<em>Concrete examples for essay body.</em></td></tr>
+      </tbody>
+    </table>
+
+    <h2>5 · C1 academic collocations · reading 1 <span class="count">10 items</span></h2>
+    <table class="vt">
+      <thead><tr><th>Collocation</th><th>Register · usage</th></tr></thead>
+      <tbody>
+        <tr><td class="term">to document a pattern</td><td class="def">Formal / academic verb for “to record and describe systematically”.<em>Upgrades any plain “to show”.</em></td></tr>
+        <tr><td class="term">a striking pattern</td><td class="def">Adj + noun. Neutral academic.<em>Alt.: a marked / a noticeable pattern.</em></td></tr>
+        <tr><td class="term">to overtake (as leading cause)</td><td class="def">Statistical language: to become bigger than a previous thing.<em>Bonus adverb: “quietly overtake”.</em></td></tr>
+        <tr><td class="term">the leading … cause of X</td><td class="def">Ranking template — “the leading dietary cause of heart disease”.<em>Universal.</em></td></tr>
+        <tr><td class="term">the impact is uneven</td><td class="def">Hedge in equality / policy writing.<em>Perfect topic-sentence follow-up.</em></td></tr>
+        <tr><td class="term">far more vulnerable than</td><td class="def">Comparative + risk vocab.<em>Also: markedly / significantly more vulnerable than.</em></td></tr>
+        <tr><td class="term">to intensify</td><td class="def">C1 verb — upgrade of “to make stronger”.<em>Objects: heat, competition, scrutiny, debate.</em></td></tr>
+        <tr><td class="term">to be treated as X, not Y</td><td class="def">Reframing device — argues for a change of category.<em>“treated as a right, not a privilege”.</em></td></tr>
+        <tr><td class="term">rather than … alone</td><td class="def">Concession + insistence structure.<em>“Regulation, rather than voluntary codes alone, is required.”</em></td></tr>
+        <tr><td class="term">experts increasingly argue that…</td><td class="def">Academic sentence-starter with soft hedge.<em>Alt.: “There is growing agreement that…”.</em></td></tr>
+      </tbody>
+    </table>
+
+    <h2>6 · Sentence starters &amp; hedges <span class="count">5 items</span></h2>
+    <ul class="bul">
+      <li><b>In recent decades, …</b> — sets an academic timeframe; safer than “nowadays”.</li>
+      <li><b>A large 2023 study estimated that …</b> — cite research in speaking / writing without a full reference.</li>
+      <li><b>A figure that would have seemed almost unthinkable a generation ago …</b> — dramatic hedge that still sounds sober.</li>
+      <li><b>However, the impact is uneven.</b> — one-sentence pivot from general claim to nuance.</li>
+      <li><b>Public-health experts increasingly argue that …</b> — attribute the claim without owning it.</li>
+    </ul>
+
+    <div class="focus-box">
+      <strong>Mini-homework · 3 tasks · 20 min</strong>
+      <ol>
+        <li>Rewrite this sentence in a more C1 register: <em>«More people are dying from summer heat now.»</em> Use at least 3 items from Section 4 or 5.</li>
+        <li>Write one paragraph (4–5 sentences) on <em>«Why cities are harder to cool than countryside.»</em> — required: <b>urban heat island effect</b> + <b>far more vulnerable than</b> + one hedge from Section 1.</li>
+        <li>Speaking: record yourself for 45 seconds answering <em>«Should summer heat be treated as an infrastructure problem?»</em> — start with <b>Public-health experts increasingly argue that…</b> and close with <b>rather than … alone</b>.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">LinguaBoost Lab · Summer L2 · 3 / 3</div>
+      </div>
+    </div>
+    <div>newgeneration-english.ru · Andrew · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

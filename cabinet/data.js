@@ -47,6 +47,16 @@ window.NGE_DATA = {
       "lessons_in_package": 3,
       "subscription_month": "лето 2026",
       "lessons_used_this_month": 2,
+      "materials": {
+        "folder": "documents/_v/andrei-kruglov",
+        "files": [
+          {
+            "name": "vocab-sheet-summer-l2.html",
+            "label": "📖 Конспект L2 · Summer Systems · vocab + hedges + Reading 1",
+            "audience": "student"
+          }
+        ]
+      },
       "lessons": [
         {
           "date": "2026-06-30",
