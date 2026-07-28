@@ -51,28 +51,33 @@ window.NGE_DATA = {
         {
           "date": "2026-06-30",
           "num": 9,
-          "status": "planned",
+          "status": "completed",
           "topic": "Летняя встреча #1 — Science Systems · TOEFL iBT prep (C1)",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/c1/science-systems-c1-andrew-toefl/",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/c1/science-systems-c1-andrew/",
             "module_title": "🔬 Открыть Science Systems · TOEFL prep",
             "text": "C1 + TOEFL iBT prep (ETS 2025 формат). Warm-up в 3-х форматах · 10 научных областей matching · 16 cross-science vocab · 5 reading пассажей с двумя типами вопросов · 2 listening talks (Matthew + Joanna, реальное Polly-аудио) · Listen and Repeat · Retell · Argument · Take an Interview · Writing trio (Build a Sentence · Email · Academic Discussion)."
           }
         },
         {
-          "date": "2026-07-30",
+          "date": "2026-07-29",
           "num": 10,
           "status": "planned",
-          "topic": "Летняя встреча #2 — разбор летнего блока + новая мини-тема",
+          "topic": "Летняя встреча #2 из 3 — Summer Systems · TOEFL iBT prep (C1) · «As It Seems» hedging + academic register через летние темы (climate, tourism, seasonal migration, sun & sea science)",
           "homework": {
-            "text": "Вторая летняя встреча: разбираем вопросы после Science Systems · TOEFL prep и добавляем новую мини-тему. Материал будет уточнён ближе к занятию."
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/c1/summer-systems-c1-andrew/",
+            "module_title": "☀ Открыть Summer Systems · TOEFL prep",
+            "text": "Продолжение Science Systems, но темы — про лето / сезон / климат / туризм (лёгкое повторение TOEFL-структуры перед сентябрём). Тот же каркас: 10 summer/climate fields matching · 16 cross-summer vocab · 5 reading passages (climate change, seasonal economy, sun science, tourism, migration) · 2 listening talks · Retell / Argument / Take an Interview · Writing trio (Email · Build a Sentence · Academic Discussion). Плюс блок «As It Seems» — hedging language (seemingly / apparently / it appears that) как C1 academic feature."
           }
         },
         {
-          "date": "2026-08-27",
+          "date": "2026-08-20",
           "num": 11,
           "status": "planned",
-          "topic": "Летняя встреча #3 — финальный разбор + настройка на сентябрь"
+          "topic": "Летняя встреча #3 из 3 — финальный разбор + настройка на сентябрь (TOEFL diagnostic mini + план года)",
+          "homework": {
+            "text": "Финальная летняя встреча ~20 августа. Разбираем всё, что накопилось за лето (Science Systems + Summer Systems + самостоятельная работа). Мини-диагностика TOEFL на текущем уровне. Планируем сентябрь: акцент на academic writing и oral precision — те 0.5 балла до пятёрки."
+          }
         }
       ]
     },
@@ -1006,6 +1011,7 @@ window.NGE_DATA = {
       "lessons_used_this_month": 1,
       "summer_plan_note": "Старт со вводного 27.07.2026 · перспектива ВШЭ биохим",
       "stability_note": "",
+      "telemost_url": "https://telemost.yandex.ru/j/54421955698303",
       "lessons": [
         {
           "date": "2026-07-27",
@@ -1016,7 +1022,20 @@ window.NGE_DATA = {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-01-vibe-check/",
             "module_title": "🎯 Открыть Vibe Check · вводный",
             "text": "Первый интерактивный урок: Small-talk toolkit (6 фраз) · Grammar reference (12 tenses cheatsheet) · диалог Kimberly + Joanna · монолог Kimberly. Открыть с компа/планшета."
-          }
+          },
+          "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
+        },
+        {
+          "date": "2026-08-03",
+          "num": 2,
+          "status": "planned",
+          "topic": "Books and Harry Potter (Prisoner of Azkaban) — Sirius Black, Dementors, Boggart, Time-Turner + Types of books + author adjectives",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-02-azkaban-library/",
+            "module_title": "📚 Открыть · Books and Harry Potter",
+            "text": "Литературный урок · Катина любимая POA. Types of books (12 flip-cards), author adjectives, pairwork discussion Student A/B, Sirius Black монолог + Harry-Sirius диалог, Dementors on the train reading, Marauder's Map vocab quest (10 flip-cards с личными вопросами). Palette Whispering Library — violet + gold + parchment."
+          },
+          "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         }
       ],
       "materials": {
