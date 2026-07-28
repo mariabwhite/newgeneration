@@ -46,7 +46,7 @@ window.NGE_DATA = {
       "pin": "1721",
       "lessons_in_package": 3,
       "subscription_month": "лето 2026",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 2,
       "lessons": [
         {
           "date": "2026-06-30",
