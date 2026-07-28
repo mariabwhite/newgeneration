@@ -105,7 +105,12 @@ window.NGE_DATA = {
             "audience": "student"
           },
           {
-            "label": "🏛 Perm · A City of Many Lives — текущий урок",
+            "label": "🌍 Recap July · Three Worlds — сегодняшний урок",
+            "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/elena-recap-4/",
+            "audience": "student"
+          },
+          {
+            "label": "🏛 Perm · A City of Many Lives — прошлый урок",
             "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/elena-perm-many-lives/",
             "audience": "student"
           }
@@ -123,8 +128,8 @@ window.NGE_DATA = {
       "pin": "2547",
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 2,
-      "summer_plan_note": "Июль 2026 · блок 4 занятий · пройдено 2 (Bella 09.07 + 14.07), впереди Perm 21.07 + 28.07.",
+      "lessons_used_this_month": 4,
+      "summer_plan_note": "Июль 2026 · блок 4 занятий пройден полностью (Bella 09.07 + Bella 14.07 + Perm 21.07 + Recap July 28.07). Готовы к августовскому блоку.",
       "stability_note": "",
       "lessons": [
         {
@@ -152,7 +157,7 @@ window.NGE_DATA = {
         {
           "date": "2026-07-21",
           "num": 3,
-          "status": "planned",
+          "status": "completed",
           "topic": "🏛 Perm · A City of Many Lives — знакомство с городом · reading, listening, matching, discussion (B1)",
           "homework": {
             "text": "Открыть Perm · A City of Many Lives. Пройти секции 1-10: warm-up → vocab flip-cards → drop the word → Five Things About Perm reading (T/F/NS) → Yermak & the Stroganov salt empire → Q-making → listening → places-to-visit match → dialogue tourist ↔ Perm guide. Speaking-моменты произносим вслух.",
@@ -163,8 +168,13 @@ window.NGE_DATA = {
         {
           "date": "2026-07-28",
           "num": 4,
-          "status": "planned",
-          "topic": "🔁 Повторение · закрепление ранее пройденного (Bella + Perm · vocabulary + formulas + speaking review)"
+          "status": "completed",
+          "topic": "🌍 Recap July · Three Worlds — финальный урок июля, 3 вкладки (Living English / People at Work / My Story) + speaking-финал Bridge to Canada",
+          "homework": {
+            "text": "Открыть Recap July. Пройти три вкладки последовательно: 1) Living English — pharmacy + doctor roleplays + vocab drills + reading Marina; 2) People at Work — colleagues portraits + describe pattern + contrast connectors; 3) My Story — used to · Present Perfect Continuous · Conditional 2 + Bridge to Canada (final speaking). Speaking-кнопки нажимать на каждом упражнении.",
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/elena-recap-4/",
+            "module_title": "🌍 Открыть Recap July · Three Worlds"
+          }
         }
       ]
     },
