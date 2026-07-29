@@ -2068,7 +2068,7 @@ window.NGE_DATA = {
         {
           "date": "2026-08-04",
           "num": 1,
-          "status": "planned",
+          "status": "completed",
           "topic": "💼 Business First Meeting — знакомство, small talk, деловая лексика вводного уровня",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/business-first-meeting/",
