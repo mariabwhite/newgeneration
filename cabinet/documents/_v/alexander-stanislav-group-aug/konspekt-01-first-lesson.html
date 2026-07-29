@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Александр и Станислав · Урок 1 · конспект + домашка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;--cream:#EFEEE9;--cream-soft:#F4F3EE;
+    --orange:#E8542B;--gold:#F4C84B;
+    --ink:#1F1F1F;--ink-2:#2C2C2C;--muted:#8B8B8B;--rule:#D9D7D2;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#E9E7E2;color:var(--ink);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:15.5px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .page{width:210mm;min-height:297mm;margin:18px auto;background:var(--bg);
+    box-shadow:0 12px 40px rgba(0,0,0,.10);padding:0 0 28px;}
+  .hero{background:var(--cream);padding:26px 44px 26px;position:relative;}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:linear-gradient(90deg,var(--orange) 0%,var(--orange) 55%,var(--gold) 100%);}
+  .brandline{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .logo{width:38px;height:38px;border-radius:9px 0 9px 9px;background:var(--orange);
+    color:white;font-weight:800;font-family:"Manrope",sans-serif;
+    font-size:22px;display:grid;place-items:center;line-height:1;
+    box-shadow:0 2px 4px rgba(232,84,43,.25);position:relative;overflow:hidden;}
+  .logo::after{content:"";position:absolute;top:0;right:0;width:11px;height:11px;background:#fff;
+    clip-path:polygon(100% 0,0 0,100% 100%);}
+  .brand-name{font-weight:800;letter-spacing:.06em;font-size:14.5px;color:var(--ink);}
+  .brand-sub{font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:500;margin-top:2px;}
+  .kicker{margin-top:16px;font-size:11px;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;font-weight:700;}
+  h1.title{font-family:"Manrope","Inter",sans-serif;font-weight:800;font-size:32px;line-height:1.05;
+    margin:6px 0 6px;color:var(--ink);letter-spacing:-.01em;}
+  .subtitle{font-size:14.5px;color:var(--ink-2);margin:0;max-width:640px;}
+  .meta{padding:20px 44px 6px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 22px;}
+  .meta dt{font-size:10.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:600;margin-bottom:3px;}
+  .meta dd{margin:0;font-size:14.5px;font-weight:700;color:var(--ink);}
+  .meta-rule{margin:16px 44px 8px;border:0;height:1px;background:var(--rule);}
+  .body{padding:6px 44px 8px;}
+  h2{font-family:"Inter",sans-serif;font-size:17px;font-weight:800;color:var(--ink);
+    margin:22px 0 10px;padding-left:14px;position:relative;}
+  h2::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:5px;background:var(--orange);border-radius:2px;}
+  h3{font-family:"Inter",sans-serif;font-size:14px;font-weight:700;color:var(--orange);
+    margin:14px 0 6px;letter-spacing:.02em;}
+  ul.simple{list-style:none;padding:0;margin:0 0 12px;}
+  ul.simple li{padding:6px 0 6px 20px;position:relative;font-size:15px;color:var(--ink-2);border-bottom:1px dashed var(--rule);}
+  ul.simple li::before{content:"";position:absolute;left:4px;top:15px;width:7px;height:7px;border-radius:50%;background:var(--orange);}
+  ul.simple li b{color:var(--ink);font-weight:700;margin-right:8px;}
+  ul.simple li em{color:var(--muted);font-style:italic;font-size:13.5px;margin-left:8px;}
+  ol.drill{list-style:none;counter-reset:drill;padding:0;margin:0 0 10px;}
+  ol.drill li{counter-increment:drill;padding:6px 0 6px 32px;position:relative;font-size:14.5px;color:var(--ink-2);border-bottom:1px dashed var(--rule);}
+  ol.drill li::before{content:counter(drill) ".";position:absolute;left:0;top:6px;font-weight:800;color:var(--orange);font-family:"Manrope";width:26px;text-align:right;}
+  ol.drill li .blank{display:inline-block;min-width:52px;border-bottom:1.5px solid var(--orange);text-align:center;padding:0 6px;color:var(--muted);font-weight:600;}
+  .rule-mini{background:#FFF8EB;border-left:3px solid var(--gold);padding:8px 12px;font-size:13px;color:var(--ink-2);border-radius:0 6px 6px 0;margin:0 0 10px;}
+  .answers{margin-top:10px;padding:10px 14px;background:#F7F7F7;border-radius:8px;font-family:"Inter";font-size:12.5px;color:var(--muted);}
+  .answers b{color:var(--ink-2);}
+  .row-en-ru{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin:0 0 12px;}
+  .row-en-ru .pair{padding:8px 12px;background:var(--cream-soft);border-radius:8px;border-left:3px solid var(--orange);}
+  .row-en-ru .pair .en{font-weight:700;color:var(--ink);}
+  .row-en-ru .pair .ru{color:var(--muted);font-size:13.5px;margin-top:2px;}
+  table.simple{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:14px;}
+  table.simple th,table.simple td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  table.simple th{background:var(--cream-soft);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.10em;color:var(--ink-2);}
+  table.simple td.k{color:var(--orange);font-weight:700;white-space:nowrap;width:32%;}
+  .focus-box{background:var(--cream-soft);border-left:5px solid var(--orange);
+    padding:16px 20px;margin:14px 0 12px;border-radius:0 8px 8px 0;font-size:15px;}
+  .focus-box strong{color:var(--orange);}
+  .focus-box .story{background:white;border:1px solid var(--rule);border-radius:8px;padding:12px 16px;margin-top:12px;font-family:"Inter",sans-serif;color:var(--ink-2);line-height:1.7;}
+  .focus-box .story p{margin:0 0 6px;}
+  .focus-box .story em{color:var(--muted);font-style:italic;}
+  .footer{margin:22px 44px 0;padding-top:14px;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);letter-spacing:.06em;}
+  .foot-brand{display:flex;align-items:center;gap:10px;}
+  .foot-brand .logo{width:26px;height:26px;font-size:14px;border-radius:6px 0 6px 6px;}
+  .foot-brand .logo::after{width:8px;height:8px;}
+  .foot-name{font-weight:700;color:var(--ink-2);letter-spacing:.08em;font-size:12px;}
+  .foot-sub{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:500;}
+  @media print{body{background:white;}.page{margin:0;box-shadow:none;width:auto;min-height:auto;page-break-after:always;}.page:last-child{page-break-after:auto;}}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">урок 1 · конспект + домашка</div>
+      </div>
+    </div>
+    <div class="kicker">Александр и Станислав · A2 · August 2026</div>
+    <h1 class="title">Урок 1 · знакомство + первые фразы</h1>
+    <p class="subtitle">Всё, что прошли сегодня — на одном листе. Ниже — короткая домашка (история о себе). Читаем вслух, не зазубриваем.</p>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Ученики</dt><dd>Александр · Станислав</dd></div>
+    <div><dt>Уровень</dt><dd>A2 · start</dd></div>
+    <div><dt>Дата</dt><dd>28 · 07 · 2026</dd></div>
+  </dl>
+  <hr class="meta-rule">
+
+  <div class="body">
+
+    <h2>1 · Слова, которые сегодня разобрали</h2>
+    <div class="row-en-ru">
+      <div class="pair"><div class="en">colleagues</div><div class="ru">коллеги · читается «ко-лигз»</div></div>
+      <div class="pair"><div class="en">adequate</div><div class="ru">адекватный · «эди-квэт»</div></div>
+      <div class="pair"><div class="en">gym</div><div class="ru">спортзал · «джим»</div></div>
+      <div class="pair"><div class="en">free time</div><div class="ru">свободное время</div></div>
+      <div class="pair"><div class="en">evening</div><div class="ru">вечер</div></div>
+      <div class="pair"><div class="en">a few</div><div class="ru">несколько (о том, что можно посчитать)</div></div>
+    </div>
+
+    <h2>2 · Фразы для повседневной жизни</h2>
+    <ul class="simple">
+      <li><b>to go out</b> выйти в город / погулять — <em>«I usually go out on Friday.»</em></li>
+      <li><b>in the evenings</b> по вечерам — <em>«In the evenings I read.»</em></li>
+      <li><b>when I have some free time</b> когда у меня есть свободное время — <em>«When I have some free time, I go to the gym.»</em></li>
+      <li><b>to go to the gym</b> ходить в спортзал — <em>«I go to the gym twice a week.»</em></li>
+      <li><b>I would like to = I'd like to</b> я бы хотел + глагол — <em>«I'd like to learn English faster.»</em></li>
+    </ul>
+
+    <h2>3 · Время · a.m. / p.m. / o'clock</h2>
+    <table class="simple">
+      <thead><tr><th>Форма</th><th>Что значит</th></tr></thead>
+      <tbody>
+        <tr><td class="k">a.m.</td><td>с 00:00 до 12:00 · <b>до полудня</b>. Например: 7 a.m. = 7 утра.</td></tr>
+        <tr><td class="k">p.m.</td><td>с 12:00 до 24:00 · <b>после полудня</b>. Например: 3 p.m. = 15:00.</td></tr>
+        <tr><td class="k">o'clock</td><td>только когда РОВНО. «It's 7 o'clock» = ровно 7. Если 7:15 — уже НЕ o'clock.</td></tr>
+        <tr><td class="k">noon</td><td>полдень (12:00)</td></tr>
+        <tr><td class="k">midnight</td><td>полночь (00:00)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4 · Как часто? twice / three times a week</h2>
+    <ul class="simple">
+      <li><b>once a week</b> 1 раз в неделю</li>
+      <li><b>twice a week</b> 2 раза в неделю (для 2-х особое слово, не «two times»)</li>
+      <li><b>three times a week</b> 3 раза в неделю</li>
+      <li><b>four times a month</b> 4 раза в месяц · <b>once a year</b> раз в год</li>
+    </ul>
+
+    <h2>5 · Some / Any / Something / Anything</h2>
+    <table class="simple">
+      <thead><tr><th>Слово</th><th>Где живёт</th></tr></thead>
+      <tbody>
+        <tr><td class="k">some</td><td>В утверждениях. <em>I have <b>some</b> free time today.</em></td></tr>
+        <tr><td class="k">any</td><td>В вопросах и отрицаниях. <em>Do you have <b>any</b> plans? / I don't have <b>any</b> time.</em></td></tr>
+        <tr><td class="k">something</td><td>Что-то · в утверждениях. <em>I want to tell you <b>something</b>.</em></td></tr>
+        <tr><td class="k">anything</td><td>Что-нибудь / ничего · в вопросах и отрицаниях. <em>Do you want <b>anything</b>? / I don't need <b>anything</b>.</em></td></tr>
+      </tbody>
+    </table>
+
+    <h2>6 · Артикли — самая база</h2>
+    <ul class="simple">
+      <li><b>a / an</b> «какой-то один» — впервые упоминаем. <em>a colleague, an evening</em></li>
+      <li><b>the</b> «тот самый, о котором уже знаем». <em>the gym (в мой обычный спортзал), the office</em></li>
+      <li><b>без артикля</b> — устойчивые выражения: <em>I go to work · twice a week</em></li>
+    </ul>
+
+    <h2>7 · «I'd like to…» — вежливое желание</h2>
+    <div class="focus-box">
+      <strong>Формула:</strong> I would like to + глагол в начальной форме.<br>
+      <em>I'd like to try. · I'd like to go home. · I'd like to speak English better.</em><br>
+      Работает как «я бы хотел». Уважительный, взрослый тон — то, что нужно на встречах.
+    </div>
+
+    <h2>База · чтобы уверенно</h2>
+    <h3>Дни недели</h3>
+    <p style="margin:0 0 12px;font-size:15.5px;color:var(--ink-2);">
+      <b>Monday</b> · <b>Tuesday</b> · <b>Wednesday</b> · <b>Thursday</b> · <b>Friday</b> · <b>Saturday</b> · <b>Sunday</b>
+    </p>
+    <h3>Числа 1-20</h3>
+    <p style="margin:0 0 8px;font-size:14.5px;color:var(--ink-2);">
+      one · two · three · four · five · six · seven · eight · nine · ten<br>
+      eleven · twelve · thirteen · fourteen · fifteen · sixteen · seventeen · eighteen · nineteen · twenty
+    </p>
+    <p style="margin:0 0 12px;font-size:13px;color:var(--muted);">Важно: числа 13-19 звучат с ударением на конец. 13 = «thir-<b>TEEN</b>», 30 = «<b>THIR</b>-ty». Разница ударения — разница в значении.</p>
+
+    <h2>Следующий урок · будем разбирать</h2>
+    <div class="focus-box">
+      <strong>Adverbs of frequency</strong> — как часто ты что-то делаешь:<br>
+      <b>always</b> (всегда) · <b>usually</b> (обычно) · <b>often</b> (часто) · <b>sometimes</b> (иногда) · <b>rarely</b> (редко) · <b>never</b> (никогда) · <b>ever</b> (когда-либо).<br>
+      Пока просто выпишите их и попробуйте вспомнить какое где место в предложении. На уроке разберём.
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">Урок 1 · August 2026 · 1 / 2</div>
+      </div>
+    </div>
+    <div>Александр · Станислав · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 2 · HOMEWORK ============ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">урок 1 · домашка</div>
+      </div>
+    </div>
+    <div class="kicker">Александр и Станислав · A2 · August 2026</div>
+    <h1 class="title">Домашка · история о себе</h1>
+    <p class="subtitle">Написать 8-10 предложений о себе. Используем то, что сегодня разобрали. Каждый пишет свой текст. Читаем вслух, не про себя.</p>
+  </div>
+
+  <div class="body">
+
+    <h2>Что нужно упомянуть</h2>
+    <ul class="simple">
+      <li>Имя, возраст, где живёте</li>
+      <li>Сколько у вас <b>colleagues</b> на работе</li>
+      <li>Что вы делаете <b>in the evenings</b> — во сколько (a.m. / p.m.)</li>
+      <li>Как часто вы ходите <b>to the gym</b> (twice a week? once a week?)</li>
+      <li>Что делаете <b>when you have some free time</b></li>
+      <li>Что вы <b>would like to</b> сделать в ближайшее время</li>
+      <li>Одну шуточную строчку про <b>adequate</b> (по желанию)</li>
+    </ul>
+
+    <div class="focus-box">
+      <strong>Образец · Александр</strong>
+      <div class="story">
+        <p>My name is Aleksandr. I'm 34 years old. I live in Moscow.</p>
+        <p>I work in sales. I have five colleagues at the office.</p>
+        <p>In the evenings I usually go out around 8 p.m. — sometimes with colleagues, sometimes with my family.</p>
+        <p>I go to the gym twice a week — on Tuesday and on Friday.</p>
+        <p>When I have some free time, I like to read the news or play with my dog.</p>
+        <p>I'd like to travel to Italy this autumn.</p>
+        <p><em>And, honestly — I'm not very adequate after two glasses of wine. So I drink only a little.</em></p>
+      </div>
+    </div>
+
+    <div class="focus-box">
+      <strong>Образец · Станислав</strong>
+      <div class="story">
+        <p>My name is Stanislav. I'm 36 years old. I live in Moscow too.</p>
+        <p>I work in sales. I have a few colleagues at the office — three, actually.</p>
+        <p>In the evenings I usually stay at home. I go out only on Friday, around 9 p.m.</p>
+        <p>I go to the gym three times a week — Monday, Wednesday, Saturday.</p>
+        <p>When I have some free time, I watch football or read.</p>
+        <p>I'd like to speak English better by December.</p>
+        <p><em>I'm not adequate after strong coffee. So — no coffee after 5 p.m.</em></p>
+      </div>
+    </div>
+
+    <h2>Как проверить себя перед следующим уроком</h2>
+    <ul class="simple">
+      <li>Читаете свой текст вслух 3 раза. Не про себя — <b>вслух</b>.</li>
+      <li>Проверьте, что использовали хотя бы <b>4 разные</b> сегодняшние фразы (in the evenings, twice a week, I'd like to, when I have some free time, a few, some, colleagues).</li>
+      <li>Проверьте <b>время</b>: если написали «7» — уточните a.m. или p.m.</li>
+      <li>Проверьте артикли: если существительное упоминается впервые → скорее всего <b>a / an</b>. Если уже знакомо → <b>the</b>.</li>
+    </ul>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">Урок 1 · август 2026 · 2 / 4</div>
+      </div>
+    </div>
+    <div>Александр · Станислав · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 3 · ARTICLES DRILL (5 exercises) ============ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">урок 1 · тренажёр · артикли</div>
+      </div>
+    </div>
+    <div class="kicker">Александр и Станислав · A2 · Articles drill</div>
+    <h1 class="title">Артикли · 5 упражнений</h1>
+    <p class="subtitle">Взяты из премиального курса Grammar Lab (B1) — но в чистом виде, для тренировки на бумаге. Пишете a / an / the / × прямо в пропуск. Ключ ответов внизу — только для самопроверки.</p>
+  </div>
+
+  <div class="body">
+
+    <h2>A.1 · Fill the gap · a / an / the</h2>
+    <div class="rule-mini"><b>Правило §1 · First mention → repeat.</b> Первый раз упомянули — <b>a / an</b>. Второй раз (то же самое) — <b>the</b>.</div>
+    <ol class="drill">
+      <li>This is <span class="blank">?</span> pen. That is a pencil.</li>
+      <li>This is a tree. <span class="blank">?</span> tree is green.</li>
+      <li>I got <span class="blank">?</span> letter from my friend yesterday.</li>
+      <li>… <span class="blank">?</span> letter was long and interesting.</li>
+      <li>He has got <span class="blank">?</span> computer.</li>
+      <li>He is showing me his new computer. <span class="blank">?</span> computer is new.</li>
+      <li>I bought <span class="blank">?</span> new umbrella. But I've already lost it.</li>
+      <li>… <span class="blank">?</span> umbrella was black.</li>
+      <li>Our office is in <span class="blank">?</span> old building near the river.</li>
+      <li>… <span class="blank">?</span> building has three floors and a small garden.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 a · 2 The · 3 a · 4 The · 5 a · 6 The · 7 a · 8 The · 9 an · 10 The</div>
+
+    <h2>A.2 · a / an / × &nbsp;·&nbsp; с неисчисляемыми и множ. числом</h2>
+    <div class="rule-mini"><b>Правило §2 · a / an — только с исчисляемым в единственном числе.</b> С неисчисляемым (meat, water) и с множ. числом (books, cats) — <b>×</b> (пусто).</div>
+    <ol class="drill">
+      <li>This is <span class="blank">?</span> pen.</li>
+      <li>These are <span class="blank">?</span> pencils.</li>
+      <li>This is <span class="blank">?</span> soup.</li>
+      <li>I eat <span class="blank">?</span> sandwich and drink tea in the morning.</li>
+      <li>He never eats <span class="blank">?</span> meat.</li>
+      <li>She bought <span class="blank">?</span> butter and potatoes.</li>
+      <li>Would you like <span class="blank">?</span> coffee?</li>
+      <li>My mother is <span class="blank">?</span> nurse.</li>
+      <li>We saw <span class="blank">?</span> children playing in the yard.</li>
+      <li>He works as <span class="blank">?</span> waiter on Saturdays.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 a · 2 × · 3 × · 4 a · 5 × · 6 × · 7 × · 8 a · 9 × · 10 a</div>
+
+    <h2>A.3 · Article or not? &nbsp;·&nbsp; после «my / two / no / this»</h2>
+    <div class="rule-mini"><b>Правило §3.</b> Если перед существительным уже стоит <em>my / his / her / this / two / no / Peter's</em> — <b>артикль НЕ ставим</b>.</div>
+    <ol class="drill">
+      <li>This is my <span class="blank">?</span> book.</li>
+      <li>They have got two <span class="blank">?</span> cats.</li>
+      <li>Is this your <span class="blank">?</span> pencil?</li>
+      <li>I have no <span class="blank">?</span> idea what to do.</li>
+      <li>My sister's <span class="blank">?</span> husband is a doctor.</li>
+      <li>They know our <span class="blank">?</span> address.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 × · 2 × · 3 × · 4 × · 5 × · 6 ×  &nbsp; (везде × — определитель уже занял позицию артикля)</div>
+
+    <h2>A.4 · a / an / the / × &nbsp;·&nbsp; с прилагательным между</h2>
+    <div class="rule-mini"><b>Правило §4.</b> Прилагательное встаёт между артиклем и существительным — <b>артикль не меняется</b>. <em>a book → a good book → a very good book</em>.</div>
+    <ol class="drill">
+      <li>We have <span class="blank">?</span> large family.</li>
+      <li>My father is <span class="blank">?</span> good engineer.</li>
+      <li>He works in <span class="blank">?</span> large factory.</li>
+      <li>She is <span class="blank">?</span> excellent teacher.</li>
+      <li>It's <span class="blank">?</span> small animal that has long ears.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 a · 2 a · 3 a · 4 an (excellent — на гласный звук!) · 5 a</div>
+
+    <h2>A.5 · the или × &nbsp;·&nbsp; для уникальных предметов</h2>
+    <div class="rule-mini"><b>Правило §5.</b> Уникальное в мире (the sun · the moon · the sky · the earth) или в комнате (the table · the door · the window) — <b>the</b>.</div>
+    <ol class="drill">
+      <li>What's <span class="blank">?</span> weather like today?</li>
+      <li><span class="blank">?</span> sun is yellow.</li>
+      <li><span class="blank">?</span> Earth is a planet.</li>
+      <li>You can't see <span class="blank">?</span> moon in the sky tonight.</li>
+      <li>Put the book on <span class="blank">?</span> table.</li>
+      <li><span class="blank">?</span> sky is blue today.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 the · 2 The · 3 The · 4 the · 5 the · 6 The</div>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">Урок 1 · август 2026 · 3 / 4</div>
+      </div>
+    </div>
+    <div>Александр · Станислав · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 4 · PREPOSITIONS DRILL (3 exercises) ============ -->
+<div class="page">
+
+  <div class="hero">
+    <div class="brandline">
+      <div class="logo">N</div>
+      <div>
+        <div class="brand-name">NEW GENERATION ENGLISH</div>
+        <div class="brand-sub">урок 1 · тренажёр · предлоги</div>
+      </div>
+    </div>
+    <div class="kicker">Александр и Станислав · A2 · Prepositions drill</div>
+    <h1 class="title">Предлоги времени · 3 упражнения</h1>
+    <p class="subtitle">at · on · in — три предлога времени. Правило простое: <b>at</b> — точное время, <b>on</b> — дни и даты, <b>in</b> — большие периоды. Плюс отдельно: <em>on time / in time</em>.</p>
+  </div>
+
+  <div class="body">
+
+    <div class="rule-mini" style="font-size:14px">
+      <b>AT</b> · точное время: <em>at 7 o'clock · at noon · at midnight · at the moment</em><br>
+      <b>ON</b> · дни и даты: <em>on Monday · on 16 May · on my birthday · on Friday morning</em><br>
+      <b>IN</b> · большие периоды: <em>in May · in 2026 · in winter · in the morning</em><br>
+      <b>⚠ Без предлога</b> перед <em>next / last / this / every</em>: <em>next Friday · last summer · this morning · every Monday</em>.
+    </div>
+
+    <h2>P.1 · at, on или in</h2>
+    <ol class="drill">
+      <li>Mozart was born <span class="blank">?</span> Salzburg <span class="blank">?</span> 1756.</li>
+      <li>I've been invited to a wedding <span class="blank">?</span> 14 February.</li>
+      <li>Amy's birthday is <span class="blank">?</span> May.</li>
+      <li>This park gets very busy <span class="blank">?</span> weekends.</li>
+      <li>I last saw Kate <span class="blank">?</span> Tuesday.</li>
+      <li>Jonathan will be retiring <span class="blank">?</span> two years.</li>
+      <li>I'll be with you <span class="blank">?</span> a moment.</li>
+      <li>Sam isn't here <span class="blank">?</span> the moment.</li>
+      <li>There are usually a lot of parties <span class="blank">?</span> New Year's Eve.</li>
+      <li>I try to avoid going out <span class="blank">?</span> night.</li>
+      <li>My car will be ready <span class="blank">?</span> two hours.</li>
+      <li>They always go out for dinner <span class="blank">?</span> their wedding anniversary.</li>
+      <li><span class="blank">?</span> midday, the sun is at its highest point.</li>
+      <li>The office is closed <span class="blank">?</span> Wednesday afternoons.</li>
+      <li>Many people go home <span class="blank">?</span> Christmas.</li>
+      <li>My flight arrives <span class="blank">?</span> 5 o'clock <span class="blank">?</span> the morning.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 in / in · 2 on · 3 in · 4 at · 5 on · 6 in · 7 in · 8 at · 9 on · 10 at · 11 in · 12 on · 13 At · 14 on · 15 at · 16 at / in</div>
+
+    <h2>P.2 · какой вариант верный: a, b или оба?</h2>
+    <p class="section-lead" style="font-size:12.5px;color:var(--muted);margin:0 0 8px">Осторожно с фразами <em>on next / in last / at the same time / on the weekend</em>.</p>
+    <ol class="drill">
+      <li>(a) I'll see you <b>on</b> Friday. &nbsp;·&nbsp; (b) I'll see you Friday. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) I'll see you <b>on next</b> Friday. &nbsp;·&nbsp; (b) I'll see you <b>next</b> Friday. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) Paul got married <b>in</b> April. &nbsp;·&nbsp; (b) Paul got married April. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) I play tennis <b>on</b> Sunday mornings. &nbsp;·&nbsp; (b) I play tennis Sunday mornings. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) We were ill <b>at</b> the same time. &nbsp;·&nbsp; (b) We were ill <b>in</b> the same time. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) <b>at</b> the weekend? &nbsp;·&nbsp; (b) <b>on</b> the weekend? &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) Oliver was born <b>at</b> 10 May 1993. &nbsp;·&nbsp; (b) Oliver was born <b>on</b> 10 May 1993. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) He left school <b>last</b> June. &nbsp;·&nbsp; (b) He left school <b>in last</b> June. &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) Will you be here <b>on</b> Tuesday? &nbsp;·&nbsp; (b) Will you be here Tuesday? &nbsp; &nbsp; <span class="blank">?</span></li>
+      <li>(a) I don't like driving <b>in</b> night. &nbsp;·&nbsp; (b) I don't like driving <b>at</b> night. &nbsp; &nbsp; <span class="blank">?</span></li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 both · 2 b · 3 a · 4 both · 5 a · 6 both · 7 b · 8 a · 9 both · 10 b</div>
+
+    <h2>P.3 · on time или in time</h2>
+    <div class="rule-mini">
+      <b>on time</b> — <em>вовремя, по расписанию</em>. «The train left on time.»<br>
+      <b>in time (for something)</b> — <em>успел, до начала</em>. «Will you be home in time for dinner?»
+    </div>
+    <ol class="drill">
+      <li>The bus is usually <span class="blank">?</span>, but it was late this morning.</li>
+      <li>The film didn't begin <span class="blank">?</span>.</li>
+      <li>The trains are rarely <span class="blank">?</span>.</li>
+      <li>We got to the station just <span class="blank">?</span>.</li>
+      <li>We want to start the meeting <span class="blank">?</span>.</li>
+      <li>I hope the shirt will be dry <span class="blank">?</span>.</li>
+      <li>I remembered Joe's birthday <span class="blank">?</span>.</li>
+      <li>Why are you never <span class="blank">?</span>?</li>
+      <li>The new stadium will be ready <span class="blank">?</span> for the tournament.</li>
+    </ol>
+    <div class="answers"><b>Ключ:</b> 1 on time · 2 on time · 3 on time · 4 in time · 5 on time · 6 in time · 7 in time · 8 on time · 9 in time</div>
+
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">
+      <div class="logo">N</div>
+      <div>
+        <div class="foot-name">NEW GENERATION ENGLISH</div>
+        <div class="foot-sub">Урок 1 · август 2026 · 4 / 4</div>
+      </div>
+    </div>
+    <div>Александр · Станислав · 28 · 07 · 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

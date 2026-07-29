@@ -2049,6 +2049,21 @@ window.NGE_DATA = {
       "lessons_in_package": 8,
       "subscription_month": "август 2026",
       "lessons_used_this_month": 0,
+      "materials": {
+        "folder": "documents/_v/alexander-stanislav-group-aug",
+        "files": [
+          {
+            "name": "konspekt-01-first-lesson.html",
+            "label": "📖 Конспект урока 1 · слова, фразы, время, домашка + тренажёры на артикли и предлоги",
+            "audience": "student"
+          },
+          {
+            "label": "💼 Business First Meeting — Lab-модуль к 1-му уроку",
+            "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/business-first-meeting/",
+            "audience": "student"
+          }
+        ]
+      },
       "lessons": [
         {
           "date": "2026-08-04",
