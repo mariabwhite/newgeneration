@@ -1009,10 +1009,11 @@ window.NGE_DATA = {
       "name": "Катя Жижина",
       "level": "A2",
       "format": "индивидуально",
-      "schedule": "понедельник 16:00",
+      "schedule": "пятница 12:00",
       "price_per_lesson": 2500,
-      "monthly_package": 10000,
-      "payment_status": "Оплачено",
+      "monthly_package": 12500,
+      "payment_status": "🟢 Абонемент оплачен · 1/5",
+      "payment_note": "🟢 Абонемент 5 × 2 500 ₽ = 12 500 ₽ · пятницы 12:00 · старт 01.08 · 1 из 5 проведено (вводный 27.07 засчитан первым).",
       "payments": [
         {
           "month": "Июль 2026",
@@ -1020,16 +1021,24 @@ window.NGE_DATA = {
           "amount": "2 500 ₽",
           "status": "paid",
           "date": "27.07.2026",
-          "note": "Вводный урок · разово. Абонемент 4 × 2 500 обсуждается после вводного."
+          "note": "Вводный урок · разово. После вводного родитель взял абонемент 5 × 2 500 ₽."
+        },
+        {
+          "month": "Август 2026",
+          "package": "5 занятий × 2 500 ₽",
+          "amount": "12 500 ₽",
+          "status": "paid",
+          "date": "29.07.2026",
+          "note": "🟢 Абонемент оплачен · пятницы 12:00 · вводный 27.07 засчитан первым (1/5)."
         }
       ],
       "is_adult": false,
       "parent_name": "Александра",
       "pin": "7375",
-      "lessons_in_package": 1,
-      "subscription_month": "2026-07",
+      "lessons_in_package": 5,
+      "subscription_month": "2026-08",
       "lessons_used_this_month": 1,
-      "summer_plan_note": "Старт со вводного 27.07.2026 · перспектива ВШЭ биохим",
+      "summer_plan_note": "🟢 Абонемент оплачен (5 × 2 500 = 12 500 ₽) · пятницы 12:00 · 1 из 5 (вводный 27.07 засчитан) · перспектива ВШЭ биохим.",
       "stability_note": "",
       "telemost_url": "https://telemost.yandex.ru/j/54421955698303",
       "lessons": [
@@ -1046,7 +1055,7 @@ window.NGE_DATA = {
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
         {
-          "date": "2026-08-03",
+          "date": "2026-08-01",
           "num": 2,
           "status": "planned",
           "topic": "Books and Harry Potter (Prisoner of Azkaban) — Sirius Black, Dementors, Boggart, Time-Turner + Types of books + author adjectives",
@@ -1055,6 +1064,27 @@ window.NGE_DATA = {
             "module_title": "📚 Открыть · Books and Harry Potter",
             "text": "Литературный урок · Катина любимая POA. Types of books (12 flip-cards), author adjectives, pairwork discussion Student A/B, Sirius Black монолог + Harry-Sirius диалог, Dementors on the train reading, Marauder's Map vocab quest (10 flip-cards с личными вопросами). Palette Whispering Library — violet + gold + parchment."
           },
+          "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
+        },
+        {
+          "date": "2026-08-08",
+          "num": 3,
+          "status": "planned",
+          "topic": "Тема уточняется",
+          "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
+        },
+        {
+          "date": "2026-08-15",
+          "num": 4,
+          "status": "planned",
+          "topic": "Тема уточняется",
+          "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
+        },
+        {
+          "date": "2026-08-22",
+          "num": 5,
+          "status": "planned",
+          "topic": "Тема уточняется · закрытие августовского абонемента",
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         }
       ],
