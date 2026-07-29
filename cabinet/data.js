@@ -1013,7 +1013,7 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "monthly_package": 12500,
       "payment_status": "🟢 Абонемент оплачен · 1/5",
-      "payment_note": "🟢 Абонемент 5 × 2 500 ₽ = 12 500 ₽ · пятницы 12:00 · старт 01.08 · 1 из 5 проведено (вводный 27.07 засчитан первым).",
+      "payment_note": "🟢 Абонемент 5 × 2 500 ₽ = 12 500 ₽ · пятницы 12:00 · старт 31.07 · 1 из 5 проведено (вводный 27.07 засчитан первым).",
       "payments": [
         {
           "month": "Июль 2026",
@@ -1024,12 +1024,12 @@ window.NGE_DATA = {
           "note": "Вводный урок · разово. После вводного родитель взял абонемент 5 × 2 500 ₽."
         },
         {
-          "month": "Август 2026",
+          "month": "Июль–август 2026",
           "package": "5 занятий × 2 500 ₽",
           "amount": "12 500 ₽",
           "status": "paid",
           "date": "29.07.2026",
-          "note": "🟢 Абонемент оплачен · пятницы 12:00 · вводный 27.07 засчитан первым (1/5)."
+          "note": "🟢 Абонемент оплачен · пятницы 12:00 (31.07 · 07.08 · 14.08 · 21.08) · вводный 27.07 засчитан первым (1/5)."
         }
       ],
       "is_adult": false,
@@ -1055,7 +1055,7 @@ window.NGE_DATA = {
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
         {
-          "date": "2026-08-01",
+          "date": "2026-07-31",
           "num": 2,
           "status": "planned",
           "topic": "Books and Harry Potter (Prisoner of Azkaban) — Sirius Black, Dementors, Boggart, Time-Turner + Types of books + author adjectives",
@@ -1067,24 +1067,24 @@ window.NGE_DATA = {
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
         {
-          "date": "2026-08-08",
+          "date": "2026-08-07",
           "num": 3,
           "status": "planned",
           "topic": "Тема уточняется",
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
         {
-          "date": "2026-08-15",
+          "date": "2026-08-14",
           "num": 4,
           "status": "planned",
           "topic": "Тема уточняется",
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
         {
-          "date": "2026-08-22",
+          "date": "2026-08-21",
           "num": 5,
           "status": "planned",
-          "topic": "Тема уточняется · закрытие августовского абонемента",
+          "topic": "Тема уточняется · закрытие абонемента",
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         }
       ],
@@ -2091,6 +2091,11 @@ window.NGE_DATA = {
             "label": "💼 Business First Meeting — Lab-модуль к 1-му уроку",
             "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/business-first-meeting/",
             "audience": "student"
+          },
+          {
+            "name": "l2-small-talk/index.html",
+            "label": "🎤 L2 · Small Talk & Continued — 12 блоков + 11 устных · айпад-урок с озвучкой",
+            "audience": "student"
           }
         ]
       },
@@ -2105,7 +2110,16 @@ window.NGE_DATA = {
             "module_title": "💼 Открыть · Business First Meeting"
           }
         },
-        { "date": "2026-08-07", "num": 2, "status": "planned", "topic": "Тема уточняется" },
+        {
+          "date": "2026-08-07",
+          "num": 2,
+          "status": "planned",
+          "topic": "📍 Офис Дунаевского, 7 · 14:00 · 🎤 Small Talk & Continued — приветствия, слова, места-куда-ходим, Present Simple, Would you like, time, some/any, артикли, adverbs of frequency, prepositions of time, I'd like to · 12 блоков + 11 устных",
+          "homework": {
+            "module_url": "documents/_v/alexander-stanislav-group-aug/l2-small-talk/",
+            "module_title": "🎤 Открыть · L2 · Small Talk & Continued"
+          }
+        },
         { "date": "2026-08-11", "num": 3, "status": "planned", "topic": "Тема уточняется" },
         { "date": "2026-08-14", "num": 4, "status": "planned", "topic": "Тема уточняется" },
         { "date": "2026-08-18", "num": 5, "status": "planned", "topic": "Тема уточняется" },
