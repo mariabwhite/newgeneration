@@ -2048,7 +2048,7 @@ window.NGE_DATA = {
       "pin": "3801",
       "lessons_in_package": 8,
       "subscription_month": "август 2026",
-      "lessons_used_this_month": 0,
+      "lessons_used_this_month": 1,
       "materials": {
         "folder": "documents/_v/alexander-stanislav-group-aug",
         "files": [
