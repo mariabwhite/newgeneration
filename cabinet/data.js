@@ -630,7 +630,7 @@ window.NGE_DATA = {
                       "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
                       "homework": {
                             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-                            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+                            "module_title": "🌸 Рабочая тетрадь"
                       }
                 },
                 {
@@ -640,7 +640,7 @@ window.NGE_DATA = {
                       "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 / Task 4 прогон",
                       "homework": {
                             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                            "module_title": "📚 Открыть Russian History · Exam Simulator"
+                            "module_title": "📚 Exam Simulator"
                       }
                 },
                 {
@@ -650,7 +650,7 @@ window.NGE_DATA = {
                       "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
                       "homework": {
                             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-                            "module_title": "🇷🇺 Открыть Russia · My Homeland"
+                            "module_title": "🇷🇺 Russia · My Homeland"
                       }
                 }
           ],
