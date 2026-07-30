@@ -1823,13 +1823,13 @@ window.NGE_DATA = {
           }
         },
         {
-          "date": "2026-07-26",
+          "date": "2026-07-30",
           "num": 12,
-          "status": "planned",
-          "topic": "🎯 Questions · Deep Dive — продолжение · закрытие июльского абонемента",
+          "status": "completed",
+          "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (Italy segment) · travel-lexicon + reading + speaking",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
-            "module_title": "🎯 Открыть · Questions · Deep Dive"
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
+            "module_title": "🍝 Eat, Pray, Love · Italy"
           }
         }
       ]
