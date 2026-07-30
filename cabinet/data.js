@@ -587,200 +587,207 @@ window.NGE_DATA = {
       }
     },
     {
-      "id": "daniella-libova",
-      "notion_id": "34d7364c-ba79-81af-9ba9-f423aede5524",
-      "name": "Даниэлла Либова",
-      "level": "B2+",
-      "format": "индивидуально",
-      "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
-      "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
-      "price_per_lesson": 2500,
-      "lessons_in_package": 3,
-      "subscription_month": "2026-07",
-      "lessons_used_this_month": 1,
-      "summer_plan_note": "Новая неделя · мини-блок 3 урока (30.07 сегодня · 31.07 · 02.08). Прошлый интенсив 10/10 закрыт.",
-      "stability_note": "",
-      "payment_status": "Оплачено",
-      "payment_note": "",
-      "payments": [
-        {
-          "month": "Интенсив · 10 уроков",
-          "package": "10 × 2 500 ₽",
-          "amount": "25 000 ₽",
-          "status": "paid",
-          "date": "26.06.2026",
-          "note": "Интенсив · 26.06 → 24.07 · 9 / 10 проведено · остался перенос 24.07"
-        },
-        {
-          "month": "Следующий блок · 10 уроков",
-          "package": "10 × 2 500 ₽",
-          "amount": "25 000 ₽",
-          "status": "due",
-          "date": "",
-          "note": "К оплате за следующий блок 10 уроков."
-        }
-      ],
-      "parent_name": "Либова Юлия Игоревна",
-      "pin": "5376",
-      "lessons": [
-        {
-          "date": "2026-06-26",
-          "num": 1,
-          "status": "completed",
-          "topic": "Russia · dancing + общая ревизия страноведения",
-          "homework": {
-            "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-            "module_title": "Russia · My Homeland"
-          }
-        },
-        {
-          "date": "2026-06-29",
-          "num": 2,
-          "status": "completed",
-          "topic": "History of Russia + Saint Petersburg",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-            "module_title": "Russia · My Homeland"
-          }
-        },
-        {
-          "date": "2026-07-05",
-          "num": 3,
-          "status": "completed",
-          "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-            "module_title": "Russia · My Homeland"
-          }
-        },
-        {
-          "date": "2026-07-03",
-          "num": 4,
-          "status": "completed",
-          "topic": "ЕГЭ-формат (Word Formation / Speaking)"
-        },
-        {
-          "date": "2026-07-07",
-          "num": 5,
-          "status": "completed",
-          "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-            "module_title": "📚 Открыть Dana's Russia · History Exam"
-          }
-        },
-        {
-          "date": "2026-07-09",
-          "num": 6,
-          "status": "completed",
-          "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-            "module_title": "📚 Открыть Dana's Russia · History Exam"
-          }
-        },
-        {
-          "date": "2026-07-10",
-          "num": 7,
-          "status": "missed",
-          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
-        },
-        {
-          "date": "2026-07-14",
-          "num": 8,
-          "status": "completed",
-          "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена · повторный прогон",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-            "module_title": "📚 Открыть Dana's Russia · History Exam"
-          }
-        },
-        {
-          "date": "2026-07-17",
-          "num": 9,
-          "status": "completed",
-          "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
-          "homework": {
-            "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
-          }
-        },
-        {
-          "date": "2026-07-21",
-          "num": 10,
-          "status": "completed",
-          "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов",
-          "homework": {
-            "text": "Пройти Russian History · Exam Simulator ещё раз в тренажёрном режиме — все секции с ✓ Check. Особое внимание на Task 3 (5 вопросов) и Task 4 (сравнение фото · 12–15 фраз). Word Formation review — прогнать ошибочные пары.",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-            "module_title": "📚 Открыть Russian History · Exam Simulator"
-          }
-        },
-        {
-          "date": "2026-07-24",
-          "num": 11,
-          "status": "planned",
-          "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
-        },
-        {
-          "date": "2026-07-30",
-          "num": 12,
-          "status": "completed",
-          "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
-          }
-        },
-        {
-          "date": "2026-07-31",
-          "num": 13,
-          "status": "planned",
-          "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 / Task 4 прогон",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-            "module_title": "📚 Открыть Russian History · Exam Simulator"
-          }
-        },
-        {
-          "date": "2026-08-02",
-          "num": 14,
-          "status": "planned",
-          "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-            "module_title": "🇷🇺 Открыть Russia · My Homeland"
-          }
-        }
-      ],
-      "materials": {
-        "folder": "documents/_v/daniella-libova",
-        "note": "Личные материалы Даны: отчёт за июль (свежий), отчёт за июнь, конспект года и план интенсива. Клик — открыть в новой вкладке.",
-        "files": [
-          {
-            "name": "report-libova-2026-07.html",
-            "label": "📄 Отчёт за июль 2026 (для мамы) · интенсив 9/10",
-            "audience": "parent"
+          "id": "daniella-libova",
+          "notion_id": "34d7364c-ba79-81af-9ba9-f423aede5524",
+          "name": "Даниэлла Либова",
+          "level": "B2+",
+          "format": "индивидуально",
+          "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
+          "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
+          "price_per_lesson": 2500,
+          "lessons_in_package": 3,
+          "subscription_month": "2026-07",
+          "lessons_used_this_month": 1,
+          "summer_plan_note": "Новая неделя · мини-блок 3 урока (30.07 сегодня · 31.07 · 02.08). Прошлый интенсив 10/10 закрыт.",
+          "stability_note": "",
+          "payment_status": "Оплачено",
+          "payment_note": "",
+          "payments": [
+                {
+                      "month": "Интенсив · 10 уроков",
+                      "package": "10 × 2 500 ₽",
+                      "amount": "25 000 ₽",
+                      "status": "paid",
+                      "date": "26.06.2026",
+                      "note": "Интенсив · 26.06 → 24.07 · 9 / 10 проведено · остался перенос 24.07"
+                },
+                {
+                      "month": "Следующий блок · 10 уроков",
+                      "package": "10 × 2 500 ₽",
+                      "amount": "25 000 ₽",
+                      "status": "due",
+                      "date": "",
+                      "note": "К оплате за следующий блок 10 уроков."
+                }
+          ],
+          "parent_name": "Либова Юлия Игоревна",
+          "pin": "5376",
+          "lessons": [
+                {
+                      "date": "2026-07-30",
+                      "num": 1,
+                      "status": "completed",
+                      "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
+                      "homework": {
+                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+                            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+                      }
+                },
+                {
+                      "date": "2026-07-31",
+                      "num": 2,
+                      "status": "planned",
+                      "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 / Task 4 прогон",
+                      "homework": {
+                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                            "module_title": "📚 Открыть Russian History · Exam Simulator"
+                      }
+                },
+                {
+                      "date": "2026-08-02",
+                      "num": 3,
+                      "status": "planned",
+                      "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
+                      "homework": {
+                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                            "module_title": "🇷🇺 Открыть Russia · My Homeland"
+                      }
+                }
+          ],
+          "materials": {
+                "folder": "documents/_v/daniella-libova",
+                "note": "Личные материалы Даны: отчёт за июль (свежий), отчёт за июнь, конспект года и план интенсива. Клик — открыть в новой вкладке.",
+                "files": [
+                      {
+                            "name": "report-libova-2026-07.html",
+                            "label": "📄 Отчёт за июль 2026 (для мамы) · интенсив 9/10",
+                            "audience": "parent"
+                      },
+                      {
+                            "name": "report-libova-2026-06.pdf",
+                            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+                            "audience": "parent"
+                      },
+                      {
+                            "name": "B1-EGE-Dana-conspect-2026.pdf",
+                            "label": "📘 Конспект года · B1+ ЕГЭ · 17 глав (+Russia overview · geography · Peter I & Hermitage)",
+                            "audience": "all"
+                      },
+                      {
+                            "name": "daniella-intensive-plan-10-lessons.pdf",
+                            "label": "🗓 План интенсива · 10 уроков (26.06 → 24.07) · 9 / 10 проведено",
+                            "audience": "parent"
+                      }
+                ]
           },
-          {
-            "name": "report-libova-2026-06.pdf",
-            "label": "📄 Отчёт за июнь 2026 (для мамы)",
-            "audience": "parent"
-          },
-          {
-            "name": "B1-EGE-Dana-conspect-2026.pdf",
-            "label": "📘 Конспект года · B1+ ЕГЭ · 17 глав (+Russia overview · geography · Peter I & Hermitage)",
-            "audience": "all"
-          },
-          {
-            "name": "daniella-intensive-plan-10-lessons.pdf",
-            "label": "🗓 План интенсива · 10 уроков (26.06 → 24.07) · 9 / 10 проведено",
-            "audience": "parent"
-          }
-        ]
-      }
+          "archived_packages": [
+                {
+                      "label": "Интенсив · 10 уроков · 26.06 → 24.07",
+                      "lessons": [
+                            {
+                                  "date": "2026-06-26",
+                                  "num": 1,
+                                  "status": "completed",
+                                  "topic": "Russia · dancing + общая ревизия страноведения",
+                                  "homework": {
+                                        "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                                        "module_title": "Russia · My Homeland"
+                                  }
+                            },
+                            {
+                                  "date": "2026-06-29",
+                                  "num": 2,
+                                  "status": "completed",
+                                  "topic": "History of Russia + Saint Petersburg",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                                        "module_title": "Russia · My Homeland"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-05",
+                                  "num": 3,
+                                  "status": "completed",
+                                  "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                                        "module_title": "Russia · My Homeland"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-03",
+                                  "num": 4,
+                                  "status": "completed",
+                                  "topic": "ЕГЭ-формат (Word Formation / Speaking)"
+                            },
+                            {
+                                  "date": "2026-07-07",
+                                  "num": 5,
+                                  "status": "completed",
+                                  "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-09",
+                                  "num": 6,
+                                  "status": "completed",
+                                  "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-10",
+                                  "num": 7,
+                                  "status": "missed",
+                                  "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
+                            },
+                            {
+                                  "date": "2026-07-14",
+                                  "num": 8,
+                                  "status": "completed",
+                                  "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена · повторный прогон",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-17",
+                                  "num": 9,
+                                  "status": "completed",
+                                  "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
+                                  "homework": {
+                                        "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+                                        "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-21",
+                                  "num": 10,
+                                  "status": "completed",
+                                  "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов",
+                                  "homework": {
+                                        "text": "Пройти Russian History · Exam Simulator ещё раз в тренажёрном режиме — все секции с ✓ Check. Особое внимание на Task 3 (5 вопросов) и Task 4 (сравнение фото · 12–15 фраз). Word Formation review — прогнать ошибочные пары.",
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                                        "module_title": "📚 Открыть Russian History · Exam Simulator"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-24",
+                                  "num": 11,
+                                  "status": "planned",
+                                  "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
+                            }
+                      ]
+                }
+          ]
     },
     {
       "id": "denis-shalmanov",
