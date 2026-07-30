@@ -2110,8 +2110,8 @@ window.NGE_DATA = {
         {
           "date": "2026-07-30",
           "num": 11,
-          "status": "planned",
-          "topic": "📚 Articles & Prepositions · Deep Dive",
+          "status": "completed",
+          "topic": "📚 Articles · закрытие темы · последний урок июля",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
             "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
