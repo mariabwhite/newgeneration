@@ -595,10 +595,10 @@ window.NGE_DATA = {
       "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
       "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
       "price_per_lesson": 2500,
-      "lessons_in_package": 10,
-      "subscription_month": "2026-06",
-      "lessons_used_this_month": 9,
-      "summer_plan_note": "Интенсив-абонемент 10 уроков · старт 26.06 · проведено 9 / 10 · остался перенос 24.07 (Great Patriotic War · миссед 10.07).",
+      "lessons_in_package": 3,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 1,
+      "summer_plan_note": "Новая неделя · мини-блок 3 урока (30.07 сегодня · 31.07 · 02.08). Прошлый интенсив 10/10 закрыт.",
       "stability_note": "",
       "payment_status": "Оплачено",
       "payment_note": "",
@@ -723,6 +723,28 @@ window.NGE_DATA = {
           "num": 11,
           "status": "planned",
           "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
+        },
+        {
+          "date": "2026-07-30",
+          "num": 12,
+          "status": "completed",
+          "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+            "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+          }
+        },
+        {
+          "date": "2026-07-31",
+          "num": 13,
+          "status": "planned",
+          "topic": "тема уточняется"
+        },
+        {
+          "date": "2026-08-02",
+          "num": 14,
+          "status": "planned",
+          "topic": "тема уточняется"
         }
       ],
       "materials": {
