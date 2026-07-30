@@ -439,7 +439,7 @@ window.NGE_DATA = {
       "monthly_package": 8000,
       "lessons_in_package": 4,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 3,
+      "lessons_used_this_month": 4,
       "payment_status": "Оплачено",
       "payment_note": "",
       "payments": [
@@ -449,7 +449,7 @@ window.NGE_DATA = {
           "amount": "8 000 ₽",
           "status": "paid",
           "date": "01.07.2026",
-          "note": "Летний блок · 3 / 4 проведено"
+          "note": "Летний блок · 4 / 4 отработано · закрыт"
         },
         {
           "month": "Июнь 2026",
@@ -461,7 +461,7 @@ window.NGE_DATA = {
         }
       ],
       "stability_note": "",
-      "summer_plan_note": "📅 Июль 2026 · Voyager L3 + L4 (финал серии). Абонемент 4 урока × 2 000 ₽ = 8 000 ₽. Расписание сохраняется: вторник 15:00, 90 мин. С сентября — плановое повышение ставки до 2 500 ₽ за занятие.",
+      "summer_plan_note": "📅 Июль 2026 · Voyager L1–L4 закрыто 🎉. Абонемент 4/4 отработан. С понедельника — оплата следующего блока. С сентября — плановое повышение ставки до 2 500 ₽.",
       "parent_name": "Подлесных Татьяна Анатольевна",
       "pin": "7670",
       "lessons": [
@@ -555,8 +555,8 @@ window.NGE_DATA = {
         {
           "date": "2026-07-29",
           "num": 8,
-          "status": "planned",
-          "topic": "✉️ Voyager L4 · The Letter Arrived (первый раз) — Day 42 · FATHER · финал арки",
+          "status": "completed",
+          "topic": "✉️ Voyager L4 · The Letter Arrived — Day 42 · FATHER · финал серии Voyager · закрытие июльского абонемента 4/4",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b2-plus/voyager-l4-letter-arrived/",
             "module_title": "✉️ Открыть Voyager L4 · The Letter Arrived",
