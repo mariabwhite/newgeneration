@@ -241,10 +241,10 @@ window.NGE_DATA = {
       "schedule": "понедельник 13:00 / четверг 13:00 / воскресенье 12:00",
       "goal": "Tom Sawyer (адаптированный B1) + Travelling (страны, аэропорт, ролевые) + Past Simple irregular в активной речи",
       "price_per_lesson": 2500,
-      "lessons_in_package": 9,
+      "lessons_in_package": 12,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 8,
-      "summer_plan_note": "Июль 2026 · 9 уроков · 8 проведено · 1 остался (28.07 — под вопросом переноса на сентябрь).",
+      "lessons_used_this_month": 11,
+      "summer_plan_note": "Июль 2026 · 11 из 12 занятий проведено, 31.07 в графике.",
       "payment_status": "Оплачено",
       "payment_note": "",
       "parent_name": "Протасова Мария Петровна",
@@ -401,13 +401,28 @@ window.NGE_DATA = {
         {
           "date": "2026-07-28",
           "num": 16,
-          "status": "planned",
-          "topic": "🏴‍☠️ Treasure Island · Act 2 — The Apple Barrel (заговор на борту) · 🟡 перенос-оплачено",
+          "status": "completed",
+          "topic": "🏴‍☠️ Treasure Island · Act 2 — The Apple Barrel (заговор на борту)",
           "homework": {
             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/treasure-island-three-acts/",
-            "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures",
-            "text": "🟡 Оплачено · перенос на понедельник 28.07 в 13:00. Продолжаем Treasure Island, Act 2."
+            "module_title": "🏴‍☠️ Открыть Treasure Island · Three Adventures"
           }
+        },
+        {
+          "date": "2026-07-30",
+          "num": 17,
+          "status": "completed",
+          "topic": "✈️ Travel Talk · Hotel Check-in — заезд в отель, вопросы reception, ключевые фразы",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-hotel-checkin/?theme=light-lab&lang=ru",
+            "module_title": "✈️ Открыть Travel Talk · Hotel Check-in"
+          }
+        },
+        {
+          "date": "2026-07-31",
+          "num": 18,
+          "status": "planned",
+          "topic": "🕐 13:00 · тема уточняется — заключительный урок июльского абонемента"
         }
       ]
     },
@@ -2259,6 +2274,20 @@ window.NGE_DATA = {
       "short_message": "Юля занимается в игровом формате. Главный прогресс — узнавание английского в понятных ситуациях, реакция на команды и повторение коротких фраз.",
       "content": "# Краткий вывод\n\nЮля занимается в игровом формате: движение, картинки, персонажи, игрушки и короткие повторяющиеся фразы.\n\n# Следующий фокус\n\nBody and face, This is my..., I have..., He/She/It has..., feelings, animals, actions.",
       "notion_url": "https://www.notion.so/35a7364cba79819c9339d3c4f4953e46"
+    }
+,
+    {
+          "id": "2026-07-fedor-protasov-parent",
+          "student_id": "fedor-protasov",
+          "month": "2026-07",
+          "month_label": "июль 2026",
+          "type": "parent report",
+          "recipient": "Протасова Мария Петровна",
+          "status": "sent",
+          "title": "2026-07 — Фёдор Протасов — parent report",
+          "short_message": "Мария Петровна, добрый день! Июль: закрыли всю серию Tom Sawyer (7 актов + рабочая тетрадь), стартовали Treasure Island, прошли три Travel Talk (Light & Bright, Night Edition, Hotel Check-in). 11 из 12 занятий закрыты по плану, 31.07 запланирован. Федя старается, прогресс есть. Работаем над самостоятельностью и разговорной речью.",
+          "content": "Добрый день!\n\nОтправляю отчёт по занятиям **Фёдора** за июль 2026.\n\n# Календарь занятий — июль (12 уроков)\n\n- **02.07** — Tom Sawyer Act 5 · финал первой серии + Past Simple irregular drill\n- **05.07** — Travel Talk · Light & Bright 2 · Night Edition\n- **07.07** — Travel Talk · Light & Bright (открытие travel-серии)\n- **09.07** — Travel Talk · Light & Bright 2 · закрепление ночной программы\n- **10.07** — Tom Sawyer Act 6 · Blood Oath & Trial (показания после Muff Potter)\n- **12.07** — Tom Sawyer · финальная глава серии Three Adventures\n- **14.07** — Tom Sawyer · Рабочая тетрадь (vocab всей серии + Murphy B1 grammar + story MCQ)\n- **16.07** — Treasure Island Act 1 · The Black Spot (открытие новой серии)\n- **28.07** — Treasure Island Act 2 · The Apple Barrel (заговор на борту)\n- **30.07** — Travel Talk · Hotel Check-in (заезд в отель, reception-диалоги)\n- **31.07** — *запланирован, 13:00*\n\n11 из 12 занятий проведено, 1 в графике.\n\n# По прогрессу\n\nУ Феди есть прогресс. Он старается говорить, использует простые фразы.\n\n# Зоны роста\n\n- Работаем над простыми фразами\n- Делаем разговорную речь — учимся выражать мысль своими словами\n- Читаем, строим фразу, пересказываем прочитанное\n\n# Спасибо\n\nБольшое вам спасибо за доверие. Федя мне сказал, что летом занимался только английским — это замечательно.\n\nБольшое спасибо, Мария Петровна, за ваше постоянное сотрудничество. Федя молодец, старается, преодолевает лень.\n\nВ августе будем так же читать книжки, обсуждать путешествия. Хочу попробовать заставить его разговаривать самостоятельно.",
+          "notion_url": ""
     }
   ],
   "labModules": [
