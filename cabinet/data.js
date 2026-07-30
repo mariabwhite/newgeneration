@@ -738,13 +738,21 @@ window.NGE_DATA = {
           "date": "2026-07-31",
           "num": 13,
           "status": "planned",
-          "topic": "тема уточняется"
+          "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 / Task 4 прогон",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+            "module_title": "📚 Открыть Russian History · Exam Simulator"
+          }
         },
         {
           "date": "2026-08-02",
           "num": 14,
           "status": "planned",
-          "topic": "тема уточняется"
+          "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+            "module_title": "🇷🇺 Открыть Russia · My Homeland"
+          }
         }
       ],
       "materials": {
