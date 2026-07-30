@@ -1848,276 +1848,203 @@ window.NGE_DATA = {
           ]
     },
     {
-      "id": "timofey",
-      "materials": {
-        "folder": "documents/_v/timofey",
-        "note": "",
-        "files": [
-          {
-            "name": "A2-Timofey-conspect-2026.pdf",
-            "label": "📘 Конспект пилотного месяца · 12 глав (Trial + Trainer-01/02/03 + разбор письма 06.07 + план Trainer-04)",
-            "audience": "all"
+          "id": "timofey",
+          "materials": {
+                "folder": "documents/_v/timofey",
+                "note": "",
+                "files": [
+                      {
+                            "name": "A2-Timofey-conspect-2026.pdf",
+                            "label": "📘 Конспект пилотного месяца · 12 глав (Trial + Trainer-01/02/03 + разбор письма 06.07 + план Trainer-04)",
+                            "audience": "all"
+                      },
+                      {
+                            "name": "report-timofey-2026-06.pdf",
+                            "label": "📄 Отчёт за июнь 2026",
+                            "audience": "all"
+                      }
+                ],
+                "external_links": [
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-trainer-01/",
+                            "label": "📘 Workbook 01 · 22 июн · Present tenses · -ing · said/told",
+                            "audience": "all"
+                      },
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-trainer-02/",
+                            "label": "📕 Workbook 02 · 29 июн · Past Tenses · irregular verbs",
+                            "audience": "all"
+                      },
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
+                            "label": "📖 Practical English · Day 1 · 02 июл · интерактивный урок + Homework A–J",
+                            "audience": "all"
+                      },
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-04-workbook/",
+                            "label": "📚 Workbook 04 · 07 июл · Practical English · Day 2 · 12 блоков",
+                            "audience": "all"
+                      },
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-05-workbook/",
+                            "label": "📚 Workbook 05 · 14 июл · Practical English · Day 3 · все настоящие + will + going to",
+                            "audience": "all"
+                      },
+                      {
+                            "url": "../lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
+                            "label": "🎯 Deep Dive 06 · Verb TO BE · 5 units + mega mix (79 items) · 19 июл — фундамент, проходить по 1 юниту в день",
+                            "audience": "all"
+                      }
+                ]
           },
-          {
-            "name": "report-timofey-2026-06.pdf",
-            "label": "📄 Отчёт за июнь 2026",
-            "audience": "all"
-          }
-        ],
-        "external_links": [
-          {
-            "url": "../lingua-boost-lab/practice/timofey-trainer-01/",
-            "label": "📘 Workbook 01 · 22 июн · Present tenses · -ing · said/told",
-            "audience": "all"
-          },
-          {
-            "url": "../lingua-boost-lab/practice/timofey-trainer-02/",
-            "label": "📕 Workbook 02 · 29 июн · Past Tenses · irregular verbs",
-            "audience": "all"
-          },
-          {
-            "url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
-            "label": "📖 Practical English · Day 1 · 02 июл · интерактивный урок + Homework A–J",
-            "audience": "all"
-          },
-          {
-            "url": "../lingua-boost-lab/practice/timofey-04-workbook/",
-            "label": "📚 Workbook 04 · 07 июл · Practical English · Day 2 · 12 блоков",
-            "audience": "all"
-          },
-          {
-            "url": "../lingua-boost-lab/practice/timofey-05-workbook/",
-            "label": "📚 Workbook 05 · 14 июл · Practical English · Day 3 · все настоящие + will + going to",
-            "audience": "all"
-          },
-          {
-            "url": "../lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
-            "label": "🎯 Deep Dive 06 · Verb TO BE · 5 units + mega mix (79 items) · 19 июл — фундамент, проходить по 1 юниту в день",
-            "audience": "all"
-          }
-        ]
-      },
-      "greeting_student": "Здравствуйте, Тимофей",
-      "greeting_parent": "Здравствуйте, Тимофей",
-      "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
-      "name": "Тимофей",
-      "level": "A2",
-      "format": "индивидуально",
-      "duration": "1 час",
-      "lessons_per_week": 2,
-      "schedule": "вторник 11:00 / четверг 21:00",
-      "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
-      "price_per_lesson": 2500,
-      "monthly_package": 12500,
-      "weekly_revenue": 5000,
-      "payment_status": "Оплачено",
-      "payment_note": "",
-      "payments": [
-        {
-          "month": "Июль 2026 · 2-я половина",
-          "package": "4 урока × 2 500 ₽",
-          "amount": "10 000 ₽",
-          "status": "paid",
-          "date": "10.07.2026",
-          "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)"
-        },
-        {
-          "month": "Июль 2026",
-          "package": "5 уроков × 2 500 ₽",
-          "amount": "12 500 ₽",
-          "status": "paid",
-          "date": "01.07.2026",
-          "note": "Летний блок"
-        },
-        {
-          "month": "Июнь 2026",
-          "package": "1 trial + 3 × 2 500 ₽",
-          "amount": "7 500 ₽",
-          "status": "paid",
-          "date": "22.06.2026",
-          "note": "Пилот-блок · 1 trial + 3 занятия"
-        }
-      ],
-      "is_adult": true,
-      "parent_name": "",
-      "pin": "3094",
-      "lessons_in_package": 10,
-      "subscription_month": "2026-07",
-      "lessons_used_this_month": 8,
-      "stability_note": "",
-      "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
-      "external_platforms": [
-        {
-          "name": "🛫 TOEFL iBT · Format Tour · Lab",
-          "url": "../lingua-boost-lab/b1/toefl-ibt-format-tour/",
-          "note": "Большой Lab-урок про формат TOEFL iBT — Reading / Listening / Speaking / Writing, пробные задания, стратегии. Проходи между занятиями."
-        },
-        {
-          "name": "Quizlet · 22 June vocab",
-          "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt",
-          "note": "Flash-cards · 30 слов с урока 22 июня"
-        }
-      ],
-      "lessons": [
-        {
-          "date": "2026-06-18",
-          "num": "T",
-          "status": "completed",
-          "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/assets/welcome-packs/timofey-welcome-pack.pdf",
-            "module_title": "🎓 Открыть Welcome Pack · университеты + план",
-            "text": "Шорт-лист 9 университетов (Италия + Венгрия) с порогами IELTS/TOEFL по каждой программе + индивидуальный план подготовки. К первой платной встрече: выбери 3–4 универа, которые тебе ближе — определим точный target-балл."
-          }
-        },
-        {
-          "date": "2026-06-22",
-          "num": 1,
-          "status": "completed",
-          "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
-          "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-trainer-01/",
-            "module_title": "📘 Открыть Workbook 01",
-            "text": "К 25 июня — пройти 10 блоков."
-          }
-        },
-        {
-          "date": "2026-06-25",
-          "num": 2,
-          "status": "completed",
-          "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-trainer-02/",
-            "module_title": "📕 Открыть Workbook 02",
-            "text": "К 29 июня — пройти тетрадь по Past Tenses."
-          }
-        },
-        {
-          "date": "2026-06-29",
-          "num": 3,
-          "status": "completed",
-          "topic": "Past Simple + storytelling из деловой практики · Workbook 02 feedback · финал пилот-блока"
-        },
-        {
-          "date": "2026-07-02",
-          "num": 4,
-          "status": "completed",
-          "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
-          "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-03-practical-english/",
-            "module_title": "📖 Открыть Practical English · Day 1",
-            "text": "Пройди блоки Homework A–J (~20–25 мин) + 🎤 Your turn после каждой секции."
-          }
-        },
-        {
-          "date": "2026-07-07",
-          "num": 5,
-          "status": "completed",
-          "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-04-workbook/",
-            "module_title": "📚 Открыть Workbook 04",
-            "text": "К 09 июля — 12 блоков (Practical English · Day 2)."
-          }
-        },
-        {
-          "date": "2026-07-10",
-          "num": 6,
-          "status": "completed",
-          "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive",
-            "text": "Пройди Articles §1–§20 + Prepositions P1–P9. Отметь упражнения, где сомневаешься — разберём во вторник. Practical English · Day 1 остаётся доступен по прежней ссылке в списке материалов."
-          }
-        },
-        {
-          "date": "2026-07-14",
-          "num": 7,
-          "status": "completed",
-          "topic": "Practical English · Day 3 · все настоящие времена + will + going to · Milan-office бизнес-контекст",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-            "module_title": "📚 Открыть Articles &amp; Prepositions · Deep Dive",
-            "text": "Articles &amp; Prepositions · Deep Dive — a/an/the/× по 20 правилам Голицынского + at/on/in по времени/месту. Слева лифт с секциями 01-12, справа кнопки «в домашку» на каждой секции, внизу vocab-bank с 24 фразами."
-          }
-        },
-        {
-          "date": "2026-07-16",
-          "num": 8,
-          "status": "completed",
-          "topic": "📚 Articles & Prepositions · закрепление + Set Phrases (без артикля / THE / A-AN) + Questions · Deep Dive",
-          "homework": {
-            "text": "К следующему уроку: артикли §10 A.10–A.13 (Games/instruments, скриншот присылай в чат) + Quizlet Set Phrases (без артикля / THE / A-AN — go to school, in the morning, have a shower и т.д.) + Workbook 05 в личном кабинете.",
-            "modules": [
-              {
-                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-                "title": "📚 Артикли · §10 A.10–A.13"
-              },
-              {
-                "url": "https://quizlet.com/fi/1195003799/set-phrases-flash-cards/",
-                "title": "🔤 Quizlet · Set Phrases"
-              },
-              {
-                "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-05-workbook/",
-                "title": "📓 Workbook 05"
-              }
-            ]
-          }
-        },
-        {
-          "date": "2026-07-19",
-          "num": "8b",
-          "status": "completed",
-          "is_makeup": true,
-          "topic": "📕 РТ 6 · Fix your leaks (10 blocks) + разделение частей предложения + Deep Dive TO BE",
-          "homework": {
-            "text": "К четвергу 23.07: (1) 10 блоков Fix your leaks в РТ 6 (F.1–F.10) · по 1 в день, каждый ≤15 мин. (2) Начать Deep Dive 06 · Verb TO BE — пройти хотя бы Unit 1 (am/is/are positive). Остальные юниты — до следующего урока. Это фундамент, без него дальше грамматика не собирается.",
-            "modules": [
-              {
-                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/?theme=light-lab&lang=ru#pane-workbook",
-                "title": "📕 РТ 6 · Fix your leaks · 10 blocks"
-              },
-              {
-                "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
-                "title": "🎯 Deep Dive 06 · Verb TO BE (5 units + mega mix)"
-              }
-            ]
-          }
-        },
-        {
-          "date": "2026-07-23",
-          "num": 9,
-          "status": "completed",
-          "topic": "📚 Articles & Prepositions · Deep Dive · продолжение",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
-          }
-        },
-        {
-          "date": "2026-07-27",
-          "num": 10,
-          "status": "planned",
-          "topic": "📚 Articles & Prepositions · Deep Dive",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
-          }
-        },
-        {
-          "date": "2026-07-30",
-          "num": 11,
-          "status": "completed",
-          "topic": "📚 Articles · закрытие темы · последний урок июля",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
-          }
-        }
-      ]
+          "greeting_student": "Здравствуйте, Тимофей",
+          "greeting_parent": "Здравствуйте, Тимофей",
+          "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
+          "name": "Тимофей",
+          "level": "A2",
+          "format": "индивидуально",
+          "duration": "1 час",
+          "lessons_per_week": 2,
+          "schedule": "вторник 11:00 / четверг 21:00",
+          "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
+          "price_per_lesson": 2500,
+          "monthly_package": 12500,
+          "weekly_revenue": 5000,
+          "payment_status": "Оплачено",
+          "payment_note": "",
+          "payments": [
+                {
+                      "month": "Июль 2026 · 2-я половина",
+                      "package": "4 урока × 2 500 ₽",
+                      "amount": "10 000 ₽",
+                      "status": "paid",
+                      "date": "10.07.2026",
+                      "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)"
+                },
+                {
+                      "month": "Июль 2026",
+                      "package": "5 уроков × 2 500 ₽",
+                      "amount": "12 500 ₽",
+                      "status": "paid",
+                      "date": "01.07.2026",
+                      "note": "Летний блок"
+                },
+                {
+                      "month": "Июнь 2026",
+                      "package": "1 trial + 3 × 2 500 ₽",
+                      "amount": "7 500 ₽",
+                      "status": "paid",
+                      "date": "22.06.2026",
+                      "note": "Пилот-блок · 1 trial + 3 занятия"
+                }
+          ],
+          "is_adult": true,
+          "parent_name": "",
+          "pin": "3094",
+          "lessons_in_package": 10,
+          "subscription_month": "2026-07",
+          "lessons_used_this_month": 8,
+          "stability_note": "",
+          "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
+          "external_platforms": [
+                {
+                      "name": "🛫 TOEFL iBT · Format Tour · Lab",
+                      "url": "../lingua-boost-lab/b1/toefl-ibt-format-tour/",
+                      "note": "Большой Lab-урок про формат TOEFL iBT — Reading / Listening / Speaking / Writing, пробные задания, стратегии. Проходи между занятиями."
+                },
+                {
+                      "name": "Quizlet · 22 June vocab",
+                      "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt",
+                      "note": "Flash-cards · 30 слов с урока 22 июня"
+                }
+          ],
+          "lessons": [
+                {
+                      "date": "2026-06-18",
+                      "num": "T",
+                      "status": "completed",
+                      "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана"
+                },
+                {
+                      "date": "2026-06-22",
+                      "num": 1,
+                      "status": "completed",
+                      "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
+                      "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)"
+                },
+                {
+                      "date": "2026-06-25",
+                      "num": 2,
+                      "status": "completed",
+                      "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского"
+                },
+                {
+                      "date": "2026-06-29",
+                      "num": 3,
+                      "status": "completed",
+                      "topic": "Past Simple + storytelling из деловой практики · Workbook 02 feedback · финал пилот-блока"
+                },
+                {
+                      "date": "2026-07-02",
+                      "num": 4,
+                      "status": "completed",
+                      "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
+                      "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback"
+                },
+                {
+                      "date": "2026-07-07",
+                      "num": 5,
+                      "status": "completed",
+                      "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок"
+                },
+                {
+                      "date": "2026-07-10",
+                      "num": 6,
+                      "status": "completed",
+                      "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления"
+                },
+                {
+                      "date": "2026-07-14",
+                      "num": 7,
+                      "status": "completed",
+                      "topic": "Practical English · Day 3 · все настоящие времена + will + going to · Milan-office бизнес-контекст"
+                },
+                {
+                      "date": "2026-07-16",
+                      "num": 8,
+                      "status": "completed",
+                      "topic": "📚 Articles & Prepositions · закрепление + Set Phrases (без артикля / THE / A-AN) + Questions · Deep Dive"
+                },
+                {
+                      "date": "2026-07-19",
+                      "num": "8b",
+                      "status": "completed",
+                      "is_makeup": true,
+                      "topic": "📕 РТ 6 · Fix your leaks (10 blocks) + разделение частей предложения + Deep Dive TO BE"
+                },
+                {
+                      "date": "2026-07-23",
+                      "num": 9,
+                      "status": "completed",
+                      "topic": "📚 Articles & Prepositions · Deep Dive · продолжение"
+                },
+                {
+                      "date": "2026-07-27",
+                      "num": 10,
+                      "status": "completed",
+                      "topic": "📚 Articles & Prepositions · Deep Dive"
+                },
+                {
+                      "date": "2026-07-30",
+                      "num": 11,
+                      "status": "completed",
+                      "topic": "📚 Articles · закрытие темы · последний урок июля",
+                      "homework": {
+                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+                            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
+                      }
+                }
+          ]
     },
     {
       "id": "alexander-stanislav-group-aug",
