@@ -1681,158 +1681,171 @@ window.NGE_DATA = {
       ]
     },
     {
-      "id": "katya-marakina",
-      "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
-      "name": "Катя Маракина",
-      "materials": {
-        "folder": "documents/_v/katya-marakina",
-        "note": "Отчёт за май–июнь 2026 — для мамы (Татьяна Владимировна).",
-        "files": [
-          {
-            "name": "report-katya-marakina-2026-06.pdf",
-            "label": "📄 Отчёт за май–июнь 2026 (для мамы)",
-            "audience": "parent"
-          }
-        ]
-      },
-      "level": "B1",
-      "format": "индивидуально",
-      "schedule": "воскресенье 13:30 (90 мин)",
-      "price_per_lesson": 2500,
-      "monthly_package": 20000,
-      "lessons_in_package": 4,
-      "subscription_month": "2026-07",
-      "lessons_used_this_month": 3,
-      "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
-      "stability_note": "",
-      "payment_status": "Оплачено",
-      "parent_name": "Кедрова Татьяна Владимировна",
-      "pin": "1265",
-      "lessons": [
-        {
-          "date": "2026-05-19",
-          "num": 1,
-          "status": "completed",
-          "topic": "Времена + техники решения ОГЭ"
-        },
-        {
-          "date": "2026-05-24",
-          "num": 2,
-          "status": "completed",
-          "topic": "Кулинария и времена + страны мира"
-        },
-        {
-          "date": "2026-05-26",
-          "num": 3,
-          "status": "completed",
-          "topic": "Италия: известные люди, чудеса света + немного про Ирландию"
-        },
-        {
-          "date": "2026-05-31",
-          "num": 4,
-          "status": "completed",
-          "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/",
-            "module_title": "Открыть урок Jerusalem · Part 1",
-            "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
-          }
-        },
-        {
-          "date": "2026-06-02",
-          "num": 5,
-          "status": "completed",
-          "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
-            "module_title": "Открыть Jerusalem · секции 18-20",
-            "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
-          }
-        },
-        {
-          "date": "2026-06-07",
-          "num": 6,
-          "status": "completed",
-          "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
-            "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
-            "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
-          }
-        },
-        {
-          "date": "2026-06-09",
-          "num": 7,
-          "status": "completed",
-          "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
-            "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
-            "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
-          }
-        },
-        {
-          "date": "2026-06-14",
-          "num": 8,
-          "status": "completed",
-          "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
-            "module_title": "✈️ Открыть Travel Talk · Light & Bright",
-            "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
-          }
-        },
-        {
-          "date": "2026-07-05",
-          "num": 9,
-          "status": "completed",
-          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
-            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
-          }
-        },
-        {
-          "date": "2026-07-12",
-          "num": 10,
-          "status": "completed",
-          "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
-            "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
-          }
-        },
-        {
-          "date": "2026-07-12",
-          "num": 10,
-          "status": "completed",
-          "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (travels vocabulary + speaking)",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
-            "module_title": "🍝 Открыть Eat, Pray, Love · Italy"
-          }
-        },
-        {
-          "date": "2026-07-19",
-          "num": 11,
-          "status": "completed",
-          "topic": "🎯 Questions · Deep Dive («Ask Me & Anything») — глубокое погружение в типы вопросов",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
-            "module_title": "🎯 Открыть Questions · Deep Dive"
-          }
-        },
-        {
-          "date": "2026-07-30",
-          "num": 12,
-          "status": "completed",
-          "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (Italy segment) · travel-lexicon + reading + speaking",
-          "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
-            "module_title": "🍝 Eat, Pray, Love · Italy"
-          }
-        }
-      ]
+          "id": "katya-marakina",
+          "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
+          "name": "Катя Маракина",
+          "materials": {
+                "folder": "documents/_v/katya-marakina",
+                "note": "Отчёт за май–июнь 2026 — для мамы (Татьяна Владимировна).",
+                "files": [
+                      {
+                            "name": "report-katya-marakina-2026-06.pdf",
+                            "label": "📄 Отчёт за май–июнь 2026 (для мамы)",
+                            "audience": "parent"
+                      }
+                ]
+          },
+          "level": "B1",
+          "format": "индивидуально",
+          "schedule": "воскресенье 13:30 (90 мин)",
+          "price_per_lesson": 2500,
+          "monthly_package": 20000,
+          "lessons_in_package": 4,
+          "subscription_month": "2026-07",
+          "lessons_used_this_month": 3,
+          "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
+          "stability_note": "",
+          "payment_status": "Оплачено",
+          "parent_name": "Кедрова Татьяна Владимировна",
+          "pin": "1265",
+          "lessons": [
+                {
+                      "date": "2026-07-30",
+                      "num": 1,
+                      "status": "completed",
+                      "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (Italy segment) · travel-lexicon + reading + speaking",
+                      "homework": {
+                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
+                            "module_title": "🍝 Eat, Pray, Love · Italy"
+                      }
+                },
+                {
+                      "date": "2026-08-02",
+                      "num": 2,
+                      "status": "planned",
+                      "topic": "🎯 тема уточняется"
+                }
+          ],
+          "archived_packages": [
+                {
+                      "label": "Летний блок · 12 уроков · май → 26.07",
+                      "lessons": [
+                            {
+                                  "date": "2026-05-19",
+                                  "num": 1,
+                                  "status": "completed",
+                                  "topic": "Времена + техники решения ОГЭ"
+                            },
+                            {
+                                  "date": "2026-05-24",
+                                  "num": 2,
+                                  "status": "completed",
+                                  "topic": "Кулинария и времена + страны мира"
+                            },
+                            {
+                                  "date": "2026-05-26",
+                                  "num": 3,
+                                  "status": "completed",
+                                  "topic": "Италия: известные люди, чудеса света + немного про Ирландию"
+                            },
+                            {
+                                  "date": "2026-05-31",
+                                  "num": 4,
+                                  "status": "completed",
+                                  "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/",
+                                        "module_title": "Открыть урок Jerusalem · Part 1",
+                                        "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
+                                  }
+                            },
+                            {
+                                  "date": "2026-06-02",
+                                  "num": 5,
+                                  "status": "completed",
+                                  "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
+                                        "module_title": "Открыть Jerusalem · секции 18-20",
+                                        "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
+                                  }
+                            },
+                            {
+                                  "date": "2026-06-07",
+                                  "num": 6,
+                                  "status": "completed",
+                                  "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+                                        "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
+                                        "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
+                                  }
+                            },
+                            {
+                                  "date": "2026-06-09",
+                                  "num": 7,
+                                  "status": "completed",
+                                  "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+                                        "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
+                                        "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
+                                  }
+                            },
+                            {
+                                  "date": "2026-06-14",
+                                  "num": 8,
+                                  "status": "completed",
+                                  "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
+                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright",
+                                        "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-05",
+                                  "num": 9,
+                                  "status": "completed",
+                                  "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-12",
+                                  "num": 10,
+                                  "status": "completed",
+                                  "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-12",
+                                  "num": 10,
+                                  "status": "completed",
+                                  "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (travels vocabulary + speaking)",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
+                                        "module_title": "🍝 Открыть Eat, Pray, Love · Italy"
+                                  }
+                            },
+                            {
+                                  "date": "2026-07-19",
+                                  "num": 11,
+                                  "status": "completed",
+                                  "topic": "🎯 Questions · Deep Dive («Ask Me & Anything») — глубокое погружение в типы вопросов",
+                                  "homework": {
+                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
+                                        "module_title": "🎯 Открыть Questions · Deep Dive"
+                                  }
+                            }
+                      ]
+                }
+          ]
     },
     {
       "id": "timofey",
