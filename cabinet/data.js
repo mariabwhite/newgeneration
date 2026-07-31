@@ -655,6 +655,48 @@ window.NGE_DATA = {
                             "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
                             "module_title": "🇷🇺 Russia · My Homeland"
                       }
+                },
+                {
+                      "date": "2026-08-03",
+                      "num": 4,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-06",
+                      "num": 5,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-09",
+                      "num": 6,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-10",
+                      "num": 7,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-13",
+                      "num": 8,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-16",
+                      "num": 9,
+                      "status": "planned",
+                      "topic": "📚 ЕГЭ prep · тема на согласование"
+                },
+                {
+                      "date": "2026-08-17",
+                      "num": 10,
+                      "status": "planned",
+                      "topic": "🎯 Финал блока · full mock + разбор + strategy"
                 }
           ],
           "materials": {
