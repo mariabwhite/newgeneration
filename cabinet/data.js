@@ -842,7 +842,8 @@ window.NGE_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "denis-shalmanov",
