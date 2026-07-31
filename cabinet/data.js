@@ -89,7 +89,8 @@ window.NGE_DATA = {
             "text": "Финальная летняя встреча ~20 августа. Разбираем всё, что накопилось за лето (Science Systems + Summer Systems + самостоятельная работа). Мини-диагностика TOEFL на текущем уровне. Планируем сентябрь: акцент на academic writing и oral precision — те 0.5 балла до пятёрки."
           }
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "sova-elena",
@@ -176,7 +177,8 @@ window.NGE_DATA = {
             "module_title": "🌍 Открыть Recap July · Three Worlds"
           }
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "sova-ekaterina",
@@ -584,255 +586,262 @@ window.NGE_DATA = {
             "audience": "parent"
           }
         ]
-      }
+      },
+      "has_vault_contracts": true
     },
     {
-          "id": "daniella-libova",
-          "notion_id": "34d7364c-ba79-81af-9ba9-f423aede5524",
-          "name": "Даниэлла Либова",
-          "level": "B2+",
-          "format": "индивидуально",
-          "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
-          "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
-          "price_per_lesson": 2500,
-          "lessons_in_package": 10,
-          "subscription_month": "2026-07",
-          "lessons_used_this_month": 2,
-          "summer_plan_note": "Новый блок · 10 уроков (оплачено 30.07.2026). Первые 3 урока: 30.07 · 31.07 · 02.08 — далее продолжаем. Прошлый интенсив 10/10 закрыт.",
-          "stability_note": "",
-          "payment_status": "Оплачено",
-          "payment_note": "",
-          "payments": [
-                {
-                      "month": "Интенсив · 10 уроков",
-                      "package": "10 × 2 500 ₽",
-                      "amount": "25 000 ₽",
-                      "status": "paid",
-                      "date": "26.06.2026",
-                      "note": "Интенсив · 26.06 → 24.07 · 9 / 10 проведено · остался перенос 24.07"
-                },
-                {
-                      "month": "Следующий блок · 10 уроков",
-                      "package": "10 × 2 500 ₽",
-                      "amount": "25 000 ₽",
-                      "status": "paid",
-                      "date": "30.07.2026",
-                      "note": "Оплачено · 30.07.2026 · интенсив продолжается (первые 3 урока: 30.07 · 31.07 · 02.08)."
-                }
-          ],
-          "parent_name": "Либова Юлия Игоревна",
-          "pin": "5376",
-          "lessons": [
-                {
-                      "date": "2026-07-30",
-                      "num": 1,
-                      "status": "completed",
-                      "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
-                      "homework": {
-                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-                            "module_title": "🌸 Рабочая тетрадь"
-                      }
-                },
-                {
-                      "date": "2026-07-31",
-                      "num": 2,
-                      "status": "completed",
-                      "topic": "🌿 Ecology · знакомство с вокабом + прогон грамматики ЕГЭ · Russian History как каркас формата ФИПИ",
-                      "homework": {
-                            "text": "К следующему уроку — пройти оба модуля: 1) новый Ecology · Exam Simulator (18 блоков, полный формат ЕГЭ), 2) РТ Grammar · Lexis · Russia — повтор проблемных мест.",
-                            "modules": [
-                                  { "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-ecology-exam/", "title": "🌿 Ecology · Exam Simulator" },
-                                  { "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/", "title": "📚 Grammar + Russia · ЕГЭ Simulator" }
-                            ]
-                      }
-                },
-                {
-                      "date": "2026-08-02",
-                      "num": 3,
-                      "status": "planned",
-                      "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
-                      "homework": {
-                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-                            "module_title": "🇷🇺 Russia · My Homeland"
-                      }
-                },
-                {
-                      "date": "2026-08-03",
-                      "num": 4,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-06",
-                      "num": 5,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-09",
-                      "num": 6,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-10",
-                      "num": 7,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-13",
-                      "num": 8,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-16",
-                      "num": 9,
-                      "status": "planned",
-                      "topic": "📚 ЕГЭ prep · тема на согласование"
-                },
-                {
-                      "date": "2026-08-17",
-                      "num": 10,
-                      "status": "planned",
-                      "topic": "🎯 Финал блока · full mock + разбор + strategy"
-                }
-          ],
-          "materials": {
-                "folder": "documents/_v/daniella-libova",
-                "note": "Личные материалы Даны: отчёт за июль (свежий), отчёт за июнь, конспект года и план интенсива. Клик — открыть в новой вкладке.",
-                "files": [
-                      {
-                            "name": "report-libova-2026-07.html",
-                            "label": "📄 Отчёт за июль 2026 (для мамы) · интенсив 9/10",
-                            "audience": "parent"
-                      },
-                      {
-                            "name": "report-libova-2026-06.pdf",
-                            "label": "📄 Отчёт за июнь 2026 (для мамы)",
-                            "audience": "parent"
-                      },
-                      {
-                            "name": "B1-EGE-Dana-conspect-2026.pdf",
-                            "label": "📘 Конспект года · B1+ ЕГЭ · 17 глав (+Russia overview · geography · Peter I & Hermitage)",
-                            "audience": "all"
-                      },
-                      {
-                            "name": "daniella-intensive-plan-10-lessons.pdf",
-                            "label": "🗓 План интенсива · 10 уроков (26.06 → 24.07) · 9 / 10 проведено",
-                            "audience": "parent"
-                      }
-                ]
+      "id": "daniella-libova",
+      "notion_id": "34d7364c-ba79-81af-9ba9-f423aede5524",
+      "name": "Даниэлла Либова",
+      "level": "B2+",
+      "format": "индивидуально",
+      "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
+      "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
+      "price_per_lesson": 2500,
+      "lessons_in_package": 10,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 2,
+      "summer_plan_note": "Новый блок · 10 уроков (оплачено 30.07.2026). Первые 3 урока: 30.07 · 31.07 · 02.08 — далее продолжаем. Прошлый интенсив 10/10 закрыт.",
+      "stability_note": "",
+      "payment_status": "Оплачено",
+      "payment_note": "",
+      "payments": [
+        {
+          "month": "Интенсив · 10 уроков",
+          "package": "10 × 2 500 ₽",
+          "amount": "25 000 ₽",
+          "status": "paid",
+          "date": "26.06.2026",
+          "note": "Интенсив · 26.06 → 24.07 · 9 / 10 проведено · остался перенос 24.07"
+        },
+        {
+          "month": "Следующий блок · 10 уроков",
+          "package": "10 × 2 500 ₽",
+          "amount": "25 000 ₽",
+          "status": "paid",
+          "date": "30.07.2026",
+          "note": "Оплачено · 30.07.2026 · интенсив продолжается (первые 3 урока: 30.07 · 31.07 · 02.08)."
+        }
+      ],
+      "parent_name": "Либова Юлия Игоревна",
+      "pin": "5376",
+      "lessons": [
+        {
+          "date": "2026-07-30",
+          "num": 1,
+          "status": "completed",
+          "topic": "🇷🇺 ЕГЭ Россия + Рабочая тетрадь Grammar / Lexis / Russia — прогон разделов",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+            "module_title": "🌸 Рабочая тетрадь"
+          }
+        },
+        {
+          "date": "2026-07-31",
+          "num": 2,
+          "status": "completed",
+          "topic": "🌿 Ecology · знакомство с вокабом + прогон грамматики ЕГЭ · Russian History как каркас формата ФИПИ",
+          "homework": {
+            "text": "К следующему уроку — пройти оба модуля: 1) новый Ecology · Exam Simulator (18 блоков, полный формат ЕГЭ), 2) РТ Grammar · Lexis · Russia — повтор проблемных мест.",
+            "modules": [
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-ecology-exam/",
+                "title": "🌿 Ecology · Exam Simulator"
+              },
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                "title": "📚 Grammar + Russia · ЕГЭ Simulator"
+              }
+            ]
+          }
+        },
+        {
+          "date": "2026-08-02",
+          "num": 3,
+          "status": "planned",
+          "topic": "🇷🇺 Russia · My Homeland — страноведение + speaking review",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+            "module_title": "🇷🇺 Russia · My Homeland"
+          }
+        },
+        {
+          "date": "2026-08-03",
+          "num": 4,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-06",
+          "num": 5,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-09",
+          "num": 6,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-10",
+          "num": 7,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-13",
+          "num": 8,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-16",
+          "num": 9,
+          "status": "planned",
+          "topic": "📚 ЕГЭ prep · тема на согласование"
+        },
+        {
+          "date": "2026-08-17",
+          "num": 10,
+          "status": "planned",
+          "topic": "🎯 Финал блока · full mock + разбор + strategy"
+        }
+      ],
+      "materials": {
+        "folder": "documents/_v/daniella-libova",
+        "note": "Личные материалы Даны: отчёт за июль (свежий), отчёт за июнь, конспект года и план интенсива. Клик — открыть в новой вкладке.",
+        "files": [
+          {
+            "name": "report-libova-2026-07.html",
+            "label": "📄 Отчёт за июль 2026 (для мамы) · интенсив 9/10",
+            "audience": "parent"
           },
-          "archived_packages": [
-                {
-                      "label": "Интенсив · 10 уроков · 26.06 → 24.07",
-                      "lessons": [
-                            {
-                                  "date": "2026-06-26",
-                                  "num": 1,
-                                  "status": "completed",
-                                  "topic": "Russia · dancing + общая ревизия страноведения",
-                                  "homework": {
-                                        "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-                                        "module_title": "Russia · My Homeland"
-                                  }
-                            },
-                            {
-                                  "date": "2026-06-29",
-                                  "num": 2,
-                                  "status": "completed",
-                                  "topic": "History of Russia + Saint Petersburg",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-                                        "module_title": "Russia · My Homeland"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-05",
-                                  "num": 3,
-                                  "status": "completed",
-                                  "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
-                                        "module_title": "Russia · My Homeland"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-03",
-                                  "num": 4,
-                                  "status": "completed",
-                                  "topic": "ЕГЭ-формат (Word Formation / Speaking)"
-                            },
-                            {
-                                  "date": "2026-07-07",
-                                  "num": 5,
-                                  "status": "completed",
-                                  "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-09",
-                                  "num": 6,
-                                  "status": "completed",
-                                  "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-10",
-                                  "num": 7,
-                                  "status": "missed",
-                                  "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
-                            },
-                            {
-                                  "date": "2026-07-14",
-                                  "num": 8,
-                                  "status": "completed",
-                                  "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена · повторный прогон",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                                        "module_title": "📚 Открыть Dana's Russia · History Exam"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-17",
-                                  "num": 9,
-                                  "status": "completed",
-                                  "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
-                                  "homework": {
-                                        "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
-                                        "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-21",
-                                  "num": 10,
-                                  "status": "completed",
-                                  "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов",
-                                  "homework": {
-                                        "text": "Пройти Russian History · Exam Simulator ещё раз в тренажёрном режиме — все секции с ✓ Check. Особое внимание на Task 3 (5 вопросов) и Task 4 (сравнение фото · 12–15 фраз). Word Formation review — прогнать ошибочные пары.",
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                                        "module_title": "📚 Открыть Russian History · Exam Simulator"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-24",
-                                  "num": 11,
-                                  "status": "planned",
-                                  "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
-                            }
-                      ]
-                }
+          {
+            "name": "report-libova-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026 (для мамы)",
+            "audience": "parent"
+          },
+          {
+            "name": "B1-EGE-Dana-conspect-2026.pdf",
+            "label": "📘 Конспект года · B1+ ЕГЭ · 17 глав (+Russia overview · geography · Peter I & Hermitage)",
+            "audience": "all"
+          },
+          {
+            "name": "daniella-intensive-plan-10-lessons.pdf",
+            "label": "🗓 План интенсива · 10 уроков (26.06 → 24.07) · 9 / 10 проведено",
+            "audience": "parent"
+          }
+        ]
+      },
+      "archived_packages": [
+        {
+          "label": "Интенсив · 10 уроков · 26.06 → 24.07",
+          "lessons": [
+            {
+              "date": "2026-06-26",
+              "num": 1,
+              "status": "completed",
+              "topic": "Russia · dancing + общая ревизия страноведения",
+              "homework": {
+                "text": "Открыть Lab-урок «Russia · My Homeland», пройти блоки 1–3 (warm-up, vocabulary, reading). К следующему уроку быть готовой обсудить вопросы.",
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                "module_title": "Russia · My Homeland"
+              }
+            },
+            {
+              "date": "2026-06-29",
+              "num": 2,
+              "status": "completed",
+              "topic": "History of Russia + Saint Petersburg",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                "module_title": "Russia · My Homeland"
+              }
+            },
+            {
+              "date": "2026-07-05",
+              "num": 3,
+              "status": "completed",
+              "topic": "🇷🇺 Russia · воскресный интенсив (14:35) — страноведение + ЕГЭ-формат",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/russia-my-homeland/",
+                "module_title": "Russia · My Homeland"
+              }
+            },
+            {
+              "date": "2026-07-03",
+              "num": 4,
+              "status": "completed",
+              "topic": "ЕГЭ-формат (Word Formation / Speaking)"
+            },
+            {
+              "date": "2026-07-07",
+              "num": 5,
+              "status": "completed",
+              "topic": "🏛️ Moscow · Kremlin · Red Square — столица России · Task 3 интервью «My favourite Russian city» (5 Q × 40 сек) + Word Formation drill",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                "module_title": "📚 Открыть Dana's Russia · History Exam"
+              }
+            },
+            {
+              "date": "2026-07-09",
+              "num": 6,
+              "status": "completed",
+              "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                "module_title": "📚 Открыть Dana's Russia · History Exam"
+              }
+            },
+            {
+              "date": "2026-07-10",
+              "num": 7,
+              "status": "missed",
+              "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad"
+            },
+            {
+              "date": "2026-07-14",
+              "num": 8,
+              "status": "completed",
+              "topic": "📚 Dana's Russia · History Exam Simulator — B1+ ЕГЭ 2026 · тренажёр экзамена · повторный прогон",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                "module_title": "📚 Открыть Dana's Russia · History Exam"
+              }
+            },
+            {
+              "date": "2026-07-17",
+              "num": 9,
+              "status": "completed",
+              "topic": "🪆 Russian traditions (folklore / matryoshka / samovar / Maslenitsa / banya) · Task 4 проект «Russian traditions» + 2 фото (Maslenitsa / banya) · linking words drill",
+              "homework": {
+                "text": "Открыть Grammar · Lexis · Russia Refresh Workbook. Три подкладки: 🟠 Grammar (9 блоков — Tenses / Passive / Modals / will-would-used to / Gerund vs Inf / Numerals / Comparatives / Articles / Conditionals) · 🟡 Lexis (6 блоков по частям речи + mixed) · 🌸 Russia (facts, timeline, Mendeleev reading, traditions, Task 2 questions). Всё интерактивное, ✓ Check на каждом упражнении.",
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/daniella-workbook-01/",
+                "module_title": "🌸 Открыть Grammar · Lexis · Russia Refresh Workbook"
+              }
+            },
+            {
+              "date": "2026-07-21",
+              "num": 10,
+              "status": "completed",
+              "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 (5 Q) + Task 4 (12–15 фраз) full simulation + Word Formation review · шкала баллов",
+              "homework": {
+                "text": "Пройти Russian History · Exam Simulator ещё раз в тренажёрном режиме — все секции с ✓ Check. Особое внимание на Task 3 (5 вопросов) и Task 4 (сравнение фото · 12–15 фраз). Word Formation review — прогнать ошибочные пары.",
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
+                "module_title": "📚 Открыть Russian History · Exam Simulator"
+              }
+            },
+            {
+              "date": "2026-07-24",
+              "num": 11,
+              "status": "planned",
+              "topic": "🎖️ Great Patriotic War 1941–45 + Victory Day · Task 4 проект «Ways to celebrate Victory Day» + 2 фото (парад / Immortal Regiment) · patriotic vocab · Siege of Leningrad · перенос с 10.07"
+            }
           ]
+        }
+      ]
     },
     {
       "id": "denis-shalmanov",
@@ -1096,7 +1105,8 @@ window.NGE_DATA = {
           "topic": "🎯 Финал июльского блока — mini-project по одной из трёх тем на выбор + повторение"
         }
       ],
-      "stability_note": ""
+      "stability_note": "",
+      "has_vault_contracts": true
     },
     {
       "id": "katya-zhizhina",
@@ -1159,8 +1169,14 @@ window.NGE_DATA = {
           "homework": {
             "text": "К следующему уроку: 1) пройти основной модуль Books & Harry Potter (все секции + Marauder's Map quest); 2) прогнать словарь первого урока Vibe Check + новые «at first» конструкции + слово definite в отдельной vocab-страничке.",
             "modules": [
-              { "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-02-azkaban-library/", "title": "📚 Books and Harry Potter" },
-              { "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/katya-vocab-01/", "title": "🎯 Vocab · Vibe Check + At first + definite" }
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-02-azkaban-library/",
+                "title": "📚 Books and Harry Potter"
+              },
+              {
+                "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/katya-vocab-01/",
+                "title": "🎯 Vocab · Vibe Check + At first + definite"
+              }
             ]
           },
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
@@ -1189,15 +1205,10 @@ window.NGE_DATA = {
       ],
       "materials": {
         "folder": "documents/_v/katya-zhizhina",
-        "note": "Договор оказания услуг · Жижина Александра. Далее сюда будут добавляться отчёты и рабочие материалы.",
-        "files": [
-          {
-            "name": "katya-zhizhina-contract.pdf",
-            "label": "📄 Договор оказания услуг · Жижина Александра",
-            "audience": "parent"
-          }
-        ]
-      }
+        "note": "Договоры и подписанные документы — в блоке «🔐 Договор и документы».",
+        "files": []
+      },
+      "has_vault_contracts": true
     },
     {
       "id": "yulya-lushina",
@@ -1240,13 +1251,7 @@ window.NGE_DATA = {
       "materials": {
         "folder": "documents/_v/yulya-lushina",
         "note": "",
-        "files": [
-          {
-            "name": "yulya-lushina-contract.pdf",
-            "label": "📄 Договор оказания услуг · Лушин Александр Анатольевич",
-            "audience": "parent"
-          }
-        ],
+        "files": [],
         "external_links": [
           {
             "url": "../lingua-boost-lab/pre-a1/julia-vampire/",
@@ -1343,7 +1348,8 @@ window.NGE_DATA = {
             "text": "Последний летний урок — открыть vampire-3, пройти quiz «Show me the phrase» (12 фраз), повторить комикс + песенки (Warmup / Instruments / HSKT / Dance)."
           }
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "yulya-izotova",
@@ -1456,7 +1462,8 @@ window.NGE_DATA = {
             "text": "Новый Бодрум-урок: вся база первого + 5 свежих блоков повторения (hotel rescue · numbers race · past forms quiz · speaking marathon · postcard Day 2)."
           }
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "sofia-pavlova",
@@ -1616,7 +1623,8 @@ window.NGE_DATA = {
             "text": "Повтори OGE Mock #1 перед уроком."
           }
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "maria-kuznetsova-solo",
@@ -1731,373 +1739,375 @@ window.NGE_DATA = {
             "text": "Повтори OGE Mock #1 перед уроком."
           }
         }
+      ],
+      "has_vault_contracts": true
+    },
+    {
+      "id": "katya-marakina",
+      "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
+      "name": "Катя Маракина",
+      "materials": {
+        "folder": "documents/_v/katya-marakina",
+        "note": "Отчёт за май–июнь 2026 — для мамы (Татьяна Владимировна).",
+        "files": [
+          {
+            "name": "report-katya-marakina-2026-06.pdf",
+            "label": "📄 Отчёт за май–июнь 2026 (для мамы)",
+            "audience": "parent"
+          }
+        ]
+      },
+      "level": "B1",
+      "format": "индивидуально",
+      "schedule": "воскресенье 13:30 (90 мин)",
+      "price_per_lesson": 2500,
+      "monthly_package": 10000,
+      "lessons_in_package": 4,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 3,
+      "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
+      "stability_note": "",
+      "payment_status": "Оплачено",
+      "parent_name": "Кедрова Татьяна Владимировна",
+      "pin": "1265",
+      "lessons": [
+        {
+          "date": "2026-07-30",
+          "num": 1,
+          "status": "completed",
+          "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (Italy segment) · travel-lexicon + reading + speaking",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
+            "module_title": "🍝 Eat, Pray, Love · Italy"
+          }
+        },
+        {
+          "date": "2026-08-02",
+          "num": 2,
+          "status": "planned",
+          "topic": "🎯 тема уточняется"
+        }
+      ],
+      "archived_packages": [
+        {
+          "label": "Летний блок · 12 уроков · май → 26.07",
+          "lessons": [
+            {
+              "date": "2026-05-19",
+              "num": 1,
+              "status": "completed",
+              "topic": "Времена + техники решения ОГЭ"
+            },
+            {
+              "date": "2026-05-24",
+              "num": 2,
+              "status": "completed",
+              "topic": "Кулинария и времена + страны мира"
+            },
+            {
+              "date": "2026-05-26",
+              "num": 3,
+              "status": "completed",
+              "topic": "Италия: известные люди, чудеса света + немного про Ирландию"
+            },
+            {
+              "date": "2026-05-31",
+              "num": 4,
+              "status": "completed",
+              "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/",
+                "module_title": "Открыть урок Jerusalem · Part 1",
+                "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
+              }
+            },
+            {
+              "date": "2026-06-02",
+              "num": 5,
+              "status": "completed",
+              "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
+                "module_title": "Открыть Jerusalem · секции 18-20",
+                "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
+              }
+            },
+            {
+              "date": "2026-06-07",
+              "num": 6,
+              "status": "completed",
+              "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+                "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
+                "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
+              }
+            },
+            {
+              "date": "2026-06-09",
+              "num": 7,
+              "status": "completed",
+              "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
+                "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
+                "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
+              }
+            },
+            {
+              "date": "2026-06-14",
+              "num": 8,
+              "status": "completed",
+              "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
+                "module_title": "✈️ Открыть Travel Talk · Light & Bright",
+                "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
+              }
+            },
+            {
+              "date": "2026-07-05",
+              "num": 9,
+              "status": "completed",
+              "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+                "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+              }
+            },
+            {
+              "date": "2026-07-12",
+              "num": 10,
+              "status": "completed",
+              "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
+                "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
+              }
+            },
+            {
+              "date": "2026-07-12",
+              "num": 10,
+              "status": "completed",
+              "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (travels vocabulary + speaking)",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
+                "module_title": "🍝 Открыть Eat, Pray, Love · Italy"
+              }
+            },
+            {
+              "date": "2026-07-19",
+              "num": 11,
+              "status": "completed",
+              "topic": "🎯 Questions · Deep Dive («Ask Me & Anything») — глубокое погружение в типы вопросов",
+              "homework": {
+                "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
+                "module_title": "🎯 Открыть Questions · Deep Dive"
+              }
+            }
+          ]
+        }
+      ],
+      "has_vault_contracts": true
+    },
+    {
+      "id": "timofey",
+      "materials": {
+        "folder": "documents/_v/timofey",
+        "note": "",
+        "files": [
+          {
+            "name": "A2-Timofey-conspect-2026.pdf",
+            "label": "📘 Конспект пилотного месяца · 12 глав (Trial + Trainer-01/02/03 + разбор письма 06.07 + план Trainer-04)",
+            "audience": "all"
+          },
+          {
+            "name": "report-timofey-2026-06.pdf",
+            "label": "📄 Отчёт за июнь 2026",
+            "audience": "all"
+          }
+        ],
+        "external_links": [
+          {
+            "url": "../lingua-boost-lab/practice/timofey-trainer-01/",
+            "label": "📘 Workbook 01 · 22 июн · Present tenses · -ing · said/told",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-trainer-02/",
+            "label": "📕 Workbook 02 · 29 июн · Past Tenses · irregular verbs",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
+            "label": "📖 Practical English · Day 1 · 02 июл · интерактивный урок + Homework A–J",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-04-workbook/",
+            "label": "📚 Workbook 04 · 07 июл · Practical English · Day 2 · 12 блоков",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-05-workbook/",
+            "label": "📚 Workbook 05 · 14 июл · Practical English · Day 3 · все настоящие + will + going to",
+            "audience": "all"
+          },
+          {
+            "url": "../lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
+            "label": "🎯 Deep Dive 06 · Verb TO BE · 5 units + mega mix (79 items) · 19 июл — фундамент, проходить по 1 юниту в день",
+            "audience": "all"
+          }
+        ]
+      },
+      "greeting_student": "Здравствуйте, Тимофей",
+      "greeting_parent": "Здравствуйте, Тимофей",
+      "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
+      "name": "Тимофей",
+      "level": "A2",
+      "format": "индивидуально",
+      "duration": "1 час",
+      "lessons_per_week": 2,
+      "schedule": "вторник 11:00 / четверг 21:00",
+      "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
+      "price_per_lesson": 2500,
+      "monthly_package": 12500,
+      "weekly_revenue": 5000,
+      "payment_status": "Оплачено",
+      "payment_note": "",
+      "payments": [
+        {
+          "month": "Июль 2026 · 2-я половина",
+          "package": "4 урока × 2 500 ₽",
+          "amount": "10 000 ₽",
+          "status": "paid",
+          "date": "10.07.2026",
+          "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)"
+        },
+        {
+          "month": "Июль 2026",
+          "package": "5 уроков × 2 500 ₽",
+          "amount": "12 500 ₽",
+          "status": "paid",
+          "date": "01.07.2026",
+          "note": "Летний блок"
+        },
+        {
+          "month": "Июнь 2026",
+          "package": "1 trial + 3 × 2 500 ₽",
+          "amount": "7 500 ₽",
+          "status": "paid",
+          "date": "22.06.2026",
+          "note": "Пилот-блок · 1 trial + 3 занятия"
+        }
+      ],
+      "is_adult": true,
+      "parent_name": "",
+      "pin": "3094",
+      "lessons_in_package": 10,
+      "subscription_month": "2026-07",
+      "lessons_used_this_month": 10,
+      "stability_note": "",
+      "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
+      "external_platforms": [
+        {
+          "name": "🛫 TOEFL iBT · Format Tour · Lab",
+          "url": "../lingua-boost-lab/b1/toefl-ibt-format-tour/",
+          "note": "Большой Lab-урок про формат TOEFL iBT — Reading / Listening / Speaking / Writing, пробные задания, стратегии. Проходи между занятиями."
+        },
+        {
+          "name": "Quizlet · 22 June vocab",
+          "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt",
+          "note": "Flash-cards · 30 слов с урока 22 июня"
+        }
+      ],
+      "lessons": [
+        {
+          "date": "2026-06-18",
+          "num": "T",
+          "status": "completed",
+          "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана"
+        },
+        {
+          "date": "2026-06-22",
+          "num": 1,
+          "status": "completed",
+          "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
+          "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)"
+        },
+        {
+          "date": "2026-06-25",
+          "num": 2,
+          "status": "completed",
+          "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского"
+        },
+        {
+          "date": "2026-06-29",
+          "num": 3,
+          "status": "completed",
+          "topic": "Past Simple + storytelling из деловой практики · Workbook 02 feedback · финал пилот-блока"
+        },
+        {
+          "date": "2026-07-02",
+          "num": 4,
+          "status": "completed",
+          "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
+          "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback"
+        },
+        {
+          "date": "2026-07-07",
+          "num": 5,
+          "status": "completed",
+          "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок"
+        },
+        {
+          "date": "2026-07-10",
+          "num": 6,
+          "status": "completed",
+          "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления"
+        },
+        {
+          "date": "2026-07-14",
+          "num": 7,
+          "status": "completed",
+          "topic": "Practical English · Day 3 · все настоящие времена + will + going to · Milan-office бизнес-контекст"
+        },
+        {
+          "date": "2026-07-16",
+          "num": 8,
+          "status": "completed",
+          "topic": "📚 Articles & Prepositions · закрепление + Set Phrases (без артикля / THE / A-AN) + Questions · Deep Dive"
+        },
+        {
+          "date": "2026-07-19",
+          "num": "8b",
+          "status": "completed",
+          "is_makeup": true,
+          "topic": "📕 РТ 6 · Fix your leaks (10 blocks) + разделение частей предложения + Deep Dive TO BE"
+        },
+        {
+          "date": "2026-07-23",
+          "num": 9,
+          "status": "completed",
+          "topic": "📚 Articles & Prepositions · Deep Dive · продолжение"
+        },
+        {
+          "date": "2026-07-27",
+          "num": 10,
+          "status": "completed",
+          "topic": "📚 Articles & Prepositions · Deep Dive"
+        },
+        {
+          "date": "2026-07-30",
+          "num": 11,
+          "status": "completed",
+          "topic": "📚 Articles · закрытие темы · последний урок июля",
+          "homework": {
+            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
+            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
+          }
+        }
       ]
-    },
-    {
-          "id": "katya-marakina",
-          "notion_id": "34d7364c-ba79-8173-a103-f60f2bb5f124",
-          "name": "Катя Маракина",
-          "materials": {
-                "folder": "documents/_v/katya-marakina",
-                "note": "Отчёт за май–июнь 2026 — для мамы (Татьяна Владимировна).",
-                "files": [
-                      {
-                            "name": "report-katya-marakina-2026-06.pdf",
-                            "label": "📄 Отчёт за май–июнь 2026 (для мамы)",
-                            "audience": "parent"
-                      }
-                ]
-          },
-          "level": "B1",
-          "format": "индивидуально",
-          "schedule": "воскресенье 13:30 (90 мин)",
-          "price_per_lesson": 2500,
-          "monthly_package": 10000,
-          "lessons_in_package": 4,
-          "subscription_month": "2026-07",
-          "lessons_used_this_month": 3,
-          "summer_plan_note": "Июль · новый B1 цикл (4 урока: 5 · 12 · 19 · 26 июля)",
-          "stability_note": "",
-          "payment_status": "Оплачено",
-          "parent_name": "Кедрова Татьяна Владимировна",
-          "pin": "1265",
-          "lessons": [
-                {
-                      "date": "2026-07-30",
-                      "num": 1,
-                      "status": "completed",
-                      "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (Italy segment) · travel-lexicon + reading + speaking",
-                      "homework": {
-                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
-                            "module_title": "🍝 Eat, Pray, Love · Italy"
-                      }
-                },
-                {
-                      "date": "2026-08-02",
-                      "num": 2,
-                      "status": "planned",
-                      "topic": "🎯 тема уточняется"
-                }
-          ],
-          "archived_packages": [
-                {
-                      "label": "Летний блок · 12 уроков · май → 26.07",
-                      "lessons": [
-                            {
-                                  "date": "2026-05-19",
-                                  "num": 1,
-                                  "status": "completed",
-                                  "topic": "Времена + техники решения ОГЭ"
-                            },
-                            {
-                                  "date": "2026-05-24",
-                                  "num": 2,
-                                  "status": "completed",
-                                  "topic": "Кулинария и времена + страны мира"
-                            },
-                            {
-                                  "date": "2026-05-26",
-                                  "num": 3,
-                                  "status": "completed",
-                                  "topic": "Италия: известные люди, чудеса света + немного про Ирландию"
-                            },
-                            {
-                                  "date": "2026-05-31",
-                                  "num": 4,
-                                  "status": "completed",
-                                  "topic": "Jerusalem · Part 1 — Old City, three faiths, Would-конструкции, модальные глаголы",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/",
-                                        "module_title": "Открыть урок Jerusalem · Part 1",
-                                        "text": "Интерактивный B1-урок: 20 секций. Часть 1 — Old City, vocab, dialogue, Would-questions."
-                                  }
-                            },
-                            {
-                                  "date": "2026-06-02",
-                                  "num": 5,
-                                  "status": "completed",
-                                  "topic": "Jerusalem · Part 2 — Dead Sea + cosmetics, Israeli tech (cybersecurity, medical), Baldwin IV",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/jerusalem-three-faiths/#b18",
-                                        "module_title": "Открыть Jerusalem · секции 18-20",
-                                        "text": "Часть 2 урока: Dead Sea + cosmetics (Ahava, Argan), Israeli tech (cybersecurity, medical, agriculture), Baldwin IV — прокажённый король. Speaking-фокус, T/F, would-rather."
-                                  }
-                            },
-                            {
-                                  "date": "2026-06-07",
-                                  "num": 6,
-                                  "status": "completed",
-                                  "topic": "🇨🇭 Switzerland · Part 1 — Mountains, Chocolate & a Bit of Magic (Альпы, Хайди, сыр, часы)",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
-                                        "module_title": "🇨🇭 Открыть урок Switzerland · Part 1",
-                                        "text": "Большой B1-урок: Альпы, Хайди, шоколад, сыр, часы. Speaking-фокус, 2 диалога-аудио."
-                                  }
-                            },
-                            {
-                                  "date": "2026-06-09",
-                                  "num": 7,
-                                  "status": "completed",
-                                  "topic": "🇨🇭 Switzerland · Part 2 — 4 языка, прямая демократия, нейтралитет, иконы (Federer)",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/switzerland-mountains-chocolate/",
-                                        "module_title": "🇨🇭 Открыть урок Switzerland · Part 2",
-                                        "text": "Завершаем Switzerland: 4 языка, прямая демократия, нейтралитет, Federer. Синтез, mini-writing."
-                                  }
-                            },
-                            {
-                                  "date": "2026-06-14",
-                                  "num": 8,
-                                  "status": "completed",
-                                  "topic": "✈️ Travel Talk · Light & Bright — лёгкая speaking-серия о путешествиях, финал блока",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright/",
-                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright",
-                                        "text": "Small Talk (5 mini-dialogues с HD-видео), Listening Travel Styles (4 speakers), Role-Play (Delayed Flight + Lost in a Foreign City), Phrasal Verbs of Travel. Финал майско-июньского блока."
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-05",
-                                  "num": 9,
-                                  "status": "completed",
-                                  "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
-                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-12",
-                                  "num": 10,
-                                  "status": "completed",
-                                  "topic": "✈️ Travel Talk · Light & Bright 2 · Night Edition — вечерние путешествия",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/travel-talk-light-and-bright-2/",
-                                        "module_title": "✈️ Открыть Travel Talk · Light & Bright 2"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-12",
-                                  "num": 10,
-                                  "status": "completed",
-                                  "topic": "🍝 Eat, Pray, Love · Italy — Ешь, Молись, Люби (travels vocabulary + speaking)",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/eat-pray-love-travels/",
-                                        "module_title": "🍝 Открыть Eat, Pray, Love · Italy"
-                                  }
-                            },
-                            {
-                                  "date": "2026-07-19",
-                                  "num": 11,
-                                  "status": "completed",
-                                  "topic": "🎯 Questions · Deep Dive («Ask Me & Anything») — глубокое погружение в типы вопросов",
-                                  "homework": {
-                                        "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/questions-deep-dive/?theme=light-lab&lang=ru",
-                                        "module_title": "🎯 Открыть Questions · Deep Dive"
-                                  }
-                            }
-                      ]
-                }
-          ]
-    },
-    {
-          "id": "timofey",
-          "materials": {
-                "folder": "documents/_v/timofey",
-                "note": "",
-                "files": [
-                      {
-                            "name": "A2-Timofey-conspect-2026.pdf",
-                            "label": "📘 Конспект пилотного месяца · 12 глав (Trial + Trainer-01/02/03 + разбор письма 06.07 + план Trainer-04)",
-                            "audience": "all"
-                      },
-                      {
-                            "name": "report-timofey-2026-06.pdf",
-                            "label": "📄 Отчёт за июнь 2026",
-                            "audience": "all"
-                      }
-                ],
-                "external_links": [
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-trainer-01/",
-                            "label": "📘 Workbook 01 · 22 июн · Present tenses · -ing · said/told",
-                            "audience": "all"
-                      },
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-trainer-02/",
-                            "label": "📕 Workbook 02 · 29 июн · Past Tenses · irregular verbs",
-                            "audience": "all"
-                      },
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-03-practical-english/",
-                            "label": "📖 Practical English · Day 1 · 02 июл · интерактивный урок + Homework A–J",
-                            "audience": "all"
-                      },
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-04-workbook/",
-                            "label": "📚 Workbook 04 · 07 июл · Practical English · Day 2 · 12 блоков",
-                            "audience": "all"
-                      },
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-05-workbook/",
-                            "label": "📚 Workbook 05 · 14 июл · Practical English · Day 3 · все настоящие + will + going to",
-                            "audience": "all"
-                      },
-                      {
-                            "url": "../lingua-boost-lab/practice/timofey-06-to-be-deep-dive/",
-                            "label": "🎯 Deep Dive 06 · Verb TO BE · 5 units + mega mix (79 items) · 19 июл — фундамент, проходить по 1 юниту в день",
-                            "audience": "all"
-                      }
-                ]
-          },
-          "greeting_student": "Здравствуйте, Тимофей",
-          "greeting_parent": "Здравствуйте, Тимофей",
-          "notion_id": "3847364c-ba79-8197-8d67-e6f0c2c261c3",
-          "name": "Тимофей",
-          "level": "A2",
-          "format": "индивидуально",
-          "duration": "1 час",
-          "lessons_per_week": 2,
-          "schedule": "вторник 11:00 / четверг 21:00",
-          "goal": "Master's по Management на английском в EU (🇮🇹 Италия + 🇭🇺 Венгрия). IELTS Academic 6.5, intake September 2028.",
-          "price_per_lesson": 2500,
-          "monthly_package": 12500,
-          "weekly_revenue": 5000,
-          "payment_status": "Оплачено",
-          "payment_note": "",
-          "payments": [
-                {
-                      "month": "Июль 2026 · 2-я половина",
-                      "package": "4 урока × 2 500 ₽",
-                      "amount": "10 000 ₽",
-                      "status": "paid",
-                      "date": "10.07.2026",
-                      "note": "Летний блок · 2-я половина июля (21.07 · 23.07 · 28.07 · 30.07)"
-                },
-                {
-                      "month": "Июль 2026",
-                      "package": "5 уроков × 2 500 ₽",
-                      "amount": "12 500 ₽",
-                      "status": "paid",
-                      "date": "01.07.2026",
-                      "note": "Летний блок"
-                },
-                {
-                      "month": "Июнь 2026",
-                      "package": "1 trial + 3 × 2 500 ₽",
-                      "amount": "7 500 ₽",
-                      "status": "paid",
-                      "date": "22.06.2026",
-                      "note": "Пилот-блок · 1 trial + 3 занятия"
-                }
-          ],
-          "is_adult": true,
-          "parent_name": "",
-          "pin": "3094",
-          "lessons_in_package": 10,
-          "subscription_month": "2026-07",
-          "lessons_used_this_month": 10,
-          "stability_note": "",
-          "summer_plan_note": "Летний блок 2026: июньский пилот (1 trial + 3 занятия) + июль (5 занятий)",
-          "external_platforms": [
-                {
-                      "name": "🛫 TOEFL iBT · Format Tour · Lab",
-                      "url": "../lingua-boost-lab/b1/toefl-ibt-format-tour/",
-                      "note": "Большой Lab-урок про формат TOEFL iBT — Reading / Listening / Speaking / Writing, пробные задания, стратегии. Проходи между занятиями."
-                },
-                {
-                      "name": "Quizlet · 22 June vocab",
-                      "url": "https://quizlet.com/1191212711/voc-flash-cards/?i=68qsl4&x=1jqt",
-                      "note": "Flash-cards · 30 слов с урока 22 июня"
-                }
-          ],
-          "lessons": [
-                {
-                      "date": "2026-06-18",
-                      "num": "T",
-                      "status": "completed",
-                      "topic": "Пробный · знакомство + academic-vocab kick-off + обсуждение цели и плана"
-                },
-                {
-                      "date": "2026-06-22",
-                      "num": 1,
-                      "status": "completed",
-                      "topic": "IELTS vs TOEFL · формат · цели · план подготовки",
-                      "recap": "• IELTS vs TOEFL · формат · цели · план подготовки\n• Active vocab · 30 слов (business · driving · IELTS · school/tutor)\n• Grammar trap: said me ❌ → told me ✓\n• -ing forms · 3 функции (gerund · participle · continuous)"
-                },
-                {
-                      "date": "2026-06-25",
-                      "num": 2,
-                      "status": "completed",
-                      "topic": "Present Tenses (Simple / Continuous / Perfect) на примерах из делового английского"
-                },
-                {
-                      "date": "2026-06-29",
-                      "num": 3,
-                      "status": "completed",
-                      "topic": "Past Simple + storytelling из деловой практики · Workbook 02 feedback · финал пилот-блока"
-                },
-                {
-                      "date": "2026-07-02",
-                      "num": 4,
-                      "status": "completed",
-                      "topic": "Practical English · Day 1 — все 4 Present Tenses на бизнес-лексике + to-инфинитив + a/the/— + 6 business lines + 45 vocab",
-                      "recap": "• All 4 Present tenses drilled на реальной business-лексике (Lukoil / Milan / IELTS-контекст)\n• Vocab 45 карточек + 3 drill'а (MCQ meaning · gap-fill · sentence-fill) — вся дека отработана\n• Grammar map · 4 времени на одной странице + визуальные карты\n• 6 business lines: self-intro · this-week project · status update · why-it's-taking-long · polite request · daily stand-up\n• 🎤 Your turn после каждой секции — 3 личных вопроса\n• Reading · Listening · Speaking секции с MCQ + own-mic + AI-feedback"
-                },
-                {
-                      "date": "2026-07-07",
-                      "num": 5,
-                      "status": "completed",
-                      "topic": "Practical English · Day 1 · debrief · разбор письма 06.07 + чек-лист домашки + Oral Practice/Mic-drill добавлены в урок"
-                },
-                {
-                      "date": "2026-07-10",
-                      "num": 6,
-                      "status": "completed",
-                      "topic": "📖 Practical English · Day 1 · повторный проход + 📚 Articles & Prepositions · Deep Dive (Golitsynsky) · артикли a/an/the/× + предлоги времени/места/направления"
-                },
-                {
-                      "date": "2026-07-14",
-                      "num": 7,
-                      "status": "completed",
-                      "topic": "Practical English · Day 3 · все настоящие времена + will + going to · Milan-office бизнес-контекст"
-                },
-                {
-                      "date": "2026-07-16",
-                      "num": 8,
-                      "status": "completed",
-                      "topic": "📚 Articles & Prepositions · закрепление + Set Phrases (без артикля / THE / A-AN) + Questions · Deep Dive"
-                },
-                {
-                      "date": "2026-07-19",
-                      "num": "8b",
-                      "status": "completed",
-                      "is_makeup": true,
-                      "topic": "📕 РТ 6 · Fix your leaks (10 blocks) + разделение частей предложения + Deep Dive TO BE"
-                },
-                {
-                      "date": "2026-07-23",
-                      "num": 9,
-                      "status": "completed",
-                      "topic": "📚 Articles & Prepositions · Deep Dive · продолжение"
-                },
-                {
-                      "date": "2026-07-27",
-                      "num": 10,
-                      "status": "completed",
-                      "topic": "📚 Articles & Prepositions · Deep Dive"
-                },
-                {
-                      "date": "2026-07-30",
-                      "num": 11,
-                      "status": "completed",
-                      "topic": "📚 Articles · закрытие темы · последний урок июля",
-                      "homework": {
-                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/timofey-articles-prepositions/",
-                            "module_title": "📚 Открыть Articles & Prepositions · Deep Dive"
-                      }
-                }
-          ]
     },
     {
       "id": "alexander-stanislav-group-aug",
@@ -2165,12 +2175,42 @@ window.NGE_DATA = {
             "module_title": "🎤 Открыть · L2 · Small Talk & Continued"
           }
         },
-        { "date": "2026-08-11", "num": 3, "status": "planned", "topic": "Тема уточняется" },
-        { "date": "2026-08-14", "num": 4, "status": "planned", "topic": "Тема уточняется" },
-        { "date": "2026-08-18", "num": 5, "status": "planned", "topic": "Тема уточняется" },
-        { "date": "2026-08-21", "num": 6, "status": "planned", "topic": "Тема уточняется" },
-        { "date": "2026-08-25", "num": 7, "status": "planned", "topic": "Тема уточняется" },
-        { "date": "2026-08-28", "num": 8, "status": "planned", "topic": "Тема уточняется · закрытие августовского абонемента" }
+        {
+          "date": "2026-08-11",
+          "num": 3,
+          "status": "planned",
+          "topic": "Тема уточняется"
+        },
+        {
+          "date": "2026-08-14",
+          "num": 4,
+          "status": "planned",
+          "topic": "Тема уточняется"
+        },
+        {
+          "date": "2026-08-18",
+          "num": 5,
+          "status": "planned",
+          "topic": "Тема уточняется"
+        },
+        {
+          "date": "2026-08-21",
+          "num": 6,
+          "status": "planned",
+          "topic": "Тема уточняется"
+        },
+        {
+          "date": "2026-08-25",
+          "num": 7,
+          "status": "planned",
+          "topic": "Тема уточняется"
+        },
+        {
+          "date": "2026-08-28",
+          "num": 8,
+          "status": "planned",
+          "topic": "Тема уточняется · закрытие августовского абонемента"
+        }
       ]
     }
   ],
@@ -2304,34 +2344,32 @@ window.NGE_DATA = {
       "short_message": "Юля занимается в игровом формате. Главный прогресс — узнавание английского в понятных ситуациях, реакция на команды и повторение коротких фраз.",
       "content": "# Краткий вывод\n\nЮля занимается в игровом формате: движение, картинки, персонажи, игрушки и короткие повторяющиеся фразы.\n\n# Следующий фокус\n\nBody and face, This is my..., I have..., He/She/It has..., feelings, animals, actions.",
       "notion_url": "https://www.notion.so/35a7364cba79819c9339d3c4f4953e46"
-    }
-,
+    },
     {
-          "id": "2026-07-fedor-protasov-parent",
-          "student_id": "fedor-protasov",
-          "month": "2026-07",
-          "month_label": "июль 2026",
-          "type": "parent report",
-          "recipient": "Протасова Мария Петровна",
-          "status": "sent",
-          "title": "2026-07 — Фёдор Протасов — parent report",
-          "short_message": "Мария Петровна, добрый день! Июль: закрыли всю серию Tom Sawyer (7 актов + рабочая тетрадь), стартовали Treasure Island, прошли три Travel Talk (Light & Bright, Night Edition, Hotel Check-in). 11 из 12 занятий закрыты по плану, 31.07 запланирован. Федя старается, прогресс есть. Работаем над самостоятельностью и разговорной речью.",
-          "content": "Добрый день!\n\nОтправляю отчёт по занятиям **Фёдора** за июль 2026.\n\n# Календарь занятий — июль (12 уроков)\n\n- **02.07** — Tom Sawyer Act 5 · финал первой серии + Past Simple irregular drill\n- **05.07** — Travel Talk · Light & Bright 2 · Night Edition\n- **07.07** — Travel Talk · Light & Bright (открытие travel-серии)\n- **09.07** — Travel Talk · Light & Bright 2 · закрепление ночной программы\n- **10.07** — Tom Sawyer Act 6 · Blood Oath & Trial (показания после Muff Potter)\n- **12.07** — Tom Sawyer · финальная глава серии Three Adventures\n- **14.07** — Tom Sawyer · Рабочая тетрадь (vocab всей серии + Murphy B1 grammar + story MCQ)\n- **16.07** — Treasure Island Act 1 · The Black Spot (открытие новой серии)\n- **28.07** — Treasure Island Act 2 · The Apple Barrel (заговор на борту)\n- **30.07** — Travel Talk · Hotel Check-in (заезд в отель, reception-диалоги)\n- **31.07** — *запланирован, 13:00*\n\n11 из 12 занятий проведено, 1 в графике.\n\n# По прогрессу\n\nУ Феди есть прогресс. Он старается говорить, использует простые фразы.\n\n# Зоны роста\n\n- Работаем над простыми фразами\n- Делаем разговорную речь — учимся выражать мысль своими словами\n- Читаем, строим фразу, пересказываем прочитанное\n\n# Спасибо\n\nБольшое вам спасибо за доверие. Федя мне сказал, что летом занимался только английским — это замечательно.\n\nБольшое спасибо, Мария Петровна, за ваше постоянное сотрудничество. Федя молодец, старается, преодолевает лень.\n\nВ августе будем так же читать книжки, обсуждать путешествия. Хочу попробовать заставить его разговаривать самостоятельно.",
-          "notion_url": ""
-    }
-  ,
+      "id": "2026-07-fedor-protasov-parent",
+      "student_id": "fedor-protasov",
+      "month": "2026-07",
+      "month_label": "июль 2026",
+      "type": "parent report",
+      "recipient": "Протасова Мария Петровна",
+      "status": "sent",
+      "title": "2026-07 — Фёдор Протасов — parent report",
+      "short_message": "Мария Петровна, добрый день! Июль: закрыли всю серию Tom Sawyer (7 актов + рабочая тетрадь), стартовали Treasure Island, прошли три Travel Talk (Light & Bright, Night Edition, Hotel Check-in). 11 из 12 занятий закрыты по плану, 31.07 запланирован. Федя старается, прогресс есть. Работаем над самостоятельностью и разговорной речью.",
+      "content": "Добрый день!\n\nОтправляю отчёт по занятиям **Фёдора** за июль 2026.\n\n# Календарь занятий — июль (12 уроков)\n\n- **02.07** — Tom Sawyer Act 5 · финал первой серии + Past Simple irregular drill\n- **05.07** — Travel Talk · Light & Bright 2 · Night Edition\n- **07.07** — Travel Talk · Light & Bright (открытие travel-серии)\n- **09.07** — Travel Talk · Light & Bright 2 · закрепление ночной программы\n- **10.07** — Tom Sawyer Act 6 · Blood Oath & Trial (показания после Muff Potter)\n- **12.07** — Tom Sawyer · финальная глава серии Three Adventures\n- **14.07** — Tom Sawyer · Рабочая тетрадь (vocab всей серии + Murphy B1 grammar + story MCQ)\n- **16.07** — Treasure Island Act 1 · The Black Spot (открытие новой серии)\n- **28.07** — Treasure Island Act 2 · The Apple Barrel (заговор на борту)\n- **30.07** — Travel Talk · Hotel Check-in (заезд в отель, reception-диалоги)\n- **31.07** — *запланирован, 13:00*\n\n11 из 12 занятий проведено, 1 в графике.\n\n# По прогрессу\n\nУ Феди есть прогресс. Он старается говорить, использует простые фразы.\n\n# Зоны роста\n\n- Работаем над простыми фразами\n- Делаем разговорную речь — учимся выражать мысль своими словами\n- Читаем, строим фразу, пересказываем прочитанное\n\n# Спасибо\n\nБольшое вам спасибо за доверие. Федя мне сказал, что летом занимался только английским — это замечательно.\n\nБольшое спасибо, Мария Петровна, за ваше постоянное сотрудничество. Федя молодец, старается, преодолевает лень.\n\nВ августе будем так же читать книжки, обсуждать путешествия. Хочу попробовать заставить его разговаривать самостоятельно.",
+      "notion_url": ""
+    },
     {
-          "id": "2026-06-katya-marakina-parent",
-          "student_id": "katya-marakina",
-          "month": "2026-06",
-          "month_label": "май–июнь 2026",
-          "type": "parent report",
-          "recipient": "Кедрова Татьяна Владимировна",
-          "status": "sent",
-          "title": "2026-06 — Катя Маракина — parent report",
-          "short_message": "Татьяна Владимировна! Отчёт за май–июнь. Полный текст в PDF в разделе «Материалы курса».",
-          "content": "Отчёт за май–июнь 2026.\n\nФайл в разделе «Материалы курса» ниже — 📄 «Отчёт за май–июнь 2026 (для мамы)».\n\nПолный текст доступен в PDF.",
-          "notion_url": ""
+      "id": "2026-06-katya-marakina-parent",
+      "student_id": "katya-marakina",
+      "month": "2026-06",
+      "month_label": "май–июнь 2026",
+      "type": "parent report",
+      "recipient": "Кедрова Татьяна Владимировна",
+      "status": "sent",
+      "title": "2026-06 — Катя Маракина — parent report",
+      "short_message": "Татьяна Владимировна! Отчёт за май–июнь. Полный текст в PDF в разделе «Материалы курса».",
+      "content": "Отчёт за май–июнь 2026.\n\nФайл в разделе «Материалы курса» ниже — 📄 «Отчёт за май–июнь 2026 (для мамы)».\n\nПолный текст доступен в PDF.",
+      "notion_url": ""
     }
   ],
   "labModules": [
