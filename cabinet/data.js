@@ -220,7 +220,8 @@ window.NGE_DATA = {
           "status": "completed",
           "topic": "Финальное повторение завершено — все слова, темы, книжки. На каникулы до сентября."
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "fedor-protasov",
@@ -245,8 +246,8 @@ window.NGE_DATA = {
       "price_per_lesson": 2500,
       "lessons_in_package": 12,
       "subscription_month": "2026-07",
-      "lessons_used_this_month": 12,
-      "summer_plan_note": "🟢 Июль 2026 · 12 / 12 отработано · абонемент закрыт. Ждём оплаты августа.",
+      "lessons_used_this_month": 11,
+      "summer_plan_note": "Июль 2026 · 11 из 12 занятий проведено, 31.07 в графике.",
       "payment_status": "Оплачено",
       "payment_note": "",
       "parent_name": "Протасова Мария Петровна",
@@ -423,13 +424,8 @@ window.NGE_DATA = {
         {
           "date": "2026-07-31",
           "num": 18,
-          "status": "completed",
-          "topic": "🎯 Финал июля · Vocab review (Tom Sawyer · Treasure Island · Travel L&B · Airport · Hotel) — карточки-вертушки, Duolingo quick-check, memory match, Quizlet Learn, 10 мини-игр на каждую тему",
-          "homework": {
-            "text": "Прогони новую vocab-страничку на все темы июля: карточки-вертушки, Duolingo quiz, memory match, listen&type, word scramble, sentence builder, sprint 30s, Quizlet Learn mode. Все звуки — реальным голосом (edge-tts Sonia British).",
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/practice/fedor-vocab-01/",
-            "module_title": "🎯 Vocab · июль-мега-review (5 тем × 10 упражнений)"
-          }
+          "status": "planned",
+          "topic": "🕐 13:00 · тема уточняется — заключительный урок июльского абонемента"
         }
       ]
     },
@@ -1024,7 +1020,8 @@ window.NGE_DATA = {
             "audience": "all"
           }
         ]
-      }
+      },
+      "has_vault_contracts": true
     },
     {
       "id": "anya-isaeva",
@@ -1180,7 +1177,7 @@ window.NGE_DATA = {
               },
               {
                 "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/katya-vocab-01/",
-                "title": "🎯 Vocab · Feelings + Slang + first-vs-at-first + Azkaban HP · 10 упражнений на тему"
+                "title": "🎯 Vocab · Vibe Check + At first + definite"
               }
             ]
           },
@@ -1513,7 +1510,8 @@ window.NGE_DATA = {
           "status": "planned",
           "topic": "Speaking + grammar consolidation: времена, passive, modals"
         }
-      ]
+      ],
+      "has_vault_contracts": true
     },
     {
       "id": "ekaterina-medvedeva-solo",
