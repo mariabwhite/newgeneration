@@ -1134,8 +1134,8 @@ window.NGE_DATA = {
       "pin": "7375",
       "lessons_in_package": 5,
       "subscription_month": "2026-08",
-      "lessons_used_this_month": 1,
-      "summer_plan_note": "🟢 Абонемент оплачен (5 × 2 500 = 12 500 ₽) · пятницы 12:00 · 1 из 5 (вводный 27.07 засчитан) · перспектива ВШЭ биохим.",
+      "lessons_used_this_month": 2,
+      "summer_plan_note": "🟢 Абонемент оплачен (5 × 2 500 = 12 500 ₽) · пятницы 12:00 · 2 из 5 (вводный 27.07 + Books/HP 31.07) · перспектива ВШЭ биохим.",
       "stability_note": "",
       "telemost_url": "https://telemost.yandex.ru/j/54421955698303",
       "lessons": [
@@ -1154,12 +1154,14 @@ window.NGE_DATA = {
         {
           "date": "2026-07-31",
           "num": 2,
-          "status": "planned",
-          "topic": "Books and Harry Potter (Prisoner of Azkaban) — Sirius Black, Dementors, Boggart, Time-Turner + Types of books + author adjectives",
+          "status": "completed",
+          "topic": "📚 Books and Harry Potter (Prisoner of Azkaban) — Sirius Black, Dementors, Boggart, Time-Turner + Types of books + author adjectives + повтор vocab первого урока + новое слово «definite»",
           "homework": {
-            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-02-azkaban-library/",
-            "module_title": "📚 Открыть · Books and Harry Potter",
-            "text": "Литературный урок · Катина любимая POA. Types of books (12 flip-cards), author adjectives, pairwork discussion Student A/B, Sirius Black монолог + Harry-Sirius диалог, Dementors on the train reading, Marauder's Map vocab quest (10 flip-cards с личными вопросами). Palette Whispering Library — violet + gold + parchment."
+            "text": "К следующему уроку: 1) пройти основной модуль Books & Harry Potter (все секции + Marauder's Map quest); 2) прогнать словарь первого урока Vibe Check + новые «at first» конструкции + слово definite в отдельной vocab-страничке.",
+            "modules": [
+              { "url": "https://newgeneration-english.ru/lingua-boost-lab/a2/katya-02-azkaban-library/", "title": "📚 Books and Harry Potter" },
+              { "url": "https://newgeneration-english.ru/lingua-boost-lab/practice/katya-vocab-01/", "title": "🎯 Vocab · Vibe Check + At first + definite" }
+            ]
           },
           "telemost_url": "https://telemost.yandex.ru/j/54421955698303"
         },
@@ -1187,8 +1189,14 @@ window.NGE_DATA = {
       ],
       "materials": {
         "folder": "documents/_v/katya-zhizhina",
-        "note": "Материалы курса будут появляться по мере прохождения тем.",
-        "files": []
+        "note": "Договор оказания услуг · Жижина Александра. Далее сюда будут добавляться отчёты и рабочие материалы.",
+        "files": [
+          {
+            "name": "katya-zhizhina-contract.pdf",
+            "label": "📄 Договор оказания услуг · Жижина Александра",
+            "audience": "parent"
+          }
+        ]
       }
     },
     {
