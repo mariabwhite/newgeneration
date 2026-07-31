@@ -595,10 +595,10 @@ window.NGE_DATA = {
           "schedule": "понедельник 10:30 / четверг 14:00 / воскресенье 14:35 — интенсив",
           "goal": "подготовка к ЕГЭ (word formation, exam speaking, Russia & culture)",
           "price_per_lesson": 2500,
-          "lessons_in_package": 3,
+          "lessons_in_package": 10,
           "subscription_month": "2026-07",
-          "lessons_used_this_month": 1,
-          "summer_plan_note": "Новая неделя · мини-блок 3 урока (30.07 сегодня · 31.07 · 02.08). Прошлый интенсив 10/10 закрыт.",
+          "lessons_used_this_month": 2,
+          "summer_plan_note": "Новый блок · 10 уроков (оплачено 30.07.2026). Первые 3 урока: 30.07 · 31.07 · 02.08 — далее продолжаем. Прошлый интенсив 10/10 закрыт.",
           "stability_note": "",
           "payment_status": "Оплачено",
           "payment_note": "",
@@ -636,11 +636,14 @@ window.NGE_DATA = {
                 {
                       "date": "2026-07-31",
                       "num": 2,
-                      "status": "planned",
-                      "topic": "📚 Russian History · Exam Simulator (B1+ ЕГЭ 2026) · Task 3 / Task 4 прогон",
+                      "status": "completed",
+                      "topic": "🌿 Ecology · знакомство с вокабом + прогон грамматики ЕГЭ · Russian History как каркас формата ФИПИ",
                       "homework": {
-                            "module_url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/",
-                            "module_title": "📚 Exam Simulator"
+                            "text": "К следующему уроку — пройти оба модуля: 1) новый Ecology · Exam Simulator (18 блоков, полный формат ЕГЭ), 2) РТ Grammar · Lexis · Russia — повтор проблемных мест.",
+                            "modules": [
+                                  { "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-ecology-exam/", "title": "🌿 Ecology · Exam Simulator" },
+                                  { "url": "https://newgeneration-english.ru/lingua-boost-lab/b1/dana-russia-history-exam/", "title": "📚 Grammar + Russia · ЕГЭ Simulator" }
+                            ]
                       }
                 },
                 {
