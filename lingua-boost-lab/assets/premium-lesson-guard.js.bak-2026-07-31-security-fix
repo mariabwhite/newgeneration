@@ -56,14 +56,11 @@
       var lessons = await pub.json();
       if (!Array.isArray(lessons)) return null;
       var here = currentPath();
-      // SECURITY 2026-07-31: fallback НЕ даёт access — только прогревает cache.
-      // Доступ решается через localHasAccess() по localStorage-cache,
-      // которое заполняется ТОЛЬКО login.html после успешного PIN.
-      // Раньше эта функция возвращала `found` (был published в списке) —
-      // это означало что любой посетитель получал доступ ко всем published
-      // урокам без auth. Регрессия ЗАКРЫТА.
+      var found = lessons.some(function (l) {
+        return normalizePath(l && l.url) === here && l.published !== false;
+      });
       try { localStorage.setItem(cacheKey, JSON.stringify(lessons)); } catch (_) {}
-      return null;
+      return found;
     } catch (_) { return null; }
   }
 
